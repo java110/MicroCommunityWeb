@@ -18,67 +18,84 @@
 
     var vcFramework = window.vcFramework || {};
     var componentCache = {};
+    /**
+     *  树
+     * @param {*} _vcCreate  自定义组件
+     * @param {*} _html 组件内容
+     * @param {*} _nodeLocation  组件位置 1 开始节点 -1 结束节点
+     */
+    var VcTree = function (_vcCreate, _html, _nodeLocation) {
+        var o = new Object();
+        o.treeId = vcFramework.uuid();
+        o.vcCreate = _vcCreate;
+        o.html = _html;
+        o.vcSubTree = [];
+        o.nodeLocation = _nodeLocation;
+        o.putSubTree = function (_vcSubTree) {
+            o.vcSubTree.push(_vcSubTree);
+        };
+        o.setHtml = function (_html) {
+            o.html = _html;
+        };
+        o.setLocation = function (_location) {
+            o.nodeLocation = _location;
+        };
+        return o;
+    };
 
     /**
      * 从当前 HTML中找是否存在 <vc:create name="xxxx"></vc:create> 标签
      */
-    findVcLabel = function (_currentElement) {
+    findVcLabel = function (_tree) {
         //查看是否存在子 vc:create 
         return new Promise((resolve, reject) => {
-            var _componentName = _currentElement.getAttribute('name');
+            var _componentName = _tree.vcCreate.getAttribute('name');
 
             if (!vcFramework.notNull(_componentName)) {
                 throw '组件未包含name 属性';
             }
             //开始加载组件
-            loadComponent(_componentName).then((_componentElement) => {
-                console.log('findVcLabel._componentElement',_componentElement);
-                parseHtml(_componentElement).then((_tmpVcDiv)=>{
-                    if(_tmpVcDiv == null){
-                        resolve(_componentElement);
-                        return ;
-                    }
-                    resolve(_tmpVcDiv);
+            loadComponent(_componentName)
+                .then((_componentElement) => {
+                    //设置组件内容
+                    _tree.setHtml(_componentElement);
+                    return parseHtml(_tree);
                 });
-            });
         });
     };
 
-    createElement = function (_html) {
-
-    };
-
-    reader = function () {
-
-    };
-
-     _initComponent =  function () {
+    /**
+     * 构建 树
+     */
+    builderVcTree = function () {
         var vcElements = document.getElementsByTagName('vc:create');
-        for (var _vcElementIndex = 0; _vcElementIndex < vcElements.length; _vcElementIndex++) {
-            let _vcElement = vcElements[_vcElementIndex];
-           // var _vcElement = {... vcElements[_vcElementIndex]};
-           // findVcLabel(_vcElement);
-            //创建div
-             findVcLabel(_vcElement).then((_res)=>{
-                if(_res != null){
-                    var _componentParentElement = _vcElement.parentNode;
-                    console.log('_componentParentElement',_componentParentElement,_vcElement,_res);
-                    _componentParentElement.replaceChild(_res,_vcElement);
-                }
-                
-            });
-        }
+        var treeList = [];
+        new Promise((resolve, reject) => {
+            for (var _vcElementIndex = 0; _vcElementIndex < vcElements.length; _vcElementIndex++) {
+                var _tree = new VcTree(vcElements[_vcElementIndex], '', 1);
+                treeList.push(_tree);
+                //创建div
+                findVcLabel(_tree).then((_res) => {
+                    resolve(_res);
+                });
+            }
+        }).then((_outTree)=>{
+            reader(treeList);
+        });
     };
 
-    parseHtml = function (_childElement) {
-        console.log('parseHtml._componentElement',_childElement);
-        let a = 1;
-        let tmpChildElement = _childElement
+    reader = function (_treeTree) {
+        console.log('_treeTree',_treeTree);
+    };
+
+    parseHtml = function (_tree) {
+        console.log('parseHtml._tree', _tree);
+
         return new Promise((resolve, reject) => {
-            console.log('Promise._componentElement',_childElement,a);
-            var vcChildElements = _childElement.getElementsByTagName('vc:create');
+            var vcChildElements = _tree.vcCreate.getElementsByTagName('vc:create');
 
             if (vcChildElements.length == 0) {
+                _tree.setLocation(-1);
                 resolve(null);
                 return;
             }
@@ -86,16 +103,11 @@
             var _vcDiv = document.createElement('div');
             for (var _vcChildIndex = 0; _vcChildIndex < vcChildElements.length; _vcChildIndex++) {
                 var _tmpChildElement = vcChildElements[_vcChildIndex];
-                //var _newChildElement = findVcLabel(_childElement);
-                findVcLabel(_tmpChildElement).then((_res)=>{
-                    if(_res != null){
-                        _vcDiv.appendChild(_res);
-                        var _parentElement = _tmpChildElement.parentNode;
-                        _parentElement.replaceChild(_res,_tmpChildElement);
-                    }
-                    
+                var _subtree = new VcTree(_tmpChildElement, '', 2);
+                _tree.putSubTree(_subtree);
+                findVcLabel(_subtree).then((_res) => {
                 });
-                
+
             }
 
             resolve(_vcDiv);
@@ -110,7 +122,7 @@
         return new Promise((resolve, reject) => {
             //从缓存查询
             var _cacheComponent = vcFramework.getComponent(_componentName);
-            console.log('加载组件名称',_componentName);
+            console.log('加载组件名称', _componentName);
             if (vcFramework.notNull(_cacheComponent)) {
                 resolve(_cacheComponent);
                 return;
@@ -123,38 +135,36 @@
             var _htmlBody = "";
             var _jsBody = "";
             vcFramework.httpGet(htmlFilePath)
-            .then((_hBody)=>{
-                _htmlBody = _hBody;
-                vcFramework.httpGet(jsFilePath).then((_thBody)=>{
-                    resolve(_thBody);
-                });
-            }).then((_jBody) => {
-                _jsBody = '<script type="text/javascript">//<![CDATA[\n' + _jBody + '//]]>\n</script>';
-                var parser = new DOMParser();
-                console.log('htmlBody',_htmlBody);
-                console.log('jsBody',_jsBody);
-                var doc = new ActivexObject ("MSXML2.DOMDocument");
-                console.log('123',doc.loadXML(_htmlBody));
-                var htmlComponentDoc = parser.parseFromString(_htmlBody, 'application/xhtml+xml').documentElement;
-                var jsComponentDoc = parser.parseFromString(_jsBody, 'application/xhtml+xml').documentElement;
+                .then((_hBody) => {
+                    _htmlBody = _hBody;
+                    vcFramework.httpGet(jsFilePath).then((_thBody) => {
+                        resolve(_thBody);
+                    });
+                }).then((_jBody) => {
+                    _jsBody = '<script type="text/javascript">//<![CDATA[\n' + _jBody + '//]]>\n</script>';
+                    var parser = new DOMParser();
+                    console.log('htmlBody', _htmlBody);
+                    console.log('jsBody', _jsBody);
+                    var htmlComponentDoc = parser.parseFromString(_htmlBody, 'application/xhtml+xml').documentElement;
+                    var jsComponentDoc = parser.parseFromString(_jsBody, 'application/xhtml+xml').documentElement;
 
-                var _htmlComponentAttr = document.createAttribute('data-component');
-                _htmlComponentAttr.value = _componentName;
-                htmlComponentDoc.setAttributeNode(_htmlComponentAttr);
-                var _jsComponentAttr = document.createAttribute('data-component');
-                _jsComponentAttr.value = _componentName;
-                jsComponentDoc.setAttributeNode(_jsComponentAttr);
-                //创建div
-                var vcDiv = document.createElement('div');
-                var _divComponentAttr = document.createAttribute('data-component');
-                _divComponentAttr.value = _componentName;
-                vcDiv.setAttributeNode(_divComponentAttr);
-                vcDiv.appendChild(htmlComponentDoc);
-                vcDiv.appendChild(jsComponentDoc);
-                vcFramework.putComponent(_componentName, vcDiv);
-                //callBack(vcDiv);
-                resolve(vcDiv);
-            });
+                    var _htmlComponentAttr = document.createAttribute('data-component');
+                    _htmlComponentAttr.value = _componentName;
+                    htmlComponentDoc.setAttributeNode(_htmlComponentAttr);
+                    var _jsComponentAttr = document.createAttribute('data-component');
+                    _jsComponentAttr.value = _componentName;
+                    jsComponentDoc.setAttributeNode(_jsComponentAttr);
+                    //创建div
+                    var vcDiv = document.createElement('div');
+                    var _divComponentAttr = document.createAttribute('data-component');
+                    _divComponentAttr.value = _componentName;
+                    vcDiv.setAttributeNode(_divComponentAttr);
+                    vcDiv.appendChild(htmlComponentDoc);
+                    vcDiv.appendChild(jsComponentDoc);
+                    vcFramework.putComponent(_componentName, vcDiv);
+                    //callBack(vcDiv);
+                    resolve(vcDiv);
+                });
         });
 
     };
@@ -167,7 +177,7 @@
         qq: '928255095',
         description: 'vcFramework 是自研的一套组件开发套件',
         componentCache: componentCache,
-        initComponent: _initComponent
+        builderVcTree:builderVcTree
     };
 
     window.vcFramework = vcFramework;
@@ -187,6 +197,47 @@
         return true;
     };
 
+    vcFramework.uuid = function () {
+        var s = [];
+        var hexDigits = "0123456789abcdef";
+        for (var i = 0; i < 36; i++) {
+            s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+        }
+        s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+        s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+        s[8] = s[13] = s[18] = s[23] = "-";
+
+        var uuid = s.join("");
+        return uuid;
+    };
+
+    /**
+     * 深度拷贝对象
+     */
+    vcFramework.deepClone = function (obj) {
+        // var type = getObjType(obj), //获取类型
+        //     temp = obj;
+        // if (typeof obj === 'object') {
+        //     if (type === 'Array') {
+        //         temp = [];
+        //         obj.map((item, i) => temp.push(deepClone(item)));
+        //     } else if (type === 'Object') {
+        //         temp = {};
+        //         for (let _name in obj) {
+        //             //忽略掉原型链上的属性
+        //             if (obj.hasOwnProperty(_name)) {
+        //                 temp[_name] = deepClone(obj[_name]);
+        //             }
+        //         }
+        //     }
+        // } else {
+        //     return temp;
+        // }
+        // return temp;
+
+        return JSON.stringify(JSON.stringify(obj));
+    }
+
 
 
 })(window.vcFramework);
@@ -205,7 +256,7 @@
                 // readyState == 4说明请求已完成
                 if (xhr.readyState == 4 && xhr.status == 200 || xhr.status == 304) {
                     // 从服务器获得数据 
-                   // fn.call(this, xhr.responseText);
+                    // fn.call(this, xhr.responseText);
                     resolve(xhr.responseText);
                 }
             };
@@ -255,5 +306,5 @@
  */
 (function (vcFramework) {
     //启动 框架
-    vcFramework.initComponent();
+    vcFramework.builderVcTree();
 })(window.vcFramework)
