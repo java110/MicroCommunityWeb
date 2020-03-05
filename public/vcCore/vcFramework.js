@@ -47,19 +47,18 @@
      * 构建 树
      */
     builderVcTree = async function () {
-        var vcElements = document.getElementsByTagName('vc:create');
+        let vcElements = document.getElementsByTagName('vc:create');
         var treeList = [];
-        for (var _vcElementIndex = 0; _vcElementIndex < vcElements.length; _vcElementIndex++) {
+        for (let _vcElementIndex = 0; _vcElementIndex < vcElements.length; _vcElementIndex++) {
             let _vcElement = vcElements[_vcElementIndex];
-            var _tree = new VcTree(_vcElement, '', 1);
+            let _tree = new VcTree(_vcElement, '', 1);
+            let _vcCreateAttr = document.createAttribute('id');
+            _vcCreateAttr.value = _tree.treeId;
+            _vcElement.setAttributeNode(_vcCreateAttr);
             treeList.push(_tree);
             //创建div
-            let _res = await findVcLabel(_tree,_vcElement);
-
-            if(_res != null){
-                var _componentParentElement = _vcElement.parentNode;
-                    _componentParentElement.replaceChild(_res,_vcElement);
-            }
+            await findVcLabel(_tree, _vcElement);
+            let _res = _tree.html;
         }
 
         reader(treeList);
@@ -71,48 +70,69 @@
     findVcLabel = async function (_tree) {
         //查看是否存在子 vc:create 
         var _componentName = _tree.vcCreate.getAttribute('name');
-
-        if (!vcFramework.notNull(_componentName)) {
+        console.log('_componentName', _componentName, _tree);
+        if (!vcFramework.notEmpty(_componentName)) {
             throw '组件未包含name 属性';
         }
         //开始加载组件
         let _componentElement = await loadComponent(_componentName);
         _tree.setHtml(_componentElement);
 
-        let _vcDiv = await parseHtml(_tree,_componentElement);
-        return _vcDiv;
-    };
+        console.log('_componentElement>>', _componentElement)
 
-    
-
-    reader = function (_treeTree) {
-        console.log('_treeTree', _treeTree);
-    };
-
-    parseHtml = async function (_tree,_componentElement) {
-        console.log('parseHtml._tree', _tree);
-        var vcChildElements = _componentElement.getElementsByTagName('vc:create');
-        if (vcChildElements.length == 0) {
-            _tree.setLocation(-1);
-            return _componentElement;
-        }
-        //创建div
-        var _vcDiv = document.createElement('div');
-        for (var _vcChildIndex = 0; _vcChildIndex < vcChildElements.length; _vcChildIndex++) {
-            var _tmpChildElement = vcChildElements[_vcChildIndex];
-            var _subtree = new VcTree(_tmpChildElement, '', 2);
-            _tree.putSubTree(_subtree);
-            let _res = await findVcLabel(_subtree);
-
-            if(_res != null){
-                _vcDiv.appendChild(_res);
-                let _parentElement = _tmpChildElement.parentNode;
-                _parentElement.replaceChild(_res,_tmpChildElement);
+        if (vcFramework.notNull(_componentElement)) {
+            var vcChildElements = _componentElement.getElementsByTagName('vc:create');
+            if (vcChildElements.length > 0) {
+                var _vcDiv = document.createElement('div');
+                for (var _vcChildIndex = 0; _vcChildIndex < vcChildElements.length; _vcChildIndex++) {
+                    console.log('vcChildElements', vcChildElements);
+                    var _tmpChildElement = vcChildElements[_vcChildIndex];
+                    var _subtree = new VcTree(_tmpChildElement, '', 2);
+                    let _vcCreateAttr = document.createAttribute('id');
+                    _vcCreateAttr.value = _subtree.treeId;
+                    _tmpChildElement.setAttributeNode(_vcCreateAttr);
+                    _tree.putSubTree(_subtree);
+                    await findVcLabel(_subtree);
+                }
             }
 
         }
-        return _vcDiv;
     };
+
+
+
+    reader = function (_treeList) {
+        console.log('_treeList', _treeList);
+        let _header = document.getElementsByTagName('head');
+        for (let _treeIndex = 0; _treeIndex < _treeList.length; _treeIndex++) {
+            let _tree = _treeList[_treeIndex];
+            let _vcCreateEl = document.getElementById(_tree.treeId);
+            let _componentHeader = _tree.html.getElementsByTagName('head');
+            let _componentBody = _tree.html.getElementsByTagName('body');
+
+            if (_vcCreateEl.hasAttribute("location") && 'head' == _vcCreateEl.getAttribute('location')) {
+                _header[0].appendChild(_componentHeader[0]);
+            } else if (_vcCreateEl.hasAttribute("location") && 'body' == _vcCreateEl.getAttribute('location')) {
+                _vcCreateEl.parentNode.replaceChild(_componentHeader[0].childNodes[0], _vcCreateEl);
+            } else {
+                _vcCreateEl.parentNode.replaceChild(_componentBody[0].childNodes[0], _vcCreateEl);
+            }
+
+        }
+
+        let _scripts = document.body.getElementsByTagName("script");
+         for(let i=0;i<_scripts.length;i++){ 
+             //一段一段执行script 
+             eval(_scripts[i].innerHTML);
+        }
+
+
+    };
+
+    readerSubTree = function (_tree) {
+
+    }
+
     /**
      * 加载组件
      * 异步去服务端 拉去HTML 和 js
@@ -177,6 +197,14 @@
 
     //空判断 true 为非空 false 为空
     vcFramework.notNull = function (_paramObj) {
+        if (_paramObj == null || _paramObj == undefined) {
+            return false;
+        }
+        return true;
+    };
+
+    //空判断 true 为非空 false 为空
+    vcFramework.notEmpty = function (_paramObj) {
         if (_paramObj == null || _paramObj == undefined || _paramObj.trim() == '') {
             return false;
         }
@@ -201,26 +229,6 @@
      * 深度拷贝对象
      */
     vcFramework.deepClone = function (obj) {
-        // var type = getObjType(obj), //获取类型
-        //     temp = obj;
-        // if (typeof obj === 'object') {
-        //     if (type === 'Array') {
-        //         temp = [];
-        //         obj.map((item, i) => temp.push(deepClone(item)));
-        //     } else if (type === 'Object') {
-        //         temp = {};
-        //         for (let _name in obj) {
-        //             //忽略掉原型链上的属性
-        //             if (obj.hasOwnProperty(_name)) {
-        //                 temp[_name] = deepClone(obj[_name]);
-        //             }
-        //         }
-        //     }
-        // } else {
-        //     return temp;
-        // }
-        // return temp;
-
         return JSON.stringify(JSON.stringify(obj));
     }
 
