@@ -117,16 +117,40 @@
 
             if (_vcCreateEl.hasAttribute("location") && 'head' == _vcCreateEl.getAttribute('location')) {
                 let _componentHs = _componentHeader[0].childNodes;
-                for(let _hsIndex = 0; _hsIndex < _componentHs.length;_hsIndex ++ ){
-                    console.log('_xxx',_componentHs[_hsIndex]);
-                    //_header[0].appendChild(_componentHeader[0]);
-                    let _componentScript = _componentHs[_hsIndex];
-                    _header[0].appendChild(_componentHs[_hsIndex]);
-                }
-                //_header[0].appendChild(_componentHeader[0]);
+                // for(let _hsIndex = 0; _hsIndex < _componentHs.length;_hsIndex ++ ){
+                //     console.log('_xxx',_componentHs[_hsIndex]);
+                //     //_header[0].appendChild(_componentHeader[0]);
+                //     let _componentScript = _componentHs[_hsIndex];
+                //     if(_componentScript.tagName == 'SCRIPT'){
+                //         console.log('script',_componentScript);
+                //         let scriptObj = document.createElement("script");
+                //         scriptObj.src = _componentHs[_hsIndex].src;
+                //         scriptObj.type = "text/javascript";
+                //         _header[0].appendChild(scriptObj);
+                //     }else{
+                //         _header[0].appendChild(_componentHs[_hsIndex]);
+                //     }
+                // }
+                //console.log('header',_header)
+                _header[0].appendChild(_componentHeader[0]);
                 
             } else if (_vcCreateEl.hasAttribute("location") && 'body' == _vcCreateEl.getAttribute('location')) {
                 _vcCreateEl.parentNode.replaceChild(_componentHeader[0].childNodes[0], _vcCreateEl);
+                let _bodyComponentHs = _componentHeader[0].childNodes;
+                for(let _bsIndex = 0; _bsIndex < _bodyComponentHs.length;_bsIndex ++ ){
+                    //_header[0].appendChild(_componentHeader[0]);
+                    let _bComponentScript = _bodyComponentHs[_bsIndex];
+                    if(_bComponentScript.tagName == 'SCRIPT'){
+                        let scriptObj = document.createElement("script");
+                        scriptObj.src = _bComponentScript.src;
+                        scriptObj.type = "text/javascript";
+                        document.getElementsByTagName("body")[0].appendChild(scriptObj);
+                    }else{
+                        _header[0].appendChild(_bodyComponentHs[_bsIndex]);
+                    }
+                    
+                }
+
             } else {
                 //_vcCreateEl.parentNode.replaceChild(_componentBody[0].childNodes[0], _vcCreateEl);
 
@@ -137,11 +161,23 @@
 
         }
 
-        //let _scripts = document.body.getElementsByTagName("script");
-         for(let i=0;i<_scripts.length;i++){ 
-             //一段一段执行script 
-             eval(_scripts[i]);
+        let _tmpScripts = document.head.getElementsByTagName("script");
+        let _tmpBody = document.getElementsByTagName('body');
+        for(let _scriptsIndex = 0; _scriptsIndex < _tmpScripts.length; _scriptsIndex++){
+            let _tmpScript = _tmpScripts[_scriptsIndex];
+
+            console.log('_head 中 script', _tmpScript.outerHTML)
+            let scriptObj = document.createElement("script");
+
+            scriptObj.src = _tmpScript.src;
+            //_tmpScript.parentNode.removeChild(_tmpScript);
+            scriptObj.type = "text/javascript";
+            _tmpBody[0].appendChild(scriptObj);
         }
+        //  for(let i=0;i<_scripts.length;i++){ 
+        //      //一段一段执行script 
+        //      eval(_scripts[i]);
+        // }
 
 
     };
