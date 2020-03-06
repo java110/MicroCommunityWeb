@@ -29,6 +29,7 @@
         o.treeId = vcFramework.uuid();
         o.vcCreate = _vcCreate;
         o.html = _html;
+        o.js = "";
         o.vcSubTree = [];
         o.nodeLocation = _nodeLocation;
         o.putSubTree = function (_vcSubTree) {
@@ -36,6 +37,9 @@
         };
         o.setHtml = function (_html) {
             o.html = _html;
+        };
+        o.setJs = function (_js) {
+            o.js = _js;
         };
         o.setLocation = function (_location) {
             o.nodeLocation = _location;
@@ -75,8 +79,8 @@
             throw '组件未包含name 属性';
         }
         //开始加载组件
-        let _componentElement = await loadComponent(_componentName);
-        _tree.setHtml(_componentElement);
+        let _componentElement = await loadComponent(_componentName,_tree);
+        //_tree.setHtml(_componentElement);
 
         console.log('_componentElement>>', _componentElement)
 
@@ -104,6 +108,7 @@
     reader = function (_treeList) {
         console.log('_treeList', _treeList);
         let _header = document.getElementsByTagName('head');
+        let _scripts = [];
         for (let _treeIndex = 0; _treeIndex < _treeList.length; _treeIndex++) {
             let _tree = _treeList[_treeIndex];
             let _vcCreateEl = document.getElementById(_tree.treeId);
@@ -111,19 +116,31 @@
             let _componentBody = _tree.html.getElementsByTagName('body');
 
             if (_vcCreateEl.hasAttribute("location") && 'head' == _vcCreateEl.getAttribute('location')) {
-                _header[0].appendChild(_componentHeader[0]);
+                let _componentHs = _componentHeader[0].childNodes;
+                for(let _hsIndex = 0; _hsIndex < _componentHs.length;_hsIndex ++ ){
+                    console.log('_xxx',_componentHs[_hsIndex]);
+                    //_header[0].appendChild(_componentHeader[0]);
+                    let _componentScript = _componentHs[_hsIndex];
+                    _header[0].appendChild(_componentHs[_hsIndex]);
+                }
+                //_header[0].appendChild(_componentHeader[0]);
+                
             } else if (_vcCreateEl.hasAttribute("location") && 'body' == _vcCreateEl.getAttribute('location')) {
                 _vcCreateEl.parentNode.replaceChild(_componentHeader[0].childNodes[0], _vcCreateEl);
             } else {
-                _vcCreateEl.parentNode.replaceChild(_componentBody[0].childNodes[0], _vcCreateEl);
+                //_vcCreateEl.parentNode.replaceChild(_componentBody[0].childNodes[0], _vcCreateEl);
+
+                _vcCreateEl.innerHTML = _componentBody[0].childNodes[0].innerHTML;
             }
+
+            _scripts.push(_tree.js);
 
         }
 
-        let _scripts = document.body.getElementsByTagName("script");
+        //let _scripts = document.body.getElementsByTagName("script");
          for(let i=0;i<_scripts.length;i++){ 
              //一段一段执行script 
-             eval(_scripts[i].innerHTML);
+             eval(_scripts[i]);
         }
 
 
@@ -137,7 +154,7 @@
      * 加载组件
      * 异步去服务端 拉去HTML 和 js
      */
-    loadComponent = async function (_componentName) {
+    loadComponent = async function (_componentName,_tree) {
         //从缓存查询
         var _cacheComponent = vcFramework.getComponent(_componentName);
         console.log('加载组件名称', _componentName);
@@ -151,27 +168,30 @@
         //加载html 页面
         let [_htmlBody, _jsBody] = await Promise.all([vcFramework.httpGet(htmlFilePath), vcFramework.httpGet(jsFilePath)]);
 
-        _jsBody = '<script type="text/javascript">//<![CDATA[\n' + _jsBody + '//]]>\n</script>';
-        var parser = new DOMParser();
+        _tmpJsBody = '<script type="text/javascript">//<![CDATA[\n' + _jsBody + '//]]>\n</script>';
+        let parser = new DOMParser();
         console.log('htmlBody', _htmlBody);
-        console.log('jsBody', _jsBody);
-        var htmlComponentDoc = parser.parseFromString(_htmlBody, 'text/html').documentElement;
-        var jsComponentDoc = parser.parseFromString(_jsBody, 'text/html').documentElement;
+        console.log('jsBody', _tmpJsBody);
+        let htmlComponentDoc = parser.parseFromString(_htmlBody+_tmpJsBody, 'text/html').documentElement;
+        //var jsComponentDoc = parser.parseFromString(_jsBody, 'text/html').documentElement;
 
-        var _htmlComponentAttr = document.createAttribute('data-component');
-        _htmlComponentAttr.value = _componentName;
-        htmlComponentDoc.setAttributeNode(_htmlComponentAttr);
-        var _jsComponentAttr = document.createAttribute('data-component');
-        _jsComponentAttr.value = _componentName;
-        jsComponentDoc.setAttributeNode(_jsComponentAttr);
+        // var _htmlComponentAttr = document.createAttribute('data-component');
+        // _htmlComponentAttr.value = _componentName;
+        // htmlComponentDoc.setAttributeNode(_htmlComponentAttr);
+        // var _jsComponentAttr = document.createAttribute('data-component');
+        // _jsComponentAttr.value = _componentName;
+        // jsComponentDoc.setAttributeNode(_jsComponentAttr);
+        
         //创建div
         var vcDiv = document.createElement('div');
         var _divComponentAttr = document.createAttribute('data-component');
         _divComponentAttr.value = _componentName;
         vcDiv.setAttributeNode(_divComponentAttr);
         vcDiv.appendChild(htmlComponentDoc);
-        vcDiv.appendChild(jsComponentDoc);
+        //vcDiv.appendChild(jsComponentDoc);
         vcFramework.putComponent(_componentName, vcDiv);
+        _tree.setHtml(vcDiv);
+        _tree.setJs(_jsBody);
         return vcDiv;
     };
 
