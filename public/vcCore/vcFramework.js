@@ -242,7 +242,13 @@
 
         for (let i = 0; i < _componentScript.length; i++) {
             //一段一段执行script 
-            eval(_componentScript[i]);
+            try{
+                eval(_componentScript[i]); 
+            }catch(e){
+                console.log('js脚本错误',_componentScript[i]);
+                console.error(e);
+            }
+           
         }
 
          //初始化vue 对象
@@ -374,9 +380,9 @@
             let componentName = _componentVcCreate.getAttribute("name");
             throw "组件" + componentName + "对应js 未包含 {}  ";
         }
-        let newJs = _js.substring(0,position);
+        let newJs = _js.substring(0,position+1);
         newJs = newJs + propsJs;
-        newJs = _js.substring(position + 1, _js.length);
+        newJs = newJs +_js.substring(position + 1, _js.length);
         return newJs;
     };
 
@@ -401,7 +407,7 @@
         }
         let namespace = "";
         if (!_componentVcCreate.hasAttribute("namespace")) {
-            namespace = DEFAULT_NAMESPACE;
+            namespace = 'default';
         } else {
             namespace = tag.getAttributeValue("namespace");
         }
@@ -415,9 +421,9 @@
         let position = _js.indexOf("{");
         let propsJs = "\nvar $namespace='" + namespace.trim() + "';\n";
         
-        let newJs = _js.substring(0,position);
+        let newJs = _js.substring(0,position+1);
         newJs = newJs + propsJs;
-        newJs = _js.substring(position + 1, _js.length);
+        newJs = newJs+ _js.substring(position + 1, _js.length);
         return newJs;
     };
 
