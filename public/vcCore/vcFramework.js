@@ -242,7 +242,13 @@
 
         for (let i = 0; i < _componentScript.length; i++) {
             //一段一段执行script 
-            eval(_componentScript[i]);
+            try{
+                eval(_componentScript[i]); 
+            }catch(e){
+                console.log('js脚本错误',_componentScript[i]);
+                console.error(e);
+            }
+           
         }
 
          //初始化vue 对象
@@ -268,6 +274,18 @@
         //加载html 页面
         let [_htmlBody, _jsBody] = await Promise.all([vcFramework.httpGet(htmlFilePath), vcFramework.httpGet(jsFilePath)]);
 
+        //处理命名空间
+        _htmlBody = dealHtmlNamespace(_tree,_htmlBody);
+
+        //处理 js
+        _jsBody = dealJs(_tree,_jsBody);
+        _jsBody = dealJsAddComponentCode(_tree,_jsBody);
+        //处理命名空间
+        _jsBody = dealJsNamespace(_tree,_jsBody);
+
+        //处理侦听
+        _jsBody = dealHtmlJs(_tree,_jsBody);
+
         _tmpJsBody = '<script type="text/javascript">//<![CDATA[\n' + _jsBody + '//]]>\n</script>';
         let parser = new DOMParser();
 
@@ -286,6 +304,168 @@
         _tree.setJs(_jsBody);
         return vcDiv;
     };
+
+    /**
+     * 处理 命名空间html
+     */
+    dealHtmlNamespace = function(_tree,_html){
+
+        let _componentVcCreate = _tree.vcCreate;
+        if(!_componentVcCreate.hasAttribute('namespace')){
+            return _html;
+        }
+
+        let _namespaceValue = _componentVcCreate.getAttribute("namespce");
+
+        _html = _html.replace(/this./g,_namespaceValue + "_");
+
+        _html = _html.replace(/(id)+( )*+=+( )*+'/g,"id='" + _namespaceValue + "_");
+        _html = _html.replace(/(id)+( )*+=+( )*+"/g,'id="' + _namespaceValue + '_');
+       return _html;
+    };
+    /**
+     * 处理js
+     */
+    dealJs = function(_tree,_js){
+        //在js 中检测propTypes 属性
+        if (_js.indexOf("propTypes")<0) {
+            return _js;
+        }
+
+        let _componentVcCreate = _tree.vcCreate;
+
+        //解析propTypes信息
+        let tmpProTypes = _js.substring(_js.indexOf("propTypes"),_js.length);
+        tmpProTypes = tmpProTypes.substring(tmpProTypes.indexOf("{") + 1, tmpProTypes.indexOf("}")).trim();
+
+        if (!notNull(tmpProTypes)) {
+            return _js;
+        }
+
+        tmpProTypes = tmpProTypes.indexOf("\r")>0 ? tmpProTypes.replace("\r"/g, "") : tmpProTypes;
+
+        let tmpType = tmpProTypes.indexOf("\n")>0
+                ? tmpProTypes.split("\n")
+                : tmpProTypes.split(",");
+        let propsJs = "\nvar $props = {};\n";
+        for (let typeIndex = 0;typeIndex <  tmpType.length ; typeIndex ++) {
+            let type = tmpType[typeIndex];
+            if (!notNull(type) || type.indexOf(":")<0) {
+                continue;
+            }
+            let types = type.split(":");
+            let attrKey = "";
+            if (types[0].indexOf("//")> 0) {
+                attrKey = types[0].substring(0, types[0].indexOf("//"));
+            }
+            attrKey = types[0].replace(" ", "");
+            attrKey=attrKey.replace("\n", "")
+            attrKey=attrKey.replace("\r", "");
+            if (!_componentVcCreate.hasAttribute(attrKey) && types[1].indexOf("=") < 0) {
+                let componentName = _componentVcCreate.getAttribute("name");
+                throw "组件[" + componentName + "]未配置组件属性" + attrKey;
+            }
+            let vcType = _componentVcCreate.getAttribute(attrKey);
+            if (!_componentVcCreate.hasAttribute(attrKey) && types[1].indexOf("=")>0) {
+                vcType = dealJsPropTypesDefault(types[1]);
+            } else if (types[1].indexOf("vc.propTypes.string")>0) {
+                vcType = "'" + vcType + "'";
+            }
+            propsJs = propsJs+"$props." + attrKey + "=" + vcType + ";\n";
+        }
+
+        //将propsJs 插入到 第一个 { 之后
+        let position = _js.indexOf("{");
+        if (position < 0) {
+            let componentName = _componentVcCreate.getAttribute("name");
+            throw "组件" + componentName + "对应js 未包含 {}  ";
+        }
+        let newJs = _js.substring(0,position+1);
+        newJs = newJs + propsJs;
+        newJs = newJs +_js.substring(position + 1, _js.length);
+        return newJs;
+    };
+
+    dealJsPropTypesDefault = function(typeValue) {
+        let startPos = typeValue.indexOf("=") + 1;
+        let endPos = typeValue.length();
+        if (typeValue.indexOf(",")>0) {
+            endPos = typeValue.indexOf(",");
+        } else if (typeValue.indexOf("//")>0) {
+            endPos = typeValue.indexOf("//");
+        }
+
+        return typeValue.substring(startPos, endPos);
+    };
+    dealJsNamespace = function(_tree,_js){
+
+        //在js 中检测propTypes 属性
+        let _componentVcCreate = _tree.vcCreate;
+
+        if (_js.indexOf("vc.extends")<0) {
+            return _js;
+        }
+        let namespace = "";
+        if (!_componentVcCreate.hasAttribute("namespace")) {
+            namespace = 'default';
+        } else {
+            namespace = tag.getAttributeValue("namespace");
+        }
+
+        //js对象中插入namespace 值
+        let extPos = _js.indexOf("vc.extends");
+        let tmpProTypes = _js.substring(extPos,_js.length);
+        let pos = tmpProTypes.indexOf("{") + 1;
+        _js = _js.substring(0, extPos) + tmpProTypes.substring(0, pos).trim()
+                + "\nnamespace:'" + namespace.trim() + "',\n" + tmpProTypes.substring(pos, tmpProTypes.length);
+        let position = _js.indexOf("{");
+        let propsJs = "\nvar $namespace='" + namespace.trim() + "';\n";
+        
+        let newJs = _js.substring(0,position+1);
+        newJs = newJs + propsJs;
+        newJs = newJs+ _js.substring(position + 1, _js.length);
+        return newJs;
+    };
+
+     /**
+     * 处理js 变量和 方法都加入 组件编码
+     *
+     * @param tag 页面元素
+     * @param js  js文件内容
+     * @return js 文件内容
+     */
+     dealJsAddComponentCode = function(_tree,_js) {
+        let _componentVcCreate = _tree.vcCreate;
+
+        if (!_componentVcCreate.hasAttribute("code")) {
+            return _js;
+        }
+
+        let code = _componentVcCreate.getAttribute("code");
+
+        return _js.replace("@vc_"/g, code);
+    }
+        
+    /**
+     * 处理命名空间js
+     */
+    dealHtmlJs = function(_tree,_js){
+        let _componentVcCreate = _tree.vcCreate;
+        if(!_componentVcCreate.hasAttribute('namespace')){
+            return _js;
+        }
+
+        let _namespaceValue = _componentVcCreate.getAttribute("namespce");
+        _js = _js.replace(/this./g, "vc.component." + _namespaceValue + "_");
+        _js = _js.replace("(\\$)+( )*+(\\()+( )*+'+#"/g, "\\$('#" + _namespaceValue + "_");
+
+        _js = _js.replace('(\\$)+( )*+(\\()+( )*+"+#'/g, "\\$(\"#" + _namespaceValue + "_");
+
+        //将 监听也做优化
+        _js = _js.replace("(vc.on)+\\('"/g, "vc.on('" + _namespaceValue + "','");
+        _js = _js.replace('(vc.on)+\\("'/g, "vc.on(\"" + _namespaceValue + "\",\"");
+        return _js;
+    }
 
 })(window.vcFramework);
 
