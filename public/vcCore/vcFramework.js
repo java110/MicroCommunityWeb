@@ -14,67 +14,71 @@
  * @mail 928255095@qq.com
  * 
  */
- /**
-    构建vcFramework对象
+/**
+   构建vcFramework对象
 **/
 (function (window) {
     "use strict";
-    var vcFramework = window.vcFramework || {};
-    window.vcFramework = vcFramework;
-    //为了兼容 0.1版本的vc 框架
-    window.vc = vcFramework;
-    var _vmOptions = {};
-    var _initMethod = [];
-    var _initEvent = [];
-    var _component = {};
-    var _destroyedMethod = [];
-    var _timers = [];//定时器
-    var _map = [];// 共享数据存储
-    var _namespace = [];
-    let _vueCache = {};
+    window.initVcFramework = function () {
+        var vcFramework = window.vcFramework || {};
+        window.vcFramework = vcFramework;
+        //为了兼容 0.1版本的vc 框架
+        window.vc = vcFramework;
+        var _vmOptions = {};
+        var _initMethod = [];
+        var _initEvent = [];
+        var _component = {};
+        var _destroyedMethod = [];
+        var _timers = [];//定时器
+        var _map = [];// 共享数据存储
+        var _namespace = [];
+        let _vueCache = {};
 
 
-    _vmOptions = {
-        el: '#component',
-        data: {},
-        watch: {},
-        methods: {},
-        destroyed: function () {
-            window.vcFramework.destroyedMethod.forEach(function (eventMethod) {
-                eventMethod();
-            });
-            //清理所有定时器
+        _vmOptions = {
+            el: '#component',
+            data: {},
+            watch: {},
+            methods: {},
+            destroyed: function () {
+                window.vcFramework.destroyedMethod.forEach(function (eventMethod) {
+                    eventMethod();
+                });
+                //清理所有定时器
 
-            window.vcFramework.timers.forEach(function (timer) {
-                clearInterval(timer);
-            });
+                window.vcFramework.timers.forEach(function (timer) {
+                    clearInterval(timer);
+                });
 
-            _timers = [];
-        }
+                _timers = [];
+            }
 
+        };
+
+        vcFramework = {
+            version: "v0.0.1",
+            name: "vcFramework",
+            author: '吴学文',
+            email: '928255095@qq.com',
+            qq: '928255095',
+            description: 'vcFramework 是自研的一套组件开发套件',
+            vueCache: _vueCache,
+            vmOptions: _vmOptions,
+            namespace: _namespace,
+            initMethod: _initMethod,
+            initEvent: _initEvent,
+            component: _component,
+            destroyedMethod: _destroyedMethod,
+            debug: false,
+            timers: _timers,
+            _map: {}
+        };
+        //通知window对象
+        window.vcFramework = vcFramework;
+        window.vc = vcFramework;
     };
-
-    vcFramework = {
-        version: "v0.0.1",
-        name: "vcFramework",
-        author: '吴学文',
-        email: '928255095@qq.com',
-        qq: '928255095',
-        description: 'vcFramework 是自研的一套组件开发套件',
-        vueCache: _vueCache,
-        vmOptions: _vmOptions,
-        namespace: _namespace,
-        initMethod: _initMethod,
-        initEvent: _initEvent,
-        component: _component,
-        destroyedMethod: _destroyedMethod,
-        debug: false,
-        timers: _timers,
-        _map: {}
-    };
-    //通知window对象
-    window.vcFramework = vcFramework;
-    window.vc = vcFramework;
+    //初始化VcFramework
+    initVcFramework();
 })(window);
 
 (function (vcFramework) {
@@ -113,6 +117,27 @@
      * 构建 树
      */
     vcFramework.builderVcTree = async function () {
+        let _componentUrl = location.hash;
+
+        //判断是否为组件页面
+        if (vcFramework.notNull(_componentUrl)) {
+            let _vcComponent = document.getElementById('component');
+            let vcComponentChilds = _vcComponent.childNodes;
+            for (var vcIndex = vcComponentChilds.length - 1; vcIndex >= 0; vcIndex--) {
+                _vcComponent.removeChild(vcComponentChilds[vcIndex]);
+            }
+
+            if (_componentUrl.lastIndexOf('/') > 0) {
+                _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, _componentUrl.length);
+            }
+
+            let _tmpVcCreate = document.createElement("vc:create");
+            let _divComponentAttr = document.createAttribute('name');
+            _divComponentAttr.value = _componentUrl;
+            _tmpVcCreate.setAttributeNode(_divComponentAttr);
+            _vcComponent.appendChild(_tmpVcCreate);
+
+        }
         let vcElements = document.getElementsByTagName('vc:create');
         var treeList = [];
         let _componentScript = [];
@@ -238,20 +263,20 @@
     execScript = function (_tree, _componentScript) {
 
         console.log('_componentScript', _componentScript);
-       
+
 
         for (let i = 0; i < _componentScript.length; i++) {
             //一段一段执行script 
-            try{
-                eval(_componentScript[i]); 
-            }catch(e){
-                console.log('js脚本错误',_componentScript[i]);
+            try {
+                eval(_componentScript[i]);
+            } catch (e) {
+                console.log('js脚本错误', _componentScript[i]);
                 console.error(e);
             }
-           
+
         }
 
-         //初始化vue 对象
+        //初始化vue 对象
         vcFramework.initVue();
         vcFramework.initVcComponent();
     }
@@ -275,16 +300,16 @@
         let [_htmlBody, _jsBody] = await Promise.all([vcFramework.httpGet(htmlFilePath), vcFramework.httpGet(jsFilePath)]);
 
         //处理命名空间
-        _htmlBody = dealHtmlNamespace(_tree,_htmlBody);
+        _htmlBody = dealHtmlNamespace(_tree, _htmlBody);
 
         //处理 js
-        _jsBody = dealJs(_tree,_jsBody);
-        _jsBody = dealJsAddComponentCode(_tree,_jsBody);
+        _jsBody = dealJs(_tree, _jsBody);
+        _jsBody = dealJsAddComponentCode(_tree, _jsBody);
         //处理命名空间
-        _jsBody = dealJsNamespace(_tree,_jsBody);
+        _jsBody = dealJsNamespace(_tree, _jsBody);
 
         //处理侦听
-        _jsBody = dealHtmlJs(_tree,_jsBody);
+        _jsBody = dealHtmlJs(_tree, _jsBody);
 
         _tmpJsBody = '<script type="text/javascript">//<![CDATA[\n' + _jsBody + '//]]>\n</script>';
         let parser = new DOMParser();
@@ -308,70 +333,70 @@
     /**
      * 处理 命名空间html
      */
-    dealHtmlNamespace = function(_tree,_html){
+    dealHtmlNamespace = function (_tree, _html) {
 
         let _componentVcCreate = _tree.vcCreate;
-        if(!_componentVcCreate.hasAttribute('namespace')){
+        if (!_componentVcCreate.hasAttribute('namespace')) {
             return _html;
         }
 
         let _namespaceValue = _componentVcCreate.getAttribute("namespce");
 
-        _html = _html.replace(/this./g,_namespaceValue + "_");
+        _html = _html.replace(/this./g, _namespaceValue + "_");
 
-        _html = _html.replace(/(id)+( )*+=+( )*+'/g,"id='" + _namespaceValue + "_");
-        _html = _html.replace(/(id)+( )*+=+( )*+"/g,'id="' + _namespaceValue + '_');
-       return _html;
+        _html = _html.replace(/(id)+( )*+=+( )*+'/g, "id='" + _namespaceValue + "_");
+        _html = _html.replace(/(id)+( )*+=+( )*+"/g, 'id="' + _namespaceValue + '_');
+        return _html;
     };
     /**
      * 处理js
      */
-    dealJs = function(_tree,_js){
+    dealJs = function (_tree, _js) {
         //在js 中检测propTypes 属性
-        if (_js.indexOf("propTypes")<0) {
+        if (_js.indexOf("propTypes") < 0) {
             return _js;
         }
 
         let _componentVcCreate = _tree.vcCreate;
 
         //解析propTypes信息
-        let tmpProTypes = _js.substring(_js.indexOf("propTypes"),_js.length);
+        let tmpProTypes = _js.substring(_js.indexOf("propTypes"), _js.length);
         tmpProTypes = tmpProTypes.substring(tmpProTypes.indexOf("{") + 1, tmpProTypes.indexOf("}")).trim();
 
-        if (!notNull(tmpProTypes)) {
+        if (!vcFramework.notNull(tmpProTypes)) {
             return _js;
         }
 
-        tmpProTypes = tmpProTypes.indexOf("\r")>0 ? tmpProTypes.replace("\r"/g, "") : tmpProTypes;
+        tmpProTypes = tmpProTypes.indexOf("\r") > 0 ? tmpProTypes.replace("\r/g", "") : tmpProTypes;
 
-        let tmpType = tmpProTypes.indexOf("\n")>0
-                ? tmpProTypes.split("\n")
-                : tmpProTypes.split(",");
+        let tmpType = tmpProTypes.indexOf("\n") > 0
+            ? tmpProTypes.split("\n")
+            : tmpProTypes.split(",");
         let propsJs = "\nvar $props = {};\n";
-        for (let typeIndex = 0;typeIndex <  tmpType.length ; typeIndex ++) {
+        for (let typeIndex = 0; typeIndex < tmpType.length; typeIndex++) {
             let type = tmpType[typeIndex];
-            if (!notNull(type) || type.indexOf(":")<0) {
+            if (!vcFramework.notNull(type) || type.indexOf(":") < 0) {
                 continue;
             }
             let types = type.split(":");
             let attrKey = "";
-            if (types[0].indexOf("//")> 0) {
+            if (types[0].indexOf("//") > 0) {
                 attrKey = types[0].substring(0, types[0].indexOf("//"));
             }
             attrKey = types[0].replace(" ", "");
-            attrKey=attrKey.replace("\n", "")
-            attrKey=attrKey.replace("\r", "");
+            attrKey = attrKey.replace("\n", "")
+            attrKey = attrKey.replace("\r", "").trim();
             if (!_componentVcCreate.hasAttribute(attrKey) && types[1].indexOf("=") < 0) {
                 let componentName = _componentVcCreate.getAttribute("name");
                 throw "组件[" + componentName + "]未配置组件属性" + attrKey;
             }
             let vcType = _componentVcCreate.getAttribute(attrKey);
-            if (!_componentVcCreate.hasAttribute(attrKey) && types[1].indexOf("=")>0) {
+            if (!_componentVcCreate.hasAttribute(attrKey) && types[1].indexOf("=") > 0) {
                 vcType = dealJsPropTypesDefault(types[1]);
-            } else if (types[1].indexOf("vc.propTypes.string")>0) {
+            } else if (types[1].indexOf("vc.propTypes.string") > 0) {
                 vcType = "'" + vcType + "'";
             }
-            propsJs = propsJs+"$props." + attrKey + "=" + vcType + ";\n";
+            propsJs = propsJs + "$props." + attrKey + "=" + vcType + ";\n";
         }
 
         //将propsJs 插入到 第一个 { 之后
@@ -380,29 +405,32 @@
             let componentName = _componentVcCreate.getAttribute("name");
             throw "组件" + componentName + "对应js 未包含 {}  ";
         }
-        let newJs = _js.substring(0,position+1);
+        let newJs = _js.substring(0, position + 1);
         newJs = newJs + propsJs;
-        newJs = newJs +_js.substring(position + 1, _js.length);
+        newJs = newJs + _js.substring(position + 1, _js.length);
         return newJs;
     };
 
-    dealJsPropTypesDefault = function(typeValue) {
+    dealJsPropTypesDefault = function (typeValue) {
         let startPos = typeValue.indexOf("=") + 1;
         let endPos = typeValue.length();
-        if (typeValue.indexOf(",")>0) {
+        if (typeValue.indexOf(",") > 0) {
             endPos = typeValue.indexOf(",");
-        } else if (typeValue.indexOf("//")>0) {
+        } else if (typeValue.indexOf("//") > 0) {
             endPos = typeValue.indexOf("//");
         }
 
         return typeValue.substring(startPos, endPos);
     };
-    dealJsNamespace = function(_tree,_js){
+    /**
+     * js 处理命名
+     */
+    dealJsNamespace = function (_tree, _js) {
 
         //在js 中检测propTypes 属性
         let _componentVcCreate = _tree.vcCreate;
 
-        if (_js.indexOf("vc.extends")<0) {
+        if (_js.indexOf("vc.extends") < 0) {
             return _js;
         }
         let namespace = "";
@@ -414,27 +442,27 @@
 
         //js对象中插入namespace 值
         let extPos = _js.indexOf("vc.extends");
-        let tmpProTypes = _js.substring(extPos,_js.length);
+        let tmpProTypes = _js.substring(extPos, _js.length);
         let pos = tmpProTypes.indexOf("{") + 1;
         _js = _js.substring(0, extPos) + tmpProTypes.substring(0, pos).trim()
-                + "\nnamespace:'" + namespace.trim() + "',\n" + tmpProTypes.substring(pos, tmpProTypes.length);
+            + "\nnamespace:'" + namespace.trim() + "',\n" + tmpProTypes.substring(pos, tmpProTypes.length);
         let position = _js.indexOf("{");
         let propsJs = "\nvar $namespace='" + namespace.trim() + "';\n";
-        
-        let newJs = _js.substring(0,position+1);
+
+        let newJs = _js.substring(0, position + 1);
         newJs = newJs + propsJs;
-        newJs = newJs+ _js.substring(position + 1, _js.length);
+        newJs = newJs + _js.substring(position + 1, _js.length);
         return newJs;
     };
 
-     /**
-     * 处理js 变量和 方法都加入 组件编码
-     *
-     * @param tag 页面元素
-     * @param js  js文件内容
-     * @return js 文件内容
-     */
-     dealJsAddComponentCode = function(_tree,_js) {
+    /**
+    * 处理js 变量和 方法都加入 组件编码
+    *
+    * @param tag 页面元素
+    * @param js  js文件内容
+    * @return js 文件内容
+    */
+    dealJsAddComponentCode = function (_tree, _js) {
         let _componentVcCreate = _tree.vcCreate;
 
         if (!_componentVcCreate.hasAttribute("code")) {
@@ -443,27 +471,27 @@
 
         let code = _componentVcCreate.getAttribute("code");
 
-        return _js.replace("@vc_"/g, code);
+        return _js.replace("@vc_/g", code);
     }
-        
+
     /**
      * 处理命名空间js
      */
-    dealHtmlJs = function(_tree,_js){
+    dealHtmlJs = function (_tree, _js) {
         let _componentVcCreate = _tree.vcCreate;
-        if(!_componentVcCreate.hasAttribute('namespace')){
+        if (!_componentVcCreate.hasAttribute('namespace')) {
             return _js;
         }
 
         let _namespaceValue = _componentVcCreate.getAttribute("namespce");
         _js = _js.replace(/this./g, "vc.component." + _namespaceValue + "_");
-        _js = _js.replace("(\\$)+( )*+(\\()+( )*+'+#"/g, "\\$('#" + _namespaceValue + "_");
+        _js = _js.replace("(\\$)+( )*+(\\()+( )*+'+#/g", "\\$('#" + _namespaceValue + "_");
 
-        _js = _js.replace('(\\$)+( )*+(\\()+( )*+"+#'/g, "\\$(\"#" + _namespaceValue + "_");
+        _js = _js.replace('(\\$)+( )*+(\\()+( )*+"+#/g', "\\$(\"#" + _namespaceValue + "_");
 
         //将 监听也做优化
-        _js = _js.replace("(vc.on)+\\('"/g, "vc.on('" + _namespaceValue + "','");
-        _js = _js.replace('(vc.on)+\\("'/g, "vc.on(\"" + _namespaceValue + "\",\"");
+        _js = _js.replace("(vc.on)+\\('/g", "vc.on('" + _namespaceValue + "','");
+        _js = _js.replace('(vc.on)+\\("/g', "vc.on(\"" + _namespaceValue + "\",\"");
         return _js;
     }
 
@@ -579,14 +607,14 @@
  */
 
 
- /**
+/**
 常量
 **/
-(function(vcFramework){
+(function (vcFramework) {
 
     var constant = {
-        REQUIRED_MSG:"不能为空",
-        GET_CACHE_URL:["/nav/getUserInfo"]
+        REQUIRED_MSG: "不能为空",
+        GET_CACHE_URL: ["/nav/getUserInfo"]
     }
     vcFramework.constant = constant;
 })(window.vcFramework);
@@ -752,7 +780,31 @@
     };
     //绑定跳转函数
     vcFramework.jumpToPage = function (url) {
-        window.location.href = url;
+        //判断 url 的模板是否 和当前url 模板一个
+        if (url.indexOf('#') < 0) {
+            window.location.href = url;
+            return;
+        }
+
+        let _targetUrl = url.substring(0, url.indexOf('#'));
+
+        if (location.pathname != _targetUrl) {
+            window.location.href = url;
+            return;
+        }
+
+        //清理vue 对象
+        $that.$destroy();
+        //重新初始化 VcFramework 对象
+        initVcFramework();
+        //修改锚点
+        location.hash = url.substring(url.indexOf("#")+1,url.length);
+        vcFramework.builderVcTree();
+
+
+
+
+
     };
     //保存菜单
     vcFramework.setCurrentMenu = function (_menuId) {
@@ -1038,7 +1090,7 @@
  @param vc vue component对象
  @param vmOptions Vue参数
  **/
-(function (vcFramework,vmOptions) {
+(function (vcFramework, vmOptions) {
     vcFramework.initVue = function () {
         console.log("vmOptions:", vmOptions);
         vcFramework.vue = new Vue(vmOptions);
@@ -1046,7 +1098,7 @@
         //方便二次开发
         window.$that = vcFramework.vue;
     }
-})(window.vcFramework,window.vcFramework.vmOptions);
+})(window.vcFramework, window.vcFramework.vmOptions);
 
 /**
  * vcFramwork init 

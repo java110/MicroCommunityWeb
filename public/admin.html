@@ -21,7 +21,7 @@
     <script src="/js/plugins/echart/china.js"></script>
 </head>
 <body>
-<vc:create name="loading"></vc:create>
+<vc:create name="bodyTop"></vc:create>
 <div id="wrapper">
     <vc:create name="menu"></vc:create>
 
@@ -30,14 +30,19 @@
         <div class="row border-bottom">
             <vc:create name="nav"></vc:create>
         </div>
-
-        <vc:create name="indexContext"></vc:create>
-
+        <div class="wrapper wrapper-content" style="padding-bottom: 0px;">
+            <vc:create name="breadcrumb"></vc:create>
+        </div>
+        <!--  -->
+        <div id="component" class="wrapper wrapper-content animated fadeInRight">
+            <vc:create name="enterCommunity"></vc:create>
+        </div>
 
         <vc:create name="copyright"></vc:create>
 
     </div>
 </div>
+
 <script src="/vcCore/vcFramework.js"></script>
 <vc:create name="commonBottom" location="body"></vc:create>
 </body>

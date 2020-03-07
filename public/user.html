@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:vc="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>HC小区管理系统|java110</title>
+
+    <vc:create name="commonTop" location= "head"></vc:create>
+<script  src="/js/bootstrap/jquery-3.3.1.min.js"></script>
+<script  src="/js/vue/vue.min.js"></script>
+<script  src="/js/vue/vue-resource.min.js"></script>
+<!-- <script src="/vcCore/core.js"></script> -->
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap/bootstrap.min.js"></script>
+<!--<script src="/js/bootstrap/bootstrap-datetimepicker.min.js"></script>-->
+<script src="/js/bootstrap/bootstrap-datetimepicker.js"></script>
+<script src="/js/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/js/plugins/select2/select2.full.min.js"></script>
+
+
+</head>
+
+<body class="gray-bg">
+<vc:create name="loading"></vc:create>
+<div id="component" class="middle-box text-center loginscreen animated fadeInDown">
+    <vc:create name="login"></vc:create>
+
+</div>
+<!-- <script src="/vcCore/test.js"></script> -->
+<script src="/vcCore/vcFramework.js"></script>
+<vc:create name="commonBottom" location="body"></vc:create>
+</body>
+
+</html>
