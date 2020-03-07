@@ -19,66 +19,63 @@
 **/
 (function (window) {
     "use strict";
-    window.initVcFramework = function () {
-        var vcFramework = window.vcFramework || {};
-        window.vcFramework = vcFramework;
-        //为了兼容 0.1版本的vc 框架
-        window.vc = vcFramework;
-        var _vmOptions = {};
-        var _initMethod = [];
-        var _initEvent = [];
-        var _component = {};
-        var _destroyedMethod = [];
-        var _timers = [];//定时器
-        var _map = [];// 共享数据存储
-        var _namespace = [];
-        let _vueCache = {};
+    var vcFramework = window.vcFramework || {};
+    window.vcFramework = vcFramework;
+    //为了兼容 0.1版本的vc 框架
+    window.vc = vcFramework;
+    var _vmOptions = {};
+    var _initMethod = [];
+    var _initEvent = [];
+    var _component = {};
+    var _destroyedMethod = [];
+    var _timers = [];//定时器
+    var _map = [];// 共享数据存储
+    var _namespace = [];
+    let _vueCache = {};
 
 
-        _vmOptions = {
-            el: '#component',
-            data: {},
-            watch: {},
-            methods: {},
-            destroyed: function () {
-                window.vcFramework.destroyedMethod.forEach(function (eventMethod) {
-                    eventMethod();
-                });
-                //清理所有定时器
+    _vmOptions = {
+        el: '#component',
+        data: {},
+        watch: {},
+        methods: {},
+        destroyed: function () {
+            window.vcFramework.destroyedMethod.forEach(function (eventMethod) {
+                eventMethod();
+            });
+            //清理所有定时器
 
-                window.vcFramework.timers.forEach(function (timer) {
-                    clearInterval(timer);
-                });
+            window.vcFramework.timers.forEach(function (timer) {
+                clearInterval(timer);
+            });
 
-                _timers = [];
-            }
+            _timers = [];
+        }
 
-        };
-
-        vcFramework = {
-            version: "v0.0.1",
-            name: "vcFramework",
-            author: '吴学文',
-            email: '928255095@qq.com',
-            qq: '928255095',
-            description: 'vcFramework 是自研的一套组件开发套件',
-            vueCache: _vueCache,
-            vmOptions: _vmOptions,
-            namespace: _namespace,
-            initMethod: _initMethod,
-            initEvent: _initEvent,
-            component: _component,
-            destroyedMethod: _destroyedMethod,
-            debug: false,
-            timers: _timers,
-            _map: {}
-        };
-        //通知window对象
-        window.vcFramework = vcFramework;
-        window.vc = vcFramework;
     };
-    //初始化VcFramework
-    initVcFramework();
+
+    vcFramework = {
+        version: "v0.0.1",
+        name: "vcFramework",
+        author: '吴学文',
+        email: '928255095@qq.com',
+        qq: '928255095',
+        description: 'vcFramework 是自研的一套组件开发套件',
+        vueCache: _vueCache,
+        vmOptions: _vmOptions,
+        namespace: _namespace,
+        initMethod: _initMethod,
+        initEvent: _initEvent,
+        component: _component,
+        destroyedMethod: _destroyedMethod,
+        debug: false,
+        timers: _timers,
+        _map: {}
+    };
+    //通知window对象
+    window.vcFramework = vcFramework;
+    window.vc = vcFramework;
+
 })(window);
 
 (function (vcFramework) {
@@ -152,6 +149,55 @@
             await findVcLabel(_tree, _vcElement);
             let _res = _tree.html;
         }
+        //渲染组件html
+        reader(treeList, _componentScript);
+        //执行组件js
+        execScript(treeList, _componentScript);
+    };
+
+    /**
+     * 页面内 组件跳转
+     */
+    vcFramework.reBuilderVcTree = async function () {
+        let _componentUrl = location.hash;
+
+        //判断是否为组件页面
+        if (!vcFramework.notNull(_componentUrl)) {
+            vcFramework.toast('程序异常，url没有包含组件');
+            return;
+        }
+
+        if (_componentUrl.lastIndexOf('/') < 0) {
+            vcFramework.toast('程序异常，url包含组件错误');
+            return;
+        }
+
+        let _vcComponent = document.getElementById('component');
+        let vcComponentChilds = _vcComponent.childNodes;
+        for (var vcIndex = vcComponentChilds.length - 1; vcIndex >= 0; vcIndex--) {
+            _vcComponent.removeChild(vcComponentChilds[vcIndex]);
+        }  
+
+        _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, _componentUrl.length);
+
+        let _tmpVcCreate = document.createElement("vc:create");
+        let _divComponentAttr = document.createAttribute('name');
+        _divComponentAttr.value = _componentUrl;
+        _tmpVcCreate.setAttributeNode(_divComponentAttr);
+        _vcComponent.appendChild(_tmpVcCreate);
+
+        var treeList = [];
+        let _componentScript = [];
+
+        let _vcElement = _tmpVcCreate;
+        let _tree = new VcTree(_vcElement, '', 1);
+        let _vcCreateAttr = document.createAttribute('id');
+        _vcCreateAttr.value = _tree.treeId;
+        _vcElement.setAttributeNode(_vcCreateAttr);
+        treeList.push(_tree);
+        //创建div
+        await findVcLabel(_tree, _vcElement);
+
         //渲染组件html
         reader(treeList, _componentScript);
         //执行组件js
@@ -792,19 +838,21 @@
             window.location.href = url;
             return;
         }
-
-        //清理vue 对象
-        $that.$destroy();
-        //重新初始化 VcFramework 对象
-        initVcFramework();
+        //刷新框架参数
+        refreshVcFramework();
         //修改锚点
-        location.hash = url.substring(url.indexOf("#")+1,url.length);
-        vcFramework.builderVcTree();
+        location.hash = url.substring(url.indexOf("#") + 1, url.length);
+        vcFramework.reBuilderVcTree();
+    };
 
-
-
-
-
+    refreshVcFramework = function () {
+        $that.$destroy();
+        vcFramework._vmOptions = {};
+        vcFramework._initMethod = [];
+        vcFramework._initEvent = [];
+        vcFramework._component = {};
+        vcFramework._destroyedMethod = [];
+        vcFramework._namespace = [];
     };
     //保存菜单
     vcFramework.setCurrentMenu = function (_menuId) {
