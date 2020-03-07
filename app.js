@@ -16,6 +16,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+
+app.use('/callComponent', createProxyMiddleware({
+  target: 'http://192.168.0.104:8443', // 目标代理地址
+  changeOrigin: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -24,13 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/callComponent', createProxyMiddleware({
-  target: 'https://hc.demo.winqi.cn', // 目标代理地址
-  changeOrigin: true,
-  pathRewrite: {
-      '^/callComponent': ''
-  }  
-}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

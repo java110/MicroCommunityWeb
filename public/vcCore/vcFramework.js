@@ -382,7 +382,7 @@
      */
     vcFramework.putComponent = function (_componentName, _component) {
         var _componentCache = vcFramework.vueCache;
-        _componentCache[_componentName] = component;
+        _componentCache[_componentName] = _component;
     };
     /**
      * 组件提取
