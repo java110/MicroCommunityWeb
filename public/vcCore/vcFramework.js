@@ -684,6 +684,11 @@
             Vue.http.post('/callComponent/' + componentCode + "/" + componentMethod, param, options)
                 .then(function (res) {
                     try {
+                        let _header = res.headers;
+                        if(vcFramework.notNull(_header['CONTEXTPATH'])){
+                            window.location.href = _header['CONTEXTPATH'];
+                            return ;
+                        };
                         successCallback(res.bodyText, res);
                     } catch (e) {
                         console.error(e);
@@ -715,6 +720,11 @@
             Vue.http.get('/callComponent/' + componentCode + "/" + componentMethod, param)
                 .then(function (res) {
                     try {
+                        let _header = res.headers;
+                        if(vcFramework.notNull(_header['CONTEXTPATH'])){
+                            window.location.href = _header['CONTEXTPATH'];
+                            return ;
+                        };
                         successCallback(res.bodyText, res);
                         if (vcFramework.constant.GET_CACHE_URL.includes(_getPath) && res.status == 200) {
                             vcFramework.saveData(_getPath, JSON.parse(res.bodyText));
