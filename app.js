@@ -16,6 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+<<<<<<< HEAD
 // 反向代理（这里把需要进行反代的路径配置到这里即可）
 let opts = {
   preserveHostHdr: true,
@@ -32,6 +33,17 @@ let opts = {
 
 app.use('/callComponent',proxy('http://192.168.0.104:8012',opts));
 //app.listen(3000);
+=======
+
+let option = createProxyMiddleware({
+  target: 'http://hc.demo.winqi.cn:8012', // 目标代理地址
+  changeOrigin: true,
+  logLevel: "debug"
+});
+
+app.use('/callComponent', option);
+
+>>>>>>> 6c49b26acff4f813442e3b8b60bfae6077971f7a
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
