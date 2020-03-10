@@ -7,7 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const proxy  = require('express-http-proxy');
 
 var app = express();
 
@@ -16,11 +16,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+// 反向代理（这里把需要进行反代的路径配置到这里即可）
+let opts = {
+  preserveHostHdr: true,
+  reqAsBuffer: true,
+//转发之前触发该方法
+  proxyReqPathResolver: function(req, res) {
+    //这个代理会把匹配到的url（下面的 ‘/api’等）去掉，转发过去直接404，这里手动加回来，
+    req.url = req.baseUrl+req.url;
+    console.log(1,req)
+    return require('url').parse(req.url).path;
+  },
 
-app.use('/callComponent', createProxyMiddleware({
-  target: 'http://192.168.0.104:8443', // 目标代理地址
-  changeOrigin: true
-}));
+}
+
+app.use('/callComponent',proxy('http://192.168.0.104:8012',opts));
+//app.listen(3000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
