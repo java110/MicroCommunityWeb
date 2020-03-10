@@ -106,6 +106,9 @@
 
                 $("body").toggleClass("mini-navbar");
                 vc.setMenuState('OFF');
+            },
+            _gotoPage:function(_href){
+                vc.jumpToPage(_href);
             }
 
         },

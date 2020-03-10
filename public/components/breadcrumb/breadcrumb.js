@@ -8,14 +8,19 @@
                 breadCrumbs:[]
        },
        mounted:function(){
-           this._freshBreadCrumbByUrl();
+           //this._freshBreadCrumbByUrl();
+           // 监听事件
+           document.addEventListener('initVcFrameworkFinish', function (e) {
+                // e.target matches elem
+                vm.breadCrumbs = [];
+                vm._freshBreadCrumbByUrl();
+            }, false);
        },
        methods:{
            _freshBreadCrumbByUrl:function(){
 
                 var _tmpMenus = vc.getMenus();
-                var _url = vc.getUrl();
-
+                var _url = vc.getUrl()+location.hash;
                 /**
                     正常情况下是走不到这里的，
                     因为系统登录时，就已经加载菜单信息缓存到本地了

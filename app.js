@@ -16,7 +16,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-<<<<<<< HEAD
 // 反向代理（这里把需要进行反代的路径配置到这里即可）
 let opts = {
   preserveHostHdr: true,
@@ -25,25 +24,14 @@ let opts = {
   proxyReqPathResolver: function(req, res) {
     //这个代理会把匹配到的url（下面的 ‘/api’等）去掉，转发过去直接404，这里手动加回来，
     req.url = req.baseUrl+req.url;
-    console.log(1,req)
+    console.log(1,req,res)
     return require('url').parse(req.url).path;
   },
 
 }
 
-app.use('/callComponent',proxy('http://192.168.0.104:8012',opts));
+app.use('/callComponent',proxy('http://8761wuxu2.nps.winqi.cn',opts));
 //app.listen(3000);
-=======
-
-let option = createProxyMiddleware({
-  target: 'http://hc.demo.winqi.cn:8012', // 目标代理地址
-  changeOrigin: true,
-  logLevel: "debug"
-});
-
-app.use('/callComponent', option);
-
->>>>>>> 6c49b26acff4f813442e3b8b60bfae6077971f7a
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

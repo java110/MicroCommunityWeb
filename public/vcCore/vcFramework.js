@@ -176,7 +176,7 @@
         let vcComponentChilds = _vcComponent.childNodes;
         for (var vcIndex = vcComponentChilds.length - 1; vcIndex >= 0; vcIndex--) {
             _vcComponent.removeChild(vcComponentChilds[vcIndex]);
-        }  
+        }
 
         _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, _componentUrl.length);
 
@@ -336,7 +336,9 @@
         var _cacheComponent = vcFramework.getComponent(_componentName);
         //console.log('加载组件名称', _componentName);
         if (vcFramework.isNotNull(_cacheComponent)) {
-            return _cacheComponent;
+            _tree.setHtml(_cacheComponent.vcDiv);
+            _tree.setJs(_cacheComponent.js);
+            return _cacheComponent.vcDiv;
         }
 
         var filePath = '/components/' + _componentName + '/' + _componentName;
@@ -370,7 +372,12 @@
         vcDiv.setAttributeNode(_divComponentAttr);
         vcDiv.appendChild(htmlComponentDoc);
         //vcDiv.appendChild(jsComponentDoc);
-        vcFramework.putComponent(_componentName, vcDiv);
+        let _componentObj = {
+            html:_htmlBody,
+            js:_jsBody,
+            vcDiv:vcDiv
+        };
+        vcFramework.putComponent(_componentName, _componentObj);
         _tree.setHtml(vcDiv);
         _tree.setJs(_jsBody);
         return vcDiv;
@@ -439,7 +446,7 @@
             let vcType = _componentVcCreate.getAttribute(attrKey);
             if (!_componentVcCreate.hasAttribute(attrKey) && types[1].indexOf("=") > 0) {
                 vcType = dealJsPropTypesDefault(types[1]);
-            } else if (types[1].indexOf("vc.propTypes.string") > 0) {
+            } else if (types[1].indexOf("vc.propTypes.string") >= 0) {
                 vcType = "'" + vcType + "'";
             }
             propsJs = propsJs + "$props." + attrKey + "=" + vcType + ";\n";
@@ -542,6 +549,23 @@
     }
 
 })(window.vcFramework);
+
+/**
+ * vc-event 事件处理
+ * 
+ */
+
+(function(vcFramework){
+
+    _initVcFrameworkEvent = function(){
+        let vcFrameworkEvent = document.createEvent('Event');
+        // 定义事件名为'build'.
+        vcFrameworkEvent.initEvent('initVcFrameworkFinish', true, true);
+        vcFramework.vcFrameworkEvent = vcFrameworkEvent;
+    }
+
+    _initVcFrameworkEvent();
+ })(window.vcFramework);
 
 /**
  * vc-util
@@ -684,10 +708,11 @@
             Vue.http.post('/callComponent/' + componentCode + "/" + componentMethod, param, options)
                 .then(function (res) {
                     try {
-                        let _header = res.headers;
-                        if(vcFramework.notNull(_header['CONTEXTPATH'])){
-                            window.location.href = _header['CONTEXTPATH'];
-                            return ;
+                        let _header = res.headers.map;
+                        console.log('res', res);
+                        if (vcFramework.notNull(_header['location'])) {
+                            window.location.href = _header['location'];
+                            return;
                         };
                         successCallback(res.bodyText, res);
                     } catch (e) {
@@ -695,9 +720,15 @@
                     } finally {
                         vcFramework.loading('close');
                     }
-                }, function (error) {
+                }, function (res) {
                     try {
-                        errorCallback(error.bodyText, error);
+                        if (res.status == 401) {
+                            let _header = res.headers.map;
+                            console.log('res', res);
+                            window.location.href = _header['location'];
+                            return;
+                        }
+                        errorCallback(res.bodyText, res);
                     } catch (e) {
                         console.error(e);
                     } finally {
@@ -720,11 +751,7 @@
             Vue.http.get('/callComponent/' + componentCode + "/" + componentMethod, param)
                 .then(function (res) {
                     try {
-                        let _header = res.headers;
-                        if(vcFramework.notNull(_header['CONTEXTPATH'])){
-                            window.location.href = _header['CONTEXTPATH'];
-                            return ;
-                        };
+
                         successCallback(res.bodyText, res);
                         if (vcFramework.constant.GET_CACHE_URL.includes(_getPath) && res.status == 200) {
                             vcFramework.saveData(_getPath, JSON.parse(res.bodyText));
@@ -734,9 +761,16 @@
                     } finally {
                         vcFramework.loading('close');
                     }
-                }, function (error) {
+                }, function (res) {
                     try {
-                        errorCallback(error.bodyText, error);
+                        if (res.status == 401) {
+                            let _header = res.headers.map;
+                            console.log('res', res);
+                            window.location.href = _header['location'];
+                            return;
+
+                        }
+                        errorCallback(res.bodyText, res);
                     } catch (e) {
                         console.error(e);
                     } finally {
@@ -769,12 +803,14 @@
 
     };
 
-    var vmOptions = vcFramework.vmOptions;
+    //var vmOptions = vcFramework.vmOptions;
     //继承方法,合并 _vmOptions 的数据到 vmOptions中
     vcFramework.extends = function (_vmOptions) {
+        let vmOptions = vcFramework.vmOptions;
         if (typeof _vmOptions !== "object") {
             throw "_vmOptions is not Object";
         }
+        console.log('vmOptions',vmOptions);
         var nameSpace = DEFAULT_NAMESPACE;
         if (_vmOptions.hasOwnProperty("namespace")) {
             nameSpace = _vmOptions.namespace;
@@ -857,12 +893,31 @@
 
     refreshVcFramework = function () {
         $that.$destroy();
-        vcFramework._vmOptions = {};
-        vcFramework._initMethod = [];
-        vcFramework._initEvent = [];
-        vcFramework._component = {};
-        vcFramework._destroyedMethod = [];
-        vcFramework._namespace = [];
+        let _vmOptions = {
+            el: '#component',
+            data: {},
+            watch: {},
+            methods: {},
+            destroyed: function () {
+                window.vcFramework.destroyedMethod.forEach(function (eventMethod) {
+                    eventMethod();
+                });
+                //清理所有定时器
+    
+                window.vcFramework.timers.forEach(function (timer) {
+                    clearInterval(timer);
+                });
+    
+                _timers = [];
+            }
+    
+        };
+        vcFramework.vmOptions = _vmOptions;
+        vcFramework.initMethod = [];
+        vcFramework.initEvent = [];
+        vcFramework.component = {};
+        vcFramework.destroyedMethod = [];
+        vcFramework.namespace = [];
     };
     //保存菜单
     vcFramework.setCurrentMenu = function (_menuId) {
@@ -1148,15 +1203,19 @@
  @param vc vue component对象
  @param vmOptions Vue参数
  **/
-(function (vcFramework, vmOptions) {
+(function (vcFramework) {
     vcFramework.initVue = function () {
+        let vmOptions = vcFramework.vmOptions;
         console.log("vmOptions:", vmOptions);
         vcFramework.vue = new Vue(vmOptions);
         vcFramework.component = vcFramework.vue;
         //方便二次开发
         window.$that = vcFramework.vue;
+
+        //发布vue 创建完成 事件
+        document.dispatchEvent(vcFramework.vcFrameworkEvent);
     }
-})(window.vcFramework, window.vcFramework.vmOptions);
+})(window.vcFramework);
 
 /**
  * vcFramwork init 
@@ -1264,3 +1323,4 @@
         });
     }
 })(window.vcFramework);
+
