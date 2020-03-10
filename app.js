@@ -17,10 +17,14 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 
-app.use('/callComponent', createProxyMiddleware({
-  target: 'http://192.168.0.104:8443', // 目标代理地址
-  changeOrigin: true
-}));
+let option = createProxyMiddleware({
+  target: 'http://hc.demo.winqi.cn:8012', // 目标代理地址
+  changeOrigin: true,
+  logLevel: "debug"
+});
+
+app.use('/callComponent', option);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
