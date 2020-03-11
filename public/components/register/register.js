@@ -157,6 +157,9 @@
                     vc.messageTips("*密码长度必须在6位至12位");
 
                 }
+            },
+            _doLogin:function(){
+                vc.jumpToPage('/user.html#/login');
             }
         }
     });

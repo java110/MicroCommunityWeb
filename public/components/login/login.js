@@ -98,6 +98,9 @@
                         vc.component.loginInfo.errorInfo = errInfo;
                     });
 
+            },
+            _doRegister:function(){
+                vc.jumpToPage('/user.html#/register')
             }
         },
         _destroyedMethod: function () {
