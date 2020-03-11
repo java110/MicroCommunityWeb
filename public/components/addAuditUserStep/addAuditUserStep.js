@@ -141,7 +141,7 @@
 
                             vc.message('处理成功', true);
                             //关闭model
-                            vc.jumpToPage("/flow/auditUserFlow?" + vc.objToGetParam(JSON.parse(json)));
+                            vc.jumpToPage("/admin.html#/auditUserManage?" + vc.objToGetParam(JSON.parse(json)));
                             return;
                         }
                         vc.message(json);

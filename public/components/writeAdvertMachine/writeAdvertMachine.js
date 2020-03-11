@@ -25,7 +25,7 @@
                     return;
                 }
 
-                vc.jumpToPage("/flow/advertVedioFlow?machineCode="
+                vc.jumpToPage("/admin.html#/advertVedioView?machineCode="
                     + vc.component.writeAdvertMachineInfo.machineCode
                     + "&communityId=" + vc.getCurrentCommunity().communityId);
             },

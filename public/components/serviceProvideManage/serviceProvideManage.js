@@ -63,7 +63,7 @@ queryModel:'',
             },
             _openAddServiceProvideModal:function(){
                 //vc.emit('addServiceProvide','openAddServiceProvideModal',{});
-                vc.jumpToPage("/flow/devServiceProvideFlow");
+                vc.jumpToPage("/admin.html#/devServiceProvide");
             },
             _openEditServiceProvideModel:function(_serviceProvide){
                 vc.emit('editServiceProvide','openEditServiceProvideModal',_serviceProvide);

@@ -62,7 +62,6 @@
                 );
             },
             _openAuditComplaintModel: function (_complaintInfo) {
-                //vc.jumpToPage("/flow/addAuditOrderstepFlow")
                 vc.component.myAuditComplaintsInfo.currentTaskId = _complaintInfo.taskId;
                 vc.component.myAuditComplaintsInfo.currentComplaintId = _complaintInfo.complaintId;
                 vc.emit('audit', 'openAuditModal', {});

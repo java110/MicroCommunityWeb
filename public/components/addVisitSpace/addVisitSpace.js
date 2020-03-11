@@ -99,7 +99,7 @@
                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                        if(res.status == 200){
                            //关闭model
-                           vc.jumpToPage("/flow/visitFlow?" + vc.objToGetParam(JSON.parse(json)));
+                           vc.jumpToPage("/admin.html#/visitManage?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
                        vc.message(json);

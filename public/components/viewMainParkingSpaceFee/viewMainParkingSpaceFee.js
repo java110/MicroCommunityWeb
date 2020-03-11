@@ -86,7 +86,7 @@
                            );
             },
             _openCallBackOwner:function(){
-                  vc.jumpToPage("/flow/ownerFlow");
+                  vc.jumpToPage("/admin.html#/listOwner");
             }
 
         }

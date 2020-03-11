@@ -60,7 +60,7 @@
                 );
             },
             _openAuditOrderModel: function () {
-                vc.jumpToPage("/flow/addAuditOrderstepFlow")
+                vc.jumpToPage("/admin.html#/addAuditOrderstep")
             },
             _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);

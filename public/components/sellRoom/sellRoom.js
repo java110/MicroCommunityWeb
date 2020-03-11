@@ -96,7 +96,7 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if(res.status == 200){
                             //关闭model
-                            vc.jumpToPage("/flow/ownerRoomFlow?" + vc.objToGetParam(vc.component.sellRoomInfo.ownerInfo));
+                            vc.jumpToPage("/admin.html#/ownerRoom?" + vc.objToGetParam(vc.component.sellRoomInfo.ownerInfo));
                             return ;
                         }
                         vc.message(json);

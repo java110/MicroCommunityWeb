@@ -114,7 +114,7 @@
 
                            vc.message('处理成功',true);
                            //关闭model
-                           vc.jumpToPage("/flow/staff");
+                           vc.jumpToPage("/admin.html#/staff");
                            return ;
                        }
                        vc.message(json);

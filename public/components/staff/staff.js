@@ -138,7 +138,7 @@
                                );
                 },
                 _openAddStaffStepPage:function(){
-                    vc.jumpToPage("/flow/addStaffStepFlow")
+                    vc.jumpToPage("/admin.html#/addStaffStep")
                 },
                 _queryStaffMethod:function(){
                     vc.component.loadData(DEFAULT_PAGE,DEFAULT_ROWS)

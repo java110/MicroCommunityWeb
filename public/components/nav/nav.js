@@ -6,7 +6,7 @@
         el: '#nav',
         data: {
             nav: {
-                moreNoticeUrl: '/flow/noticeFlow',
+                moreNoticeUrl: '/admin.html#/noticeManage',
                 notices: [],
                 total: 0
             },
@@ -70,7 +70,7 @@
                     },
                     function (json, res) {
                         if (res.status == 200) {
-                            vc.jumpToPage("/flow/login");
+                            vc.jumpToPage("/user.html#/login");
                             return;
                         }
                     }, function () {
@@ -165,7 +165,7 @@
             },
             _noticeDetail: function (_msg) {
                 //console.log(_notice.noticeId);
-                //vc.jumpToPage("/flow/noticeDetailFlow?noticeId="+_notice.noticeId);
+                //vc.jumpToPage("/admin.html#/noticeDetail?noticeId="+_notice.noticeId);
 
                 //标记为消息已读
                 vc.http.post('nav',

@@ -44,14 +44,14 @@
 
             vc.on('listOwner', 'chooseRoom', function (_room) {
                 if (vc.component.listOwnerInfo._eventName == 'PayPropertyFee') {
-                    vc.jumpToPage("/flow/listRoomFeeFlow?" + vc.objToGetParam(_room));
+                    vc.jumpToPage("/admin.html#/listRoomFee?" + vc.objToGetParam(_room));
                 } else {
-                    vc.jumpToPage("/flow/ownerRepairFlow?ownerId=" + vc.component.listOwnerInfo._currentOwnerId + "&roomId=" + _room.roomId);
+                    vc.jumpToPage("/admin.html#/ownerRepairManage?ownerId=" + vc.component.listOwnerInfo._currentOwnerId + "&roomId=" + _room.roomId);
                 }
             });
 
             vc.on('listOwner', 'chooseParkingSpace', function (_parkingSpace) {
-                vc.jumpToPage("/flow/listParkingSpaceFeeFlow?" + vc.objToGetParam(_parkingSpace));
+                vc.jumpToPage("/admin.html#/listParkingSpaceFee?" + vc.objToGetParam(_parkingSpace));
             });
 
             vc.on("listOwner", "notify", function (_param) {
@@ -103,7 +103,7 @@
             },
             _openAddOwnerModal: function () { //打开添加框
                 vc.emit('addOwner', 'openAddOwnerModal', -1);
-                //vc.jumpToPage("/flow/addOwnerBindingFlow");
+
                 vc.component.listOwnerInfo.moreCondition = false;
             },
             _openDelOwnerModel: function (_owner) { // 打开删除对话框
@@ -118,19 +118,19 @@
                 vc.component._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddOwnerRoom: function (_owner) {
-                vc.jumpToPage("/flow/addOwnerRoomBindingFlow?ownerId=" + _owner.ownerId);
+                vc.jumpToPage("/admin.html#/addOwnerRoomBinding?ownerId=" + _owner.ownerId);
             },
             _openHireParkingSpace: function (_owner) {
-                vc.jumpToPage("/flow/hireParkingSpaceFlow?ownerId=" + _owner.ownerId);
+                vc.jumpToPage("/admin.html#/hireParkingSpace?ownerId=" + _owner.ownerId);
             },
             _openSellParkingSpace: function (_owner) {
-                vc.jumpToPage("/flow/sellParkingSpaceFlow?ownerId=" + _owner.ownerId);
+                vc.jumpToPage("/admin.html#/sellParkingSpace?ownerId=" + _owner.ownerId);
             },
             _openOwnerDetailModel: function (_owner) {
-                vc.jumpToPage("/flow/ownerDetailFlow?ownerId=" + _owner.ownerId);
+                vc.jumpToPage("/admin.html#/ownerDetail?ownerId=" + _owner.ownerId);
             },
             _openDeleteOwnerRoom: function (_owner) {
-                vc.jumpToPage("/flow/deleteOwnerRoomFlow?ownerId=" + _owner.ownerId);
+                vc.jumpToPage("/admin.html#/deleteOwnerRoom?ownerId=" + _owner.ownerId);
             },
             _openOwnerRepair: function (_owner) {
                 //查看 业主是否有多套房屋，如果有多套房屋，则提示对话框选择，只有一套房屋则直接跳转至交费页面缴费
@@ -149,7 +149,7 @@
                         var listRoomData = JSON.parse(json);
                         var rooms = listRoomData.rooms;
                         if (rooms.length == 1) {
-                            vc.jumpToPage("/flow/ownerRepairFlow?ownerId=" + _owner.ownerId + "&roomId=" + rooms[0].roomId);
+                            vc.jumpToPage("/admin.html#/ownerRepairManage?ownerId=" + _owner.ownerId + "&roomId=" + rooms[0].roomId);
                         } else if (rooms.length == 0) {
                             //vc.message("当前业主未查询到房屋信息");
                             vc.toast("当前业主未查询到房屋信息");
@@ -179,7 +179,7 @@
                         var listRoomData = JSON.parse(json);
                         var rooms = listRoomData.rooms;
                         if (rooms.length == 1) {
-                            vc.jumpToPage("/flow/listRoomFeeFlow?" + vc.objToGetParam(rooms[0]));
+                            vc.jumpToPage("/admin.html#/listRoomFee?" + vc.objToGetParam(rooms[0]));
 
                         } else if (rooms.length == 0) {
                             //vc.message("当前业主未查询到房屋信息");
@@ -210,8 +210,7 @@
                         var listParkingSpaceData = JSON.parse(json);
                         var parkingSpaces = listParkingSpaceData.parkingSpaces;
                         if (parkingSpaces.length == 1) {
-                            //vc.jumpToPage("/flow/parkingSpaceFeeFlow?ownerId=" + _owner.ownerId + "&psId=" + parkingSpaces[0].psId);
-                            vc.jumpToPage("/flow/listParkingSpaceFeeFlow?" + vc.objToGetParam(parkingSpaces[0]));
+                            vc.jumpToPage("/admin.html#/listParkingSpaceFee?" + vc.objToGetParam(parkingSpaces[0]));
                         } else if (parkingSpaces.length == 0) {
                             //vc.message("当前业主未查询到车位信息");
                             vc.toast("当前业主未查询到车位信息");

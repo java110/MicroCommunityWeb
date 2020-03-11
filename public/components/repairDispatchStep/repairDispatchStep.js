@@ -42,7 +42,7 @@
 
             if(!vc.notNull(vc.component.repairDispatchStepInfo.repairId)){
                 vc.message("非法数据，未找到派单信息");
-                vc.jumpToPage("/flow/ownerFlow");
+                vc.jumpToPage("/admin.html#/listOwner");
                 return ;
             }
             vc.component._initStep();
@@ -122,7 +122,7 @@
 
                            vc.message('处理成功',true);
                            //关闭model
-                           vc.jumpToPage("/flow/repairDispatchFlow?" + vc.objToGetParam(JSON.parse(json)));
+                           vc.jumpToPage("/admin.html#/repairDispatchManage?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
                        vc.message(json);

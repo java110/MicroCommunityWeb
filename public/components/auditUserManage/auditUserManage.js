@@ -60,7 +60,7 @@
                 );
             },
             _openAddAuditUserModal: function () {
-                vc.jumpToPage("/flow/addAuditUserStepFlow")
+                vc.jumpToPage("/admin.html#/addAuditUserStep")
             },
             _openDeleteAuditUserModel: function (_auditUser) {
                 vc.emit('deleteAuditUser', 'openDeleteAuditUserModal', _auditUser);

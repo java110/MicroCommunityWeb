@@ -68,7 +68,7 @@
             },
             _openAddServiceRegisterModal: function () {
                 //vc.emit('addServiceRegister','openAddServiceRegisterModal',{});
-                vc.jumpToPage("/flow/serviceBindingFlow");
+                vc.jumpToPage("/admin.html#/serviceBinding");
             },
             _openEditServiceRegisterModel: function (_serviceRegister) {
                 vc.emit('editServiceRegister', 'openEditServiceRegisterModal', _serviceRegister);

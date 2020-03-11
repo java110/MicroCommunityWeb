@@ -74,7 +74,7 @@
                 vc.component._listFloorData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddUnit: function (_floor) {
-                vc.jumpToPage("/flow/unitFlow?floorId=" + _floor.floorId + "&floorName=" + _floor.floorName);
+                vc.jumpToPage("/admin.html#/unit?floorId=" + _floor.floorId + "&floorName=" + _floor.floorName);
             }
         }
     })

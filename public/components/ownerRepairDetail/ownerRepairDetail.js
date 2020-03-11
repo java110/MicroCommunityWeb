@@ -66,19 +66,19 @@
                                     var _roomInfos=JSON.parse(json);
                                     if(!_roomInfos.hasOwnProperty("rooms")){
                                          vc.toast("非法操作，未找到房屋信息");
-                                         //vc.jumpToPage('/flow/ownerFlow');
+                                         //vc.jumpToPage('/admin.html#/listOwner');
                                          return ;
                                     }
                                     var _roomInfo = _roomInfos.rooms[0];
                                     vc.component.ownerRepairDetailInfo.roomName= _roomInfo.floorNum+"号楼 "+_roomInfo.unitNum+"单元 "+_roomInfo.roomNum + "室";
                                 }else{
                                      vc.message("非法操作，未找到房屋信息");
-                                     vc.jumpToPage('/flow/ownerFlow');
+                                     vc.jumpToPage('/admin.html#/listOwner');
                                 }
                              },function(errInfo,error){
                                 console.log('请求失败处理');
                                 vc.message("非法操作，未找到房屋信息");
-                                vc.jumpToPage('/flow/ownerFlow');
+                                vc.jumpToPage('/admin.html#/listOwner');
                              }
                  );
             }

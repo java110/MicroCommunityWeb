@@ -82,7 +82,7 @@
                 });
             },
             _openViewRoomCreateFee:function(_room){
-                 vc.jumpToPage("/flow/listRoomFeeFlow?"+vc.objToGetParam(_room));
+                 vc.jumpToPage("/admin.html#/listRoomFee?"+vc.objToGetParam(_room));
             },
             /**
                 根据楼ID加载房屋

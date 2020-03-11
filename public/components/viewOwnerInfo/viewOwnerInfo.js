@@ -82,7 +82,7 @@
 
             },
             _callBackListOwner:function(_ownerId){
-                vc.jumpToPage("/flow/ownerFlow?ownerId="+_ownerId);
+                vc.jumpToPage("/admin.html#/listOwner?ownerId="+_ownerId);
             },
             _loadOwnerPhoto:function(){
                 vc.component.viewOwnerInfo.ownerPhoto = _fileUrl+"?objId="+

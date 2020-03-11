@@ -81,7 +81,7 @@
 
                             vc.message('处理成功', true);
                             //关闭model
-                            vc.jumpToPage("/flow/complaintFlow?" + vc.objToGetParam(JSON.parse(json)));
+                            vc.jumpToPage("/admin.html#/complaintManage?" + vc.objToGetParam(JSON.parse(json)));
                             return;
                         }
                         vc.message(json);

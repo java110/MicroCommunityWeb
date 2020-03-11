@@ -393,12 +393,12 @@
             return _html;
         }
 
-        let _namespaceValue = _componentVcCreate.getAttribute("namespce");
+        let _namespaceValue = _componentVcCreate.getAttribute("namespace");
 
         _html = _html.replace(/this./g, _namespaceValue + "_");
 
-        _html = _html.replace(/(id)+( )*+=+( )*+'/g, "id='" + _namespaceValue + "_");
-        _html = _html.replace(/(id)+( )*+=+( )*+"/g, 'id="' + _namespaceValue + '_');
+        _html = _html.replace('(id)+( )*+=+( )*+/g', "id='" + _namespaceValue + "_");
+        _html = _html.replace("(id)+( )*+=+( )*+/g", 'id="' + _namespaceValue + '_');
         return _html;
     };
     /**
@@ -490,7 +490,7 @@
         if (!_componentVcCreate.hasAttribute("namespace")) {
             namespace = 'default';
         } else {
-            namespace = tag.getAttributeValue("namespace");
+            namespace = _componentVcCreate.getAttribute("namespace");
         }
 
         //js对象中插入namespace 值
@@ -536,7 +536,7 @@
             return _js;
         }
 
-        let _namespaceValue = _componentVcCreate.getAttribute("namespce");
+        let _namespaceValue = _componentVcCreate.getAttribute("namespace");
         _js = _js.replace(/this./g, "vc.component." + _namespaceValue + "_");
         _js = _js.replace("(\\$)+( )*+(\\()+( )*+'+#/g", "\\$('#" + _namespaceValue + "_");
 
@@ -810,7 +810,7 @@
         if (typeof _vmOptions !== "object") {
             throw "_vmOptions is not Object";
         }
-        console.log('vmOptions',vmOptions);
+        //console.log('vmOptions',vmOptions);
         var nameSpace = DEFAULT_NAMESPACE;
         if (_vmOptions.hasOwnProperty("namespace")) {
             nameSpace = _vmOptions.namespace;

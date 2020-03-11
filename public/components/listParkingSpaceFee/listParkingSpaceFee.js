@@ -57,10 +57,10 @@
                            );
             },
             _payFee:function(_fee){
-               vc.jumpToPage('/flow/payFeeOrderFlow?'+vc.objToGetParam(_fee));
+               vc.jumpToPage('/admin.html#/payFeeOrder?'+vc.objToGetParam(_fee));
             },
             _payFeeHis:function(_fee){
-               vc.jumpToPage('/flow/propertyFeeFlow?'+vc.objToGetParam(_fee));
+               vc.jumpToPage('/admin.html#/propertyFee?'+vc.objToGetParam(_fee));
             },
             _deleteFee:function(_fee){
 

@@ -44,7 +44,7 @@
 
                 if(!vc.notNull(_roomId)){
                     vc.message("非法操作，未找到房屋信息");
-                    vc.jumpToPage('/flow/ownerFlow');
+                    vc.jumpToPage('/admin.html#/listOwner');
                     return ;
                 }
                 vc.component.ownerRepairManageInfo.conditions.roomId = _roomId;
@@ -66,7 +66,7 @@
                                     var _roomInfos=JSON.parse(json);
                                     if(!_roomInfos.hasOwnProperty("rooms")){
                                          vc.message("非法操作，未找到房屋信息");
-                                         vc.jumpToPage('/flow/ownerFlow');
+                                         vc.jumpToPage('/admin.html#/listOwner');
                                          return ;
                                     }
                                     var _roomInfo = _roomInfos.rooms[0];
@@ -74,12 +74,12 @@
                                     vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
                                 }else{
                                      vc.message("非法操作，未找到房屋信息");
-                                     vc.jumpToPage('/flow/ownerFlow');
+                                     vc.jumpToPage('/admin.html#/listOwner');
                                 }
                              },function(errInfo,error){
                                 console.log('请求失败处理');
                                 vc.message("非法操作，未找到房屋信息");
-                                vc.jumpToPage('/flow/ownerFlow');
+                                vc.jumpToPage('/admin.html#/listOwner');
                              }
                  );
             },
@@ -125,7 +125,7 @@
 
             },
             _openDispatchRepair:function(_ownerRepair){
-                 vc.jumpToPage('/flow/repairDispatchStepFlow?repairId=' + _ownerRepair.repairId);
+                 vc.jumpToPage('/admin.html#/repairDispatchStep?repairId=' + _ownerRepair.repairId);
 
             },
             _moreCondition:function(){

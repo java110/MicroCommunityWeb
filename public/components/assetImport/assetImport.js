@@ -83,7 +83,7 @@
                         if (res.status == 200) {
                             //关闭model
                             vc.message("处理成功");
-                            vc.jumpToPage('/flow/ownerFlow')
+                            vc.jumpToPage('/admin.html#/listOwner')
                             return;
                         }
                         vc.message(json);
