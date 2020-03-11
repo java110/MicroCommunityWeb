@@ -30,7 +30,7 @@ let opts = {
 
 }
 
-app.use('/callComponent',proxy('http://8761wuxu2.nps.winqi.cn',opts));
+app.use('/callComponent',proxy('http://8012wuxu2.nps.winqi.cn',opts));
 //app.listen(3000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
