@@ -125,7 +125,11 @@
             }
 
             if (_componentUrl.lastIndexOf('/') > 0) {
-                _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, _componentUrl.length);
+                let endPos = _componentUrl.length;
+                if (_componentUrl.indexOf('?') > -1) {
+                    endPos = _componentUrl.indexOf('?');
+                }
+                _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, endPos);
             }
 
             let _tmpVcCreate = document.createElement("vc:create");
@@ -177,8 +181,12 @@
         for (var vcIndex = vcComponentChilds.length - 1; vcIndex >= 0; vcIndex--) {
             _vcComponent.removeChild(vcComponentChilds[vcIndex]);
         }
+        let endPos = _componentUrl.length;
+        if (_componentUrl.indexOf('?') > -1) {
+            endPos = _componentUrl.indexOf('?');
+        }
 
-        _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, _componentUrl.length);
+        _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, endPos);
 
         let _tmpVcCreate = document.createElement("vc:create");
         let _divComponentAttr = document.createAttribute('name');
@@ -335,18 +343,23 @@
         //从缓存查询
         var _cacheComponent = vcFramework.getComponent(_componentName);
         //console.log('加载组件名称', _componentName);
-        if (vcFramework.isNotNull(_cacheComponent)) {
-            _tree.setHtml(_cacheComponent.vcDiv);
-            _tree.setJs(_cacheComponent.js);
-            return _cacheComponent.vcDiv;
+        let _htmlBody = '';
+        let _jsBody = '';
+        if (!vcFramework.isNotNull(_cacheComponent)) {
+            var filePath = '/components/' + _componentName + '/' + _componentName;
+            var htmlFilePath = filePath + ".html";
+            var jsFilePath = filePath + ".js";
+            //加载html 页面
+            [_htmlBody, _jsBody] = await Promise.all([vcFramework.httpGet(htmlFilePath), vcFramework.httpGet(jsFilePath)]);
+            let _componentObj = {
+                html: _htmlBody,
+                js: _jsBody
+            };
+            vcFramework.putComponent(_componentName, _componentObj);
+        } else {
+            _htmlBody = _cacheComponent.html;
+            _jsBody = _cacheComponent.js;
         }
-
-        var filePath = '/components/' + _componentName + '/' + _componentName;
-        var htmlFilePath = filePath + ".html";
-        var jsFilePath = filePath + ".js";
-        //加载html 页面
-        let [_htmlBody, _jsBody] = await Promise.all([vcFramework.httpGet(htmlFilePath), vcFramework.httpGet(jsFilePath)]);
-
         //处理命名空间
         _htmlBody = dealHtmlNamespace(_tree, _htmlBody);
 
@@ -372,12 +385,7 @@
         vcDiv.setAttributeNode(_divComponentAttr);
         vcDiv.appendChild(htmlComponentDoc);
         //vcDiv.appendChild(jsComponentDoc);
-        let _componentObj = {
-            html:_htmlBody,
-            js:_jsBody,
-            vcDiv:vcDiv
-        };
-        vcFramework.putComponent(_componentName, _componentObj);
+      
         _tree.setHtml(vcDiv);
         _tree.setJs(_jsBody);
         return vcDiv;
@@ -555,9 +563,9 @@
  * 
  */
 
-(function(vcFramework){
+(function (vcFramework) {
 
-    _initVcFrameworkEvent = function(){
+    _initVcFrameworkEvent = function () {
         let vcFrameworkEvent = document.createEvent('Event');
         // 定义事件名为'build'.
         vcFrameworkEvent.initEvent('initVcFrameworkFinish', true, true);
@@ -565,7 +573,7 @@
     }
 
     _initVcFrameworkEvent();
- })(window.vcFramework);
+})(window.vcFramework);
 
 /**
  * vc-util
@@ -887,6 +895,7 @@
         //刷新框架参数
         refreshVcFramework();
         //修改锚点
+
         location.hash = url.substring(url.indexOf("#") + 1, url.length);
         vcFramework.reBuilderVcTree();
     };
@@ -903,14 +912,14 @@
                     eventMethod();
                 });
                 //清理所有定时器
-    
+
                 window.vcFramework.timers.forEach(function (timer) {
                     clearInterval(timer);
                 });
-    
+
                 _timers = [];
             }
-    
+
         };
         vcFramework.vmOptions = _vmOptions;
         vcFramework.initMethod = [];
@@ -1003,6 +1012,13 @@
     vcFramework.getParam = function (_key) {
         //返回当前 URL 的查询部分（问号 ? 之后的部分）。
         var urlParameters = location.search;
+        if (!vcFramework.notNull(urlParameters)) {
+            urlParameters = location.hash;
+
+            if (urlParameters.indexOf('?') != -1) {
+                urlParameters = urlParameters.substring(urlParameters.indexOf('?'), urlParameters.length);
+            }
+        }
         //如果该求青中有请求的参数，则获取请求的参数，否则打印提示此请求没有请求的参数
         if (urlParameters.indexOf('?') != -1) {
             //获取请求参数的字符串

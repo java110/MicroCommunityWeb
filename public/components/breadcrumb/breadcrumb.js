@@ -20,7 +20,11 @@
            _freshBreadCrumbByUrl:function(){
 
                 var _tmpMenus = vc.getMenus();
-                var _url = vc.getUrl()+location.hash;
+                var _path = location.hash;
+                if(location.hash.indexOf('?') != -1){
+                    _path = location.hash.substring(0,location.hash.indexOf('?'));
+                }
+                var _url = vc.getUrl()+_path;
                 /**
                     正常情况下是走不到这里的，
                     因为系统登录时，就已经加载菜单信息缓存到本地了
