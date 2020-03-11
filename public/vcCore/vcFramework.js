@@ -226,7 +226,7 @@
         let _componentElement = await loadComponent(_componentName, _tree);
         //_tree.setHtml(_componentElement);
 
-        console.log('_componentElement>>', _componentElement)
+        //console.log('_componentElement>>', _componentElement)
 
         if (vcFramework.isNotNull(_componentElement)) {
             var vcChildElements = _componentElement.getElementsByTagName('vc:create');
@@ -281,6 +281,8 @@
 
             } else {
                 _vcCreateEl.innerHTML = _componentBody[0].innerHTML;
+                //_vcCreateEl.parentNode.replaceChild(_componentBody[0], _vcCreateEl);
+
             }
             //将js 脚本放到 组件 脚本中
             if (vcFramework.isNotEmpty(_tree.js)) {
@@ -405,8 +407,8 @@
 
         _html = _html.replace(/this./g, _namespaceValue + "_");
 
-        _html = _html.replace('(id)+( )*+=+( )*+/g', "id='" + _namespaceValue + "_");
-        _html = _html.replace("(id)+( )*+=+( )*+/g", 'id="' + _namespaceValue + '_');
+        _html = _html.replace(/(id)( )*=( )*'/g, "id='" + _namespaceValue + "_");
+        _html = _html.replace(/(id)( )*=( )*"/g, 'id="' + _namespaceValue + '_');
         return _html;
     };
     /**
@@ -546,13 +548,13 @@
 
         let _namespaceValue = _componentVcCreate.getAttribute("namespace");
         _js = _js.replace(/this./g, "vc.component." + _namespaceValue + "_");
-        _js = _js.replace("(\\$)+( )*+(\\()+( )*+'+#/g", "\\$('#" + _namespaceValue + "_");
+        _js = _js.replace(/(\$)( )*(\()( )*'#/g, "\$('#" + _namespaceValue + "_");
 
-        _js = _js.replace('(\\$)+( )*+(\\()+( )*+"+#/g', "\\$(\"#" + _namespaceValue + "_");
+        _js = _js.replace(/(\$)( )*(\()( )*"#/g, "\$(\"#" + _namespaceValue + "_");
 
         //将 监听也做优化
-        _js = _js.replace("(vc.on)+\\('/g", "vc.on('" + _namespaceValue + "','");
-        _js = _js.replace('(vc.on)+\\("/g', "vc.on(\"" + _namespaceValue + "\",\"");
+        _js = _js.replace(/(vc.on)\('/g, "vc.on('" + _namespaceValue + "','");
+        _js = _js.replace(/(vc.on)\("/g, "vc.on(\"" + _namespaceValue + "\",\"");
         return _js;
     }
 
