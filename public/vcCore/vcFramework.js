@@ -348,7 +348,12 @@
         let _htmlBody = '';
         let _jsBody = '';
         if (!vcFramework.isNotNull(_cacheComponent)) {
-            var filePath = '/components/' + _componentName + '/' + _componentName;
+            let _domain = 'components';
+
+            if(_tree.vcCreate.hasAttribute("domain")){
+                _domain = _tree.vcCreate.getAttribute("domain");
+            }
+            var filePath = '/'+_domain+'/' + _componentName + '/' + _componentName;
             var htmlFilePath = filePath + ".html";
             var jsFilePath = filePath + ".js";
             //加载html 页面
@@ -476,7 +481,7 @@
 
     dealJsPropTypesDefault = function (typeValue) {
         let startPos = typeValue.indexOf("=") + 1;
-        let endPos = typeValue.length();
+        let endPos = typeValue.length;
         if (typeValue.indexOf(",") > 0) {
             endPos = typeValue.indexOf(",");
         } else if (typeValue.indexOf("//") > 0) {
