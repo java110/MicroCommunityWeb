@@ -350,10 +350,10 @@
         if (!vcFramework.isNotNull(_cacheComponent)) {
             let _domain = 'components';
 
-            if(_tree.vcCreate.hasAttribute("domain")){
+            if (_tree.vcCreate.hasAttribute("domain")) {
                 _domain = _tree.vcCreate.getAttribute("domain");
             }
-            var filePath = '/'+_domain+'/' + _componentName + '/' + _componentName;
+            var filePath = '/' + _domain + '/' + _componentName + '/' + _componentName;
             var htmlFilePath = filePath + ".html";
             var jsFilePath = filePath + ".js";
             //加载html 页面
@@ -392,7 +392,7 @@
         vcDiv.setAttributeNode(_divComponentAttr);
         vcDiv.appendChild(htmlComponentDoc);
         //vcDiv.appendChild(jsComponentDoc);
-      
+
         _tree.setHtml(vcDiv);
         _tree.setJs(_jsBody);
         return vcDiv;
@@ -900,11 +900,11 @@
             return;
         }
         //刷新框架参数
-        refreshVcFramework();
+        //refreshVcFramework();
         //修改锚点
 
         location.hash = url.substring(url.indexOf("#") + 1, url.length);
-        vcFramework.reBuilderVcTree();
+        //vcFramework.reBuilderVcTree();
     };
 
     refreshVcFramework = function () {
@@ -1345,6 +1345,21 @@
             vcFramework[_param.namespace] = vcFramework.vue[_param.namespace];
         });
     }
+})(window.vcFramework);
+/**
+ * 锚点变化监听
+ */
+(function (vcFramework) {
+
+    window.addEventListener("hashchange", function (e) {
+        let _componentUrl = location.hash;
+        //判断是否为组件页面
+        if (!vcFramework.notNull(_componentUrl)) {
+            return;
+        }
+        refreshVcFramework();
+        vcFramework.reBuilderVcTree();
+    }, false);
 })(window.vcFramework);
 
 
