@@ -258,7 +258,11 @@
             let _vcCreateEl = document.getElementById(_tree.treeId);
             let _componentHeader = _tree.html.getElementsByTagName('head');
             let _componentBody = _tree.html.getElementsByTagName('body');
+            if(_vcCreateEl == null){
+                console.log('vcCreate',_vcCreateEl,_tree.treeId,_tree);
 
+            }
+           
             if (_vcCreateEl.hasAttribute("location") && 'head' == _vcCreateEl.getAttribute('location')) {
                 let _componentHs = _componentHeader[0].childNodes;
                 _header[0].appendChild(_componentHeader[0]);
@@ -280,9 +284,17 @@
                 }
 
             } else {
-                _vcCreateEl.innerHTML = _componentBody[0].innerHTML;
+                //_vcCreateEl.innerHTML = _componentBody[0].innerHTML;
                 //_vcCreateEl.parentNode.replaceChild(_componentBody[0], _vcCreateEl);
 
+                for(let _comBodyIndex = 0 ; _comBodyIndex < _componentBody.length; _comBodyIndex ++){
+                    let _childNodes = _componentBody[_comBodyIndex].childNodes;
+                    for(let _tmpChildIndex = 0 ; _tmpChildIndex < _childNodes.length; _tmpChildIndex ++){
+                        _vcCreateEl.parentNode.insertBefore(_childNodes[_tmpChildIndex],_vcCreateEl)
+                    }
+
+                }
+                
             }
             //将js 脚本放到 组件 脚本中
             if (vcFramework.isNotEmpty(_tree.js)) {
