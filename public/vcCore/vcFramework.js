@@ -218,7 +218,7 @@
     findVcLabel = async function (_tree) {
         //查看是否存在子 vc:create 
         var _componentName = _tree.vcCreate.getAttribute('name');
-        console.log('_componentName', _componentName, _tree);
+        //console.log('_componentName', _componentName, _tree);
         if (!vcFramework.isNotEmpty(_componentName)) {
             throw '组件未包含name 属性';
         }
@@ -233,7 +233,7 @@
             if (vcChildElements.length > 0) {
                 var _vcDiv = document.createElement('div');
                 for (var _vcChildIndex = 0; _vcChildIndex < vcChildElements.length; _vcChildIndex++) {
-                    console.log('vcChildElements', vcChildElements);
+                    //console.log('vcChildElements', vcChildElements);
                     var _tmpChildElement = vcChildElements[_vcChildIndex];
                     var _subtree = new VcTree(_tmpChildElement, '', 2);
                     let _vcCreateAttr = document.createAttribute('id');
@@ -251,18 +251,14 @@
      * 渲染组件 html 页面
      */
     reader = function (_treeList, _componentScript) {
-        console.log('_treeList', _treeList);
+        //console.log('_treeList', _treeList);
         let _header = document.getElementsByTagName('head');
         for (let _treeIndex = 0; _treeIndex < _treeList.length; _treeIndex++) {
             let _tree = _treeList[_treeIndex];
             let _vcCreateEl = document.getElementById(_tree.treeId);
             let _componentHeader = _tree.html.getElementsByTagName('head');
             let _componentBody = _tree.html.getElementsByTagName('body');
-            if(_vcCreateEl == null){
-                console.log('vcCreate',_vcCreateEl,_tree.treeId,_tree);
 
-            }
-           
             if (_vcCreateEl.hasAttribute("location") && 'head' == _vcCreateEl.getAttribute('location')) {
                 let _componentHs = _componentHeader[0].childNodes;
                 _header[0].appendChild(_componentHeader[0]);
@@ -287,14 +283,14 @@
                 //_vcCreateEl.innerHTML = _componentBody[0].innerHTML;
                 //_vcCreateEl.parentNode.replaceChild(_componentBody[0], _vcCreateEl);
 
-                for(let _comBodyIndex = 0 ; _comBodyIndex < _componentBody.length; _comBodyIndex ++){
+                for (let _comBodyIndex = 0; _comBodyIndex < _componentBody.length; _comBodyIndex++) {
                     let _childNodes = _componentBody[_comBodyIndex].childNodes;
-                    for(let _tmpChildIndex = 0 ; _tmpChildIndex < _childNodes.length; _tmpChildIndex ++){
-                        _vcCreateEl.parentNode.insertBefore(_childNodes[_tmpChildIndex],_vcCreateEl)
+                    for (let _tmpChildIndex = 0; _tmpChildIndex < _childNodes.length; _tmpChildIndex++) {
+                        _vcCreateEl.parentNode.insertBefore(_childNodes[_tmpChildIndex], _vcCreateEl)
                     }
 
                 }
-                
+
             }
             //将js 脚本放到 组件 脚本中
             if (vcFramework.isNotEmpty(_tree.js)) {
@@ -316,7 +312,7 @@
         let _tmpBody = document.getElementsByTagName('body');
         for (let _scriptsIndex = 0; _scriptsIndex < _tmpScripts.length; _scriptsIndex++) {
             let _tmpScript = _tmpScripts[_scriptsIndex];
-            console.log('_head 中 script', _tmpScript.outerHTML)
+            //console.log('_head 中 script', _tmpScript.outerHTML)
             let scriptObj = document.createElement("script");
             scriptObj.src = _tmpScript.src;
             //_tmpScript.parentNode.removeChild(_tmpScript);
@@ -330,7 +326,7 @@
      */
     execScript = function (_tree, _componentScript) {
 
-        console.log('_componentScript', _componentScript);
+        //console.log('_componentScript', _componentScript);
 
 
         for (let i = 0; i < _componentScript.length; i++) {
@@ -589,9 +585,20 @@
         // 定义事件名为'build'.
         vcFrameworkEvent.initEvent('initVcFrameworkFinish', true, true);
         vcFramework.vcFrameworkEvent = vcFrameworkEvent;
+    };
+
+    /**
+     * 初始化 vue 事件
+     */
+    _initVueEvent = function(){
+        vcFramework.$event = new Vue();
     }
 
     _initVcFrameworkEvent();
+
+    _initVueEvent();
+
+
 })(window.vcFramework);
 
 /**
@@ -736,7 +743,7 @@
                 .then(function (res) {
                     try {
                         let _header = res.headers.map;
-                        console.log('res', res);
+                        //console.log('res', res);
                         if (vcFramework.notNull(_header['location'])) {
                             window.location.href = _header['location'];
                             return;
@@ -751,7 +758,7 @@
                     try {
                         if (res.status == 401) {
                             let _header = res.headers.map;
-                            console.log('res', res);
+                            //console.log('res', res);
                             window.location.href = _header['location'];
                             return;
                         }
@@ -792,7 +799,7 @@
                     try {
                         if (res.status == 401) {
                             let _header = res.headers.map;
-                            console.log('res', res);
+                            //console.log('res', res);
                             window.location.href = _header['location'];
                             return;
 
@@ -1241,7 +1248,7 @@
 (function (vcFramework) {
     vcFramework.initVue = function () {
         let vmOptions = vcFramework.vmOptions;
-        console.log("vmOptions:", vmOptions);
+        //console.log("vmOptions:", vmOptions);
         vcFramework.vue = new Vue(vmOptions);
         vcFramework.component = vcFramework.vue;
         //方便二次开发

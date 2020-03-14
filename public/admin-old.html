@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:vc="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>HC小区管理系统|java110</title>
+    <vc:create name="commonTop" location= "head"></vc:create>
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css"/>
+    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Toastr style -->
+    <link href="/css/plugins/toastr/toastr.min.css" rel="stylesheet"/>
+    <!-- Gritter -->
+    <link href="/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"/>
+    <link href="/css/plugins/select2/select2.min.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap-datetimepicker.min.css"/>
+
+    <script  src="/js/bootstrap/jquery-3.3.1.min.js"></script>
+    <script  src="/js/vue/vue.min.js"></script>
+    <script  src="/js/vue/vue-resource.min.js"></script>
+    <script  src="/js/bootstrap/jquery-3.3.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/bootstrap/bootstrap-datetimepicker.js"></script>
+    <script src="/js/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="/js/plugins/select2/select2.full.min.js"></script>
+    <script src="/js/plugins/echart/echarts.min.js"></script>
+    <script src="/js/plugins/echart/china.js"></script>
+
+    <!-- SUMMERNOTE 富文本组件-->
+    <link href="/css/plugins/summernote/summernote-bs4.min.css" rel="stylesheet">
+    <script src="/js/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="/js/plugins/summernote/summernote-zh-CN.min.js"></script>
+    <script src="/js/plugins/xss/xss.min.js"></script>
+
+    <link href="/css/jquery.step.css" rel="stylesheet"/>
+    <script src="/js/jquery.step.min.js" ></script>
+
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap-treeview.min.css"/>
+    <script src="/js/bootstrap/bootstrap-treeview.min.js"></script>
+</head>
+<body>
+<vc:create name="bodyTop"></vc:create>
+<div id="wrapper">
+    <vc:create name="menu"></vc:create>
+
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="border-bottom">
+            <vc:create name="nav"></vc:create>
+        </div>
+        <div class="wrapper wrapper-content" style="padding-bottom: 0px;">
+            <vc:create name="breadcrumb"></vc:create>
+        </div>
+        <!--  -->
+        <div id="component" class="wrapper wrapper-content animated fadeInRight">
+            <vc:create name="enterCommunity"></vc:create>
+        </div>
+
+        <vc:create name="copyright"></vc:create>
+
+    </div>
+</div>
+
+<script src="/vcCore/vcFramework.js"></script>
+<vc:create name="commonBottom" location="body"></vc:create>
+</body>
+</html>
