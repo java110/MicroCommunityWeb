@@ -19,6 +19,11 @@ body{
     position: fixed;
 }
 
+.java110_step {
+    width: 80%;
+    margin: 20px auto 50px auto;
+}
+
 .no_display {
     display: none;
 }
@@ -183,8 +188,16 @@ body.mini-navbar.fixed-sidebar .profile-element, .block {
     right: 6px;
     top: 12px;
 }
+.label-success, .badge-success {
+    background-color: #1c84c6;
+    color: #FFFFFF;
+}
 .nav .label, .ibox .label {
     font-size: 10px;
+}
+
+.ibox-title .label {
+    margin-left: 4px;
 }
 
 
@@ -505,9 +518,7 @@ ul.nav-second-level {
     margin-bottom: 0;
 }
 
-.modal {
-    z-index: 2050 !important;
-}
+
 
 .ibox {
     clear: both;
@@ -568,6 +579,12 @@ ul.nav-second-level {
     clear: both;
 }
 
+.modal-backdrop {
+    z-index: 2040 !important;
+  }
+  .modal {
+    z-index: 2050 !important;
+  }
 .modal-content {
     background-clip: padding-box;
     background-color: #FFFFFF;
@@ -576,6 +593,45 @@ ul.nav-second-level {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     outline: 0 none;
     position: relative;
+  }
+  .modal-dialog {
+    z-index: 2200;
+  }
+  .modal-body {
+    padding: 20px 30px 30px 30px;
+  }
+  .inmodal .modal-body {
+    background: #f8fafb;
+  }
+  .inmodal .modal-header {
+    padding: 30px 15px;
+    text-align: center;
+    display: block;
+  }
+  .animated.modal.fade .modal-dialog {
+    -webkit-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+  }
+  .inmodal .modal-title {
+    font-size: 26px;
+  }
+  .inmodal .modal-icon {
+    font-size: 84px;
+    color: #e2e3e3;
+  }
+  .modal-footer {
+    margin-top: 0;
+  }
+
+  body.modal-open {
+    padding-right: inherit !important;
+  }
+
+  body.modal-open .animated {
+    animation-fill-mode: initial;
+    z-index: inherit;
 }
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
@@ -583,6 +639,10 @@ ul.nav-second-level {
     line-height: 1.42857;
     padding: 8px;
     vertical-align: top;
+}
+
+.table > thead > tr > th{
+    border-top:0;
 }
 
 .footer {
@@ -594,3 +654,65 @@ ul.nav-second-level {
     position: absolute;
     right: 0;
 }
+
+.no-margins {
+    margin: 0 !important;
+}
+h1 {
+    font-size: 30px;
+}
+
+.stat-percent {
+    float: right;
+}
+
+.label-info, .badge-info {
+    background-color: #23c6c8;
+    color: #FFFFFF;
+}
+
+.mailbox-content {
+    background: none;
+    border: none;
+    padding: 10px;
+}
+.space-25 {
+    margin: 25px 0;
+}
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.text-navy {
+    color: #1ab394 !important;
+}
+
+.category-list li {
+    display: block;
+}
+
+.category-list li i {
+    margin-right: 8px;
+    color: #3d4d5d;
+}
+
+.category-list li a .text-navy {
+    color: #1ab394;
+}
+
+.mail-box-header {
+    background-color: #ffffff;
+    border: 1px solid #e7eaec;
+    border-bottom: 0;
+    padding: 30px 20px 20px 20px;
+}
+
+
