@@ -189,7 +189,7 @@
                     body.className = className.replace(/mini-navbar/g,"");
                     return ;
                 }
-                body.className = className + "mini-navbar";
+                body.className = className + " mini-navbar";
             }
         }
     });
