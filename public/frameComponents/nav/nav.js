@@ -179,6 +179,17 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _doMenu:function(){
+                let body = document.getElementsByTagName("body")[0];
+
+                let className = body.className;
+
+                if(className.indexOf("mini-navbar") != -1){
+                    body.className = className.replace("mini-navbar"/g,"");
+                    return ;
+                }
+                body.className = className + "mini-navbar";
             }
         }
     });
