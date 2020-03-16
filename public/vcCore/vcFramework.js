@@ -762,6 +762,10 @@
                             window.location.href = _header['location'];
                             return;
                         }
+                        if(res.status == 404){
+                            window.location.href = '/user.html#/login';
+                            return;
+                        }
                         errorCallback(res.bodyText, res);
                     } catch (e) {
                         console.error(e);
@@ -803,6 +807,10 @@
                             window.location.href = _header['location'];
                             return;
 
+                        }
+                        if(res.status == 404){
+                            window.location.href = '/user.html#/login';
+                            return;
                         }
                         errorCallback(res.bodyText, res);
                     } catch (e) {
