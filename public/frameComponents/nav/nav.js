@@ -186,7 +186,7 @@
                 let className = body.className;
 
                 if(className.indexOf("mini-navbar") != -1){
-                    body.className = className.replace("mini-navbar"/g,"");
+                    body.className = className.replace(/mini-navbar/g,"");
                     return ;
                 }
                 body.className = className + "mini-navbar";
