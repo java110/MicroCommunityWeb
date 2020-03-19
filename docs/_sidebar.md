@@ -5,8 +5,8 @@
 
 * 说明
 
-  * [vcFramework是什么](read/read.md)
-  * [生产环境部署](start/prod_install.md)
+  * [vcFramework说明](read/read.md)
+  * [核心介绍](core/core.md)
   
 * 系统功能
 
