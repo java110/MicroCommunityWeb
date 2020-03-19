@@ -1,10 +1,9 @@
 ![logo](favicon.ico)
 
-# HC小区管理系统<small>0.0.6基础稳定版</small>
+# vcFramework.js<small>0.2基础稳定版</small>
 
-> hc小区管理系统是为物业企业打造的智慧物业综合管理平台.
+> vcFramework.js 是一套js 组件化编程框架
 
 * QQ:928255095
 
-[GitHub](https://github.com/java110/MicroCommunity)
-[学习文档](#变更历史)
+[gitee](https://gitee.com/java110/MicrCommunityWeb)
