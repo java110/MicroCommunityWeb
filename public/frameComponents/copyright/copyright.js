@@ -10,11 +10,39 @@
                 company: 'java110官方团队',
                 date: '2017-2019',
                 openSource: '代码 https://github.com/java110/MicroCommunity'
-            }
+            },
+            screenHeight: document.body.clientHeight
         },
         mounted: function () {
             this._initSysInfo();
             //this.getUserInfo();
+
+            const that = this
+            window.onresize = () => {
+                return (() => {
+                    window.screenHeight = document.body.clientHeight
+                    that.screenHeight = window.screenHeight
+                })()
+            }
+        },
+        watch: {
+            screenHeight(val) {
+                if (!this.timer) {
+                    this.screenHeight = val
+                    this.timer = true
+                    let that = this
+                    setTimeout(function () {
+                        let vcPage = document.getElementsByClassName('vc-page')[0];
+                        
+                        that.timer = false;
+                        if(vcPage == undefined || vcPage == null || vcPage ==''){
+                            return ;
+                        }
+                        vcPage.style.minHeight = that.screenHeight;
+                    }, 400)
+                }
+            }
+
         },
         methods: {
             _initSysInfo: function () {
@@ -24,18 +52,9 @@
                     return;
                 }
                 this.copyrightInfo.logo = sysInfo.logo;
-            },
-            _initView: function () {
-
-                let footer = document.getElementsByClassName('footer')[0];
-                windowH = document.documentElement.clientHeight;
-                bodyH = document.body.offsetHeight;
-                bodyH < windowH ? (footer.style.position = 'fixed', footer.style.bottom = '0') : (footer.style.position = '');
-                
             }
         }
     });
 
-    window.onresize = function () { vm._initView() }
 
 })(window.vc)
