@@ -208,14 +208,14 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   body.canvas-menu .nav-header {
     padding: 33px 25px;
   }
-  body.mini-navbar #page-wrapper {
+  body.mini-navbar #vc-page {
     margin: 0 0 0 70px;
   }
   body.fixed-sidebar.mini-navbar .footer,
   body.canvas-menu.mini-navbar .footer {
     margin: 0 0 0 0 !important;
   }
-  body.canvas-menu.mini-navbar #page-wrapper,
+  body.canvas-menu.mini-navbar #vc-page,
   body.canvas-menu.mini-navbar .footer {
     margin: 0 0 0 0;
   }
@@ -229,10 +229,10 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   body.fixed-sidebar.mini-navbar .navbar-static-side {
     width: 0;
   }
-  body.fixed-sidebar.mini-navbar #page-wrapper {
+  body.fixed-sidebar.mini-navbar #vc-page {
     margin: 0 0 0 0;
   }
-  body.body-small.fixed-sidebar.mini-navbar #page-wrapper {
+  body.body-small.fixed-sidebar.mini-navbar #vc-page {
     margin: 0 0 0 220px;
   }
   body.body-small.fixed-sidebar.mini-navbar .navbar-static-side {
@@ -298,11 +298,11 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
     width: 220px;
   }
 
-  .top-navigation.mini-navbar #page-wrapper,
-.top-navigation.body-small.fixed-sidebar.mini-navbar #page-wrapper,
-.mini-navbar .top-navigation #page-wrapper,
-.body-small.fixed-sidebar.mini-navbar .top-navigation #page-wrapper,
-.canvas-menu #page-wrapper {
+  .top-navigation.mini-navbar #vc-page,
+.top-navigation.body-small.fixed-sidebar.mini-navbar #vc-page,
+.mini-navbar .top-navigation #vc-page,
+.body-small.fixed-sidebar.mini-navbar .top-navigation #vc-page,
+.canvas-menu #vc-page {
   margin: 0;
 }
 
@@ -354,22 +354,22 @@ body.body-small.mini-navbar .footer.fixed {
   margin: 0 0 0 0;
 }
 
-body.rtls.mini-navbar #page-wrapper {
+body.rtls.mini-navbar #vc-page {
     margin: 0 70px 0 0;
   }
-  body.rtls.mini-navbar.fixed-sidebar #page-wrapper {
+  body.rtls.mini-navbar.fixed-sidebar #vc-page {
     margin: 0 0 0 0;
   }
-  body.rtls.body-small.fixed-sidebar.mini-navbar #page-wrapper {
+  body.rtls.body-small.fixed-sidebar.mini-navbar #vc-page {
     margin: 0 220px 0 0;
   }
   body.rtls.body-small.fixed-sidebar.mini-navbar .navbar-static-side {
     width: 220px;
   }
 
-  body.rtls .top-navigation #page-wrapper,
-body.rtls.mini-navbar .top-navigation #page-wrapper,
-body.rtls.mini-navbar.top-navigation #page-wrapper {
+  body.rtls .top-navigation #vc-page,
+body.rtls.mini-navbar .top-navigation #vc-page,
+body.rtls.mini-navbar.top-navigation #vc-page {
   margin: 0;
 }
 
@@ -438,10 +438,10 @@ body.rtls.mini-navbar.top-navigation #page-wrapper {
   .md-skin.fixed-sidebar.mini-navbar .navbar-static-side {
     width: 0;
   }
-  .md-skin.fixed-sidebar.mini-navbar #page-wrapper {
+  .md-skin.fixed-sidebar.mini-navbar #vc-page {
     margin: 0 0 0 0;
   }
-  .md-skin.body-small.fixed-sidebar.mini-navbar #page-wrapper {
+  .md-skin.body-small.fixed-sidebar.mini-navbar #vc-page {
     margin: 0 0 0 0;
   }
   .md-skin.body-small.fixed-sidebar.mini-navbar .navbar-static-side {
@@ -566,20 +566,20 @@ ul.nav-second-level {
     padding-left: 52px;
 }
 /************************************************page********************************************************/
-.pace-done .nav-header {
+.vc-body .nav-header {
     transition: all 0.4s;
 }
-.pace-done .navbar-static-side, .pace-done .nav-header, .pace-done li.active, .pace-done #page-wrapper, .pace-done .footer {
+.vc-body .navbar-static-side, .vc-body .nav-header, .vc-body li.active, .vc-body #vc-page, .vc-body .footer {
     /* -webkit-transition: all 0.4s; */
     -moz-transition: all 0.4s;
     -o-transition: all 0.4s;
     /* transition: all 0.4s; */
 }
-#page-wrapper {
+#vc-page {
     position: inherit;
     margin: 0 0 0 220px;
     min-height: 100vh;
-    padding: 0 15px;
+    padding: 0 0px;
     position: relative !important;
 }
 
