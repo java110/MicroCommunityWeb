@@ -24,8 +24,18 @@
                     return;
                 }
                 this.copyrightInfo.logo = sysInfo.logo;
+            },
+            _initView: function () {
+
+                let footer = document.getElementsByClassName('footer')[0];
+                windowH = document.documentElement.clientHeight;
+                bodyH = document.body.offsetHeight;
+                bodyH < windowH ? (footer.style.position = 'fixed', footer.style.bottom = '0') : (footer.style.position = '');
+                
             }
         }
     });
+
+    window.onresize = function () { vm._initView() }
 
 })(window.vc)
