@@ -1086,6 +1086,15 @@ h1 {
   font-size: 10px;
 }
 
+.sk-spinner-wave div {
+  background-color: #1ab394;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  -webkit-animation: sk-waveStretchDelay 1.2s infinite ease-in-out;
+  animation: sk-waveStretchDelay 1.2s infinite ease-in-out;
+}
+
 .wizard > .actions .vc_disabled a,
 .wizard > .actions .vc_disabled a:hover,
 .wizard > .actions .vc_disabled a:active {
