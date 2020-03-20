@@ -32,7 +32,7 @@
                     this.timer = true
                     let that = this
                     setTimeout(function () {
-                        let vcPage = document.getElementsById('vc-page');
+                        let vcPage = document.getElementById('vc-page');
                         
                         that.timer = false;
                         if(vcPage == undefined || vcPage == null || vcPage ==''){
