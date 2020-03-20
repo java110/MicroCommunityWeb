@@ -20,8 +20,7 @@
             const that = this
             window.onresize = () => {
                 return (() => {
-                    window.screenHeight = document.body.clientHeight
-                    that.screenHeight = window.screenHeight
+                    that.screenHeight = document.body.offsetHeight;
                 })()
             }
         },
