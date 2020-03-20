@@ -1078,6 +1078,14 @@ h1 {
   margin: 70px auto;
 }
 
+.sk-spinner-wave.sk-spinner {
+  margin: 0 auto;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+}
+
 .wizard > .actions .vc_disabled a,
 .wizard > .actions .vc_disabled a:hover,
 .wizard > .actions .vc_disabled a:active {
