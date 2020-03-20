@@ -824,11 +824,11 @@ ul.nav-second-level {
     min-height: 0;
 }
 
-.wrapper {
+.vc-wrapper {
     padding: 0 20px;
 }
-.wrapper-content {
-    padding: 20px 10px 40px;
+.vc-content {
+    padding: 20px 20px 40px;
 }
 
 
