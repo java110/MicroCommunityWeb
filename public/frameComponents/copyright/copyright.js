@@ -20,7 +20,7 @@
             const that = this
             window.onresize = () => {
                 return (() => {
-                    that.screenHeight = document.body.offsetHeight;
+                    that.screenHeight = document.body.scrollHeight;
                 })()
             }
         },
