@@ -590,7 +590,7 @@
     /**
      * 初始化 vue 事件
      */
-    _initVueEvent = function(){
+    _initVueEvent = function () {
         vcFramework.$event = new Vue();
     }
 
@@ -762,7 +762,7 @@
                             window.location.href = _header['location'];
                             return;
                         }
-                        if(res.status == 404){
+                        if (res.status == 404) {
                             window.location.href = '/user.html#/login';
                             return;
                         }
@@ -808,7 +808,90 @@
                             return;
 
                         }
-                        if(res.status == 404){
+                        if (res.status == 404) {
+                            window.location.href = '/user.html#/login';
+                            return;
+                        }
+                        errorCallback(res.bodyText, res);
+                    } catch (e) {
+                        console.error(e);
+                    } finally {
+                        vcFramework.loading('close');
+                    }
+                });
+        },
+        apiPost: function (api, param, options, successCallback, errorCallback) {
+            vcFramework.loading('open');
+            Vue.http.post('/callComponent/' + api, param, options)
+                .then(function (res) {
+                    try {
+                        let _header = res.headers.map;
+                        //console.log('res', res);
+                        if (vcFramework.notNull(_header['location'])) {
+                            window.location.href = _header['location'];
+                            return;
+                        };
+                        successCallback(res.bodyText, res);
+                    } catch (e) {
+                        console.error(e);
+                    } finally {
+                        vcFramework.loading('close');
+                    }
+                }, function (res) {
+                    try {
+                        if (res.status == 401) {
+                            let _header = res.headers.map;
+                            //console.log('res', res);
+                            window.location.href = _header['location'];
+                            return;
+                        }
+                        if (res.status == 404) {
+                            window.location.href = '/user.html#/login';
+                            return;
+                        }
+                        errorCallback(res.bodyText, res);
+                    } catch (e) {
+                        console.error(e);
+                    } finally {
+                        vcFramework.loading('close');
+                    }
+                });
+        },
+        apiGet: function (api, param, successCallback, errorCallback) {
+            //加入缓存机制
+            var _getPath = '/' + api;
+            if (vcFramework.constant.GET_CACHE_URL.includes(_getPath)) {
+                var _cacheData = vcFramework.getData(_getPath);
+                //浏览器缓存中能获取到
+                if (_cacheData != null && _cacheData != undefined) {
+                    successCallback(JSON.stringify(_cacheData), { status: 200 });
+                    return;
+                }
+            }
+            vcFramework.loading('open');
+            Vue.http.get('/callComponent/' + api, param)
+                .then(function (res) {
+                    try {
+
+                        successCallback(res.bodyText, res);
+                        if (vcFramework.constant.GET_CACHE_URL.includes(_getPath) && res.status == 200) {
+                            vcFramework.saveData(_getPath, JSON.parse(res.bodyText));
+                        }
+                    } catch (e) {
+                        console.error(e);
+                    } finally {
+                        vcFramework.loading('close');
+                    }
+                }, function (res) {
+                    try {
+                        if (res.status == 401) {
+                            let _header = res.headers.map;
+                            //console.log('res', res);
+                            window.location.href = _header['location'];
+                            return;
+
+                        }
+                        if (res.status == 404) {
                             window.location.href = '/user.html#/login';
                             return;
                         }
