@@ -18,6 +18,7 @@
         _initMethod:function(){
             var _paramFloorId = vc.getParam("floorId");
             var _paramFloorName = vc.getParam("floorName");
+            console.log('_paramFloorId',_paramFloorId);
             if(vc.notNull(_paramFloorId)){
                 vc.component.unitInfo.conditions.floorId = _paramFloorId;
                 vc.component.unitInfo.conditions.floorName = _paramFloorName;
