@@ -118,7 +118,8 @@
                 vc.component._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddOwnerRoom: function (_owner) {
-                vc.jumpToPage("/admin.html#/addOwnerRoomBinding?ownerId=" + _owner.ownerId+"&a=1");
+                vc.jumpToPage("/admin.html#/addOwnerRoomBinding?ownerId=" + _owner.ownerId);
+                return ;
                 //vc.jumpToPage("/admin.html#/addOwnerRoomBinding");
             },
             _openHireParkingSpace: function (_owner) {
