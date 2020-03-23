@@ -998,6 +998,7 @@
     //绑定跳转函数
     vcFramework.jumpToPage = function (url) {
         //判断 url 的模板是否 和当前url 模板一个
+        console.log('jumpToPage',url);
         if (url.indexOf('#') < 0) {
             window.location.href = url;
             return;
