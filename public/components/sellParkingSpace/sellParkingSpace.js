@@ -59,7 +59,7 @@
             _nextStep:function(){
                 var _currentData = vc.component.sellParkingSpaceInfo.infos[vc.component.sellParkingSpaceInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
                 vc.component.sellParkingSpaceInfo.$step.nextStep();
@@ -86,7 +86,7 @@
 
                 var _currentData = vc.component.sellParkingSpaceInfo.infos[vc.component.sellParkingSpaceInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
 
@@ -109,12 +109,12 @@
                            vc.jumpToPage("/admin.html#/listOwner?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
-                       vc.message(json);
+                       vc.toast(json);
                     },
                     function(errInfo,error){
                        console.log('请求失败处理');
 
-                       vc.message(errInfo);
+                       vc.toast(errInfo);
                     });
             }
         }

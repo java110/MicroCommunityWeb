@@ -48,7 +48,7 @@
             _nextStep:function(){
                 var _currentData = vc.component.addOwnerRoomBindingInfo.infos[vc.component.addOwnerRoomBindingInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
                 vc.component.addOwnerRoomBindingInfo.$step.nextStep();
@@ -67,7 +67,7 @@
 
                 var _currentData = vc.component.addOwnerRoomBindingInfo.infos[vc.component.addOwnerRoomBindingInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
 
@@ -86,17 +86,17 @@
                     function(json,res){
                        if(res.status == 200){
 
-                           vc.message('处理成功',true);
+                            vc.toast('处理成功');
                            //关闭model
                            vc.jumpToPage("/admin.html#/listOwner?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
-                       vc.message(json);
+                       vc.toast(json);
                     },
                     function(errInfo,error){
                        console.log('请求失败处理');
 
-                       vc.message(errInfo);
+                       vc.toast(errInfo);
                     });
             }
         }

@@ -81,11 +81,11 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        vc.message("处理成功");
+                        vc.toast("处理成功");
                         vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.message("处理失败：" + errInfo);
+                        vc.toast("处理失败：" + errInfo);
                     }
                 );
             },

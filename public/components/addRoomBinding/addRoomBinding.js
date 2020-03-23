@@ -42,7 +42,7 @@
             _nextStep:function(){
                 var _currentData = vc.component.addRoomBindingInfo.infos[vc.component.addRoomBindingInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
                 vc.component.addRoomBindingInfo.$step.nextStep();
@@ -61,7 +61,7 @@
                     vc.component.addRoomViewInfo.unitPrice='0';
                 }
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
 
@@ -79,19 +79,19 @@
                     function(json,res){
                        if(res.status == 200){
 
-                           vc.message('处理成功',true);
+                           vc.toast('处理成功',true);
                            //关闭model
                            var _tmpResJson = JSON.parse(json);
                           /* _tmpResJson[floorName] = vc.component._getFloorName();*/
                            vc.jumpToPage("/admin.html#/room");
                            return ;
                        }
-                       vc.message(json);
+                       vc.toast(json);
                     },
                     function(errInfo,error){
                        console.log('请求失败处理');
 
-                       vc.message(errInfo);
+                       vc.toast(errInfo);
                     });
             },
 

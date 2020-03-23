@@ -70,13 +70,13 @@
                 }
 
                 if(parseInt(vc.component.batchAddFloorInfo.endFloorNum) <= parseInt(vc.component.batchAddFloorInfo.startFloorNum)){
-                    vc.message('结束楼栋编号不能小于等于开始楼栋编号');
+                    vc.toast('结束楼栋编号不能小于等于开始楼栋编号');
                     return;
                 }
 
 
                 if(vc.component.batchAddFloorInfo.endFloorNum - vc.component.batchAddFloorInfo.startFloorNum > 50){
-                    vc.message('一次批量生成不能超过50栋楼');
+                    vc.toast('一次批量生成不能超过50栋楼');
                     return;
                 }
 
@@ -105,7 +105,7 @@
                             vc.component.clearBatchAddFloorInfo();
                             vc.emit('listFloor','listFloorData',{});
                             var resultInfo = JSON.parse(json);
-                            vc.message("楼栋成功生成"+resultInfo.successFloorCount+"，失败"+resultInfo.failFloorCount)
+                            vc.toast("楼栋成功生成"+resultInfo.successFloorCount+"，失败"+resultInfo.failFloorCount)
                             return ;
                         }
                         vc.component.batchAddFloorInfo.errorInfo = json;

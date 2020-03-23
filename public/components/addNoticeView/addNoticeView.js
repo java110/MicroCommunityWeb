@@ -115,13 +115,13 @@
 
                             return;
                         }
-                        vc.message(json);
+                        vc.toast(json);
 
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
 
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
 
                     });
             },
@@ -219,11 +219,11 @@
                             $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
                             return;
                         }
-                        vc.message(json);
+                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
 
             }

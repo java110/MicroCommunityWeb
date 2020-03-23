@@ -55,11 +55,11 @@
                 }
                 // 导入数据
                 if (!vc.component.checkFileType(vc.component.assetImportInfo.excelTemplate.name.split('.')[1])) {
-                    vc.message('不是有效的Excel格式');
+                    vc.toast('不是有效的Excel格式');
                     return;
                 }
                 if (!vc.component.checkFileSize(vc.component.assetImportInfo.excelTemplate.size)) {
-                    vc.message('Excel文件大小不能超过2M');
+                    vc.toast('Excel文件大小不能超过2M');
                     return;
                 }
                 var param = new FormData();
@@ -82,15 +82,15 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
-                            vc.message("处理成功");
+                            vc.toast("处理成功");
                             vc.jumpToPage('/admin.html#/listOwner')
                             return;
                         }
-                        vc.message(json);
+                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             _exitCommunityData: function () {
@@ -118,11 +118,11 @@
                             vc.toast("导出成功");
                             return;
                         }
-                        vc.message(json);
+                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });*/
             },
             checkFileType: function (fileType) {

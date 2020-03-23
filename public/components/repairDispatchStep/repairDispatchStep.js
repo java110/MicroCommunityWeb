@@ -41,7 +41,7 @@
             vc.component.repairDispatchStepInfo.repairId = vc.getParam('repairId');
 
             if(!vc.notNull(vc.component.repairDispatchStepInfo.repairId)){
-                vc.message("非法数据，未找到派单信息");
+                vc.toast("非法数据，未找到派单信息");
                 vc.jumpToPage("/admin.html#/listOwner");
                 return ;
             }
@@ -87,7 +87,7 @@
             _nextStep:function(){
                 var _currentData = vc.component.repairDispatchStepInfo.infos[vc.component.repairDispatchStepInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
                 vc.component.repairDispatchStepInfo.$step.nextStep();
@@ -103,7 +103,7 @@
 
                 var _currentData = vc.component.repairDispatchStepInfo.infos[vc.component.repairDispatchStepInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
 
@@ -120,17 +120,17 @@
                     function(json,res){
                        if(res.status == 200){
 
-                           vc.message('处理成功',true);
+                           vc.toast('处理成功',true);
                            //关闭model
                            vc.jumpToPage("/admin.html#/repairDispatchManage?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
-                       vc.message(json);
+                       vc.toast(json);
                     },
                     function(errInfo,error){
                        console.log('请求失败处理');
 
-                       vc.message(errInfo);
+                       vc.toast(errInfo);
                     });
             },
             _notifyViewOrgInfoComponentData:function(){

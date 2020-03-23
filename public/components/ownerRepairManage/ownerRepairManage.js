@@ -43,7 +43,7 @@
                 var _roomId = vc.getParam('roomId')
 
                 if(!vc.notNull(_roomId)){
-                    vc.message("非法操作，未找到房屋信息");
+                    vc.toast("非法操作，未找到房屋信息");
                     vc.jumpToPage('/admin.html#/listOwner');
                     return ;
                 }
@@ -65,7 +65,7 @@
                                 if(res.status == 200){
                                     var _roomInfos=JSON.parse(json);
                                     if(!_roomInfos.hasOwnProperty("rooms")){
-                                         vc.message("非法操作，未找到房屋信息");
+                                         vc.toast("非法操作，未找到房屋信息");
                                          vc.jumpToPage('/admin.html#/listOwner');
                                          return ;
                                     }
@@ -73,12 +73,12 @@
                                     vc.component.ownerRepairManageInfo.conditions.roomName= _roomInfo.floorNum+"号楼 "+_roomInfo.unitNum+"单元 "+_roomInfo.roomNum + "室";
                                     vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
                                 }else{
-                                     vc.message("非法操作，未找到房屋信息");
+                                     vc.toast("非法操作，未找到房屋信息");
                                      vc.jumpToPage('/admin.html#/listOwner');
                                 }
                              },function(errInfo,error){
                                 console.log('请求失败处理');
-                                vc.message("非法操作，未找到房屋信息");
+                                vc.toast("非法操作，未找到房屋信息");
                                 vc.jumpToPage('/admin.html#/listOwner');
                              }
                  );

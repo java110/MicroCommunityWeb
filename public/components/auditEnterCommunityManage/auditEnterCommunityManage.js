@@ -85,11 +85,11 @@
                              vc.component._listCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
                             return ;
                         }
-                        vc.message(json);
+                        vc.toast(json);
                      },
                      function(errInfo,error){
                         console.log('请求失败处理');
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                 });
             },
             _queryEnterCommunityMethod: function () {

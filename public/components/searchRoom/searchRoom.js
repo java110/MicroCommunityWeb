@@ -41,7 +41,7 @@
             _loadAllRoomInfo:function(_page,_row,_roomNum){
 
                 if(vc.component.searchRoomInfo._currentFloorNum == ''){
-                    vc.message("未填写小区楼编号");
+                    vc.toast("未填写小区楼编号");
                     return ;
                 }
 

@@ -96,12 +96,12 @@
                              vc.emit('resourceStoreManage','listResourceStore',{});
                             return ;
                         }
-                        vc.message(json);
+                        vc.toast(json);
                      },
                      function(errInfo,error){
                         console.log('请求失败处理');
 
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                      });
             },
             refreshEditResourceStoreInfo:function(){

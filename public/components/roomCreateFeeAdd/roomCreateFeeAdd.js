@@ -146,13 +146,13 @@
                         vc.toast("创建收费成功，总共["+_json.totalRoom+"]房屋，成功["+_json.successRoom+"],失败["+_json.errorRoom+"]",8000);
                         return;
                     }
-                    vc.message(json);
+                    vc.toast(json);
 
                 },
                 function(errInfo, error) {
                     console.log('请求失败处理');
 
-                    vc.message(errInfo);
+                    vc.toast(errInfo);
 
                 });
             },

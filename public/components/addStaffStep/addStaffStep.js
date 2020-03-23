@@ -82,7 +82,7 @@
             _nextStep:function(){
                 var _currentData = vc.component.addStaffStepInfo.infos[vc.component.addStaffStepInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
                 vc.component.addStaffStepInfo.$step.nextStep();
@@ -99,7 +99,7 @@
                 //vc.component.addStaffStepInfo.staffInfo.departmentOrgId = vc.component.addStaffStepInfo.infos[1].orgId;
                 var _currentData = vc.component.addStaffStepInfo.infos[vc.component.addStaffStepInfo.index];
                 if( _currentData == null || _currentData == undefined){
-                    vc.message("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息");
                     return ;
                 }
                vc.http.post(
@@ -112,17 +112,17 @@
                     function(json,res){
                        if(res.status == 200){
 
-                           vc.message('处理成功',true);
+                           vc.toast('处理成功',true);
                            //关闭model
                            vc.jumpToPage("/admin.html#/staff");
                            return ;
                        }
-                       vc.message(json);
+                       vc.toast(json);
                     },
                     function(errInfo,error){
                        console.log('请求失败处理');
 
-                       vc.message(errInfo);
+                       vc.toast(errInfo);
                     });
             },
             _notifyViewOrgInfoComponentData:function(){

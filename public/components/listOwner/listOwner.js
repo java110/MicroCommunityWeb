@@ -151,7 +151,7 @@
                         if (rooms.length == 1) {
                             vc.jumpToPage("/admin.html#/ownerRepairManage?ownerId=" + _owner.ownerId + "&roomId=" + rooms[0].roomId);
                         } else if (rooms.length == 0) {
-                            //vc.message("当前业主未查询到房屋信息");
+                            //vc.toast("当前业主未查询到房屋信息");
                             vc.toast("当前业主未查询到房屋信息");
                         } else {
 
@@ -182,7 +182,7 @@
                             vc.jumpToPage("/admin.html#/listRoomFee?" + vc.objToGetParam(rooms[0]));
 
                         } else if (rooms.length == 0) {
-                            //vc.message("当前业主未查询到房屋信息");
+                            //vc.toast("当前业主未查询到房屋信息");
                             vc.toast("当前业主未查询到房屋信息");
                         } else {
 
@@ -212,7 +212,7 @@
                         if (parkingSpaces.length == 1) {
                             vc.jumpToPage("/admin.html#/listParkingSpaceFee?" + vc.objToGetParam(parkingSpaces[0]));
                         } else if (parkingSpaces.length == 0) {
-                            //vc.message("当前业主未查询到车位信息");
+                            //vc.toast("当前业主未查询到车位信息");
                             vc.toast("当前业主未查询到车位信息");
 
                         } else {
