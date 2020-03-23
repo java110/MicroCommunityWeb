@@ -119,8 +119,6 @@
             },
             _openAddOwnerRoom: function (_owner) {
                 vc.jumpToPage("/admin.html#/addOwnerRoomBinding?ownerId=" + _owner.ownerId);
-                return ;
-                //vc.jumpToPage("/admin.html#/addOwnerRoomBinding");
             },
             _openHireParkingSpace: function (_owner) {
                 vc.jumpToPage("/admin.html#/hireParkingSpace?ownerId=" + _owner.ownerId);
