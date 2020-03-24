@@ -36,7 +36,7 @@
         @param _msg 提示内容
         @param _notAutoHide 是否需要自动隐藏
     **/
-    vc.toastTips = function(_msg, _notAutoHide){
+    vc.messageTips = function(_msg, _notAutoHide){
        vm.$emit('messageTips_openMessage',{msg:_msg});
        if(!_notAutoHide){
             vm.messageTimer_Tips();

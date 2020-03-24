@@ -151,10 +151,10 @@
             },
             test:function(val){
                 if('username' == val){
-                    vc.toastTips("*用户名长度必须在4位至6位");
+                    vc.messageTips("*用户名长度必须在4位至6位");
 
                 }else if('passwd' == val){
-                    vc.toastTips("*密码长度必须在6位至12位");
+                    vc.messageTips("*密码长度必须在6位至12位");
 
                 }
             },
