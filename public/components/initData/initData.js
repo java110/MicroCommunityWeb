@@ -37,6 +37,7 @@
                 );
             },
             _validateHasStore: function (_param) {
+                console.log("_param",_param);
                 var param = {
                     params:{
                         _uId:'ccdd00opikookjuhyyttvhnnjuuu'
@@ -51,9 +52,9 @@
                         }else{
                             vc.jumpToPage("/initCompany.html#/company");
                         }
-                    }, function () {
+                    }, function (e) {
                         console.log('请求失败处理');
-                        vc.jumpToPage(_param.url);
+                        vc.jumpToPage("/initCompany.html#/company");
                     }
                 );
             }
