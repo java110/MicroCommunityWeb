@@ -53,8 +53,8 @@
                             vc.jumpToPage("/initCompany.html#/company");
                         }
                     }, function (e) {
-                        console.log('请求失败处理');
-                        vc.jumpToPage(_param.url);
+                        console.log('请求失败处理',e);
+                        //vc.jumpToPage(_param.url);
                     }
                 );
             }
