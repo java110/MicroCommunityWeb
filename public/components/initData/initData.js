@@ -54,7 +54,7 @@
                         }
                     }, function (e) {
                         console.log('请求失败处理');
-                        vc.jumpToPage("/initCompany.html#/company");
+                        vc.jumpToPage(_param.url);
                     }
                 );
             }
