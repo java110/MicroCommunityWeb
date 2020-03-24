@@ -8,7 +8,7 @@
         },
         _initEvent: function () {
             vc.on('initData', 'loadCommunityInfo', function (_param) {
-                vc.component._loadCommunityInfo(_param);
+                vc.component._validateHasStore(_param);
             })
         },
         methods: {
@@ -29,6 +29,27 @@
                                 vc.setCommunitys(_communityInfos);
                             }
                             vc.jumpToPage(_param.url);
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                        vc.jumpToPage(_param.url);
+                    }
+                );
+            },
+            _validateHasStore: function (_param) {
+                var param = {
+                    params:{
+                        _uId:'ccdd00opikookjuhyyttvhnnjuuu'
+                    }
+                };
+                vc.http.get('hasCompany',
+                    'check',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            vc.component._loadCommunityInfo(_param);
+                        }else{
+                            vc.jumpToPage("/initCompany.html#/company");
                         }
                     }, function () {
                         console.log('请求失败处理');
