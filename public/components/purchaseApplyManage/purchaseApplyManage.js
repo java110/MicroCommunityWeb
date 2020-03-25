@@ -12,10 +12,11 @@
                 records:1,
                 moreCondition:false,
                 applyOrderId:'',
+                states:'',
                 conditions:{
                     state:'',
-applyOrderId:'',
-
+                    userName:'',
+                    resOrderType:'10000'
                 }
             }
         },
@@ -23,7 +24,6 @@ applyOrderId:'',
             vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent:function(){
-            
             vc.on('purchaseApplyManage','listPurchaseApply',function(_param){
                   vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -59,10 +59,10 @@ applyOrderId:'',
                            );
             },
             _openAddPurchaseApplyModal:function(){
-                vc.emit('addPurchaseApply','openAddPurchaseApplyModal',{});
+                vc.jumpToPage("/admin.html#/addPurchaseApplyStep");
             },
-            _openEditPurchaseApplyModel:function(_purchaseApply){
-                vc.emit('editPurchaseApply','openEditPurchaseApplyModal',_purchaseApply);
+            _openDetailPurchaseApplyModel:function(_purchaseApply){
+                vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId);
             },
             _openDeletePurchaseApplyModel:function(_purchaseApply){
                 vc.emit('deletePurchaseApply','openDeletePurchaseApplyModal',_purchaseApply);
@@ -77,9 +77,12 @@ applyOrderId:'',
                 }else{
                     vc.component.purchaseApplyManageInfo.moreCondition = true;
                 }
+            },
+            _queryInspectionPlanMethod:function () {
+                vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             }
 
-             
+
         }
     });
 })(window.vc);
