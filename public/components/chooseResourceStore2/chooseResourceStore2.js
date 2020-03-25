@@ -19,20 +19,19 @@
             vc.on('chooseResourceStore2','openChooseResourceStoreModel2',function(_param){
                 $('#chooseResourceStoreModel2').modal('show');
                 vc.component.chooseResourceStoreInfo2._currentResourceStoreName = "";
-                vc.component._loadAllResourceStoreInfo(DEFAULT_PAGE, DEFAULT_ROWS,'');
+                vc.component._loadAllResourceStoreInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._loadAllResourceStoreInfo(_currentPage, DEFAULT_ROWS);
             });
         },
         methods:{
-            _loadAllResourceStoreInfo:function(_page,_row,_name){
+            _loadAllResourceStoreInfo:function(_page,_row){
                 var param = {
                     params:{
                         page:_page,
                         row:_row,
-                        communityId:vc.getCurrentCommunity().communityId,
-                        name:_name
+                        communityId:vc.getCurrentCommunity().communityId
                     }
                 };
 
