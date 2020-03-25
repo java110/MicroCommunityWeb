@@ -14,9 +14,11 @@
         methods:{
             //验证码定时
             messageTimer:function(){
-                  var num = 10;
+                  var num = 2;
                 var _timer = vc.createTimer(function(){
                     num --;
+                    console.log(num);
+                    console.log(num === 1);
                     if(num === 1){
                         vc.clearTimer(_timer);
                         vm.messageInfo.hide=true;
