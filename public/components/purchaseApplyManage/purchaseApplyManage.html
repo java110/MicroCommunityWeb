@@ -64,7 +64,9 @@
                     >
                         <thead>
                         <tr>
+                            <th class="text-center">单号</th>
                             <th class="text-center">审批状态</th>
+                            <th class="text-center">流程处理人</th>
                             <th class="text-center">申请人</th>
                             <th class="text-center">申请时间</th>
                             <th class="text-center">物品</th>
@@ -74,7 +76,9 @@
                         </thead>
                         <tbody>
                         <tr v-for="purchaseApply in purchaseApplyManageInfo.purchaseApplys">
+                            <td class="text-center">{{purchaseApply.applyOrderId}}</td>
                             <td class="text-center">{{purchaseApply.stateName}}</td>
+                            <td class="text-center">{{purchaseApply.agreeMan}}</td>
                             <td class="text-center">{{purchaseApply.userName}}</td>
                             <td class="text-center">{{purchaseApply.createTime}}</td>
                             <td class="text-center">{{purchaseApply.resourceNames}}</td>

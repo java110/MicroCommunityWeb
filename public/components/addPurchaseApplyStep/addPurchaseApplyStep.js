@@ -21,7 +21,6 @@
         },
         _initEvent: function () {
             vc.on("addPurchaseApplyStep", "notify", function (viewResourceStoreInfo2) {
-                console.log("收到最终参数："+viewResourceStoreInfo2);
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores = viewResourceStoreInfo2.resourceStores;
             });
 
@@ -52,12 +51,12 @@
                 vc.emit('viewResourceStoreInfo2', 'getSelectResourceStores', null);
                 var _resourceStores = vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores;
                 if (_resourceStores.length == 0) {
-                    vc.message("请完善需要采购的物品信息");
+                    vc.toast("请完善需要采购的物品信息");
                     return;
                 }
                for( var i = 0; i < _resourceStores.length; i++){
                    if(_resourceStores[i].quantity <= 0){
-                       vc.message("请完善需要采购的物品信息");
+                       vc.toast("请完善需要采购的物品信息");
                         return;
                    }
                }
@@ -72,7 +71,7 @@
                 vc.emit('addPurchaseApplyViewInfo', 'setPurchaseApplyInfo', null);
                 var _description = vc.component.addPurchaseApplyStepInfo.purchaseApply.description;
                 if (_description == null || _description == '') {
-                    vc.message("请填写申请说明");
+                    vc.toast("请填写申请说明");
                     return;
                 }
                 vc.http.post(
@@ -94,7 +93,7 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
 
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             }
         }
