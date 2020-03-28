@@ -7,7 +7,7 @@
     vc.extends({
         data:{
             inspectionRoutePointManageInfo:{
-                inspectionRoutes:[],
+                inspectionPoints:[],
                 inspectionRouteId:'',
                 total:0,
                 records:1,
@@ -50,7 +50,7 @@
                                 var _inspectionRouteManageInfo=JSON.parse(json);
                                 vc.component.inspectionRoutePointManageInfo.total = _inspectionRouteManageInfo.total;
                                 vc.component.inspectionRoutePointManageInfo.records = _inspectionRouteManageInfo.records;
-                                vc.component.inspectionRoutePointManageInfo.inspectionPonits = _inspectionRouteManageInfo.inspectionPonits;
+                                vc.component.inspectionRoutePointManageInfo.inspectionPoints = _inspectionRouteManageInfo.inspectionPoints;
                                 vc.emit('pagination','init',{
                                      total:vc.component.inspectionRoutePointManageInfo.records,
                                      currentPage:_page
