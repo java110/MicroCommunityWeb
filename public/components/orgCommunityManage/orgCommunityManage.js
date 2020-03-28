@@ -75,7 +75,7 @@
             _openDeleteOrgCommunityModel: function (_orgCommunity) {
                 vc.emit('deleteOrgCommunity', 'openDeleteOrgCommunityModal', _orgCommunity);
             },
-            _openBeyondCommunity:function(_orgCommunity){
+            _openBeyondOrgCommunity:function(_orgCommunity){
             },
             _queryOrgCommunityMethod: function () {
                 vc.component._listOrgCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
