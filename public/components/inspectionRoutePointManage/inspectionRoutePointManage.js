@@ -60,10 +60,10 @@
                              }
                            );
             },
-            _openAddInspectionRouteModal:function(){
+            _openAddInspectionRoutePointModal:function(){
                 vc.emit('addInspectionRoutePointRel','openAddInspectionPointModal',{});
             },
-            _openDeleteInspectionRouteModel:function(_inspectionPoint){
+            _openDeleteInspectionRoutePointModel:function(_inspectionPoint){
                 vc.emit('deleteInspectionRoutePointRel','openDeleteInspectionPointModal',_inspectionPoint);
             },
             _goBack:function(){

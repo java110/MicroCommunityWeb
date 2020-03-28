@@ -801,7 +801,7 @@
                     }
                 }, function (res) {
                     try {
-                        if (res.status == 401) {
+                        if (res.status == 401 && res.headers.map["location"]) {
                             let _header = res.headers.map;
                             //console.log('res', res);
                             window.location.href = _header['location'];

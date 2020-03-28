@@ -79,7 +79,7 @@
                     function (json, res) {
                         if (res.status == 200) {
 
-                            vc.toast('处理成功', true);
+                            vc.toast('处理成功');
                             //关闭model
                             vc.jumpToPage("/admin.html#/complaintManage?" + vc.objToGetParam(JSON.parse(json)));
                             return;
