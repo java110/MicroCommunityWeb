@@ -1056,7 +1056,19 @@ h1 {
     padding: 30px 20px 20px 20px;
 }
 
-
+table.table-mail tr td {
+  padding: 12px;
+}
+.table-mail .check-mail {
+  padding-left: 20px;
+}
+.table-mail .mail-date {
+  padding-right: 20px;
+}
+.star-mail,
+.check-mail {
+  width: 40px;
+}
 
 
 .fileinput > .file {
