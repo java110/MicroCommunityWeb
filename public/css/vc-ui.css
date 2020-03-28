@@ -1041,6 +1041,14 @@ h1 {
     color: #1ab394;
 }
 
+.mail-box {
+  background-color: #ffffff;
+  border: 1px solid #e7eaec;
+  border-top: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
 .mail-box-header {
     background-color: #ffffff;
     border: 1px solid #e7eaec;
