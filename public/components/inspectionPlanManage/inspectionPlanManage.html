@@ -12,8 +12,14 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="计划名称、执行人员姓名"
-                                       v-model="inspectionPlanManageInfo.conditions.keyWord" class=" form-control">
+                                <input type="text" placeholder="计划名称"
+                                       v-model="inspectionPlanManageInfo.conditions.inspectionPlanName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="执行人员姓名"
+                                       v-model="inspectionPlanManageInfo.conditions.staffName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -45,7 +51,7 @@
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionPlanModal()">
                             <i class="fa fa-plus"></i>
-                            添加巡检计划
+                            添加
                         </button>
                     </div>
                 </div>
@@ -66,10 +72,7 @@
                             <th class="text-center">制定人</th>
                             <th class="text-center">制定时间</th>
                             <th class="text-center">状态</th>
-                            <th class="text-center">备注</th>
-                            <th class="text-center">操作</th>
-
-
+                            <th class="text-right">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -84,8 +87,7 @@
                             <td class="text-center">{{inspectionPlan.createUserName}}</td>
                             <td class="text-center">{{inspectionPlan.createTime}}</td>
                             <td class="text-center">{{inspectionPlan.stateName}}</td>
-                            <td class="text-center">{{inspectionPlan.remark}}</td>
-                            <td class="text-center">
+                            <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditInspectionPlanModel(inspectionPlan)">修改

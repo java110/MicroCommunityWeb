@@ -14,7 +14,8 @@
                 inspectionPlanName: '',
                 states:'',
                 conditions: {
-                    keyWord: '',
+                    inspectionPlanName: '',
+                    staffName:'',
                     state: '',
 
                 }
