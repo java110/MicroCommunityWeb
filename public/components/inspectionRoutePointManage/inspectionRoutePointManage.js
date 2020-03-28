@@ -64,7 +64,8 @@
                 vc.emit('chooseInspectionRoutePoint','openchooseInspectionRoutePointModal',$that.inspectionRoutePointManageInfo);
             },
             _openDeleteInspectionRoutePointModel:function(_inspectionPoint){
-                vc.emit('deleteInspectionRoutePointRel','openDeleteInspectionPointModal',_inspectionPoint);
+                _inspectionPoint.inspectionRouteId = $that.inspectionRoutePointManageInfo.inspectionRouteId;
+                vc.emit('deleteInspectionRoutePoint','openDeleteInspectionRoutePointModal', _inspectionPoint);
             },
             _goBack:function(){
                 vc.emit('inspectionRouteManage','goBack',{});

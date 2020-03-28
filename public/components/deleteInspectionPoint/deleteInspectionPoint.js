@@ -33,6 +33,7 @@
                             //关闭model
                             $('#deleteInspectionPointModel').modal('hide');
                             vc.emit('inspectionPointManage','listInspectionPoint',{});
+                        
                             return ;
                         }
                         vc.toast(json);
