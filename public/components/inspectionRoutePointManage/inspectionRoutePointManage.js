@@ -61,7 +61,7 @@
                            );
             },
             _openAddInspectionRoutePointModal:function(){
-                vc.emit('addInspectionRoutePointRel','openAddInspectionPointModal',{});
+                vc.emit('chooseInspectionRoutePoint','openchooseInspectionRoutePointModal',$that.inspectionRoutePointManageInfo);
             },
             _openDeleteInspectionRoutePointModel:function(_inspectionPoint){
                 vc.emit('deleteInspectionRoutePointRel','openDeleteInspectionPointModal',_inspectionPoint);
