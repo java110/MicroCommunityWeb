@@ -38,6 +38,7 @@
 
                 vc.component.inspectionPointManageInfo.conditions.page = _page;
                 vc.component.inspectionPointManageInfo.conditions.row = _rows;
+                vc.component.inspectionPointManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.inspectionPointManageInfo.conditions
                 };
