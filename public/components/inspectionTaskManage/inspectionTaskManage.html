@@ -57,12 +57,12 @@
                         <thead>
                             <tr>
                                 <th class="text-center">任务编码</th>
-                                <th class="text-center">任务编码</th>
                                 <th class="text-center">巡检计划</th>
                                 <th class="text-center">巡检时间</th>
                                 <th class="text-center">实际巡检时间</th>
                                 <th class="text-center">巡检人</th>
                                 <th class="text-center">巡检方式</th>
+                                <th class="text-center">巡检状态</th>
                                 <th class="text-center">操作</th>
 
 
@@ -71,20 +71,16 @@
                         <tbody>
                             <tr v-for="inspectionTask in inspectionTaskManageInfo.inspectionTasks">
                                 <td class="text-center">{{inspectionTask.taskId}}</td>
-                                <td class="text-center">{{inspectionTask.taskId}}</td>
                                 <td class="text-center">{{inspectionTask.inspectionPlanId}}</td>
                                 <td class="text-center">{{inspectionTask.planInsTime}}</td>
                                 <td class="text-center">{{inspectionTask.actInsTime}}</td>
                                 <td class="text-center">{{inspectionTask.planUserName}}</td>
                                 <td class="text-center">{{inspectionTask.signType}}</td>
+                                <td class="text-center">{{inspectionTask.state}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditInspectionTaskModel(inspectionTask)">修改</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteInspectionTaskModel(inspectionTask)">删除</button>
+                                            v-on:click="_openDeleteInspectionTaskModel(inspectionTask)">详情</button>
                                     </div>
                                 </td>
 
