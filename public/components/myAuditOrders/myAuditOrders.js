@@ -31,6 +31,10 @@
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAuditOrders(_currentPage, DEFAULT_ROWS);
             });
+
+            vc.on('myAuditOrders','notifyAudit',function(_auditInfo){
+                vc.component._auditCommunityState(_auditInfo);
+            });
         },
         methods: {
             _listAuditOrders: function (_page, _rows) {
@@ -47,9 +51,11 @@
                     param,
                     function (json, res) {
                         var _myAuditOrdersInfo = JSON.parse(json);
+                        console.log("收到我的审核信息："+_myAuditOrdersInfo);
+                        console.log("参数："+_myAuditOrdersInfo.resourceOrders);
                         vc.component.myAuditOrdersInfo.total = _myAuditOrdersInfo.total;
                         vc.component.myAuditOrdersInfo.records = _myAuditOrdersInfo.records;
-                        vc.component.myAuditOrdersInfo.AuditOrders = _myAuditOrdersInfo.AuditOrders;
+                        vc.component.myAuditOrdersInfo.auditOrders = _myAuditOrdersInfo.resourceOrders;
                         vc.emit('pagination', 'init', {
                             total: vc.component.myAuditOrdersInfo.records,
                             currentPage: _page
@@ -60,7 +66,7 @@
                 );
             },
             _openAuditOrderModel: function () {
-                vc.jumpToPage("/admin.html#/addAuditOrderstep")
+                vc.emit('audit','openAuditModal',{});
             },
             _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);

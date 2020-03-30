@@ -68,9 +68,9 @@
                         </thead>
                         <tbody>
                         <tr v-for="auditOrder in myAuditOrdersInfo.auditOrders">
-                            <td class="text-center">{{auditOrder.resOrderId}}</td>
-                            <td class="text-center">{{auditOrder.resOrderType}}</td>
-                            <td class="text-center">{{auditOrder.state}}</td>
+                            <td class="text-center">{{auditOrder.applyOrderId}}</td>
+                            <td class="text-center">{{auditOrder.resOrderTypeName}}</td>
+                            <td class="text-center">{{auditOrder.stateName}}</td>
                             <td class="text-center">{{auditOrder.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
@@ -96,4 +96,8 @@
             </div>
         </div>
     </div>
+    <vc:create name="audit"
+               callBackListener="myAuditOrders"
+               callBackFunction="notifyAudit"
+    ></vc:create>
 </div>
