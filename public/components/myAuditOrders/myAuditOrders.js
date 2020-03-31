@@ -1,12 +1,12 @@
 /**
- 入驻小区
+ 审核订单
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            myAuditOrdersInfo: {
+            auditOrdersInfo: {
                 auditOrders: [],
                 total: 0,
                 records: 1,
@@ -16,8 +16,8 @@
                     AuditOrdersId: '',
                     userName: '',
                     auditLink: '',
-
-                }
+                },
+                orderInfo:''
             }
         },
         _initMethod: function () {
@@ -33,16 +33,16 @@
             });
 
             vc.on('myAuditOrders','notifyAudit',function(_auditInfo){
-                vc.component._auditCommunityState(_auditInfo);
+                vc.component._auditOrderInfo(_auditInfo);
             });
         },
         methods: {
             _listAuditOrders: function (_page, _rows) {
 
-                vc.component.myAuditOrdersInfo.conditions.page = _page;
-                vc.component.myAuditOrdersInfo.conditions.row = _rows;
+                vc.component.auditOrdersInfo.conditions.page = _page;
+                vc.component.auditOrdersInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.myAuditOrdersInfo.conditions
+                    params: vc.component.auditOrdersInfo.conditions
                 };
 
                 //发送get请求
@@ -50,14 +50,12 @@
                     'list',
                     param,
                     function (json, res) {
-                        var _myAuditOrdersInfo = JSON.parse(json);
-                        console.log("收到我的审核信息："+_myAuditOrdersInfo);
-                        console.log("参数："+_myAuditOrdersInfo.resourceOrders);
-                        vc.component.myAuditOrdersInfo.total = _myAuditOrdersInfo.total;
-                        vc.component.myAuditOrdersInfo.records = _myAuditOrdersInfo.records;
-                        vc.component.myAuditOrdersInfo.auditOrders = _myAuditOrdersInfo.resourceOrders;
+                        var _auditOrdersInfo = JSON.parse(json);
+                        vc.component.auditOrdersInfo.total = _auditOrdersInfo.total;
+                        vc.component.auditOrdersInfo.records = _auditOrdersInfo.records;
+                        vc.component.auditOrdersInfo.auditOrders = _auditOrdersInfo.resourceOrders;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.myAuditOrdersInfo.records,
+                            total: vc.component.auditOrdersInfo.records,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -65,19 +63,41 @@
                     }
                 );
             },
-            _openAuditOrderModel: function () {
+            _openAuditOrderModel: function (_auditOrder) {
+                vc.component.auditOrdersInfo.orderInfo = _auditOrder;
                 vc.emit('audit','openAuditModal',{});
             },
             _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
-                if (vc.component.AuditOrdersManageInfo.moreCondition) {
-                    vc.component.AuditOrdersManageInfo.moreCondition = false;
-                } else {
-                    vc.component.AuditOrdersManageInfo.moreCondition = true;
-                }
-            }
+            // _moreCondition: function () {
+            //     if (vc.component.AuditOrdersManageInfo.moreCondition) {
+            //         vc.component.AuditOrdersManageInfo.moreCondition = false;
+            //     } else {
+            //         vc.component.AuditOrdersManageInfo.moreCondition = true;
+            //     }
+            // },
+            //提交审核信息
+            _auditOrderInfo: function (_auditInfo) {
+                console.log("提交得参数："+_auditInfo);
+                _auditInfo.taskId = vc.component.auditOrdersInfo.orderInfo.taskId;
+                _auditInfo.applyOrderId = vc.component.auditOrdersInfo.orderInfo.applyOrderId;
+                //发送get请求
+                vc.http.post('myAuditOrders',
+                    'audit',
+                    JSON.stringify(_auditInfo),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        vc.toast("处理成功");
+                        vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast("处理失败：" + errInfo);
+                    }
+                );
+            },
 
 
         }

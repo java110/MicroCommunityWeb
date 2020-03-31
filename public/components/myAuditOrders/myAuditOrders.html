@@ -13,17 +13,17 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入审核ID"
-                                       v-model="myAuditOrdersInfo.conditions.AuditOrdersId" class=" form-control">
+                                       v-model="auditOrdersInfo .conditions.AuditOrdersId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入审核人员"
-                                       v-model="myAuditOrdersInfo.conditions.userName" class=" form-control">
+                                       v-model="auditOrdersInfo .conditions.userName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="myAuditOrdersInfo.conditions.auditLink">
+                            <select class="custom-select" v-model="auditOrdersInfo .conditions.auditLink">
                                 <option selected value="">请选择审核环节</option>
                                 <option value="809001">部门主管</option>
                                 <option value="809002">财务主管</option>
@@ -67,7 +67,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="auditOrder in myAuditOrdersInfo.auditOrders">
+                        <tr v-for="auditOrder in auditOrdersInfo .auditOrders">
                             <td class="text-center">{{auditOrder.applyOrderId}}</td>
                             <td class="text-center">{{auditOrder.resOrderTypeName}}</td>
                             <td class="text-center">{{auditOrder.stateName}}</td>
