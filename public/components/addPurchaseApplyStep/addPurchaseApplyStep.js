@@ -12,12 +12,15 @@
                     resourceStores:[],
                     description:'',
                     file:'',
-                    resOrderType:'10000'
+                    resOrderType:''
                 }
             }
         },
         _initMethod: function () {
             vc.component._initStep();
+            //10000 采购 20000出库
+            vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType = vc.getParam('resOrderType');
+            console.log("订单类型："+vc.getParam('resOrderType'));
         },
         _initEvent: function () {
             vc.on("addPurchaseApplyStep", "notify", function (viewResourceStoreInfo2) {
@@ -85,7 +88,12 @@
                         if (res.status == 200) {
 
                             //关闭model
-                            vc.jumpToPage("/admin.html#/purchaseApplyManage");
+                            if(vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "10000"){
+                                vc.jumpToPage("/admin.html#/purchaseApplyManage");
+                            }else{
+                                vc.jumpToPage("/admin.html#/itemOutManage");
+                            }
+
                             return;
                         }
                         vc.message(json);

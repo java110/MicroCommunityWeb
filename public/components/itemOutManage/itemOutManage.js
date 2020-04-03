@@ -1,89 +1,85 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc){
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
-        data: {
-            resourceStoreManageInfo: {
-                resourceStores: [],
-                total: 0,
-                records: 1,
-                moreCondition: false,
-                resName: '',
-                conditions: {
-                    resId: '',
-                    resName: '',
-                    resCode: '',
-                    description:'',
-                    stock:''
-
+        data:{
+            purchaseApplyManageInfo:{
+                purchaseApplys:[],
+                total:0,
+                records:1,
+                moreCondition:false,
+                applyOrderId:'',
+                states:'',
+                conditions:{
+                    state:'',
+                    userName:'',
+                    resOrderType:'20000'
                 }
             }
         },
-        _initMethod: function () {
-            vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
+        _initMethod:function(){
+            vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-
-            vc.on('resourceStoreManage', 'listResourceStore', function (_param) {
-                vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
+        _initEvent:function(){
+            vc.on('purchaseApplyManage','listPurchaseApply',function(_param){
+                vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listResourceStores(_currentPage, DEFAULT_ROWS);
+            vc.on('pagination','page_event',function(_currentPage){
+                vc.component._listPurchaseApplys(_currentPage,DEFAULT_ROWS);
             });
         },
-        methods: {
-            _resourceStoreLess:function(stock){
-                vc.component.$data.resourceStoreManageInfo.conditions.stock=parseInt(stock--);
-            },
+        methods:{
+            _listPurchaseApplys:function(_page, _rows){
 
-            _listResourceStores: function (_page, _rows) {
-
-                vc.component.resourceStoreManageInfo.conditions.page = _page;
-                vc.component.resourceStoreManageInfo.conditions.row = _rows;
+                vc.component.purchaseApplyManageInfo.conditions.page = _page;
+                vc.component.purchaseApplyManageInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.resourceStoreManageInfo.conditions
+                    params:vc.component.purchaseApplyManageInfo.conditions
                 };
 
                 //发送get请求
-                vc.http.get('resourceStoreManage',
+                vc.http.get('purchaseApplyManage',
                     'list',
                     param,
-                    function (json, res) {
-                        var _resourceStoreManageInfo = JSON.parse(json);
-                        vc.component.resourceStoreManageInfo.total = _resourceStoreManageInfo.total;
-                        vc.component.resourceStoreManageInfo.records = _resourceStoreManageInfo.records;
-                        vc.component.resourceStoreManageInfo.resourceStores = _resourceStoreManageInfo.resourceStores;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.resourceStoreManageInfo.records,
-                            currentPage: _page
+                    function(json,res){
+                        var _purchaseApplyManageInfo=JSON.parse(json);
+                        vc.component.purchaseApplyManageInfo.total = _purchaseApplyManageInfo.total;
+                        vc.component.purchaseApplyManageInfo.records = _purchaseApplyManageInfo.records;
+                        vc.component.purchaseApplyManageInfo.purchaseApplys = _purchaseApplyManageInfo.purchaseApplys;
+                        vc.emit('pagination','init',{
+                            total:vc.component.purchaseApplyManageInfo.records,
+                            currentPage:_page
                         });
-                    }, function (errInfo, error) {
+                    },function(errInfo,error){
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddResourceStoreModal: function () {
-                vc.emit('addResourceStore', 'openAddResourceStoreModal', {});
+            _openAddPurchaseApplyModal:function(){
+                vc.jumpToPage("/admin.html#/addPurchaseApplyStep?resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
             },
-            _openEditResourceStoreModel: function (_resourceStore) {
-                vc.emit('editItemNumberStore', 'openEditItemNumberStoreModal', _resourceStore);
+            _openDetailPurchaseApplyModel:function(_purchaseApply){
+                vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId);
             },
-            _openDeleteResourceStoreModel: function (_resourceStore) {
-                vc.emit('deleteResourceStore', 'openDeleteResourceStoreModal', _resourceStore);
+            _openDeletePurchaseApplyModel:function(_purchaseApply){
+                vc.emit('deletePurchaseApply','openDeletePurchaseApplyModal',_purchaseApply);
             },
-            _queryResourceStoreMethod: function () {
-                vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
+            _queryPurchaseApplyMethod:function(){
+                vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _moreCondition: function () {
-                if (vc.component.resourceStoreManageInfo.moreCondition) {
-                    vc.component.resourceStoreManageInfo.moreCondition = false;
-                } else {
-                    vc.component.resourceStoreManageInfo.moreCondition = true;
+            _moreCondition:function(){
+                if(vc.component.purchaseApplyManageInfo.moreCondition){
+                    vc.component.purchaseApplyManageInfo.moreCondition = false;
+                }else{
+                    vc.component.purchaseApplyManageInfo.moreCondition = true;
                 }
+            },
+            _queryInspectionPlanMethod:function () {
+                vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             }
 
 

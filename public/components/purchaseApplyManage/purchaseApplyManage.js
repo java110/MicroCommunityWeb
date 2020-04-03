@@ -59,7 +59,7 @@
                            );
             },
             _openAddPurchaseApplyModal:function(){
-                vc.jumpToPage("/admin.html#/addPurchaseApplyStep");
+                vc.jumpToPage("/admin.html#/addPurchaseApplyStep?resOrderType="+this.purchaseApplyManageInfo.conditions.resOrderType);
             },
             _openDetailPurchaseApplyModel:function(_purchaseApply){
                 vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId);
