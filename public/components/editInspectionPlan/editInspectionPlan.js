@@ -49,25 +49,29 @@
                 vc.emit('editInspectionPlan', 'orgSelect2', 'setOrg', {
                     orgId: vc.component.editInspectionPlanInfo.companyId,
                     orgName: vc.component.editInspectionPlanInfo.companyName,
-                });
-
-                //部门select2
-                vc.emit('editInspectionPlan', 'departmentSelect2', 'setDepartment', {
                     departmentId: vc.component.editInspectionPlanInfo.departmentId,
                     departmentName: vc.component.editInspectionPlanInfo.departmentName,
-                });
-
-                //员工select2
-                vc.emit('editInspectionPlan', 'staffSelect2', 'setStaff', {
                     staffId: vc.component.editInspectionPlanInfo.staffId,
                     staffName: vc.component.editInspectionPlanInfo.staffName,
                 });
 
-                // //传输数据到machineSelect2组件
-                // vc.emit('editInspectionPlan', 'inspectionRouteSelect2', 'setInspectionRoute', {
-                //     inspectionRouteId: vc.component.editInspectionPlanInfo.inspectionRouteId,
-                //     routeName: vc.component.editInspectionPlanInfo.inspectionRouteName,
+                //部门select2
+                // vc.emit('editInspectionPlan', 'departmentSelect2', 'setDepartment', {
+                //     departmentId: vc.component.editInspectionPlanInfo.departmentId,
+                //     departmentName: vc.component.editInspectionPlanInfo.departmentName,
                 // });
+
+                //员工select2
+                // vc.emit('editInspectionPlan', 'staffSelect2', 'setStaff', {
+                //     staffId: vc.component.editInspectionPlanInfo.staffId,
+                //     staffName: vc.component.editInspectionPlanInfo.staffName,
+                // });
+
+                // //传输数据到machineSelect2组件
+                vc.emit('editInspectionPlan', 'inspectionRouteSelect2', 'setInspectionRoute', {
+                    inspectionRouteId: vc.component.editInspectionPlanInfo.inspectionRouteId,
+                    routeName: vc.component.editInspectionPlanInfo.inspectionRouteName,
+                });
 
 
 

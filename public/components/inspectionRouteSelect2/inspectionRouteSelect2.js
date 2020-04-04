@@ -27,22 +27,9 @@
         _initEvent: function () {
             vc.on('inspectionRouteSelect2', 'setInspectionRoute', function (_param) {
                 vc.copyObject(_param, this.inspectionRouteSelect2Info);
-                $("#inspectionRouteSelector").val(null).trigger('change');
-                var name = _param.routeName.split(",");
-                var ids = _param.inspectionRouteId.split(",");
-                for( var i = 0; i < name.length; i++){
-                    var option = new Option(name[i],ids[i], true, true);
-                    console.log(option);
+                    var option = new Option(_param.routeName,_param.inspectionRouteId, true, true);
                     this.inspectionRouteSelect2Info.inspectionRouteSelector.append(option);
-                }
-                //var option = new Option(_param.routeName, _param.inspectionRouteId, true, true);
-
-                // var routeIds = _param.inspectionRouteId.split(",");
-                // var routeIdArray = new Array()
-                // for( var i = 0; i < routeIds.length; i++){
-                //     routeIdArray[i] = routeIds[i];
-                // }
-                // $("#inspectionRouteSelector").val(routeIdArray).trigger("change");
+                
             });
 
             vc.on('inspectionRouteSelect2', 'clearInspectionRoute', function (_param) {
@@ -52,7 +39,6 @@
                     routeName: '',
                     inspectionRouteSelector: {}
                 };
-                $("#inspectionRouteSelector").val(null).trigger('change');
             });
         },
         methods: {
@@ -96,24 +82,13 @@
                     //evt.params.data 是选中项的信息
                     this.inspectionRouteSelect2Info.inspectionRouteId = evt.params.data.id;
                     this.inspectionRouteSelect2Info.routeName = evt.params.data.text;
-                    var inspectionRouteIds= $('#inspectionRouteSelector').select2('val');
-                    var routeIds = '';
-                    for( var i = 0; i < inspectionRouteIds.length; i++){
-                        routeIds +=","+inspectionRouteIds[i];
-                    }
-                    this.inspectionRouteSelect2Info.inspectionRouteId = routeIds.substr(1);
                 });
 
                 $('#inspectionRouteSelector').on("select2:unselect", function (evt) {
                     //这里是取消选中触发的事件
-                    //如配置allowClear: true后，触发
-                    var inspectionRouteIds= $('#inspectionRouteSelector').select2('val');
-                    var routeIds = '';
-                    for( var i = 0; i < inspectionRouteIds.length; i++){
-                        routeIds +=","+inspectionRouteIds[i];
-                    }
-                    this.inspectionRouteSelect2Info.inspectionRouteId = routeIds.substr(1);
-                    //this.inspectionRouteSelect2Info.routeName = '';
+                    //如配置allowClear: true后，触发            
+                    this.inspectionRouteSelect2Info.inspectionRouteId = '';
+                    this.inspectionRouteSelect2Info.routeName = '';
 
                 });
             },
