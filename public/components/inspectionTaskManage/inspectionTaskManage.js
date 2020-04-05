@@ -59,14 +59,8 @@
                     }
                 );
             },
-            _openAddInspectionTaskModal: function () {
-                vc.emit('addInspectionTask', 'openAddInspectionTaskModal', {});
-            },
-            _openEditInspectionTaskModel: function (_inspectionTask) {
-                vc.emit('editInspectionTask', 'openEditInspectionTaskModal', _inspectionTask);
-            },
-            _openDeleteInspectionTaskModel: function (_inspectionTask) {
-                vc.emit('deleteInspectionTask', 'openDeleteInspectionTaskModal', _inspectionTask);
+            _openInspectionTaskDetail: function (_inspectionTask) {
+                vc.emit('inspectionTaskDetail', 'openInspectionTaskDetail', _inspectionTask);
             },
             _queryInspectionTaskMethod: function () {
                 vc.component._listInspectionTasks(DEFAULT_PAGE, DEFAULT_ROWS);
