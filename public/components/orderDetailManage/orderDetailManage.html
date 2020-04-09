@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>订单明细</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" class="btn btn-primary btn-sm "
+                            v-on:click="_goBack()"  style="margin-right:10px">
+                        返回
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+
+                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                    <thead>
+                    <tr>
+                        <th class="text-center">oId</th>
+                        <th class="text-center">bId</th>
+                        <th class="text-center">业务类型</th>
+                        <th class="text-center">创建时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="orderDetail in orderDetailInfo.orderDetails">
+                        <td class="text-center">{{orderDetail.oId}}</td>
+                        <td class="text-center">{{orderDetail.bId}}</td>
+                        <td class="text-center">{{orderDetail.businessTypeCdName}}</td>
+                        <td class="text-center">{{orderDetail.createTime}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="7">
+                            <ul class="pagination float-right"></ul>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

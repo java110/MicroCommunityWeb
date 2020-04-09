@@ -1,0 +1,21 @@
+(function(vc){
+    vc.extends({
+        data:{
+            orderDetailInfo:{
+                orderDetails:[]
+            }
+        },
+        _initMethod:function(){},
+        _initEvent:function(){
+            vc.on('orderDetailManage','listOrderDetails',function(_param){
+                console.log("收到参数："+_param);
+                  vc.component.orderDetailInfo.orderDetails = _param;
+            });
+        },
+        methods:{
+            _goBack:function(){
+                vc.emit('orderManage','goBack',{});
+            }
+        }
+    });
+})(window.vc);
