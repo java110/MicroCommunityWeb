@@ -28,7 +28,6 @@
                         emulateJSON:true
                      },
                      function(json,res){
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if(res.status == 200){
                             //关闭model
                             $('#deletePurchaseApplyModel').modal('hide');

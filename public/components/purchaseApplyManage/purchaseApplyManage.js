@@ -22,6 +22,9 @@
         },
         _initMethod:function(){
             vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.getDict('purchase_apply',"state",function(_data){
+                vc.component.purchaseApplyManageInfo.states = _data;
+            });
         },
         _initEvent:function(){
             vc.on('purchaseApplyManage','listPurchaseApply',function(_param){
