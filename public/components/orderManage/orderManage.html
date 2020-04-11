@@ -1,0 +1,109 @@
+<div  class="animated fadeInRight ecommerce">
+    <div class="row" v-if="orderManageInfo.orderDetail == false">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="订单编号"
+                                       v-model="orderManageInfo.conditions.oId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="orderManageInfo.conditions.orderTypeCd">
+                                    <option value="">请选择</option>
+                                    <option value="Q">查询单</option>
+                                    <option value="D">受理单</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="appid"
+                                       v-model="orderManageInfo.conditions.appId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryOrdersMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" v-if="orderManageInfo.orderDetail == false">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>订单信息</h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny"
+                           data-page-size="15"
+                    >
+                        <thead>
+                        <tr>
+                            <th class="text-center">appId</th>
+                            <th class="text-center">oid</th>
+                            <th class="text-right">订单类型</th>
+                            <th class="text-center">extTransactionId</th>
+                            <th class="text-right">请求时间</th>
+                            <th class="text-right">操作人</th>
+                            <th class="text-center">创建时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="order in orderManageInfo.orderDataVos">
+                            <td class="text-center">{{order.appId}}</td>
+                            <td class="text-center">{{order.oId}}</td>
+                            <td class="text-center">{{order.orderTypeCdName}}</td>
+                            <td class="text-center">{{order.extTransactionId}}</td>
+                            <td class="text-center">{{order.requestTime}}</td>
+                            <td class="text-center">{{order.userName}}</td>
+                            <td class="text-center">{{order.createTime}}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openOrderDetailModel(order)">订单明细
+                                    </button>
+                                </div>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create name="pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div v-if="orderManageInfo.orderDetail == true">
+        <vc:create name="orderDetailManage"></vc:create>
+    </div>
+
+
+</div>

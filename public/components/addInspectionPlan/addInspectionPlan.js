@@ -167,7 +167,7 @@
                 });
                 $('.addInspectionPlanStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
-                        var value = $(".addFeeConfigStartTime").val();
+                        var value = $(".addInspectionPlanStartTime").val();
                         vc.component.addInspectionPlanInfo.startTime = value;
                     });
                 $('.addInspectionPlanEndTime').datetimepicker({

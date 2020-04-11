@@ -9,6 +9,10 @@
                 orgId: '-1',
                 orgName: '',
                 companyId:'',
+                departmentId:'',
+                departmentName:'',
+                staffId: '',
+                staffName:'',
                 orgSelector: {}
             }
         },

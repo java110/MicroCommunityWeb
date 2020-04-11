@@ -41,6 +41,7 @@
 
                 vc.component.inspectionPlanManageInfo.conditions.page = _page;
                 vc.component.inspectionPlanManageInfo.conditions.row = _rows;
+                vc.component.inspectionPlanManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.inspectionPlanManageInfo.conditions
                 };

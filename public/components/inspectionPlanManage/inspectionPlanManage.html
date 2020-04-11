@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionPlanManageInfo.conditions.state">
-                                <option selected disabled value="">必填，请选择状态</option>
+                                <option selected disabled value="">请选择状态</option>
                                 <option v-for="(item,index) in inspectionPlanManageInfo.states" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -67,7 +67,7 @@
                             <th class="text-center">周期</th>
                             <th class="text-center">执行人</th>
                             <th class="text-center">签到方式</th>
-                            <th class="text-center">开始时间</th>
+                            <!-- <th class="text-center">开始时间</th> -->
                             <th class="text-center">结束时间</th>
                             <th class="text-center">制定人</th>
                             <th class="text-center">制定时间</th>
@@ -82,31 +82,35 @@
                             <td class="text-center">{{inspectionPlan.inspectionPlanPeriodName}}</td>
                             <td class="text-center">{{inspectionPlan.staffName}}</td>
                             <td class="text-center">{{inspectionPlan.signTypeName}}</td>
-                            <td class="text-center">{{inspectionPlan.startTime}}</td>
+                            <!-- <td class="text-center">{{inspectionPlan.startTime}}</td> -->
                             <td class="text-center">{{inspectionPlan.endTime}}</td>
                             <td class="text-center">{{inspectionPlan.createUserName}}</td>
                             <td class="text-center">{{inspectionPlan.createTime}}</td>
                             <td class="text-center">{{inspectionPlan.stateName}}</td>
                             <td class="text-right">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditInspectionPlanModel(inspectionPlan)">修改
+                                    <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">变更
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteInspectionPlanModel(inspectionPlan)">删除
-                                    </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEnabledInspectionPlanModel(inspectionPlan)">启用
-                                    </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDisabledInspectionPlanModel(inspectionPlan)">停用
-                                    </button>
+
+
+                                    <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
+                                        <p style="margin:10px 0;">
+                                            <a href="javascript:void(0)"
+                                                v-on:click="_openEditInspectionPlanModel(inspectionPlan)">修改计划</a>
+                                            <span>|</span>
+                                            <a href="javascript:void(0)"
+                                            v-on:click="_openDeleteInspectionPlanModel(inspectionPlan)">删除计划</a>
+                                        </p>
+                                        <p style="margin:10px 0;">
+                                            <a href="javascript:void(0)"
+                                            v-on:click="_openEnabledInspectionPlanModel(inspectionPlan)">启用计划</a>
+                                            <span>|</span>
+                                            <a href="javascript:void(0)"
+                                            v-on:click="_openDisabledInspectionPlanModel(inspectionPlan)">停用计划</a>
+                                        </p>
+                                         
+                                    </div>
                                 </div>
                             </td>
 

@@ -10,7 +10,9 @@
                 orgName: '',
                 companyId:'',
                 departmentId:'',
+                departmentName:'',
                 staffId: '',
+                staffName:'',
                 departmentSelector: {}
             }
         },
@@ -40,6 +42,7 @@
                     companyId:'',
                     staffId: '',
                     departmentId:'',
+                    departmentName:'',
                     departmentSelector: {}
                 };
             });

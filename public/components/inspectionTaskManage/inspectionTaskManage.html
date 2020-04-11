@@ -71,16 +71,16 @@
                         <tbody>
                             <tr v-for="inspectionTask in inspectionTaskManageInfo.inspectionTasks">
                                 <td class="text-center">{{inspectionTask.taskId}}</td>
-                                <td class="text-center">{{inspectionTask.inspectionPlanId}}</td>
+                                <td class="text-center">{{inspectionTask.inspectionPlanName}}</td>
                                 <td class="text-center">{{inspectionTask.planInsTime}}</td>
                                 <td class="text-center">{{inspectionTask.actInsTime}}</td>
                                 <td class="text-center">{{inspectionTask.planUserName}}</td>
-                                <td class="text-center">{{inspectionTask.signType}}</td>
-                                <td class="text-center">{{inspectionTask.state}}</td>
+                                <td class="text-center">{{inspectionTask.signTypeName}}</td>
+                                <td class="text-center">{{inspectionTask.stateName}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteInspectionTaskModel(inspectionTask)">详情</button>
+                                            v-on:click="_openInspectionTaskDetail(inspectionTask)">详情</button>
                                     </div>
                                 </td>
 
@@ -101,4 +101,5 @@
         </div>
     </div>
 
+    <vc:create name="inspectionTaskDetail"></vc:create>
 </div>
