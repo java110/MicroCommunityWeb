@@ -1,5 +1,5 @@
 /**
-    采购组件
+    //入库
 **/
 (function(vc){
     var DEFAULT_PAGE = 1;
@@ -14,7 +14,7 @@
                 applyOrderId:'',
                 states:'',
                 conditions:{
-                    state:'',
+                    state:'1002',
                     userName:'',
                     resOrderType:'10000'
                 }
@@ -61,14 +61,11 @@
                              }
                            );
             },
-            _openAddPurchaseApplyModal:function(){
-                vc.jumpToPage("/admin.html#/addPurchaseApplyStep?resOrderType="+this.purchaseApplyManageInfo.conditions.resOrderType);
-            },
             _openDetailPurchaseApplyModel:function(_purchaseApply){
                 vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType=10000");
             },
-            _openDeletePurchaseApplyModel:function(_purchaseApply){
-                vc.emit('deletePurchaseApply','openDeletePurchaseApplyModal',_purchaseApply);
+            _openResourceEnterDetailManageModel:function(_purchaseApply){
+                vc.jumpToPage("/admin.html#/resourceEnterDetailManage?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType=10000");
             },
             _queryPurchaseApplyMethod:function(){
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -83,6 +80,9 @@
             },
             _queryInspectionPlanMethod:function () {
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _openAddResourceQuantityModel:function () {
+
             }
 
 

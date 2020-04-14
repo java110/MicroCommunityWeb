@@ -1,5 +1,5 @@
 /**
- 入驻小区
+ //出库申请
  **/
 (function(vc){
     var DEFAULT_PAGE = 1;
@@ -62,7 +62,7 @@
                 vc.jumpToPage("/admin.html#/addPurchaseApplyStep?resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
             },
             _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId);
+                vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
             },
             _openDeletePurchaseApplyModel:function(_purchaseApply){
                 vc.emit('deletePurchaseApply','openDeletePurchaseApplyModal',_purchaseApply);

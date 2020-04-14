@@ -12,20 +12,19 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="订单号"
+                                       v-model="purchaseApplyManageInfo.conditions.applyOrderId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                             <select class="custom-select" v-model="purchaseApplyManageInfo.conditions.state">
                                 <option selected value="">订单状态</option>
                                 <option value="1000">未审核</option>
                                 <option value="1001">审核中</option>
                                 <option value="1002">已审核</option>
                             </select>
-                            <!--                            <select class="custom-select" v-model="purchaseApplyManageInfo.states">-->
-                            <!--                                <option selected disabled value="">请选择状态</option>-->
-                            <!--                                <option v-for="(item,index) in purchaseApplyManageInfo.states" :key="index"-->
-                            <!--                                        v-bind:value="item.statusCd">{{item.name}}-->
-                            <!--                                </option>-->
-                            <!--                            </select>-->
                         </div>
-
 
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -49,13 +48,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>出库申请信息</h5>
-                    <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPurchaseApplyModal()">
-                            <i class="fa fa-plus"></i>
-                            出库申请
-                        </button>
-                    </div>
+                    <h5>采购信息</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -91,7 +84,7 @@
                                 </div>
                                 <div class="btn-group" v-if="purchaseApply.state == '1000'">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeletePurchaseApplyModel(purchaseApply)">取消
+                                            v-on:click="_openResourceEnterDetailManageModel(purchaseApply)">入库
                                     </button>
                                 </div>
                             </td>
@@ -113,8 +106,6 @@
         </div>
     </div>
 
-
-    <vc:create name="editPurchaseApply"></vc:create>
-    <vc:create name="deletePurchaseApply"></vc:create>
+    <vc:create name="addResourceQuantity"></vc:create>
 
 </div>

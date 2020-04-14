@@ -49,6 +49,9 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _openAddResourceQuantityModel:function (_purchaseApply) {
+                vc.emit('addResourceQuantity', 'openAddResourceQuantityModal', {_purchaseApply});
             }
         }
     });
