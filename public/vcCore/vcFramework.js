@@ -1786,7 +1786,16 @@ vc 校验 工具类 -method
     vcFramework.check = function(dataObj,dataConfig){
         return vcFramework.validate.validate(dataObj, dataConfig);
     }
-})(window.vcFramework)
+})(window.vcFramework);
+
+//全屏处理 这个后面可以关掉
+(function(vcFramework){
+    let _vcPageHeight = document.getElementsByClassName('vc-page-height')[0];
+
+    //浏览器可见高度
+    let _minHeight = document.documentElement.clientHeight;
+    _vcPageHeight.style.minHeight = _minHeight + 'px';
+});
 
 
 
