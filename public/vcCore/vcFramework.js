@@ -1806,7 +1806,7 @@ vc 校验 工具类 -method
 
     setTimeout(function(){
         //if (!$("body").hasClass('body-small')) {
-            fix_height();
+            _fix_height();
         //}
     })
 })(window.vcFramework);
