@@ -1800,7 +1800,7 @@ vc 校验 工具类 -method
     }
     _vcPageHeight.style.minHeight = _scollHeight + 'px';
     console.log('是否设置高度',_vcPageHeight.style.minHeight);
-});
+})(window.vcFramework);
 
 
 
