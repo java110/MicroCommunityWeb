@@ -92,6 +92,7 @@
                 vc.setCurrentMenu(_id);
                 vm.menus = vm.refreshMenuActive(vm.menus, _id);
                 vc.setMenus(vm.menus);
+                vc._fix_height()
             },
             miniMenu: function () {
 

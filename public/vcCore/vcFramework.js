@@ -1790,7 +1790,7 @@ vc 校验 工具类 -method
 
 //全屏处理 这个后面可以关掉
 (function (vcFramework) {
-    _fix_height = () => {
+    vcFramework._fix_height = () => {
         //只要窗口高度发生变化，就会进入这里面，在这里就可以写，回到聊天最底部的逻辑
         let _vcPageHeight = document.getElementsByClassName('vc-page-height')[0];
         //浏览器可见高度
@@ -1803,12 +1803,7 @@ vc 校验 工具类 -method
         _vcPageHeight.style.minHeight = _scollHeight + 'px';
         console.log('是否设置高度', _vcPageHeight.style.minHeight);
     }
-
-    setTimeout(function(){
-        //if (!$("body").hasClass('body-small')) {
-            _fix_height();
-        //}
-    })
+    vcFramework._fix_height();  
 })(window.vcFramework);
 
 
