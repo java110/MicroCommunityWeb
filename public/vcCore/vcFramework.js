@@ -1794,7 +1794,12 @@ vc 校验 工具类 -method
 
     //浏览器可见高度
     let _minHeight = document.documentElement.clientHeight;
-    _vcPageHeight.style.minHeight = _minHeight + 'px';
+    let _scollHeight = document.body.scrollHeight;
+
+    if(_scollHeight < _minHeight){
+        _scollHeight = _minHeight
+    }
+    _vcPageHeight.style.minHeight = _scollHeight + 'px';
 });
 
 
