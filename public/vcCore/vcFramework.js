@@ -1791,7 +1791,6 @@ vc 校验 工具类 -method
 //全屏处理 这个后面可以关掉
 (function(vcFramework){
     let _vcPageHeight = document.getElementsByClassName('vc-page-height')[0];
-
     //浏览器可见高度
     let _minHeight = document.documentElement.clientHeight;
     let _scollHeight = document.body.scrollHeight;
@@ -1800,6 +1799,7 @@ vc 校验 工具类 -method
         _scollHeight = _minHeight
     }
     _vcPageHeight.style.minHeight = _scollHeight + 'px';
+    console.log('是否设置高度',_vcPageHeight.style.minHeight);
 });
 
 
