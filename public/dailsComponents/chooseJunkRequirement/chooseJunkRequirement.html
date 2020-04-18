@@ -1,0 +1,68 @@
+<div id = "chooseJunkRequirementModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseJunkRequirementModelLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseJunkRequirementModelLabel">选择旧货</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+
+                                <div class="col-sm-7 m-b-xs">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input placeholder="输入旧货名称" type="text" v-model="chooseJunkRequirementInfo._currentJunkRequirementName" class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryJunkRequirements()">查询</button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                                                        <th class="text-center">旧货编码</th>
+                            <th class="text-center">类别</th>
+                            <th class="text-center">巡检计划</th>
+                            <th class="text-center">内容</th>
+                            <th class="text-center">参考价格</th>
+                            <th class="text-center">发布人</th>
+                            <th class="text-center">联系方式</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">操作</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="junkRequirement in chooseJunkRequirementInfo.junkRequirements">
+                                                                        <td class="text-center">{{junkRequirement.junkRequirementId}}</td>
+                            <td class="text-center">{{junkRequirement.classification}}</td>
+                            <td class="text-center">{{junkRequirement.inspectionPlanId}}</td>
+                            <td class="text-center">{{junkRequirement.context}}</td>
+                            <td class="text-center">{{junkRequirement.referencePrice}}</td>
+                            <td class="text-center">{{junkRequirement.publishUserName}}</td>
+                            <td class="text-center">{{junkRequirement.publishUserLink}}</td>
+                            <td class="text-center">{{junkRequirement.state}}</td>
+
+                                            <td>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseJunkRequirement(junkRequirement)">选择</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
