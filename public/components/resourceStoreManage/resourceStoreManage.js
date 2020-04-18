@@ -37,6 +37,7 @@ resCode:'',
 
                 vc.component.resourceStoreManageInfo.conditions.page = _page;
                 vc.component.resourceStoreManageInfo.conditions.row = _rows;
+                vc.component.resourceStoreManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params:vc.component.resourceStoreManageInfo.conditions
                };
