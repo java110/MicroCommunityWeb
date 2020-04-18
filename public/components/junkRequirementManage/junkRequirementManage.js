@@ -25,7 +25,7 @@
         _initMethod: function () {
             vc.component._listJunkRequirements(DEFAULT_PAGE, DEFAULT_ROWS);
             $that.junkRequirementManageInfo.conditions.typeCd = vc.getParam('typeCd');
-            if(vc.getParam('typeCd') == '333333'){
+            if(vc.getParam('typeCd') == 333333){
                 $that.junkRequirementManageInfo.pageName = '需求';
             }else{
                 $that.junkRequirementManageInfo.pageName = '旧货';
