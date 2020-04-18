@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 junkRequirementId: '',
+                pageName:'旧货',
                 conditions: {
                     classification: '',
                     publishUserName: '',
@@ -24,6 +25,12 @@
         _initMethod: function () {
             vc.component._listJunkRequirements(DEFAULT_PAGE, DEFAULT_ROWS);
             $that.junkRequirementManageInfo.conditions.typeCd = vc.getParam('typeCd');
+            if(vc.getParam('typeCd') == '333333'){
+                $that.junkRequirementManageInfo.pageName = '需求';
+            }else{
+                $that.junkRequirementManageInfo.pageName = '旧货';
+
+            }
         },
         _initEvent: function () {
 
@@ -39,6 +46,7 @@
 
                 vc.component.junkRequirementManageInfo.conditions.page = _page;
                 vc.component.junkRequirementManageInfo.conditions.row = _rows;
+                vc.component.junkRequirementManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.junkRequirementManageInfo.conditions
                 };
