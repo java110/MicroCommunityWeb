@@ -62,6 +62,7 @@
                            );
             },
             _openAddPurchaseApplyModal:function(){
+                vc.emit('viewResourceStoreInfo2', 'setResourcesOut',"10000");
                 vc.jumpToPage("/admin.html#/addPurchaseApplyStep?resOrderType="+this.purchaseApplyManageInfo.conditions.resOrderType);
             },
             _openDetailPurchaseApplyModel:function(_purchaseApply){

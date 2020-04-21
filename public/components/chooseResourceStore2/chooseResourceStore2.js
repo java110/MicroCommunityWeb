@@ -11,11 +11,15 @@
                 resourceStores:[],
                 selectResourceStores:[],
                 _currentResourceStoreName:'',
+                resOrderType:''
             }
         },
         _initMethod:function(){
         },
         _initEvent:function(){
+            vc.on('chooseResourceStore2', 'setResourcesOut', function (_resOrderType) {
+                vc.component.chooseResourceStoreInfo2.resOrderType = _resOrderType;
+            });
             vc.on('chooseResourceStore2','openChooseResourceStoreModel2',function(_param){
                 $('#chooseResourceStoreModel2').modal('show');
                 vc.component.chooseResourceStoreInfo2._currentResourceStoreName = "";
@@ -31,7 +35,8 @@
                     params:{
                         page:_page,
                         row:_row,
-                        communityId:vc.getCurrentCommunity().communityId
+                        communityId:vc.getCurrentCommunity().communityId,
+                        resOrderType:vc.component.chooseResourceStoreInfo2.resOrderType
                     }
                 };
 

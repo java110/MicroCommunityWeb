@@ -9,7 +9,8 @@
                 price:'',
                 stock:'',
                 resId:'',
-                applyOrderId:''
+                applyOrderId:'',
+                description:''
             }
         },
          _initMethod:function(){
@@ -17,12 +18,13 @@
          },
          _initEvent:function(){
             vc.on('addResourceQuantity','openAddResourceQuantityModal',function(_data){
-                console.log("收到传参："+JSON.stringify(_data._purchaseApply));
-                vc.component.addResourceEnterQuantityInfo.stock = _data.stock;
-                vc.component.addResourceEnterQuantityInfo.price = _data.price;
-                vc.component.addResourceEnterQuantityInfo.resCode = _data.resCode;
-                vc.component.addResourceEnterQuantityInfo.resId = _data.resId;
-                vc.component.addResourceEnterQuantityInfo.resName = _data.resName;
+                let data = _data._purchaseApply;
+                vc.component.addResourceEnterQuantityInfo.stock = data.stock;
+                vc.component.addResourceEnterQuantityInfo.price = data.price;
+                vc.component.addResourceEnterQuantityInfo.resCode = data.resCode;
+                vc.component.addResourceEnterQuantityInfo.resId = data.resId;
+                vc.component.addResourceEnterQuantityInfo.resName = data.resName;
+                vc.component.addResourceEnterQuantityInfo.description = data.description;
                 $('#addResourceQuantityModel').modal('show');
             });
         },
