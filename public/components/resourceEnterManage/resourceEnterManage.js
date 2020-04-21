@@ -14,7 +14,7 @@
                 applyOrderId:'',
                 states:'',
                 conditions:{
-                    state:'1000',
+                    state:'1002',
                     userName:'',
                     resOrderType:'10000'
                 }
