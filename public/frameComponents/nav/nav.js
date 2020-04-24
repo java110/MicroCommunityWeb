@@ -2,6 +2,8 @@
  导航栏
  **/
 (function (vc) {
+    let DEFAULT_PAGE = 1;
+    let DEFAULT_ROW = 10;
     var vm = new Vue({
         el: '#nav',
         data: {
@@ -14,12 +16,15 @@
             userName: "",
             navCommunityInfo: {
                 _currentCommunity: {},
-                communityInfos: []
+                communityInfos: [],
+                communityInfo: [],
+                errorInfo: '',
+                searchCommunityName: '',
             }
         },
         mounted: function () {
             this._initSysInfo();
-            this.getNavCommunity();
+            this.getNavCommunity(1, 3);
             this.getNavData();
             //this.getUserInfo();
         },
@@ -79,12 +84,12 @@
                 );
             },
             getUserInfo: function () {
-//                var _userInfo = vc.getData("_userInfo");
-//                //浏览器缓存中能获取到
-//                if(_userInfo != null && _userInfo != undefined){
-//                    vm.userName = _userInfo.name;
-//                    return ;
-//                }
+                //                var _userInfo = vc.getData("_userInfo");
+                //                //浏览器缓存中能获取到
+                //                if(_userInfo != null && _userInfo != undefined){
+                //                    vm.userName = _userInfo.name;
+                //                    return ;
+                //                }
                 //获取用户名
                 var param = {
                     msg: '123',
@@ -99,14 +104,14 @@
                             var tmpUserInfo = JSON.parse(json);
                             console.log(vm, tmpUserInfo);
                             vm.userName = tmpUserInfo.name;
-//                                   vc.saveData("_userInfo",tmpUserInfo);
+                            //                                   vc.saveData("_userInfo",tmpUserInfo);
                         }
                     }, function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            getNavCommunity: function () {
+            getNavCommunity: function (_page, _row) {
                 var _tmpCurrentCommunity = vc.getCurrentCommunity();
                 //浏览器缓存中能获取到
                 if (_tmpCurrentCommunity != null && _tmpCurrentCommunity != undefined) {
@@ -122,8 +127,10 @@
                  [{community:"123123",name:"测试1小区"},{community:"223123",name:"测试2小区"}]
                  **/
                 var param = {
-                    params:{
-                        _uid:'123mlkdinkldldijdhuudjdjkkd'
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: _page,
+                        row: _row
                     }
                 };
                 vc.http.get('nav',
@@ -180,16 +187,53 @@
                     }
                 );
             },
-            _doMenu:function(){
+            _doMenu: function () {
                 let body = document.getElementsByTagName("body")[0];
 
                 let className = body.className;
 
-                if(className.indexOf("mini-navbar") != -1){
-                    body.className = className.replace(/mini-navbar/g,"");
-                    return ;
+                if (className.indexOf("mini-navbar") != -1) {
+                    body.className = className.replace(/mini-navbar/g, "");
+                    return;
                 }
                 body.className = className + " mini-navbar";
+            },
+            _chooseMoreCommunity: function () {
+                $('#chooseEnterCommunityModel').modal('show');
+                vm.navCommunityInfo.searchCommunityName = '';
+                vm.listEnterCommunity(DEFAULT_PAGE, DEFAULT_ROW);
+            },
+            listEnterCommunity: function (_page, _row) {
+                var param = {
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: _page,
+                        row: _row,
+                        communityName: vm.navCommunityInfo.searchCommunityName
+                    }
+                };
+                vc.http.get('nav',
+                    'getCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _data = JSON.parse(json);
+                            vm.navCommunityInfo.communityInfo = _data.communitys;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+
+            _chooseCurrentCommunity: function (_currentCommunity) {
+                vc.setCurrentCommunity(_currentCommunity);
+                //vm.navCommunityInfo._currentCommunity = _currentCommunity;
+                //中心加载当前页
+                location.reload();
+            },
+            _queryEnterCommunity: function () {
+                vm.listEnterCommunity(DEFAULT_PAGE, DEFAULT_ROW)
             }
         }
     });

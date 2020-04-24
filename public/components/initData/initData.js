@@ -15,7 +15,9 @@
             _loadCommunityInfo: function (_param) {
                 var param = {
                     params:{
-                        _uId:'ccdd00opikookjuhyyttvhnnjuuu'
+                        _uId:'ccdd00opikookjuhyyttvhnnjuuu',
+                        page:1,
+                        row:3
                     }
                 };
                 vc.http.get('initData',
