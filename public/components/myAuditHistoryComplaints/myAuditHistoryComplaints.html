@@ -21,7 +21,7 @@
                             <th class="text-center">投诉人</th>
                             <th class="text-center">投诉电话</th>
                             <th class="text-center">投诉状态</th>
-                           <!-- <th class="text-center">操作</th>-->
+                           <th class="text-right">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,13 +34,13 @@
                             <td class="text-center">{{complaint.complaintName}}</td>
                             <td class="text-center">{{complaint.tel}}</td>
                             <td class="text-center">{{complaint.stateName}}</td>
-                            <!--<td class="text-center">
+                            <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAuditComplaintModel(complaint)">审核
+                                            v-on:click="_openComplaintDetailModel(complaint)">详情
                                     </button>
                                 </div>
-                            </td>-->
+                            </td>
 
                         </tr>
                         </tbody>
@@ -58,4 +58,5 @@
             </div>
         </div>
     </div>
+    <vc:create name="complaintDetail"></vc:create>
 </div>
