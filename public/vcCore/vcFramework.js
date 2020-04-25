@@ -1905,7 +1905,7 @@ vc 校验 工具类 -method
         //只要窗口高度发生变化，就会进入这里面，在这里就可以写，回到聊天最底部的逻辑
         let _vcPageHeight = document.getElementsByClassName('vc-page-height')[0];
         //浏览器可见高度
-        let _minHeight = _targetDiv.clientHeight;
+        let _minHeight = document.documentElement.clientHeight;
         let _scollHeight = _targetDiv.scrollHeight;
 
         if (_scollHeight < _minHeight) {
