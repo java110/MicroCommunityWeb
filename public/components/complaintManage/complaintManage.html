@@ -83,20 +83,22 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">投诉ID</th>
+                            <!-- <th class="text-center">投诉ID</th> -->
                             <th class="text-center">投诉类型</th>
                             <th class="text-center">房屋</th>
                             <th class="text-center">投诉人</th>
                             <th class="text-center">投诉电话</th>
                             <th class="text-center">投诉状态</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center">处理人</th>
+                            <th class="text-center">处理电话</th>
+                            <th class="text-right">操作</th>
 
 
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="complaint in complaintManageInfo.complaints">
-                            <td class="text-center">{{complaint.complaintId}}</td>
+                            <!-- <td class="text-center">{{complaint.complaintId}}</td> -->
                             <td class="text-center">{{complaint.typeCdName}}</td>
                             <td class="text-center">
                                 {{complaint.floorNum}}号楼{{complaint.unitNum}}单元{{complaint.roomNum}}室
@@ -104,7 +106,14 @@
                             <td class="text-center">{{complaint.complaintName}}</td>
                             <td class="text-center">{{complaint.tel}}</td>
                             <td class="text-center">{{complaint.stateName}}</td>
-                            <td class="text-center">
+                            <td class="text-center">{{complaint.currentUserName == '' ? '无':complaint.currentUserName}}</td>
+                            <td class="text-center">{{complaint.currentUserTel == ''?'无':complaint.currentUserTel}}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openComplaintDetailModel(complaint)">详情
+                                    </button>
+                                </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditComplaintModel(complaint)">修改
@@ -136,5 +145,7 @@
 
     <vc:create name="editComplaint"></vc:create>
     <vc:create name="deleteComplaint"></vc:create>
+    <vc:create name="complaintDetail"></vc:create>
+
 
 </div>
