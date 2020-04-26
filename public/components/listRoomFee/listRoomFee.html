@@ -38,14 +38,14 @@
                             <td class="text-center">{{fee.startTime}}</td>
                             <td class="text-center">{{fee.endTime}}</td>
                             <td class="text-center">{{fee.stateName}}</td>
-                            <td class="text-right">
-                                <button class="btn btn-link btn-xs"
+                            <td class="text-left">
+                                <button class="btn btn-link btn-xs" v-if=" fee.state != '2009001'"  
                                         v-on:click="_payFee(fee)">缴费
                                 </button>
                                 <button class="btn btn-link btn-xs"
                                         v-on:click="_payFeeHis(fee)">缴费历史
                                 </button>
-                                <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F'"
+                                <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F' && fee.state != '2009001'" 
                                         v-on:click="_deleteFee(fee)">取消费用
                                 </button>
                             </td>
