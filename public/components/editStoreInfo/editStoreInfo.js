@@ -104,33 +104,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
-
-                // vc.http.post(
-                //     'editStore',
-                //     'update',
-                //     JSON.stringify(vc.component.editStoreInfo),
-                //     {
-                //         emulateJSON: true
-                //     },
-                //     function (json, res) {
-                //         if (res.status == 200) {
-                //             $('#editStoreModel').modal('hide');
-                //             vc.emit('storeInfoManage', 'getStoreInfo', {});
-                //             return;
-                //         }
-                //         vc.toast(json);
-                //     },
-                //     function (errInfo, error) {
-                //         console.log('请求失败处理');
-                //
-                //         vc.toast(errInfo);
-                //     });
-
-
-                // var param = {
-                //     params: vc.component.editStoreInfo
-                // };
                 vc.http.apiPost('update.store.info',
                     JSON.stringify(vc.component.editStoreInfo),
                     function (json, res) {

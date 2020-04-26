@@ -7,7 +7,6 @@
                 listStores: [],
                 total: 0,
                 records: 1,
-                moreCondition: false,
                 conditions: {
                     name: '',
                     storeTypeCd: '',
@@ -55,15 +54,8 @@
             _openEditStoreInfoModel(_storeInfo){
                 vc.emit('editStoreInfo', 'openEditStoreModal', {_storeInfo});
             },
-            _moreCondition: function () {
-                if (vc.component.listStoreManageInfo.moreCondition) {
-                    vc.component.listStoreManageInfo.moreCondition = false;
-                } else {
-                    vc.component.listStoreManageInfo.moreCondition = true;
-                }
-            },
-            _openStoresAttributeModel(){
-
+            _openEditStoreAttrModel(_storeAttr){
+                vc.emit('editStoreAttr', 'openEditStoreAttrModal', {_storeAttr});
             }
 
 

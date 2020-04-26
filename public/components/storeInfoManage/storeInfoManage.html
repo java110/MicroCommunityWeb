@@ -57,43 +57,30 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="ibox">
+            <div class="ibox ">
+
                 <div class="ibox-title">
-                    <h5>商户属性</h5>
+                    <h5>商户信息</h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
-                        <thead>
-                        <tr>
-                            <th class="text-center">企业法人</th>
-                            <th class="text-center">注册资本</th>
-                            <th class="text-center">成立日期</th>
-                            <th class="text-center">经营范围</th>
-                            <th class="text-center">登记机关</th>
-                            <th class="text-right">操作</th>
-                        </tr>
-                        </thead>
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <tbody>
-                        <tr v-for="listStore in listStoreManageInfo.listStores">
-                            <td class="text-center">{{listStore.A}}</td>
-                            <td class="text-center">{{listStore.V}}</td>
-                            <td class="text-center">{{listStore.A}}</td>
-                            <td class="text-center">{{listStore.A}}</td>
-                            <td class="text-center">{{listStore.A}}</td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openStoresAttributeModel(listStore)">修改
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
+
+                            <tr v-for="(storeAttr, key) in listStoreManageInfo.listStores[0].storeAttrDtoList">
+                                <td class="text-center">{{storeAttr.name}}</td>
+                                <td class="text-center">{{storeAttr.value}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                                v-on:click="_openEditStoreAttrModel(storeAttr)">修改
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
                         <tfoot>
                         <tr>
                             <td colspan="7">
@@ -103,8 +90,11 @@
                         </tfoot>
                     </table>
                 </div>
+
+
             </div>
         </div>
     </div>
     <vc:create name="editStoreInfo"></vc:create>
+    <vc:create name="editStoreAttr"></vc:create>
 </div>
