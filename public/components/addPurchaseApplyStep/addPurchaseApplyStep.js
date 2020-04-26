@@ -20,7 +20,7 @@
             vc.component._initStep();
             //10000 采购 20000出库
             vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType = vc.getParam('resOrderType');
-            console.log("订单类型："+vc.getParam('resOrderType'));
+            vc.emit("chooseResourceStore2", "setResourcesOut", vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType);
         },
         _initEvent: function () {
             vc.on("addPurchaseApplyStep", "notify", function (viewResourceStoreInfo2) {
@@ -62,6 +62,13 @@
                        vc.toast("请完善需要采购的物品信息");
                         return;
                    }
+                   if(vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "20000"){
+                       if(_resourceStores[i].quantity > _resourceStores[i].stock){
+                           vc.toast(_resourceStores[i].resName+",库存不足");
+                           return;
+                       }
+                   }
+
                }
                 vc.component.addPurchaseApplyStepInfo.$step.nextStep();
                 vc.component.addPurchaseApplyStepInfo.index = vc.component.addPurchaseApplyStepInfo.$step.getIndex();

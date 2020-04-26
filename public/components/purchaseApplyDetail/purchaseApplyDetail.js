@@ -15,19 +15,16 @@
                     createTime:'',
                     userName:'',
                     stateName:'',
+                    resOrderType:'',
                     purchaseApplyDetailVo:[]
             }
         },
         _initMethod:function(){
-            var _applyOrderId = vc.getParam('applyOrderId');
-            if(!vc.notNull(_applyOrderId)){
-                return ;
-            }
-            vc.component.purchaseApplyDetailInfo.applyOrderId = _applyOrderId;
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent:function(){
-
+            vc.component.purchaseApplyDetailInfo.applyOrderId = vc.getParam('applyOrderId');
+            vc.component.purchaseApplyDetailInfo.resOrderType = vc.getParam('resOrderType');
         },
         methods:{
             _listPurchaseApply:function(_page, _rows){
@@ -36,7 +33,7 @@
                         page:_page,
                         row:_rows,
                         applyOrderId:vc.component.purchaseApplyDetailInfo.applyOrderId,
-                        resOrderType:'10000'
+                        resOrderType:vc.component.purchaseApplyDetailInfo.resOrderType,
                     }
                 };
 
@@ -46,21 +43,13 @@
                     param,
                     function(json,res){
                         var _purchaseApplyDetailInfo=JSON.parse(json);
-
                         var _purchaseApply = _purchaseApplyDetailInfo.purchaseApplys;
                         vc.component.purchaseApplyDetailInfo = _purchaseApply[0];
                     },function(errInfo,error){
                         console.log('请求失败处理');
                     }
                 );
-            },
-            _openEditPurchaseApplyDetailModel:function (resourceStore) {
-
-            },
-            _openDeletePurchaseApplyDetailModel:function (resourceStore) {
-
             }
-
         }
     });
 })(window.vc);

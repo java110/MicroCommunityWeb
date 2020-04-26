@@ -1,5 +1,5 @@
 /**
-    入驻小区
+    采购组件
 **/
 (function(vc){
     var DEFAULT_PAGE = 1;
@@ -22,6 +22,9 @@
         },
         _initMethod:function(){
             vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.getDict('purchase_apply',"state",function(_data){
+                vc.component.purchaseApplyManageInfo.states = _data;
+            });
         },
         _initEvent:function(){
             vc.on('purchaseApplyManage','listPurchaseApply',function(_param){
@@ -59,10 +62,11 @@
                            );
             },
             _openAddPurchaseApplyModal:function(){
+                vc.emit('viewResourceStoreInfo2', 'setResourcesOut',"10000");
                 vc.jumpToPage("/admin.html#/addPurchaseApplyStep?resOrderType="+this.purchaseApplyManageInfo.conditions.resOrderType);
             },
             _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId);
+                vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType=10000");
             },
             _openDeletePurchaseApplyModel:function(_purchaseApply){
                 vc.emit('deletePurchaseApply','openDeletePurchaseApplyModal',_purchaseApply);

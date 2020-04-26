@@ -73,6 +73,9 @@
             },
             _queryCommunityMethod:function(){
                   vc.component._listCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _openDeleteCommunityModel(_community){
+                vc.emit('deleteCommunity','openDeleteCommunityModal',_community);
             }
 
         }

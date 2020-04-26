@@ -77,6 +77,9 @@
                 vc.component._listComplaints(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            _openComplaintDetailModel:function(_complaint){
+                vc.emit('complaintDetail', 'openComplaintDetailModal', _complaint);
+            },
             _moreCondition: function () {
                 if (vc.component.complaintManageInfo.moreCondition) {
                     vc.component.complaintManageInfo.moreCondition = false;

@@ -95,6 +95,9 @@
                 } else {
                     vc.component.AuditOrdersManageInfo.moreCondition = true;
                 }
+            },
+            _openComplaintDetailModel:function(_complaint){
+                vc.emit('complaintDetail', 'openComplaintDetailModal', _complaint);
             }
 
 

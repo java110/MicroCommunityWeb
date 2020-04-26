@@ -19,7 +19,7 @@
         },
         methods:{
             deleteCommunity:function(){
-                vc.component.deleteCommunityInfo.communityId=vc.getCurrentCommunity().communityId;
+                //vc.component.deleteCommunityInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteCommunity',
                     'delete',
@@ -33,6 +33,7 @@
                             //关闭model
                             $('#deleteCommunityModel').modal('hide');
                             vc.emit('communityManage','listCommunity',{});
+                            vc.emit('auditCommunityManage','listCommunity',{});
                             return ;
                         }
                         vc.toast(json);

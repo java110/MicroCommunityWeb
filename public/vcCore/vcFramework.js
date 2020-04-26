@@ -998,7 +998,7 @@
     //绑定跳转函数
     vcFramework.jumpToPage = function (url) {
         //判断 url 的模板是否 和当前url 模板一个
-        console.log('jumpToPage',url);
+        console.log('jumpToPage', url);
         if (url.indexOf('#') < 0) {
             window.location.href = url;
             return;
@@ -1493,31 +1493,31 @@ vc 校验 工具类 -method
 (16)、max:5                      输入值不能大于5
 (17)、min:10                     输入值不能小于10
 **/
-(function(vcFramework){
+(function (vcFramework) {
     var validate = {
 
-        state:true,
-        errInfo:'',
+        state: true,
+        errInfo: '',
 
-        setState:function(_state,_errInfo){
+        setState: function (_state, _errInfo) {
             this.state = _state;
-            if(!this.state){
+            if (!this.state) {
                 this.errInfo = _errInfo
-                throw "校验失败:"+_errInfo;
+                throw "校验失败:" + _errInfo;
             }
         },
 
         /**
             校验手机号
         **/
-        phone:function(text){
-             var regPhone =/^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
-             return regPhone.test(text);
+        phone: function (text) {
+            var regPhone = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+            return regPhone.test(text);
         },
         /**
             校验邮箱
         **/
-        email:function(text){
+        email: function (text) {
             var regEmail = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
             return regEmail.test(text);
         },
@@ -1525,8 +1525,8 @@ vc 校验 工具类 -method
          * 必填
          * @param {参数} text
          */
-        required:function(text){
-            if(text == undefined || text == null || text == "" ){
+        required: function (text) {
+            if (text == undefined || text == null || text == "") {
                 return false;
             }
 
@@ -1538,8 +1538,8 @@ vc 校验 工具类 -method
          * @param {最小长度} minLength
          * @param {最大长度} maxLength
          */
-        maxin:function(text,minLength,maxLength){
-            if(text.length <minLength || text.length > maxLength){
+        maxin: function (text, minLength, maxLength) {
+            if (text.length < minLength || text.length > maxLength) {
                 return false;
             }
 
@@ -1550,8 +1550,8 @@ vc 校验 工具类 -method
          * @param {校验文本} text
          * @param {最大长度} maxLength
          */
-        maxLength:function(text,maxLength){
-            if(text.length > maxLength){
+        maxLength: function (text, maxLength) {
+            if (text.length > maxLength) {
                 return false;
             }
 
@@ -1562,8 +1562,8 @@ vc 校验 工具类 -method
          * @param {校验文本} text
          * @param {最小长度} minLength
          */
-        minLength:function(text,minLength){
-            if(text.length < minLength){
+        minLength: function (text, minLength) {
+            if (text.length < minLength) {
                 return false;
             }
             return true;
@@ -1572,26 +1572,26 @@ vc 校验 工具类 -method
          * 全是数字
          * @param {校验文本} text
          */
-        num:function(text){
+        num: function (text) {
             var regNum = /^[0-9][0-9]*$/;
             return regNum.test(text);
         },
-        date:function(str) {
+        date: function (str) {
             var regDate = /^(\d{4})-(\d{2})-(\d{2})$/;
             return regDate.test(str);
         },
-        dateTime:function(str){
+        dateTime: function (str) {
             var reDateTime = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\s+(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/;
             return reDateTime.test(str);
         },
         /**
             金额校验
         **/
-        money:function(text){
+        money: function (text) {
             var regMoney = /^\d+\.?\d{0,2}$/;
             return regMoney.test(text);
         },
-        idCard:function(num){
+        idCard: function (num) {
             num = num.toUpperCase();
             //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
             if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num))) {
@@ -1635,8 +1635,8 @@ vc 校验 工具类 -method
                 var bGoodDay;
                 bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
                 if (!bGoodDay) {
-                   // alert(dtmBirth.getYear());
-                  //  alert(arrSplit[2]);
+                    // alert(dtmBirth.getYear());
+                    //  alert(arrSplit[2]);
                     return false;
                 }
                 else {
@@ -1667,7 +1667,7 @@ vc 校验 工具类 -method
 /**
  * 校验 -core
  */
-(function(validate){
+(function (validate) {
 
     /**
      * 根据配置校验
@@ -1698,78 +1698,78 @@ vc 校验 工具类 -method
      * }
      *
      */
-    validate.validate = function(dataObj,dataConfig){
+    validate.validate = function (dataObj, dataConfig) {
 
-        try{
+        try {
             // 循环配置（每个字段）
-            for(var key in dataConfig){
+            for (var key in dataConfig) {
                 //配置信息
                 var tmpDataConfigValue = dataConfig[key];
                 //对key进行处理
                 var keys = key.split(".");
-                console.log("keys :",keys);
+                console.log("keys :", keys);
                 var tmpDataObj = dataObj;
                 //根据配置获取 数据值
-                keys.forEach(function(tmpKey){
-                     console.log('tmpDataObj:',tmpDataObj);
-                     tmpDataObj = tmpDataObj[tmpKey]
+                keys.forEach(function (tmpKey) {
+                    console.log('tmpDataObj:', tmpDataObj);
+                    tmpDataObj = tmpDataObj[tmpKey]
                 });
-//                for(var tmpKey in keys){
-//                    console.log('tmpDataObj:',tmpDataObj);
-//                    tmpDataObj = tmpDataObj[tmpKey]
-//                }
+                //                for(var tmpKey in keys){
+                //                    console.log('tmpDataObj:',tmpDataObj);
+                //                    tmpDataObj = tmpDataObj[tmpKey]
+                //                }
 
-                tmpDataConfigValue.forEach(function(configObj){
-                    if(configObj.limit == "required"){
-                        validate.setState(validate.required(tmpDataObj),configObj.errInfo);
+                tmpDataConfigValue.forEach(function (configObj) {
+                    if (configObj.limit == "required") {
+                        validate.setState(validate.required(tmpDataObj), configObj.errInfo);
                     }
 
-                    if(configObj.limit == 'phone'){
-                        validate.setState(validate.phone(tmpDataObj),configObj.errInfo);
+                    if (configObj.limit == 'phone') {
+                        validate.setState(validate.phone(tmpDataObj), configObj.errInfo);
                     }
 
-                    if(configObj.limit == 'email'){
-                        validate.setState(validate.email(tmpDataObj),configObj.errInfo);
+                    if (configObj.limit == 'email') {
+                        validate.setState(validate.email(tmpDataObj), configObj.errInfo);
                     }
 
-                    if(configObj.limit == 'maxin'){
+                    if (configObj.limit == 'maxin') {
                         var tmpParam = configObj.param.split(",")
-                        validate.setState(validate.maxin(tmpDataObj,tmpParam[0],tmpParam[1]),configObj.errInfo);
+                        validate.setState(validate.maxin(tmpDataObj, tmpParam[0], tmpParam[1]), configObj.errInfo);
                     }
 
-                    if(configObj.limit == 'maxLength'){
-                        validate.setState(validate.maxLength(tmpDataObj,configObj.param),configObj.errInfo);
+                    if (configObj.limit == 'maxLength') {
+                        validate.setState(validate.maxLength(tmpDataObj, configObj.param), configObj.errInfo);
 
                     }
 
-                    if(configObj.limit == 'minLength'){
-                        validate.setState(validate.minLength(tmpDataObj,configObj.param),configObj.errInfo);
-7
+                    if (configObj.limit == 'minLength') {
+                        validate.setState(validate.minLength(tmpDataObj, configObj.param), configObj.errInfo);
+                        7
                     }
 
-                    if(configObj.limit == 'num'){
-                        validate.setState(validate.num(tmpDataObj),configObj.errInfo);
+                    if (configObj.limit == 'num') {
+                        validate.setState(validate.num(tmpDataObj), configObj.errInfo);
                     }
 
-                    if(configObj.limit == 'date'){
-                        validate.setState(validate.date(tmpDataObj),configObj.errInfo);
+                    if (configObj.limit == 'date') {
+                        validate.setState(validate.date(tmpDataObj), configObj.errInfo);
                     }
-                    if(configObj.limit == 'dateTime'){
-                        validate.setState(validate.dateTime(tmpDataObj),configObj.errInfo);
-                    }
-
-                    if(configObj.limit == 'money'){
-                        validate.setState(validate.money(tmpDataObj),configObj.errInfo);
+                    if (configObj.limit == 'dateTime') {
+                        validate.setState(validate.dateTime(tmpDataObj), configObj.errInfo);
                     }
 
-                    if(configObj.limit == 'idCard'){
-                        validate.setState(validate.idCard(tmpDataObj),configObj.errInfo);
+                    if (configObj.limit == 'money') {
+                        validate.setState(validate.money(tmpDataObj), configObj.errInfo);
+                    }
+
+                    if (configObj.limit == 'idCard') {
+                        validate.setState(validate.idCard(tmpDataObj), configObj.errInfo);
                     }
                 });
 
             }
-        }catch(error){
-            console.log("数据校验失败",validate.state,validate.errInfo,error);
+        } catch (error) {
+            console.log("数据校验失败", validate.state, validate.errInfo, error);
             return false;
         }
 
@@ -1782,11 +1782,139 @@ vc 校验 工具类 -method
 /**
 对 validate 进行二次封装
 **/
-(function(vcFramework){
-    vcFramework.check = function(dataObj,dataConfig){
+(function (vcFramework) {
+    vcFramework.check = function (dataObj, dataConfig) {
         return vcFramework.validate.validate(dataObj, dataConfig);
     }
-})(window.vcFramework)
+})(window.vcFramework);
+
+/**
+ * 监听div 大小
+ */
+(function (vcFramework) {
+    
+    vcFramework.eleResize = {
+        _handleResize: function (e) {
+            var ele = e.target || e.srcElement;
+            var trigger = ele.__resizeTrigger__;
+            if (trigger) {
+                var handlers = trigger.__z_resizeListeners;
+                if (handlers) {
+                    var size = handlers.length;
+                    for (var i = 0; i < size; i++) {
+                        var h = handlers[i];
+                        var handler = h.handler;
+                        var context = h.context;
+                        handler.apply(context, [e]);
+                    }
+                }
+            }
+        },
+        _removeHandler: function (ele, handler, context) {
+            var handlers = ele.__z_resizeListeners;
+            if (handlers) {
+                var size = handlers.length;
+                for (var i = 0; i < size; i++) {
+                    var h = handlers[i];
+                    if (h.handler === handler && h.context === context) {
+                        handlers.splice(i, 1);
+                        return;
+                    }
+                }
+            }
+        },
+        _createResizeTrigger: function (ele) {
+            var obj = document.createElement('object');
+            obj.setAttribute('style',
+                'display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;opacity: 0; pointer-events: none; z-index: -1;');
+            obj.onload = vcFramework.eleResize._handleObjectLoad;
+            obj.type = 'text/html';
+            ele.appendChild(obj);
+            obj.data = 'about:blank';
+            return obj;
+        },
+        _handleObjectLoad: function (evt) {
+            this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
+            this.contentDocument.defaultView.addEventListener('resize', vcFramework.eleResize._handleResize);
+        }
+    };
+    if (document.attachEvent) {//ie9-10
+        vcFramework.eleResize.on = function (ele, handler, context) {
+            var handlers = ele.__z_resizeListeners;
+            if (!handlers) {
+                handlers = [];
+                ele.__z_resizeListeners = handlers;
+                ele.__resizeTrigger__ = ele;
+                ele.attachEvent('onresize', EleResize._handleResize);
+            }
+            handlers.push({
+                handler: handler,
+                context: context
+            });
+        };
+        vcFramework.eleResize.off = function (ele, handler, context) {
+            var handlers = ele.__z_resizeListeners;
+            if (handlers) {
+                EleResize._removeHandler(ele, handler, context);
+                if (handlers.length === 0) {
+                    ele.detachEvent('onresize', EleResize._handleResize);
+                    delete ele.__z_resizeListeners;
+                }
+            }
+        }
+    } else {
+        vcFramework.eleResize.on = function (ele, handler, context) {
+            var handlers = ele.__z_resizeListeners;
+            if (!handlers) {
+                handlers = [];
+                ele.__z_resizeListeners = handlers;
+
+                if (getComputedStyle(ele, null).position === 'static') {
+                    ele.style.position = 'relative';
+                }
+                var obj = vcFramework.eleResize._createResizeTrigger(ele);
+                ele.__resizeTrigger__ = obj;
+                obj.__resizeElement__ = ele;
+            }
+            handlers.push({
+                handler: handler,
+                context: context
+            });
+        };
+        vcFramework.eleResize.off = function (ele, handler, context) {
+            var handlers = ele.__z_resizeListeners;
+            if (handlers) {
+                vcFramework.eleResize._removeHandler(ele, handler, context);
+                if (handlers.length === 0) {
+                    var trigger = ele.__resizeTrigger__;
+                    if (trigger) {
+                        trigger.contentDocument.defaultView.removeEventListener('resize', EleResize._handleResize);
+                        ele.removeChild(trigger);
+                        delete ele.__resizeTrigger__;
+                    }
+                    delete ele.__z_resizeListeners;
+                }
+            }
+        }
+    }
+})(window.vcFramework);
+
+//全屏处理 这个后面可以关掉
+(function (vcFramework) {
+    vcFramework._fix_height = (_targetDiv) => {
+        //只要窗口高度发生变化，就会进入这里面，在这里就可以写，回到聊天最底部的逻辑
+        let _vcPageHeight = document.getElementsByClassName('vc-page-height')[0];
+        //浏览器可见高度
+        let _minHeight = document.documentElement.clientHeight;
+        let _scollHeight = _targetDiv.scrollHeight;
+
+        if (_scollHeight < _minHeight) {
+            _scollHeight = _minHeight
+        }
+        _vcPageHeight.style.minHeight = _scollHeight + 'px';
+        //console.log('是否设置高度', _vcPageHeight.style.minHeight);
+    }
+})(window.vcFramework);
 
 
 

@@ -11,6 +11,17 @@
         mounted: function () {
             this._initSysInfo();
             this.getMenus();
+            let _menuDiv = document.getElementById('menu-nav');
+            vcFramework.eleResize.on(_menuDiv, function () {
+                //console.log('resize', '大小修改了');
+                vcFramework._fix_height(_menuDiv);
+            });
+            window.onscroll = function () {
+                //为了保证兼容性，这里取两个值，哪个有值取哪一个
+                //scrollTop就是触发滚轮事件时滚轮的高度
+                let _menuDivb = document.getElementById('menu-nav');
+                vcFramework._fix_height(_menuDivb);
+            }
         },
         methods: {
             _initSysInfo: function () {
@@ -21,9 +32,9 @@
                 }
                 this.logo = sysInfo.logo;
             },
-	     _gotoIndex:function(){
+            _gotoIndex: function () {
                 vc.jumpToPage("/")
-           },
+            },
             getMenus: function () {
 
                 var _tmpMenus = vc.getMenus();
@@ -92,11 +103,12 @@
                 vc.setCurrentMenu(_id);
                 vm.menus = vm.refreshMenuActive(vm.menus, _id);
                 vc.setMenus(vm.menus);
+                //vc._fix_height()
             },
             miniMenu: function () {
 
                 //菜单默认为打开方式
-                if(!vc.notNull(vc.getMenuState())){
+                if (!vc.notNull(vc.getMenuState())) {
                     vc.setMenuState('ON');
                 }
 
@@ -107,7 +119,7 @@
                 $("body").toggleClass("mini-navbar");
                 vc.setMenuState('OFF');
             },
-            _gotoPage:function(_href){
+            _gotoPage: function (_href) {
                 vc.jumpToPage(_href);
             }
 

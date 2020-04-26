@@ -1,0 +1,94 @@
+<div id="complaintDetailModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">{{complaintDetailInfo.typeCdName}}详情</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">房屋信息</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.roomName" type="text" readonly
+                                        placeholder="必填，请填写投诉人" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">投诉编码</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.complaintId" type="text" readonly
+                                        placeholder="必填，请填写投诉人" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">投诉类型</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.typeCdName" type="text" readonly
+                                        placeholder="必填，请填写投诉人" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">投诉人</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.complaintName" type="text" readonly
+                                        placeholder="必填，请填写投诉人" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">投诉电话</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.tel" type="text" readonly
+                                        placeholder="必填，请填写投诉电话" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">投诉状态</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.stateName" type="text" readonly
+                                        placeholder="必填，请填写投诉电话" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="complaintDetailInfo.showCurrentUser">
+                                <label class="col-sm-2 col-form-label">处理人</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.currentUserName" type="text" readonly
+                                        placeholder="必填，请填写投诉电话" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="complaintDetailInfo.showCurrentUser">
+                                <label class="col-sm-2 col-form-label">处理人电话</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.currentUserTel" type="text" readonly
+                                        placeholder="必填，请填写投诉电话" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="complaintDetailInfo.showCurrentUser">
+                                <label class="col-sm-2 col-form-label">处理人编号</label>
+                                <div class="col-sm-10">
+                                    <input v-model="complaintDetailInfo.currentUserId" type="text" readonly
+                                        placeholder="必填，请填写投诉电话" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">投诉内容</label>
+                                <div class="col-sm-10">
+                                    <textarea placeholder="必填，请填写投诉内容" readonly class="form-control"
+                                        v-model="complaintDetailInfo.context"></textarea></div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">关闭
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

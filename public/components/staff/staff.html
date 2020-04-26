@@ -84,6 +84,7 @@
                         <tr>
                             <th>员工ID</th>
                             <th>名称</th>
+                            <th>公司</th>
                             <th>部门</th>
                             <th>邮箱</th>
                             <th>地址</th>
@@ -96,6 +97,7 @@
                         <tr class="gradeX" v-for="staff in staffData">
                             <td>{{staff.userId}}</td>
                             <td>{{staff.name}}</td>
+                            <td>{{staff.parentOrgName}}</td>
                             <td>{{staff.orgName}}</td>
                             <td>{{staff.email}}</td>
                             <td>{{staff.address}}</td>
