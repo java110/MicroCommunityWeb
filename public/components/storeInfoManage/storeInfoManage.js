@@ -5,6 +5,7 @@
         data: {
             listStoreManageInfo: {
                 listStores: [],
+                storeAttrDtoList:[],
                 total: 0,
                 records: 1,
                 conditions: {
@@ -38,6 +39,7 @@
                     function (json, res) {
                         var _listStoreManageInfo = JSON.parse(json);
                         vc.component.listStoreManageInfo.listStores = _listStoreManageInfo.stores;
+                        vc.component.listStoreManageInfo.storeAttrDtoList = vc.component.listStoreManageInfo.listStores[0].storeAttrDtoList;
                         vc.emit('pagination', 'init', {
                             total: vc.component.listStoreManageInfo.records,
                             currentPage: _page
