@@ -104,22 +104,22 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination/pagination"></vc:create>
+                    <vc:create path="frame/pagination"></vc:create>
                 </div>
             </div>
         </div>
     </div>
 
     <div v-if="inspectionRouteManageInfo.inspectionPoint == true">
-        <vc:create path="property/inspectionRoutePointManage/inspectionRoutePointManage"></vc:create>
+        <vc:create path="property/inspectionRoutePointManage"></vc:create>
     </div>
 
 
-    <vc:create path="property/addInspectionRoute/addInspectionRoute"
+    <vc:create path="property/addInspectionRoute"
                callBackListener=""
                callBackFunction=""
     ></vc:create>
-    <vc:create path="property/editInspectionRoute/editInspectionRoute"></vc:create>
-    <vc:create path="property/deleteInspectionRoute/deleteInspectionRoute"></vc:create>
+    <vc:create path="property/editInspectionRoute"></vc:create>
+    <vc:create path="property/deleteInspectionRoute"></vc:create>
 
 </div>

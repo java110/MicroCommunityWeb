@@ -6,19 +6,19 @@
 
     <!-- 选择 应用信息 -->
     <div v-if="devServiceProvideInfo.index == 0">
-        <vc:create path="dev/viewServiceInfo/viewServiceInfo"
+        <vc:create path="dev/viewServiceInfo"
                    callBackListener="devServiceProvide"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="devServiceProvideInfo.index == 1">
-        <vc:create path="dev/devServiceProvideView/devServiceProvideView"
+        <vc:create path="dev/devServiceProvideView"
                    callBackListener="devServiceProvide"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="devServiceProvideInfo.index == 2">
-        <vc:create path="dev/serviceProvideRemarkView/serviceProvideRemarkView"
+        <vc:create path="dev/serviceProvideRemarkView"
                    callBackListener="devServiceProvide"
                    callBackFunction="notify"
         ></vc:create>

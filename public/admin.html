@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta charset="UTF-8" />
     <title>HC小区管理系统|java110</title>
-    <vc:create path="frame/commonTop/commonTop"  location="head"></vc:create>
+    <vc:create path="frame/commonTop"  location="head"></vc:create>
     <!-- import CSS -->
 
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
@@ -38,27 +38,27 @@
 </head>
 
 <body class="vc-body">
-    <vc:create path="frame/bodyTop/bodyTop" ></vc:create>
+    <vc:create path="frame/bodyTop" ></vc:create>
     <div class="vc">
-        <vc:create path="frame/menu/menu" ></vc:create>
+        <vc:create path="frame/menu" ></vc:create>
         <div id="vc-page" class="gray-bg dashbard-1 vc-page-height" >
             <div class="border-bottom">
-                <vc:create path="frame/nav/nav" ></vc:create>
+                <vc:create path="frame/nav" ></vc:create>
             </div>
             <div class="vc-wrapper vc-content" style="padding-bottom: 0px;">
-                <vc:create path="frame/breadcrumb/breadcrumb"></vc:create>
+                <vc:create path="frame/breadcrumb"></vc:create>
             </div>
             <!--  -->
             <div id="component" class="vc-wrapper vc-content animated fadeInRight">
-                <vc:create path="pages/common/enterCommunity/enterCommunity"></vc:create>
+                <vc:create path="/pages/common/enterCommunity"></vc:create>
             </div>
 
-            <vc:create path="frame/copyright/copyright"></vc:create>
+            <vc:create path="frame/copyright"></vc:create>
 
         </div>
     </div>
 </body>
 <script src="/vcCore/vcFramework.js"></script>
-<vc:create path="frame/commonBottom/commonBottom" location="body"></vc:create>
+<vc:create path="frame/commonBottom" location="body"></vc:create>
 
 </html>

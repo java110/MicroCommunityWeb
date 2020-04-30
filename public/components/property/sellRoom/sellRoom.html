@@ -1,19 +1,19 @@
 <div  >
-    <vc:create path="property/sellRoomSelectOwner/sellRoomSelectOwner"
+    <vc:create path="property/sellRoomSelectOwner"
                callBackComponent = "sellRoom"
     ></vc:create>
 
-    <vc:create path="property/sellRoomSelectRoom/sellRoomSelectRoom"
+    <vc:create path="property/sellRoomSelectRoom"
                callBackListener="sellRoom"
                callBackFunction="notify"
     ></vc:create>
-    <vc:create path="property/searchRoom/searchRoom"
+    <vc:create path="property/searchRoom"
                emitChooseRoom="sellRoomSelectRoom"
                emitLoadData="sellRoomOther"
                roomFlag="2"
     ></vc:create>
 
-    <vc:create path="property/sellRoomOther/sellRoomOther"
+    <vc:create path="property/sellRoomOther"
     ></vc:create>
 
     <div style="height:50px">

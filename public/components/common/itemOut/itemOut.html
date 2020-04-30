@@ -6,19 +6,19 @@
 
     <!-- 选择 应用信息 -->
     <div v-if="itemOutInfo.index == 0">
-        <vc:create path="common/resourceStoreManage/resourceStoreManage"
+        <vc:create path="common/resourceStoreManage"
                    callBackListener="itemOut"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="itemOutInfo.index == 1">
-        <vc:create path="frame/viewStaffInfo/viewStaffInfo"
+        <vc:create path="frame/viewStaffInfo"
                    callBackListener="itemOut"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="itemOutInfo.index == 2">
-        <vc:create path="frame/viewOrgInfo/viewOrgInfo"
+        <vc:create path="frame/viewOrgInfo"
                    callBackListener="itemOut"
                    callBackFunction="notify"
         ></vc:create>

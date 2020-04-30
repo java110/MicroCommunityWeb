@@ -6,19 +6,19 @@
 
     <!-- 选择 应用信息 -->
     <div v-if="configMenuInfo.index == 0">
-        <vc:create path="dev/viewMenuGroupInfo/viewMenuGroupInfo"
+        <vc:create path="dev/viewMenuGroupInfo"
                    callBackListener="configMenu"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="configMenuInfo.index == 1">
-        <vc:create path="dev/addMenuView/addMenuView"
+        <vc:create path="dev/addMenuView"
                    callBackListener="configMenu"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="configMenuInfo.index == 2">
-        <vc:create path="dev/addPrivilegeView/addPrivilegeView"
+        <vc:create path="dev/addPrivilegeView"
                    callBackListener="configMenu"
                    callBackFunction="notify"
         ></vc:create>

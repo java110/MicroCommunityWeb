@@ -354,6 +354,9 @@
      * 异步去服务端 拉去HTML 和 js
      */
     loadComponent = async function (_componentName, _tree) {
+        if(vcFramework.isNotEmpty(_componentName) && _componentName.lastIndexOf('/') > 0){
+            _componentName = _componentName +'/'+ _componentName.substring(_componentName.lastIndexOf('/')+1,_componentName.length);
+        }
         //从缓存查询
         let _cacheComponent = vcFramework.getComponent(_componentName);
         //console.log('加载组件名称', _componentName);

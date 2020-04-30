@@ -110,7 +110,7 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination/pagination"></vc:create>
+                    <vc:create path="frame/pagination"></vc:create>
                 </div>
             </div>
         </div>
@@ -118,11 +118,11 @@
 
 
     <div v-bind:class="{no_display:activitiesManageInfo.componentShow != 'addActivitiesView'}">
-        <vc:create path="property/addActivitiesView/addActivitiesView"></vc:create>
+        <vc:create path="property/addActivitiesView"></vc:create>
     </div>
     <div v-bind:class="{no_display:activitiesManageInfo.componentShow != 'editActivitiesView'}">
-        <vc:create path="property/editActivitiesView/editActivitiesView"></vc:create>
+        <vc:create path="property/editActivitiesView"></vc:create>
     </div>
-    <vc:create path="property/deleteActivities/deleteActivities"></vc:create>
+    <vc:create path="property/deleteActivities"></vc:create>
 
 </div>

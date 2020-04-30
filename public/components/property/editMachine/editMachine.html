@@ -73,7 +73,7 @@
                              v-show="editMachineInfo.locationTypeCd == '2000' || editMachineInfo.locationTypeCd == '3000'  ">
                             <label class="col-sm-2 col-form-label">归属楼栋</label>
                             <div class="col-sm-10">
-                                <vc:create path="property/floorSelect2/floorSelect2"
+                                <vc:create path="property/floorSelect2"
                                            parentModal="editMachineModel"
                                            namespace="editMachine"
                                 ></vc:create>
@@ -83,7 +83,7 @@
                              v-show="editMachineInfo.locationTypeCd == '2000' || editMachineInfo.locationTypeCd == '3000'  ">
                             <label class="col-sm-2 col-form-label">归属单元</label>
                             <div class="col-sm-10">
-                                <vc:create path="property/unitSelect2/unitSelect2"
+                                <vc:create path="property/unitSelect2"
                                            parentModal="editMachineModel"
                                            callBackListener="editMachine"
                                            callBackFunction="notify"
@@ -95,7 +95,7 @@
                              v-show="editMachineInfo.locationTypeCd == '3000'  ">
                             <label class="col-sm-2 col-form-label">归属房屋</label>
                             <div class="col-sm-10">
-                                <vc:create path="property/roomSelect2/roomSelect2"
+                                <vc:create path="property/roomSelect2"
                                            parentModal="editMachineModel"
                                            callBackListener="editMachine"
                                            callBackFunction="notify"

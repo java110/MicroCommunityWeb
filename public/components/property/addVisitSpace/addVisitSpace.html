@@ -8,19 +8,19 @@
     <div v-if="newVisitInfo.index == 0">
 
         <!-- 选择停车位 -->
-        <vc:create path="property/viewVisitInfo/viewVisitInfo"
+        <vc:create path="property/viewVisitInfo"
                    callBackComponent="addVisitSpace"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="newVisitInfo.index == 1">
-        <vc:create path="property/visitForOwner/visitForOwner"
+        <vc:create path="property/visitForOwner"
                    callBackListener="addVisitSpace"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="newVisitInfo.index == 2">
-        <vc:create path="property/addVisitCase/addVisitCase"
+        <vc:create path="property/addVisitCase"
                    callBackComponent="addVisitSpace"
                    callBackFunction="notify"
         ></vc:create>

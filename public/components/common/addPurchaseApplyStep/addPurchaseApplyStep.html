@@ -6,14 +6,14 @@
 
     <!-- 选择物品 -->
     <div v-if="addPurchaseApplyStepInfo.index == 0">
-        <vc:create path="common/viewResourceStoreInfo2/viewResourceStoreInfo2"
+        <vc:create path="common/viewResourceStoreInfo2"
                    callBackListener="addPurchaseApplyStep"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <!-- 申请说明 -->
     <div v-if="addPurchaseApplyStepInfo.index == 1">
-        <vc:create path="common/addPurchaseApplyView/addPurchaseApplyView"
+        <vc:create path="common/addPurchaseApplyView"
                    callBackListener="addPurchaseApplyStep"
                    callBackFunction="notify2"
         ></vc:create>

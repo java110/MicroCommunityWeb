@@ -6,13 +6,13 @@
 
     <!-- 选择 应用信息 -->
     <div v-if="addAuditUserStepInfo.index == 0 || addAuditUserStepInfo.index == 1">
-        <vc:create path="frame/viewOrgInfo/viewOrgInfo"
+        <vc:create path="frame/viewOrgInfo"
                    callBackListener="addAuditUserStep"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="addAuditUserStepInfo.index == 2">
-        <vc:create path="frame/viewStaffInfo/viewStaffInfo"
+        <vc:create path="frame/viewStaffInfo"
                    callBackListener="addAuditUserStep"
                    callBackFunction="notify"
         ></vc:create>

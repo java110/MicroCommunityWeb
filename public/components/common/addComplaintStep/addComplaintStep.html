@@ -6,25 +6,25 @@
 
     <!-- 选择 应用信息 -->
     <div v-if="addComplaintStepInfo.index == 0">
-        <vc:create path="property/viewFloorInfo/viewFloorInfo"
+        <vc:create path="property/viewFloorInfo"
                    callBackListener="addComplaintStep"
                    callBackFunction="notify"
                    showAddFloorButton="false"
         ></vc:create>
     </div>
     <div v-if="addComplaintStepInfo.index == 1">
-        <vc:create path="property/sellRoomSelectRoom/sellRoomSelectRoom"
+        <vc:create path="property/sellRoomSelectRoom"
                    callBackListener="addComplaintStep"
                    callBackFunction="notify"
         ></vc:create>
-        <vc:create path="property/searchRoom/searchRoom"
+        <vc:create path="property/searchRoom"
                    emitChooseRoom="sellRoomSelectRoom"
                    emitLoadData="sellRoomOther"
                    roomFlag="1"
         ></vc:create>
     </div>
     <div v-if="addComplaintStepInfo.index == 2">
-        <vc:create path="common/addComplainView/addComplainView"
+        <vc:create path="common/addComplainView"
                    callBackListener="addComplaintStep"
                    callBackFunction="notify"
         ></vc:create>
