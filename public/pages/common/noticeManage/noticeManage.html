@@ -107,18 +107,18 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create name="pagination"></vc:create>
+                    <vc:create path="common/pagination/pagination"></vc:create>
                 </div>
             </div>
         </div>
     </div>
 
     <div v-bind:class="{no_display:noticeManageInfo.componentShow != 'addNoticeView'}">
-        <vc:create name="addNoticeView"></vc:create>
+        <vc:create path="common/addNoticeView/addNoticeView"></vc:create>
     </div>
     <div v-bind:class="{no_display:noticeManageInfo.componentShow != 'editNoticeView'}">
-        <vc:create name="editNoticeView"></vc:create>
+        <vc:create path="common/editNoticeView/editNoticeView"></vc:create>
     </div>
-    <vc:create name="deleteNotice"></vc:create>
+    <vc:create path="common/deleteNotice/deleteNotice"></vc:create>
 
 </div>

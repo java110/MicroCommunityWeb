@@ -121,19 +121,18 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create name="pagination"></vc:create>
+                    <vc:create path="common/pagination/pagination"></vc:create>
                 </div>
             </div>
         </div>
     </div>
 
-    <vc:create name="chooseApp"
+    <vc:create path="dev/chooseApp/chooseApp"
                emitChooseApp="serviceRegisterManage"
                emitLoadData="serviceRegisterManage"
-               domain="devComponents"
     ></vc:create>
 
-    <vc:create name="editServiceRegister" domain="devComponents"></vc:create>
-    <vc:create name="deleteServiceRegister" domain="devComponents"></vc:create>
+    <vc:create path="dev/editServiceRegister/editServiceRegister" ></vc:create>
+    <vc:create path="dev/deleteServiceRegister/deleteServiceRegister" ></vc:create>
 
 </div>
