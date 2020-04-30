@@ -123,21 +123,21 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create name="pagination"></vc:create>
+                    <vc:create path="common/pagination/pagination"></vc:create>
                 </div>
             </div>
         </div>
     </div>
 
     <div v-show="applicationKeyManageInfo.showComponent == 'addApplicationKey'">
-        <vc:create name="addApplicationKey"
+        <vc:create path="property/addApplicationKey/addApplicationKey"
                    callBackListener=""
                    callBackFunction=""
         ></vc:create>
     </div>
     <div v-show="applicationKeyManageInfo.showComponent == 'editApplicationKey'">
-        <vc:create name="editApplicationKey"></vc:create>
+        <vc:create path="property/editApplicationKey/editApplicationKey"></vc:create>
     </div>
-    <vc:create name="deleteApplicationKey"></vc:create>
+    <vc:create path="property/deleteApplicationKey/deleteApplicationKey"></vc:create>
 
 </div>

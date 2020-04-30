@@ -15,7 +15,7 @@
         <div class="form-group">
             <input  name="repasswd" v-model="registerInfo.repasswd" type="password" class="form-control" placeholder="确认密码" required="" @focus="test('passwd')" />
         </div>
-        <vc:create name="validate-tel"></vc:create>
+        <vc:create path="frame/validate-tel/validate-tel"></vc:create>
         <button type="submit" v-on:click="doRegister()" class="btn btn-primary block full-width m-b">注册</button>
 
         <p class="text-muted text-center"><small>已有账户?</small></p>

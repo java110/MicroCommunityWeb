@@ -114,7 +114,7 @@
                                 </tfoot>
                             </table>
                             <!-- 分页 -->
-                            <vc:create name="pagination"></vc:create>
+                            <vc:create path="common/pagination/pagination"></vc:create>
                         </div>
                     </div>
                 </div>
@@ -123,15 +123,15 @@
     </div>
 
     <div  v-if="orgManageInfo.showBelongCommunity == true">
-        <vc:create name="orgCommunityManage"></vc:create>
+        <vc:create path="frame/orgCommunityManage"></vc:create>
     </div>
 
-    <vc:create name="addOrg"
+    <vc:create path="frame/addOrg/addOrg"
                callBackListener=""
                callBackFunction=""
     ></vc:create>
-    <vc:create name="editOrg"></vc:create>
-    <vc:create name="deleteOrg"></vc:create>
+    <vc:create path="frame/editOrg/editOrg"></vc:create>
+    <vc:create path="frame/deleteOrg/deleteOrg"></vc:create>
 
 
 </div>

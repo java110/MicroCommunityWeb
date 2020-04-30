@@ -123,12 +123,12 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create name="pagination"></vc:create>
+                    <vc:create path="common/pagination/pagination"></vc:create>
                 </div>
             </div>
         </div>
     </div>
-    <vc:create name="audit"
+    <vc:create path="common/audit/audit"
                callBackListener="auditApplicationKeyManage"
                callBackFunction="notifyAuditInfo"
     ></vc:create>
