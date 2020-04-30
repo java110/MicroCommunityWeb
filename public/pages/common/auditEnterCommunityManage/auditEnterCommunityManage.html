@@ -124,16 +124,16 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create name="pagination"></vc:create>
+                    <vc:create path="common/pagination/pagination"></vc:create>
                 </div>
             </div>
         </div>
     </div>
-    <vc:create name="audit"
+    <vc:create path="common/audit/audit"
                callBackListener="auditEnterCommunityManage"
                callBackFunction="notifyAuditInfo"
     ></vc:create>
     <!--撤回审核-->
-    <vc:create name="recallAuditEnterFinishCommunity"></vc:create>
+    <vc:create path="common/recallAuditEnterFinishCommunity/recallAuditEnterFinishCommunity"></vc:create>
 
 </div>
