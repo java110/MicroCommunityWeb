@@ -10,7 +10,7 @@
 
     <title>HC小区管理系统|java110</title>
 
-    <vc:create name="commonTop" domain="frameComponents" location="head"></vc:create>
+    <vc:create path="frame/commonTop/commonTop"  location="head"></vc:create>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <!-- Toastr style -->
@@ -38,14 +38,14 @@
 </head>
 
 <body class="gray-bg">
-    <vc:create name="bodyTop" domain="frameComponents"></vc:create>
+    <vc:create path="frame/bodyTop/bodyTop" ></vc:create>
     <div id="component" class="middle-box text-center loginscreen animated fadeInDown">
-        <vc:create name="login"></vc:create>
+        <vc:create path="frame/login/login"></vc:create>
 
     </div>
     <!-- <script src="/vcCore/test.js"></script> -->
     <script src="/vcCore/vcFramework.js"></script>
-    <vc:create name="commonBottom" domain="frameComponents" location="body"></vc:create>
+    <vc:create path="frame/commonBottom/commonBottom" location="body"></vc:create>
 </body>
 
 </html>

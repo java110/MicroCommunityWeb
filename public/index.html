@@ -36,26 +36,26 @@
 </head>
 
 <body class="vc-body">
-    <vc:create name="loading" domain="frameComponents"></vc:create>
+    <vc:create path="frame/bodyTop/bodyTop"></vc:create>
     <div class="vc">
-        <vc:create name="menu" domain="frameComponents"></vc:create>
+        <vc:create path="frame/menu/menu"></vc:create>
 
 
         <div id="vc-page" class="gray-bg dashbard-1 vc-page-height">
             <div class="border-bottom">
-                <vc:create name="nav" domain="frameComponents"></vc:create>
+                <vc:create path="frame/nav/nav" ></vc:create>
             </div>
             <div id="component" class="vc-wrapper vc-content">
-                <vc:create name="indexContext"></vc:create>
+                <vc:create path="property/indexContext/indexContext"></vc:create>
             </div>
 
 
-            <vc:create name="copyright" domain="frameComponents"></vc:create>
+            <vc:create path="frame/copyright/copyright"></vc:create>
 
         </div>
     </div>
     <script src="/vcCore/vcFramework.js"></script>
-    <vc:create name="commonBottom"  domain="frameComponents" location="body"></vc:create>
+    <vc:create path="frame/commonBottom/commonBottom" location="body"></vc:create>
 </body>
 
 </html>

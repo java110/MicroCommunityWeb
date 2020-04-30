@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>广告屏</title>
-    <vc:create name="commonTop" location="head"></vc:create>
+    <vc:create path="frame/commonTop/commonTop" location="head"></vc:create>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <!-- Toastr style -->
@@ -33,11 +33,11 @@
 </head>
 
 <body>
-    <vc:create name="bodyTop"></vc:create>
+    <vc:create  path="frame/bodyTop/bodyTop"></vc:create>
     <div id="component">
         <vc:create name="advertVedioView"></vc:create>
     </div>
-    <vc:create name="commonBottom" location="body"></vc:create>
+    <vc:create path="frame/commonBottom/commonBottom" location="body"></vc:create>
 </body>
 
 </html>
