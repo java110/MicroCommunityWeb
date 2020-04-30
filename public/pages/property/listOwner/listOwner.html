@@ -42,21 +42,21 @@
                     <div class="row" v-show="listOwnerInfo.moreCondition == true">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <vc:create path="property/floorSelect2" parentModal="listOwnerModel"
+                                <vc:create path="property/floorSelect2/floorSelect2" parentModal="listOwnerModel"
                                     namespace="listOwner"></vc:create>
                             </div>
 
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <vc:create path="property/unitSelect2" parentModal="listOwnerModel"
+                                <vc:create path="property/unitSelect2/unitSelect2" parentModal="listOwnerModel"
                                     callBackListener="listOwner" callBackFunction="notify" namespace="listOwner">
                                 </vc:create>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <vc:create path="property/roomSelect2" parentModal="listOwnerModel"
+                                <vc:create path="property/roomSelect2/roomSelect2" parentModal="listOwnerModel"
                                     callBackListener="listOwner" callBackFunction="notify" namespace="listOwner">
                                 </vc:create>
                             </div>
@@ -201,7 +201,7 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="common/pagination/pagination"></vc:create>
+                    <vc:create path="frame/pagination/pagination"></vc:create>
                 </div>
             </div>
         </div>

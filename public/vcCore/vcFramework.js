@@ -128,12 +128,12 @@
                 _vcComponent.removeChild(vcComponentChilds[vcIndex]);
             }
 
-            if (_componentUrl.lastIndexOf('/') > 0) {
+            if (_componentUrl.lastIndexOf('#') > -1) {
                 let endPos = _componentUrl.length;
                 if (_componentUrl.indexOf('?') > -1) {
                     endPos = _componentUrl.indexOf('?');
                 }
-                _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, endPos);
+                _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('#') + 1, endPos);
             }
 
             let _tmpVcCreate = document.createElement("vc:create");
@@ -175,7 +175,7 @@
             return;
         }
 
-        if (_componentUrl.lastIndexOf('/') < 0) {
+        if (_componentUrl.lastIndexOf('#') < 0) {
             vcFramework.toast('程序异常，url包含组件错误');
             return;
         }
@@ -190,7 +190,7 @@
             endPos = _componentUrl.indexOf('?');
         }
 
-        _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('/') + 1, endPos);
+        _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('#') + 1, endPos);
 
         let _tmpVcCreate = document.createElement("vc:create");
         let _divComponentAttr = document.createAttribute('path');
