@@ -65,13 +65,13 @@
         </div>
     </div>
 
-    <vc:create name="addJunkRequirement"
+    <vc:create path="proxy/addJunkRequirement/addJunkRequirement"
                callBackListener="viewJunkRequirementInfo"
                callBackFunction="chooseJunkRequirement"
     ></vc:create>
 
 
-    <vc:create name="chooseJunkRequirement"
+    <vc:create path="proxy/chooseJunkRequirement/chooseJunkRequirement"
                emitChooseJunkRequirement="viewJunkRequirementInfo"
                emitLoadData="viewJunkRequirementInfo"
     ></vc:create>
