@@ -6,25 +6,25 @@
 
     <!-- 选择 应用信息 -->
     <div v-if="addOwnerRoomBindingInfo.index == 0">
-        <vc:create name="viewFloorInfo"
+        <vc:create path="property/viewFloorInfo/viewFloorInfo"
                    callBackListener="addOwnerRoomBinding"
                    callBackFunction="notify"
                    showAddFloorButton="false"
         ></vc:create>
     </div>
     <div v-if="addOwnerRoomBindingInfo.index == 1">
-        <vc:create name="sellRoomSelectRoom"
+        <vc:create path="property/sellRoomSelectRoom/sellRoomSelectRoom"
                    callBackListener="addOwnerRoomBinding"
                    callBackFunction="notify"
         ></vc:create>
-        <vc:create name="searchRoom"
-                   emitChooseRoom="sellRoomSelectRoom"
+        <vc:create path="property/searchRoom"
+                   emitChooseRoom="sellRoomSelectRoom/sellRoomSelectRoom"
                    emitLoadData="sellRoomOther"
                    roomFlag="2"
         ></vc:create>
     </div>
     <div v-if="addOwnerRoomBindingInfo.index == 2">
-        <vc:create name="viewOwnerInfo"
+        <vc:create path="property/viewOwnerInfo/viewOwnerInfo"
                    callBackListener="addOwnerRoomBinding"
                    callBackFunction="notify"
         ></vc:create>

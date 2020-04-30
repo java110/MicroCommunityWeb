@@ -8,19 +8,19 @@
     <div v-if="sellParkingSpaceInfo.index == 0">
 
         <!-- 选择停车位 -->
-        <vc:create name="viewSelectParkingSpace"
+        <vc:create path="property/viewSelectParkingSpace/viewSelectParkingSpace"
                    callBackComponent="sellParkingSpace"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="sellParkingSpaceInfo.index == 1">
-        <vc:create name="viewOwnerInfo"
+        <vc:create path="property/viewOwnerInfo/viewOwnerInfo"
                    callBackListener="sellParkingSpace"
                    callBackFunction="notify"
         ></vc:create>
     </div>
     <div v-if="sellParkingSpaceInfo.index == 2">
-        <vc:create name="addCar"
+        <vc:create path="property/addCar/addCar"
                    callBackComponent="sellParkingSpace"
                    callBackFunction="notify"
         >
@@ -29,7 +29,7 @@
     </div>
 
     <div v-if="sellParkingSpaceInfo.index == 3">
-        <vc:create name="sellParkingSpaceFee"
+        <vc:create path="property/sellParkingSpaceFee/sellParkingSpaceFee"
                    callBackComponent="sellParkingSpace"
                    callBackFunction="notify"
         ></vc:create>

@@ -6,19 +6,19 @@
 
     <!-- 选择 应用信息 -->
    <div v-if="addRoomBindingInfo.index == 0">
-        <vc:create name="viewFloorInfo"
+        <vc:create path="property/viewFloorInfo/viewFloorInfo"
                    callBackListener="addRoomBinding"
                    callBackFunction="notify"
         ></vc:create>
     </div>
 <div v-if="addRoomBindingInfo.index == 1">
-        <vc:create name="viewUnitInfo"
+        <vc:create path="property/viewUnitInfo/viewUnitInfo"
                    callBackListener="addRoomBinding"
                    callBackFunction="notify"
         ></vc:create>
     </div>
 <div v-if="addRoomBindingInfo.index == 2">
-        <vc:create name="addRoomView"
+        <vc:create path="property/addRoomView/addRoomView"
                    callBackListener="addRoomBinding"
                    callBackFunction="notify"
         ></vc:create>

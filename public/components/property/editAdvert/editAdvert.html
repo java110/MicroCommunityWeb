@@ -51,7 +51,7 @@
                                  v-show="editAdvertInfo.locationTypeCd == '2000' || editAdvertInfo.locationTypeCd == '3000' ||editAdvertInfo.locationTypeCd == '4000' ">
                                 <label class="col-sm-2 col-form-label">归属楼栋</label>
                                 <div class="col-sm-10">
-                                    <vc:create name="floorSelect2"
+                                    <vc:create path="property/floorSelect2/floorSelect2"
                                                parentModal="editAdvertModel"
                                                namespace="editAdvert"
                                     ></vc:create>
@@ -61,7 +61,7 @@
                                  v-show="editAdvertInfo.locationTypeCd == '2000' || editAdvertInfo.locationTypeCd == '3000'  ">
                                 <label class="col-sm-2 col-form-label">归属单元</label>
                                 <div class="col-sm-10">
-                                    <vc:create name="unitSelect2"
+                                    <vc:create path="property/unitSelect2/unitSelect2"
                                                parentModal="editAdvertModel"
                                                callBackListener="editAdvert"
                                                callBackFunction="notify"
@@ -73,7 +73,7 @@
                                  v-show="editAdvertInfo.locationTypeCd == '3000'  ">
                                 <label class="col-sm-2 col-form-label">归属房屋</label>
                                 <div class="col-sm-10">
-                                    <vc:create name="roomSelect2"
+                                    <vc:create path="property/roomSelect2/roomSelect2"
                                                parentModal="editAdvertModel"
                                                callBackListener="editAdvert"
                                                callBackFunction="notify"
@@ -115,7 +115,7 @@
                             <div class="form-group row" v-if="editAdvertInfo.viewType == '8888'">
                                 <label class="col-sm-2 col-form-label">图片</label>
                                 <div class="content-img col-sm-10">
-                                    <vc:create name="uploadImage"
+                                    <vc:create path="frame/uploadImage/uploadImage"
                                                callBackListener="editAdvert"
                                                callBackFunction="notifyUploadImage"
                                                namespace="editAdvert"
@@ -125,7 +125,7 @@
                             <div class="form-group row" v-if="editAdvertInfo.viewType == '9999'">
                                 <label class="col-sm-2 col-form-label">视频</label>
                                 <div class="content-img col-sm-10">
-                                    <vc:create name="uploadVedio"
+                                    <vc:create path="frame/uploadVedio/uploadVedio"
                                                callBackListener="editAdvert"
                                                callBackFunction="notifyUploadVedio"
                                                namespace="editAdvert"

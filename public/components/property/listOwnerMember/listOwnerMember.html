@@ -1,5 +1,5 @@
 <div >
-    <vc:create name="memberSelectOwner"></vc:create>
+    <vc:create path="property/memberSelectOwner"></vc:create>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -75,11 +75,11 @@
         </div>
     </div>
     <!-- 删除员工权限 -->
-    <vc:create name="editOwner"
+    <vc:create path="property/editOwner/editOwner"
                notifyLoadDataComponentName="listOwnerMember"
                componentTitle="成员"
     ></vc:create>
-    <vc:create name="deleteOwner"
+    <vc:create path="property/deleteOwner/deleteOwner"
                notifyLoadDataComponentName="listOwnerMember"
     ></vc:create>
 </div>

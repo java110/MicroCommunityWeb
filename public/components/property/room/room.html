@@ -1,5 +1,5 @@
 <div >
-    <!--<vc:create name="roomSelectFloor"
+    <!--<vc:create path="property/roomSelectFloor"
                openAddRoomModelName="addRoom"
     ></vc:create>-->
 
@@ -166,18 +166,18 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create name="pagination"></vc:create>
+                    <vc:create path="common/pagination/pagination"></vc:create>
 
                 </div>
             </div>
         </div>
     </div>
 
-    <vc:create name="searchFloor"
+    <vc:create path="property/searchFloor/searchFloor"
                emitChooseFloor="room"
                emitLoadData="room"
     ></vc:create>
     <!-- 删除员工权限 -->
-    <vc:create name="editRoom"></vc:create>
-    <vc:create name="deleteRoom"></vc:create>
+    <vc:create path="property/editRoom/editRoom"></vc:create>
+    <vc:create path="property/deleteRoom/deleteRoom"></vc:create>
 </div>

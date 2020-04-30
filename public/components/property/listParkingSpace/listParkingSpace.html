@@ -1,4 +1,4 @@
-<div  >
+<div>
 
     <div class="row">
         <div class="col-lg-12">
@@ -7,27 +7,27 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{listParkingSpaceInfo.moreCondition == true?'隐藏':'更多'}}
+                            v-on:click="_moreCondition()">{{listParkingSpaceInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
-                <div class="ibox-content" >
+                <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择停车场"
-                                       v-model="listParkingSpaceInfo.conditions.areaNum" class="form-control">
+                                    v-model="listParkingSpaceInfo.conditions.areaNum" class="form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseParkingArea()"><i
-                                            class="fa fa-search"></i> 选择
+                                        v-on:click="_openChooseParkingArea()"><i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写车位编号" class=" form-control" v-model="listParkingSpaceInfo.num">
+                                <input type="text" placeholder="请填写车位编号" class=" form-control"
+                                    v-model="listParkingSpaceInfo.num">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -50,7 +50,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写车位ID" class="form-control form-control-sm"
-                                       v-model="listParkingSpaceInfo.conditions.psId">
+                                    v-model="listParkingSpaceInfo.conditions.psId">
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,8 @@
                         <form>
                             <div class="form-row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddParkingSpaceModal(-1)">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        v-on:click="_openAddParkingSpaceModal(-1)">
                                         <i class="fa fa-plus"></i>
                                         添加
                                     </button>
@@ -83,84 +84,77 @@
 
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th>车位ID</th>
-                            <th data-hide="phone">车位编码</th>
-                            <th data-hide="phone">停车场ID</th>
-                            <th data-hide="phone">停车场编号</th>
-                            <th data-hide="phone">车位状态</th>
-                            <th data-hide="phone">面积</th>
-                            <th class="text-right">操作</th>
-                        </tr>
+                            <tr>
+                                <th>车位ID</th>
+                                <th data-hide="phone">车位编码</th>
+                                <th data-hide="phone">停车场ID</th>
+                                <th data-hide="phone">停车场编号</th>
+                                <th data-hide="phone">车位状态</th>
+                                <th data-hide="phone">面积</th>
+                                <th class="text-right">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="parkingSpace in listParkingSpaceInfo.parkingSpaces">
-                            <td>
-                                {{parkingSpace.psId}}
-                            </td>
+                            <tr v-for="parkingSpace in listParkingSpaceInfo.parkingSpaces">
+                                <td>
+                                    {{parkingSpace.psId}}
+                                </td>
 
-                            <td>
-                                {{parkingSpace.num}}
-                            </td>
-                            <td>
-                                {{parkingSpace.paId}}
-                            </td>
-                            <td>
-                                {{parkingSpace.areaNum}}
-                            </td>
-                            <td>
-                                {{vc.component._viewParkingSpaceState(parkingSpace.state)}}
-                            </td>
-                            <td>
-                                {{parkingSpace.area}}
-                            </td>
-                            <td class="text-right">
-                                <div class="btn-group" v-if="parkingSpace.state =='F'">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openToHireParkingSpaceModel(parkingSpace)">出租</button>
-                                </div>
-                                <div class="btn-group" v-if="parkingSpace.state =='F'">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openToSellParkingSpaceModel(parkingSpace)">出售</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditParkingSpaceModel(parkingSpace)">修改</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDelParkingSpaceModel(parkingSpace)">删除</button>
-                                </div>
-                            </td>
-                        </tr>
+                                <td>
+                                    {{parkingSpace.num}}
+                                </td>
+                                <td>
+                                    {{parkingSpace.paId}}
+                                </td>
+                                <td>
+                                    {{parkingSpace.areaNum}}
+                                </td>
+                                <td>
+                                    {{vc.component._viewParkingSpaceState(parkingSpace.state)}}
+                                </td>
+                                <td>
+                                    {{parkingSpace.area}}
+                                </td>
+                                <td class="text-right">
+                                    <div class="btn-group" v-if="parkingSpace.state =='F'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openToHireParkingSpaceModel(parkingSpace)">出租</button>
+                                    </div>
+                                    <div class="btn-group" v-if="parkingSpace.state =='F'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openToSellParkingSpaceModel(parkingSpace)">出售</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditParkingSpaceModel(parkingSpace)">修改</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDelParkingSpaceModel(parkingSpace)">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create name="pagination"></vc:create>
+                    <vc:create path="common/pagination/pagination"></vc:create>
                 </div>
             </div>
         </div>
     </div>
 
-    <vc:create
-            name="addParkingSpace"
-            notifyLoadDataComponentName="listParkingSpace"
-    ></vc:create>
-    <vc:create
-            name="editParkingSpace"
-            notifyLoadDataComponentName="listParkingSpace"
+    <vc:create  path="property/addParkingSpace/addParkingSpace" notifyLoadDataComponentName="listParkingSpace"></vc:create>
+    <vc:create  path="property/editParkingSpace/editParkingSpace" notifyLoadDataComponentName="listParkingSpace"></vc:create>
+    <vc:create path="property/deleteParkingSpace/deleteParkingSpace" notifyLoadDataComponentName="listParkingSpace"></vc:create>
 
-    ></vc:create>
-    <vc:create name="deleteParkingSpace"
-               notifyLoadDataComponentName="listParkingSpace"
-    ></vc:create>
-
-    <vc:create name="chooseParkingArea"
-               emitChooseParkingArea="listParkingSpace"
-               emitLoadData="listParkingSpace"
-    ></vc:create>
+    <vc:create path="property/chooseParkingArea/chooseParkingArea" emitChooseParkingArea="listParkingSpace"
+        emitLoadData="listParkingSpace"></vc:create>
 
 </div>
