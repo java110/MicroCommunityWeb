@@ -100,7 +100,7 @@
 
             },
             _doRegister:function(){
-                vc.jumpToPage('/user.html#/register')
+                vc.jumpToPage('/user.html#/pages/frame/register');
             }
         },
         _destroyedMethod: function () {
