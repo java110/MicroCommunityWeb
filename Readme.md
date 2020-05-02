@@ -47,7 +47,7 @@ nodejs + vscode + MicroCommunity(HC小区后端)
 ### 运行效果（view）
 1.在浏览器输入 http://localhost:3000/ 如下图
 
-![image](docs/img/login.png)
+![image](docs/img/login.jpg)
 
     用户名为 wuxw 密码为 admin  如下图
 
