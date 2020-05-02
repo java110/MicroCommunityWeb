@@ -96,9 +96,9 @@
 
                             //关闭model
                             if(vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "10000"){
-                                vc.jumpToPage("/admin.html#/purchaseApplyManage");
+                                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyManage");
                             }else{
-                                vc.jumpToPage("/admin.html#/itemOutManage");
+                                vc.jumpToPage("/admin.html#/pages/common/itemOutManage");
                             }
 
                             return;

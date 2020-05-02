@@ -73,7 +73,7 @@
             },
             _openAddMenuModal:function(){
                 //vc.emit('addMenu','openAddMenuModal',{});
-                vc.jumpToPage("/admin.html#/configMenu");
+                vc.jumpToPage("/admin.html#/pages/dev/configMenu");
             },
             _openEditMenuModel:function(_menu){
                 vc.emit('editMenu','openEditMenuModal',_menu);

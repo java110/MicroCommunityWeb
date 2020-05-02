@@ -77,7 +77,7 @@ vc.emit('viewOrgInfo', 'onIndex', vc.component.itemOutInfo.index);
 
                            vc.toast('处理成功');
                            //关闭model
-                           vc.jumpToPage("/admin.html#/itemOutManage?" + vc.objToGetParam(JSON.parse(json)));
+                           vc.jumpToPage("/admin.html#/pages/common/itemOutManage?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
                        vc.toast(json);

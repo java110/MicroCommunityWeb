@@ -84,7 +84,7 @@
                            );
             },
             _openAddRoom:function(){
-                vc.jumpToPage("/admin.html#/addRoomBinding");
+                vc.jumpToPage("/admin.html#/pages/property/addRoomBinding");
             },
             _openEditRoomModel:function(_room){
                 //_room.floorId = vc.component.roomInfo.conditions.floorId;

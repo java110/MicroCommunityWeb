@@ -72,7 +72,7 @@
                 vc.emit('deleteNotice','openDeleteNoticeModal',_notice);
             },
             _openNoticeDetail:function(_notice){
-                vc.jumpToPage("/admin.html#/noticeDetail?noticeId="+_notice.noticeId);
+                vc.jumpToPage("/admin.html#/pages/common/noticeDetail?noticeId="+_notice.noticeId);
 
             },
             _queryNoticeMethod:function(){

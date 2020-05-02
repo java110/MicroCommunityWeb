@@ -62,10 +62,10 @@
                            );
             },
             _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType=10000");
+                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType=10000");
             },
             _openResourceEnterDetailManageModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/resourceEnterDetailManage?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType=10000");
+                vc.jumpToPage("/admin.html#/pages/common/resourceEnterDetailManage?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType=10000");
             },
             _queryPurchaseApplyMethod:function(){
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);

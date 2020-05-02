@@ -77,7 +77,7 @@ vc.emit('serviceProvideRemarkView', 'onIndex', vc.component.devServiceProvideInf
 
                            vc.toast('处理成功');
                            //关闭model
-                           vc.jumpToPage("/admin.html#/serviceProvideManage?" + vc.objToGetParam(JSON.parse(json)));
+                           vc.jumpToPage("/admin.html#/pages/dev/serviceProvideManage?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
                        vc.toast(json);

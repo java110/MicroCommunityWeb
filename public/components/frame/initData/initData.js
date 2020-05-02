@@ -52,12 +52,12 @@
                         if (res.status == 200) {
                             vc.component._loadCommunityInfo(_param);
                         }else{
-                            vc.jumpToPage("/initCompany.html#/company");
+                            vc.jumpToPage("/initCompany.html#/pages/common/company");
                         }
                     }, function (e) {
                         console.log('请求失败处理',e);
                         //vc.jumpToPage(_param.url);
-                        vc.jumpToPage("/initCompany.html#/company");
+                        vc.jumpToPage("/initCompany.html#/pages/common/company");
                     }
                 );
             }

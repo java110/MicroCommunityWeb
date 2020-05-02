@@ -83,7 +83,7 @@
                         if (res.status == 200) {
                             //关闭model
                             vc.toast("处理成功");
-                            vc.jumpToPage('/admin.html#/listOwner')
+                            vc.jumpToPage('/admin.html#/pages/property/listOwner')
                             return;
                         }
                         vc.toast(json);

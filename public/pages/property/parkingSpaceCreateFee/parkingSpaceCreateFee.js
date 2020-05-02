@@ -71,7 +71,7 @@
                 });
             },
             _openViewParkingSpaceCreateFee:function(_parkingSpace){
-                 vc.jumpToPage("/admin.html#/listParkingSpaceFee?"+vc.objToGetParam(_parkingSpace));
+                 vc.jumpToPage("/admin.html#/pages/property/listParkingSpaceFee?"+vc.objToGetParam(_parkingSpace));
             },
             _queryParkingSpaceMethod:function(){
                 vc.component.listParkingSpace(DEFAULT_PAGE,DEFAULT_ROW);

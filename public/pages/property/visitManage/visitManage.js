@@ -54,7 +54,7 @@
                 );
             },
             _openAddVisitModal: function () {
-                vc.jumpToPage("/admin.html#/addVisitSpace")
+                vc.jumpToPage("/admin.html#/pages/property/addVisitSpace")
                 // vc.emit('addApp','openAddAppModal',{});
             },
             _openEditVisitModel: function (_app) {

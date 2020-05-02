@@ -44,7 +44,7 @@
 
                 if(!vc.notNull(_roomId)){
                     vc.toast("非法操作，未找到房屋信息");
-                    vc.jumpToPage('/admin.html#/listOwner');
+                    vc.jumpToPage('/admin.html#/pages/property/listOwner');
                     return ;
                 }
                 vc.component.repairDispatchManageInfo.conditions.roomId = _roomId;
@@ -66,7 +66,7 @@
                                     var _roomInfos=JSON.parse(json);
                                     if(!_roomInfos.hasOwnProperty("rooms")){
                                          vc.toast("非法操作，未找到房屋信息");
-                                         vc.jumpToPage('/admin.html#/listOwner');
+                                         vc.jumpToPage('/admin.html#/pages/property/listOwner');
                                          return ;
                                     }
                                     var _roomInfo = _roomInfos.rooms[0];
@@ -74,12 +74,12 @@
                                     vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
                                 }else{
                                      vc.toast("非法操作，未找到房屋信息");
-                                     vc.jumpToPage('/admin.html#/listOwner');
+                                     vc.jumpToPage('/admin.html#/pages/property/listOwner');
                                 }
                              },function(errInfo,error){
                                 console.log('请求失败处理');
                                 vc.toast("非法操作，未找到房屋信息");
-                                vc.jumpToPage('/admin.html#/listOwner');
+                                vc.jumpToPage('/admin.html#/pages/property/listOwner');
                              }
                  );
             },
@@ -114,7 +114,7 @@
 
             },
             _openDispatchRepair:function(_ownerRepair){
-                 vc.jumpToPage('/admin.html#/repairDispatchStep?repairId=' + _ownerRepair.repairId);
+                 vc.jumpToPage('/admin.html#/pages/property/repairDispatchStep?repairId=' + _ownerRepair.repairId);
 
             },
             _openDispatchRepairDetail:function(_ownerRepair){

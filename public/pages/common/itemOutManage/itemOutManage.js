@@ -59,10 +59,10 @@
                 );
             },
             _openAddPurchaseApplyModal:function(){
-                vc.jumpToPage("/admin.html#/addPurchaseApplyStep?resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
+                vc.jumpToPage("/admin.html#/pages/common/addPurchaseApplyStep?resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
             },
             _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
+                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
             },
             _openDeletePurchaseApplyModel:function(_purchaseApply){
                 vc.emit('deletePurchaseApply','openDeletePurchaseApplyModal',_purchaseApply);

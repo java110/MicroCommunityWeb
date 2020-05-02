@@ -88,10 +88,10 @@
                 vc.emit('editParkingSpace', 'openEditParkingSpaceModal', _parkingSpace);
             },
             _openToSellParkingSpaceModel:function(_parkingSpace){ // 出售
-                vc.jumpToPage('/admin.html#/sellParkingSpace?'+vc.objToGetParam(_parkingSpace));
+                vc.jumpToPage('/admin.html#/pages/property/sellParkingSpace?'+vc.objToGetParam(_parkingSpace));
             },
             _openToHireParkingSpaceModel:function(_parkingSpace){ //出租
-                vc.jumpToPage('/admin.html#/hireParkingSpace?'+vc.objToGetParam(_parkingSpace));
+                vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace?'+vc.objToGetParam(_parkingSpace));
             },
             _viewParkingSpaceState: function (state) {
                 if (state == 'F') {

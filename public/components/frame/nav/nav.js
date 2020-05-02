@@ -8,7 +8,7 @@
         el: '#nav',
         data: {
             nav: {
-                moreNoticeUrl: '/admin.html#/noticeManage',
+                moreNoticeUrl: '/admin.html#/pages/common/noticeManage',
                 notices: [],
                 total: 0
             },
@@ -75,7 +75,7 @@
                     },
                     function (json, res) {
                         if (res.status == 200) {
-                            vc.jumpToPage("/user.html#/login");
+                            vc.jumpToPage("/user.html#/pages/frame/login");
                             return;
                         }
                     }, function () {

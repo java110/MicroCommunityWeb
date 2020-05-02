@@ -42,7 +42,7 @@
 
             if(!vc.notNull(vc.component.repairDispatchStepInfo.repairId)){
                 vc.toast("非法数据，未找到派单信息");
-                vc.jumpToPage("/admin.html#/listOwner");
+                vc.jumpToPage("/admin.html#/pages/property/listOwner");
                 return ;
             }
             vc.component._initStep();
@@ -122,7 +122,7 @@
 
                            vc.toast('处理成功');
                            //关闭model
-                           vc.jumpToPage("/admin.html#/repairDispatchManage?" + vc.objToGetParam(JSON.parse(json)));
+                           vc.jumpToPage("/admin.html#/pages/property/repairDispatchManage?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
                        vc.toast(json);

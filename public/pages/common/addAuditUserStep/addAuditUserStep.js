@@ -141,7 +141,7 @@
 
                             vc.toast('处理成功');
                             //关闭model
-                            vc.jumpToPage("/admin.html#/auditUserManage?" + vc.objToGetParam(JSON.parse(json)));
+                            vc.jumpToPage("/admin.html#/pages/common/auditUserManage?" + vc.objToGetParam(JSON.parse(json)));
                             return;
                         }
                         vc.toast(json);

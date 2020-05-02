@@ -88,7 +88,7 @@
 
                             vc.toast('处理成功');
                            //关闭model
-                           vc.jumpToPage("/admin.html#/listOwner?" + vc.objToGetParam(JSON.parse(json)));
+                           vc.jumpToPage("/admin.html#/pages/property/listOwner?" + vc.objToGetParam(JSON.parse(json)));
                            return ;
                        }
                        vc.toast(json);

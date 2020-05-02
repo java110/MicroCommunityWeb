@@ -65,7 +65,7 @@
             },
             _openAddComplaintModal: function () {
                 //vc.emit('addComplaint', 'openAddComplaintModal', {});
-                vc.jumpToPage("/admin.html#/addComplaintStep")
+                vc.jumpToPage("/admin.html#/pages/common/addComplaintStep")
             },
             _openEditComplaintModel: function (_complaint) {
                 vc.emit('editComplaint', 'openEditComplaintModal', _complaint);

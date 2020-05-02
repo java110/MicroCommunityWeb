@@ -83,7 +83,7 @@
                            //关闭model
                            var _tmpResJson = JSON.parse(json);
                           /* _tmpResJson[floorName] = vc.component._getFloorName();*/
-                           vc.jumpToPage("/admin.html#/room");
+                           vc.jumpToPage("/admin.html#/pages/property/room");
                            return ;
                        }
                        vc.toast(json);
