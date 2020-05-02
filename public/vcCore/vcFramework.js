@@ -224,7 +224,7 @@
         let _componentName = _tree.vcCreate.getAttribute('path');
         //console.log('_componentName', _componentName, _tree);
         if (!vcFramework.isNotEmpty(_componentName)) {
-            throw '组件未包含path 属性';
+            throw '组件未包含path 属性'+_tree.vcCreate;
         }
         //开始加载组件
         let _componentElement = await loadComponent(_componentName, _tree);
