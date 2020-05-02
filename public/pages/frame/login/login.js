@@ -12,6 +12,7 @@
         _initMethod: function () {
             vc.component.clearCacheData();
             vc.component._loadSysInfo();
+            
         },
         _initEvent: function () {
             vc.component.$on('errorInfoEvent', function (_errorInfo) {
@@ -47,7 +48,7 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status != 200) {
                             console.log("加载系统信息失败");
-                            vc.saveData("_sysInfo", {logo: 'HC'});
+                            vc.saveData("_sysInfo", { logo: 'HC' });
                             vc.copyObject(json, vc.component.loginInfo);
                             return;
                         }
@@ -57,7 +58,7 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.saveData("_sysInfo", {logo: 'HC'});
+                        vc.saveData("_sysInfo", { logo: 'HC' });
                         vc.copyObject(json, vc.component.loginInfo);
                         vc.component.loginInfo.errorInfo = errInfo;
                     });
@@ -84,11 +85,11 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
-                            vc.emit('initData', 'loadCommunityInfo',{
-                                url:'/'
+                        if (res.status == 200) {
+                            vc.emit('initData', 'loadCommunityInfo', {
+                                url: '/'
                             });
-                            return ;
+                            return;
                         }
                         vc.component.loginInfo.errorInfo = json;
                     },
@@ -99,7 +100,7 @@
                     });
 
             },
-            _doRegister:function(){
+            _doRegister: function () {
                 vc.jumpToPage('/user.html#/pages/frame/register');
             }
         },

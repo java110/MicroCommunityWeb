@@ -1,51 +1,67 @@
 <!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:vc="http://www.thymeleaf.org">
+<html>
 
 <head>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>HC小区管理系统|java110</title>
 
     <vc:create path="frame/commonTop"  location="head"></vc:create>
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
-    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!-- Toastr style -->
-    <link href="/css/plugins/toastr/toastr.min.css" rel="stylesheet" />
-    <!-- Gritter -->
-    <link href="/js/plugins/gritter/jquery.gritter.css" rel="stylesheet" />
-    <link href="/css/plugins/select2/select2.min.css" rel="stylesheet">
-    <link href="/css/animate.css" rel="stylesheet" />
-    <link href="/css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/common.css" />
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="/css/vc-ui.css" />
 
-    <script src="/js/bootstrap/jquery-3.3.1.min.js"></script>
     <script src="/js/vue/vue.min.js"></script>
     <script src="/js/vue/vue-resource.min.js"></script>
-    <!-- <script src="/vcCore/core.js"></script> -->
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap/bootstrap.min.js"></script>
-    <!--<script src="/js/bootstrap/bootstrap-datetimepicker.min.js"></script>-->
-    <script src="/js/bootstrap/bootstrap-datetimepicker.js"></script>
-    <script src="/js/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
-    <script src="/js/plugins/select2/select2.full.min.js"></script>
-
-
 </head>
 
-<body class="gray-bg">
-    <vc:create path="frame/bodyTop" ></vc:create>
-    <div id="component" class="middle-box text-center loginscreen animated fadeInDown">
-        <vc:create path="/pages/frame/login"></vc:create>
+<body>
+    <div class="layui-carousel video_mask" id="login_carousel">
+        <vc:create path="frame/bodyTop" ></vc:create>
 
+        <div carousel-item>
+            <div class="carousel_div1"></div>
+            <div class="carousel_div2"></div>
+            <div class="carousel_div3"></div>
+        </div>
+        <div  class="login layui-anim layui-anim-up">
+            <div class="layui-logo">
+                <a href="#" target="_blank"><img src="img/logo.png" /></a>
+            </div>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend class="text-white">小区管理系统</legend>
+            </fieldset>
+            <div id="component" class="layui-form" action="" method="post">
+                <vc:create path="frame/login"></vc:create>
+            </div>
+            <hr class="layui-bg-gray">
+            <div class="layui-footer text-white">
+                <!-- 底部固定区域 -->
+                &copy;2017-2020 java110团队
+            </div>
+        </div>
     </div>
-    <!-- <script src="/vcCore/test.js"></script> -->
+
+    <script src="/js/bootstrap/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="layui/layui.all.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
     <script src="/vcCore/vcFramework.js"></script>
-    <vc:create path="frame/commonBottom" location="body"></vc:create>
+
+    <script type="text/javascript">
+        var layer = layui.layer,
+            form = layui.form,
+            carousel = layui.carousel;
+
+        // 背景图片轮播
+        carousel.render({
+            elem: '#login_carousel',
+            width: '100%',
+            height: '100%',
+            interval: 3000,
+            arrow: 'none',
+            anim: 'fade',
+            indicator: 'none'
+        });
+    </script>
 </body>
 
 </html>
