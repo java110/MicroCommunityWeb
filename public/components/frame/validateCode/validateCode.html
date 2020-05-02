@@ -1,4 +1,6 @@
 <div class="layui-form-item form_code">
-    <input type="text" lay-verify="required|code" maxlength="6" v-model="validateCode" placeholder="请输入验证码" autocomplete="off" class="layui-input">
-    <div class="code"><img v-bind:src="codeImage" border="0" style="cursor:pointer" alt="点击刷新验证码" width="118" height="38" v-on:click="generateCode()"></div>
+    <input type="text" lay-verify="required|code" maxlength="6" v-model="validateCode" placeholder="请输入验证码"
+        autocomplete="off" class="layui-input" @keyup.enter="enterToLogin">
+    <div class="code"><img v-bind:src="codeImage" border="0" style="cursor:pointer" alt="点击刷新验证码" width="118"
+            height="38" v-on:click="generateCode()"></div>
 </div>
