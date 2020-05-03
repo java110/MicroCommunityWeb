@@ -55,7 +55,7 @@
     };
 
     vcFramework = {
-        version: "v0.0.1",
+        version: "v0.0.3",
         name: "vcFramework",
         author: '吴学文',
         email: '928255095@qq.com',
@@ -105,9 +105,9 @@
         o.setJs = function (_js) {
             o.js = _js;
         };
-        o.setCss = function (_css){
+        o.setCss = function (_css) {
             o.css = _css;
-        }; 
+        };
         o.setLocation = function (_location) {
             o.nodeLocation = _location;
         };
@@ -141,6 +141,26 @@
             _divComponentAttr.value = _componentUrl;
             _tmpVcCreate.setAttributeNode(_divComponentAttr);
             _vcComponent.appendChild(_tmpVcCreate);
+
+            let _commonPath = _vcComponent.getAttribute('vc-path');
+            if (vc.isNotEmpty(_commonPath)) {
+                let _pathVcCreate = document.createElement("vc:create");
+                let _pathDivComponentAttr = document.createAttribute('path');
+                _pathDivComponentAttr.value = _commonPath;
+                _pathVcCreate.setAttributeNode(_pathDivComponentAttr);
+                _vcComponent.appendChild(_pathVcCreate);
+            }
+
+        }else{
+            let _vcComponent = document.getElementById('component');
+            let _commonPath = _vcComponent.getAttribute('vc-path');
+            if (vc.isNotEmpty(_commonPath)) {
+                let _pathVcCreate = document.createElement("vc:create");
+                let _pathDivComponentAttr = document.createAttribute('path');
+                _pathDivComponentAttr.value = _commonPath;
+                _pathVcCreate.setAttributeNode(_pathDivComponentAttr);
+                _vcComponent.appendChild(_pathVcCreate);
+            }
 
         }
         let vcElements = document.getElementsByTagName('vc:create');
@@ -197,18 +217,33 @@
         _divComponentAttr.value = _componentUrl;
         _tmpVcCreate.setAttributeNode(_divComponentAttr);
         _vcComponent.appendChild(_tmpVcCreate);
+        
+        let _commonPath = _vcComponent.getAttribute('vc-path');
+        if (vc.isNotEmpty(_commonPath)) {
+            let _pathVcCreate = document.createElement("vc:create");
+            let _pathDivComponentAttr = document.createAttribute('path');
+            _pathDivComponentAttr.value = _commonPath;
+            _pathVcCreate.setAttributeNode(_pathDivComponentAttr);
+            _vcComponent.appendChild(_pathVcCreate);
+        }
 
         let treeList = [];
         let _componentScript = [];
 
         let _vcElement = _tmpVcCreate;
-        let _tree = new VcTree(_vcElement, '', 1);
-        let _vcCreateAttr = document.createAttribute('id');
-        _vcCreateAttr.value = _tree.treeId;
-        _vcElement.setAttributeNode(_vcCreateAttr);
-        treeList.push(_tree);
-        //创建div
-        await findVcLabel(_tree, _vcElement);
+
+        let vcElements = _vcComponent.getElementsByTagName('vc:create');
+
+        for (let _vcElementIndex = 0; _vcElementIndex < vcElements.length; _vcElementIndex++) {
+            let _vcElement = vcElements[_vcElementIndex];
+            let _tree = new VcTree(_vcElement, '', 1);
+            let _vcCreateAttr = document.createAttribute('id');
+            _vcCreateAttr.value = _tree.treeId;
+            _vcElement.setAttributeNode(_vcCreateAttr);
+            treeList.push(_tree);
+            //创建div
+            await findVcLabel(_tree, _vcElement);
+        }
 
         //渲染组件html
         reader(treeList, _componentScript);
@@ -224,7 +259,7 @@
         let _componentName = _tree.vcCreate.getAttribute('path');
         //console.log('_componentName', _componentName, _tree);
         if (!vcFramework.isNotEmpty(_componentName)) {
-            throw '组件未包含path 属性'+_tree.vcCreate.outerHTML;
+            throw '组件未包含path 属性' + _tree.vcCreate.outerHTML;
         }
         //开始加载组件
         let _componentElement = await loadComponent(_componentName, _tree);
@@ -354,8 +389,8 @@
      * 异步去服务端 拉去HTML 和 js
      */
     loadComponent = async function (_componentName, _tree) {
-        if(vcFramework.isNotEmpty(_componentName) && _componentName.lastIndexOf('/') > 0){
-            _componentName = _componentName +'/'+ _componentName.substring(_componentName.lastIndexOf('/')+1,_componentName.length);
+        if (vcFramework.isNotEmpty(_componentName) && _componentName.lastIndexOf('/') > 0) {
+            _componentName = _componentName + '/' + _componentName.substring(_componentName.lastIndexOf('/') + 1, _componentName.length);
         }
         //从缓存查询
         let _cacheComponent = vcFramework.getComponent(_componentName);
@@ -369,9 +404,9 @@
             if (_tree.vcCreate.hasAttribute("domain")) {
                 _domain = _tree.vcCreate.getAttribute("domain");
             }
-            if(_componentName.startsWith('/pages')){ //这里是为了处理 pages 页面
+            if (_componentName.startsWith('/pages')) { //这里是为了处理 pages 页面
                 filePath = _componentName;
-            }else{ //这里是为了处理组件
+            } else { //这里是为了处理组件
                 filePath = '/' + _domain + '/' + _componentName;
             }
             let htmlFilePath = filePath + ".html";
@@ -1804,7 +1839,7 @@ vc 校验 工具类 -method
  * 监听div 大小
  */
 (function (vcFramework) {
-    
+
     vcFramework.eleResize = {
         _handleResize: function (e) {
             let ele = e.target || e.srcElement;

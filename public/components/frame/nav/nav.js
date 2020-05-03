@@ -10,17 +10,13 @@
             nav: {
                 moreNoticeUrl: '/admin.html#/pages/common/noticeManage',
                 notices: [],
-                total: 0
+                total: 0,
+                _currentCommunity:'',
+                communityInfos:[]
             },
             logo: '',
             userName: "",
-            navCommunityInfo: {
-                _currentCommunity: {},
-                communityInfos: [],
-                communityInfo: [],
-                errorInfo: '',
-                searchCommunityName: '',
-            }
+            
         },
         mounted: function () {
             this._initSysInfo();
@@ -115,8 +111,8 @@
                 var _tmpCurrentCommunity = vc.getCurrentCommunity();
                 //浏览器缓存中能获取到
                 if (_tmpCurrentCommunity != null && _tmpCurrentCommunity != undefined) {
-                    this.navCommunityInfo._currentCommunity = _tmpCurrentCommunity;
-                    this.navCommunityInfo.communityInfos = vc.getCommunitys();
+                    this.nav._currentCommunity = _tmpCurrentCommunity;
+                    this.nav.communityInfos = vc.getCommunitys();
 
                     return;
                 }
@@ -138,21 +134,21 @@
                     param,
                     function (json, res) {
                         if (res.status == 200) {
-                            vm.navCommunityInfo.communityInfos = JSON.parse(json).communitys;
+                            vm.nav.communityInfos = JSON.parse(json).communitys;
 
-                            if (vm.navCommunityInfo.communityInfos == null || vm.navCommunityInfo.communityInfos.length == 0) {
-                                vm.navCommunityInfo._currentCommunity = {
+                            if (vm.nav.communityInfos == null || vm.nav.communityInfos.length == 0) {
+                                vm.nav._currentCommunity = {
                                     name: "还没有入驻小区"
                                 };
                                 return;
                             }
 
-                            vm.navCommunityInfo._currentCommunity = vm.navCommunityInfo.communityInfos[0];
-                            vc.setCurrentCommunity(vm.navCommunityInfo._currentCommunity);
-                            vc.setCommunitys(vm.navCommunityInfo.communityInfos);
+                            vm.nav._currentCommunity = vm.nav.communityInfos[0];
+                            vc.setCurrentCommunity(vm.nav._currentCommunity);
+                            vc.setCommunitys(vm.nav.communityInfos);
 
                             //对首页做特殊处理，因为首页在加载数据时还没有小区信息 会报错
-                            if (vm.navCommunityInfo.communityInfos != null && vm.navCommunityInfo.communityInfos.length > 0) {
+                            if (vm.nav.communityInfos != null && vm.nav.communityInfos.length > 0) {
                                 vc.emit("indexContext", "_queryIndexContextData", {});
                                 vc.emit("indexArrears", "_listArrearsData", {});
                             }
@@ -166,7 +162,7 @@
             },
             changeCommunity: function (_community) {
                 vc.setCurrentCommunity(_community);
-                vm.navCommunityInfo._currentCommunity = _community;
+                vm.nav._currentCommunity = _community;
                 //中心加载当前页
                 location.reload();
             },
@@ -199,42 +195,8 @@
                 body.className = className + " mini-navbar";
             },
             _chooseMoreCommunity: function () {
-                $('#chooseEnterCommunityModel').modal('show');
-                vm.navCommunityInfo.searchCommunityName = '';
-                vm.listEnterCommunity(DEFAULT_PAGE, DEFAULT_ROW);
+                vc.emit('chooseEnterCommunity','openChooseEnterCommunityModel',{});
             },
-            listEnterCommunity: function (_page, _row) {
-                var param = {
-                    params: {
-                        _uid: '123mlkdinkldldijdhuudjdjkkd',
-                        page: _page,
-                        row: _row,
-                        communityName: vm.navCommunityInfo.searchCommunityName
-                    }
-                };
-                vc.http.get('nav',
-                    'getCommunitys',
-                    param,
-                    function (json, res) {
-                        if (res.status == 200) {
-                            let _data = JSON.parse(json);
-                            vm.navCommunityInfo.communityInfo = _data.communitys;
-                        }
-                    }, function () {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-
-            _chooseCurrentCommunity: function (_currentCommunity) {
-                vc.setCurrentCommunity(_currentCommunity);
-                //vm.navCommunityInfo._currentCommunity = _currentCommunity;
-                //中心加载当前页
-                location.reload();
-            },
-            _queryEnterCommunity: function () {
-                vm.listEnterCommunity(DEFAULT_PAGE, DEFAULT_ROW)
-            }
         }
     });
 
