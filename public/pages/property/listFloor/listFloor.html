@@ -65,9 +65,10 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">楼栋ID</th>
-                            <th class="text-center">编号</th>
                             <th class="text-center">名称</th>
+                            <th class="text-center">编号</th>
+                            <th class="text-center">楼栋ID</th>
+                            
                             <th class="text-center">创建员工</th>
                             <th class="text-right">操作</th>
 
@@ -76,14 +77,15 @@
                         <tbody>
                         <tr v-for="floor in listFloorInfo.floors">
                             <td class="text-center">
-                                {{floor.floorId}}
+                                {{floor.floorName}}
                             </td>
                             <td class="text-center">
                                 {{floor.floorNum}}
                             </td>
                             <td class="text-center">
-                                {{floor.floorName}}
+                                {{floor.floorId}}
                             </td>
+                            
                             <td class="text-center">
                                 {{floor.userName}}
                             </td>
