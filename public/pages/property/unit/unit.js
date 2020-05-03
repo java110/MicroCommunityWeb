@@ -71,6 +71,10 @@
                 vc.emit('searchFloor','openSearchFloorModel',{});
             },
             openAddUnitModel:function(){
+                if(!vc.isNotEmpty($that.unitInfo.conditions.floorId)){
+                    vc.toast('请先选择楼栋');
+                    return ;
+                }
                 vc.emit('addUnit','addUnitModel',{
                     floorId:vc.component.unitInfo.conditions.floorId
                 });
