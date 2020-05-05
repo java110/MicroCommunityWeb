@@ -5,7 +5,7 @@
             editInspectionRouteInfo: {
                 inspectionRouteId: '',
                 routeName: '',
-                seq: '',
+                seq: '1',
                 remark: '',
 
             }

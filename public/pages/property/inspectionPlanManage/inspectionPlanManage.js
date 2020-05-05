@@ -13,6 +13,7 @@
                 moreCondition: false,
                 inspectionPlanName: '',
                 states:'',
+                inspectionPlanStaffModel:false,
                 conditions: {
                     inspectionPlanName: '',
                     staffName:'',
@@ -31,6 +32,9 @@
 
             vc.on('inspectionPlanManage', 'listInspectionPlan', function (_param) {
                 vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
+            vc.on('inspectionPlanManage','goBack',function(_param){
+                vc.component.inspectionPlanManageInfo.inspectionPlanStaffModel = false;
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listInspectionPlans(_currentPage, DEFAULT_ROWS);
@@ -98,6 +102,10 @@
                 } else {
                     vc.component.inspectionPlanManageInfo.moreCondition = true;
                 }
+            },
+            _openPlanStaff:function(_inspectionPlan){
+                $that.inspectionPlanManageInfo.inspectionPlanStaffModel = true;
+                vc.emit('inspectionPlanStaffManage','listInspectionPoint',_inspectionPlan);
             }
 
 

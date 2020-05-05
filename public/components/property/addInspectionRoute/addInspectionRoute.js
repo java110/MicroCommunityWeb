@@ -9,7 +9,7 @@
         data: {
             addInspectionRouteInfo: {
                 routeName: '',
-                seq: '',
+                seq: '1',
                 remark: '',
             }
         },

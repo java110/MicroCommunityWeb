@@ -1,5 +1,5 @@
 <div class=" animated fadeInRight ecommerce">
-    <div class="row">
+    <div class="row" v-if="inspectionPlanManageInfo.inspectionPlanStaffModel == false">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="inspectionPlanManageInfo.inspectionPlanStaffModel == false">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
@@ -65,9 +65,9 @@
                             <th class="text-center">计划</th>
                             <th class="text-center">路线</th>
                             <th class="text-center">周期</th>
-                            <th class="text-center">执行人</th>
+                            <!-- <th class="text-center">执行人</th> -->
                             <th class="text-center">签到方式</th>
-                            <!-- <th class="text-center">开始时间</th> -->
+                            <th class="text-center">开始时间</th>
                             <th class="text-center">结束时间</th>
                             <th class="text-center">制定人</th>
                             <th class="text-center">制定时间</th>
@@ -80,15 +80,17 @@
                             <td class="text-center">{{inspectionPlan.inspectionPlanName}}</td>
                             <td class="text-center">{{inspectionPlan.inspectionRouteName}}</td>
                             <td class="text-center">{{inspectionPlan.inspectionPlanPeriodName}}</td>
-                            <td class="text-center">{{inspectionPlan.staffName}}</td>
+                            <!-- <td class="text-center">{{inspectionPlan.staffName}}</td> -->
                             <td class="text-center">{{inspectionPlan.signTypeName}}</td>
-                            <!-- <td class="text-center">{{inspectionPlan.startTime}}</td> -->
+                            <td class="text-center">{{inspectionPlan.startTime}}</td>
                             <td class="text-center">{{inspectionPlan.endTime}}</td>
                             <td class="text-center">{{inspectionPlan.createUserName}}</td>
                             <td class="text-center">{{inspectionPlan.createTime}}</td>
                             <td class="text-center">{{inspectionPlan.stateName}}</td>
                             <td class="text-right">
                                 <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openPlanStaff(inspectionPlan)">设置巡检人
+                                    </button>
                                     <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">变更
                                     </button>
@@ -129,6 +131,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div v-if="inspectionPlanManageInfo.inspectionPlanStaffModel == true">
+        <vc:create path="/pages/property/inspectionPlanStaffManage"></vc:create>
     </div>
 
 
