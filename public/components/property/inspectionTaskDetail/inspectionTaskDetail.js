@@ -51,7 +51,12 @@
                     taskDetails: [],
                     taskId: '',
                 };
-            }
+            }, 
+            openFile:function(_photo){
+                vc.emit('viewImage','showImage',{
+                    url:_photo.url
+                });
+             }
         }
 
     });

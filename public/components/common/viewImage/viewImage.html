@@ -1,0 +1,3 @@
+<div v-if="viewImageInfo.showImage" style="position:fixed;z-index:3000;left:50%;top:50%;transform:translate(-50%,-50%);">
+    <img v-on:click="_closeImage()" v-bind:src="viewImageInfo.url" style="width:1000px;height:500px;" />
+</div>

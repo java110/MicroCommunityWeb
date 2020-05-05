@@ -21,7 +21,9 @@
                                         <th class="text-center">巡检点ID</th>
                                         <th class="text-center">巡检点名称</th>
                                         <th class="text-center">巡检状态</th>
-                                        <th class="text-center">巡检照片</th>
+                                        <th class="text-center">巡检情况</th>
+                                        <th class="text-center">巡检说明</th>
+                                        <th class="text-right">巡检照片</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -30,7 +32,13 @@
                                         <td class="text-center">{{taskDetail.inspectionId}}</td>
                                         <td class="text-center">{{taskDetail.inspectionName}}</td>
                                         <td class="text-center">{{taskDetail.stateName}}</td>
-                                        <td class="text-center">{{taskDetail.photo}}</td>
+                                        <td class="text-center">{{taskDetail.patrolTypeName}}</td>
+                                        <td class="text-center">{{taskDetail.description}}</td>
+                                        <td class="text-right ">
+                                            <span v-for="_photo in taskDetail.photos">
+                                                <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"  v-on:click="openFile(_photo)"></img>
+                                            </span>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -44,4 +52,6 @@
             </div>
         </div>
     </div>
+
+    <vc:create path="common/viewImage"></vc:create>
 </div>
