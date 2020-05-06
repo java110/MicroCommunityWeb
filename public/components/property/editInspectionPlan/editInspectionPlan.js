@@ -7,8 +7,6 @@
                 inspectionPlanName: '',
                 inspectionRouteId: '',
                 inspectionPlanPeriod: '',
-                staffId: '',
-                staffName: '',
                 startTime: '',
                 endTime: '',
                 signType: '',
@@ -121,18 +119,6 @@
                             limit: "maxin",
                             param: "1,12",
                             errInfo: "执行周期格式错误"
-                        },
-                    ],
-                    'editInspectionPlanInfo.staffId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "执行人员不能为空"
-                        },
-                        {
-                            limit: "maxin",
-                            param: "1,30",
-                            errInfo: "执行人员不能超过30位"
                         },
                     ],
                     'editInspectionPlanInfo.startTime': [

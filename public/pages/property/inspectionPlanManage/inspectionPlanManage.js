@@ -105,7 +105,7 @@
             },
             _openPlanStaff:function(_inspectionPlan){
                 $that.inspectionPlanManageInfo.inspectionPlanStaffModel = true;
-                vc.emit('inspectionPlanStaffManage','listInspectionPoint',_inspectionPlan);
+                vc.emit('inspectionPlanStaffManage','listInspectionPlanStaff',_inspectionPlan);
             }
 
 

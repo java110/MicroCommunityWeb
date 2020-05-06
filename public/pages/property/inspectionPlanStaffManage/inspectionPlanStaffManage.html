@@ -29,11 +29,10 @@
                     </thead>
                     <tbody>
                         <tr v-for="inspectionPlanStaff in inspectionPlanStaffManageInfo.inspectionPlanStaffs">
-                            <td class="text-center">{{inspectionPlanStaff.inspectionName}}</td>
-                            <td class="text-center">{{inspectionPlanStaff.inspectionId}}</td>
-                            <td class="text-center">{{inspectionPlanStaff.locationObjName}}</td>
-                            <td class="text-center">{{inspectionPlanStaff.machineCode}}</td>
-                            <td class="text-center">{{inspectionPlanStaff.machineName}}</td>
+                            <td class="text-center">{{inspectionPlanStaff.staffName}}</td>
+                            <td class="text-center">{{inspectionPlanStaffManageInfo.inspectionPlanPeriodName}}</td>
+                            <td class="text-center">{{inspectionPlanStaff.startTime}}</td>
+                            <td class="text-center">{{inspectionPlanStaff.endTime}}</td>
                             <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
@@ -60,6 +59,6 @@
 
     <vc:create path="property/addInspectionPlanStaff" emitListener="inspectionRoutePointManage"
         emitFunction="listInspectionPoint"></vc:create>
-<!-- 
-    <vc:create path="property/deleteInspectionRoutePoint"></vc:create> -->
+
+    <vc:create path="property/deleteInspectionPlanStaff"></vc:create>
 </div>

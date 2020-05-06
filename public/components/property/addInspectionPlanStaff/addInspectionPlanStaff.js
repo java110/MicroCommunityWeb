@@ -14,8 +14,9 @@
             vc.component._initAddInspectionPlanStaffDateInfo();
         },
         _initEvent: function () {
-            vc.on('addInspectionPlanStaff', 'openAddInspectionPlanStaffModal', function () {
+            vc.on('addInspectionPlanStaff', 'openAddInspectionPlanStaffModal', function (_inspectionPlan) {
                 $('#addInspectionPlanStaffModel').modal('show');
+                $that.addInspectionPlanStaffInfo.inspectionPlanId = _inspectionPlan.inspectionPlanId;
             });
 
             vc.on("addInspectionPlanStaff", "notify", function (_param) {
@@ -23,8 +24,8 @@
                     vc.component.addInspectionPlanStaffInfo.staffId = _param.staffId;
                     vc.component.addInspectionPlanStaffInfo.staffName = _param.staffName;
                 }
-                if (_param.hasOwnProperty("inspectionRouteId")) {
-                    vc.component.addInspectionPlanStaffInfo.inspectionRouteId = _param.inspectionRouteId;
+                if (_param.hasOwnProperty("inspectionPlanId")) {
+                    vc.component.addInspectionPlanStaffInfo.inspectionPlanId = _param.inspectionPlanId;
                 }
             });
 
@@ -61,23 +62,13 @@
                             param: "",
                             errInfo: "开始时间不能为空"
                         },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "计计划开始时间不是有效的时间格式"
-                        },
                     ],
                     'addInspectionPlanStaffInfo.endTime': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "结束时间不能为空"
-                        },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "计划结束时间不是有效的时间格式"
-                        },
+                        }
                     ]
                 });
             },
@@ -112,7 +103,7 @@
                     });
             },
             _saveInspectionPlanStaff: function () {
-                if (!vc.component.addInspectionPlanValidate()) {
+                if (!vc.component.addInspectionPlanStaffValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
@@ -130,10 +121,11 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#addInspectionPlanModel').modal('hide');
-                            vc.emit('inspectionPlanStaffManage','listInspectionPoint', {
+                            vc.emit('inspectionPlanStaffManage','listInspectionPlanStaff', {
                                 inspectionPlanId:$that.addInspectionPlanStaffInfo.inspectionPlanId
                             });
                             vc.component.clearaddInspectionPlanStaffInfo();
+                            $('#addInspectionPlanStaffModel').modal('hide');
                             return;
                         }
                         vc.toast(json);
