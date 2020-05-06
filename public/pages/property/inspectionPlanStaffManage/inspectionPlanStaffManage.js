@@ -63,7 +63,7 @@
                            );
             },
             _openAddInspectionPlanStaffModal:function(){
-                vc.emit('chooseInspectionRoutePoint','openchooseInspectionRoutePointModal',$that.inspectionPlanStaffManageInfo);
+                vc.emit('addInspectionPlanStaff','openAddInspectionPlanStaffModal',$that.inspectionPlanStaffManageInfo);
             },
             _openDeleteInspectionPlanStaffModel:function(_inspectionPoint){
                 _inspectionPoint.inspectionPlanId = $that.inspectionPlanStaffManageInfo.inspectionPlanId;
