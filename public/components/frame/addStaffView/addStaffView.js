@@ -15,6 +15,7 @@
                 tel: '',
                 address: '',
                 relCd: '',
+                relCds:[],
             }
         },
         watch: {
@@ -26,7 +27,9 @@
             }
         },
         _initMethod: function() {
-
+            vc.getDict('u_org_staff_rel',"rel_cd",function(_data){
+                vc.component.addStaffViewInfo.relCds = _data;
+            });
 },
         _initEvent: function() {
 

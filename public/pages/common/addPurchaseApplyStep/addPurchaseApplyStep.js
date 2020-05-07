@@ -11,6 +11,8 @@
                 purchaseApply:{
                     resourceStores:[],
                     description:'',
+                    endUserName:'',
+                    endUserTel:'',
                     file:'',
                     resOrderType:''
                 }
@@ -29,6 +31,8 @@
 
             vc.on("addPurchaseApplyStep", "notify2", function (info) {
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.description = info.description;
+                vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserName = info.endUserName;
+                vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserTel = info.endUserTel;
             });
 
         },
@@ -38,7 +42,7 @@
                 vc.component.addPurchaseApplyStepInfo.$step.step({
                     index: 0,
                     time: 500,
-                    title: ["选择物品", "申请说明"]
+                    title: ["选择物品", "申请信息","审批人"]
                 });
                 vc.component.addPurchaseApplyStepInfo.index = vc.component.addPurchaseApplyStepInfo.$step.getIndex();
             },
@@ -54,12 +58,12 @@
                 vc.emit('viewResourceStoreInfo2', 'getSelectResourceStores', null);
                 var _resourceStores = vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores;
                 if (_resourceStores.length == 0) {
-                    vc.toast("请完善需要采购的物品信息");
+                    vc.toast("请完善物品信息");
                     return;
                 }
                for( var i = 0; i < _resourceStores.length; i++){
                    if(_resourceStores[i].quantity <= 0){
-                       vc.toast("请完善需要采购的物品信息");
+                       vc.toast("请完善物品信息");
                         return;
                    }
                    if(vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "20000"){

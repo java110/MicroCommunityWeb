@@ -8,8 +8,9 @@
         data: {
             addPurchaseApplyViewInfo: {
                 flowComponent: 'addPurchaseApplyView',
-                description:''
-
+                description:'',
+                endUserName:'',
+                endUserTel:'',
             }
         },
         watch: {
@@ -21,7 +22,7 @@
             }
         },
         _initMethod: function () {
-
+            
         },
         _initEvent: function () {
 
@@ -51,6 +52,30 @@
                             errInfo: "申请说明不能超过200位"
                         },
                     ],
+                    'addPurchaseApplyViewInfo.endUserName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "联系人不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "50",
+                            errInfo: "联系人不能超过50位"
+                        },
+                    ],
+                    'addPurchaseApplyViewInfo.endUserTel': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "联系电话不能为空"
+                        },
+                        {
+                            limit: "phone",
+                            param: "",
+                            errInfo: "不是有效手机号"
+                        },
+                    ]
 
                 });
             },
