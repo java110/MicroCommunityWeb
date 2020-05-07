@@ -140,11 +140,12 @@
                                     vc.jumpToPage("/user.html#/pages/frame/login");
                                     return ;
                                 }
+                                vc.toast(json);
                                 vc.component.registerInfo.errorInfo = json;
                              },
                              function(errInfo,error){
                                 console.log('请求失败处理');
-
+                                vc.toast(errInfo);
                                 vc.component.registerInfo.errorInfo = errInfo;
                              });
 

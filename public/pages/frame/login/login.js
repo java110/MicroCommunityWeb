@@ -91,11 +91,12 @@
                             });
                             return;
                         }
+                        vc.toast(json);
                         vc.component.loginInfo.errorInfo = json;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
+                        vc.toast(errInfo);
                         vc.component.loginInfo.errorInfo = errInfo;
                     });
 
