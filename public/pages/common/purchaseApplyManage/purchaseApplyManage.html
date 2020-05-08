@@ -64,9 +64,10 @@
                                 <th class="text-center">申请单号</th>
                                 <th class="text-center">申请人</th>
                                 <th class="text-center">使用人</th>
+                                <th class="text-center">联系方式</th>
                                 <th class="text-center">物品</th>
                                 <th class="text-center">申请时间</th>
-                                <th class="text-center">总计价格</th>
+                                <th class="text-center">参考价格</th>
                                 <th class="text-center">当前处理人</th>
                                 <th class="text-center">审批状态</th>
                                 <th class="text-right">操作</th>
@@ -76,7 +77,8 @@
                             <tr v-for="purchaseApply in purchaseApplyManageInfo.purchaseApplys">
                                 <td class="text-center">{{purchaseApply.applyOrderId}}</td>
                                 <td class="text-center">{{purchaseApply.userName}}</td>
-                                <td class="text-center">{{purchaseApply.userName}}</td>
+                                <td class="text-center">{{purchaseApply.endUserName}}</td>
+                                <td class="text-center">{{purchaseApply.endUserTel}}</td>
                                 <td class="text-center">{{purchaseApply.resourceNames}}</td>
                                 <td class="text-center">{{purchaseApply.createTime}}</td>
                                 <td class="text-center">{{purchaseApply.totalPrice}}</td>

@@ -10,6 +10,10 @@
                 flowComponent: 'purchaseApprovers',
                 staffId: '',
                 staffName: '',
+                companyName: '',
+                departmentName: '',
+                departmentId:'',
+                companyId:''
             }
         },
         watch: {
@@ -21,7 +25,8 @@
             }
         },
         _initMethod: function () {
-           
+            $that._loadStaffOrg();
+
         },
         _initEvent: function () {
             vc.on("purchaseApprovers", "notify", function (_param) {
@@ -32,6 +37,43 @@
             });
         },
         methods: {
+            _loadStaffOrg: function () {
+                let _userInfo = vc.getData("/nav/getUserInfo");
+                if (_userInfo == null || _userInfo == undefined) {
+                    vc.toast('用户可能还没有登陆，无法获取用户信息');
+                    return;
+                }
+                let _staffId = _userInfo.userId;
+                var param = {
+                    params: {
+                        staffId: _staffId,
+                        page: 1,
+                        row: 1
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('org.listOrgs',
+                    param,
+                    function (json) {
+                        var _staffInfo = JSON.parse(json);
+                        if (_staffInfo.total == 1) {
+                            let _tmpOrg = _staffInfo.orgs[0];
+                            $that.purchaseApproversInfo.companyName = _tmpOrg.parentOrgName;
+                            $that.purchaseApproversInfo.departmentName = _tmpOrg.orgName;
+                            $that.purchaseApproversInfo.departmentId = _tmpOrg.orgId;
+                            $that.purchaseApproversInfo.companyId = _tmpOrg.parentOrgId;
+
+                            vc.emit('purchaseApprovers','staffSelect2', 'setStaff',{
+                                companyId:_tmpOrg.parentOrgId,
+                                departmentId:_tmpOrg.orgId
+                            });
+
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             purchaseApproversValidate: function () {
                 return vc.validate.validate({
                     purchaseApproversInfo: vc.component.purchaseApproversInfo
@@ -63,7 +105,8 @@
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.purchaseApproversInfo);
                     return;
                 }
-            }
+            },
+
         }
     });
 

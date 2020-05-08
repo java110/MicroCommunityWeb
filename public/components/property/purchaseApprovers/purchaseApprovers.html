@@ -11,17 +11,21 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">所属公司</label>
                     <div class="col-sm-10">
-                        <vc:create path="frame/orgSelect2" parentModal="purchaseApprovers"
+                        <!-- <vc:create path="frame/orgSelect2" parentModal="purchaseApprovers"
                             callBackListener="purchaseApprovers" callBackFunction="notify"
-                            namespace="purchaseApprovers"></vc:create>
+                            namespace="purchaseApprovers"></vc:create> -->
+                        <input placeholder="必填，请填写所属公司" class="form-control"
+                            v-model="purchaseApproversInfo.companyName" readonly />
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">所属部门</label>
                     <div class="col-sm-10">
-                        <vc:create path="frame/departmentSelect2" parentModal="purchaseApprovers"
+                        <!-- <vc:create path="frame/departmentSelect2" parentModal="purchaseApprovers"
                             callBackListener="purchaseApprovers" callBackFunction="notify"
-                            namespace="purchaseApprovers"></vc:create>
+                            namespace="purchaseApprovers"></vc:create> -->
+                        <input placeholder="必填，请填写所属部门" class="form-control"
+                            v-model="purchaseApproversInfo.departmentName" readonly />
                     </div>
                 </div>
                 <div class="form-group row">
