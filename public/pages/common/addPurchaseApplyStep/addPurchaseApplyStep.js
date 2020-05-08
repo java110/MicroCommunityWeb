@@ -14,7 +14,9 @@
                     endUserName:'',
                     endUserTel:'',
                     file:'',
-                    resOrderType:''
+                    resOrderType:'',
+                    staffId:'',
+                    staffName:''
                 }
             }
         },
@@ -27,12 +29,19 @@
         _initEvent: function () {
             vc.on("addPurchaseApplyStep", "notify", function (viewResourceStoreInfo2) {
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores = viewResourceStoreInfo2.resourceStores;
+                vc.component.addPurchaseApplyStepInfo.infos[0] = viewResourceStoreInfo2.resourceStores;
             });
 
             vc.on("addPurchaseApplyStep", "notify2", function (info) {
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.description = info.description;
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserName = info.endUserName;
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserTel = info.endUserTel;
+                vc.component.addPurchaseApplyStepInfo.infos[1] = info;
+            });
+            vc.on("addPurchaseApplyStep", "notify3", function (info) {
+                vc.component.addPurchaseApplyStepInfo.purchaseApply.staffId = info.staffId;
+                vc.component.addPurchaseApplyStepInfo.purchaseApply.staffName = info.staffName;
+                vc.component.addPurchaseApplyStepInfo.infos[2] = info;
             });
 
         },
@@ -56,9 +65,9 @@
             },
             _nextStep: function () {
                 vc.emit('viewResourceStoreInfo2', 'getSelectResourceStores', null);
-                var _resourceStores = vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores;
-                if (_resourceStores.length == 0) {
-                    vc.toast("请完善物品信息");
+                var _currentData = vc.component.addPurchaseApplyStepInfo.infos[vc.component.addPurchaseApplyStepInfo.index];
+                if (_currentData == null || _currentData == undefined) {
+                    vc.toast("请选择或填写必选信息");
                     return;
                 }
                for( var i = 0; i < _resourceStores.length; i++){
@@ -83,9 +92,9 @@
             },
             _finishStep: function () {
                 vc.emit('addPurchaseApplyViewInfo', 'setPurchaseApplyInfo', null);
-                var _description = vc.component.addPurchaseApplyStepInfo.purchaseApply.description;
-                if (_description == null || _description == '') {
-                    vc.toast("请填写申请说明");
+                var _currentData = vc.component.addPurchaseApplyStepInfo.infos[vc.component.addPurchaseApplyStepInfo.index];
+                if (_currentData == null || _currentData == undefined) {
+                    vc.toast("请选择或填写必选信息");
                     return;
                 }
                 vc.http.post(

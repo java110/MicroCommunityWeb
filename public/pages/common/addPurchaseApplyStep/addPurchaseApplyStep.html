@@ -19,10 +19,10 @@
         ></vc:create>
     </div>
     <!-- 联系人 -->
-    <div v-if="addPurchaseApplyStepInfo.index == 2">
-        <vc:create path="common/addPurchaseApplyView"
+    <div v-show="addPurchaseApplyStepInfo.index == 2">
+        <vc:create path="property/purchaseApprovers"
                    callBackListener="addPurchaseApplyStep"
-                   callBackFunction="notify2"
+                   callBackFunction="notify3"
         ></vc:create>
     </div>
 
