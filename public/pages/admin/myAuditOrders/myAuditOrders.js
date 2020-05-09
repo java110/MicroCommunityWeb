@@ -77,6 +77,9 @@
             //         vc.component.AuditOrdersManageInfo.moreCondition = true;
             //     }
             // },
+            _openDetailPurchaseApplyModel:function(_purchaseApply){
+                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType);
+            },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
                 console.log("提交得参数："+_auditInfo);
