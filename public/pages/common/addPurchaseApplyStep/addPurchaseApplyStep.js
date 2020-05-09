@@ -65,6 +65,7 @@
             },
             _nextStep: function () {
                 vc.emit('viewResourceStoreInfo2', 'getSelectResourceStores', null);
+                let _resourceStores = vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores;
                 var _currentData = vc.component.addPurchaseApplyStepInfo.infos[vc.component.addPurchaseApplyStepInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
