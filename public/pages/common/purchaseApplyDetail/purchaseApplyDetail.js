@@ -20,11 +20,12 @@
             }
         },
         _initMethod:function(){
+            vc.component.purchaseApplyDetailInfo.applyOrderId = vc.getParam('applyOrderId');
+            vc.component.purchaseApplyDetailInfo.resOrderType = vc.getParam('resOrderType');
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent:function(){
-            vc.component.purchaseApplyDetailInfo.applyOrderId = vc.getParam('applyOrderId');
-            vc.component.purchaseApplyDetailInfo.resOrderType = vc.getParam('resOrderType');
+            
         },
         methods:{
             _listPurchaseApply:function(_page, _rows){

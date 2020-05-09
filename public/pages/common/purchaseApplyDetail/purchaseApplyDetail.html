@@ -1,35 +1,79 @@
-<div id="component">
+<div>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>申请信息</h5>
-                    <div class="ibox-tools" style="top:10px;">
-
-                    </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-md-3">
-                            <h5>审核状态:</h5>
-                            <i class="fa fa-search">:</i><span>{{purchaseApplyDetailInfo.stateName}}</span>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">申请单号：</label>
+                                <label class="">{{purchaseApplyDetailInfo.applyOrderId}}</label>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <h5>申请人:</h5>
-                            <i class="fa fa-user">:</i><span>{{purchaseApplyDetailInfo.userName}}</span>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">申请人：</label>
+                                <label class="">{{purchaseApplyDetailInfo.userName}}</label>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <h5>申请时间:</h5>
-                            <i class="fa fa-clock-o">:</i><span>{{purchaseApplyDetailInfo.createTime}}</span>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">使用人：</label>
+                                <label class="">{{purchaseApplyDetailInfo.endUserName}}</label>
+                            </div>
                         </div>
+
                     </div>
-                    <hr style="border-top:1px dashed #987cb9;" width="100%" color="#987cb9" size=1>
+
                     <div class="row">
-                        <div class="col-md-12">
-                            <h5>申请说明:</h5>
-                            <i class="fa fa-pencil">:</i> <span>{{purchaseApplyDetailInfo.description}}</span>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">使用人联系方式：</label>
+                                <label class="">{{purchaseApplyDetailInfo.endUserTel}}</label>
+                            </div>
                         </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">申请时间：</label>
+                                <label class="">{{purchaseApplyDetailInfo.createTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">参考价格：</label>
+                                <label class="">{{purchaseApplyDetailInfo.totalPrice}}</label>
+                            </div>
+                        </div>
+
                     </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">当前处理人：</label>
+                                <label class="">{{purchaseApplyDetailInfo.staffName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">当前处理人电话：</label>
+                                <label class="">{{purchaseApplyDetailInfo.staffTel}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">审批状态：</label>
+                                <label class="">{{purchaseApplyDetailInfo.stateName}}</label>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -42,35 +86,33 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">物资</th>
-                            <th class="text-center">物资编码</th>
-                            <th class="text-center">单价</th>
-                            <th class="text-center">库存</th>
-                            <th class="text-center">申请数量</th>
-                            <th class="text-center">备注</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">物资</th>
+                                <th class="text-center">物资编码</th>
+                                <th class="text-center">单价</th>
+                                <th class="text-center">库存</th>
+                                <th class="text-center">申请数量</th>
+                                <th class="text-center">备注</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="resourceStore in purchaseApplyDetailInfo.purchaseApplyDetailVo">
-                            <td class="text-center">{{resourceStore.resName}}</td>
-                            <td class="text-center">{{resourceStore.resCode}}</td>
-                            <td class="text-center">{{resourceStore.price}}</td>
-                            <td class="text-center">{{resourceStore.stock}}</td>
-                            <td class="text-center">{{resourceStore.quantity}}</td>
-                            <td class="text-center">{{resourceStore.remark}}</td>
-                        </tr>
+                            <tr v-for="resourceStore in purchaseApplyDetailInfo.purchaseApplyDetailVo">
+                                <td class="text-center">{{resourceStore.resName}}</td>
+                                <td class="text-center">{{resourceStore.resCode}}</td>
+                                <td class="text-center">{{resourceStore.price}}</td>
+                                <td class="text-center">{{resourceStore.stock}}</td>
+                                <td class="text-center">{{resourceStore.quantity}}</td>
+                                <td class="text-center">{{resourceStore.remark}}</td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
