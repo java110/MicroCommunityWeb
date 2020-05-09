@@ -50,6 +50,9 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _callBackListPurchaseApply:function(){
+                vc.getBack();
             }
         }
     });
