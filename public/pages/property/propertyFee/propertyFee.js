@@ -81,6 +81,10 @@
             },
             queryFeeDetailMethod:function(){
                 vc.component.listFeeDetail(DEFAULT_PAGE,DEFAULT_ROW);
+            },
+            _openRefundModel:function (_feeDetail) {
+                _feeDetail.mainFeeInfo = vc.component.mainFeeInfo;
+                vc.emit('returnPayFee', 'openReturnPayFeeModel', _feeDetail);
             }
         }
     });
