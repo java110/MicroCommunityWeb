@@ -14,7 +14,7 @@
                 returnPayFeeStates:'',
                 name: '',
                 auditReturnFeeId:'',
-                feeTypes:[],
+                returnPayFee:'',
                 conditions: {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: '',
@@ -70,7 +70,8 @@
                 vc.component._listReturnPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _auditReturnPayFeeState:function(_auditInfo){
-                _auditInfo.returnFeeId =  vc.component.returnPayFeeManageInfo.auditReturnFeeId;
+                vc.component.returnPayFeeManageInfo.returnPayFee.state = _auditInfo.state;
+                vc.component.returnPayFeeManageInfo.returnPayFee.remark = _auditInfo.remark;
                 vc.http.apiPost(
                     'returnPayFee.updateReturnPayFee',
                     JSON.stringify(_auditInfo),
@@ -89,7 +90,7 @@
                     });
             },
             _openReturnPayFeeAuditModel(_payFee){
-                vc.component.returnPayFeeManageInfo.auditReturnFeeId = _payFee.returnFeeId;
+                vc.component.returnPayFeeManageInfo.returnPayFee = _payFee;
                 vc.emit('audit','openAuditModal',{});
             }
 
