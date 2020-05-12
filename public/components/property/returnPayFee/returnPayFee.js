@@ -47,7 +47,6 @@
                 }
             },
             pushReturnFeeDetailInfo:function (_params) {
-                console.log(_params);
                 vc.component.returnFeeDetailInfo.communityId = _params.communityId;
                 vc.component.returnFeeDetailInfo.payTime = _params.createTime;
                 vc.component.returnFeeDetailInfo.detailId = _params.detailId;
@@ -92,8 +91,8 @@
                     function (json, res) {
                         if (res.status == 200) {
                             $('#returnPayFeeModel').modal('hide');
+                            vc.emit('propertyFee', 'listParkingSpaceData', vc.component.returnFeeDetailInfo);
                             vc.component.refreshFeeDetailInfo();
-                            vc.emit('returnPayFee', 'openReturnPayFeeModel', vc.component.returnFeeDetailInfo);
                             return;
                         }
                         vc.toast(json);
