@@ -93,7 +93,7 @@
                         if (res.status == 200) {
                             $('#returnPayFeeModel').modal('hide');
                             vc.component.refreshFeeDetailInfo();
-                            vc.jumpToPage("/admin.html#/pages/property/returnPayFeeManage");
+                            vc.emit('returnPayFee', 'openReturnPayFeeModel', vc.component.returnFeeDetailInfo);
                             return;
                         }
                         vc.toast(json);

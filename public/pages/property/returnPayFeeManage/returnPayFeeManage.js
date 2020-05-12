@@ -71,10 +71,11 @@
             },
             _auditReturnPayFeeState:function(_auditInfo){
                 vc.component.returnPayFeeManageInfo.returnPayFee.state = _auditInfo.state;
-                vc.component.returnPayFeeManageInfo.returnPayFee.remark = _auditInfo.remark;
+                //vc.component.returnPayFeeManageInfo.returnPayFee.remark = _auditInfo.remark;
+                let _returnPayFee = vc.component.returnPayFeeManageInfo.returnPayFee;
                 vc.http.apiPost(
                     'returnPayFee.updateReturnPayFee',
-                    JSON.stringify(_auditInfo),
+                    JSON.stringify(_returnPayFee),
                     {
                         emulateJSON:true
                     },

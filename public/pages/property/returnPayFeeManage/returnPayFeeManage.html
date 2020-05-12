@@ -57,7 +57,7 @@
                             <th class="text-center">应付金额</th>
                             <td class="text-center">实付金额</td>
                             <td class="text-center">退费原因</td>
-                            <td class="text-center">状态</td>
+                            <td class="text-center">审核状态</td>
                             <td class="text-center">操作</td>
                         </tr>
                         </thead>
@@ -72,7 +72,7 @@
                             <td class="text-center">{{payFee.reason}}</td>
                             <td class="text-center">{{payFee.stateName}}</td>
                             <td>
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="payFee.state == 1000">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openReturnPayFeeAuditModel(payFee)">审核
                                     </button>
