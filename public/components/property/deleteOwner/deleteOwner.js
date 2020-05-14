@@ -37,8 +37,7 @@
                         vc.component.deleteOwnernfo.errorInfo = json;
                      },
                      function(errInfo,error){
-                        console.log('请求失败处理');
-
+                         vc.toast(errInfo);
                         vc.component.deleteOwnernfo.errorInfo = errInfo;
                      });
             }
