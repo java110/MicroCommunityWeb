@@ -1,0 +1,53 @@
+<div id="editSmallWeChatModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">修改小程序管理</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">小程序名称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editSmallWeChatInfo.name" type="text" placeholder="必填，请填写小程序名称"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">appId</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editSmallWeChatInfo.appId" type="text" placeholder="必填，请填写appId"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">应用密钥</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editSmallWeChatInfo.appSecret" type="text" placeholder="必填，请填写应用密钥"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">支付密码</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editSmallWeChatInfo.payPassword" type="text"
+                                           placeholder="必填，请填写支付密码" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editSmallWeChat()"><i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
