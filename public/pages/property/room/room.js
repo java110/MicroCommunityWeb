@@ -132,7 +132,7 @@
                 if(_state == '2001'){
                     return "已入住";
                 }else if(_state == '2002'){
-                    return "未入驻";
+                    return "未入住";
                 }else if(_state == '2003'){
                     return "已交定金";
                 }
