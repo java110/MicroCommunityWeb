@@ -30,7 +30,7 @@
             var _ownerId = vc.getParam('ownerId')
 
             if (vc.notNull(_ownerId)) {
-                vc.component.listOwnerInfo.conditions.ownerId = _ownerId;
+                //vc.component.listOwnerInfo.conditions.ownerId = _ownerId;
             }
             vc.component._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
         },
