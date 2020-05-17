@@ -130,9 +130,9 @@
             },
             showState:function(_state){
                 if(_state == '2001'){
-                    return "房屋已售";
+                    return "已入住";
                 }else if(_state == '2002'){
-                    return "房屋未售";
+                    return "未入驻";
                 }else if(_state == '2003'){
                     return "已交定金";
                 }

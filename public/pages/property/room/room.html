@@ -102,7 +102,7 @@
                            data-page-size="10">
                         <thead>
                         <tr>
-                            <th>房屋ID</th>
+                            <!-- <th>房屋ID</th> -->
                             <th data-hide="phone">楼栋编号</th>
                             <th data-hide="phone">单元</th>
                             <th data-hide="phone">房屋编号</th>
@@ -118,29 +118,29 @@
                         </thead>
                         <tbody>
                         <tr v-for="room in roomInfo.rooms">
-                            <td>
+                            <!-- <td>
                                 {{room.roomId}}
+                            </td> -->
+                            <td>
+                                {{room.floorNum}}号楼
                             </td>
                             <td>
-                                {{room.floorNum}}
+                                {{room.unitNum}}单元
                             </td>
                             <td>
-                                {{room.unitNum}}
+                                {{room.roomNum}}室
                             </td>
                             <td>
-                                {{room.roomNum}}
-                            </td>
-                            <td>
-                                {{room.layer}}
+                                {{room.layer}}层
                             </td>
                             <!--<td>
                                 {{room.apartment}}
                             </td>-->
                             <td>
-                                {{room.builtUpArea}}
+                                {{room.builtUpArea}}平方米
                             </td>
                             <td>
-                                {{room.unitPrice != '0.00'?room.unitPrice:'0'}}
+                                {{room.unitPrice != '0.00'?room.unitPrice:'0'}}元
                             </td>
                             <td>
                                 {{vc.component.showState(room.state)}}
