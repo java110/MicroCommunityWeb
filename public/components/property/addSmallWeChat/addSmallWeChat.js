@@ -12,10 +12,18 @@
                 appId: '',
                 appSecret: '',
                 payPassword: '',
+                objType:'',
+                objId:'',
+                mchId:'',
+                remarks:'',
+                objTypes:'',
 
             }
         },
         _initMethod: function () {
+            vc.getDict('small_wechat',"obj_type",function(_data){
+                vc.component.addSmallWeChatInfo.objTypes = _data;
+            });
 
         },
         _initEvent: function () {
@@ -76,6 +84,20 @@
                             errInfo: "支付密码不能超过200个字符"
                         },
                     ],
+                    'addSmallWeChatInfo.objType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "配置不能为空"
+                        }
+                    ],
+                    'addSmallWeChatInfo.mchId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "小程序商户id不能为空"
+                        }
+                    ],
 
 
                 });
@@ -87,7 +109,7 @@
                     return;
                 }
 
-                vc.component.addSmallWeChatInfo.communityId = vc.getCurrentCommunity().communityId;
+                //vc.component.addSmallWeChatInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addSmallWeChatInfo);
@@ -95,6 +117,13 @@
                     return;
                 }
 
+                let objType = vc.component.addSmallWeChatInfo.objType;
+                //1000表示改小程序作用于当前小区 否则作用于所有小区
+                if("1000" == objType){
+                    vc.component.addSmallWeChatInfo.objId = vc.getCurrentCommunity().communityId;
+                }else{
+                    vc.component.addSmallWeChatInfo.objId = "allCommunity";
+                }
                 vc.http.apiPost(
                     'smallWeChat.saveSmallWeChat',
                     JSON.stringify(vc.component.addSmallWeChatInfo),
@@ -123,12 +152,21 @@
             },
             clearAddSmallWeChatInfo: function () {
                 vc.component.addSmallWeChatInfo = {
+                    weChatId: '',
                     name: '',
                     appId: '',
                     appSecret: '',
                     payPassword: '',
+                    objType:'',
+                    objId:'',
+                    mchId:'',
+                    remarks:'',
+                    objTypes:vc.component.addSmallWeChatInfo.objTypes,
 
                 };
+            },
+            getObjType:function () {
+
             }
         }
     });
