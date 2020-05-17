@@ -68,12 +68,15 @@
                            data-page-size="10">
                         <thead>
                         <tr>
-                            <th>车位ID</th>
-                            <th data-hide="phone">车位编号</th>
+                            
+                            <th data-hide="phone">停车场</th>
+                            <th data-hide="phone">车位</th>
                             <th data-hide="phone">车牌号</th>
-                            <th data-hide="phone">业主ID</th>
                             <th data-hide="phone">业主名称</th>
+                            <th data-hide="phone">联系方式</th>
                             <th data-hide="phone">业主身份证</th>
+                            <th data-hide="phone">车位状态</th>
+                            <th>车位ID</th>
                             <th class="text-right">操作</th>
 
                         </tr>
@@ -81,22 +84,29 @@
                         <tbody>
                         <tr v-for="parkingSpace in parkingSpaceCreateFeeInfo.parkingSpaces">
                             <td>
-                                {{parkingSpace.psId}}
+                                {{parkingSpace.areaNum}}号
                             </td>
                             <td>
-                                {{parkingSpace.areaNum}}号停车场{{parkingSpace.num}}号车位
+                                {{parkingSpace.num}}号
                             </td>
                             <td>
                                 {{parkingSpace.carNum}}
                             </td>
-                            <td>
-                                {{parkingSpace.ownerId}}
-                            </td>
+                           
                             <td>
                                 {{parkingSpace.ownerName}}
                             </td>
                             <td>
+                                {{parkingSpace.link}}
+                            </td>
+                            <td>
                                 {{parkingSpace.idCard}}
+                            </td>
+                            <td>
+                                {{parkingSpace.stateName}}
+                            </td>
+                            <td>
+                                {{parkingSpace.psId}}
                             </td>
                             <td class="text-right">
                                 <div class="btn-group">

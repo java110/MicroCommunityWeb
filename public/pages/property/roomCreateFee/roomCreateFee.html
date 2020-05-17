@@ -94,36 +94,49 @@
                            data-page-size="10">
                         <thead>
                         <tr>
-                            <th>房屋ID</th>
-                            <th data-hide="phone">房屋编号</th>
+                            <th data-hide="phone">楼栋</th>
+                            <th data-hide="phone">单元</th>
+                            <th data-hide="phone">房屋</th>
                             <th data-hide="phone">楼层</th>
-                            <th data-hide="phone">业主ID</th>
                             <th data-hide="phone">业主名称</th>
-                            <th data-hide="phone">业主身份证</th>
+                            <th data-hide="phone">联系电话</th>
+                            <th data-hide="phone">身份证</th>
+                            <th>房屋ID</th>
+                            <!--<th data-hide="phone">业主ID</th> -->
                             <th class="text-right">操作</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="room in roomCreateFeeInfo.rooms">
+                        <tr v-for="room in roomCreateFeeInfo.rooms">                       
                             <td>
-                                {{room.roomId}}
+                                {{room.floorNum}}号楼
+                            </td>       
+                            <td>
+                                {{room.unitNum}}单元
                             </td>
                             <td>
-                                {{room.floorNum}}号楼{{room.unitNum}}单元{{room.roomNum}}室
+                                {{room.roomNum}}室
                             </td>
                             <td>
                                 {{room.layer}}层
-                            </td>
-                            <td>
-                                {{room.ownerId}}
-                            </td>
+                            </td>  
                             <td>
                                 {{room.ownerName}}
                             </td>
                             <td>
+                                {{room.link}}
+                            </td>
+                            <td>
                                 {{room.idCard}}
                             </td>
+                             <td>
+                                {{room.roomId}}
+                            </td>
+                            <!--
+                            <td>
+                                {{room.ownerId}}
+                            </td> -->
                             <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-on:click="_openRoomCreateFeeAddModal(room,false)">创建收费

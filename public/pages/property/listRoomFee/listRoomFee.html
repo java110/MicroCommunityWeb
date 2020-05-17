@@ -26,7 +26,7 @@
                             <th class="text-center">开始时间</th>
                             <th class="text-center">到期时间</th>
                             <th class="text-center">状态</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-right">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,7 +38,7 @@
                             <td class="text-center">{{fee.startTime}}</td>
                             <td class="text-center">{{fee.endTime}}</td>
                             <td class="text-center">{{fee.stateName}}</td>
-                            <td class="text-left">
+                            <td class="text-right">
                                 <button class="btn btn-link btn-xs" v-if=" fee.state != '2009001'"  
                                         v-on:click="_payFee(fee)">缴费
                                 </button>
