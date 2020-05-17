@@ -25,6 +25,7 @@
             });
 
             vc.on('propertyFee','listParkingSpaceData',function(_param){
+                    console.log("返回",_param);
                   vc.component.feeDetailInfo.feeId = _param.feeId;
                   vc.component.listFeeDetail(DEFAULT_PAGE,DEFAULT_ROW);
             });
@@ -81,6 +82,10 @@
             },
             queryFeeDetailMethod:function(){
                 vc.component.listFeeDetail(DEFAULT_PAGE,DEFAULT_ROW);
+            },
+            _openRefundModel:function (_feeDetail) {
+                _feeDetail.mainFeeInfo = vc.component.mainFeeInfo;
+                vc.emit('returnPayFee', 'openReturnPayFeeModel', _feeDetail);
             }
         }
     });

@@ -44,6 +44,8 @@
                             <th data-hide="phone">打折率</th>
                             <th data-hide="phone" >备注</th>
                             <th data-hide="phone">缴费时间</th>
+                            <th data-hide="phone">退费标识</th>
+                            <th data-hide="phone">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -69,6 +71,17 @@
                             <td>
                                 {{feeDetail.createTime}}
                             </td>
+                            <td>
+                                {{feeDetail.stateName}}
+                            </td>
+                            <td>
+                                <div class="btn-group" v-if="!feeDetail.state || feeDetail.state== 1200">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRefundModel(feeDetail)">申请退费
+                                    </button>
+                                </div>
+                            </td>
+
                         </tr>
                         </tbody>
                         <tfoot>
@@ -86,4 +99,5 @@
             </div>
         </div>
     </div>
+    <vc:create path="property/returnPayFee"></vc:create>
 </div>
