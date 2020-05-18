@@ -173,13 +173,13 @@
                         var value = $(".editNoticeEndTime").val();
                         vc.component.editNoticeViewInfo.endTime = value;
                     });
-                $('.eidtSummernote').summernote({
+                    let $summernote = $('.eidtSummernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入公告内容',
                     callbacks: {
                         onImageUpload: function (files, editor, $editable) {
-                            sendEditFile(files);
+                            $that.sendEditFile($summernote, files);
                         },
                         onChange: function (contents, $editable) {
                             vc.component.editNoticeViewInfo.context = contents;
@@ -188,8 +188,38 @@
                 });
 
             },
-            sendEditFile: function (files) {
-                console.log('上传图片');
+            sendEditFile: function ($summernote,files) {
+                console.log('上传图片', files);
+
+                var param = new FormData();
+                param.append("uploadFile", files[0]);
+                param.append('communityId', vc.getCurrentCommunity().communityId);
+
+                vc.http.upload(
+                    'addNoticeView',
+                    'uploadImage',
+                    param,
+                    {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            var data = JSON.parse(json);
+                            //关闭model
+                            $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
+                            return;
+                        }
+                        vc.toast(json);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
             },
             closeEditNoticeInfo: function () {
                 vc.emit('noticeManage', 'listNotice', {});
