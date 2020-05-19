@@ -10,13 +10,12 @@
 
          },
          _initEvent:function(){
-            //  vc.on('deleteApp','openDeleteAppModal',function(_params){
-            //      alert("监听成功");
-            //      console.log(_params);
-            //     vc.component.deleteAppInfo = _params;
-            //     $('#deleteAppModel').modal('show');
-            //
-            // });
+             vc.on('deleteApp','openDeleteAppModal',function(_params){
+
+                vc.component.deleteAppInfo = _params;
+                $('#deleteAppModel').modal('show');
+
+            });
         },
         methods:{
             deleteApp:function(){
