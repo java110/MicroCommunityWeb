@@ -194,7 +194,7 @@
                     canvas.width = video.videoWidth;
                     canvas.height = video.videoHeight;
                     canvas.getContext('2d').drawImage(video, 0, 0);
-                    var data = canvas.toDataURL('image/webp');
+                    var data = canvas.toDataURL('image/jpeg',1.0);
                     vc.component.editOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }

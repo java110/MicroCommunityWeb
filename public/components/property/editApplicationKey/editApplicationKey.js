@@ -355,7 +355,7 @@
                     canvas.width = takeEditVideo.videoWidth;
                     canvas.height = takeEditVideo.videoHeight;
                     canvas.getContext('2d').drawImage(takeEditVideo, 0, 0);
-                    var data = canvas.toDataURL('image/webp');
+                    var data = canvas.toDataURL('image/jpeg',1.0);
                     vc.component.editApplicationKeyInfo.photo = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }
