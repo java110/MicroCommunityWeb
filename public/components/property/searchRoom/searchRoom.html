@@ -42,7 +42,7 @@
                                         <th>单元编号</th>
                                         <th>房屋编号</th>
                                         <th>楼层</th>
-                                        <th>操作</th>
+                                        <th class="text-right">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +62,7 @@
                                         <td>
                                             {{room.layer}}层
                                         </td>
-                                        <td>
+                                        <td class="text-right">
                                             <button class="btn btn-primary btn-xs" v-on:click="chooseRoom(room)">选择
                                             </button>
                                         </td>

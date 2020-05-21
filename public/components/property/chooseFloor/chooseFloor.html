@@ -41,7 +41,7 @@
                                         <th class="text-center">楼名称</th>
                                         <th class="text-center">楼编号</th>
                                         <th class="text-center">备注</th>
-                                        <th class="text-center">操作</th>
+                                        <th class="text-right">操作</th>
 
                                     </tr>
                                     </thead>
@@ -52,7 +52,7 @@
                                         <td class="text-center">{{floor.floorNum}}</td>
                                         <td class="text-center">{{floor.remark}}</td>
 
-                                        <td>
+                                        <td class="text-right">
                                             <button class="btn btn-primary btn-xs" v-on:click="chooseFloor(floor)">选择
                                             </button>
                                         </td>

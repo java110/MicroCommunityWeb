@@ -33,7 +33,7 @@
                                         <th>名称</th>
                                         <th>编号</th>
                                         <th>创建人</th>
-                                        <th>操作</th>
+                                        <th class="text-right">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -42,7 +42,7 @@
                                         <td>{{floor.floorName}}</td>
                                         <td>{{floor.floorNum}}</td>
                                         <td>{{floor.userName}}</td>
-                                        <td>
+                                        <td class="text-right">
                                             <button class="btn btn-primary btn-xs" v-on:click="chooseFloor(floor)">选择</button>
                                         </td>
                                     </tr>

@@ -31,8 +31,8 @@ let opts = {
 }
 
 //app.use('/callComponent',proxy('http://192.168.0.103:8012',opts));
-app.use('/callComponent',proxy('https://hc.demo.winqi.cn',opts));
-//app.use('/callComponent',proxy('http://10.10.10.6:8012',opts));
+//app.use('/callComponent',proxy('https://hc.demo.winqi.cn',opts));
+app.use('/callComponent',proxy('http://bmhome.java110.com',opts));
 
 //app.listen(3000);
 app.use(express.json());
