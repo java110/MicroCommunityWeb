@@ -31,7 +31,7 @@ let opts = {
 }
 
 //app.use('/callComponent',proxy('http://192.168.0.103:8012',opts));
-app.use('/callComponent',proxy('http://hc.demo.winqi.cn:8012',opts));
+app.use('/callComponent',proxy('https://hc.demo.winqi.cn',opts));
 //app.use('/callComponent',proxy('http://10.10.10.6:8012',opts));
 
 //app.listen(3000);

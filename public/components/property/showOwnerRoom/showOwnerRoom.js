@@ -65,6 +65,9 @@
                     roomId:_roomId
                 });
             },
+            showPropertyFee:function(_room){
+                vc.jumpToPage("/admin.html#/pages/property/listRoomFee?"+vc.objToGetParam(_room));
+            },
 
             showState:function(_state){
                 if(_state == '2001'){
