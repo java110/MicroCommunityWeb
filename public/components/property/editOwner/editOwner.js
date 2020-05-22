@@ -196,7 +196,7 @@
                     var video = document.getElementById('ownerPhotoForEdit');
                     canvas.width = 208;
                     canvas.height = 208;
-                    canvas.getContext('2d').drawImage(video, 0,0);
+                    canvas.getContext('2d').drawImage(video, 0,0,208,208);
                     var data = canvas.toDataURL('image/jpeg',1.0);
                     vc.component.editOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
