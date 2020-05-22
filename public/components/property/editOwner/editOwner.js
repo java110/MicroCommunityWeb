@@ -165,7 +165,10 @@
                 if (vc.component._editUserMedia()) {
                     vc.component.editOwnerInfo.videoPlaying = false;
                     var constraints = {
-                        video: true,
+                        video: {
+                            width:208,
+                            height:208
+                        },
                         audio: false
                     };
                     var video = document.getElementById('ownerPhotoForEdit');
@@ -191,9 +194,9 @@
                 if (vc.component.editOwnerInfo.videoPlaying) {
                     var canvas = document.getElementById('canvasForEdit');
                     var video = document.getElementById('ownerPhotoForEdit');
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-                    canvas.getContext('2d').drawImage(video, 0, 0);
+                    canvas.width = 208;
+                    canvas.height = 208;
+                    canvas.getContext('2d').drawImage(video, 0,0);
                     var data = canvas.toDataURL('image/jpeg',1.0);
                     vc.component.editOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
