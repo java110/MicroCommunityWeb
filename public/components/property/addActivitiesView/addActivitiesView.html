@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>新活动</h5>
+                <h5>信息发布</h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>
@@ -10,19 +10,20 @@
             <div class="ibox-content">
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">活动标题</label>
+                    <label class="col-sm-2 col-form-label">标题</label>
                     <div class="col-sm-10">
-                        <input v-model="addActivitiesViewInfo.title" type="text" placeholder="必填，请填写活动标题"
+                        <input v-model="addActivitiesViewInfo.title" type="text" placeholder="必填，请填写标题"
                                class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">活动类型</label>
+                    <label class="col-sm-2 col-form-label">信息类型</label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addActivitiesViewInfo.typeCd">
-                            <option selected disabled value="">必填，请选择活动类型</option>
-                            <option value="10001">小区文化</option>
-                            <option value="10002">其他</option>
+                            <option selected disabled value="">必填，请选择信息类型</option>
+                            <option v-for="(item,index) in addActivitiesViewInfo.typeCds" :key="index"
+                                    v-bind:value="item.statusCd">{{item.name}}
+                                </option>
                         </select></div>
                 </div>
                 <div class="form-group row">
@@ -50,7 +51,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">活动内容</label>
+                    <label class="col-sm-2 col-form-label">信息内容</label>
                     <div class="col-sm-10">
                         <div class="ibox-content no-padding">
                             <div class="summernote"></div>

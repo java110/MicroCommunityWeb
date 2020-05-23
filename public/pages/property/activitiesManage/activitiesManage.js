@@ -11,8 +11,9 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                componentShow:'activitiesList',
+                componentShow: 'activitiesList',
                 title: '',
+                typeCds: [],
                 conditions: {
                     title: '',
                     typeCd: '',
@@ -24,6 +25,9 @@
         },
         _initMethod: function () {
             vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.getDict('activities', "type_cd", function (_data) {
+                $that.activitiesManageInfo.typeCds = _data;
+            });
         },
         _initEvent: function () {
 
@@ -63,14 +67,16 @@
                     }
                 );
             },
-            _openAddActivitiesModal:function(){
+            _openAddActivitiesModal: function () {
                 vc.component.activitiesManageInfo.componentShow = 'addActivitiesView';
-                vc.emit('addActivitiesView','openAddActivitiesView',{});
+                vc.emit('addActivitiesView', 'openAddActivitiesView', {
+          
+                });
 
             },
-            _openEditActivitiesModel:function(_activities){
+            _openEditActivitiesModel: function (_activities) {
 
-                vc.emit('editActivitiesView','activitiesEditActivitiesInfo',_activities);
+                vc.emit('editActivitiesView', 'activitiesEditActivitiesInfo', _activities);
                 vc.component.activitiesManageInfo.componentShow = 'editActivitiesView';
             },
             _openDeleteActivitiesModel: function (_activities) {
