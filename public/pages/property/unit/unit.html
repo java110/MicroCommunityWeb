@@ -80,7 +80,8 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>单元ID</th>
+                            <!-- <th>单元ID</th> -->
+                            <th>楼栋</th>
                             <th data-hide="phone">单元编号</th>
                             <th data-hide="phone">总层数</th>
                             <th data-hide="phone">是否有电梯</th>
@@ -91,14 +92,17 @@
                         </thead>
                         <tbody>
                         <tr v-for="unit in unitInfo.units">
-                            <td>
+                            <!-- <td>
                                 {{unit.unitId}}
+                            </td> -->
+                            <td>
+                                {{unitInfo.conditions.floorName}}栋
                             </td>
                             <td>
-                                {{unit.unitNum}}
+                                {{unit.unitNum}}单元
                             </td>
                             <td>
-                                {{unit.layerCount}}
+                                {{unit.layerCount}}层
                             </td>
                             <td>
                                 {{unit.lift == '1010'?'有':'无'}}
