@@ -19,7 +19,8 @@
              vc.on('editUnit','openUnitModel',function(_params){
                 vc.component.refreshEditUnitInfo();
                 $('#editUnitModel').modal('show');
-                vc.component.editUnitInfo = _params;
+               // = _params;
+                vc.copyObject(_params, vc.component.editUnitInfo);
                 vc.component.editUnitInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
