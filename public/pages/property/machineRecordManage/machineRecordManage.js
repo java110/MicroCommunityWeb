@@ -40,6 +40,7 @@
 
                 vc.component.machineRecordManageInfo.conditions.page = _page;
                 vc.component.machineRecordManageInfo.conditions.row = _rows;
+                vc.component.machineRecordManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.machineRecordManageInfo.conditions
                 };
