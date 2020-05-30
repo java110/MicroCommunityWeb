@@ -18,7 +18,8 @@
                 squarePrice: '',
                 additionalAmount: '',
                 feeTypeCds:[],
-                computingFormulas:[]
+                computingFormulas:[],
+                billType:''
             }
         },
         _initMethod: function() {
@@ -159,6 +160,12 @@
                         param: "",
                         errInfo: "附加费用格式错误"
                     },
+                    ],
+                    'addFeeConfigInfo.billType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "出账类型不能为空"
+                    }
                     ],
 
                 });

@@ -14,7 +14,8 @@
                 additionalAmount: '0.00',
                 isDefault:'',
                 feeTypeCds:[],
-                computingFormulas:[]
+                computingFormulas:[],
+                billType:''
             }
         },
         _initMethod: function() {
@@ -163,6 +164,11 @@
                         limit: "required",
                         param: "",
                         errInfo: "费用项ID不能为空"
+                    }],
+                    'editFeeConfigInfo.billType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "出账类型不能为空"
                     }]
 
                 });

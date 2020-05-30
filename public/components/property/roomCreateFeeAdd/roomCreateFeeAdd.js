@@ -15,7 +15,6 @@
                 roomId: '',
                 feeTypeCd:'',
                 configId:'',
-                billType:'',
                 roomState:'',
                 isMore:false,
                 locationTypeCdName:'',
@@ -89,12 +88,6 @@
                         limit: "required",
                         param: "",
                         errInfo: "费用项目不能为空"
-                    }
-                    ],
-                    'roomCreateFeeAddInfo.billType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "出账类型不能为空"
                     }
                     ],
                      'roomCreateFeeAddInfo.roomState': [{
