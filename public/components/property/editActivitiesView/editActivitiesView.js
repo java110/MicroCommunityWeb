@@ -15,15 +15,17 @@
         },
         _initMethod: function () {
             vc.component._initEditActivitiesInfo();
-            vc.getDict('activities', "type_cd", function (_data) {
-                $that.editActivitiesViewInfo.typeCds = _data;
-            });
+           
         },
         _initEvent: function () {
             vc.on('editActivitiesView', 'openEditActivitiesModal', function (_params) {
                 vc.component.refreshEditActivitiesInfo();
                 _params.context = filterXSS(_params.context);
                 vc.component.editActivitiesViewInfo = _params;
+
+                vc.getDict('activities', "type_cd", function (_data) {
+                    $that.editActivitiesViewInfo.typeCds = _data;
+                });
             });
             vc.on('editActivitiesView', 'activitiesEditActivitiesInfo', function (_params) {
                 vc.component.refreshEditActivitiesInfo();
