@@ -51,13 +51,15 @@
                     function (json, res) {
                         if (res.status == 200) {
                             vc.component._loadCommunityInfo(_param);
-                        }else{
+                        }else if(res.status == 403){
                             vc.jumpToPage("/initCompany.html#/pages/common/company");
+                        }else{
+                            vc.toast(json);
                         }
                     }, function (e) {
                         console.log('请求失败处理',e);
                         //vc.jumpToPage(_param.url);
-                        vc.jumpToPage("/initCompany.html#/pages/common/company");
+                        vc.toast(e);
                     }
                 );
             }
