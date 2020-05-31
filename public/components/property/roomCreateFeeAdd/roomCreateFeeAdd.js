@@ -93,7 +93,7 @@
                      'roomCreateFeeAddInfo.roomState': [{
                          limit: "required",
                          param: "",
-                         errInfo: "出账类型不能为空"
+                         errInfo: "房屋状态不能为空"
                      }
                      ]
                 });
