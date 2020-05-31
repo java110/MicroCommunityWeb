@@ -5,11 +5,13 @@
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
-            callBackFunction: vc.propTypes.string //父组件监听方法
+            callBackFunction: vc.propTypes.string, //父组件监听方法
+            imageCount: vc.propTypes.string = '99' // -1 不限制
         },
         data: {
             uploadImageInfo: {
                 photos: [],
+                imageCount: 99
             }
         },
         watch: {
@@ -21,6 +23,10 @@
             }
         },
         _initMethod: function () {
+            let _imageCount = $props.imageCount;
+            if (_imageCount != 99) {
+                this.uploadImageInfo.imageCount = _imageCount;
+            }
 
         },
         _initEvent: function () {
