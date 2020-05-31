@@ -158,6 +158,7 @@
                     context: '',
                     startTime: '',
                     endTime: '',
+                    typeCds: []
                 }
             },
             _initEditActivitiesInfo: function () {
