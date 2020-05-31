@@ -40,9 +40,10 @@
             });
 
             vc.on('uploadImage', 'notifyPhotos', function (_photos) {
+                let _imageCount = this.uploadImageInfo.imageCount;
                 this.uploadImageInfo = {
                     photos: [],
-                    imageCount: 99
+                    imageCount: _imageCount
                 };
                 _photos.forEach(function (_photo) {
                     //?objId=772019092507000013&communityId=7020181217000001&fileTypeCd=10000
