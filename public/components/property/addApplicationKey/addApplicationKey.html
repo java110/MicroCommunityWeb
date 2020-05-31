@@ -9,20 +9,7 @@
             </div>
             <div class="ibox-content">
                 <div class="row">
-                    <div class="col-sm-5" style="text-align:center">
-                        <video id="addApplicationKeyPhoto" style="width: 100%;"></video>
-                        <canvas id="AddApplicationKeyCanvas" style="display:none;"></canvas>
-                        <div style="margin-top:20px">
-                            <button class="btn btn-primary" type="button" v-on:click="_takePhoto()"><span
-                                    class="glyphicon glyphicon-camera"></span> 拍照
-                            </button>
-                            <span class="btn btn-default btn-file" v-on:click="_uploadPhoto($event)">
-                                    <span class="fileinput-new">上传照片</span>
-                                </span>
-                            <input type="file" class="file" accept="images/*" id="uploadApplicationKeyPhoto" hidden
-                                   v-on:change="_choosePhoto($event)">
-                        </div>
-                    </div>
+                    
                     <div class="col-sm-7">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">姓名</label>
@@ -159,6 +146,21 @@
                             <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
                                     v-on:click="_closeAddApplicationKeyView()">取消
                             </button>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-5" style="text-align:center" v-show="addApplicationKeyInfo.typeFlag == '1100101'">
+                        <video id="addApplicationKeyPhoto" style="width: 100%;"></video>
+                        <canvas id="AddApplicationKeyCanvas" style="display:none;"></canvas>
+                        <div style="margin-top:20px">
+                            <button class="btn btn-primary" type="button" v-on:click="_takePhoto()"><span
+                                    class="glyphicon glyphicon-camera"></span> 拍照
+                            </button>
+                            <span class="btn btn-default btn-file" v-on:click="_uploadPhoto($event)">
+                                    <span class="fileinput-new">上传照片</span>
+                                </span>
+                            <input type="file" class="file" accept="images/*" id="uploadApplicationKeyPhoto" hidden
+                                   v-on:change="_choosePhoto($event)">
                         </div>
                     </div>
                 </div>
