@@ -83,18 +83,6 @@
                             errInfo: "描述不能为空"
                         },
                     ],
-                    'editOrgInfo.belongCommunityId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "隶属小区不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "隶属小区不正确"
-                        },
-                    ],
                     'editOrgInfo.orgId': [
                         {
                             limit: "required",
