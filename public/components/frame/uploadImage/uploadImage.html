@@ -1,7 +1,7 @@
 <div class="uploadImage row">
     <div v-for="image in this.uploadImageInfo.photos">
         <img v-bind:src="image" width="100px" height="100px"/>
-        <span v-on:click="this._removeImage(image)" class="glyphicon glyphicon-remove"
+        <span v-on:click="this._removeImage(image)" class="fa fa-remove float-right"
               style="position: relative; top: -35px;right: 20px; color: #d9534f"></span>
     </div>
     <div class="uploadButton" v-on:click="this._uploadPhoto()">
