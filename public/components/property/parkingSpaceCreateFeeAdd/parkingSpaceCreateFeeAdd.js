@@ -11,7 +11,6 @@
                 psId: '',
                 feeTypeCd:'',
                 configId:'',
-                billType:'',
                 parkingSpaceState:'',
                 isMore:false,
                 locationTypeCdName:'',
@@ -74,12 +73,6 @@
                         limit: "required",
                         param: "",
                         errInfo: "费用项目不能为空"
-                    }
-                    ],
-                    'parkingSpaceCreateFeeAddInfo.billType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "出账类型不能为空"
                     }
                     ],
                      'parkingSpaceCreateFeeAddInfo.parkingSpaceState': [{
