@@ -41,7 +41,8 @@
 
             vc.on('uploadImage', 'notifyPhotos', function (_photos) {
                 this.uploadImageInfo = {
-                    photos: []
+                    photos: [],
+                    imageCount: 99
                 };
                 _photos.forEach(function (_photo) {
                     //?objId=772019092507000013&communityId=7020181217000001&fileTypeCd=10000
