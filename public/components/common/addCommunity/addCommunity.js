@@ -96,16 +96,13 @@
                 });
             },
             saveCommunityInfo: function () {
+                 //vc.component.addCommunityInfo.communityId = vc.getCurrentCommunity().communityId;
+                 vc.component.addCommunityInfo.address = vc.component.addCommunityInfo.areaAddress+ vc.component.addCommunityInfo.tmpAddress;
                 if (!vc.component.addCommunityValidate()) {
                     vc.toast(vc.validate.errInfo);
 
                     return;
                 }
-
-                //vc.component.addCommunityInfo.communityId = vc.getCurrentCommunity().communityId;
-
-                vc.component.addCommunityInfo.address = vc.component.addCommunityInfo.areaAddress+ vc.component.addCommunityInfo.tmpAddress;
-
 
                 vc.http.post(
                     'addCommunity',
