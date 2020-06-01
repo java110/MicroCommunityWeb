@@ -6,7 +6,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{activitiesManageInfo.moreCondition == true?'隐藏':'更多'}}
+                            v-on:click="_moreCondition()">{{billManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -14,21 +14,21 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入标题" v-model="activitiesManageInfo.conditions.title"
+                                <input type="text" placeholder="请输入标题" v-model="billManageInfo.conditions.title"
                                     class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <select class="custom-select" v-model="activitiesManageInfo.conditions.typeCd">
+                            <select class="custom-select" v-model="billManageInfo.conditions.typeCd">
                                 <option selected value="">请选择信息类型</option>
-                                <option v-for="(item,index) in activitiesManageInfo.typeCds" :key="index"
+                                <option v-for="(item,index) in billManageInfo.typeCds" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
                                 </option>
                             </select></div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入员工名称"
-                                    v-model="activitiesManageInfo.conditions.userName" class=" form-control">
+                                    v-model="billManageInfo.conditions.userName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -38,10 +38,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4" v-if="activitiesManageInfo.moreCondition == true">
+                        <div class="col-sm-4" v-if="billManageInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入信息ID"
-                                    v-model="activitiesManageInfo.conditions.activitiesId" class=" form-control">
+                                    v-model="billManageInfo.conditions.activitiesId" class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-    <div class="row" v-bind:class="{no_display:activitiesManageInfo.componentShow != 'activitiesList'}">
+    <div class="row" v-bind:class="{no_display:billManageInfo.componentShow != 'activitiesList'}">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
@@ -80,18 +80,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="activities in activitiesManageInfo.activitiess">
-                                <td class="text-center">{{activities.billId}}</td>
-                                <td class="text-center">{{activities.billName}}</td>
-                                <td class="text-center">{{activities.receivable}}元</td>
-                                <td class="text-center">{{activities.curReceivable}}元</td>
-                                <td class="text-center">{{activities.billTime}}元</td>
-                                <td class="text-center">{{activities.configName}}</td>
-                                <td class="text-center">{{activities.curBill == 'T'?'当前账单':'历史账单'}}</td>
+                            <tr v-for="bill in billManageInfo.activitiess">
+                                <td class="text-center">{{bill.billId}}</td>
+                                <td class="text-center">{{bill.billName}}</td>
+                                <td class="text-center">{{bill.receivable}}元</td>
+                                <td class="text-center">{{bill.curReceivable}}元</td>
+                                <td class="text-center">{{bill.billTime}}元</td>
+                                <td class="text-center">{{bill.configName}}</td>
+                                <td class="text-center">{{bill.curBill == 'T'?'当前账单':'历史账单'}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openBillDetail(activities)">欠费清单
+                                            v-on:click="_openBillDetail(bill)">欠费清单
                                         </button>
                                     </div>
                                 </td>
