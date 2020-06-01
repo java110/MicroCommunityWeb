@@ -5,6 +5,7 @@
             addCommunityInfo: {
                 name: '',
                 address: '',
+                tmpAddress: '',
                 areaAddress:'',
                 nearbyLandmarks: '',
                 cityCode: '0971',
@@ -103,7 +104,7 @@
 
                 //vc.component.addCommunityInfo.communityId = vc.getCurrentCommunity().communityId;
 
-                vc.component.addCommunityInfo.address = vc.component.addCommunityInfo.areaAddress+ vc.component.addCommunityInfo.address;
+                vc.component.addCommunityInfo.address = vc.component.addCommunityInfo.areaAddress+ vc.component.addCommunityInfo.tmpAddress;
 
 
                 vc.http.post(
