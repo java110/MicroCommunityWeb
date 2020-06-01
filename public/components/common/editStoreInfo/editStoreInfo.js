@@ -106,6 +106,7 @@
                 }
                 vc.http.apiPost('update.store.info',
                     JSON.stringify(vc.component.editStoreInfo),
+                    {},
                     function (json, res) {
                         if (res.status == 200) {
                             $('#editStoreModel').modal('hide');
