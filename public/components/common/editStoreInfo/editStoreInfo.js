@@ -2,13 +2,13 @@
     vc.extends({
         data: {
             editStoreInfo: {
-                storeId:'',
-                name:'',
-                address:'',
-                tel:'',
-                nearByLandmarks:'',
-                mapX:'',
-                mapY:'',
+                storeId: '',
+                name: '',
+                address: '',
+                tel: '',
+                nearByLandmarks: '',
+                mapX: '',
+                mapY: '',
             }
         },
         _initMethod: function () {
@@ -24,7 +24,7 @@
 
         },
         methods: {
-            refreshEditStoreInfo(_storeInfo){
+            refreshEditStoreInfo(_storeInfo) {
                 _storeInfo = _storeInfo._storeInfo;
                 vc.component.editStoreInfo.storeId = _storeInfo.storeId;
                 vc.component.editStoreInfo.name = _storeInfo.name;
@@ -34,15 +34,15 @@
                 vc.component.editStoreInfo.mapX = _storeInfo.mapX;
                 vc.component.editStoreInfo.mapY = _storeInfo.mapY;
             },
-            clearEditStoreInfo(){
-                vc.component.editStoreInfo= {
-                    storeId:'',
-                    name:'',
-                    address:'',
-                    tel:'',
-                    nearByLandmarks:'',
-                    mapX:'',
-                    mapY:'',
+            clearEditStoreInfo() {
+                vc.component.editStoreInfo = {
+                    storeId: '',
+                    name: '',
+                    address: '',
+                    tel: '',
+                    nearByLandmarks: '',
+                    mapX: '',
+                    mapY: '',
                 }
             },
             editStoreValidate: function () {
@@ -96,10 +96,10 @@
                             param: "200",
                             errInfo: "附件地标位置最多200位"
                         }
-                     ]
+                    ]
                 });
             },
-            submitEditStoreInfo:function () {
+            submitEditStoreInfo: function () {
                 if (!vc.component.editStoreValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -107,6 +107,12 @@
                 vc.http.apiPost('update.store.info',
                     JSON.stringify(vc.component.editStoreInfo),
                     function (json, res) {
+                        if (res.status == 200) {
+                            $('#editStoreModel').modal('hide');
+                            vc.emit('storeInfoManage', 'getStoreInfo', {});
+                            return;
+                        }
+                        vc.toast(json);
                     }, function (bodyText, res) {
                         if (res.status == 200) {
                             $('#editStoreModel').modal('hide');

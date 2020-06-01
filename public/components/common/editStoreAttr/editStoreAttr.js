@@ -66,6 +66,12 @@
                 vc.http.apiPost('storeAttr.updateStoreAttr',
                     JSON.stringify(vc.component.editStoreAttr),
                     function (json, res) {
+                        if (res.status == 200) {
+                            $('#editStoreAttrModel').modal('hide');
+                            vc.emit('storeInfoManage', 'getStoreInfo', {});
+                            return;
+                        }
+                        vc.toast(json);
                     }, function (bodyText, res) {
                         if (res.status == 200) {
                             $('#editStoreAttrModel').modal('hide');
