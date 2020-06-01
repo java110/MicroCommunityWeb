@@ -45,7 +45,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('billManage',
+                vc.http.apiGet('fee.listBill',
                     param,
                     function (json, res) {
                         var _billManageInfo = JSON.parse(json);
