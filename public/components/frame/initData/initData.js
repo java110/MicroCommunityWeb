@@ -14,10 +14,10 @@
         methods: {
             _loadCommunityInfo: function (_param) {
                 var param = {
-                    params:{
-                        _uId:'ccdd00opikookjuhyyttvhnnjuuu',
-                        page:1,
-                        row:3
+                    params: {
+                        _uId: 'ccdd00opikookjuhyyttvhnnjuuu',
+                        page: 1,
+                        row: 3
                     }
                 };
                 vc.http.get('initData',
@@ -39,10 +39,10 @@
                 );
             },
             _validateHasStore: function (_param) {
-                console.log("_param",_param);
+                console.log("_param", _param);
                 var param = {
-                    params:{
-                        _uId:'ccdd00opikookjuhyyttvhnnjuuu'
+                    params: {
+                        _uId: 'ccdd00opikookjuhyyttvhnnjuuu'
                     }
                 };
                 vc.http.get('hasCompany',
@@ -51,13 +51,17 @@
                     function (json, res) {
                         if (res.status == 200) {
                             vc.component._loadCommunityInfo(_param);
-                        }else if(res.status == 403){
+                        } else if (res.status == 403) {
                             vc.jumpToPage("/initCompany.html#/pages/common/company");
-                        }else{
+                        } else {
                             vc.toast(json);
                         }
-                    }, function (e) {
-                        console.log('请求失败处理',e);
+                    }, function (e, res) {
+                        console.log('请求失败处理', e);
+                        if (res.status == 403) {
+                            vc.jumpToPage("/initCompany.html#/pages/common/company");
+                            return;
+                        }
                         //vc.jumpToPage(_param.url);
                         vc.toast(e);
                     }
