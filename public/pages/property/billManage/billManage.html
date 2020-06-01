@@ -67,12 +67,13 @@
                             <tr>
                                 <!-- <th class="text-center">信息ID</th> -->
                                 <th class="text-center">账单编号</th>
+                                <th class="text-center">收费项目</th>
                                 <th class="text-center">账单名称</th>
                                 <th class="text-center">累计应收</th>
                                 <th class="text-center">当期应收</th>
                                 <th class="text-center">实收金额</th>
                                 <th class="text-center">账单日期</th>
-                                <th class="text-center">收费项目</th>
+                                
                                 <th class="text-center">账单类型</th>
                                 <th class="text-right">操作</th>
 
@@ -82,11 +83,11 @@
                         <tbody>
                             <tr v-for="bill in billManageInfo.activitiess">
                                 <td class="text-center">{{bill.billId}}</td>
+                                <td class="text-center">{{bill.configName}}</td>
                                 <td class="text-center">{{bill.billName}}</td>
                                 <td class="text-center">{{bill.receivable}}元</td>
                                 <td class="text-center">{{bill.curReceivable}}元</td>
                                 <td class="text-center">{{bill.billTime}}元</td>
-                                <td class="text-center">{{bill.configName}}</td>
                                 <td class="text-center">{{bill.curBill == 'T'?'当前账单':'历史账单'}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
