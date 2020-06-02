@@ -60,11 +60,9 @@
                                 <th class="text-center">任务ID</th>
                                 <th class="text-center">任务名称</th>
                                 <th class="text-center">运行时间</th>
-                                <th class="text-center">任务类型</th>
+                                <th class="text-center">模板名称</th>
                                 <th class="text-center">创建时间</th>
-                                <th class="text-center">运行状态</th>
                                 <th class="text-center">启停状态</th>
-                                <th class="text-center">线程数</th>
                                 <th class="text-right">操作</th>
                             </tr>
                         </thead>
@@ -72,12 +70,10 @@
                             <tr v-for="job in jobManageInfo.Jobs">
                                 <td class="text-center">{{job.taskId}}</td>
                                 <td class="text-center">{{job.taskName}}</td>
-                                <td class="text-center">{{job.taskTaskcron}}</td>
-                                <td class="text-center">{{job.taskUOrDName}}</td>
-                                <td class="text-center">{{job.taskCreateDate}}</td>
-                                <td class="text-center">{{job.taskRunState}}</td>
-                                <td class="text-center">{{job.taskRunState}}</td>
-                                <td class="text-center">{{job.taskTnum}}</td>
+                                <td class="text-center">{{job.taskCron}}</td>
+                                <td class="text-center">{{job.templateName}}</td>
+                                <td class="text-center">{{job.createTime}}</td>
+                                <td class="text-center">{{job.stateName}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
@@ -123,7 +119,7 @@
     </div>
 
     <vc:create path="dev/addJob"></vc:create>
-    <vc:create path="dev/editJob"></vc:create>
-    <vc:create path="dev/deleteJob"></vc:create>
+    <!-- <vc:create path="dev/editJob"></vc:create>
+    <vc:create path="dev/deleteJob"></vc:create> -->
 
 </div>

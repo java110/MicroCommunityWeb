@@ -14,7 +14,7 @@
                 conditions:{
                     taskId:'',
                     taskName:'',
-                    taskType:''
+                    templateId:''
                 }
             }
         },
@@ -38,14 +38,13 @@
                  };
 
                //发送get请求
-               vc.http.get('jobManage',
-                            'list',
+               vc.http.apiGet('task.listTasks',
                              param,
                              function(json,res){
                                 var _jobManageInfo=JSON.parse(json);
                                 vc.component.jobManageInfo.total = _jobManageInfo.total;
                                 vc.component.jobManageInfo.records = _jobManageInfo.records;
-                                vc.component.jobManageInfo.jobs = _jobManageInfo.jobs;
+                                vc.component.jobManageInfo.jobs = _jobManageInfo.data;
                                 vc.emit('pagination','init',{
                                      total:vc.component.jobManageInfo.records,
                                      currentPage:_page
