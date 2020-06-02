@@ -3,12 +3,9 @@
     vc.extends({
         data: {
             addJobInfo: {
-                appId: '',
-                name: '',
-                securityCode: '',
-                whileListIp: '',
-                blackListIp: '',
-                remark: '',
+                taskName: '',
+                templateId: '',
+                taskCron: ''
 
             }
         },
@@ -25,51 +22,35 @@
                 return vc.validate.validate({
                     addJobInfo: vc.component.addJobInfo
                 }, {
-                    'addJobInfo.name': [
+                    'addJobInfo.taskName': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "应用名称不能为空"
+                            errInfo: "任务名称不能为空"
                         },
                         {
                             limit: "maxin",
                             param: "2,50",
-                            errInfo: "应用名称必须在2至50字符之间"
+                            errInfo: "任务名称必须在2至50字符之间"
                         },
                     ],
-                    'addJobInfo.securityCode': [
+                    'addJobInfo.templateId': [
                         {
-                            limit: "maxLength",
-                            param: "64",
-                            errInfo: "秘钥太长超过64位"
+                            limit: "required",
+                            param: "",
+                            errInfo: "模板不能为空"
                         },
                     ],
-                    'addJobInfo.whileListIp': [
+                    'addJobInfo.taskCron': [
                         {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "白名单内容不能超过200"
+                            limit: "required",
+                            param: "",
+                            errInfo: "定时不能为空"
                         },
-                    ],
-                    'addJobInfo.blackListIp': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "黑名单内容不能超过200"
-                        },
-                    ],
-                    'addJobInfo.remark': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "备注内容不能超过200"
-                        },
-                    ],
-
-
+                    ]
                 });
             },
-            saveAppInfo: function () {
+            saveJobInfo: function () {
                 if (!vc.component.addJobValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -79,20 +60,20 @@
                 //vc.component.addJobInfo.communityId = vc.getCurrentCommunity().communityId;
 
             
-                vc.http.post(
-                    'addJob',
-                    'save',
+                vc.http.apiPost(
+                    'task.saveTask',
                     JSON.stringify(vc.component.addJobInfo),
                     {
                         emulateJSON: true
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let data = res.data;
+                        if (data.code == 200) {
                             //关闭model
                             $('#addJobModel').modal('hide');
                             vc.component.clearAddJobInfo();
-                            vc.emit('appManage', 'listApp', {});
+                            vc.emit('jobManage', 'listJob', {});
 
                             return;
                         }
@@ -108,12 +89,9 @@
             },
             clearAddJobInfo: function () {
                 vc.component.addJobInfo = {
-                    name: '',
-                    securityCode: '',
-                    whileListIp: '',
-                    blackListIp: '',
-                    remark: '',
-
+                    taskName: '',
+                    templateId: '',
+                    taskCron: ''
                 };
             }
         }
