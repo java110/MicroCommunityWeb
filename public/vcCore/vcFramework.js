@@ -1620,14 +1620,23 @@ vc 校验 工具类 -method
          * @param {校验文本} text
          */
         num: function (text) {
+            if(text == null || text == undefined){
+                return true;
+            }
             let regNum = /^[0-9][0-9]*$/;
             return regNum.test(text);
         },
         date: function (str) {
+            if(str == null || str == undefined){
+                return true;
+            }
             let regDate = /^(\d{4})-(\d{2})-(\d{2})$/;
             return regDate.test(str);
         },
         dateTime: function (str) {
+            if(str == null || str == undefined){
+                return true;
+            }
             let reDateTime = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\s+(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/;
             return reDateTime.test(str);
         },
@@ -1635,10 +1644,16 @@ vc 校验 工具类 -method
             金额校验
         **/
         money: function (text) {
+            if(text == null || text == undefined){
+                return true;
+            }
             let regMoney = /^\d+\.?\d{0,2}$/;
             return regMoney.test(text);
         },
         idCard: function (num) {
+            if(num == null || num == undefined){
+                return true;
+            }
             num = num.toUpperCase();
             //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
             if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num))) {

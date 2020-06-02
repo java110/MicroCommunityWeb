@@ -41,20 +41,16 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "名称不能为空"
+                            errInfo: "姓名不能为空"
                         },
                         {
                             limit: "maxin",
                             param: "2,10",
-                            errInfo: "名称长度必须在2位至10位"
+                            errInfo: "姓名长度必须在2位至10位"
                         },
                     ],
                     'addOwnerInfo.age': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "年龄不能为空"
-                        },
+                        
                         {
                             limit: "num",
                             param: "",
@@ -82,9 +78,9 @@
                     ],
                     'addOwnerInfo.idCard': [
                         {
-                            limit: "maxLength",
-                            param: "18",
-                            errInfo: "身份证长度不能超过200位"
+                            limit: "idCard",
+                            param: "",
+                            errInfo: "身份证格式错误"
                         }
                     ],
                     'addOwnerInfo.ownerTypeCd': [

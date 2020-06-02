@@ -19,9 +19,9 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">名称</label>
+                                <label class="col-sm-2 col-form-label">姓名</label>
                                 <div class="col-sm-10"><input v-model="addOwnerInfo.name" type="text"
-                                                              placeholder="必填，请填写名称" class="form-control"></div>
+                                                              placeholder="必填，请填写姓名" class="form-control"></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">性别</label>
@@ -36,7 +36,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">年龄</label>
                                 <div class="col-sm-10"><input v-model="addOwnerInfo.age" type="number"
-                                                              placeholder="必填，请填写年龄" class="form-control"></div>
+                                                              placeholder="可选，请填写年龄" class="form-control"></div>
                             </div>
                             <div class="form-group row" v-if="addOwnerInfo.componentTitle == '成员'">
                                 <label class="col-sm-2 col-form-label">类型</label>
