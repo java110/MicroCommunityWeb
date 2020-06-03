@@ -65,18 +65,20 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editJob',
-                    'update',
+                vc.http.apiPost(
+                    'task.updateTask',
                     JSON.stringify(vc.component.editJobInfo),
                     {
                         emulateJSON: true
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        let data = res.data;
+                        if (_json.code == 200) {
                             //关闭model
                             $('#editJobModel').modal('hide');
+                            vc.component.clearEditJobInfo();
                             vc.emit('jobManage', 'listJob', {});
                             return;
                         }
