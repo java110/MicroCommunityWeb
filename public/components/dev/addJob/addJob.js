@@ -136,7 +136,7 @@
                             return;
                         }
                     }, function (errInfo, error) {
-                        vc.toast("查询地区失败");
+                        vc.toast("查询模板配置失败");
                     });
             },
             clearAddJobInfo: function () {
