@@ -101,8 +101,9 @@
                     _param,
                     function (json, res) {
                         console.log('task.listTaskTemplate',json);
-                        let data = JSON.parse(json).data;
-                        if (data.code == 200) {
+                        let _json = JSON.parse(json);
+                        let data = _json.data;
+                        if (_json.code == 200) {
                             $that.addJobInfo.templates = data;
                             return;
                         }
@@ -125,8 +126,9 @@
                 vc.http.apiGet('task.listTaskTemplateSpec',
                     _param,
                     function (json, res) {
-                        let data = JSON.parse(json).data;
-                        if (data.code == 200) {
+                        let _json = JSON.parse(json);
+                        let data = _json.data;
+                        if (_json.code == 200) {
                             data.forEach(item => {
                                 item.value = "";
                             });
