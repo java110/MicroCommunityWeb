@@ -101,7 +101,7 @@
                     _param,
                     function (json, res) {
                         console.log('task.listTaskTemplate',json);
-                        let data = json.data;
+                        let data = JSON.parse(json).data;
                         if (data.code == 200) {
                             $that.addJobInfo.templates = data;
                             return;
