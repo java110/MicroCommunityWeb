@@ -21,6 +21,7 @@
                 $('#editJobModel').modal('show');
                 vc.copyObject(_params, vc.component.editJobInfo);
                 $that.queryEditTempalte();
+                $that.chooseEditTemplate();
                 //vc.component.editJobInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
@@ -143,6 +144,7 @@
                     taskName: '',
                     templateId: '',
                     taskCron: '',
+                    taskAttr: [],
                     templates: [],
                     templateSpecs: []
 
