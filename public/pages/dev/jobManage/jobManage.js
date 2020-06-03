@@ -61,7 +61,9 @@
                 vc.emit('editJob','openEditJobModal',_job);
             },
             _openDeleteJobModel:function(_job){
-                vc.emit('deleteJob','openDeleteJobModal',_job);
+                vc.emit('deleteJob','openDeleteJobModal',{
+                    taskId:_job.taskId
+                });
             },
             _queryJobMethod:function(){
                 vc.component._listJobs(DEFAULT_PAGE, DEFAULT_ROWS);
