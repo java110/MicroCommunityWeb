@@ -83,7 +83,7 @@
                             vc.toast(_json.msg);
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
 
                     },
                     function (errInfo, error) {
@@ -112,7 +112,7 @@
                             vc.toast(_json.msg);
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
 
                     },
                     function (errInfo, error) {
