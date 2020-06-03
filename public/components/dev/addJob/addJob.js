@@ -69,14 +69,13 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
                         let data = res.data;
-                        if (data.code == 200) {
+                        if (_json.code == 200) {
                             //关闭model
                             $('#addJobModel').modal('hide');
                             vc.component.clearAddJobInfo();
                             vc.emit('jobManage', 'listJob', {});
-
                             return;
                         }
                         vc.toast(json);
