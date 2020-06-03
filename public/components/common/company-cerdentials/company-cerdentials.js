@@ -71,6 +71,7 @@
             _companyinitDate: function () {
                 $('.company_time').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd',
                     minView: "month",
                     initialDate: new Date(),

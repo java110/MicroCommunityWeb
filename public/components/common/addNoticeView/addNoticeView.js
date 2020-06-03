@@ -138,6 +138,7 @@
                 vc.component.addNoticeViewInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.noticeStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -152,6 +153,7 @@
                     });
                 $('.noticeEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),

@@ -41,6 +41,7 @@
                 vc.component.editFeeConfigInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.editFeeConfigStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -55,6 +56,7 @@
                     });
                 $('.editFeeConfigEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),

@@ -109,6 +109,7 @@
                 vc.component.addVisitInfo.visitTime = vc.dateFormat(new Date().getTime());
                  $('.addVisitTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -123,6 +124,7 @@
                     });
                 $('.addDepartureTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),

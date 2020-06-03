@@ -168,6 +168,7 @@
                 //vc.component.editActivitiesViewInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.editActivitiesStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -182,6 +183,7 @@
                     });
                 $('.editActivitiesEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),

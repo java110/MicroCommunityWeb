@@ -36,8 +36,8 @@
         },
         methods:{
             initDate:function(){
-                $(".start_time").datetimepicker({format: 'yyyy-mm-dd', language: 'zh-CN',minView: "day"});
-                $(".end_time").datetimepicker({format: 'yyyy-mm-dd', language: 'zh-CN',minView: "hour"});
+                $(".start_time").datetimepicker({format: 'yyyy-mm-dd',fontAwesome: 'fa', language: 'zh-CN',minView: "day"});
+                $(".end_time").datetimepicker({format: 'yyyy-mm-dd',fontAwesome: 'fa', language: 'zh-CN',minView: "hour"});
                 $('.start_time').datetimepicker()
                           .on('changeDate', function (ev) {
                             var value = $(".start_time").val();

@@ -34,6 +34,7 @@
             initDate:function(){
                 $('.start_time').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd',
                     autoClose: 1,
                     minView: "month",
@@ -46,6 +47,7 @@
                     });
                 $('.end_time').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd',
                     autoClose: 1,
                     minView: "month",

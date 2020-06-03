@@ -62,6 +62,7 @@
                 vc.component.addAdvertInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.addAdvertStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -76,6 +77,7 @@
                     });
                 $('.addAdvertEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),

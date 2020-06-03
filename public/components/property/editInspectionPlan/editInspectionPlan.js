@@ -245,6 +245,7 @@
             _initEditInspectionPlanDateInfo:function(){
                 $('.editInspectionPlanStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -259,6 +260,7 @@
                     });
                 $('.editInspectionPlanEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),

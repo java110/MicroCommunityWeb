@@ -158,6 +158,7 @@
                     //vc.component.editOwnerRepairInfo.startTime = vc.dateFormat(new Date().getTime());
                      $('.editAppointmentTime').datetimepicker({
                         language: 'zh-CN',
+                        fontAwesome: 'fa',
                         format: 'yyyy-mm-dd hh:ii:ss',
                         initTime: true,
                         initialDate: new Date(),

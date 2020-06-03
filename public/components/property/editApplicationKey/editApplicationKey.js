@@ -97,6 +97,7 @@
                 vc.component.editApplicationKeyInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.editApplicationStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -111,6 +112,7 @@
                     });
                 $('.editApplicationEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),

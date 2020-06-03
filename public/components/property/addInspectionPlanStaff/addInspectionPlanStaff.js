@@ -76,6 +76,7 @@
                 //vc.component.addInspectionPlanStaffInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.addInspectionPlanStaffStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'hh:ii',
                     initTime: true,
                     startView: 'day',
@@ -90,6 +91,7 @@
                     });
                 $('.addInspectionPlanStaffEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'hh:ii',
                     initTime: true,
                     startView: 'day',

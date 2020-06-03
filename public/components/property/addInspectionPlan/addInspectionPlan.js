@@ -144,6 +144,7 @@
                 vc.component.addInspectionPlanInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.addInspectionPlanStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -158,6 +159,7 @@
                     });
                 $('.addInspectionPlanEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),

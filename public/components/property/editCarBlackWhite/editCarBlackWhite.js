@@ -28,6 +28,7 @@
                 vc.component.editCarBlackWhiteInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.editCarBlackWhiteStartTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
@@ -42,6 +43,7 @@
                     });
                 $('.editCarBlackWhiteEndTime').datetimepicker({
                     language: 'zh-CN',
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     initTime: true,
                     initialDate: new Date(),
