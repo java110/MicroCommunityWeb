@@ -100,7 +100,8 @@
                 vc.http.apiGet('task.listTaskTemplate',
                     _param,
                     function (json, res) {
-                        let data = JSON.parse(json).data;
+                        console.log('task.listTaskTemplate',json);
+                        let data = json.data;
                         if (data.code == 200) {
                             $that.addJobInfo.templates = data;
                             return;
