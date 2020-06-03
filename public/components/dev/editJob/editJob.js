@@ -78,7 +78,7 @@
                         if (_json.code == 200) {
                             //关闭model
                             $('#editJobModel').modal('hide');
-                            vc.component.clearEditJobInfo();
+                            vc.component.refreshEditJobInfo();
                             vc.emit('jobManage', 'listJob', {});
                             return;
                         }
