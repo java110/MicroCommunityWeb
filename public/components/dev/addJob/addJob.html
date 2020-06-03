@@ -1,5 +1,5 @@
 <div id="addJobModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -11,18 +11,16 @@
                                 <label class="col-sm-2 col-form-label">任务名称</label>
                                 <div class="col-sm-10">
                                     <input v-model="addJobInfo.taskName" type="text" placeholder="必填，请填写任务名称"
-                                           class="form-control">
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">选择模板</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control form-control-sm"
-                                            v-model="addJobInfo.templateId"
-                                            @change="chooseTemplate(item)">
-                                        <option v-for="item in addJobInfo.templates"
-                                                :label="item.templateName"
-                                                :value="item.templateId">{{item.templateName}}
+                                    <select class="form-control form-control-sm" v-model="addJobInfo.templateId"
+                                        @change="chooseTemplate()" placeholder="必填，请选择模板">
+                                        <option v-for="item in addJobInfo.templates" :label="item.templateName"
+                                            :value="item.templateId">{{item.templateName}}
                                         </option>
 
                                     </select>
@@ -32,14 +30,14 @@
                                 <label class="col-sm-2 col-form-label">定时时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="addJobInfo.taskCron" type="text" placeholder="选填，请填写定时时间"
-                                           class="form-control">
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row" v-for="item in addJobInfo.templateSpecs">
                                 <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                                 <div class="col-sm-10">
                                     <input v-model="item.value" type="text" :placeholder="item.specDesc"
-                                           class="form-control">
+                                        class="form-control">
                                 </div>
                             </div>
 
@@ -48,7 +46,7 @@
                                         class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                    data-dismiss="modal">取消
                                 </button>
                             </div>
                         </div>

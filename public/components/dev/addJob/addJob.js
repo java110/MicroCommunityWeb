@@ -112,13 +112,13 @@
                         vc.toast("查询地区失败");
                     });
             },
-            chooseTemplate: function (_template) {
+            chooseTemplate: function () {
                 //根据当前 template 查询属性 渲染页面
                 var _param = {
                     params: {
                         page: 1,
                         row: 30,
-                        templateId: _template.templateId,
+                        templateId: $that.addJobInfo.templateId,
                         isShow: 'T'
                     }
                 };
