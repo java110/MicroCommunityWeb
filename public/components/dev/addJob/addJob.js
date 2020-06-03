@@ -5,7 +5,9 @@
             addJobInfo: {
                 taskName: '',
                 templateId: '',
-                taskCron: ''
+                taskCron: '',
+                templates: [],
+                templateSpecs: []
 
             }
         },
@@ -14,6 +16,7 @@
         },
         _initEvent: function () {
             vc.on('addJob', 'openAddJobModal', function () {
+                $that.queryTempalte();
                 $('#addJobModel').modal('show');
             });
         },
@@ -59,7 +62,6 @@
 
                 //vc.component.addJobInfo.communityId = vc.getCurrentCommunity().communityId;
 
-            
                 vc.http.apiPost(
                     'task.saveTask',
                     JSON.stringify(vc.component.addJobInfo),
@@ -87,11 +89,60 @@
 
                     });
             },
+            queryTempalte: function () {
+                var _param = {
+                    params: {
+                        page: 1,
+                        row: 30
+                    }
+                };
+                //获取模板信息
+                vc.http.apiGet('task.listTaskTemplate',
+                    _param,
+                    function (json, res) {
+                        let data = JSON.parse(json).data;
+                        if (data.code == 200) {
+                            $that.addJobInfo.templates = data;
+                            return;
+                        }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理', errInfo, error);
+                        vc.toast("查询地区失败");
+                    });
+            },
+            chooseTemplate: function (_template) {
+                //根据当前 template 查询属性 渲染页面
+                var _param = {
+                    params: {
+                        page: 1,
+                        row: 30,
+                        templateId: _template.templateId,
+                        isShow: 'T'
+                    }
+                };
+                //获取模板信息
+                vc.http.apiGet('task.listTaskTemplateSpec',
+                    _param,
+                    function (json, res) {
+                        let data = JSON.parse(json).data;
+                        if (data.code == 200) {
+                            data.forEach(item => {
+                                item.value = "";
+                            });
+                            $that.addJobInfo.templateSpecs = data;
+                            return;
+                        }
+                    }, function (errInfo, error) {
+                        vc.toast("查询地区失败");
+                    });
+            },
             clearAddJobInfo: function () {
                 vc.component.addJobInfo = {
                     taskName: '',
                     templateId: '',
-                    taskCron: ''
+                    taskCron: '',
+                    templates: [],
+                    templateSpecs: []
                 };
             }
         }

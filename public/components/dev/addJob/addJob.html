@@ -17,29 +17,30 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">选择模板</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addJobInfo.securityCode" type="text" placeholder="选填，请选择模板"
-                                           class="form-control">
+                                    <select class="form-control form-control-sm"
+                                            v-model="template"
+                                            @change="chooseTemplate(template)">
+                                        <option v-for="item in addJobInfo.templates"
+                                                :label="item.templateName"
+                                                :value="item.templateId">{{item.templateName}}
+                                        </option>
+
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">白名单</label>
+                                <label class="col-sm-2 col-form-label">定时时间</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addJobInfo.whileListIp" type="text" placeholder="选填，请填写白名单"
+                                    <input v-model="addJobInfo.taskCron" type="text" placeholder="选填，请填写定时时间"
                                            class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">黑名单</label>
+                            <div class="form-group row" v-for="item in addJobInfo.templateSpecs">
+                                <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addJobInfo.blackListIp" type="text" placeholder="选填，请填写黑名单"
+                                    <input v-model="item.value" type="text" :placeholder="item.specDesc"
                                            class="form-control">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
-                                <div class="col-sm-10">
-                                    <textarea placeholder="选填，请填写备注" class="form-control"
-                                              v-model="addJobInfo.remark"></textarea></div>
                             </div>
 
                             <div class="ibox-content">
