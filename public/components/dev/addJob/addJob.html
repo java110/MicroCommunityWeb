@@ -18,8 +18,8 @@
                                 <label class="col-sm-2 col-form-label">选择模板</label>
                                 <div class="col-sm-10">
                                     <select class="form-control form-control-sm"
-                                            v-model="template"
-                                            @change="chooseTemplate(template)">
+                                            v-model="addJobInfo.templateId"
+                                            @change="chooseTemplate(item)">
                                         <option v-for="item in addJobInfo.templates"
                                                 :label="item.templateName"
                                                 :value="item.templateId">{{item.templateName}}
