@@ -39,7 +39,7 @@
             _initDate:function(){
                 $(".start_time").datetimepicker({
                     language: 'zh-CN',
-                    bootcssVer:3,
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd',
                     minView: "month",
                     initialDate: new Date(),
@@ -48,7 +48,7 @@
                 });
                 $(".end_time").datetimepicker({
                     language: 'zh-CN',
-                    bootcssVer:3,
+                    fontAwesome: 'fa',
                     format: 'yyyy-mm-dd',
                     minView: "month",
                     initialDate: new Date(),
