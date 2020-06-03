@@ -134,7 +134,7 @@
                                 $that.editJobInfo.taskAttr.forEach(tmd => {
                                     if(item.specCd == tmd.specCd && item.templateId == $that.editJobInfo.templateId){
                                         item.value = tmd.value;
-                                        item.attrId = tmp.attrId;
+                                        item.attrId = tmd.attrId;
                                     }
                                 });
                             });
