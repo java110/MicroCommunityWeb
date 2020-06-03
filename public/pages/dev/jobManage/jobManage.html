@@ -75,13 +75,13 @@
                                 <td class="text-center">{{job.createTime}}</td>
                                 <td class="text-center">{{job.state == '002'? '运行':'停止'}}</td>
                                 <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditJobModel(job)">
+                                    <div class="btn-group" v-if="job.state == '001'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openStartJob(job)">
                                             启动
                                         </button>
                                     </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteJobModel(job)">
+                                    <div class="btn-group"  v-if="job.state == '002'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openStopJob(job)">
                                             停止
                                         </button>
                                     </div>
@@ -116,6 +116,6 @@
 
     <vc:create path="dev/addJob"></vc:create>
     <vc:create path="dev/editJob"></vc:create>
-    <vc:create path="dev/deleteJob"></vc:create> 
+    <vc:create path="dev/deleteJob"></vc:create>
 
 </div>
