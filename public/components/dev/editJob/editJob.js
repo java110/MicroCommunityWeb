@@ -13,13 +13,14 @@
             }
         },
         _initMethod: function () {
-            $that.queryEditTempalte();
+           
         },
         _initEvent: function () {
             vc.on('editJob', 'openEditJobModal', function (_params) {
                 vc.component.refreshEditJobInfo();
                 $('#editJobModel').modal('show');
                 vc.copyObject(_params, vc.component.editJobInfo);
+                $that.queryEditTempalte();
                 //vc.component.editJobInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
