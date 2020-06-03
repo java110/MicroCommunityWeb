@@ -129,7 +129,11 @@
                         let data = _json.data;
                         if (_json.code == 200) {
                             data.forEach(item => {
-                                item.value = "";
+                                $that.editJobInfo.taskAttr.forEach(tmd => {
+                                    if(item.specCd == tmd.specCd && item.templateId == $that.editJobInfo.templateId){
+                                        item.value = tmd.value;
+                                    }
+                                });
                             });
                             $that.editJobInfo.templateSpecs = data;
                             return;
