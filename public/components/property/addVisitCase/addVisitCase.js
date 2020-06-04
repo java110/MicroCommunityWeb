@@ -42,6 +42,12 @@
                     return ;
                 }
             },
+            _addUserMedia: function () {
+                return navigator.getUserMedia = navigator.getUserMedia ||
+                    navigator.webkitGetUserMedia ||
+                    navigator.mozGetUserMedia ||
+                    navigator.msGetUserMedia || null;
+            },
             _initAddVisitMedia: function () {
                 if (vc.component._addUserMedia()) {
                     vc.component.addVisitCase.videoPlaying = false;
