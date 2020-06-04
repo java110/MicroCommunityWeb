@@ -137,7 +137,7 @@
                     });
             },
             clearAddOwnerInfo: function () {
-                let _componentTitle = $that.addOwnerInfo._componentTitle;
+                let _componentTitle = $that.addOwnerInfo.componentTitle;
                 vc.component.addOwnerInfo = {
                     name: '',
                     age: '',
