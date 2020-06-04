@@ -19,7 +19,7 @@
                    callBackFunction="notify"
         ></vc:create>
     </div>
-    <div v-if="newVisitInfo.index == 2">
+    <div v-show="newVisitInfo.index == 2">
         <vc:create path="property/addVisitCase"
                    callBackComponent="addVisitSpace"
                    callBackFunction="notify"
