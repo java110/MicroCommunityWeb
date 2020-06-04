@@ -11,8 +11,28 @@
                             <label class="col-sm-2 col-form-label">访客拜访事由</label>
                             <div class="col-sm-10">
                                 <textarea v-model="addVisitCase.visitCase" type="text" placeholder="请填写访客拜访事由" rows="3"
-                                          class="form-control"></textarea>
+                                    class="form-control"></textarea>
                             </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">照片信息</label>
+
+                            <div class="col-sm-5" style="text-align:center">
+                                <video id="visitPhoto" style="width: 100%;"></video>
+                                <canvas id="canvas" style="display:none;"></canvas>
+                                <div style="margin-top:20px">
+                                    <button class="btn btn-primary" type="button" v-on:click="_takePhoto()"><span
+                                            class="glyphicon glyphicon-camera"></span> 拍照</button>
+                                    <span class="btn btn-default btn-file" v-on:click="_uploadPhoto($event)">
+                                        <span class="fileinput-new">上传照片</span>
+                                    </span>
+                                    <input type="file" class="file" accept="images/*" id="uploadVisitPhoto" hidden
+                                        v-on:change="_choosePhoto($event)">
+                                </div>
+                            </div>
+                            <div class="col-sm-5"><img width="100%" height="100%"
+                                v-bind:src="addVisitCase.visitPhoto" alt="访客照片"></div>
+
                         </div>
                     </div>
                 </div>

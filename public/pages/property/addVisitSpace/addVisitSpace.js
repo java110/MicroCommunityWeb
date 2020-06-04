@@ -24,7 +24,9 @@
                 vc.component.newVisitInfo.infos[0]["ownerId"] = _ownerId;
             });
             vc.on("addVisitSpace", "visitCase", function(_visitCase){
-                vc.component.newVisitInfo.infos[0]["visitCase"] = _visitCase;
+                vc.component.newVisitInfo.infos[0]["visitCase"] = _visitCase.visitCase;
+                vc.component.newVisitInfo.infos[0]["photo"] = _visitCase.visitPhoto;
+
             });
 
         },
@@ -85,7 +87,8 @@
                     ownerId:vc.component.newVisitInfo.infos[0]['ownerId'],
                     visitCase:vc.component.newVisitInfo.infos[0]['visitCase'],
                     visitTime:vc.component.newVisitInfo.infos[0]['visitTime'],
-                    departureTime:vc.component.newVisitInfo.infos[0]['departureTime']
+                    departureTime:vc.component.newVisitInfo.infos[0]['departureTime'],
+                    photo:vc.component.newVisitInfo.infos[0]['photo']
                 }
                 console.log(param);
                vc.http.post(

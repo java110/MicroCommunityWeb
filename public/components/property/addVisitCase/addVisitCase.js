@@ -6,14 +6,16 @@
     vc.extends({
         data:{
             addVisitCase:{
-                visitCase:""
+                visitCase:"",
+                videoPlaying:false,
+                visitPhoto:""
             }
         },
         watch:{
             addVisitCase:{
                 deep: true,
                 handler:function(){
-                     vc.emit('addVisitSpace', 'visitCase', vc.component.addVisitCase.visitCase);
+                     vc.emit('addVisitSpace', 'visitCase', vc.component.addVisitCase);
                 }
             }
         },
@@ -37,6 +39,63 @@
                     //侦听回传
                     vc.emit($props.callBackComponent,$props.callBackFunction, vc.component.addCarInfo);
                     return ;
+                }
+            },
+            _initAddVisitMedia: function () {
+                if (vc.component._addUserMedia()) {
+                    vc.component.addVisitCase.videoPlaying = false;
+                    var constraints = {
+                        video: true,
+                        audio: false
+                    };
+                    var video = document.getElementById('visitPhoto');
+                    var media = navigator.getUserMedia(constraints, function (stream) {
+                        var url = window.URL || window.webkitURL;
+                        //video.src = url ? url.createObjectURL(stream) : stream;
+                        try {
+                            video.src = url ? url.createObjectURL(stream) : stream;
+                        } catch (error) {
+                            video.srcObject = stream;
+                        }
+                        video.play();
+                        vc.component.addVisitCase.videoPlaying = true;
+                    }, function (error) {
+                        console.log("ERROR");
+                        console.log(error);
+                    });
+                } else {
+                    console.log("初始化视频失败");
+                }
+            },
+            _takePhoto: function () {
+                if (vc.component.addVisitCase.videoPlaying) {
+                    var canvas = document.getElementById('canvas');
+                    var video = document.getElementById('visitPhoto');
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    canvas.getContext('2d').drawImage(video, 0, 0);
+                    var data = canvas.toDataURL('image/jpeg',1.0);
+                    vc.component.addVisitCase.visitPhoto = data;
+                    //document.getElementById('photo').setAttribute('src', data);
+                }
+            },
+            _uploadPhoto: function (event) {
+                $("#uploadVisitPhoto").trigger("click")
+            },
+            _choosePhoto: function (event) {
+                var photoFiles = event.target.files;
+                if (photoFiles && photoFiles.length > 0) {
+                    // 获取目前上传的文件
+                    var file = photoFiles[0];// 文件大小校验的动作
+                    if (file.size > 1024 * 1024 * 1) {
+                        vc.toast("图片大小不能超过 2MB!")
+                        return false;
+                    }
+                    var reader = new FileReader(); //新建FileReader对象
+                    reader.readAsDataURL(file); //读取为base64
+                    reader.onloadend = function (e) {
+                        vc.component.addVisitCase.visitPhoto = reader.result;
+                    }
                 }
             }
 
