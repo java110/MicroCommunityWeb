@@ -22,6 +22,7 @@
                 roomNum: '',
                 machineUrl: '',
                 direction:'',
+                locationType:'',
                 locations: []
 
             }
@@ -272,6 +273,7 @@
                     roomNum: '',
                     machineUrl: '',
                      direction:'',
+                     locationType:'',
                      locations: _locations
 
                 }
@@ -294,6 +296,9 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            onChangeLocation:function(e){
+                console.log(e);
             }
         }
     });
