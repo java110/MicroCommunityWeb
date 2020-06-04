@@ -37,6 +37,7 @@
 
                 vc.component.locationManageInfo.conditions.page = _page;
                 vc.component.locationManageInfo.conditions.row = _rows;
+                vc.component.locationManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.locationManageInfo.conditions
                 };
