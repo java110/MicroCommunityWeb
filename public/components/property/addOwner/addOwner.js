@@ -137,12 +137,14 @@
                     });
             },
             clearAddOwnerInfo: function () {
+                let _componentTitle = $that.addOwnerInfo._componentTitle;
                 vc.component.addOwnerInfo = {
                     name: '',
                     age: '',
                     link: '',
                     sex: '',
-                    remark: ''
+                    remark: '',
+                    componentTitle: _componentTitle
                 };
             },
             _addUserMedia: function () {
