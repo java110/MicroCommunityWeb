@@ -1,51 +1,51 @@
-(function(vc,vm){
+(function (vc, vm) {
 
     vc.extends({
-        data:{
-            deleteLocationInfo:{
+        data: {
+            deleteLocationInfo: {
 
             }
         },
-         _initMethod:function(){
+        _initMethod: function () {
 
-         },
-         _initEvent:function(){
-             vc.on('deleteLocation','openDeleteLocationModal',function(_params){
+        },
+        _initEvent: function () {
+            vc.on('deleteLocation', 'openDeleteLocationModal', function (_params) {
 
                 vc.component.deleteLocationInfo = _params;
                 $('#deleteLocationModel').modal('show');
 
             });
         },
-        methods:{
-            deleteLocation:function(){
-                vc.component.deleteLocationInfo.communityId=vc.getCurrentCommunity().communityId;
+        methods: {
+            deleteLocation: function () {
+                vc.component.deleteLocationInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'location.deleteLocation',
+                    'communityLocation.deleteCommunityLocation',
                     JSON.stringify(vc.component.deleteLocationInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 200) {
                             //关闭model
                             $('#deleteLocationModel').modal('hide');
-                            vc.emit('locationManage','listLocation',{});
-                            return ;
+                            vc.emit('locationManage', 'listLocation', {});
+                            return;
                         }
                         vc.message(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
 
-                     });
+                    });
             },
-            closeDeleteLocationModel:function(){
+            closeDeleteLocationModel: function () {
                 $('#deleteLocationModel').modal('hide');
             }
         }
     });
 
-})(window.vc,window.vc.component);
+})(window.vc, window.vc.component);
