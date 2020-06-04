@@ -25,6 +25,7 @@
                 locationObjId: '',
                 roomName: '',
                 direction: '',
+                locationType: '',
                 locations: []
             }
         },
@@ -219,6 +220,7 @@
                     machineIp: '',
                     machineMac: '',
                     direction: '',
+                    locationType: '',
                     locations: _locations
                 };
             },
@@ -263,6 +265,15 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            onAddChangeLocation: function (e) {
+                let _locationTypeCd = $that.addMachineInfo.locationTypeCd;
+
+                $that.addMachineInfo.locations.forEach(item => {
+                    if (item.locationId == _locationTypeCd) {
+                        $that.addMachineInfo.locationType = item.locationType;
+                    }
+                });
             }
         }
     });

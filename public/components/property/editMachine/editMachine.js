@@ -21,8 +21,8 @@
                 locationObjId: '',
                 roomNum: '',
                 machineUrl: '',
-                direction:'',
-                locationType:'',
+                direction: '',
+                locationType: '',
                 locations: []
 
             }
@@ -143,18 +143,18 @@
                             },
                         ],
                     'editMachineInfo.direction':
-                    [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "设备方向不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "设备方向格式错误"
-                        },
-                    ],
+                        [
+                            {
+                                limit: "required",
+                                param: "",
+                                errInfo: "设备方向不能为空"
+                            },
+                            {
+                                limit: "num",
+                                param: "",
+                                errInfo: "设备方向格式错误"
+                            },
+                        ],
                     'editMachineInfo.authCode':
                         [
                             {
@@ -272,9 +272,9 @@
                     locationObjId: '',
                     roomNum: '',
                     machineUrl: '',
-                     direction:'',
-                     locationType:'',
-                     locations: _locations
+                    direction: '',
+                    locationType: '',
+                    locations: _locations
 
                 }
             },
@@ -297,8 +297,14 @@
                     }
                 );
             },
-            onChangeLocation:function(e){
-                console.log(e);
+            onChangeLocation: function (e) {
+                let _locationTypeCd = $that.editMachineInfo.locationTypeCd;
+
+                $that.editMachineInfo.locations.forEach(item => {
+                    if (item.locationId == _locationTypeCd) {
+                        $that.editMachineInfo.locationType = item.locationType;
+                    }
+                });
             }
         }
     });
