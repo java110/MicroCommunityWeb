@@ -26,6 +26,7 @@
             vc.on('addVisitCase', 'onIndex', function(_index){
                 console.log("侦听到addVisitCase的index为  "+_index);
                 // vc.component.addCarInfo.index = _index;
+                $that._initAddVisitMedia();
                 vc.emit('addVisitSpace', 'notify', _index);
             });
 
