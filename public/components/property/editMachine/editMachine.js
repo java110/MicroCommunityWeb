@@ -21,7 +21,8 @@
                 locationObjId: '',
                 roomNum: '',
                 machineUrl: '',
-                direction:''
+                direction:'',
+                locations: []
 
             }
         },
@@ -31,6 +32,7 @@
         _initEvent: function () {
             vc.on('editMachine', 'openEditMachineModal', function (_params) {
                 vc.component.refreshEditMachineInfo();
+                $that._loadEditLocation()
                 $('#editMachineModel').modal('show');
                 vc.copyObject(_params, vc.component.editMachineInfo);
                 vc.component._initMachineUrl();
@@ -249,6 +251,7 @@
                     });
             },
             refreshEditMachineInfo: function () {
+                let _locations = $that.addMachineInfo.locations;
                 vc.component.editMachineInfo = {
                     machineId: '',
                     machineCode: '',
@@ -268,9 +271,29 @@
                     locationObjId: '',
                     roomNum: '',
                     machineUrl: '',
-                     direction:''
+                     direction:'',
+                     locations: _locations
 
                 }
+            },
+            _loadEditLocation: function () {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        page: 1,
+                        row: 50
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('communityLocation.listCommunityLocations',
+                    param,
+                    function (json, res) {
+                        var _locationManageInfo = JSON.parse(json);
+                        vc.component.editMachineInfo.locations = _locationManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });

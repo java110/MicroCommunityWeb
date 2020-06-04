@@ -24,7 +24,8 @@
                 locationTypeCd: '',
                 locationObjId: '',
                 roomName: '',
-                direction:''
+                direction: '',
+                locations: []
             }
         },
         _initMethod: function () {
@@ -32,6 +33,7 @@
         },
         _initEvent: function () {
             vc.on('addMachine', 'openAddMachineModal', function () {
+                $that._loadLocation();
                 $('#addMachineModel').modal('show');
             });
 
@@ -44,7 +46,7 @@
                     vc.component.addMachineInfo.unitId = _param.unitId;
                 }
 
-                if(_param.hasOwnProperty("roomId")){
+                if (_param.hasOwnProperty("roomId")) {
                     vc.component.addMachineInfo.roomId = _param.roomId;
                 }
             });
@@ -92,7 +94,7 @@
                                 errInfo: "设备类型格式错误"
                             },
                         ],
-                        'addMachineInfo.direction':
+                    'addMachineInfo.direction':
                         [
                             {
                                 limit: "required",
@@ -207,6 +209,7 @@
                     });
             },
             clearAddMachineInfo: function () {
+                let _locations = $that.addMachineInfo.locations;
                 vc.component.addMachineInfo = {
                     machineCode: '',
                     machineVersion: '',
@@ -215,7 +218,8 @@
                     authCode: '',
                     machineIp: '',
                     machineMac: '',
-                    direction:''
+                    direction: '',
+                    locations: _locations
                 };
             },
             _initAddMachineData: function () {
@@ -240,6 +244,25 @@
                     },
                     minimumInputLength: 2
                 });
+            },
+            _loadLocation: function () {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        page: 1,
+                        row: 50
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('communityLocation.listCommunityLocations',
+                    param,
+                    function (json, res) {
+                        var _locationManageInfo = JSON.parse(json);
+                        vc.component.addMachineInfo.locations = _locationManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });
