@@ -16,7 +16,8 @@
                 feeTypeCds:[],
                 computingFormulas:[],
                 billType:'',
-                paymentCycle:''
+                paymentCycle:'',
+                paymentCd:''
             }
         },
         _initMethod: function() {
@@ -183,6 +184,17 @@
                         param: "",
                         errInfo: "缴费周期必须为数字 单位月"
                     },
+                    ],
+                    'editFeeConfigInfo.paymentCd': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "付费类型不能为空"
+                    },
+                    {
+                        limit: "num",
+                        param: "",
+                        errInfo: "付费类型格式错误"
+                    },
                     ]
 
                 });
@@ -229,7 +241,9 @@
                     computingFormula: '',
                     squarePrice: '',
                     additionalAmount: '',
-                    isDefault:''
+                    isDefault:'',
+                    paymentCycle:'',
+                    paymentCd:''
                 };
                 vc.component.editFeeConfigInfo.feeTypeCds = _feeTypeCds;
                 vc.component.editFeeConfigInfo.computingFormulas = _computingFormulas;
