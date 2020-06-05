@@ -40,14 +40,7 @@
                                 <div class="col-sm-6">
                                     <select class="custom-select" v-model="payFeeOrderInfo.cycles" @change="_changeMonth(payFeeOrderInfo.cycles)">
                                         <option disabled value="">必填，请选择缴费周期</option>
-                                        <option value="1">1个月</option>
-                                        <option value="2">2个月</option>
-                                        <option value="3">3个月</option>
-                                        <option value="4">4个月</option>
-                                        <option value="5">5个月</option>
-                                        <option value="6">6个月</option>
-                                        <option value="12">一年</option>
-                                        <option value="24">两年</option>
+                                        <option v-for="item in payFeeOrderInfo.paymentCycles" :value="item">{{item}}个月</option>
                                         <option value="-101">自定义</option>
                                     </select>
                                 </div>

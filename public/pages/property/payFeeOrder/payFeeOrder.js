@@ -10,6 +10,7 @@
                 endTime: '',
                 feePrice:0.00,
                 cycles:'1',
+                paymentCycles:[],
                 totalFeePrice:0.00,
                 receivedAmount:'',
                 communityId:vc.getCurrentCommunity().communityId
@@ -22,11 +23,16 @@
                   vc.component.payFeeOrderInfo.feeTypeCdName = vc.getParam('feeTypeCdName');
                   vc.component.payFeeOrderInfo.endTime = vc.getParam('endTime').replace(/%3A/g,':');
                   vc.component.payFeeOrderInfo.feePrice = vc.getParam('feePrice');
+                  $that.payFeeOrderInfo.paymentCycles = [];
+                  for(let _index=1 ; _index < 7; _index ++){
+                    $that.payFeeOrderInfo.paymentCycles.push(_index * vc.getParam('paymentCycle'))
+                }      
             };
 
             vc.component.payFeeOrderInfo.totalFeePrice = vc.component.payFeeOrderInfo.feePrice;
             vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice ;
 
+           
 
         },
         _initEvent:function(){
