@@ -209,11 +209,11 @@
     let url = '';
     if (_protocol.startsWith('https')) {
         url =
-            "wss://" + window.location.host + "/websocket/message/" +
+            "wss://" + window.location.host + "/app/message/" +
             _userId;
     } else {
         url =
-            "ws://" + window.location.host + "/websocket/message/" +
+            "ws://" + window.location.host + "/app/message/" +
             _userId;
     }
 
