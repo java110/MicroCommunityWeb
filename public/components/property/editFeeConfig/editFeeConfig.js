@@ -15,7 +15,8 @@
                 isDefault:'',
                 feeTypeCds:[],
                 computingFormulas:[],
-                billType:''
+                billType:'',
+                paymentCycle:''
             }
         },
         _initMethod: function() {
@@ -171,7 +172,18 @@
                         limit: "required",
                         param: "",
                         errInfo: "出账类型不能为空"
-                    }]
+                    }],
+                    'editFeeConfigInfo.paymentCycle': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "缴费周期不能为空"
+                    },
+                    {
+                        limit: "num",
+                        param: "",
+                        errInfo: "缴费周期必须为数字 单位月"
+                    },
+                    ]
 
                 });
             },
