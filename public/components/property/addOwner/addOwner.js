@@ -144,6 +144,7 @@
                     link: '',
                     sex: '',
                     remark: '',
+                    ownerTypeCd: '-1',
                     componentTitle: _componentTitle
                 };
             },
