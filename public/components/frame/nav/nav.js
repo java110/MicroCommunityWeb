@@ -205,9 +205,19 @@
     //建立websocket 消息连接
     let _userId = vc.getData('/nav/getUserInfo').userId;
 
-    var url =
+    let _protocol = window.location.protocol;
+    let url = '';
+    if(_protocol == 'https'){
+         url =
+        "wss://"+window.location.host+"/websocket/message/" +
+        _userId;
+    }else{
+        url =
         "ws://"+window.location.host+"/websocket/message/" +
         _userId;
+    }
+
+    
       if ("WebSocket" in window) {
         websocket = new WebSocket(url);
       } else if ("MozWebSocket" in window) {
