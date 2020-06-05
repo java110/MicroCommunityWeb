@@ -11,12 +11,12 @@
                 moreNoticeUrl: '/admin.html#/pages/common/noticeManage',
                 notices: [],
                 total: 0,
-                _currentCommunity:'',
-                communityInfos:[]
+                _currentCommunity: '',
+                communityInfos: []
             },
             logo: '',
             userName: "",
-            
+
         },
         mounted: function () {
             this._initSysInfo();
@@ -195,7 +195,7 @@
                 body.className = className + " mini-navbar";
             },
             _chooseMoreCommunity: function () {
-                vc.emit('chooseEnterCommunity','openChooseEnterCommunityModel',{});
+                vc.emit('chooseEnterCommunity', 'openChooseEnterCommunityModel', {});
             },
         }
     });
@@ -207,63 +207,63 @@
 
     let _protocol = window.location.protocol;
     let url = '';
-    if(_protocol == 'https'){
-         url =
-        "wss://"+window.location.host+"/websocket/message/" +
-        _userId;
-    }else{
+    if (_protocol.startsWith('https')) {
         url =
-        "ws://"+window.location.host+"/websocket/message/" +
-        _userId;
+            "wss://" + window.location.host + "/websocket/message/" +
+            _userId;
+    } else {
+        url =
+            "ws://" + window.location.host + "/websocket/message/" +
+            _userId;
     }
 
-    
-      if ("WebSocket" in window) {
-        websocket = new WebSocket(url);
-      } else if ("MozWebSocket" in window) {
-        websocket = new MozWebSocket(url);
-      } else {
-        websocket = new SockJS(url);
-      }
 
-      //连接发生错误的回调方法
-      websocket.onerror = function() {
+    if ("WebSocket" in window) {
+        websocket = new WebSocket(url);
+    } else if ("MozWebSocket" in window) {
+        websocket = new MozWebSocket(url);
+    } else {
+        websocket = new SockJS(url);
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
         console.log("初始化失败");
         this.$notify.error({
-          title: "错误",
-          message: "连接失败，请检查网络"
+            title: "错误",
+            message: "连接失败，请检查网络"
         });
-      };
+    };
 
-      //连接成功建立的回调方法
-      websocket.onopen = function() {
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
         console.log("ws初始化成功");
-      };
+    };
 
-      //接收到消息的回调方法
-      websocket.onmessage = function(event) {
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
         console.log("event", event);
         //let _data = event.data;
         let _data = JSON.parse(_data);
-        if(_data.code == 200){
+        if (_data.code == 200) {
             toastr.info(_data.msg);
-        }else{
+        } else {
             toastr.error(_data.msg);
-        }    
-      };
+        }
+    };
 
-      //连接关闭的回调方法
-      websocket.onclose = function() {
+    //连接关闭的回调方法
+    websocket.onclose = function () {
         console.log("初始化失败");
         this.$notify.error({
-          title: "错误",
-          message: "连接关闭，请刷新浏览器"
+            title: "错误",
+            message: "连接关闭，请刷新浏览器"
         });
-      };
+    };
 
-      //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-      window.onbeforeunload = function() {
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
         websocket.close();
-      };
+    };
 
 })(window.vc);
