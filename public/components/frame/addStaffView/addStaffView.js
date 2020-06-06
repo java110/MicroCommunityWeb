@@ -105,6 +105,12 @@
                     return;
                 }
             },
+            _addUserMedia: function () {
+                return navigator.getUserMedia = navigator.getUserMedia ||
+                    navigator.webkitGetUserMedia ||
+                    navigator.mozGetUserMedia ||
+                    navigator.msGetUserMedia || null;
+            },
             _initAddStaffMedia: function () {
                 if (vc.component._addUserMedia()) {
                     vc.component.addStaffViewInfo.videoPlaying = false;
@@ -132,7 +138,7 @@
                 }
             },
             _takePhoto: function () {
-                if (vc.component.addOwnerInfo.videoPlaying) {
+                if (vc.component.addStaffViewInfo.videoPlaying) {
                     var canvas = document.getElementById('canvas');
                     var video = document.getElementById('staffPhoto');
                     canvas.width = video.videoWidth;
