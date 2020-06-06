@@ -38,6 +38,10 @@
             vc.on('addStaffViewInfo', 'onIndex',
             function(_index) {
                 vc.component.addStaffViewInfo.index = _index;
+
+                if(_index == 2){
+                    $that._initAddStaffMedia();
+                }
             });
         },
         methods: {
