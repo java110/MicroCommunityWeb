@@ -11,7 +11,7 @@
                    callBackFunction="notify"
         ></vc:create>
     </div>
-    <div v-if="addStaffStepInfo.index == 2">
+    <div v-show="addStaffStepInfo.index == 2">
         <vc:create path="frame/addStaffView"
                    callBackListener="addStaffStep"
                    callBackFunction="notify"

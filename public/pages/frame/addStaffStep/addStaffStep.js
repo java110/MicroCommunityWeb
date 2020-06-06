@@ -34,6 +34,7 @@
                     tel:'',
                     address:'',
                     relCd:'',
+                    photo:''
                 }
             }
         },
