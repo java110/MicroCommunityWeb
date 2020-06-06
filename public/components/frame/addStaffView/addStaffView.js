@@ -35,11 +35,11 @@
 },
         _initEvent: function() {
 
-            vc.on('addStaffViewInfo', 'onIndex',
+            vc.on('addStaffView', 'onIndex',
             function(_index) {
                 vc.component.addStaffViewInfo.index = _index;
 
-                if(_index == 3){
+                if(_index == 2){
                     $that._initAddStaffMedia();
                 }
             });
@@ -145,7 +145,7 @@
                     canvas.height = video.videoHeight;
                     canvas.getContext('2d').drawImage(video, 0, 0);
                     var data = canvas.toDataURL('image/jpeg',1.0);
-                    vc.component.addStaffViewInfo.staffPhoto = data;
+                    vc.component.addStaffViewInfo.photo = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }
             },
