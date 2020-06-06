@@ -39,7 +39,7 @@
             function(_index) {
                 vc.component.addStaffViewInfo.index = _index;
 
-                if(_index == 2){
+                if(_index == 3){
                     $that._initAddStaffMedia();
                 }
             });
