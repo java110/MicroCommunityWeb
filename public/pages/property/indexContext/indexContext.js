@@ -17,9 +17,10 @@
             vc.component._queryIndexContextData();
         },
         _initEvent:function(){
-            vc.on("indexContext","_queryIndexContextData",function(){
+            vc.on("indexContext","_queryIndexContextData",function(_param){
                 vc.component._queryIndexContextData();
             });
+
         },
         methods:{
             _queryIndexContextData:function(){
@@ -33,7 +34,6 @@
                         communityId:vc.getCurrentCommunity().communityId
                     }
                 }
-
                //发送get请求
                vc.http.get('indexContext',
                             'getData',
