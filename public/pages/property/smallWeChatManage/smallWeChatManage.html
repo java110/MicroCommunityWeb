@@ -69,17 +69,17 @@
                         <tr v-for="smallWeChat in smallWeChatManageInfo.smallWeChats">
                             <td class="text-center">{{smallWeChat.name}}</td>
                             <td class="text-center">{{smallWeChat.appId}}</td>
-                            <td class="text-center">{{smallWeChat.appSecret}}</td>
-                            <td class="text-center">{{smallWeChat.payPassword}}</td>
+                            <td class="text-center">********</td>
+                            <td class="text-center">**********</td>
                             <td class="text-center">{{smallWeChat.mchId}}</td>
                             <td class="text-center">{{smallWeChat.objTypeName}}</td>
                             <td class="text-center">{{smallWeChat.remarks}}</td>
                             <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditSmallWeChatModel(smallWeChat)">修改
-                                    </button>
-                                </div>
+<!--                                <div class="btn-group">-->
+<!--                                    <button class="btn-white btn btn-xs"-->
+<!--                                            v-on:click="_openEditSmallWeChatModel(smallWeChat)">修改-->
+<!--                                    </button>-->
+<!--                                </div>-->
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteSmallWeChatModel(smallWeChat)">删除
