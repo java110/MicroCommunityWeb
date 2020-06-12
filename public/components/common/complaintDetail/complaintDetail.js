@@ -14,7 +14,8 @@
                 currentUserName: '',
                 currentUserTel: '',
                 currentUserId: '',
-                showCurrentUser: true
+                showCurrentUser: true,
+                photos:[]
             }
         },
         _initMethod: function () {
@@ -52,7 +53,12 @@
                     currentUserId: '',
                     showCurrentUser: true
                 }
-            }
+            }, 
+            openFile:function(_photo){
+                vc.emit('viewImage','showImage',{
+                    url:_photo.url
+                });
+             }
         }
     });
 
