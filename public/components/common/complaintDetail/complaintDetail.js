@@ -51,7 +51,8 @@
                     currentUserName: '',
                     currentUserTel: '',
                     currentUserId: '',
-                    showCurrentUser: true
+                    showCurrentUser: true,
+                    photos:[]
                 }
             }, 
             openFile:function(_photo){
