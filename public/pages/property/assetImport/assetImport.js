@@ -86,11 +86,11 @@
                             vc.jumpToPage('/admin.html#/pages/property/listOwner')
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(json,10000);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(errInfo);
+                        vc.toast(errInfo,10000);
                     });
             },
             _exitCommunityData: function () {
