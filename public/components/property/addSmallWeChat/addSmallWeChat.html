@@ -8,16 +8,27 @@
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">小程序名称</label>
+                                <label class="col-sm-2 col-form-label">配置对象</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addSmallWeChatInfo.name" type="text" placeholder="必填，请填写小程序名称"
+                                    <select class="custom-select" v-model="addSmallWeChatInfo.type">
+                                        <option selected disabled value="">请选择状态</option>
+                                        <option v-for="(item,index) in addSmallWeChatInfo.types" :key="index"
+                                                v-bind:value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">名称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addSmallWeChatInfo.name" type="text" placeholder="必填，请填写小程序/公众号名称"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">appId</label>
+                                <label class="col-sm-2 col-form-label">APPID</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addSmallWeChatInfo.appId" type="text" placeholder="必填，请填写appId"
+                                    <input v-model="addSmallWeChatInfo.appId" type="text" placeholder="必填，请填写APPID"
                                            class="form-control">
                                 </div>
                             </div>
@@ -37,15 +48,15 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">小程序商户ID</label>
+                                <label class="col-sm-2 col-form-label">商户ID</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addSmallWeChatInfo.mchId" type="text" placeholder="必填，请填写小程序商户ID"
+                                    <input v-model="addSmallWeChatInfo.mchId" type="text" placeholder="必填，请填写商户ID"
                                            class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">配置</label>
+                                <label class="col-sm-2 col-form-label">作用范围</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addSmallWeChatInfo.objType">
                                         <option selected disabled value="">请选择状态</option>

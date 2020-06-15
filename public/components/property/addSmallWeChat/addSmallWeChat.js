@@ -15,14 +15,19 @@
                 objType:'',
                 objId:'',
                 mchId:'',
+                type:'',
                 remarks:'',
                 objTypes:'',
+                types:''
 
             }
         },
         _initMethod: function () {
             vc.getDict('small_wechat',"obj_type",function(_data){
                 vc.component.addSmallWeChatInfo.objTypes = _data;
+            });
+            vc.getDict('small_wechat',"type",function(_data){
+                vc.component.addSmallWeChatInfo.types = _data;
             });
 
         },
