@@ -15,7 +15,7 @@
                 conditions: {
                     name: '',
                     appId: '',
-                    type:'1000'
+                    weChatType:'1000'
 
                 }
             }
@@ -72,7 +72,7 @@
             },
             _switchWeChatType:function(type){
                 console.log(type);
-                vc.component.smallWeChatManageInfo.conditions.type = type;
+                vc.component.smallWeChatManageInfo.conditions.weChatType = type;
                 vc.component._listSmallWeChats(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
