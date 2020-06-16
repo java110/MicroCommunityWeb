@@ -30,9 +30,11 @@ let opts = {
 
 }
 
-//app.use('/callComponent',proxy('http://192.168.0.103:8012',opts));
-//app.use('/callComponent',proxy('https://hc.demo.winqi.cn',opts));
-app.use('/callComponent',proxy('http://127.0.0.1:8888',opts));
+
+//app.use('/callComponent',proxy('https://app.demo.winqi.cn/',opts));
+//app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012/',opts));
+app.use('/callComponent',proxy('http://127.0.0.1:8012',opts));
+
 
 //app.listen(3000);
 app.use(express.json());

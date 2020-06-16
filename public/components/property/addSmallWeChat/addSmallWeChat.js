@@ -12,17 +12,22 @@
                 appId: '',
                 appSecret: '',
                 payPassword: '',
-                objType:'',
+                objType:'1000',
                 objId:'',
                 mchId:'',
                 remarks:'',
                 objTypes:'',
+                types:'',
+                weChatType:''
 
             }
         },
         _initMethod: function () {
             vc.getDict('small_wechat',"obj_type",function(_data){
                 vc.component.addSmallWeChatInfo.objTypes = _data;
+            });
+            vc.getDict('small_wechat',"wechat_type",function(_data){
+                vc.component.addSmallWeChatInfo.types = _data;
             });
 
         },
@@ -84,7 +89,7 @@
                             errInfo: "支付密码不能超过200个字符"
                         },
                     ],
-                    'addSmallWeChatInfo.objType': [
+                    'addSmallWeChatInfo.weChatType': [
                         {
                             limit: "required",
                             param: "",
@@ -109,21 +114,13 @@
                     return;
                 }
 
-                //vc.component.addSmallWeChatInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addSmallWeChatInfo);
                     $('#addSmallWeChatModel').modal('hide');
                     return;
                 }
-
-                let objType = vc.component.addSmallWeChatInfo.objType;
-                //1000表示改小程序作用于当前小区 否则作用于所有小区
-                if("1000" == objType){
-                    vc.component.addSmallWeChatInfo.objId = vc.getCurrentCommunity().communityId;
-                }else{
-                    vc.component.addSmallWeChatInfo.objId = "allCommunity";
-                }
+                vc.component.addSmallWeChatInfo.objId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'smallWeChat.saveSmallWeChat',
                     JSON.stringify(vc.component.addSmallWeChatInfo),
@@ -160,6 +157,8 @@
                     objType:'',
                     objId:'',
                     mchId:'',
+                    weChatType:'',
+                    types:vc.component.addSmallWeChatInfo.types,
                     remarks:'',
                     objTypes:vc.component.addSmallWeChatInfo.objTypes,
 
