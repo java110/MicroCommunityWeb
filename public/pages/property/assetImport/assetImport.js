@@ -51,6 +51,7 @@
             _importData: function () {
 
                 if (!vc.component.assetImportValidate()) {
+                    vc.toast(vc.validate.errInfo);
                     return;
                 }
                 // 导入数据
@@ -95,35 +96,6 @@
             },
             _exitCommunityData: function () {
                 vc.jumpToPage('/callComponent/assetImport/exitCommunityData?communityId='+vc.getCurrentCommunity().communityId);
-                /*var param = {
-                    params:{
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
-                vc.http.get(
-                    'assetImport',
-                    'exitCommunityData',
-                    param,
-                    {
-                        emulateJSON: true,
-                        //添加请求头
-                        /!*headers: {
-                            "Content-Type": "multipart/form-data"
-                        }*!/
-                    },
-                    function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
-                            //关闭model
-                            vc.toast("导出成功");
-                            return;
-                        }
-                        vc.toast(json);
-                    },
-                    function (errInfo, error) {
-                        console.log('请求失败处理');
-                        vc.toast(errInfo);
-                    });*/
             },
             checkFileType: function (fileType) {
                 const acceptTypes = ['xls', 'xlsx'];
