@@ -102,7 +102,7 @@
                         console.log('task.listTaskTemplate',json);
                         let _json = JSON.parse(json);
                         let data = _json.data;
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             $that.addJobInfo.templates = data;
                             return;
                         }
