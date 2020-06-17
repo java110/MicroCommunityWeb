@@ -71,7 +71,7 @@
                     function (json, res) {
                         let _json = JSON.parse(json);
                         let data = res.data;
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addJobModel').modal('hide');
                             vc.component.clearAddJobInfo();
@@ -127,7 +127,7 @@
                     function (json, res) {
                         let _json = JSON.parse(json);
                         let data = _json.data;
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             data.forEach(item => {
                                 item.value = "";
                             });

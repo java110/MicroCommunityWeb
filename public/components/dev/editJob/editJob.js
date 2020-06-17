@@ -75,7 +75,7 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         let data = res.data;
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editJobModel').modal('hide');
                             vc.component.refreshEditJobInfo();
@@ -104,7 +104,7 @@
                         console.log('task.listTaskTemplate', json);
                         let _json = JSON.parse(json);
                         let data = _json.data;
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             $that.editJobInfo.templates = data;
                             return;
                         }
@@ -129,7 +129,7 @@
                     function (json, res) {
                         let _json = JSON.parse(json);
                         let data = _json.data;
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             data.forEach(item => {
                                 $that.editJobInfo.taskAttr.forEach(tmd => {
                                     if(item.specCd == tmd.specCd && item.templateId == $that.editJobInfo.templateId){
