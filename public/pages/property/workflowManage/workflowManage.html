@@ -1,0 +1,111 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row" v-bind:class="{no_display:workflowManageInfo.componentShow != 'workflowList'}">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                            v-on:click="_moreCondition()">{{workflowManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入流程名称" v-model="workflowManageInfo.conditions.flowName"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="workflowManageInfo.conditions.flowType">
+                                <option selected value="">请选择流程</option>
+                                <option v-for="(item,index) in workflowManageInfo.flowTypes" :key="index"
+                                    v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select></div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入流程编码"
+                                    v-model="workflowManageInfo.conditions.flowId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryWorkflowMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4" v-if="workflowManageInfo.moreCondition == true">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入信息ID"
+                                    v-model="workflowManageInfo.conditions.workflowId" class=" form-control">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" v-bind:class="{no_display:workflowManageInfo.componentShow != 'workflowList'}">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>发布信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddWorkflowModal()">
+                            <i class="fa fa-plus"></i>
+                            发布
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <!-- <th class="text-center">信息ID</th> -->
+                                <th class="text-center">流程名称</th>
+                                <th class="text-center">流程类型</th>
+                                <th class="text-center">流程编码</th>
+                                <th class="text-center">创建时间</th>
+                                <th class="text-right">操作</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="workflow in workflowManageInfo.workflows">
+                                <td class="text-center">{{workflow.flowName}}</td>
+                                <td class="text-center">{{workflow.flowType}}</td>
+                                <td class="text-center">{{workflow.flowId}}</td>
+                                <td class="text-center">{{workflow.createTime}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditWorkflowModel(workflow)">查看
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
