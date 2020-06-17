@@ -75,13 +75,13 @@
                         <tbody>
                             <tr v-for="workflow in workflowManageInfo.workflows">
                                 <td class="text-center">{{workflow.flowName}}</td>
-                                <td class="text-center">{{workflow.flowType}}</td>
+                                <td class="text-center">{{workflow.flowTypeName}}</td>
                                 <td class="text-center">{{workflow.flowId}}</td>
                                 <td class="text-center">{{workflow.createTime}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditWorkflowModel(workflow)">查看
+                                            v-on:click="_openEditWorkflowModel(workflow)">设置流程
                                         </button>
                                     </div>
                                 </td>
