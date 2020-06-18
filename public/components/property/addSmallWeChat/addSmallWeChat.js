@@ -32,7 +32,9 @@
 
         },
         _initEvent: function () {
-            vc.on('addSmallWeChat', 'openAddSmallWeChatModal', function () {
+            vc.on('addSmallWeChat', 'openAddSmallWeChatModal', function (type) {
+                console.log(type);
+                vc.component.addSmallWeChatInfo.weChatType = type;
                 $('#addSmallWeChatModel').modal('show');
             });
         },
@@ -88,13 +90,6 @@
                             param: "1,200",
                             errInfo: "支付密码不能超过200个字符"
                         },
-                    ],
-                    'addSmallWeChatInfo.weChatType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "配置不能为空"
-                        }
                     ],
                     'addSmallWeChatInfo.mchId': [
                         {
