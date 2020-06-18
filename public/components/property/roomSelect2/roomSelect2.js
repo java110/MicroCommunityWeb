@@ -42,6 +42,7 @@
                 this.roomSelect2Info.roomSelector.append(option);
             });
             vc.on('roomSelect2', 'clearRoom', function (_param) {
+                $('#roomSelector').val('').select2();
                 this.roomSelect2Info = {
                     units: [],
                     floorId: '-1',

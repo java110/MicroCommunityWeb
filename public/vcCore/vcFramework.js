@@ -1209,6 +1209,10 @@
         window.location.href = document.referrer;
         window.history.back(-1);
     }
+    vcFramework.goBack = function () {
+        window.location.href = document.referrer;
+        window.history.back(-1);
+    }
     //对象转get参数
     vcFramework.objToGetParam = function (obj) {
         let str = [];

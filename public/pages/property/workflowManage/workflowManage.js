@@ -65,8 +65,8 @@
             },
             _openEditWorkflowModel: function (_workflow) {
 
-                vc.emit('editWorkflowView', 'workflowEditWorkflowInfo', _workflow);
-                vc.component.workflowManageInfo.componentShow = 'editWorkflowView';
+               vc.jumpToPage('/admin.html#/pages/property/workflowSettingManage?'+vc.objToGetParam(_workflow));
+                
             },
             _queryWorkflowMethod: function () {
                 vc.component._listWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);

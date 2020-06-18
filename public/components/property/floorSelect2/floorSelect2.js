@@ -40,6 +40,7 @@
             });
 
             vc.on('floorSelect2', 'clearFloor', function (_param) {
+                $('#floorSelector').val('').select2();
                 this.floorSelect2Info = {
                     floors: [],
                     floorId: '-1',

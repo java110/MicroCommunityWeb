@@ -43,6 +43,7 @@
                 this.unitSelect2Info.unitSelector.append(option);
             });
             vc.on('unitSelect2', 'clearUnit', function (_param) {
+                $('#unitSelector').val('').select2();
                 this.unitSelect2Info = {
                     units: [],
                     floorId: '-1',
@@ -51,6 +52,7 @@
                     unitName: '',
                     unitSelector: {}
                 };
+                
             });
         },
         methods: {

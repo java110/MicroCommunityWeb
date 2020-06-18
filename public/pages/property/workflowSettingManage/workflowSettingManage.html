@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>流程设置</h5>
+                <div class="ibox-tools" style="top:10px;">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">流程名称</label>
+                    <div class="col-sm-10">
+                        <input v-model="workflowSettingInfo.flowName" type="text" disabled="disabled"
+                            placeholder="必填，请填写标题" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">流程说明</label>
+                    <div class="col-sm-10">
+                        <textarea v-model="workflowSettingInfo.describle" class="form-control"
+                            placeholder="选填，请填写流程说明"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">流程步骤</label>
+                    <div class="col-sm-10">
+                        <div class="row " style="margin-left: 0px;">
+                            <button type="button" class="btn btn-primary" @click="addWorkflowStep()">添加步骤</button>
+                        </div>
+                        <div v-for="(item,index) in workflowSettingInfo.steps">
+                            <div class="row margin-0 margin-top">
+                                <div  class="col-sm-1 text-center">
+                                    <label class="col-form-label">第{{index+1}}步</label>
+                                </div>
+                                <div>
+                                    <!-- <button type="button" class="btn btn-link" @click="chooseStaff()">选择员工</button> -->
+                                    <vc:create path="property/selectStaff"></vc:create>
+                                </div>
+                                <div class="margin-left" @click="chooseType(item)">
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" v-bind:name="index+'-radio'"
+                                            v-bind:id="index+'-radio1'" value="2" v-model="item.type" checked>
+                                        <label class="form-check-label" v-bind:for="index+'-radio2'">
+                                            普通流程
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" v-bind:name="index+'-radio'"
+                                            v-bind:id="index+'-radio2'" value="1" v-model="item.type">
+                                        <label class="form-check-label" v-bind:for="index+'-radio1'">
+                                            会签
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-link" @click="deleteStep(item)">删除步骤</button>
+                                </div>
+                                <div v-if="item.type == '1'">
+                                    <button type="button" class="btn btn-link" @click="addStaff(item)">添加员工</button>
+                                </div>
+                            </div>
+                            <div class="row margin-0 margin-top" v-for="(subItem,index) in item.subStaff">
+                                <div class="col-sm-1">
+                                    <label class="col-form-label"></label>
+                                </div>
+                                <div class="margin-left">
+                                    <input v-model="subItem.staffName" type="text" disabled="disabled"
+                                        placeholder="请选择审核员工" class="form-control">
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-link" @click="chooseStaff(subItem)">选择员工</button>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-link" @click="deleteStaff(item,subItem)">删除员工</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="saveActivitiesInfo()"><i
+                            class="fa fa-check"></i>&nbsp;提交
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                        v-on:click="_goBack()">返回
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
