@@ -1,5 +1,5 @@
 /**
- 入驻小区
+ 微信公众号
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
@@ -12,10 +12,11 @@
                 records: 1,
                 moreCondition: false,
                 name: '',
+                wetConfig:false,
                 conditions: {
                     name: '',
                     appId: '',
-                    weChatType:'1000'
+                    weChatType:'1100'
 
                 }
             }
@@ -81,6 +82,9 @@
                 } else {
                     vc.component.smallWeChatManageInfo.moreCondition = true;
                 }
+            },
+            _openWeChatTemplateModel:function (smallWeChat) {
+                vc.component.smallWeChatManageInfo.wetConfig = true;
             }
 
 
