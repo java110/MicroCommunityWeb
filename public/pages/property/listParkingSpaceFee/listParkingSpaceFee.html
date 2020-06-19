@@ -5,10 +5,6 @@
                 <div class="ibox-title">
                     <h5>{{listParkingSpaceCreateFeeInfo.parkingSpaceName}}费用</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!--                        <button type="button" class="btn btn-primary btn-sm"-->
-                        <!--                                style="margin-left:10px" v-on:click="_openParkingSpaceCreateFeeAddModal(null,true)">-->
-                        <!--                            <i class="fa fa-plus"></i> 批量创建-->
-                        <!--                        </button>-->
 
                     </div>
                 </div>
@@ -40,6 +36,7 @@
                             <td class="text-center">{{fee.stateName}}</td>
                             <td class="text-right">
                                 <button class="btn btn-link btn-xs"
+                                        v-if="fee.state != '2009001'"
                                         v-on:click="_payFee(fee)">缴费
                                 </button>
                                 <button class="btn btn-link btn-xs"

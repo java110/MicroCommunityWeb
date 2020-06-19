@@ -33,9 +33,10 @@
                                 <div  class="col-sm-1 text-center">
                                     <label class="col-form-label">第{{index+1}}步</label>
                                 </div>
-                                <div>
-                                    <!-- <button type="button" class="btn btn-link" @click="chooseStaff()">选择员工</button> -->
-                                    <vc:create path="property/selectStaff"></vc:create>
+                                <div >
+                                    <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;" @click="chooseStaff()">
+                                        <span id="select-title">选择员工</span> <span class="caret"></span>
+                                    </a>
                                 </div>
                                 <div class="margin-left" @click="chooseType(item)">
                                     <div class="form-check form-check-inline col-form-label">
@@ -64,9 +65,10 @@
                                 <div class="col-sm-1">
                                     <label class="col-form-label"></label>
                                 </div>
-                                <div class="margin-left">
-                                    <input v-model="subItem.staffName" type="text" disabled="disabled"
-                                        placeholder="请选择审核员工" class="form-control">
+                                <div>
+                                    <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;" @click="chooseStaff()">
+                                        <span id="select-title">选择员工</span> <span class="caret"></span>
+                                    </a>
                                 </div>
                                 <div>
                                     <button type="button" class="btn btn-link" @click="chooseStaff(subItem)">选择员工</button>
@@ -90,4 +92,5 @@
             </div>
         </div>
     </div>
+    <vc:create path="property/selectStaff"></vc:create>
 </div>

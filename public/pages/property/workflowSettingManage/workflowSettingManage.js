@@ -158,7 +158,7 @@
                 $that.workflowSettingInfo.steps.push(_step);
             },
             chooseStaff: function () {
-
+                vc.emit('selectStaff','openStaff',{})
             },
             _goBack: function () {
                 vc.getBack();
