@@ -3,28 +3,50 @@
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <div class="row">
-                    <div class="col-md-4 border-right">
+                    <div class="col-md-4 border-right padding-0">
                         <div class="text-center">公司信息</div>
-                        <div>青海开机公司</div>
-                        <div>青海开机公司</div>
-                        <div>青海开机公司</div>
-                        <div>青海开机公司</div>
-                        <div>青海开机公司</div>
-                        <div>青海开机公司</div>
-
-                        <div>青海开机公司</div>
-                         <div>青海开机公司</div>
-                         <div>青海开机公司</div>
-                         <div>青海开机公司</div>
-                         <div>青海开机公司</div>
+                        <div class=" staff padding padding-top-xs">
+                            <div class=" padding overflow-hidden"
+                                :class="{'select':selectStaffInfo.curCompanyId == item.orgId}"
+                                v-for="(item,index) in selectStaffInfo.companys" @click="_changeCompany(item)">
+                                <span>
+                                    <i class="fa fa-building-o margin-right-xs" aria-hidden="true"></i>
+                                    {{item.orgName}}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4 border-right">
+                    <div class="col-md-4 border-right padding-0">
                         <div class="text-center">部门信息</div>
+                        <div class="padding-left staff padding  padding-top-xs">
+                            <div class=" padding overflow-hidden"
+                                :class="{'select':selectStaffInfo.curDepartmentId == item.orgId}"
+                                v-for="(item,index) in selectStaffInfo.departments" @click="_changeDepartment(item)">
+                                <span>
+                                    <i class="fa fa-sitemap margin-right-xs" aria-hidden="true"></i>
+                                    {{item.orgName}}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 padding-0">
                         <div class="text-center">员工信息</div>
+                        <div class="padding-left staff padding padding-top-xs">
+                            <div class=" padding overflow-hidden"
+                                :class="{'select':selectStaffInfo.curStaffId == item.staffId}"
+                                v-for="(item,index) in selectStaffInfo.staffs"
+                                @click="_changeStaff(item)"
+                                >
+                                <span>
+                                    <i class="fa fa-user margin-right-xs" aria-hidden="true"></i>
+                                    {{item.name}}
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

@@ -1747,5 +1747,50 @@ table.table-mail tr td {
   border-left:1px solid #e7eaec;
 }
 
+.select{
+  color: #1ab394;
+}
+
+.overflow-hidden{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.staff{
+  overflow-y:auto;
+  height:400px
+}
+
+.staff div span{
+    cursor: pointer;
+    background: #ffffff;
+    transition-duration: 0.5s;
+}
+.staff div span:hover{
+  font-size: 20px;
+  color: #1ab394;  
+}
+
+
+.staff::-webkit-scrollbar {/*滚动条整体样式*/
+  width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+  height: 4px;
+}
+.staff::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.2);
+}
+.staff::-webkit-scrollbar-track {/*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 0;
+  background: rgba(0,0,0,0.1);
+}
+
+.staff div{
+
+}
+
 
 

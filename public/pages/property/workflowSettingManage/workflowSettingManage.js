@@ -157,8 +157,9 @@
                 }
                 $that.workflowSettingInfo.steps.push(_step);
             },
-            chooseStaff: function () {
-                vc.emit('selectStaff','openStaff',{})
+            chooseStaff: function (item) {
+                console.log(item);
+                vc.emit('selectStaff','openStaff',item);
             },
             _goBack: function () {
                 vc.getBack();

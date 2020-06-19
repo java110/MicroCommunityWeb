@@ -34,8 +34,8 @@
                                     <label class="col-form-label">第{{index+1}}步</label>
                                 </div>
                                 <div >
-                                    <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;" @click="chooseStaff()">
-                                        <span id="select-title">选择员工</span> <span class="caret"></span>
+                                    <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;" @click="chooseStaff(item)">
+                                        <span id="select-title">{{item.staffId == '' ? '选择员工':item.staffName}}</span> <span class="caret"></span>
                                     </a>
                                 </div>
                                 <div class="margin-left" @click="chooseType(item)">
@@ -66,8 +66,8 @@
                                     <label class="col-form-label"></label>
                                 </div>
                                 <div>
-                                    <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;" @click="chooseStaff()">
-                                        <span id="select-title">选择员工</span> <span class="caret"></span>
+                                    <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;"  @click="chooseStaff(subItem)">
+                                        <span id="select-title">{{subItem.staffId == '' ? '选择员工':subItem.staffName}}</span> <span class="caret"></span>
                                     </a>
                                 </div>
                                 <div>
