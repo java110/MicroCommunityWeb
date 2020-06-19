@@ -19,7 +19,7 @@
         },
         methods:{
             deleteOrg:function(){
-                vc.component.deleteOrgInfo.communityId=vc.getCurrentCommunity().communityId;
+                //vc.component.deleteOrgInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteOrg',
                     'delete',
