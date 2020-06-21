@@ -65,8 +65,8 @@
             },
             _openEditWorkflowModel: function (_workflow) {
 
-               vc.jumpToPage('/admin.html#/pages/property/workflowSettingManage?'+vc.objToGetParam(_workflow));
-                
+                vc.jumpToPage('/admin.html#/pages/property/workflowSettingManage?' + vc.objToGetParam(_workflow));
+
             },
             _queryWorkflowMethod: function () {
                 vc.component._listWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -78,6 +78,34 @@
                 } else {
                     vc.component.workflowManageInfo.moreCondition = true;
                 }
+            },
+            _openWorkflowImage: function (_workflow) {
+
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        flowId: _workflow.flowId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('workflow.listWorkflowImage',
+                    param,
+                    function (json, res) {
+                        var _workflowManageInfo = JSON.parse(json);
+                        if(_workflowManageInfo.code != '0'){
+                            vc.toast(_workflowManageInfo.msg);
+
+                            return ;
+                        }
+                        vc.emit('viewImage', 'showImage', {
+                            url: 'data:image/png;base64,'+_workflowManageInfo.data
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+                
             }
 
 

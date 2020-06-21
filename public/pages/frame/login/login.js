@@ -12,7 +12,7 @@
         _initMethod: function () {
             vc.component.clearCacheData();
             vc.component._loadSysInfo();
-            
+
         },
         _initEvent: function () {
             vc.component.$on('errorInfoEvent', function (_errorInfo) {
@@ -78,13 +78,18 @@
                 }
                 vc.http.post(
                     'login',
-                    'doLogin',
+                    'doLogin?version=2.0',
                     JSON.stringify(vc.component.loginInfo),
                     {
                         emulateJSON: true
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _data = JSON.parse(json);
+                        if (_data.hasOwnProperty('code') && _data.code != '0') {
+                            vc.toast(_data.msg);
+                            return;
+                        }
                         if (res.status == 200) {
                             vc.emit('initData', 'loadCommunityInfo', {
                                 url: '/'

@@ -83,6 +83,9 @@
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditWorkflowModel(workflow)">设置流程
                                         </button>
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openWorkflowImage(workflow)">流程图
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -101,5 +104,7 @@
             </div>
         </div>
     </div>
+
+    <vc:create path="common/viewImage"></vc:create>
 
 </div>
