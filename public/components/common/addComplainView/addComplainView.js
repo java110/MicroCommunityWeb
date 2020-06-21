@@ -89,6 +89,8 @@
                 });
             },
             saveAddComplainInfo: function () {
+                vc.component.addComplainViewInfo.communityId = vc.getCurrentCommunity().communityId;
+
                 if (vc.component.addComplainValidate()) {
                     //侦听回传
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addComplainViewInfo);
