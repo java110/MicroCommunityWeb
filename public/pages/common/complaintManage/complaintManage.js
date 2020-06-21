@@ -77,7 +77,7 @@
                 vc.component._listComplaints(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _openComplaintDetailModel:function(_complaint){
+            _openComplaintDetailModel: function (_complaint) {
                 vc.emit('complaintDetail', 'openComplaintDetailModal', _complaint);
             },
             _moreCondition: function () {
@@ -87,7 +87,7 @@
                     vc.component.complaintManageInfo.moreCondition = true;
                 }
             },
-            _openRunWorkflowImage:function(_complaint){
+            _openRunWorkflowImage: function (_complaint) {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -99,13 +99,13 @@
                     param,
                     function (json, res) {
                         var _workflowManageInfo = JSON.parse(json);
-                        if(_workflowManageInfo.code != '0'){
+                        if (_workflowManageInfo.code != '0') {
                             vc.toast(_workflowManageInfo.msg);
 
-                            return ;
+                            return;
                         }
                         vc.emit('viewImage', 'showImage', {
-                            url: 'data:image/png;base64,'+_workflowManageInfo.data
+                            url: 'data:image/png;base64,' + _workflowManageInfo.data
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
