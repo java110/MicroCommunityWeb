@@ -57,16 +57,16 @@
 
             _listSubWechatMenus: function () {
 
-                if($that.wechatMenuManageInfo.parentMenuId == ''){
+                if($that.wechatMenuManageInfo.curParentMenuId == ''){
                     return ;
                 }
 
                 var param = {
                     params: {
                         page: 1,
-                        row: 3,
+                        row: 5,
                         communityId: vc.getCurrentCommunity().communityId,
-                        parentMenuId: $that.wechatMenuManageInfo.parentMenuId,
+                        parentMenuId: $that.wechatMenuManageInfo.curParentMenuId,
                         menuLevel: '202'
                     }
                 };
@@ -90,6 +90,8 @@
                         vc.toast("请先选择一级菜单");
                         return ;
                     }
+                }else{
+                    $that.wechatMenuManageInfo.curParentMenuId = '-1';
                 }
                 vc.emit('addWechatMenu', 'openAddWechatMenuModal', {
                     menuLevel:_menuLevel,

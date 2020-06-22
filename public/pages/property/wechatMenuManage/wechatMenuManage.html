@@ -1,5 +1,5 @@
 <div>
-    
+
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -10,7 +10,8 @@
                             <i class="glyphicon glyphicon-plus"></i>
                             发布菜单
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddWechatMenuModal(101)">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddWechatMenuModal(101)"
+                            v-if="wechatMenuManageInfo.wechatMenus.length < 3">
                             <i class="glyphicon glyphicon-plus"></i>
                             添加菜单
                         </button>
@@ -19,10 +20,11 @@
                 <div class="ibox-content">
 
                     <table class="footable table table-stripped toggle-arrow-tiny table-hover" data-page-size="15">
-                        <thead >
+                        <thead>
                             <tr>
                                 <th class="text-center">菜单名称</th>
                                 <th class="text-center">菜单类型</th>
+                                <th class="text-center">菜单顺序</th>
                                 <th class="text-center">值</th>
                                 <th class="text-center">AppId</th>
                                 <th class="text-center">小程序地址</th>
@@ -30,12 +32,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(wechatMenu,index) in wechatMenuManageInfo.wechatMenus" 
-                            :class="{'table-active':wechatMenu.wechatMenuId=wechatMenuManageInfo.curParentMenuId}"
-                                @click="selectMenu(wechatMenu)"
-                            >
+                            <tr v-for="(wechatMenu,index) in wechatMenuManageInfo.wechatMenus"
+                                :class="{'table-active':wechatMenu.wechatMenuId==wechatMenuManageInfo.curParentMenuId}"
+                                @click="selectMenu(wechatMenu)">
                                 <td class="text-center">{{wechatMenu.menuName}}</td>
-                                <td class="text-center">{{wechatMenu.menuType}}</td>
+                                <td class="text-center">{{wechatMenu.menuTypeName}}</td>
+                                <td class="text-center">{{wechatMenu.seq}}</td>
                                 <td class="text-center">{{wechatMenu.menuValue}}</td>
                                 <td class="text-center">{{wechatMenu.appId}}</td>
                                 <td class="text-center">{{wechatMenu.pagepath}}</td>
@@ -71,7 +73,8 @@
                 <div class="ibox-title">
                     <h5>二级菜单</h5>
                     <div class="ibox-tools" style="top:10px;" v-if="wechatMenuManageInfo.curParentMenuId != ''">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddWechatMenuModal(202)">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddWechatMenuModal(202)"
+                            v-if="wechatMenuManageInfo.subWechatMenus.length < 5">
                             <i class="glyphicon glyphicon-plus"></i>
                             添加二级菜单
                         </button>
@@ -84,6 +87,7 @@
                             <tr>
                                 <th class="text-center">菜单名称</th>
                                 <th class="text-center">菜单类型</th>
+                                <th class="text-center">菜单顺序</th>
                                 <th class="text-center">值</th>
                                 <th class="text-center">AppId</th>
                                 <th class="text-center">小程序地址</th>
@@ -93,7 +97,8 @@
                         <tbody>
                             <tr v-for="wechatMenu in wechatMenuManageInfo.subWechatMenus">
                                 <td class="text-center">{{wechatMenu.menuName}}</td>
-                                <td class="text-center">{{wechatMenu.menuType}}</td>
+                                <td class="text-center">{{wechatMenu.menuTypeName}}</td>
+                                <td class="text-center">{{wechatMenu.seq}}</td>
                                 <td class="text-center">{{wechatMenu.menuValue}}</td>
                                 <td class="text-center">{{wechatMenu.appId}}</td>
                                 <td class="text-center">{{wechatMenu.pagepath}}</td>
