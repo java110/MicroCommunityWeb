@@ -14,7 +14,7 @@
                                 <span class="btn btn-default btn-file" v-on:click="_uploadPhoto($event)">
                                     <span class="fileinput-new" >上传照片</span>
                                 </span>
-                                <input type="file" class="file" accept="images/*" id="uploadOwnerPhoto" hidden v-on:change="_choosePhoto($event)">
+                                <input type="file" class="file" accept="images/*" id="uploadOwnerPhoto" hidden v-on:click="_choosePhoto($event)">
                             </div>
                         </div>
                         <div class="col-sm-6">
