@@ -28,7 +28,7 @@
         _initEvent: function () {
 
             vc.on('wechatAttrInfo', 'getWechatAttrInfo', function (_param) {
-                $that.wechatAttrInfo.wechatId = _param.weChatId;
+                $that.wechatAttrInfo.wechatId = _param.wechatId;
                 $that._listListWechatAttrs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
@@ -50,9 +50,10 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _openEditWechatAttrModel:function(_wechatAttr){
+                vc.emit('editWechatAttr','openEditWechatAttrModal',_wechatAttr);
             }
-
-
         }
     });
 })(window.vc);

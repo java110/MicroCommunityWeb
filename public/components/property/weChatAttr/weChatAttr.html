@@ -18,13 +18,13 @@
                                     
                                 </td>
                             </tr>
-                            <tr v-for="(storeAttr, key) in wechatAttrInfo.attrs">
-                                <td class="text-center">{{storeAttr.specCdName}}</td>
-                                <td class="text-center">{{storeAttr.value}}</td>
+                            <tr v-for="(wechatAttr, key) in wechatAttrInfo.attrs">
+                                <td class="text-center">{{wechatAttr.specCdName}}</td>
+                                <td class="text-center">{{wechatAttr.value}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditStoreAttrModel(storeAttr)">修改
+                                            v-on:click="_openEditWechatAttrModel(wechatAttr)">修改
                                         </button>
                                     </div>
                                 </td>
@@ -46,4 +46,6 @@
     </div>
     <vc:create path="common/editStoreInfo"></vc:create>
     <vc:create path="common/editStoreAttr"></vc:create>
+
+    <vc:create path="property/editWechatAttr"></vc:create>
 </div>

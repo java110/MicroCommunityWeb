@@ -46,7 +46,9 @@
                         var _smallWeChatManageInfo = JSON.parse(json);
                         vc.component.smallWeChatManageInfo.smallWeChats = _smallWeChatManageInfo.smallWeChats;
                         if (_smallWeChatManageInfo.smallWeChats.length > 0) {
-                            vc.emit('wechatAttrInfo', 'getWechatAttrInfo', _smallWeChatManageInfo.smallWeChats[0]);
+                            vc.emit('wechatAttrInfo', 'getWechatAttrInfo', {
+                                wechatId:_smallWeChatManageInfo.smallWeChats[0].weChatId
+                            });
                         }
 
                     }, function (errInfo, error) {

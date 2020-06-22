@@ -37,6 +37,7 @@
 
                 vc.component.smallWeChatManageInfo.conditions.page = _page;
                 vc.component.smallWeChatManageInfo.conditions.row = _rows;
+                vc.component.smallWeChatManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.smallWeChatManageInfo.conditions
                 };
