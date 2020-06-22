@@ -213,9 +213,6 @@
                     reader.readAsDataURL(file); //读取为base64
                     reader.onloadend = function (e) {
                         vc.component.addOwnerInfo.ownerPhoto = reader.result;
-                        
-                        let obj = document.getElementById('uploadOwnerPhoto') ; 
-                        obj.outerHTML=obj.outerHTML
                     }
                 }
             },

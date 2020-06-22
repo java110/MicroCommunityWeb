@@ -15,20 +15,23 @@
                 },
                 wechatServerUrl: '',
                 wechatId: '',
+                wId:''
             }
         },
         _initMethod: function () {
             //生成微信服务端访问地址
-            $that.wechatAttrInfo.wechatServerUrl = window.location.protocol
-                + "//" + window.location.host
-                + '/app/wechat/gateway?java110AppId=992019111758490006&communityId='
-                + vc.getCurrentCommunity().communityId;
+            
 
         },
         _initEvent: function () {
 
             vc.on('wechatAttrInfo', 'getWechatAttrInfo', function (_param) {
                 $that.wechatAttrInfo.wechatId = _param.wechatId;
+                $that.wechatAttrInfo.wId = _param.wId;
+                $that.wechatAttrInfo.wechatServerUrl = window.location.protocol
+                + "//" + window.location.host
+                + '/app/wechat/gateway?java110AppId=992019111758490006&wId='
+                + $that.wechatAttrInfo.wId;
                 $that._listListWechatAttrs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
@@ -46,6 +49,7 @@
                     function (json, res) {
                         var _listWechatAttrManageInfo = JSON.parse(json);
                         vc.component.wechatAttrInfo.attrs = _listWechatAttrManageInfo.data;
+                        
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
