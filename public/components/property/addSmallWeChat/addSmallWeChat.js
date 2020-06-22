@@ -47,12 +47,12 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "小程序名称不能为空"
+                            errInfo: "名称不能为空"
                         },
                         {
                             limit: "max",
                             param: "1,100",
-                            errInfo: "小程序名称不能超过100位"
+                            errInfo: "名称不能超过100位"
                         },
                     ],
                     'addSmallWeChatInfo.appId': [

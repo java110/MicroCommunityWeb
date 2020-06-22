@@ -83,10 +83,32 @@
                                 <label class="col-sm-2 col-form-label">投诉图片</label>
                                 <div class="col-sm-10">
                                     <span v-for="_photo in complaintDetailInfo.photos">
-                                        <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"  v-on:click="openFile(_photo)"></img>
+                                        <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"
+                                            v-on:click="openFile(_photo)"></img>
                                     </span>
                                 </div>
                             </div>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">序号</th>
+                                        <th scope="col">处理时间</th>
+                                        <th scope="col">处理人</th>
+                                        <th scope="col">耗时</th>
+                                        <th scope="col">意见</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item,index) in complaintDetailInfo.comments">
+                                        <th scope="row">{{index+1}}</th>
+                                        <td>{{item.auditTime}}</td>
+                                        <td>{{item.auditName}}</td>
+                                        <td>{{item.duration}}</td>
+                                        <td>{{item.message}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                             <div class="ibox-content">
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"

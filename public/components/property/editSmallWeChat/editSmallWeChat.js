@@ -8,12 +8,12 @@
                 appId: '',
                 appSecret: '',
                 payPassword: '',
-                createTime:'',
-                objType:'',
-                objId:'',
-                mchId:'',
-                remarks:'',
-                objTypes:''
+                createTime: '',
+                objType: '',
+                objId: '',
+                mchId: '',
+                remarks: '',
+                objTypes: '1000'
 
             }
         },
@@ -23,7 +23,7 @@
         _initEvent: function () {
             vc.on('editSmallWeChat', 'openEditSmallWeChatModal', function (_params) {
                 vc.component.refreshEditSmallWeChatInfo();
-                vc.getDict('small_wechat',"obj_type",function(_data){
+                vc.getDict('small_wechat', "obj_type", function (_data) {
                     vc.component.editSmallWeChatInfo.objTypes = _data;
                 });
                 $('#editSmallWeChatModel').modal('show');
@@ -39,12 +39,12 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "小程序名称不能为空"
+                            errInfo: "名称不能为空"
                         },
                         {
                             limit: "max",
                             param: "1,100",
-                            errInfo: "小程序名称不能超过100位"
+                            errInfo: "名称不能超过100位"
                         },
                     ],
                     'editSmallWeChatInfo.appId': [
@@ -101,7 +101,7 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "小程序商户id不能为空"
+                            errInfo: "商户id不能为空"
                         }
                     ],
 
@@ -112,15 +112,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
-                let objType = vc.component.editSmallWeChatInfo.objType;
                 //1000表示改小程序作用于当前小区 否则作用于所有小区
-                if("1000" == objType){
-                    vc.component.editSmallWeChatInfo.objId = vc.getCurrentCommunity().communityId;
-                }else{
-                    vc.component.editSmallWeChatInfo.objId = "allCommunity";
-                }
-
+                vc.component.editSmallWeChatInfo.objId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'smallWeChat.updateSmallWeChat',
                     JSON.stringify(vc.component.editSmallWeChatInfo),
@@ -150,12 +143,12 @@
                     appId: '',
                     appSecret: '',
                     payPassword: '',
-                    createTime:'',
-                    objType:'',
-                    objId:'',
-                    mchId:'',
-                    remarks:'',
-                    objTypes:''
+                    createTime: '',
+                    objType: '',
+                    objId: '',
+                    mchId: '',
+                    remarks: '',
+                    objTypes: '1000'
 
                 }
             }
