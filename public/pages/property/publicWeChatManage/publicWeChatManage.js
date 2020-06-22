@@ -69,6 +69,9 @@
             _switchWeChatType: function (type) {
                 vc.component.smallWeChatManageInfo.conditions.weChatType = type;
                 vc.component._listSmallWeChats(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _openWeChatMenu:function(_smallWeChat){
+                vc.jumpToPage('/admin.html#/pages/property/wechatMenuManage');
             }
 
 
