@@ -142,16 +142,19 @@
                     });
             },
             clearEditOwnerInfo: function () {
+                let _componentTitle = $that.editOwnerInfo.componentTitle;
                 vc.component.editOwnerInfo = {
+                    componentTitle: _componentTitle,
                     ownerId: '',
                     memberId: '',
+                    ownerTypeCd: '',
                     name: '',
                     age: '',
                     link: '',
                     sex: '',
                     remark: '',
-                    idCard: '',
                     ownerPhoto: '',
+                    idCard: '',
                     videoPlaying: false
                 };
             },
@@ -166,8 +169,8 @@
                     vc.component.editOwnerInfo.videoPlaying = false;
                     var constraints = {
                         video: {
-                            width:208,
-                            height:208
+                            width: 208,
+                            height: 208
                         },
                         audio: false
                     };
@@ -196,8 +199,8 @@
                     var video = document.getElementById('ownerPhotoForEdit');
                     canvas.width = 208;
                     canvas.height = 208;
-                    canvas.getContext('2d').drawImage(video, 0,0,208,208);
-                    var data = canvas.toDataURL('image/jpeg',1.0);
+                    canvas.getContext('2d').drawImage(video, 0, 0, 208, 208);
+                    var data = canvas.toDataURL('image/jpeg', 1.0);
                     vc.component.editOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }

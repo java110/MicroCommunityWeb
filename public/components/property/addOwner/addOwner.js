@@ -197,6 +197,7 @@
                 }
             },
             _uploadPhoto: function (event) {
+                console.log('上传图片');
                 $("#uploadOwnerPhoto").trigger("click")
             },
             _choosePhoto: function (event) {
