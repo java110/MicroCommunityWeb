@@ -50,7 +50,7 @@
                         },
                     ],
                     'addOwnerInfo.age': [
-                        
+
                         {
                             limit: "num",
                             param: "",
@@ -139,13 +139,17 @@
             clearAddOwnerInfo: function () {
                 let _componentTitle = $that.addOwnerInfo.componentTitle;
                 vc.component.addOwnerInfo = {
+                    componentTitle: _componentTitle,
                     name: '',
                     age: '',
                     link: '',
                     sex: '',
-                    remark: '',
                     ownerTypeCd: '-1',
-                    componentTitle: _componentTitle
+                    remark: '',
+                    ownerId: '',
+                    ownerPhoto: '',
+                    idCard: '',
+                    videoPlaying: false
                 };
             },
             _addUserMedia: function () {
@@ -187,7 +191,7 @@
                     canvas.width = video.videoWidth;
                     canvas.height = video.videoHeight;
                     canvas.getContext('2d').drawImage(video, 0, 0);
-                    var data = canvas.toDataURL('image/jpeg',1.0);
+                    var data = canvas.toDataURL('image/jpeg', 1.0);
                     vc.component.addOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }
