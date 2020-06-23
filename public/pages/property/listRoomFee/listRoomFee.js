@@ -78,6 +78,9 @@
             },
             _refreshListRoomCreateFeeInfo:function(){
                 vc.component.listRoomCreateFeeInfo._currentFeeConfigName = "";
+            },
+            _goBack:function(){
+                vc.goBack();
             }
         }
 
