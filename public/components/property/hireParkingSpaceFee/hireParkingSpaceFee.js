@@ -93,7 +93,7 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         typeCd: vc.component.hireParkingSpaceFeeInfo.typeCd,
                         page: 1,
-                        row: 1
+                        row: 50
                     }
                 };
                 vc.http.get(

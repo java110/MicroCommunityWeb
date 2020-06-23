@@ -1,55 +1,55 @@
-<div >
+<div>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>{{listRoomCreateFeeInfo.roomName}}费用</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!--                        <button type="button" class="btn btn-primary btn-sm"-->
-                        <!--                                style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal(null,true)">-->
-                        <!--                            <i class="fa fa-plus"></i> 批量创建-->
-                        <!--                        </button>-->
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_goBack()">
+                            返回
+                        </button>
 
                     </div>
                 </div>
                 <div class="ibox-content">
 
                     <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                           data-page-size="10">
+                        data-page-size="10">
 
                         <thead>
-                        <tr>
-                            <th class="text-center">费用项ID</th>
-                            <th class="text-center">费用标识</th>
-                            <th class="text-center">费用类型</th>
-                            <th class="text-center">费用项目</th>
-                            <th class="text-center">开始时间</th>
-                            <th class="text-center">到期时间</th>
-                            <th class="text-center">状态</th>
-                            <th class="text-right">操作</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">费用项ID</th>
+                                <th class="text-center">费用标识</th>
+                                <th class="text-center">费用类型</th>
+                                <th class="text-center">费用项目</th>
+                                <th class="text-center">开始时间</th>
+                                <th class="text-center">到期时间</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-right">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="fee in listRoomCreateFeeInfo.fees">
-                            <td class="text-center">{{fee.feeId}}</td>
-                            <td class="text-center">{{fee.feeFlagName}}</td>
-                            <td class="text-center">{{fee.feeTypeCdName}}</td>
-                            <td class="text-center">{{fee.feeName}}</td>
-                            <td class="text-center">{{fee.startTime}}</td>
-                            <td class="text-center">{{fee.endTime}}</td>
-                            <td class="text-center">{{fee.stateName}}</td>
-                            <td class="text-right">
-                                <button class="btn btn-link btn-xs" v-if=" fee.state != '2009001'"  
+                            <tr v-for="fee in listRoomCreateFeeInfo.fees">
+                                <td class="text-center">{{fee.feeId}}</td>
+                                <td class="text-center">{{fee.feeFlagName}}</td>
+                                <td class="text-center">{{fee.feeTypeCdName}}</td>
+                                <td class="text-center">{{fee.feeName}}</td>
+                                <td class="text-center">{{fee.startTime}}</td>
+                                <td class="text-center">{{fee.endTime}}</td>
+                                <td class="text-center">{{fee.stateName}}</td>
+                                <td class="text-right">
+                                    <button class="btn btn-link btn-xs" v-if=" fee.state != '2009001'"
                                         v-on:click="_payFee(fee)">缴费
-                                </button>
-                                <button class="btn btn-link btn-xs"
-                                        v-on:click="_payFeeHis(fee)">缴费历史
-                                </button>
-                                <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F' && fee.state != '2009001'" 
+                                    </button>
+                                    <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史
+                                    </button>
+                                    <button class="btn btn-link btn-xs"
+                                        v-if="fee.isDefault == 'F' && fee.state != '2009001'"
                                         v-on:click="_deleteFee(fee)">取消费用
-                                </button>
-                            </td>
-                        </tr>
+                                    </button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <!-- 分页 -->

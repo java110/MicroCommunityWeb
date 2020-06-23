@@ -15,7 +15,7 @@
                 roomId: '',
                 feeTypeCd:'',
                 configId:'',
-                roomState:'',
+                roomState:'2001',
                 isMore:false,
                 locationTypeCdName:'',
             }
