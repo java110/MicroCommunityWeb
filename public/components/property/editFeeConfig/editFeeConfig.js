@@ -201,8 +201,12 @@
             },
             editFeeConfig: function() {
             //固定费用
-                if(vc.component.editFeeConfigValidate.computingFormula == '2002'){
-                   vc.component.addFeeConfigInfo.squarePrice = "0.00";
+                if(vc.component.editFeeConfigInfo.computingFormula == '2002'){
+                   vc.component.editFeeConfigInfo.squarePrice = "0.00";
+                }
+
+                if(vc.component.editFeeConfigInfo.feeFlag == '2006012'){
+                    vc.component.editFeeConfigInfo.paymentCycle = '1';
                 }
                 if (!vc.component.editFeeConfigValidate()) {
                     vc.toast(vc.validate.errInfo);

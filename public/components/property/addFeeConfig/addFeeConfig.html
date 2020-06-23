@@ -42,7 +42,7 @@
                                         <option value="2100">后付费</option>
                                     </select></div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" v-if="addFeeConfigInfo.feeFlag=='1003006'">
                                 <label class="col-sm-2 col-form-label">缴费周期</label>
                                 <div class="col-sm-10">
                                     <input v-model="addFeeConfigInfo.paymentCycle" type="text" placeholder="必填，请填写缴费周期 单位为月"
