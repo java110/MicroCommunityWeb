@@ -43,6 +43,9 @@
         methods:{
             _loadUnits:function(_param){
                 vc.component.unitInfo._currentFloorId=_param.floorId;
+                if(!vc.notNull(_param.floorId)){
+                    return;
+                }
                 vc.component.unitInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params:vc.component.unitInfo.conditions
