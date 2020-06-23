@@ -51,7 +51,7 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "10",
+                            param: "50",
                             errInfo: "菜单类型格式错误"
                         },
                     ],
@@ -70,8 +70,8 @@
                     'editWechatMenuInfo.menuValue': [
                         {
                             limit: "maxLength",
-                            param: "50",
-                            errInfo: "值不能超过50位"
+                            param: "200",
+                            errInfo: "值不能超过200位"
                         },
                     ],
                     'editWechatMenuInfo.appId': [

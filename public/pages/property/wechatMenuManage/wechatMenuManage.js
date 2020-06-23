@@ -45,10 +45,10 @@
                     function (json, res) {
                         var _wechatMenuManageInfo = JSON.parse(json);
                         vc.component.wechatMenuManageInfo.wechatMenus = _wechatMenuManageInfo.data;
-                        if(_wechatMenuManageInfo.data.length > 0){
+                        if (_wechatMenuManageInfo.data.length > 0) {
                             $that.wechatMenuManageInfo.curParentMenuId = _wechatMenuManageInfo.data[0].wechatMenuId;
                             $that._listSubWechatMenus();
-                        } 
+                        }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -57,8 +57,8 @@
 
             _listSubWechatMenus: function () {
 
-                if($that.wechatMenuManageInfo.curParentMenuId == ''){
-                    return ;
+                if ($that.wechatMenuManageInfo.curParentMenuId == '') {
+                    return;
                 }
 
                 var param = {
@@ -84,17 +84,17 @@
             },
             _openAddWechatMenuModal: function (_menuLevel) {
                 let _parentMenuId = '-1';
-                if(_menuLevel == '202'){
+                if (_menuLevel == '202') {
                     _parentMenuId = $that.wechatMenuManageInfo.curParentMenuId;
-                    if(_parentMenuId == ''){
+                    if (_parentMenuId == '') {
                         vc.toast("请先选择一级菜单");
-                        return ;
+                        return;
                     }
-                }else{
+                } else {
                     $that.wechatMenuManageInfo.curParentMenuId = '-1';
                 }
                 vc.emit('addWechatMenu', 'openAddWechatMenuModal', {
-                    menuLevel:_menuLevel,
+                    menuLevel: _menuLevel,
                     parentMenuId: _parentMenuId
                 });
             },
@@ -112,8 +112,28 @@
                 $that.wechatMenuManageInfo.curParentMenuId = _wechatMenu.wechatMenuId;
                 $that._listSubWechatMenus();
             },
-            _publishMenu:function(){
+            _publishMenu: function () {
                 //发布菜单
+                var data = {
+                    communityId: vc.getCurrentCommunity().communityId
+                };
+
+                //发送get请求
+                vc.http.apiPost('smallWeChat.publicWechatMenu',
+                    JSON.stringify(data),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        var _wechatMenuManageInfo = JSON.parse(json);
+                        console.log("_wechatMenuManageInfo", _wechatMenuManageInfo);
+                        vc.toast(_wechatMenuManageInfo.msg);
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+
+                    }
+                );
             }
 
 

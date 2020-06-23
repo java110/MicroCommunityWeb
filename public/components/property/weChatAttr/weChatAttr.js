@@ -30,7 +30,7 @@
                 $that.wechatAttrInfo.wId = _param.wId;
                 $that.wechatAttrInfo.wechatServerUrl = window.location.protocol
                 + "//" + window.location.host
-                + '/app/wechat/gateway?java110AppId=992019111758490006&wId='
+                + '/app/wechat/gateway?java110AppId=992020061452450002&wId='
                 + $that.wechatAttrInfo.wId;
                 $that._listListWechatAttrs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
