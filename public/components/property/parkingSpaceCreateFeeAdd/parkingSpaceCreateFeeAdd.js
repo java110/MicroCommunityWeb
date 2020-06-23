@@ -11,7 +11,7 @@
                 psId: '',
                 feeTypeCd:'',
                 configId:'',
-                parkingSpaceState:'',
+                parkingSpaceState:'SH',
                 isMore:false,
                 locationTypeCdName:'',
             }

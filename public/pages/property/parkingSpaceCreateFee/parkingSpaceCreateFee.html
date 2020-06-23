@@ -109,7 +109,7 @@
                                 {{parkingSpace.psId}}
                             </td>
                             <td class="text-right">
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="parkingSpace.state != 'F'">
                                     <button class="btn-white btn btn-xs" v-on:click="_openParkingSpaceCreateFeeAddModal(parkingSpace,false)">创建收费
                                     </button>
                                 </div>
