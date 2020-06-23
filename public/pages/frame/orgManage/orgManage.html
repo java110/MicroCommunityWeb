@@ -84,7 +84,7 @@
                                     <td class="text-center">{{org.orgLevel == 1 ? '无' : org.parentOrgName}}</td>
                                     <td class="text-right">
                                         <div v-if="org.allowOperation == 'F' && org.belongCommunityId == '9999'">
-                                            隶属所有小区
+                                            下辖所有小区
                                         </div>
                                         <div class="btn-group" v-if="org.allowOperation == 'T'">
                                             <button class="btn-white btn btn-xs" v-on:click="_openEditOrgModel(org)">
@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="btn-group" v-if="org.orgLevel == 2 && org.allowOperation == 'T'">
                                             <button class="btn-white btn btn-xs" v-on:click="_openBeyondCommunity(org)">
-                                                隶属小区
+                                                下辖小区
                                             </button>
                                         </div>
                                     </td>

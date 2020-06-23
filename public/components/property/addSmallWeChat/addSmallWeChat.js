@@ -124,7 +124,8 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json)
+                        if (_json.status == '0') {
                             //关闭model
                             $('#addSmallWeChatModel').modal('hide');
                             vc.component.clearAddSmallWeChatInfo();
@@ -132,7 +133,7 @@
 
                             return;
                         }
-                        vc.message(json);
+                        vc.message(_json.msg);
 
                     },
                     function (errInfo, error) {
