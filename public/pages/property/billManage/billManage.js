@@ -61,8 +61,8 @@
                     }
                 );
             },
-            _openBillDetail: function () {
-                
+            _openBillDetail: function (_bill) {
+                vc.jumpToPage('/admin.html#/pages/property/billOweManage?'+vc.objToGetParam(_bill));
 
             },
             _querybillMethod: function () {
