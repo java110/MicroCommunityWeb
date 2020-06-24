@@ -14,8 +14,8 @@
                 title: '',
                 conditions: {
                     title: '',
-                    typeCd: '',
-                    userName: '',
+                    curBill: '',
+                    billName: '',
                     billId: '',
 
                 }

@@ -19,16 +19,16 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <select class="custom-select" v-model="billManageInfo.conditions.typeCd">
-                                <option selected value="">请选择信息类型</option>
-                                <option v-for="(item,index) in billManageInfo.typeCds" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}
-                                </option>
+                            <select class="custom-select" v-model="billManageInfo.conditions.curBill">
+                                <option selected value="">请选择账单类型</option>
+                                <option value="T">当期账单</option>
+                                <option value="F">往期账单</option>
+
                             </select></div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入员工名称"
-                                    v-model="billManageInfo.conditions.userName" class=" form-control">
+                                <input type="text" placeholder="请输入账单名称"
+                                    v-model="billManageInfo.conditions.billName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -83,12 +83,13 @@
                         <tbody>
                             <tr v-for="bill in billManageInfo.bills">
                                 <td class="text-center">{{bill.billId}}</td>
-                                <td class="text-center">{{bill.configName}}</td>
+                                <td class="text-center">{{bill.feeName}}</td>
                                 <td class="text-center">{{bill.billName}}</td>
                                 <td class="text-center">{{bill.receivable}}元</td>
                                 <td class="text-center">{{bill.curReceivable}}元</td>
-                                <td class="text-center">{{bill.billTime}}元</td>
-                                <td class="text-center">{{bill.curBill == 'T'?'当前账单':'历史账单'}}</td>
+                                <td class="text-center">{{bill.receipts}}元</td>
+                                <td class="text-center">{{bill.billTime}}</td>
+                                <td class="text-center">{{bill.curBill == 'T'?'当期账单':'往期账单'}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
