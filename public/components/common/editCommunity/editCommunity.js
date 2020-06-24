@@ -21,7 +21,7 @@
             function(_params) {
                 vc.component.refreshEditCommunityInfo();
                 $('#editCommunityModel').modal('show');
-                vc.component.editCommunityInfo = _params;
+                vc.copyObject(_params, vc.component.editCommunityInfo);
                 //vc.component.editCommunityInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },

@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入投诉ID"
+                                <input type="text" placeholder="请输入投诉编码"
                                        v-model="complaintManageInfo.conditions.complaintId" class=" form-control">
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="complaintManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入联系电话" v-model="complaintManageInfo.conditions.tel"
+                                <input type="text" placeholder="请输入投诉人电话" v-model="complaintManageInfo.conditions.tel"
                                        class=" form-control">
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <th class="text-center">投诉类型</th>
                             <th class="text-center">房屋</th>
                             <th class="text-center">投诉人</th>
-                            <th class="text-center">投诉电话</th>
+                            <th class="text-center">投诉人电话</th>
                             <th class="text-center">投诉状态</th>
                             <th class="text-center">处理人</th>
                             <th class="text-center">处理电话</th>

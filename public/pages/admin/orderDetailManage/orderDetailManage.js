@@ -9,6 +9,9 @@
         _initEvent:function(){
             vc.on('orderDetailManage','listOrderDetails',function(_param){
                 vc.component.orderDetailInfo.orderDetails = _param;
+                vc.component.orderDetailInfo.orderDetails.map(item=>{
+                    item.createTime=item.createTime.substr(0,item.createTime.length-2);
+                })
             });
         },
         methods:{

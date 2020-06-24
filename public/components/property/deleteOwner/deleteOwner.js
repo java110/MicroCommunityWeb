@@ -38,7 +38,7 @@
                      },
                      function(errInfo,error){
                          vc.toast(errInfo);
-                        vc.component.deleteOwnernfo.errorInfo = errInfo;
+                       // vc.component.deleteOwnernfo.errorInfo = errInfo;
                      });
             }
         }

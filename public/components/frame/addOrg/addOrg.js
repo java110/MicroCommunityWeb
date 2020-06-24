@@ -16,7 +16,8 @@
                 parentOrg:[],
                 belongCommunitys:[]
 
-            }
+            },
+            flagOrgName:false
         },
         watch: {
             "addOrgInfo.orgLevel":
@@ -103,6 +104,17 @@
             }
             ,
             saveOrgInfo: function () {
+                if(vc.component.addOrgInfo.orgLevel==2){
+                    if(vc.component.flagOrgName){
+                        vc.toast("公司名重复");
+                        return;
+                    }
+                }else if(vc.component.addOrgInfo.orgLevel==3){
+                    if(vc.component.flagOrgName){
+                        vc.toast("组织名称重复");
+                        return;
+                    }
+                }
                 if (!vc.component.addOrgValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -201,6 +213,44 @@
                     function (json, res) {
                         var _enterCommunitys = JSON.parse(json);
                         vc.component.addOrgInfo.belongCommunitys = _enterCommunitys;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            textOrgName(){
+                var _tmpOrgLevel = vc.component.addOrgInfo.orgLevel;
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 30,
+                        orgLevel: _tmpOrgLevel,
+                        parentOrgId:vc.component.addOrgInfo.parentOrgId,
+                        orgName: vc.component.addOrgInfo.orgName
+                    }
+                };
+                console.log(param,6666)
+                //发送get请求
+                vc.http.get('orgManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var arr = JSON.parse(json).orgs;
+                        if (_tmpOrgLevel == 2) {
+                            if(arr.length>0){
+                                vc.toast("公司名重复");
+                                vc.component.flagOrgName=true
+                            }else{
+                                vc.component.flagOrgName=false
+                            }
+                        } else if(_tmpOrgLevel == 3) {
+                            if(arr.length>0){
+                                vc.toast("组织名称重复");
+                                vc.component.flagOrgName=true
+                            }else{
+                                vc.component.flagOrgName=false
+                            }
+                        }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

@@ -68,7 +68,14 @@
                 $('.editFeeConfigEndTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".editFeeConfigEndTime").val();
-                        vc.component.editFeeConfigInfo.endTime = value;
+                        var start=Date.parse(new Date(vc.component.editFeeConfigInfo.startTime))
+                        var end = Date.parse(new Date(value))
+                        if(start-end>=0){
+                            vc.toast("计费终止时间必须大于计费起始时间")
+                            $(".editFeeConfigEndTime").val('')
+                        }else{
+                            vc.component.editFeeConfigInfo.endTime = value;
+                        }
                     });
             },
             editFeeConfigValidate: function() {

@@ -70,7 +70,8 @@
                         <tr v-for="parkingArea in parkingAreaManageInfo.parkingAreas">
                             <td class="text-center">{{parkingArea.paId}}</td>
                             <td class="text-center">{{parkingArea.num}}</td>
-                            <td class="text-center">{{parkingArea.typeCd}}</td>
+                            <td class="text-center" v-if="parkingArea.typeCd=='1001'">地上停车场</td>
+                            <td class="text-center" v-if="parkingArea.typeCd=='2001'">地下停车场</td>
                             <td class="text-center">{{parkingArea.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">

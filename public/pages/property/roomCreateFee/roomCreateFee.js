@@ -46,7 +46,9 @@
         methods:{
 
             listRoom:function(_page,_row){
-
+                if(vc.component.roomCreateFeeInfo.conditions.floorName==''||vc.component.roomCreateFeeInfo.conditions.floorName==null){
+                    vc.component.roomCreateFeeInfo.conditions.floorId=''
+                }
                 vc.component.roomCreateFeeInfo.conditions.page=_page;
                 vc.component.roomCreateFeeInfo.conditions.row=_row;
                 vc.component.roomCreateFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;

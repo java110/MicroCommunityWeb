@@ -32,7 +32,7 @@
 
          },
          _initEvent:function(){
-            vc.on('addFloor','openAddFloorModal',function(s){
+            vc.on('addFloor','openAddFloorModal',function(){
                 $('#addFloorModel').modal('show');
             });
 

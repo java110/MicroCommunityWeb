@@ -79,7 +79,11 @@
                     },
                     ],
                     'addStaffViewInfo.tel': [{
-                        limit: "photo",
+                        limit: "required",
+                        param: "",
+                        errInfo: "联系方式不能为空"
+                    },{
+                        limit: "phone",
                         param: "",
                         errInfo: "联系方式不是有效手机"
                     },
