@@ -79,7 +79,7 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 200) {
                             //关闭model
-                            vc.emit('jobManage', 'listJob', {});
+                            vc.component._listJobs(DEFAULT_PAGE, DEFAULT_ROWS);
                             vc.toast(_json.msg);
                             return;
                         }
@@ -108,7 +108,7 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 200) {
                             //关闭model
-                            vc.emit('jobManage', 'listJob', {});
+                            vc.component._listJobs(DEFAULT_PAGE, DEFAULT_ROWS);
                             vc.toast(_json.msg);
                             return;
                         }
