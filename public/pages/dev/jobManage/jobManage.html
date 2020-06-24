@@ -73,7 +73,11 @@
                                 <td class="text-center">{{job.taskCron}}</td>
                                 <td class="text-center">{{job.templateName}}</td>
                                 <td class="text-center">{{job.createTime}}</td>
-                                <td class="text-center">{{job.state == '002'? '运行':'停止'}}</td>
+                                <td class="text-center">
+                                    <span v-if="job.state == '002'" class="badge badge-success">运行中</span>
+                                    <span v-else class="badge badge-dark">停止</span>
+
+                                </td>
                                 <td class="text-right">
                                     <div class="btn-group" v-if="job.state == '001'">
                                         <button class="btn-white btn btn-xs" v-on:click="_openStartJob(job)">
