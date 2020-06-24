@@ -77,7 +77,7 @@
                     },
                     function (json, res) {
                         let _json = JSON.parse(json);
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             //关闭model
                             vc.component._listJobs(DEFAULT_PAGE, DEFAULT_ROWS);
                             vc.toast(_json.msg);
@@ -106,7 +106,7 @@
                     },
                     function (json, res) {
                         let _json = JSON.parse(json);
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             //关闭model
                             vc.component._listJobs(DEFAULT_PAGE, DEFAULT_ROWS);
                             vc.toast(_json.msg);
