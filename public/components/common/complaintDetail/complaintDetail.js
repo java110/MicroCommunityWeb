@@ -36,6 +36,7 @@
                 $that.complaintDetailInfo.currentUserTel = _params.currentUserTel == '' ? '无' : _params.currentUserTel;
                 $that.complaintDetailInfo.currentUserId = _params.currentUserId == '' ? '无' : _params.currentUserId;
                 vc.component.complaintDetailInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that._loadComments();
             });
         },
         methods: {
@@ -67,7 +68,7 @@
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        businessKey: _complaint.complaintId
+                        businessKey: $that.complaintDetailInfo.complaintId
                     }
                 };
                 //发送get请求
