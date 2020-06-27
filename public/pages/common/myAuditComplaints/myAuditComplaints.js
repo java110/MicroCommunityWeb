@@ -14,6 +14,7 @@
                 currentTaskId: '',
                 currentComplaintId: '',
                 userName: '',
+                curUserId: '',
                 conditions: {
                     AuditOrdersId: '',
                     userName: '',
@@ -24,6 +25,8 @@
         },
         _initMethod: function () {
             vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+            let _user = vc.getData('/nav/getUserInfo');
+            $that.myAuditComplaintsInfo.curUserId = _user.userId;
         },
         _initEvent: function () {
             vc.on('myAuditComplaints', 'auditMessage', function (_auditInfo) {

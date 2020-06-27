@@ -10,51 +10,58 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">投诉ID</th>
-                            <th class="text-center">投诉类型</th>
-                            <th class="text-center">房屋</th>
-                            <th class="text-center">投诉人</th>
-                            <th class="text-center">投诉电话</th>
-                            <th class="text-center">投诉状态</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">投诉ID</th>
+                                <th class="text-center">投诉类型</th>
+                                <th class="text-center">房屋</th>
+                                <th class="text-center">投诉人</th>
+                                <th class="text-center">投诉电话</th>
+                                <th class="text-center">投诉状态</th>
+                                <th class="text-center">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="complaint in myAuditComplaintsInfo.complaints">
-                            <td class="text-center">{{complaint.complaintId}}</td>
-                            <td class="text-center">{{complaint.typeCdName}}</td>
-                            <td class="text-center">
-                                {{complaint.floorNum}}号楼{{complaint.unitNum}}单元{{complaint.roomNum}}室
-                            </td>
-                            <td class="text-center">{{complaint.complaintName}}</td>
-                            <td class="text-center">{{complaint.tel}}</td>
-                            <td class="text-center">{{complaint.stateName}}</td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                            <tr v-for="complaint in myAuditComplaintsInfo.complaints">
+                                <td class="text-center">{{complaint.complaintId}}</td>
+                                <td class="text-center">{{complaint.typeCdName}}</td>
+                                <td class="text-center">
+                                    {{complaint.floorNum}}号楼{{complaint.unitNum}}单元{{complaint.roomNum}}室
+                                </td>
+                                <td class="text-center">{{complaint.complaintName}}</td>
+                                <td class="text-center">{{complaint.tel}}</td>
+                                <td class="text-center">{{complaint.stateName}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group"
+                                        v-if="myAuditComplaintsInfo.curUserId != complaint.startUserId">
+                                        <button class="btn-white btn btn-xs"
                                             v-on:click="_openAuditComplaintModel(complaint)">审核
-                                    </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" v-else>
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAuditComplaintModel(complaint)">修改
+                                        </button>
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAuditComplaintModel(complaint)">结束
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
                                             v-on:click="_openComplaintDetailModel(complaint)">详情
-                                    </button>
-                                </div>
-                            </td>
+                                        </button>
+                                    </div>
+                                </td>
 
-                        </tr>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -63,12 +70,9 @@
             </div>
         </div>
     </div>
-    <vc:create path="common/audit"
-               callBackListener="myAuditComplaints"
-               callBackFunction="auditMessage"
-               >
+    <vc:create path="common/audit" callBackListener="myAuditComplaints" callBackFunction="auditMessage">
 
     </vc:create>
-    
+
     <vc:create path="common/complaintDetail"></vc:create>
 </div>
