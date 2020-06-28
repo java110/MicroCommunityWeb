@@ -85,8 +85,8 @@
 
                 let param = {
                     communityId: vc.getCurrentCommunity().communityId,
-                    userId: _staff.staffId,
-                    userName: _staff.staffName,
+                    staffId: _staff.staffId,
+                    staffName: _staff.staffName,
                     repairType: $that.repairTypeUserManageInfo.repairType
                 }
 
