@@ -48,6 +48,9 @@
                 $that.staff.staffId = item.userId;
                 $that.staff.staffName = item.userName;
                 $('#selectStaffModel').modal('hide');
+                if($that.staff.hasOwnProperty('call')){
+                    $that.staff.call($that.staff);
+                }
             },
             _initOrg: function (_orgLevel, _parentOrgId) {
                 var param = {
