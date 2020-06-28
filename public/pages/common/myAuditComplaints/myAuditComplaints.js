@@ -29,6 +29,9 @@
             $that.myAuditComplaintsInfo.curUserId = _user.userId;
         },
         _initEvent: function () {
+            vc.on('myAuditComplaints', 'list', function (_auditInfo) {
+                vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
             vc.on('myAuditComplaints', 'auditMessage', function (_auditInfo) {
                 vc.component._auditComplaintInfo(_auditInfo);
             });
@@ -99,8 +102,32 @@
                     vc.component.AuditOrdersManageInfo.moreCondition = true;
                 }
             },
-            _openComplaintDetailModel:function(_complaint){
+            _openComplaintDetailModel: function (_complaint) {
                 vc.emit('complaintDetail', 'openComplaintDetailModal', _complaint);
+            },
+            _openEditComplaintModel: function (_complaint) {
+                vc.emit('editComplaint', 'openEditComplaintModal', _complaint);
+            },
+
+            _reSubmitComplaint: function (_complaint) {
+                vc.emit('ReSubmitComplaint', 'openReSubmitComplaintModal', {
+                    msg: "您确定重新提交吗？",
+                    complaintId: _complaint.complaintId,
+                    state: '1100',
+                    remark: '修改后重新提交',
+                    taskId: _complaint.taskId
+
+                });
+            },
+            _overComplaint:function(_complaint){
+                vc.emit('ReSubmitComplaint', 'openReSubmitComplaintModal', {
+                    msg: "您确定结束流程吗？",
+                    complaintId: _complaint.complaintId,
+                    state: '1200',
+                    remark: '结束流程',
+                    taskId: _complaint.taskId
+
+                });
             }
 
 

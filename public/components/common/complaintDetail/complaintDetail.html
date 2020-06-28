@@ -98,17 +98,19 @@
                             <thead>
                                 <tr>
                                     <th scope="col">序号</th>
-                                    <th scope="col">处理时间</th>
                                     <th scope="col">处理人</th>
+                                    <th scope="col">状态</th>
+                                    <th scope="col">处理时间</th>
                                     <th scope="col">耗时</th>
                                     <th scope="col">意见</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(item,index) in complaintDetailInfo.comments">
-                                    <th scope="row">{{index+1}}</th>
-                                    <td>{{item.auditTime}}</td>
+                                    <th scope="row">{{index+1}}</th>       
                                     <td>{{item.auditName}}</td>
+                                    <td>{{item.stateName}}</td>
+                                    <td>{{item.auditTime}}</td>
                                     <td>{{item.duration}}</td>
                                     <td>{{item.message}}</td>
                                 </tr>
