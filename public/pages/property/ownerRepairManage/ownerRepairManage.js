@@ -26,7 +26,7 @@
         },
         _initMethod:function(){
             //vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.component._validateParam();
+            //vc.component._validateParam();
         },
         _initEvent:function(){
             
@@ -38,51 +38,6 @@
             });
         },
         methods:{
-            _validateParam:function(){
-                var _ownerId = vc.getParam('ownerId')
-                var _roomId = vc.getParam('roomId')
-
-                if(!vc.notNull(_roomId)){
-                    vc.toast("非法操作，未找到房屋信息");
-                    vc.jumpToPage('/admin.html#/pages/property/listOwner');
-                    return ;
-                }
-                vc.component.ownerRepairManageInfo.conditions.roomId = _roomId;
-                vc.component.ownerRepairManageInfo.conditions.ownerId = _ownerId;
-                var param={
-                    params:{
-                        roomId:vc.component.ownerRepairManageInfo.conditions.roomId,
-                        communityId:vc.getCurrentCommunity().communityId,
-                        page:1,
-                        row:1
-                    }
-                };
-                //查询房屋信息 业主信息
-               vc.http.get('ownerRepairManage',
-                            'getRoom',
-                             param,
-                             function(json,res){
-                                if(res.status == 200){
-                                    var _roomInfos=JSON.parse(json);
-                                    if(!_roomInfos.hasOwnProperty("rooms")){
-                                         vc.toast("非法操作，未找到房屋信息");
-                                         vc.jumpToPage('/admin.html#/pages/property/listOwner');
-                                         return ;
-                                    }
-                                    var _roomInfo = _roomInfos.rooms[0];
-                                    vc.component.ownerRepairManageInfo.conditions.roomName= _roomInfo.floorNum+"号楼 "+_roomInfo.unitNum+"单元 "+_roomInfo.roomNum + "室";
-                                    vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
-                                }else{
-                                     vc.toast("非法操作，未找到房屋信息");
-                                     vc.jumpToPage('/admin.html#/pages/property/listOwner');
-                                }
-                             },function(errInfo,error){
-                                console.log('请求失败处理');
-                                vc.toast("非法操作，未找到房屋信息");
-                                vc.jumpToPage('/admin.html#/pages/property/listOwner');
-                             }
-                 );
-            },
             _listOwnerRepairs:function(_page, _rows){
                 vc.component.ownerRepairManageInfo.conditions.page = _page;
                 vc.component.ownerRepairManageInfo.conditions.row = _rows;

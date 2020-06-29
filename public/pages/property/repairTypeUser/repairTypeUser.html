@@ -31,7 +31,7 @@
                             <tr v-for="repairTypeUser in repairTypeUserManageInfo.repairTypeUsers">
                                 <!-- <td class="text-center">{{repairTypeUser.settingId}}</td> -->
                                 <td class="text-center">{{repairTypeUser.staffName}}</td>
-                                <td class="text-center">{{repairTypeUser.repairWayName}}</td>
+                                <td class="text-center">{{repairTypeUser.repairTypeName}}</td>
                                 <!-- <td class="text-center">{{repairTypeUser.staffId}}</td> -->
                                 <td class="text-center">{{repairTypeUser.stateName}}</td>
                                 <td class="text-center">{{repairTypeUser.remark}}</td>
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditrepairTypeUserModel(repairTypeUser)">变更状态</button>
+                                            v-on:click="_openEditrepairTypeUserModel(repairTypeUser)">变更</button>
                                     </div>
                                 </td>
 
@@ -66,5 +66,7 @@
     </div>
 
     <vc:create path="property/selectStaff"></vc:create>
+    <vc:create path="property/deleteRepairTypeUser"></vc:create>
+    <vc:create path="property/editRepairTypeUser"></vc:create>
 
 </div>

@@ -75,7 +75,7 @@
                     }
                 });
             },
-            _openEditRepairTypeUserModel: function (_repairTypeUser) {
+            _openEditrepairTypeUserModel: function (_repairTypeUser) {
                 vc.emit('editRepairTypeUser', 'openEditRepairTypeUserModal', _repairTypeUser);
             },
             _openDeleteTypeUserModel: function (_repairTypeUser) {

@@ -34,7 +34,7 @@
                             vc.emit('locationManage', 'listLocation', {});
                             return;
                         }
-                        vc.message(json);
+                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
