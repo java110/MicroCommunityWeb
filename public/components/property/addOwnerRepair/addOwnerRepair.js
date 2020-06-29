@@ -22,8 +22,11 @@
             vc.component._initAddOwnerRepairInfo();
         },
         _initEvent: function () {
-            vc.on('addOwnerRepair','notify',function(_param){
-                    console.log(_param);
+            vc.on('addOwnerRepair', 'notify', function (_param) {
+                console.log('notify', _param);
+                if (_param.hasOwnProperty('roomId')) {
+                    $that.addOwnerRepairInfo.roomId = _param.roomId;
+                }
             });
             vc.on('addOwnerRepair', 'openAddOwnerRepairModal', function (_ownerInfo) {
                 $('#addOwnerRepairModel').modal('show');

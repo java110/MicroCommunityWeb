@@ -33,6 +33,7 @@
              })*/
             vc.on('roomSelect2', "transferRoom", function (_param) {
                 vc.copyObject(_param, this.roomSelect2Info);
+                this._initRoomSelect2();
             });
             vc.on('roomSelect2', 'setRoom', function (_param) {
                 vc.copyObject(_param, this.roomSelect2Info);
