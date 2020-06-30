@@ -92,6 +92,9 @@
                     vc.component.repairPoolManageInfo.moreCondition = true;
                 }
             },
+            _openDispatchRepairModel:function(_repair){
+                vc.emit('dispatchRepair', 'openDispatchRepairModal',_repair);
+            },
             _listRepairSettings: function (_page, _rows) {
                 var param = {
                     params: {
