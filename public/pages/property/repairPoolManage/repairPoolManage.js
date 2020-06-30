@@ -29,8 +29,8 @@
         _initMethod: function () {
             //vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._validateParam();
-            $that._listRepairSettings();
-            vc.getDict('r_repair_pool',"state",function(_data){
+            $that._listRepairSettings(DEFAULT_PAGE, 50);
+            vc.getDict('r_repair_pool', "state", function (_data) {
                 vc.component.repairPoolManageInfo.states = _data;
             });
         },
@@ -48,13 +48,12 @@
                 vc.component.repairPoolManageInfo.conditions.page = _page;
                 vc.component.repairPoolManageInfo.conditions.row = _rows;
                 vc.component.repairPoolManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                vc.component.repairPoolManageInfo.conditions.state = '1000';
                 var param = {
                     params: vc.component.repairPoolManageInfo.conditions
                 };
 
                 //发送get请求
-                vc.http.get('repairPoolManage',
+                vc.http.get('ownerRepairManage',
                     'list',
                     param,
                     function (json, res) {
@@ -71,13 +70,8 @@
                     }
                 );
             },
-            _openAddRepairPoolModal: function () {
-                vc.emit('addRepairPool', 'openAddRepairPoolModal', vc.component.repairPoolManageInfo.conditions);
-            },
-            _openEditRepairPoolModel: function (_repairPool) {
-                _repairPool.roomName = vc.component.repairPoolManageInfo.conditions.roomName;
-                _repairPool.roomId = vc.component.repairPoolManageInfo.conditions.roomId;
-                vc.emit('editRepairPool', 'openEditRepairPoolModal', _repairPool);
+            _openRepairDetail: function (_repairPool) {
+                vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
             },
             _openDeleteRepairPoolModel: function (_repairPool) {
                 vc.emit('deleteRepairPool', 'openDeleteRepairPoolModal', _repairPool);
