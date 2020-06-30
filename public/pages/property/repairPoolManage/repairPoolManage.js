@@ -33,6 +33,7 @@
             vc.getDict('r_repair_pool', "state", function (_data) {
                 vc.component.repairPoolManageInfo.states = _data;
             });
+            vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
 
