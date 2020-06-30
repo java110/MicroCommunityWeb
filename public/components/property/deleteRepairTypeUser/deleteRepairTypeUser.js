@@ -2,7 +2,7 @@
 
     vc.extends({
         data:{
-            deleteRepairSettingInfo:{
+            deleteRepairTypeUserInfo:{
 
             }
         },
@@ -10,19 +10,19 @@
 
          },
          _initEvent:function(){
-             vc.on('deleteRepairSetting','openDeleteRepairSettingModal',function(_params){
+             vc.on('deleteRepairTypeUser','openDeleteRepairTypeUserModal',function(_params){
 
-                vc.component.deleteRepairSettingInfo = _params;
-                $('#deleteRepairSettingModel').modal('show');
+                vc.component.deleteRepairTypeUserInfo = _params;
+                $('#deleteRepairTypeUserModel').modal('show');
 
             });
         },
         methods:{
-            deleteRepairSetting:function(){
-                vc.component.deleteRepairSettingInfo.communityId=vc.getCurrentCommunity().communityId;
+            deleteRepairTypeUser:function(){
+                vc.component.deleteRepairTypeUserInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'repair.deleteRepairSetting',
-                    JSON.stringify(vc.component.deleteRepairSettingInfo),
+                    'repair.deleteRepairTypeUser',
+                    JSON.stringify(vc.component.deleteRepairTypeUserInfo),
                     {
                         emulateJSON:true
                      },
@@ -31,8 +31,8 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#deleteRepairSettingModel').modal('hide');
-                            vc.emit('repairSettingManage','listRepairSetting',{});
+                            $('#deleteRepairTypeUserModel').modal('hide');
+                            vc.emit('repairTypeUserManage', 'listRepairTypeUser',{});
                             return ;
                         }
                         vc.message(_json.msg);
@@ -43,8 +43,8 @@
 
                      });
             },
-            closeDeleteRepairSettingModel:function(){
-                $('#deleteRepairSettingModel').modal('hide');
+            closeDeleteRepairTypeUserModel:function(){
+                $('#deleteRepairTypeUserModel').modal('hide');
             }
         }
     });

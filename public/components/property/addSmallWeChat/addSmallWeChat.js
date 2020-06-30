@@ -125,7 +125,7 @@
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json)
-                        if (_json.status == '0') {
+                        if (_json.code == '0') {
                             //关闭model
                             $('#addSmallWeChatModel').modal('hide');
                             vc.component.clearAddSmallWeChatInfo();

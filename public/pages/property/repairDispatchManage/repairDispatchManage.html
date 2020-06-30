@@ -78,7 +78,6 @@
                             <th class="text-center">报修人</th>
                             <th class="text-center">报修人电话</th>
                             <th class="text-center">预约时间</th>
-                            <th class="text-center">维修师傅</th>
                             <th class="text-center">状态</th>
                             <th class="text-right">操作</th>
                         </tr>
@@ -90,7 +89,6 @@
                             <td class="text-center">{{ownerRepair.repairName}}</td>
                             <td class="text-center">{{ownerRepair.tel}}</td>
                             <td class="text-center">{{ownerRepair.appointmentTime}}</td>
-                            <td class="text-center">{{ownerRepair.userName}}</td>
                             <td class="text-center">{{ownerRepair.stateName}}</td>
                             <td class="text-right">
                                 <div class="btn-group" v-if="ownerRepair.state == '1000'">
@@ -122,6 +120,5 @@
         </div>
     </div>
 
-    <vc:create path="property/ownerRepairDetail"></vc:create>
 
 </div>

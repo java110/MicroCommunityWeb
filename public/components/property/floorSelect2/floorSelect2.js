@@ -16,6 +16,7 @@
             floorSelect2Info: {
                 deep: true,
                 handler: function () {
+                    vc.emit($namespace,'unitSelect2', 'clearUnit',{});
                     vc.emit($namespace, 'unitSelect2', "transferFloor", this.floorSelect2Info);
                 }
             }

@@ -99,7 +99,7 @@
                                 var _repairDispatchManageInfo=JSON.parse(json);
                                 vc.component.repairDispatchManageInfo.total = _repairDispatchManageInfo.total;
                                 vc.component.repairDispatchManageInfo.records = _repairDispatchManageInfo.records;
-                                vc.component.repairDispatchManageInfo.ownerRepairs = _repairDispatchManageInfo.ownerRepairs;
+                                vc.component.repairDispatchManageInfo.ownerRepairs = _repairDispatchManageInfo.data;
                                 vc.emit('pagination','init',{
                                      total:vc.component.repairDispatchManageInfo.records,
                                      currentPage:_page
@@ -118,7 +118,8 @@
 
             },
             _openDispatchRepairDetail:function(_ownerRepair){
-                vc.emit('ownerRepairDetail','openOwnerRepairDetailModal',_ownerRepair);
+                //vc.emit('ownerRepairDetail','openOwnerRepairDetailModal',_ownerRepair);
+                vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _ownerRepair.repairId);
             },
             _moreCondition:function(){
                 if(vc.component.repairDispatchManageInfo.moreCondition){
