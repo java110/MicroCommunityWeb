@@ -118,7 +118,8 @@
 
             },
             _openDispatchRepairDetail:function(_ownerRepair){
-                vc.emit('ownerRepairDetail','openOwnerRepairDetailModal',_ownerRepair);
+                //vc.emit('ownerRepairDetail','openOwnerRepairDetailModal',_ownerRepair);
+                vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _ownerRepair.repairId);
             },
             _moreCondition:function(){
                 if(vc.component.repairDispatchManageInfo.moreCondition){
