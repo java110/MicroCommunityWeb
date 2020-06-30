@@ -27,6 +27,7 @@
         _initMethod:function(){
             //vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._validateParam();
+            vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent:function(){
             
