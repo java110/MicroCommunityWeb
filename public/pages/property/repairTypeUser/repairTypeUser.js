@@ -81,6 +81,9 @@
             _openDeleteTypeUserModel: function (_repairTypeUser) {
                 vc.emit('deleteRepairTypeUser', 'openDeleteRepairTypeUserModal', _repairTypeUser);
             },
+            _goBack:function(){
+                vc.goBack()
+            },
             saveRepairTypeUserInfo: function (_staff) {
 
                 let param = {

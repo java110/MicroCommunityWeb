@@ -16,7 +16,7 @@
                 roomId: '',
                 userId: '',
                 userName: '',
-                repairUsers:[]
+                repairUsers: []
 
 
             }
@@ -30,7 +30,7 @@
                 return;
             }
             $that._listRepairPools()
-           
+
         },
         _initEvent: function () {
 
@@ -99,11 +99,38 @@
                         //查询房屋信息
                         vc.component._getRoom();
 
+                        //查询处理轨迹
+                        $that._loadRepairUser();
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
+            _loadRepairUser: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        repairId: $that.ownerRepairDetailInfo.repairId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('ownerRepair.listRepairStaffs',
+                    param,
+                    function (json, res) {
+                        var _repairPoolManageInfo = JSON.parse(json);
+                        let _repairs = _repairPoolManageInfo.data;
+                        $that.ownerRepairDetailInfo.repairUsers = _repairs;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _goBack:function(){
+                vc.goBack()
+            }
         }
     });
 
