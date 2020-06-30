@@ -42,6 +42,7 @@
                 vc.component.ownerRepairManageInfo.conditions.page = _page;
                 vc.component.ownerRepairManageInfo.conditions.row = _rows;
                 vc.component.ownerRepairManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.ownerRepairManageInfo.conditions.state = '1000';
                 var param = {
                     params:vc.component.ownerRepairManageInfo.conditions
                };
@@ -54,7 +55,7 @@
                                 var _ownerRepairManageInfo=JSON.parse(json);
                                 vc.component.ownerRepairManageInfo.total = _ownerRepairManageInfo.total;
                                 vc.component.ownerRepairManageInfo.records = _ownerRepairManageInfo.records;
-                                vc.component.ownerRepairManageInfo.ownerRepairs = _ownerRepairManageInfo.ownerRepairs;
+                                vc.component.ownerRepairManageInfo.ownerRepairs = _ownerRepairManageInfo.data;
                                 vc.emit('pagination','init',{
                                      total:vc.component.ownerRepairManageInfo.records,
                                      currentPage:_page

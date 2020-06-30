@@ -154,6 +154,7 @@
                     });
             },
             clearAddOwnerRepairInfo: function () {
+                let _repairSettings = vc.component.addOwnerRepairInfo.repairSettings;
                 vc.component.addOwnerRepairInfo = {
                     repairType: '',
                     repairName: '',
@@ -161,6 +162,7 @@
                     roomId: '',
                     appointmentTime: '',
                     context: '',
+                    repairSettings: _repairSettings
                 };
             },
             _initAddOwnerRepairInfo: function () {
