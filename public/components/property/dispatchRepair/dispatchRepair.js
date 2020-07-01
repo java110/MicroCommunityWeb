@@ -8,6 +8,7 @@
                 staffId: '',
                 staffName: '',
                 context: '',
+                action: '',
                 repairTypeUsers: []
             }
         },
@@ -18,7 +19,13 @@
             vc.on('dispatchRepair', 'openDispatchRepairModal', function (_repair) {
                 $that.dispatchRepairInfo.repairType = _repair.repairType;
                 $that.dispatchRepairInfo.repairId = _repair.repairId;
-                $that._listRepairTypeUsers()
+                $that.dispatchRepairInfo.action = _repair.action;
+                $that._listRepairTypeUsers();
+
+                if(_repair.hasOwnProperty('action') && _repair.action == 'BACK'){
+                    $that.dispatchRepairInfo.staffId = _repair.preStaffId;
+                    $that.dispatchRepairInfo.staffName = _repair.preStaffName;
+                }
                 $('#dispatchRepairModel').modal('show');
             });
         },
@@ -57,7 +64,13 @@
                     ]
                 });
             },
-            dispatchRepairInfo: function () {
+            _dispatchRepairInfo: function () {
+                $that.dispatchRepairInfo.repairTypeUsers.forEach(item => {
+                    if (item.staffId == $that.dispatchRepairInfo.staffId) {
+                        $that.dispatchRepairInfo.staffName = item.staffName;
+                    }
+                });
+
                 if (!vc.component.dispatchRepairValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -65,11 +78,6 @@
                 }
                 vc.component.dispatchRepairInfo.communityId = vc.getCurrentCommunity().communityId;
 
-                $that.dispatchRepairInfo.repairTypeUsers.forEach(item => {
-                    if(item.staffId == $that.dispatchRepairInfo.staffId){
-                        $that.dispatchRepairInfo.staffName = item.staffName;
-                    }
-                });
 
 
                 vc.http.apiPost(
@@ -80,7 +88,8 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#dispatchRepairModel').modal('hide');
                             vc.component.clearDispatchRepairInfo();
@@ -88,7 +97,7 @@
 
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
 
                     },
                     function (errInfo, error) {
@@ -105,6 +114,7 @@
                     staffId: '',
                     staffName: '',
                     context: '',
+                    action: '',
                     repairTypeUsers: []
                 };
             },

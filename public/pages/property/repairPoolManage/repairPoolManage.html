@@ -80,7 +80,7 @@
                                 <th class="text-center">联系方式</th>
                                 <th class="text-center">预约时间</th>
                                 <th class="text-center">状态</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-right">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,8 +91,8 @@
                                 <td class="text-center">{{repairPool.tel}}</td>
                                 <td class="text-center">{{repairPool.appointmentTime}}</td>
                                 <td class="text-center">{{repairPool.stateName}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group" v-if="repairPool.repairWay == '200'">
+                                <td class="text-right">
+                                    <div class="btn-group" v-if="repairPool.repairWay == '200' && repairPool.state == '1000'">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDispatchRepairModel(repairPool)">派单
                                         </button>

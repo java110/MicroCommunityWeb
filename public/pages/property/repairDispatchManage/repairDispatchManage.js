@@ -92,8 +92,7 @@
                };
 
                //发送get请求
-               vc.http.get('repairDispatchManage',
-                            'list',
+               vc.http.apiGet('ownerRepair.listStaffRepairs',
                              param,
                              function(json,res){
                                 var _repairDispatchManageInfo=JSON.parse(json);
@@ -127,6 +126,14 @@
                 }else{
                     vc.component.repairDispatchManageInfo.moreCondition = true;
                 }
+            },
+            _openDispatchRepairModel:function(_repair){
+                _repair.action="TRANSFER";
+                vc.emit('dispatchRepair', 'openDispatchRepairModal',_repair);
+            },
+            _openBackRepairModel:function(_repair){
+                _repair.action="BACK";
+                vc.emit('dispatchRepair', 'openDispatchRepairModal',_repair);
             }
 
              

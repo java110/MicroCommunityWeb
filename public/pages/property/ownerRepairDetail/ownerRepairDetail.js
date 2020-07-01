@@ -29,6 +29,7 @@
                 vc.jumpToPage('/admin.html#/pages/property/repairPoolManage');
                 return;
             }
+            $that.ownerRepairDetailInfo.repairId = repairId;
             $that._listRepairPools()
 
         },

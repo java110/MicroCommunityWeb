@@ -52,14 +52,13 @@
                };
 
                //发送get请求
-               vc.http.get('myRepairDispatch',
-                            'list',
+               vc.http.apiGet('ownerRepair.listStaffFinishRepairs',
                              param,
                              function(json,res){
                                 var _myRepairDispatchInfo=JSON.parse(json);
                                 vc.component.myRepairDispatchInfo.total = _myRepairDispatchInfo.total;
                                 vc.component.myRepairDispatchInfo.records = _myRepairDispatchInfo.records;
-                                vc.component.myRepairDispatchInfo.ownerRepairs = _myRepairDispatchInfo.ownerRepairs;
+                                vc.component.myRepairDispatchInfo.ownerRepairs = _myRepairDispatchInfo.data;
                                 vc.emit('pagination','init',{
                                      total:vc.component.myRepairDispatchInfo.records,
                                      currentPage:_page
@@ -79,6 +78,9 @@
                 }else{
                     vc.component.myRepairDispatchInfo.moreCondition = true;
                 }
+            },
+            _openRepairDetail: function (_repairPool) {
+                vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
             },
             _closeRepairDispatchOrder:function(_orderInfo){
                 var _repairDispatchParam = {

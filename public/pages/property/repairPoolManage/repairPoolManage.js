@@ -93,6 +93,7 @@
                 }
             },
             _openDispatchRepairModel:function(_repair){
+                _repair.action = "DISPATCH";
                 vc.emit('dispatchRepair', 'openDispatchRepairModal',_repair);
             },
             _listRepairSettings: function (_page, _rows) {
