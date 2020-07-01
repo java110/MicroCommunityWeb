@@ -94,6 +94,7 @@
                             $('#dispatchRepairModel').modal('hide');
                             vc.component.clearDispatchRepairInfo();
                             vc.emit('repairPoolManage', 'listRepairPool', {});
+                            vc.emit('repairDispatchManage','listOwnerRepair', {});
 
                             return;
                         }
