@@ -22,7 +22,7 @@
                 $that.dispatchRepairInfo.action = _repair.action;
                 $that._listRepairTypeUsers();
 
-                if(_repair.hasOwnProperty('action') && _repair.action == 'BACK'){
+                if (_repair.hasOwnProperty('action') && _repair.action == 'BACK') {
                     $that.dispatchRepairInfo.staffId = _repair.preStaffId;
                     $that.dispatchRepairInfo.staffName = _repair.preStaffName;
                 }
@@ -94,7 +94,7 @@
                             $('#dispatchRepairModel').modal('hide');
                             vc.component.clearDispatchRepairInfo();
                             vc.emit('repairPoolManage', 'listRepairPool', {});
-                            vc.emit('repairDispatchManage','listOwnerRepair', {});
+                            vc.emit('repairDispatchManage', 'listOwnerRepair', {});
 
                             return;
                         }
@@ -126,7 +126,8 @@
                         page: 1,
                         row: 50,
                         communityId: vc.getCurrentCommunity().communityId,
-                        repairType: $that.dispatchRepairInfo.repairType
+                        repairType: $that.dispatchRepairInfo.repairType,
+                        state: '9999'
                     }
                 };
 
