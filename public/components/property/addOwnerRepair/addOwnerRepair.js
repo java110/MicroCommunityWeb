@@ -11,10 +11,11 @@
                 repairType: '',
                 repairName: '',
                 tel: '',
-                roomId: '',
-                roomName: '',
                 appointmentTime: '',
                 context: '',
+                repairObjType: '',
+                repairObjId: '',
+                repairObjName: '',
                 repairSettings: []
             }
         },
@@ -24,11 +25,24 @@
         _initEvent: function () {
             vc.on('addOwnerRepair', 'notify', function (_param) {
                 console.log('notify', _param);
-                if (_param.hasOwnProperty('roomId')) {
-                    $that.addOwnerRepairInfo.roomId = _param.roomId;
+                let _repairObjType = $that.addOwnerRepairInfo.repairObjType;
+                if (_param.hasOwnProperty("floorId") && _repairObjType == '002') {
+                    vc.component.addOwnerRepairInfo.repairObjId = _param.floorId;
+                    vc.component.addOwnerRepairInfo.repairObjName = _param.name;
+                }
+
+                if (_param.hasOwnProperty("unitId") && _repairObjType == '003') {
+                    vc.component.addOwnerRepairInfo.repairObjId = _param.unitId;
+                    vc.component.addOwnerRepairInfo.repairObjName = _param.name;
+                }
+
+                if (_param.hasOwnProperty("roomId") && _repairObjType == '004') {
+                    vc.component.addOwnerRepairInfo.repairObjId = _param.roomId;
+                    vc.component.addOwnerRepairInfo.repairObjName = _param.name;
                 }
             });
             vc.on('addOwnerRepair', 'openAddOwnerRepairModal', function (_ownerInfo) {
+
                 $('#addOwnerRepairModel').modal('show');
             });
         },
@@ -73,17 +87,12 @@
                             errInfo: "联系方式格式不正确"
                         },
                     ],
-                    'addOwnerRepairInfo.roomId': [
+                    'addOwnerRepairInfo.repairObjId': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "房屋ID不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "房屋ID错误"
-                        },
+                            errInfo: "报修对象不能为空"
+                        }
                     ],
                     'addOwnerRepairInfo.appointmentTime': [
                         {
@@ -112,6 +121,11 @@
                 });
             },
             saveOwnerRepairInfo: function () {
+                let _repairObjType = $that.addOwnerRepairInfo.repairObjType;
+                if (_repairObjType == '001') {
+                    vc.component.addOwnerRepairInfo.repairObjId = vc.getCurrentCommunity().communityId;
+                    vc.component.addOwnerRepairInfo.repairObjName = vc.getCurrentCommunity().name;
+                }
                 if (!vc.component.addOwnerRepairValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -159,11 +173,17 @@
                     repairType: '',
                     repairName: '',
                     tel: '',
-                    roomId: '',
                     appointmentTime: '',
                     context: '',
+                    repairObjType: '',
+                    repairObjId: '',
+                    repairObjName: '',
                     repairSettings: _repairSettings
                 };
+                vc.emit('addOwnerRepair', 'roomSelect2', 'clearRoom', {});
+                vc.emit('addOwnerRepair', 'unitSelect2', 'clearUnit', {});
+                vc.emit('addOwnerRepair', 'floorSelect2', 'clearFloor', {});
+
             },
             _initAddOwnerRepairInfo: function () {
                 vc.component.addOwnerRepairInfo.appointmentTime = vc.dateFormat(new Date().getTime());
@@ -183,20 +203,16 @@
                         vc.component.addOwnerRepairInfo.appointmentTime = value;
                     });
 
-                //加载报修类型
-                $that._listRepairSettings(1, 50);
-
-
-
             },
-            _listRepairSettings: function (_page, _rows) {
+            _listRepairSettings: function (_page, _rows, _publicArea) {
 
 
                 var param = {
                     params: {
                         page: _page,
                         row: _rows,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        publicArea: _publicArea
                     }
                 };
 
@@ -210,6 +226,15 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _changeRepairObjType: function () {
+                let _publicArea = "F";
+                let _repairObjType = $that.addOwnerRepairInfo.repairObjType;
+                if (_repairObjType == '004') {
+                    _publicArea = "T";
+                }
+                //加载报修类型
+                $that._listRepairSettings(1, 50, _publicArea);
             }
         }
     });

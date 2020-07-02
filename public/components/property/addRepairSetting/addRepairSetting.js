@@ -11,6 +11,10 @@
                 repairTypeName: '',
                 repairWay: '',
                 remark: '',
+                publicArea: '',
+                payFeeFlag: '',
+                priceScope: '',
+                returnVisitFlag: ''
 
             }
         },
@@ -51,6 +55,27 @@
                             errInfo: "派单方式格式错误"
                         },
                     ],
+                    'addRepairSettingInfo.publicArea': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "公共区域不能为空"
+                        }
+                    ],
+                    'addRepairSettingInfo.payFeeFlag': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "收费情况不能为空"
+                        }
+                    ],
+                    'addRepairSettingInfo.returnVisitFlag': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "回访设置不能为空"
+                        }
+                    ],
                     'addRepairSettingInfo.remark': [
                         {
                             limit: "maxLength",
@@ -65,6 +90,10 @@
                 });
             },
             saveRepairSettingInfo: function () {
+
+                if ($that.addRepairSettingInfo.payFeeFlag == 'F') {
+                    $that.addRepairSettingInfo.priceScope = '不收费';
+                }
                 if (!vc.component.addRepairSettingValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -111,7 +140,10 @@
                     repairTypeName: '',
                     repairWay: '',
                     remark: '',
-
+                    publicArea: '',
+                    payFeeFlag: '',
+                    priceScope: '',
+                    returnVisitFlag: ''
                 };
             }
         }

@@ -6,7 +6,11 @@
                 settingId: '',
                 repairTypeName: '',
                 repairWay: '',
-                remark: '',
+                remark: '', 
+                publicArea: '',
+                payFeeFlag: '',
+                priceScope: '',
+                returnVisitFlag: ''
 
             }
         },
@@ -50,6 +54,27 @@
                             errInfo: "派单方式格式错误"
                         },
                     ],
+                    'editRepairSettingInfo.publicArea': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "公共区域不能为空"
+                        }
+                    ],
+                    'editRepairSettingInfo.payFeeFlag': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "收费情况不能为空"
+                        }
+                    ],
+                    'editRepairSettingInfo.returnVisitFlag': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "回访设置不能为空"
+                        }
+                    ],
                     'editRepairSettingInfo.remark': [
                         {
                             limit: "maxLength",
@@ -67,6 +92,9 @@
                 });
             },
             editRepairSetting: function () {
+                if ($that.editRepairSettingInfo.payFeeFlag == 'F') {
+                    $that.editRepairSettingInfo.priceScope = '不收费';
+                }
                 if (!vc.component.editRepairSettingValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -100,6 +128,10 @@
                     repairTypeName: '',
                     repairWay: '',
                     remark: '',
+                    publicArea: '',
+                    payFeeFlag: '',
+                    priceScope: '',
+                    returnVisitFlag: ''
 
                 }
             }

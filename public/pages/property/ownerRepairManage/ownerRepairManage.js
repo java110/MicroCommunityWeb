@@ -17,8 +17,6 @@
                     repairName:'',
                     tel:'',
                     repairType:'',
-                    roomId:'',
-                    roomName:'',
                     ownerId:'',
                     state:''
                 }
@@ -72,6 +70,7 @@
             _openEditOwnerRepairModel:function(_ownerRepair){
                 _ownerRepair.roomName = vc.component.ownerRepairManageInfo.conditions.roomName;
                 _ownerRepair.roomId = vc.component.ownerRepairManageInfo.conditions.roomId;
+                
                 vc.emit('editOwnerRepair','openEditOwnerRepairModal',_ownerRepair);
             },
             _openDeleteOwnerRepairModel:function(_ownerRepair){

@@ -72,6 +72,7 @@
                         <thead>
                             <tr>
                                 <!--                            <th class="text-center">报修ID</th>-->
+                                <th class="text-center">位置</th>
                                 <th class="text-center">报修类型</th>
                                 <th class="text-center">报修人</th>
                                 <th class="text-center">报修人电话</th>
@@ -83,6 +84,7 @@
                         <tbody>
                             <tr v-for="ownerRepair in repairDispatchManageInfo.ownerRepairs">
                                 <!--                            <td class="text-center">{{ownerRepair.repairId}}</td>-->
+                                <td class="text-center">{{ownerRepair.repairObjName}}</td>
                                 <td class="text-center">{{ownerRepair.repairTypeName}}</td>
                                 <td class="text-center">{{ownerRepair.repairName}}</td>
                                 <td class="text-center">{{ownerRepair.tel}}</td>

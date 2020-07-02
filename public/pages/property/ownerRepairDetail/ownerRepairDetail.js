@@ -10,6 +10,7 @@
                 tel: '',
                 roomId: '',
                 roomName: '',
+                repairObjName: '',
                 appointmentTime: '',
                 context: '',
                 stateName: '',
@@ -98,7 +99,7 @@
                         vc.copyObject(_repairs[0], $that.ownerRepairDetailInfo);
 
                         //查询房屋信息
-                        vc.component._getRoom();
+                        //vc.component._getRoom();
 
                         //查询处理轨迹
                         $that._loadRepairUser();
@@ -129,7 +130,7 @@
                     }
                 );
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack()
             }
         }

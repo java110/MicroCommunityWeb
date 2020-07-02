@@ -81,6 +81,12 @@
                 vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            _openEditOwnerRepairModel: function (_repairPool) {
+                // _ownerRepair.roomName = vc.component.ownerRepairManageInfo.conditions.roomName;
+                // _ownerRepair.roomId = vc.component.ownerRepairManageInfo.conditions.roomId;
+
+                vc.emit('editOwnerRepair', 'openEditOwnerRepairModal', _repairPool);
+            },
             _openDispatchRepair: function (_repairPool) {
                 vc.jumpToPage('/admin.html#/pages/property/repairDispatchStep?repairId=' + _repairPool.repairId);
 
@@ -92,9 +98,9 @@
                     vc.component.repairPoolManageInfo.moreCondition = true;
                 }
             },
-            _openDispatchRepairModel:function(_repair){
+            _openDispatchRepairModel: function (_repair) {
                 _repair.action = "DISPATCH";
-                vc.emit('dispatchRepair', 'openDispatchRepairModal',_repair);
+                vc.emit('dispatchRepair', 'openDispatchRepairModal', _repair);
             },
             _listRepairSettings: function (_page, _rows) {
                 var param = {
@@ -115,6 +121,36 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _openGrabbingRepairModel: function (_repair) {
+                let _data = {
+                    communityId: vc.getCurrentCommunity().communityId,
+                    repairId: _repair.repairId
+                };
+                vc.http.apiPost(
+                    'ownerRepair.grabbingRepair',
+                    JSON.stringify(_data),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            vc.emit('repairPoolManage', 'listRepairPool', {});
+                            vc.toast(_json.msg);
+
+                            return;
+                        }
+                        vc.toast(_json.msg);
+
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+
+                        vc.toast(errInfo);
+
+                    });
             }
 
 

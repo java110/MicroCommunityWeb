@@ -16,7 +16,7 @@
             floorSelect2Info: {
                 deep: true,
                 handler: function () {
-                    vc.emit($namespace,'unitSelect2', 'clearUnit',{});
+                    vc.emit($namespace, 'unitSelect2', 'clearUnit', {});
                     vc.emit($namespace, 'unitSelect2', "transferFloor", this.floorSelect2Info);
                 }
             }
@@ -31,13 +31,11 @@
              })*/
             vc.on('floorSelect2', 'setFloor', function (_param) {
                 vc.copyObject(_param, this.floorSelect2Info);
-                /* $("#floorSelector").val({
-                     id:param.floorId,
-                     text:_param.floorNum
-                 }).select2();*/
+                this._loadFloorInfo(function () {
+                    var option = new Option(_param.floorNum + '号楼', _param.floorId, true, true);
+                    this.floorSelect2Info.floorSelector.append(option);
+                });
 
-                var option = new Option(_param.floorNum + '号楼', _param.floorId, true, true);
-                this.floorSelect2Info.floorSelector.append(option);
             });
 
             vc.on('floorSelect2', 'clearFloor', function (_param) {
@@ -116,7 +114,34 @@
                     _tmpFloors.push(_tmpFloor);
                 }
                 return _tmpFloors;
-            }
+            },
+            _loadFloorInfo: function (callBack) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        floorId: this.floorSelect2Info.floorId
+                    }
+                };
+
+                //发送get请求
+                vc.http.get('floorSelect2',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _ownerRepairManageInfo = JSON.parse(json);
+                        let _floor = _ownerRepairManageInfo.apiFloorDataVoList[0];
+
+                        this.floorSelect2Info.floorNum = _floor.floorNum;
+
+                        callBack();
+
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);

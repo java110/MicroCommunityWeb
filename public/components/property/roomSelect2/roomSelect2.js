@@ -11,7 +11,10 @@
                 floorId: '-1',
                 unitId: '-1',
                 roomId: '',
-                unitName: '',
+                roomNum: '',
+                name: '',
+                floorNum: '',
+                unitNum: '',
                 roomSelector: {}
             }
         },
@@ -19,6 +22,19 @@
             roomSelect2Info: {
                 deep: true,
                 handler: function () {
+                    let _name = '';
+                    if (this.roomSelect2Info.floorNum != '') {
+                        _name = this.roomSelect2Info.floorNum + "栋";
+                    }
+
+                    if (this.roomSelect2Info.unitNum != '') {
+                        _name += (this.roomSelect2Info.unitNum + "单元")
+                    }
+
+                    if (this.roomSelect2Info.roomNum != '') {
+                        _name += (this.roomSelect2Info.roomNum + "室")
+                    }
+                    this.roomSelect2Info.name = _name;
                     vc.emit($props.callBackListener, $props.callBackFunction, this.roomSelect2Info);
                 }
             }
@@ -49,7 +65,10 @@
                     floorId: '-1',
                     unitId: '-1',
                     roomId: '',
-                    unitName: '',
+                    name: '',
+                    roomNum: '',
+                    floorNum: '',
+                    unitNum: '',
                     roomSelector: {}
                 };
             });
