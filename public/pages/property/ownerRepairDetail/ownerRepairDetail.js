@@ -17,7 +17,8 @@
                 roomId: '',
                 userId: '',
                 userName: '',
-                repairUsers: []
+                repairUsers: [],
+                photos: []
 
 
             }
@@ -132,7 +133,12 @@
             },
             _goBack: function () {
                 vc.goBack()
-            }
+            },
+            openFile:function(_photo){
+                vc.emit('viewImage','showImage',{
+                    url:_photo.url
+                });
+             }
         }
     });
 
