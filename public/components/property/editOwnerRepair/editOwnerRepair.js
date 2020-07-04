@@ -40,10 +40,12 @@
                 }
             });
             vc.on('editOwnerRepair', 'openEditOwnerRepairModal', function (_params) {
+
                 vc.component.refreshEditOwnerRepairInfo();
+                vc.copyObject(_params, vc.component.editOwnerRepairInfo);
                 $that._changeEditRepairObjType();
                 $('#editOwnerRepairModel').modal('show'); 
-                vc.copyObject(_params, vc.component.editOwnerRepairInfo);
+                
                 vc.component.editOwnerRepairInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
