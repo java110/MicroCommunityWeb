@@ -72,6 +72,11 @@
                     ],
                     'addCommunityInfo.cityCode': [
                         {
+                            limit: "required",
+                            param: "",
+                            errInfo: "小区城市编码不能为空"
+                        },
+                        {
                             limit: "maxLength",
                             param: "12",
                             errInfo: "小区城市编码不能大于4个字符"
