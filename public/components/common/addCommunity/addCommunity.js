@@ -8,7 +8,7 @@
                 tmpAddress: '',
                 areaAddress:'',
                 nearbyLandmarks: '',
-                cityCode: '0971',
+                cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
 
@@ -42,8 +42,8 @@
                         },
                         {
                             limit: "maxin",
-                            param: "4,20",
-                            errInfo: "小区名称必须在10至20字符之间"
+                            param: "1,20",
+                            errInfo: "小区名称必须在1至20字符之间"
                         },
                     ],
                     'addCommunityInfo.address': [
