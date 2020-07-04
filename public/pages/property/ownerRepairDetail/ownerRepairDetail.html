@@ -87,9 +87,9 @@
                 </div>
                 <div class="ibox-content">
                     <div>
-                        <div>
-                            <div class="form-group" v-if="(_photo,index) in ownerRepairDetailInfo.photos">
-                                <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"  v-on:click="openFile(_photo)"></img>
+                        <div class="row">
+                            <div class="form-group margin-left" v-for="(item,index) in ownerRepairDetailInfo.photos">
+                                <img style="width: 120px; height: 120px;" v-bind:src="item.url"  v-on:click="openFile(item)"></img>
                             </div>
                         </div>
                     </div>

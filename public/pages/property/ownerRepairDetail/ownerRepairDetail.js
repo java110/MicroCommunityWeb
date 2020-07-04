@@ -99,6 +99,8 @@
 
                         vc.copyObject(_repairs[0], $that.ownerRepairDetailInfo);
 
+                        
+
                         //查询房屋信息
                         //vc.component._getRoom();
 
