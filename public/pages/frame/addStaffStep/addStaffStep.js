@@ -83,6 +83,7 @@
             _nextStep:function(){
                 var _currentData = vc.component.addStaffStepInfo.infos[vc.component.addStaffStepInfo.index];
                 if( _currentData == null || _currentData == undefined){
+             
                     vc.toast("请选择或填写必选信息");
                     return ;
                 }
