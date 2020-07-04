@@ -84,36 +84,12 @@
                 vc.component.finishRepairInfo = {
                     repairId: '',
                     repairType: '',
-                    staffId: '',
-                    staffName: '',
                     context: '',
-                    action: '',
-                    repairTypeUsers: []
+                    feeFlag: '200',
+                    amount: 0.0
                 };
-            },
-            _listRepairTypeUsers: function () {
-
-                var param = {
-                    params: {
-                        page: 1,
-                        row: 50,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        repairType: $that.finishRepairInfo.repairType
-                    }
-                };
-
-                //发送get请求
-                vc.http.apiGet('repair.listRepairTypeUsers',
-                    param,
-                    function (json, res) {
-                        var _repairTypeUserManageInfo = JSON.parse(json);
-                        vc.component.finishRepairInfo.repairTypeUsers = _repairTypeUserManageInfo.data;
-
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
+            }
+            
         }
     });
 
