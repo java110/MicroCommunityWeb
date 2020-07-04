@@ -228,10 +228,10 @@
                 );
             },
             _changeRepairObjType: function () {
-                let _publicArea = "F";
+                let _publicArea = "T";
                 let _repairObjType = $that.addOwnerRepairInfo.repairObjType;
                 if (_repairObjType == '004') {
-                    _publicArea = "T";
+                    _publicArea = "F";
                 }
                 //加载报修类型
                 $that._listRepairSettings(1, 50, _publicArea);
