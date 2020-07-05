@@ -7,7 +7,8 @@
                 repairType: '',
                 context: '',
                 feeFlag: '200',
-                amount: 0.0
+                amount: 0.0,
+                repairObjType:''
             }
         },
         _initMethod: function () {
@@ -17,6 +18,7 @@
             vc.on('finishRepair', 'openFinishRepairModal', function (_repair) {
                 $that.finishRepairInfo.repairType = _repair.repairType;
                 $that.finishRepairInfo.repairId = _repair.repairId;
+                $that.finishRepairInfo.repairObjType = _repair.repairObjType;
                 $('#finishRepairModel').modal('show');
             });
         },
