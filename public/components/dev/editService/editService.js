@@ -15,6 +15,7 @@
                 timeout: '60',
                 retryCount: '3',
                 provideAppId: '8000418002',
+                services:[]
 
             }
         },
@@ -24,9 +25,11 @@
         _initEvent: function () {
             vc.on('editService', 'openEditServiceModal', function (_params) {
                 vc.component.refreshEditServiceInfo();
+                vc.getDict('c_service',"url",function(_data){
+                    vc.component.editServiceInfo.services = _data;
+                });
                 $('#editServiceModel').modal('show');
                 vc.copyObject(_params, vc.component.editServiceInfo);
-                //vc.component.editServiceInfo.communityId = vc.getCurrentCommunity().communityId;
 
             });
         },
@@ -203,13 +206,13 @@
                     businessTypeCd: 'API',
                     seq: '1',
                     messageQueueName: '',
-                    isInstance: 'Y',
-                    url: 'http://order-service/orderApi/service',
+                    isInstance: 'T',
+                    url: 'http://community-service',
                     method: '',
                     timeout: '60',
                     retryCount: '3',
                     provideAppId: '8000418002',
-
+                    services:[]
                 }
             }
         }

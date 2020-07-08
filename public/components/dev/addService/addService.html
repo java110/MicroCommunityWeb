@@ -42,7 +42,18 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row" >
+                           
+
+                            <div class="form-group row" v-if="addServiceInfo.isInstance == 'T'" >
+                                <label class="col-sm-2 col-form-label">调用服务</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addServiceInfo.url">
+                                        <option selected disabled value="">必填，请选择调用服务</option>
+                                        <option v-for="(item,index) in addServiceInfo.services" :key="index" :value="item.statusCd">{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-else>
                                 <label class="col-sm-2 col-form-label">调用地址</label>
                                 <div class="col-sm-10">
                                     <input v-model="addServiceInfo.url" type="text" placeholder="选填，请填写调用地址"
