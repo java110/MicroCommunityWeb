@@ -99,6 +99,9 @@
             },
             _queryAuditAppUserBindingOwnerMethod:function () {
                 vc.component._listAuditAppUserBindingOwners(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _deleteAppUserBindingOwnerModel:function(_auditAppUserBindingOwner){
+                vc.emit('deleteAppUserBindingOwner','openDeleteAppUserBindingOwnerModal',_auditAppUserBindingOwner);
             }
 
              

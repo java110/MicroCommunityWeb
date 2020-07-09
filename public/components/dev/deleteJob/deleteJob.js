@@ -30,7 +30,7 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         //let data = res.data;
-                        if (_json.code == 200) {
+                        if (_json.code == 200 || _json.code == 0) {
                             //关闭model
                             $('#deleteJobModel').modal('hide');
                             vc.component.clearAddJobInfo();
