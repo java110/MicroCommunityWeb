@@ -46,29 +46,23 @@
                 let _staffId = _userInfo.userId;
                 var param = {
                     params: {
-                        staffId: _staffId,
-                        page: 1,
-                        row: 1
+                        communityId: vc.getCurrentCommunity().communityId,
+                        flowType: '30003'
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('org.listOrgs',
+                vc.http.apiGet('/workflow/getFirstStaff',
                     param,
-                    function (json) {
+                    function (json,res) {
                         var _staffInfo = JSON.parse(json);
-                        if (_staffInfo.total == 1) {
-                            let _tmpOrg = _staffInfo.orgs[0];
-                            $that.purchaseApproversInfo.companyName = _tmpOrg.parentOrgName;
-                            $that.purchaseApproversInfo.departmentName = _tmpOrg.orgName;
-                            $that.purchaseApproversInfo.departmentId = _tmpOrg.orgId;
-                            $that.purchaseApproversInfo.companyId = _tmpOrg.parentOrgId;
-
-                            vc.emit('purchaseApprovers','staffSelect2', 'setStaff',{
-                                companyId:_tmpOrg.parentOrgId,
-                                departmentId:_tmpOrg.orgId
-                            });
-
+                        if (_staffInfo.code != 0) {
+                            vc.toast(_staffInfo.msg);
+                            return ; 
                         }
+                        let _data = _staffInfo.data;
+                        vc.copyObject(_data,$that.purchaseApproversInfo);
+                        $that.purchaseApproversInfo.companyName = _data.parentOrgName;
+                        $that.purchaseApproversInfo.departmentName = _data.orgName;
                     }, function () {
                         console.log('请求失败处理');
                     }

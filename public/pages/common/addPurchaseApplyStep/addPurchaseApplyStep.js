@@ -94,10 +94,12 @@
             _finishStep: function () {
                 vc.emit('addPurchaseApplyViewInfo', 'setPurchaseApplyInfo', null);
                 var _currentData = vc.component.addPurchaseApplyStepInfo.infos[vc.component.addPurchaseApplyStepInfo.index];
-                if (_currentData == null || _currentData == undefined) {
-                    vc.toast("请选择或填写必选信息");
-                    return;
-                }
+                if(vc.component.addPurchaseApplyStepInfo.index != 2){
+                    if (_currentData == null || _currentData == undefined) {
+                        vc.toast("请选择或填写必选信息");
+                        return;
+                    }
+                } 
                 vc.http.post(
                     'addPurchaseApply',
                     'save',

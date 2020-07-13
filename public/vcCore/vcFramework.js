@@ -151,7 +151,7 @@
                 _vcComponent.appendChild(_pathVcCreate);
             }
 
-        }else{
+        } else {
             let _vcComponent = document.getElementById('component');
             let _commonPath = _vcComponent.getAttribute('vc-path');
             if (vc.isNotEmpty(_commonPath)) {
@@ -217,7 +217,7 @@
         _divComponentAttr.value = _componentUrl;
         _tmpVcCreate.setAttributeNode(_divComponentAttr);
         _vcComponent.appendChild(_tmpVcCreate);
-        
+
         let _commonPath = _vcComponent.getAttribute('vc-path');
         if (vc.isNotEmpty(_commonPath)) {
             let _pathVcCreate = document.createElement("vc:create");
@@ -906,7 +906,10 @@
         },
         apiGet: function (api, param, successCallback, errorCallback) {
             //加入缓存机制
-            let _getPath = '/' + api;
+            let _getPath = '';
+            if (api.indexOf('/') != 0) {
+                _getPath = '/' + api;
+            }
             if (vcFramework.constant.GET_CACHE_URL.includes(_getPath)) {
                 let _cacheData = vcFramework.getData(_getPath);
                 //浏览器缓存中能获取到
@@ -915,8 +918,20 @@
                     return;
                 }
             }
+
+            let _api = '';
+
+            if (api.indexOf('/') >= 0) {
+                _api = '/app' + api;
+                Vue.http.headers.common['APP-ID'] = '8000418004';
+                Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
+                Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
+                Vue.http.headers.common['SIGN'] = ''; 
+            } else {
+                _api = '/callComponent/' + api;
+            }
             vcFramework.loading('open');
-            Vue.http.get('/callComponent/' + api, param)
+            Vue.http.get(_api, param)
                 .then(function (res) {
                     try {
 
@@ -1316,6 +1331,38 @@
         return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
     }
 
+    vcFramework.getDateYYYYMMDDHHMISS = function () {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+      
+        if (month < 10) {
+          month = '0' + month;
+        }
+      
+        if (day < 10) {
+          day = '0' + day;
+        }
+      
+        if (hour < 10) {
+          hour = '0' + hour;
+        }
+      
+        if (minute < 10) {
+          minute = '0' + minute;
+        }
+      
+        if (second < 10) {
+          second = '0' + second;
+        }
+      
+        return year + "" + month + "" + day + "" + hour + "" + minute + "" + second;
+      };
+
 })(window.vcFramework);
 
 
@@ -1624,21 +1671,21 @@ vc 校验 工具类 -method
          * @param {校验文本} text
          */
         num: function (text) {
-            if(text == null || text == undefined){
+            if (text == null || text == undefined) {
                 return true;
             }
             let regNum = /^[0-9][0-9]*$/;
             return regNum.test(text);
         },
         date: function (str) {
-            if(str == null || str == undefined){
+            if (str == null || str == undefined) {
                 return true;
             }
             let regDate = /^(\d{4})-(\d{2})-(\d{2})$/;
             return regDate.test(str);
         },
         dateTime: function (str) {
-            if(str == null || str == undefined){
+            if (str == null || str == undefined) {
                 return true;
             }
             let reDateTime = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\s+(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/;
@@ -1648,14 +1695,14 @@ vc 校验 工具类 -method
             金额校验
         **/
         money: function (text) {
-            if(text == null || text == undefined){
+            if (text == null || text == undefined) {
                 return true;
             }
             let regMoney = /^\d+\.?\d{0,2}$/;
             return regMoney.test(text);
         },
         idCard: function (num) {
-            if(num == null || num == undefined){
+            if (num == null || num == undefined) {
                 return true;
             }
             num = num.toUpperCase();
