@@ -868,8 +868,19 @@
                 });
         },
         apiPost: function (api, param, options, successCallback, errorCallback) {
+            let _api = '';
+
+            if (api.indexOf('/') >= 0) {
+                _api = '/app' + api;
+                Vue.http.headers.common['APP-ID'] = '8000418004';
+                Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
+                Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
+                Vue.http.headers.common['SIGN'] = ''; 
+            } else {
+                _api = '/callComponent/' + api;
+            }
             vcFramework.loading('open');
-            Vue.http.post('/callComponent/' + api, param, options)
+            Vue.http.post(_api, param, options)
                 .then(function (res) {
                     try {
                         let _header = res.headers.map;

@@ -100,26 +100,24 @@
                         return;
                     }
                 } 
-                vc.http.post(
-                    'addPurchaseApply',
-                    'save',
+                vc.http.apiPost(
+                    '/purchase/purchaseApply',
                     JSON.stringify(vc.component.addPurchaseApplyStepInfo.purchaseApply),
                     {
                         emulateJSON: true
                     },
                     function (json, res) {
-                        if (res.status == 200) {
-
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             if(vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "10000"){
                                 vc.jumpToPage("/admin.html#/pages/common/purchaseApplyManage");
                             }else{
                                 vc.jumpToPage("/admin.html#/pages/common/itemOutManage");
                             }
-
                             return;
                         }
-                        vc.message(json);
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
