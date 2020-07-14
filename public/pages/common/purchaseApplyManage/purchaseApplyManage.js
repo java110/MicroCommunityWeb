@@ -82,6 +82,31 @@
                     vc.component.purchaseApplyManageInfo.moreCondition = true;
                 }
             },
+            _openRunWorkflowImage: function (_purchaseApply) {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        businessKey: _purchaseApply.applyOrderId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('workflow.listRunWorkflowImage',
+                    param,
+                    function (json, res) {
+                        var _workflowManageInfo = JSON.parse(json);
+                        if (_workflowManageInfo.code != '0') {
+                            vc.toast(_workflowManageInfo.msg);
+
+                            return;
+                        }
+                        vc.emit('viewImage', 'showImage', {
+                            url: 'data:image/png;base64,' + _workflowManageInfo.data
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _queryInspectionPlanMethod:function () {
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             }

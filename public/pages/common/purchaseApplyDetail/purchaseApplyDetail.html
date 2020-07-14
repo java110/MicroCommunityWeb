@@ -6,6 +6,10 @@
                     <h5>申请信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_printPurchaseApply()">
+                            打印
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_callBackListPurchaseApply()">
                             返回
                         </button>
@@ -32,13 +36,12 @@
                                 <label class="">{{purchaseApplyDetailInfo.endUserName}}</label>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label">使用人联系方式：</label>
+                                <label class="col-form-label">联系电话：</label>
                                 <label class="">{{purchaseApplyDetailInfo.endUserTel}}</label>
                             </div>
                         </div>
@@ -58,25 +61,20 @@
                     </div>
 
                     <div class="row">
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-form-label">当前处理人：</label>
-                                <label class="">{{purchaseApplyDetailInfo.staffName}}</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-form-label">当前处理人电话：</label>
-                                <label class="">{{purchaseApplyDetailInfo.staffTel}}</label>
-                            </div>
-                        </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="col-form-label">审批状态：</label>
                                 <label class="">{{purchaseApplyDetailInfo.stateName}}</label>
                             </div>
                         </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">说明：</label>
+                                <label class="">{{purchaseApplyDetailInfo.description}}</label>
+                            </div>
+                        </div>
+
+                        
 
                     </div>
 
@@ -125,4 +123,43 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>工单流转</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th scope="col">序号</th>
+                                <th scope="col">处理人</th>
+                                <th scope="col">状态</th>
+                                <th scope="col">处理时间</th>
+                                <th scope="col">耗时</th>
+                                <th scope="col">意见</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                
+                            <tr v-for="(tItem,index) in purchaseApplyDetailInfo.auditUsers">
+                                <td>{{index+1}}</td>
+                                <td>{{tItem.auditName}}</td>
+                                <td>{{tItem.stateName}}</td>
+                                <td>{{tItem.auditTime}}</td>
+                                <td>{{tItem.duration}}</td>
+                                <td>{{tItem.message}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

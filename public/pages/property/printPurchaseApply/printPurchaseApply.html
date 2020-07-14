@@ -1,0 +1,63 @@
+<div>
+    <div>
+        <div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <span>申请单号：{{printPurchaseApplyInfo.applyOrderId}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <span>使用人：{{printPurchaseApplyInfo.endUserName}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <span>联系电话：{{printPurchaseApplyInfo.endUserTel}}</span>
+                </div>
+            </div>
+            <table class="table table-bordered margin-top">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">编号</th>
+                        <th scope="col" class="text-center">名称</th>
+                        <th scope="col" class="text-center">编码规格</th>
+                        <th scope="col" class="text-center">申请数量</th>
+                        <th scope="col" class="text-center">采购数量</th>
+                        <th scope="col" class="text-center">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in printPurchaseApplyInfo.purchaseApplyDetailVo">
+                        <th scope="row" class="text-center">{{index +1}}</th>
+                        <td class="text-center">{{item.resName}}</td>
+                        <td class="text-center">{{item.resCode}}</td>
+                        <td class="text-center">{{item.quantity}}</td>
+                        <td class="text-center"></td>
+                        <td class="text-center">{{item.remark}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-center">备注</th>
+                        <td colspan="5">{{printPurchaseApplyInfo.description}}</td>
+                    </tr>
+                    <tr height="60px">
+                        <td colspan="2" class="text-center " style="vertical-align:middle;">厂家签字</td>
+                        <td colspan="2"></td>
+                        <td class="text-center " style="vertical-align:middle;">时间</td>
+                        <td></td>
+
+                    </tr>
+                    <tr height="60px">
+                        <td colspan="2" class="text-center" style="vertical-align:middle;">采购人员签字</td>
+                        <td colspan="2"></td>
+                        <td class="text-center " style="vertical-align:middle;">时间</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="print-btn">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+                <i class="fa fa-check"></i>&nbsp;打印
+            </button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+            </button>
+        </div>
+    </div>
+</div>
