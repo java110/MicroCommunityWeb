@@ -18,11 +18,13 @@
                     userName: '',
                     auditLink: '',
                 },
-                orderInfo:''
+                orderInfo:'',
+                procure:false
             }
         },
         _initMethod: function () {
             vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._loadStepStaff();
         },
         _initEvent: function () {
 
@@ -117,6 +119,34 @@
                         vc.toast("处理失败：" + errInfo);
                     }
                 );
+            },
+            _loadStepStaff: function () {
+
+                var param = {
+                    params: {
+                        page:1,
+                        row:1,
+                        staffId: $that.auditOrdersInfo.currentUserId,
+                        staffRole: '2002'
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('workflow.listWorkflowStepStaffs',
+                    param,
+                    function (json, res) {
+                        var _json = JSON.parse(json);
+                        if(_json.data.length > 0){
+                            $that.auditOrdersInfo.procure = true;
+                        }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+
+            _procureEnterOrder:function(_purchaseApply){
+                vc.jumpToPage("/admin.html#/pages/common/resourceEnterManage?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType+"&taskId="+_purchaseApply.taskId);
             }
 
 

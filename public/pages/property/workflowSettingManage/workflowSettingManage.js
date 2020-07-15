@@ -5,6 +5,7 @@
             workflowSettingInfo: {
                 flowId: '',
                 flowName: '',
+                flowType: '',
                 describle: '',
                 steps: []
             }
@@ -53,6 +54,7 @@
                 }
                 $that.workflowSettingInfo.flowId = flowId;
                 $that.workflowSettingInfo.flowName = vc.getParam('flowName');
+                $that.workflowSettingInfo.flowType = vc.getParam('flowType');
 
                 //查询步骤
                 var param = {
@@ -92,6 +94,7 @@
                         staffId: _workflowStep.workflowStepStaffs[0].staffId,
                         staffName: _workflowStep.workflowStepStaffs[0].staffName,
                         type: _workflowStep.type,
+                        staffRole: _workflowStep.workflowStepStaffs[0].staffRole,
                         subStaff: []
                     };
                     if (_workflowStep.type == 2) {
@@ -110,7 +113,8 @@
                         let _subStaff = {
                             id: vc.uuid(),
                             staffId: _workflowStepStaff.staffId,
-                            staffName: _workflowStepStaff.staffName
+                            staffName: _workflowStepStaff.staffName,
+                            staffRole: _workflowStepStaff.staffRole
                         }
 
                         _subStaffs.push(_subStaff);
@@ -152,7 +156,8 @@
                 _step.subStaff.push({
                     id: vc.uuid(),
                     staffId: '',
-                    staffName: ''
+                    staffName: '',
+                    staffRole: '1001'
                 });
             },
             deleteStaff: function (_step, _subStaff) {
@@ -166,6 +171,10 @@
                 if (_item.type == '1') {
                     _item.subStaff = [];
                 }
+            },
+
+            chooseStaffRole: function () {
+
             }
         }
     });
