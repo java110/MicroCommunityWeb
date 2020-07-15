@@ -6,8 +6,8 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data:{
-            purchaseApplyManageInfo:{
-                purchaseApplys:[],
+            itemOutManageInfo:{
+                itemOuts:[],
                 total:0,
                 records:1,
                 moreCondition:false,
@@ -21,23 +21,23 @@
             }
         },
         _initMethod:function(){
-            vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._listItemOuts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent:function(){
-            vc.on('purchaseApplyManage','listPurchaseApply',function(_param){
-                vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.on('itemOutManage','listItemOut',function(_param){
+                vc.component._listItemOuts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination','page_event',function(_currentPage){
-                vc.component._listPurchaseApplys(_currentPage,DEFAULT_ROWS);
+                vc.component._listItemOuts(_currentPage,DEFAULT_ROWS);
             });
         },
         methods:{
-            _listPurchaseApplys:function(_page, _rows){
+            _listItemOuts:function(_page, _rows){
 
-                vc.component.purchaseApplyManageInfo.conditions.page = _page;
-                vc.component.purchaseApplyManageInfo.conditions.row = _rows;
+                vc.component.itemOutManageInfo.conditions.page = _page;
+                vc.component.itemOutManageInfo.conditions.row = _rows;
                 var param = {
-                    params:vc.component.purchaseApplyManageInfo.conditions
+                    params:vc.component.itemOutManageInfo.conditions
                 };
 
                 //发送get请求
@@ -45,12 +45,12 @@
                     'list',
                     param,
                     function(json,res){
-                        var _purchaseApplyManageInfo=JSON.parse(json);
-                        vc.component.purchaseApplyManageInfo.total = _purchaseApplyManageInfo.total;
-                        vc.component.purchaseApplyManageInfo.records = _purchaseApplyManageInfo.records;
-                        vc.component.purchaseApplyManageInfo.purchaseApplys = _purchaseApplyManageInfo.purchaseApplys;
+                        var _itemOutManageInfo=JSON.parse(json);
+                        vc.component.itemOutManageInfo.total = _itemOutManageInfo.total;
+                        vc.component.itemOutManageInfo.records = _itemOutManageInfo.records;
+                        vc.component.itemOutManageInfo.itemOuts = _itemOutManageInfo.purchaseApplys;
                         vc.emit('pagination','init',{
-                            total:vc.component.purchaseApplyManageInfo.records,
+                            total:vc.component.itemOutManageInfo.records,
                             currentPage:_page
                         });
                     },function(errInfo,error){
@@ -58,28 +58,28 @@
                     }
                 );
             },
-            _openAddPurchaseApplyModal:function(){
-                vc.jumpToPage("/admin.html#/pages/common/addPurchaseApplyStep?resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
+            _openAddItemOutModal:function(){
+                vc.jumpToPage("/admin.html#/pages/common/addItemOutStep?resOrderType="+vc.component.itemOutManageInfo.conditions.resOrderType);
             },
-            _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+vc.component.purchaseApplyManageInfo.conditions.resOrderType);
+            _openDetailItemOutModel:function(_itemOut){
+                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_itemOut.applyOrderId+"&resOrderType="+vc.component.itemOutManageInfo.conditions.resOrderType);
             },
-            _openDeletePurchaseApplyModel:function(_purchaseApply){
-                vc.emit('deletePurchaseApply','openDeletePurchaseApplyModal',_purchaseApply);
+            _openDeleteItemOutModel:function(_itemOut){
+                vc.emit('deleteItemOut','openDeleteItemOutModal',_itemOut);
             },
-            _queryPurchaseApplyMethod:function(){
-                vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+            _queryItemOutMethod:function(){
+                vc.component._listItemOuts(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
             _moreCondition:function(){
-                if(vc.component.purchaseApplyManageInfo.moreCondition){
-                    vc.component.purchaseApplyManageInfo.moreCondition = false;
+                if(vc.component.itemOutManageInfo.moreCondition){
+                    vc.component.itemOutManageInfo.moreCondition = false;
                 }else{
-                    vc.component.purchaseApplyManageInfo.moreCondition = true;
+                    vc.component.itemOutManageInfo.moreCondition = true;
                 }
             },
             _queryInspectionPlanMethod:function () {
-                vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listItemOuts(DEFAULT_PAGE, DEFAULT_ROWS);
             }
 
 
