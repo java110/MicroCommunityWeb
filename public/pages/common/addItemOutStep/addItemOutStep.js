@@ -8,15 +8,15 @@
                 $step: {},
                 index: 0,
                 infos: [],
-                purchaseApply:{
-                    resourceStores:[],
-                    description:'',
-                    endUserName:'',
-                    endUserTel:'',
-                    file:'',
-                    resOrderType:'',
-                    staffId:'',
-                    staffName:''
+                purchaseApply: {
+                    resourceStores: [],
+                    description: '',
+                    endUserName: '',
+                    endUserTel: '',
+                    file: '',
+                    resOrderType: '',
+                    staffId: '',
+                    staffName: ''
                 }
             }
         },
@@ -51,7 +51,7 @@
                 vc.component.addItemOutStepInfo.$step.step({
                     index: 0,
                     time: 500,
-                    title: ["选择物品", "申请信息","审批人"]
+                    title: ["选择物品", "申请信息", "审批人"]
                 });
                 vc.component.addItemOutStepInfo.index = vc.component.addItemOutStepInfo.$step.getIndex();
             },
@@ -71,19 +71,16 @@
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
-               for( var i = 0; i < _resourceStores.length; i++){
-                   if(_resourceStores[i].quantity <= 0){
-                       vc.toast("请完善物品信息");
+                for (var i = 0; i < _resourceStores.length; i++) {
+                    if (_resourceStores[i].quantity <= 0) {
+                        vc.toast("请完善物品信息");
                         return;
-                   }
-                   if(vc.component.addItemOutStepInfo.purchaseApply.resOrderType == "20000"){
-                       if(_resourceStores[i].quantity > _resourceStores[i].stock){
-                           vc.toast(_resourceStores[i].resName+",库存不足");
-                           return;
-                       }
-                   }
-
-               }
+                    }
+                    if (_resourceStores[i].quantity > _resourceStores[i].stock) {
+                        vc.toast(_resourceStores[i].resName + ",库存不足");
+                        return;
+                    }
+                }
                 vc.component.addItemOutStepInfo.$step.nextStep();
                 vc.component.addItemOutStepInfo.index = vc.component.addItemOutStepInfo.$step.getIndex();
 
@@ -94,14 +91,14 @@
             _finishStep: function () {
                 vc.emit('addItemOutViewInfo', 'setItemOutInfo', null);
                 var _currentData = vc.component.addItemOutStepInfo.infos[vc.component.addItemOutStepInfo.index];
-                if(vc.component.addItemOutStepInfo.index != 2){
+                if (vc.component.addItemOutStepInfo.index != 2) {
                     if (_currentData == null || _currentData == undefined) {
                         vc.toast("请选择或填写必选信息");
                         return;
                     }
-                } 
+                }
                 vc.http.apiPost(
-                    '/purchase/purchaseApply',
+                    '/collection/goodsCollection',
                     JSON.stringify(vc.component.addItemOutStepInfo.purchaseApply),
                     {
                         emulateJSON: true
@@ -110,9 +107,9 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            if(vc.component.addItemOutStepInfo.purchaseApply.resOrderType == "10000"){
+                            if (vc.component.addItemOutStepInfo.purchaseApply.resOrderType == "10000") {
                                 vc.jumpToPage("/admin.html#/pages/common/purchaseApplyManage");
-                            }else{
+                            } else {
                                 vc.jumpToPage("/admin.html#/pages/common/itemOutManage");
                             }
                             return;

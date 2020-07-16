@@ -5,7 +5,7 @@
                 <div class="ibox-title">
                     <h5>申请信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm"
+                        <button type="button" class="btn btn-primary btn-sm" v-if="purchaseApplyDetailInfo.resOrderType == '10000'"
                             v-on:click="_printPurchaseApply()">
                             打印
                         </button>

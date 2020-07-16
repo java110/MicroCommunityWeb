@@ -47,11 +47,11 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>物品申请信息</h5>
+                    <h5>物品领用</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddItemOutModal()">
                             <i class="fa fa-plus"></i>
-                            物品申请
+                            领用申请
                         </button>
                     </div>
                 </div>
@@ -63,22 +63,21 @@
                         <thead>
                         <tr>
                             <th class="text-center">单号</th>
-                            <th class="text-center">审批状态</th>
-                            <th class="text-center">流程处理人</th>
+                            <th class="text-center">物品</th>
                             <th class="text-center">申请人</th>
                             <th class="text-center">申请时间</th>
-                            <th class="text-center">物品</th>
+                            <th class="text-center">状态</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="itemOut in itemOutManageInfo.itemOuts">
                             <td class="text-center">{{itemOut.applyOrderId}}</td>
-                            <td class="text-center">{{itemOut.stateName}}</td>
-                            <td class="text-center">{{itemOut.agreeMan}}</td>
-                            <td class="text-center">{{itemOut.userName}}</td>
-                            <td class="text-center">{{itemOut.createTime}}</td>
                             <td class="text-center">{{itemOut.resourceNames}}</td>
+                            <td class="text-center">{{itemOut.userName}}</td>
+                            <td class="text-center">{{itemOut.createTime}}</td>      
+                            <td class="text-center">{{itemOut.stateName}}</td>
+
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
