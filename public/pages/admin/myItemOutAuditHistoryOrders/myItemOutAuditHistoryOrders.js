@@ -37,7 +37,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('auditUser.listAuditHistoryOrders',
+                vc.http.apiGet('auditUser.listItemOutAuditHistoryOrders',
                     param,
                     function (json, res) {
                         var _auditOrderHistorysInfo = JSON.parse(json);
