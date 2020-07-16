@@ -67,7 +67,7 @@
                             <th class="text-center">申请人</th>
                             <th class="text-center">申请时间</th>
                             <th class="text-center">状态</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-right">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -78,15 +78,20 @@
                             <td class="text-center">{{itemOut.createTime}}</td>      
                             <td class="text-center">{{itemOut.stateName}}</td>
 
-                            <td class="text-center">
+                            <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDetailItemOutModel(itemOut)">查看
                                     </button>
                                 </div>
-                                <div class="btn-group" v-if="itemOut.state == '1000'">
+                                <!-- <div class="btn-group" v-if="itemOut.state == '1000'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteItemOutModel(itemOut)">取消
+                                    </button>
+                                </div> -->
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRunWorkflowImage(itemOut)">流程图
                                     </button>
                                 </div>
                             </td>
@@ -110,5 +115,7 @@
 
 
     <!-- <vc:create path="common/deleteItemOut"></vc:create> -->
+
+    <vc:create path="common/viewImage"></vc:create>
 
 </div>

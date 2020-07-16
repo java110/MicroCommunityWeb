@@ -49,14 +49,13 @@
                 };
 
                 //发送get请求
-                vc.http.get('myAuditOrders',
-                    'list',
+                vc.http.apiGet('/collection/getCollectionAuditOrder',
                     param,
                     function (json, res) {
                         var _auditOrdersInfo = JSON.parse(json);
                         vc.component.auditOrdersInfo.total = _auditOrdersInfo.total;
                         vc.component.auditOrdersInfo.records = _auditOrdersInfo.records;
-                        vc.component.auditOrdersInfo.auditOrders = _auditOrdersInfo.resourceOrders;
+                        vc.component.auditOrdersInfo.auditOrders = _auditOrdersInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditOrdersInfo.records,
                             currentPage: _page
@@ -146,7 +145,7 @@
             },
 
             _distributionOrder:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/resourceEnterManage?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType+"&taskId="+_purchaseApply.taskId);
+                vc.jumpToPage("/admin.html#/pages/common/resourceOutManage?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType+"&taskId="+_purchaseApply.taskId);
             }
 
 
