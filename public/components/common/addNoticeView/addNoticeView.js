@@ -8,6 +8,12 @@
                 context: '',
                 startTime: '',
                 endTime: '',
+                objType: '',
+                objId: '',
+                floorId: '',
+                unitId: '',
+                roomId: '',
+                state: '3000'
 
             }
         },
@@ -15,9 +21,19 @@
             vc.component._initNoticeInfo();
         },
         _initEvent: function () {
-            vc.on('addNoticeView', 'openAddNoticeView', function () {
+            vc.on('addNoticeView', 'notify', function (_param) {
                 //vc.component._initNoticeInfo();
+                if (_param.hasOwnProperty('floorId')) {
+                    $that.addNoticeViewInfo.floorId = _param.floorId;
+                }
 
+                if (_param.hasOwnProperty('unitId')) {
+                    $that.addNoticeViewInfo.unitId = _param.unitId;
+                }
+
+                if (_param.hasOwnProperty('roomId')) {
+                    $that.addNoticeViewInfo.roomId = _param.roomId;
+                }
             });
         },
         methods: {
@@ -90,10 +106,32 @@
                 });
             },
             saveNoticeInfo: function () {
+                if($that.addNoticeViewInfo.noticeTypeCd != '1003'){
+                    $that.addNoticeViewInfo.objType ='001';
+                }
+                if ($that.addNoticeViewInfo.objType == '001') {
+                    $that.addNoticeViewInfo.objId = vc.getCurrentCommunity().communityId;
+                } else if ($that.addNoticeViewInfo.objType == '002') {
+                    $that.addNoticeViewInfo.objId = $that.addNoticeViewInfo.floorId;
+                } else if ($that.addNoticeViewInfo.objType == '003') {
+                    $that.addNoticeViewInfo.objId = $that.addNoticeViewInfo.unitId;
+                } else {
+                    $that.addNoticeViewInfo.objId = $that.addNoticeViewInfo.roomId;
+                }
+
+                if ($that.addNoticeViewInfo.noticeTypeCd == '1003') {
+                    $that.addNoticeViewInfo.state = '1000';
+                }
+
                 if (!vc.component.addNoticeValidate()) {
                     vc.toast(vc.validate.errInfo);
 
                     return;
+                }
+
+                if($that.addNoticeViewInfo.objId == "" ){
+                    vc.toast("未选择发布范围");
+                    return ;
                 }
 
                 vc.component.addNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -126,11 +164,21 @@
                     });
             },
             clearaddNoticeViewInfo: function () {
+                vc.emit('addNoticeView', 'floorSelect2', 'clearFloor', {});
+                vc.emit('addNoticeView', 'unitSelect2', 'clearUnit', {});
+                vc.emit('addNoticeView', 'roomSelect2', 'clearRoom', {});
                 vc.component.addNoticeViewInfo = {
                     title: '',
                     noticeTypeCd: '',
                     context: '',
                     startTime: '',
+                    endTime: '',
+                    objType: '',
+                    objId: '',
+                    floorId: '',
+                    unitId: '',
+                    roomId: '',
+                    state: '3000'
 
                 };
             },
@@ -227,6 +275,9 @@
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
+
+            },
+            _changeObjType: function () {
 
             }
 
