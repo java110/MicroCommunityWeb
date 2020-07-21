@@ -71,6 +71,7 @@
                             <th>开始时间</th>
                             <th>结束时间</th>
                             <th>状态</th>
+                            <th>通知范围</th>
                             <th class="text-right">操作</th>
                         </tr>
                         </thead>
@@ -82,7 +83,7 @@
                             <td>{{notice.startTime}}</td>
                             <td>{{notice.endTime}}</td>
                             <td>{{notice.stateName}}</td>
-
+                            <td>{{notice.objName}}</td>
                             <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-on:click="_openNoticeDetail(notice)">详情
