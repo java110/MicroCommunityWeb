@@ -4,10 +4,11 @@
         data: {
             editInspectionPointInfo: {
                 inspectionId: '',
-                machineId: '',
-                machineName: '',
+                pointObjId: '',
+                pointObjType: '',
+                pointObjName: '',
                 inspectionName: '',
-                communityId:'',
+                communityId: '',
                 remark: '',
             }
         },
@@ -20,16 +21,20 @@
                 $('#editInspectionPointModel').modal('show');
                 vc.copyObject(_params, vc.component.editInspectionPointInfo);
                 //传输数据到machineSelect2组件
-                vc.emit('editInspectionPoint', 'machineSelect2', 'setMachine', {
-                    machineId: vc.component.editInspectionPointInfo.machineId,
-                    machineName: vc.component.editInspectionPointInfo.machineName,
-                });
+                if ($that.editInspectionPointInfo.pointObjType == '1001') { //设备时设置
+                    vc.emit('editInspectionPoint', 'machineSelect2', 'setMachine', {
+                        machineId: vc.component.editInspectionPointInfo.pointObjId,
+                        machineName: vc.component.editInspectionPointInfo.pointObjName,
+                    });
+                }
+
                 vc.component.editInspectionPointInfo.communityId = vc.getCurrentCommunity().communityId;
             });
 
             vc.on("editInspectionPointInfo", "notify", function (_param) {
-                if (_param.hasOwnProperty("machineId")) {
-                    vc.component.editInspectionPointInfo.machineId = _param.machineId;
+                if (_param.hasOwnProperty("machineId") && $that.editInspectionPointInfo.pointObjType == '1001') {
+                    vc.component.editInspectionPointInfo.pointObjId = _param.machineId;
+                    vc.component.editInspectionPointInfo.pointObjName = _param.machineName;
                 }
             });
         },
@@ -50,11 +55,25 @@
                             errInfo: "巡检点名称不能超过100位"
                         },
                     ],
-                    'editInspectionPointInfo.machineId': [
+                    'editInspectionPointInfo.pointObjId': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "设备信息不能为空"
+                            errInfo: "位置信息不能为空"
+                        },
+                    ],
+                    'editInspectionPointInfo.pointObjType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "巡检类型不能为空"
+                        },
+                    ],
+                    'editInspectionPointInfo.pointObjName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "巡检位置不能为空"
                         },
                     ],
                     'editInspectionPointInfo.remark': [
@@ -74,6 +93,9 @@
                 });
             },
             editInspectionPoint: function () {
+                if ($that.editInspectionPointInfo.pointObjType == '2002') {
+                    $that.editInspectionPointInfo.pointObjId = '-1';
+                }
                 if (!vc.component.editInspectionPointValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -105,10 +127,11 @@
             refreshEditInspectionPointInfo: function () {
                 vc.component.editInspectionPointInfo = {
                     inspectionId: '',
-                    machineId: '',
-                    machineName: '',
+                    pointObjId: '',
+                    pointObjType: '',
+                    pointObjName: '',
                     inspectionName: '',
-                    communityId:'',
+                    communityId: '',
                     remark: '',
 
                 }

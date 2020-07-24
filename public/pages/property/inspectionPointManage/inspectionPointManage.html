@@ -64,10 +64,9 @@
                         <thead>
                         <tr>
                             <th class="text-center">巡检点名称</th>
+                            <th class="text-center">巡检类型</th>
+                            <th class="text-center">巡检位置</th>
                             <th class="text-center">巡检点ID</th>
-                            <th class="text-center">设备位置</th>
-                            <th class="text-center">设备编码</th>
-                            <th class="text-center">设备名称</th>
                             <th class="text-center">操作</th>
 
 
@@ -76,11 +75,9 @@
                         <tbody>
                         <tr v-for="inspectionPoint in inspectionPointManageInfo.inspectionPoints">
                             <td class="text-center">{{inspectionPoint.inspectionName}}</td>
+                            <td class="text-center">{{inspectionPoint.pointObjType=='1001'?'设备':'环境'}}</td>
+                            <td class="text-center">{{inspectionPoint.pointObjName}}</td>
                             <td class="text-center">{{inspectionPoint.inspectionId}}</td>
-                            <td class="text-center">{{inspectionPoint.locationObjName}}</td>
-                            <td class="text-center">{{inspectionPoint.machineCode}}</td>
-                            <td class="text-center">{{inspectionPoint.machineName}}</td>
-
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
