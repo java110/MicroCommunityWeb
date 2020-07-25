@@ -213,11 +213,11 @@
             },
             editMachine: function () {
                 vc.component.editMachineInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.editMachineInfo.locationTypeCd != '2000' && vc.component.editMachineInfo.locationTypeCd != '3000') { //大门时直接写 小区ID
+                if (vc.component.editMachineInfo.locationType != '2000' && vc.component.editMachineInfo.locationType != '3000') { //大门时直接写 小区ID
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.communityId;
-                } else if (vc.component.editMachineInfo.locationTypeCd == '2000') {
+                } else if (vc.component.editMachineInfo.locationType == '2000') {
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.unitId;
-                } else if (vc.component.editMachineInfo.locationTypeCd == '3000') {
+                } else if (vc.component.editMachineInfo.locationType == '3000') {
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.roomId;
                 } else {
                     vc.toast("设备位置值错误");
