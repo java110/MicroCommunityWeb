@@ -1,5 +1,5 @@
 <div id="addInspectionPointModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -11,34 +11,50 @@
                                 <label class="col-sm-2 col-form-label">巡检点名称</label>
                                 <div class="col-sm-10">
                                     <input v-model="addInspectionPointInfo.inspectionName" type="text"
-                                           placeholder="必填，请填写巡检点名称" class="form-control">
+                                        placeholder="必填，请填写巡检点名称" class="form-control">
                                 </div>
                             </div>
+
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">巡检类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addInspectionPointInfo.pointObjType">
+                                        <option selected disabled value="">必填，请选择巡检类型</option>
+                                        <option value="2002">环境</option>
+                                        <option value="1001">设备</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row" v-show="addInspectionPointInfo.pointObjType == '2002'">
+                                <label class="col-sm-2 col-form-label">位置</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addInspectionPointInfo.pointObjName" type="text"
+                                        placeholder="必填，请填写巡检点名称" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addInspectionPointInfo.pointObjType == '1001'">
                                 <label class="col-sm-2 col-form-label">巡检设备</label>
                                 <div class="col-sm-10">
-                                    <vc:create path="property/machineSelect2"
-                                               parentModal="addInspectionPointModel"
-                                               callBackListener="addInspectionPointInfo"
-                                               callBackFunction="notify"
-                                               namespace="addInspectionPoint"
-                                    ></vc:create>
+                                    <vc:create path="property/machineSelect2" parentModal="addInspectionPointModel"
+                                        callBackListener="addInspectionPointInfo" callBackFunction="notify"
+                                        namespace="addInspectionPoint"></vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">备注</label>
                                 <div class="col-sm-10">
                                     <input v-model="addInspectionPointInfo.remark" type="text" placeholder="选填，请填写备注"
-                                           class="form-control">
+                                        class="form-control">
                                 </div>
                             </div>
 
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="saveInspectionPointInfo()"><i class="fa fa-check"></i>&nbsp;保存
+                                    v-on:click="saveInspectionPointInfo()"><i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                    data-dismiss="modal">取消
                                 </button>
                             </div>
                         </div>

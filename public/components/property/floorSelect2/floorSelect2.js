@@ -1,7 +1,9 @@
 (function (vc) {
     vc.extends({
         propTypes: {
-            parentModal: vc.propTypes.string
+            parentModal: vc.propTypes.string,
+            callBackListener: vc.propTypes.string = "", //父组件名称
+            callBackFunction: vc.propTypes.string = "" //父组件监听方法
         },
         data: {
             floorSelect2Info: {
@@ -18,6 +20,8 @@
                 handler: function () {
                     vc.emit($namespace, 'unitSelect2', 'clearUnit', {});
                     vc.emit($namespace, 'unitSelect2', "transferFloor", this.floorSelect2Info);
+                    vc.emit($namespace, $props.callBackListener, $props.callBackFunction, this.floorSelect2Info);
+
                 }
             }
         },
@@ -40,6 +44,7 @@
 
             vc.on('floorSelect2', 'clearFloor', function (_param) {
                 $('#floorSelector').val('').select2();
+                this._initFloorSelect2();
                 this.floorSelect2Info = {
                     floors: [],
                     floorId: '-1',

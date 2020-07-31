@@ -12,6 +12,7 @@
                 resource: '',
                 domain: '',
                 description: '',
+                mId:''
 
             }
         },
@@ -19,7 +20,8 @@
 
         },
         _initEvent: function () {
-            vc.on('addBasePrivilege', 'openAddBasePrivilegeModal', function () {
+            vc.on('addBasePrivilege', 'openAddBasePrivilegeModal', function (_item) {
+                $that.addBasePrivilegeInfo.mId = _item.mId;
                 $('#addBasePrivilegeModel').modal('show');
             });
         },
@@ -70,6 +72,13 @@
                             param: "200",
                             errInfo: "备注内容不能超过200"
                         },
+                    ],
+                    'addBasePrivilegeInfo.mId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "非法操作，菜单为空"
+                        }
                     ],
 
 

@@ -2,7 +2,7 @@
 
     vc.extends({
         data: {
-            deleteLocationInfo: {
+            deleteWechatSmsTemplateInfo: {
 
             }
         },
@@ -10,19 +10,19 @@
 
         },
         _initEvent: function () {
-            vc.on('deleteLocation', 'openDeleteLocationModal', function (_params) {
+            vc.on('deleteWechatSmsTemplate', 'openDeleteWechatSmsTemplateModal', function (_params) {
 
-                vc.component.deleteLocationInfo = _params;
-                $('#deleteLocationModel').modal('show');
+                vc.component.deleteWechatSmsTemplateInfo = _params;
+                $('#deleteWechatSmsTemplateModel').modal('show');
 
             });
         },
         methods: {
-            deleteLocation: function () {
-                vc.component.deleteLocationInfo.communityId = vc.getCurrentCommunity().communityId;
+            deleteWechatSmsTemplate: function () {
+                vc.component.deleteWechatSmsTemplateInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'communityLocation.deleteCommunityLocation',
-                    JSON.stringify(vc.component.deleteLocationInfo),
+                    '/wechat/deleteWechatTemplate',
+                    JSON.stringify(vc.component.deleteWechatSmsTemplateInfo),
                     {
                         emulateJSON: true
                     },
@@ -30,8 +30,8 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#deleteLocationModel').modal('hide');
-                            vc.emit('locationManage', 'listLocation', {});
+                            $('#deleteWechatSmsTemplateModel').modal('hide');
+                            vc.emit('wechatSmsTemplateManage', 'listWechatSmsTemplate', {});
                             return;
                         }
                         vc.message(_json.msg);
@@ -42,8 +42,8 @@
 
                     });
             },
-            closeDeleteLocationModel: function () {
-                $('#deleteLocationModel').modal('hide');
+            closeDeleteWechatSmsTemplateModel: function () {
+                $('#deleteWechatSmsTemplateModel').modal('hide');
             }
         }
     });

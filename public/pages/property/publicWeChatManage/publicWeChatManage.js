@@ -72,6 +72,9 @@
             },
             _openWeChatMenu:function(_smallWeChat){
                 vc.jumpToPage('/admin.html#/pages/property/wechatMenuManage');
+            },
+            _openWeChatSmsTemplate:function(_smallWeChat){
+                vc.jumpToPage('/admin.html#/pages/property/wechatSmsTemplateManage?wechatId='+_smallWeChat.wechatId);
             }
 
 

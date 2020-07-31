@@ -3,7 +3,8 @@
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
-            callBackFunction: vc.propTypes.string //父组件监听方法
+            callBackFunction: vc.propTypes.string, //父组件监听方法
+            flowType:vc.propTypes.string='30003'
         },
         data: {
             purchaseApproversInfo: {
@@ -47,7 +48,7 @@
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        flowType: '30003'
+                        flowType: $props.flowType
                     }
                 };
                 //发送get请求
