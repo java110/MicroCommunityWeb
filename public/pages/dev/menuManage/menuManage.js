@@ -91,6 +91,9 @@
                 }else{
                     vc.component.menuManageInfo.moreCondition = true;
                 }
+            },
+            _openPrivilegeModel:function(_menu){
+                vc.jumpToPage("/admin.html#/pages/dev/basePrivilegeManage?mId="+_menu.mId);
             }
 
              ,

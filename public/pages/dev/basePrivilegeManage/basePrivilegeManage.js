@@ -12,15 +12,17 @@
                 records: 1,
                 moreCondition: false,
                 name: '',
+                mId:'',
                 conditions: {
                     name: '',
                     pId: '',
-                    domain: '',
+                    domain: ''
 
                 }
             }
         },
         _initMethod: function () {
+            $that.basePrivilegeManageInfo.mId = vc.getParam('mId');
             vc.component._listBasePrivileges(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -37,6 +39,7 @@
 
                 vc.component.basePrivilegeManageInfo.conditions.page = _page;
                 vc.component.basePrivilegeManageInfo.conditions.row = _rows;
+                vc.component.basePrivilegeManageInfo.conditions.mId = $that.basePrivilegeManageInfo.mId;
                 var param = {
                     params: vc.component.basePrivilegeManageInfo.conditions
                 };
@@ -60,7 +63,9 @@
                 );
             },
             _openAddBasePrivilegeModal: function () {
-                vc.emit('addBasePrivilege', 'openAddBasePrivilegeModal', {});
+                vc.emit('addBasePrivilege', 'openAddBasePrivilegeModal', {
+                    mId:$that.basePrivilegeManageInfo.mId
+                });
             },
             _openEditBasePrivilegeModel: function (_basePrivilege) {
                 vc.emit('editBasePrivilege', 'openEditBasePrivilegeModal', _basePrivilege);

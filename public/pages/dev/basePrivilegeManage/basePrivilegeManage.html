@@ -20,14 +20,7 @@
                                 <input type="text" placeholder="请输入权限编码" v-model="basePrivilegeManageInfo.conditions.pId" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <select class="custom-select" v-model="basePrivilegeManageInfo.conditions.domain">
-                                <option selected value="">请选择商户类型</option>
-                                <option value="800900000001">运营团队</option>
-                                <option value="800900000002">代理商</option>
-                                <option value="800900000003">物业</option>
-                                <option value="800900000000">开发团队</option>
-                            </select></div>
+                       
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryBasePrivilegeMethod()">
                                 <i class="fa fa-search"></i> 查询
