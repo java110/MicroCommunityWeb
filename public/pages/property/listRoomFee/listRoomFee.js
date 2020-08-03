@@ -81,6 +81,9 @@
             },
             _goBack:function(){
                 vc.goBack();
+            },
+            _toOwnerPayFee:function(){
+                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+$that.listRoomCreateFeeInfo.roomId+"&payObjType=3333");
             }
         }
 
