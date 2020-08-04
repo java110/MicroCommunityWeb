@@ -33,6 +33,11 @@
                           vc.component.$emit('errorInfoEvent',"手机号码为空或不正确，不能发送验证码");
                         return;
                     }
+
+                    if($that.buttonInfo !='验证码'){
+                        return ;
+                    }
+
                     // 开启定时
                     vc.component.messageCodeTimer();
 
