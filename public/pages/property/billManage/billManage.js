@@ -14,7 +14,7 @@
                 title: '',
                 conditions: {
                     title: '',
-                    curBill: '',
+                    curBill: 'T',
                     billName: '',
                     billId: '',
 
