@@ -5,20 +5,29 @@
     vc.extends({
         data: {
             owePayFeeOrderInfo: {
-                oweFees: [],              
+                oweFees: [],
+                selectPayFeeIds: [],
                 feePrices: 0.00,
                 communityId: vc.getCurrentCommunity().communityId,
-                payObjId:'',
-                payObjType:''
+                payObjId: '',
+                payObjType: ''
+            }
+        },
+        watch: {
+            'owePayFeeOrderInfo.selectPayFeeIds': {
+                deep: true,
+                handler: function () {
+                    $that._dealSelectFee();
+                }
             }
         },
         _initMethod: function () {
             let _payObjId = vc.getParam('payObjId');
             let _payObjType = vc.getParam('payObjType');
-            if(!vc.notNull(_payObjId)){
+            if (!vc.notNull(_payObjId)) {
                 vc.toast('非法操作');
                 vc.getBack();
-                return ;
+                return;
             }
             $that.owePayFeeOrderInfo.payObjId = _payObjId;
             $that.owePayFeeOrderInfo.payObjType = _payObjType;
@@ -29,45 +38,61 @@
         },
         methods: {
 
-            _loadOweFees:function(){
+            _loadOweFees: function () {
                 var param = {
-                    params:{
-                        page:1,
-                        row:50,
-                        communityId:vc.getCurrentCommunity().communityId,
-                        payObjId:$that.owePayFeeOrderInfo.payObjId,
-                        payObjType:$that.owePayFeeOrderInfo.payObjType,
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        payObjId: $that.owePayFeeOrderInfo.payObjId,
+                        payObjType: $that.owePayFeeOrderInfo.payObjType,
                     }
                 };
                 //发送get请求
-               vc.http.apiGet('/feeApi/listOweFees',
-                             param,
-                             function(json){
-                                var _json = JSON.parse(json);
-                                let _fees = _json.data;
-                                if(_fees.length < 1){
-                                    vc.toast('当前没有欠费数据');
-                                    return ;
-                                }
-                                $that.owePayFeeOrderInfo.oweFees = _fees;
-                                let totalFee = 0.00;
-                                $that.owePayFeeOrderInfo.oweFees.forEach(item => {
-                                    totalFee += item.feePrice;
-                                });
-                                $that.owePayFeeOrderInfo.feePrices = Math.round(totalFee*100,2)/100;
-                             },function(){
-                                console.log('请求失败处理');
-                             }
-                           );
+                vc.http.apiGet('/feeApi/listOweFees',
+                    param,
+                    function (json) {
+                        var _json = JSON.parse(json);
+                        let _fees = _json.data;
+                        if (_fees.length < 1) {
+                            vc.toast('当前没有欠费数据');
+                            return;
+                        }
+                        $that.owePayFeeOrderInfo.oweFees = _fees;
+
+                        $that.owePayFeeOrderInfo.selectPayFeeIds = [];
+                        $that.owePayFeeOrderInfo.oweFees.forEach(item => {
+                            $that.owePayFeeOrderInfo.selectPayFeeIds.push(item.feeId);
+                        });
+
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             _payFee: function (_page, _row) {
-
-                vc.toast('缴费暂不开放');
-                return ;
-                vc.http.post(
-                    'propertyPay',
-                    'payFee',
-                    JSON.stringify(vc.component.payFeeOrderInfo),
+                let _fees = [];
+                $that.owePayFeeOrderInfo.selectPayFeeIds.forEach(function (_item) {
+                    $that.owePayFeeOrderInfo.oweFees.forEach(function (_oweFeeItem) {
+                        if (_item == _oweFeeItem.feeId) {
+                            _fees.push({
+                                feeId: _item,
+                                feePrice: _oweFeeItem.feePrice
+                            })
+                        }
+                    })
+                })
+                if (_fees.length < 1) {
+                    vc.toast('未选中要缴费的项目');
+                    return;
+                }
+                let _data = {
+                    communityId: vc.getCurrentCommunity().communityId,
+                    fees: _fees
+                }
+                vc.http.apiPost(
+                    '/feeApi/payOweFee',
+                    JSON.stringify(_data),
                     {
                         emulateJSON: true
                     },
@@ -95,6 +120,20 @@
             _printAndBack: function () {
                 $('#payFeeResult').modal("hide");
                 vc.getBack();
+            },
+            _dealSelectFee: function () {
+                let totalFee = 0.00;
+                $that.owePayFeeOrderInfo.selectPayFeeIds.forEach(function (_item) {
+                    console.log('_item', _item)
+                    $that.owePayFeeOrderInfo.oweFees.forEach(function (_oweFeeItem) {
+                        if (_item == _oweFeeItem.feeId) {
+                            totalFee += _oweFeeItem.feePrice;
+                        }
+                    });
+
+                })
+
+                $that.owePayFeeOrderInfo.feePrices = Math.round(totalFee * 100, 2) / 100;
             }
         }
 
