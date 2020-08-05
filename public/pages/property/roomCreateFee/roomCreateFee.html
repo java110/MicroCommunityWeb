@@ -12,7 +12,6 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择楼栋"
@@ -90,8 +89,6 @@
                            data-page-size="10">
                         <thead>
                         <tr>
-                            <th data-hide="phone">楼栋</th>
-                            <th data-hide="phone">单元</th>
                             <th data-hide="phone">房屋</th>
                             <th data-hide="phone">楼层</th>
                             <th data-hide="phone">业主名称</th>
@@ -105,14 +102,9 @@
                         <tbody>
                         <tr v-for="room in roomCreateFeeInfo.rooms">                       
                             <td>
-                                {{room.floorNum}}号楼
+                                {{room.floorNum}}栋{{room.unitNum}}单元{{room.roomNum}}室
                             </td>       
-                            <td>
-                                {{room.unitNum}}单元
-                            </td>
-                            <td>
-                                {{room.roomNum}}室
-                            </td>
+                          
                             <td>
                                 {{room.layer}}层
                             </td>  
@@ -138,9 +130,16 @@
                                     </button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openViewRoomCreateFee(room)">查看收费
+                                    <button class="btn-white btn btn-xs" v-on:click="_toOwnerPayFee(room)">欠费缴费
                                     </button>
                                 </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openViewRoomCreateFee(room)">查看费用
+                                    </button>
+                                </div>
+                                
+
+                                
                             </td>
                         </tr>
                         </tbody>
