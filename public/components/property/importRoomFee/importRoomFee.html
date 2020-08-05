@@ -1,0 +1,60 @@
+<div id="importRoomFeeModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">费用导入</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">费用类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="importRoomFeeInfo.feeTypeCd"
+                                        @change="_changeFeeTypeCd(importRoomFeeInfo.feeTypeCd)">
+                                        <option selected disabled value="">必填，请选择费用类型</option>
+                                        <option v-for="(item,index) in importRoomFeeInfo.feeTypeCds" :key="index"
+                                            v-bind:value="item.statusCd" v-if="item.statusCd !='888800010008'">
+                                            {{item.name}}
+                                        </option>
+                                    </select></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">选择文件</label>
+                                <div class="col-sm-10">
+                                    <div class="custom-file">
+                                        <input id="excelTemplate" ref="excelTemplate" type="file"
+                                            class="custom-file-input form-control" name="excelTemplate"
+                                            v-on:change="getExcelTemplate($event)" accept=".xls,.xlsx">
+                                        <label for="excelTemplate"
+                                            class="custom-file-label">{{importRoomFeeInfo.excelTemplate==''?'必填，请选择数据文件':importRoomFeeInfo.excelTemplate.name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">下载模板</label>
+                                <div class="col-sm-10">
+                                    请先下载
+                                    <a href="javascript:void(0)" target="_blank" v-on:click="_exportRoomFeeTemplate()">导入模板
+                                    </a>
+                                    准备数据后，上传导入
+                                </div>
+                            </div>
+
+
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="_importData()"><i
+                                        class="fa fa-check"></i>&nbsp;导入
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

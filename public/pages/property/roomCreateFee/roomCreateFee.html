@@ -77,6 +77,10 @@
                     <h5>房屋信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openRoomFeeImport(null,true)">
+                            费用导入
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                             v-on:click="_openRoomCreateFeeAddModal(null,true)">
                             <i class="fa fa-plus"></i> 批量创建
                         </button>
@@ -162,4 +166,6 @@
     <vc:create path="property/searchFloor" emitChooseFloor="room" emitLoadData="room"></vc:create>
 
     <vc:create path="property/roomCreateFeeAdd"></vc:create>
+
+    <vc:create path="property/importRoomFee"></vc:create>
 </div>
