@@ -10,7 +10,8 @@
                 feePrices: 0.00,
                 communityId: vc.getCurrentCommunity().communityId,
                 payObjId: '',
-                payObjType: ''
+                payObjType: '',
+                roomName: ''
             }
         },
         watch: {
@@ -31,6 +32,7 @@
             }
             $that.owePayFeeOrderInfo.payObjId = _payObjId;
             $that.owePayFeeOrderInfo.payObjType = _payObjType;
+            $that.owePayFeeOrderInfo.roomName = vc.getParam('roomName');
             $that._loadOweFees();
         },
         _initEvent: function () {
@@ -55,6 +57,7 @@
                         var _json = JSON.parse(json);
                         let _fees = _json.data;
                         if (_fees.length < 1) {
+                            $that.owePayFeeOrderInfo.oweFees=[];
                             vc.toast('当前没有欠费数据');
                             return;
                         }
@@ -72,13 +75,21 @@
             },
             _payFee: function (_page, _row) {
                 let _fees = [];
+                let _printFees = [];
                 $that.owePayFeeOrderInfo.selectPayFeeIds.forEach(function (_item) {
                     $that.owePayFeeOrderInfo.oweFees.forEach(function (_oweFeeItem) {
                         if (_item == _oweFeeItem.feeId) {
                             _fees.push({
                                 feeId: _item,
                                 feePrice: _oweFeeItem.feePrice
-                            })
+                            });
+                            _printFees.push({
+                                feeId: _item,
+                                squarePrice:_oweFeeItem.squarePrice,
+                                additionalAmount: _oweFeeItem.additionalAmount,
+                                feeName: _oweFeeItem.feeName,
+                                amount: _oweFeeItem.feePrice
+                            });
                         }
                     })
                 })
@@ -100,11 +111,20 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
+
+                            let _feeInfo = {
+                                totalAmount: $that.owePayFeeOrderInfo.feePrices,
+                                fees: _printFees
+                            }
+
+                            vc.saveData('_feeInfo',_feeInfo);
                             //关闭model
                             $("#payFeeResult").modal({
                                 backdrop: "static",//点击空白处不关闭对话框
                                 show: true
                             });
+
+                            $that._loadOweFees();
                             return;
                         }
                         vc.toast(_json.msg);
@@ -120,7 +140,7 @@
             },
             _printAndBack: function () {
                 $('#payFeeResult').modal("hide");
-                vc.getBack();
+                window.open("/print.html#/pages/property/printPayFee?roomName=" + $that.owePayFeeOrderInfo.roomName)
             },
             _dealSelectFee: function () {
                 let totalFee = 0.00;

@@ -1342,6 +1342,17 @@
         return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
     }
 
+    vcFramework.dateTimeFormat = function (_time) {
+
+        let y = _time.getFullYear();
+        let m = _time.getMonth() + 1;
+        let d = _time.getDate();
+        let h = _time.getHours();
+        let mm = _time.getMinutes();
+        let s = _time.getSeconds();
+        return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
+    }
+
     vcFramework.getDateYYYYMMDDHHMISS = function () {
         let date = new Date();
         let year = date.getFullYear();

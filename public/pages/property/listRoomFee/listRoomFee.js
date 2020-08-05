@@ -57,6 +57,7 @@
                            );
             },
             _payFee:function(_fee){
+                _fee.roomName=$that.listRoomCreateFeeInfo.roomName;
                vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?'+vc.objToGetParam(_fee));
             },
             _payFeeHis:function(_fee){
@@ -83,7 +84,7 @@
                 vc.goBack();
             },
             _toOwnerPayFee:function(){
-                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+$that.listRoomCreateFeeInfo.roomId+"&payObjType=3333");
+                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+$that.listRoomCreateFeeInfo.roomId+"&payObjType=3333&roomName="+$that.listRoomCreateFeeInfo.roomName);
             }
         }
 

@@ -14,7 +14,10 @@
                 paymentCycles: [],
                 totalFeePrice: 0.00,
                 receivedAmount: '',
-                communityId: vc.getCurrentCommunity().communityId
+                communityId: vc.getCurrentCommunity().communityId,
+                roomName:'',
+                squarePrice:'',
+                additionalAmount:''
             }
         },
         _initMethod: function () {
@@ -25,6 +28,9 @@
                 vc.component.payFeeOrderInfo.endTime = vc.getParam('endTime').replace(/%3A/g, ':');
                 vc.component.payFeeOrderInfo.feePrice = vc.getParam('feePrice');
                 $that.payFeeOrderInfo.feeFlag = vc.getParam('feeFlag');
+                $that.payFeeOrderInfo.roomName = vc.getParam('roomName');
+                $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
+                $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
                 $that.payFeeOrderInfo.paymentCycles = [];
                 for (let _index = 1; _index < 7; _index++) {
                     $that.payFeeOrderInfo.paymentCycles.push(_index * vc.getParam('paymentCycle'))
@@ -78,6 +84,14 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+                let _printFees = [];
+                _printFees.push({
+                    feeId: $that.payFeeOrderInfo.feeId,
+                    squarePrice:$that.payFeeOrderInfo.squarePrice,
+                    additionalAmount: $that.payFeeOrderInfo.additionalAmount,
+                    feeName: $that.payFeeOrderInfo.feeName,
+                    amount: $that.payFeeOrderInfo.feePrice
+                });
 
                 vc.http.post(
                     'propertyPay',
@@ -89,6 +103,12 @@
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
+                            let _feeInfo = {
+                                totalAmount: $that.payFeeOrderInfo.feePrice,
+                                fees: _printFees
+                            }
+
+                            vc.saveData('_feeInfo',_feeInfo);
                             //关闭model
                             $("#payFeeResult").modal({
                                 backdrop: "static",//点击空白处不关闭对话框
@@ -117,9 +137,8 @@
                 vc.getBack();
             },
             _printAndBack: function () {
-                $('#payFeeResult').modal("hide");
-
-                vc.getBack();
+                //$('#payFeeResult').modal("hide");
+                window.open("/print.html#/pages/property/printPayFee?roomName=" + $that.payFeeOrderInfo.roomName)
             }
         }
 

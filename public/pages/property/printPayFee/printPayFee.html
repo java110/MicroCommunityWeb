@@ -1,0 +1,66 @@
+<div>
+    <div>
+        <div>
+            <div class=" text-center">
+                <h1>{{printPayFeeInfo.communityName}} 收据单</h1>
+            </div>
+            <div class="row margin-top">
+                <div class="col-sm-4">
+                    <span>{{printPayFeeInfo.roomName}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <span></span>
+                </div>
+                <div class="col-sm-4">
+                    <span>缴费时间：{{printPayFeeInfo.feeTime}}</span>
+                </div>
+            </div>
+            <table class="table table-bordered margin-top">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">编号</th>
+                        <th scope="col" class="text-center">收费项目</th>
+                        <th scope="col" class="text-center">单价</th>
+                        <th scope="col" class="text-center">固定费</th>
+                        <th scope="col" class="text-center">单位</th>
+                        <th scope="col" class="text-center">金额</th>
+                        <th scope="col" class="text-center">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in printPayFeeInfo.fees">
+                        <th scope="row" class="text-center">{{index +1}}</th>
+                        <td class="text-center">{{item.feeName}}</td>
+                        <td class="text-center">{{item.squarePrice}}</td>
+                        <td class="text-center">{{item.additionalAmount}}</td>
+                        <td class="text-center">元</td>
+                        <td class="text-center">{{item.amount}}</td>
+                        <td class="text-center">{{item.remark}}</td>
+                    </tr>
+                    <tr >
+                        <td colspan="2" class="text-center " >总费用</td>
+                        <td colspan="5" class="text-center ">{{printPayFeeInfo.feePrices}}元</td>
+                    </tr>
+                    <tr height="60px" v-if="printPayFeeInfo.wechatName != ''">
+                        <td colspan="7"  >
+                            <p>
+                                尊敬的业主：
+                            </p>
+                            <p>
+                                您好！感谢您在百忙中来缴费，为了更好的服务您，我们已开通网上缴费，请您关注《{{printPayFeeInfo.wechatName}}》公众号并注册，实现网上缴费。
+                            </p>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="print-btn">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+                <i class="fa fa-check"></i>&nbsp;打印
+            </button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+            </button>
+        </div>
+    </div>
+</div>
