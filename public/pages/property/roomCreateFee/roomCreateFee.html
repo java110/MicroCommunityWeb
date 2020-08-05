@@ -1,4 +1,4 @@
-<div >
+<div>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
@@ -6,7 +6,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{roomCreateFeeInfo.moreCondition == true?'隐藏':'更多'}}
+                            v-on:click="_moreCondition()">{{roomCreateFeeInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -14,12 +14,11 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择楼栋"
-                                       v-model="roomCreateFeeInfo.conditions.floorName" class=" form-control">
+                                <input type="text" placeholder="请选择楼栋" v-model="roomCreateFeeInfo.conditions.floorName"
+                                    class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()"><i
-                                            class="fa fa-search"></i> 选择
+                                        v-on:click="_openChooseFloorMethod()"><i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
@@ -28,7 +27,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-sm form-control input-s-sm inline"
-                                        v-model="roomCreateFeeInfo.conditions.unitId">
+                                    v-model="roomCreateFeeInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
                                     <option v-for="(unit,index) in roomUnits" :key="index" v-bind:value="unit.unitId">
                                         {{unit.unitNum}}单元
@@ -39,7 +38,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-sm"
-                                       v-model="roomCreateFeeInfo.conditions.roomNum">
+                                    v-model="roomCreateFeeInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -53,16 +52,16 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋ID" class="form-control form-control-sm"
-                                       v-model="roomCreateFeeInfo.conditions.roomId">
+                                    v-model="roomCreateFeeInfo.conditions.roomId">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <input type="text" placeholder="请填写业主名称" class="form-control form-control-sm"
-                                   v-model="roomCreateFeeInfo.conditions.ownerName">
+                                v-model="roomCreateFeeInfo.conditions.ownerName">
                         </div>
                         <div class="col-sm-4">
                             <input type="text" placeholder="请填写业主身份证号" class="form-control form-control-sm"
-                                   v-model="roomCreateFeeInfo.conditions.idCard">
+                                v-model="roomCreateFeeInfo.conditions.idCard">
                         </div>
                     </div>
 
@@ -77,8 +76,8 @@
                 <div class="ibox-title">
                     <h5>房屋信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm"
-                                style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal(null,true)">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openRoomCreateFeeAddModal(null,true)">
                             <i class="fa fa-plus"></i> 批量创建
                         </button>
                     </div>
@@ -86,69 +85,71 @@
                 <div class="ibox-content">
 
                     <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                           data-page-size="10">
+                        data-page-size="10">
                         <thead>
-                        <tr>
-                            <th data-hide="phone">房屋</th>
-                            <th data-hide="phone">楼层</th>
-                            <th data-hide="phone">业主名称</th>
-                            <th data-hide="phone">联系电话</th>
-                            <th data-hide="phone">身份证</th>
-                            <th>房屋ID</th>
-                            <th class="text-right">操作</th>
+                            <tr>
+                                <th data-hide="phone">房屋</th>
+                                <th data-hide="phone">楼层</th>
+                                <th data-hide="phone">业主名称</th>
+                                <th data-hide="phone">联系电话</th>
+                                <th data-hide="phone">身份证</th>
+                                <th>房屋ID</th>
+                                <th class="text-right">操作</th>
 
-                        </tr>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="room in roomCreateFeeInfo.rooms">                       
-                            <td>
-                                {{room.floorNum}}栋{{room.unitNum}}单元{{room.roomNum}}室
-                            </td>       
-                          
-                            <td>
-                                {{room.layer}}层
-                            </td>  
-                            <td>
-                                {{room.ownerName}}
-                            </td>
-                            <td>
-                                {{room.link}}
-                            </td>
-                            <td>
-                                {{room.idCard}}
-                            </td>
-                             <td>
-                                {{room.roomId}}
-                            </td>
-                            <!--
+                            <tr v-for="room in roomCreateFeeInfo.rooms">
+                                <td>
+                                    {{room.floorNum}}栋{{room.unitNum}}单元{{room.roomNum}}室
+                                </td>
+
+                                <td>
+                                    {{room.layer}}层
+                                </td>
+                                <td>
+                                    {{room.ownerName}}
+                                </td>
+                                <td>
+                                    {{room.link}}
+                                </td>
+                                <td>
+                                    {{room.idCard}}
+                                </td>
+                                <td>
+                                    {{room.roomId}}
+                                </td>
+                                <!--
                             <td>
                                 {{room.ownerId}}
                             </td> -->
-                            <td class="text-right">
-                                <div class="btn-group" v-if="room.state == '2001'">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openRoomCreateFeeAddModal(room,false)">创建收费
-                                    </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_toOwnerPayFee(room)">欠费缴费
-                                    </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openViewRoomCreateFee(room)">查看费用
-                                    </button>
-                                </div>
-                                
+                                <td class="text-right">
+                                    <div class="btn-group" v-if="room.state == '2001'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRoomCreateFeeAddModal(room,false)">创建收费
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_toOwnerPayFee(room)">欠费缴费
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openViewRoomCreateFee(room)">查看费用
+                                        </button>
+                                    </div>
 
-                                
-                            </td>
-                        </tr>
+
+
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -158,11 +159,7 @@
             </div>
         </div>
     </div>
-    <vc:create path="property/searchFloor"
-               emitChooseFloor="room"
-               emitLoadData="room"
-    ></vc:create>
+    <vc:create path="property/searchFloor" emitChooseFloor="room" emitLoadData="room"></vc:create>
 
-    <vc:create path="property/roomCreateFeeAdd"
-    ></vc:create>
+    <vc:create path="property/roomCreateFeeAdd"></vc:create>
 </div>
