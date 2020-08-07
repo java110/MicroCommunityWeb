@@ -29,7 +29,7 @@
                         page:_page,
                         row:_row,
                         communityId:vc.getCurrentCommunity().communityId,
-                        name:_name,
+                        orgName:_name,
                         orgLevel:vc.component.chooseOrgInfo.orgLevel,
                         parentOrgId:vc.component.chooseOrgInfo.parentOrgId,
                     }
