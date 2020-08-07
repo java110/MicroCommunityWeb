@@ -68,6 +68,7 @@
                 var param = new FormData();
                 param.append("uploadFile", vc.component.importRoomFeeInfo.excelTemplate);
                 param.append('communityId', vc.component.importRoomFeeInfo.communityId);
+                param.append('feeTypeCd', vc.component.importRoomFeeInfo.feeTypeCd);
 
 
                 vc.http.upload(
@@ -86,7 +87,8 @@
                         if (res.status == 200) {
                             //关闭model
                             vc.toast("处理成功");
-                            vc.jumpToPage('/admin.html#/pages/property/listOwner')
+                            $('#importRoomFeeModel').modal('hide');
+                            //vc.jumpToPage('/admin.html#/pages/property/listOwner')
                             return;
                         }
                         vc.toast(json, 10000);
@@ -111,33 +113,13 @@
                 vc.component.importRoomFeeInfo.feeTypeCds = _feeTypeCds;
             },
             _changeFeeTypeCd: function (_feeTypeCd) {
-
-                var param = {
-                    params: {
-                        page: 1,
-                        row: 20,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        feeTypeCd: _feeTypeCd,
-                        isDefault: 'F'
-                    }
-                };
-
-                //发送get请求
-                vc.http.get('importRoomFee', 'list', param,
-                    function (json, res) {
-                        var _feeConfigManageInfo = JSON.parse(json);
-                        vc.component.importRoomFeeInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
-                    },
-                    function (errInfo, error) {
-                        console.log('请求失败处理');
-                    });
             },
             getExcelTemplate: function (e) {
                 //console.log("getExcelTemplate 开始调用")
                 vc.component.importRoomFeeInfo.excelTemplate = e.target.files[0];
             },
             checkFileType: function (fileType) {
-                const acceptTypes = ['xls', 'xlsx'];
+                const acceptTypes = ['xlsx'];
                 for (var i = 0; i < acceptTypes.length; i++) {
                     if (fileType === acceptTypes[i]) {
                         return true;
