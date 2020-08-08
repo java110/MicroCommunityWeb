@@ -5,9 +5,7 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{roomFeeImport.moreCondition == true?'隐藏':'更多'}}
-                        </button>
+
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -19,11 +17,13 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <select class="custom-select" v-model="roomFeeImport.conditions.curBill">
-                                <option selected value="">请选择账单类型</option>
-                                <option value="T">当期账单</option>
-                                <option value="F">往期账单</option>
+                            <select class="custom-select" v-model="roomFeeImport.conditions.feeTypeCd">
+                                <option selected disabled value="">必填，请选择费用类型</option>
 
+                                <option v-for="(item,index) in roomFeeImport.feeTypeCds" :key="index"
+                                    v-bind:value="item.statusCd" v-if="item.statusCd !='888800010008'">
+                                    {{item.name}}
+                                </option>
                             </select></div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryImportFeeMethod()">
@@ -31,14 +31,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4" v-if="roomFeeImport.moreCondition == true">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入信息ID" v-model="roomFeeImport.conditions.activitiesId"
-                                    class=" form-control">
-                            </div>
-                        </div>
-                    </div>
+
 
 
                 </div>
@@ -74,7 +67,7 @@
                         <tbody>
                             <tr v-for="fee in roomFeeImport.improtFees">
                                 <td class="text-center">{{fee.importFeeId}}</td>
-                                <td class="text-center">{{fee.feeTypeCd}}</td>
+                                <td class="text-center">{{fee.feeTypeCdName}}</td>
                                 <td class="text-center">{{fee.createTime}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">

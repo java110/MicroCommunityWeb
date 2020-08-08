@@ -6,7 +6,7 @@
                 communityId: vc.getCurrentCommunity().communityId,
                 excelTemplate: '',
                 feeTypeCd: '',
-                feeConfigs: []
+                feeTypeCds: []
             }
         },
         _initMethod: function () {
@@ -89,6 +89,8 @@
                             vc.toast("处理成功");
                             $('#importRoomFeeModel').modal('hide');
                             //vc.jumpToPage('/admin.html#/pages/property/listOwner')
+
+                            vc.emit('roomFeeImport', 'listFee',{});
                             return;
                         }
                         vc.toast(json, 10000);
@@ -107,7 +109,7 @@
                     communityId: vc.getCurrentCommunity().communityId,
                     excelTemplate: '',
                     feeTypeCd: '',
-                    feeConfigs: []
+                    feeTypeCds: []
                 };
 
                 vc.component.importRoomFeeInfo.feeTypeCds = _feeTypeCds;

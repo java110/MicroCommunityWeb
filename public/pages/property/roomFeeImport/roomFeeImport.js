@@ -8,18 +8,22 @@
         data: {
             roomFeeImport: {
                 improtFees: [],
+                feeTypeCds: [],
                 total: 0,
                 records: 1,
                 moreCondition: false,
                 title: '',
                 conditions: {
                     importFeeId: '',
-
+                    feeTypeCd: ''
                 }
             }
         },
         _initMethod: function () {
-           $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
+            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
+                vc.component.roomFeeImport.feeTypeCds = _data;
+            });
+            $that._listImportFees(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
 
@@ -57,13 +61,16 @@
                     }
                 );
             },
-            _openImportFeeDetail: function (_bill) {
-                vc.jumpToPage('/admin.html#/pages/property/billOweManage?'+vc.objToGetParam(_bill));
+            _openImportFeeDetail: function (_fee) {
+                vc.jumpToPage('/admin.html#/pages/property/roomFeeImportDetail?importFeeId=' + _fee.importFeeId);
 
             },
             _queryImportFeeMethod: function () {
                 vc.component._listImportFees(DEFAULT_PAGE, DEFAULT_ROWS);
 
+            },
+            _openRoomFeeImport: function () {
+                vc.emit('importRoomFee', 'openImportRoomFeeModal', {});
             },
             _moreCondition: function () {
                 if (vc.component.roomFeeImport.moreCondition) {
