@@ -115,13 +115,15 @@ header {
 }
 
 .data_bg {
+    width: 92%;
     height: 120px;
     background: url(../images/data_icon.png) no-repeat 100%;
-    background-size: 96% 100%;
+    background-size: 100% 100%;
     text-align: center;
     font-size: 24px;
     color: #FFFFFF;
     padding-top: 20px;
+    margin: 0 auto;
 }
 
 small {
