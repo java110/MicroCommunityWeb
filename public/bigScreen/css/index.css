@@ -149,12 +149,17 @@ small {
 
 .box5 {
     height: 957px;
-    padding: 0 25px 25px 25px;
+    padding: 0 25px 25px 35px;
     background: url(../images/bg_box5.png) no-repeat 100%;
     background-size: 96% 100%;
-
-    float: right;
 }
+
+.box5 .box5_div{
+    width: 96%;
+    margin: 0 auto;
+}
+
+
 
 .box5_con {
     width: 100%;
