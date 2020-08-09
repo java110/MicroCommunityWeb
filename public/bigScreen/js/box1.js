@@ -13,9 +13,9 @@ option = {
         subtext: '',
         left: 'center'
     },
-    textStyle:{//图例文字的样式
-        color:'#fff',
-        fontSize:12
+    textStyle: {//图例文字的样式
+        color: '#fff',
+        fontSize: 12
     },
     tooltip: {
         trigger: 'item',
@@ -26,22 +26,31 @@ option = {
         left: 'left',
         data: ['已售', '空闲']
     },
-    color : [ 'green', 'red' ],
+    color: ['green', 'red'],
     series: [
         {
             name: '',
             type: 'pie',
-            radius: '65%',
-            center: ['40%', '40%'],
+            radius: '55%',
+            center: ['50%', '50%'],
             data: [
-                {value: 335, name: '已售'},
-                {value: 310, name: '空闲'}
+                { value: 90, name: '已售' },
+                { value: 10, name: '空闲' }
             ],
             emphasis: {
                 itemStyle: {
                     shadowBlur: 10,
                     shadowOffsetX: 0,
                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: true,
+                        formatter: '{b} : {c} '
+                    },
+                    labelLine: { show: true }
                 }
             }
         }

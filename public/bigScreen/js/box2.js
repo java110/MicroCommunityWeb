@@ -3,16 +3,6 @@ var myChart = echarts.init(dom);
 var app = {};
 option = null;
 var xAxisData = [];
-var data1 = [];
-var data2 = [];
-var data3 = [];
-var data4 = [];
-
-for (var i = 0; i < 10; i++) {
-    xAxisData.push('Class' + i);
-    data1.push((Math.random() * 2).toFixed(2));
-    data2.push(-Math.random().toFixed(2));
-}
 
 var emphasisStyle = {
     itemStyle: {
@@ -25,73 +15,52 @@ var emphasisStyle = {
 };
 
 option = {
-    backgroundColor: '',
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
     legend: {
-        data: ['已缴费', '未交费'],
-        left: 10
+        orient: 'vertical',
+        left: 10,
+        data: ['已处理', '未处理']
     },
-    tooltip: {},
-    xAxis: {
-        data: xAxisData,
-        name: '费用项',
-        axisLine: {onZero: true},
-        splitLine: {show: false},
-        splitArea: {show: false}
-    },
-    textStyle:{//图例文字的样式
-        color:'#fff',
-        fontSize:12
-    },
-    yAxis: {
-        inverse: true,
-        splitArea: {show: false}
-    },
-    grid: {
-        left: 0
-    },
+    color: ['yellow','red'],
     series: [
         {
-            name: '已缴费',
-            type: 'bar',
-            stack: 'one',
-            emphasis: emphasisStyle,
-            data: data1
-        },
-        {
-            name: '未交费',
-            type: 'bar',
-            stack: 'one',
-            emphasis: emphasisStyle,
-            data: data2
+            name: '访问来源',
+            type: 'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                show: true,
+                position: 'top'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '30',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                {value: 90, name: '已处理'},
+                {value: 10, name: '未处理'}
+            ],
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: true,
+                        formatter: '{b} : {c} '
+                    },
+                    labelLine: { show: true }
+                }
+            }
         }
     ]
 };
-
-myChart.on('brushSelected', renderBrushed);
-
-function renderBrushed(params) {
-    var brushed = [];
-    var brushComponent = params.batch[0];
-
-    for (var sIdx = 0; sIdx < brushComponent.selected.length; sIdx++) {
-        var rawIndices = brushComponent.selected[sIdx].dataIndex;
-        brushed.push('[Series ' + sIdx + '] ' + rawIndices.join(', '));
-    }
-
-    myChart.setOption({
-        title: {
-            backgroundColor: '#333',
-            text: 'SELECTED DATA INDICES: \n' + brushed.join('\n'),
-            bottom: 0,
-            right: 0,
-            width: 100,
-            textStyle: {
-                fontSize: 12,
-                color: '#fff'
-            }
-        }
-    });
-}
 
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
