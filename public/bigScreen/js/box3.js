@@ -122,6 +122,7 @@ function _getAssetOpenDoor() {
             if (_json.code == 0) {
 
                 let _data = _json.data;
+                _data = _data.reverse();
                 _initOpenDoorChart(_data);
 
                 return;
