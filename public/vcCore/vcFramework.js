@@ -941,7 +941,10 @@
             } else {
                 _api = '/callComponent/' + api;
             }
-            vcFramework.loading('open');
+            if(vcFramework.hasOwnProperty('loading')){
+                vcFramework.loading('open');
+            }
+
             Vue.http.get(_api, param)
                 .then(function (res) {
                     try {
@@ -953,7 +956,9 @@
                     } catch (e) {
                         console.error(e);
                     } finally {
-                        vcFramework.loading('close');
+                        if(vcFramework.hasOwnProperty('loading')){
+                            vcFramework.loading('close');
+                        }
                     }
                 }, function (res) {
                     try {

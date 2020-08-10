@@ -60,3 +60,39 @@ option = {
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
 }
+
+/**
+ * 查询 资产信息
+ */
+function _loadAssets(){
+    let param = {
+        params:{
+            communityId:vc.getCurrentCommunity().communityId
+        }
+    }
+    vc.http.apiGet(
+        '/bigScreen/getAssets',
+        param,
+        function (json, res) {
+            //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+            let _json = JSON.parse(json);
+            if (_json.code == 0) {
+
+                let _data = _json.data;
+                document.getElementById("floorCount").innerHTML = _data.floorCount +"栋";
+                document.getElementById("roomCount").innerHTML = _data.roomCount +"个";
+                document.getElementById("parkingSpaceCount").innerHTML = _data.parkingSpaceCount +"个";
+                document.getElementById("machineCount").innerHTML = _data.machineCount +"台";
+
+                return;
+            }
+        },
+        function (errInfo, error) {
+            console.log('请求失败处理');
+
+            vc.toast(errInfo);
+
+        });
+}
+
+_loadAssets();
