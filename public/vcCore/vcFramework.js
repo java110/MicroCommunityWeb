@@ -1301,6 +1301,28 @@
             });
     }
 
+    vcFramework.getAttrSpec = function (_tableName,_callFun) {
+        let param = {
+            params: {
+                tableName: _tableName
+            }
+        };
+
+        //发送get请求
+        vcFramework.http.apiGet('/attrSpec/queryAttrSpec', param,
+            function (json, res) {
+                let _attrSpecInfo = JSON.parse(json);
+
+                if (_attrSpecInfo.code == 0) {
+                    _callFun(_attrSpecInfo.data);
+                    return;
+                }
+            },
+            function (errInfo, error) {
+                console.log('请求失败处理');
+            });
+    }
+
 
 })(window.vcFramework);
 

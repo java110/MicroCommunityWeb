@@ -16,20 +16,34 @@
                 unitPrice:'',
                 state:'',
                 remark:'',
-                communityId:''
+                communityId:'',
+                attrs:[]
             }
         },
          _initMethod:function(){
-
+            $that._loadRoomAttrSpec();
          },
          _initEvent:function(){
              vc.on('editRoom','openEditRoomModal',function(_room){
+                $that.refreshEditRoomInfo();
                  vc.copyObject(_room,vc.component.editRoomInfo);
                  vc.component.loadUnitsFromEditRoom(_room.floorId);
                  $('#editRoomModel').modal('show');
 
                 vc.component.editRoomInfo.floorId = _room.floorId;
                 vc.component.editRoomInfo.communityId = vc.getCurrentCommunity().communityId;
+
+                if(_room.hasOwnProperty('roomAttrDto')){
+                    let _roomAttrDtos = _room.roomAttrDto;
+                    _roomAttrDtos.forEach(item => {
+                        $that.editRoomInfo.attrs.forEach(attrItem => {
+                            if(item.specCd == attrItem.specCd){
+                                attrItem.attrId = item.attrId;
+                                attrItem.value = item.value;
+                            }
+                        })
+                    })
+                }
 
              });
         },
@@ -76,6 +90,19 @@
                         vc.toast(errInfo);
                      });
             },
+
+            _loadRoomAttrSpec: function () {
+                $that.editRoomInfo.attrs = [];
+                vc.getAttrSpec('building_room_attr', function (data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        if(item.specShow == 'Y'){
+                            $that.editRoomInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
             editRoomValidate:function(){
                         return vc.validate.validate({
                             editRoomInfo:vc.component.editRoomInfo
@@ -111,18 +138,6 @@
                                     errInfo:"房屋楼层高度必须为数字"
                                 }
                             ],
-                            /*'editRoomInfo.section':[
-                                {
-                                    limit:"required",
-                                    param:"",
-                                    errInfo:"房间数不能为空"
-                                },
-                                {
-                                    limit:"num",
-                                    param:"",
-                                    errInfo:"房间数必须为数字"
-                                }
-                            ],*/
                             'editRoomInfo.state':[
                                 {
                                     limit:"required",
@@ -154,23 +169,6 @@
                                   errInfo:"建筑面积数字长度不能超过6位"
                                 }
                             ],
-                            /*'editRoomInfo.unitPrice':[
-                                {
-                                    limit:"required",
-                                    param:"",
-                                    errInfo:"房屋单价不能为空"
-                                },
-                                {
-                                    limit:"money",
-                                    param:"",
-                                    errInfo:"房屋单价错误 如 300.00"
-                                },
-                                 {
-                                   limit:"maxLength",
-                                   param:"12",
-                                   errInfo:"房屋单价数字长度不能超过12位"
-                                 }
-                            ],*/
                             'editRoomInfo.remark':[
                                 {
                                     limit:"maxLength",
@@ -199,7 +197,8 @@
                      },
                      function(json,res){
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        let _json = JSON.parse(json);
+                        if(_json.code == 0){
                             //关闭model
                             $('#editRoomModel').modal('hide');
                             vc.emit('room','loadData',{
@@ -207,7 +206,7 @@
                             });
                             return ;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
                      },
                      function(errInfo,error){
                         console.log('请求失败处理');
@@ -216,17 +215,26 @@
                      });
             },
             refreshEditRoomInfo:function(){
+                let _attrs = $that.editRoomInfo.attrs;
+                _attrs.forEach(_item => {
+                    _item.attrId = '';
+                    _item.value = '';
+                });
                 vc.component.editRoomInfo= {
-                  unitId:'',
-                  roomNum:'',
-                  layer:'',
-                  section:'0',
-                  apartment:'',
-                  builtUpArea:'',
-                  unitPrice:'',
-                  state:'',
-                  remark:'',
-                  communityId:''
+                    roomId:'',
+                    unitId:'',
+                    roomNum:'',
+                    layer:'',
+                    section:'0',
+                    apartment:'',
+                    apartment1:'',
+                    apartment2:'',
+                    builtUpArea:'',
+                    unitPrice:'',
+                    state:'',
+                    remark:'',
+                    communityId:'',
+                  attrs:_attrs
                 }
             }
         }

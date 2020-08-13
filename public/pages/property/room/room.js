@@ -24,7 +24,9 @@
                     roomId:'',
                     state:'',
                     section:''
-                }
+                },
+                listColumns:[],
+                listValues:[]
             }
         },
         _initMethod:function(){
@@ -72,6 +74,8 @@
                                 vc.component.roomInfo.total = listRoomData.total;
                                 vc.component.roomInfo.records = listRoomData.records;
                                 vc.component.roomInfo.rooms = listRoomData.rooms;
+
+                                $that.dealRoomAttr(listRoomData.rooms);
 
                                 vc.emit('pagination','init',{
                                     total:vc.component.roomInfo.records,
@@ -188,6 +192,16 @@
             },
             _openChooseFloorMethod:function(){
                 vc.emit('searchFloor','openSearchFloorModel',{});
+            },
+            dealRoomAttr:function(room){
+                // room.forEach(item => {
+                //     if(item.hasOwnProperty('roomAttrDto')){
+                //         let _roomAttrDtos = item.roomAttrDto;
+                //         _roomAttrDtos.forEach(attrItem =>{
+                //             if(attrItem.)
+                //         });
+                //     }
+                // });
             }
         }
     });

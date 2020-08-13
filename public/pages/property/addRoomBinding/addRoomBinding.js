@@ -54,8 +54,6 @@
 
             },
             _finishStep:function(){
-
-
                 var _currentData = vc.component.addRoomBindingInfo.infos[vc.component.addRoomBindingInfo.index];
                 if ('' == vc.component.addRoomViewInfo.unitPrice || null == vc.component.addRoomViewInfo.unitPrice){
                     vc.component.addRoomViewInfo.unitPrice='0';
