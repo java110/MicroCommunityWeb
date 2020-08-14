@@ -119,7 +119,19 @@
                     data.forEach(item => {
                         item.value = '';
                         if(item.specShow == 'Y'){
+                            item.values = [];
+                            $that._loadAttrValue(item.specCd,item.values);
                             $that.addRoomViewInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
+            _loadAttrValue:function(_specCd,_values){
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if(item.valueShow == 'Y'){
+                            _values.push(item);
                         }
                     });
 

@@ -96,8 +96,20 @@
                 vc.getAttrSpec('building_room_attr', function (data) {
                     data.forEach(item => {
                         item.value = '';
+                        item.values = [];
+                        $that._loadAttrValue(item.specCd,item.values);
                         if(item.specShow == 'Y'){
                             $that.editRoomInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
+            _loadAttrValue:function(_specCd,_values){
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if(item.valueShow == 'Y'){
+                            _values.push(item);
                         }
                     });
 
