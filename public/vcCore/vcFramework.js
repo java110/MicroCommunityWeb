@@ -1304,7 +1304,9 @@
     vcFramework.getAttrSpec = function (_tableName,_callFun) {
         let param = {
             params: {
-                tableName: _tableName
+                tableName: _tableName,
+                page:1,
+                row:100
             }
         };
 
@@ -1327,7 +1329,9 @@
     vcFramework.getAttrValue = function (_specCd,_callFun) {
         let param = {
             params: {
-                specCd: _specCd
+                specCd: _specCd,
+                page:1,
+                row:100
             }
         };
 
