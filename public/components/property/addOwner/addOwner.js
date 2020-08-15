@@ -17,7 +17,7 @@
                 ownerId: '',
                 ownerPhoto: '',
                 idCard: '',
-                videoPlaying: false,
+                videoPlaying: true,
             }
         },
         _initMethod: function () {
@@ -149,7 +149,7 @@
                     ownerId: '',
                     ownerPhoto: '',
                     idCard: '',
-                    videoPlaying: false,
+                    videoPlaying: true,
                 };
             },
             _addUserMedia: function () {
@@ -181,6 +181,7 @@
                         console.log(error);
                     });
                 } else {
+                    vc.component.addOwnerInfo.videoPlaying = false;
                     console.log("初始化视频失败");
                 }
             },
