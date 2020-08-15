@@ -189,10 +189,13 @@
                         video.play();
                         vc.component.editOwnerInfo.videoPlaying = true;
                     }, function (error) {
+                        vc.component.editOwnerInfo.videoPlaying = false;
+
                         console.log("ERROR");
                         console.log(error);
                     });
                 } else {
+                    vc.component.editOwnerInfo.videoPlaying = false;
                     console.log("初始化视频失败");
                 }
             },
