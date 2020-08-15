@@ -205,6 +205,7 @@
             },
             _uploadPhoto: function (event) {
                 console.log('上传图片');
+                vc.component.addOwnerInfo.ownerPhoto = "";
                 $("#uploadOwnerPhoto").trigger("click")
             },
             _choosePhoto: function (event) {
@@ -213,7 +214,7 @@
                     // 获取目前上传的文件
                     var file = photoFiles[0];// 文件大小校验的动作
                     if (file.size > 1024 * 1024 * 1) {
-                        vc.toast("图片大小不能超过 2MB!")
+                        vc.toast("图片大小不能超过 1MB!")
                         return false;
                     }
                     var reader = new FileReader(); //新建FileReader对象
