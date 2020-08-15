@@ -17,7 +17,7 @@
                 ownerId: '',
                 ownerPhoto: '',
                 idCard: '',
-                videoPlaying: false
+                videoPlaying: false,
             }
         },
         _initMethod: function () {
@@ -149,7 +149,7 @@
                     ownerId: '',
                     ownerPhoto: '',
                     idCard: '',
-                    videoPlaying: false
+                    videoPlaying: false,
                 };
             },
             _addUserMedia: function () {
@@ -168,7 +168,6 @@
                     var video = document.getElementById('ownerPhoto');
                     var media = navigator.getUserMedia(constraints, function (stream) {
                         var url = window.URL || window.webkitURL;
-                        //video.src = url ? url.createObjectURL(stream) : stream;
                         try {
                             video.src = url ? url.createObjectURL(stream) : stream;
                         } catch (error) {
@@ -177,6 +176,7 @@
                         video.play();
                         vc.component.addOwnerInfo.videoPlaying = true;
                     }, function (error) {
+                        vc.component.addOwnerInfo.videoPlaying = false;
                         console.log("ERROR");
                         console.log(error);
                     });
@@ -194,6 +194,8 @@
                     var data = canvas.toDataURL('image/jpeg', 1.0);
                     vc.component.addOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
+                }else{
+                    vc.toast('未检测到摄像头');
                 }
             },
             _uploadPhoto: function (event) {
@@ -216,6 +218,9 @@
                     }
                 }
             },
+            _reOpenVedio:function(){
+                vc.component.addOwnerInfo.ownerPhoto="";
+            }
         }
     });
 
