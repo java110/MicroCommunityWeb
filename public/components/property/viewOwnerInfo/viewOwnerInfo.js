@@ -21,7 +21,7 @@
                 remark:"",
                 idCard:"",
                 link:"",
-                ownerPhoto:"/img/noPhoto.gif",
+                ownerPhoto:"/img/noPhoto.jpg",
                 showCallBackButton:$props.showCallBackButton
             }
         },
