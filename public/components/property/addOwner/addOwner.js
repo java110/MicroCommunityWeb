@@ -220,6 +220,7 @@
             },
             _reOpenVedio:function(){
                 vc.component.addOwnerInfo.ownerPhoto="";
+                vc.component._initAddOwnerMedia();
             }
         }
     });
