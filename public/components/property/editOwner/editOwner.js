@@ -19,7 +19,8 @@
                 remark: '',
                 ownerPhoto: '',
                 idCard: '',
-                videoPlaying: false
+                videoPlaying: true,
+                mediaStreamTrack: null
             }
         },
         _initMethod: function () {
@@ -155,7 +156,8 @@
                     remark: '',
                     ownerPhoto: '',
                     idCard: '',
-                    videoPlaying: false
+                    videoPlaying: true,
+                    mediaStreamTrack: null
                 };
             },
             _editUserMedia: function () {
@@ -178,6 +180,7 @@
                     var media = navigator.getUserMedia(constraints, function (stream) {
                         var url = window.URL || window.webkitURL;
                         //video.src = url ? url.createObjectURL(stream) : stream;
+                        $that.editOwnerInfo.mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[0];
                         try {
                             video.src = url ? url.createObjectURL(stream) : stream;
                         } catch (error) {
@@ -224,6 +227,15 @@
                     }
                 }
             },
+            _reOpenVedioForEdit:function(){
+                vc.component.editOwnerInfo.ownerPhoto="";
+                vc.component._initAddOwnerMediaForEdit();
+            },
+            _closeVedioForEdit:function(){
+                if (vc.component.editOwnerInfo.mediaStreamTrack != null) {
+                    vc.component.editOwnerInfo.mediaStreamTrack.stop();
+                }
+            }
         }
     });
 
