@@ -18,6 +18,7 @@
                 ownerPhoto: '',
                 idCard: '',
                 videoPlaying: true,
+                mediaStreamTrack: null,
             }
         },
         _initMethod: function () {
@@ -150,6 +151,7 @@
                     ownerPhoto: '',
                     idCard: '',
                     videoPlaying: true,
+                    mediaStreamTrack: null,
                 };
             },
             _addUserMedia: function () {
@@ -167,6 +169,7 @@
                     var video = document.getElementById('ownerPhoto');
                     var media = navigator.getUserMedia(constraints, function (stream) {
                         var url = window.URL || window.webkitURL;
+                        $that.addOwnerInfo.mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[0];
                         try {
                             video.src = url ? url.createObjectURL(stream) : stream;
                         } catch (error) {
@@ -194,6 +197,8 @@
                     var data = canvas.toDataURL('image/jpeg', 1.0);
                     vc.component.addOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
+                    //关闭拍照摄像头
+                    $that._closeVedio();
                 }else{
                     vc.toast('未检测到摄像头');
                 }
@@ -221,6 +226,11 @@
             _reOpenVedio:function(){
                 vc.component.addOwnerInfo.ownerPhoto="";
                 vc.component._initAddOwnerMedia();
+            },
+            _closeVedio:function(){
+                if (vc.component.addOwnerInfo.mediaStreamTrack != null) {
+                    vc.component.addOwnerInfo.mediaStreamTrack.stop();
+                }
             }
         }
     });
