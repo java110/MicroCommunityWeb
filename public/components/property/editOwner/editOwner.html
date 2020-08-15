@@ -64,7 +64,7 @@
                                         class="glyphicon glyphicon-camera"></span>摄像头</button>
                                     <button class="btn btn-primary" type="button" v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhoto == ''" v-on:click="_takePhotoForEdit()"><span
                                             class="glyphicon glyphicon-camera"></span> 拍照</button>
-                                    <span class="btn btn-default btn-file" v-on:click="_uploadPhoto($event)">
+                                    <span class="btn btn-default btn-file" v-on:click="_uploadEditPhoto($event)">
                                         <span class="fileinput-new">上传照片</span>
                                     </span>
                                     <input type="file" class="file"  accept=".jpg" id="uploadEditOwnerPhoto" hidden

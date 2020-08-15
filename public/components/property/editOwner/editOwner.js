@@ -209,6 +209,8 @@
                     var data = canvas.toDataURL('image/jpeg', 1.0);
                     vc.component.editOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
+                }else{
+                    vc.toast('未检测到摄像头');
                 }
             },
             _uploadEditPhoto: function (event) {
