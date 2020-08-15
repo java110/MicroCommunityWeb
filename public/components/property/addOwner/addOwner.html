@@ -45,15 +45,15 @@
                         </div>
                         <div class="col-sm-6" style="text-align:center">
                             <div class="form-group row">
-                                <div style="width: 100%;" v-if="addOwnerInfo.ownerPhoto != ''">
+                                <div style="width: 100%;" v-show="addOwnerInfo.ownerPhoto != ''">
                                     <img width="80%" height="150rem" v-bind:src="addOwnerInfo.ownerPhoto" alt="业主照片">
                                 </div>
-                                <div style="width: 100%;" v-else>
-                                    <div v-if="addOwnerInfo.videoPlaying == true">
+                                <div style="width: 100%;" v-show="addOwnerInfo.ownerPhoto == ''">
+                                    <div v-show="addOwnerInfo.videoPlaying == true">
                                         <video id="ownerPhoto" style="width: 100%;height: 10rem;"></video>
                                         <canvas id="canvas" style="display:none;"></canvas>
                                     </div>
-                                    <div v-else>
+                                    <div v-show="addOwnerInfo.videoPlaying == false">
                                         <img width="80%" height="150rem" src="/img/noPhoto.jpg" alt="业主照片">
                                     </div>
                                 </div>
