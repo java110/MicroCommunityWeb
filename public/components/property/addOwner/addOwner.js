@@ -160,7 +160,7 @@
             },
             _initAddOwnerMedia: function () {
                 if (vc.component._addUserMedia()) {
-                    vc.component.addOwnerInfo.videoPlaying = false;
+                    //vc.component.addOwnerInfo.videoPlaying = false;
                     var constraints = {
                         video: true,
                         audio: false
