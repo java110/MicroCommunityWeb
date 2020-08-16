@@ -89,6 +89,56 @@
                             </div>
                         </div>
                     </div>
+                    <div v-for="(item,index) in editOwnerInfo.attrs">
+
+                        <div class="row" v-if="index % 2 == 0">
+                            <div class="col-sm-6">
+                                <div class="form-group row" v-if="item.specType == '2233'">
+                                    <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row" v-if="item.specType == '3344'">
+                                    <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model="item.value">
+                                            <option selected disabled value="">{{item.specHoldplace}}</option>
+                                            <option v-for="value in item.values" :label="value.valueName"
+                                                :value="value.value">
+                                                {{item.valueName}}
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" v-if="index < editOwnerInfo.attrs.length-1">
+                                <div class="form-group row" v-if="editOwnerInfo.attrs[index+1].specType == '2233'">
+                                    <label class="col-sm-2 col-form-label">{{editOwnerInfo.attrs[index+1].specName}}</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="editOwnerInfo.attrs[index+1].value" type="text" :placeholder="editOwnerInfo.attrs[index+1].specHoldplace"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="editOwnerInfo.attrs[index+1].specType == '3344'">
+                                    <label class="col-sm-2 col-form-label">{{editOwnerInfo.attrs[index+1].specName}}</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model="editOwnerInfo.attrs[index+1].value">
+                                            <option selected disabled value="">{{editOwnerInfo.attrs[index+1].specHoldplace}}</option>
+                                            <option v-for="value in editOwnerInfo.attrs[index+1].values" :label="value.valueName"
+                                                :value="value.value">
+                                                {{editOwnerInfo.attrs[index+1].valueName}}
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="ibox-content">
                         <button class="btn btn-primary float-right" type="button" v-on:click="editOwnerMethod()"><i
                                 class="fa fa-check"></i>&nbsp;保存

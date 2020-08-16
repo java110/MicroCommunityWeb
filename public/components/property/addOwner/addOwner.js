@@ -19,10 +19,11 @@
                 idCard: '',
                 videoPlaying: true,
                 mediaStreamTrack: null,
+                attrs: []
             }
         },
         _initMethod: function () {
-
+            $that._loadOwnerAttrSpec();
         },
         _initEvent: function () {
             vc.on('addOwner', 'openAddOwnerModal', function (_ownerId) {
@@ -119,7 +120,8 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addOwnerModel').modal('hide');
                             vc.component.clearAddOwnerInfo();
@@ -127,7 +129,7 @@
 
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
 
                     },
                     function (errInfo, error) {
@@ -152,6 +154,7 @@
                     idCard: '',
                     videoPlaying: true,
                     mediaStreamTrack: null,
+                    attrs:[]
                 };
             },
             _addUserMedia: function () {
@@ -199,7 +202,7 @@
                     //document.getElementById('photo').setAttribute('src', data);
                     //关闭拍照摄像头
                     $that._closeVedio();
-                }else{
+                } else {
                     vc.toast('未检测到摄像头');
                 }
             },
@@ -224,15 +227,39 @@
                     }
                 }
             },
-            _reOpenVedio:function(){
-                vc.component.addOwnerInfo.ownerPhoto="";
+            _reOpenVedio: function () {
+                vc.component.addOwnerInfo.ownerPhoto = "";
                 vc.component._initAddOwnerMedia();
             },
-            _closeVedio:function(){
+            _closeVedio: function () {
                 if (vc.component.addOwnerInfo.mediaStreamTrack != null) {
                     vc.component.addOwnerInfo.mediaStreamTrack.stop();
                 }
-            }
+            },
+            _loadOwnerAttrSpec: function () {
+                $that.addOwnerInfo.attrs = [];
+                vc.getAttrSpec('building_owner_attr', function (data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        if (item.specShow == 'Y') {
+                            item.values = [];
+                            $that._loadAttrValue(item.specCd, item.values);
+                            $that.addOwnerInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
+            _loadAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if (item.valueShow == 'Y') {
+                            _values.push(item);
+                        }
+                    });
+
+                });
+            },
         }
     });
 

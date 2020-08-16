@@ -22,7 +22,8 @@
                     roomNum: '',
                     roomId: '',
                     roomNum: '',
-                }
+                },
+                listColumns:[]
             }
         },
         _initMethod: function () {
@@ -32,7 +33,9 @@
             if (vc.notNull(_ownerId)) {
                 //vc.component.listOwnerInfo.conditions.ownerId = _ownerId;
             }
-            vc.component._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._getColumns(function(){
+                vc.component._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
         },
         _initEvent: function () {
             vc.on('listOwner', 'listOwnerData', function () {
@@ -89,7 +92,7 @@
                         vc.component.listOwnerInfo.total = listOwnerData.total;
                         vc.component.listOwnerInfo.records = listOwnerData.records;
                         vc.component.listOwnerInfo.owners = listOwnerData.owners;
-
+                        $that.dealOwnerAttr(listOwnerData.owners);
                         vc.emit('pagination', 'init', {
                             total: vc.component.listOwnerInfo.records,
                             dataCount: vc.component.listOwnerInfo.total,
@@ -230,6 +233,73 @@
                 } else {
                     vc.component.listOwnerInfo.moreCondition = true;
                 }
+            },
+            dealOwnerAttr: function (owners) {  
+                owners.forEach(item => {
+                    $that._getColumnsValue(item);
+                });
+            },
+            _getColumnsValue: function (_owner) {
+                _owner.listValues = [];
+                
+                if (!_owner.hasOwnProperty('ownerAttrDtos') || _owner.ownerAttrDtos.length < 1) {
+                    $that.listOwnerInfo.listColumns.forEach(_value => {
+                        _owner.listValues.push('');
+                    })
+                    return;
+                }
+
+                let _ownerAttrDtos = _owner.ownerAttrDtos;
+
+             
+
+                $that.listOwnerInfo.listColumns.forEach(_value => {
+                    let _tmpValue = '';
+                    _ownerAttrDtos.forEach(_attrItem =>{
+                        if(_value == _attrItem.specName){
+                            _tmpValue = _attrItem.valueName;
+                        }
+                    })
+                    _owner.listValues.push(_tmpValue);
+                })
+
+            },
+            _getColumns: function (_call) {
+                console.log('_getColumns');
+                $that.listOwnerInfo.listColumns = [];
+                vc.getAttrSpec('building_owner_attr', function (data) {
+                    $that.listOwnerInfo.listColumns = [];
+                    data.forEach(item => {
+                        if(item.listShow == 'Y'){
+                            $that.listOwnerInfo.listColumns.push(item.specName);
+                        }
+                    });
+                    _call();
+                });
+                
+                // 循环所有房屋信息
+                // for (let _ownerIndex = 0; _ownerIndex < _owners.length; _ownerIndex++) {
+                //     let _owner = _owners[_ownerIndex];
+
+                //     if (!_owner.hasOwnProperty('ownerAttrDtos')) {
+                //         break;
+                //     }
+                //     let _ownerAttrDtos = _owner.ownerAttrDto;
+                //     if (_ownerAttrDtos.length < 1) {
+                //         break;
+                //     }
+                //     //获取房屋信息中 任意属性作为 列
+                //     for (let _ownerAttrIndex = 0; _ownerAttrIndex < _ownerAttrDtos.length; _ownerAttrIndex++) {
+                //         let attrItem = _ownerAttrDtos[_ownerAttrIndex];
+                //         if (attrItem.listShow == 'Y') {
+                //             $that.ownerInfo.listColumns.push(attrItem.specName);
+                //         }
+                //     }
+
+                //     if ($that.ownerInfo.listColumns.length > 0) {
+                //         break;
+                //     }
+                // }
             }
         }
     })

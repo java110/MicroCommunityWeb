@@ -191,10 +191,12 @@
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
             dealRoomAttr: function (rooms) {
-                $that._getColumns(rooms);
-                rooms.forEach(item => {
-                    $that._getColumnsValue(item);
+                $that._getColumns(rooms,function(){
+                    rooms.forEach(item => {
+                        $that._getColumnsValue(item);
+                    });
                 });
+                
             },
             _getColumnsValue: function (_room) {
                 _room.listValues = [];
@@ -210,7 +212,7 @@
                 $that.roomInfo.listColumns.forEach(_value => {
                     let _tmpValue = '';
                     _roomAttrDtos.forEach(_attrItem =>{
-                        if(_value.specName = _attrItem.specName){
+                        if(_value == _attrItem.specName){
                             _tmpValue = _attrItem.valueName;
                         }
                     })
@@ -218,31 +220,40 @@
                 })
 
             },
-            _getColumns: function (_rooms) {
+            _getColumns: function (_rooms,_call) {
                 $that.roomInfo.listColumns = [];
-                // 循环所有房屋信息
-                for (let _roomIndex = 0; _roomIndex < _rooms.length; _roomIndex++) {
-                    let _room = _rooms[_roomIndex];
-
-                    if (!_room.hasOwnProperty('roomAttrDto')) {
-                        break;
-                    }
-                    let _roomAttrDtos = _room.roomAttrDto;
-                    if (_roomAttrDtos.length < 1) {
-                        break;
-                    }
-                    //获取房屋信息中 任意属性作为 列
-                    for (let _roomAttrIndex = 0; _roomAttrIndex < _roomAttrDtos.length; _roomAttrIndex++) {
-                        let attrItem = _roomAttrDtos[_roomAttrIndex];
-                        if (attrItem.listShow == 'Y') {
-                            $that.roomInfo.listColumns.push(attrItem.specName);
+                vc.getAttrSpec('building_room_attr', function (data) {
+                    $that.roomInfo.listColumns = [];
+                    data.forEach(item => {
+                        if(item.listShow == 'Y'){
+                            $that.roomInfo.listColumns.push(item.specName);
                         }
-                    }
+                    });
+                    _call();
+                });
+                // 循环所有房屋信息
+                // for (let _roomIndex = 0; _roomIndex < _rooms.length; _roomIndex++) {
+                //     let _room = _rooms[_roomIndex];
 
-                    if ($that.roomInfo.listColumns.length > 0) {
-                        break;
-                    }
-                }
+                //     if (!_room.hasOwnProperty('roomAttrDto')) {
+                //         break;
+                //     }
+                //     let _roomAttrDtos = _room.roomAttrDto;
+                //     if (_roomAttrDtos.length < 1) {
+                //         break;
+                //     }
+                //     //获取房屋信息中 任意属性作为 列
+                //     for (let _roomAttrIndex = 0; _roomAttrIndex < _roomAttrDtos.length; _roomAttrIndex++) {
+                //         let attrItem = _roomAttrDtos[_roomAttrIndex];
+                //         if (attrItem.listShow == 'Y') {
+                //             $that.roomInfo.listColumns.push(attrItem.specName);
+                //         }
+                //     }
+
+                //     if ($that.roomInfo.listColumns.length > 0) {
+                //         break;
+                //     }
+                // }
             }
         }
     });

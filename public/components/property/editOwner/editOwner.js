@@ -20,11 +20,12 @@
                 ownerPhoto: '',
                 idCard: '',
                 videoPlaying: true,
-                mediaStreamTrack: null
+                mediaStreamTrack: null,
+                attrs:[]
             }
         },
         _initMethod: function () {
-
+            $that._loadEditOwnerAttrSpec();
         },
         _initEvent: function () {
             vc.on('editOwner', 'openEditOwnerModal', function (_owner) {
@@ -34,6 +35,18 @@
                     vc.component.editOwnerInfo.memberId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=10000&time=" + new Date();
                 $('#editOwnerModel').modal('show');
                 vc.component._initAddOwnerMediaForEdit();
+
+                if(_owner.hasOwnProperty('ownerAttrDtos')){
+                    let _ownerAttrDtos = _owner.ownerAttrDtos;
+                    _ownerAttrDtos.forEach(item => {
+                        $that.editOwnerInfo.attrs.forEach(attrItem => {
+                            if(item.specCd == attrItem.specCd){
+                                attrItem.attrId = item.attrId;
+                                attrItem.value = item.value;
+                            }
+                        })
+                    })
+                }
             });
         },
         methods: {
@@ -126,7 +139,8 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editOwnerModel').modal('hide');
                             vc.component.clearEditOwnerInfo();
@@ -134,7 +148,7 @@
 
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
 
                     },
                     function (errInfo, error) {
@@ -144,6 +158,7 @@
             },
             clearEditOwnerInfo: function () {
                 let _componentTitle = $that.editOwnerInfo.componentTitle;
+                let _attrs = $that.editOwnerInfo.attrs;
                 vc.component.editOwnerInfo = {
                     componentTitle: _componentTitle,
                     ownerId: '',
@@ -157,7 +172,8 @@
                     ownerPhoto: '',
                     idCard: '',
                     videoPlaying: true,
-                    mediaStreamTrack: null
+                    mediaStreamTrack: null,
+                    attrs:_attrs
                 };
             },
             _editUserMedia: function () {
@@ -240,7 +256,31 @@
                 if (vc.component.editOwnerInfo.mediaStreamTrack != null) {
                     vc.component.editOwnerInfo.mediaStreamTrack.stop();
                 }
-            }
+            },
+            _loadEditOwnerAttrSpec: function () {
+                $that.editOwnerInfo.attrs = [];
+                vc.getAttrSpec('building_owner_attr', function (data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        item.values = [];
+                        $that._loadEditAttrValue(item.specCd,item.values);
+                        if(item.specShow == 'Y'){
+                            $that.editOwnerInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
+            _loadEditAttrValue:function(_specCd,_values){
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if(item.valueShow == 'Y'){
+                            _values.push(item);
+                        }
+                    });
+
+                });
+            },
         }
     });
 

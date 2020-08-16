@@ -106,6 +106,7 @@
                                 <th data-hide="phone">身份证</th>
                                 <th data-hide="phone">联系方式</th>
                                 <th data-hide="phone">创建员工</th>
+                                <th v-for="(item,index) in listOwnerInfo.listColumns">{{item}}</th>
                                 <th class="text-right">操作</th>
 
                             </tr>
@@ -133,6 +134,9 @@
                                 </td>
                                 <td>
                                     {{owner.userName}}
+                                </td>
+                                <td v-for="item in owner.listValues">
+                                    {{item}}
                                 </td>
                                 <td class="text-right">
                                     <!--<div class="btn-group">
