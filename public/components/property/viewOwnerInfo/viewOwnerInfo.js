@@ -89,7 +89,7 @@
                                vc.component.viewOwnerInfo.ownerId +"&communityId="+vc.getCurrentCommunity().communityId+"&fileTypeCd=10000&time="+new Date();
             },
             errorLoadImg:function(){
-                vc.component.viewOwnerInfo.ownerPhoto="/img/noPhoto.gif";
+                vc.component.viewOwnerInfo.ownerPhoto="/img/noPhoto.jpg";
             },
             _openChooseOwner:function(){
                 vc.emit('searchOwner','openSearchOwnerModel',{});
