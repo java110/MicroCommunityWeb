@@ -26,7 +26,7 @@
                         page:_page,
                         row:_row,
                         communityId:vc.getCurrentCommunity().communityId,
-                        name:_name
+                        num:_name
                     }
                 };
 
