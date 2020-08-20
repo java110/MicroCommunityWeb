@@ -17,7 +17,8 @@
                 communityId: vc.getCurrentCommunity().communityId,
                 roomName:'',
                 squarePrice:'',
-                additionalAmount:''
+                additionalAmount:'',
+                remark:''
             }
         },
         _initMethod: function () {
