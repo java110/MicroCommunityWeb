@@ -155,6 +155,9 @@
                 })
 
                 $that.owePayFeeOrderInfo.feePrices = Math.round(totalFee * 100, 2) / 100;
+            },
+            _goBack:function(){
+                vc.goBack();
             }
         }
 

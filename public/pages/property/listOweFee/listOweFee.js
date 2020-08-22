@@ -62,7 +62,8 @@
                 vc.goBack();
             },
             _toOwnerPayFee:function(_fee){
-                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+_fee.payObjId+"&payObjType="+_fee.payObjType+"&roomName="+_fee.roomName);
+                console.log('_fee',_fee);
+                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+_fee.payerObjId+"&payObjType="+_fee.payerObjType+"&roomName="+_fee.roomName);
             },
             _moreCondition:function(){
                 if(vc.component.listOweFeeInfo.moreCondition){

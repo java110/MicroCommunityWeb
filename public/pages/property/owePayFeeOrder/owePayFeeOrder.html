@@ -3,9 +3,12 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>欠费缴费</h5>
+                    <h5>{{owePayFeeOrderInfo.roomName}}</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        {{owePayFeeOrderInfo.roomName}}
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_goBack()">
+                        返回
+                    </button>
                     </div>
                 </div>
                 <div class="ibox-content">
