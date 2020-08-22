@@ -15,6 +15,7 @@
             $that._listRepairCount();
             $that._listPurchaseCount();
             $that._listCollectionCount();
+            $that._initMyEcharts();
         },
         _initEvent: function () {
 
@@ -102,7 +103,37 @@
                         console.log('请求失败处理');
                     }
                 );
-            }
+            },
+            _initMyEcharts: function () {
+                let dom = document.getElementById("myToDo");
+                let myChart = echarts.init(dom);
+                let option = null;
+                option = {
+                    legend: {},
+                    tooltip: {},
+                    color: ['#FFDAB9','#66CDAA'],
+                    dataset: {
+                        source: [
+                            ['product', '待办', '已办'],
+                            ['投诉', 43.3, 85.8],
+                            ['报修', 83.1, 73.4],
+                            ['采购', 86.4, 65.2],
+                            ['领用', 72.4, 53.9]
+                        ]
+                    },
+                    xAxis: {type: 'category'},
+                    yAxis: {},
+                    series: [
+                        {type: 'bar'},
+                        {type: 'bar'}
+                    ]
+                };
+
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+
+            },
         }
     })
 })(window.vc);

@@ -156,7 +156,7 @@
                         {
                             name: _title,
                             type: 'pie',
-                            radius: [20, 95],
+                            radius: ['20%', '75%'],
                             center: ['50%', '50%'],
                             roseType: 'area',
                             data: [
