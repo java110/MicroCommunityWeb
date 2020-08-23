@@ -875,7 +875,7 @@
                 Vue.http.headers.common['APP-ID'] = '8000418004';
                 Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
                 Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
-                Vue.http.headers.common['SIGN'] = ''; 
+                Vue.http.headers.common['SIGN'] = '';
             } else {
                 _api = '/callComponent/' + api;
             }
@@ -937,11 +937,11 @@
                 Vue.http.headers.common['APP-ID'] = '8000418004';
                 Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
                 Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
-                Vue.http.headers.common['SIGN'] = ''; 
+                Vue.http.headers.common['SIGN'] = '';
             } else {
                 _api = '/callComponent/' + api;
             }
-            if(vcFramework.hasOwnProperty('loading')){
+            if (vcFramework.hasOwnProperty('loading')) {
                 vcFramework.loading('open');
             }
 
@@ -956,7 +956,7 @@
                     } catch (e) {
                         console.error(e);
                     } finally {
-                        if(vcFramework.hasOwnProperty('loading')){
+                        if (vcFramework.hasOwnProperty('loading')) {
                             vcFramework.loading('close');
                         }
                     }
@@ -1301,12 +1301,12 @@
             });
     }
 
-    vcFramework.getAttrSpec = function (_tableName,_callFun) {
+    vcFramework.getAttrSpec = function (_tableName, _callFun) {
         let param = {
             params: {
                 tableName: _tableName,
-                page:1,
-                row:100
+                page: 1,
+                row: 100
             }
         };
 
@@ -1326,12 +1326,12 @@
     }
 
 
-    vcFramework.getAttrValue = function (_specCd,_callFun) {
+    vcFramework.getAttrValue = function (_specCd, _callFun) {
         let param = {
             params: {
                 specCd: _specCd,
-                page:1,
-                row:100
+                page: 1,
+                row: 100
             }
         };
 
@@ -1416,29 +1416,29 @@
         let hour = date.getHours();
         let minute = date.getMinutes();
         let second = date.getSeconds();
-      
+
         if (month < 10) {
-          month = '0' + month;
+            month = '0' + month;
         }
-      
+
         if (day < 10) {
-          day = '0' + day;
+            day = '0' + day;
         }
-      
+
         if (hour < 10) {
-          hour = '0' + hour;
+            hour = '0' + hour;
         }
-      
+
         if (minute < 10) {
-          minute = '0' + minute;
+            minute = '0' + minute;
         }
-      
+
         if (second < 10) {
-          second = '0' + second;
+            second = '0' + second;
         }
-      
+
         return year + "" + month + "" + day + "" + hour + "" + minute + "" + second;
-      };
+    };
 
 })(window.vcFramework);
 
@@ -2103,5 +2103,17 @@ vc 校验 工具类 -method
         }
         _vcPageHeight.style.minHeight = _scollHeight + 'px';
         //console.log('是否设置高度', _vcPageHeight.style.minHeight);
+    }
+})(window.vcFramework);
+
+
+/**
+ * 权限处理
+ */
+(function (vcFramework) {
+    let _staffPrivilege = vc.getData('hc_staff_privilege');
+    vcFramework.hasPrivalage = (_privalege) => {
+        //只要窗口高度发生变化，就会进入这里面，在这里就可以写，回到聊天最底部的逻辑
+        return _staffPrivilege.includes(_privalege);
     }
 })(window.vcFramework);

@@ -43,7 +43,7 @@
                                 <td class="text-center">{{fee.endTime}}</td>
                                 <td class="text-center">{{fee.stateName}}</td>
                                 <td class="text-right">
-                                    <button class="btn btn-link btn-xs" v-if=" fee.state != '2009001'"
+                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivalage('502020082314267912')"
                                         v-on:click="_payFee(fee)">缴费
                                     </button>
                                     <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史

@@ -8,6 +8,7 @@
         },
         _initEvent: function () {
             vc.on('initData', 'loadCommunityInfo', function (_param) {
+
                 vc.component._validateHasStore(_param);
             })
         },
@@ -50,7 +51,8 @@
                     param,
                     function (json, res) {
                         if (res.status == 200) {
-                            vc.component._loadCommunityInfo(_param);
+                            $that._loadStaffPrivileges(_param);
+                            //vc.component._loadCommunityInfo(_param);
                         } else if (res.status == 403) {
                             vc.jumpToPage("/initCompany.html#/pages/common/company");
                         } else {
@@ -66,7 +68,32 @@
                         vc.toast(e);
                     }
                 );
-            }
+            },
+            _loadStaffPrivileges: function (_param) {
+
+                var param = {
+                    params: {
+                        a: 'HC'
+                    }
+                };
+                //发送get请求
+                vc.http.get('staffPrivilege',
+                    'listStaffPrivileges',
+                    param,
+                    function (json) {
+                        var _staffPrivilegeInfo = JSON.parse(json);
+
+                        let _privilege = [];
+                        _staffPrivilegeInfo.datas.forEach(item => {
+                            _privilege.push(item.pId);
+                        });
+
+                        vc.saveData('hc_staff_privilege', _privilege);
+                        vc.component._loadCommunityInfo(_param);
+                    }, function () {
+                        console.log('请求失败处理');
+                    });
+            },
         }
     });
 
