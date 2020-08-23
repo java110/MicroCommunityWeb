@@ -7,11 +7,12 @@
                 _currentPgName: "",
                 _pName: '',
                 _currentStoreId: "9999",
-                _privileges: []
+                _privileges: [],
+                privilegeGroups: []
             }
         },
         _initMethod: function () {
-
+            $that.loadPrivilegeGroup();
         },
         _initEvent: function () {
             vc.component.$on('privilege_group_event', function (_pgObj) {
@@ -24,8 +25,36 @@
             vc.component.$on('privilege_loadPrivilege', function (_pgId) {
                 vc.component._loadPrivilege(_pgId);
             });
+            vc.component.$on('privilegeGroup_loadPrivilegeGroup', function (_params) {
+                vc.component.loadPrivilegeGroup();
+            });
         },
         methods: {
+            loadPrivilegeGroup: function () {
+                var param = {
+                    msg: 234
+                };
+
+                //发送get请求
+                vc.http.get('privilegeGroup',
+                    'listPrivilegeGroup',
+                    param,
+                    function (json) {
+                        var _groupsInfo = JSON.parse(json);
+                        vc.component.privilegeInfo.privilegeGroups = _groupsInfo;
+
+                        if (_groupsInfo.length > 0) {
+                            vc.component.$emit('privilege_group_event', {
+                                _pgId: _groupsInfo[0].pgId,
+                                _pgName: _groupsInfo[0].name,
+                                _storeId: _groupsInfo[0].storeId
+                            });
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _loadPrivilege: function (_pgId) {
                 vc.component.privilegeInfo._privileges = [];
                 var param = {
@@ -49,6 +78,13 @@
                     }
                 );
             },
+            notifyQueryPrivilege: function (_pGroup) {
+                vc.component.$emit('privilege_group_event', {
+                    _pgId: _pGroup.pgId,
+                    _pgName: _pGroup.name,
+                    _storeId: _pGroup.storeId
+                });
+            },
             openAddPrivilegeModel: function () {
                 vc.component.$emit('addPrivilege_openPrivilegeModel', {
                     pgId: vc.component.privilegeInfo._currentPgId
@@ -58,31 +94,58 @@
                 _p.pgId = vc.component.privilegeInfo._currentPgId;
                 vc.emit('deletePrivilege', 'openDeletePrivilegeModel', _p);
             },
-            queryPrivilege: function () {
-                vc.component._loadPrivilege(vc.component.privilegeInfo._currentPgId);
-            },
             _initJsTreePrivilege: function (_privileges) {
 
                 let _data = $that._doJsTreeData(_privileges);
-
-                console.log('菜单', _data);
-
                 $.jstree.destroy()
-
                 $("#jstree_privilege").jstree({
                     "checkbox": {
                         "keep_selected_style": false
                     },
                     "plugins": ["checkbox"],
+                    'state': {                  //一些初始化状态
+                        "opened": false,
+                    },
                     'core': {
                         'data': _data
                     }
                 });
                 $('#jstree_privilege').on("changed.jstree", function (e, data) {
-                    console.log('点击', data);
+
+                    console.log(data);
+
+                    if (data.action == 'model' || data.action == 'ready') {
+                        return;
+                    }
+                    let _selected = data.node.state.selected;
+                    let _d = data.node.children_d;
+                    if (_d.length < 1) {
+                        _d.push(data.node.id);
+                    }
+                    let _selectPrivileges = [];
+                    _d.forEach(_dItem => {
+                        if (_dItem.indexOf('p_') > -1) {
+                            _selectPrivileges.push(_dItem.substring(2));
+                        }
+                    });
+
+                    if (_selectPrivileges.length < 1) {
+                        return;
+                    }
+
+                    if (_selected) {
+                        $that.addPrivilegeToPrivilegeGroup(_selectPrivileges);
+                    } else {
+                        $that.deletePrivilege(_selectPrivileges);
+                    }
+
+                    console.log(_d, _selectPrivileges);
+
+
                 });
 
             },
+
             _doJsTreeData: function (_privileges) {
                 let _mGroupTree = [];
 
@@ -97,6 +160,7 @@
 
                     if (!_includeGroup) {
                         let _groupItem = {
+                            id: 'g_' + pItem.gId,
                             gId: pItem.gId,
                             text: pItem.gName,
                             state: {
@@ -124,6 +188,7 @@
                         }
                         if (!_includeMenu) {
                             let _menuItem = {
+                                id: 'm_' + _privileges[_pIndex].mId,
                                 mId: _privileges[_pIndex].mId,
                                 text: _privileges[_pIndex].mName,
                                 state: {
@@ -156,6 +221,7 @@
                                 _selected = true;
                             }
                             let _privilegeItem = {
+                                id: 'p_' + _privileges[_pIndex].pId,
                                 pId: _privileges[_pIndex].pId,
                                 text: _privileges[_pIndex].pName,
                                 state: {
@@ -168,6 +234,85 @@
 
                     }
                 }
+            },
+            openPrivilegeGroupModel: function () {
+                vc.component.$emit('addPrivilegeGroup_openPrivilegeGroupModel', {});
+            },
+            openEditPrivilegeGroupModel: function (_pGroup) {
+                vc.emit('editPrivilegeGroup', 'openPrivilegeGroupModel', _pGroup);
+            },
+            openDeletePrivilegeGroupModel: function (_pGroup) {
+                vc.component.$emit('deletePrivilegeGroup_openDeletePrivilegeGroupModel', _pGroup);
+            },
+            addPrivilegeToPrivilegeGroup: function (_selectPrivileges) {
+                if (_selectPrivileges.length < 1) {
+                    vc.toast("请先选择权限");
+                    return;
+                }
+                var _pIds = [];
+                for (var selectIndex = 0; selectIndex < _selectPrivileges.length; selectIndex++) {
+                    var _pId = {
+                        pId: _selectPrivileges[selectIndex]
+                    };
+                    _pIds.push(_pId);
+                }
+                var _objData = {
+                    pgId: vc.component.privilegeInfo._currentPgId,
+                    pIds: _pIds
+                };
+                vc.http.post(
+                    'addPrivilege',
+                    'addPrivilegeToPrivilegeGroup',
+                    JSON.stringify(_objData),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            return;
+                        }
+                        vc.toast('失败')
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast('失败')
+                    });
+            },
+            deletePrivilege: function (_selectPrivileges) {
+                if (_selectPrivileges.length < 1) {
+                    vc.toast("请先选择权限");
+                    return;
+                }
+                var _pIds = [];
+                for (var selectIndex = 0; selectIndex < _selectPrivileges.length; selectIndex++) {
+                    var _pId = {
+                        pId: _selectPrivileges[selectIndex]
+                    };
+                    _pIds.push(_pId);
+                }
+                var _objData = {
+                    pgId: vc.component.privilegeInfo._currentPgId,
+                    pIds: _pIds
+                };
+                vc.http.post(
+                    'deletePrivilege',
+                    'delete',
+                    JSON.stringify(_objData),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            //关闭model
+                            return;
+                        }
+                        vc.toast('删除失败');
+                    },
+                    function (errInfo, error) {
+                        vc.toast('删除失败');
+                    });
             }
         }
     });

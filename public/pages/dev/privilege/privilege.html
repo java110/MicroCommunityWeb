@@ -1,9 +1,73 @@
 <div class="row">
-    <vc:create path="dev/privilegeGroup"></vc:create>
-    <div class="col-lg-8 animated fadeInRight">
+    <div class="col-lg-8">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>权限组</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="openPrivilegeGroupModel()">
+                        <i class="fa fa-plus"></i>
+                        添加
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+
+                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th data-hide="phone">编码</th>
+                            <th data-hide="phone">创建时间</th>
+                            <th class="text-right">操作</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="pg in privilegeInfo.privilegeGroups" >
+                            <td v-on:click="notifyQueryPrivilege(pg)">
+                                <span style="cursor:pointer"> {{pg.name}}</span>
+                            </td>
+
+                            <td v-on:click="notifyQueryPrivilege(pg)">
+                                <span style="cursor:pointer"> {{pg.pgId}}</span>
+                               
+                            </td>
+                            <td>
+                                {{pg.createTime}}
+                            </td>
+                            <td class="text-right">
+                                <div class="btn-group" v-if="pg.storeId != '9999'">
+                                    <button class="btn-white btn btn-xs "
+                                        v-on:click="openEditPrivilegeGroupModel(pg)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group" v-if="pg.storeId != '9999'">
+                                    <button class="btn-white btn btn-xs "
+                                        v-on:click="openDeletePrivilegeGroupModel(pg)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <!-- 分页 -->
+                <vc:create path="frame/pagination"></vc:create>
+            </div>
+        </div>
+    </div>
+
+    <!-- <vc:create path="dev/privilegeGroup"></vc:create> -->
+    <div class="col-lg-4 animated fadeInRight">
         <div class="mail-box-header">
             <h2>
-                {{privilegeInfo._currentPgName}}
+                {{privilegeInfo._currentPgName}}-权限
             </h2>
         </div>
         <div class="mail-box">
@@ -15,6 +79,11 @@
         </div>
     </div>
 
-    <vc:create path="dev/addPrivilege"></vc:create>
-    <vc:create path="dev/deletePrivilege"></vc:create>
+    <!-- <vc:create path="dev/addPrivilege"></vc:create> -->
+    <!-- <vc:create path="dev/deletePrivilege"></vc:create> -->
+
+
+    <vc:create path="dev/addPrivilegeGroup"></vc:create>
+    <vc:create path="dev/editPrivilegeGroup"></vc:create>
+    <vc:create path="dev/deletePrivilegeGroup"></vc:create>
 </div>
