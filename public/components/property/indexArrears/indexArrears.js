@@ -16,10 +16,6 @@
         },
         _initMethod: function () {
             vc.component._listCompaintOrders();
-            $that._listRepairCount();
-            $that._listPurchaseCount();
-            $that._listCollectionCount();
-            $that._initMyEcharts();
         },
         _initEvent: function () {
 
@@ -39,9 +35,12 @@
                     param,
                     function (json, res) {
                         var _myAuditComplaintsInfo = JSON.parse(json);
-                       vc.copyObject(_myAuditComplaintsInfo.data,$that.indexArrearsInfo)
+                       vc.copyObject(_myAuditComplaintsInfo.data,$that.indexArrearsInfo);
+
+                       $that._initMyEcharts();
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
+                        $that._initMyEcharts();
                     }
                 );
             },
