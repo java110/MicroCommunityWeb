@@ -5,9 +5,13 @@
         data: {
             indexArrearsInfo: {
                 complaintCount: 0,
+                complaintHisCount: 0,
                 repairCount: 0,
+                repairHisCount: 0,
                 purchaseCount: 0,
-                collectionCount: 0
+                purchaseHisCount: 0,
+                collectionCount: 0,
+                collectionHisCount: 0
             }
         },
         _initMethod: function () {
@@ -31,74 +35,11 @@
                 };
 
                 //发送get请求
-                vc.http.get('myAuditComplaints',
-                    'list',
+                vc.http.apiGet('index.queryIndexTodoTask',
                     param,
                     function (json, res) {
                         var _myAuditComplaintsInfo = JSON.parse(json);
-                        vc.component.indexArrearsInfo.complaintCount = _myAuditComplaintsInfo.total;
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-            _listRepairCount: function () {
-                let param = {
-                    params: {
-                        page: 1,
-                        row: 10,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
-
-                //发送get请求
-                vc.http.apiGet('ownerRepair.listStaffRepairs',
-                    param,
-                    function (json, res) {
-                        var _repairDispatchManageInfo = JSON.parse(json);
-                        vc.component.indexArrearsInfo.repairCount = _repairDispatchManageInfo.total;
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-            _listPurchaseCount: function () {
-
-                let param = {
-                    params: {
-                        page: 1,
-                        row: 10,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
-
-                //发送get请求
-                vc.http.get('myAuditOrders',
-                    'list',
-                    param,
-                    function (json, res) {
-                        var _auditOrdersInfo = JSON.parse(json);
-                        vc.component.indexArrearsInfo.purchaseCount = _auditOrdersInfo.total;
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-            _listCollectionCount: function (_page, _rows) {
-
-                let param = {
-                    params: {
-                        page: 1,
-                        row: 10,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
-                //发送get请求
-                vc.http.apiGet('/collection/getCollectionAuditOrder',
-                    param,
-                    function (json, res) {
-                        let _auditOrdersInfo = JSON.parse(json);
-                        vc.component.indexArrearsInfo.collectionCount = _auditOrdersInfo.total;
+                       vc.copyObject(_myAuditComplaintsInfo.data,$that.indexArrearsInfo)
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -111,21 +52,21 @@
                 option = {
                     legend: {},
                     tooltip: {},
-                    color: ['#FFDAB9','#66CDAA'],
+                    color: ['#FFDAB9', '#66CDAA'],
                     dataset: {
                         source: [
                             ['product', '待办', '已办'],
-                            ['投诉', 43.3, 85.8],
-                            ['报修', 83.1, 73.4],
-                            ['采购', 86.4, 65.2],
-                            ['领用', 72.4, 53.9]
+                            ['投诉', $that.indexArrearsInfo.complaintCount, $that.indexArrearsInfo.complaintHisCount],
+                            ['报修', $that.indexArrearsInfo.repairCount, $that.indexArrearsInfo.repairHisCount],
+                            ['采购', $that.indexArrearsInfo.purchaseCount, $that.indexArrearsInfo.purchaseHisCount],
+                            ['领用', $that.indexArrearsInfo.collectionCount, $that.indexArrearsInfo.collectionHisCount]
                         ]
                     },
-                    xAxis: {type: 'category'},
+                    xAxis: { type: 'category' },
                     yAxis: {},
                     series: [
-                        {type: 'bar'},
-                        {type: 'bar'}
+                        { type: 'bar' },
+                        { type: 'bar' }
                     ]
                 };
 
