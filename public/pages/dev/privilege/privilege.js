@@ -111,9 +111,6 @@
                     }
                 });
                 $('#jstree_privilege').on("changed.jstree", function (e, data) {
-
-                    console.log(data);
-
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
                         $("#jstree_privilege").jstree("close_all");
