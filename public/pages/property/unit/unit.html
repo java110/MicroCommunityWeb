@@ -68,7 +68,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>单元信息</h5>
-                    <div class="ibox-tools" style="top:10px;">
+                    <div class="ibox-tools" style="top:10px;" v-if="vc.hasPrivilege('502020082488167931')">
                         <button type="button" class="btn btn-primary btn-sm"
                                 style="margin-left:10px" v-on:click="openAddUnitModel()">
                             <i class="fa fa-plus"></i> 添加
@@ -111,11 +111,11 @@
                                 {{unit.userName}}
                             </td>
                             <td class="text-right">
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="vc.hasPrivilege('502020082457897932')">
                                     <button class="btn-white btn btn-xs" v-on:click="_openEditUnitModel(unit)">修改
                                     </button>
                                 </div>
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="vc.hasPrivilege('502020082482837933')">
                                     <button class="btn-white btn btn-xs" v-on:click="_openDeleteUnitModel(unit)">删除
                                     </button>
                                 </div>

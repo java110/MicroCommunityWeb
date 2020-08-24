@@ -2116,7 +2116,7 @@ vc 校验 工具类 -method
     if(_staffPrivilege == null){
         _staffPrivilege = [];
     }
-    vcFramework.hasPrivalage = (_privalege) => {
+    vcFramework.hasPrivilege = (_privalege) => {
         //只要窗口高度发生变化，就会进入这里面，在这里就可以写，回到聊天最底部的逻辑
         return _staffPrivilege.includes(_privalege);
     }

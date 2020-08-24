@@ -89,7 +89,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>房屋信息</h5>
-                    <div class="ibox-tools" style="top:10px;">
+                    <div class="ibox-tools" style="top:10px;" v-if="vc.hasPrivilege('502020082453087940')">
                         <button type="button" class="btn btn-primary btn-sm"
                                 style="margin-left:10px" v-on:click="_openAddRoom()">
                             <i class="fa fa-plus"></i> 添加房屋
@@ -151,11 +151,11 @@
                             </td>
 
                             <td class="text-right">
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
                                     <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(room)">修改
                                     </button>
                                 </div>
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
                                     <button class="btn-white btn btn-xs" v-on:click="_openDelRoomModel(room)">删除
                                     </button>
                                 </div>
