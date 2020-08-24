@@ -115,6 +115,8 @@
                     console.log(data);
 
                     if (data.action == 'model' || data.action == 'ready') {
+                        //默认合并
+                        $("#jstree_privilege").jstree("close_all");
                         return;
                     }
                     let _selected = data.node.state.selected;
@@ -138,11 +140,8 @@
                     } else {
                         $that.deletePrivilege(_selectPrivileges);
                     }
-
-                    console.log(_d, _selectPrivileges);
-
-
                 });
+
 
             },
 
