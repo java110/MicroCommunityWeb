@@ -9,12 +9,14 @@
                 roomId:'',
                 total: 0,
                 records: 1,
+                builtUpArea: 0.00
             }
         },
         _initMethod:function(){
             if(vc.notNull(vc.getParam("roomNum"))){
                   vc.component.listRoomCreateFeeInfo.roomName = vc.getParam('floorNum')+"号楼"+vc.getParam('unitNum')+"单元"+vc.getParam("roomNum")+"室";
                   vc.component.listRoomCreateFeeInfo.roomId = vc.getParam('roomId');
+                  $that.listRoomCreateFeeInfo.builtUpArea = vc.getParam('builtUpArea');
             };
             vc.component._loadListRoomCreateFeeInfo(1,10);
         },
