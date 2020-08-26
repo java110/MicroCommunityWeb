@@ -10,15 +10,19 @@
                 endTime: '',
                 feeFlag: '',
                 feePrice: 0.00,
-                cycles: '1',
+                tempCycles: '',
+                cycles: '',
                 paymentCycles: [],
                 totalFeePrice: 0.00,
                 receivedAmount: '',
                 communityId: vc.getCurrentCommunity().communityId,
-                roomName:'',
-                squarePrice:'',
-                additionalAmount:'',
-                remark:''
+                roomName: '',
+                squarePrice: '',
+                additionalAmount: '',
+                remark: '',
+                builtUpArea: 0.0,
+                squarePrice: 0.0,
+                additionalAmount: 0.0
             }
         },
         _initMethod: function () {
@@ -32,6 +36,11 @@
                 $that.payFeeOrderInfo.roomName = vc.getParam('roomName');
                 $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
                 $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
+                $that.payFeeOrderInfo.builtUpArea = vc.getParam('builtUpArea');
+                $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
+                $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
+
+
                 $that.payFeeOrderInfo.paymentCycles = [];
                 for (let _index = 1; _index < 7; _index++) {
                     $that.payFeeOrderInfo.paymentCycles.push(_index * vc.getParam('paymentCycle'))
@@ -81,17 +90,26 @@
                 });
             },
             _payFee: function (_page, _row) {
+                if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
+                    $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
+                }
+                if ($that.payFeeOrderInfo.cycles == "") {
+                    $that.payFeeOrderInfo.cycles = '-101';
+                }
                 if (!vc.component.payFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+
+
+
                 let _printFees = [];
                 _printFees.push({
                     feeId: $that.payFeeOrderInfo.feeId,
-                    squarePrice:$that.payFeeOrderInfo.squarePrice,
+                    squarePrice: $that.payFeeOrderInfo.squarePrice,
                     additionalAmount: $that.payFeeOrderInfo.additionalAmount,
                     feeName: $that.payFeeOrderInfo.feeName,
-                    amount: $that.payFeeOrderInfo.feePrice
+                    amount: $that.payFeeOrderInfo.receivedAmount
                 });
 
                 vc.http.post(
@@ -105,11 +123,11 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             let _feeInfo = {
-                                totalAmount: $that.payFeeOrderInfo.feePrice,
+                                totalAmount: $that.payFeeOrderInfo.receivedAmount,
                                 fees: _printFees
                             }
 
-                            vc.saveData('_feeInfo',_feeInfo);
+                            vc.saveData('_feeInfo', _feeInfo);
                             //关闭model
                             $("#payFeeResult").modal({
                                 backdrop: "static",//点击空白处不关闭对话框
@@ -125,10 +143,22 @@
                     });
             },
             _changeMonth: function (_cycles) {
-                if ('-101' == _cycles) {
+                if ('-102' == _cycles) {
                     vc.component.payFeeOrderInfo.totalFeePrice = 0.00;
                     vc.component.payFeeOrderInfo.receivedAmount = '';
                     return;
+                }
+                let _newCycles = _cycles;
+                
+                if (_cycles == '') {
+                    _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
+                }
+                vc.component.payFeeOrderInfo.totalFeePrice = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
+                vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+            },
+            changeCycle:function(_cycles){
+                if(_cycles == ''){
+                    return ;
                 }
                 vc.component.payFeeOrderInfo.totalFeePrice = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
@@ -140,6 +170,9 @@
             _printAndBack: function () {
                 //$('#payFeeResult').modal("hide");
                 window.open("/print.html#/pages/property/printPayFee?roomName=" + $that.payFeeOrderInfo.roomName)
+            },
+            _mathCeil:function(_price){
+                return Math.ceil(_price);
             }
         }
 

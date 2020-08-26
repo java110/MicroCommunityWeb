@@ -38,13 +38,21 @@
                             <div class="form-group row" v-if="payFeeOrderInfo.feeFlag != '2006012'">
                                 <label class="col-sm-2 col-form-label">缴费周期</label>
                                 <div class="col-sm-6">
-                                    <select class="custom-select" v-model="payFeeOrderInfo.cycles"
-                                        @change="_changeMonth(payFeeOrderInfo.cycles)">
-                                        <option disabled value="">必填，请选择缴费周期</option>
+                                    <select class="custom-select" v-model="payFeeOrderInfo.tempCycles"
+                                        @change="_changeMonth(payFeeOrderInfo.tempCycles)">
+                                        <option  value="">请选择缴费周期</option>
                                         <option v-for="item in payFeeOrderInfo.paymentCycles" :value="item">{{item}}个月
                                         </option>
-                                        <option value="-101">自定义</option>
+                                        <option value="-102">自定义周期</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="payFeeOrderInfo.tempCycles == '-102'">
+                                <label class="col-sm-2 col-form-label">实际周期</label>
+                                <div class="col-sm-6">
+                                    <input type="text"
+                                        placeholder="请输入实际周期" v-model="payFeeOrderInfo.cycles" oninput ="value=value.replace(/[^\d]/g,'')"  v-on:change="changeCycle(payFeeOrderInfo.cycles)"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -56,11 +64,35 @@
                             </div>
                         </div>
                         <div class="col-4" style="padding-left: 30px;">
+                            <div class="row" v-if="payFeeOrderInfo.builtUpArea">
+                                <label class="col-sm-3 col-form-label"
+                                   >面积：</label>
+                                <label class="col-sm-8 col-form-label"
+                                    >{{payFeeOrderInfo.builtUpArea}}</label>
+                            </div>
+                            <div class="row" v-if="payFeeOrderInfo.builtUpArea">
+                                <label class="col-sm-3 col-form-label"
+                                   >单价：</label>
+                                <label class="col-sm-8 col-form-label"
+                                    >{{payFeeOrderInfo.squarePrice}}</label>
+                            </div>
+                            <div class="row" v-if="payFeeOrderInfo.builtUpArea">
+                                <label class="col-sm-3 col-form-label"
+                                   >附加费：</label>
+                                <label class="col-sm-8 col-form-label"
+                                    >{{payFeeOrderInfo.additionalAmount}}</label>
+                            </div>
+                            <div class="row" v-else>
+                                <label class="col-sm-3 col-form-label"
+                                   >固定费：</label>
+                                <label class="col-sm-8 col-form-label"
+                                    >{{payFeeOrderInfo.additionalAmount}}</label>
+                            </div>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label"
                                     style="line-height: 50px;padding-right:0px;">应收款：</label>
                                 <label class="col-sm-8 col-form-label"
-                                    style="font-size: 30px;color: red;padding-left:0px;">￥{{payFeeOrderInfo.totalFeePrice}}</label>
+                                    style="font-size: 30px;color: red;padding-left:0px;">￥{{_mathCeil(payFeeOrderInfo.totalFeePrice)}}</label>
                             </div>
                             <div class="row form-group">
                                 <label class="col-sm-3 col-form-label" style="padding-right:0px;">支付方式:</label>

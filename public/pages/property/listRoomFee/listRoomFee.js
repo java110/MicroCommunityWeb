@@ -60,6 +60,7 @@
             },
             _payFee:function(_fee){
                 _fee.roomName=$that.listRoomCreateFeeInfo.roomName;
+                _fee.builtUpArea=$that.listRoomCreateFeeInfo.builtUpArea;
                vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?'+vc.objToGetParam(_fee));
             },
             _payFeeHis:function(_fee){
