@@ -27,13 +27,19 @@
                 feeFlagName:'',
                 feeTypeCdName:'',
                 configId:'',
-                stateName:''
+                stateName:'',
+                additionalAmount:0.0,
+                squarePrice:0,
+                builtUpArea:'',
+                deadlineTime:''
 
             }
         },
         _initMethod:function(){
              //加载 业主信息
             var _feeId = vc.getParam('feeId')
+
+            $that.mainFeeInfo.builtUpArea = vc.getParam('builtUpArea')
 
             if(vc.notNull(_feeId)){
                 vc.component.loadMainFeeInfo({

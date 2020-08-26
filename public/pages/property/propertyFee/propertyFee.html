@@ -44,6 +44,8 @@
                             <th data-hide="phone">打折率</th>
                             <th data-hide="phone" >备注</th>
                             <th data-hide="phone">缴费时间</th>
+                            <th data-hide="phone">缴费起始时间</th>
+                            <th data-hide="phone">缴费结束时间</th>
                             <th data-hide="phone">退费标识</th>
                             <th data-hide="phone">操作</th>
                         </tr>
@@ -70,6 +72,12 @@
                             </td>
                             <td>
                                 {{feeDetail.createTime}}
+                            </td>
+                            <td>
+                                {{feeDetail.startTime}}
+                            </td>
+                            <td>
+                                {{feeDetail.endTime}}
                             </td>
                             <td>
                                 {{feeDetail.stateName}}
