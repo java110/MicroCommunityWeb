@@ -76,7 +76,7 @@
                         vc.toast("请完善物品信息");
                         return;
                     }
-                    if (_resourceStores[i].quantity > _resourceStores[i].stock) {
+                    if (parseInt(_resourceStores[i].quantity) > parseInt(_resourceStores[i].stock)) {
                         vc.toast(_resourceStores[i].resName + ",库存不足");
                         return;
                     }
