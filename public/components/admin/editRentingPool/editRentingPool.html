@@ -1,0 +1,75 @@
+<div id = "editRentingPoolModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">修改房源</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+         <label class="col-sm-2 col-form-label">出租标题</label>
+         <div class="col-sm-10">
+           <input v-model="editRentingPoolInfo.rentingTitle"                   type="text" placeholder="必填，请填写出租标题" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">租金</label>
+         <div class="col-sm-10">
+           <input v-model="editRentingPoolInfo.price"                   type="text" placeholder="必填，请填写租金" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">预付类型</label>
+         <div class="col-sm-10">
+<select class="custom-select" v-model="editRentingPoolInfo.paymentType">
+         <option selected  disabled value="">必填，请选择预付类型</option>
+         <option  value="1001">押一付一</option>
+<option  value="2002">押一付三</option>
+<option  value="3003">押一付六</option>
+  </select>         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">入住时间</label>
+         <div class="col-sm-10">
+           <input v-model="editRentingPoolInfo.checkInDate"                   type="text" placeholder="必填，请填写入住时间" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">出租配置</label>
+         <div class="col-sm-10">
+<select class="custom-select" v-model="editRentingPoolInfo.rentingConfigId">
+         <option selected  disabled value="">必填，请选择出租配置</option>
+         <option  value="1001">出租配置</option>
+<option  value="2002">每月租金比例</option>
+  </select>         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">备注</label>
+         <div class="col-sm-10">
+           <input v-model="editRentingPoolInfo.rentingDesc"                   type="text" placeholder="选填，请填写备注" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">业主名称</label>
+         <div class="col-sm-10">
+           <input v-model="editRentingPoolInfo.ownerName"                   type="text" placeholder="必填，请填写业主名称" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">业主电话</label>
+         <div class="col-sm-10">
+           <input v-model="editRentingPoolInfo.ownerTel"                   type="text" placeholder="必填，请填写业主电话" class="form-control">
+         </div>
+</div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editRentingPool()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
