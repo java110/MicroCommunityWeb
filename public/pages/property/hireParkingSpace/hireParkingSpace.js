@@ -31,7 +31,7 @@
                 vc.component.hireParkingSpaceInfo.$step.step({
                     index: 0,
                     time: 500,
-                    title: ["选择车位","业主信息","车辆信息","收费信息"]
+                    title: ["选择车位","业主信息","车辆信息"]
                 });
                 vc.component.hireParkingSpaceInfo.index = vc.component.hireParkingSpaceInfo.$step.getIndex();
             },
@@ -81,18 +81,17 @@
                     data:vc.component.hireParkingSpaceInfo.infos
                 }
 
-               vc.http.post(
-                   'hireParkingSpace',
-                   'sell',
+               vc.http.apiPost(
+                   'owner.saveOwnerCars',
                    JSON.stringify(param),
                    {
                        emulateJSON:true
                     },
                     function(json,res){
-                       //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                        if(res.status == 200){
+                            vc.toast("请记得收费哦！");
                            //关闭model
-                           vc.jumpToPage("/admin.html#/pages/property/listOwner?" + vc.objToGetParam(JSON.parse(json)));
+                           vc.jumpToPage("/admin.html#/pages/property/listOwnerCar");
                            return ;
                        }
                        vc.toast(json);

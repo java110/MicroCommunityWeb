@@ -34,6 +34,30 @@
                                 <input v-model="addCarInfo.carColor" type="text" placeholder="必填，请填写车颜色，如白色" class="form-control">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">车牌类型</label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" v-model="addCarInfo.carNumType">
+                                    <option selected  disabled value="">必填，请选择车牌类型</option>
+                                    <option value="H">月租车</option>
+                                    <option value="S">出售车辆</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" v-show = "addCarInfo.carNumType == 'H'">
+                            <label class="col-sm-2 col-form-label">起租时间</label>
+                            <div class="col-sm-10">
+                                <input v-model="addCarInfo.startTime" type="text" placeholder="必填，请填写起租时间"
+                                       class="form-control startTime">
+                            </div>
+                        </div>
+                        <div class="form-group row" v-show = "addCarInfo.carNumType == 'H'">
+                            <label class="col-sm-2 col-form-label">结租时间</label>
+                            <div class="col-sm-10">
+                                <input v-model="addCarInfo.endTime" type="text" placeholder="必填，请填写结租时间"
+                                       class="form-control endTime">
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">备注</label>

@@ -19,34 +19,25 @@
                    callBackFunction="notify"
         ></vc:create>
     </div>
-    <div v-if="hireParkingSpaceInfo.index == 2">
+    <div v-show="hireParkingSpaceInfo.index == 2">
         <vc:create path="property/addCar"
                    callBackComponent="hireParkingSpace"
                    callBackFunction="notify"
         >
-
         </vc:create>
     </div>
-
-    <div v-if="hireParkingSpaceInfo.index == 3">
-        <vc:create path="property/hireParkingSpaceFee"
-                   callBackComponent="hireParkingSpace"
-                   callBackFunction="notify"
-        ></vc:create>
-    </div>
-
 
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
             <button type="button" class="btn btn-secondary" v-on:click="_prevStep()">上一步</button>
-            <button v-if="hireParkingSpaceInfo.index != 3" type="button" class="btn btn-primary"
+            <button v-if="hireParkingSpaceInfo.index != 2" type="button" class="btn btn-primary"
                     style="margin-left:10px;"
                     v-on:click="_nextStep()">下一步
             </button>
-            <button v-if="hireParkingSpaceInfo.index == 3" type="button" class="btn btn-primary"
+            <button v-if="hireParkingSpaceInfo.index == 2" type="button" class="btn btn-primary"
                     style="margin-left:10px;"
-                    v-on:click="_finishStep()">出租
+                    v-on:click="_finishStep()">提交
             </button>
         </div>
     </div>

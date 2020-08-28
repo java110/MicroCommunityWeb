@@ -58,8 +58,8 @@
                 );
 
             },
-            _openToHireParkingSpaceModel:function(_parkingSpace){ //出租
-                vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace?'+vc.objToGetParam(_parkingSpace));
+            _addOwnerCar:function(){ //出租
+                vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace');
             },
             _queryMethod: function () {
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);

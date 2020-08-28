@@ -15,7 +15,10 @@
                 carBrand:'',
                 carType:'',
                 carColor:'',
-                carRemark:""
+                carRemark:"",
+                startTime:'',
+                endTime:'',
+                carNumType:''
             },
             carTypes:[
                 {
@@ -59,6 +62,8 @@
                     console.log('请求失败处理');
                 }
             );
+
+            vc.component._initDateInfo();
         },
         _initEvent:function(){
             vc.on('addCar', 'onIndex', function(_index){
@@ -103,6 +108,20 @@
                                     errInfo:"车类型不能为空"
                                 }
                             ],
+                            'addCarInfo.startTime':[
+                                {
+                                    limit:"required",
+                                    param:"",
+                                    errInfo:"起租时间不能为空"
+                                }
+                            ],
+                            'addCarInfo.endTime':[
+                                {
+                                    limit:"required",
+                                    param:"",
+                                    errInfo:"结租时间不能为空"
+                                }
+                            ],
                             'addCarInfo.carColor':[
                                 {
                                     limit:"required",
@@ -118,12 +137,57 @@
                         });
             },
             saveAddCarInfo:function(){
+                let _carNumType = $that.addCarInfo.carNumType;
+                if(_carNumType == 'S'){
+                   $that.addCarInfo.startTime = vc.dateFormat(new Date().getTime());
+                   $that.addCarInfo.endTime = '2037-01-01 00:00:00';
+                }
+
                 if(vc.component.addCarValidate()){
                     //侦听回传
                     vc.emit($props.callBackComponent,$props.callBackFunction, vc.component.addCarInfo);
                     return ;
                 }
-            }
+            },
+            _initDateInfo: function () {
+                vc.component.addCarInfo.startTime = vc.dateFormat(new Date().getTime());
+                $('.startTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+
+                });
+                $('.startTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".startTime").val();
+                        vc.component.addCarInfo.startTime = value;
+                    });
+                $('.endTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.endTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".endTime").val();
+                        var start=Date.parse(new Date(vc.component.addCarInfo.startTime))
+                        var end = Date.parse(new Date(value))
+                        if(start-end>=0){
+                            vc.toast("结租时间必须大于起租时间")
+                            $(".endTime").val('')
+                        }else{
+                            vc.component.addCarInfo.endTime = value;
+                        }
+                    });
+            },
 
         }
     });
