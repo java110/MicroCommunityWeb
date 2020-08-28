@@ -93,6 +93,9 @@
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
                 }
+                if($that.payFeeOrderInfo.feeFlag == '2006012'){
+                    $that.payFeeOrderInfo.cycles = '1';
+                }
                 if ($that.payFeeOrderInfo.cycles == "") {
                     $that.payFeeOrderInfo.cycles = '-101';
                 }
