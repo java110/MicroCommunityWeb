@@ -94,7 +94,7 @@
                                     {{car.carBrand}}
                                 </td>
                                 <td>
-                                    {{car.carType}}
+                                    {{car.carTypeName}}
                                 </td>
                                 <td>
                                     {{car.carColor}}
@@ -115,12 +115,16 @@
                                     {{car.endTime}}
                                 </td>
                                 <td>
-                                    {{car.state}}
+                                    {{car.stateName}}
                                 </td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditParkingSpaceModel(car)">修改</button>
+                                            v-on:click="_deleteCarParkingSpace(car)">释放车位</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditOwnerCar(car)">修改</button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
@@ -143,9 +147,7 @@
             </div>
         </div>
     </div>
-
-    <vc:create path="property/addParkingSpace" notifyLoadDataComponentName="lisOwnerCar"></vc:create>
-    <vc:create path="property/editParkingSpace" notifyLoadDataComponentName="lisOwnerCar"></vc:create>
-    <vc:create path="property/deleteOwnerCar" notifyLoadDataComponentName="lisOwnerCar"></vc:create>
+    <vc:create path="property/editCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>
+    <vc:create path="property/deleteOwnerCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>
 
 </div>

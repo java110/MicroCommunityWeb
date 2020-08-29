@@ -76,13 +76,15 @@
                     return ;
                 }
 
-                var param = {
-                    communityId:vc.getCurrentCommunity().communityId,
-                    data:vc.component.hireParkingSpaceInfo.infos
-                }
+                let _infos = vc.component.hireParkingSpaceInfo.infos
+
+                let param = _infos[2];
+                param.communityId = vc.getCurrentCommunity().communityId;
+                param.ownerId = _infos[1].ownerId;
+                param.psId = _infos[0].psId;
 
                vc.http.apiPost(
-                   'owner.saveOwnerCars',
+                   'owner.saveOwnerCar',
                    JSON.stringify(param),
                    {
                        emulateJSON:true

@@ -12,7 +12,7 @@
                 conditions: {
                     carNum: '',
                     num: '',
-                    state:''
+                    state: ''
                 }
             }
         },
@@ -29,12 +29,12 @@
         },
         methods: {
             _listOwnerCar: function (_page, _row) {
+                let _params = $that.listOwnerCarInfo.conditions;
+                _params.page = _page;
+                _params.row = _row;
+                _params.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params: {
-                        page: _page,
-                        row: _row,
-                        communityId: vc.getCurrentCommunity().communityId,
-                    }
+                    params: _params
                 }
 
                 //发送get请求
@@ -58,8 +58,11 @@
                 );
 
             },
-            _addOwnerCar:function(){ //出租
+            _addOwnerCar: function () { //出租
                 vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace');
+            },
+            _openEditOwnerCar: function (_car) {
+                vc.emit('editCar', 'openEditCar', _car);
             },
             _queryMethod: function () {
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -71,9 +74,31 @@
                     $that.listOwnerCarInfo.moreCondition = true;
                 }
             },
-            _openDelOwnerCarModel:function(_car){
-                vc.emit('deleteOwnerCar','openOwnerCarModel',_car);
+            _openDelOwnerCarModel: function (_car) {
+                vc.emit('deleteOwnerCar', 'openOwnerCarModel', _car);
             },
+            _deleteCarParkingSpace: function (_car) {
+                vc.http.apiPost(
+                    'owner.deleteCarParkingSpace',
+                    JSON.stringify(_car),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            vc.toast('释放成功');
+                            $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
+                            return;
+                        }
+                        vc.toast(json);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+
+                        vc.toast(errInfo);
+                    });
+            }
         }
     })
 })(window.vc);

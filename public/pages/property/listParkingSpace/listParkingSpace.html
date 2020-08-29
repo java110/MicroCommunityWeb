@@ -85,35 +85,34 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th>车位ID</th>
-                                <th data-hide="phone">车位编码</th>
-                                <th data-hide="phone">停车场ID</th>
-                                <th data-hide="phone">停车场编号</th>
+                                <th data-hide="phone">停车场</th>
+                                <th data-hide="phone">车位</th>
+                                
                                 <th data-hide="phone">车位状态</th>
                                 <th data-hide="phone">面积</th>
+                                <th>车位ID</th>
                                 <th class="text-right">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="parkingSpace in listParkingSpaceInfo.parkingSpaces">
+                               
                                 <td>
-                                    {{parkingSpace.psId}}
-                                </td>
-
-                                <td>
-                                    {{parkingSpace.num}}
+                                    {{parkingSpace.areaNum}}号停车场
                                 </td>
                                 <td>
-                                    {{parkingSpace.paId}}
+                                    {{parkingSpace.num}}车位
                                 </td>
-                                <td>
-                                    {{parkingSpace.areaNum}}
-                                </td>
+                               
+                                
                                 <td>
                                     {{vc.component._viewParkingSpaceState(parkingSpace.state)}}
                                 </td>
                                 <td>
                                     {{parkingSpace.area}}
+                                </td>
+                                <td>
+                                    {{parkingSpace.psId}}
                                 </td>
                                 <td class="text-right">
                                     <!-- <div class="btn-group" v-if="parkingSpace.state =='F'">

@@ -1,0 +1,72 @@
+<div id="editCarModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">修改</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">车牌号</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCarInfo.carNum" type="text" placeholder="必填，请填写车牌号" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">车品牌</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCarInfo.carBrand" type="text" placeholder="必填，请填写车品牌，如 宝马X6" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">车类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editCarInfo.carType">
+                                        <option selected  disabled value="">必填，请选择类型</option>
+                                        <option v-for="carType in carTypes" :key="carType.statusCd" v-bind:value="carType.statusCd">{{carType.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">颜色</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCarInfo.carColor" type="text" placeholder="必填，请填写车颜色，如白色" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">起租时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCarInfo.startTime" type="text" placeholder="必填，请填写起租时间"
+                                           class="form-control editStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">结租时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCarInfo.endTime" type="text" placeholder="必填，请填写结租时间"
+                                           class="form-control editEndTime">
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">备注</label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="editCarInfo.remark" type="text" placeholder="请填写备注信息" rows="3" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="_submitEditCarInfo()"><i
+                            class="fa fa-check"></i>&nbsp;保存
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                            data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
