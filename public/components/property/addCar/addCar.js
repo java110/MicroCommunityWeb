@@ -15,7 +15,7 @@
                 carBrand:'',
                 carType:'',
                 carColor:'',
-                carRemark:"",
+                remark:"",
                 startTime:'',
                 endTime:'',
                 carNumType:''

@@ -98,6 +98,9 @@
 
                         vc.toast(errInfo);
                     });
+            },
+            _addCarParkingSpace: function (_car) {
+                vc.jumpToPage('/admin.html#/pages/property/carAddParkingSpace?carId=' + _car.carId);
             }
         }
     })

@@ -127,6 +127,7 @@
             },
             _submitEditCarInfo: function () {
                 if (!vc.component.editCarValidate()) {
+                    vc.toast(vc.validate.errInfo);
                     return;
                 }
 
