@@ -7,8 +7,8 @@
     vc.extends({
         data:{
             parkingSpaceUnits:[],
-            parkingSpaceCreateFeeInfo:{
-                parkingSpaces:[],
+            carCreateFeeInfo:{
+                cars:[],
                 total:0,
                 records:1,
                 floorId:'',
@@ -24,39 +24,38 @@
             }
         },
         _initMethod:function(){
-            vc.component.listParkingSpace(DEFAULT_PAGE,DEFAULT_ROW);
+            vc.component.listCars(DEFAULT_PAGE,DEFAULT_ROW);
         },
         _initEvent:function(){
 
             vc.on('pagination','page_event',function(_currentPage){
-                vc.component.listParkingSpace(_currentPage,DEFAULT_ROW);
+                vc.component.listCars(_currentPage,DEFAULT_ROW);
             });
         },
         methods:{
 
-            listParkingSpace:function(_page,_row){
+            listCars:function(_page,_row){
 
-                vc.component.parkingSpaceCreateFeeInfo.conditions.page=_page;
-                vc.component.parkingSpaceCreateFeeInfo.conditions.row=_row;
-                vc.component.parkingSpaceCreateFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.carCreateFeeInfo.conditions.page=_page;
+                vc.component.carCreateFeeInfo.conditions.row=_row;
+                vc.component.carCreateFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params:vc.component.parkingSpaceCreateFeeInfo.conditions
+                    params:vc.component.carCreateFeeInfo.conditions
                 };
 
                //发送get请求
-               vc.http.get('parkingSpaceCreateFee',
-                            'listParkingSpace',
+               vc.http.apiGet('owner.queryOwnerCars',
                              param,
                              function(json,res){
-                                var listParkingSpaceData =JSON.parse(json);
+                                var listCarData =JSON.parse(json);
 
-                                vc.component.parkingSpaceCreateFeeInfo.total = listParkingSpaceData.total;
-                                vc.component.parkingSpaceCreateFeeInfo.records = listParkingSpaceData.records;
-                                vc.component.parkingSpaceCreateFeeInfo.parkingSpaces = listParkingSpaceData.parkingSpaces;
+                                vc.component.carCreateFeeInfo.total = listCarData.total;
+                                vc.component.carCreateFeeInfo.records = listCarData.records;
+                                vc.component.carCreateFeeInfo.cars = listCarData.data;
 
                                 vc.emit('pagination','init',{
-                                    total:vc.component.parkingSpaceCreateFeeInfo.records,
-                                    dataCount: vc.component.parkingSpaceCreateFeeInfo.total,
+                                    total:vc.component.carCreateFeeInfo.records,
+                                    dataCount: vc.component.carCreateFeeInfo.total,
                                     currentPage:_page
                                 });
                              },function(errInfo,error){
@@ -74,14 +73,14 @@
                  vc.jumpToPage("/admin.html#/pages/property/listParkingSpaceFee?"+vc.objToGetParam(_parkingSpace));
             },
             _queryParkingSpaceMethod:function(){
-                vc.component.listParkingSpace(DEFAULT_PAGE,DEFAULT_ROW);
+                vc.component.listCars(DEFAULT_PAGE,DEFAULT_ROW);
             },
 
             _moreCondition:function(){
-                if(vc.component.parkingSpaceCreateFeeInfo.moreCondition){
-                    vc.component.parkingSpaceCreateFeeInfo.moreCondition = false;
+                if(vc.component.carCreateFeeInfo.moreCondition){
+                    vc.component.carCreateFeeInfo.moreCondition = false;
                 }else{
-                    vc.component.parkingSpaceCreateFeeInfo.moreCondition = true;
+                    vc.component.carCreateFeeInfo.moreCondition = true;
                 }
             }
 

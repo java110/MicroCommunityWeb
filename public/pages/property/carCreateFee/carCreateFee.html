@@ -6,7 +6,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
 <!--                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"-->
-<!--                                v-on:click="_moreCondition()">{{parkingSpaceCreateFeeInfo.moreCondition == true?'隐藏':'更多'}}-->
+<!--                                v-on:click="_moreCondition()">{{carCreateFeeInfo.moreCondition == true?'隐藏':'更多'}}-->
 <!--                        </button>-->
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                     <input type="text" placeholder="请填写车位编码" class="form-control form-control-sm"
-                                           v-model="parkingSpaceCreateFeeInfo.conditions.num">
+                                           v-model="carCreateFeeInfo.conditions.num">
                             </div>
 
                         </div>
@@ -24,14 +24,14 @@
                             <div class="form-group">
                                 <div class="form-group">
                                     <input type="text" placeholder="请填写车牌号" class="form-control form-control-sm"
-                                           v-model="parkingSpaceCreateFeeInfo.conditions.carNum">
+                                           v-model="carCreateFeeInfo.conditions.carNum">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写车位ID" class="form-control form-control-sm"
-                                       v-model="parkingSpaceCreateFeeInfo.conditions.psId">
+                                       v-model="carCreateFeeInfo.conditions.psId">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -67,47 +67,40 @@
                             <th data-hide="phone">车牌号</th>
                             <th data-hide="phone">停车场</th>
                             <th data-hide="phone">车位</th>
-                            
                             <th data-hide="phone">业主名称</th>
                             <th data-hide="phone">联系方式</th>
                             <th data-hide="phone">车位状态</th>
-                            <th>车位ID</th>
                             <th class="text-right">操作</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="parkingSpace in parkingSpaceCreateFeeInfo.parkingSpaces">
+                        <tr v-for="car in carCreateFeeInfo.cars">
                             <td>
-                                {{parkingSpace.carNum}}
+                                {{car.carNum}}
                             </td>
                             <td>
-                                {{parkingSpace.areaNum}}号
+                                {{car.areaNum}}号
                             </td>
                             <td>
-                                {{parkingSpace.num}}号
-                            </td>
-                           
-                           
+                                {{car.num}}号
+                            </td>          
                             <td>
-                                {{parkingSpace.ownerName}}
+                                {{car.ownerName}}
                             </td>
                             <td>
-                                {{parkingSpace.link}}
+                                {{car.link}}
                             </td>
                             <td>
-                                {{parkingSpace.stateName}}
-                            </td>
-                            <td>
-                                {{parkingSpace.psId}}
+                                {{car.stateName}}
                             </td>
                             <td class="text-right">
-                                <div class="btn-group" v-if="parkingSpace.state != 'F'">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openParkingSpaceCreateFeeAddModal(parkingSpace,false)">创建收费
+                                <div class="btn-group" v-if="car.state != 'F'">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openParkingSpaceCreateFeeAddModal(car,false)">创建收费
                                     </button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openViewParkingSpaceCreateFee(parkingSpace)">查看收费
+                                    <button class="btn-white btn btn-xs" v-on:click="_openViewParkingSpaceCreateFee(car)">查看收费
                                     </button>
                                 </div>
                             </td>
