@@ -3,38 +3,38 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data:{
-            listParkingSpaceCreateFeeInfo:{
+            listCarFeeInfo:{
                 fees:[],
-                parkingSpaceName:'',
-                psId:'',
+                carNum:'',
+                carId:'',
                 total: 0,
                 records: 1,
             }
         },
         _initMethod:function(){
-            if(vc.notNull(vc.getParam("num"))){
-                  vc.component.listParkingSpaceCreateFeeInfo.parkingSpaceName = vc.getParam('areaNum')+"号停车场"+vc.getParam('num')+"号车位";
-                  vc.component.listParkingSpaceCreateFeeInfo.psId = vc.getParam('psId');
+            if(vc.notNull(vc.getParam("carNum"))){
+                  vc.component.listCarFeeInfo.carNum = vc.getParam('carNum');
+                  vc.component.listCarFeeInfo.carId = vc.getParam('carId');
             };
-            vc.component._loadListParkingSpaceCreateFeeInfo(1,10);
+            vc.component._loadlistCarFeeInfo(1,10);
         },
         _initEvent:function(){
             vc.on('listParkingSpaceFee','notify',function(_param){
-                vc.component._loadListParkingSpaceCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._loadlistCarFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event',
                 function(_currentPage) {
-                    vc.component._loadListParkingSpaceCreateFeeInfo(_currentPage, DEFAULT_ROWS);
+                    vc.component._loadlistCarFeeInfo(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods:{
-            _loadListParkingSpaceCreateFeeInfo:function(_page,_row){
+            _loadlistCarFeeInfo:function(_page,_row){
                 var param = {
                     params:{
                         page:_page,
                         row:_row,
                         communityId:vc.getCurrentCommunity().communityId,
-                        payerObjId:vc.component.listParkingSpaceCreateFeeInfo.psId
+                        payerObjId:vc.component.listCarFeeInfo.carId
                     }
                 };
 
@@ -44,9 +44,9 @@
                              param,
                              function(json){
                                 var _feeConfigInfo = JSON.parse(json);
-                                vc.component.listParkingSpaceCreateFeeInfo.total = _feeConfigInfo.total;
-                                vc.component.listParkingSpaceCreateFeeInfo.records = _feeConfigInfo.records;
-                                vc.component.listParkingSpaceCreateFeeInfo.fees = _feeConfigInfo.fees;
+                                vc.component.listCarFeeInfo.total = _feeConfigInfo.total;
+                                vc.component.listCarFeeInfo.records = _feeConfigInfo.records;
+                                vc.component.listCarFeeInfo.fees = _feeConfigInfo.fees;
                                 vc.emit('pagination', 'init', {
                                     total: _feeConfigInfo.records,
                                     currentPage: _page
@@ -76,8 +76,8 @@
                          feeId:_fee.feeId
                 });
             },
-            _refreshListParkingSpaceCreateFeeInfo:function(){
-                vc.component.listParkingSpaceCreateFeeInfo._currentFeeConfigName = "";
+            _refreshlistCarFeeInfo:function(){
+                vc.component.listCarFeeInfo._currentFeeConfigName = "";
             }
         }
 

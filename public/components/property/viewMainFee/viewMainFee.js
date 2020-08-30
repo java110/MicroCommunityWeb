@@ -31,7 +31,8 @@
                 additionalAmount:0.0,
                 squarePrice:0,
                 builtUpArea:'',
-                deadlineTime:''
+                deadlineTime:'',
+                payerObjType:''
 
             }
         },

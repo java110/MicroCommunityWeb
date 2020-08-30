@@ -1,0 +1,64 @@
+<div id="carCreateFeeAddModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">创建费用</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row" v-if="carCreateFeeAddInfo.isMore == true">
+                                <label class="col-sm-2 col-form-label">收费范围</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="carCreateFeeAddInfo.locationTypeCd">
+                                        <option selected disabled value="">必填，请选择收费范围</option>
+                                        <option value="1000">小区</option>
+                                        <!-- <option value="2000">停车场</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-else>
+                                <label class="col-sm-2 col-form-label">车辆</label>
+                                <div class="col-sm-10">
+                                    <input v-model="carCreateFeeAddInfo.locationTypeCdName" disabled="disabled"
+                                        type="text" placeholder="必填，请填写收费范围" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">费用类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="carCreateFeeAddInfo.feeTypeCd"
+                                        @change="_changeFeeTypeCd(carCreateFeeAddInfo.feeTypeCd)">
+                                        <option selected disabled value="">必填，请选择费用类型</option>
+                                        <option v-for="(item,index) in carCreateFeeAddInfo.feeTypeCds" :key="index"
+                                            v-bind:value="item.statusCd"
+                                            v-if="item.statusCd != '888800010001' && item.statusCd != '888800010009' && item.statusCd != '888800010011'">
+                                            {{item.name}}
+                                        </option>
+                                    </select></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">收费项目</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="carCreateFeeAddInfo.configId">
+                                        <option selected disabled value="">必填，请选择收费项目</option>
+                                        <option v-for="(item,index) in carCreateFeeAddInfo.feeConfigs" :key="index"
+                                            v-bind:value="item.configId">{{item.feeName}}
+                                        </option>
+                                    </select></div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="saveCarCreateFeeInfo()"><i class="fa fa-check"></i>&nbsp;提交
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -53,26 +53,7 @@
                     </div>
                    
                 </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label">面积：</label>
-                            <label class="">{{mainFeeInfo.builtUpArea}}</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" >单价：</label>
-                            <label class="">{{mainFeeInfo.squarePrice}}</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" >附加费：</label>
-                            <label class="">{{mainFeeInfo.additionalAmount}}</label>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="row">
 
                     <div class="col-sm-4">
@@ -97,6 +78,34 @@
                         <div class="form-group" v-if="mainFeeInfo.amount != '-1.00'">
                             <label class="col-form-label">费用金额：</label>
                             <label class="">{{mainFeeInfo.amount}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"  v-if = "mainFeeInfo.payerObjType == '3333'">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">面积：</label>
+                            <label class="">{{mainFeeInfo.builtUpArea}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >单价：</label>
+                            <label class="">{{mainFeeInfo.squarePrice}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >附加费：</label>
+                            <label class="">{{mainFeeInfo.additionalAmount}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"  v-else>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >固定费：</label>
+                            <label class="">{{mainFeeInfo.additionalAmount}}</label>
                         </div>
                     </div>
                 </div>
