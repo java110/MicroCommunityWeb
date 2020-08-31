@@ -170,6 +170,9 @@
                 $('#payFeeResult').modal("hide");
                 vc.getBack();
             },
+            _goBack:function(){
+                vc.goBack();
+            },
             _printAndBack: function () {
                 //$('#payFeeResult').modal("hide");
                 window.open("/print.html#/pages/property/printPayFee?roomName=" + $that.payFeeOrderInfo.roomName)

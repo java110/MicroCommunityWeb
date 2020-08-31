@@ -78,6 +78,9 @@
             },
             _refreshlistCarFeeInfo:function(){
                 vc.component.listCarFeeInfo._currentFeeConfigName = "";
+            },
+            _goBack:function(){
+                vc.goBack();
             }
         }
 
