@@ -1237,11 +1237,11 @@
         return urlParameters;
     };
     vcFramework.getBack = function () {
-        window.location.href = document.referrer;
+        //window.location.href = document.referrer;
         window.history.back(-1);
     }
     vcFramework.goBack = function () {
-        window.location.href = document.referrer;
+        //window.location.href = document.referrer;
         window.history.back(-1);
     }
     //对象转get参数
