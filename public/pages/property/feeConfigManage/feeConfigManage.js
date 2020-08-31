@@ -17,7 +17,9 @@
                     feeFlag: '',
                     feeName: '',
                     feeTypeCd: '',
-
+                    isDefault:'F',
+                    paymentCd:'',
+                    feeFlag:''
                 }
             }
         },
