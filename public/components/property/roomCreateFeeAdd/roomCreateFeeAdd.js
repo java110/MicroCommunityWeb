@@ -164,7 +164,7 @@
                     feeTypeCd:'',
                     configId:'',
                     billType:'',
-                    roomState:'',
+                    roomState:'2001',
                     isMore:false,
                     locationTypeCdName:'',
                 };
