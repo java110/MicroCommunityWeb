@@ -136,7 +136,7 @@
                     feeTypeCd:'',
                     configId:'',
                     billType:'',
-                    carState:'',
+                    carState:'SH',
                     isMore:false,
                     locationTypeCdName:'',
                 };
