@@ -63,6 +63,9 @@
                 _fee.builtUpArea=$that.listRoomCreateFeeInfo.builtUpArea;
                vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?'+vc.objToGetParam(_fee));
             },
+            _editFee:function(_fee){
+                vc.emit('editFee', 'openEditFeeModal',_fee);
+            },
             _payFeeHis:function(_fee){
                 _fee.builtUpArea=$that.listRoomCreateFeeInfo.builtUpArea;
                vc.jumpToPage('/admin.html#/pages/property/propertyFee?'+vc.objToGetParam(_fee));

@@ -26,11 +26,11 @@
                                 <!-- <th class="text-center">费用项ID</th> -->
                                 <th class="text-center">费用项目</th>
                                 <th class="text-center">费用标识</th>
-                                <th class="text-center">费用类型</th> 
-                                <th class="text-center">房屋面积</th> 
-                                <th class="text-center">单价</th> 
-                                <th class="text-center">附加费/固定费</th> 
-                                <th class="text-center">应收金额</th> 
+                                <th class="text-center">费用类型</th>
+                                <th class="text-center">房屋面积</th>
+                                <th class="text-center">单价</th>
+                                <th class="text-center">附加费/固定费</th>
+                                <th class="text-center">应收金额</th>
                                 <th class="text-center">建账时间</th>
                                 <th class="text-center">计费起始时间</th>
                                 <th class="text-center">计费结束时间</th>
@@ -53,7 +53,9 @@
                                 <td class="text-center">{{fee.deadlineTime}}</td>
                                 <td class="text-center">{{fee.stateName}}</td>
                                 <td class="text-right">
-                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')"
+
+                                    <button class="btn btn-link btn-xs"
+                                        v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')"
                                         v-on:click="_payFee(fee)">缴费
                                     </button>
                                     <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史
@@ -61,6 +63,10 @@
                                     <button class="btn btn-link btn-xs"
                                         v-if="fee.isDefault == 'F' && fee.state != '2009001'"
                                         v-on:click="_deleteFee(fee)">取消费用
+                                    </button>
+                                    <button class="btn btn-link btn-xs"
+                                        v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
+                                        v-on:click="_editFee(fee)">费用变更
                                     </button>
                                 </td>
                             </tr>
@@ -74,4 +80,5 @@
         </div>
     </div>
     <vc:create path="property/deleteFee"></vc:create>
+    <vc:create path="property/editFee"></vc:create>
 </div>
