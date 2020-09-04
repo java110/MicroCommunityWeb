@@ -107,6 +107,7 @@
                             $('#editFeeModel').modal('hide');
                             vc.component.clearAddFeeConfigInfo();
                             vc.emit('listRoomFee','notify', {});
+                            vc.emit('listParkingSpaceFee','notify', {});
 
                             return;
                         }

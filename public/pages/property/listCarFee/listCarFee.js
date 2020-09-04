@@ -62,6 +62,9 @@
             _payFeeHis:function(_fee){
                vc.jumpToPage('/admin.html#/pages/property/propertyFee?'+vc.objToGetParam(_fee));
             },
+            _editFee:function(_fee){
+                vc.emit('editFee', 'openEditFeeModal',_fee);
+            },
             _deleteFee:function(_fee){
 
                 var dateA = new Date(_fee.startTime);

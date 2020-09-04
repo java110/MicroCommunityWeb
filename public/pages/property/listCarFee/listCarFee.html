@@ -50,6 +50,10 @@
                                     <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F'"
                                         v-on:click="_deleteFee(fee)">取消费用
                                     </button>
+                                    <button class="btn btn-link btn-xs"
+                                        v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
+                                        v-on:click="_editFee(fee)">费用变更
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -61,4 +65,5 @@
         </div>
     </div>
     <vc:create path="property/deleteFee"></vc:create>
+    <vc:create path="property/editFee"></vc:create>
 </div>
