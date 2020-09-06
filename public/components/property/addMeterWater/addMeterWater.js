@@ -16,6 +16,7 @@
                 remark: '',
                 roomId: '',
                 objId: '',
+                objName: '',
                 feeTypeCd: '',
                 feeConfigs: [],
                 configId: '',
@@ -35,6 +36,7 @@
                 if (_param.hasOwnProperty("roomId")) {
                     vc.component.addMeterWaterInfo.roomId = _param.roomId;
                     vc.component.addMeterWaterInfo.objId = _param.roomId;
+                    $that.addMeterWaterInfo.objName = _param.name;
                     $that._queryPreMeterWater(_param.roomId);
                 }
             });
@@ -258,6 +260,7 @@
                     remark: '',
                     roomId: '',
                     objId: '',
+                    objName: '',
                     feeTypeCd: '',
                     feeConfigs: [],
                     configId: '',

@@ -57,12 +57,14 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">表ID</th>
+                                <!-- <th class="text-center">表ID</th> -->
                                 <th class="text-center">表类型</th>
+                                <th class="text-center">对象名称</th>
                                 <th class="text-center">上期度数</th>
                                 <th class="text-center">本期度数</th>
                                 <th class="text-center">上期读表时间</th>
                                 <th class="text-center">本期读表时间</th>
+                                <th class="text-center">创建时间</th>
                                 <th class="text-center">操作</th>
 
 
@@ -70,12 +72,14 @@
                         </thead>
                         <tbody>
                             <tr v-for="meterWater in meterWaterManageInfo.meterWaters">
-                                <td class="text-center">{{meterWater.waterId}}</td>
-                                <td class="text-center">{{meterWater.meterType}}</td>
+                                <!-- <td class="text-center">{{meterWater.waterId}}</td> -->
+                                <td class="text-center">{{meterWater.meterType == '1010'?'电表':'水表'}}</td>
+                                <td class="text-center">{{meterWater.objName}}</td>
                                 <td class="text-center">{{meterWater.preDegrees}}</td>
                                 <td class="text-center">{{meterWater.curDegrees}}</td>
                                 <td class="text-center">{{meterWater.preReadingTime}}</td>
                                 <td class="text-center">{{meterWater.curReadingTime}}</td>
+                                <td class="text-center">{{meterWater.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"

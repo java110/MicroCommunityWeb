@@ -104,6 +104,7 @@
                     console.log('select', evt);
                     this.unitSelect2Info.unitId = evt.params.data.id;
                     this.unitSelect2Info.unitName = evt.params.data.text;
+                    this.unitSelect2Info.unitNum = evt.params.data.text;
                 });
 
                 $('#unitSelector').on("select2:unselect", function (evt) {
@@ -112,6 +113,8 @@
                     console.log('unselect', evt);
                     this.unitSelect2Info.unitId = '-1';
                     this.unitSelect2Info.unitName = '';
+                    this.unitSelect2Info.unitNum = '';
+
 
                 });
             },
