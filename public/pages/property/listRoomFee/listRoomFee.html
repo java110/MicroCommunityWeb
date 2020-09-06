@@ -61,7 +61,7 @@
                                     <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史
                                     </button>
                                     <button class="btn btn-link btn-xs"
-                                        v-if="fee.isDefault == 'F' && fee.state != '2009001'"
+                                        v-if="fee.state != '2009001' && vc.hasPrivilege('502020090604200029')"
                                         v-on:click="_deleteFee(fee)">取消费用
                                     </button>
                                     <button class="btn btn-link btn-xs"
