@@ -31,13 +31,11 @@
                                 <th class="text-center">费用项目</th>
                                 <th class="text-center">费用标识</th>
                                 <th class="text-center">费用类型</th>
-                                <th class="text-center">房屋面积</th>
-                                <th class="text-center">单价</th>
-                                <th class="text-center">附加费/固定费</th>
                                 <th class="text-center">应收金额</th>
                                 <th class="text-center">建账时间</th>
                                 <th class="text-center">计费起始时间</th>
                                 <th class="text-center">计费结束时间</th>
+                                <th class="text-center">说明</th>
                                 <th class="text-center">状态</th>
                                 <th class="text-right">操作</th>
                             </tr>
@@ -48,13 +46,22 @@
                                 <td class="text-center">{{fee.feeName}}</td>
                                 <td class="text-center">{{fee.feeFlagName}}</td>
                                 <td class="text-center">{{fee.feeTypeCdName}}</td>
-                                <td class="text-center">{{listRoomCreateFeeInfo.builtUpArea}}</td>
-                                <td class="text-center">{{fee.squarePrice}}</td>
-                                <td class="text-center">{{fee.additionalAmount}}</td>
                                 <td class="text-center">{{fee.amountOwed}}</td>
                                 <td class="text-center">{{fee.startTime}}</td>
                                 <td class="text-center">{{fee.endTime}}</td>
                                 <td class="text-center">{{fee.deadlineTime}}</td>
+                                <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' ">
+                                    <div>上期度数：{{fee.preDegrees}}</div> 
+                                    <div>本期度数：{{fee.curDegrees}} </div>
+                                    <div>单价：{{fee.squarePrice}} </div>
+                                    <div>附加费：{{fee.additionalAmount}}</div>
+                                </td>
+                                <td class="text-center" v-else>
+                                    <div>面积：{{listRoomCreateFeeInfo.builtUpArea}}</div> 
+                                    <div>单价：{{fee.squarePrice}}</div>
+                                    <div v-if="fee.feeFlag == '1003006'">附加费：{{fee.additionalAmount}}</div>
+                                    <div v-else>固定费：{{fee.additionalAmount}}</div>
+                                </td>
                                 <td class="text-center">{{fee.stateName}}</td>
                                 <td class="text-right">
 
