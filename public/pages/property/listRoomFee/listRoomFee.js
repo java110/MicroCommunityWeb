@@ -72,12 +72,12 @@
             },
             _deleteFee:function(_fee){
 
-                var dateA = new Date(_fee.startTime);
-                var dateB = new Date();
-                if(dateA.setHours(0, 0, 0, 0) != dateB.setHours(0, 0, 0, 0)){
-                    vc.toast("只能取消当天添加的费用");
-                    return;
-                }
+                // var dateA = new Date(_fee.startTime);
+                // var dateB = new Date();
+                // if(dateA.setHours(0, 0, 0, 0) != dateB.setHours(0, 0, 0, 0)){
+                //     vc.toast("只能取消当天添加的费用");
+                //     return;
+                // }
 
                 vc.emit('deleteFee','openDeleteFeeModal',{
                          communityId:vc.getCurrentCommunity().communityId,
