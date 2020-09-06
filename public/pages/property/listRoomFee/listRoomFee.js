@@ -9,7 +9,11 @@
                 roomId:'',
                 total: 0,
                 records: 1,
-                builtUpArea: 0.00
+                builtUpArea: 0.00,
+                floorNum:'',
+                unitNum:'',
+                roomNum:'',
+                ownerName:''
             }
         },
         _initMethod:function(){
@@ -17,6 +21,10 @@
                   vc.component.listRoomCreateFeeInfo.roomName = vc.getParam('floorNum')+"号楼"+vc.getParam('unitNum')+"单元"+vc.getParam("roomNum")+"室";
                   vc.component.listRoomCreateFeeInfo.roomId = vc.getParam('roomId');
                   $that.listRoomCreateFeeInfo.builtUpArea = vc.getParam('builtUpArea');
+                  $that.listRoomCreateFeeInfo.floorNum = vc.getParam('floorNum');
+                  $that.listRoomCreateFeeInfo.unitNum = vc.getParam('unitNum');
+                  $that.listRoomCreateFeeInfo.roomNum = vc.getParam('roomNum');
+                  $that.listRoomCreateFeeInfo.ownerName = vc.getParam('ownerName');
             };
             vc.component._loadListRoomCreateFeeInfo(1,10);
         },
@@ -92,7 +100,13 @@
             },
             _toOwnerPayFee:function(){
                 vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+$that.listRoomCreateFeeInfo.roomId+"&payObjType=3333&roomName="+$that.listRoomCreateFeeInfo.roomName);
-            }
+            },
+            _openRoomCreateFeeAddModal:function(){
+                vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal',{
+                    isMore:false,
+                    room:$that.listRoomCreateFeeInfo
+                });
+            },
         }
 
     });

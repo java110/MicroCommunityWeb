@@ -6,6 +6,10 @@
                     <h5>{{listRoomCreateFeeInfo.roomName}}费用</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openRoomCreateFeeAddModal()">
+                            创建费用
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                             v-on:click="_toOwnerPayFee()">
                             欠费缴费
                         </button>
@@ -81,4 +85,5 @@
     </div>
     <vc:create path="property/deleteFee"></vc:create>
     <vc:create path="property/editFee"></vc:create>
+    <vc:create path="property/roomCreateFeeAdd"></vc:create>
 </div>
