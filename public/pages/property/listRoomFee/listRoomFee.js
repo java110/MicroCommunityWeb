@@ -107,6 +107,13 @@
                     room:$that.listRoomCreateFeeInfo
                 });
             },
+            _openAddMeterWaterModal: function () {
+                vc.emit('addMeterWater', 'openAddMeterWaterModal', {
+                    roomId:$that.listRoomCreateFeeInfo.roomId,
+                    roomName:$that.listRoomCreateFeeInfo.roomName,
+                    
+                });
+            },
         }
 
     });
