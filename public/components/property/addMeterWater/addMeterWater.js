@@ -21,7 +21,8 @@
                 feeConfigs: [],
                 configId: '',
                 objType: '1001',
-                hasRoom: false
+                hasRoom: false,
+                ownerName: ''
             }
         },
         _initMethod: function () {
@@ -34,6 +35,7 @@
                     $that.addMeterWaterInfo.roomId = _param.roomId;
                     $that.addMeterWaterInfo.objId = _param.roomId;
                     $that.addMeterWaterInfo.objName = _param.roomName;
+                    $that.addMeterWaterInfo.ownerName =_param.roomName +'('+_param.ownerName+')';
                     $that._queryPreMeterWater(_param.roomId);
                 }
                 $('#addMeterWaterModel').modal('show');
@@ -274,7 +276,8 @@
                     feeConfigs: [],
                     configId: '',
                     objType: '1001',
-                    hasRoom: false
+                    hasRoom: false,
+                    ownerName:''
 
                 };
             }

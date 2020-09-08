@@ -111,6 +111,7 @@
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId:$that.listRoomCreateFeeInfo.roomId,
                     roomName:$that.listRoomCreateFeeInfo.roomName,
+                    ownerName:$that.listRoomCreateFeeInfo.ownerName
                     
                 });
             },
