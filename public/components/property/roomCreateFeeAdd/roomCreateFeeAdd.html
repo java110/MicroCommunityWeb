@@ -59,7 +59,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">费用类型</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="roomCreateFeeAddInfo.feeTypeCd" @change="_changeFeeTypeCd(roomCreateFeeAddInfo.feeTypeCd)">
+                                    <select class="custom-select" v-model="roomCreateFeeAddInfo.feeTypeCd" @change="_changeFeeTypeCdX(roomCreateFeeAddInfo.feeTypeCd)">
                                         <option selected disabled value="">必填，请选择费用类型</option>
                                         <option v-for="(item,index) in roomCreateFeeAddInfo.feeTypeCds" :key="index"
                                                 v-bind:value="item.statusCd" v-if="item.statusCd !='888800010008'">{{item.name}}

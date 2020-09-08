@@ -172,7 +172,7 @@
 
                 vc.component.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },
-            _changeFeeTypeCd:function(_feeTypeCd){
+            _changeFeeTypeCdX:function(_feeTypeCd){
 
                 var param = {
                     params: {
