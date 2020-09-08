@@ -20,14 +20,22 @@
                 feeTypeCd: '',
                 feeConfigs: [],
                 configId: '',
-                objType: '1001'
+                objType: '1001',
+                hasRoom: false
             }
         },
         _initMethod: function () {
             $that._initAddMeterWaterDateInfo();
         },
         _initEvent: function () {
-            vc.on('addMeterWater', 'openAddMeterWaterModal', function () {
+            vc.on('addMeterWater', 'openAddMeterWaterModal', function (_param) {
+                if (_param.hasOwnProperty('roomId')) {
+                    $that.addMeterWaterInfo.hasRoom =true;
+                    $that.addMeterWaterInfo.roomId = _param.roomId;
+                    $that.addMeterWaterInfo.objId = _param.roomId;
+                    $that.addMeterWaterInfo.objName = _param.roomName;
+                    $that._queryPreMeterWater(_param.roomId);
+                }
                 $('#addMeterWaterModel').modal('show');
             });
 
@@ -189,7 +197,8 @@
                             $('#addMeterWaterModel').modal('hide');
                             vc.component.clearAddMeterWaterInfo();
                             vc.emit('meterWaterManage', 'listMeterWater', {});
-
+                            vc.emit('listRoomFee','notify', {});
+                           
                             return;
                         }
                         vc.message(_json.msg);
@@ -264,7 +273,8 @@
                     feeTypeCd: '',
                     feeConfigs: [],
                     configId: '',
-                    objType: '1001'
+                    objType: '1001',
+                    hasRoom: false
 
                 };
             }
