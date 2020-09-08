@@ -130,7 +130,7 @@
                 vc.jumpToPage("/admin.html#/pages/property/sellParkingSpace?ownerId=" + _owner.ownerId);
             },
             _openOwnerDetailModel: function (_owner) {
-                vc.jumpToPage("/admin.html#/pages/property/ownerDetail?ownerId=" + _owner.ownerId);
+                vc.jumpToPage("/admin.html#/pages/property/ownerDetail?ownerId=" + _owner.ownerId+"&ownerName="+_owner.name);
             },
             _openDeleteOwnerRoom: function (_owner) {
                 vc.jumpToPage("/admin.html#/pages/property/deleteOwnerRoom?ownerId=" + _owner.ownerId);
