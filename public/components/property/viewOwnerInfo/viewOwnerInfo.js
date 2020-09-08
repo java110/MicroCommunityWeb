@@ -22,7 +22,8 @@
                 idCard:"",
                 link:"",
                 ownerPhoto:"/img/noPhoto.jpg",
-                showCallBackButton:$props.showCallBackButton
+                showCallBackButton:$props.showCallBackButton,
+                attrs:[]
             }
         },
         _initMethod:function(){
@@ -73,6 +74,7 @@
                              function(json,res){
                                 var listOwnerData =JSON.parse(json);
                                 vc.copyObject(listOwnerData.owners[0],vc.component.viewOwnerInfo);
+                                $that.viewOwnerInfo.attrs = listOwnerData.owners[0].ownerAttrDtos
                                 //加载图片
                                 vc.component._loadOwnerPhoto();
                              },function(errInfo,error){

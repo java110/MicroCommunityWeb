@@ -76,6 +76,30 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div v-for="(item,index) in viewOwnerInfo.attrs">
+
+                            <div class="row" v-if="index % 3 == 0">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{item.specName}}：</label>
+                                        <label class="">{{item.valueName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" v-if="index < viewOwnerInfo.attrs.length-1">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{viewOwnerInfo.attrs[index+1].specName}}：</label>
+                                        <label class="">{{viewOwnerInfo.attrs[index+1].valueName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" v-if="index < viewOwnerInfo.attrs.length-2">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{viewOwnerInfo.attrs[index+2].specName}}：</label>
+                                        <label class="">{{viewOwnerInfo.attrs[index+2].valueName}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
