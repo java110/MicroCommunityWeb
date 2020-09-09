@@ -88,7 +88,7 @@
                             //关闭model
                             vc.toast("处理成功");
                             $('#importRoomFeeModel').modal('hide');
-                            //vc.jumpToPage('/admin.html#/pages/property/listOwner')
+                            vc.jumpToPage('/admin.html#/pages/property/listOwner')
 
                             vc.emit('roomFeeImport', 'listFee',{});
                             return;
