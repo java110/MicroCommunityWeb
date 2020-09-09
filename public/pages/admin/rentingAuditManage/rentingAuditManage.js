@@ -16,6 +16,7 @@
                     rentingTitle: '',
                     paymentType: '',
                     ownerName: '',
+                    state:'0'
 
                 }
             }
@@ -37,6 +38,7 @@
 
                 vc.component.rentingPoolManageInfo.conditions.page = _page;
                 vc.component.rentingPoolManageInfo.conditions.row = _rows;
+                vc.component.rentingPoolManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.rentingPoolManageInfo.conditions
                 };
