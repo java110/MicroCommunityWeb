@@ -29,6 +29,9 @@
             vc.on('rentingPoolManage', 'listRentingPool', function (_param) {
                 vc.component._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('rentingAuditManage','audit',function(_auditInfo){
+
+            })
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listRentingPools(_currentPage, DEFAULT_ROWS);
             });
@@ -60,8 +63,8 @@
                     }
                 );
             },
-            _openAddRentingPoolModal: function () {
-                vc.emit('addRentingPool', 'openAddRentingPoolModal', {});
+            _openAuditModal: function () {
+                vc.emit('audit', 'openAuditModal', {});
             },
             _openEditRentingPoolModel: function (_rentingPool) {
                 vc.emit('editRentingPool', 'openEditRentingPoolModal', _rentingPool);
