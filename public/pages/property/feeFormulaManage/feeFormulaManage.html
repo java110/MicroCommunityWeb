@@ -18,6 +18,7 @@
                             <tr>
                                 <th class="text-center">公式ID</th>
                                 <th class="text-center">公式</th>
+                                <th class="text-center">单价</th>
                                 <th class="text-center">描述</th>
                                 <th class="text-center">操作</th>
                             </tr>
@@ -26,6 +27,7 @@
                             <tr v-for="feeFormula in feeFormulaManageInfo.feeFormulas">
                                 <td class="text-center">{{feeFormula.formulaId}}</td>
                                 <td class="text-center">{{feeFormula.formulaValue}}</td>
+                                <td class="text-center">{{feeFormula.price}}</td>
                                 <td class="text-center">{{feeFormula.formulaDesc}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">

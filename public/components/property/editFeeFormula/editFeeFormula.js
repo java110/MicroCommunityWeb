@@ -6,7 +6,7 @@
                 formulaId: '',
                 formulaValue: '',
                 formulaDesc: '',
-
+                price:''
             }
         },
         _initMethod: function () {
@@ -35,6 +35,18 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "公式太复杂"
+                        },
+                    ],
+                    'editFeeFormulaInfo.price': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "单价不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "单价填写有误，如1.50"
                         },
                     ],
                     'editFeeFormulaInfo.formulaDesc': [
@@ -87,7 +99,7 @@
                     formulaId: '',
                     formulaValue: '',
                     formulaDesc: '',
-
+                    price:''
                 }
             }
         }

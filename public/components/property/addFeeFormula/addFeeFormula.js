@@ -10,6 +10,7 @@
                 formulaId: '',
                 formulaValue: '',
                 formulaDesc: '',
+                price:''
 
             }
         },
@@ -36,6 +37,18 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "公式太复杂"
+                        },
+                    ],
+                    'addFeeFormulaInfo.price': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "单价不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "单价填写有误，如1.50"
                         },
                     ],
                     'addFeeFormulaInfo.formulaDesc': [
@@ -97,7 +110,7 @@
                 vc.component.addFeeFormulaInfo = {
                     formulaValue: '',
                     formulaDesc: '',
-
+                    price:''
                 };
             }
         }
