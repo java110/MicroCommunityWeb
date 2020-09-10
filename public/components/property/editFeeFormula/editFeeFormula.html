@@ -1,0 +1,49 @@
+<div id="editFeeFormulaModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">修改公式</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">公式</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editFeeFormulaInfo.formulaValue" type="text" placeholder="必填，请填写公式"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">描述</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editFeeFormulaInfo.formulaDesc" type="text" placeholder="选填，请填写描述"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">说明</label>
+                                <div class="col-sm-10">
+                                    <div>T 代表总量，如电费总使用量</div>
+                                    <div>F 代表房屋对应楼栋面积</div>
+                                    <div>U 代表房屋对应单元面积</div>
+                                    <div>R 代表房屋面积</div>
+                                    <div>X 代表房屋收费系数（房屋管理中配置）</div>
+                                    <div>举例：公共区域公摊电费  电量/楼栋面积*房屋面积*单价</div>
+                                    <div>公式：T/F * R * 1.5   1.5为单价</div>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="editFeeFormula()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
