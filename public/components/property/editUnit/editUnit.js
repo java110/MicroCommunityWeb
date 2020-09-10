@@ -9,7 +9,8 @@
                 layerCount:'',
                 lift:'',
                 remark:'',
-                communityId:''
+                communityId:'',
+                unitArea:''
             }
         },
          _initMethod:function(){
@@ -58,6 +59,18 @@
                                     limit:"num",
                                     param:"",
                                     errInfo:"单元楼层高度必须为数字"
+                                }
+                            ],
+                            'editUnitInfo.unitArea':[
+                                {
+                                    limit:"required",
+                                    param:"",
+                                    errInfo:"建筑面积不能为空"
+                                },
+                                {
+                                    limit:"money",
+                                    param:"",
+                                    errInfo:"建筑面积错误 如300.00"
                                 }
                             ],
                             'editUnitInfo.lift':[
@@ -116,7 +129,8 @@
                   layerCount:'',
                   lift:'',
                   remark:'',
-                  communityId:''
+                  communityId:'',
+                  unitArea:''
                 }
             }
         }
