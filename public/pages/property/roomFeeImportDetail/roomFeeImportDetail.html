@@ -74,6 +74,7 @@
                                 <th class="text-center">开始时间</th>
                                 <th class="text-center">结束时间</th>
                                 <th class="text-center">总金额</th>
+                                <th class="text-center">备注</th>
                                 <th class="text-center">状态</th>
                             </tr>
                         </thead>
@@ -86,6 +87,7 @@
                                 <td class="text-center">{{detail.startTime}}</td>
                                 <td class="text-center">{{detail.endTime}}</td>
                                 <td class="text-center">{{detail.amount}}</td>
+                                <td class="text-center">{{detail.remark}}</td>
                                 <td class="text-center">
                                     <span class="badge badge-success" v-if="detail.state == '1000'">导入成功</span>
                                     <span class="badge badge-danger" v-else>导入失败</span>

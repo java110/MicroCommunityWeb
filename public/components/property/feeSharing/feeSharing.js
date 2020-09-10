@@ -142,7 +142,7 @@
             saveFeeSharingInfo: function () {
                 if($that.feeSharingInfo.scope == '1001'){
                     $that.feeSharingInfo.objId = vc.getCurrentCommunity().communityId;
-                }else if($that.feeSharingInfo.scope == '1001'){
+                }else if($that.feeSharingInfo.scope == '2002'){
                     $that.feeSharingInfo.objId = $that.feeSharingInfo.floorId;
                 }else{
                     $that.feeSharingInfo.objId = $that.feeSharingInfo.unitId;

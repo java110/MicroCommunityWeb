@@ -63,6 +63,7 @@
                                 <th class="text-center">导入ID</th>
                                 <th class="text-center">费用类型</th>
                                 <th class="text-center">创建时间</th>
+                                <th class="text-center">备注</th>
                                 <th class="text-right">操作</th>
 
 
@@ -73,6 +74,7 @@
                                 <td class="text-center">{{fee.importFeeId}}</td>
                                 <td class="text-center">{{fee.feeTypeCdName}}</td>
                                 <td class="text-center">{{fee.createTime}}</td>
+                                <td class="text-center">{{fee.remark}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openImportFeeDetail(fee)">详情
