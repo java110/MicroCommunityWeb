@@ -16,7 +16,7 @@
                 apartment1: '',
                 apartment2: '',
                 builtUpArea: '',
-                unitPrice: '',
+                feeCoefficient: '1.00',
                 state: '2002',
                 remark: '',
                 communityId: vc.getCurrentCommunity().communityId,
@@ -92,6 +92,18 @@
                             param: "",
                             errInfo: "建筑面积错误，如 300.00"
                         },
+                        ],
+                        'addRoomViewInfo.feeCoefficient':[
+                            {
+                                limit:"required",
+                                param:"",
+                                errInfo:"算费系数不能为空"
+                            },
+                            {
+                                limit:"money",
+                                param:"",
+                                errInfo:"算费系数错误，如 300.00"
+                            }
                         ],
                         'addRoomViewInfo.state': [{
                             limit: "required",

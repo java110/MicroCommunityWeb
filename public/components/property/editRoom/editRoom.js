@@ -13,7 +13,7 @@
                 apartment1:'',
                 apartment2:'',
                 builtUpArea:'',
-                unitPrice:'',
+                feeCoefficient:'1.00',
                 state:'',
                 remark:'',
                 communityId:'',
@@ -69,9 +69,9 @@
                             var tmpUnits = JSON.parse(json);
                             vc.component.editRoomUnits = tmpUnits;
 
-                            if('0.00' == vc.component.editRoomInfo.unitPrice){
-                                vc.component.editRoomInfo.unitPrice='';
-                            }
+                            // if('0.00' == vc.component.editRoomInfo.unitPrice){
+                            //     vc.component.editRoomInfo.unitPrice='';
+                            // }
                             vc.component.editRoomInfo.apartment1=vc.component.editRoomInfo.apartment.substr(0,2);
                             vc.component.editRoomInfo.apartment2=vc.component.editRoomInfo.apartment.substr(2,5);
                             /*if(tmpUnits == null || tmpUnits.length == 0){
@@ -181,6 +181,18 @@
                                   errInfo:"建筑面积数字长度不能超过6位"
                                 }
                             ],
+                            'editRoomInfo.feeCoefficient':[
+                                {
+                                    limit:"required",
+                                    param:"",
+                                    errInfo:"算费系数不能为空"
+                                },
+                                {
+                                    limit:"money",
+                                    param:"",
+                                    errInfo:"算费系数错误，如 300.00"
+                                }
+                            ],
                             'editRoomInfo.remark':[
                                 {
                                     limit:"maxLength",
@@ -242,7 +254,7 @@
                     apartment1:'',
                     apartment2:'',
                     builtUpArea:'',
-                    unitPrice:'',
+                    feeCoefficient:'1.00',
                     state:'',
                     remark:'',
                     communityId:'',

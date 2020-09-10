@@ -63,8 +63,8 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">房屋单价</label>
-                                <div class="col-sm-10"><input v-model="editRoomInfo.unitPrice" type="number" placeholder="请填写房屋单价(单位元)" class="form-control"></div>
+                                <label class="col-sm-2 col-form-label">算费系数</label>
+                                <div class="col-sm-10"><input v-model="editRoomInfo.feeCoefficient" type="text" placeholder="请填写算费系数" class="form-control"></div>
                             </div>
                             <div v-for="(item,index) in editRoomInfo.attrs">
                                 <div class="form-group row" v-if="item.specType == '2233'">
