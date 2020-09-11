@@ -115,6 +115,17 @@
                     
                 });
             },
+            _getAttrValue:function(_attrs,_specCd){
+                let _value = "";
+                _attrs.forEach(item => {
+                    if(item.specCd == _specCd){
+                        _value = item.value;
+                        return ;
+                    }
+                });
+
+                return _value;
+            }
         }
 
     });
