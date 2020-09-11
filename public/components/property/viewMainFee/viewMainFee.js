@@ -32,8 +32,8 @@
                 squarePrice:0,
                 builtUpArea:'',
                 deadlineTime:'',
-                payerObjType:''
-
+                payerObjType:'',
+                feeAttrs:[],
             }
         },
         _initMethod:function(){
@@ -93,6 +93,7 @@
                              function(json,res){
                                var _fee =JSON.parse(json).fees[0];
                                vc.copyObject(_fee,vc.component.mainFeeInfo);
+                               $that.mainFeeInfo.feeAttrs = _fee.feeAttrs;
                                vc.emit('propertyFee','listFeeDetail',{
                                     feeId:_fee.feeId
                                });

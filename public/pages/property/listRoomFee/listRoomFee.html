@@ -60,7 +60,7 @@
                                     <div>单价：{{fee.squarePrice}} </div>
                                     <div>附加费：{{fee.additionalAmount}}</div>
                                 </td>
-                                <td class="text-center" v-else-if="fee.feeTypeCd == '888800010017'">
+                                <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
                                     <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div> 
                                     <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
                                 </td>

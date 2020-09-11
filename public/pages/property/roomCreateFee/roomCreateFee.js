@@ -1,177 +1,186 @@
 /**
     入驻小区
 **/
-(function(vc){
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROW = 10;
     vc.extends({
-        data:{
-            roomUnits:[],
-            roomCreateFeeInfo:{
-                rooms:[],
-                total:0,
-                records:1,
-                floorId:'',
-                unitId:'',
-                state:'',
-                roomNum:'',
-                moreCondition:false,
-                conditions:{
-                    floorId:'',
-                    floorName:'',
-                    unitId:'',
-                    roomNum:'',
-                    roomId:'',
-                    state:'',
-                    section:''
+        data: {
+            roomUnits: [],
+            roomCreateFeeInfo: {
+                rooms: [],
+                total: 0,
+                records: 1,
+                floorId: '',
+                unitId: '',
+                state: '',
+                roomNum: '',
+                moreCondition: false,
+                conditions: {
+                    floorId: '',
+                    floorName: '',
+                    unitId: '',
+                    roomNum: '',
+                    roomId: '',
+                    state: '',
+                    section: '',
+                    allNum: ''
                 }
             }
         },
-        _initMethod:function(){
+        _initMethod: function () {
             vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
             vc.component.roomCreateFeeInfo.conditions.floorName = vc.getParam("floorName");
-            vc.component.listRoom(DEFAULT_PAGE,DEFAULT_ROW);
+            vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
         },
-        _initEvent:function(){
-            vc.on('room','chooseFloor',function(_param){
+        _initEvent: function () {
+            vc.on('room', 'chooseFloor', function (_param) {
                 vc.component.roomCreateFeeInfo.conditions.floorId = _param.floorId;
                 vc.component.roomCreateFeeInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
 
             });
-            vc.on('pagination','page_event',function(_currentPage){
-                vc.component.listRoom(_currentPage,DEFAULT_ROW);
+            vc.on('pagination', 'page_event', function (_currentPage) {
+                vc.component.listRoom(_currentPage, DEFAULT_ROW);
             });
         },
-        methods:{
+        methods: {
 
-            listRoom:function(_page,_row){
-                if(vc.component.roomCreateFeeInfo.conditions.floorName==''||vc.component.roomCreateFeeInfo.conditions.floorName==null){
-                    vc.component.roomCreateFeeInfo.conditions.floorId=''
+            listRoom: function (_page, _row) {
+                if (vc.component.roomCreateFeeInfo.conditions.floorName == '' || vc.component.roomCreateFeeInfo.conditions.floorName == null) {
+                    vc.component.roomCreateFeeInfo.conditions.floorId = ''
                 }
-                vc.component.roomCreateFeeInfo.conditions.page=_page;
-                vc.component.roomCreateFeeInfo.conditions.row=_row;
+                vc.component.roomCreateFeeInfo.conditions.page = _page;
+                vc.component.roomCreateFeeInfo.conditions.row = _row;
                 vc.component.roomCreateFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                var param = {
-                    params:vc.component.roomCreateFeeInfo.conditions
+                let _allNum = $that.roomCreateFeeInfo.conditions.allNum;
+                let _conditions = JSON.parse(JSON.stringify(vc.component.roomCreateFeeInfo.conditions));
+                let param = {
+                    params: _conditions
                 };
 
-               //发送get请求
-               vc.http.get('roomCreateFee',
-                            'listRoom',
-                             param,
-                             function(json,res){
-                                var listRoomData =JSON.parse(json);
+                if (_allNum.split('-').length == 3) {
+                    let _allNums = _allNum.split('-')
+                    param.params.floorNum = _allNums[0];
+                    param.params.unitNum = _allNums[1];
+                    param.params.roomNum = _allNums[2];
+                }
 
-                                vc.component.roomCreateFeeInfo.total = listRoomData.total;
-                                vc.component.roomCreateFeeInfo.records = listRoomData.records;
-                                vc.component.roomCreateFeeInfo.rooms = listRoomData.rooms;
+                //发送get请求
+                vc.http.get('roomCreateFee',
+                    'listRoom',
+                    param,
+                    function (json, res) {
+                        var listRoomData = JSON.parse(json);
 
-                                vc.emit('pagination','init',{
-                                    total:vc.component.roomCreateFeeInfo.records,
-                                    dataCount: vc.component.roomCreateFeeInfo.total,
-                                    currentPage:_page
-                                });
-                             },function(errInfo,error){
-                                console.log('请求失败处理');
-                             }
-                           );
+                        vc.component.roomCreateFeeInfo.total = listRoomData.total;
+                        vc.component.roomCreateFeeInfo.records = listRoomData.records;
+                        vc.component.roomCreateFeeInfo.rooms = listRoomData.rooms;
+                        vc.emit('pagination', 'init', {
+                            total: vc.component.roomCreateFeeInfo.records,
+                            dataCount: vc.component.roomCreateFeeInfo.total,
+                            currentPage: _page
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
-            _openRoomCreateFeeAddModal:function(_room,_isMore){
-                vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal',{
-                    isMore:_isMore,
-                    room:_room
+            _openRoomCreateFeeAddModal: function (_room, _isMore) {
+                vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
+                    isMore: _isMore,
+                    room: _room
                 });
             },
-            _openViewRoomCreateFee:function(_room){
-                 vc.jumpToPage("/admin.html#/pages/property/listRoomFee?"+vc.objToGetParam(_room));
+            _openViewRoomCreateFee: function (_room) {
+                vc.jumpToPage("/admin.html#/pages/property/listRoomFee?" + vc.objToGetParam(_room));
             },
             /**
                 根据楼ID加载房屋
             **/
-            loadUnits:function(_floorId){
+            loadUnits: function (_floorId) {
                 vc.component.addRoomUnits = [];
                 var param = {
-                    params:{
-                        floorId:_floorId,
-                        communityId:vc.getCurrentCommunity().communityId
+                    params: {
+                        floorId: _floorId,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 }
                 vc.http.get(
                     'roomCreateFee',
                     'loadUnits',
-                     param,
-                     function(json,res){
+                    param,
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        if (res.status == 200) {
                             var tmpUnits = JSON.parse(json);
                             vc.component.roomUnits = tmpUnits;
 
-                            return ;
+                            return;
                         }
                         vc.toast(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
-                     });
+                    });
             },
-            _queryRoomMethod:function(){
-                vc.component.listRoom(DEFAULT_PAGE,DEFAULT_ROW);
+            _queryRoomMethod: function () {
+                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             },
-            _loadDataByParam: function(){
+            _loadDataByParam: function () {
                 vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
                 vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorName");
                 //如果 floodId 没有传 则，直接结束
-               /* if(!vc.notNull(vc.component.roomCreateFeeInfo.conditions.floorId)){
-                    return ;
-                }*/
+                /* if(!vc.notNull(vc.component.roomCreateFeeInfo.conditions.floorId)){
+                     return ;
+                 }*/
 
                 var param = {
-                    params:{
-                        communityId:vc.getCurrentCommunity().communityId,
-                        floorId:vc.component.roomCreateFeeInfo.conditions.floorId
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        floorId: vc.component.roomCreateFeeInfo.conditions.floorId
                     }
                 }
 
                 vc.http.get(
                     'roomCreateFee',
                     'loadFloor',
-                     param,
-                     function(json,res){
-                        if(res.status == 200){
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
                             var _floorInfo = JSON.parse(json);
                             var _tmpFloor = _floorInfo.apiFloorDataVoList[0];
                             /*vc.emit('roomSelectFloor','chooseFloor', _tmpFloor);
                             */
 
-                            return ;
+                            return;
                         }
                         vc.toast(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
-                     });
+                    });
 
             },
-            _moreCondition:function(){
-                if(vc.component.roomCreateFeeInfo.moreCondition){
+            _moreCondition: function () {
+                if (vc.component.roomCreateFeeInfo.moreCondition) {
                     vc.component.roomCreateFeeInfo.moreCondition = false;
-                }else{
+                } else {
                     vc.component.roomCreateFeeInfo.moreCondition = true;
                 }
             },
-            _openChooseFloorMethod:function(){
-                vc.emit('searchFloor','openSearchFloorModel',{});
+            _openChooseFloorMethod: function () {
+                vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            _toOwnerPayFee:function(_room){
-                let roomName = _room.floorNum + "栋"+_room.unitNum+"单元"+_room.roomNum+"室"
-                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+_room.roomId+"&payObjType=3333&roomName="+roomName);
+            _toOwnerPayFee: function (_room) {
+                let roomName = _room.floorNum + "栋" + _room.unitNum + "单元" + _room.roomNum + "室"
+                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId=' + _room.roomId + "&payObjType=3333&roomName=" + roomName);
             },
-           
+
         }
     });
 })(window.vc);

@@ -22,7 +22,8 @@
                 configId: '',
                 objType: '1001',
                 hasRoom: false,
-                ownerName: ''
+                ownerName: '',
+                objType:'3333'
             }
         },
         _initMethod: function () {
@@ -30,6 +31,9 @@
         },
         _initEvent: function () {
             vc.on('addMeterWater', 'openAddMeterWaterModal', function (_param) {
+                if(_param.hasOwnProperty("objType")){
+                    $that.addMeterWaterInfo.objType = _param.objType;
+                }
                 if (_param.hasOwnProperty('roomId')) {
                     $that.addMeterWaterInfo.hasRoom =true;
                     $that.addMeterWaterInfo.roomId = _param.roomId;
@@ -38,6 +42,8 @@
                     $that.addMeterWaterInfo.ownerName =_param.roomName +'('+_param.ownerName+')';
                     $that._queryPreMeterWater(_param.roomId);
                 }
+                
+                
                 $('#addMeterWaterModel').modal('show');
             });
 
@@ -200,6 +206,8 @@
                             vc.component.clearAddMeterWaterInfo();
                             vc.emit('meterWaterManage', 'listMeterWater', {});
                             vc.emit('listRoomFee','notify', {});
+                            vc.emit('listParkingSpaceFee', 'notify', {});
+                            
                            
                             return;
                         }
@@ -241,7 +249,7 @@
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         objId: _roomId,
-                        objType: '1001'
+                        objType: $that.addMeterWaterInfo.objType
                     }
                 };
                 //发送get请求
@@ -277,7 +285,8 @@
                     configId: '',
                     objType: '1001',
                     hasRoom: false,
-                    ownerName:''
+                    ownerName:'',
+                    objType:'3333'
 
                 };
             }

@@ -81,6 +81,29 @@
                         </div>
                     </div>
                 </div>
+                <div v-for="(item,index) in mainFeeInfo.feeAttrs">
+
+                    <div class="row" v-if="index % 3 == 0">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">{{item.specCdName}}：</label>
+                                <label class="">{{item.value}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" v-if="index < mainFeeInfo.feeAttrs.length-1">
+                            <div class="form-group">
+                                <label class="col-form-label">{{mainFeeInfo.feeAttrs[index+1].specCdName}}：</label>
+                                <label class="">{{mainFeeInfo.feeAttrs[index+1].value}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" v-if="index < mainFeeInfo.feeAttrs.length-2">
+                            <div class="form-group">
+                                <label class="col-form-label">{{mainFeeInfo.feeAttrs[index+2].specCdName}}：</label>
+                                <label class="">{{mainFeeInfo.feeAttrs[index+2].value}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row"  v-if = "mainFeeInfo.payerObjType == '3333'">
                     <div class="col-sm-4">
                         <div class="form-group">

@@ -6,6 +6,14 @@
                     <h5>{{listCarFeeInfo.carNum}}费用</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openAddMeterWaterModal()">
+                            水电抄表
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openCarCreateFeeAddModal()">
+                            创建费用
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                             v-on:click="_goBack()">
                             返回
                         </button>
@@ -21,11 +29,11 @@
                                 <th class="text-center">费用项目</th>
                                 <th class="text-center">费用标识</th>
                                 <th class="text-center">费用类型</th>
-                                <th class="text-center">固定费</th>
                                 <th class="text-center">应收金额</th>
                                 <th class="text-center">建账时间</th>
                                 <th class="text-center">计费起始时间</th>
                                 <th class="text-center">计费结束时间</th>
+                                <th class="text-center">说明</th>
                                 <th class="text-center">状态</th>
                                 <th class="text-center">操作</th>
                             </tr>
@@ -35,11 +43,24 @@
                                 <td class="text-center">{{fee.feeName}}</td>
                                 <td class="text-center">{{fee.feeFlagName}}</td>
                                 <td class="text-center">{{fee.feeTypeCdName}}</td>
-                                <td class="text-center">{{fee.additionalAmount}}</td>
                                 <td class="text-center">{{fee.amountOwed}}</td>
                                 <td class="text-center">{{fee.startTime}}</td>
                                 <td class="text-center">{{fee.endTime}}</td>
                                 <td class="text-center">{{fee.deadlineTime}}</td>
+                                <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' ">
+                                    <div>上期度数：{{fee.preDegrees}}</div> 
+                                    <div>本期度数：{{fee.curDegrees}} </div>
+                                    <div>单价：{{fee.squarePrice}} </div>
+                                    <div>附加费：{{fee.additionalAmount}}</div>
+                                </td>
+                                <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
+                                    <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div> 
+                                    <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
+                                </td>
+                                <td class="text-center" v-else>
+                                    <div>单价：{{fee.squarePrice}}</div>
+                                    <div >固定费：{{fee.additionalAmount}}</div>
+                                </td>
                                 <td class="text-center">{{fee.stateName}}</td>
                                 <td class="text-right">
                                     <button class="btn btn-link btn-xs" v-if="fee.state != '2009001'  && vc.hasPrivilege('502020090482580004')"
@@ -66,4 +87,9 @@
     </div>
     <vc:create path="property/deleteFee"></vc:create>
     <vc:create path="property/editFee"></vc:create>
+    <vc:create path="property/carCreateFeeAdd"
+    ></vc:create>
+
+    
+    <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
 </div>

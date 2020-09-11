@@ -71,7 +71,7 @@
             },
             _openViewParkingSpaceCreateFee: function (_car) {
 
-                vc.jumpToPage("/admin.html#/pages/property/listCarFee?carId=" + _car.carId + "&carNum=" + _car.carNum);
+                vc.jumpToPage("/admin.html#/pages/property/listCarFee?carId=" + _car.carId + "&carNum=" + _car.carNum+"&areaNum="+_car.areaNum+"&num="+_car.num);
             },
             _queryParkingSpaceMethod: function () {
                 vc.component.listCars(DEFAULT_PAGE, DEFAULT_ROW);
