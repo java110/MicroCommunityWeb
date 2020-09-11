@@ -18,8 +18,9 @@
                 moreCondition: false,
                 conditions: {
                     psId: '',
-                    num: '',
-                    carNum: ''
+                    ownerName: '',
+                    carNum: '',
+                    allNum: ''
                 }
             }
         },
@@ -39,9 +40,18 @@
                 vc.component.carCreateFeeInfo.conditions.page = _page;
                 vc.component.carCreateFeeInfo.conditions.row = _row;
                 vc.component.carCreateFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                var param = {
-                    params: vc.component.carCreateFeeInfo.conditions
+
+                let _allNum = $that.carCreateFeeInfo.conditions.allNum;
+                let _conditions = JSON.parse(JSON.stringify(vc.component.carCreateFeeInfo.conditions));
+                let param = {
+                    params: _conditions
                 };
+
+                if (_allNum.split('-').length == 2) {
+                    let _allNums = _allNum.split('-')
+                    param.params.areaNum = _allNums[0];
+                    param.params.num = _allNums[1];
+                }
 
                 //发送get请求
                 vc.http.apiGet('owner.queryOwnerCars',
@@ -71,7 +81,7 @@
             },
             _openViewParkingSpaceCreateFee: function (_car) {
 
-                vc.jumpToPage("/admin.html#/pages/property/listCarFee?carId=" + _car.carId + "&carNum=" + _car.carNum+"&areaNum="+_car.areaNum+"&num="+_car.num);
+                vc.jumpToPage("/admin.html#/pages/property/listCarFee?carId=" + _car.carId + "&carNum=" + _car.carNum + "&areaNum=" + _car.areaNum + "&num=" + _car.num);
             },
             _queryParkingSpaceMethod: function () {
                 vc.component.listCars(DEFAULT_PAGE, DEFAULT_ROW);
