@@ -128,10 +128,6 @@
                             errInfo: "格式错误"
                         },
                     ],
-
-
-
-
                 });
             },
             saveRentingConfigInfo: function () {
