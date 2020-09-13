@@ -45,6 +45,10 @@
                     <h5>费用导入</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openFeeSharing(null,true)">
+                            费用公摊
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                             v-on:click="_openRoomFeeImport(null,true)">
                             费用导入
                         </button>
@@ -59,6 +63,7 @@
                                 <th class="text-center">导入ID</th>
                                 <th class="text-center">费用类型</th>
                                 <th class="text-center">创建时间</th>
+                                <th class="text-center">备注</th>
                                 <th class="text-right">操作</th>
 
 
@@ -69,6 +74,7 @@
                                 <td class="text-center">{{fee.importFeeId}}</td>
                                 <td class="text-center">{{fee.feeTypeCdName}}</td>
                                 <td class="text-center">{{fee.createTime}}</td>
+                                <td class="text-center">{{fee.remark}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openImportFeeDetail(fee)">详情
@@ -93,4 +99,6 @@
         </div>
     </div>
     <vc:create path="property/importRoomFee"></vc:create>
+
+    <vc:create path="property/feeSharing"></vc:create>
 </div>

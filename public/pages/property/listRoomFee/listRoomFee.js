@@ -9,7 +9,11 @@
                 roomId:'',
                 total: 0,
                 records: 1,
-                builtUpArea: 0.00
+                builtUpArea: 0.00,
+                floorNum:'',
+                unitNum:'',
+                roomNum:'',
+                ownerName:''
             }
         },
         _initMethod:function(){
@@ -17,6 +21,10 @@
                   vc.component.listRoomCreateFeeInfo.roomName = vc.getParam('floorNum')+"号楼"+vc.getParam('unitNum')+"单元"+vc.getParam("roomNum")+"室";
                   vc.component.listRoomCreateFeeInfo.roomId = vc.getParam('roomId');
                   $that.listRoomCreateFeeInfo.builtUpArea = vc.getParam('builtUpArea');
+                  $that.listRoomCreateFeeInfo.floorNum = vc.getParam('floorNum');
+                  $that.listRoomCreateFeeInfo.unitNum = vc.getParam('unitNum');
+                  $that.listRoomCreateFeeInfo.roomNum = vc.getParam('roomNum');
+                  $that.listRoomCreateFeeInfo.ownerName = vc.getParam('ownerName');
             };
             vc.component._loadListRoomCreateFeeInfo(1,10);
         },
@@ -72,12 +80,12 @@
             },
             _deleteFee:function(_fee){
 
-                var dateA = new Date(_fee.startTime);
-                var dateB = new Date();
-                if(dateA.setHours(0, 0, 0, 0) != dateB.setHours(0, 0, 0, 0)){
-                    vc.toast("只能取消当天添加的费用");
-                    return;
-                }
+                // var dateA = new Date(_fee.startTime);
+                // var dateB = new Date();
+                // if(dateA.setHours(0, 0, 0, 0) != dateB.setHours(0, 0, 0, 0)){
+                //     vc.toast("只能取消当天添加的费用");
+                //     return;
+                // }
 
                 vc.emit('deleteFee','openDeleteFeeModal',{
                          communityId:vc.getCurrentCommunity().communityId,
@@ -92,6 +100,31 @@
             },
             _toOwnerPayFee:function(){
                 vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+$that.listRoomCreateFeeInfo.roomId+"&payObjType=3333&roomName="+$that.listRoomCreateFeeInfo.roomName);
+            },
+            _openRoomCreateFeeAddModal:function(){
+                vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal',{
+                    isMore:false,
+                    room:$that.listRoomCreateFeeInfo
+                });
+            },
+            _openAddMeterWaterModal: function () {
+                vc.emit('addMeterWater', 'openAddMeterWaterModal', {
+                    roomId:$that.listRoomCreateFeeInfo.roomId,
+                    roomName:$that.listRoomCreateFeeInfo.roomName,
+                    ownerName:$that.listRoomCreateFeeInfo.ownerName
+                    
+                });
+            },
+            _getAttrValue:function(_attrs,_specCd){
+                let _value = "";
+                _attrs.forEach(item => {
+                    if(item.specCd == _specCd){
+                        _value = item.value;
+                        return ;
+                    }
+                });
+
+                return _value;
             }
         }
 

@@ -91,6 +91,29 @@
                         </div>
 
                     </div>
+                    <div v-for="(item,index) in roomInfo.roomAttrDto">
+
+                        <div class="row" v-if="index % 3 == 0">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-form-label">{{item.specName}}：</label>
+                                    <label class="">{{item.valueName}}</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" v-if="index < roomInfo.roomAttrDto.length-1">
+                                <div class="form-group">
+                                    <label class="col-form-label">{{roomInfo.roomAttrDto[index+1].specName}}：</label>
+                                    <label class="">{{roomInfo.roomAttrDto[index+1].valueName}}</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" v-if="index < roomInfo.roomAttrDto.length-2">
+                                <div class="form-group">
+                                    <label class="col-form-label">{{roomInfo.roomAttrDto[index+2].specName}}：</label>
+                                    <label class="">{{roomInfo.roomAttrDto[index+2].valueName}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

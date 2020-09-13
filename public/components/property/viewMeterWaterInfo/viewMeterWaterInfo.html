@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>抄表信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewMeterWaterInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectMeterWaterInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择抄表</button>
+
+                    <button type="button" v-if="viewMeterWaterInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddMeterWaterInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加抄表</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >表类型：</label>
+                            <label class="">{{viewMeterWaterInfo.meterType}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >上期度数：</label>
+                            <label class="">{{viewMeterWaterInfo.preDegrees}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >本期度数：</label>
+                            <label class="">{{viewMeterWaterInfo.curDegrees}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >上期读表时间：</label>
+                            <label class="">{{viewMeterWaterInfo.preReadingTime}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >本期读表时间：</label>
+                            <label class="">{{viewMeterWaterInfo.curReadingTime}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >备注：</label>
+                            <label class="">{{viewMeterWaterInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addMeterWater"
+               callBackListener="viewMeterWaterInfo"
+               callBackFunction="chooseMeterWater"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseMeterWater"
+               emitChooseMeterWater="viewMeterWaterInfo"
+               emitLoadData="viewMeterWaterInfo"
+    ></vc:create>
+</div>

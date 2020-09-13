@@ -107,10 +107,9 @@
                             <th data-hide="phone">单元</th>
                             <th data-hide="phone">楼层</th>
                             <th data-hide="phone">房屋名称</th>
-                            
-                            <!--<th data-hide="phone">户型</th>-->
+                        
                             <th data-hide="phone">建筑面积</th>
-                            <th data-hide="phone">单价</th>
+                            <th data-hide="phone">算费系数</th>
                             <th data-hide="phone">房屋状态</th>
                             <th v-for="(item,index) in roomInfo.listColumns">{{item}}</th>
                             <th class="text-right">操作</th>
@@ -142,7 +141,7 @@
                                 {{room.builtUpArea}}平方米
                             </td>
                             <td>
-                                {{room.unitPrice != '0.00'?room.unitPrice:'0'}}元
+                                {{room.feeCoefficient}}
                             </td>
                             <td>
                                 {{vc.component.showState(room.state)}}

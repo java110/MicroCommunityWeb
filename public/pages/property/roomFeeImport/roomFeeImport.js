@@ -78,6 +78,9 @@
                 } else {
                     vc.component.roomFeeImport.moreCondition = true;
                 }
+            },
+            _openFeeSharing:function(){
+                vc.emit('feeSharing', 'openFeeSharingModal',{});
             }
         }
     });

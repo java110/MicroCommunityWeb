@@ -16,7 +16,8 @@
                     rentingTitle: '',
                     paymentType: '',
                     ownerName: '',
-
+                    communityId: vc.getCurrentCommunity().communityId,
+                    state:'1,2,3,4,5'
                 }
             }
         },

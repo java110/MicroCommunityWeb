@@ -1,5 +1,5 @@
 <div id="addFeeConfigModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -13,9 +13,8 @@
                                     <select class="custom-select" v-model="addFeeConfigInfo.feeTypeCd">
                                         <option selected disabled value="">必填，请选择费用类型</option>
                                         <option v-for="(item,index) in addFeeConfigInfo.feeTypeCds" :key="index"
-                                                v-bind:value="item.statusCd"
-                                                v-if="item.statusCd != '888800010007'"
-                                                >{{item.name}}
+                                            v-bind:value="item.statusCd" v-if="item.statusCd != '888800010007'">
+                                            {{item.name}}
                                         </option>
                                     </select></div>
                             </div>
@@ -23,7 +22,7 @@
                                 <label class="col-sm-2 col-form-label">收费项目</label>
                                 <div class="col-sm-10">
                                     <input v-model="addFeeConfigInfo.feeName" type="text" placeholder="必填，请填写收费项目"
-                                           class="form-control">
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -47,19 +46,19 @@
                             <div class="form-group row" v-if="addFeeConfigInfo.feeFlag=='1003006'">
                                 <label class="col-sm-2 col-form-label">缴费周期</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addFeeConfigInfo.paymentCycle" type="text" placeholder="必填，请填写缴费周期 单位为月"
-                                           class="form-control">
+                                    <input v-model="addFeeConfigInfo.paymentCycle" type="text"
+                                        placeholder="必填，请填写缴费周期 单位为月" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group row" >
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">出账类型</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addFeeConfigInfo.billType">
                                         <option selected disabled value="">必填，请选择出账类型</option>
-                                        <option  value="001">每年1月1日</option>
-                                        <option  value="002">每月1日</option>
-                                        <option  value="003">每日</option>
-                                        <option  value="004">实时</option>
+                                        <option value="001">每年1月1日</option>
+                                        <option value="002">每月1日</option>
+                                        <option value="003">每日</option>
+                                        <option value="004">实时</option>
                                     </select>
                                 </div>
                             </div>
@@ -67,14 +66,14 @@
                                 <label class="col-sm-2 col-form-label">计费起始时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="addFeeConfigInfo.startTime" type="text" placeholder="必填，请填写计费起始时间"
-                                           class="form-control addFeeConfigStartTime">
+                                        class="form-control addFeeConfigStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">计费终止时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="addFeeConfigInfo.endTime" type="text" placeholder="必填，请填写计费终止时间"
-                                           class="form-control addFeeConfigEndTime">
+                                        class="form-control addFeeConfigEndTime">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -83,7 +82,7 @@
                                     <select class="custom-select" v-model="addFeeConfigInfo.computingFormula">
                                         <option selected disabled value="">必填，请选择计算公式</option>
                                         <option v-for="(item,index) in addFeeConfigInfo.computingFormulas" :key="index"
-                                                v-bind:value="item.statusCd">{{item.name}}
+                                            v-bind:value="item.statusCd">{{item.name}}
                                         </option>
                                     </select></div>
                             </div>
@@ -91,23 +90,24 @@
                                 <label class="col-sm-2 col-form-label">计费单价</label>
                                 <div class="col-sm-10">
                                     <input v-model="addFeeConfigInfo.squarePrice" type="text" placeholder="必填，请填写计费单价"
-                                           class="form-control">
+                                        class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{addFeeConfigInfo.computingFormula == '1001' ?'附加费用':'固定费用'}}</label>
+                            <div class="form-group row" >
+                                <label
+                                    class="col-sm-2 col-form-label">{{addFeeConfigInfo.computingFormula == '1001' ?'附加费用':'固定费用'}}</label>
                                 <div class="col-sm-10">
                                     <input v-model="addFeeConfigInfo.additionalAmount" type="text"
-                                           placeholder="必填，请填写附加费用" class="form-control">
+                                        placeholder="必填，请填写附加费用" class="form-control">
                                 </div>
                             </div>
 
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="saveFeeConfigInfo()"><i class="fa fa-check"></i>&nbsp;保存
+                                    v-on:click="saveFeeConfigInfo()"><i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                    data-dismiss="modal">取消
                                 </button>
                             </div>
                         </div>

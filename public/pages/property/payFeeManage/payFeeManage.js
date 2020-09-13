@@ -126,6 +126,9 @@
                     }
                 );
             },
+            _detailFee:function(_fee){
+                vc.jumpToPage('/admin.html#/pages/property/propertyFee?'+vc.objToGetParam(_fee));
+            }
         }
     });
 })(window.vc);

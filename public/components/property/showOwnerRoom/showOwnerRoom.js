@@ -10,6 +10,7 @@
         data:{
             showOwnerRoomInfo:{
                 ownerId:'',
+                ownerName:'',
                 rooms:[],
                 deleteOwnerRoomFlag:$props.deleteOwnerRoomFlag
             }
@@ -23,6 +24,7 @@
             }
 
             vc.component.showOwnerRoomInfo.ownerId = _ownerId;
+            $that.showOwnerRoomInfo.ownerName = vc.getParam("ownerName");
 
             vc.component.loadRooms();
 
@@ -66,7 +68,7 @@
                 });
             },
             showPropertyFee:function(_room){
-                vc.jumpToPage("/admin.html#/pages/property/listRoomFee?"+vc.objToGetParam(_room));
+                vc.jumpToPage("/admin.html#/pages/property/listRoomFee?"+vc.objToGetParam(_room)+"&ownerName="+$that.showOwnerRoomInfo.ownerName);
             },
 
             showState:function(_state){

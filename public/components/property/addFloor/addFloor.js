@@ -10,6 +10,7 @@
                 floorId:'',
                 name:'',
                 floorName:'',
+                floorArea:'',
                 floorNum:'',
                 remark:'',
                 errorInfo:''
@@ -64,6 +65,18 @@
                             limit:"num",
                             param:"",
                             errInfo:"不是有效的数字"
+                        },
+                    ],
+                    'addFloorInfo.floorArea':[
+                        {
+                            limit:"required",
+                            param:"",
+                            errInfo:"建筑面积不能为空"
+                        },
+                        {
+                            limit:"money",
+                            param:"",
+                            errInfo:"建筑面积错误，如300.00"
                         },
                     ],
                     'addFloorInfo.remark':[
@@ -126,6 +139,7 @@
                 vc.component.addFloorInfo = {
                                             name:'',
                                             floorNum:'',
+                                            floorArea:'',
                                             remark:'',
                                             errorInfo:''
                                         };

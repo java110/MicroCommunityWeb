@@ -48,10 +48,10 @@
                 <div class="ibox-title">
                     <h5>缴费清单</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                        <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>
                             导出
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -70,6 +70,7 @@
                             <td class="text-center">实付金额</td>
                             <td class="text-center">操作员工</td>
                             <td class="text-center">缴费时间</td>
+                            <td class="text-right">详情</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -83,7 +84,12 @@
                             <td class="text-center">{{payFee.receivedAmount}}</td>
                             <td class="text-center">{{payFee.userName}}</td>
                             <td class="text-center">{{payFee.createTime}}</td>
-
+                            <td class="text-right">
+                                
+                                <button class="btn btn-link btn-xs"
+                                    v-on:click="_detailFee(payFee)">详情
+                                </button>
+                            </td>
                         </tr>
                         </tbody>
                         <tfoot>

@@ -1,0 +1,114 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入租客名称"
+                                    v-model="rentingAppointmentManageInfo.conditions.tenantName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入租客手机号"
+                                    v-model="rentingAppointmentManageInfo.conditions.tenantTel" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入预约房屋编号"
+                                    v-model="rentingAppointmentManageInfo.conditions.appointmentRoomId"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryRentingAppointmentMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>预约信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddRentingAppointmentModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            电话预约
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">租客名称</th>
+                                <th class="text-center">租客性别</th>
+                                <th class="text-center">租客电话</th>
+                                <th class="text-center">预约时间</th>
+                                <th class="text-center">预约房屋</th>
+                                <th class="text-center">备注</th>
+                                <th class="text-right">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="rentingAppointment in rentingAppointmentManageInfo.rentingAppointments">
+                                <td class="text-center">{{rentingAppointment.tenantName}}</td>
+                                <td class="text-center">{{rentingAppointment.tenantSex == '0' ? '男':'女'}}</td>
+                                <td class="text-center">{{rentingAppointment.tenantTel}}</td>
+                                <td class="text-center">{{rentingAppointment.appointmentTime}}</td>
+                                <td class="text-center">{{rentingAppointment.appointmentRoomId}}</td>
+                                <td class="text-center">{{rentingAppointment.remark}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditRentingAppointmentModel(rentingAppointment)">修改</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteRentingAppointmentModel(rentingAppointment)">删除</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <vc:create path="admin/addRentingAppointment" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="admin/editRentingAppointment"></vc:create>
+    <vc:create path="admin/deleteRentingAppointment"></vc:create>
+
+</div>

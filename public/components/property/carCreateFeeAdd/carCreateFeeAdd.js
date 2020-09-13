@@ -110,6 +110,7 @@
                         var _json = JSON.parse(json);
                         $('#carCreateFeeAddModel').modal('hide');
                         vc.component.clearAddFeeConfigInfo();
+                        vc.emit('listParkingSpaceFee', 'notify',{});
                         vc.toast("创建收费成功，总共["+_json.totalCar+"]车位，成功["+_json.successCar+"],失败["+_json.errorCar+"]",8000);
                         return;
                     }
@@ -144,7 +145,7 @@
                 vc.component.carCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
                 vc.component.carCreateFeeAddInfo.parkingAreas = _parkingAreas;
             },
-            _changeFeeTypeCd:function(_feeTypeCd){
+            _changeCarFeeTypeCd:function(_feeTypeCd){
 
                 var param = {
                     params: {

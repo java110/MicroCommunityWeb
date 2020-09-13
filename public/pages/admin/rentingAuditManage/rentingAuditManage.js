@@ -16,7 +16,7 @@
                     rentingTitle: '',
                     paymentType: '',
                     ownerName: '',
-
+                    state: '0'
                 }
             }
         },
@@ -28,6 +28,9 @@
             vc.on('rentingPoolManage', 'listRentingPool', function (_param) {
                 vc.component._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('rentingAuditManage', 'audit', function (_auditInfo) {
+                $that._auditRenting(_auditInfo);
+            });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listRentingPools(_currentPage, DEFAULT_ROWS);
             });
@@ -37,6 +40,7 @@
 
                 vc.component.rentingPoolManageInfo.conditions.page = _page;
                 vc.component.rentingPoolManageInfo.conditions.row = _rows;
+                vc.component.rentingPoolManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.rentingPoolManageInfo.conditions
                 };
@@ -58,8 +62,9 @@
                     }
                 );
             },
-            _openAddRentingPoolModal: function () {
-                vc.emit('addRentingPool', 'openAddRentingPoolModal', {});
+            _openAuditModal: function (_renting) {
+                $that.rentingPoolManageInfo.rentingId = _renting.rentingId;
+                vc.emit('audit', 'openAuditModal', {});
             },
             _openEditRentingPoolModel: function (_rentingPool) {
                 vc.emit('editRentingPool', 'openEditRentingPoolModal', _rentingPool);
@@ -77,6 +82,54 @@
                 } else {
                     vc.component.rentingPoolManageInfo.moreCondition = true;
                 }
+            },
+            _auditRenting: function (_auditInfo) {
+                let _user = vc.getData('/nav/getUserInfo');
+
+                let _userRole = 4; // 运营团队
+
+                if (_user.storeTypeCd == '800900000002') {
+                    _userRole = 3;
+                }
+
+                let _state = "2002";
+
+                if (_auditInfo.state == '1200') {
+                    _state = "3003";//代理商审核失败
+                }
+
+                let _audtiInfo = {
+                    userRole: _userRole,
+                    state: _state,
+                    context: _auditInfo.remark,
+                    rentingId: $that.rentingPoolManageInfo.rentingId
+                }
+
+                //发送get请求
+                vc.http.apiPost(
+                    '/renting/auditRenting',
+                    JSON.stringify(_audtiInfo),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model
+                            $('#addRentingConfigModel').modal('hide');
+                            $that._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
+                            return;
+                        }
+                        vc.message(_json.msg);
+
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+
+                        vc.message(errInfo);
+
+                    });
             }
 
 

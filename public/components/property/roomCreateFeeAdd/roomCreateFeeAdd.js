@@ -34,7 +34,7 @@
                     vc.component.roomCreateFeeAddInfo.locationTypeCd = '5008';
                     vc.component.roomCreateFeeAddInfo.locationObjId = _room.room.roomId;
                     var room =  _room.room;
-                    vc.component.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum +'号楼'+room.unitNum+'单元'+room.roomNum+'室';
+                    vc.component.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum +'号楼'+room.unitNum+'单元'+room.roomNum+'室('+room.ownerName+')';
                 }
                 $('#roomCreateFeeAddModel').modal('show');
 
@@ -137,6 +137,7 @@
                         $('#roomCreateFeeAddModel').modal('hide');
                         vc.component.clearAddFeeConfigInfo();
                         vc.toast("创建收费成功，总共["+_json.totalRoom+"]房屋，成功["+_json.successRoom+"],失败["+_json.errorRoom+"]",8000);
+                        vc.emit('listRoomFee','notify',{});
                         return;
                     }
                     vc.toast(json);
@@ -171,7 +172,7 @@
 
                 vc.component.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },
-            _changeFeeTypeCd:function(_feeTypeCd){
+            _changeFeeTypeCdX:function(_feeTypeCd){
 
                 var param = {
                     params: {

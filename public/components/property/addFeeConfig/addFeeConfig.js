@@ -208,6 +208,7 @@
                 if (vc.component.addFeeConfigInfo.computingFormula == '2002') {
                     vc.component.addFeeConfigInfo.squarePrice = "0.00";
                 }
+
                 if(vc.component.addFeeConfigInfo.feeFlag == '2006012'){
                     vc.component.addFeeConfigInfo.paymentCycle = '1';
                 }
