@@ -61,9 +61,9 @@
 
                 if (_allNum.split('-').length == 3) {
                     let _allNums = _allNum.split('-')
-                    param.params.floorNum = _allNums[0];
-                    param.params.unitNum = _allNums[1];
-                    param.params.roomNum = _allNums[2];
+                    param.params.floorNum = _allNums[0].trim();
+                    param.params.unitNum = _allNums[1].trim();
+                    param.params.roomNum = _allNums[2].trim();
                 }
 
                 //发送get请求

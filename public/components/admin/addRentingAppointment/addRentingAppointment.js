@@ -14,11 +14,20 @@
                 appointmentTime: '',
                 appointmentRoomId: '',
                 remark: '',
+                communitys: [],
+                communityId: '',
+                floorId: '',
+                floorNum: '',
+                unitId: '',
+                unitNum: '',
+                roomId: '',
+                roomNum: ''
 
             }
         },
         _initMethod: function () {
             $that._initAddAppointmentTime();
+            $that._loadAddCommunitys();
         },
         _initEvent: function () {
             vc.on('addRentingAppointment', 'openAddRentingAppointmentModal', function () {
@@ -110,10 +119,6 @@
                             errInfo: "备注不能超过500字"
                         },
                     ],
-
-
-
-
                 });
             },
             saveRentingAppointmentInfo: function () {
@@ -158,7 +163,30 @@
 
                     });
             },
+            _loadAddCommunitys: function () {
+                var param = {
+                    params: {
+                        _uId: 'ccdd00opikookjuhyyttvhnnjuuu',
+                        page: 1,
+                        row: 50
+                    }
+                };
+                vc.http.get('initData',
+                    'getCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _communityInfos = JSON.parse(json).communitys;
+                            $that.addRentingAppointmentInfo.communitys = _communityInfos;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                        vc.jumpToPage(_param.url);
+                    }
+                );
+            },
             clearAddRentingAppointmentInfo: function () {
+                let _communitys = $that.addRentingAppointmentInfo.communitys;
                 vc.component.addRentingAppointmentInfo = {
                     tenantName: '',
                     tenantSex: '',
@@ -166,7 +194,14 @@
                     appointmentTime: '',
                     appointmentRoomId: '',
                     remark: '',
-
+                    communityId: '',
+                    floorId: '',
+                    floorNum: '',
+                    unitId: '',
+                    unitNum: '',
+                    roomId: '',
+                    roomNum: '',
+                    communitys: _communitys
                 };
             }
         }
