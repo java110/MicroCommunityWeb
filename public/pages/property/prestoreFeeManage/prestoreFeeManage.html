@@ -10,10 +10,10 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="房屋ID"
-                                    v-model="prestoreFeeManageInfo.conditions.roomId" class=" form-control">
+                                <input type="text" placeholder="房屋ID" v-model="prestoreFeeManageInfo.conditions.roomId"
+                                    class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -22,13 +22,8 @@
                                 <option value="8003">水费</option>
                                 <option value="8004">电费</option>
                             </select> </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入预存金额"
-                                    v-model="prestoreFeeManageInfo.conditions.prestoreFeeAmount" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
+
+                        <div class="col-sm-4">
                             <select class="custom-select" v-model="prestoreFeeManageInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
                                 <option value="1001">未使用</option>
@@ -50,12 +45,12 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>预付费用信息</h5>
+                    <h5>预付信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPrestoreFeeModal()">
+                        <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPrestoreFeeModal()">
                             <i class="glyphicon glyphicon-plus"></i>
                             添加预付费用
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -66,13 +61,11 @@
                                 <th class="text-center">预付费用ID</th>
                                 <th class="text-center">房屋ID</th>
                                 <th class="text-center">预付类型</th>
-                                <th class="text-center">预存对象类型</th>
+                                <th class="text-center">对象类型</th>
                                 <th class="text-center">预付金额</th>
                                 <th class="text-center">状态</th>
                                 <th class="text-center">备注</th>
                                 <th class="text-center">操作</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
@@ -123,8 +116,8 @@
 
 
 
-    <vc:create path="property/addPrestoreFee" callBackListener="" callBackFunction=""></vc:create>
+    <!-- <vc:create path="property/addPrestoreFee" callBackListener="" callBackFunction=""></vc:create> -->
     <vc:create path="property/editPrestoreFee"></vc:create>
-    <vc:create path="property/deletePrestoreFee"></vc:create>
+    <!-- <vc:create path="property/deletePrestoreFee"></vc:create> -->
 
 </div>
