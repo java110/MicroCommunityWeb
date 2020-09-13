@@ -15,16 +15,16 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写楼栋-单元-房屋 如：1-1-1123" class="form-control "
-                                    v-model="roomCreateFeeInfo.conditions.allNum">
+                                    v-model="roomCreateFeeInfo.conditions.allNum" @keyup.enter="_queryRoomMethod">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <input type="text" placeholder="请填写业主名称" class="form-control "
-                                v-model="roomCreateFeeInfo.conditions.ownerName">
+                                v-model="roomCreateFeeInfo.conditions.ownerName"  @keyup.enter="_queryRoomMethod">
                         </div>
                         <div class="col-sm-4">
                             <input type="text" placeholder="请填写业主身份证号" class="form-control "
-                                v-model="roomCreateFeeInfo.conditions.idCard">
+                                v-model="roomCreateFeeInfo.conditions.idCard"  @keyup.enter="_queryRoomMethod">
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRoomMethod()"><i
@@ -60,7 +60,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control "
-                                    v-model="roomCreateFeeInfo.conditions.roomNum">
+                                    v-model="roomCreateFeeInfo.conditions.roomNum"  @keyup.enter="_queryRoomMethod">
                             </div>
                         </div>
                         
