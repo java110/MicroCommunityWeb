@@ -13,6 +13,7 @@
                 tenantTel: '',
                 appointmentTime: '',
                 appointmentRoomId: '',
+                appointmentRoomNum: '',
                 remark: '',
                 communitys: [],
                 communityId: '',
@@ -164,7 +165,7 @@
                     });
             },
             _loadAddCommunitys: function () {
-                var param = {
+                let param = {
                     params: {
                         _uId: 'ccdd00opikookjuhyyttvhnnjuuu',
                         page: 1,
@@ -185,6 +186,48 @@
                     }
                 );
             },
+
+            _loadRoomInfo: function () {
+                let _appointmentRoomNum = $that.addRentingAppointmentInfo.appointmentRoomNum;
+                if (_appointmentRoomNum.split('-').length != 3) {
+                    return ;
+                }
+                if($that.addRentingAppointmentInfo.communityId == ''){
+                    vc.toast('请先选择小区');
+                    $that.addRentingAppointmentInfo.appointmentRoomNum = '';
+                    return ;
+                }
+                let _appointmentRoomNums = _appointmentRoomNum.split('-')
+
+                let param = {
+                    params: {
+                        _uId: 'ccdd00opikookjuhyyttvhnnjuuu',
+                        page: 1,
+                        row: 1,
+                        floorNum: _appointmentRoomNums[0].trim(),
+                        unitNum: _appointmentRoomNums[1].trim(),
+                        roomNum: _appointmentRoomNums[2].trim(),
+                        communityId: $that.addRentingAppointmentInfo.communityId
+                    }
+                };
+                vc.http.apiGet('room.queryRooms',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _rooms = JSON.parse(json).rooms;
+                            if (_rooms.length < 1) {
+                                vc.toast('未查询到房屋');
+                                $that.addRentingAppointmentInfo.appointmentRoomNum = '';
+                                return;
+                            }
+                            $that.addRentingAppointmentInfo.appointmentRoomId = _rooms[0].roomId;
+                        }
+                    }, function () {
+                        vc.toast('未查询到房屋');
+                        $that.addRentingAppointmentInfo.appointmentRoomNum = '';
+                    }
+                );
+            },
             clearAddRentingAppointmentInfo: function () {
                 let _communitys = $that.addRentingAppointmentInfo.communitys;
                 vc.component.addRentingAppointmentInfo = {
@@ -201,7 +244,8 @@
                     unitNum: '',
                     roomId: '',
                     roomNum: '',
-                    communitys: _communitys
+                    communitys: _communitys,
+                    appointmentRoomNum: ''
                 };
             }
         }
