@@ -68,6 +68,7 @@
                                 <th class="text-center">租客电话</th>
                                 <th class="text-center">预约时间</th>
                                 <th class="text-center">预约房屋</th>
+                                <th class="text-center">房屋</th>
                                 <th class="text-center">状态</th>
                                 <th class="text-center">备注</th>
                                 <th class="text-right">操作</th>
@@ -79,7 +80,9 @@
                                 <td class="text-center">{{rentingAppointment.tenantSex == '0' ? '男':'女'}}</td>
                                 <td class="text-center">{{rentingAppointment.tenantTel}}</td>
                                 <td class="text-center">{{rentingAppointment.appointmentTime}}</td>
-                                <td class="text-center">{{rentingAppointment.appointmentRoomId}}</td>
+                                <td class="text-center">{{rentingAppointment.appointmentRoomName}}</td>
+                                <td class="text-center">{{rentingAppointment.roomName}}</td>
+
                                 <td class="text-center">{{rentingAppointment.stateName}}</td>
                                 <td class="text-center">{{rentingAppointment.remark}}</td>
                                 <td class="text-right">
