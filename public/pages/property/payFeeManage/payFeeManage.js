@@ -40,8 +40,8 @@
                 $(".start_time").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd',
-                    minView: "month",
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
@@ -49,8 +49,8 @@
                 $(".end_time").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd',
-                    minView: "month",
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true

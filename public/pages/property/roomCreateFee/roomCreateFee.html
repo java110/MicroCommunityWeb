@@ -123,11 +123,11 @@
                                 {{room.ownerId}}
                             </td> -->
                                 <td class="text-right">
-                                    <div class="btn-group" v-if="room.state == '2001'">
+                                    <!-- <div class="btn-group" v-if="room.state == '2001'">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openRoomCreateFeeAddModal(room,false)">创建收费
                                         </button>
-                                    </div>
+                                    </div> -->
                                     <div class="btn-group" v-if="room.state == '2001'">
                                         <button class="btn-white btn btn-xs" v-on:click="_toOwnerPayFee(room)">欠费缴费
                                         </button>

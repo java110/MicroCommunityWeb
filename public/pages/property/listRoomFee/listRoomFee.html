@@ -53,7 +53,9 @@
                                 <td class="text-center">{{fee.amountOwed}}</td>
                                 <td class="text-center">{{fee.startTime}}</td>
                                 <td class="text-center">{{fee.endTime}}</td>
-                                <td class="text-center">{{fee.deadlineTime}}</td>
+                                <td class="text-center" v-if="fee.amountOwed == 0 && fee.endTime == fee.deadlineTime">-</td>
+                               
+                                <td class="text-center" v-else>{{fee.deadlineTime}}</td>
                                 <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' ">
                                     <div>上期度数：{{fee.preDegrees}}</div> 
                                     <div>本期度数：{{fee.curDegrees}} </div>
