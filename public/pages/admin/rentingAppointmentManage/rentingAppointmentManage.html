@@ -24,9 +24,12 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入预约房屋编号"
-                                    v-model="rentingAppointmentManageInfo.conditions.appointmentRoomId"
-                                    class=" form-control">
+                                <select class="custom-select" v-model="rentingAppointmentManageInfo.conditions.state">
+                                    <option selected value="">请选择状态</option>
+                                    <option value="1001">未租房</option>
+                                    <option value="2002">租房失败</option>
+                                    <option value="3003">租房成功</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -65,6 +68,7 @@
                                 <th class="text-center">租客电话</th>
                                 <th class="text-center">预约时间</th>
                                 <th class="text-center">预约房屋</th>
+                                <th class="text-center">状态</th>
                                 <th class="text-center">备注</th>
                                 <th class="text-right">操作</th>
                             </tr>
@@ -76,15 +80,20 @@
                                 <td class="text-center">{{rentingAppointment.tenantTel}}</td>
                                 <td class="text-center">{{rentingAppointment.appointmentTime}}</td>
                                 <td class="text-center">{{rentingAppointment.appointmentRoomId}}</td>
+                                <td class="text-center">{{rentingAppointment.stateName}}</td>
                                 <td class="text-center">{{rentingAppointment.remark}}</td>
                                 <td class="text-right">
+                                    <div class="btn-group" v-if="rentingAppointment.state == '1001'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRentingModel(rentingAppointment)">确认租房</button>
+                                    </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditRentingAppointmentModel(rentingAppointment)">修改</button>
                                     </div>
-                                    <div class="btn-group">
+                                    <div class="btn-group" v-if="rentingAppointment.state == '1001'">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteRentingAppointmentModel(rentingAppointment)">删除</button>
+                                            v-on:click="_openDeleteRentingAppointmentModel(rentingAppointment)">放弃</button>
                                     </div>
                                 </td>
 
@@ -110,5 +119,6 @@
     <vc:create path="admin/addRentingAppointment" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="admin/editRentingAppointment"></vc:create>
     <vc:create path="admin/deleteRentingAppointment"></vc:create>
+    <vc:create path="admin/confirmRenting"></vc:create>
 
 </div>

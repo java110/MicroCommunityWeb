@@ -1,0 +1,54 @@
+<div id="confirmRentingModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">确认租房</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">租客</label>
+                                <div class="col-sm-10">
+                                    <input v-model="confirmRentingInfo.tenantName" disabled="disabled" type="text"
+                                        placeholder="选填，请填写备注" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">小区</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="confirmRentingInfo.communityId" @change="_changeCommunity()">
+                                        <option selected disabled value="">必填，请选择小区</option>
+                                        <option v-for="(item,index) in confirmRentingInfo.communitys"
+                                            :value="item.communityId">
+                                            {{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">房源</label>
+                                <div class="col-sm-8">
+                                    <select class="custom-select" v-model="confirmRentingInfo.rentingId">
+                                        <option selected disabled value="">必填，请选择房源</option>
+                                        <option v-for="(item,index) in confirmRentingInfo.rentingPools"
+                                            :value="item.rentingId">
+                                            {{item.roomName}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary float-right">手工输入</button>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="confirmRenting()"><i class="fa fa-check"></i>&nbsp;提交</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

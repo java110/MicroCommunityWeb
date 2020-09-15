@@ -1,18 +1,35 @@
-<div class="modal fade" id="deleteRentingAppointmentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div id="deleteRentingAppointmentModel" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">请确认您的操作!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
             <div class="modal-body">
-                <tr align="center"><th>确定删除租赁预约</th></tr>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeDeleteRentingAppointmentModel()">点错了</button>
-                <button type="button" class="btn btn-primary" v-on:click="deleteRentingAppointment()">确认删除</button>
+                <h3 class="m-t-none m-b ">放弃租房</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">租客</label>
+                                <div class="col-sm-10">
+                                    <input v-model="deleteRentingAppointmentInfo.tenantName" disabled="disabled" type="text" placeholder="选填，请填写备注"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">原因</label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="deleteRentingAppointmentInfo.msg" placeholder="选填，请填写备注"
+                                        class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="deleteRentingAppointment()"><i class="fa fa-check"></i>&nbsp;提交</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

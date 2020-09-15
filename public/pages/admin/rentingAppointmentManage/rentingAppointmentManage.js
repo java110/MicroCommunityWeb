@@ -15,8 +15,7 @@
                 conditions: {
                     tenantName: '',
                     tenantTel: '',
-                    appointmentRoomId: '',
-
+                    state: '1001',
                 }
             }
         },
@@ -77,6 +76,10 @@
                 } else {
                     vc.component.rentingAppointmentManageInfo.moreCondition = true;
                 }
+            },
+            _openRentingModel:function(_rentingAppointment){
+                //确认租房
+                vc.emit('confirmRenting', 'openConfirmRentingModal',_rentingAppointment);
             }
 
 

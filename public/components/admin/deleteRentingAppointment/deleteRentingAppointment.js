@@ -3,7 +3,9 @@
     vc.extends({
         data: {
             deleteRentingAppointmentInfo: {
-
+                msg: '',
+                appointmentId: '',
+                tenantName: ''
             }
         },
         _initMethod: function () {
@@ -12,17 +14,28 @@
         _initEvent: function () {
             vc.on('deleteRentingAppointment', 'openDeleteRentingAppointmentModal', function (_params) {
 
-                vc.component.deleteRentingAppointmentInfo = _params;
+                //vc.component.deleteRentingAppointmentInfo = _params;
+                vc.copyObject(_params, $that.deleteRentingAppointmentInfo);
                 $('#deleteRentingAppointmentModel').modal('show');
 
             });
         },
         methods: {
             deleteRentingAppointment: function () {
-                vc.component.deleteRentingAppointmentInfo.communityId = vc.getCurrentCommunity().communityId;
+
+                let data = {
+                    appointmentId: $that.deleteRentingAppointmentInfo.appointmentId,
+                    state: '2002',
+                    msg: $that.deleteRentingAppointmentInfo.msg
+                };
+
+                if (data.msg == '') {
+                    vc.toast('请填写原因');
+                    return;
+                }
                 vc.http.apiPost(
-                    '/rentingAppointment/deleteRentingAppointment',
-                    JSON.stringify(vc.component.deleteRentingAppointmentInfo),
+                    '/rentingAppointment/updateRentingAppointment',
+                    JSON.stringify(data),
                     {
                         emulateJSON: true
                     },
@@ -32,6 +45,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#deleteRentingAppointmentModel').modal('hide');
+                            $that._clearRentingAppointment();
                             vc.emit('rentingAppointmentManage', 'listRentingAppointment', {});
                             return;
                         }
@@ -45,6 +59,13 @@
             },
             closeDeleteRentingAppointmentModel: function () {
                 $('#deleteRentingAppointmentModel').modal('hide');
+            },
+            _clearRentingAppointment: function () {
+                $that.deleteRentingAppointmentInfo = {
+                    msg: '',
+                    appointmentId: '',
+                    tenantName: ''
+                }
             }
         }
     });
