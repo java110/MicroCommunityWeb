@@ -87,7 +87,7 @@
 
                                     <div class="btn-group" if="rentingPool.state == '3'">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteRentingPoolModel(rentingPool)">租客支付</button>
+                                            v-on:click="_openRentingPayModel(rentingPool,'rent')">租客支付</button>
                                     </div>
 
                                     <div class="btn-group">
@@ -124,5 +124,6 @@
     <vc:create path="admin/addRentingPool" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="admin/editRentingPool"></vc:create>
     <vc:create path="admin/deleteRentingPool"></vc:create>
+    <vc:create path="admin/rentingPay"></vc:create>
 
 </div>

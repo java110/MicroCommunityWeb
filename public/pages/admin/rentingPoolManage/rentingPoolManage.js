@@ -78,6 +78,10 @@
                 } else {
                     vc.component.rentingPoolManageInfo.moreCondition = true;
                 }
+            },
+            _openRentingPayModel:function(_rentingPool,_userRole){
+                _rentingPool.userRole = _userRole;
+                vc.emit('rentingPay', 'openRentingPayModal',_rentingPool);
             }
 
 
