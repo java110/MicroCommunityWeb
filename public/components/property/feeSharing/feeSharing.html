@@ -60,7 +60,7 @@
                   <select class="custom-select" v-model="feeSharingInfo.formulaId">
                     <option selected disabled value="">必填，请选择收费项目</option>
                     <option v-for="(item,index) in feeSharingInfo.formulas" :key="index"
-                      v-bind:value="item.formulaId">{{item.formulaValue}}
+                      v-bind:value="item.formulaId">{{item.formulaValue}}({{item.formulaDesc}})
                     </option>
                   </select>
                 </div>

@@ -67,7 +67,7 @@
                                 <th class="text-center">业主名称</th>
                                 <th class="text-center">业主电话</th>
                                 <th class="text-center">状态</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-right">操作</th>
 
 
                             </tr>
@@ -83,7 +83,13 @@
                                 <td class="text-center">{{rentingPool.ownerName}}</td>
                                 <td class="text-center">{{rentingPool.ownerTel}}</td>
                                 <td class="text-center">{{rentingPool.stateName}}</td>
-                                <td class="text-center">
+                                <td class="text-right">
+
+                                    <div class="btn-group" if="rentingPool.state == '3'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteRentingPoolModel(rentingPool)">租客支付</button>
+                                    </div>
+
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditRentingPoolModel(rentingPool)">修改</button>
@@ -92,6 +98,8 @@
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteRentingPoolModel(rentingPool)">删除</button>
                                     </div>
+
+
                                 </td>
 
                             </tr>
