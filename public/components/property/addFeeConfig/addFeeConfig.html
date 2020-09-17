@@ -13,7 +13,7 @@
                                     <select class="custom-select" v-model="addFeeConfigInfo.feeTypeCd">
                                         <option selected disabled value="">必填，请选择费用类型</option>
                                         <option v-for="(item,index) in addFeeConfigInfo.feeTypeCds" :key="index"
-                                            v-bind:value="item.statusCd" v-if="item.statusCd != '888800010007'">
+                                            v-bind:value="item.statusCd">
                                             {{item.name}}
                                         </option>
                                     </select></div>

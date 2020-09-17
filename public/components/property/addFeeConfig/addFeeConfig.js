@@ -26,7 +26,7 @@
         },
         _initMethod: function () {
             vc.component._initAddFeeConfigDateInfo();
-            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
+            vc.getDict('pay_fee_config', "fee_type_cd_show", function (_data) {
                 vc.component.addFeeConfigInfo.feeTypeCds = _data;
             });
             vc.getDict('pay_fee_config', "computing_formula", function (_data) {
