@@ -35,8 +35,8 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >费用项ID：</label>
-                            <label class="">{{mainFeeInfo.configId}}</label>
+                            <label class="col-form-label" >付费对象：</label>
+                            <label class="">{{mainFeeInfo.payerObjName}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -65,13 +65,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label class="col-form-label" >计费开始时间：</label>
-                            <label class="">{{mainFeeInfo.endTime}}</label>
+                            <label class="">{{_getEndTime(mainFeeInfo)}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label class="col-form-label" >计费结束时间：</label>
-                            <label class="">{{mainFeeInfo.deadlineTime}}</label>
+                            <label class="">{{_getDeadlineTime(mainFeeInfo)}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">

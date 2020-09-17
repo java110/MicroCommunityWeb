@@ -144,7 +144,7 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#editCarModal').modal('hide');
-                            vc.emit('lisOwnerCar', 'listOwnerCarData', {});
+                            vc.emit('listOwnerCar', 'listOwnerCarData', {});
 
                             for (let key in $that.editCarInfo) {
                                 $that.editCarInfo[key] = '';

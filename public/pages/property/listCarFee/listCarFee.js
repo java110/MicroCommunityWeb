@@ -10,7 +10,8 @@
                 total: 0,
                 records: 1,
                 areaNum: '',
-                num: ''
+                num: '',
+                parkingName: ''
             }
         },
         _initMethod: function () {
@@ -20,6 +21,12 @@
                 vc.component.listCarFeeInfo.areaNum = vc.getParam('areaNum');
                 vc.component.listCarFeeInfo.num = vc.getParam('num');
             };
+            let _parkingName = "无车位";
+            if ($that.listCarFeeInfo.areaNum != 'undefined') {
+                _parkingName = $that.listCarFeeInfo.areaNum + "停车场" + $that.listCarFeeInfo.num + "车位";
+            }
+            $that.listCarFeeInfo.parkingName = _parkingName;
+
             vc.component._loadlistCarFeeInfo(1, 10);
         },
         _initEvent: function () {
@@ -93,15 +100,35 @@
                 });
             },
             _openAddMeterWaterModal: function () {
+
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId: $that.listCarFeeInfo.carId,
                     roomName: $that.listCarFeeInfo.carNum,
-                    ownerName: $that.listCarFeeInfo.areaNum + "停车场" + $that.listCarFeeInfo.num + "车位",
+                    ownerName: $that.listCarFeeInfo.parkingName,
                     objType: '6666'
                 });
             },
             _goBack: function () {
                 vc.goBack();
+            },
+
+            _getDeadlineTime: function (_fee) {
+
+                if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
+                    return "-";
+                }
+
+                if (_fee.state == '2009001') {
+                    return "-";
+                }
+
+                return _fee.deadlineTime;
+            },
+            _getEndTime: function (_fee) {
+                if (_fee.state == '2009001') {
+                    return "-";
+                }
+                return _fee.endTime;
             }
         }
 

@@ -125,6 +125,24 @@
                 });
 
                 return _value;
+            },
+            _getDeadlineTime:function(_fee){
+
+                if(_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime){
+                    return "-";
+                }
+
+                if(_fee.state == '2009001'){
+                    return "-";
+                }
+
+                return _fee.deadlineTime;
+            },
+            _getEndTime:function(_fee){
+                if(_fee.state == '2009001'){
+                    return "-";
+                }
+                return _fee.endTime;
             }
         }
 

@@ -1,9 +1,5 @@
-<div  >
-    <vc:create path="property/viewMainFee"
-               feeName="物业费"
-               feeTypeCd="888800010001"
-               payName="propertyPay"
-    ></vc:create>
+<div>
+    <vc:create path="property/viewMainFee" feeName="物业费" feeTypeCd="888800010001" payName="propertyPay"></vc:create>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -14,13 +10,15 @@
 
                     <div class="row">
                         <div class="col-sm-3 input-group">
-                            <input size="16" type="text" placeholder="请选择开始时间"   readonly class="form-control form-control-sm start_time">
+                            <input size="16" type="text" placeholder="请选择开始时间" readonly
+                                class="form-control form-control-sm start_time">
                         </div>
                         <div class="col-sm-2">
 
                         </div>
                         <div class="col-sm-3 input-group">
-                            <input size="16" type="text" placeholder="请选择结束时间"  readonly class="form-control form-control-sm end_time">
+                            <input size="16" type="text" placeholder="请选择结束时间" readonly
+                                class="form-control form-control-sm end_time">
                         </div>
 
                         <div class="col-sm-2">
@@ -32,72 +30,73 @@
                                 <i class="fa fa-search"></i> 马上查询</button>
                         </div>
 
-                        </div>
+                    </div>
 
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                        data-page-size="10">
                         <thead>
-                        <tr>
-                            <th>缴费ID</th>
-                            <th data-hide="phone">周期</th>
-                            <th data-hide="phone">应收金额</th>
-                            <th data-hide="phone">实收金额</th>
-                            <th data-hide="phone">打折率</th>
-                            <th data-hide="phone" >备注</th>
-                            <th data-hide="phone">缴费时间</th>
-                            <th data-hide="phone">缴费起始时间</th>
-                            <th data-hide="phone">缴费结束时间</th>
-                            <th data-hide="phone">退费标识</th>
-                            <th data-hide="phone">操作</th>
-                        </tr>
+                            <tr>
+                                <th>缴费ID</th>
+                                <th data-hide="phone">周期</th>
+                                <th data-hide="phone">应收金额</th>
+                                <th data-hide="phone">实收金额</th>
+                                <th data-hide="phone">打折率</th>
+                                <th data-hide="phone">备注</th>
+                                <th data-hide="phone">缴费时间</th>
+                                <th data-hide="phone">缴费起始时间</th>
+                                <th data-hide="phone">缴费结束时间</th>
+                                <th data-hide="phone">退费标识</th>
+                                <th data-hide="phone">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="feeDetail in feeDetailInfo.feeDetails">
-                            <td>
-                                {{feeDetail.detailId}}
-                            </td>
-                            <td>
-                                {{feeDetail.cycles}} 月
-                            </td>
-                            <td>
-                                {{feeDetail.receivableAmount}} 元
-                            </td>
-                            <td>
-                                {{feeDetail.receivedAmount}} 元
-                            </td>
-                            <td>
-                                {{feeDetail.primeRate}}
-                            </td>
-                            <td>
-                                {{feeDetail.remark}}
-                            </td>
-                            <td>
-                                {{feeDetail.createTime}}
-                            </td>
-                            <td>
-                                {{feeDetail.startTime}}
-                            </td>
-                            <td>
-                                {{feeDetail.endTime}}
-                            </td>
-                            <td>
-                                {{feeDetail.stateName}}
-                            </td>
-                            <td>
-                                <div class="btn-group" v-if="!feeDetail.state || feeDetail.state== 1200">
-                                    <button class="btn-white btn btn-xs"
+                            <tr v-for="feeDetail in feeDetailInfo.feeDetails">
+                                <td>
+                                    {{feeDetail.detailId}}
+                                </td>
+                                <td>
+                                    {{feeDetail.cycles}} 月
+                                </td>
+                                <td>
+                                    {{feeDetail.receivableAmount}} 元
+                                </td>
+                                <td>
+                                    {{feeDetail.receivedAmount}} 元
+                                </td>
+                                <td>
+                                    {{feeDetail.primeRate}}
+                                </td>
+                                <td>
+                                    {{feeDetail.remark}}
+                                </td>
+                                <td>
+                                    {{feeDetail.createTime}}
+                                </td>
+                                <td>
+                                    {{feeDetail.startTime}}
+                                </td>
+                                <td>
+                                    {{feeDetail.endTime}}
+                                </td>
+                                <td>
+                                    {{feeDetail.stateName}}
+                                </td>
+                                <td>
+                                    <div class="btn-group" v-if="!feeDetail.state || feeDetail.state== 1200">
+                                        <button class="btn-white btn btn-xs"
                                             v-on:click="_openRefundModel(feeDetail)">申请退费
-                                    </button>
-                                </div>
-                            </td>
+                                        </button>
+                                    </div>
+                                </td>
 
-                        </tr>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

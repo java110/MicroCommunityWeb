@@ -20,7 +20,7 @@
             $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-            vc.on('lisOwnerCar', 'listOwnerCarData', function () {
+            vc.on('listOwnerCar', 'listOwnerCarData', function () {
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -101,6 +101,10 @@
             },
             _addCarParkingSpace: function (_car) {
                 vc.jumpToPage('/admin.html#/pages/property/carAddParkingSpace?carId=' + _car.carId);
+            },
+            _toPayFee:function(_car){
+                vc.jumpToPage('/admin.html#/pages/property/listCarFee?carId='
+                +_car.carId+'&carNum='+_car.carNum+'&areaNum='+_car.areaNum+'&num='+_car.num);
             }
         }
     })

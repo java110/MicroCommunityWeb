@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>{{listCarFeeInfo.carNum}}费用</h5>
+                    <h5>{{listCarFeeInfo.carNum}}费用({{listCarFeeInfo.parkingName}})</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                             v-on:click="_openAddMeterWaterModal()">
@@ -45,8 +45,8 @@
                                 <td class="text-center">{{fee.feeTypeCdName}}</td>
                                 <td class="text-center">{{fee.amountOwed}}</td>
                                 <td class="text-center">{{fee.startTime}}</td>
-                                <td class="text-center">{{fee.endTime}}</td>
-                                <td class="text-center">{{fee.deadlineTime}}</td>
+                                <td class="text-center">{{_getEndTime(fee)}}</td>
+                                <td class="text-center">{{_getDeadlineTime(fee)}}</td>
                                 <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' ">
                                     <div>上期度数：{{fee.preDegrees}}</div> 
                                     <div>本期度数：{{fee.curDegrees}} </div>

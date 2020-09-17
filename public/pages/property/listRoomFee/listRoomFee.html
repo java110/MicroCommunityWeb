@@ -52,10 +52,8 @@
                                 <td class="text-center">{{fee.feeTypeCdName}}</td>
                                 <td class="text-center">{{fee.amountOwed}}</td>
                                 <td class="text-center">{{fee.startTime}}</td>
-                                <td class="text-center">{{fee.endTime}}</td>
-                                <td class="text-center" v-if="fee.amountOwed == 0 && fee.endTime == fee.deadlineTime && fee.state == '2008001'">-</td>
-                               
-                                <td class="text-center" v-else>{{fee.deadlineTime}}</td>
+                                <td class="text-center">{{_getEndTime(fee)}}</td>
+                                <td class="text-center">{{_getDeadlineTime(fee)}}</td>
                                 <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' ">
                                     <div>上期度数：{{fee.preDegrees}}</div> 
                                     <div>本期度数：{{fee.curDegrees}} </div>
@@ -95,10 +93,10 @@
                     </table>
                     <!-- 分页 -->
                     <div class="row">
-                        <div class="col-sm-4">
-                            <span> 注意： 计费结束时间 “-” 表示未到计费时间</span>
+                        <div class="col-sm-5">
+                            <span> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</span>
                         </div>
-                        <div class="col-sm-8 float-right">
+                        <div class="col-sm-7 float-right">
                             <vc:create path="frame/pagination"></vc:create>
                         </div>
                     </div>

@@ -258,7 +258,7 @@
                         let _meterWaterInfo = JSON.parse(json);
                         let _total = _meterWaterInfo.total;
                         if (_total < 1) {
-                            $that.addMeterWaterInfo.preDegrees = 0;
+                            $that.addMeterWaterInfo.preDegrees = '0';
                             return;
                         }
                         $that.addMeterWaterInfo.preDegrees = _meterWaterInfo.data[0].curDegrees;
