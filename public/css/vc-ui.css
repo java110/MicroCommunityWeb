@@ -1427,6 +1427,11 @@ table.table-mail tr td {
 	margin: 0;
 }
 
+.margin-lr-0 {
+  margin-left: 0;
+  margin-right:0;
+}
+
 .margin-xs {
 	margin: 5px;
 }
@@ -1579,6 +1584,11 @@ table.table-mail tr td {
 
 .padding-0 {
 	padding: 0;
+}
+
+.padding-lr-0 {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .padding-xs {
