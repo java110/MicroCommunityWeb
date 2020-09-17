@@ -78,7 +78,7 @@
                             return;
                         }
                         $that.clearRentingPayInfo();
-                        $('#rentingPayModel').modal('show');
+                        $('#rentingPayModel').modal('hide');
                         vc.emit('rentingPoolManage', 'listRentingPool', {});
 
                     }, function (errInfo, error) {

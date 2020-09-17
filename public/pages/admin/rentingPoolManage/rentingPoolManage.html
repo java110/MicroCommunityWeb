@@ -85,9 +85,18 @@
                                 <td class="text-center">{{rentingPool.stateName}}</td>
                                 <td class="text-right">
 
-                                    <div class="btn-group" if="rentingPool.state == '3'">
+                                    <div class="btn-group" v-if="rentingPool.state == '3'">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openRentingPayModel(rentingPool,'rent')">租客支付</button>
+                                    </div>
+                                    <div class="btn-group" v-if="rentingPool.state == '7'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRentingPayModel(rentingPool,'owner')">业主支付</button>
+                                    </div>
+
+                                    <div class="btn-group" v-if="rentingPool.state == '4'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRentingPayModel(rentingPool,'owner')">申请合同</button>
                                     </div>
 
                                     <div class="btn-group">
