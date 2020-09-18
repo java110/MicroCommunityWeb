@@ -45,8 +45,13 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>合同类型属性</h5>
+                    <h5>合同扩展信息</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm margin-right"
+                            v-on:click="_goBack()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            返回
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_openAddContractTypeSpecModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -73,11 +78,11 @@
                             <tr v-for="contractTypeSpec in contractTypeSpecManageInfo.contractTypeSpecs">
                                 <td class="text-center">{{contractTypeSpec.specCd}}</td>
                                 <td class="text-center">{{contractTypeSpec.specName}}</td>
-                                <td class="text-center">{{contractTypeSpec.required}}</td>
-                                <td class="text-center">{{contractTypeSpec.specShow}}</td>
+                                <td class="text-center">{{contractTypeSpec.required == 'Y'?'是':'否'}}</td>
+                                <td class="text-center">{{contractTypeSpec.specShow == 'Y'? '是':'否'}}</td>
                                 <td class="text-center">{{contractTypeSpec.specValueType}}</td>
                                 <td class="text-center">{{contractTypeSpec.specType}}</td>
-                                <td class="text-center">{{contractTypeSpec.listShow}}</td>
+                                <td class="text-center">{{contractTypeSpec.listShow == 'Y'? '是':'否'}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"

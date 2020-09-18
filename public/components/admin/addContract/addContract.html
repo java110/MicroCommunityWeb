@@ -30,10 +30,11 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label padding-lr-sm text-right">合同类型</label>
                     <div class="col-sm-9 padding-lr-xs">
-                      <select class="custom-select" v-model="addContractInfo.contractType">
+                      <select class="custom-select" v-model="addContractInfo.contractType"
+                        @change="_changeContractType()">
                         <option selected disabled value="">必填，请选择合同类型</option>
-                        <option value="10001">小区文化</option>
-                        <option value="10002">其他</option>
+                        <option v-for="(item,index) in addContractInfo.contractTypes" :key="index"
+                          :value="item.contractTypeId">{{item.typeName}}</option>
                       </select>
                     </div>
                   </div>
@@ -152,6 +153,38 @@
                   </div>
                 </div>
               </div>
+              <div v-for="(item,index) in addContractInfo.contractTypeSpecs">
+                <div class="row" v-if="index % 3 == 0">
+                  <div class="col-sm-4">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label padding-lr-sm text-right">{{item.specName}}</label>
+                      <div class="col-sm-9 padding-lr-xs">
+                        <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
+                          class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4"  v-if="index < addContractInfo.contractTypeSpecs.length-1">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label padding-lr-sm text-right">{{addContractInfo.contractTypeSpecs[index+1].specName}}</label>
+                      <div class="col-sm-9 padding-lr-xs">
+                        <input v-model="addContractInfo.contractTypeSpecs[index+1].value" type="text" :placeholder="addContractInfo.contractTypeSpecs[index+1].specHoldplace"
+                          class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4"  v-if="index < addContractInfo.contractTypeSpecs.length-2">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label padding-lr-sm text-right">{{addContractInfo.contractTypeSpecs[index+2].specName}}</label>
+                      <div class="col-sm-9 padding-lr-xs">
+                        <input v-model="addContractInfo.contractTypeSpecs[index+2].value" type="text" :placeholder="addContractInfo.contractTypeSpecs[index+2].specHoldplace"
+                          class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="ibox-content">
                 <button class="btn btn-primary float-right" type="button" v-on:click="saveContractInfo()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>

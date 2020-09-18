@@ -18,6 +18,7 @@
                     specName: '',
                     specShow: '',
                     specCd: '',
+                    contractTypeId:''
 
                 }
             }
@@ -25,6 +26,7 @@
         _initMethod: function () {
 
             $that.contractTypeSpecManageInfo.contractTypeId = vc.getParam('contractTypeId');
+            $that.contractTypeSpecManageInfo.conditions.contractTypeId = vc.getParam('contractTypeId');
             $that.contractTypeSpecManageInfo.typeName = vc.getParam('typeName');
             vc.component._listContractTypeSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
@@ -77,6 +79,9 @@
             _queryContractTypeSpecMethod: function () {
                 vc.component._listContractTypeSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
 
+            },
+            _goBack:function(){
+                vc.goBack();
             },
             _moreCondition: function () {
                 if (vc.component.contractTypeSpecManageInfo.moreCondition) {

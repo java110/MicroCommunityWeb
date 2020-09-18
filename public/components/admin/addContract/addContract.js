@@ -23,26 +23,24 @@
                 startTime: '',
                 endTime: '',
                 signingTime: '',
-
+                contractTypes: [],
+                contractTypeSpecs: []
             }
         },
         _initMethod: function () {
-
+            $that._loadAddContractType();
         },
         _initEvent: function () {
             vc.on('addContract', 'openAddContractModal', function () {
                 $('#addContractModel').modal('show');
             });
             $('#addContractModel').on('show.bs.modal', function (e) {
-                
                 $(this).css('display', 'block');
                 let modalWidth = $(window).width() * 0.7;
                 $(this).find('.modal-dialog').css({
-                  'max-width': modalWidth
+                    'max-width': modalWidth
                 });
-                
-                
-              });
+            });
         },
         methods: {
             addContractValidate() {
@@ -232,7 +230,6 @@
 
                     return;
                 }
-
                 vc.component.addContractInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -269,6 +266,7 @@
                     });
             },
             clearAddContractInfo: function () {
+                let _contractTypes = $that.addContractInfo.contractTypes;
                 vc.component.addContractInfo = {
                     contractName: '',
                     contractCode: '',
@@ -285,8 +283,53 @@
                     startTime: '',
                     endTime: '',
                     signingTime: '',
-
+                    contractTypes: _contractTypes,
+                    contractTypeSpecs: []
                 };
+            },
+            _loadAddContractType: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100
+                    }
+                }
+                //发送get请求
+                vc.http.apiGet('/contract/queryContractType',
+                    param,
+                    function (json, res) {
+                        var _contractTypeManageInfo = JSON.parse(json);
+                        vc.component.addContractInfo.contractTypes = _contractTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _changeContractType: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        contractTypeId: $that.addContractInfo.contractType
+                    }
+                }
+                $that.addContractInfo.contractTypeSpecs = [];
+                vc.http.apiGet('/contract/queryContractTypeSpec',
+                    param,
+                    function (json, res) {
+                        let _contractTypeSpecManageInfo = JSON.parse(json);
+                        _contractTypeSpecManageInfo.data.forEach(item => {
+                            item.value = '';
+                            if (item.specShow == 'Y') {
+                                item.values = [];
+                                //$that._loadAttrValue(item.specCd, item.values);
+                                $that.addContractInfo.contractTypeSpecs.push(item);
+                            }
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });

@@ -197,6 +197,9 @@
             _chooseMoreCommunity: function () {
                 vc.emit('chooseEnterCommunity', 'openChooseEnterCommunityModel', {});
             },
+            _viewDocument:function(){
+                vc.emit('document','openDocument', {});
+            }
         }
     });
 

@@ -11,6 +11,7 @@
                 specValueType: '',
                 specType: '',
                 listShow: '',
+                contractTypeId: ''
             }
         },
         _initMethod: function () {
@@ -137,7 +138,7 @@
                     specValueType: '',
                     specType: '',
                     listShow: '',
-
+                    contractTypeId: ''
                 }
             }
         }
