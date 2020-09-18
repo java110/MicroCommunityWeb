@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>合同类型信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewContractTypeInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectContractTypeInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择合同类型</button>
+
+                    <button type="button" v-if="viewContractTypeInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddContractTypeInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加合同类型</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >类型名称：</label>
+                            <label class="">{{viewContractTypeInfo.typeName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >是否审核：</label>
+                            <label class="">{{viewContractTypeInfo.audit}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >描述：</label>
+                            <label class="">{{viewContractTypeInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="admin/addContractType"
+               callBackListener="viewContractTypeInfo"
+               callBackFunction="chooseContractType"
+    ></vc:create>
+
+
+    <vc:create path="admin/chooseContractType"
+               emitChooseContractType="viewContractTypeInfo"
+               emitLoadData="viewContractTypeInfo"
+    ></vc:create>
+</div>

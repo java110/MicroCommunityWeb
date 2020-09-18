@@ -34,13 +34,13 @@
                 $('#addContractModel').modal('show');
             });
             $('#addContractModel').on('show.bs.modal', function (e) {
-                //=====================设置弹出垂直居中显示===========================//
+                
                 $(this).css('display', 'block');
                 let modalWidth = $(window).width() * 0.7;
                 $(this).find('.modal-dialog').css({
                   'max-width': modalWidth
                 });
-                //弹出框打开前自己需要实现的业务
+                
                 
               });
         },
@@ -224,10 +224,6 @@
                             errInfo: "合同签订时间格式错误"
                         },
                     ],
-
-
-
-
                 });
             },
             saveContractInfo: function () {
@@ -246,7 +242,7 @@
                 }
 
                 vc.http.apiPost(
-                    'contract.saveContract',
+                    '/contract/saveContract',
                     JSON.stringify(vc.component.addContractInfo),
                     {
                         emulateJSON: true
