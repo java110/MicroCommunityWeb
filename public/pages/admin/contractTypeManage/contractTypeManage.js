@@ -69,6 +69,9 @@
             _queryContractTypeMethod: function () {
                 vc.component._listContractTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            _openContractTypeSpecModel: function (_contractType) {
+                vc.jumpToPage('/admin.html#/pages/admin/contractTypeSpecManage?contractTypeId=' + _contractType.contractTypeId);
+            },
             _moreCondition: function () {
                 if (vc.component.contractTypeManageInfo.moreCondition) {
                     vc.component.contractTypeManageInfo.moreCondition = false;
