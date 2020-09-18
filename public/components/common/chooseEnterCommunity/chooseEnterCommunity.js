@@ -20,7 +20,7 @@
                 $that.listEnterCommunity(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('chooseEnterCommunity','paginationPlus', 'page_event', function (_currentPage) {
-                vc.component.listEnterCommunity(_currentPage, DEFAULT_ROWS);
+                vc.component.listEnterCommunity(_currentPage, DEFAULT_ROW);
             });
         },
         methods:{
