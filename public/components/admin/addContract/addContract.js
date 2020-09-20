@@ -29,6 +29,18 @@
         },
         _initMethod: function () {
             $that._loadAddContractType();
+
+            vc.initDateTime('addStartTime',function(_value){
+                $that.addContractInfo.startTime = _value;
+            });
+            vc.initDateTime('addEndTime',function(_value){
+                $that.addContractInfo.endTime = _value;
+            });
+            
+            vc.initDateTime('addSigningTime',function(_value){
+                $that.addContractInfo.signingTime = _value;
+            });
+            
         },
         _initEvent: function () {
             vc.on('addContract', 'openAddContractModal', function () {

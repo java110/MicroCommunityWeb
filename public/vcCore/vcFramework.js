@@ -1440,6 +1440,25 @@
         return year + "" + month + "" + day + "" + hour + "" + minute + "" + second;
     };
 
+    vcFramework.initDateTime = function (_dateStr,_callBack) {
+        $('.' + _dateStr).datetimepicker({
+            language: 'zh-CN',
+            fontAwesome: 'fa',
+            format: 'yyyy-mm-dd hh:ii:ss',
+            initTime: true,
+            initialDate: new Date(),
+            autoClose: 1,
+            todayBtn: true
+
+        });
+        $('.' + _dateStr).datetimepicker()
+            .on('changeDate', function (ev) {
+                var value = $('.' + _dateStr).val();
+                //vc.component.addFeeConfigInfo.startTime = value;
+                _callBack(value);
+            });
+    }
+
 })(window.vcFramework);
 
 
@@ -2113,7 +2132,7 @@ vc 校验 工具类 -method
 (function (vcFramework) {
     let _staffPrivilege = vc.getData('hc_staff_privilege');
 
-    if(_staffPrivilege == null){
+    if (_staffPrivilege == null) {
         _staffPrivilege = [];
     }
     vcFramework.hasPrivilege = (_privalege) => {
