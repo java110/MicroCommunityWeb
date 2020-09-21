@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 contractTypeId: '',
+                componentShow: 'contractTypeList',
                 conditions: {
                     typeName: '',
                     audit: '',
@@ -23,6 +24,10 @@
             vc.component._listContractTypes(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
+
+            vc.on('contractTypeManage', 'componentShow', function (_param) {
+                vc.component.contractTypeManageInfo.componentShow = 'contractTypeList';
+            });
 
             vc.on('contractTypeManage', 'listContractType', function (_param) {
                 vc.component._listContractTypes(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -71,6 +76,10 @@
             },
             _openContractTypeSpecModel: function (_contractType) {
                 vc.jumpToPage('/admin.html#/pages/admin/contractTypeSpecManage?contractTypeId=' + _contractType.contractTypeId);
+            },
+            _openContractTemplate: function (_contractType) {
+                $that.contractTypeManageInfo.componentShow = '';
+                vc.emit('addTemplateView', 'openTemplate', _contractType);
             },
             _moreCondition: function () {
                 if (vc.component.contractTypeManageInfo.moreCondition) {

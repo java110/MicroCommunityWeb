@@ -1,0 +1,21 @@
+<div>
+    <div>
+        <div>
+            <div class=" text-center">
+                <h1>合同打印</h1>
+            </div>
+            <div class="row margin-top">
+                <div class="col-sm-12">
+                    <div v-html="printContractInfo.context"></div>
+                </div>
+            </div>
+        </div>
+        <div id="print-btn">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_printContractDiv()">
+                <i class="fa fa-check"></i>&nbsp;打印
+            </button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+            </button>
+        </div>
+    </div>
+</div>

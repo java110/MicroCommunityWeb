@@ -77,6 +77,9 @@
                 } else {
                     vc.component.contractManageInfo.moreCondition = true;
                 }
+            },
+            _printContract: function (_contract) {
+                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType);
             }
 
 
