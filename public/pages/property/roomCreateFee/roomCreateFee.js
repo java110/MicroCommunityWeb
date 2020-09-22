@@ -180,6 +180,10 @@
                 let roomName = _room.floorNum + "栋" + _room.unitNum + "单元" + _room.roomNum + "室"
                 vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId=' + _room.roomId + "&payObjType=3333&roomName=" + roomName);
             },
+            _printOwnOrder: function (_room) {
+                //打印催交单
+                vc.jumpToPage('print.html#/pages/property/printOweFee?roomId=' + _room.roomId)
+            }
 
         }
     });

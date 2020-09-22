@@ -57,7 +57,7 @@
                         var _json = JSON.parse(json);
                         let _fees = _json.data;
                         if (_fees.length < 1) {
-                            $that.owePayFeeOrderInfo.oweFees=[];
+                            $that.owePayFeeOrderInfo.oweFees = [];
                             vc.toast('当前没有欠费数据');
                             return;
                         }
@@ -85,7 +85,7 @@
                             });
                             _printFees.push({
                                 feeId: _item,
-                                squarePrice:_oweFeeItem.squarePrice,
+                                squarePrice: _oweFeeItem.squarePrice,
                                 additionalAmount: _oweFeeItem.additionalAmount,
                                 feeName: _oweFeeItem.feeName,
                                 amount: _oweFeeItem.feePrice
@@ -117,7 +117,7 @@
                                 fees: _printFees
                             }
 
-                            vc.saveData('_feeInfo',_feeInfo);
+                            vc.saveData('_feeInfo', _feeInfo);
                             //关闭model
                             $("#payFeeResult").modal({
                                 backdrop: "static",//点击空白处不关闭对话框
@@ -156,9 +156,15 @@
 
                 $that.owePayFeeOrderInfo.feePrices = Math.round(totalFee * 100, 2) / 100;
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack();
+            },
+            _printOwnOrder: function () {
+                vc.saveData('java110_printFee',$that.owePayFeeOrderInfo.oweFees);
+                //打印催交单
+                window.open('/print.html#/pages/property/printOweFee?roomId=' + $that.owePayFeeOrderInfo.payObjId)
             }
+
         }
 
     });

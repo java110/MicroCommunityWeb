@@ -19,28 +19,34 @@
                 bLink: '',
                 operator: '',
                 operatorLink: '',
+                allNum: '',
                 amount: '',
                 startTime: '',
                 endTime: '',
                 signingTime: '',
                 contractTypes: [],
-                contractTypeSpecs: []
+                contractTypeSpecs: [],
+                roomId: '',
+                ownerName: '',
+                link: '',
+                objType:'1111',
+                objId:'-1'
             }
         },
         _initMethod: function () {
             $that._loadAddContractType();
 
-            vc.initDateTime('addStartTime',function(_value){
+            vc.initDateTime('addStartTime', function (_value) {
                 $that.addContractInfo.startTime = _value;
             });
-            vc.initDateTime('addEndTime',function(_value){
+            vc.initDateTime('addEndTime', function (_value) {
                 $that.addContractInfo.endTime = _value;
             });
-            
-            vc.initDateTime('addSigningTime',function(_value){
+
+            vc.initDateTime('addSigningTime', function (_value) {
                 $that.addContractInfo.signingTime = _value;
             });
-            
+
         },
         _initEvent: function () {
             vc.on('addContract', 'openAddContractModal', function () {
@@ -296,7 +302,13 @@
                     endTime: '',
                     signingTime: '',
                     contractTypes: _contractTypes,
-                    contractTypeSpecs: []
+                    contractTypeSpecs: [],
+                    allNum: '',
+                    roomId: '',
+                    ownerName: '',
+                    link: '',
+                    objId:'-1',
+                    objType:'1111'
                 };
             },
             _loadAddContractType: function () {
@@ -342,7 +354,55 @@
                         console.log('请求失败处理');
                     }
                 );
-            }
+            },
+            _queryRoom: function () {
+                let _allNum = $that.addContractInfo.allNum;
+                if (_allNum == '') {
+                    return;
+                }
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                if (_allNum.split('-').length == 3) {
+                    let _allNums = _allNum.split('-')
+                    param.params.floorNum = _allNums[0].trim();
+                    param.params.unitNum = _allNums[1].trim();
+                    param.params.roomNum = _allNums[2].trim();
+                } else {
+                    vc.toast('房屋填写格式错误，请填写 楼栋-单元-房屋格式')
+                    return;
+                }
+
+                //发送get请求
+                vc.http.get('roomCreateFee',
+                    'listRoom',
+                    param,
+                    function (json, res) {
+                        let listRoomData = JSON.parse(json);
+                        let _rooms = listRoomData.rooms;
+
+                        if (_rooms.length < 1) {
+                            vc.toast('未找到房屋');
+                            $that.addContractInfo.allNum = '';
+                            return;
+                        }
+
+                        $that.addContractInfo.roomId = _rooms[0].roomId;
+                        $that.addContractInfo.ownerName = _rooms[0].ownerName;
+                        $that.addContractInfo.link = _rooms[0].link;
+                        $that.addContractInfo.objType = '3333';
+                        $that.addContractInfo.objId = _rooms[0].roomId;
+
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 

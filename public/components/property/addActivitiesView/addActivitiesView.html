@@ -13,7 +13,7 @@
                     <label class="col-sm-2 col-form-label">标题</label>
                     <div class="col-sm-10">
                         <input v-model="addActivitiesViewInfo.title" type="text" placeholder="必填，请填写标题"
-                               class="form-control">
+                            class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -22,33 +22,30 @@
                         <select class="custom-select" v-model="addActivitiesViewInfo.typeCd">
                             <option selected disabled value="">必填，请选择信息类型</option>
                             <option v-for="(item,index) in addActivitiesViewInfo.typeCds" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}
-                                </option>
+                                v-bind:value="item.statusCd">{{item.name}}
+                            </option>
                         </select></div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">头部照片</label>
                     <div class="col-sm-10">
-                        <vc:create path="frame/uploadImage"
-                                   callBackListener="addActivitiesView"
-                                   callBackFunction="notifyUploadImage"
-                                   imageCount="1"
-                                   namespace="addActivitiesView"
-                        ></vc:create>
+                        <vc:create path="frame/uploadImage" callBackListener="addActivitiesView"
+                            callBackFunction="notifyUploadImage" imageCount="1" namespace="addActivitiesView">
+                        </vc:create>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">开始时间</label>
                     <div class="col-sm-10">
                         <input v-model="addActivitiesViewInfo.startTime" readonly type="text" placeholder="必填，请填写开始时间"
-                               class="form-control activitiesStartTime">
+                            class="form-control activitiesStartTime">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">结束时间</label>
                     <div class="col-sm-10">
                         <input v-model="addActivitiesViewInfo.endTime" readonly type="text" placeholder="必填，请填写结束时间"
-                               class="form-control activitiesEndTime">
+                            class="form-control activitiesEndTime">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -68,7 +65,7 @@
                             class="fa fa-check"></i>&nbsp;提交
                     </button>
                     <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                            v-on:click="closeActivitiesInfo()">取消
+                        v-on:click="closeActivitiesInfo()">取消
                     </button>
                 </div>
 

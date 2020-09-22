@@ -47,6 +47,11 @@
                 };
                 _photos.forEach(function (_photo) {
                     //?objId=772019092507000013&communityId=7020181217000001&fileTypeCd=10000
+                    if (_photo.indexOf('base64,') > -1) {
+                        this.uploadImageInfo.photos.push(_photo);
+                        return;
+
+                    }
                     vc.urlToBase64(photoUrl + "?fileId=" + _photo + "&communityId=" + vc.getCurrentCommunity().communityId + "&time=" + new Date(), function (_base64Data) {
                         this.uploadImageInfo.photos.push(_base64Data);
                     })
