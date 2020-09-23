@@ -11,7 +11,8 @@
                 communityId: vc.getCurrentCommunity().communityId,
                 payObjId: '',
                 payObjType: '',
-                roomName: ''
+                roomName: '',
+                receiptId:''
             }
         },
         watch: {
@@ -116,8 +117,11 @@
                                 totalAmount: $that.owePayFeeOrderInfo.feePrices,
                                 fees: _printFees
                             }
+                            let _data = JSON.parse(json).data;
 
-                            vc.saveData('_feeInfo', _feeInfo);
+                            $that.owePayFeeOrderInfo.receiptId = _data.receiptId;
+
+                            //vc.saveData('_feeInfo', _feeInfo);
                             //关闭model
                             $("#payFeeResult").modal({
                                 backdrop: "static",//点击空白处不关闭对话框
@@ -140,7 +144,7 @@
             },
             _printAndBack: function () {
                 $('#payFeeResult').modal("hide");
-                window.open("/print.html#/pages/property/printPayFee?roomName=" + $that.owePayFeeOrderInfo.roomName)
+                window.open("/print.html#/pages/property/printPayFee?receiptId=" + $that.owePayFeeOrderInfo.receiptId)
             },
             _dealSelectFee: function () {
                 let totalFee = 0.00;

@@ -20,8 +20,11 @@
                     <tr>
                         <th scope="col" class="text-center">编号</th>
                         <th scope="col" class="text-center">收费项目</th>
+                        <th scope="col" class="text-center">收费范围</th>
+                        <th scope="col" class="text-center">周期</th>
                         <th scope="col" class="text-center">单价</th>
                         <th scope="col" class="text-center">固定费</th>
+                        <th scope="col" class="text-center">面积/用量</th>
                         <th scope="col" class="text-center">单位</th>
                         <th scope="col" class="text-center">金额</th>
                         <th scope="col" class="text-center">备注</th>
@@ -31,18 +34,23 @@
                     <tr v-for="(item,index) in printPayFeeInfo.fees">
                         <th scope="row" class="text-center">{{index +1}}</th>
                         <td class="text-center">{{item.feeName}}</td>
+                        <td class="text-center">{{vc.dateFormat(item.startTime)}}至{{vc.dateFormat(item.endTime)}}</td>
+                        <td class="text-center">{{item.cycle}}</td>
                         <td class="text-center">{{item.squarePrice}}</td>
                         <td class="text-center">{{item.additionalAmount}}</td>
+                        <td class="text-center">{{item.area}}</td>
                         <td class="text-center">元</td>
                         <td class="text-center">{{item.amount}}</td>
                         <td class="text-center">{{item.remark}}</td>
                     </tr>
                     <tr >
-                        <td colspan="2" class="text-center " >总费用</td>
-                        <td colspan="5" class="text-center ">{{printPayFeeInfo.feePrices}}元</td>
+                        <td colspan="1" class="text-center ">大写人民币（元）</td>
+                        <td colspan="5" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                        </td>
+                        <td colspan="4" class="text-center ">{{printPayFeeInfo.amount}}</td>
                     </tr>
                     <tr height="60px" v-if="printPayFeeInfo.wechatName != ''">
-                        <td colspan="7"  >
+                        <td colspan="10"  >
                             <p>
                                 尊敬的业主：
                             </p>

@@ -22,7 +22,8 @@
                 remark: '',
                 builtUpArea: 0.0,
                 squarePrice: 0.0,
-                additionalAmount: 0.0
+                additionalAmount: 0.0,
+                receiptId:''
             }
         },
         _initMethod: function () {
@@ -130,7 +131,11 @@
                                 fees: _printFees
                             }
 
-                            vc.saveData('_feeInfo', _feeInfo);
+                            let _data = JSON.parse(json).data;
+
+                            $that.payFeeOrderInfo.receiptId = _data.receiptId;
+
+                            //vc.saveData('_feeInfo', _feeInfo);
                             //关闭model
                             $("#payFeeResult").modal({
                                 backdrop: "static",//点击空白处不关闭对话框
@@ -175,7 +180,7 @@
             },
             _printAndBack: function () {
                 //$('#payFeeResult').modal("hide");
-                window.open("/print.html#/pages/property/printPayFee?roomName=" + $that.payFeeOrderInfo.roomName)
+                window.open("/print.html#/pages/property/printPayFee?receiptId=" + $that.payFeeOrderInfo.receiptId)
             },
             _mathCeil:function(_price){
                 return Math.ceil(_price);

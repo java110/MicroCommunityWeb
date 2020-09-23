@@ -4,8 +4,9 @@
         data: {
             printPayFeeInfo: {
                 communityName: '',
+                receiptId:'',
                 roomName: '',
-                feePrices: 0.00,
+                amount: 0.00,
                 fees: [],
                 feeTime: '',
                 wechatName:''
@@ -15,14 +16,12 @@
         _initMethod: function () {
             //vc.component._initPrintPurchaseApplyDateInfo();
 
-            $that.printPayFeeInfo.roomName = vc.getParam('roomName');
+            $that.printPayFeeInfo.receiptId = vc.getParam('receiptId');
             $that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
 
-            let _feeInfo = vc.getData('_feeInfo');
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
 
-            $that.printPayFeeInfo.feePrices = _feeInfo.totalAmount;
-            $that.printPayFeeInfo.fees = _feeInfo.fees;
+            $that._loadReceipt();
 
             $that._loadWechat();
         },
@@ -33,6 +32,57 @@
         methods: {
             _initPayFee: function () {
 
+            },
+            _loadReceipt:function(){
+
+                var param = {
+                    params: {
+                        page:1,
+                        row:1,
+                        receiptId:$that.printPayFeeInfo.receiptId,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/feeReceipt/queryFeeReceipt',
+                    param,
+                    function (json, res) {
+                        var _feeReceiptManageInfo = JSON.parse(json);
+                       let _feeReceipt = _feeReceiptManageInfo.data[0];
+
+                        $that.printPayFeeInfo.amount = _feeReceipt.amount;
+                        $that.printPayFeeInfo.roomName = _feeReceipt.objName;
+
+                        $that._loadReceiptDetail();
+                    
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadReceiptDetail:function(){
+
+                var param = {
+                    params: {
+                        page:1,
+                        row:100,
+                        receiptId:$that.printPayFeeInfo.receiptId,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/feeReceipt/queryFeeReceiptDetail',
+                    param,
+                    function (json, res) {
+                        var _feeReceiptManageInfo = JSON.parse(json);
+                       let _feeReceiptDetails = _feeReceiptManageInfo.data;
+                        $that.printPayFeeInfo.fees = _feeReceiptDetails;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             _loadWechat: function () {
                 var param = {

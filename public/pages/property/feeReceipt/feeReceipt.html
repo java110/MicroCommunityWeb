@@ -1,0 +1,98 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="feeReceiptManageInfo.conditions.objType">
+                                <option selected value="">请选择预存类型</option>
+                                <option value="3333">房屋费</option>
+                                <option value="6666">车位费</option>
+                            </select>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="收费对象" v-model="feeReceiptManageInfo.conditions.roomId"
+                                    class=" form-control" placeholder="请输入房屋或车位信息">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <!-- <select class="custom-select" v-model="feeReceiptManageInfo.conditions.state">
+                                <option selected value="">请选择状态</option>
+                                <option value="1001">未使用</option>
+                                <option value="2002">已使用</option>
+                            </select>-->
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeReceiptMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>收据信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">费用类型</th>
+                                <th class="text-center">收费对象</th>
+                                <th class="text-center">总金额</th>
+                                <th class="text-center">缴费时间</th>
+                                <th class="text-center">收据ID</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="feeReceipt in feeReceiptManageInfo.feeReceipts">
+                                <td class="text-center">{{feeReceipt.objType == '3333'? '房屋费':'车位费'}}</td>
+                                <td class="text-center">{{feeReceipt.objName}}</td>
+                                <td class="text-center">{{feeReceipt.amount}}</td>
+                                <td class="text-center">{{feeReceipt.createTime}}</td>
+                                <td class="text-center">{{feeReceipt.receiptId}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_printFeeReceipt(feeReceipt)">补打收据</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
