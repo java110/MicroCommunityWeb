@@ -9,7 +9,9 @@
                 amount: 0.00,
                 fees: [],
                 feeTime: '',
-                wechatName:''
+                wechatName:'',
+                content:'',
+                qrImg:''
             },
             printFlag: '0'
         },
@@ -17,13 +19,13 @@
             //vc.component._initPrintPurchaseApplyDateInfo();
 
             $that.printPayFeeInfo.receiptId = vc.getParam('receiptId');
-            $that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
+            //$that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
 
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
 
             $that._loadReceipt();
 
-            $that._loadWechat();
+            $that._loadPrintSpec();
         },
         _initEvent: function () {
 
@@ -53,7 +55,7 @@
 
                         $that.printPayFeeInfo.amount = _feeReceipt.amount;
                         $that.printPayFeeInfo.roomName = _feeReceipt.objName;
-
+                        $that.printPayFeeInfo.feeTime = _feeReceipt.createTime;
                         $that._loadReceiptDetail();
                     
                     }, function (errInfo, error) {
@@ -84,24 +86,25 @@
                     }
                 );
             },
-            _loadWechat: function () {
+            _loadPrintSpec: function () {
                 var param = {
                     params: {
                         page: 1,
                         row: 1,
-                        weChatType: 1100,
+                        specCd: 2020,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
 
                 //发送get请求
-                vc.http.apiGet('smallWeChat.listSmallWeChats',
+                vc.http.apiGet('/feePrintSpec/queryFeePrintSpec',
                     param,
                     function (json, res) {
-                        var _smallWeChatInfo = JSON.parse(json);
-                        var _smallWeChats = _smallWeChatInfo.smallWeChats;
-                        if(_smallWeChats.length > 0){
-                            $that.printPayFeeInfo.wechatName = _smallWeChats[0].name
+                        var _json = JSON.parse(json);
+                        var _data = _json.data;
+                        if (_data.length > 0) {
+                            $that.printPayFeeInfo.content = _data[0].content;
+                            $that.printPayFeeInfo.qrImg = _data[0].qrImg;
                         }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');

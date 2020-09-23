@@ -3,6 +3,7 @@
         <div>
             <div class=" text-center">
                 <h1>{{printPayFeeInfo.communityName}} 收据单</h1>
+                <span>单号：{{printPayFeeInfo.receiptId}}</span>
             </div>
             <div class="row margin-top">
                 <div class="col-sm-4">
@@ -22,8 +23,7 @@
                         <th scope="col" class="text-center">收费项目</th>
                         <th scope="col" class="text-center">收费范围</th>
                         <th scope="col" class="text-center">周期</th>
-                        <th scope="col" class="text-center">单价</th>
-                        <th scope="col" class="text-center">固定费</th>
+                        <th scope="col" class="text-center">单价/固定费</th>
                         <th scope="col" class="text-center">面积/用量</th>
                         <th scope="col" class="text-center">单位</th>
                         <th scope="col" class="text-center">金额</th>
@@ -37,7 +37,6 @@
                         <td class="text-center">{{vc.dateFormat(item.startTime)}}至{{vc.dateFormat(item.endTime)}}</td>
                         <td class="text-center">{{item.cycle}}</td>
                         <td class="text-center">{{item.squarePrice}}</td>
-                        <td class="text-center">{{item.additionalAmount}}</td>
                         <td class="text-center">{{item.area}}</td>
                         <td class="text-center">元</td>
                         <td class="text-center">{{item.amount}}</td>
@@ -45,20 +44,21 @@
                     </tr>
                     <tr >
                         <td colspan="1" class="text-center ">大写人民币（元）</td>
-                        <td colspan="5" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                        <td colspan="4" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
                         <td colspan="4" class="text-center ">{{printPayFeeInfo.amount}}</td>
                     </tr>
-                    <tr height="60px" v-if="printPayFeeInfo.wechatName != ''">
-                        <td colspan="10"  >
-                            <p>
-                                尊敬的业主：
-                            </p>
-                            <p>
-                                您好！感谢您在百忙中来缴费，为了更好的服务您，我们已开通网上缴费，请您关注《{{printPayFeeInfo.wechatName}}》公众号并注册，实现网上缴费。
+                    <tr height="60px">
+                        <td colspan="5">
+                            <p style="max-width: 600px;">
+                                <!-- {{printPayFeeInfo.content}} -->
+                                <div v-html="printPayFeeInfo.content"></div>
                             </p>
                         </td>
-                        
+                        <td colspan="4">
+                            <img :src="printPayFeeInfo.qrImg" width="100px" height="100px">
+                        </td>
+
                     </tr>
                 </tbody>
             </table>
