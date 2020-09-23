@@ -92,6 +92,7 @@
                             <tr>
                                 <th data-hide="phone">房屋</th>
                                 <th data-hide="phone">楼层</th>
+                                <th data-hide="phone">房屋状态</th>
                                 <th data-hide="phone">业主名称</th>
                                 <th data-hide="phone">联系电话</th>
                                 
@@ -108,6 +109,9 @@
 
                                 <td>
                                     {{room.layer}}层
+                                </td>
+                                <td>
+                                    {{room.stateName}}
                                 </td>
                                 <td>
                                     {{room.ownerName}}
