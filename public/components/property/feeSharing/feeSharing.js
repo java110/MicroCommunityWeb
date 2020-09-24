@@ -14,7 +14,8 @@
                 endTime: '',
                 feeName: '',
                 formulas: [],
-                remark:''
+                remark: '',
+                roomState: ['2001']
 
             }
         },
@@ -140,11 +141,11 @@
                 });
             },
             saveFeeSharingInfo: function () {
-                if($that.feeSharingInfo.scope == '1001'){
+                if ($that.feeSharingInfo.scope == '1001') {
                     $that.feeSharingInfo.objId = vc.getCurrentCommunity().communityId;
-                }else if($that.feeSharingInfo.scope == '2002'){
+                } else if ($that.feeSharingInfo.scope == '2002') {
                     $that.feeSharingInfo.objId = $that.feeSharingInfo.floorId;
-                }else{
+                } else {
                     $that.feeSharingInfo.objId = $that.feeSharingInfo.unitId;
                 }
                 if (!vc.component.feeSharingValidate()) {
@@ -154,12 +155,13 @@
 
                 let _objId = $that.feeSharingInfo.objId;
 
-                if(_objId == '' || _objId == '-1'){
+                if (_objId == '' || _objId == '-1') {
                     vc.toast("请选择公摊楼栋或者单元");
-                    return ;
+                    return;
                 }
 
                 vc.component.feeSharingInfo.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.feeSharingInfo.roomState =  vc.component.feeSharingInfo.roomState.join(',');
 
                 vc.http.apiPost(
                     '/importFee/feeSharing',
@@ -224,7 +226,8 @@
                     endTime: '',
                     feeName: '',
                     formulas: _formulas,
-                    remark:''
+                    remark: '',
+                    roomState: ['2001']
                 };
             }
         }
