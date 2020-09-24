@@ -2,7 +2,7 @@
 
     vc.extends({
         data:{
-            deleteFeeManualCollectionInfo:{
+            deleteFeeManualCollectionDetailInfo:{
 
             }
         },
@@ -10,19 +10,19 @@
 
          },
          _initEvent:function(){
-             vc.on('deleteFeeManualCollection','openDeleteFeeManualCollectionModal',function(_params){
+             vc.on('deleteFeeManualCollectionDetail','openDeleteFeeManualCollectionModal',function(_params){
 
-                vc.component.deleteFeeManualCollectionInfo = _params;
-                $('#deleteFeeManualCollectionModel').modal('show');
+                vc.component.deleteFeeManualCollectionDetailInfo = _params;
+                $('#deleteFeeManualCollectionDetailModel').modal('show');
 
             });
         },
         methods:{
-            deleteFeeManualCollection:function(){
-                vc.component.deleteFeeManualCollectionInfo.communityId=vc.getCurrentCommunity().communityId;
+            deleteFeeManualCollectionDetail:function(){
+                vc.component.deleteFeeManualCollectionDetailInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    '/feeManualCollection/deleteFeeManualCollection',
-                    JSON.stringify(vc.component.deleteFeeManualCollectionInfo),
+                    '/feeManualCollection/deleteCollectionDetail',
+                    JSON.stringify(vc.component.deleteFeeManualCollectionDetailInfo),
                     {
                         emulateJSON:true
                      },
@@ -31,8 +31,8 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#deleteFeeManualCollectionModel').modal('hide');
-                            vc.emit('feeManualCollectionManage','listFeeManualCollection',{});
+                            $('#deleteFeeManualCollectionDetailModel').modal('hide');
+                            vc.emit('feeManualCollectionDetailManage', 'listFeeManualCollectionDetail',{});
                             return ;
                         }
                         vc.message(_json.msg);
@@ -44,7 +44,7 @@
                      });
             },
             closeDeleteFeeManualCollectionModel:function(){
-                $('#deleteFeeManualCollectionModel').modal('hide');
+                $('#deleteFeeManualCollectionDetailModel').modal('hide');
             }
         }
     });

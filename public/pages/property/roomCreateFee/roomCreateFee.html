@@ -142,6 +142,10 @@
                                         <button class="btn-white btn btn-xs" v-on:click="_toOwnerPayFee(room)">欠费缴费
                                         </button>
                                     </div>
+                                    <div class="btn-group" v-if="room.state != '2002'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openTranslateFeeManualCollectionDetailModel(room)">人工托收
+                                        </button>
+                                    </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openViewRoomCreateFee(room)">查看费用
