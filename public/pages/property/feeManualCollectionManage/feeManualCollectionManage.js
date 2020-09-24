@@ -77,8 +77,10 @@
                 } else {
                     vc.component.feeManualCollectionManageInfo.moreCondition = true;
                 }
-            }
-
+            },
+            _exitManualCollectionData: function () {
+                vc.jumpToPage('/callComponent/feeManualCollection/exportData?communityId='+vc.getCurrentCommunity().communityId);
+            },
 
         }
     });
