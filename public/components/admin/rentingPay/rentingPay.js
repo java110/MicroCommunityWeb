@@ -93,7 +93,6 @@
                     userRoleName: '',
                     payPrice: 0.0,
                     state: ''
-
                 };
             },
             _viewQr: function (_url) {

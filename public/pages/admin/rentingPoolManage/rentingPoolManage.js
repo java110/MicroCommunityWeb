@@ -17,7 +17,7 @@
                     paymentType: '',
                     ownerName: '',
                     communityId: vc.getCurrentCommunity().communityId,
-                    state:'1,2,3,4,5,7'
+                    state: '1,2,3,4,5,7'
                 }
             }
         },
@@ -59,6 +59,33 @@
                     }
                 );
             },
+
+            _listRentingFlow: function (_rentingPool, _callBack) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        communityId: _rentingPool.communityId,
+                        rentingId: _rentingPool.rentingId,
+                        state: '4004'
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/rentingPoolFlow/queryRentingPoolFlow',
+                    param,
+                    function (json, res) {
+                        let _rentingPoolFlow = JSON.parse(json);
+                        if (_rentingPoolFlow.total < 1) {
+                            vc.total('未找到租房者信息');
+                            return;
+                        }
+                        _callBack(_rentingPoolFlow.data[0]);
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _openAddRentingPoolModal: function () {
                 vc.emit('addRentingPool', 'openAddRentingPoolModal', {});
             },
@@ -79,9 +106,30 @@
                     vc.component.rentingPoolManageInfo.moreCondition = true;
                 }
             },
-            _openRentingPayModel:function(_rentingPool,_userRole){
+            _openRentingPayModel: function (_rentingPool, _userRole) {
                 _rentingPool.userRole = _userRole;
-                vc.emit('rentingPay', 'openRentingPayModal',_rentingPool);
+                vc.emit('rentingPay', 'openRentingPayModal', _rentingPool);
+            },
+            _applyContract: function (_rentingPool) { //申请合同
+                let _loginUser = vc.getData('/nav/getUserInfo');
+                $that._listRentingFlow(_rentingPool,function(_flow){
+                    vc.emit('addContract', 'openAddContractModal', {
+                        contractName: _rentingPool.roomName + "租房合同",
+                        partyA: _rentingPool.ownerName,
+                        aContacts: _rentingPool.ownerName,
+                        aLink: _rentingPool.ownerTel,
+                        roomId: _rentingPool.roomId,
+                        ownerName: _rentingPool.ownerName,
+                        link: _rentingPool.ownerTel,
+                        objId: _rentingPool.roomId,
+                        allNum: _rentingPool.roomName,
+                        partyB:_flow.useName,
+                        bContacts:_flow.useName,
+                        bLink:_flow.userTel,
+                        operator: _loginUser.name
+                    })
+                });  
+
             }
 
 

@@ -49,7 +49,8 @@
 
         },
         _initEvent: function () {
-            vc.on('addContract', 'openAddContractModal', function () {
+            vc.on('addContract', 'openAddContractModal', function (_param) {
+                vc.copyObject(_param,$that.addContractInfo);
                 $('#addContractModel').modal('show');
             });
             $('#addContractModel').on('show.bs.modal', function (e) {

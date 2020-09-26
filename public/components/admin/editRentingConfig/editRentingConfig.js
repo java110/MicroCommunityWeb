@@ -10,7 +10,7 @@
                 serviceOwnerRate: '',
                 serviceTenantRate: '',
                 adminSeparateRate: '',
-                proxySeparateRate: '',
+                proxySeparateRate: '0',
                 propertySeparateRate: '',
 
             }
