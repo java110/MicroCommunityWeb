@@ -122,6 +122,7 @@
                         ownerName: _rentingPool.ownerName,
                         link: _rentingPool.ownerTel,
                         objId: _rentingPool.roomId,
+                        objType: '3333',
                         allNum: _rentingPool.roomName,
                         partyB:_flow.useName,
                         bContacts:_flow.useName,

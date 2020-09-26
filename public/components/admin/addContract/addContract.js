@@ -29,8 +29,8 @@
                 roomId: '',
                 ownerName: '',
                 link: '',
-                objType:'1111',
-                objId:'-1'
+                objType: '1111',
+                objId: '-1'
             }
         },
         _initMethod: function () {
@@ -50,7 +50,7 @@
         },
         _initEvent: function () {
             vc.on('addContract', 'openAddContractModal', function (_param) {
-                vc.copyObject(_param,$that.addContractInfo);
+                vc.copyObject(_param, $that.addContractInfo);
                 $('#addContractModel').modal('show');
             });
             $('#addContractModel').on('show.bs.modal', function (e) {
@@ -271,7 +271,7 @@
                             $('#addContractModel').modal('hide');
                             vc.component.clearAddContractInfo();
                             vc.emit('contractManage', 'listContract', {});
-
+                            vc.emit('rentingPoolManage', 'listRentingPool', {});
                             return;
                         }
                         vc.message(_json.msg);
@@ -308,8 +308,8 @@
                     roomId: '',
                     ownerName: '',
                     link: '',
-                    objId:'-1',
-                    objType:'1111'
+                    objId: '-1',
+                    objType: '1111'
                 };
             },
             _loadAddContractType: function () {
