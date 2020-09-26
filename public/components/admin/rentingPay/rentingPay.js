@@ -97,6 +97,7 @@
                 };
             },
             _viewQr: function (_url) {
+                document.getElementById("qrcode").innerHTML="";
                 let qrcode = new QRCode(document.getElementById("qrcode"), {
                     text: "租房",  //你想要填写的文本
                     width: 200, //生成的二维码的宽度
