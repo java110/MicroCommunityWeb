@@ -130,6 +130,9 @@
                         vc.message(errInfo);
 
                     });
+            },
+            _toRentingHistory:function(rentingPool){
+                vc.jumpToPage('/admin.html#/pages/admin/rentingDetail?rentingId='+rentingPool.rentingId);
             }
 
 

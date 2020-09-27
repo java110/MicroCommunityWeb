@@ -24,7 +24,7 @@
                                 <th class="text-center">出租配置</th>
                                 <th class="text-center">业主名称</th>
                                 <th class="text-center">业主电话</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-right">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,12 +32,12 @@
                                 <td class="text-center">{{rentingPool.roomName}}</td>
                                 <td class="text-center">{{rentingPool.rentingTitle}}</td>
                                 <td class="text-center">{{rentingPool.price}}</td>
-                                <td class="text-center">{{rentingPool.paymentType}}</td>
+                                <td class="text-center">{{rentingPool.paymentTypeName}}</td>
                                 <td class="text-center">{{rentingPool.checkIn == '1001'?'立即入住':'预约入住'}}</td>
-                                <td class="text-center">{{rentingPool.rentingConfigId}}</td>
+                                <td class="text-center">{{rentingPool.rentingType=='3344'?'整租':'合租'}}</td>
                                 <td class="text-center">{{rentingPool.ownerName}}</td>
                                 <td class="text-center">{{rentingPool.ownerTel}}</td>
-                                <td class="text-center">
+                                <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openAuditModal(rentingPool)">审核</button>
@@ -45,6 +45,10 @@
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteRentingPoolModel(rentingPool)">修改</button>
+                                    </div>
+                                    <div class="btn-group" >
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_toRentingHistory(rentingPool)">详情</button>
                                     </div>
                                 </td>
 
