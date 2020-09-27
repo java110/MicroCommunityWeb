@@ -1889,7 +1889,7 @@ vc 校验 工具类 -method
             return regMoney.test(text);
         },
         idCard: function (num) {
-            if (num == null || num == undefined) {
+            if (num == null || num == undefined || num == '') {
                 return true;
             }
             num = num.toUpperCase();
