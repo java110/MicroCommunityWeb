@@ -4,81 +4,97 @@
             <div class="ibox-title">
                 <h5>房源信息</h5>
                 <div class="ibox-tools" style="top:10px;">
-                    <button type="button" v-if="viewRentingPoolInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectRentingPoolInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择房源</button>
-
-                    <button type="button" v-if="viewRentingPoolInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddRentingPoolInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加房源</button>
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
+                        返回
+                    </button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
-<div class="col-sm-4">
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >出租标题：</label>
+                            <label class="col-form-label">出租标题：</label>
                             <label class="">{{viewRentingPoolInfo.rentingTitle}}</label>
                         </div>
-</div>
-<div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >租金：</label>
+                            <label class="col-form-label">租金：</label>
                             <label class="">{{viewRentingPoolInfo.price}}</label>
                         </div>
-</div>
-<div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >预付类型：</label>
-                            <label class="">{{viewRentingPoolInfo.paymentType}}</label>
+                            <label class="col-form-label">预付类型：</label>
+                            <label class="">{{viewRentingPoolInfo.paymentTypeName}}</label>
                         </div>
-</div>
-</div>
-<div class="row">
-<div class="col-sm-4">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >入住时间：</label>
-                            <label class="">{{viewRentingPoolInfo.checkInDate}}</label>
+                            <label class="col-form-label">入住时间：</label>
+                            <label class="">{{viewRentingPoolInfo.checkIn == '1001'?'立即入住':'预约入住'}}</label>
                         </div>
-</div>
-<div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >出租配置：</label>
-                            <label class="">{{viewRentingPoolInfo.rentingConfigId}}</label>
+                            <label class="col-form-label">出租配置：</label>
+                            <label class="">{{viewRentingPoolInfo.rentingType=='3344'?'整租':'合租'}}</label>
                         </div>
-</div>
-<div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >备注：</label>
+                            <label class="col-form-label">备注：</label>
                             <label class="">{{viewRentingPoolInfo.rentingDesc}}</label>
                         </div>
-</div>
-</div>
-<div class="row">
-<div class="col-sm-4">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >业主名称：</label>
+                            <label class="col-form-label">业主名称：</label>
                             <label class="">{{viewRentingPoolInfo.ownerName}}</label>
                         </div>
-</div>
-<div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >业主电话：</label>
+                            <label class="col-form-label">业主电话：</label>
                             <label class="">{{viewRentingPoolInfo.ownerTel}}</label>
                         </div>
-</div>
-</div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">房屋：</label>
+                            <label class="">{{viewRentingPoolInfo.roomName}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">业主服务费：</label>
+                            <label class="">{{viewRentingPoolInfo.serviceOwnerFee}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">租客服务费：</label>
+                            <label class="">{{viewRentingPoolInfo.serviceTenantFee}}</label>
+                        </div>
+                    </div>
+                   
+                </div>
 
             </div>
         </div>
     </div>
 
-    <vc:create path="admin/addRentingPool"
-               callBackListener="viewRentingPoolInfo"
-               callBackFunction="chooseRentingPool"
-    ></vc:create>
+    <vc:create path="admin/addRentingPool" callBackListener="viewRentingPoolInfo" callBackFunction="chooseRentingPool">
+    </vc:create>
 
 
-    <vc:create path="admin/chooseRentingPool"
-               emitChooseRentingPool="viewRentingPoolInfo"
-               emitLoadData="viewRentingPoolInfo"
-    ></vc:create>
+    <vc:create path="admin/chooseRentingPool" emitChooseRentingPool="viewRentingPoolInfo"
+        emitLoadData="viewRentingPoolInfo"></vc:create>
 </div>

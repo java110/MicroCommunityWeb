@@ -1,0 +1,78 @@
+<div>
+
+    <vc:create path="admin/viewRentingPoolInfo"></vc:create>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>租房流转</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th scope="col">序号</th>
+                                <th scope="col">处理人</th>
+                                <th scope="col">电话</th>
+                                <th scope="col">状态</th>
+                                <th scope="col">处理时间</th>
+                                <th scope="col">角色</th>
+                                <th scope="col">意见</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,index) in rentingDetailInfo.rentingFlows">
+                                <th scope="row">{{index+1}}</th>
+                                <td>{{item.useName}}</td>
+                                <td>{{item.userTel}}</td>
+                                <td>{{item.stateName}}</td>
+                                <td>{{item.dealTime}}</td>
+                                <td>{{_getUserRole(item.userRole)}}</td>
+                                <td>{{item.context}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>服务费分成</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th scope="col">序号</th>
+                                <th scope="col">费用名称</th>
+                                <th scope="col">分成金额</th>
+                                <th scope="col">支付时间</th>
+                                <th scope="col">收款对象</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,index) in rentingDetailInfo.fees">
+                                <th scope="row">{{index+1}}</th>
+                                <td>{{item.feeName}}</td>
+                                <td>{{item.amount}}</td>
+                                <td>{{item.startTime}}</td>
+                                <td>{{item.incomeObjName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

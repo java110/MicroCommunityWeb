@@ -72,7 +72,7 @@
                 }
             },
             _toRentingHistory:function(rentingPool){
-
+                vc.jumpToPage('/admin.html#/pages/admin/rentingDetail?rentingId='+rentingPool.rentingId);
             }
         }
     });

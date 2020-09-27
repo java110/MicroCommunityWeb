@@ -68,7 +68,7 @@
                 if (photoFiles && photoFiles.length > 0) {
                     // 获取目前上传的文件
                     var file = photoFiles[0];// 文件大小校验的动作
-                    if (file.size > 1024 * 1024 * 1) {
+                    if (file.size > 1024 * 1024 * 2) {
                         vc.toast("图片大小不能超过 2MB!")
                         return false;
                     }
