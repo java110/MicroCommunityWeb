@@ -7,7 +7,7 @@
         data: {
             rentingDetailInfo: {
                 rentingFlows:[],
-                fees:[]
+                fees:[],
             }
         },
         _initMethod: function () {

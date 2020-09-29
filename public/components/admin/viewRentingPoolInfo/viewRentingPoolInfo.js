@@ -19,7 +19,8 @@
                 paymentTypeName: '',
                 roomName: '',
                 serviceOwnerFee: 0.0,
-                serviceTenantFee: 0.0
+                serviceTenantFee: 0.0,
+                photos:[]
             }
         },
         _initMethod: function () {
@@ -70,6 +71,7 @@
                         vc.copyObject(_rentingPoolManageInfo.data[0], $that.viewRentingPoolInfo);
 
                         let _data = _rentingPoolManageInfo.data[0];
+                        $that.viewRentingPoolInfo.photos = _data.photos;
 
                         let _rentingFormula = _data.rentingFormula;
                         //收费计算公式,1001 固定值 ，2002 每月租金比例
@@ -89,7 +91,12 @@
             },
             _goBack: function () {
                 vc.goBack();
-            }
+            },
+            openFile:function(_photo){
+                vc.emit('viewImage','showImage',{
+                    url:_photo
+                });
+             }
         }
     });
 
