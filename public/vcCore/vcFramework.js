@@ -1021,6 +1021,7 @@
                 Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
                 Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
                 Vue.http.headers.common['SIGN'] = '';
+                Vue.http.headers.common['USER-ID'] = '-1';
             } else {
                 _api = '/callComponent/' + api;
             }
