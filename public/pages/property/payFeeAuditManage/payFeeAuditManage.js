@@ -3,7 +3,7 @@
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 30;
+    var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             payFeeAuditManageInfo: {
@@ -15,7 +15,7 @@
                 name: '',
                 conditions: {
                     communityId: vc.getCurrentCommunity().communityId,
-                    payObjType: '3333',
+                    payObjType: '',
                     startTime: '',
                     endTime: '',
                     userCode:'',
@@ -43,7 +43,7 @@
                     params: vc.component.payFeeAuditManageInfo.conditions
                 };
                 //发送get请求
-                vc.http.apGet('/payFeeAudit/queryPayFeeAudit',
+                vc.http.apiGet('/payFeeAudit/queryPayFeeAudit',
                     param,
                     function (json, res) {
                         var _payFeeAuditManageInfo = JSON.parse(json);

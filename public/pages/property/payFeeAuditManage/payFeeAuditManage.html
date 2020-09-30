@@ -14,11 +14,13 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="payFeeAuditManageInfo.conditions.payObjType">
+                                <option  value="" selected>请选择付费对象</option>
                                 <option v-for="(item,index) in payFeeAuditManageInfo.payObjTypes" :key="index" v-bind:value="item.statusCd">{{item.name}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <select class="custom-select" v-model="payFeeAuditManageInfo.conditions.state">
+                            <select class="custom-select" v-model="payFeeAuditManageInfo.conditions.state" placeholder="请选择状态">
+                                <option  value="" selected>请选择状态</option>
                                 <option  value="1010">待审核</option>
                                 <option  value="2020">审核通过</option>
                                 <option  value="3030">审核未通过</option>
@@ -35,11 +37,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row" v-if="payFeeAuditManageInfo.moreCondition == true">
-                        <div class="col-sm-4">
-                            <input size="16" type="text" placeholder="请填写员工编码"  v-model="payFeeAuditManageInfo.conditions.userCode" class="form-control">
-                        </div>
-                    </div>
+                  
                 </div>
             </div>
         </div>
@@ -80,7 +78,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="payFee in payFeeAuditManageInfo.payFees">
-                            <td class="text-center">{{payFee.payObjName}}</td>
+                            <td class="text-center">{{payFee.payerObjName}}</td>
                             <td class="text-center">{{payFee.feeName}}</td>
                             <td class="text-center">{{payFee.cycles}}个月</td>
                             <td class="text-center">{{payFee.endTime}}</td>
