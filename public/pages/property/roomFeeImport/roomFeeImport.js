@@ -31,7 +31,7 @@
                 vc.component._listImportFees(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listbills(_currentPage, DEFAULT_ROWS);
+                vc.component._listImportFees(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
