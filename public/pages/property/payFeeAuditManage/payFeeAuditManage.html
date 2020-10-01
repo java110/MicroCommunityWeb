@@ -81,7 +81,7 @@
                             <td class="text-center">{{payFee.payerObjName}}</td>
                             <td class="text-center">{{payFee.feeName}}</td>
                             <td class="text-center">{{payFee.cycles}}个月</td>
-                            <td class="text-center">{{payFee.endTime}}</td>
+                            <td class="text-center">{{payFee.startTime}}</td>
                             <td class="text-center">{{payFee.endTime}}</td>
                             <td class="text-center">{{payFee.receivableAmount}}</td>
                             <td class="text-center">{{payFee.receivedAmount}}</td>
@@ -95,7 +95,7 @@
                                     v-on:click="_detailFee(payFee)">详情
                                 </button>
                                 <button class="btn btn-link btn-xs"
-                                    v-on:click="_auditFee(payFee)">审核费用
+                                    v-on:click="_openAuditFeeModal(payFee)">审核费用
                                 </button>
                             </td>
                         </tr>
@@ -114,4 +114,7 @@
             </div>
         </div>
     </div>
+
+
+    <vc:create path="common/audit" callBackListener="payFeeAuditManage" callBackFunction="audtiNotify"></vc:create>
 </div>

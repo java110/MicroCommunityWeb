@@ -20,7 +20,8 @@
                     endTime: '',
                     userCode:'',
                     state:''
-                }
+                },
+                curPayFee:{}
             }
         },
         _initMethod: function () {
@@ -33,6 +34,10 @@
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listpayFees(_currentPage, DEFAULT_ROWS);
+            });
+
+            vc.on('payFeeAuditManage','audtiNotify',function(_param){
+
             });
         },
         methods: {
@@ -91,6 +96,11 @@
             },
             _detailFee:function(_fee){
                 vc.jumpToPage('/admin.html#/pages/property/propertyFee?'+vc.objToGetParam(_fee));
+            },
+
+            _openAuditFeeModal:function(_payFee){ // 打开 审核框
+                $that.payFeeAuditManageInfo.curPayFee = _payFee;
+                vc.emit('audit', 'openAuditModal',{});
             }
         }
     });
