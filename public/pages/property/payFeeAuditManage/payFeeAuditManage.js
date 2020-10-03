@@ -38,6 +38,8 @@
 
             vc.on('payFeeAuditManage','audtiNotify',function(_param){
 
+                $that._auditFee(_param);
+
             });
         },
         methods: {
@@ -101,6 +103,57 @@
             _openAuditFeeModal:function(_payFee){ // 打开 审核框
                 $that.payFeeAuditManageInfo.curPayFee = _payFee;
                 vc.emit('audit', 'openAuditModal',{});
+            },
+            _auditFee:function(_param){
+
+                //2020 审核通过 3030 未审核
+                let _state = _param.state == '1100'?'2020':'3030';   
+                let _data = {
+                    state:_state,
+                    message:_param.remark,
+                    feeDetailId:$that.payFeeAuditManageInfo.curPayFee.detailId,
+                    communityId:vc.getCurrentCommunity().communityId,
+                    feeId:$that.payFeeAuditManageInfo.curPayFee.feeId
+                };
+
+                vc.http.apiPost(
+                    '/payFeeAudit/savePayFeeAudit',
+                    JSON.stringify(_data),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model
+                            vc.component._listPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
+                            return;
+                        }
+                        vc.toast(_json.msg);
+
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+
+                        vc.toast(errInfo);
+
+                    });
+            },
+            _getState:function(_state){
+                if(_state == '2020'){
+                    return '审核通过';
+                }else if(_state == '3030'){
+                    return '审核不通过';
+                }
+
+                return '待审核';
+            },
+            _openRefundModel:function (_feeDetail) {
+                _feeDetail.mainFeeInfo={
+                    feeId:_feeDetail.feeId
+                }
+                vc.emit('returnPayFee', 'openReturnPayFeeModel', _feeDetail);
             }
         }
     });
