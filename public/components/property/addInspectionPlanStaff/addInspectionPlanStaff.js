@@ -73,7 +73,6 @@
                 });
             },
             _initAddInspectionPlanStaffDateInfo: function () {
-                //vc.component.addInspectionPlanStaffInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.addInspectionPlanStaffStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

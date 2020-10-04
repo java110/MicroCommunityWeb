@@ -22,7 +22,7 @@
                             <select class="custom-select" v-model="activitiesManageInfo.conditions.typeCd">
                                 <option selected value="">请选择信息类型</option>
                                 <option v-for="(item,index) in activitiesManageInfo.typeCds" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}
+                                    v-bind:value="item.typeCd">{{item.typeName}}
                                 </option>
                             </select></div>
                         <div class="col-sm-3">

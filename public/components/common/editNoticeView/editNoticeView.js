@@ -145,7 +145,6 @@
                 }
             },
             _initEditNoticeInfo: function () {
-                //vc.component.editNoticeViewInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.editNoticeStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

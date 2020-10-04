@@ -80,7 +80,7 @@
                 };
             },
             _initTemplateInfo: function () {
-                vc.component.addTemplateViewInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.addTemplateViewInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 var $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',
                     height: 300,

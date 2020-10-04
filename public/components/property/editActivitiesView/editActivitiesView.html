@@ -23,7 +23,7 @@
                                 <select class="custom-select" v-model="editActivitiesViewInfo.typeCd">
                                     <option selected disabled value="">必填，请选择信息类型</option>
                                     <option v-for="(item,index) in editActivitiesViewInfo.typeCds" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}
+                                    v-bind:value="item.typeCd">{{item.typeName}}
                                 </option>
                                 </select></div>
                         </div>

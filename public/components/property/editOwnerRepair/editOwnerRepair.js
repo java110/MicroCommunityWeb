@@ -186,7 +186,6 @@
                 vc.emit('addOwnerRepair', 'floorSelect2', 'clearFloor', {});
             },
             _initEditOwnerRepairInfo: function () {
-                //vc.component.editOwnerRepairInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.editAppointmentTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

@@ -25,7 +25,6 @@
         },
         methods: {
             _initEditAppointmentTime: function () {
-                //vc.component.editRentingAppointmentInfo.appointmentTime = vc.dateFormat(new Date().getTime());
                 $('.editAppointmentTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
