@@ -1288,6 +1288,26 @@
             }
         }
     };
+    vcFramework.getComponentCode = function(){
+        let _componentUrl = location.hash;
+
+        //判断是否为组件页面
+        if (!vcFramework.notNull(_componentUrl)) {
+            return "/";
+        }
+
+        if (_componentUrl.lastIndexOf('#') < 0) {
+            return "/";
+        }
+
+        let endPos = _componentUrl.length;
+        if (_componentUrl.indexOf('?') > -1) {
+            endPos = _componentUrl.indexOf('?');
+        }
+
+        _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('#') + 1, endPos);
+        return _componentUrl;
+    }
     //获取url参数
     vcFramework.getParam = function (_key) {
         //返回当前 URL 的查询部分（问号 ? 之后的部分）。

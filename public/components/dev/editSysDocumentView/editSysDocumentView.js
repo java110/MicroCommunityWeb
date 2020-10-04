@@ -16,29 +16,17 @@
         _initEvent: function () {
             vc.on('editSysDocumentView', 'openEditSysDocumentModal', function (_params) {
                 vc.component.refreshEditSysDocumentInfo();
-                _params.context = filterXSS(_params.context);
+                _params.docContent = filterXSS(_params.docContent);
                 vc.component.editSysDocumentViewInfo = _params;
 
 
             });
             vc.on('editSysDocumentView', 'sysDocumentEditSysDocumentInfo', function (_params) {
                 vc.component.refreshEditSysDocumentInfo();
-                _params.context = filterXSS(_params.context);
+                _params.docContent = filterXSS(_params.docContent);
                 vc.copyObject(_params, vc.component.editSysDocumentViewInfo);
-                $(".eidtSummernote").summernote('code', vc.component.editSysDocumentViewInfo.context);
-                var photos = [];
-                photos.push(vc.component.editSysDocumentViewInfo.headerImg);
-                vc.emit('editSysDocumentView', 'uploadImage', 'notifyPhotos', photos);
+                $(".eidtSummernote").summernote('code', vc.component.editSysDocumentViewInfo.docContent);
             });
-
-            vc.on("editSysDocumentView", "notifyUploadImage", function (_param) {
-                if (!vc.isEmpty(_param) && _param.length > 0) {
-                    vc.component.editSysDocumentViewInfo.headerImg = _param[0];
-                } else {
-                    vc.component.editSysDocumentViewInfo.headerImg = '';
-                }
-            });
-
         },
         methods: {
             editSysDocumentValidate: function () {
@@ -69,7 +57,7 @@
                             errInfo: "文档编码超过200位"
                         },
                     ],
-                    'editSysDocumentViewInfo.docContext': [
+                    'editSysDocumentViewInfo.docContent': [
                         {
                             limit: "required",
                             param: "",
@@ -133,7 +121,7 @@
                             vc.component.sendEditFile(files);
                         },
                         onChange: function (contents, $editable) {
-                            vc.component.editSysDocumentViewInfo.docContext = contents;
+                            vc.component.editSysDocumentViewInfo.docContent = contents;
                         }
                     }
                 });

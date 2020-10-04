@@ -12,8 +12,6 @@
         _initMethod: function () {
             vc.component._initSysDocumentInfo();
 
-            $that._loadAddSysDocumentType();
-
         },
         _initEvent: function () {
             vc.on('addSysDocumentView', 'openAddSysDocumentView', function () {
@@ -50,7 +48,7 @@
                             errInfo: "文档编码超过200位"
                         },
                     ],
-                    'addSysDocumentViewInfo.docContext': [
+                    'addSysDocumentViewInfo.docContent': [
                         {
                             limit: "required",
                             param: "",
@@ -113,7 +111,7 @@
                             vc.component.sendFile($summernote, files);
                         },
                         onChange: function (contents, $editable) {
-                            vc.component.addSysDocumentViewInfo.docContext = contents;
+                            vc.component.addSysDocumentViewInfo.docContent = contents;
                         }
                     },
                     toolbar: [

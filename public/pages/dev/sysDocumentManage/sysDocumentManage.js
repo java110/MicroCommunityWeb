@@ -45,14 +45,13 @@
                 };
 
                 //发送get请求
-                vc.http.get('sysDocumentManage',
-                    'list',
+                vc.http.apiGet('/sysDocument/querySysDocument',
                     param,
                     function (json, res) {
                         var _sysDocumentManageInfo = JSON.parse(json);
                         vc.component.sysDocumentManageInfo.total = _sysDocumentManageInfo.total;
                         vc.component.sysDocumentManageInfo.records = _sysDocumentManageInfo.records;
-                        vc.component.sysDocumentManageInfo.sysDocuments = _sysDocumentManageInfo.sysDocuments;
+                        vc.component.sysDocumentManageInfo.sysDocuments = _sysDocumentManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.sysDocumentManageInfo.records,
                             currentPage: _page
