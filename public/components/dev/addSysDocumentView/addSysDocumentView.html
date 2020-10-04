@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>添加文档</h5>
+                <div class="ibox-tools" style="top:10px;">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">标题</label>
+                    <div class="col-sm-10">
+                        <input v-model="addSysDocumentViewInfo.docTitle" type="text" placeholder="必填，请填写标题"
+                            class="form-control">
+                    </div>
+                </div>   
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">文档编码</label>
+                    <div class="col-sm-10">
+                        <input v-model="addSysDocumentViewInfo.docCode" type="text" placeholder="必填，请填写文档编码"
+                            class="form-control">
+                    </div>
+                </div>  
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">信息内容</label>
+                    <div class="col-sm-10">
+                        <div class="ibox-content no-padding">
+                            <div class="summernote"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="saveSysDocumentInfo()"><i
+                            class="fa fa-check"></i>&nbsp;提交
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                        v-on:click="closeSysDocumentInfo()">取消
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

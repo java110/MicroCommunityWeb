@@ -17,7 +17,7 @@
                 conditions: {
                     title: '',
                     typeCd: '',
-                    userName: '',
+                    staffName: '',
                     activitiesId: '',
 
                 }
