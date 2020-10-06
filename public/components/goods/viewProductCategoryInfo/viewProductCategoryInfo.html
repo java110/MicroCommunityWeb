@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>商品分类信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewProductCategoryInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectProductCategoryInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择商品分类</button>
+
+                    <button type="button" v-if="viewProductCategoryInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddProductCategoryInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加商品分类</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >分类名称：</label>
+                            <label class="">{{viewProductCategoryInfo.categoryName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >显示序号：</label>
+                            <label class="">{{viewProductCategoryInfo.seq}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >是否显示：</label>
+                            <label class="">{{viewProductCategoryInfo.isShow}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="goods/addProductCategory"
+               callBackListener="viewProductCategoryInfo"
+               callBackFunction="chooseProductCategory"
+    ></vc:create>
+
+
+    <vc:create path="goods/chooseProductCategory"
+               emitChooseProductCategory="viewProductCategoryInfo"
+               emitLoadData="viewProductCategoryInfo"
+    ></vc:create>
+</div>
