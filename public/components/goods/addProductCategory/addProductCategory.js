@@ -8,6 +8,7 @@
         data: {
             addProductCategoryInfo: {
                 categoryId: '',
+                parentCategoryId:'',
                 categoryName: '',
                 seq: '',
                 isShow: '',
@@ -86,7 +87,7 @@
                 }
 
                 vc.http.apiPost(
-                    'productCategory.saveProductCategory',
+                    '/productCategory/saveProductCategory',
                     JSON.stringify(vc.component.addProductCategoryInfo),
                     {
                         emulateJSON: true
@@ -114,9 +115,12 @@
             },
             clearAddProductCategoryInfo: function () {
                 vc.component.addProductCategoryInfo = {
+                    categoryId: '',
+                    parentCategoryId:'',
                     categoryName: '',
                     seq: '',
                     isShow: '',
+                    categoryLevel:'1'
 
                 };
             }

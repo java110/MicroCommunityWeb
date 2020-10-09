@@ -7,6 +7,8 @@
                 categoryName: '',
                 seq: '',
                 isShow: '',
+                parentCategoryId:'',
+                categoryLevel:''
 
             }
         },
@@ -78,7 +80,7 @@
                 }
 
                 vc.http.apiPost(
-                    'productCategory.updateProductCategory',
+                    '/productCategory/updateProductCategory',
                     JSON.stringify(vc.component.editProductCategoryInfo),
                     {
                         emulateJSON: true
@@ -106,6 +108,8 @@
                     categoryName: '',
                     seq: '',
                     isShow: '',
+                    parentCategoryId:'',
+                    categoryLevel:''
 
                 }
             }

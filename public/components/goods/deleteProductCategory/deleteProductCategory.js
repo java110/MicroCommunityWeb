@@ -21,7 +21,7 @@
             deleteProductCategory:function(){
                 vc.component.deleteProductCategoryInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'productCategory.deleteProductCategory',
+                    '/productCategory/deleteProductCategory',
                     JSON.stringify(vc.component.deleteProductCategoryInfo),
                     {
                         emulateJSON:true

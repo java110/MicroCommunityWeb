@@ -1,0 +1,48 @@
+<div id="editProductSpecModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">修改规格</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-1 col-form-label">名称</label>
+                                <div class="col-sm-11">
+                                    <input v-model="editProductSpecInfo.specName" type="text" placeholder="必填，请填写规格名称"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row" v-for="(item,index) in editProductSpecInfo.specDetails">
+                                <label class="col-sm-1 col-form-label">规格</label>
+                                <div class="col-sm-4">
+                                    <input v-model="item.detailName" type="text" placeholder="必填，请填写规格"
+                                        class="form-control">
+                                </div>
+                                <label class="col-sm-1 col-form-label text-right">值</label>
+                                <div class="col-sm-4">
+                                    <input v-model="item.detailValue" type="text" placeholder="必填，请填写规格值"
+                                        class="form-control">
+                                </div>
+                                <div class="col-sm-2 col-form-label text-center">
+                                    <span class="fa fa-minus" @click="_deleteEditSpecDetail(item)" v-if="index != editProductSpecInfo.specDetails.length -1"></span>
+                                    <span class="fa fa-plus" @click="_addEditSpecDetail()" v-if="index == editProductSpecInfo.specDetails.length -1"></span>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="editProductSpec()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

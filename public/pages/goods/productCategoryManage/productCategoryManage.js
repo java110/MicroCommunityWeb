@@ -42,7 +42,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('productCategory.listProductCategorys',
+                vc.http.apiGet('/productCategory/queryProductCategory',
                     param,
                     function (json, res) {
                         var _productCategoryManageInfo = JSON.parse(json);
