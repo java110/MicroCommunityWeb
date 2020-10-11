@@ -63,6 +63,7 @@
                     _productSpec.productSpecName = _productSpec.name;
                 }
                 vc.emit($props.emitChooseProductSpec, 'chooseProductSpec', _productSpec);
+                vc.emit('editProduct', 'chooseProductSpec', _productSpec);
                 vc.emit($props.emitLoadData, 'listProductSpecData', {
                     productSpecId: _productSpec.productSpecId
                 });

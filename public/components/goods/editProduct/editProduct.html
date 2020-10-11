@@ -1,77 +1,220 @@
-<div id = "editProductModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改商品信息</h3>
-                <div class="ibox-content">
-                    <div>
-                        <div>
-                            <div class="form-group row">
-         <label class="col-sm-2 col-form-label">商品大类</label>
-         <div class="col-sm-10">
-           <input v-model="editProductInfo.categoryId"                   type="text" placeholder="必填，请填写商品大类" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">商品名称</label>
-         <div class="col-sm-10">
-           <input v-model="editProductInfo.prodName"                   type="text" placeholder="必填，请填写商品名称" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">商品简介</label>
-         <div class="col-sm-10">
-           <input v-model="editProductInfo.prodDesc"                   type="text" placeholder="必填，请填写商品简介" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">关键词</label>
-         <div class="col-sm-10">
-           <input v-model="editProductInfo.keyword"                   type="text" placeholder="必填，请填写关键词" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">产品条码</label>
-         <div class="col-sm-10">
-           <input v-model="editProductInfo.barCode"                   type="text" placeholder="选填，请填写产品条码" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">单位</label>
-         <div class="col-sm-10">
-           <input v-model="editProductInfo.unitName"                   type="text" placeholder="选填，请填写单位" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">排序</label>
-         <div class="col-sm-10">
-           <input v-model="editProductInfo.sort"                   type="text" placeholder="选填，请填写排序" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">是否包邮</label>
-         <div class="col-sm-10">
-<select class="custom-select" v-model="editProductInfo.isPostage">
-         <option selected  disabled value="">选填，请选择是否包邮</option>
-         <option  value="1">包邮</option>
-<option  value="2">不包邮</option>
-  </select>         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">邮费</label>
-         <div class="col-sm-10">
-           <input v-model="editProductInfo.postage"                   type="text" placeholder="选填，请填写邮费" class="form-control">
-         </div>
-</div>
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>商品信息</h5>
+          <div class="ibox-tools" style="top:10px;">
 
-                            <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editProduct()" ><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="ibox-content">
+
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">商品名称</label>
+            <div class="col-sm-5">
+              <input v-model="editProductInfo.prodName" type="text" placeholder="必填，请填写商品名称" class="form-control">
+            </div>
+            <label class="col-sm-1 col-form-label text-right">商品大类</label>
+            <div class="col-sm-5">
+              <select class="custom-select" v-model="editProductInfo.categoryId">
+                <option selected disabled value="">必填，请选择商品大类</option>
+                <option v-for="(item,index) in editProductInfo.productCategorys" :value="item.categoryId">
+                  {{item.categoryName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">关键词</label>
+            <div class="col-sm-5">
+              <input v-model="editProductInfo.keyword" type="text" placeholder="必填，请填写关键词,多个关键词用;分隔"
+                class="form-control">
+            </div>
+            <label class="col-sm-1 col-form-label text-right">产品条码</label>
+            <div class="col-sm-5">
+              <input v-model="editProductInfo.barCode" type="text" placeholder="选填，请填写产品条码" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">单位</label>
+            <div class="col-sm-5">
+              <input v-model="editProductInfo.unitName" type="text" placeholder="选填，请填写单位" class="form-control">
+            </div>
+            <label class="col-sm-1 col-form-label text-right">排序</label>
+            <div class="col-sm-5">
+              <input v-model="editProductInfo.sort" type="text" placeholder="选填，请填写排序" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">商品简介</label>
+            <div class="col-sm-11">
+              <textarea v-model="editProductInfo.prodDesc" placeholder="必填，请填写商品简介" maxlength="250"
+                class="form-control"></textarea>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>商品图片</h5>
+          <div class="ibox-tools" style="top:10px;">
+
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">商品封面</label>
+            <div class="content-img col-sm-11">
+              <vc:create path="frame/uploadImage" callBackListener="editProduct"
+                callBackFunction="notifyUploadCoverImage" namespace="editProductCover" imageCount="1"></vc:create>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">商品轮播</label>
+            <div class="content-img col-sm-11">
+              <vc:create path="frame/uploadImage" callBackListener="editProduct"
+                callBackFunction="notifyUploadCarouselFigureImage" namespace="editProductCarouselFigure" imageCount="3">
+              </vc:create>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>商品规格</h5>
+          <div class="ibox-tools" style="top:10px;">
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="_openEditChooseSpecModal()">
+              <i class="glyphicon glyphicon-plus"></i>
+              选择规格
+            </button>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+              <tr>
+                <th class="text-center">规格名称</th>
+                <th class="text-center">规格值</th>
+                <th class="text-center">库存</th>
+                <th class="text-center">销量</th>
+                <th class="text-center">金额</th>
+                <th class="text-center">成本价</th>
+                <th class="text-center">会员价格</th>
+                <th class="text-center">市场价</th>
+                <th class="text-right">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="productSpec in editProductInfo.productSpecs">
+                <td class="text-center">{{productSpec.specName}}</td>
+                <td class="text-center">
+                  <span v-html="productSpec.specValue"></span>
+                </td>
+                <td class="text-center">
+                  <input class="form-control" v-model="productSpec.stock" type="number" /></td>
+                <td class="text-center">
+                  <input class="form-control" v-model="productSpec.sales" type="number" />
+                </td>
+                <td class="text-center">
+                  <input class="form-control" v-model="productSpec.price" type="number" />
+                </td>
+                <td class="text-center">
+                  <input class="form-control" v-model="productSpec.costPrice" type="number" />
+                </td>
+                <td class="text-center">
+                  <input class="form-control" v-model="productSpec.vipPrice" type="number" />
+                </td>
+                <td class="text-center">
+                  <input class="form-control" v-model="productSpec.otPrice" type="number" />
+                </td>
+                <td class="text-right">
+                  <div class="btn-group">
+                    <button class="btn-white btn btn-xs"
+                      v-on:click="_openDeleteProductSpec(productSpec)">删除</button>
+                  </div>
+                </td>
+
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="7">
+                  <ul class="pagination float-right"></ul>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>商品扩展</h5>
+          <div class="ibox-tools" style="top:10px;">
+
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">商品状态</label>
+            <div class="col-sm-11">
+              <select class="custom-select" v-model="editProductInfo.state">
+                <option selected disabled value="">选填，请选择状态</option>
+                <option value="1001">未上架</option>
+                <option value="2002">上架</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">是否包邮</label>
+            <div class="col-sm-11">
+              <select class="custom-select" v-model="editProductInfo.isPostage">
+                <option selected disabled value="">选填，请选择是否包邮</option>
+                <option value="1">包邮</option>
+                <option value="2">不包邮</option>
+              </select> </div>
+          </div>
+          <div class="form-group row" v-if="editProductInfo.isPostage == '2'">
+            <label class="col-sm-1 col-form-label text-right">邮费</label>
+            <div class="col-sm-11">
+              <input v-model="editProductInfo.postage" type="text" placeholder="选填，请填写邮费" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">商品详情</label>
+            <div class="col-sm-11 ">
+              <div class=" no-padding">
+                <div class="editSummernote"></div>
+              </div>
+              <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" placeholder="必填，请填写公告内容" class="form-control"></textarea>-->
+            </div>
+          </div>
+
+          <div class="ibox-content">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_editProductInfo()"><i
+                class="fa fa-check"></i>&nbsp;保存</button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+              v-on:click="_closeEditProduct()">取消</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

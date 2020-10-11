@@ -64,6 +64,7 @@
                 $that.productManageInfo.componentShow = 'addProduct';
             },
             _openEditProductModel: function (_product) {
+                $that.productManageInfo.componentShow = 'editProduct';
                 vc.emit('editProduct', 'openEditProductModal', _product);
             },
             _openDeleteProductModel: function (_product) {
