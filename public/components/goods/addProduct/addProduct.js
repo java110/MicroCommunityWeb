@@ -17,15 +17,44 @@
                 sort: '',
                 isPostage: '',
                 postage: '',
+                productCategorys:[],
+                content:'',
+                state:'',
+                coverPhoto:'',
+                carouselFigurePhoto:[],
+                productSpecs:[]
 
             }
         },
         _initMethod: function () {
+            $that._listAddProductCategorys();
 
+            $that._initAddProduct();
         },
         _initEvent: function () {
             vc.on('addProduct', 'openAddProductModal', function () {
                 $('#addProductModel').modal('show');
+            });
+            vc.on("addProduct", "notifyUploadCoverImage", function (_param) {
+                if(_param.length > 0){
+                    vc.component.addProductInfo.coverPhoto = _param[0];
+                }else{
+                    vc.component.addProductInfo.coverPhoto = '';
+                }
+                
+            });
+            vc.on("addProduct", "notifyUploadCarouselFigureImage", function (_param) {
+                vc.component.addProductInfo.carouselFigurePhoto = _param;
+            });
+
+            vc.on("addProduct","chooseProductSpec",function(_productSpec){
+                _productSpec.stock = "999";
+                _productSpec.sales = "99";
+                _productSpec.price = "0.00";
+                _productSpec.costPrice = "0.00";
+                _productSpec.vipPrice = "0.00";
+                _productSpec.otPrice = "0.00";
+                $that.addProductInfo.productSpecs.push(_productSpec);
             });
         },
         methods: {
@@ -116,10 +145,6 @@
                             errInfo: "邮费格式错误,请填写如 3.00"
                         },
                     ],
-
-
-
-
                 });
             },
             saveProductInfo: function () {
@@ -165,6 +190,8 @@
                     });
             },
             clearAddProductInfo: function () {
+
+                let _productCategorys = $that.addProductInfo.productCategorys;
                 vc.component.addProductInfo = {
                     categoryId: '',
                     prodName: '',
@@ -175,12 +202,106 @@
                     sort: '',
                     isPostage: '',
                     postage: '',
-
+                    productCategorys:_productCategorys,
+                    content:'',
+                    state:'',
+                    coverPhoto:'',
+                    carouselFigurePhoto:[],
+                    productSpecs:[]
                 };
             },
             _closeAddProduct: function () {
                 $that.clearAddProductInfo();
                 vc.emit('productManage', 'listProduct', {});
+            },
+            _listAddProductCategorys: function (_page, _rows) {
+                let param = {
+                    params: {
+                        page:1,
+                        row:50
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/productCategory/queryProductCategory',
+                    param,
+                    function (json, res) {
+                        let _productCategoryManageInfo = JSON.parse(json);
+                        $that.addProductInfo.productCategorys = _productCategoryManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _initAddProduct:function(){
+                let $summernote = $('.summernote').summernote({
+                    lang: 'zh-CN',
+                    height: 300,
+                    placeholder: '必填，请输入商品描述',
+                    callbacks: {
+                        onImageUpload: function (files, editor, $editable) {
+                            $that.sendFile($summernote, files);
+                        },
+                        onChange: function (contents, $editable) {
+                            $that.addProductInfo.content = contents;
+                        }
+                    },
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture']],
+                        ['view', ['fullscreen', 'codeview']],
+                        ['help', ['help']]
+                    ],
+                });
+            },
+            sendFile: function ($summernote, files) {
+                console.log('上传图片', files);
+
+                var param = new FormData();
+                param.append("uploadFile", files[0]);
+                param.append('communityId', vc.getCurrentCommunity().communityId);
+
+                vc.http.upload(
+                    'addNoticeView',
+                    'uploadImage',
+                    param,
+                    {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            var data = JSON.parse(json);
+                            //关闭model
+                            $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
+                            return;
+                        }
+                        vc.toast(json);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
+
+            },
+            _openChooseSpecModal:function(){
+                vc.emit('chooseProductSpec', 'openChooseProductSpecModel',{});
+            },
+            _openDeleteProductSpec:function(_productSpec){
+                let _productSpecs = $that.addProductInfo.productSpecs;
+                let index = _productSpecs.indexOf(_productSpec); 
+                if (index > -1) { 
+                    _productSpecs.splice(index, 1); 
+                }
             }
         }
     });

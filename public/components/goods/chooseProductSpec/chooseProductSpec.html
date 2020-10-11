@@ -1,8 +1,9 @@
-<div id = "chooseProductSpecModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseProductSpecModelLabel" aria-hidden="true" >
+<div id="chooseProductSpecModel" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="chooseProductSpecModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseProductSpecModelLabel">选择商品规格</h3>
+                <h3 class="modal-title" id="chooseProductSpecModelLabel">选择规格</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -17,10 +18,13 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入商品规格名称" type="text" v-model="chooseProductSpecInfo._currentProductSpecName" class="form-control form-control-sm">
+                                        <input placeholder="输入商品规格名称" type="text"
+                                            v-model="chooseProductSpecInfo._currentProductSpecName"
+                                            class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryProductSpecs()">查询</button>
-                                            </span>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                v-on:click="queryProductSpecs()">查询</button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -28,19 +32,20 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">规格ID</th>
-                            <th class="text-center">规格名称</th>
-                            <th class="text-center">操作</th>
+                                            <th class="text-center">规格ID</th>
+                                            <th class="text-center">规格名称</th>
+                                            <th class="text-right">操作</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="productSpec in chooseProductSpecInfo.productSpecs">
-                                                                        <td class="text-center">{{productSpec.specId}}</td>
-                            <td class="text-center">{{productSpec.specName}}</td>
+                                            <td class="text-center">{{productSpec.specId}}</td>
+                                            <td class="text-center">{{productSpec.specName}}</td>
 
-                                            <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseProductSpec(productSpec)">选择</button>
+                                            <td class="text-right">
+                                                <button class="btn btn-primary btn-xs"
+                                                    v-on:click="chooseProductSpec(productSpec)">选择</button>
                                             </td>
                                         </tr>
                                     </tbody>
