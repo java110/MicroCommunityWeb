@@ -16,6 +16,8 @@
             vc.on('editFee', 'openEditFeeModal',
                 function (_fee) {
                     vc.copyObject(_fee, $that.editFeeInfo);
+                    $that.editFeeInfo.startTime = $that.editFeeInfo.startTime + " 00:00:00";
+                    $that.editFeeInfo.endTime = $that.editFeeInfo.endTime + " 00:00:00";
                     $('#editFeeModel').modal('show');
                 });
         },
