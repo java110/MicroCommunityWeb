@@ -186,7 +186,7 @@
 
             },
             _initAddOwnerRepairInfo: function () {
-                vc.component.addOwnerRepairInfo.appointmentTime = vc.dateFormat(new Date().getTime());
+                vc.component.addOwnerRepairInfo.appointmentTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addAppointmentTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

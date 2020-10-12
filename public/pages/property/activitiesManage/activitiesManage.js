@@ -17,7 +17,7 @@
                 conditions: {
                     title: '',
                     typeCd: '',
-                    userName: '',
+                    staffName: '',
                     activitiesId: '',
 
                 }
@@ -25,9 +25,7 @@
         },
         _initMethod: function () {
             vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('activities', "type_cd", function (_data) {
-                $that.activitiesManageInfo.typeCds = _data;
-            });
+            $that._loadActivitiesType();
         },
         _initEvent: function () {
 
@@ -92,6 +90,28 @@
                 } else {
                     vc.component.activitiesManageInfo.moreCondition = true;
                 }
+            },
+            _loadActivitiesType:function(){
+
+                var param = {
+                    params: {
+                        page:1,
+                        row:50,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/activitiesType/queryActivitiesType',
+                    param,
+                    function (json, res) {
+                        let _activitiesTypeManageInfo = JSON.parse(json);
+                        let _data = _activitiesTypeManageInfo.data;
+                        $that.activitiesManageInfo.typeCds = _data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
 
 

@@ -160,7 +160,7 @@
                     });
             },
             _initDateInfo: function () {
-                vc.component.editCarInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.editCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.editStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

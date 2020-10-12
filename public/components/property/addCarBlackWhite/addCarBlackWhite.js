@@ -28,7 +28,7 @@
         },
         methods: {
             _initAddCarBlackWhiteDateInfo: function () {
-                vc.component.addCarBlackWhiteInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.addCarBlackWhiteInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addCarBlackWhiteStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

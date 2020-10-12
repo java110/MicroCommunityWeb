@@ -1288,6 +1288,26 @@
             }
         }
     };
+    vcFramework.getComponentCode = function(){
+        let _componentUrl = location.hash;
+
+        //判断是否为组件页面
+        if (!vcFramework.notNull(_componentUrl)) {
+            return "/";
+        }
+
+        if (_componentUrl.lastIndexOf('#') < 0) {
+            return "/";
+        }
+
+        let endPos = _componentUrl.length;
+        if (_componentUrl.indexOf('?') > -1) {
+            endPos = _componentUrl.indexOf('?');
+        }
+
+        _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('#') + 1, endPos);
+        return _componentUrl;
+    }
     //获取url参数
     vcFramework.getParam = function (_key) {
         //返回当前 URL 的查询部分（问号 ? 之后的部分）。
@@ -1469,7 +1489,7 @@
         return m < 10 ? '0' + m : m
     }
 
-    vcFramework.dateFormat = function (shijianchuo) {
+    vcFramework.dateTimeFormat = function (shijianchuo) {
         //shijianchuo是整数，否则要parseInt转换
         let time = new Date(parseInt(shijianchuo));
         let y = time.getFullYear();
@@ -1481,16 +1501,15 @@
         return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
     }
 
-    vcFramework.dateTimeFormat = function (_time) {
-
-        let y = _time.getFullYear();
-        let m = _time.getMonth() + 1;
-        let d = _time.getDate();
-        let h = _time.getHours();
-        let mm = _time.getMinutes();
-        let s = _time.getSeconds();
-        return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
-    }
+    // vcFramework.dateTimeFormat = function (_time) {
+    //     let y = _time.getFullYear();
+    //     let m = _time.getMonth() + 1;
+    //     let d = _time.getDate();
+    //     let h = _time.getHours();
+    //     let mm = _time.getMinutes();
+    //     let s = _time.getSeconds();
+    //     return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
+    // }
 
     vcFramework.dateFormat = function (_time) {
         let _date = new Date(_time);

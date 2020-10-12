@@ -50,7 +50,12 @@
                     if (_photo.indexOf('base64,') > -1) {
                         this.uploadImageInfo.photos.push(_photo);
                         return;
-
+                    }
+                    if (_photo.indexOf(photoUrl) > -1) {
+                        vc.urlToBase64(_photo, function (_base64Data) {
+                            this.uploadImageInfo.photos.push(_base64Data);
+                        });
+                        return ;
                     }
                     vc.urlToBase64(photoUrl + "?fileId=" + _photo + "&communityId=" + vc.getCurrentCommunity().communityId + "&time=" + new Date(), function (_base64Data) {
                         this.uploadImageInfo.photos.push(_base64Data);

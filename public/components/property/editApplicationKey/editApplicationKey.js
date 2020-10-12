@@ -94,7 +94,7 @@
         },
         methods: {
             _initEditApplicationKeyDateInfo: function () {
-                vc.component.editApplicationKeyInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.editApplicationKeyInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.editApplicationStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

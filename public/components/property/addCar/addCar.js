@@ -139,7 +139,7 @@
             saveAddCarInfo:function(){
                 let _carNumType = $that.addCarInfo.carNumType;
                 if(_carNumType == 'S'){
-                   $that.addCarInfo.startTime = vc.dateFormat(new Date().getTime());
+                   $that.addCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                    $that.addCarInfo.endTime = '2037-01-01 00:00:00';
                 }
 
@@ -150,7 +150,7 @@
                 }
             },
             _initDateInfo: function () {
-                vc.component.addCarInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.addCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.startTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

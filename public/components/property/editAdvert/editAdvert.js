@@ -101,7 +101,7 @@
         },
         methods: {
             _initEditAdvertDateInfo: function () {
-                vc.component.editAdvertInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.editAdvertInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.editAdvertStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

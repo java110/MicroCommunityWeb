@@ -59,7 +59,7 @@
         },
         methods: {
             _initAddMeterWaterDateInfo: function () {
-                vc.component.addMeterWaterInfo.preReadingTime = vc.dateFormat(new Date().getTime());
+                vc.component.addMeterWaterInfo.preReadingTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addPreReadingTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

@@ -13,31 +13,33 @@
         _initEvent:function(){
             vc.on('document','openDocument',function(_param){
                 $('#documentModal').modal('show');
+                $that._loadDocument();
             });
         },
         methods:{
-            listEnterCommunity: function (_page, _row) {
+            _loadDocument:function () {
+                let _componentCode = vc.getComponentCode();
                 var param = {
                     params: {
-                        _uid: '123mlkdinkldldijdhuudjdjkkd',
-                        page: _page,
-                        row: _row,
-                        communityName: $that.navCommunityInfo.searchCommunityName
+                        page:1,
+                        row:1,
+                        docCode:_componentCode
                     }
                 };
-                vc.http.get('nav',
-                    'getCommunitys',
+
+                //发送get请求
+                vc.http.apiGet('/sysDocument/querySysDocument',
                     param,
                     function (json, res) {
-                        if (res.status == 200) {
-                            let _data = JSON.parse(json);
-                            $that.navCommunityInfo.communityInfo = _data.communitys;
-                            vc.emit('chooseEnterCommunity','paginationPlus', 'init', {
-                                total: _data.records,
-                                currentPage: _page
-                            });
+                        let _sysDocumentManageInfo = JSON.parse(json);
+                        let _total = _sysDocumentManageInfo.total;
+
+                        if(_total < 1){
+                            return;
                         }
-                    }, function () {
+                        vc.component.documentInfo.title = _sysDocumentManageInfo.data[0].docTitle;
+                        vc.component.documentInfo.context = _sysDocumentManageInfo.data[0].docContent;   
+                    }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

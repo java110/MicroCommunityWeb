@@ -141,7 +141,7 @@
                 });
             },
             _initAddInspectionPlanDateInfo: function () {
-                vc.component.addInspectionPlanInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.addInspectionPlanInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addInspectionPlanStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

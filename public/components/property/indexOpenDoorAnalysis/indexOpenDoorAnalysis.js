@@ -74,7 +74,7 @@
                 }
             },
             _initOpenDoorAnalysisDateInfo: function () {
-                vc.component.indexOpenDoorAnalysisInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.indexOpenDoorAnalysisInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.start_time').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

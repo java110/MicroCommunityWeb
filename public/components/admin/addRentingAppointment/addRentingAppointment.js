@@ -37,7 +37,7 @@
         },
         methods: {
             _initAddAppointmentTime: function () {
-                vc.component.addRentingAppointmentInfo.appointmentTime = vc.dateFormat(new Date().getTime());
+                vc.component.addRentingAppointmentInfo.appointmentTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addAppointmentTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

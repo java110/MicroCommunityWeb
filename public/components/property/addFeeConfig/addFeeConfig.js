@@ -41,7 +41,7 @@
         },
         methods: {
             _initAddFeeConfigDateInfo: function () {
-                vc.component.addFeeConfigInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.addFeeConfigInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addFeeConfigStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

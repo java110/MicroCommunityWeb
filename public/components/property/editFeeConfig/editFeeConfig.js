@@ -40,7 +40,7 @@
         },
         methods: {
             _initEditFeeConfigDateInfo: function () {
-                vc.component.editFeeConfigInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.editFeeConfigInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.editFeeConfigStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

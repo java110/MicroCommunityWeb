@@ -15,9 +15,9 @@
         },
         _initMethod: function () {
             vc.component._initEditActivitiesInfo();
-            vc.getDict('activities', "type_cd", function (_data) {
-                $that.editActivitiesViewInfo.typeCds = _data;
-            });
+
+            $that._loadEditActivitiesType();
+           
         },
         _initEvent: function () {
             vc.on('editActivitiesView', 'openEditActivitiesModal', function (_params) {
@@ -165,7 +165,6 @@
                 }
             },
             _initEditActivitiesInfo: function () {
-                //vc.component.editActivitiesViewInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.editActivitiesStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -217,6 +216,29 @@
                 vc.emit('activitiesManage', 'listActivities', {});
 
             },
+
+            _loadEditActivitiesType:function(){
+
+                var param = {
+                    params: {
+                        page:1,
+                        row:50,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/activitiesType/queryActivitiesType',
+                    param,
+                    function (json, res) {
+                        let _activitiesTypeManageInfo = JSON.parse(json);
+                        let _data = _activitiesTypeManageInfo.data;
+                        $that.editActivitiesViewInfo.typeCds = _data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            }
         }
     });
 

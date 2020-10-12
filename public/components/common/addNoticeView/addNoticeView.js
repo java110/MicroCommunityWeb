@@ -183,7 +183,7 @@
                 };
             },
             _initNoticeInfo: function () {
-                vc.component.addNoticeViewInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.addNoticeViewInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.noticeStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

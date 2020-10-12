@@ -59,7 +59,7 @@
         },
         methods: {
             _initAddAdvertDateInfo: function () {
-                vc.component.addAdvertInfo.startTime = vc.dateFormat(new Date().getTime());
+                vc.component.addAdvertInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addAdvertStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
