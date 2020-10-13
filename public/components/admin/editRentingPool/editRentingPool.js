@@ -3,16 +3,17 @@
     vc.extends({
         data: {
             editRentingPoolInfo: {
+                roomId:'',
                 rentingId: '',
                 rentingTitle: '',
                 price: '',
                 paymentType: '',
-                checkInDate: '',
+                checkIn: '',
                 rentingConfigId: '',
                 rentingDesc: '',
                 ownerName: '',
                 ownerTel: '',
-
+                rentingConfigs: [],
             }
         },
         _initMethod: function () {
@@ -21,12 +22,33 @@
         _initEvent: function () {
             vc.on('editRentingPool', 'openEditRentingPoolModal', function (_params) {
                 vc.component.refreshEditRentingPoolInfo();
+                $that._listEditRentingConfigs();
                 $('#editRentingPoolModel').modal('show');
                 vc.copyObject(_params, vc.component.editRentingPoolInfo);
                 vc.component.editRentingPoolInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
         methods: {
+            _listEditRentingConfigs: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 30
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/renting/queryRentingConfig',
+                    param,
+                    function (json, res) {
+                        var _rentingConfigManageInfo = JSON.parse(json);
+                        vc.component.editRentingPoolInfo.rentingConfigs = _rentingConfigManageInfo.data;
+
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             editRentingPoolValidate: function () {
                 return vc.validate.validate({
                     editRentingPoolInfo: vc.component.editRentingPoolInfo
@@ -67,17 +89,12 @@
                             errInfo: "格式错误"
                         },
                     ],
-                    'editRentingPoolInfo.checkInDate': [
+                    'editRentingPoolInfo.checkIn': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "入住时间不能为空"
-                        },
-                        {
-                            limit: "date",
-                            param: "",
-                            errInfo: "格式错误"
-                        },
+                        }
                     ],
                     'editRentingPoolInfo.rentingConfigId': [
                         {
@@ -166,12 +183,13 @@
                     rentingTitle: '',
                     price: '',
                     paymentType: '',
-                    checkInDate: '',
+                    checkIn: '',
                     rentingConfigId: '',
                     rentingDesc: '',
                     ownerName: '',
                     ownerTel: '',
-
+                    rentingConfigs: [],
+                    roomId:'',
                 }
             }
         }
