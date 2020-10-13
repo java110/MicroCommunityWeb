@@ -1,3 +1,129 @@
-<div>
-    
+<div class="white-bg padding-top-lg ">
+    <div class="row margin-top padding-bottom-lg text-center ">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-1 padding-lr-0 margin-left-xs">
+            <select v-model="simplifyAcceptanceInfo.searchType" class=" form-control" @change="_changeSearchType()">
+                <option value="1">房屋号</option>
+                <option value="2">姓名</option>
+                <option value="3">电话</option>
+                <option value="4">身份证</option>
+                <option value="5">车牌号</option>
+            </select>
+        </div>
+        <div class="col-lg-4 padding-lr-0 margin-left-xs">
+            <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder" />
+        </div>
+        <div class="col-lg-1 padding-lr-0 margin-left-sm">
+            <button type="button" class="form-control btn btn-primary" @click="_doSearch()">查询</button>
+        </div>
+        <div class="col-lg-3">
+        </div>
+    </div>
+    <div class="vc-line"></div>
+    <div class="padding margin-top">
+        <div class="">
+            <div class="text-center vc-float-left" style="width: 150px;">
+                <image width="120px" height="140px" v-bind:src="simplifyAcceptanceInfo.ownerPhoto"
+                    @error="errorLoadImg" />
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">业主编号：</label>
+                                <label class="">{{simplifyAcceptanceInfo.ownerId}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">业主名称：</label>
+                                <label class="">{{simplifyAcceptanceInfo.name}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">联系电话：</label>
+                                <label class="">{{simplifyAcceptanceInfo.link}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">身份证：</label>
+                                <label class="">{{simplifyAcceptanceInfo.idCard}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">入住日期：</label>
+                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">性别：</label>
+                                <label class="">{{simplifyAcceptanceInfo.sex == 0 ? '男' : '女'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">房屋编号：</label>
+                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">房屋面积：</label>
+                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">算费系数：</label>
+                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">户型：</label>
+                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">房屋状态：</label>
+                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">房屋编号：</label>
+                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+
+                        </div>
+                        <div class="col-sm-3">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
 </div>

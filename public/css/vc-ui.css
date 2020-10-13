@@ -2002,3 +2002,17 @@ a:hover {
   border-bottom-color: #EEEEEE;
   background-color: #FAFAFA;
 }
+
+.vc-float-left{
+  float: left;
+}
+
+.vc-float-right{
+  float:right
+}
+
+.vc-line{
+  width:100%;
+  height:2px;
+  background: -webkit-linear-gradient(left, #fff -4%,#1ab394 50%,#fff 100%);
+}
