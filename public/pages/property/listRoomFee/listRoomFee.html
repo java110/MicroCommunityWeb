@@ -6,6 +6,10 @@
                     <h5>{{listRoomCreateFeeInfo.roomName}}费用</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openProxyFeeModal()">
+                            代收费用
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                             v-on:click="_openAddMeterWaterModal()">
                             水电抄表
                         </button>
@@ -54,9 +58,14 @@
                                 <td class="text-center">{{fee.startTime}}</td>
                                 <td class="text-center">{{_getEndTime(fee)}}</td>
                                 <td class="text-center">{{_getDeadlineTime(fee)}}</td>
-                                <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' ">
+                                <td class="text-center" v-if="fee.computingFormula == '5005'">
                                     <div>上期度数：{{fee.preDegrees}}</div> 
                                     <div>本期度数：{{fee.curDegrees}} </div>
+                                    <div>单价：{{fee.squarePrice}} </div>
+                                    <div>附加费：{{fee.additionalAmount}}</div>
+                                </td>
+                                <td class="text-center" v-else-if="fee.computingFormula == '6006'">
+                                    <div>用量：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
                                     <div>单价：{{fee.squarePrice}} </div>
                                     <div>附加费：{{fee.additionalAmount}}</div>
                                 </td>
@@ -112,5 +121,7 @@
     <vc:create path="property/roomCreateFeeAdd"></vc:create>
 
     <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
+
+    <vc:create path="property/addProxyFee" callBackListener="" callBackFunction=""></vc:create>
 
 </div>

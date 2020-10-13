@@ -143,6 +143,13 @@
                     return "-";
                 }
                 return _fee.endTime;
+            },
+            _openProxyFeeModal:function(){ //创建代收费用
+                vc.emit('addProxyFee', 'openAddProxyFeeModal', {
+                    roomId:$that.listRoomCreateFeeInfo.roomId,
+                    roomName:$that.listRoomCreateFeeInfo.roomName,
+                    ownerName:$that.listRoomCreateFeeInfo.ownerName
+                });
             }
         }
 
