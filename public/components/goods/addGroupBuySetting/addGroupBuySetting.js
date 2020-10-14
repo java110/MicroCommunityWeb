@@ -17,6 +17,14 @@
         },
         _initMethod: function () {
 
+            vc.initDateTime('addStartTime', function (_value) {
+                $that.addGroupBuySettingInfo.startTime = _value;
+            });
+
+            vc.initDateTime('addEndTime', function (_value) {
+                $that.addGroupBuySettingInfo.endTime = _value;
+            });
+
         },
         _initEvent: function () {
             vc.on('addGroupBuySetting', 'openAddGroupBuySettingModal', function () {
@@ -106,7 +114,7 @@
                 }
 
                 vc.http.apiPost(
-                    'groupBuySetting.saveGroupBuySetting',
+                    '/groupBuy/saveGroupBuySetting',
                     JSON.stringify(vc.component.addGroupBuySettingInfo),
                     {
                         emulateJSON: true

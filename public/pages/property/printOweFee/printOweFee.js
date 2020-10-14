@@ -19,7 +19,7 @@
 
             let _fees = vc.getData('java110_printFee');
             $that.printPayFeeInfo.fees = _fees
-            $that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
+            $that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date().getTime());
 
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
 

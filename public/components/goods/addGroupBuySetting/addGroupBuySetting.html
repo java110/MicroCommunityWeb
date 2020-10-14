@@ -17,8 +17,8 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">拼团简介</label>
                 <div class="col-sm-10">
-                  <input v-model="addGroupBuySettingInfo.groupBuyDesc" type="text" placeholder="必填，请填写拼团简介"
-                    class="form-control">
+                  <textarea v-model="addGroupBuySettingInfo.groupBuyDesc" class="form-control"
+                    placeholder="必填，请填写拼团简介"></textarea>
                 </div>
               </div>
               <div class="form-group row">
@@ -26,20 +26,21 @@
                 <div class="col-sm-10">
                   <input v-model="addGroupBuySettingInfo.validHours" type="text" placeholder="必填，请填写拼团时效"
                     class="form-control">
+
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">开始时间</label>
                 <div class="col-sm-10">
                   <input v-model="addGroupBuySettingInfo.startTime" type="text" placeholder="必填，请填写开始时间"
-                    class="form-control">
+                    class="form-control addStartTime">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">结束时间</label>
                 <div class="col-sm-10">
                   <input v-model="addGroupBuySettingInfo.endTime" type="text" placeholder="必填，请填写结束时间"
-                    class="form-control">
+                    class="form-control addEndTime">
                 </div>
               </div>
 
