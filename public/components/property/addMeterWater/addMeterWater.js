@@ -244,12 +244,19 @@
                     });
             },
             _queryPreMeterWater: function (_roomId) {
+                let _meterType = '1010';
 
-                var param = {
+                let _feeTypeCd = $that.addMeterWaterInfo.feeTypeCd;
+
+                if(_feeTypeCd == '888800010015'){
+                    _meterType = '2020';
+                }
+                let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         objId: _roomId,
-                        objType: $that.addMeterWaterInfo.objType
+                        objType: $that.addMeterWaterInfo.objType,
+                        meterType: _meterType
                     }
                 };
                 //发送get请求
