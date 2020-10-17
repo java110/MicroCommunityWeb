@@ -6,7 +6,7 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            reportFeeSummaryInfo: {
+            reportFloorUnitFeeSummaryInfo: {
                 fees: [],
                 total: 0,
                 records: 1,
@@ -29,9 +29,9 @@
         },
         _initEvent: function () {
 
-            vc.on('reportFeeSummary', 'chooseFloor', function (_param) {
-                vc.component.reportFeeSummaryInfo.conditions.floorId = _param.floorId;
-                vc.component.reportFeeSummaryInfo.conditions.floorName = _param.floorName;
+            vc.on('reportFloorUnitFeeSummary', 'chooseFloor', function (_param) {
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.floorId = _param.floorId;
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
 
             });
@@ -45,23 +45,23 @@
             },
             _listFees: function (_page, _rows) {
 
-                vc.component.reportFeeSummaryInfo.conditions.page = _page;
-                vc.component.reportFeeSummaryInfo.conditions.row = _rows;
-                vc.component.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.page = _page;
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.row = _rows;
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params: vc.component.reportFeeSummaryInfo.conditions
+                    params: vc.component.reportFloorUnitFeeSummaryInfo.conditions
                 };
 
                 //发送get请求
-                vc.http.apiGet('/reportFeeMonthStatistics/queryReportFeeSummary',
+                vc.http.apiGet('/reportFeeMonthStatistics/queryFloorUnitFeeSummary',
                     param,
                     function (json, res) {
-                        var _reportFeeSummaryInfo = JSON.parse(json);
-                        vc.component.reportFeeSummaryInfo.total = _reportFeeSummaryInfo.total;
-                        vc.component.reportFeeSummaryInfo.records = _reportFeeSummaryInfo.records;
-                        vc.component.reportFeeSummaryInfo.fees = _reportFeeSummaryInfo.data;
+                        var _reportFloorUnitFeeSummaryInfo = JSON.parse(json);
+                        vc.component.reportFloorUnitFeeSummaryInfo.total = _reportFloorUnitFeeSummaryInfo.total;
+                        vc.component.reportFloorUnitFeeSummaryInfo.records = _reportFloorUnitFeeSummaryInfo.records;
+                        vc.component.reportFloorUnitFeeSummaryInfo.fees = _reportFloorUnitFeeSummaryInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.reportFeeSummaryInfo.records,
+                            total: vc.component.reportFloorUnitFeeSummaryInfo.records,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -84,7 +84,7 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             let tmpUnits = JSON.parse(json);
-                            vc.component.reportFeeSummaryInfo.roomUnits = tmpUnits;
+                            vc.component.reportFloorUnitFeeSummaryInfo.roomUnits = tmpUnits;
                             return;
                         }
                         vc.toast(json);

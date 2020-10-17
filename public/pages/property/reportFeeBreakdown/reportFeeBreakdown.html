@@ -6,7 +6,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{reportFeeSummaryInfo.moreCondition == true?'隐藏':'更多'}}
+                            v-on:click="_moreCondition()">{{reportFeeBreakdownInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
 
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择楼栋" v-model="reportFeeSummaryInfo.conditions.floorName"
+                                <input type="text" placeholder="请选择楼栋" v-model="reportFeeBreakdownInfo.conditions.floorName"
                                     class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
@@ -28,9 +28,9 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportFeeSummaryInfo.conditions.unitId">
+                                    v-model="reportFeeBreakdownInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
-                                    <option v-for="(unit,index) in reportFeeSummaryInfo.roomUnits" :key="index" v-bind:value="unit.unitId">
+                                    <option v-for="(unit,index) in reportFeeBreakdownInfo.roomUnits" :key="index" v-bind:value="unit.unitId">
                                         {{unit.unitNum}}单元
                                     </option>
                                 </select>
@@ -39,7 +39,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
-                                    v-model="reportFeeSummaryInfo.conditions.roomNum">
+                                    v-model="reportFeeBreakdownInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -59,7 +59,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>费用汇总表</h5>
+                    <h5>费用分项表</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddActivitiesModal()">
                             <i class="fa fa-plus"></i>
@@ -73,15 +73,19 @@
                         <thead>
                             <tr>
                                 <!-- <th class="text-center">信息ID</th> -->
-                                <th class="text-center">日期</th>
+                                <th class="text-center">费用编号</th>
+                                <th class="text-center">费用项</th>
+                                <th class="text-center">费用开始时间</th>
                                 <th class="text-center">应收金额</th>
                                 <th class="text-center">实收金额</th>
                                 <th class="text-center">欠费金额</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="fee in reportFeeSummaryInfo.fees">
-                                <td class="text-center">{{fee.feeYear+'年'+fee.feeMonth+'月'}}</td>
+                            <tr v-for="(fee,index) in reportFeeBreakdownInfo.fees">
+                                <td class="text-center">{{index+1}}</td>
+                                <td class="text-center">{{fee.feeName}}</td>
+                                <td class="text-center">{{fee.feeCreateTime}}</td>
                                 <td class="text-center">{{fee.receivableAmount}}</td>
                                 <td class="text-center">{{fee.receivedAmount}}</td>
                                 <td class="text-center">{{fee.oweAmount}}</td>
@@ -102,5 +106,5 @@
         </div>
     </div>
 
-    <vc:create path="property/searchFloor" emitChooseFloor="reportFeeSummary" emitLoadData="xx"></vc:create>
+    <vc:create path="property/searchFloor" emitChooseFloor="reportFeeBreakdown" emitLoadData="xx"></vc:create>
 </div>
