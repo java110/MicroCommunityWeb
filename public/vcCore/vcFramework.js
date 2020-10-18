@@ -1288,7 +1288,7 @@
             }
         }
     };
-    vcFramework.getComponentCode = function(){
+    vcFramework.getComponentCode = function () {
         let _componentUrl = location.hash;
 
         //判断是否为组件页面
@@ -1569,6 +1569,28 @@
                 _callBack(value);
             });
     }
+
+    vcFramework.initDateMonth = function (_dateStr, _callBack) {
+        $('.' + _dateStr).datetimepicker({
+            language: 'zh-CN',
+            fontAwesome: 'fa',
+            format: 'yyyy-mm',
+            initTime: true,
+            startView: 3,
+            minView: 3,
+            initialDate: new Date(),
+            autoClose: 1,
+            todayBtn: true
+
+        });
+        $('.' + _dateStr).datetimepicker()
+            .on('changeDate', function (ev) {
+                let value = $('.' + _dateStr).val();
+                //vc.component.addFeeConfigInfo.startTime = value;
+                _callBack(value);
+            });
+    }
+
 
 })(window.vcFramework);
 
@@ -1918,7 +1940,7 @@ vc 校验 工具类 -method
                 return false;
             }
 
-            return  true;
+            return true;
             //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
             //下面分别分析出生日期和校验位
             // let len, re;

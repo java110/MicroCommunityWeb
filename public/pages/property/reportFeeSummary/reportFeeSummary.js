@@ -18,13 +18,27 @@
                     floorName: '',
                     roomNum: '',
                     unitId: '',
-                    startTime:'',
-                    endTime:''
+                    startTime: '',
+                    endTime: ''
                 }
             }
         },
         _initMethod: function () {
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+
+            vc.initDateMonth('startTime', function (_startTime) {
+                $that.reportFeeSummaryInfo.conditions.startTime = _startTime;
+            });
+
+            vc.initDateMonth('endTime', function (_endTime) {
+                $that.reportFeeSummaryInfo.conditions.endTime = _endTime;
+                let start = Date.parse(new Date($that.reportFeeSummaryInfo.conditions.startTime + "-01"))
+                let end = Date.parse(new Date($that.reportFeeSummaryInfo.conditions.endTime + "-01"))
+                if (start - end >= 0) {
+                    vc.toast("结束时间必须大于开始时间")
+                    $that.reportFeeSummaryInfo.conditions.endTime = '';
+                }
+            });
 
         },
         _initEvent: function () {
@@ -40,7 +54,7 @@
             });
         },
         methods: {
-            _queryMethod:function(){
+            _queryMethod: function () {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listFees: function (_page, _rows) {
@@ -94,6 +108,10 @@
                         vc.toast(errInfo);
                     });
             },
+
+            _openChooseFloorMethod:function(){
+                vc.emit('searchFloor','openSearchFloorModel',{});
+            }
         }
     });
 })(window.vc);

@@ -25,6 +25,19 @@
         },
         _initMethod: function () {
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.initDateMonth('startTime', function (_startTime) {
+                $that.reportFeeDetailInfo.conditions.startTime = _startTime;
+            });
+
+            vc.initDateMonth('endTime', function (_endTime) {
+                $that.reportFeeDetailInfo.conditions.endTime = _endTime;
+                let start = Date.parse(new Date($that.reportFeeDetailInfo.conditions.startTime + "-01"))
+                let end = Date.parse(new Date($that.reportFeeDetailInfo.conditions.endTime + "-01"))
+                if (start - end >= 0) {
+                    vc.toast("结束时间必须大于开始时间")
+                    $that.reportFeeDetailInfo.conditions.endTime = '';
+                }
+            });
 
         },
         _initEvent: function () {
@@ -94,6 +107,9 @@
                         vc.toast(errInfo);
                     });
             },
+            _openChooseFloorMethod:function(){
+                vc.emit('searchFloor','openSearchFloorModel',{});
+            }
         }
     });
 })(window.vc);
