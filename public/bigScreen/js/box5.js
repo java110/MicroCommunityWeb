@@ -33,7 +33,7 @@
         for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
             _li += "<li>" + (_inIndex + 1) + ".0、" + _dataArr[_inIndex].msg + "</li>";
 
-            if(_inIndex >=5){
+            if (_inIndex >= 5) {
                 break;
             }
         }
@@ -41,17 +41,19 @@
     }
 
     function initPrePayment(_dataArr) {
-        let _todayInpection = document.getElementById("todayPreFee");
-        let _li = "<li>预交费提醒:</li>";
+        
+        let _li = "<li onclick='_toPrePayment()'>预交费提醒:</li>";
         for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
-            _li += "<li>" + (_inIndex + 1) + ".0、" + _dataArr[_inIndex].feeName +  _dataArr[_inIndex].objCount +"户</li>";
+            _li += "<li>" + (_inIndex + 1) + "、" + _dataArr[_inIndex].feeName + "  " + _dataArr[_inIndex].objCount + "户</li>";
 
-            if(_inIndex >=5){
+            if (_inIndex >= 1) {
                 break;
             }
         }
-        _todayInpection.innerHTML = _li;
+        _loadOwePaymentCount( _li);
     }
+
+
 
     function _loadPrePaymentCount(params) {
         let param = {
@@ -79,8 +81,59 @@
             });
     }
 
+    function initOwePayment(_dataArr,  _li) {
+        let _todayInpection = document.getElementById("todayPreFee");
+        _li += "<li onclick='_toOwePayment()'>欠费提醒:</li>";
+        for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
+            _li += "<li>" + (_inIndex + 1) + "、" + _dataArr[_inIndex].feeName + "  " + _dataArr[_inIndex].objCount + "户</li>";
+
+            if (_inIndex >= 1) {
+                break;
+            }
+        }
+        _todayInpection.innerHTML = _li;
+    }
+
+
+    function _loadOwePaymentCount(_li) {
+        let param = {
+            params: {
+                communityId: vc.getCurrentCommunity().communityId
+            }
+        }
+        vc.http.apiGet(
+            '/reportFeeMonthStatistics/queryOwePaymentCount',
+            param,
+            function (json, res) {
+                //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                let _json = JSON.parse(json);
+                if (_json.code == 0) {
+                    let _data = _json.data;
+                    initOwePayment(_data, _li);
+                    return;
+                }
+            },
+            function (errInfo, error) {
+                console.log('请求失败处理');
+
+                vc.toast(errInfo);
+
+            });
+    }
+
+
+
+
+    window._toPrePayment = function () {
+        vc.jumpToPage('/admin.html#/pages/property/reportPrePaymentFee');
+    }
+
+    window._toOwePayment = function () {
+        vc.jumpToPage('/admin.html#/pages/property/reportOweFeeDetail');
+    }
 
     _loadAssetInspection();
 
     _loadPrePaymentCount();
 })()
+
