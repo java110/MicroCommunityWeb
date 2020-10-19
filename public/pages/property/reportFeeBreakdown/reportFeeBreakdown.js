@@ -110,6 +110,9 @@
             },
             _openChooseFloorMethod:function(){
                 vc.emit('searchFloor','openSearchFloorModel',{});
+            },
+            _exportFee:function(){
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId='+vc.getCurrentCommunity().communityId+"&pagePath=reportFeeBreakdown");
             }
         }
     });
