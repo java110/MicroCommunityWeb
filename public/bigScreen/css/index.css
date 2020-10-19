@@ -169,7 +169,7 @@ small {
 
 .box5_con_top {
     width: 100%;
-    height: 320px;
+    height: 220px;
     float: left;
 }
 
@@ -184,6 +184,21 @@ small {
     line-height: 60px;
     list-style: none;
     border-bottom: 1px dashed #dbdbdb;
+    color: #F5F5F5;
+    overflow: hidden;
+}
+
+.box6_con_bot {
+    width: 100%;
+    float: left;
+}
+
+.box6_con_bot li {
+    width: 100%;
+    /* height: 40px;
+    line-height: 40px; */
+    list-style: none;
+   
     color: #F5F5F5;
     overflow: hidden;
 }
