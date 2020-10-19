@@ -21,7 +21,7 @@
             deleteActivitiesType:function(){
                 vc.component.deleteActivitiesTypeInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'activitiesType.deleteActivitiesType',
+                    '/activitiesType/deleteActivitiesType',
                     JSON.stringify(vc.component.deleteActivitiesTypeInfo),
                     {
                         emulateJSON:true
