@@ -42,7 +42,7 @@
 
     function initPrePayment(_dataArr) {
         
-        let _li = "<li onclick='_toPrePayment()'>预交费提醒:</li>";
+        let _li = "<li onclick='_toPrePayment()' style='cursor:pointer;'>预交费提醒:</li>";
         for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
             _li += "<li>" + (_inIndex + 1) + "、" + _dataArr[_inIndex].feeName + "  " + _dataArr[_inIndex].objCount + "户</li>";
 
@@ -82,7 +82,7 @@
     }
 
     function initOwePayment(_dataArr,  _li) {    
-        _li += "<li onclick='_toOwePayment()'>欠费提醒:</li>";
+        _li += "<li onclick='_toOwePayment()' style='cursor:pointer;'>欠费提醒:</li>";
         for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
             _li += "<li>" + (_inIndex + 1) + "、" + _dataArr[_inIndex].feeName + "  " + _dataArr[_inIndex].objCount + "户</li>";
 
@@ -122,7 +122,7 @@
 
     function initDeadlinePayment(_dataArr,  _li) {
         let _todayInpection = document.getElementById("todayPreFee");
-        _li += "<li onclick='_toDeadlinePayment()'>到期提醒:</li>";
+        _li += "<li onclick='_toDeadlinePayment()' style='cursor:pointer;'>到期提醒:</li>";
         for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
             _li += "<li>" + (_inIndex + 1) + "、" + _dataArr[_inIndex].feeName + "  " + _dataArr[_inIndex].objCount + "户</li>";
 
