@@ -12,6 +12,13 @@
             }
         },
         _initMethod: function () {
+            vc.initDateTime('editStartTime', function (_value) {
+                $that.editGroupBuySettingInfo.startTime = _value;
+            });
+
+            vc.initDateTime('editEndTime', function (_value) {
+                $that.editGroupBuySettingInfo.endTime = _value;
+            });
 
         },
         _initEvent: function () {
@@ -103,7 +110,7 @@
                 }
 
                 vc.http.apiPost(
-                    'groupBuySetting.updateGroupBuySetting',
+                    '/groupBuy/updateGroupBuySetting',
                     JSON.stringify(vc.component.editGroupBuySettingInfo),
                     {
                         emulateJSON: true
