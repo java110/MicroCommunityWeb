@@ -61,7 +61,7 @@
             },
             _openAddProductModal: function () {
                 //vc.emit('addProduct', 'openAddProductModal', {});
-                $that.groupBuyProductManageInfo.componentShow = 'addProduct';
+                $that.groupBuyProductManageInfo.componentShow = 'addGroupBuyProduct';
             },
             _openEditProductModel: function (_product) {
                 $that.groupBuyProductManageInfo.componentShow = 'editProduct';

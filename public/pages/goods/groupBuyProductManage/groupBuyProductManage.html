@@ -109,13 +109,13 @@
         </div>
     </div>
 
-    <div v-bind:class="{no_display:groupBuyProductManageInfo.componentShow != 'addProduct'}">
-        <vc:create path="goods/addProduct" callBackListener="" callBackFunction=""></vc:create>
+    <div v-bind:class="{no_display:groupBuyProductManageInfo.componentShow != 'addGroupBuyProduct'}">
+        <vc:create path="goods/addGroupBuyProduct" callBackListener="" callBackFunction=""></vc:create>
     </div>
-    <div v-bind:class="{no_display:groupBuyProductManageInfo.componentShow != 'editProduct'}">
+    <div v-bind:class="{no_display:groupBuyProductManageInfo.componentShow != 'editGroupProduct'}">
         <vc:create path="goods/editProduct"></vc:create>
     </div>
     <vc:create path="goods/deleteProduct"></vc:create>
-    <vc:create path="goods/chooseProductSpec" emitChooseProductSpec="addProduct" emitLoadData="addProduct"></vc:create>
+    <vc:create path="goods/chooseProductSpec" emitChooseProductSpec="addGroupBuyProduct" emitLoadData="addGroupBuyProduct"></vc:create>
 
 </div>
