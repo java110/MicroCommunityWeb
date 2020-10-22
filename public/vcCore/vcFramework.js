@@ -869,6 +869,10 @@
     vcFramework.http = {
         post: function (componentCode, componentMethod, param, options, successCallback, errorCallback) {
             vcFramework.loading('open');
+            Vue.http.headers.common['APP-ID'] = '8000418004';
+            Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
+            Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
+            Vue.http.headers.common['SIGN'] = '';
             Vue.http.post('/callComponent/' + componentCode + "/" + componentMethod, param, options)
                 .then(function (res) {
                     try {
@@ -916,6 +920,10 @@
                 }
             }
             vcFramework.loading('open');
+            Vue.http.headers.common['APP-ID'] = '8000418004';
+            Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
+            Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
+            Vue.http.headers.common['SIGN'] = '';
             Vue.http.get('/callComponent/' + componentCode + "/" + componentMethod, param)
                 .then(function (res) {
                     try {
@@ -952,13 +960,12 @@
         },
         apiPost: function (api, param, options, successCallback, errorCallback) {
             let _api = '';
-
+            Vue.http.headers.common['APP-ID'] = '8000418004';
+            Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
+            Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
+            Vue.http.headers.common['SIGN'] = '';
             if (api.indexOf('/') >= 0) {
-                _api = '/app' + api;
-                Vue.http.headers.common['APP-ID'] = '8000418004';
-                Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
-                Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
-                Vue.http.headers.common['SIGN'] = '';
+                _api = '/app' + api;  
             } else {
                 _api = '/callComponent/' + api;
             }
@@ -1015,13 +1022,14 @@
 
             let _api = '';
 
+            Vue.http.headers.common['APP-ID'] = '8000418004';
+            Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
+            Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
+            Vue.http.headers.common['SIGN'] = '';
+            Vue.http.headers.common['USER-ID'] = '-1';
+
             if (api.indexOf('/') >= 0) {
-                _api = '/app' + api;
-                Vue.http.headers.common['APP-ID'] = '8000418004';
-                Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
-                Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
-                Vue.http.headers.common['SIGN'] = '';
-                Vue.http.headers.common['USER-ID'] = '-1';
+                _api = '/app' + api;    
             } else {
                 _api = '/callComponent/' + api;
             }
