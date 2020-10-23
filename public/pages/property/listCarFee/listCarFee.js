@@ -68,6 +68,7 @@
                 );
             },
             _payFee: function (_fee) {
+                _fee.roomName = vc.component.listCarFeeInfo.carNum;
                 vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
             },
             _payFeeHis: function (_fee) {

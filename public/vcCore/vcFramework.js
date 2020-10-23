@@ -1629,7 +1629,7 @@
             day = daysInNextMonth;
         }
         let _newDate = new Date(nextY, nextM, day)
-        return _newDate.getFullYear() + '-' + (_newDate.getMonth() + 1) + '-' + _newDate.getDay() + " " + _date.getHours() + ":" + _date.getMinutes() + ":" + _date.getSeconds();
+        return _newDate.getFullYear() + '-' + (_newDate.getMonth() + 1) + '-' + _newDate.getDate() + " " + _date.getHours() + ":" + _date.getMinutes() + ":" + _date.getSeconds();
     };
 
 

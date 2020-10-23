@@ -40,6 +40,7 @@
                 $that.payFeeOrderInfo.builtUpArea = vc.getParam('builtUpArea');
                 $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
                 $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
+                
 
 
                 $that.payFeeOrderInfo.paymentCycles = [];
