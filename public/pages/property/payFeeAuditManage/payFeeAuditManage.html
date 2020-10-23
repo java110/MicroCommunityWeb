@@ -5,9 +5,9 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">{{payFeeAuditManageInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -87,7 +87,11 @@
                             <td class="text-center">{{payFee.receivedAmount}}</td>
                             <td class="text-center">{{payFee.userName}}</td>
                             <td class="text-center">{{payFee.createTime}}</td>
-                            <td class="text-center">{{_getState(payFee.state)}}</td>
+                            <td class="text-center">
+                                <span class="badge badge-success" v-if="payFee.state == '2020'">{{_getState(payFee.state)}}</span>
+                                <span class="badge badge-danger" v-else-if="payFee.state == '3030'">{{_getState(payFee.state)}}</span>
+                                <span class="badge badge-info" v-else>{{_getState(payFee.state)}}</span>
+                            </td>
                             <td class="text-center">{{payFee.message}}</td>
                             <td class="text-center">{{payFee.remark}}</td>
                             <td class="text-right">    

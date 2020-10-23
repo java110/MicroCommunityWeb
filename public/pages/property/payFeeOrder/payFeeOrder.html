@@ -104,7 +104,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-8">
                                     <button type="button" class="btn btn-warning btn-lg btn-block"
-                                        @click="_payFee()">提交收费</button>
+                                        @click="_openPayFee()">提交收费</button>
                                 </div>
                             </div>
                         </div>
@@ -129,6 +129,40 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="_back()">返回</button>
                     <button type="button" class="btn btn-primary" @click="_printAndBack()">打印收据</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="doPayFeeModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">收费确认</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" v-if="payFeeOrderInfo.feeFlag != '2006012' && payFeeOrderInfo.showEndTime != ''">
+                        <label class="col-sm-3 col-form-label" >缴费时间段：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.endTime}}至{{payFeeOrderInfo.showEndTime}}</label>
+                    </div>
+                    <div class="row" >
+                        <label class="col-sm-3 col-form-label">应收金额：</label>
+                        <label class="col-sm-8 col-form-label">{{_mathCeil(payFeeOrderInfo.totalFeePrice)}}</label>
+                    </div>
+                    <div class="row" >
+                        <label class="col-sm-3 col-form-label">实收金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.receivedAmount}}</label>
+                    </div>
+                    <div class="row" >
+                        <label class="col-sm-3 col-form-label">备注：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.remark}}</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="_closeDoPayFeeModal()">关闭</button>
+                    <button type="button" class="btn btn-primary" @click="_payFee()">确定收费</button>
                 </div>
             </div>
         </div>

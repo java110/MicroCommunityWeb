@@ -19,7 +19,7 @@
                     startTime: '',
                     endTime: '',
                     userCode:'',
-                    state:''
+                    state:'1010'
                 },
                 curPayFee:{}
             }
@@ -33,7 +33,7 @@
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listpayFees(_currentPage, DEFAULT_ROWS);
+                vc.component._listPayFees(_currentPage, DEFAULT_ROWS);
             });
 
             vc.on('payFeeAuditManage','audtiNotify',function(_param){

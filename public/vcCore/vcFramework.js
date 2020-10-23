@@ -965,7 +965,7 @@
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
             Vue.http.headers.common['SIGN'] = '';
             if (api.indexOf('/') >= 0) {
-                _api = '/app' + api;  
+                _api = '/app' + api;
             } else {
                 _api = '/callComponent/' + api;
             }
@@ -1029,7 +1029,7 @@
             Vue.http.headers.common['USER-ID'] = '-1';
 
             if (api.indexOf('/') >= 0) {
-                _api = '/app' + api;    
+                _api = '/app' + api;
             } else {
                 _api = '/callComponent/' + api;
             }
@@ -1598,6 +1598,40 @@
                 _callBack(value);
             });
     }
+
+    daysInMonth = function (year, month) {
+        if (month == 1) {
+            if (year % 4 == 0 && year % 100 != 0)
+                return 29;
+            else
+                return 28;
+        } else if ((month <= 6 && month % 2 == 0) || (month = 6 && month % 2 == 1))
+            return 31;
+        else
+            return 30;
+    }
+
+    vcFramework.addMonth = function (_date, _month) {
+        let y = _date.getFullYear();
+        let m = _date.getMonth();
+        let nextY = y;
+        let nextM = m;
+        //如果当前月+要加上的月>11 这里之所以用11是因为 js的月份从0开始
+        if ((m + _month) > 11) {
+            nextY = y + 1;
+            nextM = parseInt(m + _month) - 12;
+        } else {
+            nextM = m + _month
+        }
+        let daysInNextMonth = daysInMonth(nextY, nextM);
+        let day = _date.getDate();
+        if (day > daysInNextMonth) {
+            day = daysInNextMonth;
+        }
+        let _newDate = new Date(nextY, nextM, day)
+        return _newDate.getFullYear() + '-' + (_newDate.getMonth() + 1) + '-' + _newDate.getDay() + " " + _date.getHours() + ":" + _date.getMinutes() + ":" + _date.getSeconds();
+    };
+
 
 
 })(window.vcFramework);
