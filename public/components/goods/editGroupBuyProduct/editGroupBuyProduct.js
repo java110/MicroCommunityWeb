@@ -7,6 +7,7 @@
         },
         data: {
             editGroupBuyProductInfo: {
+                groupId: '',
                 productId: '',
                 groupProdName: '',
                 prodName: '',
@@ -26,23 +27,9 @@
             vc.on('editGroupBuyProduct', 'openEditProductModal', function (_product) {
                 //加载数据
 
-                vc.copyObject(_product,$that.editGroupBuyProductInfo);
+                vc.copyObject(_product, $that.editGroupBuyProductInfo);
 
                 $that._loadGroupProductInfo(_product);
-            });
-            vc.on('editGroupBuyProduct', 'chooseProduct', function (_product) {
-                vc.copyObject(_product, $that.editGroupBuyProductInfo);
-                $that.editGroupBuyProductInfo.groupProdDesc = _product.prodDesc;
-                $that.editGroupBuyProductInfo.groupProdName = _product.prodName;
-                $that._loadProductInfo(_product.productId);
-            });
-            vc.on("editGroupBuyProduct", "notifyUploadCoverImage", function (_param) {
-                if (_param.length > 0) {
-                    vc.component.editGroupBuyProductInfo.coverPhoto = _param[0];
-                } else {
-                    vc.component.editGroupBuyProductInfo.coverPhoto = '';
-                }
-
             });
             vc.on("editGroupBuyProduct", "notifyUploadCarouselFigureImage", function (_param) {
                 vc.component.editGroupBuyProductInfo.carouselFigurePhoto = _param;
@@ -113,14 +100,14 @@
                     ]
                 });
             },
-            saveProductInfo: function () {
+            updateProductInfo: function () {
                 if (!vc.component.editGroupBuyProductValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
 
                 vc.http.apiPost(
-                    '/groupBuy/saveGroupBuyProduct',
+                    '/groupBuy/updateGroupBuyProduct',
                     JSON.stringify(vc.component.editGroupBuyProductInfo),
                     {
                         emulateJSON: true
@@ -140,8 +127,9 @@
 
                     });
             },
-            clearAddProductInfo: function () {
+            clearEditProductInfo: function () {
                 vc.component.editGroupBuyProductInfo = {
+                    groupId: '',
                     productId: '',
                     groupProdName: '',
                     prodName: '',
@@ -153,9 +141,9 @@
                     productSpecs: []
                 };
             },
-            _closeAddProduct: function () {
-                $that.clearAddProductInfo();
-                vc.emit('productManage', 'listProduct', {});
+            _closeEditProduct: function () {
+                $that.clearEditProductInfo();
+                vc.emit('groupBuyProductManage', 'listProduct', {});
             },
             _initEditGroupBuyProduct: function () {
                 let $summernote = $('.editSummernote').summernote({
@@ -218,9 +206,6 @@
                     });
 
             },
-            _openChooseProductModal: function () {
-                vc.emit('chooseProduct', 'openChooseProductModel', {});
-            },
             _loadGroupProductInfo: function (_product) {
                 var param = {
                     params: {
@@ -237,11 +222,11 @@
                         let _productInfo = JSON.parse(json);
                         let _product = _productInfo.data[0];
 
-                        $that.editGroupBuyProductInfo.productSpecs = _product.productSpecValues;
+                        $that.editGroupBuyProductInfo.productSpecs = _product.groupBuyProductSpecs;
                         $that.editGroupBuyProductInfo.content = _product.content;
                         $(".editSummernote").summernote('code', _product.content);
 
-                        let _productSpecValues = _product.productSpecValues;
+                        let _productSpecValues = _product.groupBuyProductSpecs;
 
                         _productSpecValues.forEach(item => {
                             let _productSpecDetails = item.productSpecDetails;

@@ -151,7 +151,7 @@
             },
             _closeAddProduct: function () {
                 $that.clearAddProductInfo();
-                vc.emit('productManage', 'listProduct', {});
+                vc.emit('groupBuyProductManage', 'listProduct', {});
             },
             _initAddGroupBuyProduct: function () {
                 let $summernote = $('.summernote').summernote({

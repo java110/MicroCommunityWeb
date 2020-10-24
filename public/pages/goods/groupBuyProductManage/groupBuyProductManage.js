@@ -68,7 +68,7 @@
                 vc.emit('editGroupBuyProduct', 'openEditProductModal', _product);
             },
             _openDeleteProductModel: function (_product) {
-                vc.emit('deleteProduct', 'openDeleteProductModal', _product);
+                vc.emit('deleteGroupBuyProduct','openDeleteGroupBuyProductModal', _product);
             },
             _queryProductMethod: function () {
                 vc.component._listProducts(DEFAULT_PAGE, DEFAULT_ROWS);
