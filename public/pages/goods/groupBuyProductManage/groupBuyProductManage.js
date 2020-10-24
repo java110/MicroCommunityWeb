@@ -64,8 +64,8 @@
                 $that.groupBuyProductManageInfo.componentShow = 'addGroupBuyProduct';
             },
             _openEditProductModel: function (_product) {
-                $that.groupBuyProductManageInfo.componentShow = 'editProduct';
-                vc.emit('editProduct', 'openEditProductModal', _product);
+                $that.groupBuyProductManageInfo.componentShow = 'editGroupBuyProduct';
+                vc.emit('editGroupBuyProduct', 'openEditProductModal', _product);
             },
             _openDeleteProductModel: function (_product) {
                 vc.emit('deleteProduct', 'openDeleteProductModal', _product);

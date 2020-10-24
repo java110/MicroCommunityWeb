@@ -80,7 +80,7 @@
                                 <td class="text-center">{{product.stock}}</td>
                                 <td class="text-center">{{product.groupBuyCount}}</td>
                                 <td class="text-center">{{product.sort}}</td>
-                                <th class="text-center">{{product.stateName}}</th>
+                                <th class="text-center">{{product.state== '1001'?'开启':'关闭'}}</th>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
@@ -112,10 +112,9 @@
     <div v-bind:class="{no_display:groupBuyProductManageInfo.componentShow != 'addGroupBuyProduct'}">
         <vc:create path="goods/addGroupBuyProduct" callBackListener="" callBackFunction=""></vc:create>
     </div>
-    <div v-bind:class="{no_display:groupBuyProductManageInfo.componentShow != 'editGroupProduct'}">
-        <vc:create path="goods/editProduct"></vc:create>
+    <div v-bind:class="{no_display:groupBuyProductManageInfo.componentShow != 'editGroupBuyProduct'}">
+        <vc:create path="goods/editGroupBuyProduct" callBackListener="" callBackFunction=""></vc:create>
     </div>
     <vc:create path="goods/deleteProduct"></vc:create>
-    <vc:create path="goods/chooseProductSpec" emitChooseProductSpec="addGroupBuyProduct" emitLoadData="addGroupBuyProduct"></vc:create>
 
 </div>
