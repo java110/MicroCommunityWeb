@@ -68,9 +68,10 @@
                 } else {
                     vc.component.groupBuyBatchManageInfo.moreCondition = true;
                 }
+            },
+            _toGroupBuy:function(product){
+                vc.jumpToPage('/admin.html#/pages/goods/groupBuyManage?batchId='+product.batchId);
             }
-
-
         }
     });
 })(window.vc);

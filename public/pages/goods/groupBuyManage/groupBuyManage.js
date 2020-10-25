@@ -20,6 +20,10 @@
             }
         },
         _initMethod: function () {
+            let batchId = vc.getParam('batchId');
+            if(batchId){
+                $that.groupBuyManageInfo.conditions.batchId = batchId;
+            }
             vc.component._listProducts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {

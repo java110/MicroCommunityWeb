@@ -55,7 +55,7 @@
                                 <th class="text-center">结束时间</th>
                                 <th class="text-center">当前批次</th>
                                 <th class="text-center">创建时间</th>
-
+                                <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,6 +66,10 @@
                                 <td class="text-center">{{product.batchEndTime}}</td>
                                 <td class="text-center">{{product.curBatch == 'Y'?'是':'否'}}</td>
                                 <td class="text-center">{{product.createTime}}</td>
+                                <th class="text-center">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_toGroupBuy(product)">拼团列表</button>
+                                </th>
                             </tr>
                         </tbody>
                         <tfoot>

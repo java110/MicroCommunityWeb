@@ -57,6 +57,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
+                                <th class="text-center">当前批次</th>
                                 <th class="text-center">商品ID</th>
                                 <th class="text-center">商品图片</th>
                                 <th class="text-center">拼团名称</th>
@@ -70,6 +71,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="product in groupBuyProductManageInfo.products">
+                                <td class="text-center">{{product.batchId}}</td>
                                 <td class="text-center">{{product.productId}}</td>
                                 <td class="text-center">
                                     <img style="width: 60px; height: 60px; border-radius: 5px;"
