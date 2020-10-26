@@ -16,8 +16,12 @@
             vc.on('editFee', 'openEditFeeModal',
                 function (_fee) {
                     vc.copyObject(_fee, $that.editFeeInfo);
-                    $that.editFeeInfo.startTime = $that.editFeeInfo.startTime + " 00:00:00";
-                    $that.editFeeInfo.endTime = $that.editFeeInfo.endTime + " 00:00:00";
+                    if (_fee.startTime.indexOf(":") == -1) {
+                        $that.editFeeInfo.startTime = $that.editFeeInfo.startTime + " 00:00:00";
+                    }
+                    if (_fee.endTime.indexOf(":") == -1) {
+                        $that.editFeeInfo.endTime = $that.editFeeInfo.endTime + " 00:00:00";
+                    }
                     $('#editFeeModel').modal('show');
                 });
         },
@@ -108,8 +112,8 @@
                             //关闭model
                             $('#editFeeModel').modal('hide');
                             vc.component.clearAddFeeConfigInfo();
-                            vc.emit('listRoomFee','notify', {});
-                            vc.emit('listParkingSpaceFee','notify', {});
+                            vc.emit('listRoomFee', 'notify', {});
+                            vc.emit('listParkingSpaceFee', 'notify', {});
 
                             return;
                         }
