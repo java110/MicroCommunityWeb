@@ -128,7 +128,7 @@
                             return;
                         }
                        
-                        vc.toast(json.msg);
+                        vc.toast(_json.msg);
 
                     },
                     function (errInfo, error) {
