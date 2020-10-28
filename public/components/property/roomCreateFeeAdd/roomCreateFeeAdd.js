@@ -179,6 +179,8 @@
             },
             _changeFeeTypeCdX: function (_feeTypeCd) {
 
+                $that.roomCreateFeeAddInfo.configId = '';
+
                 var param = {
                     params: {
                         page: 1,
