@@ -16,7 +16,8 @@
                     prodName: '',
                     productId: '',
                     barCode: '',
-                    labelCd:'8800012001'
+                    labelCd: '8800012001',
+                    hasProduct:'Y'
                 }
             }
         },
@@ -24,6 +25,11 @@
             vc.component._listProducts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
+
+
+            vc.on('recommendGoodsManage', 'chooseLabelProduct', function (_param) {
+                $that._saveProductLabel(_param);
+            });
 
             vc.on('recommendGoodsManage', 'listProduct', function (_param) {
                 $that.recommendGoodsManageInfo.componentShow = 'recommendGoodsManage';
@@ -59,6 +65,38 @@
                     }
                 );
             },
+
+            _saveProductLabel: function (_product) {
+                let _date = {
+                    productId: _product.productId,
+                    storeId: _product.storeId,
+                    labelCd: '8800012001'
+                };
+
+                vc.http.apiPost(
+                    '/product/saveProductLabel',
+                    JSON.stringify(_date),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model 
+                            vc.emit('recommendGoodsManage', 'listProduct', {});
+                            return;
+                        }
+                        vc.message(_json.msg);
+
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+
+                        vc.message(errInfo);
+
+                    });
+            },
             _queryProductMethod: function () {
                 vc.component._listProducts(DEFAULT_PAGE, DEFAULT_ROWS);
 
@@ -69,9 +107,15 @@
                 } else {
                     vc.component.recommendGoodsManageInfo.moreCondition = true;
                 }
+            },
+            openChooseLabelProductModel: function () {
+                vc.emit('chooseLabelProduct', 'openChooseProductModel', {
+                    labelCd: '8800012001'
+                });
+            },
+            openDeleteLabelProductModel: function (_product) {
+                vc.emit('deleteLabelProduct','openDeleteLabelProductModal', _product);
             }
-
-
         }
     });
 })(window.vc);

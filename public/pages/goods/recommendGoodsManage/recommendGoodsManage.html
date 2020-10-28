@@ -43,6 +43,11 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>推荐商品</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="openChooseLabelProductModel()">
+                            <i class="fa fa-search"></i> 选择商品
+                        </button>
+                    </div>
                 </div>
                 <div class="ibox-content">
 
@@ -68,7 +73,7 @@
                                 <th class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteProductModel(product)">删除</button>
+                                            v-on:click="openDeleteLabelProductModel(product)">删除</button>
                                     </div>
                                 </th>
                             </tr>
@@ -87,4 +92,7 @@
             </div>
         </div>
     </div>
+
+    <vc:create path="goods/chooseLabelProduct" emitChooseProduct = "recommendGoodsManage" emitLoadData="recommendGoodsManage"></vc:create>
+    <vc:create path="goods/deleteLabelProduct" emitChooseProduct = "recommendGoodsManage" emitLoadData="recommendGoodsManage"></vc:create>
 </div>
