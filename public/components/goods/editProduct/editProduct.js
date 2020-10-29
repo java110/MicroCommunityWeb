@@ -145,6 +145,22 @@
                 });
             },
             _editProductInfo: function () {
+                let hasDefault = false;
+                vc.component.editProductInfo.productSpecs.forEach(item =>{
+                    if(item.isDefault != 'T' && item.isDefault != 'F'){
+                        hasDefault = false;
+                        return ;
+                    }
+                    if(item.isDefault == 'T'){
+                        hasDefault = true;
+                    }
+                });
+
+                if(!hasDefault){
+                    vc.toast("未选择默认规格");
+
+                    return;
+                }
                 if (!vc.component.editProductValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -183,6 +199,7 @@
 
                 let _productCategorys = $that.editProductInfo.productCategorys;
                 vc.component.editProductInfo = {
+                    productId: '',
                     categoryId: '',
                     prodName: '',
                     prodDesc: '',
@@ -338,6 +355,15 @@
                     }
                 );
             },
+            _doEditDefaultProductSpec:function(_product,_defaultProductSpec){
+
+                _product.productSpecs.forEach(item => {
+                    item.isDefault = "F";
+                });
+                _defaultProductSpec.isDefault="T";
+
+                $that.addProductInfo.editProductInfo = JSON.parse(JSON.stringify(_product.productSpecs));
+            }
         }
     });
 

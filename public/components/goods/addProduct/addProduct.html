@@ -144,6 +144,11 @@
                     <button class="btn-white btn btn-xs"
                       v-on:click="_openDeleteProductSpec(productSpec)">删除</button>
                   </div>
+
+                  <div class="btn-group" v-if="productSpec.isDefault != 'T'">
+                    <button class="btn-white btn btn-xs"
+                      v-on:click="_doDefaultProductSpec(addProductInfo,productSpec)">默认规格</button>
+                  </div>
                 </td>
 
               </tr>
