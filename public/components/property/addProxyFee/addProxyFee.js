@@ -120,11 +120,11 @@
 
                     });
             },
-            _changeFeeConfig: function () {
+            _changeProxyFeeConfig: function () {
                 $that.addProxyFeeInfo.amount = '';
                 $that.addProxyFeeInfo.consumption = '';
             },
-            _changeFeeTypeCd: function (_feeTypeCd) {
+            _changeProxyFeeTypeCd: function (_feeTypeCd) {
                 $that.addProxyFeeInfo.amount = '';
                 $that.addProxyFeeInfo.consumption = '';
                 var param = {
