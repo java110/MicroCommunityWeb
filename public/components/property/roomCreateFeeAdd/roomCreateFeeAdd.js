@@ -34,6 +34,7 @@
                         vc.component.roomCreateFeeAddInfo.locationTypeCd = '5008';
                         vc.component.roomCreateFeeAddInfo.locationObjId = _room.room.roomId;
                         $that.roomCreateFeeAddInfo.roomState.push('2003');
+                        $that.roomCreateFeeAddInfo.roomState.push('2004');
                         $that.roomCreateFeeAddInfo.roomState.push('2005');
                         var room = _room.room;
                         vc.component.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum + '号楼' + room.unitNum + '单元' + room.roomNum + '室(' + room.ownerName + ')';
