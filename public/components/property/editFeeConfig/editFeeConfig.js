@@ -254,7 +254,8 @@
                     additionalAmount: '',
                     isDefault:'',
                     paymentCycle:'',
-                    paymentCd:''
+                    paymentCd:'',
+                    billType:''
                 };
                 vc.component.editFeeConfigInfo.feeTypeCds = _feeTypeCds;
                 vc.component.editFeeConfigInfo.computingFormulas = _computingFormulas;
