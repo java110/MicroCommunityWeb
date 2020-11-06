@@ -16,12 +16,22 @@
                 conditions: {
                     objType: '',
                     objId: '',
+                    month:'',
+                    type:'',
+                    roomId:'',
                     communityId: vc.getCurrentCommunity().communityId,
                 }
             }
         },
         _initMethod: function () {
             vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
+
+            vc.initDateMonth('startTime', function (_startTime) {
+                $that.feeReceiptManageInfo.conditions.month = _startTime;
+            });
+            // vc.initDateMonth('startTime', function (_startTime) {
+            //     $that.reportFeeSummaryInfo.conditions.startTime = _startTime;
+            // });
         },
         _initEvent: function () {
 
@@ -41,7 +51,7 @@
                 var param = {
                     params: vc.component.feeReceiptManageInfo.conditions
                 };
-
+                // console.log(param);
                 //发送get请求
                 vc.http.apiGet('/feeReceipt/queryFeeReceipt',
                     param,
@@ -63,8 +73,26 @@
             _queryFeeReceiptMethod: function () {
                 vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+
             _printFeeReceipt: function (_receipt) {
                 window.open("/print.html#/pages/property/printPayFee?receiptId=" + _receipt.receiptId);
+            },
+            _printFeeReceipts: function (_conditions) {
+                // console.log(_conditions)
+                if(_conditions.roomId==null|| _conditions.roomId ==""){
+                    vc.toast("请填写收费对象",1000);
+                    return;
+                }
+                if(_conditions.type==null|| _conditions.type ==""){
+                    vc.toast("请选择打印类型",1000);
+                    return;
+                }
+                if(_conditions.month==null|| _conditions.month ==""){
+                    vc.toast("请选择费用月份",1000);
+                    return;
+                }
+                window.open("/print.html#/pages/property/printPayFees?roomName=" + _conditions.roomId+
+                "&type="+_conditions.type+"&month="+_conditions.month);
             },
             _moreCondition: function () {
                 if (vc.component.feeReceiptManageInfo.moreCondition) {
