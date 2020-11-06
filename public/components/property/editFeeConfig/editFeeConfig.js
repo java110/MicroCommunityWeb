@@ -155,9 +155,9 @@
                         errInfo: "计费单价不能为空"
                     },
                     {
-                        limit: "money",
+                        limit: "moneyModulus",
                         param: "",
-                        errInfo: "计费单价格式错误"
+                        errInfo: "计费单价格式错误，如1.5000"
                     },
                     ],
                     'editFeeConfigInfo.additionalAmount': [{
@@ -254,8 +254,7 @@
                     additionalAmount: '',
                     isDefault:'',
                     paymentCycle:'',
-                    paymentCd:'',
-                    billType:''
+                    paymentCd:''
                 };
                 vc.component.editFeeConfigInfo.feeTypeCds = _feeTypeCds;
                 vc.component.editFeeConfigInfo.computingFormulas = _computingFormulas;

@@ -43,10 +43,15 @@
                             param: "",
                             errInfo: "单价不能为空"
                         },
+                        // {
+                        //     limit: "money",
+                        //     param: "",
+                        //     errInfo: "单价填写有误，如1.50"
+                        // },
                         {
-                            limit: "money",
+                            limit: "moneyModulus",
                             param: "",
-                            errInfo: "单价填写有误，如1.50"
+                            errInfo: "单价填写有误，如1.5000"
                         },
                     ],
                     'editFeeFormulaInfo.formulaDesc': [

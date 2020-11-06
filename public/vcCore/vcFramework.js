@@ -1972,6 +1972,16 @@ vc 校验 工具类 -method
             let regMoney = /^\d+\.?\d{0,2}$/;
             return regMoney.test(text);
         },
+        /**
+         系数校验
+         **/
+        moneyModulus: function (text) {
+            if (text == null || text == undefined) {
+                return true;
+            }
+            let regMoney = /^\d+\.?\d{0,4}$/;
+            return regMoney.test(text);
+        },
         idCard: function (num) {
             if (num == null || num == undefined || num == '') {
                 return true;
