@@ -49,8 +49,8 @@
                 }
             };
 
-            vc.component.payFeeOrderInfo.totalFeePrice = vc.component.payFeeOrderInfo.feePrice;
-            vc.component.payFeeOrderInfo.receivedAmount = $that._mathCeil(vc.component.payFeeOrderInfo.totalFeePrice);
+            vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
+            vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
 
 
 
@@ -176,15 +176,15 @@
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
-                vc.component.payFeeOrderInfo.totalFeePrice = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
-                vc.component.payFeeOrderInfo.receivedAmount = $that._mathCeil(vc.component.payFeeOrderInfo.totalFeePrice);
+                vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
+                vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
             },
             changeCycle: function (_cycles) {
                 if (_cycles == '') {
                     return;
                 }
-                vc.component.payFeeOrderInfo.totalFeePrice = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
-                vc.component.payFeeOrderInfo.receivedAmount = $that._mathCeil(vc.component.payFeeOrderInfo.totalFeePrice);
+                vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
+                vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
             },
             _back: function () {
                 $('#payFeeResult').modal("hide");
