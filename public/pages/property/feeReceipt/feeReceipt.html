@@ -10,7 +10,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             <select class="custom-select" v-model="feeReceiptManageInfo.conditions.objType">
                                 <option selected value="">请选择预存类型</option>
                                 <option value="3333">房屋费</option>
@@ -18,37 +18,16 @@
                             </select>
 
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="收费对象" v-model="feeReceiptManageInfo.conditions.roomId"
                                     class=" form-control" placeholder="请输入房屋或车位信息">
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
-                            <select class="custom-select" v-model="feeReceiptManageInfo.conditions.type">
-                                <option selected value="">请选择打印类型</option>
-                                <option value="1">装修单据</option>
-                                <option value="2">押金单据 </option>
-                                <option value="3">日常收费 </option>
-                                <option value="4">车辆单据 </option>
-                                <option value="5">公摊费票据 </option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group input-group">
-                                <input type="text" placeholder="请选择月份"
-                                    v-model="feeReceiptManageInfo.conditions.month" class="form-control startTime">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-2">
-
-                        </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_printFeeReceipts(feeReceiptManageInfo.conditions)">
-                                <i class="glyphicon glyphicon-search"></i> 打印单据
-                            </button>
+                        <div class="col-sm-4">
+                            <input type="text" v-model="feeReceiptManageInfo.conditions.receiptId" class=" form-control"
+                                placeholder="请输入收据ID">
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeReceiptMethod()">
@@ -56,7 +35,37 @@
                             </button>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择月份" v-model="feeReceiptManageInfo.conditions.month"
+                                    class="form-control startTime">
+                            </div>
+                        </div>
 
+                        <div class="col-sm-3">
+                            <div class="form-group">
+
+                                <select class="custom-select" v-model="feeReceiptManageInfo.conditions.type">
+                                    <option selected value="">请选择打印类型</option>
+                                    <option value="1">装修单据</option>
+                                    <option value="2">押金单据 </option>
+                                    <option value="3">日常收费 </option>
+                                    <option value="4">车辆单据 </option>
+                                    <option value="5">公摊费票据 </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_printFeeReceipts(feeReceiptManageInfo.conditions)">
+                                <i class="glyphicon glyphicon-search"></i> 打印
+                            </button>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -92,7 +101,7 @@
                                 <td class="text-center">{{feeReceipt.createTime}}</td>
                                 <td class="text-center">{{feeReceipt.receiptId}}</td>
                                 <td class="text-center">
-                                    <div  class="btn-group">
+                                    <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_printFeeReceipt(feeReceipt)">补打收据</button>
                                     </div>

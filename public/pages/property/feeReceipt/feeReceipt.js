@@ -20,6 +20,7 @@
                     type:'',
                     roomId:'',
                     communityId: vc.getCurrentCommunity().communityId,
+                    receiptId:''
                 }
             }
         },
