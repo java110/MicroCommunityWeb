@@ -166,7 +166,7 @@
                         errInfo: "附加费用不能为空"
                     },
                     {
-                        limit: "money",
+                        limit: "moneyModulus",
                         param: "",
                         errInfo: "附加费用格式错误"
                     },
