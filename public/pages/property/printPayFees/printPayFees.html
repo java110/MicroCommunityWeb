@@ -8,59 +8,83 @@
                 <!-- <span>单号：{{printPayFeeInfo.receiptId}}</span> -->
             </div>
             <div class="row margin-top">
+                <div class="col-sm-4">
+                    <span><h3>房号:{{printPayFeeInfo.roomName}}</h3></span>
+                </div>
+                <!-- <div class="col-sm-1">
+                </div> -->
                 <div class="col-sm-2">
-                    <span>房号:{{printPayFeeInfo.roomName}}</span>
+                    <span><h3>用户名:{{printPayFeeInfo.name}}</h3></span>
                 </div>
                 <div class="col-sm-2">
                 </div>
                 <div class="col-sm-2">
-                    <span>用户名:{{printPayFeeInfo.name}}</span>
                 </div>
                 <div class="col-sm-2">
-                </div>
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-2">
-                    <span>面积:{{printPayFeeInfo.roomArea}} 平方米</span>
+                    <span><h3>面积:{{printPayFeeInfo.roomArea}} 平方米</h3></span>
                 </div>
             </div>
             <table class="table table-bordered margin-top" >
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">收费项目</th>
-                        <th v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center">车牌号码</th>
-                        <th scope="col" class="text-center">数量</th>
-                        <th scope="col" class="text-center">单价</th>
-                        <th colspan="2" scope="col" class="text-center">计费起止时间</th>
-                        <th scope="col" class="text-center">实收金额</th>
-                        <th scope="col" class="text-center">备注</th>
+                        <th scope="col" class="text-center"><h3>收费项目</h3></th>
+                        <th v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center"><h3>车牌号码</h3></th>
+                        <th scope="col" class="text-center"><h3>数量</h3></th>
+                        <th scope="col" class="text-center"><h3>单价</h3></th>
+                        <th colspan="2" scope="col" class="text-center"><h3>计费起止时间</h3></th>
+                        <th scope="col" class="text-center"><h3>实收金额</h3></th>
+                        <th scope="col" class="text-center"><h3>备注</h3></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item,index) in printPayFeeInfo.fees">
-                        <!-- <th scope="row" class="text-center">{{index +1}}</th> -->
-                        <td class="text-center">{{item.feeName}}</td>
-                        <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center">{{item.carNum}}</td>
+                    <!-- <tr v-for="(item,index) in printPayFeeInfo.fees">
+                        <td class="text-center"><h6>{{item.feeName}}</h6></td>
+                        <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center"><h6>{{item.carNum}}</h6></td>
                         <td v-if= "printPayFeeInfo.type== 5 " class="text-center">{{item.cycle}}</td>
-                        <td v-if= "item.feeName != '水费' && item.feeName != '电费' && printPayFeeInfo.type != 5" class="text-center">{{item.num}}</td>
-                        <td v-if= "item.feeName == '水费' || item.feeName == '电费'" class="text-center"></td> 
-                        <!-- <td class="text-center">{{item.num}}</td> -->
-                        <td class="text-center">{{item.unit}}</td>
-                        <!-- <td class="text-center">{{item.start}}</td> -->
-                        <td v-if="printPayFeeInfo.type != 5" class="text-center">{{item.start!=null?vc.dateFormat(item.start):''}}</td>
-                        <td v-if="printPayFeeInfo.type != 5" class="text-center">{{item.end!=null?vc.dateFormat(item.end):''}}</td>
-                        <td v-if="printPayFeeInfo.type == 5" class="text-center">{{item.startTime!=null?vc.dateFormat(item.startTime):''}}</td>
-                        <td v-if="printPayFeeInfo.type == 5" class="text-center">{{item.endTime!=null?vc.dateFormat(item.endTime):''}}</td>
-                        <td class="text-center">{{item.amount}}</td>
-                        <td class="text-center">{{item.remark}}</td>
+                        <td v-if= "item.feeName != '水费' && item.feeName != '电费' && printPayFeeInfo.type != 5" class="text-center"><h6>{{item.num}}</h6></td>
+                        <td v-if= "item.feeName == '水费' || item.feeName == '电费'" class="text-center"><h3></h3></td> 
+                        <td class="text-center"><h3>{{item.unit}}</h3></td>
+                        <td v-if="printPayFeeInfo.type != 5" class="text-center"><h3>{{item.start!=null?vc.dateFormat(item.start):''}}</h3></td>
+                        <td v-if="printPayFeeInfo.type != 5" class="text-center"><h3>{{item.end!=null?vc.dateFormat(item.end):''}}</h3></td>
+                        <td v-if="printPayFeeInfo.type == 5" class="text-center"><h3>{{item.startTime!=null?vc.dateFormat(item.startTime):''}}</h3></td>
+                        <td v-if="printPayFeeInfo.type == 5" class="text-center"><h3>{{item.endTime!=null?vc.dateFormat(item.endTime):''}}</h3></td>
+                        <td class="text-center"><h3>{{item.amount}}</h3></td>
+                        <td class="text-center"><h3>{{item.remark}}</h3></td>
                     </tr>
                     <tr >
-                        <td colspan="1" class="text-center ">大写人民币（元）</td>
-                        <td colspan="3" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                        <td colspan="1" class="text-center "><h3>大写人民币（元）</h3></td>
+                        <td colspan="3" class="text-center "><h3>{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}</h3>
                         </td>
                         <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 "  colspan="1" class="text-center "></td>
-                        <td colspan="1" class="text-center ">合计（小写）</td>
-                        <td colspan="1" class="text-center ">{{printPayFeeInfo.amount}}</td>
+                        <td colspan="1" class="text-center "><h3>合计（小写）</h3></td>
+                        <td colspan="1" class="text-center "><h3>{{printPayFeeInfo.amount}}</h3></td>
+                        <td colspan="4" class="text-center "></td>
+
+                    </tr> -->
+                    <tr v-for="(item,index) in printPayFeeInfo.fees">
+                        <!-- <th scope="row" class="text-center">{{index +1}}</th> -->
+                        <td class="text-center"><h6>{{item.feeName}}</h6></td>
+                        <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center"><h6>{{item.carNum}}</h6></td>
+                        <td v-if= "printPayFeeInfo.type== 5 " class="text-center">{{item.cycle}}</td>
+                        <td v-if= "item.feeName != '水费' && item.feeName != '电费' && printPayFeeInfo.type != 5" class="text-center"><h6>{{item.num}}</h6></td>
+                        <td v-if= "item.feeName == '水费' || item.feeName == '电费'" class="text-center"><h6></h6></td> 
+                        <!-- <td class="text-center">{{item.num}}</td> -->
+                        <td class="text-center"><h6>{{item.unit}}</h6></td>
+                        <!-- <td class="text-center">{{item.start}}</td> -->
+                        <td v-if="printPayFeeInfo.type != 5" class="text-center"><h6>{{item.start!=null?vc.dateFormat(item.start):''}}</h6></td>
+                        <td v-if="printPayFeeInfo.type != 5" class="text-center"><h6>{{item.end!=null?vc.dateFormat(item.end):''}}</h6></td>
+                        <td v-if="printPayFeeInfo.type == 5" class="text-center"><h6>{{item.startTime!=null?vc.dateFormat(item.startTime):''}}</h6></td>
+                        <td v-if="printPayFeeInfo.type == 5" class="text-center"><h6>{{item.endTime!=null?vc.dateFormat(item.endTime):''}}</h6></td>
+                        <td class="text-center"><h6>{{item.amount}}</h6></td>
+                        <td class="text-center"><h6>{{item.remark}}</h6></td>
+                    </tr>
+                    <tr >
+                        <td colspan="1" class="text-center "><h6>大写人民币（元）</h6></td>
+                        <td colspan="3" class="text-center "><h6>{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}</h6>
+                        </td>
+                        <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 "  colspan="1" class="text-center "></td>
+                        <td colspan="1" class="text-center "><h6>合计（小写）</h6></td>
+                        <td colspan="1" class="text-center "><h6>{{printPayFeeInfo.amount}}</h6></td>
                         <td colspan="4" class="text-center "></td>
 
                     </tr>
@@ -78,22 +102,20 @@
                 </tbody>
             </table>
             <div class="row ">
-                <div class="col-sm-2">
-                    <span>{{printPayFeeInfo.communityName}}客户服务中心</span>
+                <div class="col-sm-4">
+                    <span><h3>{{printPayFeeInfo.communityName}}客户服务中心</h3></span>
                 </div>
+                <!-- <div class="col-sm-1">
+                </div> -->
+                <div class="col-sm-4">
+                    <span><h3>收款时间：{{printPayFeeInfo.feeTime}}</h3></span>
+                </div>
+                <!-- <div class="col-sm-1">
+                </div> -->
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-3">
-                    <span>收款时间：{{printPayFeeInfo.feeTime}}</span>
-                </div>
-                <!-- <div class="col-sm-2">
-                </div> -->
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-2">
-                    <span>收款人：{{printPayFeeInfo.userName}}</span>
+                    <span><h3>收款人：{{printPayFeeInfo.userName}}</h3></span>
                 </div>
             </div>
         </div>
