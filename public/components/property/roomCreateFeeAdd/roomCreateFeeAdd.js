@@ -18,12 +18,17 @@
                 roomState: ['2001'],
                 isMore: false,
                 locationTypeCdName: '',
+                startTime:''
             }
         },
         _initMethod: function () {
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.roomCreateFeeAddInfo.feeTypeCds = _data;
             });
+
+            vc.initDateTime('roomCreateFeeStartTime',function(_value){
+                $that.roomCreateFeeAddInfo.startTime = _value;
+            })
 
         },
         _initEvent: function () {
@@ -98,7 +103,17 @@
                             param: "",
                             errInfo: "房屋状态不能为空"
                         }
-                        ]
+                        ],
+                        'roomCreateFeeAddInfo.startTime': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "计费起始时间不能为空"
+                        },
+                        {
+                            limit: "datetime",
+                            param: "",
+                            errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
+                        }]
                     });
             },
             saveRoomCreateFeeInfo: function () {
@@ -174,6 +189,7 @@
                     roomState: ['2001'],
                     isMore: false,
                     locationTypeCdName: '',
+                    startTime:''
                 };
 
                 vc.component.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;

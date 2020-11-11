@@ -14,12 +14,17 @@
                 carState:'SH',
                 isMore:false,
                 locationTypeCdName:'',
+                startTime:''
             }
         },
         _initMethod: function() {
             vc.getDict('pay_fee_config',"fee_type_cd",function(_data){
                 vc.component.carCreateFeeAddInfo.feeTypeCds = _data;
             });
+
+            vc.initDateTime('carCreateFeeStartTime',function(_value){
+                $that.carCreateFeeAddInfo.startTime = _value;
+            })
 
             vc.component._loadParkingAreas();
 
@@ -79,7 +84,17 @@
                          param: "",
                          errInfo: "出账类型不能为空"
                      }
-                     ]
+                     ],
+                     'carCreateFeeAddInfo.startTime': [{
+                         limit: "required",
+                         param: "",
+                         errInfo: "计费起始时间不能为空"
+                     },
+                     {
+                         limit: "datetime",
+                         param: "",
+                         errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
+                     }]
                 });
             },
             saveCarCreateFeeInfo: function() {
