@@ -16,7 +16,7 @@
                     <span>打印时间：{{printPayFeeInfo.feeTime}}</span>
                 </div>
             </div>
-            <table class="table table-bordered margin-top">
+            <table class="table vc-table-border margin-top">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">项目名称</th>
@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item,index) in printPayFeeInfo.fees">
+                    <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
                         <td class="text-center">{{item.feeName}}</td>
                         <td class="text-center">{{vc.dateFormat(item.endTime)}}至{{vc.dateFormat(item.deadlineTime)}}
                         </td>

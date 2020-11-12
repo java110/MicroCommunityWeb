@@ -24,7 +24,7 @@
                     <span>面积:{{printPayFeeInfo.roomArea}} 平方米</span>
                 </div>
             </div>
-            <table class="table table-bordered margin-top" >
+            <table class="table vc-table-border margin-top" >
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">收费项目</th>
@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item,index) in printPayFeeInfo.fees">
+                    <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
                         <!-- <th scope="row" class="text-center">{{index +1}}</th> -->
                         <td class="text-center">{{item.feeName}}</td>
                         <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center">{{item.carNum}}</td>

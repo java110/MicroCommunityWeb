@@ -16,9 +16,9 @@
                     <span>缴费时间：{{printPayFeeInfo.feeTime}}</span>
                 </div>
             </div>
-            <table class="table table-bordered margin-top">
+            <table class="table vc-table-border margin-top">
                 <thead>
-                    <tr>
+                    <tr >
                         <th scope="col" class="text-center">编号</th>
                         <th scope="col" class="text-center">收费项目</th>
                         <th scope="col" class="text-center">收费范围</th>
@@ -30,8 +30,8 @@
                         <th scope="col" class="text-center">备注</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="(item,index) in printPayFeeInfo.fees">
+                <tbody class="vc-table-border">
+                    <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
                         <th scope="row" class="text-center">{{index +1}}</th>
                         <td class="text-center">{{item.feeName}}</td>
                         <td class="text-center">{{vc.dateFormat(item.startTime)}}至{{vc.dateFormat(item.endTime)}}</td>
