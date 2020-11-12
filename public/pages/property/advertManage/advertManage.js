@@ -13,7 +13,7 @@
                 moreCondition: false,
                 adName: '',
                 conditions: {
-                    name: '',
+                    adName: '',
                     adTypeCd: '',
                     classify: '',
                     state: '',
