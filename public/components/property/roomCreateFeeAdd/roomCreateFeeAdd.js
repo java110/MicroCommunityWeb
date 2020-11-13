@@ -18,7 +18,7 @@
                 roomState: ['2001'],
                 isMore: false,
                 locationTypeCdName: '',
-                startTime:''
+                startTime: vc.dateTimeFormat(new Date().getTime())
             }
         },
         _initMethod: function () {
@@ -189,7 +189,7 @@
                     roomState: ['2001'],
                     isMore: false,
                     locationTypeCdName: '',
-                    startTime:''
+                    startTime: vc.dateTimeFormat(new Date().getTime())
                 };
 
                 vc.component.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;

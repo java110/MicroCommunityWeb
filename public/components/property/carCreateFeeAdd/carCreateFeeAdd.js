@@ -14,7 +14,7 @@
                 carState:'SH',
                 isMore:false,
                 locationTypeCdName:'',
-                startTime:''
+                startTime: vc.dateTimeFormat(new Date().getTime())
             }
         },
         _initMethod: function() {
@@ -155,6 +155,7 @@
                     carState:'SH',
                     isMore:false,
                     locationTypeCdName:'',
+                    startTime: vc.dateTimeFormat(new Date().getTime())
                 };
 
                 vc.component.carCreateFeeAddInfo.feeTypeCds = _feeTypeCds;

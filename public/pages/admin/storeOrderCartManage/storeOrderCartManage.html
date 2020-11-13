@@ -1,5 +1,5 @@
 <div  class="animated fadeInRight ecommerce">
-    <div class="row" v-if="orderManageInfo.orderDetail == false">
+    <div class="row" v-if="storeOrderCartManageInfo.orderDetail == false">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
@@ -13,12 +13,12 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="订单编号"
-                                       v-model="orderManageInfo.conditions.oId" class=" form-control">
+                                       v-model="storeOrderCartManageInfo.conditions.oId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="orderManageInfo.conditions.orderTypeCd">
+                                <select class="custom-select" v-model="storeOrderCartManageInfo.conditions.orderTypeCd">
                                     <option value="">请选择订单类型</option>
                                     <option value="Q">查询单</option>
                                     <option value="D">受理单</option>
@@ -28,7 +28,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="appid"
-                                       v-model="orderManageInfo.conditions.appId" class=" form-control">
+                                       v-model="storeOrderCartManageInfo.conditions.appId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -44,11 +44,11 @@
             </div>
         </div>
     </div>
-    <div class="row" v-if="orderManageInfo.orderDetail == false">
+    <div class="row" v-if="storeOrderCartManageInfo.orderDetail == false">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>受理单信息</h5>
+                    <h5>订单信息</h5>
                     <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
@@ -58,17 +58,18 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">应用ID</th>
-                            <th class="text-center">订单ID</th>
-                            <th class="text-center">订单类型</th>
-                            <th class="text-center">extTransactionId</th>
-                            <th class="text-center">请求时间</th>
-                            <th class="text-center">操作人</th>
+                            <th class="text-center">订单号</th>
+                            <th class="text-center">商品名称</th>
+                            <th class="text-center">商品规格</th>
+                            <th class="text-center">用户名称</th>
+                            <th class="text-center">支付金额</th>
+                            <th class="text-center">订单状态</th>
                             <th class="text-center">创建时间</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="order in orderManageInfo.orderDataVos">
+                        <tr v-for="order in storeOrderCartManageInfo.orderCarts">
                             <td class="text-center">{{order.appId}}</td>
                             <td class="text-center">{{order.oId}}</td>
                             <td class="text-center">{{order.orderTypeCdName}}</td>
@@ -79,7 +80,7 @@
                             <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openOrderDetailModel(order)">订单明细
+                                            v-on:click="_openOrderDetailModel(order)">订单详情
                                     </button>
                                 </div>
                             </td>
@@ -100,10 +101,5 @@
             </div>
         </div>
     </div>
-
-    <div v-if="orderManageInfo.orderDetail == true">
-        <vc:create path="/pages/admin/orderDetailManage"></vc:create>
-    </div>
-
 
 </div>
