@@ -10,10 +10,9 @@
                 records:1,
                 orderDetail:false,
                 conditions:{
-                    oId:'',
-                    extTransactionId:'',
-                    orderTypeCd:'',
-                    appId:'',
+                    cartId:'',
+                    state:'',
+                    prodName:''
                 }
             }
         },
@@ -36,17 +35,13 @@
                     params:vc.component.storeOrderCartManageInfo.conditions
                };
                //发送get请求
-               vc.http.get('cstoreOrderCartManage',
-                            'list',
+               vc.http.apiGet('/storeOrder/queryStoreOrderCart',
                              param,
                              function(json,res){
                                 var _storeOrderCartManageInfo=JSON.parse(json);
                                 vc.component.storeOrderCartManageInfo.total = _storeOrderCartManageInfo.total;
                                 vc.component.storeOrderCartManageInfo.records = _storeOrderCartManageInfo.records;
-                                vc.component.storeOrderCartManageInfo.orderCarts = _storeOrderCartManageInfo.corderDataVos;
-                                vc.component.storeOrderCartManageInfo.orderCarts.map(item=>{
-                                    item.requestTime=item.requestTime.substring(0,4)+"-"+item.requestTime.substring(4,6)+"-"+item.requestTime.substring(6,8)+"  "+item.requestTime.substring(8,10)+":"+item.requestTime.substring(10,12)+":"+item.requestTime.substring(12,14)
-                                })
+                                vc.component.storeOrderCartManageInfo.orderCarts = _storeOrderCartManageInfo.data;
                                 vc.emit('pagination','init',{
                                      total:vc.component.storeOrderCartManageInfo.records,
                                      currentPage:_page

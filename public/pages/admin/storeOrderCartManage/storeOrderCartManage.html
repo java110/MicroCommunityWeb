@@ -13,22 +13,27 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="订单编号"
-                                       v-model="storeOrderCartManageInfo.conditions.oId" class=" form-control">
+                                       v-model="storeOrderCartManageInfo.conditions.cartId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="storeOrderCartManageInfo.conditions.orderTypeCd">
-                                    <option value="">请选择订单类型</option>
-                                    <option value="Q">查询单</option>
-                                    <option value="D">受理单</option>
+                                <select class="custom-select" v-model="storeOrderCartManageInfo.conditions.state">
+                                    <option value="">请选择状态</option>
+                                    <option value="1001">未购买</option>
+                                    <option value="2002">待发货</option>
+                                    <option value="3003">待收货</option>
+                                    <option value="4004">待评价</option>
+                                    <option value="5005">申请退款</option>
+                                    <option value="6006">退货成功</option>
+                                    <option value="7007">已退款</option>       	
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="appid"
-                                       v-model="storeOrderCartManageInfo.conditions.appId" class=" form-control">
+                                <input type="text" placeholder="请输入商品名称"
+                                       v-model="storeOrderCartManageInfo.conditions.prodName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -65,17 +70,17 @@
                             <th class="text-center">支付金额</th>
                             <th class="text-center">订单状态</th>
                             <th class="text-center">创建时间</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-right">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="order in storeOrderCartManageInfo.orderCarts">
-                            <td class="text-center">{{order.appId}}</td>
-                            <td class="text-center">{{order.oId}}</td>
-                            <td class="text-center">{{order.orderTypeCdName}}</td>
-                            <td class="text-center">{{order.extTransactionId}}</td>
-                            <td class="text-center">{{order.requestTime}}</td>
-                            <td class="text-center">{{order.userName}}</td>
+                            <td class="text-center">{{order.cartId}}</td>
+                            <td class="text-center">{{order.prodName}}</td>
+                            <td class="text-center">{{order.createTime}}</td>
+                            <td class="text-center">{{order.personName}}</td>
+                            <td class="text-center">{{order.payPrice}}</td>
+                            <td class="text-center">{{order.stateName}}</td>
                             <td class="text-center">{{order.createTime}}</td>
                             <td class="text-right">
                                 <div class="btn-group">
@@ -84,7 +89,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
