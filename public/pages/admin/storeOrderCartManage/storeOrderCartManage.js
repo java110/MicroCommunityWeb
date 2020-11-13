@@ -41,7 +41,20 @@
                                 var _storeOrderCartManageInfo=JSON.parse(json);
                                 vc.component.storeOrderCartManageInfo.total = _storeOrderCartManageInfo.total;
                                 vc.component.storeOrderCartManageInfo.records = _storeOrderCartManageInfo.records;
-                                vc.component.storeOrderCartManageInfo.orderCarts = _storeOrderCartManageInfo.data;
+                                $that.storeOrderCartManageInfo.orderCarts = _storeOrderCartManageInfo.data;
+
+                                let _orderCarts = $that.storeOrderCartManageInfo.orderCarts;
+
+                                _orderCarts.forEach(item => {
+                                        let _productSpecDetails = item.productSpecDetails;
+                                        let _specValue = '';
+                                        _productSpecDetails.forEach(detail => {
+                                            _specValue += (detail.detailValue+"/");
+                                        });
+
+                                        item.specValue = _specValue;
+                                });
+
                                 vc.emit('pagination','init',{
                                      total:vc.component.storeOrderCartManageInfo.records,
                                      currentPage:_page
