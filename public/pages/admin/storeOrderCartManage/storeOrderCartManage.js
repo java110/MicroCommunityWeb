@@ -68,8 +68,7 @@
                 vc.component._listOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openOrderDetailModel:function(_order){
-                vc.component.storeOrderCartManageInfo.orderDetail = true;
-                vc.emit('orderDetailManage','listOrderDetails',_order.cBusiness);
+                vc.jumpToPage('/admin.html#/pages/goods/storeOrderCartDetail?orderId='+_order.orderId+'&cartId='+_order.cartId);
             }
         }
     });
