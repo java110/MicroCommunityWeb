@@ -3,22 +3,22 @@
     vc.extends({
         data: {
             storeOrderCartDetailInfo: {
+                orderId:'',
                 cartId: '',
-                repairType: '',
-                repairTypeName: '',
-                repairName: '',
-                tel: '',
-                roomId: '',
-                roomName: '',
-                repairObjName: '',
-                appointmentTime: '',
-                context: '',
+                prodName: '',
+                specValue: '',
                 stateName: '',
-                roomId: '',
-                userId: '',
-                userName: '',
-                repairUsers: [],
-                photos: []
+                price: '',
+                cartNum: '',
+                payPrice: '',
+                createTime: '',
+                address: {
+                    username: '',
+                    tel: '',
+                    address: ''
+                },
+                remark: '',
+                events:[]
 
 
             }
@@ -32,102 +32,78 @@
                 return;
             }
             $that.storeOrderCartDetailInfo.cartId = cartId;
-            $that._listRepairPools()
+            $that.storeOrderCartDetailInfo.orderId = vc.getParam('orderId');
+            
+            $that._listOrderCart();
+            $that._listOrderAddress();
+            $that._listOrderCartEvent();
 
         },
         _initEvent: function () {
 
         },
         methods: {
-            _getRoom: function () {
-                var param = {
-                    params: {
-                        roomId: vc.component.storeOrderCartDetailInfo.roomId,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        page: 1,
-                        row: 1
-                    }
-                };
-                //查询房屋信息 业主信息
-                vc.http.get('ownerRepairManage',
-                    'getRoom',
-                    param,
-                    function (json, res) {
-                        if (res.status == 200) {
-                            var _roomInfos = JSON.parse(json);
-                            if (!_roomInfos.hasOwnProperty("rooms")) {
-                                vc.toast("非法操作，未找到房屋信息");
-                                //vc.jumpToPage('/admin.html#/listOwner');
-                                return;
-                            }
-                            var _roomInfo = _roomInfos.rooms[0];
-                            vc.component.storeOrderCartDetailInfo.roomName = _roomInfo.floorNum + "号楼 " + _roomInfo.unitNum + "单元 " + _roomInfo.roomNum + "室";
-                        } else {
-                            vc.toast("非法操作，未找到房屋信息");
-                        }
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                        vc.toast("非法操作，未找到房屋信息");
-
-                    }
-                );
-            },
-            _listRepairPools: function () {
+            _listOrderCart: function () {
                 var param = {
                     params: {
                         page: 1,
                         row: 1,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        repairId: $that.storeOrderCartDetailInfo.repairId
+                        cartId: $that.storeOrderCartDetailInfo.cartId
                     }
                 };
-
                 //发送get请求
-                vc.http.get('ownerRepairManage',
-                    'list',
+                vc.http.apiGet('/storeOrder/queryStoreOrderCart',
                     param,
                     function (json, res) {
-                        var _repairPoolManageInfo = JSON.parse(json);
-                        let _repairs = _repairPoolManageInfo.data;
-                        if (_repairs.length < 1) {
-                            vc.toast("数据异常");
-                            vc.jumpToPage('/admin.html#/pages/property/repairPoolManage');
-
-                            return;
-
-                        }
-
-                        vc.copyObject(_repairs[0], $that.storeOrderCartDetailInfo);
-
-                        
-
-                        //查询房屋信息
-                        //vc.component._getRoom();
-
-                        //查询处理轨迹
-                        $that._loadRepairUser();
+                        var _storeOrderCart = JSON.parse(json);
+                        vc.copyObject(_storeOrderCart.data[0], $that.storeOrderCartDetailInfo);
+                        let _orderCart = _storeOrderCart.data[0];
+                        let _productSpecDetails = _orderCart.productSpecDetails;
+                        let _specValue = '';
+                        _productSpecDetails.forEach(detail => {
+                            _specValue += (detail.detailValue + "/");
+                        });
+                        $that.storeOrderCartDetailInfo.specValue = _specValue;
 
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadRepairUser: function () {
+            _listOrderAddress: function () {
                 var param = {
                     params: {
                         page: 1,
-                        row: 100,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        repairId: $that.storeOrderCartDetailInfo.repairId
+                        row: 1,
+                        orderId: $that.storeOrderCartDetailInfo.orderId
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('ownerRepair.listRepairStaffs',
+                vc.http.apiGet('/storeOrder/queryStoreOrderAddress',
                     param,
                     function (json, res) {
-                        var _repairPoolManageInfo = JSON.parse(json);
-                        let _repairs = _repairPoolManageInfo.data;
-                        $that.storeOrderCartDetailInfo.repairUsers = _repairs;
+                        var _storeOrderAddress = JSON.parse(json);
+                        vc.copyObject(_storeOrderAddress.data[0], $that.storeOrderCartDetailInfo.address);
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listOrderCartEvent:function(){
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        orderId: $that.storeOrderCartDetailInfo.orderId,
+                        cartId: $that.storeOrderCartDetailInfo.cartId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/storeOrder/queryStoreOrderCartEvent',
+                    param,
+                    function (json, res) {
+                        var _storeOrderEvent = JSON.parse(json);
+                        $that.storeOrderCartDetailInfo.events = _storeOrderEvent.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -135,12 +111,7 @@
             },
             _goBack: function () {
                 vc.goBack()
-            },
-            openFile:function(_photo){
-                vc.emit('viewImage','showImage',{
-                    url:_photo.url
-                });
-             }
+            }
         }
     });
 
