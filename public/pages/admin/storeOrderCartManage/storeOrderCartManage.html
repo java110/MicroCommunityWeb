@@ -5,7 +5,6 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -43,8 +42,6 @@
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -87,6 +84,9 @@
                             <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
+                                            v-on:click="_openSendOrderCartModel(order)">发货
+                                    </button>
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openOrderDetailModel(order)">订单详情
                                     </button>
                                 </div>
@@ -103,6 +103,36 @@
                     </table>
                     <!-- 分页 -->
                     <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="storeOrderCartModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">发货确认</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" >
+                        <label class="col-sm-3 col-form-label">收货人：</label>
+                        <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.username}}</label>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label" >收货时间：</label>
+                        <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.tel}}</label>
+                    </div>
+                    <div class="row" >
+                        <label class="col-sm-3 col-form-label">收货地点：</label>
+                        <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.address}}</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="_closeStoreOrderCartModal()">关闭</button>
+                    <button type="button" class="btn btn-primary" @click="_sendOrderCart()">确定发货</button>
                 </div>
             </div>
         </div>

@@ -130,16 +130,16 @@
                     <table class="table table-stripped">
                         <thead>
                             <tr>
-                                <th scope="col">序号</th>
-                                <th scope="col">操作时间</th>
-                                <th scope="col">说明</th>
+                                <th scope="col" class="text-center">序号</th>
+                                <th scope="col" class="text-center">操作时间</th>
+                                <th scope="col" class="text-center">说明</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(item,index) in storeOrderCartDetailInfo.events">
-                                <th scope="row">{{index+1}}</th>
-                                <td width="80px">{{item.createTime}}</td>
-                                <td>{{item.eventMsg}}</td>
+                                <th scope="row" width="10%" class="text-center">{{index+1}}</th>
+                                <td width="30%" class="text-center">{{item.createTime}}</td>
+                                <td width="60%" class="text-center">{{item.eventMsg}}</td>
                             </tr>
                         </tbody>
                     </table>
