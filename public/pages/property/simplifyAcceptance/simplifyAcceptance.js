@@ -10,7 +10,8 @@
                 searchType: '1',
                 searchValue: '',
                 searchPlaceholder: '请输入房屋编号 楼栋-单元-房屋 如1-1-1',
-                ownerPhoto:'',
+                ownerPhoto: '',
+                _currentTab: 1
             }
         },
         _initMethod: function () {
@@ -42,15 +43,15 @@
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入房屋编号 楼栋-单元-房屋 如1-1-1';
                 }
             },
-            _doSearch:function(){
-                if(!vc.isNotEmpty($that.simplifyAcceptanceInfo.searchValue)){
+            _doSearch: function () {
+                if (!vc.isNotEmpty($that.simplifyAcceptanceInfo.searchValue)) {
                     vc.toast('请输入查询条件');
-                    return ;
+                    return;
                 }
 
             },
-            errorLoadImg:function(){
-                vc.component.simplifyAcceptanceInfo.ownerPhoto="/img/noPhoto.jpg";
+            errorLoadImg: function () {
+                vc.component.simplifyAcceptanceInfo.ownerPhoto = "/img/noPhoto.jpg";
             },
 
         }
