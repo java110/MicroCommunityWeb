@@ -51,12 +51,13 @@
                 }
             );
 
-            vc.component._initDateInfo();
+            //vc.component._initEditCarDateInfo();
         },
         _initEvent: function () {
             vc.on('editCar', 'openEditCar', function (_carInfo) {
                 vc.copyObject(_carInfo, $that.editCarInfo);
                 $('#editCarModal').modal('show');
+                vc.component._initEditCarDateInfo();
             });
 
         },
@@ -159,9 +160,9 @@
                         vc.toast(errInfo);
                     });
             },
-            _initDateInfo: function () {
+            _initEditCarDateInfo: function () {
                 vc.component.editCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
-                $('.editStartTime').datetimepicker({
+                $('.editCarStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -171,12 +172,12 @@
                     todayBtn: true
 
                 });
-                $('.editStartTime').datetimepicker()
+                $('.editCarStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
-                        var value = $(".editStartTime").val();
+                        var value = $(".editCarStartTime").val();
                         vc.component.editCarInfo.startTime = value;
                     });
-                $('.editEndTime').datetimepicker({
+                $('.editCarEndTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -185,14 +186,14 @@
                     autoClose: 1,
                     todayBtn: true
                 });
-                $('.editEndTime').datetimepicker()
+                $('.editCarEndTime').datetimepicker()
                     .on('changeDate', function (ev) {
-                        var value = $(".editEndTime").val();
+                        var value = $(".editCarEndTime").val();
                         var start = Date.parse(new Date(vc.component.editCarInfo.startTime))
                         var end = Date.parse(new Date(value))
                         if (start - end >= 0) {
                             vc.toast("结租时间必须大于起租时间")
-                            $(".editEndTime").val('')
+                            $(".editCarEndTime").val('')
                         } else {
                             vc.component.editCarInfo.endTime = value;
                         }

@@ -1,0 +1,47 @@
+<div>
+    <div>
+        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="text-center">投诉类型</th>
+                    <th class="text-center">房屋</th>
+                    <th class="text-center">投诉人</th>
+                    <th class="text-center">投诉人电话</th>
+                    <th class="text-center">投诉状态</th>
+                    <th class="text-center">处理人</th>
+                    <th class="text-center">处理电话</th>
+                    <th class="text-right">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="complaint in simplifyOwnerComplaintInfo.complaints">
+                    <!-- <td class="text-center">{{complaint.complaintId}}</td> -->
+                    <td class="text-center">{{complaint.typeCdName}}</td>
+                    <td class="text-center">
+                        {{complaint.floorNum}}号楼{{complaint.unitNum}}单元{{complaint.roomNum}}室
+                    </td>
+                    <td class="text-center">{{complaint.complaintName}}</td>
+                    <td class="text-center">{{complaint.tel}}</td>
+                    <td class="text-center">{{complaint.stateName}}</td>
+                    <td class="text-center">{{complaint.currentUserName == '' ? '无':complaint.currentUserName}}</td>
+                    <td class="text-center">{{complaint.currentUserTel == ''?'无':complaint.currentUserTel}}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openComplaintDetailModel(complaint)">详情
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(complaint)">流程图
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="col-sm-7 float-right">
+            <vc:create path="frame/pagination"></vc:create>
+        </div>
+    </div>
+    <vc:create path="common/viewImage"></vc:create>
+    <vc:create path="common/complaintDetail"></vc:create>
+</div>

@@ -5,7 +5,7 @@
         </div>
         <div class="col-lg-2 text-right" v-if="simplifyOwnerCarInfo.ownerId">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                v-on:click="openAddMemberModel()">
+                v-on:click="_addOwnerCar()">
                 <i class="fa fa-plus"></i>
                 添加车辆
             </button>
@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="owner in simplifyOwnerCarInfo.ownerCars">
+                <tr v-for="car in simplifyOwnerCarInfo.ownerCars">
                     <td>
                         {{car.carNum}}
                     </td>
