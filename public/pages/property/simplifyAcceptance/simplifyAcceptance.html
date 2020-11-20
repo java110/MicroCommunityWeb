@@ -5,14 +5,17 @@
         <div class="col-lg-1 padding-lr-0 margin-left-xs">
             <select v-model="simplifyAcceptanceInfo.searchType" class=" form-control" @change="_changeSearchType()">
                 <option value="1">房屋号</option>
-                <option value="2">姓名</option>
-                <option value="3">电话</option>
-                <option value="4">身份证</option>
+                <option value="2">业主姓名</option>
+                <option value="3">业主电话</option>
+                <option value="4">业主身份证</option>
                 <option value="5">车牌号</option>
+                <option value="6">成员姓名</option>
+                <option value="7">成员手机号</option>
+                <option value="8">成员身份证</option>
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
-            <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder" />
+            <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder" v-model="simplifyAcceptanceInfo.searchValue"  @keyup.enter="_doSearch()"/>
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <button type="button" class="form-control btn btn-primary" @click="_doSearch()">查询</button>
@@ -59,7 +62,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">入住日期：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.createTime}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -77,25 +80,25 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋编号：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋面积：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.builtUpArea}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">算费系数：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.feeCoefficient}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">户型：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.apartmentName}}</label>
                             </div>
                         </div>
                     </div>
@@ -103,19 +106,13 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋状态：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.stateName}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label">房屋编号：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">车辆车位：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="col-form-label">房屋ID：</label>
+                                <label class="">{{simplifyAcceptanceInfo.roomId}}</label>
                             </div>
                         </div>
                     </div>
@@ -126,8 +123,8 @@
         <div class="margin-top">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 1}"
-                        v-on:click="changeTab(1)">房屋费用</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'}"
+                        v-on:click="changeTab('simplifyRoomFee')">房屋费用</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 2}"
@@ -138,27 +135,34 @@
                         v-on:click="changeTab(3)">家庭成员</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 3}"
-                        v-on:click="changeTab(3)">车辆信息</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 4}"
+                        v-on:click="changeTab(4)">车辆信息</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 4}"
-                        v-on:click="changeTab(4)">报修单</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 5}"
+                        v-on:click="changeTab(5)">报修单</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 4}"
-                        v-on:click="changeTab(4)">投诉单</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 6}"
+                        v-on:click="changeTab(6)">投诉单</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 4}"
-                        v-on:click="changeTab(4)">门禁同步</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 7}"
+                        v-on:click="changeTab(7)">门禁同步</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 4}"
-                        v-on:click="changeTab(4)">道闸同步</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 8}"
+                        v-on:click="changeTab(8)">道闸同步</a>
                 </li>
             </ul>
         </div>
+
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'">
+            <vc:create path="property/simplifyRoomFee"></vc:create>
+        </div>
     </div>
+
+    <vc:create path="property/searchRoom" emitChooseRoom="simplifyAcceptance" emitLoadData="list" roomFlag="1"
+        showSearchCondition="false"></vc:create>
 
 </div>
