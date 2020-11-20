@@ -5,14 +5,17 @@
         <div class="col-lg-1 padding-lr-0 margin-left-xs">
             <select v-model="simplifyAcceptanceInfo.searchType" class=" form-control" @change="_changeSearchType()">
                 <option value="1">房屋号</option>
-                <option value="2">姓名</option>
-                <option value="3">电话</option>
-                <option value="4">身份证</option>
+                <option value="2">业主姓名</option>
+                <option value="3">业主电话</option>
+                <option value="4">业主身份证</option>
                 <option value="5">车牌号</option>
+                <option value="6">成员姓名</option>
+                <option value="7">成员手机号</option>
+                <option value="8">成员身份证</option>
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
-            <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder" />
+            <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder" v-model="simplifyAcceptanceInfo.searchValue"  @keyup.enter="_doSearch()"/>
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <button type="button" class="form-control btn btn-primary" @click="_doSearch()">查询</button>
@@ -59,7 +62,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">入住日期：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.createTime}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -77,25 +80,25 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋编号：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋面积：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.builtUpArea}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">算费系数：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.feeCoefficient}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">户型：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.apartmentName}}</label>
                             </div>
                         </div>
                     </div>
@@ -103,127 +106,63 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋状态：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.stateName}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label">房屋编号：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">车辆车位：</label>
-                                <label class="">{{simplifyAcceptanceInfo.age}}</label>
+                                <label class="col-form-label">房屋ID：</label>
+                                <label class="">{{simplifyAcceptanceInfo.roomId}}</label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <div class="row margin-top">
-            <div class="col-lg-1 ibox-title">
-                <h5>房屋费用</h5>
-            </div>
-            <div class="col-lg-11 text-right">
-                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_openProxyFeeModal()">
-                    代收费用
-                </button>
-                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_openAddMeterWaterModal()">
-                    水电抄表
-                </button>
-                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_openRoomCreateFeeAddModal()">
-                    创建费用
-                </button>
-                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_toOwnerPayFee()">
-                    欠费缴费
-                </button>
-            </div>
-        </div>
         <div class="vc-line margin-top-xs"></div>
-        <div>
-            <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
-                <thead>
-                    <tr>
-                        <th class="text-center">费用项目</th>
-                        <th class="text-center">费用标识</th>
-                        <th class="text-center">费用类型</th>
-                        <th class="text-center">应收金额</th>
-                        <th class="text-center">建账时间</th>
-                        <th class="text-center">计费起始时间</th>
-                        <th class="text-center">计费结束时间</th>
-                        <th class="text-center">说明</th>
-                        <th class="text-center">状态</th>
-                        <th class="text-right">操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="fee in simplifyAcceptanceInfo.fees">
-                        <!-- <td class="text-center">{{fee.feeId}}</td> -->
-                        <td class="text-center">{{fee.feeName}}</td>
-                        <td class="text-center">{{fee.feeFlagName}}</td>
-                        <td class="text-center">{{fee.feeTypeCdName}}</td>
-                        <td class="text-center">{{fee.amountOwed}}</td>
-                        <td class="text-center">{{fee.startTime}}</td>
-                        <td class="text-center">{{_getEndTime(fee)}}</td>
-                        <td class="text-center">{{_getDeadlineTime(fee)}}</td>
-                        <td class="text-center" v-if="fee.computingFormula == '5005'">
-                            <div>上期度数：{{fee.preDegrees}}</div>
-                            <div>本期度数：{{fee.curDegrees}} </div>
-                            <div>单价：{{fee.squarePrice}} </div>
-                            <div>附加费：{{fee.additionalAmount}}</div>
-                        </td>
-                        <td class="text-center" v-else-if="fee.computingFormula == '6006'">
-                            <div>用量：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
-                            <div>单价：{{fee.squarePrice}} </div>
-                            <div>附加费：{{fee.additionalAmount}}</div>
-                        </td>
-                        <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
-                            <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
-                            <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
-                        </td>
-                        <td class="text-center" v-else>
-                            <div>面积：{{listRoomCreateFeeInfo.builtUpArea}}</div>
-                            <div>单价：{{fee.squarePrice}}</div>
-                            <div v-if="fee.feeFlag == '1003006'">附加费：{{fee.additionalAmount}}</div>
-                            <div v-else>固定费：{{fee.additionalAmount}}</div>
-                        </td>
-                        <td class="text-center">{{fee.stateName}}</td>
-                        <td class="text-right">
+        <div class="margin-top">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'}"
+                        v-on:click="changeTab('simplifyRoomFee')">房屋费用</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 2}"
+                        v-on:click="changeTab(2)">停车费用</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 3}"
+                        v-on:click="changeTab(3)">家庭成员</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 4}"
+                        v-on:click="changeTab(4)">车辆信息</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 5}"
+                        v-on:click="changeTab(5)">报修单</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 6}"
+                        v-on:click="changeTab(6)">投诉单</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 7}"
+                        v-on:click="changeTab(7)">门禁同步</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 8}"
+                        v-on:click="changeTab(8)">道闸同步</a>
+                </li>
+            </ul>
+        </div>
 
-                            <button class="btn btn-link btn-xs"
-                                v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')"
-                                v-on:click="_payFee(fee)">缴费
-                            </button>
-                            <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史
-                            </button>
-                            <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')"
-                                v-on:click="_deleteFee(fee)">取消费用
-                            </button>
-                            <button class="btn btn-link btn-xs"
-                                v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
-                                v-on:click="_editFee(fee)">费用变更
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="row">
-                <div class="col-sm-5">
-                    <span> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</span>
-                </div>
-                <div class="col-sm-7 float-right">
-                    <vc:create path="frame/pagination"></vc:create>
-                </div>
-            </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'">
+            <vc:create path="property/simplifyRoomFee"></vc:create>
         </div>
     </div>
+
+    <vc:create path="property/searchRoom" emitChooseRoom="simplifyAcceptance" emitLoadData="list" roomFlag="1"
+        showSearchCondition="false"></vc:create>
 
 </div>

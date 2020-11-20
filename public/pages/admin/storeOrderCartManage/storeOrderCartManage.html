@@ -1,0 +1,141 @@
+<div  class="animated fadeInRight ecommerce">
+    <div class="row" >
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="订单编号"
+                                       v-model="storeOrderCartManageInfo.conditions.cartId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="storeOrderCartManageInfo.conditions.state">
+                                    <option value="">请选择状态</option>
+                                    <option value="1001">未购买</option>
+                                    <option value="2002">待发货</option>
+                                    <option value="3003">待收货</option>
+                                    <option value="4004">待评价</option>
+                                    <option value="5005">申请退款</option>
+                                    <option value="6006">退货成功</option>
+                                    <option value="7007">已退款</option>       	
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入商品名称"
+                                       v-model="storeOrderCartManageInfo.conditions.prodName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryOrdersMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>订单信息</h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny"
+                           data-page-size="15"
+                    >
+                        <thead>
+                        <tr>
+                            <th class="text-center">订单号</th>
+                            <th class="text-center">商品名称</th>
+                            <th class="text-center">商品规格</th>
+                            <th class="text-center">数量</th>
+                            <th class="text-center">用户名称</th>
+                            <th class="text-center">支付金额</th>
+                            <th class="text-center">订单状态</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-right">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="order in storeOrderCartManageInfo.orderCarts">
+                            <td class="text-center">{{order.cartId}}</td>
+                            <td class="text-center">{{order.prodName}}</td>
+                            <td class="text-center">{{order.specValue}}</td>
+                            <td class="text-center">{{order.cartNum}}</td>
+                            <td class="text-center">{{order.personName}}</td>
+                            <td class="text-center">{{order.payPrice}}</td>
+                            <td class="text-center">{{order.stateName}}</td>
+                            <td class="text-center">{{order.createTime}}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openSendOrderCartModel(order)">发货
+                                    </button>
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openOrderDetailModel(order)">订单详情
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="storeOrderCartModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">发货确认</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" >
+                        <label class="col-sm-3 col-form-label">收货人：</label>
+                        <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.username}}</label>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label" >收货时间：</label>
+                        <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.tel}}</label>
+                    </div>
+                    <div class="row" >
+                        <label class="col-sm-3 col-form-label">收货地点：</label>
+                        <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.address}}</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="_closeStoreOrderCartModal()">关闭</button>
+                    <button type="button" class="btn btn-primary" @click="_sendOrderCart()">确定发货</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
