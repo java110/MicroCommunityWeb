@@ -127,16 +127,16 @@
                         v-on:click="changeTab('simplifyRoomFee')">房屋费用</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 2}"
-                        v-on:click="changeTab(2)">停车费用</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'}"
+                        v-on:click="changeTab('simplifyCarFee')">停车费用</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 3}"
-                        v-on:click="changeTab(3)">家庭成员</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}"
+                        v-on:click="changeTab('simplifyOwnerMember')">家庭成员</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 4}"
-                        v-on:click="changeTab(4)">车辆信息</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'}"
+                        v-on:click="changeTab('simplifyOwnerCar')">车辆信息</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 5}"
@@ -160,7 +160,24 @@
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'">
             <vc:create path="property/simplifyRoomFee"></vc:create>
         </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'">
+            <vc:create path="property/simplifyCarFee"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'">
+            <vc:create path="property/simplifyOwnerMember"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'">
+            <vc:create path="property/simplifyOwnerCar"></vc:create>
+        </div>
     </div>
+
+    <vc:create path="property/deleteFee"></vc:create>
+    <vc:create path="property/editFee"></vc:create>
+    <vc:create path="property/roomCreateFeeAdd"></vc:create>
+
+    <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
+
+    <vc:create path="property/addProxyFee" callBackListener="" callBackFunction=""></vc:create>
 
     <vc:create path="property/searchRoom" emitChooseRoom="simplifyAcceptance" emitLoadData="list" roomFlag="1"
         showSearchCondition="false"></vc:create>

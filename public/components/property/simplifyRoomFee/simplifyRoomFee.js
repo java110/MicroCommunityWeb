@@ -10,7 +10,7 @@
                 fees: [],
                 roomId:'',
                 roomName:'',
-                ownerName:'',
+                name:'',
                 roomName:'',
                 floorNum:'',
                 unitNum:'',
@@ -67,14 +67,15 @@
             _openRoomCreateFeeAddModal:function(){
                 vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal',{
                     isMore:false,
-                    room:$that.simplifyRoomFeeInfo
+                    room:$that.simplifyRoomFeeInfo,
+                    ownerName:$that.simplifyRoomFeeInfo.name
                 });
             },
             _openAddMeterWaterModal: function () {
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId:$that.simplifyRoomFeeInfo.roomId,
                     roomName:$that.simplifyRoomFeeInfo.roomName,
-                    ownerName:$that.simplifyRoomFeeInfo.ownerName
+                    ownerName:$that.simplifyRoomFeeInfo.name
                     
                 });
             },
@@ -111,7 +112,7 @@
                 vc.emit('addProxyFee', 'openAddProxyFeeModal', {
                     roomId:$that.simplifyRoomFeeInfo.roomId,
                     roomName:$that.simplifyRoomFeeInfo.roomName,
-                    ownerName:$that.simplifyRoomFeeInfo.ownerName
+                    ownerName:$that.simplifyRoomFeeInfo.name
                 });
             },
             _payFee:function(_fee){
