@@ -21,7 +21,7 @@
             });
             vc.on('simplifyOwnerAccessContol','paginationPlus', 'page_event',
             function (_currentPage) {
-                $that._listSimplifyOwnerComplaint(_currentPage, DEFAULT_ROWS);
+                $that._listSimplifyOwnerAccessContol(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
