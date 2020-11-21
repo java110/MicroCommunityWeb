@@ -19,6 +19,9 @@
                 vc.copyObject(_param, $that.simplifyOwnerAccessContolInfo)
                 $that._listSimplifyOwnerAccessContol(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('simplifyOwnerAccessContol', 'listMachineTranslate', function () {
+                $that._listSimplifyOwnerAccessContol(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
             vc.on('simplifyOwnerAccessContol','paginationPlus', 'page_event',
             function (_currentPage) {
                 $that._listSimplifyOwnerAccessContol(_currentPage, DEFAULT_ROWS);

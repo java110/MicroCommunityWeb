@@ -18,7 +18,9 @@
                 vc.copyObject(_param, $that.simplifyOwnerMemberInfo)
                 $that._listSimplifyOwnerMember(DEFAULT_PAGE, DEFAULT_ROWS);
 
-
+            });
+            vc.on('simplifyOwnerMember', 'listOwnerData',function (_param){
+                $that._listSimplifyOwnerMember(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event',
                 function (_currentPage) {

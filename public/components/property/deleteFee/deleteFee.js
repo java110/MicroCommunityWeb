@@ -35,6 +35,7 @@
                             vc.emit('listRoomFee','notify',{});
                             vc.emit('listParkingSpaceFee','notify',{});
                             vc.emit('simplifyRoomFee', 'notify',{});
+                            vc.emit('simplifyCarFee', 'notify',{});
                             vc.toast("删除费用成功");
                             return ;
                         }

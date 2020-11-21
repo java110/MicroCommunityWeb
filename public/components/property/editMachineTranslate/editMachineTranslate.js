@@ -123,6 +123,8 @@
                             //关闭model
                             $('#editMachineTranslateModel').modal('hide');
                             vc.emit('machineTranslateManage', 'listMachineTranslate', {});
+                            vc.emit('simplifyOwnerAccessContol', 'listMachineTranslate', {});
+                            vc.emit('simplifyOwnerTransactionCar', 'listMachineTranslate', {});
                             return;
                         }
                         vc.toast(json);

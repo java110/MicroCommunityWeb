@@ -146,7 +146,7 @@
                             //关闭model
                             $('#editCarModal').modal('hide');
                             vc.emit('listOwnerCar', 'listOwnerCarData', {});
-
+                            vc.emit('simplifyOwnerCar', 'listOwnerCarData', {});
                             for (let key in $that.editCarInfo) {
                                 $that.editCarInfo[key] = '';
                             }

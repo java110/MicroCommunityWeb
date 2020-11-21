@@ -18,6 +18,9 @@
                 vc.copyObject(_param, $that.simplifyOwnerCarInfo)
                 $that._listSimplifyOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('simplifyOwnerCar', 'listOwnerCarData', function (_param) {
+                $that._listSimplifyOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
         },
         methods: {
             _listSimplifyOwnerCar: function (_page, _row) {
@@ -62,7 +65,7 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             vc.toast('释放成功');
-                            $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
+                            $that._listSimplifyOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
                             return;
                         }
                         vc.toast(json);
