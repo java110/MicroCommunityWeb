@@ -34,7 +34,7 @@
                     })
 
             });
-            vc.on('pagination', 'page_event',
+            vc.on('simplifyCarFee','paginationPlus', 'page_event',
                 function (_currentPage) {
                     $that._listSimplifyCarFee(_currentPage, DEFAULT_ROWS);
                 });
@@ -58,7 +58,7 @@
                         vc.component.simplifyCarFeeInfo.total = _feeConfigInfo.total;
                         vc.component.simplifyCarFeeInfo.records = _feeConfigInfo.records;
                         vc.component.simplifyCarFeeInfo.fees = _feeConfigInfo.fees;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('simplifyCarFee','paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
                             currentPage: _page
                         });

@@ -19,6 +19,11 @@
                 vc.copyObject(_param, $that.simplifyOwnerRepairInfo)
                 $that._listSimplifyOwnerRepair(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+
+            vc.on('simplifyOwnerRepair','paginationPlus', 'page_event',
+                function (_currentPage) {
+                    $that._listSimplifyOwnerRepair(_currentPage, DEFAULT_ROWS);
+                });
         },
         methods: {
             _listSimplifyOwnerRepair: function (_page, _row) {
@@ -41,7 +46,7 @@
                         vc.component.simplifyOwnerRepairInfo.total = _repairPoolManageInfo.total;
                         vc.component.simplifyOwnerRepairInfo.records = _repairPoolManageInfo.records;
                         vc.component.simplifyOwnerRepairInfo.repairs = _repairPoolManageInfo.data;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('simplifyOwnerRepair','paginationPlus', 'init', {
                             total: vc.component.simplifyOwnerRepairInfo.records,
                             currentPage: _page
                         });

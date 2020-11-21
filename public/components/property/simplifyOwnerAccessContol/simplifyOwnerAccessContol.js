@@ -19,6 +19,10 @@
                 vc.copyObject(_param, $that.simplifyOwnerAccessContolInfo)
                 $that._listSimplifyOwnerAccessContol(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('simplifyOwnerAccessContol','paginationPlus', 'page_event',
+            function (_currentPage) {
+                $that._listSimplifyOwnerComplaint(_currentPage, DEFAULT_ROWS);
+            });
         },
         methods: {
             _listSimplifyOwnerAccessContol: function (_page, _row) {
@@ -42,7 +46,7 @@
                         vc.component.simplifyOwnerAccessContolInfo.total = _machineTranslateManageInfo.total;
                         vc.component.simplifyOwnerAccessContolInfo.records = _machineTranslateManageInfo.records;
                         vc.component.simplifyOwnerAccessContolInfo.machineTranslates = _machineTranslateManageInfo.machineTranslates;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('simplifyOwnerAccessContol','paginationPlus', 'init', {
                             total: vc.component.simplifyOwnerAccessContolInfo.records,
                             currentPage: _page
                         });

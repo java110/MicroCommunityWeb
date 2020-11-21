@@ -28,7 +28,7 @@
                 $that._listSimplifyRoomFee(DEFAULT_PAGE,DEFAULT_ROWS);
             });
 
-            vc.on('pagination', 'page_event',
+            vc.on('simplifyRoomFee','paginationPlus', 'page_event',
             function(_currentPage) {
                 vc.component._listSimplifyRoomFee(_currentPage, DEFAULT_ROWS);
             });
@@ -53,7 +53,7 @@
                         vc.component.simplifyRoomFeeInfo.total = _feeConfigInfo.total;
                         vc.component.simplifyRoomFeeInfo.records = _feeConfigInfo.records;
                         vc.component.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('simplifyRoomFee','paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
                             currentPage: _page
                         });

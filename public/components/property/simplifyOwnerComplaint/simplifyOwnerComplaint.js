@@ -19,6 +19,10 @@
                 vc.copyObject(_param, $that.simplifyOwnerComplaintInfo)
                 $that._listSimplifyOwnerComplaint(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('simplifyOwnerComplaint','paginationPlus', 'page_event',
+                function (_currentPage) {
+                    $that._listSimplifyOwnerComplaint(_currentPage, DEFAULT_ROWS);
+                });
         },
         methods: {
             _listSimplifyOwnerComplaint: function (_page, _row) {
@@ -41,7 +45,7 @@
                         vc.component.simplifyOwnerComplaintInfo.total = _complaintManageInfo.total;
                         vc.component.simplifyOwnerComplaintInfo.records = _complaintManageInfo.records;
                         vc.component.simplifyOwnerComplaintInfo.complaints = _complaintManageInfo.complaints;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('simplifyOwnerComplaint','paginationPlus', 'init', {
                             total: vc.component.simplifyOwnerComplaintInfo.records,
                             currentPage: _page
                         });

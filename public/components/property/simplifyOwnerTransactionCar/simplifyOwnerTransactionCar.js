@@ -27,6 +27,11 @@
                     })
 
             });
+
+            vc.on('simplifyOwnerTransactionCar','paginationPlus', 'page_event',
+            function (_currentPage) {
+                $that._listSimplifyOwnerTransactionCar(_currentPage, DEFAULT_ROWS);
+            });
         },
         methods: {
             _listSimplifyOwnerTransactionCar: function (_page, _row) {
@@ -50,7 +55,7 @@
                         vc.component.simplifyOwnerTransactionCarInfo.total = _machineTranslateManageInfo.total;
                         vc.component.simplifyOwnerTransactionCarInfo.records = _machineTranslateManageInfo.records;
                         vc.component.simplifyOwnerTransactionCarInfo.machineTranslates = _machineTranslateManageInfo.machineTranslates;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('simplifyOwnerTransactionCar','paginationPlus', 'init', {
                             total: vc.component.simplifyOwnerTransactionCarInfo.records,
                             currentPage: _page
                         });
