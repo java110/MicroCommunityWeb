@@ -6,7 +6,7 @@
             simplifyOwnerAccessContolInfo: {
                 machineTranslates: [],
                 ownerId: '',
-                roomId:''
+                roomId: ''
             }
         },
         _initMethod: function () {
@@ -15,6 +15,7 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerAccessContol', 'switch', function (_param) {
+                $that.clearSimplifyOwnerAccessContolInfo();
                 vc.copyObject(_param, $that.simplifyOwnerAccessContolInfo)
                 $that._listSimplifyOwnerAccessContol(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -28,7 +29,7 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         objId: $that.simplifyOwnerAccessContolInfo.ownerId,
-                        typeCd:'8899'
+                        typeCd: '8899'
                     }
                 }
 
@@ -54,6 +55,14 @@
             _openEditMachineTranslateModel: function (_machineTranslate) {
                 vc.emit('editMachineTranslate', 'openEditMachineTranslateModal', _machineTranslate);
             },
+            clearSimplifyOwnerAccessContolInfo: function () {
+                $that.simplifyOwnerAccessContolInfo = {
+                    machineTranslates: [],
+                    ownerId: '',
+                    roomId: ''
+                }
+            }
+
         }
 
     });

@@ -23,6 +23,7 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyCarFee', 'switch', function (_param) {
+                $that.clearSimplifyCarFeeInfo();
                 vc.copyObject(_param, $that.simplifyCarFeeInfo)
                 $that._listOwnerCar()
                     .then((data) => {
@@ -166,7 +167,23 @@
                 $that.simplifyCarFeeInfo.num = _car.num;
                 $that.simplifyCarFeeInfo.parkingName = _car.areaNum + '停车场' + _car.num + '停车位';
                 $that._listSimplifyCarFee();
+            },
+            clearSimplifyCarFeeInfo: function () {
+                $that.simplifyCarFeeInfo = {
+                    fees: [],
+                    ownerCars: [],
+                    ownerId: '',
+                    name: '',
+                    carNum: '',
+                    carId: '',
+                    total: 0,
+                    records: 1,
+                    areaNum: '',
+                    num: '',
+                    parkingName: ''
+                }
             }
+
         }
 
     });

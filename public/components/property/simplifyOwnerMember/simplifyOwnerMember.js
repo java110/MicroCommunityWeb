@@ -14,6 +14,7 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerMember', 'switch', function (_param) {
+                $that.clearSimplifyOwnerMemberInfo();
                 vc.copyObject(_param, $that.simplifyOwnerMemberInfo)
                 $that._listSimplifyOwnerMember(DEFAULT_PAGE, DEFAULT_ROWS);
 
@@ -45,8 +46,8 @@
                         console.log('请求失败处理');
                     });
             },
-            openAddMemberModel(){
-                vc.emit('addOwner','openAddOwnerModal',vc.component.simplifyOwnerMemberInfo.ownerId
+            openAddMemberModel() {
+                vc.emit('addOwner', 'openAddOwnerModal', vc.component.simplifyOwnerMemberInfo.ownerId
                 );
             },
             _openDeleteOwnerModel: function (_member) {
@@ -57,6 +58,13 @@
                 _member.ownerId = vc.component.simplifyOwnerMemberInfo.ownerId;
                 vc.emit('editOwner', 'openEditOwnerModal', _member);
             },
+            clearSimplifyOwnerMemberInfo: function () {
+                $that.simplifyOwnerMemberInfo = {
+                    members: [],
+                    ownerId: ''
+                }
+            }
+
         }
 
     });

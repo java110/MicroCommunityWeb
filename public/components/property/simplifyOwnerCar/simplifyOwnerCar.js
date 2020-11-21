@@ -14,6 +14,7 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerCar', 'switch', function (_param) {
+                $that.clearSimplifyOwnerCarInfo();
                 vc.copyObject(_param, $that.simplifyOwnerCarInfo)
                 $that._listSimplifyOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -74,7 +75,14 @@
             },
             _addCarParkingSpace: function (_car) {
                 vc.jumpToPage('/admin.html#/pages/property/carAddParkingSpace?carId=' + _car.carId);
+            },
+            clearSimplifyOwnerCarInfo: function () {
+                $that.simplifyOwnerCarInfo = {
+                    ownerCars: [],
+                    ownerId: ''
+                }
             }
+
         }
 
     });

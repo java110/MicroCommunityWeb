@@ -6,7 +6,7 @@
             simplifyOwnerComplaintInfo: {
                 complaints: [],
                 ownerId: '',
-                roomId:''
+                roomId: ''
             }
         },
         _initMethod: function () {
@@ -15,6 +15,7 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerComplaint', 'switch', function (_param) {
+                $that.clearSimplifyOwnerComplaintInfo();
                 vc.copyObject(_param, $that.simplifyOwnerComplaintInfo)
                 $that._listSimplifyOwnerComplaint(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -77,7 +78,15 @@
             },
             _openComplaintDetailModel: function (_complaint) {
                 vc.emit('complaintDetail', 'openComplaintDetailModal', _complaint);
+            },
+            clearSimplifyOwnerComplaintInfo: function () {
+                $that.simplifyOwnerComplaintInfo = {
+                    complaints: [],
+                    ownerId: '',
+                    roomId: ''
+                }
             }
+
         }
 
     });

@@ -16,6 +16,8 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerTransactionCar', 'switch', function (_param) {
+
+                $that.clearSimplifyOwnerTransactionCarInfo();
                 vc.copyObject(_param, $that.simplifyOwnerTransactionCarInfo)
                 $that._listTransactionOwnerCar()
                     .then((data) => {
@@ -107,7 +109,16 @@
                     return;
                 }
                 $that._listSimplifyOwnerTransactionCar();
+            },
+            clearSimplifyOwnerTransactionCarInfo: function () {
+                $that.simplifyOwnerTransactionCarInfo = {
+                    machineTranslates: [],
+                    ownerId: '',
+                    carId: '',
+                    ownerCars: []
+                }
             }
+
         }
 
     });

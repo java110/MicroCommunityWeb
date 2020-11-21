@@ -23,6 +23,7 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyRoomFee', 'switch', function (_param) {
+                $that.clearSimplifyRoomFeeInfo();
                 vc.copyObject(_param,$that.simplifyRoomFeeInfo)
                 $that._listSimplifyRoomFee(DEFAULT_PAGE,DEFAULT_ROWS);
             });
@@ -134,6 +135,20 @@
                          feeId:_fee.feeId
                 });
             },
+            clearSimplifyRoomFeeInfo:function(){
+                $that. simplifyRoomFeeInfo= {
+                    fees: [],
+                    roomId:'',
+                    roomName:'',
+                    name:'',
+                    roomName:'',
+                    floorNum:'',
+                    unitNum:'',
+                    roomNum:'',
+                }
+            }
+
+           
         }
     });
 })(window.vc);

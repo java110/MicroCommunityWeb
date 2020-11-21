@@ -126,8 +126,30 @@
             },
 
             _clearData: function () {
-                $that.simplifyAcceptanceInfo.roomId = '';
-                $that.simplifyAcceptanceInfo.ownerId = '';
+                let _searchType = $that.simplifyAcceptanceInfo.searchType;
+                let _searchValue = $that.simplifyAcceptanceInfo.searchValue;
+                let _searchPlaceholder = $that.simplifyAcceptanceInfo.searchPlaceholder;
+                $that.simplifyAcceptanceInfo = {
+                    searchType: _searchType,
+                    searchValue: _searchValue,
+                    searchPlaceholder: _searchPlaceholder,
+                    ownerPhoto: '',
+                    _currentTab: 'simplifyRoomFee',
+                    roomId: '',
+                    ownerId: '',
+                    name: '',
+                    idCard: '',
+                    link: '',
+                    createTime: '',
+                    apartmentName: '',
+                    floorNum: '',
+                    unitNum: '',
+                    roomNum: '',
+                    builtUpArea: '',
+                    feeCoefficient: '',
+                    stateName: '',
+                    roomName: ''
+                }
             }
 
         }

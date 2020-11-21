@@ -6,7 +6,7 @@
             simplifyOwnerRepairInfo: {
                 repairs: [],
                 ownerId: '',
-                roomId:''
+                roomId: ''
             }
         },
         _initMethod: function () {
@@ -15,6 +15,7 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerRepair', 'switch', function (_param) {
+                $that.clearSimplifyOwnerRepairInfo();
                 vc.copyObject(_param, $that.simplifyOwnerRepairInfo)
                 $that._listSimplifyOwnerRepair(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -52,7 +53,15 @@
             },
             _openRepairDetail: function (_repairPool) {
                 vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
+            },
+            clearSimplifyOwnerRepairInfo: function () {
+                $that.simplifyOwnerRepairInfo = {
+                    repairs: [],
+                    ownerId: '',
+                    roomId: ''
+                }
             }
+
         }
 
     });
