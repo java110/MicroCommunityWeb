@@ -59,11 +59,11 @@
                 <div class="ibox-title">
                     <h5>设备同步信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm"
+                        <!-- <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_openAddMachineTranslateModal()">
                             <i class="fa fa-plus"></i>
                             添加
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -81,8 +81,6 @@
                             <th class="text-center">状态</th>
                             <th class="text-center">同步时间</th>
                             <th class="text-center">操作</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -97,7 +95,7 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditMachineTranslateModel(machineTranslate)">修改
+                                            v-on:click="_openEditMachineTranslateModel(machineTranslate)">重新同步
                                     </button>
                                 </div>
                                 <!-- <div class="btn-group">
