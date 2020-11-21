@@ -207,6 +207,7 @@
                             vc.emit('meterWaterManage', 'listMeterWater', {});
                             vc.emit('listRoomFee','notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
+                            vc.emit('simplifyRoomFee', 'notify',{});
                             
                            
                             return;

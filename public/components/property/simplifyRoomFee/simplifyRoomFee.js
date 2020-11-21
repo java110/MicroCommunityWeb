@@ -28,6 +28,11 @@
                 $that._listSimplifyRoomFee(DEFAULT_PAGE,DEFAULT_ROWS);
             });
 
+            vc.on('simplifyRoomFee', 'notify', function () {
+                $that._listSimplifyRoomFee(DEFAULT_PAGE,DEFAULT_ROWS);
+            });
+            
+
             vc.on('simplifyRoomFee','paginationPlus', 'page_event',
             function(_currentPage) {
                 vc.component._listSimplifyRoomFee(_currentPage, DEFAULT_ROWS);

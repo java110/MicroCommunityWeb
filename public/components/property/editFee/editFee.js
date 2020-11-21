@@ -114,6 +114,7 @@
                             vc.component.clearAddFeeConfigInfo();
                             vc.emit('listRoomFee', 'notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
+                            vc.emit('simplifyRoomFee', 'notify', {});
 
                             return;
                         }
