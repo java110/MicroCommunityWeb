@@ -70,6 +70,7 @@
                 param.append("uploadFile", vc.component.importMeterWaterFeeInfo.excelTemplate);
                 param.append('communityId', vc.component.importMeterWaterFeeInfo.communityId);
                 param.append('feeTypeCd', vc.component.importMeterWaterFeeInfo.feeTypeCd);
+                param.append('configId', vc.component.importMeterWaterFeeInfo.configId);
 
 
                 vc.http.upload(
@@ -89,8 +90,6 @@
                             //关闭model
                             vc.toast("处理成功");
                             $('#importMeterWaterFeeModel').modal('hide');
-                            vc.jumpToPage('/admin.html#/pages/property/listOwner')
-
                             vc.emit('roomFeeImport', 'listFee', {});
                             return;
                         }
