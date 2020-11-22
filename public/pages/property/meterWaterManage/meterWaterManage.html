@@ -53,6 +53,10 @@
                             <i class="glyphicon glyphicon-plus"></i>
                             抄表
                         </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openMeterWaterImport(null,true)">
+                            抄表导入
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -69,13 +73,10 @@
                                 <th class="text-center">本期读表时间</th>
                                 <th class="text-center">创建时间</th>
                                 <th class="text-center">操作</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="meterWater in meterWaterManageInfo.meterWaters">
-                                <!-- <td class="text-center">{{meterWater.waterId}}</td> -->
                                 <td class="text-center">{{meterWater.meterType == '1010'?'电表':'水表'}}</td>
                                 <td class="text-center">{{meterWater.objName}}</td>
                                 <td class="text-center">{{meterWater.preDegrees}}</td>
@@ -93,7 +94,6 @@
                                             v-on:click="_openDeleteMeterWaterModel(meterWater)">删除</button>
                                     </div>
                                 </td>
-
                             </tr>
                         </tbody>
                         <tfoot>
@@ -110,11 +110,9 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editMeterWater"></vc:create>
     <vc:create path="property/deleteMeterWater"></vc:create>
+    <vc:create path="property/importMeterWaterFee"></vc:create>
 
 </div>

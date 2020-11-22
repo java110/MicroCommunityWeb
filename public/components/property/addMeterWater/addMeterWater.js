@@ -222,7 +222,7 @@
 
                     });
             },
-            _changeFeeTypeCd: function (_feeTypeCd) {
+            _changeAddMeterWaterFeeTypeCd: function (_feeTypeCd) {
 
                 var param = {
                     params: {
