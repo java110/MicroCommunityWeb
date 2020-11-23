@@ -39,11 +39,11 @@
                 var param = {
                     params:vc.component.feeFormulaManageInfo.conditions
                };
-
                //发送get请求
                vc.http.apiGet('/feeFormula/queryFeeFormula',
                              param,
                              function(json,res){
+                                 
                                 var _feeFormulaManageInfo=JSON.parse(json);
                                 vc.component.feeFormulaManageInfo.total = _feeFormulaManageInfo.total;
                                 vc.component.feeFormulaManageInfo.records = _feeFormulaManageInfo.records;

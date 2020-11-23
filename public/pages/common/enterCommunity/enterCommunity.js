@@ -42,6 +42,9 @@
             _openExitCommunityModel:function(_community){
                 vc.emit('storeExitCommunity','openStoreExitCommunityModal',_community);
             },
+            _openUpdateCommunityModel:function(_community){
+                vc.emit('editCommunityArea', 'openEditCommunityModal',_community);
+            },
             _showCommunityStatus(_statusCd){
                 if(_statusCd == '1000'){
                     return "入驻审核";

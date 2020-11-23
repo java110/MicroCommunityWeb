@@ -10,6 +10,7 @@
                 cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
+                communityArea:''
 
             }
         },
@@ -124,6 +125,7 @@
                     cityCode: '',
                     mapX: '101.33',
                     mapY: '101.33',
+                    communityArea:''
 
                 }
             }
