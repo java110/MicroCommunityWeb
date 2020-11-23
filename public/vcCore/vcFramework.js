@@ -1598,6 +1598,27 @@
                 _callBack(value);
             });
     }
+    
+    // vcFramework.initDateDay = function (_dateStr, _callBack) {
+    //     $('.' + _dateStr).datetimepicker({
+    //         language: 'zh-CN',
+    //         fontAwesome: 'fa',
+    //         format: 'yyyy-mm-dd',
+    //         initTime: true,
+    //         startView: 2,
+    //         minView: 2,
+    //         initialDate: new Date(),
+    //         autoClose: 1,
+    //         todayBtn: true
+
+    //     });
+    //     $('.' + _dateStr).datetimepicker()
+    //         .on('changeDate', function (ev) {
+    //             let value = $('.' + _dateStr).val();
+    //             //vc.component.addFeeConfigInfo.startTime = value;
+    //             _callBack(value);
+    //         });
+    // }
 
     daysInMonth = function (year, month) {
         if (month == 1) {
