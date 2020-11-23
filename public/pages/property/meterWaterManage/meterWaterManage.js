@@ -78,9 +78,10 @@
                 } else {
                     vc.component.meterWaterManageInfo.moreCondition = true;
                 }
+            },
+            _openMeterWaterImport:function(){
+                vc.emit('importMeterWaterFee', 'openImportMeterWaterFeeModal',{});
             }
-
-
         }
     });
 })(window.vc);

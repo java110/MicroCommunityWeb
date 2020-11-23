@@ -15,7 +15,8 @@
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
-            <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder" v-model="simplifyAcceptanceInfo.searchValue"  @keyup.enter="_doSearch()"/>
+            <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder"
+                v-model="simplifyAcceptanceInfo.searchValue" @keyup.enter="_doSearch()" />
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <button type="button" class="form-control btn btn-primary" @click="_doSearch()">查询</button>
@@ -80,7 +81,8 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋编号：</label>
-                                <label class="">{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
+                                <label
+                                    class="">{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -127,32 +129,36 @@
                         v-on:click="changeTab('simplifyRoomFee')">房屋费用</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 2}"
-                        v-on:click="changeTab(2)">停车费用</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'}"
+                        v-on:click="changeTab('simplifyCarFee')">停车费用</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 3}"
-                        v-on:click="changeTab(3)">家庭成员</a>
+                    <a class="nav-link"
+                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}"
+                        v-on:click="changeTab('simplifyOwnerMember')">家庭成员</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 4}"
-                        v-on:click="changeTab(4)">车辆信息</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'}"
+                        v-on:click="changeTab('simplifyOwnerCar')">车辆信息</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 5}"
-                        v-on:click="changeTab(5)">报修单</a>
+                    <a class="nav-link"
+                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'}"
+                        v-on:click="changeTab('simplifyOwnerRepair')">报修单</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 6}"
-                        v-on:click="changeTab(6)">投诉单</a>
+                    <a class="nav-link"
+                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerComplaint'}"
+                        v-on:click="changeTab('simplifyOwnerComplaint')">投诉单</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 7}"
-                        v-on:click="changeTab(7)">门禁同步</a>
+                    <a class="nav-link"
+                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerAccessContol'}"
+                        v-on:click="changeTab('simplifyOwnerAccessContol')">门禁同步</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 8}"
-                        v-on:click="changeTab(8)">道闸同步</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'}"
+                        v-on:click="changeTab('simplifyOwnerTransactionCar')">道闸同步</a>
                 </li>
             </ul>
         </div>
@@ -160,9 +166,41 @@
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'">
             <vc:create path="property/simplifyRoomFee"></vc:create>
         </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'">
+            <vc:create path="property/simplifyCarFee"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'">
+            <vc:create path="property/simplifyOwnerMember"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'">
+            <vc:create path="property/simplifyOwnerCar"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'">
+            <vc:create path="property/simplifyOwnerRepair"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerComplaint'">
+            <vc:create path="property/simplifyOwnerComplaint"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerAccessContol'">
+            <vc:create path="property/simplifyOwnerAccessContol"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'">
+            <vc:create path="property/simplifyOwnerTransactionCar"></vc:create>
+        </div>
+
     </div>
+
+    <vc:create path="property/deleteFee"></vc:create>
+    <vc:create path="property/editFee"></vc:create>
+    <vc:create path="property/roomCreateFeeAdd"></vc:create>
+
+    <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
+
+    <vc:create path="property/addProxyFee" callBackListener="" callBackFunction=""></vc:create>
 
     <vc:create path="property/searchRoom" emitChooseRoom="simplifyAcceptance" emitLoadData="list" roomFlag="1"
         showSearchCondition="false"></vc:create>
+
+    <vc:create path="property/editMachineTranslate"></vc:create>
 
 </div>

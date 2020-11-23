@@ -10,7 +10,7 @@
                 fees: [],
                 roomId:'',
                 roomName:'',
-                ownerName:'',
+                name:'',
                 roomName:'',
                 floorNum:'',
                 unitNum:'',
@@ -23,11 +23,17 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyRoomFee', 'switch', function (_param) {
+                $that.clearSimplifyRoomFeeInfo();
                 vc.copyObject(_param,$that.simplifyRoomFeeInfo)
                 $that._listSimplifyRoomFee(DEFAULT_PAGE,DEFAULT_ROWS);
             });
 
-            vc.on('pagination', 'page_event',
+            vc.on('simplifyRoomFee', 'notify', function () {
+                $that._listSimplifyRoomFee(DEFAULT_PAGE,DEFAULT_ROWS);
+            });
+            
+
+            vc.on('simplifyRoomFee','paginationPlus', 'page_event',
             function(_currentPage) {
                 vc.component._listSimplifyRoomFee(_currentPage, DEFAULT_ROWS);
             });
@@ -52,7 +58,7 @@
                         vc.component.simplifyRoomFeeInfo.total = _feeConfigInfo.total;
                         vc.component.simplifyRoomFeeInfo.records = _feeConfigInfo.records;
                         vc.component.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('simplifyRoomFee','paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
                             currentPage: _page
                         });
@@ -67,14 +73,15 @@
             _openRoomCreateFeeAddModal:function(){
                 vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal',{
                     isMore:false,
-                    room:$that.simplifyRoomFeeInfo
+                    room:$that.simplifyRoomFeeInfo,
+                    ownerName:$that.simplifyRoomFeeInfo.name
                 });
             },
             _openAddMeterWaterModal: function () {
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId:$that.simplifyRoomFeeInfo.roomId,
                     roomName:$that.simplifyRoomFeeInfo.roomName,
-                    ownerName:$that.simplifyRoomFeeInfo.ownerName
+                    ownerName:$that.simplifyRoomFeeInfo.name
                     
                 });
             },
@@ -111,7 +118,7 @@
                 vc.emit('addProxyFee', 'openAddProxyFeeModal', {
                     roomId:$that.simplifyRoomFeeInfo.roomId,
                     roomName:$that.simplifyRoomFeeInfo.roomName,
-                    ownerName:$that.simplifyRoomFeeInfo.ownerName
+                    ownerName:$that.simplifyRoomFeeInfo.name
                 });
             },
             _payFee:function(_fee){
@@ -133,6 +140,20 @@
                          feeId:_fee.feeId
                 });
             },
+            clearSimplifyRoomFeeInfo:function(){
+                $that. simplifyRoomFeeInfo= {
+                    fees: [],
+                    roomId:'',
+                    roomName:'',
+                    name:'',
+                    roomName:'',
+                    floorNum:'',
+                    unitNum:'',
+                    roomNum:'',
+                }
+            }
+
+           
         }
     });
 })(window.vc);

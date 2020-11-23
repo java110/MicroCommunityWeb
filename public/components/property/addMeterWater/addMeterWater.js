@@ -207,7 +207,8 @@
                             vc.emit('meterWaterManage', 'listMeterWater', {});
                             vc.emit('listRoomFee','notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
-                            
+                            vc.emit('simplifyRoomFee', 'notify',{});
+                            vc.emit('simplifyCarFee', 'notify',{});
                            
                             return;
                         }
@@ -221,7 +222,7 @@
 
                     });
             },
-            _changeFeeTypeCd: function (_feeTypeCd) {
+            _changeAddMeterWaterFeeTypeCd: function (_feeTypeCd) {
 
                 var param = {
                     params: {

@@ -108,6 +108,7 @@
                             vc.component.clearAddProxyFeeInfo();
                             vc.emit('listRoomFee', 'notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
+                            vc.emit('simplifyRoomFee', 'notify',{});
                             return;
                         }
                         vc.message(_json.msg);

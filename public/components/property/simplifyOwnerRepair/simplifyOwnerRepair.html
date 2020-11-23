@@ -1,0 +1,41 @@
+<div>
+    <div>
+        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="text-center">工单编码</th>
+                    <th class="text-center">位置</th>
+                    <th class="text-center">报修类型</th>
+                    <th class="text-center">报修人</th>
+                    <th class="text-center">联系方式</th>
+                    <th class="text-center">预约时间</th>
+                    <th class="text-center">状态</th>
+                    <th class="text-right">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="repair in simplifyOwnerRepairInfo.repairs">
+                    <td class="text-center">{{repair.repairId}}</td>
+                    <td class="text-center">{{repair.repairObjName}}</td>
+                    <td class="text-center">{{repair.repairTypeName}}</td>
+                    <td class="text-center">{{repair.repairName}}</td>
+                    <td class="text-center">{{repair.tel}}</td>
+                    <td class="text-center">{{repair.appointmentTime}}</td>
+                    <td class="text-center">{{repair.stateName}}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openRepairDetail(repair)">详情
+                            </button>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-7 float-right">
+                <vc:create namespace="simplifyOwnerRepair" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>
