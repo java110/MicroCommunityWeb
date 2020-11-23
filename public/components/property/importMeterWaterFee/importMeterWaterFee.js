@@ -90,7 +90,7 @@
                             //关闭model
                             vc.toast("处理成功");
                             $('#importMeterWaterFeeModel').modal('hide');
-                            vc.emit('roomFeeImport', 'listFee', {});
+                            vc.emit('meterWaterManage', 'listMeterWater', {});
                             return;
                         }
                         vc.toast(json, 10000);
