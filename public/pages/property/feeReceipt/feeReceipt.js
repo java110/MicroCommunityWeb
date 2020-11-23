@@ -17,6 +17,8 @@
                     objType: '',
                     objId: '',
                     month:'',
+                    qstartTime:'',
+                    qendTime:'',
                     type:'',
                     roomId:'',
                     communityId: vc.getCurrentCommunity().communityId,
@@ -25,14 +27,23 @@
             }
         },
         _initMethod: function () {
+            vc.component._initDate();
+
             vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
 
-            vc.initDateMonth('startTime', function (_startTime) {
-                $that.feeReceiptManageInfo.conditions.month = _startTime;
-            });
+            // vc.initDateMonth('startTime', function (_startTime) {
+            //     $that.feeReceiptManageInfo.conditions.month = _startTime;
+            // });
+            // vc.initDateDay('startTime', function (_startTime) {
+            //     $that.feeReceiptManageInfo.conditions.startTime = _startTime;
+            // });
+            // vc.initDateDay('endTime', function (_endTime) {
+            //     $that.feeReceiptManageInfo.conditions.endTime = _endTime;
+            // });
             // vc.initDateMonth('startTime', function (_startTime) {
             //     $that.reportFeeSummaryInfo.conditions.startTime = _startTime;
             // });
+
         },
         _initEvent: function () {
 
@@ -44,6 +55,40 @@
             });
         },
         methods: {
+            _initDate:function(){
+                $(".startTime").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    startView: 2,
+                    minView: 2,
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $(".endTime").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    startView: 2,
+                    minView: 2,
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.startTime').datetimepicker()
+                .on('changeDate', function (ev) {
+                    var value = $(".startTime").val();
+                    vc.component.feeReceiptManageInfo.conditions.qstartTime = value ;
+                });
+                $('.endTime').datetimepicker()
+                .on('changeDate', function (ev) {
+                    var value = $(".endTime").val();
+                    vc.component.feeReceiptManageInfo.conditions.qendTime = value ;
+                });
+            },
             _listFeeReceipts: function (_page, _rows) {
 
                 vc.component.feeReceiptManageInfo.conditions.page = _page;
@@ -88,12 +133,22 @@
                     vc.toast("请选择打印类型",1000);
                     return;
                 }
-                if(_conditions.month==null|| _conditions.month ==""){
-                    vc.toast("请选择费用月份",1000);
+                // if(_conditions.month==null|| _conditions.month ==""){
+                //     vc.toast("请选择费用月份",1000);
+                //     return;
+                // }
+                if(_conditions.qstartTime==null|| _conditions.qstartTime ==""){
+                    vc.toast("请选择开始时间",1000);
                     return;
                 }
+                if(_conditions.qendTime==null|| _conditions.qendTime ==""){
+                    vc.toast("请选择结束时间",1000);
+                    return;
+                }
+                // window.open("/print.html#/pages/property/printPayFees?roomName=" + _conditions.roomId+
+                // "&type="+_conditions.type+"&month="+_conditions.month);
                 window.open("/print.html#/pages/property/printPayFees?roomName=" + _conditions.roomId+
-                "&type="+_conditions.type+"&month="+_conditions.month);
+                "&type="+_conditions.type+"&qstartTime="+_conditions.qstartTime+"&qendTime="+_conditions.qendTime);
             },
             _moreCondition: function () {
                 if (vc.component.feeReceiptManageInfo.moreCondition) {

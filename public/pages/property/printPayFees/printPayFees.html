@@ -55,12 +55,13 @@
                         <td class="text-center">{{item.remark}}</td>
                     </tr>
                     <tr >
-                        <td colspan="1" class="text-center ">大写人民币（元）</td>
-                        <td colspan="3" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                        <!-- <td colspan="1" class="text-center ">大写人民币（元）</td> -->
+                        <td colspan="3" class="text-center ">大写人民币（元）: {{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
-                        <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 "  colspan="1" class="text-center "></td>
-                        <td colspan="1" class="text-center ">合计（小写）</td>
-                        <td colspan="1" class="text-center ">{{printPayFeeInfo.amount}}</td>
+                        <!-- <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 "  colspan="1" class="text-center "></td> -->
+                        <!-- <td colspan="1" class="text-center ">合计（小写）</td> -->
+                        <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " colspan="4" class="text-center ">合计（小写）: {{printPayFeeInfo.amount}}</td>
+                        <td v-if="printPayFeeInfo.type!= 3 && printPayFeeInfo.type!=4 " colspan="3" class="text-center ">合计（小写）: {{printPayFeeInfo.amount}}</td>
                         <td colspan="4" class="text-center "></td>
 
                     </tr>

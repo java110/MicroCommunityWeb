@@ -8,6 +8,8 @@
                 roomName: '',
                 type: '',
                 month: '',
+                qstartTime:'',
+                qendTime:'',
                 amount: 0.00,
                 fees: [],
                 feeTime: '',
@@ -23,8 +25,9 @@
             $that.printPayFeeInfo.receiptId = vc.getParam('receiptId');
             $that.printPayFeeInfo.roomName = vc.getParam('roomName');
             $that.printPayFeeInfo.type = vc.getParam('type');
-            $that.printPayFeeInfo.month = vc.getParam('month');
-
+            // $that.printPayFeeInfo.month = vc.getParam('month');
+            $that.printPayFeeInfo.qstartTime = vc.getParam('qstartTime');
+            $that.printPayFeeInfo.qendTime = vc.getParam('qendTime');
             //$that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
 
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
@@ -51,7 +54,8 @@
                         roomName:$that.printPayFeeInfo.roomName,
                         type:$that.printPayFeeInfo.type,
                         month:$that.printPayFeeInfo.month,
-
+                        qstartTime:$that.printPayFeeInfo.qstartTime,
+                        qendTime:$that.printPayFeeInfo.qendTime,
                         communityId:vc.getCurrentCommunity().communityId
                     }
                 };
