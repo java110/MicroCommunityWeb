@@ -69,8 +69,10 @@
                             <tr v-for="feeDiscount in feeDiscountManageInfo.feeDiscounts">
                                 <td class="text-center">{{feeDiscount.discountId}}</td>
                                 <td class="text-center">{{feeDiscount.discountName}}</td>
-                                <td class="text-center">{{feeDiscount.discountType}}</td>
-                                <td class="text-center">{{feeDiscount.ruleName}}</td>
+                                <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                                <td class="text-center">
+                                    <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">{{item.specName}}：{{item.specValue}}</div> 
+                                </td>
                                 <td class="text-center">{{feeDiscount.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">

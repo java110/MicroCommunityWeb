@@ -21,7 +21,7 @@
             deleteFeeDiscount: function () {
                 vc.component.deleteFeeDiscountInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'feeDiscount.deleteFeeDiscount',
+                    '/feeDiscount/deleteFeeDiscount',
                     JSON.stringify(vc.component.deleteFeeDiscountInfo),
                     {
                         emulateJSON: true

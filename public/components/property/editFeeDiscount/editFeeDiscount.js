@@ -8,6 +8,8 @@
                 discountType: '',
                 ruleId: '',
                 discountDesc: '',
+                rules: [],
+                feeDiscountRuleSpecs: []
 
             }
         },
@@ -19,6 +21,8 @@
                 vc.component.refreshEditFeeDiscountInfo();
                 $('#editFeeDiscountModel').modal('show');
                 vc.copyObject(_params, vc.component.editFeeDiscountInfo);
+                $that.editFeeDiscountInfo.feeDiscountRuleSpecs = _params.feeDiscountSpecs;
+                $that._loadEditFeeDiscountRules();
                 vc.component.editFeeDiscountInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
@@ -64,14 +68,10 @@
                         },
                     ],
                     'editFeeDiscountInfo.discountDesc': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "描述不能为空"
-                        },
+
                         {
                             limit: "maxLength",
-                            param: "",
+                            param: "500",
                             errInfo: "描述不能超过500位"
                         },
                     ],
@@ -91,7 +91,7 @@
                 }
 
                 vc.http.apiPost(
-                    'feeDiscount.updateFeeDiscount',
+                    '/feeDiscount/updateFeeDiscount',
                     JSON.stringify(vc.component.editFeeDiscountInfo),
                     {
                         emulateJSON: true
@@ -120,8 +120,49 @@
                     discountType: '',
                     ruleId: '',
                     discountDesc: '',
+                    rules: [],
+                    feeDiscountRuleSpecs: []
 
                 }
+            },
+            _loadEditFeeDiscountRules: function () {
+
+                if ($that.editFeeDiscountInfo.discountType == '') {
+                    return;
+                }
+
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        discountType: $that.editFeeDiscountInfo.discountType
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/feeDiscount/queryFeeDiscountRule',
+                    param,
+                    function (json, res) {
+                        var _feeDiscountManageInfo = JSON.parse(json);
+                        $that.editFeeDiscountInfo.rules = _feeDiscountManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _changeEditFeeDiscountRule: function () {
+                let _rules = $that.editFeeDiscountInfo.rules;
+                _rules.forEach(item => {
+                    if (item.ruleId == $that.editFeeDiscountInfo.ruleId) {
+                        item.feeDiscountRuleSpecs.forEach(specItem => {
+                            specItem.specValue = "";
+                        })
+                        $that.editFeeDiscountInfo.feeDiscountRuleSpecs = item.feeDiscountRuleSpecs;
+
+                    }
+                });
+            },
+            _changeEditFeeDiscountType: function () {
+                $that._loadEditFeeDiscountRules();
             }
         }
     });
