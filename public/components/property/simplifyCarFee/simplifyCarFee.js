@@ -155,7 +155,7 @@
 
             },
 
-            changeCar: function () {
+            changeSimplifyCar: function () {
                 let _car = null;
                 $that.simplifyCarFeeInfo.ownerCars.forEach(item => {
                     if (item.carId == $that.simplifyCarFeeInfo.carId) {
@@ -169,7 +169,7 @@
                 $that.simplifyCarFeeInfo.carNum = _car.carNum;
                 $that.simplifyCarFeeInfo.num = _car.num;
                 $that.simplifyCarFeeInfo.parkingName = _car.areaNum + '停车场' + _car.num + '停车位';
-                $that._listSimplifyCarFee();
+                $that._listSimplifyCarFee(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             clearSimplifyCarFeeInfo: function () {
                 $that.simplifyCarFeeInfo = {

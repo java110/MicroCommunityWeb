@@ -2,7 +2,7 @@
     <div class="row margin-top">
         
         <div class="col-lg-2 text-left">
-            <select class="custom-select" v-model="simplifyCarFeeInfo.carId" @change="changeCar()">
+            <select class="custom-select" v-model="simplifyCarFeeInfo.carId" @change="changeSimplifyCar()">
                 <option v-for="(item,index) in simplifyCarFeeInfo.ownerCars" :value="item.carId">{{item.carNum}}</option>
             </select>
         </div>
