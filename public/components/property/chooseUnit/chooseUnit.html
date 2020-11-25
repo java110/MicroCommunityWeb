@@ -1,4 +1,5 @@
-<div id = "chooseUnitModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseUnitModelLabel" aria-hidden="true" >
+<div id="chooseUnitModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseUnitModelLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,10 +18,13 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入单元名称" type="text" v-model="chooseUnitInfo._currentUnitName" class="form-control form-control-sm">
+                                        <input placeholder="输入单元名称" type="text"
+                                            v-model="chooseUnitInfo._currentUnitName"
+                                            class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryUnits()">查询</button>
-                                            </span>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                v-on:click="queryUnits()">查询</button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -28,25 +32,26 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">单元ID</th>
-                            <th class="text-center">单元编号</th>
-                            <th class="text-center">总层数</th>
-                            <th class="text-center">电梯</th>
-                            <th class="text-center">备注</th>
-                            <th class="text-center">操作</th>
+                                            <th class="text-center">单元ID</th>
+                                            <th class="text-center">单元编号</th>
+                                            <th class="text-center">总层数</th>
+                                            <th class="text-center">电梯</th>
+                                            <th class="text-center">备注</th>
+                                            <th class="text-center">操作</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="unit in chooseUnitInfo.units">
-                                                                        <td class="text-center">{{unit.unitId}}</td>
-                            <td class="text-center">{{unit.unitNum}}</td>
-                            <td class="text-center">{{unit.layerCount}}</td>
-                            <td class="text-center">{{unit.lift}}</td>
-                            <td class="text-center">{{unit.remark}}</td>
+                                            <td class="text-center">{{unit.unitId}}</td>
+                                            <td class="text-center">{{unit.unitNum}}</td>
+                                            <td class="text-center">{{unit.layerCount}}</td>
+                                            <td class="text-center">{{unit.lift == '1010'?'有':'无'}}</td>
+                                            <td class="text-center">{{unit.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseUnit(unit)">选择</button>
+                                                <button class="btn btn-primary btn-xs"
+                                                    v-on:click="chooseUnit(unit)">选择</button>
                                             </td>
                                         </tr>
                                     </tbody>
