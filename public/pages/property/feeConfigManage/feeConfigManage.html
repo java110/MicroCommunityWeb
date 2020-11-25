@@ -88,14 +88,11 @@
                                 <th class="text-center">出账类型</th>
                                 <th class="text-center">付费类型</th>
                                 <th class="text-center">缴费周期</th>
-
                                 <th class="text-center">计费起始时间</th>
                                 <th class="text-center">计费终止时间</th>
                                 <th class="text-center">计费单价</th>
                                 <th class="text-center">附加/固定费用</th>
-                                <th class="text-center">操作</th>
-
-
+                                <th class="text-right">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,10 +110,15 @@
                                 '-':feeConfig.squarePrice+'元'}}
                                 </td>
                                 <td class="text-center">{{feeConfig.additionalAmount}}元</td>
-                                <td class="text-center">
+                                <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditFeeConfigModel(feeConfig)">修改
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_settingConfigDiscount(feeConfig)">折扣
                                         </button>
                                     </div>
                                     <div class="btn-group" v-if="feeConfig.isDefault=='F'">

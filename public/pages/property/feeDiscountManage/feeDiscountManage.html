@@ -60,6 +60,7 @@
                                 <th class="text-center">折扣ID</th>
                                 <th class="text-center">折扣名称</th>
                                 <th class="text-center">折扣类型</th>
+                                <th class="text-center">规则名称</th>
                                 <th class="text-center">规则</th>
                                 <th class="text-center">创建时间</th>
                                 <th class="text-center">操作</th>
@@ -70,8 +71,10 @@
                                 <td class="text-center">{{feeDiscount.discountId}}</td>
                                 <td class="text-center">{{feeDiscount.discountName}}</td>
                                 <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                                <td class="text-center">{{feeDiscount.ruleName}}</td>
                                 <td class="text-center">
-                                    <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">{{item.specName}}：{{item.specValue}}</div> 
+                                    <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">
+                                        {{item.specName}}：{{item.specValue}}</div>
                                 </td>
                                 <td class="text-center">{{feeDiscount.createTime}}</td>
                                 <td class="text-center">

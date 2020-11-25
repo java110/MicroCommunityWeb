@@ -87,6 +87,9 @@
                 } else {
                     vc.component.feeConfigManageInfo.moreCondition = true;
                 }
+            },
+            _settingConfigDiscount:function(_feeConfig){
+                vc.jumpToPage('/admin.html#/pages/property/payFeeConfigDiscountManage?configId='+_feeConfig.configId+"&feeName="+_feeConfig.feeName);
             }
         }
     });

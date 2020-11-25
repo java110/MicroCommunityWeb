@@ -1,0 +1,61 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>费用折扣</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
+                            返回
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddPayFeeConfigDiscountModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            添加
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">费用折扣ID</th>
+                                <th class="text-center">费用项名称</th>
+                                <th class="text-center">折扣名称</th>
+                                <th class="text-center">折扣类型</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="payFeeConfigDiscount in payFeeConfigDiscountManageInfo.payFeeConfigDiscounts">
+                                <td class="text-center">{{payFeeConfigDiscount.configDiscountId}}</td>
+                                <td class="text-center">{{payFeeConfigDiscountManageInfo.feeName}}</td>
+                                <td class="text-center">{{payFeeConfigDiscount.discountId}}</td>
+                                <td class="text-center">{{payFeeConfigDiscount.discountType}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeletePayFeeConfigDiscountModel(payFeeConfigDiscount)">删除</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/addPayFeeConfigDiscount" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/deletePayFeeConfigDiscount"></vc:create>
+</div>
