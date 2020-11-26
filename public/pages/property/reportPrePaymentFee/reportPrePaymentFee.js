@@ -30,8 +30,8 @@
 
                 var param = {
                     params: {
-                        page: 1,
-                        row: 10,
+                        page: _page,
+                        row: _rows,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
