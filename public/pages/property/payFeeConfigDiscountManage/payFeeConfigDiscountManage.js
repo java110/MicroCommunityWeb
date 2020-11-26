@@ -36,14 +36,17 @@
         methods: {
             _listPayFeeConfigDiscounts: function (_page, _rows) {
 
-                vc.component.payFeeConfigDiscountManageInfo.conditions.page = _page;
-                vc.component.payFeeConfigDiscountManageInfo.conditions.row = _rows;
-                var param = {
-                    params: vc.component.payFeeConfigDiscountManageInfo.conditions
+                let param = {
+                    params: {
+                        page:_page,
+                        row:_rows,
+                        configId:$that.payFeeConfigDiscountManageInfo.configId,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
                 };
 
                 //发送get请求
-                vc.http.apiGet('payFeeConfigDiscount.listPayFeeConfigDiscounts',
+                vc.http.apiGet('/payFeeConfigDiscount/queryPayFeeConfigDiscount',
                     param,
                     function (json, res) {
                         var _payFeeConfigDiscountManageInfo = JSON.parse(json);
@@ -60,7 +63,9 @@
                 );
             },
             _openAddPayFeeConfigDiscountModal: function () {
-                vc.emit('addPayFeeConfigDiscount', 'openAddPayFeeConfigDiscountModal', {});
+                vc.emit('addPayFeeConfigDiscount', 'openAddPayFeeConfigDiscountModal', {
+                    configId: $that.payFeeConfigDiscountManageInfo.configId
+                });
             },
             _openDeletePayFeeConfigDiscountModel: function (_payFeeConfigDiscount) {
                 vc.emit('deletePayFeeConfigDiscount', 'openDeletePayFeeConfigDiscountModal', _payFeeConfigDiscount);
