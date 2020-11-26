@@ -202,7 +202,7 @@
                 var param = {
                     params: {
                         page: 1,
-                        row: 20,
+                        row: 50,
                         communityId: vc.getCurrentCommunity().communityId,
                         feeTypeCd: _feeTypeCd,
                         isDefault: 'F',
