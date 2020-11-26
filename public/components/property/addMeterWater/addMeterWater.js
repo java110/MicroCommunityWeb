@@ -239,10 +239,13 @@
                     function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.addMeterWaterInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
+                        
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                     });
+
+                    $that._queryPreMeterWater($that.addMeterWaterInfo.roomId);
             },
             _queryPreMeterWater: function (_roomId) {
                 let _meterType = '1010';

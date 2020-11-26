@@ -1,0 +1,47 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>折扣信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddFeeDiscountModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            特殊折扣
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">折扣类型</th>
+                                <th class="text-center">折扣名称</th>
+                                <th class="text-center">规则</th>
+                                <th class="text-center">折扣金额</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="feeDiscount in payFeeDiscountInfo.feeDiscounts">
+                                <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                                <td class="text-center">{{feeDiscount.discountName}}</td>
+                                <td class="text-center">
+                                    <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">
+                                        {{item.specName}}：{{item.specValue}}</div>
+                                </td>
+                                <td class="text-center">30</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
