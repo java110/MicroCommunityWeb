@@ -24,7 +24,7 @@
                     <span>面积:{{printPayFeeInfo.roomArea}} 平方米</span>
                 </div>
             </div>
-            <table class="table vc-table-border margin-top" >
+            <table class="table vc-table-border" style="margin-top: 20px;font-size: 16px;">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">收费项目</th>
@@ -37,25 +37,25 @@
                         <th scope="col" class="text-center">备注</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
+                <tbody class="vc-table-border">
+                    <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border" >
                         <!-- <th scope="row" class="text-center">{{index +1}}</th> -->
-                        <td class="text-center">{{item.feeName}}</td>
+                        <td  class="text-center" >{{item.feeName}}</td>
                         <!-- <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center">{{item.carNum}}</td> -->
-                        <td v-if=" printPayFeeInfo.type==4 " scope="col" class="text-center">{{item.carNum}}</td>
-                        <td v-if= "printPayFeeInfo.type== 5 " class="text-center">{{item.cycle}}</td>
-                        <td v-if= "item.feeName != '水费' && item.feeName != '电费' && printPayFeeInfo.type != 5" class="text-center">{{item.num}}</td>
-                        <td v-if= "item.feeName == '水费' || item.feeName == '电费'" class="text-center"></td> 
+                        <td  v-if=" printPayFeeInfo.type==4 " scope="col" class="text-center" >{{item.carNum}}</td>
+                        <td  v-if= "printPayFeeInfo.type== 5 " class="text-center" >{{item.cycle}}</td>
+                        <td  v-if= "item.feeName != '水费' && item.feeName != '电费' && printPayFeeInfo.type != 5" class="text-center" >{{item.num}}</td>
+                        <td  v-if= "item.feeName == '水费' || item.feeName == '电费'" class="text-center" ></td>
                         <!-- <td class="text-center">{{item.num}}</td> -->
-                        <td class="text-center">{{item.unit}}</td>
+                        <td  class="text-center" >{{item.unit}}</td>
                         <!-- <td class="text-center">{{item.start}}</td> -->
-                        <td v-if="printPayFeeInfo.type != 5" class="text-center">{{item.start!=null?vc.dateFormat(item.start):''}}</td>
-                        <td v-if="printPayFeeInfo.type != 5" class="text-center">{{item.end!=null?vc.dateFormat(item.end):''}}</td>
-                        <td v-if="printPayFeeInfo.type == 5" class="text-center">{{item.startTime!=null?vc.dateFormat(item.startTime):''}}</td>
-                        <td v-if="printPayFeeInfo.type == 5" class="text-center">{{item.endTime!=null?vc.dateFormat(item.endTime):''}}</td>
-                        <td class="text-center">{{item.amount}}</td>
-                        <td v-if="printPayFeeInfo.type!= 3"  class="text-center">{{item.remark}}</td>
-                        <td v-if="printPayFeeInfo.type== 3" class="text-center">{{item.remark}}{{item.carNum}}</td>
+                        <td  v-if="printPayFeeInfo.type != 5" class="text-center" >{{item.start!=null?vc.dateFormat(item.start):''}}</td>
+                        <td  v-if="printPayFeeInfo.type != 5" class="text-center" >{{item.end!=null?vc.dateFormat(item.end):''}}</td>
+                        <td  v-if="printPayFeeInfo.type == 5" class="text-center" >{{item.startTime!=null?vc.dateFormat(item.startTime):''}}</td>
+                        <td  v-if="printPayFeeInfo.type == 5" class="text-center" >{{item.endTime!=null?vc.dateFormat(item.endTime):''}}</td>
+                        <td  class="text-center" >{{item.amount}}</td>
+                        <td  v-if="printPayFeeInfo.type!= 3"  class="text-center" >{{item.remark}}</td>
+                        <td  v-if="printPayFeeInfo.type== 3" class="text-center" >{{item.remark}}{{item.carNum}}</td>
                     </tr>
                     <tr >
                         <!-- <td colspan="1" class="text-center ">大写人民币（元）</td> -->
