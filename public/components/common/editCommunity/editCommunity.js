@@ -10,7 +10,7 @@
                 cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
-                communityArea: '',
+                
                 attrs: []
             }
         },
@@ -108,6 +108,8 @@
                     return;
                 }
 
+
+
                 vc.http.post('editCommunity', 'update', JSON.stringify(vc.component.editCommunityInfo), {
                     emulateJSON: true
                 },
@@ -138,7 +140,7 @@
                     cityCode: '',
                     mapX: '101.33',
                     mapY: '101.33',
-                    communityArea: '',
+                    
                     attrs: _attrs
                 }
             },
