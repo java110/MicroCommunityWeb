@@ -6,12 +6,12 @@
                 name: '',
                 address: '',
                 tmpAddress: '',
-                areaAddress:'',
+                areaAddress: '',
                 nearbyLandmarks: '',
                 cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
-
+                attrs: []
             },
             areas: [],
             provs: [],
@@ -23,9 +23,11 @@
         },
         _initMethod: function () {
             vc.component._initArea('101', '0');
+            
         },
         _initEvent: function () {
             vc.on('addCommunity', 'openAddCommunityModal', function () {
+                $that._loadCommunityAttrSpec();
                 $('#addCommunityModel').modal('show');
             });
         },
@@ -101,8 +103,8 @@
                 });
             },
             saveCommunityInfo: function () {
-                 //vc.component.addCommunityInfo.communityId = vc.getCurrentCommunity().communityId;
-                 vc.component.addCommunityInfo.address = vc.component.addCommunityInfo.areaAddress+ vc.component.addCommunityInfo.tmpAddress;
+                //vc.component.addCommunityInfo.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.addCommunityInfo.address = vc.component.addCommunityInfo.areaAddress + vc.component.addCommunityInfo.tmpAddress;
                 if (!vc.component.addCommunityValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -127,7 +129,7 @@
 
                             return;
                         }
-                       
+
                         vc.toast(_json.msg);
 
                     },
@@ -139,6 +141,7 @@
                     });
             },
             clearAddCommunityInfo: function () {
+                //let _attrs = $that.addCommunityInfo.attrs;
                 vc.component.addCommunityInfo = {
                     name: '',
                     address: '',
@@ -146,17 +149,17 @@
                     cityCode: '0971',
                     mapX: '101.33',
                     mapY: '101.33',
-
+                    attrs: []
                 };
             },
             getProv: function (_prov) {
                 vc.component._initArea('202', _prov);
             },
             getCity: function (_city) {
-                vc.component._initArea('303',_city);
+                vc.component._initArea('303', _city);
             },
-            getArea:function(_area){
-              vc.component.addCommunityInfo.cityCode = _area;
+            getArea: function (_area) {
+                vc.component.addCommunityInfo.cityCode = _area;
 
                 vc.component.addCommunityInfo.areaAddress = '';
                 if (vc.component.provs == null || vc.component.provs == undefined) {
@@ -206,6 +209,31 @@
                         console.log('请求失败处理', errInfo, error);
                         vc.toast("查询地区失败");
                     });
+            },
+
+            _loadCommunityAttrSpec: function () {
+                $that.addCommunityInfo.attrs = [];
+                vc.getAttrSpec('building_community_attr', function (data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        if (item.specShow == 'Y') {
+                            item.values = [];
+                            $that._loadAttrValue(item.specCd, item.values);
+                            $that.addCommunityInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
+            _loadAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if (item.valueShow == 'Y') {
+                            _values.push(item);
+                        }
+                    });
+
+                });
             },
         }
     });
