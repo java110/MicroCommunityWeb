@@ -102,7 +102,7 @@
                 $that.communityManageInfo.listColumns.forEach(_value => {
                     let _tmpValue = '';
                     _communityAttrDtos.forEach(_attrItem => {
-                        if (_value == _attrItem.specCdName) {
+                        if (_value.specCd == _attrItem.specCd) {
                             _tmpValue = _attrItem.value;
                         }
                     })
@@ -117,7 +117,10 @@
                     $that.communityManageInfo.listColumns = [];
                     data.forEach(item => {
                         if (item.listShow == 'Y') {
-                            $that.communityManageInfo.listColumns.push(item.specName);
+                            $that.communityManageInfo.listColumns.push({
+                                specCd:item.specCd,
+                                specName:item.specName
+                            });
                         }
                     });
                     _call();
