@@ -35,6 +35,7 @@
         },
         _initEvent: function () {
             vc.on('payFeeDiscount', 'computeFeeDiscount', function (_param) {
+                $that.payFeeDiscountInfo.selectDiscountIds = [];
                 vc.copyObject(_param, $that.payFeeDiscountInfo);
                 if ($that.payFeeDiscountInfo.cycles < 0) {
                     return;
@@ -90,7 +91,7 @@
                 let _selectDiscount = [];
                 $that.payFeeDiscountInfo.selectDiscountIds.forEach(item => {
                     $that.payFeeDiscountInfo.feeDiscounts.forEach(disItem => {
-                        if (item == disItem.discountId) {
+                        if (item == disItem.discountId && disItem.discountPrice > 0) {
                             _totalDiscountMoney += parseFloat(disItem.discountPrice);
                             _selectDiscount.push(disItem);
                         }

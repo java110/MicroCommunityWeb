@@ -86,6 +86,9 @@
             _openRefundModel:function (_feeDetail) {
                 _feeDetail.mainFeeInfo = vc.component.mainFeeInfo;
                 vc.emit('returnPayFee', 'openReturnPayFeeModel', _feeDetail);
+            },
+            _openFeeDetailDiscountModal:function(_detail){
+                vc.emit('viewFeeDetailDiscount', 'openModel',_detail);
             }
         }
     });
