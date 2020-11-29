@@ -23,7 +23,9 @@
                 squarePrice: 0.0,
                 additionalAmount: 0.0,
                 receiptId: '',
-                showEndTime:''
+                showEndTime: '',
+                selectDiscount: [],
+                totalDiscountMoney:0.0
             }
         },
         _initMethod: function () {
@@ -40,7 +42,7 @@
                 $that.payFeeOrderInfo.builtUpArea = vc.getParam('builtUpArea');
                 $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
                 $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
-                
+
 
 
                 $that.payFeeOrderInfo.paymentCycles = [];
@@ -56,7 +58,26 @@
 
         },
         _initEvent: function () {
+            vc.on('payFeeOrder', 'changeDiscountPrice', function (_param) {
+                let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
 
+                if (_totalFeePrice < 0) {
+                    return;
+                }
+
+                let _totalDiscountMoney = _param.totalDiscountMoney;
+
+                //如果应收小区 优惠金额 则不优惠
+                if (_totalFeePrice < _totalDiscountMoney) {
+                    return;
+                }
+
+                $that.payFeeOrderInfo.selectDiscount = _param.selectDiscount;
+
+                $that.payFeeOrderInfo.totalDiscountMoney = _totalDiscountMoney;
+
+                $that.payFeeOrderInfo.receivedAmount = _totalFeePrice - _totalDiscountMoney;
+            })
         },
         methods: {
             payFeeValidate: function () {
@@ -106,11 +127,11 @@
                     return;
                 }
 
-                if (!(/(^[1-9]\d*$)/.test($that.payFeeOrderInfo.cycles))) { 
+                if (!(/(^[1-9]\d*$)/.test($that.payFeeOrderInfo.cycles))) {
                     $that.payFeeOrderInfo.showEndTime = '';
-                }else{
-                    console.log('cycle',$that.payFeeOrderInfo.cycles)
-                    $that.payFeeOrderInfo.showEndTime = vc.addMonth(new Date($that.payFeeOrderInfo.endTime),parseInt($that.payFeeOrderInfo.cycles));
+                } else {
+                    console.log('cycle', $that.payFeeOrderInfo.cycles)
+                    $that.payFeeOrderInfo.showEndTime = vc.addMonth(new Date($that.payFeeOrderInfo.endTime), parseInt($that.payFeeOrderInfo.cycles));
                 }
                 //关闭model
                 $("#doPayFeeModal").modal('show');
@@ -178,6 +199,11 @@
                 }
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+
+                vc.emit('payFeeDiscount', 'computeFeeDiscount', {
+                    feeId: $that.payFeeOrderInfo.feeId,
+                    cycles: _cycles
+                });
             },
             changeCycle: function (_cycles) {
                 if (_cycles == '') {
@@ -185,6 +211,11 @@
                 }
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+
+                vc.emit('payFeeDiscount', 'computeFeeDiscount', {
+                    feeId: $that.payFeeOrderInfo.feeId,
+                    cycles: _cycles
+                });
             },
             _back: function () {
                 $('#payFeeResult').modal("hide");

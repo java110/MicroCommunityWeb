@@ -9,7 +9,25 @@
             payFeeDiscountInfo: {
                 feeDiscounts: [],
                 feeId: '',
-                cycles: 1
+                communityId: vc.getCurrentCommunity().communityId,
+                cycles: 1,
+                quanDiscount: false,
+                selectDiscountIds: [],
+            }
+        },
+        watch: { // 监视双向绑定的数据数组
+            payFeeDiscountInfo: {
+                handler() { // 数据数组有变化将触发此函数
+                    if ($that.payFeeDiscountInfo.selectDiscountIds.length == $that.payFeeDiscountInfo.feeDiscounts.length) {
+                        $that.payFeeDiscountInfo.quanDiscount = true;
+                    } else {
+                        $that.payFeeDiscountInfo.quanDiscount = false;
+                    }
+
+                    //计算优惠
+                    $that._computeFeeDiscount();
+                },
+                deep: true // 深度监视
             }
         },
         _initMethod: function () {
@@ -18,14 +36,14 @@
         _initEvent: function () {
             vc.on('payFeeDiscount', 'computeFeeDiscount', function (_param) {
                 vc.copyObject(_param, $that.payFeeDiscountInfo);
+                if ($that.payFeeDiscountInfo.cycles < 0) {
+                    return;
+                }
                 vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
         methods: {
             _listFeeDiscounts: function (_page, _rows) {
-
-                vc.component.payFeeDiscountInfo.conditions.page = _page;
-                vc.component.payFeeDiscountInfo.conditions.row = _rows;
                 let param = {
                     params: {
                         page: DEFAULT_PAGE,
@@ -37,11 +55,15 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/feeDiscount/queryFeeDiscount',
+                vc.http.apiGet('/feeDiscount/computeFeeDiscount',
                     param,
                     function (json, res) {
                         let _payFeeDiscountInfo = JSON.parse(json);
                         $that.payFeeDiscountInfo.feeDiscounts = _payFeeDiscountInfo.data;
+                        $that.payFeeDiscountInfo.feeDiscounts.forEach(item => {
+                            $that.payFeeDiscountInfo.selectDiscountIds.push(item.discountId);
+                            item.discountPrice = Math.ceil(item.discountPrice);
+                        })
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -50,24 +72,37 @@
             _openAddFeeDiscountModal: function () {
                 vc.emit('addFeeDiscount', 'openAddFeeDiscountModal', {});
             },
-            _openEditFeeDiscountModel: function (_feeDiscount) {
-                vc.emit('editFeeDiscount', 'openEditFeeDiscountModal', _feeDiscount);
-            },
-            _openDeleteFeeDiscountModel: function (_feeDiscount) {
-                vc.emit('deleteFeeDiscount', 'openDeleteFeeDiscountModal', _feeDiscount);
-            },
-            _queryFeeDiscountMethod: function () {
-                vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
-
-            },
-            _moreCondition: function () {
-                if (vc.component.payFeeDiscountInfo.moreCondition) {
-                    vc.component.payFeeDiscountInfo.moreCondition = false;
-                } else {
-                    vc.component.payFeeDiscountInfo.moreCondition = true;
+            checkAllDiscount: function (e) {
+                var checkObj = document.querySelectorAll('.checkDiscountItem'); // 获取所有checkbox项
+                if (e.target.checked) { // 判定全选checkbox的勾选状态
+                    for (var i = 0; i < checkObj.length; i++) {
+                        if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
+                            let _value = checkObj[i].value;
+                            vc.component.payFeeDiscountInfo.selectDiscountIds.push(_value);
+                        }
+                    }
+                } else { // 如果是去掉全选则清空checkbox选项绑定数组
+                    vc.component.payFeeDiscountInfo.selectDiscountIds = [];
                 }
-            }
+            },
+            _computeFeeDiscount: function () {
+                let _totalDiscountMoney = 0.0;
+                let _selectDiscount = [];
+                $that.payFeeDiscountInfo.selectDiscountIds.forEach(item => {
+                    $that.payFeeDiscountInfo.feeDiscounts.forEach(disItem => {
+                        if (item == disItem.discountId) {
+                            _totalDiscountMoney += parseFloat(disItem.discountPrice);
+                            _selectDiscount.push(disItem);
+                        }
+                    })
 
+                });
+
+                vc.emit('payFeeOrder', 'changeDiscountPrice', {
+                    totalDiscountMoney: _totalDiscountMoney,
+                    selectDiscount: _selectDiscount
+                })
+            }
 
         }
     });

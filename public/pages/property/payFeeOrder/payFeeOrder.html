@@ -160,6 +160,10 @@
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.receivedAmount}}</label>
                     </div>
                     <div class="row" >
+                        <label class="col-sm-3 col-form-label">优惠金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalDiscountMoney}}</label>
+                    </div>
+                    <div class="row" >
                         <label class="col-sm-3 col-form-label">备注：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.remark}}</label>
                     </div>
@@ -171,4 +175,6 @@
             </div>
         </div>
     </div>
+
+    <vc:create path="property/payFeeDiscount"></vc:create>
 </div>
