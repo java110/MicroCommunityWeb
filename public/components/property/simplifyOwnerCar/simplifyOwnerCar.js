@@ -14,6 +14,9 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerCar', 'switch', function (_param) {
+                if(_param.ownerId == ''){
+                    return ;
+                }
                 $that.clearSimplifyOwnerCarInfo();
                 vc.copyObject(_param, $that.simplifyOwnerCarInfo)
                 $that._listSimplifyOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);

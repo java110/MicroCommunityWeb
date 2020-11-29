@@ -23,6 +23,10 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyCarFee', 'switch', function (_param) {
+
+                if(_param.ownerId == ''){
+                    return ;
+                }
                 $that.clearSimplifyCarFeeInfo();
                 vc.copyObject(_param, $that.simplifyCarFeeInfo)
                 $that._listOwnerCar()

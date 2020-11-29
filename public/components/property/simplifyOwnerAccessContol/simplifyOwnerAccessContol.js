@@ -15,6 +15,9 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerAccessContol', 'switch', function (_param) {
+                if(_param.ownerId == ''){
+                    return 
+                }
                 $that.clearSimplifyOwnerAccessContolInfo();
                 vc.copyObject(_param, $that.simplifyOwnerAccessContolInfo)
                 $that._listSimplifyOwnerAccessContol(DEFAULT_PAGE, DEFAULT_ROWS);

@@ -23,6 +23,9 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyRoomFee', 'switch', function (_param) {
+                if(_param.roomId == ''){
+                    return ;
+                }
                 $that.clearSimplifyRoomFeeInfo();
                 vc.copyObject(_param,$that.simplifyRoomFeeInfo)
                 $that._listSimplifyRoomFee(DEFAULT_PAGE,DEFAULT_ROWS);

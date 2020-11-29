@@ -15,6 +15,9 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerRepair', 'switch', function (_param) {
+                if(_param.roomId == ''){
+                    return ;
+                }
                 $that.clearSimplifyOwnerRepairInfo();
                 vc.copyObject(_param, $that.simplifyOwnerRepairInfo)
                 $that._listSimplifyOwnerRepair(DEFAULT_PAGE, DEFAULT_ROWS);

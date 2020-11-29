@@ -15,6 +15,10 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerComplaint', 'switch', function (_param) {
+
+                if(_param.roomId == ''){
+                    return ;
+                }
                 $that.clearSimplifyOwnerComplaintInfo();
                 vc.copyObject(_param, $that.simplifyOwnerComplaintInfo)
                 $that._listSimplifyOwnerComplaint(DEFAULT_PAGE, DEFAULT_ROWS);

@@ -16,7 +16,9 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerTransactionCar', 'switch', function (_param) {
-
+                if (_param.ownerId == '') {
+                    return;
+                }
                 $that.clearSimplifyOwnerTransactionCarInfo();
                 vc.copyObject(_param, $that.simplifyOwnerTransactionCarInfo)
                 $that._listTransactionOwnerCar()
