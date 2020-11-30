@@ -4,6 +4,7 @@
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
+    var TEMP_SEARCH = "simplifyAcceptanceSearch";
     vc.extends({
         data: {
             simplifyAcceptanceInfo: {
@@ -30,6 +31,18 @@
             }
         },
         _initMethod: function () {
+
+            //检查是否有缓存数据
+            let _tempData = vc.getData(TEMP_SEARCH);
+
+            if (_tempData == null) {
+                return;
+            }
+
+            $that.simplifyAcceptanceInfo.searchType = _tempData.searchType;
+            $that.simplifyAcceptanceInfo.searchValue = _tempData.searchValue;
+            $that.simplifyAcceptanceInfo.searchPlaceholder = _tempData.searchPlaceholder;
+            $that._doSearch();
 
         },
         _initEvent: function () {
@@ -94,6 +107,7 @@
                             return;
                         }
 
+                        $that.saveTempSearchData();
                         let _owner = _ownerJson.data;
                         vc.copyObject(_owner, $that.simplifyAcceptanceInfo);
                         if (!_owner.hasOwnProperty('rooms')) {
@@ -108,11 +122,24 @@
                         $that.simplifyAcceptanceInfo.roomName = _rooms[0].floorNum + '栋' + _rooms[0].unitNum + '单元' + _rooms[0].roomNum;
                         vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo);
 
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
 
+            },
+
+            saveTempSearchData: function () {
+                let _searchType = $that.simplifyAcceptanceInfo.searchType;
+                let _searchValue = $that.simplifyAcceptanceInfo.searchValue;
+                let _searchPlaceholder = $that.simplifyAcceptanceInfo.searchPlaceholder;
+                //缓存起来
+                vc.saveData(TEMP_SEARCH, {
+                    searchType: _searchType,
+                    searchValue: _searchValue,
+                    searchPlaceholder: _searchPlaceholder
+                });
             },
             changeTab: function (_tab) {
                 $that.simplifyAcceptanceInfo._currentTab = _tab;
