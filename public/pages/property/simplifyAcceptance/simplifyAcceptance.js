@@ -25,7 +25,8 @@
                 builtUpArea: '',
                 feeCoefficient: '',
                 stateName: '',
-                roomName: ''
+                roomName: '',
+                sex: 0
             }
         },
         _initMethod: function () {
@@ -148,7 +149,8 @@
                     builtUpArea: '',
                     feeCoefficient: '',
                     stateName: '',
-                    roomName: ''
+                    roomName: '',
+                    sex: 0
                 }
             }
 
