@@ -127,7 +127,8 @@
             _payFee:function(_fee){
                 _fee.roomName=$that.simplifyRoomFeeInfo.roomName;
                 _fee.builtUpArea=$that.simplifyRoomFeeInfo.builtUpArea;
-               vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?'+vc.objToGetParam(_fee));
+               //vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?'+vc.objToGetParam(_fee));
+               vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?feeId='+_fee.feeId);
             },
             _editFee:function(_fee){
                 vc.emit('editFee', 'openEditFeeModal',_fee);

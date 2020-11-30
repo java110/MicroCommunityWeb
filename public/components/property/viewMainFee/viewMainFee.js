@@ -42,7 +42,7 @@
             //加载 业主信息
             var _feeId = vc.getParam('feeId')
 
-            $that.mainFeeInfo.builtUpArea = vc.getParam('builtUpArea')
+            //$that.mainFeeInfo.builtUpArea = vc.getParam('builtUpArea')
 
             if (vc.notNull(_feeId)) {
                 vc.component.loadMainFeeInfo({
@@ -165,6 +165,8 @@
                         }
 
                         $that.mainFeeInfo.payerObjName = _payerObjName;
+
+                        $that.mainFeeInfo.builtUpArea = _room.builtUpArea;
 
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
