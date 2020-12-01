@@ -1361,6 +1361,7 @@
         vc.removeData("JAVA110_IS_BACK");
         let beforeTime = _back;
         let _date = new Date();
+        //10 秒内有效
         if (_date.getTime() - beforeTime < 10 * 1000) {
             return true;
         }
