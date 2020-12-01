@@ -32,6 +32,10 @@
         },
         _initMethod: function () {
 
+            if (!vc.isBack()) {
+                return;
+            }
+
             //检查是否有缓存数据
             let _tempData = vc.getData(TEMP_SEARCH);
 

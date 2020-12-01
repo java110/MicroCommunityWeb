@@ -1247,6 +1247,10 @@
     vcFramework.saveData = function (_key, _value) {
         window.localStorage.setItem(_key, JSON.stringify(_value));
     };
+    //保存用户菜单
+    vcFramework.removeData = function (_key) {
+        Object.keys(localStorage).forEach(item => item.indexOf(_key) !== -1 ? localStorage.removeItem(item) : '');
+    };
     //获取用户菜单
     vcFramework.getData = function (_key) {
         return JSON.parse(window.localStorage.getItem(_key));
@@ -1348,12 +1352,30 @@
         let urlParameters = location.pathname;
         return urlParameters;
     };
+    vcFramework.isBack = function () {
+        let _back = vc.getData("JAVA110_IS_BACK");
+
+        if (_back == null) {
+            return false;
+        }
+        vc.removeData("JAVA110_IS_BACK");
+        let beforeTime = _back;
+        let _date = new Date();
+        if (_date.getTime() - beforeTime < 10 * 1000) {
+            return true;
+        }
+        return false;
+    };
     vcFramework.getBack = function () {
         //window.location.href = document.referrer;
+        let _date = new Date();
+        vc.saveData("JAVA110_IS_BACK", _date.getTime());
         window.history.back(-1);
     }
     vcFramework.goBack = function () {
         //window.location.href = document.referrer;
+        let _date = new Date();
+        vc.saveData("JAVA110_IS_BACK", _date.getTime());
         window.history.back(-1);
     }
     //对象转get参数
@@ -1598,7 +1620,7 @@
                 _callBack(value);
             });
     }
-    
+
     // vcFramework.initDateDay = function (_dateStr, _callBack) {
     //     $('.' + _dateStr).datetimepicker({
     //         language: 'zh-CN',
