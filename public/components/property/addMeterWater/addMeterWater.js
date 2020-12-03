@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -23,7 +22,7 @@
                 objType: '1001',
                 hasRoom: false,
                 ownerName: '',
-                objType:'3333'
+                objType: '3333'
             }
         },
         _initMethod: function () {
@@ -31,24 +30,20 @@
         },
         _initEvent: function () {
             vc.on('addMeterWater', 'openAddMeterWaterModal', function (_param) {
-                if(_param.hasOwnProperty("objType")){
+                if (_param.hasOwnProperty("objType")) {
                     $that.addMeterWaterInfo.objType = _param.objType;
                 }
                 if (_param.hasOwnProperty('roomId')) {
-                    $that.addMeterWaterInfo.hasRoom =true;
+                    $that.addMeterWaterInfo.hasRoom = true;
                     $that.addMeterWaterInfo.roomId = _param.roomId;
                     $that.addMeterWaterInfo.objId = _param.roomId;
                     $that.addMeterWaterInfo.objName = _param.roomName;
-                    $that.addMeterWaterInfo.ownerName =_param.roomName +'('+_param.ownerName+')';
+                    $that.addMeterWaterInfo.ownerName = _param.roomName + '(' + _param.ownerName + ')';
                     $that._queryPreMeterWater(_param.roomId);
                 }
-                
-                
                 $('#addMeterWaterModel').modal('show');
             });
-
             vc.on("addMeterWater", "notify", function (_param) {
-
                 if (_param.hasOwnProperty("roomId")) {
                     vc.component.addMeterWaterInfo.roomId = _param.roomId;
                     vc.component.addMeterWaterInfo.objId = _param.roomId;
@@ -68,7 +63,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.addPreReadingTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -96,6 +90,18 @@
                             vc.component.addMeterWaterInfo.curReadingTime = value;
                         }
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control addPreReadingTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control addCurReadingTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
             addMeterWaterValidate() {
                 return vc.validate.validate({
@@ -172,8 +178,6 @@
                     ],
 
 
-
-
                 });
             },
             saveMeterWaterInfo: function () {
@@ -182,7 +186,6 @@
 
                     return;
                 }
-
                 vc.component.addMeterWaterInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -190,7 +193,6 @@
                     $('#addMeterWaterModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'meterWater.saveMeterWater',
                     JSON.stringify(vc.component.addMeterWaterInfo),
@@ -205,25 +207,20 @@
                             $('#addMeterWaterModel').modal('hide');
                             vc.component.clearAddMeterWaterInfo();
                             vc.emit('meterWaterManage', 'listMeterWater', {});
-                            vc.emit('listRoomFee','notify', {});
+                            vc.emit('listRoomFee', 'notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
-                            vc.emit('simplifyRoomFee', 'notify',{});
-                            vc.emit('simplifyCarFee', 'notify',{});
-                           
+                            vc.emit('simplifyRoomFee', 'notify', {});
+                            vc.emit('simplifyCarFee', 'notify', {});
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             _changeAddMeterWaterFeeTypeCd: function (_feeTypeCd) {
-
                 var param = {
                     params: {
                         page: 1,
@@ -239,20 +236,16 @@
                     function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.addMeterWaterInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
-                        
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                     });
-
-                    $that._queryPreMeterWater($that.addMeterWaterInfo.roomId);
+                $that._queryPreMeterWater($that.addMeterWaterInfo.roomId);
             },
             _queryPreMeterWater: function (_roomId) {
                 let _meterType = '1010';
-
                 let _feeTypeCd = $that.addMeterWaterInfo.feeTypeCd;
-
-                if(_feeTypeCd == '888800010015'){
+                if (_feeTypeCd == '888800010015') {
                     _meterType = '2020';
                 }
                 let param = {
@@ -296,12 +289,10 @@
                     configId: '',
                     objType: '1001',
                     hasRoom: false,
-                    ownerName:'',
-                    objType:'3333'
-
+                    ownerName: '',
+                    objType: '3333'
                 };
             }
         }
     });
-
 })(window.vc);

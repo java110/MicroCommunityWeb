@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -21,7 +20,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addProxyFee', 'openAddProxyFeeModal', function (_param) {
@@ -83,7 +81,6 @@
             saveProxyInfo: function () {
                 if (!vc.component.addProxyFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addProxyFeeInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -108,17 +105,14 @@
                             vc.component.clearAddProxyFeeInfo();
                             vc.emit('listRoomFee', 'notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
-                            vc.emit('simplifyRoomFee', 'notify',{});
+                            vc.emit('simplifyRoomFee', 'notify', {});
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             _changeProxyFeeConfig: function () {
@@ -164,7 +158,6 @@
                 };
             },
             _getConfig: function () {
-
                 let _feeConfigs = $that.addProxyFeeInfo.feeConfigs;
                 let _config = null;
                 _feeConfigs.forEach(item => {
@@ -172,7 +165,6 @@
                         _config = item;
                     }
                 });
-
                 return _config;
             },
             _changeAmount: function () {
@@ -184,18 +176,14 @@
                     $that.addProxyFeeInfo.consumption = '';
                     return;
                 }
-
                 if (_amount < _config.additionalAmount) {
                     vc.toast('输入金额太小');
                     $that.addProxyFeeInfo.amount = '';
                     $that.addProxyFeeInfo.consumption = '';
                     return;
                 }
-
                 let _consumption = (_amount - _config.additionalAmount) / _config.squarePrice;
-
                 $that.addProxyFeeInfo.consumption = _consumption.toFixed(2);
-
             },
             _changeConsumption: function () {
                 let _config = $that._getConfig();
@@ -206,12 +194,10 @@
                     $that.addProxyFeeInfo.consumption = '';
                     return;
                 }
-
                 let _amount = _config.squarePrice * _consumption + parseFloat(_config.additionalAmount);
                 console.log('_consumption', _consumption, _amount);
                 $that.addProxyFeeInfo.amount = _amount.toFixed(2);
             }
         }
     });
-
 })(window.vc);
