@@ -10,28 +10,34 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">费用类型</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-bind:disabled = "editFeeConfigInfo.isDefault=='T'" v-model="editFeeConfigInfo.feeTypeCd">
+                                    <select class="custom-select" v-bind:disabled="editFeeConfigInfo.isDefault=='T'"
+                                            v-model="editFeeConfigInfo.feeTypeCd">
                                         <option selected disabled value="">必填，请选择费用类型</option>
                                         <option v-for="(item,index) in editFeeConfigInfo.feeTypeCds" :key="index"
                                                 v-bind:value="item.statusCd">{{item.name}}
                                         </option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">收费项目</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editFeeConfigInfo.feeName" v-bind:disabled = "editFeeConfigInfo.isDefault=='T'" type="text" placeholder="必填，请填写收费项目"
-                                           class="form-control">
+                                    <input v-model="editFeeConfigInfo.feeName"
+                                           v-bind:disabled="editFeeConfigInfo.isDefault=='T'" type="text"
+                                           placeholder="必填，请填写收费项目" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">费用标识</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-bind:disabled = "editFeeConfigInfo.isDefault=='T'" v-model="editFeeConfigInfo.feeFlag">
+                                    <select class="custom-select" v-bind:disabled="editFeeConfigInfo.isDefault=='T'"
+                                            v-model="editFeeConfigInfo.feeFlag">
                                         <option selected disabled value="">必填，请选择费用标识</option>
-                                        <option value="1003006">周期性费用</option>
-                                        <option value="2006012">一次性费用</option>
-                                    </select></div>
+                                        <option v-for="(item,index) in editFeeConfigInfo.feeFlags" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group row">
@@ -39,26 +45,27 @@
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editFeeConfigInfo.paymentCd">
                                         <option selected disabled value="">必填，请选择付费类型</option>
-                                        <option value="1200">预付费</option>
-                                        <option value="2100">后付费</option>
-                                    </select></div>
+                                        <option v-for="(item,index) in editFeeConfigInfo.paymentCds" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row" v-if="editFeeConfigInfo.feeFlag=='1003006'">
                                 <label class="col-sm-2 col-form-label">缴费周期</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editFeeConfigInfo.paymentCycle" type="text" placeholder="必填，请填写缴费周期 单位为月"
-                                           class="form-control">
+                                    <input v-model="editFeeConfigInfo.paymentCycle" type="text"
+                                           placeholder="必填，请填写缴费周期 单位为月" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group row" >
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">出账类型</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editFeeConfigInfo.billType">
                                         <option selected disabled value="">必填，请选择出账类型</option>
-                                        <option  value="001">每年1月1日</option>
-                                        <option  value="002">每月1日</option>
-                                        <option  value="003">每日</option>
-                                        <!-- <option  value="004">实时</option> -->
+                                        <option v-for="(item,index) in editFeeConfigInfo.billTypes" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -79,12 +86,14 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">计算公式</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-bind:disabled = "editFeeConfigInfo.isDefault=='T'" v-model="editFeeConfigInfo.computingFormula">
+                                    <select class="custom-select" v-bind:disabled="editFeeConfigInfo.isDefault=='T'"
+                                            v-model="editFeeConfigInfo.computingFormula">
                                         <option selected disabled value="">必填，请选择计算公式</option>
                                         <option v-for="(item,index) in editFeeConfigInfo.computingFormulas" :key="index"
                                                 v-bind:value="item.statusCd">{{item.name}}
                                         </option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row" v-if="editFeeConfigInfo.computingFormula != '2002'">
                                 <label class="col-sm-2 col-form-label">计费单价</label>
@@ -94,7 +103,8 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{editFeeConfigInfo.computingFormula == '1001' ?'附加费用':'固定费用'}}</label>
+                                <label class="col-sm-2 col-form-label">{{editFeeConfigInfo.computingFormula == '1001'
+                                    ?'附加费用':'固定费用'}}</label>
                                 <div class="col-sm-10">
                                     <input v-model="editFeeConfigInfo.additionalAmount" type="text"
                                            placeholder="必填，请填写附加费用" class="form-control">
@@ -106,7 +116,8 @@
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>
                         </div>
