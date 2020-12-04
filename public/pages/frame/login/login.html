@@ -11,10 +11,20 @@
 
     <div class="layui-form-item">
         <button class="login_btn layui-btn layui-btn-radius layui-btn-normal" lay-submit v-on:click="doLogin()"
-            lay-filter="login">登录</button>
+            lay-filter="login">
+            <vc:i18n name="signIn"></vc:i18n>
+        </button>
     </div>
-    <strong class="text-white">还没有账号？ <a href="javascript:void(0)" v-on:click="_doRegister()"
-            style="color: cornflowerblue;">立即注册&raquo;</a></strong>
+    <strong class="text-white">
+        <span>
+            <vc:i18n name="noAccount"></vc:i18n>
+        </span>
+        <a href="javascript:void(0)" v-on:click="_doRegister()" style="color: cornflowerblue;">
+            <vc:i18n name="register"></vc:i18n>
+            &raquo;
+        </a>
+        
+    </strong>
 
     <vc:create path="frame/initData"></vc:create>
 

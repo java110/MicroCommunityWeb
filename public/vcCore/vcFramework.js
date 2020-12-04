@@ -360,6 +360,51 @@
         }
     };
 
+    vcFramework.i18n = function(_key){
+        if(!window.hasOwnProperty('lang')){
+            return _key;
+        }
+
+        let _lang = window.lang;
+        if(!_lang.hasOwnProperty(_key)){
+            return _key;
+        }
+
+        return _lang[_key];
+    }
+
+    /**
+     * 解析 i18n 标签
+     */
+    parseVcI18N = function(){
+        let _tmpI18N = document.getElementsByTagName("vc:i18n");
+        for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
+            let _vcElement = _tmpI18N[_vcElementIndex];
+            let _name = _vcElement.getAttribute('name');
+            let textNode = document.createTextNode(vc.i18n(_name));
+            _vcElement.parentNode.appendChild(textNode);
+            //_vcElement.parentNode.replaceChild(textNode,_vcElement);
+           
+        }
+        for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
+            let _vcElement = _tmpI18N[_vcElementIndex];
+            _vcElement.parentNode.removeChild(_vcElement);   
+        }
+        _tmpI18N = document.head.getElementsByTagName("vc:i18n");
+        for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
+            let _vcElement = _tmpI18N[_vcElementIndex];
+            let _name = _vcElement.getAttribute('name');
+            let textNode = document.createTextNode(vc.i18n(_name));
+            _vcElement.parentNode.appendChild(textNode);
+            
+        }
+        for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
+            let _vcElement = _tmpI18N[_vcElementIndex];
+            _vcElement.parentNode.removeChild(_vcElement);   
+        }
+
+    }
+
     /**
      * 手工执行js 脚本
      */
@@ -382,6 +427,7 @@
         //初始化vue 对象
         vcFramework.initVue();
         vcFramework.initVcComponent();
+        parseVcI18N();
     }
 
     /**
@@ -1519,6 +1565,8 @@
         return m < 10 ? '0' + m : m
     }
 
+    
+
     vcFramework.dateTimeFormat = function (shijianchuo) {
         //shijianchuo是整数，否则要parseInt转换
         let time = new Date(parseInt(shijianchuo));
@@ -1530,16 +1578,6 @@
         let s = time.getSeconds();
         return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
     }
-
-    // vcFramework.dateTimeFormat = function (_time) {
-    //     let y = _time.getFullYear();
-    //     let m = _time.getMonth() + 1;
-    //     let d = _time.getDate();
-    //     let h = _time.getHours();
-    //     let mm = _time.getMinutes();
-    //     let s = _time.getSeconds();
-    //     return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
-    // }
 
     vcFramework.dateFormat = function (_time) {
         let _date = new Date(_time);
@@ -1625,27 +1663,6 @@
                 _callBack(value);
             });
     }
-
-    // vcFramework.initDateDay = function (_dateStr, _callBack) {
-    //     $('.' + _dateStr).datetimepicker({
-    //         language: 'zh-CN',
-    //         fontAwesome: 'fa',
-    //         format: 'yyyy-mm-dd',
-    //         initTime: true,
-    //         startView: 2,
-    //         minView: 2,
-    //         initialDate: new Date(),
-    //         autoClose: 1,
-    //         todayBtn: true
-
-    //     });
-    //     $('.' + _dateStr).datetimepicker()
-    //         .on('changeDate', function (ev) {
-    //             let value = $('.' + _dateStr).val();
-    //             //vc.component.addFeeConfigInfo.startTime = value;
-    //             _callBack(value);
-    //         });
-    // }
 
     daysInMonth = function (year, month) {
         if (month == 1) {
@@ -2025,66 +2042,6 @@
                 return false;
             }
             return true;
-            //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
-            //下面分别分析出生日期和校验位
-            // let len, re;
-            // len = num.length;
-            // if (len == 15) {
-            //     re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
-            //     let arrSplit = num.match(re);
-
-            //     //检查生日日期是否正确
-            //     let dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
-            //     let bGoodDay;
-            //     bGoodDay = (dtmBirth.getYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
-            //     if (!bGoodDay) {
-            //         return false;
-            //     }
-            //     else {
-            //         //将15位身份证转成18位
-            //         //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
-            //         let arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
-            //         let arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
-            //         let nTemp = 0, i;
-            //         num = num.substr(0, 6) + '19' + num.substr(6, num.length - 6);
-            //         for (i = 0; i < 17; i++) {
-            //             nTemp += num.substr(i, 1) * arrInt[i];
-            //         }
-            //         num += arrCh[nTemp % 11];
-            //         return true;
-            //     }
-            // }
-            // if (len == 18) {
-            //     re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
-            //     let arrSplit = num.match(re);
-
-            //     //检查生日日期是否正确
-            //     let dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
-            //     let bGoodDay;
-            //     bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
-            //     if (!bGoodDay) {
-            //         // alert(dtmBirth.getYear());
-            //         //  alert(arrSplit[2]);
-            //         return false;
-            //     }
-            //     else {
-            //         //检验18位身份证的校验码是否正确。
-            //         //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
-            //         let valnum;
-            //         let arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
-            //         let arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
-            //         let nTemp = 0, i;
-            //         for (i = 0; i < 17; i++) {
-            //             nTemp += num.substr(i, 1) * arrInt[i];
-            //         }
-            //         valnum = arrCh[nTemp % 11];
-            //         if (valnum != num.substr(17, 1)) {
-            //             return false;
-            //         }
-            //         return true;
-            //     }
-            // }
-            // return false;
         }
 
     };
@@ -2338,3 +2295,5 @@
         return _staffPrivilege.includes(_privalege);
     }
 })(window.vcFramework);
+
+

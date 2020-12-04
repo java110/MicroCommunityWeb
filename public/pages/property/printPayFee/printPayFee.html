@@ -2,24 +2,21 @@
     <div>
         <div>
             <div class=" text-center">
-                <h1>{{printPayFeeInfo.communityName}} 收据单</h1>
-                <span>单号：{{printPayFeeInfo.receiptId}}</span>
+                <div style="color:#000;font-size:36px">{{printPayFeeInfo.communityName}} 收据单</div>
+                <span style="color:#000;font-size:20px">单号：{{printPayFeeInfo.receiptId}}</span>
             </div>
-            <div class="row margin-top">
+            <div class="row " style="color:#000;font-size:20px">
                 <div class="col-sm-4">
                     <span>{{printPayFeeInfo.roomName}}</span>
                 </div>
-                <div class="col-sm-4">
-                    <span></span>
-                </div>
-                <div class="col-sm-4">
+                <div class="col-sm-8 text-right">
                     <span>缴费时间：{{printPayFeeInfo.feeTime}}</span>
                 </div>
             </div>
-            <table class="table vc-table-border margin-top">
+            <table class="table vc-table-border" style="color:#000;font-size:20px">
                 <thead>
                     <tr >
-                        <th scope="col" class="text-center">编号</th>
+                        <th scope="col" class="text-center" width="80px">编号</th>
                         <th scope="col" class="text-center">收费项目</th>
                         <th scope="col" class="text-center">收费范围</th>
                         <th scope="col" class="text-center">周期</th>
@@ -30,7 +27,7 @@
                         <th scope="col" class="text-center">备注</th>
                     </tr>
                 </thead>
-                <tbody class="vc-table-border">
+                <tbody class="vc-table-border" style="color:#000;font-size:20px">
                     <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
                         <th scope="row" class="text-center">{{index +1}}</th>
                         <td class="text-center">{{item.feeName}}</td>
@@ -43,10 +40,10 @@
                         <td class="text-center" width="200px">{{item.remark}}</td>
                     </tr>
                     <tr >
-                        <td colspan="1" class="text-center ">大写人民币（元）</td>
+                        <td colspan="2" class="text-center ">大写人民币（元）</td>
                         <td colspan="4" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
-                        <td colspan="4" class="text-center ">{{printPayFeeInfo.amount}}</td>
+                        <td colspan="3" class="text-center ">{{printPayFeeInfo.amount}}</td>
                     </tr>
                     <tr height="60px">
                         <td colspan="5">

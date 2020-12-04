@@ -21,10 +21,16 @@
         </div> -->
     <div class="layui-form-item">
         <button id="reg" type="submit" v-on:click="doRegister()"
-            class="login_btn layui-btn layui-btn-radius layui-btn-normal" lay-submit lay-filter="register">立即注册</button>
+            class="login_btn layui-btn layui-btn-radius layui-btn-normal" lay-submit lay-filter="register">
+            <vc:i18n name="register"></vc:i18n>
+        </button>
     </div>
     <div>
-        <small class="text-white">已经有账户了？</small>
-        <a href="javascript:void(0)" v-on:click="_doLogin()">点此登录</a>
+        <small class="text-white">
+            <vc:i18n name="areyouhasaccount"></vc:i18n>
+        </small>
+        <a href="javascript:void(0)" v-on:click="_doLogin()">
+            <vc:i18n name="signIn"></vc:i18n>
+        </a>
     </div>
 </div>
