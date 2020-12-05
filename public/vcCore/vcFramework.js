@@ -1637,11 +1637,11 @@
                 _callBack(value);
             });
         //防止时间插件多次点击失去焦点
-        $('.' + _dateStr)[0].addEventListener('click', myfunc)
-
-        function myfunc(e) {
-            e.currentTarget.blur();
-        }
+        // $('.' + _dateStr)[0].addEventListener('click', myfunc)
+        //
+        // function myfunc(e) {
+        //     e.currentTarget.blur();
+        // }
     }
 
     vcFramework.initDateMonth = function (_dateStr, _callBack) {
