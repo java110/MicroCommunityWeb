@@ -15,7 +15,8 @@
                 feeTime: '',
                 wechatName:'',
                 content:'',
-                qrImg:''
+                qrImg:'',
+                carNum:''
             },
             printFlag: '0'
         },
@@ -29,8 +30,9 @@
             $that.printPayFeeInfo.qstartTime = vc.getParam('qstartTime');
             $that.printPayFeeInfo.qendTime = vc.getParam('qendTime');
             //$that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
-
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
+
+           
 
             $that._loadReceipt();
 
@@ -78,6 +80,11 @@
 
                         for(var i =0 ; i<_feeReceiptManageInfo.data.length; i++){
                             $that.printPayFeeInfo.amount += parseFloat(_feeReceiptManageInfo.data[i].amount)*1000000000000;
+                            if(vc.getParam('type')==3){
+                                if( _feeReceiptManageInfo.data[i].carNum != null && _feeReceiptManageInfo.data[i].carNum != '' ){
+                                    $that.printPayFeeInfo.carNum += _feeReceiptManageInfo.data[i].carNum+" ";
+                                }
+                            }
                         }
                         $that.printPayFeeInfo.amount = $that.printPayFeeInfo.amount/1000000000000;
                         $that.printPayFeeInfo.fees  = _feeReceiptManageInfo.data;
