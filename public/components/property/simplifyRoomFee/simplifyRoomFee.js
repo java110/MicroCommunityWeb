@@ -181,7 +181,7 @@
                         row: 50,
                         communityId: vc.getCurrentCommunity().communityId,
                         feeTypeCd: _feeTypeCd,
-                        isDefault: 'F',
+                        isDefault: '',
                         valid: '1'
                     }
                 };
