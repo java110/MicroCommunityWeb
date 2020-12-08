@@ -58,7 +58,8 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         payerObjId: $that.simplifyRoomFeeInfo.roomId,
                         configId: $that.simplifyRoomFeeInfo.configId,
-                        state: $that.simplifyRoomFeeInfo.state
+                        state: $that.simplifyRoomFeeInfo.state,
+                        feeTypeCd: $that.simplifyRoomFeeInfo.feeTypeCd
                     }
                 };
 
@@ -173,6 +174,7 @@
             },
             _changeSimplifyRoomFeeFeeTypeCd: function (_feeTypeCd) {
                 $that.simplifyRoomFeeInfo.configId = '';
+                vc.emit('simplifyRoomFee', 'notify', {});
                 var param = {
                     params: {
                         page: 1,
