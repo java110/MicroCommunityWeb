@@ -63,7 +63,7 @@
                         $that.payFeeDiscountInfo.feeDiscounts = _payFeeDiscountInfo.data;
                         $that.payFeeDiscountInfo.feeDiscounts.forEach(item => {
                             $that.payFeeDiscountInfo.selectDiscountIds.push(item.discountId);
-                            item.discountPrice = Math.ceil(item.discountPrice);
+                            item.discountPrice = Math.floor(item.discountPrice);
                         })
                     }, function (errInfo, error) {
                         console.log('请求失败处理');

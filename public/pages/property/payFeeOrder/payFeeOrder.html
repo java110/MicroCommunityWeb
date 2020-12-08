@@ -6,7 +6,7 @@
                     <h5>订单收费({{payFeeOrderInfo.payerObjName}})</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_goBack()">
+                                v-on:click="_goBack()">
                             返回
                         </button>
                     </div>
@@ -42,7 +42,7 @@
                                 <label class="col-sm-2 col-form-label">缴费周期</label>
                                 <div class="col-sm-6">
                                     <select class="custom-select" v-model="payFeeOrderInfo.tempCycles"
-                                        @change="_changeMonth(payFeeOrderInfo.tempCycles)">
+                                            @change="_changeMonth(payFeeOrderInfo.tempCycles)">
                                         <option value="">请选择缴费周期</option>
                                         <option v-for="item in payFeeOrderInfo.paymentCycles" :value="item">{{item}}个月
                                         </option>
@@ -54,15 +54,16 @@
                                 <label class="col-sm-2 col-form-label">实际周期</label>
                                 <div class="col-sm-6">
                                     <input type="text" placeholder="请输入实际周期" v-model="payFeeOrderInfo.cycles"
-                                        oninput="value=value.replace(/[^\d]/g,'')"
-                                        v-on:change="changeCycle(payFeeOrderInfo.cycles)" class="form-control">
+                                           oninput="value=value.replace(/[^\d]/g,'')"
+                                           v-on:change="changeCycle(payFeeOrderInfo.cycles)" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" style="padding-right:0px;">备注</label>
                                 <div class="col-sm-8" style="padding-left:5px;">
                                     <textarea placeholder="可填，请填写备注" class="form-control"
-                                        v-model="payFeeOrderInfo.remark"></textarea>
+                                              v-model="payFeeOrderInfo.remark">
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -85,9 +86,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label"
-                                    style="line-height: 50px;padding-right:0px;">应收款：</label>
+                                       style="line-height: 50px;padding-right:0px;">应收款：</label>
                                 <label class="col-sm-8 col-form-label"
-                                    style="font-size: 30px;color: red;padding-left:0px;">￥{{payFeeOrderInfo.totalFeePrice}}</label>
+                                       style="font-size: 30px;color: red;padding-left:0px;">￥{{payFeeOrderInfo.totalFeePrice}}</label>
                             </div>
                             <div class="row form-group">
                                 <label class="col-sm-3 col-form-label" style="padding-right:0px;">支付方式:</label>
@@ -95,16 +96,18 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" style="padding-right:0px;">实收款</label>
-                                <div class="col-sm-8" style="padding-left:5px;"><input type="text"
-                                        placeholder="请输入实际收款金额" v-model="payFeeOrderInfo.receivedAmount"
-                                        class="form-control"></div>
+                                <div class="col-sm-8" style="padding-left:5px;">
+                                    <input type="text" placeholder="请输入实际收款金额" v-model="payFeeOrderInfo.receivedAmount"
+                                           class="form-control">
+                                </div>
                             </div>
                             <div class="form-group row">
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-8">
                                     <button type="button" class="btn btn-warning btn-lg btn-block"
-                                        @click="_openPayFee()">提交收费</button>
+                                            @click="_openPayFee()">提交收费
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +116,6 @@
             </div>
         </div>
     </div>
-
     <div id="payFeeResult" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -143,27 +145,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row" >
+                    <div class="row">
                         <label class="col-sm-3 col-form-label">付费对象：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.payerObjName}}</label>
                     </div>
                     <div class="row" v-if="payFeeOrderInfo.feeFlag != '2006012' && payFeeOrderInfo.showEndTime != ''">
-                        <label class="col-sm-3 col-form-label" >缴费时间段：</label>
-                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.endTime}} 至 {{payFeeOrderInfo.showEndTime}}</label>
+                        <label class="col-sm-3 col-form-label">缴费时间段：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.endTime}} 至
+                            {{payFeeOrderInfo.showEndTime}}</label>
                     </div>
-                    <div class="row" >
+                    <div class="row">
                         <label class="col-sm-3 col-form-label">应收金额：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalFeePrice}}</label>
                     </div>
-                    <div class="row" >
+                    <div class="row">
                         <label class="col-sm-3 col-form-label">实收金额：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.receivedAmount}}</label>
                     </div>
-                    <div class="row" >
+                    <div class="row">
                         <label class="col-sm-3 col-form-label">优惠金额：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalDiscountMoney}}</label>
                     </div>
-                    <div class="row" >
+                    <div class="row">
                         <label class="col-sm-3 col-form-label">备注：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.remark}}</label>
                     </div>
@@ -175,6 +178,5 @@
             </div>
         </div>
     </div>
-
     <vc:create path="property/payFeeDiscount"></vc:create>
 </div>

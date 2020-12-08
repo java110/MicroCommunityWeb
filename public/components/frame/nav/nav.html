@@ -16,13 +16,13 @@
                     <a class="dropdown-item" v-for="currentCommunity in nav.communityInfos"
                         v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}}</a>
                     <a href="javascript:void(0)" class="dropdown-item text-center" v-on:click="_chooseMoreCommunity()">
-                        <strong>更多小区</strong>
+                        <strong>{{vc.i18n('moreCommunity')}}</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </div>
             </li>
             <li style="padding: 20px">
-                <span class="m-r-sm text-muted welcome-message">欢迎访问HC小区管理系统，{{userName}}！</span>
+                <span class="m-r-sm text-muted welcome-message">{{vc.i18n('welcome')}}，{{userName}}！</span>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -43,7 +43,7 @@
                     <li>
                         <div class="text-center link-block">
                             <a v-bind:href="nav.moreNoticeUrl" class="dropdown-item">
-                                <strong>查看全部消息</strong>
+                                <strong>{{vc.i18n('moreMsg')}}</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
@@ -58,7 +58,7 @@
             </li>
             <li>
                 <a v-on:click="logout()">
-                    <i class="fa fa-sign-out"></i> 退出
+                    <i class="fa fa-sign-out"></i> {{vc.i18n('signOut')}}
                 </a>
             </li>
         </ul>

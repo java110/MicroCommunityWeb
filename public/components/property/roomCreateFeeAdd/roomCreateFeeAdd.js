@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             roomCreateFeeAddInfo: {
@@ -18,18 +17,16 @@
                 roomState: ['2001'],
                 isMore: false,
                 locationTypeCdName: '',
-                startTime: vc.dateTimeFormat(new Date().getTime())
+                startTime: ''
             }
         },
         _initMethod: function () {
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.roomCreateFeeAddInfo.feeTypeCds = _data;
             });
-
-            vc.initDateTime('roomCreateFeeStartTime',function(_value){
+            vc.initDateTime('roomCreateFeeStartTime', function (_value) {
                 $that.roomCreateFeeAddInfo.startTime = _value;
             })
-
         },
         _initEvent: function () {
             vc.on('roomCreateFeeAdd', 'openRoomCreateFeeAddModal',
@@ -45,40 +42,35 @@
                         vc.component.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum + '号楼' + room.unitNum + '单元' + room.roomNum + '室(' + room.ownerName + ')';
                     }
                     $('#roomCreateFeeAddModel').modal('show');
-
                 });
-
             vc.on("roomCreateFeeAdd", "notify", function (_param) {
                 if (_param.hasOwnProperty("floorId")) {
                     vc.component.roomCreateFeeAddInfo.floorId = _param.floorId;
                 }
-
                 if (_param.hasOwnProperty("unitId")) {
                     vc.component.roomCreateFeeAddInfo.unitId = _param.unitId;
                 }
-
                 if (_param.hasOwnProperty("roomId")) {
                     vc.component.roomCreateFeeAddInfo.roomId = _param.roomId;
                 }
             });
         },
         methods: {
-
             roomCreateFeeAddValidate() {
                 return vc.validate.validate({
-                    roomCreateFeeAddInfo: vc.component.roomCreateFeeAddInfo
-                },
+                        roomCreateFeeAddInfo: vc.component.roomCreateFeeAddInfo
+                    },
                     {
                         'roomCreateFeeAddInfo.locationTypeCd': [{
                             limit: "required",
                             param: "",
                             errInfo: "收费范围不能为空"
                         },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "收费范围格式错误"
-                        },
+                            {
+                                limit: "num",
+                                param: "",
+                                errInfo: "收费范围格式错误"
+                            },
                         ],
                         'roomCreateFeeAddInfo.locationObjId': [{
                             limit: "required",
@@ -109,15 +101,14 @@
                             param: "",
                             errInfo: "计费起始时间不能为空"
                         },
-                        {
-                            limit: "datetime",
-                            param: "",
-                            errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
-                        }]
+                            {
+                                limit: "datetime",
+                                param: "",
+                                errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
+                            }]
                     });
             },
             saveRoomCreateFeeInfo: function () {
-
                 vc.component.roomCreateFeeAddInfo.communityId = vc.getCurrentCommunity().communityId;
                 if (vc.component.roomCreateFeeAddInfo.locationTypeCd == '1000') { //大门时直接写 小区ID
                     vc.component.roomCreateFeeAddInfo.locationObjId = vc.component.roomCreateFeeAddInfo.communityId;
@@ -132,24 +123,20 @@
                     vc.toast("收费范围错误");
                     return;
                 }
-
                 if (!vc.component.roomCreateFeeAddValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.component.roomCreateFeeAddInfo.communityId = vc.getCurrentCommunity().communityId;
                 let _roomCreateFeeAddInfo = JSON.parse(JSON.stringify(vc.component.roomCreateFeeAddInfo));
                 if (_roomCreateFeeAddInfo.locationTypeCd == '5008') {
                     _roomCreateFeeAddInfo.locationTypeCd = '3000';
                 }
-
                 _roomCreateFeeAddInfo.roomState = _roomCreateFeeAddInfo.roomState.join(',');
-
                 vc.http.post('roomCreateFeeAdd', 'save',
                     JSON.stringify(_roomCreateFeeAddInfo), {
-                    emulateJSON: true
-                },
+                        emulateJSON: true
+                    },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
@@ -159,17 +146,14 @@
                             vc.component.clearAddFeeConfigInfo();
                             vc.toast("创建收费成功，总共[" + _json.totalRoom + "]房屋，成功[" + _json.successRoom + "],失败[" + _json.errorRoom + "]", 8000);
                             vc.emit('listRoomFee', 'notify', {});
-                            vc.emit('simplifyRoomFee', 'notify',{});
+                            vc.emit('simplifyRoomFee', 'notify', {});
                             return;
                         }
                         vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddFeeConfigInfo: function () {
@@ -192,13 +176,10 @@
                     locationTypeCdName: '',
                     startTime: vc.dateTimeFormat(new Date().getTime())
                 };
-
                 vc.component.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },
             _changeFeeTypeCdX: function (_feeTypeCd) {
-
                 $that.roomCreateFeeAddInfo.configId = '';
-
                 var param = {
                     params: {
                         page: 1,
@@ -209,7 +190,6 @@
                         valid: '1'
                     }
                 };
-
                 //发送get请求
                 vc.http.get('roomCreateFeeAdd', 'list', param,
                     function (json, res) {
@@ -222,5 +202,4 @@
             }
         }
     });
-
 })(window.vc);

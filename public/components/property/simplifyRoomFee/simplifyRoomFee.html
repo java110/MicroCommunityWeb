@@ -1,6 +1,33 @@
 <div>
-    <div class="row margin-top">
-        <div class="col-lg-12 text-right" v-if="simplifyRoomFeeInfo.roomId">
+    <div class="row margin-top-lg">
+        <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyRoomFeeInfo.roomId">
+            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.feeTypeCd"
+                @change="_changeSimplifyRoomFeeFeeTypeCd(simplifyRoomFeeInfo.feeTypeCd)">
+                <option selected value="">请选择费用类型</option>
+                <option v-for="(item,index) in simplifyRoomFeeInfo.feeTypeCds" :key="index" v-bind:value="item.statusCd"
+                    v-if="item.statusCd !='888800010008'">
+                    {{item.name}}
+                </option>
+            </select>
+
+        </div>
+        <div class="col-lg-2 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
+            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.configId"
+                @change="_changeSimplifyRoomConfigId()">
+                <option selected value="">请选择收费项目</option>
+                <option v-for="(item,index) in simplifyRoomFeeInfo.feeConfigs" :key="index"
+                    v-bind:value="item.configId">{{item.feeName}}
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-2 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
+            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.state" @change="_changeSimplifyRoomConfigId()">
+                <option selected  value="">请选择状态</option>
+                <option value="2008001">收费中</option>
+                <option value="2009001">收费结束</option>
+            </select>
+        </div>
+        <div class="col-lg-6 text-right" v-if="simplifyRoomFeeInfo.roomId">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                 v-on:click="_openProxyFeeModal()">
                 代收费用
@@ -18,7 +45,7 @@
             </button>
         </div>
     </div>
-    <div>
+    <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
                 <tr>
@@ -94,5 +121,5 @@
         </div>
     </div>
 
-   
+
 </div>

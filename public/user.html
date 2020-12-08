@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>HC小区管理系统|java110</title>
+    <title>
+        智慧社区
+    </title>
 
     <vc:create path="frame/commonTop"  location="head"></vc:create>
     <link rel="stylesheet" href="/layui/css/layui.css?time=1">
@@ -23,12 +25,14 @@
             <div class="carousel_div2"></div>
             <div class="carousel_div3"></div>
         </div>
-        <div  class="login layui-anim layui-anim-up">
+        <div   class="login layui-anim layui-anim-up">
             <div class="layui-logo">
                 <a href="#" target="_blank"><img src="img/logo.png" /></a>
             </div>
             <fieldset class="layui-elem-field layui-field-title">
-                <legend class="text-white">小区管理系统</legend>
+                <legend class="text-white">
+                    <vc:i18n name="systemName"></vc:i18n>
+                </legend>
             </fieldset>
             <div id="component" class="layui-form" action="" method="post">
                 <vc:create path="/pages/frame/login"></vc:create>
@@ -36,15 +40,17 @@
             <hr class="layui-bg-gray">
             <div class="layui-footer text-white">
                 <!-- 底部固定区域 -->
-                &copy;2017-2020 java110团队
+                &copy;2017-2020 
+                <vc:i18n name="companyTeam"></vc:i18n>
             </div>
         </div>
     </div>
 
     <script src="/js/bootstrap/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/layui/layui.all.js"></script>
+    <script src="/vcCore/vc-zh.js"></script>
     <script src="/vcCore/vcFramework.js"></script>
-
+   
     <script type="text/javascript">
         var layer = layui.layer,
             form = layui.form,

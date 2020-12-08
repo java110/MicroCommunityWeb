@@ -46,17 +46,14 @@
                 for (let _index = 1; _index < 7; _index++) {
                     $that.payFeeOrderInfo.paymentCycles.push(_index * vc.getParam('paymentCycle'))
                 }
-
                 $that.listPayFeeOrderRoom();
-            };
-
+            }
             vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
             vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
         },
         _initEvent: function () {
             vc.on('payFeeOrder', 'changeDiscountPrice', function (_param) {
                 let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
-
                 if (_totalFeePrice < 0) {
                     return;
                 }
@@ -69,15 +66,13 @@
                 $that.payFeeOrderInfo.totalDiscountMoney = _totalDiscountMoney;
                 $that.payFeeOrderInfo.receivedAmount = _totalFeePrice - _totalDiscountMoney;
             });
-
             vc.on('payFeeOrder', 'initData', function (_param) {
                 $that.payFeeOrderInfo.paymentCycles = [];
                 for (let _index = 1; _index < 7; _index++) {
                     $that.payFeeOrderInfo.paymentCycles.push(_index * _param.paymentCycle);
                 }
-
                 $that.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
-                $that.payFeeOrderInfo.receivedAmount =  $that.payFeeOrderInfo.totalFeePrice;
+                $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice;
             })
         },
         methods: {
@@ -127,7 +122,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 if (!(/(^[1-9]\d*$)/.test($that.payFeeOrderInfo.cycles))) {
                     $that.payFeeOrderInfo.showEndTime = '';
                 } else {
@@ -152,7 +146,6 @@
                     feeName: $that.payFeeOrderInfo.feeName,
                     amount: $that.payFeeOrderInfo.receivedAmount
                 });
-
                 vc.http.post(
                     'propertyPay',
                     'payFee',
@@ -167,11 +160,8 @@
                                 totalAmount: $that.payFeeOrderInfo.receivedAmount,
                                 fees: _printFees
                             }
-
                             let _data = JSON.parse(json).data;
-
                             $that.payFeeOrderInfo.receiptId = _data.receiptId;
-
                             //vc.saveData('_feeInfo', _feeInfo);
                             //关闭model
                             $("#payFeeResult").modal({
@@ -194,13 +184,11 @@
                     return;
                 }
                 let _newCycles = _cycles;
-
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
-
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                     feeId: $that.payFeeOrderInfo.feeId,
                     cycles: _cycles
@@ -212,7 +200,6 @@
                 }
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
-
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                     feeId: $that.payFeeOrderInfo.feeId,
                     cycles: _cycles
@@ -244,20 +231,18 @@
                         row: 1
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/feeApi/listFeeObj',
                     param,
                     function (json, res) {
                         let listRoomData = JSON.parse(json);
                         vc.copyObject(listRoomData.data, $that.payFeeOrderInfo);
-                        vc.emit('payFeeOrder', 'initData',listRoomData.data);
+                        vc.emit('payFeeOrder', 'initData', listRoomData.data);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
         }
-
     });
 })(window.vc);
