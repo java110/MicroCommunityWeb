@@ -59,7 +59,7 @@
                         <td  v-if="printPayFeeInfo.type == 5" class="text-center" >{{item.startTime!=null?vc.dateFormat(item.startTime):''}}</td>
                         <td  v-if="printPayFeeInfo.type == 5" class="text-center" >{{item.endTime!=null?vc.dateFormat(item.endTime):''}}</td>
                         <td  class="text-center" >{{item.amount}}</td>
-                        <td  class="text-left">{{item.remark}}</td>
+                        <td  class="text-left" style="font-size: 12px;">{{item.remark}}</td>
                         <!-- <td  v-if="printPayFeeInfo.type!= 3"  class="text-center" >{{item.remark}}</td> -->
                         <!-- <td  v-if="printPayFeeInfo.type== 3" class="text-center" >{{item.remark}}{{item.carNum}}</td> -->
                     </tr>
