@@ -85,6 +85,7 @@
                 vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId=' + $that.simplifyRoomFeeInfo.roomId + "&payObjType=3333&roomName=" + $that.simplifyRoomFeeInfo.roomName);
             },
             _openRoomCreateFeeAddModal: function () {
+                $that.simplifyRoomFeeInfo.ownerName = $that.simplifyRoomFeeInfo.name;
                 vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
                     isMore: false,
                     room: $that.simplifyRoomFeeInfo,
