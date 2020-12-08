@@ -47,7 +47,7 @@
                         <!-- <th scope="row" class="text-center">{{index +1}}</th> -->
                         <td  class="text-center" >{{item.feeName}}</td>
                         <!-- <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center">{{item.carNum}}</td> -->
-                        <td  v-if=" printPayFeeInfo.type==4 " scope="col" class="text-center" >{{item.carNum}}</td>
+                        <td  v-if= "printPayFeeInfo.type==4" scope="col" class="text-center" >{{item.carNum}}</td>
                         <td  v-if= "printPayFeeInfo.type== 5 " class="text-center" >{{item.cycle}}</td>
                         <td  v-if= "item.feeName != '水费' && item.feeName != '电费' && printPayFeeInfo.type != 5" class="text-center" >{{item.num}}</td>
                         <td  v-if= "item.feeName == '水费' || item.feeName == '电费'" class="text-center" ></td>
@@ -59,7 +59,7 @@
                         <td  v-if="printPayFeeInfo.type == 5" class="text-center" >{{item.startTime!=null?vc.dateFormat(item.startTime):''}}</td>
                         <td  v-if="printPayFeeInfo.type == 5" class="text-center" >{{item.endTime!=null?vc.dateFormat(item.endTime):''}}</td>
                         <td  class="text-center" >{{item.amount}}</td>
-                        <td  class="text-center" >{{item.remark}}</td>
+                        <td  class="text-left">{{item.remark}}</td>
                         <!-- <td  v-if="printPayFeeInfo.type!= 3"  class="text-center" >{{item.remark}}</td> -->
                         <!-- <td  v-if="printPayFeeInfo.type== 3" class="text-center" >{{item.remark}}{{item.carNum}}</td> -->
                     </tr>
@@ -73,7 +73,7 @@
                         <td v-if=" printPayFeeInfo.type!=4 " colspan="3" class="text-center ">合计（小写）: {{printPayFeeInfo.amount}}</td>
                         <!-- <td colspan="4" class="text-center "></td> -->
 
-                        <td v-if="printPayFeeInfo.type== 3 && printPayFeeInfo.carNum!=null  && printPayFeeInfo.carNum!=''" colspan="4" class="text-center ">车牌号：{{printPayFeeInfo.carNum}}</td>
+                        <td v-if="printPayFeeInfo.type== 3 && printPayFeeInfo.carNum!=null  && printPayFeeInfo.carNum!=''" colspan="4" class="text-left">车牌号：{{printPayFeeInfo.carNum}}</td>
                         <td v-if="printPayFeeInfo.type != 3 || printPayFeeInfo.carNum==null | printPayFeeInfo.carNum=='' "  colspan="4" class="text-center "></td>
 
                     </tr>
