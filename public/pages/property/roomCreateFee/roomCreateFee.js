@@ -77,18 +77,6 @@
                     param,
                     function (json, res) {
                         var listRoomData = JSON.parse(json);
-                        if (typeof (listRoomData.rooms) != 'undefined') {
-                            for (var i = 0; i < listRoomData.rooms.length; i++) {
-                                //隐藏身份证号后四位
-                                if (listRoomData.rooms[i].idCard != null && listRoomData.rooms[i].idCard !== '' && typeof (listRoomData.rooms[i].idCard) !== 'undefined') {
-                                    listRoomData.rooms[i].idCard = listRoomData.rooms[i].idCard.substring(0, 6) + "**********" + listRoomData.rooms[i].idCard.substring(16);
-                                }
-                                //隐藏手机号中间四位
-                                if (listRoomData.rooms[i].link != null && listRoomData.rooms[i].link !== '' && typeof (listRoomData.rooms[i].link) !== 'undefined') {
-                                    listRoomData.rooms[i].link = listRoomData.rooms[i].link.substring(0, 3) + "****" + listRoomData.rooms[i].link.substring(7);
-                                }
-                            }
-                        }
                         vc.component.roomCreateFeeInfo.total = listRoomData.total;
                         vc.component.roomCreateFeeInfo.records = listRoomData.records;
                         vc.component.roomCreateFeeInfo.rooms = listRoomData.rooms;
@@ -160,18 +148,6 @@
                     param,
                     function (json, res) {
                         var listRoomData = JSON.parse(json);
-                        if (typeof (listRoomData.rooms) != 'undefined') {
-                            for (var i = 0; i < listRoomData.rooms.length; i++) {
-                                //隐藏身份证号后四位
-                                if (listRoomData.rooms[i].idCard != null && listRoomData.rooms[i].idCard !== '' && typeof (listRoomData.rooms[i].idCard) !== 'undefined') {
-                                    listRoomData.rooms[i].idCard = listRoomData.rooms[i].idCard.substring(0, 14) + "****";
-                                }
-                                //隐藏手机号中间四位
-                                if (listRoomData.rooms[i].link != null && listRoomData.rooms[i].link !== '' && typeof (listRoomData.rooms[i].link) !== 'undefined') {
-                                    listRoomData.rooms[i].link = listRoomData.rooms[i].link.substring(0, 3) + "****" + listRoomData.rooms[i].link.substring(7);
-                                }
-                            }
-                        }
                         vc.component.roomCreateFeeInfo.total = listRoomData.total;
                         vc.component.roomCreateFeeInfo.records = listRoomData.records;
                         vc.component.roomCreateFeeInfo.rooms = listRoomData.rooms;
