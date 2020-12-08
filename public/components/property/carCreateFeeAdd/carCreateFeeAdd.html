@@ -12,16 +12,27 @@
                                     <select class="custom-select" v-model="carCreateFeeAddInfo.locationTypeCd">
                                         <option selected disabled value="">必填，请选择收费范围</option>
                                         <option value="1000">小区</option>
-                                        <option value="2000">停车场</option>
+                                        <option value="3000">停车场</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row" v-else>
+                            </div>  
+                            <div class="form-group row"  v-else>
                                 <label class="col-sm-2 col-form-label">车辆</label>
                                 <div class="col-sm-10">
                                     <input v-model="carCreateFeeAddInfo.locationTypeCdName" disabled="disabled"
                                         type="text" placeholder="必填，请填写收费范围" class="form-control">
 
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="carCreateFeeAddInfo.locationTypeCd == '3000'">
+                                <label class="col-sm-2 col-form-label">停车场</label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/parkingAreaSelect2"
+                                               parentModal="carCreateFeeAdd"
+                                               callBackListener="carCreateFeeAdd"
+                                               callBackFunction="notify"
+                                               namespace="carCreateFeeAdd"
+                                    ></vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -46,6 +57,19 @@
                                             v-bind:value="item.configId">{{item.feeName}}
                                         </option>
                                     </select></div>
+                            </div>
+                            <div class="form-group row" v-if="carCreateFeeAddInfo.isMore == true">
+                                <label class="col-sm-2 col-form-label">车位状态</label>
+                                <div class="col-sm-10">
+                                    <div class="checkbox custom-control-inline">
+                                        <label><input type="checkbox" v-model="carCreateFeeAddInfo.carState"
+                                                      value="S">已出售</label>
+                                    </div>
+                                    <div class="checkbox custom-control-inline">
+                                        <label><input type="checkbox" v-model="carCreateFeeAddInfo.carState"
+                                                      value="H">已出租</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">计费起始时间</label>

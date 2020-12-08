@@ -6,9 +6,9 @@
                 <option v-for="(item,index) in simplifyCarFeeInfo.ownerCars" :value="item.carId">{{item.carNum}}</option>
             </select>
         </div>
-        <div class="col-lg-8 text-right">
+        <div class="col-lg-4 text-right">
         </div>
-        <div class="col-lg-2 text-right" v-if="simplifyCarFeeInfo.carId">
+        <div class="col-lg-6 text-right" v-if="simplifyCarFeeInfo.carId">
 
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                 v-on:click="_openSimplifyCarAddMeterWaterModal()">

@@ -5,6 +5,7 @@
     window.lang = {
         "systemName": "HC小区管理系统",
         "systemSimpleName": "HC",
+        "subSystemName": "小区管理系统",
         "companyTeam": "java110 团队",
         "welcome": "欢迎访问HC小区管理系统",
         "signOut": "退出",
