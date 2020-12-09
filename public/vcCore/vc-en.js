@@ -6,6 +6,7 @@
     window.lang={
         "systemName":"CommunityManagement",
         "systemSimpleName":"HC",
+        "subSystemName": "CommunityManagement",
         "companyTeam":"java110 team",
         "welcome":"welcome community management",
         "signOut":"sign out",
