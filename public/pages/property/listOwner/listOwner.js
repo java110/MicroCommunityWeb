@@ -276,30 +276,7 @@
                     });
                     _call();
                 });
-                
-                // 循环所有房屋信息
-                // for (let _ownerIndex = 0; _ownerIndex < _owners.length; _ownerIndex++) {
-                //     let _owner = _owners[_ownerIndex];
-
-                //     if (!_owner.hasOwnProperty('ownerAttrDtos')) {
-                //         break;
-                //     }
-                //     let _ownerAttrDtos = _owner.ownerAttrDto;
-                //     if (_ownerAttrDtos.length < 1) {
-                //         break;
-                //     }
-                //     //获取房屋信息中 任意属性作为 列
-                //     for (let _ownerAttrIndex = 0; _ownerAttrIndex < _ownerAttrDtos.length; _ownerAttrIndex++) {
-                //         let attrItem = _ownerAttrDtos[_ownerAttrIndex];
-                //         if (attrItem.listShow == 'Y') {
-                //             $that.ownerInfo.listColumns.push(attrItem.specName);
-                //         }
-                //     }
-
-                //     if ($that.ownerInfo.listColumns.length > 0) {
-                //         break;
-                //     }
-                // }
+             
             }
         }
     })

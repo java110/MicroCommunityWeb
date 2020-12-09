@@ -26,15 +26,17 @@
                 roomName: '',
                 direction: '',
                 locationType: '',
-                locations: []
+                locations: [],
+                attrs: []
             }
         },
         _initMethod: function () {
-
+            
         },
         _initEvent: function () {
             vc.on('addMachine', 'openAddMachineModal', function () {
                 $that._loadLocation();
+                $that._loadMachineAttrSpec();
                 $('#addMachineModel').modal('show');
             });
 
@@ -113,12 +115,12 @@
                             {
                                 limit: "required",
                                 param: "",
-                                errInfo: "鉴权编码不能为空"
+                                errInfo: "厂家不能为空"
                             },
                             {
                                 limit: "maxLength",
                                 param: "64",
-                                errInfo: "鉴权编码不能大于64位"
+                                errInfo: "厂家不能大于64位"
                             },
                         ],
                     'addMachineInfo.machineIp':
@@ -221,7 +223,8 @@
                     machineMac: '',
                     direction: '',
                     locationType: '',
-                    locations: _locations
+                    locations: _locations,
+                    attrs: []
                 };
             },
             _initAddMachineData: function () {
@@ -274,7 +277,31 @@
                         $that.addMachineInfo.locationType = item.locationType;
                     }
                 });
-            }
+            },
+            _loadMachineAttrSpec: function () {
+                $that.addMachineInfo.attrs = [];
+                vc.getAttrSpec('machine_attr', function (data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        if (item.specShow == 'Y') {
+                            item.values = [];
+                            $that._loadAttrValue(item.specCd, item.values);
+                            $that.addMachineInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
+            _loadAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if (item.valueShow == 'Y') {
+                            _values.push(item);
+                        }
+                    });
+
+                });
+            },
         }
     });
 

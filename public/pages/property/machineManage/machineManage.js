@@ -20,11 +20,16 @@
                     machineMac: '',
                     communityId: vc.getCurrentCommunity().communityId
 
-                }
+                },
+                listColumns: []
             }
         },
         _initMethod: function () {
-            vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
+            //vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
+
+            $that._getColumns(function () {
+                vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
         },
         _initEvent: function () {
 
@@ -53,6 +58,7 @@
                         vc.component.machineManageInfo.total = _machineManageInfo.total;
                         vc.component.machineManageInfo.records = _machineManageInfo.records;
                         vc.component.machineManageInfo.machines = _machineManageInfo.machines;
+                        $that.dealMachineAttr(vc.component.machineManageInfo.machines);
                         vc.emit('pagination', 'init', {
                             total: vc.component.machineManageInfo.records,
                             currentPage: _page
@@ -105,6 +111,45 @@
                     stateName: '禁用',
                     state: '1600'
                 });
+            },
+            dealMachineAttr: function (machines) {
+                machines.forEach(item => {
+                    $that._getColumnsValue(item);
+                });
+            },
+            _getColumnsValue: function (_machine) {
+                _machine.listValues = [];
+                if (!_machine.hasOwnProperty('machineAttrs') || _machine.machineAttrs.length < 1) {
+                    $that.machineManageInfo.listColumns.forEach(_value => {
+                        _machine.listValues.push('');
+                    })
+                    return;
+                }
+                let _machineAttrs = _machine.machineAttrs;
+                $that.machineManageInfo.listColumns.forEach(_value => {
+                    let _tmpValue = '';
+                    _machineAttrs.forEach(_attrItem => {
+                        if (_value == _attrItem.specName) {
+                            _tmpValue = _attrItem.valueName;
+                        }
+                    })
+                    _machine.listValues.push(_tmpValue);
+                })
+
+            },
+            _getColumns: function (_call) {
+                console.log('_getColumns');
+                $that.machineManageInfo.listColumns = [];
+                vc.getAttrSpec('machine_attr', function (data) {
+                    $that.machineManageInfo.listColumns = [];
+                    data.forEach(item => {
+                        if (item.listShow == 'Y') {
+                            $that.machineManageInfo.listColumns.push(item.specName);
+                        }
+                    });
+                    _call();
+                });
+
             }
 
 

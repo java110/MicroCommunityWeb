@@ -23,12 +23,13 @@
                 machineUrl: '',
                 direction: '',
                 locationType: '',
-                locations: []
+                locations: [],
+                attrs: []
 
             }
         },
         _initMethod: function () {
-
+            $that._loadEditMachineAttrSpec();
         },
         _initEvent: function () {
             vc.on('editMachine', 'openEditMachineModal', function (_params) {
@@ -68,6 +69,18 @@
                         roomId: vc.component.editMachineInfo.roomId,
                         roomNum: vc.component.editMachineInfo.roomNum,
                     });
+                }
+
+                if (_params.hasOwnProperty('machineAttrs')) {
+                    let _machineAttrs = _params.machineAttrs;
+                    _machineAttrs.forEach(item => {
+                        $that.editMachineInfo.attrs.forEach(attrItem => {
+                            if (item.specCd == attrItem.specCd) {
+                                attrItem.attrId = item.attrId;
+                                attrItem.value = item.value;
+                            }
+                        })
+                    })
                 }
                 vc.component.editMachineInfo.communityId = vc.getCurrentCommunity().communityId;
             });
@@ -160,12 +173,12 @@
                             {
                                 limit: "required",
                                 param: "",
-                                errInfo: "鉴权编码不能为空"
+                                errInfo: "厂家不能为空"
                             },
                             {
                                 limit: "maxLength",
                                 param: "64",
-                                errInfo: "鉴权编码不能大于64位"
+                                errInfo: "厂家不能大于64位"
                             },
                         ],
                     'editMachineInfo.machineIp':
@@ -252,7 +265,8 @@
                     });
             },
             refreshEditMachineInfo: function () {
-                let _locations = $that.addMachineInfo.locations;
+                let _locations = $that.editMachineInfo.locations;
+                let _attrs = $that.editMachineInfo.attrs;
                 vc.component.editMachineInfo = {
                     machineId: '',
                     machineCode: '',
@@ -274,7 +288,8 @@
                     machineUrl: '',
                     direction: '',
                     locationType: '',
-                    locations: _locations
+                    locations: _locations,
+                    attrs: _attrs
 
                 }
             },
@@ -305,7 +320,31 @@
                         $that.editMachineInfo.locationType = item.locationType;
                     }
                 });
-            }
+            },
+            _loadEditMachineAttrSpec: function () {
+                $that.editMachineInfo.attrs = [];
+                vc.getAttrSpec('machine_attr', function (data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        item.values = [];
+                        $that._loadEditAttrValue(item.specCd, item.values);
+                        if (item.specShow == 'Y') {
+                            $that.editMachineInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
+            _loadEditAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if (item.valueShow == 'Y') {
+                            _values.push(item);
+                        }
+                    });
+
+                });
+            },
         }
     });
 
