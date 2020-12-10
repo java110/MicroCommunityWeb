@@ -9,7 +9,8 @@
             step:1,
             companyInfo:{
                 errorInfo:""
-            }
+            },
+			acceptTerms: false
         },
          _initMethod:function(){
              //vc.component.initStoreType();
@@ -68,7 +69,28 @@
                     vc.component.step = vc.component.step-1;;
                 }
             },
+			
+			// 验证勾选 “同意条款”
+			validateAcceptTerms: function(){
+				return vc.validate.validate({
+				    companyBaseInfo: vc.component.acceptTerms
+				}, {
+				    'companyBaseInfo': [
+				        {
+				            limit: "required",
+				            param: "",
+				            errInfo: "请阅读须知并勾选确认"
+				        },
+				    ],
+				});
+			},
+			
             finish:function(){
+				// 验证勾选 “同意条款”
+				if(!vc.component.validateAcceptTerms()){
+					vc.component.companyInfo.errorInfo = vc.validate.errInfo;
+					return;
+				}
                 //这里写提交代码
                 console.log("提交审核",vc.component.companyInfo);
                 vc.http.post(
