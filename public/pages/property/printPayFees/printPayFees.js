@@ -1,15 +1,15 @@
 (function (vc) {
-
     vc.extends({
         data: {
             printPayFeeInfo: {
                 communityName: '',
-                receiptId:'',
+                storeName: '',
+                receiptId: '',
                 roomName: '',
                 type: '',
                 month: '',
-                qstartTime:'',
-                qendTime:'',
+                qstartTime: '',
+                qendTime: '',
                 amount: 0.00,
                 fees: [],
                 feeTime: '',
@@ -22,7 +22,6 @@
         },
         _initMethod: function () {
             //vc.component._initPrintPurchaseApplyDateInfo();
-
             $that.printPayFeeInfo.receiptId = vc.getParam('receiptId');
             $that.printPayFeeInfo.roomName = vc.getParam('roomName');
             $that.printPayFeeInfo.type = vc.getParam('type');
@@ -30,47 +29,37 @@
             $that.printPayFeeInfo.qstartTime = vc.getParam('qstartTime');
             $that.printPayFeeInfo.qendTime = vc.getParam('qendTime');
             //$that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
+            $that.printPayFeeInfo.storeName = vc.getParam('storeName');
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
-
-           
-
             $that._loadReceipt();
-
             $that._loadPrintSpec();
         },
         _initEvent: function () {
-
-
         },
         methods: {
             _initPayFee: function () {
-
             },
-            _loadReceipt:function(){
-
+            _loadReceipt: function () {
                 var param = {
                     params: {
-                        page:1,
-                        row:20,
-                        receiptId:$that.printPayFeeInfo.receiptId,
-                        roomName:$that.printPayFeeInfo.roomName,
-                        type:$that.printPayFeeInfo.type,
-                        month:$that.printPayFeeInfo.month,
-                        qstartTime:$that.printPayFeeInfo.qstartTime,
-                        qendTime:$that.printPayFeeInfo.qendTime,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 20,
+                        receiptId: $that.printPayFeeInfo.receiptId,
+                        roomName: $that.printPayFeeInfo.roomName,
+                        type: $that.printPayFeeInfo.type,
+                        month: $that.printPayFeeInfo.month,
+                        qstartTime: $that.printPayFeeInfo.qstartTime,
+                        qendTime: $that.printPayFeeInfo.qendTime,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/feeReceipt/queryFeeReceiptNew',
                     param,
                     function (json, res) {
                         var _feeReceiptManageInfo = JSON.parse(json);
                         // console.log(_feeReceiptManageInfo);
-
-                       let _feeReceipt = _feeReceiptManageInfo.data[0];
-
+                        let _feeReceipt = _feeReceiptManageInfo.data[0];
                         $that.printPayFeeInfo.roomArea = _feeReceipt.roomArea;
                         $that.printPayFeeInfo.roomName = _feeReceipt.objName;
                         $that.printPayFeeInfo.name = _feeReceipt.name;
@@ -86,33 +75,29 @@
                                 }
                             }
                         }
-                        $that.printPayFeeInfo.amount = $that.printPayFeeInfo.amount/1000000000000;
-                        $that.printPayFeeInfo.fees  = _feeReceiptManageInfo.data;
-
+                        $that.printPayFeeInfo.amount = $that.printPayFeeInfo.amount / 1000000000000;
+                        $that.printPayFeeInfo.fees = _feeReceiptManageInfo.data;
                         // $that._loadReceiptDetail();
-                    
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadReceiptDetail:function(){
-
+            _loadReceiptDetail: function () {
                 var param = {
                     params: {
-                        page:1,
-                        row:100,
-                        receiptId:$that.printPayFeeInfo.receiptId,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 100,
+                        receiptId: $that.printPayFeeInfo.receiptId,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/feeReceipt/queryFeeReceiptDetail',
                     param,
                     function (json, res) {
                         var _feeReceiptManageInfo = JSON.parse(json);
-                       let _feeReceiptDetails = _feeReceiptManageInfo.data;
+                        let _feeReceiptDetails = _feeReceiptManageInfo.data;
                         $that.printPayFeeInfo.fees = _feeReceiptDetails;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -128,7 +113,6 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/feePrintSpec/queryFeePrintSpec',
                     param,
@@ -143,11 +127,8 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
-
             _printPurchaseApplyDiv: function () {
-
                 $that.printFlag = '1';
                 console.log('console.log($that.printFlag);', $that.printFlag);
                 document.getElementById("print-btn").style.display = "none";//隐藏
@@ -162,5 +143,4 @@
             }
         }
     });
-
 })(window.vc);

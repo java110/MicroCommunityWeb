@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 20;
@@ -23,7 +23,6 @@
                     } else {
                         $that.payFeeDiscountInfo.quanDiscount = false;
                     }
-
                     //计算优惠
                     $that._computeFeeDiscount();
                 },
@@ -31,7 +30,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('payFeeDiscount', 'computeFeeDiscount', function (_param) {
@@ -54,7 +52,6 @@
                         cycles: $that.payFeeDiscountInfo.cycles
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/feeDiscount/computeFeeDiscount',
                     param,
@@ -63,7 +60,16 @@
                         $that.payFeeDiscountInfo.feeDiscounts = _payFeeDiscountInfo.data;
                         $that.payFeeDiscountInfo.feeDiscounts.forEach(item => {
                             $that.payFeeDiscountInfo.selectDiscountIds.push(item.discountId);
-                            item.discountPrice = Math.floor(item.discountPrice);
+                            //当映射开关值为1时向下取整
+                            if (item.value === "1") {
+                                item.discountPrice = Math.floor(item.discountPrice);
+                            } else if (item.value === "2") {
+                                return item.discountPrice;
+                            } else if (item.value === "3") {
+                                item.discountPrice = Math.ceil(item.discountPrice);
+                            } else {
+                                return item.discountPrice;
+                            }
                         })
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -96,15 +102,12 @@
                             _selectDiscount.push(disItem);
                         }
                     })
-
                 });
-
                 vc.emit('payFeeOrder', 'changeDiscountPrice', {
                     totalDiscountMoney: _totalDiscountMoney,
                     selectDiscount: _selectDiscount
                 })
             }
-
         }
     });
 })(window.vc);
