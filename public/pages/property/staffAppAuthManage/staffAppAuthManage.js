@@ -12,6 +12,8 @@
                 stateName: '',
                 auId: '',
                 openId: '',
+                createTime:'',
+                openName:''
             }
         },
         _initMethod: function () {
