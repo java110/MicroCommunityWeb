@@ -75,7 +75,7 @@
                                 <th class="text-center">业主电话</th>
                                 <th class="text-center">到期时间</th>
                                 <th class="text-center">欠费金额</th>
-                                <th class="text-right">操作</th>
+                                <!-- <th class="text-right">操作</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -86,11 +86,11 @@
                                 <td class="text-center">{{fee.ownerTel}}</td>
                                 <td class="text-center">{{fee.endTime}}</td>
                                 <td class="text-center">{{fee.amountOwed}}</td>
-                                <td class="text-right">
+                                <!-- <td class="text-right">
                                     <button class="btn btn-link btn-xs" v-if=" fee.state != '2009001'"
                                         v-on:click="_toOwnerPayFee(fee)">缴费
                                     </button>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>
