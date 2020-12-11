@@ -1,0 +1,54 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>认证信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">员工名称</th>
+                                <th class="text-center">认证方式</th>
+                                <th class="text-center">认证名称</th>
+                                <th class="text-center">认证ID</th>
+                                <th class="text-center">认证状态</th>
+                                <th class="text-center">认证时间</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">{{staffAppAuthManageInfo.staffName}}</td>
+                                <td class="text-center">{{staffAppAuthManageInfo.appType}}</td>
+                                <td class="text-center">{{staffAppAuthManageInfo.openName}}</td>
+                                <td class="text-center">{{staffAppAuthManageInfo.openId}}</td>
+                                <td class="text-center">{{staffAppAuthManageInfo.stateName}}</td>
+                                <td class="text-center">{{staffAppAuthManageInfo.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAddStaffAppAuthModal()">认证</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/addStaffAppAuth" callBackListener="" callBackFunction=""></vc:create>
+</div>
