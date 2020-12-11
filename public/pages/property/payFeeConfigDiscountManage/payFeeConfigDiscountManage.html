@@ -25,6 +25,8 @@
                                 <th class="text-center">折扣名称</th>
                                 <th class="text-center">规则</th>
                                 <th class="text-center">折扣类型</th>
+                                <th class="text-center">生效起始时间</th>
+                                <th class="text-center">生效结束时间</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
@@ -39,6 +41,8 @@
                                     </div>
                                 </td>
                                 <td class="text-center">{{payFeeConfigDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                                <td class="text-center">{{payFeeConfigDiscount.startTime}}</td>
+                                <td class="text-center">{{payFeeConfigDiscount.endTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"

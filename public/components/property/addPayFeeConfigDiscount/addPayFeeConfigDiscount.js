@@ -12,10 +12,13 @@
                 configId: '',
                 discountType: '',
                 discounts: [],
+                startTime: '', // 新增开始时间
+                endTime: '', // 结束时间
             }
         },
         _initMethod: function () {
-
+            // 初始化方法（时间插件）
+            vc.component._initAddPayFeeConfigDiscountDateInfo();
         },
         _initEvent: function () {
             vc.on('addPayFeeConfigDiscount', 'openAddPayFeeConfigDiscountModal', function (_param) {
@@ -25,6 +28,57 @@
             });
         },
         methods: {
+            // 新增初始化时间插件方法
+            _initAddPayFeeConfigDiscountDateInfo: function () {
+                // vc.component.addPayFeeConfigDiscountInfo.startTime = vc.dateTimeFormat(new Date().getTime());
+                $('.addPayFeeConfigDiscountStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.addPayFeeConfigDiscountStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addPayFeeConfigDiscountStartTime").val();
+                        vc.component.addPayFeeConfigDiscountInfo.startTime = value;
+                    });
+                $('.addPayFeeConfigDiscountEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.addPayFeeConfigDiscountEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addPayFeeConfigDiscountEndTime").val();
+                        var start = Date.parse(new Date(vc.component.addPayFeeConfigDiscountInfo.startTime))
+                        var end = Date.parse(new Date(value))
+                        if (start - end >= 0) {
+                            vc.toast("计费终止时间必须大于计费起始时间")
+                            $(".addPayFeeConfigDiscountEndTime").val('')
+                        } else {
+                            vc.component.addPayFeeConfigDiscountInfo.endTime = value;
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByName('startTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByName("endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             addPayFeeConfigDiscountValidate() {
                 return vc.validate.validate({
                     addPayFeeConfigDiscountInfo: vc.component.addPayFeeConfigDiscountInfo
@@ -52,6 +106,30 @@
                             param: "",
                             errInfo: "折扣格式错误"
                         },
+                    ],
+                    'addPayFeeConfigDiscountInfo.startTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "有效期起始时间不能为空"
+                        },
+                        {
+                            limit: "dateTime",
+                            param: "",
+                            errInfo: "有效期起始时间不是有效的时间格式"
+                        },
+                    ],
+                    'addPayFeeConfigDiscountInfo.endTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "有效期终止时间不能为空"
+                        },
+                        {
+                            limit: "dateTime",
+                            param: "",
+                            errInfo: "有效期终止时间不是有效的时间格式"
+                        },
                     ]
                 });
             },
@@ -68,7 +146,6 @@
                     $('#addPayFeeConfigDiscountModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/payFeeConfigDiscount/savePayFeeConfigDiscount',
                     JSON.stringify(vc.component.addPayFeeConfigDiscountInfo),
