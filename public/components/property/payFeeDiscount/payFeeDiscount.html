@@ -39,7 +39,9 @@
                                     <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">
                                         {{item.specName}}：{{item.specValue}}</div>
                                 </td>
-                                <td class="text-center">{{feeDiscount.discountPrice}}元</td>
+                                <!-- <td class="text-center">{{feeDiscount.discountPrice}}元</td> -->
+                                <td class="text-center" v-if="feeDiscount.discountType == '1001'">{{feeDiscount.discountPrice < 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}元</td>
+                                <td class="text-center" v-if="feeDiscount.discountType == '2002'">{{feeDiscount.discountPrice > 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}元</td>
                             </tr>
                         </tbody>
                         <tfoot>

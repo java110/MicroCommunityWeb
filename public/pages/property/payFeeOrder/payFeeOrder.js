@@ -25,7 +25,8 @@
                 receiptId: '',
                 showEndTime: '',
                 selectDiscount: [],
-                totalDiscountMoney: 0.0
+                totalDiscountMoney: 0.0,
+                toFixedSign: 1 // 编码映射-应收款取值标识
             }
         },
         _initMethod: function () {
@@ -40,18 +41,23 @@
                 $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
                 $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
                 //$that.payFeeOrderInfo.builtUpArea = vc.getParam('builtUpArea');
-                $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
-                $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
+                // $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
+                // $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
                 $that.payFeeOrderInfo.paymentCycles = [];
                 for (let _index = 1; _index < 7; _index++) {
                     $that.payFeeOrderInfo.paymentCycles.push(_index * vc.getParam('paymentCycle'))
                 }
                 $that.listPayFeeOrderRoom();
             }
-            vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
+            // 将传递过来的 每月费用赋值给应收和实收，默认收取1一个月
+            // vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
+            // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+            // 修改为按照单价面积等，重新计算，此时可能未获取到映射数值，所以默认保留两位小数
+            vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(vc.getParam('squarePrice') * vc.getParam('builtUpArea') + vc.getParam('additionalAmount'));
             vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
         },
         _initEvent: function () {
+            // 子组件折扣change事件
             vc.on('payFeeOrder', 'changeDiscountPrice', function (_param) {
                 let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
                 if (_totalFeePrice < 0) {
@@ -67,11 +73,23 @@
                 $that.payFeeOrderInfo.receivedAmount = _totalFeePrice - _totalDiscountMoney;
             });
             vc.on('payFeeOrder', 'initData', function (_param) {
+                console.log('payFeeOrders initData');
+                // 重新赋值下拉列表
                 $that.payFeeOrderInfo.paymentCycles = [];
                 for (let _index = 1; _index < 7; _index++) {
                     $that.payFeeOrderInfo.paymentCycles.push(_index * _param.paymentCycle);
                 }
-                $that.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
+                // 更新应收金额与实收金额
+                // $that.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
+                // $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice;
+                // 更新金额（按照映射规则）
+                if ($that.payFeeOrderInfo.toFixedSign == 2) {
+                    $that.payFeeOrderInfo.totalFeePrice = $that._mathToFixed1(vc.component.payFeeOrderInfo.feePrice);
+                } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
+                    $that.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
+                } else {
+                    $that.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(vc.component.payFeeOrderInfo.feePrice);
+                }
                 $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice;
             })
         },
@@ -108,6 +126,9 @@
                     ]
                 });
             },
+            /**
+             * 点击 “提交缴费”
+             */
             _openPayFee: function () {
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
@@ -125,7 +146,6 @@
                 if (!(/(^[1-9]\d*$)/.test($that.payFeeOrderInfo.cycles))) {
                     $that.payFeeOrderInfo.showEndTime = '';
                 } else {
-                    console.log('cycle', $that.payFeeOrderInfo.cycles)
                     $that.payFeeOrderInfo.showEndTime = vc.addMonth(new Date($that.payFeeOrderInfo.endTime), parseInt($that.payFeeOrderInfo.cycles));
                 }
                 //关闭model
@@ -136,6 +156,9 @@
                 $("#doPayFeeModal").modal('hide')
                 $that.payFeeOrderInfo.showEndTime = '';
             },
+            /**
+             * 点击模态框 “确定收费”
+             */
             _payFee: function (_page, _row) {
                 $that._closeDoPayFeeModal();
                 let _printFees = [];
@@ -177,6 +200,11 @@
                         vc.toast(errInfo);
                     });
             },
+
+            /**
+             * 下拉 change 事件
+             * @param {*} _cycles 
+             */
             _changeMonth: function (_cycles) {
                 if ('-102' == _cycles) {
                     vc.component.payFeeOrderInfo.totalFeePrice = 0.00;
@@ -187,18 +215,43 @@
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
-                vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
+                // 默认向上取整
+                // vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
+                // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+                // 调整为根据映射 取整
+                let unFixedNum = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
+                if ($that.payFeeOrderInfo.toFixedSign == 2) {
+                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed1(unFixedNum);
+                } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
+                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(unFixedNum);
+                } else {
+                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(unFixedNum);
+                }
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+                // 触发折扣组件，计算折扣
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                     feeId: $that.payFeeOrderInfo.feeId,
                     cycles: _cycles
                 });
             },
+            /**
+             * 输入 自定义 缴费周期
+             * @param {*} _cycles 
+             */
             changeCycle: function (_cycles) {
                 if (_cycles == '') {
                     return;
                 }
-                vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
+                // vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
+                // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+                let unFixedNum = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
+                if ($that.payFeeOrderInfo.toFixedSign == 2) {
+                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed1(unFixedNum);
+                } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
+                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(unFixedNum);
+                } else {
+                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(unFixedNum);
+                }
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                     feeId: $that.payFeeOrderInfo.feeId,
@@ -216,8 +269,29 @@
                 //$('#payFeeResult').modal("hide");
                 window.open("/print.html#/pages/property/printPayFee?receiptId=" + $that.payFeeOrderInfo.receiptId)
             },
+            /**
+             * 向上取整
+             */
             _mathCeil: function (_price) {
                 return Math.ceil(_price);
+            },
+            /**
+             * 向下取整
+             */
+            _mathFloor: function (_price) {
+                return Math.floor(_price);
+            },
+            /**
+             * 保留小数点后一位
+             */
+            _mathToFixed1: function (_price) {
+                return _price.toFixed(1);
+            },
+            /**
+             * 保留小数点后两位
+             */
+            _mathToFixed2: function (_price) {
+                return _price.toFixed(2);
             },
             listPayFeeOrderRoom: function () {
                 if (!vc.notNull($that.payFeeOrderInfo.feeId)) {
@@ -236,7 +310,14 @@
                     param,
                     function (json, res) {
                         let listRoomData = JSON.parse(json);
+                        console.log('here is listRoomData : ', listRoomData);
                         vc.copyObject(listRoomData.data, $that.payFeeOrderInfo);
+                        // 由于返回的键与档期那页面自定义的键不一致，单独赋值toFiexedSign
+                        let toFixedSign = listRoomData.data.val;
+                        // 防止后台设置有误
+                        if(toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3){
+                            $that.payFeeOrderInfo.toFixedSign = toFixedSign;
+                        }
                         vc.emit('payFeeOrder', 'initData', listRoomData.data);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
