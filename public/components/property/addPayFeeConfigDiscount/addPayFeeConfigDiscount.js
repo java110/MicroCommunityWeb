@@ -14,6 +14,7 @@
                 discounts: [],
                 startTime: '', // 新增开始时间
                 endTime: '', // 结束时间
+                payMaxEndTime: '', // 上次缴费最大时间
             }
         },
         _initMethod: function () {
@@ -66,6 +67,21 @@
                             vc.component.addPayFeeConfigDiscountInfo.endTime = value;
                         }
                     });
+                // 新增用于比较用户上次缴费时间字段
+                $('.addPayFeeConfigDiscountPaymaxEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.addPayFeeConfigDiscountPaymaxEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addPayFeeConfigDiscountPaymaxEndTime").val();
+                        vc.component.addPayFeeConfigDiscountInfo.payMaxEndTime = value;
+                    });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByName('startTime')[0].addEventListener('click', myfunc)
 
@@ -74,6 +90,12 @@
                 }
 
                 document.getElementsByName("endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByName("payMaxEndTime")[0].addEventListener('click', myfunc)
 
                 function myfunc(e) {
                     e.currentTarget.blur();
