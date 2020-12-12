@@ -160,6 +160,10 @@
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'}"
                         v-on:click="changeTab('simplifyOwnerTransactionCar')">道闸同步</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
+                        v-on:click="changeTab('simplifyFeeReceipt')">补打收据</a>
+                </li>
             </ul>
         </div>
 
@@ -187,6 +191,10 @@
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'">
             <vc:create path="property/simplifyOwnerTransactionCar"></vc:create>
         </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'">
+            <vc:create path="property/simplifyFeeReceipt"></vc:create>
+        </div>
+        
 
     </div>
 

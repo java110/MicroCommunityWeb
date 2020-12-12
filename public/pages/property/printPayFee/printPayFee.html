@@ -3,7 +3,7 @@
         <div>
             <div class=" text-center">
                 <div style="color:#000;font-size:36px">{{printPayFeeInfo.communityName}} 收据单</div>
-                <span style="color:#000;font-size:20px">单号：{{printPayFeeInfo.receiptId}}</span>
+                <span style="color:#000;font-size:20px">单号：{{printPayFeeInfo.receiptNum}}</span>
             </div>
             <div class="row " style="color:#000;font-size:20px">
                 <div class="col-sm-4">
@@ -15,7 +15,7 @@
             </div>
             <table class="table vc-table-border" style="color:#000;font-size:20px">
                 <thead>
-                    <tr >
+                    <tr>
                         <th scope="col" class="text-center" width="80px">编号</th>
                         <th scope="col" class="text-center">收费项目</th>
                         <th scope="col" class="text-center">收费范围</th>
@@ -40,7 +40,7 @@
                         <td class="text-center">{{item.amount}}</td>
                         <td class="text-center" width="200px">{{item.remark}}</td>
                     </tr>
-                    <tr >
+                    <tr>
                         <td colspan="2" class="text-center ">大写人民币（元）</td>
                         <td colspan="4" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
@@ -50,7 +50,7 @@
                         <td colspan="5">
                             <p style="max-width: 600px;">
                                 <!-- {{printPayFeeInfo.content}} -->
-                                <div v-html="printPayFeeInfo.content"></div>
+                            <div v-html="printPayFeeInfo.content"></div>
                             </p>
                         </td>
                         <td colspan="4">
@@ -65,7 +65,8 @@
             <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
                 <i class="fa fa-check"></i>&nbsp;打印
             </button>
-            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                v-on:click="_closePage()">取消
             </button>
         </div>
     </div>
