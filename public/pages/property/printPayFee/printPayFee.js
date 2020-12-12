@@ -4,14 +4,15 @@
         data: {
             printPayFeeInfo: {
                 communityName: '',
-                receiptId:'',
+                receiptId: '',
+                receiptIds: '',
                 roomName: '',
                 amount: 0.00,
                 fees: [],
                 feeTime: '',
-                wechatName:'',
-                content:'',
-                qrImg:''
+                wechatName: '',
+                content: '',
+                qrImg: ''
             },
             printFlag: '0'
         },
@@ -19,6 +20,7 @@
             //vc.component._initPrintPurchaseApplyDateInfo();
 
             $that.printPayFeeInfo.receiptId = vc.getParam('receiptId');
+            $that.printPayFeeInfo.receiptIds = vc.getParam('receiptIds');
             //$that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
 
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
@@ -35,14 +37,15 @@
             _initPayFee: function () {
 
             },
-            _loadReceipt:function(){
+            _loadReceipt: function () {
 
                 var param = {
                     params: {
-                        page:1,
-                        row:1,
-                        receiptId:$that.printPayFeeInfo.receiptId,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 30,
+                        receiptId: $that.printPayFeeInfo.receiptId,
+                        receiptIds: $that.printPayFeeInfo.receiptIds,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
 
@@ -51,26 +54,33 @@
                     param,
                     function (json, res) {
                         var _feeReceiptManageInfo = JSON.parse(json);
-                       let _feeReceipt = _feeReceiptManageInfo.data[0];
+                        let _feeReceipt = _feeReceiptManageInfo.data;
+                        let _amount = 0;
+                        _feeReceipt.forEach(item => {
+                            _amount += parseFloat(item.amount)
+                        });
 
-                        $that.printPayFeeInfo.amount = _feeReceipt.amount;
-                        $that.printPayFeeInfo.roomName = _feeReceipt.objName;
-                        $that.printPayFeeInfo.feeTime = _feeReceipt.createTime;
+                        $that.printPayFeeInfo.amount = _amount;
+                        $that.printPayFeeInfo.roomName = _feeReceipt[0].objName;
+                        $that.printPayFeeInfo.feeTime = _feeReceipt[0].createTime;
+                        $that.printPayFeeInfo.receiptNum = _feeReceipt[0].receiptId;
+
                         $that._loadReceiptDetail();
-                    
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadReceiptDetail:function(){
+            _loadReceiptDetail: function () {
 
                 var param = {
                     params: {
-                        page:1,
-                        row:100,
-                        receiptId:$that.printPayFeeInfo.receiptId,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 100,
+                        receiptId: $that.printPayFeeInfo.receiptId,
+                        receiptIds: $that.printPayFeeInfo.receiptIds,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
 
@@ -79,7 +89,7 @@
                     param,
                     function (json, res) {
                         var _feeReceiptManageInfo = JSON.parse(json);
-                       let _feeReceiptDetails = _feeReceiptManageInfo.data;
+                        let _feeReceiptDetails = _feeReceiptManageInfo.data;
                         $that.printPayFeeInfo.fees = _feeReceiptDetails;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
