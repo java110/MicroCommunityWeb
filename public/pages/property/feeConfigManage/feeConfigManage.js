@@ -23,7 +23,7 @@
                     billType: '',
                     feeName: '',
                     feeTypeCd: '',
-                    isDefault: '',
+                    isDefault: 'F',
                     paymentCd: ''
                 }
             }
