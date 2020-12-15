@@ -20,7 +20,11 @@
                             <select class="custom-select" v-model="attrSpecManageInfo.conditions.tableName">
                                 <option selected value="">请选择表名</option>
                                 <option value="building_room_attr">房屋属性</option>
-                            </select> </div>
+                                <option value="building_owner_attr">业主属性</option>
+                                <option value="building_community_attr">小区属性</option>
+                                <option value="machine_attr">设备属性</option>
+                            </select>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入规格" v-model="attrSpecManageInfo.conditions.specCd"
@@ -58,7 +62,7 @@
                             <tr>
                                 <th class="text-center">规格名称</th>
                                 <th class="text-center">规格</th>
-                                <th class="text-center">属性表</th> 
+                                <th class="text-center">属性表</th>
                                 <th class="text-center">必填</th>
                                 <th class="text-center">展示</th>
                                 <th class="text-center">值类型</th>

@@ -12,7 +12,7 @@
                 payObjId: '',
                 payObjType: '',
                 roomName: '',
-                receiptId:''
+                receiptId: ''
             }
         },
         watch: {
@@ -82,7 +82,9 @@
                         if (_item == _oweFeeItem.feeId) {
                             _fees.push({
                                 feeId: _item,
-                                feePrice: _oweFeeItem.feePrice
+                                startTime: _oweFeeItem.endTime,
+                                endTime: _oweFeeItem.deadlineTime,
+                                receivedAmount: _oweFeeItem.feePrice
                             });
                             _printFees.push({
                                 feeId: _item,
@@ -103,7 +105,7 @@
                     fees: _fees
                 }
                 vc.http.apiPost(
-                    '/feeApi/payOweFee',
+                    '/fee.payOweFee',
                     JSON.stringify(_data),
                     {
                         emulateJSON: true
@@ -164,7 +166,7 @@
                 vc.goBack();
             },
             _printOwnOrder: function () {
-                vc.saveData('java110_printFee',$that.owePayFeeOrderInfo.oweFees);
+                vc.saveData('java110_printFee', $that.owePayFeeOrderInfo.oweFees);
                 //打印催交单
                 window.open('/print.html#/pages/property/printOweFee?roomId=' + $that.owePayFeeOrderInfo.payObjId)
             }
