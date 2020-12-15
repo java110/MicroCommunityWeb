@@ -104,11 +104,10 @@
                         <thead>
                         <tr>
                             <!-- <th>房屋ID</th> -->
-                            <th data-hide="phone">楼栋名称</th>
-                            <th data-hide="phone">单元</th>
+                            <th data-hide="phone">房屋</th>
                             <th data-hide="phone">楼层</th>
-                            <th data-hide="phone">房屋名称</th>
-                        
+                            <th data-hide="phone">业主</th>
+                            <th data-hide="phone">电话</th>
                             <th data-hide="phone">建筑面积</th>
                             <th data-hide="phone">算费系数</th>
                             <th data-hide="phone">房屋状态</th>
@@ -123,21 +122,17 @@
                                 {{room.roomId}}
                             </td> -->
                             <td>
-                                {{room.floorNum}}号楼
-                            </td>
-                            <td>
-                                {{room.unitNum}}单元
+                                {{room.floorNum}}栋{{room.unitNum}}单元{{room.roomNum}}室
                             </td>
                             <td>
                                 {{room.layer}}层
                             </td>
                             <td>
-                                {{room.roomNum}}室
+                                {{room.ownerName}}
                             </td>
-                            
-                            <!--<td>
-                                {{room.apartment}}
-                            </td>-->
+                            <td>
+                                {{room.link}}
+                            </td>
                             <td>
                                 {{room.builtUpArea}}平方米
                             </td>
