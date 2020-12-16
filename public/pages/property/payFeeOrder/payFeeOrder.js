@@ -70,7 +70,11 @@
                 }
                 $that.payFeeOrderInfo.selectDiscount = _param.selectDiscount;
                 $that.payFeeOrderInfo.totalDiscountMoney = _totalDiscountMoney;
-                $that.payFeeOrderInfo.receivedAmount = _totalFeePrice - _totalDiscountMoney;
+                // 更新实收金额
+                // $that.payFeeOrderInfo.receivedAmount = _totalFeePrice - _totalDiscountMoney;
+                // 该处js做减法后，会出现小数点后取不尽的bug，再次处理
+                let receivedAmount = _totalFeePrice - _totalDiscountMoney;
+                $that.payFeeOrderInfo.receivedAmount = $that._getFixedNum(receivedAmount);
             });
             vc.on('payFeeOrder', 'initData', function (_param) {
                 console.log('payFeeOrders initData');
@@ -83,14 +87,8 @@
                 // $that.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
                 // $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice;
                 // 更新金额（按照映射规则）
-                if ($that.payFeeOrderInfo.toFixedSign == 2) {
-                    $that.payFeeOrderInfo.totalFeePrice = $that._mathToFixed1(vc.component.payFeeOrderInfo.feePrice);
-                } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
-                    $that.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
-                } else {
-                    $that.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(vc.component.payFeeOrderInfo.feePrice);
-                }
-                $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice;
+                $that.payFeeOrderInfo.feePrice = parseFloat(vc.component.payFeeOrderInfo.feePrice).toFixed(2);
+                $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(vc.component.payFeeOrderInfo.feePrice);
             })
         },
         methods: {
@@ -220,13 +218,7 @@
                 // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 // 调整为根据映射 取整
                 let unFixedNum = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
-                if ($that.payFeeOrderInfo.toFixedSign == 2) {
-                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed1(unFixedNum);
-                } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
-                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(unFixedNum);
-                } else {
-                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(unFixedNum);
-                }
+                vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(unFixedNum);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 // 触发折扣组件，计算折扣
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
@@ -245,19 +237,27 @@
                 // vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
                 // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 let unFixedNum = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
-                if ($that.payFeeOrderInfo.toFixedSign == 2) {
-                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed1(unFixedNum);
-                } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
-                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(unFixedNum);
-                } else {
-                    vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(unFixedNum);
-                }
+                vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(unFixedNum);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                     feeId: $that.payFeeOrderInfo.feeId,
                     cycles: _cycles
                 });
             },
+
+            /**
+             * 格式化数字
+             */
+            _getFixedNum: function (num) {
+                if ($that.payFeeOrderInfo.toFixedSign == 2) {
+                    return $that._mathToFixed1(num);
+                } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
+                    return $that._mathCeil(num);
+                } else {
+                    return $that._mathToFixed2(num);
+                }
+            },
+
             _back: function () {
                 $('#payFeeResult').modal("hide");
                 vc.getBack();
@@ -285,13 +285,13 @@
              * 保留小数点后一位
              */
             _mathToFixed1: function (_price) {
-                return _price.toFixed(1);
+                return parseFloat(_price).toFixed(1);
             },
             /**
              * 保留小数点后两位
              */
             _mathToFixed2: function (_price) {
-                return _price.toFixed(2);
+                return parseFloat(_price).toFixed(2);
             },
             listPayFeeOrderRoom: function () {
                 if (!vc.notNull($that.payFeeOrderInfo.feeId)) {
