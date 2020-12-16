@@ -125,7 +125,15 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="margin-left">应收: {{reportPayFeeDetailInfo.totalReceivableAmount}}元</span>
+                            <span class="margin-left">实收: {{reportPayFeeDetailInfo.totalReceivedAmount}}元</span>
+                        </div>
+                        <div class="col-md-8 text-right" >
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

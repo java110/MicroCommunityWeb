@@ -8,9 +8,11 @@
         data: {
             payFeeManageInfo: {
                 payFees: [],
-                payObjTypes:[],
+                payObjTypes: [],
                 total: 0,
                 records: 1,
+                totalReceivableAmount: 0,
+                totalReceivedAmount: 0,
                 moreCondition: false,
                 name: '',
                 conditions: {
@@ -18,7 +20,7 @@
                     payObjType: '3333',
                     startTime: '',
                     endTime: '',
-                    userCode:''
+                    userCode: ''
                 }
             }
         },
@@ -26,7 +28,7 @@
             vc.component._initDate();
             vc.component._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._listFeeType();
-            vc.getDict('pay_fee',"payer_obj_type",function(_data){
+            vc.getDict('pay_fee', "payer_obj_type", function (_data) {
                 vc.component.payFeeManageInfo.payObjTypes = _data;
             });
         },
@@ -36,7 +38,7 @@
             });
         },
         methods: {
-            _initDate:function(){
+            _initDate: function () {
                 $(".start_time").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -58,12 +60,12 @@
                 $('.start_time').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".start_time").val();
-                        vc.component.payFeeManageInfo.conditions.startTime = value ;
+                        vc.component.payFeeManageInfo.conditions.startTime = value;
                     });
                 $('.end_time').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".end_time").val();
-                        vc.component.payFeeManageInfo.conditions.endTime = value ;
+                        vc.component.payFeeManageInfo.conditions.endTime = value;
                     });
             },
             _listpayFees: function (_page, _rows) {
@@ -81,11 +83,14 @@
                     function (json, res) {
                         var _payFeeManageInfo = JSON.parse(json);
                         vc.component.payFeeManageInfo.total = _payFeeManageInfo.total;
-                        vc.component.payFeeManageInfo.records = parseInt(_payFeeManageInfo.total/_rows +1);
+                        vc.component.payFeeManageInfo.totalReceivedAmount = _payFeeManageInfo.totalReceivedAmount;
+                        vc.component.payFeeManageInfo.totalReceivableAmount = _payFeeManageInfo.totalReceivableAmount;
+                        vc.component.payFeeManageInfo.records = parseInt(_payFeeManageInfo.total / _rows + 1);
                         vc.component.payFeeManageInfo.payFees = _payFeeManageInfo.payFees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.payFeeManageInfo.records,
-                            currentPage: _page
+                            currentPage: _page,
+                            dataCount: vc.component.payFeeManageInfo.total
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -103,13 +108,13 @@
                     vc.component.payFeeManageInfo.moreCondition = true;
                 }
             },
-            _exportExcel:function () {
+            _exportExcel: function () {
 
             },
             _listFeeType: function () {
                 var param = {
-                    params:{
-                        "hc":"cc@cc"
+                    params: {
+                        "hc": "cc@cc"
                     }
                 };
 
@@ -126,8 +131,8 @@
                     }
                 );
             },
-            _detailFee:function(_fee){
-                vc.jumpToPage('/admin.html#/pages/property/propertyFee?'+vc.objToGetParam(_fee));
+            _detailFee: function (_fee) {
+                vc.jumpToPage('/admin.html#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             }
         }
     });

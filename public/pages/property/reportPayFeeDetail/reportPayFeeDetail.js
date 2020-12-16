@@ -13,6 +13,8 @@
                 moreCondition: false,
                 title: '',
                 roomUnits: [],
+                totalReceivableAmount: 0,
+                totalReceivedAmount: 0,
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -73,9 +75,12 @@
                         vc.component.reportPayFeeDetailInfo.total = _reportPayFeeDetailInfo.total;
                         vc.component.reportPayFeeDetailInfo.records = _reportPayFeeDetailInfo.records;
                         vc.component.reportPayFeeDetailInfo.fees = _reportPayFeeDetailInfo.data;
+                        vc.component.reportPayFeeDetailInfo.totalReceivedAmount = _reportPayFeeDetailInfo.totalReceivedAmount;
+                        vc.component.reportPayFeeDetailInfo.totalReceivableAmount = _reportPayFeeDetailInfo.totalReceivableAmount;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportPayFeeDetailInfo.records,
-                            currentPage: _page
+                            currentPage: _page,
+                            dataCount: vc.component.reportPayFeeDetailInfo.total
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
