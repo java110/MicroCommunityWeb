@@ -7,7 +7,7 @@ function _loadAssetFee() {
         }
     }
     vc.http.apiGet(
-        '/bigScreen/getAssetsFee',
+        '/reportFeeMonthStatistics/queryOwePaymentCount',
         param,
         function (json, res) {
             //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
@@ -39,8 +39,8 @@ function initFeeChart(_data) {
 
     _data.forEach(item => {
         xAxisData.push(item.feeName);
-        data1.push(-item.feeCount);
-        data2.push(item.oweFeeCount);
+        data1.push(-item.normalCount);
+        data2.push(item.objCount);
     });
 
     // for (var i = 0; i < 10; i++) {
