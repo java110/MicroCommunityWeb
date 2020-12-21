@@ -30,13 +30,15 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        $('#machineStateModel').modal('hide');
+                        vc.emit('machineManage', 'listMachine', {});
+                        if (res.status != 200) {
+                            vc.toast(json);
                             //关闭model
-                            $('#machineStateModel').modal('hide');
-                            vc.emit('machineManage', 'listMachine', {});
                             return;
                         }
-                        vc.toast(json);
+                        let _data = JSON.parse(json);
+                        vc.toast(_data.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

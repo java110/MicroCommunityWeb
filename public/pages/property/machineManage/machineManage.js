@@ -45,7 +45,7 @@
 
                 vc.component.machineManageInfo.conditions.page = _page;
                 vc.component.machineManageInfo.conditions.row = _rows;
-                var param = {
+                let param = {
                     params: vc.component.machineManageInfo.conditions
                 };
 
@@ -54,7 +54,7 @@
                     'list',
                     param,
                     function (json, res) {
-                        var _machineManageInfo = JSON.parse(json);
+                        let _machineManageInfo = JSON.parse(json);
                         vc.component.machineManageInfo.total = _machineManageInfo.total;
                         vc.component.machineManageInfo.records = _machineManageInfo.records;
                         vc.component.machineManageInfo.machines = _machineManageInfo.machines;
