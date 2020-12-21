@@ -3,9 +3,10 @@
     vc.extends({
         data: {
             machineStateInfo: {
-                machineId: '',
+                machineCode: '',
                 stateName: '',
-                state: ''
+                state: '',
+                url: ''
 
             }
         },
@@ -22,9 +23,7 @@
         methods: {
             _changeMachineState: function () {
                 vc.component.machineStateInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'machineState',
-                    'update',
+                vc.http.apiPost($that.machineStateInfo.url,
                     JSON.stringify(vc.component.machineStateInfo),
                     {
                         emulateJSON: true

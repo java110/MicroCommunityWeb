@@ -20,10 +20,11 @@
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="machineManageInfo.conditions.machineTypeCd">
                                 <option selected value="">请选择设备类型</option>
-                                <option value="992019111002270001">锐目门禁</option>
-                                <option value="9998">其他</option>
+                                <option value="9999">门禁</option>
                                 <option value="9996">车辆道闸</option>
-                            </select></div>
+                                <option value="9997">考勤机</option>
+                            </select>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入设备名称"
@@ -73,9 +74,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <!--<th class="text-center">设备ID</th>-->
                                 <th class="text-center">设备编码</th>
-                                <!--<th class="text-center">版本号</th>-->
                                 <th class="text-center">设备名称</th>
                                 <th class="text-center">设备类型</th>
                                 <th class="text-center">设备位置</th>
@@ -83,16 +82,13 @@
                                 <th class="text-center">状态</th>
                                 <th v-for="(item,index) in machineManageInfo.listColumns">{{item}}</th>
                                 <th class="text-center">时间</th>
-                                <!--                            <th class="text-center">设备MAC</th>-->
                                 <th class="text-right">操作</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="machine in machineManageInfo.machines">
-                                <!--<td class="text-center">{{machine.machineId}}</td>-->
                                 <td class="text-center">{{machine.machineCode}}</td>
-                                <!--<td class="text-center">{{machine.machineVersion}}</td>-->
                                 <td class="text-center">{{machine.machineName}}</td>
                                 <td class="text-center">{{machine.machineTypeCdName}}</td>
                                 <td class="text-center">{{machine.locationObjName}}</td>
@@ -102,7 +98,6 @@
                                     {{item}}
                                 </td>
                                 <td class="text-center">{{machine.createTime}}</td>
-                                <!--<td class="text-center">{{machine.machineMac}}</td>-->
                                 <td class="text-right">
                                     <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">变更
@@ -120,15 +115,8 @@
                                                 v-on:click="_openRestartMachineModel(machine)">重启设备</a>
                                             <span>|</span>
                                             <a href="javascript:void(0)"
-                                                v-on:click="_openUpgradeMachineModel(machine)">升级设备</a>
+                                                v-on:click="_openDoorMachineModel(machine)">开门</a>
                                         </p>
-                                        <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)"
-                                                v-on:click="_openForbiddenMachineModel(machine)">禁用设备</a>
-                                            <span>|</span>
-
-                                        </p>
-
                                     </div>
 
                                 </td>

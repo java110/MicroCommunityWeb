@@ -93,23 +93,18 @@
             },
             _openRestartMachineModel: function (_machine) { //设备重启处理
                 vc.emit('machineState', 'openMachineStateModal', {
-                    machineId: _machine.machineId,
+                    machineId: _machine.machineCode,
                     stateName: '重启',
-                    state: '1400'
+                    state: '1400',
+                    url: '/machine/restartMachine'
                 });
             },
-            _openUpgradeMachineModel: function (_machine) { //设备升级处理
+            _openDoorMachineModel: function (_machine) { //设备开门处理
                 vc.emit('machineState', 'openMachineStateModal', {
-                    machineId: _machine.machineId,
-                    stateName: '升级',
-                    state: '1500'
-                });
-            },
-            _openForbiddenMachineModel: function (_machine) { //设备禁用处理
-                vc.emit('machineState', 'openMachineStateModal', {
-                    machineId: _machine.machineId,
-                    stateName: '禁用',
-                    state: '1600'
+                    machineId: _machine.machineCode,
+                    stateName: '开门',
+                    state: '1500',
+                    url: '/machine/openDoor'
                 });
             },
             dealMachineAttr: function (machines) {
