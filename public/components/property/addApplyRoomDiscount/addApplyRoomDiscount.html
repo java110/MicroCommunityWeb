@@ -1,0 +1,74 @@
+<div id="addApplyRoomDiscountModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">电话申请</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">房屋</label>
+                <div class="col-sm-10">
+                  <input v-model="addApplyRoomDiscountInfo.roomName" type="text" placeholder="必填，请填写房屋 楼栋-单元-房屋"
+                    class="form-control"  @blur="_queryAddApplyRoomDiscountRoom">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">申请类型</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addApplyRoomDiscountInfo.applyType">
+                    <option selected disabled value="">必填，请选择申请类型</option>
+                    <option :value="item.applyType" v-for="item in addApplyRoomDiscountInfo.applyTypes">{{item.typeName}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">申请人</label>
+                <div class="col-sm-10">
+                  <input v-model="addApplyRoomDiscountInfo.createUserName" type="text" placeholder="必填，请填写申请人"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">申请电话</label>
+                <div class="col-sm-10">
+                  <input v-model="addApplyRoomDiscountInfo.createUserTel" type="text" placeholder="必填，请填写申请电话"
+                    class="form-control ">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">开始时间</label>
+                <div class="col-sm-10">
+                  <input v-model="addApplyRoomDiscountInfo.startTime" type="text" placeholder="必填，请填写开始时间"
+                    class="form-control addStartTime">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">结束时间</label>
+                <div class="col-sm-10">
+                  <input v-model="addApplyRoomDiscountInfo.endTime" type="text" placeholder="必填，请填写结束时间"
+                    class="form-control addEndTime">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">申请说明</label>
+                <div class="col-sm-10">
+                  <textarea v-model="addApplyRoomDiscountInfo.createRemark" placeholder="必填，请填写申请说明"
+                    class="form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveApplyRoomDiscountInfo()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

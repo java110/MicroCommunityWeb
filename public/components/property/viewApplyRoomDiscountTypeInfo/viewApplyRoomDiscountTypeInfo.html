@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>优惠申请类型信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewApplyRoomDiscountTypeInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectApplyRoomDiscountTypeInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择优惠申请类型</button>
+
+                    <button type="button" v-if="viewApplyRoomDiscountTypeInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddApplyRoomDiscountTypeInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加优惠申请类型</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >类型名称：</label>
+                            <label class="">{{viewApplyRoomDiscountTypeInfo.typeName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >类型描述：</label>
+                            <label class="">{{viewApplyRoomDiscountTypeInfo.typeDesc}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addApplyRoomDiscountType"
+               callBackListener="viewApplyRoomDiscountTypeInfo"
+               callBackFunction="chooseApplyRoomDiscountType"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseApplyRoomDiscountType"
+               emitChooseApplyRoomDiscountType="viewApplyRoomDiscountTypeInfo"
+               emitLoadData="viewApplyRoomDiscountTypeInfo"
+    ></vc:create>
+</div>
