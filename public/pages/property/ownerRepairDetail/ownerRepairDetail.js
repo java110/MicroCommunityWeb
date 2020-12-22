@@ -140,7 +140,14 @@
                 vc.emit('viewImage','showImage',{
                     url:_photo.url
                 });
-             }
+            },
+
+            /**
+             * 新增打印功能，跳转打印页面
+             */
+            _printRepairDetail: function () {
+                window.open("/print.html#/pages/property/printRepairDetail?repairId=" + $that.ownerRepairDetailInfo.repairId + "&repairType=" + $that.ownerRepairDetailInfo.repairType)
+            },
         }
     });
 

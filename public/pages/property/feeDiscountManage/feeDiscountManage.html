@@ -5,7 +5,6 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -13,7 +12,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入折扣名称"
-                                    v-model="feeDiscountManageInfo.conditions.discountName" class=" form-control">
+                                       v-model="feeDiscountManageInfo.conditions.discountName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -21,21 +20,20 @@
                                 <option selected value="">请选择折扣类型</option>
                                 <option value="1001">优惠</option>
                                 <option value="2002">违约</option>
-                            </select> </div>
+                            </select>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入规则名称"
-                                    v-model="feeDiscountManageInfo.conditions.ruleName" class=" form-control">
+                                       v-model="feeDiscountManageInfo.conditions.ruleName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeDiscountMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -47,55 +45,56 @@
                     <h5>折扣信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddFeeDiscountModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
+                            <i class="fa fa-plus"></i>
                             添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">折扣ID</th>
-                                <th class="text-center">折扣名称</th>
-                                <th class="text-center">折扣类型</th>
-                                <th class="text-center">规则名称</th>
-                                <th class="text-center">规则</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">折扣ID</th>
+                            <th class="text-center">折扣名称</th>
+                            <th class="text-center">折扣类型</th>
+                            <th class="text-center">规则名称</th>
+                            <th class="text-center">规则</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="feeDiscount in feeDiscountManageInfo.feeDiscounts">
-                                <td class="text-center">{{feeDiscount.discountId}}</td>
-                                <td class="text-center">{{feeDiscount.discountName}}</td>
-                                <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':'违约'}}</td>
-                                <td class="text-center">{{feeDiscount.ruleName}}</td>
-                                <td class="text-center">
-                                    <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">
-                                        {{item.specName}}：{{item.specValue}}</div>
-                                </td>
-                                <td class="text-center">{{feeDiscount.createTime}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditFeeDiscountModel(feeDiscount)">修改</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteFeeDiscountModel(feeDiscount)">删除</button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                        <tr v-for="feeDiscount in feeDiscountManageInfo.feeDiscounts">
+                            <td class="text-center">{{feeDiscount.discountId}}</td>
+                            <td class="text-center">{{feeDiscount.discountName}}</td>
+                            <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                            <td class="text-center">{{feeDiscount.ruleName}}</td>
+                            <td class="text-center">
+                                <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">
+                                    {{item.specName}}：{{item.specValue}}
+                                </div>
+                            </td>
+                            <td class="text-center">{{feeDiscount.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditFeeDiscountModel(feeDiscount)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteFeeDiscountModel(feeDiscount)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -104,11 +103,7 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="property/addFeeDiscount" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editFeeDiscount"></vc:create>
     <vc:create path="property/deleteFeeDiscount"></vc:create>
-
 </div>

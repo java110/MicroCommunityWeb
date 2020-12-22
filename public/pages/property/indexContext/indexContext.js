@@ -40,7 +40,7 @@
                         var indexData = JSON.parse(json);
                         vc.copyObject(indexData, vc.component.indexContextInfo);
                         let _dom = document.getElementById('ownerCount');
-                        $that._initCharts3(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, '业主信息', '已入住', '未入住');
+                        $that._initCharts2(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, '业主信息', '已入住', '未入住');
 
                         _dom = document.getElementById('roomCount');
                         $that._initCharts2(indexData.roomCount - indexData.freeRoomCount, indexData.freeRoomCount, _dom, '房屋信息', '已入住', '空闲');

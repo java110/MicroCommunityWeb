@@ -1,0 +1,110 @@
+<div>
+    <div>
+        <div>
+            <!-- <div class="row">
+                <div class="col-sm-4">
+                    <span>报修单号：{{printRepairDetailInfo.repairId}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <span>报修类型：{{printRepairDetailInfo.repairTypeName}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <span>预约时间：{{printRepairDetailInfo.appointmentTime}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <span>报修人：{{printRepairDetailInfo.repairName}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <span>联系电话：{{printRepairDetailInfo.tel}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <span>位置：{{printRepairDetailInfo.repairObjName}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span>预约内容：{{printRepairDetailInfo.context}}</span>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <span>报修单号：{{printRepairDetailInfo.repairId}}</span>
+                </div>
+                <div class="col-sm-6">
+                    <span></span>
+                </div>
+                <div class="col-sm-2">
+                    <span>打印时间：{{nowTime}}</span>
+                </div>
+            </div>
+            <table class="table table-bordered margin-top" style="margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="6" class="text-center">报修信息</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>报修人：{{printRepairDetailInfo.repairName}}</td>
+                        <td>联系电话：{{printRepairDetailInfo.tel}}</td>
+                        <td>位置：{{printRepairDetailInfo.repairObjName}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">报修内容：{{printRepairDetailInfo.context}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="6" class="text-center">工单流转</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-center">序号</th>
+                        <th scope="col" class="text-center">处理人</th>
+                        <th scope="col" class="text-center">状态</th>
+                        <th scope="col" class="text-center">处理时间</th>
+                        <th scope="col" class="text-center">耗时</th>
+                        <th scope="col" class="text-center">意见</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in printRepairDetailInfo.repairUsers">
+                        <th scope="row" class="text-center">{{index +1}}</th>
+                        <td class="text-center">{{item.staffName}}</td>
+                        <td class="text-center">{{item.stateName}}</td>
+                        <td class="text-center">{{item.startTime}}</td>
+                        <td class="text-center">{{item.duration}}</td>
+                        <td class="text-center">{{item.context}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-center">备注</th>
+                        <td colspan="5">{{printRepairDetailInfo.description}}</td>
+                    </tr>
+                    <tr height="60px">
+                        <td colspan="2" class="text-center " style="vertical-align:middle;">维修人员签字</td>
+                        <td colspan="2"></td>
+                        <td class="text-center " style="vertical-align:middle;">时间</td>
+                        <td></td>
+
+                    </tr>
+                    <tr height="60px">
+                        <td colspan="2" class="text-center" style="vertical-align:middle;">客户签字</td>
+                        <td colspan="2"></td>
+                        <td class="text-center " style="vertical-align:middle;">时间</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="print-btn">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+                <i class="fa fa-check"></i>&nbsp;打印
+            </button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+            </button>
+        </div>
+    </div>
+</div>

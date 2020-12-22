@@ -17,7 +17,7 @@
                 relCd: '',
                 relCds:[],
                 videoPlaying:false,
-                photo: ''
+                photo: '/img/defaultAvatar.png'
             }
         },
         watch: {

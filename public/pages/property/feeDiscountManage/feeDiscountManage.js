@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -16,8 +16,7 @@
                     discountName: '',
                     discountType: '',
                     ruleName: '',
-                    communityId:vc.getCurrentCommunity().communityId
-
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -25,7 +24,6 @@
             vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('feeDiscountManage', 'listFeeDiscount', function (_param) {
                 vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -35,15 +33,11 @@
         },
         methods: {
             _listFeeDiscounts: function (_page, _rows) {
-
                 vc.component.feeDiscountManageInfo.conditions.page = _page;
                 vc.component.feeDiscountManageInfo.conditions.row = _rows;
-
-                
                 var param = {
                     params: vc.component.feeDiscountManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/feeDiscount/queryFeeDiscount',
                     param,
@@ -72,7 +66,6 @@
             },
             _queryFeeDiscountMethod: function () {
                 vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.feeDiscountManageInfo.moreCondition) {
@@ -81,8 +74,6 @@
                     vc.component.feeDiscountManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

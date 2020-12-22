@@ -43,7 +43,7 @@
                                 <div class="col-sm-6">
                                     <select class="custom-select" v-model="payFeeOrderInfo.tempCycles"
                                             @change="_changeMonth(payFeeOrderInfo.tempCycles)">
-                                        <option value="">请选择缴费周期</option>
+                                        <option selected disabled value="">请选择缴费周期</option>
                                         <option v-for="item in payFeeOrderInfo.paymentCycles" :value="item">{{item}}个月
                                         </option>
                                         <option value="-102">自定义周期</option>
@@ -92,13 +92,23 @@
                             </div>
                             <div class="row form-group">
                                 <label class="col-sm-3 col-form-label" style="padding-right:0px;">支付方式:</label>
-                                <label class="col-sm-4 col-form-label" style="padding-left:5px;">现金</label>
+                                <div class="col-sm-6">
+                                    <select class="custom-select" v-model="payFeeOrderInfo.primeRate">
+                                        <option selected disabled value="">必填，请选择支付方式</option>
+                                        <option v-for="(item,index) in payFeeOrderInfo.primeRates" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" style="padding-right:0px;">实收款</label>
                                 <div class="col-sm-8" style="padding-left:5px;">
                                     <input type="text" placeholder="请输入实际收款金额" v-model="payFeeOrderInfo.receivedAmount"
-                                           class="form-control">
+                                           class="form-control" v-if="payFeeOrderInfo.receivedAmountSwitch=='1'">
+                                    <label class="col-sm-8 col-form-label" v-if="payFeeOrderInfo.receivedAmountSwitch=='2'" style="font-size: 15px;">
+                                        ￥{{payFeeOrderInfo.receivedAmount}}
+                                    </label>
                                 </div>
                             </div>
                             <div class="form-group row">

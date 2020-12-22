@@ -69,13 +69,11 @@
                     });
             },
             _listpayFees: function (_page, _rows) {
-
                 vc.component.payFeeManageInfo.conditions.page = _page;
                 vc.component.payFeeManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.payFeeManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.get('payFeeManage',
                     'list',
@@ -99,7 +97,6 @@
             },
             _queryPayFeeMethod: function () {
                 vc.component._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.payFeeManageInfo.moreCondition) {
@@ -109,7 +106,6 @@
                 }
             },
             _exportExcel: function () {
-
             },
             _listFeeType: function () {
                 var param = {
@@ -117,7 +113,6 @@
                         "hc": "cc@cc"
                     }
                 };
-
                 //发送get请求
                 vc.http.get('payFeeManage',
                     'listFeeType',
@@ -125,7 +120,6 @@
                     function (json, res) {
                         var _feeTypesInfo = JSON.parse(json);
                         vc.component.payFeeManageInfo.payFeeTypes = _feeTypesInfo;
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

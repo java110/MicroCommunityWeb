@@ -7,6 +7,8 @@
                 feeId: '',
                 feeName: '',
                 feeTypeCdName: '',
+                primeRates: '',
+                primeRate: '',
                 endTime: '',
                 feeFlag: '',
                 feePrice: 0.00,
@@ -26,7 +28,8 @@
                 showEndTime: '',
                 selectDiscount: [],
                 totalDiscountMoney: 0.0,
-                toFixedSign: 1 // 编码映射-应收款取值标识
+                toFixedSign: 1, // 编码映射-应收款取值标识
+                receivedAmountSwitch: ''
             }
         },
         _initMethod: function () {
@@ -40,21 +43,19 @@
                 $that.payFeeOrderInfo.payerObjName = vc.getParam('payerObjName');
                 $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
                 $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
-                //$that.payFeeOrderInfo.builtUpArea = vc.getParam('builtUpArea');
-                // $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
-                // $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
                 $that.payFeeOrderInfo.paymentCycles = [];
                 for (let _index = 1; _index < 7; _index++) {
                     $that.payFeeOrderInfo.paymentCycles.push(_index * vc.getParam('paymentCycle'))
                 }
                 $that.listPayFeeOrderRoom();
             }
-            // 将传递过来的 每月费用赋值给应收和实收，默认收取1一个月
-            // vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
-            // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
             // 修改为按照单价面积等，重新计算，此时可能未获取到映射数值，所以默认保留两位小数
             vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(vc.getParam('squarePrice') * vc.getParam('builtUpArea') + vc.getParam('additionalAmount'));
             vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+            //与字典表支付方式关联
+            vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
+                vc.component.payFeeOrderInfo.primeRates = _data;
+            });
         },
         _initEvent: function () {
             // 子组件折扣change事件
@@ -70,8 +71,6 @@
                 }
                 $that.payFeeOrderInfo.selectDiscount = _param.selectDiscount;
                 $that.payFeeOrderInfo.totalDiscountMoney = _totalDiscountMoney;
-                // 更新实收金额
-                // $that.payFeeOrderInfo.receivedAmount = _totalFeePrice - _totalDiscountMoney;
                 // 该处js做减法后，会出现小数点后取不尽的bug，再次处理
                 let receivedAmount = _totalFeePrice - _totalDiscountMoney;
                 $that.payFeeOrderInfo.receivedAmount = $that._getFixedNum(receivedAmount);
@@ -83,9 +82,6 @@
                 for (let _index = 1; _index < 7; _index++) {
                     $that.payFeeOrderInfo.paymentCycles.push(_index * _param.paymentCycle);
                 }
-                // 更新应收金额与实收金额
-                // $that.payFeeOrderInfo.totalFeePrice = $that._mathCeil(vc.component.payFeeOrderInfo.feePrice);
-                // $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice;
                 // 更新金额（按照映射规则）
                 $that.payFeeOrderInfo.feePrice = parseFloat(vc.component.payFeeOrderInfo.feePrice).toFixed(2);
                 $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(vc.component.payFeeOrderInfo.feePrice);
@@ -110,6 +106,13 @@
                             errInfo: "缴费周期不能为空"
                         }
                     ],
+                    'payFeeOrderInfo.primeRate': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "支付方式不能为空"
+                        }
+                    ],
                     'payFeeOrderInfo.receivedAmount': [
                         {
                             limit: "required",
@@ -128,14 +131,18 @@
              * 点击 “提交缴费”
              */
             _openPayFee: function () {
+                console.log('tempCycles : ', $that.payFeeOrderInfo.tempCycles);
+                console.log('cycles : ', $that.payFeeOrderInfo.cycles);
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
                 }
+                // 新增缴费周期必选项
+                if($that.payFeeOrderInfo.tempCycles == ""){
+                    vc.toast("请选择缴费周期");
+                    return;
+                }
                 if ($that.payFeeOrderInfo.feeFlag == '2006012') {
                     $that.payFeeOrderInfo.cycles = '1';
-                }
-                if ($that.payFeeOrderInfo.cycles == "") {
-                    $that.payFeeOrderInfo.cycles = '-101';
                 }
                 if (!vc.component.payFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
@@ -201,7 +208,7 @@
 
             /**
              * 下拉 change 事件
-             * @param {*} _cycles 
+             * @param {*} _cycles
              */
             _changeMonth: function (_cycles) {
                 if ('-102' == _cycles) {
@@ -213,9 +220,6 @@
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
-                // 默认向上取整
-                // vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
-                // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 // 调整为根据映射 取整
                 let unFixedNum = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(unFixedNum);
@@ -228,14 +232,12 @@
             },
             /**
              * 输入 自定义 缴费周期
-             * @param {*} _cycles 
+             * @param {*} _cycles
              */
             changeCycle: function (_cycles) {
                 if (_cycles == '') {
                     return;
                 }
-                // vc.component.payFeeOrderInfo.totalFeePrice = $that._mathCeil(Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100);
-                // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 let unFixedNum = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(unFixedNum);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
@@ -315,7 +317,7 @@
                         // 由于返回的键与档期那页面自定义的键不一致，单独赋值toFiexedSign
                         let toFixedSign = listRoomData.data.val;
                         // 防止后台设置有误
-                        if(toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3){
+                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3) {
                             $that.payFeeOrderInfo.toFixedSign = toFixedSign;
                         }
                         vc.emit('payFeeOrder', 'initData', listRoomData.data);
