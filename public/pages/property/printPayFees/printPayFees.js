@@ -13,10 +13,10 @@
                 amount: 0.00,
                 fees: [],
                 feeTime: '',
-                wechatName:'',
-                content:'',
-                qrImg:'',
-                carNum:''
+                wechatName: '',
+                content: '',
+                qrImg: '',
+                carNum: ''
             },
             printFlag: '0'
         },
@@ -33,6 +33,7 @@
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
             $that._loadReceipt();
             $that._loadPrintSpec();
+            $that._listListStores();
         },
         _initEvent: function () {
         },
@@ -67,11 +68,11 @@
                         $that.printPayFeeInfo.userName = _feeReceipt.userName;
                         $that.printPayFeeInfo.amount = 0;
 
-                        for(var i =0 ; i<_feeReceiptManageInfo.data.length; i++){
-                            $that.printPayFeeInfo.amount += parseFloat(_feeReceiptManageInfo.data[i].amount)*1000000000000;
-                            if(vc.getParam('type')==3){
-                                if( _feeReceiptManageInfo.data[i].carNum != null && _feeReceiptManageInfo.data[i].carNum != '' ){
-                                    $that.printPayFeeInfo.carNum += _feeReceiptManageInfo.data[i].carNum+" ";
+                        for (var i = 0; i < _feeReceiptManageInfo.data.length; i++) {
+                            $that.printPayFeeInfo.amount += parseFloat(_feeReceiptManageInfo.data[i].amount) * 1000000000000;
+                            if (vc.getParam('type') == 3) {
+                                if (_feeReceiptManageInfo.data[i].carNum != null && _feeReceiptManageInfo.data[i].carNum != '') {
+                                    $that.printPayFeeInfo.carNum += _feeReceiptManageInfo.data[i].carNum + " ";
                                 }
                             }
                         }
@@ -140,7 +141,29 @@
             _closePage: function () {
                 window.opener = null;
                 window.close();
-            }
+            },
+            _listListStores: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1
+                    }
+                };
+
+                //发送get请求
+                vc.http.get('listStoreManage',
+                    'getStoreInfo',
+                    param,
+                    function (json, res) {
+                        var _listStoreManageInfo = JSON.parse(json);
+                        let _listStore = _listStoreManageInfo.stores[0];
+
+                        $that.printPayFeeInfo.storeName = _listStore.name;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);
