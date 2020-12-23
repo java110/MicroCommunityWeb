@@ -15,38 +15,36 @@
                                         <option value="3000">停车场</option>
                                     </select>
                                 </div>
-                            </div>  
-                            <div class="form-group row"  v-else>
+                            </div>
+                            <div class="form-group row" v-else>
                                 <label class="col-sm-2 col-form-label">车辆</label>
                                 <div class="col-sm-10">
                                     <input v-model="carCreateFeeAddInfo.locationTypeCdName" disabled="disabled"
-                                        type="text" placeholder="必填，请填写收费范围" class="form-control">
-
+                                           type="text" placeholder="必填，请填写收费范围" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row" v-show="carCreateFeeAddInfo.locationTypeCd == '3000'">
                                 <label class="col-sm-2 col-form-label">停车场</label>
                                 <div class="col-sm-10">
-                                    <vc:create path="property/parkingAreaSelect2"
-                                               parentModal="carCreateFeeAdd"
-                                               callBackListener="carCreateFeeAdd"
-                                               callBackFunction="notify"
-                                               namespace="carCreateFeeAdd"
-                                    ></vc:create>
+                                    <vc:create path="property/parkingAreaSelect2" parentModal="carCreateFeeAdd"
+                                               callBackListener="carCreateFeeAdd" callBackFunction="notify"
+                                               namespace="carCreateFeeAdd">
+                                    </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">费用类型</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="carCreateFeeAddInfo.feeTypeCd"
-                                        @change="_changeCarFeeTypeCd(carCreateFeeAddInfo.feeTypeCd)">
+                                            @change="_changeCarFeeTypeCd(carCreateFeeAddInfo.feeTypeCd)">
                                         <option selected disabled value="">必填，请选择费用类型</option>
                                         <option v-for="(item,index) in carCreateFeeAddInfo.feeTypeCds" :key="index"
-                                            v-bind:value="item.statusCd"
-                                            v-if="item.statusCd != '888800010001' && item.statusCd != '888800010009' && item.statusCd != '888800010011'">
+                                                v-bind:value="item.statusCd"
+                                                v-if="item.statusCd != '888800010001' && item.statusCd != '888800010009' && item.statusCd != '888800010011'">
                                             {{item.name}}
                                         </option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">收费项目</label>
@@ -54,20 +52,25 @@
                                     <select class="custom-select" v-model="carCreateFeeAddInfo.configId">
                                         <option selected disabled value="">必填，请选择收费项目</option>
                                         <option v-for="(item,index) in carCreateFeeAddInfo.feeConfigs" :key="index"
-                                            v-bind:value="item.configId">{{item.feeName}}
+                                                v-bind:value="item.configId">{{item.feeName}}
                                         </option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row" v-if="carCreateFeeAddInfo.isMore == true">
                                 <label class="col-sm-2 col-form-label">车位状态</label>
                                 <div class="col-sm-10">
                                     <div class="checkbox custom-control-inline">
-                                        <label><input type="checkbox" v-model="carCreateFeeAddInfo.carState"
-                                                      value="S">已出售</label>
+                                        <label>
+                                            <input type="checkbox" v-model="carCreateFeeAddInfo.carState"
+                                                   value="S">已出售
+                                        </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
-                                        <label><input type="checkbox" v-model="carCreateFeeAddInfo.carState"
-                                                      value="H">已出租</label>
+                                        <label>
+                                            <input type="checkbox" v-model="carCreateFeeAddInfo.carState"
+                                                   value="H">已出租
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -75,15 +78,17 @@
                                 <label class="col-sm-2 col-form-label">计费起始时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="carCreateFeeAddInfo.startTime" type="text"
-                                        placeholder="必填，请填写计费起始时间" class="form-control carCreateFeeStartTime">
+                                           placeholder="必填，请填写计费起始时间" class="form-control carCreateFeeStartTime">
                                 </div>
                             </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="saveCarCreateFeeInfo()"><i class="fa fa-check"></i>&nbsp;提交
+                                        v-on:click="saveCarCreateFeeInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;提交
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>
                         </div>

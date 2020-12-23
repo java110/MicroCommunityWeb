@@ -21,12 +21,10 @@
             }
         },
         _initMethod: function () {
+            vc.component._initRoomCreateFeeAddInfo();
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.roomCreateFeeAddInfo.feeTypeCds = _data;
             });
-            vc.initDateTime('roomCreateFeeStartTime', function (_value) {
-                $that.roomCreateFeeAddInfo.startTime = _value;
-            })
         },
         _initEvent: function () {
             vc.on('roomCreateFeeAdd', 'openRoomCreateFeeAddModal',
@@ -56,6 +54,28 @@
             });
         },
         methods: {
+            _initRoomCreateFeeAddInfo: function () {
+                $('.roomCreateFeeStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.roomCreateFeeStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".roomCreateFeeStartTime").val();
+                        vc.component.roomCreateFeeAddInfo.startTime = value;
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control roomCreateFeeStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             roomCreateFeeAddValidate() {
                 return vc.validate.validate({
                         roomCreateFeeAddInfo: vc.component.roomCreateFeeAddInfo
