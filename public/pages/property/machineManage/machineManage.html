@@ -99,6 +99,8 @@
                                 </td>
                                 <td class="text-center">{{machine.createTime}}</td>
                                 <td class="text-right">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)">开门
+                                    </button>
                                     <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">变更
                                     </button>
@@ -113,9 +115,6 @@
                                         <p style="margin:10px 0;">
                                             <a href="javascript:void(0)"
                                                 v-on:click="_openRestartMachineModel(machine)">重启设备</a>
-                                            <span>|</span>
-                                            <a href="javascript:void(0)"
-                                                v-on:click="_openDoorMachineModel(machine)">开门</a>
                                         </p>
                                     </div>
 

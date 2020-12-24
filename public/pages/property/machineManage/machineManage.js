@@ -101,7 +101,7 @@
             },
             _openDoorMachineModel: function (_machine) { //设备开门处理
                 vc.emit('machineState', 'openMachineStateModal', {
-                    machineId: _machine.machineCode,
+                    machineCode: _machine.machineCode,
                     stateName: '开门',
                     state: '1500',
                     url: '/machine/openDoor'
