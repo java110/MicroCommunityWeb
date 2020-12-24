@@ -93,7 +93,7 @@
             },
             _openRestartMachineModel: function (_machine) { //设备重启处理
                 vc.emit('machineState', 'openMachineStateModal', {
-                    machineId: _machine.machineCode,
+                    machineCode: _machine.machineCode,
                     stateName: '重启',
                     state: '1400',
                     url: '/machine/restartMachine'
