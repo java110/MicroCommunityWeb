@@ -25,7 +25,7 @@
                     <td class="text-center">{{machineTranslate.remark}}</td>
                     <td class="text-center">{{machineTranslate.updateTime}}</td>
                     <td class="text-center">
-                        <div class="btn-group">
+                        <div class="btn-group" v-if="machineTranslate.state != '20000'">
                             <button class="btn-white btn btn-xs"
                                 v-on:click="_openEditMachineTranslateModel(machineTranslate)">重新同步
                             </button>

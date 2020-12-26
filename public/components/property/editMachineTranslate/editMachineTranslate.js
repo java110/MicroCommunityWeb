@@ -10,6 +10,7 @@
                 objName: '',
                 objId: '',
                 state: '',
+                communityId:''
 
             }
         },
@@ -29,77 +30,14 @@
                 return vc.validate.validate({
                     editMachineTranslateInfo: vc.component.editMachineTranslateInfo
                 }, {
-                    'editMachineTranslateInfo.machineCode': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "设备编码不能为空"
-                        },
-                        {
-                            limit: "maxin",
-                            param: "1,30",
-                            errInfo: "设备编码不能超过30位"
-                        },
-                    ],
-                    'editMachineTranslateInfo.machineId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "设备ID不能为空"
-                        }],
-                    'editMachineTranslateInfo.typeCd':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "对象类型不能为空"
-                            },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "对象类型格式错误"
-                            },
-                        ],
-                    'editMachineTranslateInfo.objName':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "对象名称不能为空"
-                            }],
-                    'editMachineTranslateInfo.objId':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "对象Id不能为空"
-                            },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "对象Id必须为数字"
-                            },
-                        ],
-                    'editMachineTranslateInfo.state':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "状态不能为空"
-                            },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "状态格式错误"
-                            },
-                        ],
                     'editMachineTranslateInfo.machineTranslateId':
                         [
                             {
                                 limit: "required",
                                 param: "",
                                 errInfo: "同步ID不能为空"
-                            }]
+                            }
+                        ]
 
                 })
                     ;
@@ -110,9 +48,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editMachineTranslate',
-                    'update',
+                vc.http.apiPost(
+                    '/machine/resendIot',
                     JSON.stringify(vc.component.editMachineTranslateInfo),
                     {
                         emulateJSON: true
@@ -144,7 +81,7 @@
                     objName: '',
                     objId: '',
                     state: '',
-
+                    communityId:''
                 }
             }
         }
