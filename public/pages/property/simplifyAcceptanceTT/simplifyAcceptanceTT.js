@@ -150,8 +150,14 @@
 
                 vc.emit(_tab, 'switch', {
                     ownerId: $that.simplifyAcceptanceInfo.ownerId,
-                    roomId: $that.simplifyAcceptanceInfo.roomId
+                    roomId: $that.simplifyAcceptanceInfo.roomId,
+                    roomName: $that.simplifyAcceptanceInfo.floorNum+"栋"+$that.simplifyAcceptanceInfo.unitNum+"单元"+$that.simplifyAcceptanceInfo.roomNum+"室"
                 })
+                if(_tab=='feeReceipt'){
+                    this.timer = setTimeout(()=>{   //设置延迟执行
+                        vc.component._initDatetimepicker();
+                    },500);
+                }
             },
             errorLoadImg: function () {
                 vc.component.simplifyAcceptanceInfo.ownerPhoto = "/img/noPhoto.jpg";
@@ -183,6 +189,40 @@
                     roomName: '',
                     sex: 0
                 }
+            },
+            _initDatetimepicker:function(){
+                $(".startTime").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    startView: 2,
+                    minView: 2,
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $(".endTime").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    startView: 2,
+                    minView: 2,
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.startTime').datetimepicker()
+                .on('changeDate', function (ev) {
+                    var value = $(".startTime").val();
+                    vc.component.feeReceiptManageInfo.conditions.qstartTime = value ;
+                });
+                $('.endTime').datetimepicker()
+                .on('changeDate', function (ev) {
+                    var value = $(".endTime").val();
+                    vc.component.feeReceiptManageInfo.conditions.qendTime = value ;
+                });
             }
 
         }
