@@ -6,7 +6,8 @@
                 machineCode: '',
                 stateName: '',
                 state: '',
-                url: ''
+                url: '',
+                userRole:'staff'
 
             }
         },
