@@ -5,17 +5,21 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{reportPayFeeDetailInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择楼栋"
                                        v-model="reportPayFeeDetailInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()"><i class="fa fa-search"></i> 选择
+                                            v-on:click="_openChooseFloorMethod()">
+                                        <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
@@ -38,23 +42,38 @@
                                        v-model="reportPayFeeDetailInfo.conditions.roomNum">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
-                                    class="fa fa-search"></i> 查询
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group input-group">
-                                <input type="text" placeholder="请选择开始时间"
-                                       v-model="reportPayFeeDetailInfo.conditions.startTime"
-                                       class=" form-control startTime">
+                    <div class="row" v-show="reportPayFeeDetailInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.primeRate">
+                                    <option selected value="">请选择支付方式</option>
+                                    <option v-for="(item,index) in reportPayFeeDetailInfo.primeRates" :key="index"
+                                            :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择结束时间"
+                                <input type="text" placeholder="请选择缴费开始时间" name="startTime"
+                                       v-model="reportPayFeeDetailInfo.conditions.startTime"
+                                       class=" form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择缴费结束时间" name="endTime"
                                        v-model="reportPayFeeDetailInfo.conditions.endTime"
                                        class=" form-control endTime">
                             </div>
@@ -71,8 +90,7 @@
                     <h5>缴费明细表</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
-                            <i class="fa fa-plus"></i>
-                            导出
+                            <i class="fa fa-plus"></i> 导出
                         </button>
                     </div>
                 </div>
@@ -80,16 +98,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <!-- <th class="text-center">信息ID</th> -->
                             <th class="text-center">费用编号</th>
                             <th class="text-center">房号</th>
                             <th class="text-center">费用项</th>
                             <th class="text-center">支付方式</th>
-                            <th class="text-center">缴费开始时间</th>
-                            <th class="text-center">缴费结束时间</th>
+                            <th class="text-center">费用开始时间</th>
+                            <th class="text-center">费用结束时间</th>
                             <th class="text-center">缴费时间</th>
-                            <th class="text-center">应收金额</th>
-                            <th class="text-center">实收金额</th>
+                            <th class="text-center">应收金额(单位:元)</th>
+                            <th class="text-center">实收金额(单位:元)</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -116,11 +133,17 @@
                     <!-- 分页 -->
                     <div class="row">
                         <div class="col-md-4">
-                            <span class="margin-left">应收: {{reportPayFeeDetailInfo.totalReceivableAmount}}元</span>
-                            <span class="margin-left">实收: {{reportPayFeeDetailInfo.totalReceivedAmount}}元</span>
+                            <span class="margin-left">小计应收: {{reportPayFeeDetailInfo.totalReceivableAmount}}元</span>
+                            <span class="margin-left">小计实收: {{reportPayFeeDetailInfo.totalReceivedAmount}}元</span>
                         </div>
                         <div class="col-md-8 text-center">
                             <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="margin-left">大计应收: {{reportPayFeeDetailInfo.allReceivableAmount}}元</span>
+                            <span class="margin-left">大计实收: {{reportPayFeeDetailInfo.allReceivedAmount}}元</span>
                         </div>
                     </div>
                 </div>

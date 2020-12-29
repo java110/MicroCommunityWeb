@@ -136,8 +136,8 @@
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
                 }
-                // 新增缴费周期必选项
-                if($that.payFeeOrderInfo.tempCycles == ""){
+                // 缴费周期必选项判断优化（一次顶费用(feeFlag=2006012)无需必选，周期性费用(feeFlag=1003006)必选）
+                if ($that.payFeeOrderInfo.feeFlag == '1003006' && $that.payFeeOrderInfo.tempCycles == ""){
                     vc.toast("请选择缴费周期");
                     return;
                 }

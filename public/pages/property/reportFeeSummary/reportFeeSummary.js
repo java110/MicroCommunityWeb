@@ -26,11 +26,9 @@
         _initMethod: function () {
             vc.component._initDate();
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
-
             // vc.initDateMonth('startTime', function (_startTime) {
             //     $that.reportFeeSummaryInfo.conditions.startTime = _startTime;
             // });
-
             // vc.initDateMonth('endTime', function (_endTime) {
             //     $that.reportFeeSummaryInfo.conditions.endTime = _endTime;
             //     let start = Date.parse(new Date($that.reportFeeSummaryInfo.conditions.startTime + "-01"))
@@ -40,15 +38,12 @@
             //         $that.reportFeeSummaryInfo.conditions.endTime = '';
             //     }
             // });
-
         },
         _initEvent: function () {
-
             vc.on('reportFeeSummary', 'chooseFloor', function (_param) {
                 vc.component.reportFeeSummaryInfo.conditions.floorId = _param.floorId;
                 vc.component.reportFeeSummaryInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
-
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listFees(_currentPage, DEFAULT_ROWS);
@@ -92,19 +87,63 @@
                             $that.reportFeeSummaryInfo.conditions.endTime = '';
                         }
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control startTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName(" form-control endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
+            //查询
             _queryMethod: function () {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            //查询方法
             _listFees: function (_page, _rows) {
-
                 vc.component.reportFeeSummaryInfo.conditions.page = _page;
                 vc.component.reportFeeSummaryInfo.conditions.row = _rows;
                 vc.component.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.reportFeeSummaryInfo.conditions
                 };
-
+                //发送get请求
+                vc.http.apiGet('/reportFeeMonthStatistics/queryReportFeeSummary',
+                    param,
+                    function (json, res) {
+                        var _reportFeeSummaryInfo = JSON.parse(json);
+                        vc.component.reportFeeSummaryInfo.total = _reportFeeSummaryInfo.total;
+                        vc.component.reportFeeSummaryInfo.records = _reportFeeSummaryInfo.records;
+                        vc.component.reportFeeSummaryInfo.fees = _reportFeeSummaryInfo.data;
+                        vc.emit('pagination', 'init', {
+                            total: vc.component.reportFeeSummaryInfo.records,
+                            currentPage: _page
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            //重置
+            _resetMethod: function(){
+                vc.component._resetFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置方法
+            _resetFees: function (_page, _rows) {
+                vc.component.reportFeeSummaryInfo.conditions.floorName = "";
+                vc.component.reportFeeSummaryInfo.conditions.floorId = "";
+                vc.component.reportFeeSummaryInfo.conditions.unitId = "";
+                vc.component.reportFeeSummaryInfo.conditions.roomNum = "";
+                vc.component.reportFeeSummaryInfo.conditions.startTime = "";
+                vc.component.reportFeeSummaryInfo.conditions.endTime = "";
+                var param = {
+                    params: vc.component.reportFeeSummaryInfo.conditions
+                };
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryReportFeeSummary',
                     param,
@@ -147,12 +186,18 @@
                         vc.toast(errInfo);
                     });
             },
-
-            _openChooseFloorMethod:function(){
-                vc.emit('searchFloor','openSearchFloorModel',{});
+            _openChooseFloorMethod: function () {
+                vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            _exportFee:function(){
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId='+vc.getCurrentCommunity().communityId+"&pagePath=reportFeeSummary");
+            _moreCondition: function () {
+                if (vc.component.reportFeeSummaryInfo.moreCondition) {
+                    vc.component.reportFeeSummaryInfo.moreCondition = false;
+                } else {
+                    vc.component.reportFeeSummaryInfo.moreCondition = true;
+                }
+            },
+            _exportFee: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportFeeSummary");
             }
         }
     });
