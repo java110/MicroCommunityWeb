@@ -136,14 +136,16 @@
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
                 }
+                if ($that.payFeeOrderInfo.feeFlag == '2006012') {
+                    $that.payFeeOrderInfo.cycles = '1';
+                    $that.payFeeOrderInfo.tempCycles = '1';
+                }
                 // 新增缴费周期必选项
-                if($that.payFeeOrderInfo.tempCycles == ""){
+                if($that.payFeeOrderInfo.tempCycles == "" ){
                     vc.toast("请选择缴费周期");
                     return;
                 }
-                if ($that.payFeeOrderInfo.feeFlag == '2006012') {
-                    $that.payFeeOrderInfo.cycles = '1';
-                }
+                
                 if (!vc.component.payFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;

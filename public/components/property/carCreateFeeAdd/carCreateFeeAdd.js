@@ -56,8 +56,8 @@
                         var value = $(".carCreateFeeStartTime").val();
                         vc.component.carCreateFeeAddInfo.startTime = value;
                     });
-                //防止多次点击时间插件失去焦点
-                document.getElementsByClassName('form-control carCreateFeeStartTime')[0].addEventListener('click', myfunc)
+                //防止多次点击时间插件失去焦点,这里报错先取消 
+                //document.getElementsByClassName('form-control carCreateFeeStartTime')[0].addEventListener('click', myfunc)
 
                 function myfunc(e) {
                     e.currentTarget.blur();
