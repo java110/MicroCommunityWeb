@@ -4,6 +4,7 @@
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROW = 10;
+    var TEMP_SEARCH = 'roomCreateFeeSearch';
     vc.extends({
         data: {
             roomUnits: [],
@@ -28,12 +29,30 @@
                     allNum: '',
                     idCard: ''
                 }
-            }
+            },
+            currentPage: 1,
         },
         _initMethod: function () {
-            vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
-            vc.component.roomCreateFeeInfo.conditions.floorName = vc.getParam("floorName");
-            vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+
+            //检查是否有缓存数据
+            let _tempData = vc.getData(TEMP_SEARCH);
+
+            if (_tempData == null) {
+                vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
+                vc.component.roomCreateFeeInfo.conditions.floorName = vc.getParam("floorName");
+                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+            }else{
+                console.log('here is tempData : ', _tempData);
+                vc.component.roomCreateFeeInfo.conditions = _tempData.conditions;
+                $that.updateCurrentPage(_tempData.currentPage);
+                vc.component.listRoom(_tempData.currentPage, DEFAULT_ROW);
+            }
+
+            // $that.simplifyAcceptanceInfo.searchType = _tempData.searchType;
+            // $that.simplifyAcceptanceInfo.searchValue = _tempData.searchValue;
+            // $that.simplifyAcceptanceInfo.searchPlaceholder = _tempData.searchPlaceholder;
+            // $that._doSearch();
+
         },
         _initEvent: function () {
             vc.on('room', 'chooseFloor', function (_param) {
@@ -43,6 +62,7 @@
 
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
+                $that.updateCurrentPage(_currentPage);
                 vc.component.listRoom(_currentPage, DEFAULT_ROW);
             });
         },
@@ -85,6 +105,8 @@
                             dataCount: vc.component.roomCreateFeeInfo.total,
                             currentPage: _page
                         });
+                        // 换存搜索条件
+                        $that.saveTempSearchData();
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -151,6 +173,11 @@
                         vc.component.roomCreateFeeInfo.total = listRoomData.total;
                         vc.component.roomCreateFeeInfo.records = listRoomData.records;
                         vc.component.roomCreateFeeInfo.rooms = listRoomData.rooms;
+
+                        // 缓存
+                        $that.updateCurrentPage(DEFAULT_PAGE);
+                        $that.saveTempSearchData();
+                        // 
                         vc.emit('pagination', 'init', {
                             total: vc.component.roomCreateFeeInfo.records,
                             dataCount: vc.component.roomCreateFeeInfo.total,
@@ -163,6 +190,8 @@
             },
             //查询
             _queryRoomMethod: function () {
+                // 搜索时重置缓存分页
+                $that.updateCurrentPage(DEFAULT_PAGE);
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             },
             //重置
@@ -246,6 +275,25 @@
                         console.log('请求失败处理');
                         vc.message(errInfo);
                     });
+            },
+
+            /**
+             * 更新当前页码
+             */
+            updateCurrentPage: function (page) {
+                $that.currentPage = page;
+            },
+
+            /**
+             * 保存搜索条件、页码
+             */
+            saveTempSearchData: function () {
+                let conditions = $that.roomCreateFeeInfo.conditions;
+                //缓存起来=
+                vc.saveData(TEMP_SEARCH, {
+                    conditions: conditions,
+                    currentPage: $that.currentPage
+                });
             },
         }
     });

@@ -5,31 +5,30 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                       
+
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择楼栋"
-                                    v-model="reportFloorUnitFeeSummaryInfo.conditions.floorName" class=" form-control">
+                                       v-model="reportFloorUnitFeeSummaryInfo.conditions.floorName"
+                                       class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                        v-on:click="_openChooseFloorMethod()"><i class="fa fa-search"></i> 选择
+                                            v-on:click="_openChooseFloorMethod()"><i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportFloorUnitFeeSummaryInfo.conditions.unitId">
+                                        v-model="reportFloorUnitFeeSummaryInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
                                     <option v-for="(unit,index) in reportFloorUnitFeeSummaryInfo.roomUnits" :key="index"
-                                        v-bind:value="unit.unitId">
+                                            v-bind:value="unit.unitId">
                                         {{unit.unitNum}}单元
                                     </option>
                                 </select>
@@ -38,39 +37,31 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
-                                    v-model="reportFloorUnitFeeSummaryInfo.conditions.roomNum">
+                                       v-model="reportFloorUnitFeeSummaryInfo.conditions.roomNum">
                             </div>
                         </div>
-
-
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
                                     class="fa fa-search"></i> 查询
                             </button>
                         </div>
-
                     </div>
-
                     <div class="row">
-
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择开始时间"
-                                    v-model="reportFloorUnitFeeSummaryInfo.conditions.startTime" class=" form-control startTime">
-                               
+                                <input type="text" placeholder="请选择缴费开始时间"
+                                       v-model="reportFloorUnitFeeSummaryInfo.conditions.startTime"
+                                       class=" form-control startTime">
                             </div>
-
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择结束时间"
-                                v-model="reportFloorUnitFeeSummaryInfo.conditions.endTime" class=" form-control endTime">
+                                <input type="text" placeholder="请选择缴费结束时间"
+                                       v-model="reportFloorUnitFeeSummaryInfo.conditions.endTime"
+                                       class=" form-control endTime">
                             </div>
                         </div>
-                        
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -88,35 +79,33 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <!-- <th class="text-center">信息ID</th> -->
-                                <th class="text-center">日期</th>
-                                <th class="text-center">楼栋</th>
-                                <th class="text-center">单元</th>
-                                <th class="text-center">应收金额</th>
-                                <th class="text-center">实收金额</th>
-                                <th class="text-center">欠费金额</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">缴费日期</th>
+                            <th class="text-center">楼栋</th>
+                            <th class="text-center">单元</th>
+                            <th class="text-center">应收金额</th>
+                            <th class="text-center">实收金额</th>
+                            <th class="text-center">欠费金额</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="fee in reportFloorUnitFeeSummaryInfo.fees">
-                                <td class="text-center">{{fee.feeYear+'年'+fee.feeMonth+'月'}}</td>
-                                <td class="text-center">{{fee.floorNum}}号楼</td>
-                                <td class="text-center">{{fee.unitNum}}单元</td>
-                                <td class="text-center">{{fee.receivableAmount}}</td>
-                                <td class="text-center">{{fee.receivedAmount}}</td>
-                                <td class="text-center">{{fee.oweAmount}}</td>
-                            </tr>
+                        <tr v-for="fee in reportFloorUnitFeeSummaryInfo.fees">
+                            <td class="text-center">{{fee.createTime}}</td>
+                            <td class="text-center">{{fee.floorNum}}号楼</td>
+                            <td class="text-center">{{fee.unitNum}}单元</td>
+                            <td class="text-center">{{fee.receivableAmount}}</td>
+                            <td class="text-center">{{fee.receivedAmount}}</td>
+                            <td class="text-center">{{fee.oweAmount}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -125,6 +114,5 @@
             </div>
         </div>
     </div>
-
     <vc:create path="property/searchFloor" emitChooseFloor="reportFloorUnitFeeSummary" emitLoadData="xx"></vc:create>
 </div>

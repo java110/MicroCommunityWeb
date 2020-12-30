@@ -18,8 +18,8 @@
                     floorName: '',
                     roomNum: '',
                     unitId: '',
-                    startTime:'',
-                    endTime:''
+                    startTime: '',
+                    endTime: ''
                 }
             }
         },
@@ -29,7 +29,6 @@
             // vc.initDateMonth('startTime', function (_startTime) {
             //     $that.reportFloorUnitFeeSummaryInfo.conditions.startTime = _startTime;
             // });
-
             // vc.initDateMonth('endTime', function (_endTime) {
             //     $that.reportFloorUnitFeeSummaryInfo.conditions.endTime = _endTime;
             //     let start = Date.parse(new Date($that.reportFloorUnitFeeSummaryInfo.conditions.startTime + "-01"))
@@ -41,7 +40,6 @@
             // });
         },
         _initEvent: function () {
-
             vc.on('reportFloorUnitFeeSummary', 'chooseFloor', function (_param) {
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.floorId = _param.floorId;
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.floorName = _param.floorName;
@@ -91,18 +89,16 @@
                         }
                     });
             },
-            _queryMethod:function(){
+            _queryMethod: function () {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listFees: function (_page, _rows) {
-
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.page = _page;
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.row = _rows;
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.reportFloorUnitFeeSummaryInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryFloorUnitFeeSummary',
                     param,
@@ -145,11 +141,11 @@
                         vc.toast(errInfo);
                     });
             },
-            _openChooseFloorMethod:function(){
-                vc.emit('searchFloor','openSearchFloorModel',{});
+            _openChooseFloorMethod: function () {
+                vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            _exportFee:function(){
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId='+vc.getCurrentCommunity().communityId+"&pagePath=reportFloorUnitFeeSummary");
+            _exportFee: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportFloorUnitFeeSummary");
             }
         }
     });

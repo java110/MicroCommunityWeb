@@ -120,6 +120,20 @@
                 vc.setMenuState('OFF');
             },
             _gotoPage: function (_href) {
+                let copyMenus = this.menus;
+                for (var menuIndex = 0; menuIndex < copyMenus.length; menuIndex++) {
+                    if (copyMenus[menuIndex].hasOwnProperty('childs')) {
+                        var _childs = copyMenus[menuIndex].childs;
+                        for(var childIndex = 0; childIndex < _childs.length; childIndex++){
+                            if(_href == _childs[childIndex].href){
+                                copyMenus[menuIndex].childs[childIndex].active = true;
+                            } else {
+                                copyMenus[menuIndex].childs[childIndex].active = false;
+                            }
+                        }
+                    }
+                }
+                this.$set(this.menus, copyMenus);
                 vc.jumpToPage(_href);
             }
 
