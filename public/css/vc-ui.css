@@ -2026,3 +2026,11 @@ a:hover {
 .vc-table-border tr th{
   border: 1px solid #000000;
 }
+
+.fix-width{
+    width: 60%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}

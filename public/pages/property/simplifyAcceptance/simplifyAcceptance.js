@@ -15,6 +15,8 @@
                 _currentTab: 'simplifyRoomFee',
                 roomId: '',
                 ownerId: '',
+                ownerRemark: '',
+                roomRemark: '',
                 name: '',
                 idCard: '',
                 link: '',
@@ -52,6 +54,7 @@
         _initEvent: function () {
             vc.on('simplifyAcceptance', 'chooseRoom', function (_room) {
                 vc.copyObject(_room, $that.simplifyAcceptanceInfo);
+                $that.simplifyAcceptanceInfo.roomRemark = _room.remark;
                 $that.simplifyAcceptanceInfo.roomName = _room.floorNum + '栋' + _room.unitNum + '单元' + _room.roomNum;
                 vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo)
             });
@@ -114,6 +117,7 @@
                         $that.saveTempSearchData();
                         let _owner = _ownerJson.data;
                         vc.copyObject(_owner, $that.simplifyAcceptanceInfo);
+                        $that.simplifyAcceptanceInfo.ownerRemark = _owner.remark;
                         if (!_owner.hasOwnProperty('rooms')) {
                             return;
                         }
@@ -123,6 +127,7 @@
                             return;
                         }
                         vc.copyObject(_rooms[0], $that.simplifyAcceptanceInfo);
+                        $that.simplifyAcceptanceInfo.roomRemark = _rooms[0].remark;
                         $that.simplifyAcceptanceInfo.roomName = _rooms[0].floorNum + '栋' + _rooms[0].unitNum + '单元' + _rooms[0].roomNum;
                         vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo);
 
@@ -181,7 +186,9 @@
                     feeCoefficient: '',
                     stateName: '',
                     roomName: '',
-                    sex: 0
+                    sex: 0,
+                    ownerRemark: '',
+                    roomRemark: ''
                 }
             }
 

@@ -73,7 +73,10 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-
+                            <div class="form-group">
+                                <label class="col-form-label">业主备注：</label>
+                                <label class="fix-width"  :title="simplifyAcceptanceInfo.ownerRemark">{{simplifyAcceptanceInfo.ownerRemark}}</label>
+                            </div>
                         </div>
                     </div>
 
@@ -81,8 +84,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋编号：</label>
-                                <label
-                                    class="">{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
+                                <label>{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -115,6 +117,12 @@
                             <div class="form-group">
                                 <label class="col-form-label">房屋ID：</label>
                                 <label class="">{{simplifyAcceptanceInfo.roomId}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label">房屋备注：</label>
+                                <label class="fix-width"  :title="simplifyAcceptanceInfo.roomRemark">{{simplifyAcceptanceInfo.roomRemark }}</label>
                             </div>
                         </div>
                     </div>
