@@ -62,16 +62,16 @@
                     <td class="text-center">{{fee.stateName}}</td>
                     <td class="text-right">
                         <button class="btn btn-link btn-xs"
-                            v-if="fee.state != '2009001'  && vc.hasPrivilege('502020090482580004')"
+                            v-if="fee.state != '2009001'  && vc.hasPrivilege('502020082314267912')"
                             v-on:click="_simplifyCarPayFee(fee)">缴费
                         </button>
                         <button class="btn btn-link btn-xs" v-on:click="_simplifyCarPayFeeHis(fee)">缴费历史
                         </button>
-                        <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F'"
+                        <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')"  
                             v-on:click="_simplifyCarDeleteFee(fee)">取消费用
                         </button>
                         <button class="btn btn-link btn-xs"
-                            v-if="fee.state != '2009001' && vc.hasPrivilege('502020090418500005')"
+                            v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
                             v-on:click="_simplifyCarEditFee(fee)">费用变更
                         </button>
                     </td>
