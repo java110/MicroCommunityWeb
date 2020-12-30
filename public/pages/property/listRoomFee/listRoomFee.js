@@ -128,13 +128,13 @@
                 if (_fee.state == '2009001') {
                     return "-";
                 }
-                return _fee.deadlineTime;
+                return vc.dateSub(_fee.deadlineTime,_fee.feeFlag);
             },
             _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {
                     return "-";
                 }
-                return _fee.endTime;
+                return vc.dateFormat(_fee.endTime);
             },
             _openProxyFeeModal: function () { //创建代收费用
                 vc.emit('addProxyFee', 'openAddProxyFeeModal', {

@@ -115,8 +115,9 @@
                             <td class="text-center">{{fee.objName}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
                             <td class="text-center">{{fee.primeRate}}</td>
-                            <td class="text-center">{{fee.startTime}}</td>
-                            <td class="text-center">{{fee.endTime}}</td>
+                            <td class="text-center">{{vc.dateFormat(fee.startTime)}}</td>
+                            <td class="text-center" v-if="fee.startTime >= fee.endTime">{{vc.dateFormat(fee.endTime)}}</td>
+                            <td class="text-center" v-else>{{vc.dateSub(vc.dateFormat(fee.endTime),fee.feeFlag)}}</td> 
                             <td class="text-center">{{fee.createTime}}</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>

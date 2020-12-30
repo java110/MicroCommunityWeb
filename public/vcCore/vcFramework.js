@@ -1587,6 +1587,19 @@
         return y + '-' + add0(m) + '-' + add0(d);
     }
 
+    vcFramework.dateSub = function (dateTime,feeFlag) {
+        if(!dateTime || dateTime == '-'){
+            return dateTime
+        }
+        console.log("feeFlag:"+feeFlag);
+        dateTime = new Date(dateTime);
+        if(feeFlag!="2006012"){
+            dateTime=dateTime.setDate(dateTime.getDate()-1);
+        }
+        dateTime = vcFramework.dateFormat(dateTime)
+        return dateTime;
+    }
+
     vcFramework.getDateYYYYMMDDHHMISS = function () {
         let date = new Date();
         let year = date.getFullYear();
