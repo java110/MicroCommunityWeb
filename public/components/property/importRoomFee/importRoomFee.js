@@ -6,7 +6,8 @@
                 communityId: vc.getCurrentCommunity().communityId,
                 excelTemplate: '',
                 feeTypeCd: '',
-                feeTypeCds: []
+                feeTypeCds: [],
+                objType:'3333'
             }
         },
         _initMethod: function () {
@@ -69,7 +70,8 @@
                 param.append("uploadFile", vc.component.importRoomFeeInfo.excelTemplate);
                 param.append('communityId', vc.component.importRoomFeeInfo.communityId);
                 param.append('feeTypeCd', vc.component.importRoomFeeInfo.feeTypeCd);
-
+                param.append('objType', $that.importRoomFeeInfo.objType);
+            
 
                 vc.http.upload(
                     'importRoomFee',
@@ -101,7 +103,7 @@
                     });
             },
             _exportRoomFeeTemplate:function(){
-                vc.jumpToPage('/callComponent/importRoomFee/exportData?communityId='+vc.getCurrentCommunity().communityId);
+                vc.jumpToPage('/callComponent/importRoomFee/exportData?communityId='+vc.getCurrentCommunity().communityId+"&objType="+$that.importRoomFeeInfo.objType);
             },
             clearAddFeeConfigInfo: function () {
                 var _feeTypeCds = vc.component.importRoomFeeInfo.feeTypeCds;
@@ -109,7 +111,8 @@
                     communityId: vc.getCurrentCommunity().communityId,
                     excelTemplate: '',
                     feeTypeCd: '',
-                    feeTypeCds: []
+                    feeTypeCds: [],
+                    objType:'3333'
                 };
 
                 vc.component.importRoomFeeInfo.feeTypeCds = _feeTypeCds;
