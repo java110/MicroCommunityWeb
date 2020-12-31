@@ -87,15 +87,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">缴费时间</th>
-                            <th class="text-center">应收金额</th>
-                            <th class="text-center">实收金额</th>
-                            <th class="text-center">欠费金额</th>
+                            <th class="text-center">日期</th>
+                            <th class="text-center">应收金额(单位:元)</th>
+                            <th class="text-center">实收金额(单位:元)</th>
+                            <th class="text-center">欠费金额(单位:元)</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="fee in reportFeeSummaryInfo.fees">
-                            <td class="text-center">{{fee.createTime}}</td>
+                            <td class="text-center">{{fee.feeYear+'年'+fee.feeMonth+'月'}}</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
                             <td class="text-center">{{fee.oweAmount}}</td>

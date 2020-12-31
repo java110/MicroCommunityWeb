@@ -5,6 +5,9 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{reportFeeBreakdownInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -15,7 +18,8 @@
                                        v-model="reportFeeBreakdownInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()"><i class="fa fa-search"></i> 选择
+                                            v-on:click="_openChooseFloorMethod()">
+                                        <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
@@ -32,20 +36,36 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
                                        v-model="reportFeeBreakdownInfo.conditions.roomNum">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
-                                    class="fa fa-search"></i> 查询
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-show="reportFeeBreakdownInfo.moreCondition == true">
                         <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportFeeBreakdownInfo.conditions.configId">
+                                    <option selected value="">请选择收费项</option>
+                                    <option v-for="(item,index) in reportFeeBreakdownInfo.feeConfigDtos" :key="index"
+                                            :value="item.configId">
+                                        {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择缴费开始时间"
                                        v-model="reportFeeBreakdownInfo.conditions.startTime"
@@ -60,6 +80,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" v-show="reportFeeBreakdownInfo.moreCondition == true">
+                        <!--费用类型-->
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="reportFeeBreakdownInfo.conditions.feeTypeCd">
+                                <option selected value="">请选择费用类型</option>
+                                <option v-for="(item,index) in reportFeeBreakdownInfo.feeTypeCds" :key="index"
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,8 +102,7 @@
                     <h5>费用分项表</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
-                            <i class="fa fa-plus"></i>
-                            导出
+                            <i class="fa fa-plus"></i>导出
                         </button>
                     </div>
                 </div>
@@ -81,17 +111,19 @@
                         <thead>
                         <tr>
                             <th class="text-center">费用编号</th>
+                            <th class="text-center">费用类型</th>
                             <th class="text-center">费用项</th>
                             <th class="text-center">费用开始时间</th>
                             <th class="text-center">缴费时间</th>
-                            <th class="text-center">应收金额</th>
-                            <th class="text-center">实收金额</th>
-                            <th class="text-center">欠费金额</th>
+                            <th class="text-center">应收金额(单位:元)</th>
+                            <th class="text-center">实收金额(单位:元)</th>
+                            <th class="text-center">欠费金额(单位:元)</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="(fee,index) in reportFeeBreakdownInfo.fees">
                             <td class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{fee.feeTypeCd}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
                             <td class="text-center">{{fee.feeCreateTime}}</td>
                             <td class="text-center">{{fee.createTime}}</td>

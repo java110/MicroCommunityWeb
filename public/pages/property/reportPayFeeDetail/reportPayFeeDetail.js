@@ -14,6 +14,7 @@
                 title: '',
                 roomUnits: [],
                 primeRates: [],
+                feeConfigDtos: [],
                 totalReceivableAmount: 0.0,
                 totalReceivedAmount: 0.0,
                 allReceivableAmount: 0.0,
@@ -23,6 +24,7 @@
                     floorName: '',
                     roomNum: '',
                     unitId: '',
+                    configId: '',
                     primeRate: '',
                     startTime: '',
                     endTime: ''
@@ -136,6 +138,7 @@
                             vc.component.reportPayFeeDetailInfo.totalReceivedAmount = _reportPayFeeDetailInfo.data[0].totalReceivedAmount;
                             vc.component.reportPayFeeDetailInfo.allReceivableAmount = _reportPayFeeDetailInfo.data[0].allReceivableAmount;
                             vc.component.reportPayFeeDetailInfo.allReceivedAmount = _reportPayFeeDetailInfo.data[0].allReceivedAmount;
+                            vc.component.reportPayFeeDetailInfo.feeConfigDtos = _reportPayFeeDetailInfo.data[0].feeConfigDtos;
                         } else {
                             vc.component.reportPayFeeDetailInfo.totalReceivableAmount = "0.0";
                             vc.component.reportPayFeeDetailInfo.totalReceivedAmount = "0.0";
@@ -164,6 +167,7 @@
                 vc.component.reportPayFeeDetailInfo.conditions.primeRate = "";
                 vc.component.reportPayFeeDetailInfo.conditions.startTime = "";
                 vc.component.reportPayFeeDetailInfo.conditions.endTime = "";
+                vc.component.reportPayFeeDetailInfo.conditions.configId = "";
                 var param = {
                     params: vc.component.reportPayFeeDetailInfo.conditions
                 };
@@ -180,6 +184,7 @@
                             vc.component.reportPayFeeDetailInfo.totalReceivedAmount = _reportPayFeeDetailInfo.data[0].totalReceivedAmount;
                             vc.component.reportPayFeeDetailInfo.allReceivableAmount = _reportPayFeeDetailInfo.data[0].allReceivableAmount;
                             vc.component.reportPayFeeDetailInfo.allReceivedAmount = _reportPayFeeDetailInfo.data[0].allReceivedAmount;
+                            vc.component.reportPayFeeDetailInfo.feeConfigDtos = _reportPayFeeDetailInfo.data[0].feeConfigDtos;
                         } else {
                             vc.component.reportPayFeeDetailInfo.totalReceivableAmount = 0.0;
                             vc.component.reportPayFeeDetailInfo.totalReceivedAmount = 0.0;

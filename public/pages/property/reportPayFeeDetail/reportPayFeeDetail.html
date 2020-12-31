@@ -79,6 +79,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" v-show="reportPayFeeDetailInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.configId">
+                                    <option selected value="">请选择收费项</option>
+                                    <option v-for="(item,index) in reportPayFeeDetailInfo.feeConfigDtos" :key="index"
+                                            :value="item.configId">
+                                        {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

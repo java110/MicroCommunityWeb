@@ -120,20 +120,19 @@
                 vc.setMenuState('OFF');
             },
             _gotoPage: function (_href) {
-                let copyMenus = this.menus;
-                for (var menuIndex = 0; menuIndex < copyMenus.length; menuIndex++) {
-                    if (copyMenus[menuIndex].hasOwnProperty('childs')) {
-                        var _childs = copyMenus[menuIndex].childs;
+                for (var menuIndex = 0; menuIndex < this.menus.length; menuIndex++) {
+                    if (this.menus[menuIndex].hasOwnProperty('childs')) {
+                        var _childs = this.menus[menuIndex].childs;
                         for(var childIndex = 0; childIndex < _childs.length; childIndex++){
                             if(_href == _childs[childIndex].href){
-                                copyMenus[menuIndex].childs[childIndex].active = true;
+                                this.menus[menuIndex].childs[childIndex].active = true;
                             } else {
-                                copyMenus[menuIndex].childs[childIndex].active = false;
+                                this.menus[menuIndex].childs[childIndex].active = false;
                             }
                         }
                     }
                 }
-                this.$set(this.menus, copyMenus);
+                this.$forceUpdate();
                 vc.jumpToPage(_href);
             }
 

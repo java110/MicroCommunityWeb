@@ -17,7 +17,8 @@
                                        class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()"><i class="fa fa-search"></i> 选择
+                                            v-on:click="_openChooseFloorMethod()">
+                                        <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
@@ -82,17 +83,17 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">缴费日期</th>
+                            <th class="text-center">日期</th>
                             <th class="text-center">楼栋</th>
                             <th class="text-center">单元</th>
-                            <th class="text-center">应收金额</th>
-                            <th class="text-center">实收金额</th>
-                            <th class="text-center">欠费金额</th>
+                            <th class="text-center">应收金额(单位:元)</th>
+                            <th class="text-center">实收金额(单位:元)</th>
+                            <th class="text-center">欠费金额(单位:元)</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="fee in reportFloorUnitFeeSummaryInfo.fees">
-                            <td class="text-center">{{fee.createTime}}</td>
+                            <td class="text-center">{{fee.feeYear+'年'+fee.feeMonth+'月'}}</td>
                             <td class="text-center">{{fee.floorNum}}号楼</td>
                             <td class="text-center">{{fee.unitNum}}单元</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
