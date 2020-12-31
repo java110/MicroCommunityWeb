@@ -78,10 +78,9 @@
                                 <th class="text-center">设备名称</th>
                                 <th class="text-center">设备类型</th>
                                 <th class="text-center">设备位置</th>
-                                <th class="text-center">方向</th>
-                               
+                                <th class="text-center">方向</th>                              
                                 <th class="text-center">状态</th>
-                               
+                                <th class="text-center">心跳时间</th>
                                 <th v-for="(item,index) in machineManageInfo.listColumns">{{item}}</th>
                                 <th class="text-center">时间</th>
                                 <th class="text-right">操作</th>
@@ -95,9 +94,8 @@
                                 <td class="text-center">{{machine.machineTypeCdName}}</td>
                                 <td class="text-center">{{machine.locationObjName}}</td>
                                 <td class="text-center">{{machine.directionName}}</td>
-                                
                                 <td class="text-center">{{machine.stateName}}</td>
-                                
+                                <td class="text-center">{{machine.heartbeatTime}}</td>
                                 <td v-for="item in machine.listValues">
                                     {{item}}
                                 </td>
