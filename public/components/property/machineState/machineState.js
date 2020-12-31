@@ -39,7 +39,12 @@
                             return;
                         }
                         let _data = JSON.parse(json);
-                        vc.toast(_data.msg);
+                        if(_data.code != 0){
+                            vc.toast(_data.msg);
+                        }else{
+                            vc.toast('已请求设备');
+                        }
+                        
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
