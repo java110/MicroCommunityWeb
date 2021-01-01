@@ -12,7 +12,8 @@
                 payObjId: '',
                 payObjType: '',
                 roomName: '',
-                receiptId: ''
+                receiptId: '',
+                remark: ''
             }
         },
         watch: {
@@ -74,7 +75,14 @@
                     }
                 );
             },
-            _payFee: function (_page, _row) {
+            _payFee: function () {
+                //打开model
+                $("#doOwePayFeeModal").modal('show');
+            },
+            _closeDoOwePayFeeModal: function () {
+                $("#doOwePayFeeModal").modal('hide');
+            },
+            _doPayFee: function () {
                 let _fees = [];
                 let _printFees = [];
                 $that.owePayFeeOrderInfo.selectPayFeeIds.forEach(function (_item) {
@@ -102,7 +110,8 @@
                 }
                 let _data = {
                     communityId: vc.getCurrentCommunity().communityId,
-                    fees: _fees
+                    fees: _fees,
+                    remark: $that.owePayFeeOrderInfo.remark
                 }
                 vc.http.apiPost(
                     '/fee.payOweFee',
@@ -113,6 +122,7 @@
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
+                        $that._closeDoOwePayFeeModal();
                         if (_json.code == 0) {
 
                             let _feeInfo = {
@@ -137,6 +147,7 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
+                        $that._closeDoOwePayFeeModal();
                         vc.toast(errInfo);
                     });
             },

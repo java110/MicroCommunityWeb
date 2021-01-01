@@ -131,8 +131,6 @@
              * 点击 “提交缴费”
              */
             _openPayFee: function () {
-                console.log('tempCycles : ', $that.payFeeOrderInfo.tempCycles);
-                console.log('cycles : ', $that.payFeeOrderInfo.cycles);
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
                 }
