@@ -14,7 +14,8 @@
                 conditions: {
                     name: '',
                     staffName: '',
-                    tel: ''
+                    tel: '',
+                    relCd:'600311000001'
                 }
             }
         },
@@ -39,14 +40,13 @@
                 };
 
                 //发送get请求
-                vc.http.get('listStoreManage',
-                    'list',
+                vc.http.apiGet('/storeStaff/getPropertyStaffs',
                     param,
                     function (json, res) {
                         var _listPropertyManageInfo = JSON.parse(json);
                         vc.component.listPropertyManageInfo.total = _listPropertyManageInfo.total;
                         vc.component.listPropertyManageInfo.records = _listPropertyManageInfo.records;
-                        vc.component.listPropertyManageInfo.listPropertys = _listPropertyManageInfo.stores;
+                        vc.component.listPropertyManageInfo.listPropertys = _listPropertyManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.listPropertyManageInfo.records,
                             currentPage: _page
@@ -57,7 +57,7 @@
                 );
             },
             _openPropertysCommunityModel: function (_listProperty) {
-                vc.emit('storesCommunity','openStoresCommunity', _listProperty);
+                vc.emit('storesCommunity', 'openStoresCommunity', _listProperty);
             },
             _queryListPropertyMethod: function () {
                 vc.component._listListPropertys(DEFAULT_PAGE, DEFAULT_ROWS);
