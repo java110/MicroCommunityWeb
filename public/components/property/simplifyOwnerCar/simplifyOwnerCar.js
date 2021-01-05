@@ -31,7 +31,7 @@
                 let param = {
                     params: {
                         page: 1,
-                        row: 30,
+                        row: 15,
                         communityId: vc.getCurrentCommunity().communityId,
                         ownerId: $that.simplifyOwnerCarInfo.ownerId
                     }
