@@ -62,11 +62,10 @@
                                 {{feeDetail.createTime}}
                             </td>
                             <td class="text-center">
-                                {{feeDetail.startTime}}
+                                {{vc.dateFormat(feeDetail.startTime)}}
                             </td>
-                            <td class="text-center">
-                                {{feeDetail.endTime}}
-                            </td>
+                            <td class="text-center" v-if="feeDetail.startTime >= feeDetail.endTime">{{vc.dateFormat(feeDetail.endTime)}}</td>
+                            <td class="text-center" v-else>{{vc.dateSub(vc.dateFormat(feeDetail.endTime),feeDetail.feeFlag)}}</td>
                             <td class="text-center">
                                 {{feeDetail.stateName}}
                             </td>
