@@ -67,7 +67,7 @@
                         <tr v-for="feeDiscount in feeDiscountManageInfo.feeDiscounts">
                             <td class="text-center">{{feeDiscount.discountId}}</td>
                             <td class="text-center">{{feeDiscount.discountName}}</td>
-                            <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                            <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':(feeDiscount.discountType == '2002'?'违约':'优惠(需要申请)')}}</td>
                             <td class="text-center">{{feeDiscount.ruleName}}</td>
                             <td class="text-center">
                                 <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">

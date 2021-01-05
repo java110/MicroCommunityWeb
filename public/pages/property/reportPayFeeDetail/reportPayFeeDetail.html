@@ -119,8 +119,13 @@
                             <th class="text-center">费用开始时间</th>
                             <th class="text-center">费用结束时间</th>
                             <th class="text-center">缴费时间</th>
-                            <th class="text-center">应收金额(单位:元)</th>
-                            <th class="text-center">实收金额(单位:元)</th>
+                            <th class="text-center">应收金额(元)</th>
+                            <th class="text-center">实收金额(元)</th>
+                            <th class="text-center">优惠金额(元)</th>
+                            <th class="text-center">减免金额(元)</th>
+                            <th class="text-center">滞纳金(元)</th>
+                            <th class="text-center">空置房打折(元)</th>
+                            <th class="text-center">空置房减免(元)</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -130,11 +135,17 @@
                             <td class="text-center">{{fee.feeName}}</td>
                             <td class="text-center">{{fee.primeRate}}</td>
                             <td class="text-center">{{vc.dateFormat(fee.startTime)}}</td>
-                            <td class="text-center" v-if="fee.startTime >= fee.endTime">{{vc.dateFormat(fee.endTime)}}</td>
-                            <td class="text-center" v-else>{{vc.dateSub(vc.dateFormat(fee.endTime),fee.feeFlag)}}</td> 
+                            <td class="text-center" v-if="fee.startTime >= fee.endTime">{{vc.dateFormat(fee.endTime)}}
+                            </td>
+                            <td class="text-center" v-else>{{vc.dateSub(vc.dateFormat(fee.endTime),fee.feeFlag)}}</td>
                             <td class="text-center">{{fee.createTime}}</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
+                            <td class="text-center">{{fee.preferentialAmount}}</td>
+                            <td class="text-center">{{fee.deductionAmount}}</td>
+                            <td class="text-center">{{fee.lateFee}}</td>
+                            <td class="text-center">{{fee.vacantHousingDiscount}}</td>
+                            <td class="text-center">{{fee.vacantHousingReduction}}</td>
                         </tr>
                         </tbody>
                         <tfoot>
@@ -147,18 +158,34 @@
                     </table>
                     <!-- 分页 -->
                     <div class="row">
-                        <div class="col-md-4">
-                            <span class="margin-left">小计应收: {{reportPayFeeDetailInfo.totalReceivableAmount}}元</span>
-                            <span class="margin-left">小计实收: {{reportPayFeeDetailInfo.totalReceivedAmount}}元</span>
-                        </div>
-                        <div class="col-md-8 text-center">
-                            <vc:create path="frame/pagination"></vc:create>
+                        <div class="col-md-12">
+                            <span class="margin-left"><span class="col-md-1"><b>小计</b></span>
+                                <span class="col-md-1 margin-left"> 应收: {{reportPayFeeDetailInfo.totalReceivableAmount}}元</span>
+                                <span class="col-md-1 margin-left">实收: {{reportPayFeeDetailInfo.totalReceivedAmount}}元</span>
+                                <span class="col-md-1 margin-left">优惠: {{reportPayFeeDetailInfo.totalPreferentialAmount}}元</span>
+                                <span class="col-md-1 margin-left">减免: {{reportPayFeeDetailInfo.totalDeductionAmount}}元</span>
+                                <span class="col-md-1 margin-left">滞纳金: {{reportPayFeeDetailInfo.totalLateFee}}元</span>
+                                <span class="col-md-1 margin-left">空置房打折: {{reportPayFeeDetailInfo.totalVacantHousingDiscount}}元</span>
+                                <span class="col-md-1 margin-left">空置房减免: {{reportPayFeeDetailInfo.allVacantHousingReduction}}元</span>
+                            </span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <span class="margin-left">大计应收: {{reportPayFeeDetailInfo.allReceivableAmount}}元</span>
-                            <span class="margin-left">大计实收: {{reportPayFeeDetailInfo.allReceivedAmount}}元</span>
+                        <div class="col-md-12">
+                            <span class="margin-left"><span class="col-md-1"><b>大计</b></span>
+                                <span class="col-md-1 margin-left"> 应收: {{reportPayFeeDetailInfo.allReceivableAmount}}元</span>
+                                <span class="col-md-1 margin-left">实收: {{reportPayFeeDetailInfo.allReceivedAmount}}元</span>
+                                <span class="col-md-1 margin-left">优惠: {{reportPayFeeDetailInfo.allPreferentialAmount}}元</span>
+                                <span class="col-md-1 margin-left">减免: {{reportPayFeeDetailInfo.allDeductionAmount}}元</span>
+                                <span class="col-md-1 margin-left">滞纳金: {{reportPayFeeDetailInfo.allLateFee}}元</span>
+                                <span class="col-md-1 margin-left">空置房打折: {{reportPayFeeDetailInfo.allVacantHousingDiscount}}元</span>
+                                <span class="col-md-1 margin-left">空置房减免: {{reportPayFeeDetailInfo.allVacantHousingReduction}}元</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <vc:create path="frame/pagination"></vc:create>
                         </div>
                     </div>
                 </div>
