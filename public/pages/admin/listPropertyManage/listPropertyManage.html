@@ -20,8 +20,8 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" placeholder="请输入管理员" v-model="listPropertyManageInfo.conditions.staffName"
-                                class=" form-control">
+                            <input type="text" placeholder="请输入管理员"
+                                v-model="listPropertyManageInfo.conditions.staffName" class=" form-control">
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
@@ -30,7 +30,8 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryListPropertyMethod()">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryListPropertyMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
@@ -57,6 +58,7 @@
                                 <th class="text-center">管理员</th>
                                 <th class="text-center">管理员电话</th>
                                 <th class="text-center">管理员ID</th>
+                                <th class="text-center">状态</th>
                                 <th class="text-center">创建时间</th>
                                 <th class="text-right">操作</th>
                             </tr>
@@ -67,6 +69,7 @@
                                 <td class="text-center">{{listProperty.staffName}}</td>
                                 <td class="text-center">{{listProperty.staffTel}}</td>
                                 <td class="text-center">{{listProperty.staffId}}</td>
+                                <td class="text-center">{{listProperty.state == '48002'?'限制登录':'正常'}}</td>
                                 <td class="text-center">{{listProperty.createTime}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
@@ -74,7 +77,13 @@
                                             v-on:click="_openPropertysCommunityModel(listProperty)">隶属小区
                                         </button>
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openPropertysCommunityModel(listProperty)">免密登录
+                                            v-on:click="_openAdminLoginPropertyModel(listProperty)">登录
+                                        </button>
+                                        <button class="btn-white btn btn-xs" v-if="listProperty.state != '48002'"
+                                            v-on:click="_openUpdateStoreStateModel(listProperty,'48002')">限制登录
+                                        </button>
+                                        <button class="btn-white btn btn-xs" v-else
+                                            v-on:click="_openUpdateStoreStateModel(listProperty,'48001')">恢复登录
                                         </button>
                                     </div>
                                 </td>
@@ -96,5 +105,7 @@
     </div>
 
     <vc:create path="common/storesCommunity"></vc:create>
+    <vc:create path="admin/adminLoginProperty"></vc:create>
+    <vc:create path="admin/updateStoreState"></vc:create>
 
 </div>

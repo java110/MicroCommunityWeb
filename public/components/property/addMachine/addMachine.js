@@ -21,6 +21,7 @@
                 unitId: '',
                 unitName: '',
                 roomId: '',
+                paId: '',
                 locationTypeCd: '',
                 locationObjId: '',
                 roomName: '',
@@ -31,7 +32,7 @@
             }
         },
         _initMethod: function () {
-            
+
         },
         _initEvent: function () {
             vc.on('addMachine', 'openAddMachineModal', function () {
@@ -51,6 +52,10 @@
 
                 if (_param.hasOwnProperty("roomId")) {
                     vc.component.addMachineInfo.roomId = _param.roomId;
+                }
+
+                if (_param.hasOwnProperty("paId")) {
+                    vc.component.addMachineInfo.paId = _param.paId;
                 }
             });
         },
@@ -165,6 +170,8 @@
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.unitId;
                 } else if (vc.component.addMachineInfo.locationType == '3000') {
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.roomId;
+                } else if (vc.component.addMachineInfo.locationType == '4000') {
+                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.paId;
                 } else {
                     vc.toast("设备位置值错误");
                     return;
@@ -224,7 +231,14 @@
                     direction: '',
                     locationType: '',
                     locations: _locations,
-                    attrs: []
+                    attrs: [],
+                    floorId: '',
+                    floorNum: '',
+                    floorName: '',
+                    unitId: '',
+                    unitName: '',
+                    roomId: '',
+                    paId: ''
                 };
             },
             _initAddMachineData: function () {

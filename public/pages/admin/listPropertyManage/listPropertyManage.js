@@ -15,7 +15,7 @@
                     name: '',
                     staffName: '',
                     tel: '',
-                    relCd:'600311000001'
+                    relCd: '600311000001'
                 }
             }
         },
@@ -58,6 +58,20 @@
             },
             _openPropertysCommunityModel: function (_listProperty) {
                 vc.emit('storesCommunity', 'openStoresCommunity', _listProperty);
+            },
+            _openAdminLoginPropertyModel: function (_listProperty) {
+                vc.emit('adminLoginProperty', 'login', {
+                    username: _listProperty.staffName,
+                    userId: _listProperty.staffId,
+                    curUserName: vc.getData('/nav/getUserInfo').name
+                })
+            },
+            _openUpdateStoreStateModel: function (_listProperty, state) {
+                vc.emit('updateStoreState', 'open', {
+                    storeId: _listProperty.storeId,
+                    state: state,
+                    stateName: state == '48002' ? '限制登录' : '恢复登录'
+                })
             },
             _queryListPropertyMethod: function () {
                 vc.component._listListPropertys(DEFAULT_PAGE, DEFAULT_ROWS);

@@ -1,4 +1,5 @@
-<div id = "editLocationModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div id="editLocationModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -7,25 +8,30 @@
                     <div>
                         <div>
                             <div class="form-group row">
-         <label class="col-sm-2 col-form-label">位置名称</label>
-         <div class="col-sm-10">
-           <input v-model="editLocationInfo.locationName"                   type="text" placeholder="必填，请填写位置名称" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">位置类型</label>
-         <div class="col-sm-10">
-<select class="custom-select" v-model="editLocationInfo.locationType">
-         <option selected  disabled value="">必填，请选择位置类型</option>
-         <option  value="1000">小区</option>
-<option  value="2000">单元</option>
-<option  value="3000">房屋</option>
-  </select>         </div>
-</div>
+                                <label class="col-sm-2 col-form-label">位置名称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editLocationInfo.locationName" type="text" placeholder="必填，请填写位置名称"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">位置类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editLocationInfo.locationType">
+                                        <option selected disabled value="">必填，请选择位置类型</option>
+                                        <option value="1000">小区</option>
+                                        <option value="2000">单元</option>
+                                        <option value="3000">房屋</option>
+                                        <option value="4000">停车场</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editLocation()" ><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editLocation()"><i
+                                        class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">取消</button>
                             </div>
                         </div>
                     </div>

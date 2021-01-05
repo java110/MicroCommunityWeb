@@ -19,6 +19,16 @@
                 totalReceivedAmount: 0.0,
                 allReceivableAmount: 0.0,
                 allReceivedAmount: 0.0,
+                totalPreferentialAmount: 0.0,
+                totalDeductionAmount: 0.0,
+                totalLateFee: 0.0,
+                totalVacantHousingDiscount: 0.0,
+                totalVacantHousingReduction: 0.0,
+                allPreferentialAmount: 0.0,
+                allDeductionAmount: 0.0,
+                allLateFee: 0.0,
+                allVacantHousingDiscount: 0.0,
+                allVacantHousingReduction: 0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -133,17 +143,78 @@
                         vc.component.reportPayFeeDetailInfo.total = _reportPayFeeDetailInfo.total;
                         vc.component.reportPayFeeDetailInfo.records = _reportPayFeeDetailInfo.records;
                         vc.component.reportPayFeeDetailInfo.fees = _reportPayFeeDetailInfo.data;
-                        if (_reportPayFeeDetailInfo.data.length > 0) {
-                            vc.component.reportPayFeeDetailInfo.totalReceivableAmount = _reportPayFeeDetailInfo.data[0].totalReceivableAmount;
-                            vc.component.reportPayFeeDetailInfo.totalReceivedAmount = _reportPayFeeDetailInfo.data[0].totalReceivedAmount;
-                            vc.component.reportPayFeeDetailInfo.allReceivableAmount = _reportPayFeeDetailInfo.data[0].allReceivableAmount;
-                            vc.component.reportPayFeeDetailInfo.allReceivedAmount = _reportPayFeeDetailInfo.data[0].allReceivedAmount;
-                            vc.component.reportPayFeeDetailInfo.feeConfigDtos = _reportPayFeeDetailInfo.data[0].feeConfigDtos;
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalReceivableAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalReceivableAmount = _reportPayFeeDetailInfo.sumTotal.totalReceivableAmount;
                         } else {
                             vc.component.reportPayFeeDetailInfo.totalReceivableAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalReceivedAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalReceivedAmount = _reportPayFeeDetailInfo.sumTotal.totalReceivedAmount;
+                        } else {
                             vc.component.reportPayFeeDetailInfo.totalReceivedAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allReceivableAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allReceivableAmount = _reportPayFeeDetailInfo.sumTotal.allReceivableAmount;
+                        } else {
                             vc.component.reportPayFeeDetailInfo.allReceivableAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allReceivedAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allReceivedAmount = _reportPayFeeDetailInfo.sumTotal.allReceivedAmount;
+                        } else {
                             vc.component.reportPayFeeDetailInfo.allReceivedAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalPreferentialAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalPreferentialAmount = _reportPayFeeDetailInfo.sumTotal.totalPreferentialAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalPreferentialAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalDeductionAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalDeductionAmount = _reportPayFeeDetailInfo.sumTotal.totalDeductionAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalDeductionAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalLateFee) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalLateFee = (_reportPayFeeDetailInfo.sumTotal.totalLateFee)*(-1);
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalLateFee = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalVacantHousingDiscount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalVacantHousingDiscount = _reportPayFeeDetailInfo.sumTotal.totalVacantHousingDiscount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalVacantHousingDiscount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalVacantHousingReduction) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalVacantHousingReduction = _reportPayFeeDetailInfo.sumTotal.totalVacantHousingReduction;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalVacantHousingReduction = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allPreferentialAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allPreferentialAmount = _reportPayFeeDetailInfo.sumTotal.allPreferentialAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allPreferentialAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allDeductionAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allDeductionAmount = _reportPayFeeDetailInfo.sumTotal.allDeductionAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allDeductionAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allLateFee) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allLateFee = (_reportPayFeeDetailInfo.sumTotal.allLateFee)*(-1);
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allLateFee = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allVacantHousingDiscount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allVacantHousingDiscount = _reportPayFeeDetailInfo.sumTotal.allVacantHousingDiscount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allVacantHousingDiscount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allVacantHousingReduction) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allVacantHousingReduction = _reportPayFeeDetailInfo.sumTotal.allVacantHousingReduction;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allVacantHousingReduction = "0.0";
+                        }
+                        if (_reportPayFeeDetailInfo.data.length > 0) {
+                            vc.component.reportPayFeeDetailInfo.feeConfigDtos = _reportPayFeeDetailInfo.data[0].feeConfigDtos;
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportPayFeeDetailInfo.records,
@@ -179,17 +250,78 @@
                         vc.component.reportPayFeeDetailInfo.total = _reportPayFeeDetailInfo.total;
                         vc.component.reportPayFeeDetailInfo.records = _reportPayFeeDetailInfo.records;
                         vc.component.reportPayFeeDetailInfo.fees = _reportPayFeeDetailInfo.data;
-                        if (_reportPayFeeDetailInfo.data.length > 0) {
-                            vc.component.reportPayFeeDetailInfo.totalReceivableAmount = _reportPayFeeDetailInfo.data[0].totalReceivableAmount;
-                            vc.component.reportPayFeeDetailInfo.totalReceivedAmount = _reportPayFeeDetailInfo.data[0].totalReceivedAmount;
-                            vc.component.reportPayFeeDetailInfo.allReceivableAmount = _reportPayFeeDetailInfo.data[0].allReceivableAmount;
-                            vc.component.reportPayFeeDetailInfo.allReceivedAmount = _reportPayFeeDetailInfo.data[0].allReceivedAmount;
-                            vc.component.reportPayFeeDetailInfo.feeConfigDtos = _reportPayFeeDetailInfo.data[0].feeConfigDtos;
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalReceivableAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalReceivableAmount = _reportPayFeeDetailInfo.sumTotal.totalReceivableAmount;
                         } else {
-                            vc.component.reportPayFeeDetailInfo.totalReceivableAmount = 0.0;
-                            vc.component.reportPayFeeDetailInfo.totalReceivedAmount = 0.0;
-                            vc.component.reportPayFeeDetailInfo.allReceivableAmount = 0.0;
-                            vc.component.reportPayFeeDetailInfo.allReceivedAmount = 0.0;
+                            vc.component.reportPayFeeDetailInfo.totalReceivableAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalReceivedAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalReceivedAmount = _reportPayFeeDetailInfo.sumTotal.totalReceivedAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalReceivedAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allReceivableAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allReceivableAmount = _reportPayFeeDetailInfo.sumTotal.allReceivableAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allReceivableAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allReceivedAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allReceivedAmount = _reportPayFeeDetailInfo.sumTotal.allReceivedAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allReceivedAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalPreferentialAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalPreferentialAmount = _reportPayFeeDetailInfo.sumTotal.totalPreferentialAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalPreferentialAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalDeductionAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalDeductionAmount = _reportPayFeeDetailInfo.sumTotal.totalDeductionAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalDeductionAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalLateFee) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalLateFee = (_reportPayFeeDetailInfo.sumTotal.totalLateFee)*(-1);
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalLateFee = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalVacantHousingDiscount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalVacantHousingDiscount = _reportPayFeeDetailInfo.sumTotal.totalVacantHousingDiscount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalVacantHousingDiscount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.totalVacantHousingReduction) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalVacantHousingReduction = _reportPayFeeDetailInfo.sumTotal.totalVacantHousingReduction;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalVacantHousingReduction = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allPreferentialAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allPreferentialAmount = _reportPayFeeDetailInfo.sumTotal.allPreferentialAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allPreferentialAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allDeductionAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allDeductionAmount = _reportPayFeeDetailInfo.sumTotal.allDeductionAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allDeductionAmount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allLateFee) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allLateFee = (_reportPayFeeDetailInfo.sumTotal.allLateFee)*(-1);
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allLateFee = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allVacantHousingDiscount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allVacantHousingDiscount = _reportPayFeeDetailInfo.sumTotal.allVacantHousingDiscount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allVacantHousingDiscount = "0.0";
+                        }
+                        if (typeof(_reportPayFeeDetailInfo.sumTotal.allVacantHousingReduction) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allVacantHousingReduction = _reportPayFeeDetailInfo.sumTotal.allVacantHousingReduction;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allVacantHousingReduction = "0.0";
+                        }
+                        if (_reportPayFeeDetailInfo.data.length > 0) {
+                            vc.component.reportPayFeeDetailInfo.feeConfigDtos = _reportPayFeeDetailInfo.data[0].feeConfigDtos;
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportPayFeeDetailInfo.records,

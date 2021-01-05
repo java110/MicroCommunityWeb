@@ -17,6 +17,7 @@
                 unitId: '',
                 unitNum: '',
                 roomId: '',
+                paId:'',
                 locationTypeCd: '',
                 locationObjId: '',
                 roomNum: '',
@@ -68,6 +69,11 @@
                         unitNum: vc.component.editMachineInfo.unitNum,
                         roomId: vc.component.editMachineInfo.roomId,
                         roomNum: vc.component.editMachineInfo.roomNum,
+                    });
+                }else if (vc.component.editMachineInfo.locationTypeCd == '4000') {
+                    vc.emit('editMachine', 'parkingAreaSelect2', 'setParkingArea', {
+                        paId: vc.component.editMachineInfo.paId,
+                        num: vc.component.editMachineInfo.num
                     });
                 }
 
@@ -232,7 +238,9 @@
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.unitId;
                 } else if (vc.component.editMachineInfo.locationType == '3000') {
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.roomId;
-                } else {
+                } else if (vc.component.editMachineInfo.locationType == '4000') {
+                    vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.paId;
+                }else {
                     vc.toast("设备位置值错误");
                     return;
                 }
@@ -289,7 +297,8 @@
                     direction: '',
                     locationType: '',
                     locations: _locations,
-                    attrs: _attrs
+                    attrs: _attrs,
+                    paId:''
 
                 }
             },
