@@ -49,7 +49,7 @@
 
             },
             _addOwnerCar: function () { //出租
-                vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace');
+                vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace?ownerId='+$that.simplifyOwnerCarInfo.ownerId);
             },
             _openEditOwnerCar: function (_car) {
                 vc.emit('editCar', 'openEditCar', _car);
