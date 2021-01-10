@@ -17,7 +17,7 @@
                 unitId: '',
                 unitNum: '',
                 roomId: '',
-                paId:'',
+                paId: '',
                 locationTypeCd: '',
                 locationObjId: '',
                 roomNum: '',
@@ -70,7 +70,7 @@
                         roomId: vc.component.editMachineInfo.roomId,
                         roomNum: vc.component.editMachineInfo.roomNum,
                     });
-                }else if (vc.component.editMachineInfo.locationTypeCd == '4000') {
+                } else if (vc.component.editMachineInfo.locationTypeCd == '4000') {
                     vc.emit('editMachine', 'parkingAreaSelect2', 'setParkingArea', {
                         paId: vc.component.editMachineInfo.paId,
                         num: vc.component.editMachineInfo.num
@@ -232,7 +232,9 @@
             },
             editMachine: function () {
                 vc.component.editMachineInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.editMachineInfo.locationType != '2000' && vc.component.editMachineInfo.locationType != '3000') { //大门时直接写 小区ID
+                if (vc.component.editMachineInfo.locationType != '2000'
+                    && vc.component.editMachineInfo.locationType != '3000'
+                    && vc.component.editMachineInfo.locationType != '4000') { //大门时直接写 小区ID
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.communityId;
                 } else if (vc.component.editMachineInfo.locationType == '2000') {
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.unitId;
@@ -240,7 +242,7 @@
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.roomId;
                 } else if (vc.component.editMachineInfo.locationType == '4000') {
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.paId;
-                }else {
+                } else {
                     vc.toast("设备位置值错误");
                     return;
                 }
@@ -298,7 +300,7 @@
                     locationType: '',
                     locations: _locations,
                     attrs: _attrs,
-                    paId:''
+                    paId: ''
 
                 }
             },
