@@ -19,11 +19,10 @@
             vc.on('addShops', 'addShopsModel', function (_params) {
                 vc.component.refreshAddShopsInfo();
                 $('#addShopsModel').modal('show');
-                vc.component.addShopsInfo.floorId = _params.floorId;
                 vc.component.addShopsInfo.communityId = vc.getCurrentCommunity().communityId;
             });
 
-            vc.on('addShops', 'notify', function (_param) {
+            vc.on('addShops', 'addShops', 'notify', function (_param) {
                 if (_param.hasOwnProperty('floorId')) {
                     $that.addShopsInfo.floorId = _param.floorId;
                 }
@@ -122,8 +121,7 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#addShopsModel').modal('hide');
-                            vc.emit('room', 'loadData', {
-                                floorId: vc.component.addShopsInfo.floorId
+                            vc.emit('shops', 'loadData', {
                             });
                             return;
                         }

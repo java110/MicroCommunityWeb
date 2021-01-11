@@ -1649,12 +1649,26 @@
                 //vc.component.addFeeConfigInfo.startTime = value;
                 _callBack(value);
             });
-        //防止时间插件多次点击失去焦点
-        // $('.' + _dateStr)[0].addEventListener('click', myfunc)
-        //
-        // function myfunc(e) {
-        //     e.currentTarget.blur();
-        // }
+    }
+
+    vcFramework.initDate = function (_dateStr, _callBack) {
+        $('.' + _dateStr).datetimepicker({
+            language: 'zh-CN',
+            minView: 'month',
+            fontAwesome: 'fa',
+            format: 'yyyy-mm-dd',
+            initTime: true,
+            initialDate: new Date(),
+            autoClose: 1,
+            todayBtn: true
+
+        });
+        $('.' + _dateStr).datetimepicker()
+            .on('changeDate', function (ev) {
+                var value = $('.' + _dateStr).val();
+                //vc.component.addFeeConfigInfo.startTime = value;
+                _callBack(value);
+            });
     }
 
     vcFramework.initDateMonth = function (_dateStr, _callBack) {

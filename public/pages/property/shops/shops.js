@@ -94,6 +94,10 @@
             _openAddShops: function () {
                 vc.emit('addShops', 'addShopsModel',{});
             },
+            _openHireShopsModel:function(_shops){
+                _shops.shopsState='2006';
+                vc.emit('bindOwnerShops', 'bindOwnerShopsModel',_shops);
+            },
             _openEditShopsModel: function (_shops) {
                 //_shops.floorId = vc.component.shopsInfo.conditions.floorId;
                 vc.emit('editShops', 'openEditShopsModal', _shops);
