@@ -6,9 +6,9 @@
     var DEFAULT_ROW = 10;
     vc.extends({
         data: {
-            roomUnits: [],
-            roomInfo: {
-                rooms: [],
+            shopsUnits: [],
+            shopsInfo: {
+                shopss: [],
                 total: 0,
                 records: 1,
                 floorId: '',
@@ -24,49 +24,47 @@
                     roomId: '',
                     state: '',
                     section: '',
-                    roomType:'1010301'
+                    roomType: '2020602'
                 },
                 listColumns: []
-
             }
         },
         _initMethod: function () {
-            vc.component.roomInfo.conditions.floorId = vc.getParam("floorId");
-            vc.component.roomInfo.conditions.floorName = vc.getParam("floorName");
-            vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+            vc.component.shopsInfo.conditions.floorId = vc.getParam("floorId");
+            vc.component.shopsInfo.conditions.floorName = vc.getParam("floorName");
+            vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
             //根据 参数查询相应数据
             //vc.component._loadDataByParam();
         },
         _initEvent: function () {
-            vc.on('room', 'chooseFloor', function (_param) {
-                vc.component.roomInfo.conditions.floorId = _param.floorId;
-                vc.component.roomInfo.conditions.floorName = _param.floorName;
+            vc.on('shops', 'chooseFloor', function (_param) {
+                vc.component.shopsInfo.conditions.floorId = _param.floorId;
+                vc.component.shopsInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
 
             });
-            vc.on('room', 'listRoom', function (_param) {
-                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+            vc.on('shops', 'listShops', function (_param) {
+                vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
             });
-            vc.on('room', 'loadData', function (_param) {
-                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+            vc.on('shops', 'loadData', function (_param) {
+                vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component.listRoom(_currentPage, DEFAULT_ROW);
+                vc.component.listShops(_currentPage, DEFAULT_ROW);
             });
         },
         methods: {
-            listRoom: function (_page, _row) {
-                vc.component.roomInfo.conditions.page = _page;
-                vc.component.roomInfo.conditions.row = _row;
-                vc.component.roomInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+            listShops: function (_page, _row) {
+                vc.component.shopsInfo.conditions.page = _page;
+                vc.component.shopsInfo.conditions.row = _row;
+                vc.component.shopsInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params: JSON.parse(JSON.stringify(vc.component.roomInfo.conditions))
+                    params: JSON.parse(JSON.stringify(vc.component.shopsInfo.conditions))
                 };
-                let _allNum = $that.roomInfo.conditions.roomId;
-                if (_allNum.split('-').length == 3) {
+                let _allNum = $that.shopsInfo.conditions.roomId;
+                if (_allNum.split('-').length == 2) {
                     let _allNums = _allNum.split('-')
                     param.params.floorNum = _allNums[0].trim();
-                    param.params.unitNum = _allNums[1].trim();
                     param.params.roomNum = _allNums[2].trim();
                     param.params.roomId = '';
                 }
@@ -75,17 +73,17 @@
                     'listRoom',
                     param,
                     function (json, res) {
-                        var listRoomData = JSON.parse(json);
+                        var listShopsData = JSON.parse(json);
 
-                        vc.component.roomInfo.total = listRoomData.total;
-                        vc.component.roomInfo.records = listRoomData.records;
-                        vc.component.roomInfo.rooms = listRoomData.rooms;
+                        vc.component.shopsInfo.total = listShopsData.total;
+                        vc.component.shopsInfo.records = listShopsData.records;
+                        vc.component.shopsInfo.shopss = listShopsData.rooms;
 
-                        $that.dealRoomAttr(listRoomData.rooms);
+                        $that.dealShopsAttr(listShopsData.shopss);
 
                         vc.emit('pagination', 'init', {
-                            total: vc.component.roomInfo.records,
-                            dataCount: vc.component.roomInfo.total,
+                            total: vc.component.shopsInfo.records,
+                            dataCount: vc.component.shopsInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -93,22 +91,22 @@
                     }
                 );
             },
-            _openAddRoom: function () {
-                vc.jumpToPage("/admin.html#/pages/property/addRoomBinding");
+            _openAddShops: function () {
+                vc.emit('addShops', 'addShopsModel',{});
             },
-            _openEditRoomModel: function (_room) {
-                //_room.floorId = vc.component.roomInfo.conditions.floorId;
-                vc.emit('editRoom', 'openEditRoomModal', _room);
+            _openEditShopsModel: function (_shops) {
+                //_shops.floorId = vc.component.shopsInfo.conditions.floorId;
+                vc.emit('editShops', 'openEditShopsModal', _shops);
             },
-            _openDelRoomModel: function (_room) {
-                //_room.floorId = vc.component.roomInfo.conditions.floorId;
-                vc.emit('deleteRoom', 'openRoomModel', _room);
+            _openDelShopsModel: function (_shops) {
+                //_shops.floorId = vc.component.shopsInfo.conditions.floorId;
+                vc.emit('deleteShops', 'openShopsModel', _shops);
             },
             /**
                 根据楼ID加载房屋
             **/
             loadUnits: function (_floorId) {
-                vc.component.addRoomUnits = [];
+                vc.component.addShopsUnits = [];
                 var param = {
                     params: {
                         floorId: _floorId,
@@ -116,14 +114,14 @@
                     }
                 }
                 vc.http.get(
-                    'room',
+                    'shops',
                     'loadUnits',
                     param,
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var tmpUnits = JSON.parse(json);
-                            vc.component.roomUnits = tmpUnits;
+                            vc.component.shopsUnits = tmpUnits;
 
                             return;
                         }
@@ -135,8 +133,8 @@
                         vc.toast(errInfo);
                     });
             },
-            _queryRoomMethod: function () {
-                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+            _queryShopsMethod: function () {
+                vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
             },
             showState: function (_state) {
                 if (_state == '2001') {
@@ -153,29 +151,29 @@
                 }
             },
             _loadDataByParam: function () {
-                vc.component.roomInfo.conditions.floorId = vc.getParam("floorId");
-                vc.component.roomInfo.conditions.floorId = vc.getParam("floorName");
+                vc.component.shopsInfo.conditions.floorId = vc.getParam("floorId");
+                vc.component.shopsInfo.conditions.floorId = vc.getParam("floorName");
                 //如果 floodId 没有传 则，直接结束
-                /* if(!vc.notNull(vc.component.roomInfo.conditions.floorId)){
+                /* if(!vc.notNull(vc.component.shopsInfo.conditions.floorId)){
                      return ;
                  }*/
 
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        floorId: vc.component.roomInfo.conditions.floorId
+                        floorId: vc.component.shopsInfo.conditions.floorId
                     }
                 }
 
                 vc.http.get(
-                    'room',
+                    'shops',
                     'loadFloor',
                     param,
                     function (json, res) {
                         if (res.status == 200) {
                             var _floorInfo = JSON.parse(json);
                             var _tmpFloor = _floorInfo.apiFloorDataVoList[0];
-                            /*vc.emit('roomSelectFloor','chooseFloor', _tmpFloor);
+                            /*vc.emit('shopsSelectFloor','chooseFloor', _tmpFloor);
                             */
 
                             return;
@@ -190,76 +188,76 @@
 
             },
             _moreCondition: function () {
-                if (vc.component.roomInfo.moreCondition) {
-                    vc.component.roomInfo.moreCondition = false;
+                if (vc.component.shopsInfo.moreCondition) {
+                    vc.component.shopsInfo.moreCondition = false;
                 } else {
-                    vc.component.roomInfo.moreCondition = true;
+                    vc.component.shopsInfo.moreCondition = true;
                 }
             },
             _openChooseFloorMethod: function () {
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            dealRoomAttr: function (rooms) {
-                $that._getColumns(rooms,function(){
-                    rooms.forEach(item => {
+            dealShopsAttr: function (shopss) {
+                $that._getColumns(shopss, function () {
+                    shopss.forEach(item => {
                         $that._getColumnsValue(item);
                     });
                 });
-                
+
             },
-            _getColumnsValue: function (_room) {
-                _room.listValues = [];
-                if (!_room.hasOwnProperty('roomAttrDto') || _room.roomAttrDto.length < 1) {
-                    $that.roomInfo.listColumns.forEach(_value => {
-                        _room.listValues.push('');
+            _getColumnsValue: function (_shops) {
+                _shops.listValues = [];
+                if (!_shops.hasOwnProperty('shopsAttrDto') || _shops.shopsAttrDto.length < 1) {
+                    $that.shopsInfo.listColumns.forEach(_value => {
+                        _shops.listValues.push('');
                     })
                     return;
                 }
 
-                let _roomAttrDtos = _room.roomAttrDto;
+                let _shopsAttrDtos = _shops.shopsAttrDto;
 
-                $that.roomInfo.listColumns.forEach(_value => {
+                $that.shopsInfo.listColumns.forEach(_value => {
                     let _tmpValue = '';
-                    _roomAttrDtos.forEach(_attrItem =>{
-                        if(_value == _attrItem.specName){
+                    _shopsAttrDtos.forEach(_attrItem => {
+                        if (_value == _attrItem.specName) {
                             _tmpValue = _attrItem.valueName;
                         }
                     })
-                    _room.listValues.push(_tmpValue);
+                    _shops.listValues.push(_tmpValue);
                 })
 
             },
-            _getColumns: function (_rooms,_call) {
-                $that.roomInfo.listColumns = [];
-                vc.getAttrSpec('building_room_attr', function (data) {
-                    $that.roomInfo.listColumns = [];
+            _getColumns: function (_shopss, _call) {
+                $that.shopsInfo.listColumns = [];
+                vc.getAttrSpec('building_shops_attr', function (data) {
+                    $that.shopsInfo.listColumns = [];
                     data.forEach(item => {
-                        if(item.listShow == 'Y'){
-                            $that.roomInfo.listColumns.push(item.specName);
+                        if (item.listShow == 'Y') {
+                            $that.shopsInfo.listColumns.push(item.specName);
                         }
                     });
                     _call();
                 });
                 // 循环所有房屋信息
-                // for (let _roomIndex = 0; _roomIndex < _rooms.length; _roomIndex++) {
-                //     let _room = _rooms[_roomIndex];
+                // for (let _shopsIndex = 0; _shopsIndex < _shopss.length; _shopsIndex++) {
+                //     let _shops = _shopss[_shopsIndex];
 
-                //     if (!_room.hasOwnProperty('roomAttrDto')) {
+                //     if (!_shops.hasOwnProperty('shopsAttrDto')) {
                 //         break;
                 //     }
-                //     let _roomAttrDtos = _room.roomAttrDto;
-                //     if (_roomAttrDtos.length < 1) {
+                //     let _shopsAttrDtos = _shops.shopsAttrDto;
+                //     if (_shopsAttrDtos.length < 1) {
                 //         break;
                 //     }
                 //     //获取房屋信息中 任意属性作为 列
-                //     for (let _roomAttrIndex = 0; _roomAttrIndex < _roomAttrDtos.length; _roomAttrIndex++) {
-                //         let attrItem = _roomAttrDtos[_roomAttrIndex];
+                //     for (let _shopsAttrIndex = 0; _shopsAttrIndex < _shopsAttrDtos.length; _shopsAttrIndex++) {
+                //         let attrItem = _shopsAttrDtos[_shopsAttrIndex];
                 //         if (attrItem.listShow == 'Y') {
-                //             $that.roomInfo.listColumns.push(attrItem.specName);
+                //             $that.shopsInfo.listColumns.push(attrItem.specName);
                 //         }
                 //     }
 
-                //     if ($that.roomInfo.listColumns.length > 0) {
+                //     if ($that.shopsInfo.listColumns.length > 0) {
                 //         break;
                 //     }
                 // }
