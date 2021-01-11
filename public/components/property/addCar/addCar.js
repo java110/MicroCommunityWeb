@@ -140,7 +140,7 @@
                 let _carNumType = $that.addCarInfo.carNumType;
                 if(_carNumType == 'S'){
                    $that.addCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
-                   $that.addCarInfo.endTime = '2037-01-01 00:00:00';
+                   $that.addCarInfo.endTime = '2037-01-01';
                 }
 
                 if(vc.component.addCarValidate()){
@@ -150,11 +150,12 @@
                 }
             },
             _initDateInfo: function () {
-                vc.component.addCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
+                vc.component.addCarInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.startTime').datetimepicker({
+                    minView: "month",
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
@@ -167,9 +168,10 @@
                         vc.component.addCarInfo.startTime = value;
                     });
                 $('.endTime').datetimepicker({
+                    minView: "month",
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
