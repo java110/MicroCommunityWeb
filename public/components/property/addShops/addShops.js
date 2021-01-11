@@ -111,9 +111,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'addShops',
-                    'save',
+                vc.http.apiPost(
+                    'room.saveShops',
                     JSON.stringify(vc.component.addShopsInfo),
                     {
                         emulateJSON: true
