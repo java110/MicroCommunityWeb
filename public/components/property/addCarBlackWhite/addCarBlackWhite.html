@@ -1,4 +1,4 @@
-<div id="addCarBlackWhiteModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div id="addCarBlackWhiteModel" class="modal fade"  role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -15,6 +15,14 @@
                                         <option value="1111">黑名单</option>
                                         <option value="2222">白名单</option>
                                     </select></div>
+                            </div>
+                            <div class="form-group row" >
+                                <label class="col-sm-2 col-form-label">归属停车场</label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/parkingAreaSelect2" parentModal="addCarBlackWhiteModel"
+                                        callBackListener="addCarBlackWhite" callBackFunction="notify" namespace="addCarBlackWhite">
+                                    </vc:create>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">车牌号</label>
