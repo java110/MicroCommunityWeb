@@ -12,6 +12,7 @@
                 <option value="6">成员姓名</option>
                 <option value="7">成员手机号</option>
                 <option value="8">成员身份证</option>
+                <option value="9">商铺号</option>
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
@@ -81,10 +82,16 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3"  v-if="simplifyAcceptanceInfo.roomType=='1010301'">
                             <div class="form-group">
                                 <label class="col-form-label">房屋编号：</label>
                                 <label>{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"  v-else>
+                            <div class="form-group">
+                                <label class="col-form-label">商铺编号：</label>
+                                <label>{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">

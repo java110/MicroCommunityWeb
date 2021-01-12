@@ -31,6 +31,9 @@
                             vc.emit('room','loadData',{
                                 floorId:vc.component.deleteRoomInfo.floorId
                             });
+                            vc.emit('shops','loadData',{
+                                floorId:vc.component.deleteRoomInfo.floorId
+                            });
                             return ;
                         }
                         vc.toast(json);

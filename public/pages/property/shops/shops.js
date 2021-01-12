@@ -24,7 +24,8 @@
                     roomId: '',
                     state: '',
                     section: '',
-                    roomType: '2020602'
+                    roomType: '2020602',
+                    roomName:''
                 },
                 listColumns: []
             }
@@ -33,8 +34,6 @@
             vc.component.shopsInfo.conditions.floorId = vc.getParam("floorId");
             vc.component.shopsInfo.conditions.floorName = vc.getParam("floorName");
             vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
-            //根据 参数查询相应数据
-            //vc.component._loadDataByParam();
         },
         _initEvent: function () {
             vc.on('shops', 'chooseFloor', function (_param) {
@@ -61,11 +60,12 @@
                 var param = {
                     params: JSON.parse(JSON.stringify(vc.component.shopsInfo.conditions))
                 };
-                let _allNum = $that.shopsInfo.conditions.roomId;
+                let _allNum = $that.shopsInfo.conditions.roomName;
                 if (_allNum.split('-').length == 2) {
                     let _allNums = _allNum.split('-')
                     param.params.floorNum = _allNums[0].trim();
-                    param.params.roomNum = _allNums[2].trim();
+                    param.params.unitNum = '0';
+                    param.params.roomNum = _allNums[1].trim();
                     param.params.roomId = '';
                 }
                 //发送get请求
@@ -92,11 +92,15 @@
                 );
             },
             _openAddShops: function () {
-                vc.emit('addShops', 'addShopsModel',{});
+                vc.emit('addShops', 'addShopsModel', {});
             },
-            _openHireShopsModel:function(_shops){
-                _shops.shopsState='2006';
-                vc.emit('bindOwnerShops', 'bindOwnerShopsModel',_shops);
+            _openHireShopsModel: function (_shops) {
+                _shops.shopsState = '2006';
+                vc.emit('bindOwnerShops', 'bindOwnerShopsModel', _shops);
+            },
+            _openSellShopsModel: function (_shops) {
+                _shops.shopsState = '2007';
+                vc.emit('bindOwnerShops', 'bindOwnerShopsModel', _shops);
             },
             _openEditShopsModel: function (_shops) {
                 //_shops.floorId = vc.component.shopsInfo.conditions.floorId;
@@ -104,38 +108,10 @@
             },
             _openDelShopsModel: function (_shops) {
                 //_shops.floorId = vc.component.shopsInfo.conditions.floorId;
-                vc.emit('deleteShops', 'openShopsModel', _shops);
+                vc.emit('deleteRoom', 'openRoomModel', _shops);
             },
-            /**
-                根据楼ID加载房屋
-            **/
-            loadUnits: function (_floorId) {
-                vc.component.addShopsUnits = [];
-                var param = {
-                    params: {
-                        floorId: _floorId,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                }
-                vc.http.get(
-                    'shops',
-                    'loadUnits',
-                    param,
-                    function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
-                            var tmpUnits = JSON.parse(json);
-                            vc.component.shopsUnits = tmpUnits;
-
-                            return;
-                        }
-                        vc.toast(json);
-                    },
-                    function (errInfo, error) {
-                        console.log('请求失败处理');
-
-                        vc.toast(errInfo);
-                    });
+            _openDeleteShopsOwnerModel: function (_shops) {
+                vc.jumpToPage('/admin.html#/pages/property/deleteOwnerRoom?ownerId='+_shops.ownerId+"&roomType="+_shops.roomType);
             },
             _queryShopsMethod: function () {
                 vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
@@ -154,43 +130,6 @@
                     return "未知";
                 }
             },
-            _loadDataByParam: function () {
-                vc.component.shopsInfo.conditions.floorId = vc.getParam("floorId");
-                vc.component.shopsInfo.conditions.floorId = vc.getParam("floorName");
-                //如果 floodId 没有传 则，直接结束
-                /* if(!vc.notNull(vc.component.shopsInfo.conditions.floorId)){
-                     return ;
-                 }*/
-
-                var param = {
-                    params: {
-                        communityId: vc.getCurrentCommunity().communityId,
-                        floorId: vc.component.shopsInfo.conditions.floorId
-                    }
-                }
-
-                vc.http.get(
-                    'shops',
-                    'loadFloor',
-                    param,
-                    function (json, res) {
-                        if (res.status == 200) {
-                            var _floorInfo = JSON.parse(json);
-                            var _tmpFloor = _floorInfo.apiFloorDataVoList[0];
-                            /*vc.emit('shopsSelectFloor','chooseFloor', _tmpFloor);
-                            */
-
-                            return;
-                        }
-                        vc.toast(json);
-                    },
-                    function (errInfo, error) {
-                        console.log('请求失败处理');
-
-                        vc.toast(errInfo);
-                    });
-
-            },
             _moreCondition: function () {
                 if (vc.component.shopsInfo.moreCondition) {
                     vc.component.shopsInfo.moreCondition = false;
@@ -198,16 +137,13 @@
                     vc.component.shopsInfo.moreCondition = true;
                 }
             },
-            _openChooseFloorMethod: function () {
-                vc.emit('searchFloor', 'openSearchFloorModel', {});
-            },
+
             dealShopsAttr: function (shopss) {
                 $that._getColumns(shopss, function () {
                     shopss.forEach(item => {
                         $that._getColumnsValue(item);
                     });
                 });
-
             },
             _getColumnsValue: function (_shops) {
                 _shops.listValues = [];
@@ -242,29 +178,7 @@
                     });
                     _call();
                 });
-                // 循环所有房屋信息
-                // for (let _shopsIndex = 0; _shopsIndex < _shopss.length; _shopsIndex++) {
-                //     let _shops = _shopss[_shopsIndex];
 
-                //     if (!_shops.hasOwnProperty('shopsAttrDto')) {
-                //         break;
-                //     }
-                //     let _shopsAttrDtos = _shops.shopsAttrDto;
-                //     if (_shopsAttrDtos.length < 1) {
-                //         break;
-                //     }
-                //     //获取房屋信息中 任意属性作为 列
-                //     for (let _shopsAttrIndex = 0; _shopsAttrIndex < _shopsAttrDtos.length; _shopsAttrIndex++) {
-                //         let attrItem = _shopsAttrDtos[_shopsAttrIndex];
-                //         if (attrItem.listShow == 'Y') {
-                //             $that.shopsInfo.listColumns.push(attrItem.specName);
-                //         }
-                //     }
-
-                //     if ($that.shopsInfo.listColumns.length > 0) {
-                //         break;
-                //     }
-                // }
             }
         }
     });

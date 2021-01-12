@@ -15,7 +15,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写商铺编号 格式 楼栋-商铺" class="form-control form-control-sm"
-                                    v-model="shopsInfo.conditions.shopsId">
+                                    v-model="shopsInfo.conditions.roomName">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -103,13 +103,19 @@
                                     {{item}}
                                 </td>
                                 <td class="text-right">
-                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
+                                    <div class="btn-group"
+                                        v-if="vc.hasPrivilege('502020082493857941')&& shops.state != '2007'">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openHireShopsModel(shops)">出租</button>
                                     </div>
-                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
+                                    <div class="btn-group"
+                                        v-if="vc.hasPrivilege('502020082493857941') && shops.state == '2008'">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditShopsModel(shops)">出售</button>
+                                            v-on:click="_openSellShopsModel(shops)">出售</button>
+                                    </div>
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941') && shops.state != '2008' ">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteShopsOwnerModel(shops)">解绑</button>
                                     </div>
                                     <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
                                         <button class="btn-white btn btn-xs"
@@ -140,7 +146,7 @@
 
     <vc:create path="property/addShops" emitChooseFloor="shops" emitLoadData="shops"></vc:create>
     <vc:create path="property/bindOwnerShops" emitChooseFloor="shops" emitLoadData="shops"></vc:create>
-    <!--
+
     <vc:create path="property/editShops"></vc:create>
-    <vc:create path="property/deleteShops"></vc:create> -->
+    <vc:create path="property/deleteRoom"></vc:create>
 </div>

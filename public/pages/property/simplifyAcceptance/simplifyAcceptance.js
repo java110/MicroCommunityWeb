@@ -29,6 +29,7 @@
                 feeCoefficient: '',
                 stateName: '',
                 roomName: '',
+                roomType: '',
                 sex: 0
             }
         },
@@ -85,6 +86,9 @@
                         break;
                     case '8':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入家庭成员身份证';
+                        break;
+                    case '9':
+                        $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入商铺编号 楼栋-商铺 如1-1';
                         break;
                     default:
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入房屋编号 楼栋-单元-房屋 如1-1-1';
@@ -188,7 +192,8 @@
                     roomName: '',
                     sex: 0,
                     ownerRemark: '',
-                    roomRemark: ''
+                    roomRemark: '',
+                    roomType:''
                 }
             }
 

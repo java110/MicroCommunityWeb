@@ -156,7 +156,7 @@
                         }
 
                         let _room = listRoomData.rooms[0];
-                        let _payerObjName = _room.floorNum + "栋" + _room.unitNum + "单元" + _room.roomNum;
+                        let _payerObjName = _room.roomType == '1010301' ? _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum : _room.floorNum + "-" + _room.roomNum;
 
                         if (_room.hasOwnProperty('ownerName')) {
                             _payerObjName += ('(' + _room.ownerName + ')')

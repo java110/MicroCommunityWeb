@@ -37,7 +37,7 @@
                     $that.addMeterWaterInfo.hasRoom = true;
                     $that.addMeterWaterInfo.roomId = _param.roomId;
                     $that.addMeterWaterInfo.objId = _param.roomId;
-                    $that.addMeterWaterInfo.objName = _param.roomName;
+                    $that.addMeterWaterInfo.objName = _param.roomName.replace('0单元', ''); //处理商铺
                     $that.addMeterWaterInfo.ownerName = _param.roomName + '(' + _param.ownerName + ')';
                     $that._queryPreMeterWater(_param.roomId);
                 }
@@ -47,7 +47,7 @@
                 if (_param.hasOwnProperty("roomId")) {
                     vc.component.addMeterWaterInfo.roomId = _param.roomId;
                     vc.component.addMeterWaterInfo.objId = _param.roomId;
-                    $that.addMeterWaterInfo.objName = _param.name;
+                    $that.addMeterWaterInfo.objName = _param.name.replace('0单元', ''); //处理商铺;
                     $that._queryPreMeterWater(_param.roomId);
                 }
             });

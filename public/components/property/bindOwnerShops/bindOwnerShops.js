@@ -13,7 +13,7 @@
                 endTime: '',
                 remark: '',
                 communityId: '',
-                shopsState:'2006'
+                shopsState: '2006'
             }
         },
         _initMethod: function () {
@@ -36,6 +36,10 @@
                 vc.component.refreshAddShopsInfo();
                 $that.bindOwnerShopsInfo.roomId = _params.roomId;
                 $that.bindOwnerShopsInfo.shopsState = _params.shopsState;
+                if (_params.shopsState == '2007') {
+                    $that.bindOwnerShopsInfo.startTime = vc.dateFormat(new Date());
+                    $that.bindOwnerShopsInfo.endTime = '2037-01-01';
+                }
                 $that.bindOwnerShopsInfo.shopsName = _params.floorNum + '-' + _params.roomNum;
                 $('#bindOwnerShopsModel').modal('show');
                 vc.component.bindOwnerShopsInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -111,14 +115,15 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#bindOwnerShopsModel').modal('hide');
                             vc.emit('shops', 'loadData', {
                             });
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -149,7 +154,7 @@
                         if (listOwnerData.total > 0) {
                             $that.bindOwnerShopsInfo.ownerId = owners[0].ownerId;
                             $that.bindOwnerShopsInfo.ownerName = owners[0].name;
-                        }else{
+                        } else {
                             $that.bindOwnerShopsInfo.ownerId = '';
                             $that.bindOwnerShopsInfo.ownerName = '';
                         }
@@ -170,7 +175,7 @@
                     endTime: '',
                     remark: '',
                     communityId: '',
-                    shopsState:'2006'
+                    shopsState: '2006'
                 }
             }
         }

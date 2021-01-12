@@ -9,18 +9,28 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">费用名称</label>
                 <div class="col-sm-10">
-                  <input v-model="feeSharingInfo.feeName" type="text" placeholder="必填，请填写费用名称"
-                    class="form-control ">
+                  <input v-model="feeSharingInfo.feeName" type="text" placeholder="必填，请填写费用名称" class="form-control ">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">费用类型</label>
                 <div class="col-sm-10">
-                    <select class="custom-select" v-model="feeSharingInfo.feeTypeCd">
-                        <option selected disabled value="">必填，请选择费用类型</option>
-                        <option value="888800010017" >公摊费</option>
-                    </select></div>
-            </div>
+                  <select class="custom-select" v-model="feeSharingInfo.feeTypeCd">
+                    <option selected disabled value="">必填，请选择费用类型</option>
+                    <option value="888800010017">公摊费</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">房屋类型</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="feeSharingInfo.roomType" @change="feeSharingChangeRoomType()">
+                    <option selected disabled value="">必填，请选择房屋类型</option>
+                    <option value="1010301">普通房屋</option>
+                    <option value="2020602">商铺</option>
+                  </select>
+                </div>
+              </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">使用量</label>
                 <div class="col-sm-10">
@@ -35,7 +45,7 @@
                     <option selected disabled value="">必填，请选择公摊范围</option>
                     <option value="1001">当前小区</option>
                     <option value="2002">楼栋</option>
-                    <option value="3003">单元</option>
+                    <option value="3003" v-if="feeSharingInfo.roomType == '1010301'">单元</option>
                   </select>
                 </div>
               </div>
@@ -49,40 +59,48 @@
               <div class="form-group row" v-show="feeSharingInfo.scope == '3003'">
                 <label class="col-sm-2 col-form-label">单元</label>
                 <div class="col-sm-10">
-                  <vc:create path="property/unitSelect2" parentModal="feeSharingModel"
-                    callBackListener="feeSharing" callBackFunction="notify" namespace="feeSharing">
+                  <vc:create path="property/unitSelect2" parentModal="feeSharingModel" callBackListener="feeSharing"
+                    callBackFunction="notify" namespace="feeSharing">
                   </vc:create>
                 </div>
               </div>
-              <div class="form-group row" >
+              <div class="form-group row">
                 <label class="col-sm-2 col-form-label">房屋状态</label>
-                <div class="col-sm-10">
-                    <div class="checkbox custom-control-inline" >
-                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2001">已入住</label>
-                    </div>
-                    <div class="checkbox custom-control-inline">
-                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2003">已交房</label>
-                    </div>
-                    <div class="checkbox custom-control-inline">
-                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2005">已装修</label>
-                    </div>
-                    <div class="checkbox custom-control-inline">
-                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2004">未入住</label>
-                    </div>
+                <div class="col-sm-10" v-if="feeSharingInfo.roomType == '1010301'">
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2001">已入住</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2003">已交房</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2005">已装修</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2004">未入住</label>
+                  </div>
                 </div>
-            </div>
+                <div class="col-sm-10" v-else>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2006">已出租</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2007">已出售</label>
+                  </div>
+                </div>
+              </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">公摊公式</label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="feeSharingInfo.formulaId">
                     <option selected disabled value="">必填，请选择收费项目</option>
-                    <option v-for="(item,index) in feeSharingInfo.formulas" :key="index"
-                      v-bind:value="item.formulaId">{{item.formulaValue}}({{item.formulaDesc}})
+                    <option v-for="(item,index) in feeSharingInfo.formulas" :key="index" v-bind:value="item.formulaId">
+                      {{item.formulaValue}}({{item.formulaDesc}})
                     </option>
                   </select>
                 </div>
               </div>
-              
+
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">开始时间</label>
                 <div class="col-sm-10">

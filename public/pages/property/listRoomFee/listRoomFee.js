@@ -13,12 +13,19 @@
                 floorNum: '',
                 unitNum: '',
                 roomNum: '',
-                ownerName: ''
+                ownerName: '',
+                roomType: ''
             }
         },
         _initMethod: function () {
             if (vc.notNull(vc.getParam("roomNum"))) {
-                vc.component.listRoomCreateFeeInfo.roomName = vc.getParam('floorNum') + "号楼" + vc.getParam('unitNum') + "单元" + vc.getParam("roomNum") + "室";
+                $that.listRoomCreateFeeInfo.roomType = vc.getParam('roomType');
+
+                if ($that.listRoomCreateFeeInfo.roomType == '1010301') {
+                    vc.component.listRoomCreateFeeInfo.roomName = vc.getParam('floorNum') + "-" + vc.getParam('unitNum') + "-" + vc.getParam("roomNum");
+                } else {
+                    vc.component.listRoomCreateFeeInfo.roomName = vc.getParam('floorNum') + "-" + vc.getParam("roomNum");
+                }
                 vc.component.listRoomCreateFeeInfo.roomId = vc.getParam('roomId');
                 $that.listRoomCreateFeeInfo.builtUpArea = vc.getParam('builtUpArea');
                 $that.listRoomCreateFeeInfo.floorNum = vc.getParam('floorNum');
@@ -128,7 +135,7 @@
                 if (_fee.state == '2009001') {
                     return "-";
                 }
-                return vc.dateSub(_fee.deadlineTime,_fee.feeFlag);
+                return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
             },
             _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {

@@ -15,7 +15,8 @@
                 feeName: '',
                 formulas: [],
                 remark: '',
-                roomState: ['2001']
+                roomState: ['2001'],
+                roomType:'1010301'
 
             }
         },
@@ -227,8 +228,16 @@
                     feeName: '',
                     formulas: _formulas,
                     remark: '',
-                    roomState: ['2001']
+                    roomState: ['2001'],
+                    roomType:'1010301'
                 };
+            },
+            feeSharingChangeRoomType: function () {
+                if ($that.roomCreateFeeAddInfo.roomType == '1010301') {
+                    $that.roomCreateFeeAddInfo.roomState = ['2001'];
+                } else {
+                    $that.roomCreateFeeAddInfo.roomState = ['2006'];
+                }
             }
         }
     });

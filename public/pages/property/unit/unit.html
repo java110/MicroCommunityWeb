@@ -92,7 +92,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="unit in unitInfo.units">
+                        <tr v-for="unit in unitInfo.units" v-if="unit.unitNum != '0'">
                             <!-- <td>
                                 {{unit.unitId}}
                             </td> -->

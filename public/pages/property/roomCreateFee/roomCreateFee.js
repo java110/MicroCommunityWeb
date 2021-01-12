@@ -27,7 +27,8 @@
                     state: '',
                     section: '',
                     allNum: '',
-                    idCard: ''
+                    idCard: '',
+                    roomType: ''
                 }
             },
             currentPage: 1,
@@ -41,17 +42,12 @@
                 vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
                 vc.component.roomCreateFeeInfo.conditions.floorName = vc.getParam("floorName");
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
-            }else{
+            } else {
                 console.log('here is tempData : ', _tempData);
                 vc.component.roomCreateFeeInfo.conditions = _tempData.conditions;
                 $that.updateCurrentPage(_tempData.currentPage);
                 vc.component.listRoom(_tempData.currentPage, DEFAULT_ROW);
             }
-
-            // $that.simplifyAcceptanceInfo.searchType = _tempData.searchType;
-            // $that.simplifyAcceptanceInfo.searchValue = _tempData.searchValue;
-            // $that.simplifyAcceptanceInfo.searchPlaceholder = _tempData.searchPlaceholder;
-            // $that._doSearch();
 
         },
         _initEvent: function () {
@@ -67,6 +63,7 @@
             });
         },
         methods: {
+
             listRoom: function (_page, _row) {
                 if (vc.component.roomCreateFeeInfo.conditions.floorName == '' || vc.component.roomCreateFeeInfo.conditions.floorName == null) {
                     vc.component.roomCreateFeeInfo.conditions.floorId = ''
@@ -84,6 +81,12 @@
                     param.params.floorNum = _allNums[0].trim();
                     param.params.unitNum = _allNums[1].trim();
                     param.params.roomNum = _allNums[2].trim();
+                }
+                if (_allNum.split('-').length == 2) {
+                    let _allNums = _allNum.split('-')
+                    param.params.floorNum = _allNums[0].trim();
+                    param.params.unitNum = '0';
+                    param.params.roomNum = _allNums[1].trim();
                 }
                 //业主名称选框去空
                 param.params.ownerName = param.params.ownerName.trim();
@@ -160,6 +163,7 @@
                 vc.component.roomCreateFeeInfo.conditions.roomNum = "";
                 vc.component.roomCreateFeeInfo.conditions.floorId = "";
                 vc.component.roomCreateFeeInfo.conditions.roomId = "";
+                vc.component.roomCreateFeeInfo.conditions.roomType = "";
                 let _conditions = JSON.parse(JSON.stringify(vc.component.roomCreateFeeInfo.conditions));
                 let param = {
                     params: _conditions
