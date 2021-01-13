@@ -12,7 +12,7 @@
                 payObjId: '',
                 payObjType: '',
                 roomName: '',
-                receiptId: '',
+                receiptIds: '',
                 remark: ''
             }
         },
@@ -125,13 +125,13 @@
                         $that._closeDoOwePayFeeModal();
                         if (_json.code == 0) {
 
-                            let _feeInfo = {
-                                totalAmount: $that.owePayFeeOrderInfo.feePrices,
-                                fees: _printFees
-                            }
                             let _data = JSON.parse(json).data;
+                            let receiptIds = '';
+                            _data.forEach(item=>{
+                                receiptIds +=(item.receiptId+',');
+                            })
 
-                            $that.owePayFeeOrderInfo.receiptId = _data.receiptId;
+                            $that.owePayFeeOrderInfo.receiptIds = receiptIds;
 
                             //vc.saveData('_feeInfo', _feeInfo);
                             //关闭model
@@ -157,7 +157,7 @@
             },
             _printAndBack: function () {
                 $('#payFeeResult').modal("hide");
-                window.open("/print.html#/pages/property/printPayFee?receiptId=" + $that.owePayFeeOrderInfo.receiptId)
+                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + $that.owePayFeeOrderInfo.receiptIds)
             },
             _dealSelectFee: function () {
                 let totalFee = 0.00;
