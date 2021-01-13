@@ -60,8 +60,12 @@
                 );
 
             },
-            _openOwnerFee: function (_owner) {
-                vc.emit('editMachineTranslate', 'openEditMachineTranslateModal', _owner);
+            _openShopsOwnerFee: function (_owner) {
+                //vc.emit('editMachineTranslate', 'openEditMachineTranslateModal', _owner);
+                vc.jumpToPage('/admin.html#/pages/property/listRoomFee?roomId='
+                +$that.simplifyShopsHireLogInfo.roomId
+                +"&ownerId="+$that.simplifyShopsHireLogInfo.ownerId
+                +"&hireOwnerFee=1")
             },
             clearSimplifyShopsHireLogInfo: function () {
                 $that.simplifyShopsHireLogInfo = {

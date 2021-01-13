@@ -14,26 +14,22 @@
                 unitNum: '',
                 roomNum: '',
                 ownerName: '',
-                roomType: ''
+                roomType: '',
+                hireOwnerFee: '0',
+                ownerId: ''
             }
         },
         _initMethod: function () {
-            if (vc.notNull(vc.getParam("roomNum"))) {
-                $that.listRoomCreateFeeInfo.roomType = vc.getParam('roomType');
-
-                if ($that.listRoomCreateFeeInfo.roomType == '1010301') {
-                    vc.component.listRoomCreateFeeInfo.roomName = vc.getParam('floorNum') + "-" + vc.getParam('unitNum') + "-" + vc.getParam("roomNum");
-                } else {
-                    vc.component.listRoomCreateFeeInfo.roomName = vc.getParam('floorNum') + "-" + vc.getParam("roomNum");
-                }
-                vc.component.listRoomCreateFeeInfo.roomId = vc.getParam('roomId');
-                $that.listRoomCreateFeeInfo.builtUpArea = vc.getParam('builtUpArea');
-                $that.listRoomCreateFeeInfo.floorNum = vc.getParam('floorNum');
-                $that.listRoomCreateFeeInfo.unitNum = vc.getParam('unitNum');
-                $that.listRoomCreateFeeInfo.roomNum = vc.getParam('roomNum');
-                $that.listRoomCreateFeeInfo.ownerName = vc.getParam('ownerName');
+            if (vc.notNull(vc.getParam("roomId"))) {
+                $that._listRoom(vc.getParam("roomId"));
             }
-            vc.component._loadListRoomCreateFeeInfo(1, 10);
+            if (vc.notNull(vc.getParam("hireOwnerFee"))) {
+                $that.listRoomCreateFeeInfo.hireOwnerFee = vc.getParam("hireOwnerFee");
+            }
+
+            if (vc.notNull(vc.getParam('ownerId'))) {
+                $that.listRoomCreateFeeInfo.ownerId = vc.getParam("ownerId");
+            }
         },
         _initEvent: function () {
             vc.on('listRoomFee', 'notify', function (_param) {
@@ -51,7 +47,8 @@
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        payerObjId: vc.component.listRoomCreateFeeInfo.roomId
+                        payerObjId: vc.component.listRoomCreateFeeInfo.roomId,
+                        ownerId: $that.listRoomCreateFeeInfo.ownerId
                     }
                 };
                 //发送get请求
@@ -149,7 +146,38 @@
                     roomName: $that.listRoomCreateFeeInfo.roomName,
                     ownerName: $that.listRoomCreateFeeInfo.ownerName
                 });
-            }
+            },
+            _listRoom: function (roomId) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        roomId: roomId,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('roomCreateFee',
+                    'listRoom',
+                    param,
+                    function (json, res) {
+                        let listRoomData = JSON.parse(json);
+                        if (listRoomData.total < 1) {
+                            return;
+                        }
+                        vc.copyObject(listRoomData.rooms[0], $that.listRoomCreateFeeInfo);
+                        if (listRoomData.rooms[0].roomType == '1010301') {
+                            $that.listRoomCreateFeeInfo.roomName = listRoomData.rooms[0].floorNum + "-" + listRoomData.rooms[0].unitNum + "-" + listRoomData.rooms[0].roomNum;
+                        } else {
+                            $that.listRoomCreateFeeInfo.roomName = listRoomData.rooms[0].floorNum + "-" + listRoomData.rooms[0].roomNum;
+                        }
+                        // 换存搜索条件
+                        vc.emit('listRoomFee', 'notify', {})
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);
