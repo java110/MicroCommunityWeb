@@ -58,9 +58,9 @@
                             errInfo: "楼编号不能为空"
                         },
                         {
-                            limit: "num",
-                            param: "",
-                            errInfo: "不是有效的数字"
+                            limit:"maxin",
+                            param:"1,12",
+                            errInfo:"楼编号长度必须在1位至12位"
                         },
                     ],
                     'editFloorInfo.floorArea': [
