@@ -179,6 +179,10 @@
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
                         v-on:click="changeTab('simplifyFeeReceipt')">补打收据</a>
                 </li>
+                <li class="nav-item" v-if="simplifyAcceptanceInfo.roomType == '2020602'">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
+                        v-on:click="changeTab('simplifyShopsHireLog')">出租记录</a>
+                </li>
             </ul>
         </div>
 
@@ -209,7 +213,9 @@
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'">
             <vc:create path="property/simplifyFeeReceipt"></vc:create>
         </div>
-        
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'">
+            <vc:create path="property/simplifyShopsHireLog"></vc:create>
+        </div>
 
     </div>
 

@@ -71,22 +71,22 @@
                     <td class="text-center">{{fee.startTime}}</td>
                     <td class="text-center">{{_getEndTime(fee)}}</td>
                     <td class="text-center">{{_getDeadlineTime(fee)}}</td>
-                    <td class="text-center" v-if="fee.computingFormula == '5005'">
+                    <td class="text-center" v-if="fee.computingFormula == '5005'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>上期度数：{{fee.preDegrees}}</div>
                         <div>本期度数：{{fee.curDegrees}} </div>
                         <div>单价：{{fee.squarePrice}} </div>
                         <div>附加费：{{fee.additionalAmount}}</div>
                     </td>
-                    <td class="text-center" v-else-if="fee.computingFormula == '6006'">
+                    <td class="text-center" v-else-if="fee.computingFormula == '6006'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>用量：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
                         <div>单价：{{fee.squarePrice}} </div>
                         <div>附加费：{{fee.additionalAmount}}</div>
                     </td>
-                    <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
+                    <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
                         <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
                     </td>
-                    <td class="text-center" v-else>
+                    <td class="text-center" v-else :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>单价：{{fee.squarePrice}}</div>
                         <div v-if="fee.feeFlag == '1003006'">附加费：{{fee.additionalAmount}}</div>
                         <div v-else>固定费：{{fee.additionalAmount}}</div>
