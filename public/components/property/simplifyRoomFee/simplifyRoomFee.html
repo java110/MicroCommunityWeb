@@ -21,13 +21,18 @@
             </select>
         </div>
         <div class="col-lg-2 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
-            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.state" @change="_changeSimplifyRoomConfigId()">
-                <option selected  value="">请选择状态</option>
+            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.state"
+                @change="_changeSimplifyRoomConfigId()">
+                <option selected value="">请选择状态</option>
                 <option value="2008001">收费中</option>
                 <option value="2009001">收费结束</option>
             </select>
         </div>
         <div class="col-lg-6 text-right" v-if="simplifyRoomFeeInfo.roomId">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_openTempImportRoomFeeModal()">
+                临时收费
+            </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                 v-on:click="_openProxyFeeModal()">
                 代收费用
@@ -71,18 +76,21 @@
                     <td class="text-center">{{fee.startTime}}</td>
                     <td class="text-center">{{_getEndTime(fee)}}</td>
                     <td class="text-center">{{_getDeadlineTime(fee)}}</td>
-                    <td class="text-center" v-if="fee.computingFormula == '5005'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
+                    <td class="text-center" v-if="fee.computingFormula == '5005'"
+                        :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>上期度数：{{fee.preDegrees}}</div>
                         <div>本期度数：{{fee.curDegrees}} </div>
                         <div>单价：{{fee.squarePrice}} </div>
                         <div>附加费：{{fee.additionalAmount}}</div>
                     </td>
-                    <td class="text-center" v-else-if="fee.computingFormula == '6006'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
+                    <td class="text-center" v-else-if="fee.computingFormula == '6006'"
+                        :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>用量：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
                         <div>单价：{{fee.squarePrice}} </div>
                         <div>附加费：{{fee.additionalAmount}}</div>
                     </td>
-                    <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
+                    <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'"
+                        :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
                         <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
                     </td>
@@ -120,6 +128,8 @@
             </div>
         </div>
     </div>
+
+    <vc:create path="property/tempImportRoomFee"></vc:create>
 
 
 </div>

@@ -155,6 +155,13 @@
                     feeId: _fee.feeId
                 });
             },
+            _openTempImportRoomFeeModal:function(){
+                vc.emit('tempImportRoomFee', 'openImportRoomFeeModal',{
+                    roomId: $that.simplifyRoomFeeInfo.roomId,
+                    roomName: $that.simplifyRoomFeeInfo.roomName,
+                    ownerName: $that.simplifyRoomFeeInfo.name
+                })
+            },
             clearSimplifyRoomFeeInfo: function () {
                 let _feeConfigs = $that.roomCreateFeeAddInfo.feeTypeCds;
                 $that.simplifyRoomFeeInfo = {
