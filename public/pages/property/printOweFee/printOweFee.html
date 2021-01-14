@@ -22,7 +22,7 @@
                         <th scope="col" class="text-center">项目名称</th>
                         <th scope="col" class="text-center">费用期间</th>
                         <th scope="col" class="text-center">单位</th>
-                        <th scope="col" class="text-center">面积/用量</th>
+                        <th scope="col" class="text-center">面积</th>
                         <th scope="col" class="text-center">单价</th>
                         <th scope="col" class="text-center">金额</th>
                     </tr>
@@ -33,7 +33,7 @@
                         <td class="text-center">{{vc.dateFormat(item.endTime)}}至{{vc.dateFormat(item.deadlineTime)}}
                         </td>
                         <td class="text-center">元</td>
-                        <td class="text-center"></td>
+                        <td class="text-center">{{printPayFeeInfo.builtUpArea}}</td>
                         <td class="text-center">{{item.squarePrice}}/{{item.additionalAmount}}</td>
                         <td class="text-center">{{item.feePrice}}</td>
                     </tr>

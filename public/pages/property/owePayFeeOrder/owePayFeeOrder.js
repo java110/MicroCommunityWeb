@@ -99,7 +99,8 @@
                                 squarePrice: _oweFeeItem.squarePrice,
                                 additionalAmount: _oweFeeItem.additionalAmount,
                                 feeName: _oweFeeItem.feeName,
-                                amount: _oweFeeItem.feePrice
+                                amount: _oweFeeItem.feePrice,
+                                roomName:$that.owePayFeeOrderInfo.roomName
                             });
                         }
                     })
@@ -177,7 +178,7 @@
                 vc.goBack();
             },
             _printOwnOrder: function () {
-                vc.saveData('java110_printFee', $that.owePayFeeOrderInfo.oweFees);
+                vc.saveData('java110_printFee', {fees:$that.owePayFeeOrderInfo.oweFees,roomName:$that.owePayFeeOrderInfo.roomName});
                 //打印催交单
                 window.open('/print.html#/pages/property/printOweFee?roomId=' + $that.owePayFeeOrderInfo.payObjId)
             }
