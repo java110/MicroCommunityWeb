@@ -299,6 +299,9 @@
                     currentPage: $that.currentPage
                 });
             },
+            _downloadCollectionLetterOrder:function(){
+                vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId );
+            }
         }
     });
 })(window.vc);
