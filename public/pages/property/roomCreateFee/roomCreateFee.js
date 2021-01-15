@@ -301,6 +301,9 @@
             },
             _downloadCollectionLetterOrder:function(){
                 vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId );
+            },
+            _downloadRoomCollectionLetterOrder:function(_room){
+                vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId +"&roomId="+_room.roomId );
             }
         }
     });

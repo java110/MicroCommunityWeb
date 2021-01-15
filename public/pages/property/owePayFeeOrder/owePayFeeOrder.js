@@ -29,7 +29,7 @@
             let _payObjType = vc.getParam('payObjType');
             if (!vc.notNull(_payObjId)) {
                 vc.toast('非法操作');
-                vc.getBack();
+               vc.getBack();
                 return;
             }
             $that.owePayFeeOrderInfo.payObjId = _payObjId;

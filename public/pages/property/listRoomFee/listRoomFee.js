@@ -16,7 +16,7 @@
                 ownerName: '',
                 roomType: '',
                 hireOwnerFee: '0',
-                ownerId: ''
+                urlOwnerId: ''
             }
         },
         _initMethod: function () {
@@ -28,7 +28,7 @@
             }
 
             if (vc.notNull(vc.getParam('ownerId'))) {
-                $that.listRoomCreateFeeInfo.ownerId = vc.getParam("ownerId");
+                $that.listRoomCreateFeeInfo.urlOwnerId = vc.getParam("ownerId");
             }
         },
         _initEvent: function () {
@@ -48,7 +48,7 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         payerObjId: vc.component.listRoomCreateFeeInfo.roomId,
-                        ownerId: $that.listRoomCreateFeeInfo.ownerId
+                        ownerId: $that.listRoomCreateFeeInfo.urlOwnerId
                     }
                 };
                 //发送get请求
