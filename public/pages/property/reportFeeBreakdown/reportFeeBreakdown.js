@@ -143,6 +143,8 @@
                 vc.component.reportFeeBreakdownInfo.conditions.startTime = "";
                 vc.component.reportFeeBreakdownInfo.conditions.endTime = "";
                 vc.component.reportFeeBreakdownInfo.conditions.feeTypeCd = "";
+                // 清除下拉框选项
+                vc.component.reportFeeBreakdownInfo.roomUnits = [];
                 var param = {
                     params: vc.component.reportFeeBreakdownInfo.conditions
                 };

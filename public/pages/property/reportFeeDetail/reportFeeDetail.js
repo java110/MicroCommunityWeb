@@ -150,6 +150,8 @@
                 vc.component.reportFeeDetailInfo.conditions.startTime = '';
                 vc.component.reportFeeDetailInfo.conditions.endTime = '';
                 vc.component.reportFeeDetailInfo.conditions.configId = '';
+                // 清除下拉框选项
+                vc.component.reportFeeDetailInfo.roomUnits = [];
                 var param = {
                     params: vc.component.reportFeeDetailInfo.conditions
                 };

@@ -1,25 +1,17 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editApplyRoomDiscountInfo: {
                 ardId: '',
-                discountId: '',
                 startTime: '',
                 endTime: '',
                 checkRemark: '',
-                state: '',
-                discounts: []
+                createRemark: '',
+                state: ''
             }
         },
         _initMethod: function () {
-            vc.initDateTime('editStartTime', function (_value) {
-                $that.editApplyRoomDiscountInfo.startTime = _value;
-            });
-            vc.initDateTime('editEndTime', function (_value) {
-                $that.editApplyRoomDiscountInfo.endTime = _value;
-            });
-            $that._loadEditApplyRoomDiscount();
+            vc.component._initEeditApplyRoomDiscountDateInfo();
         },
         _initEvent: function () {
             vc.on('editApplyRoomDiscount', 'openEditApplyRoomDiscountModal', function (_params) {
@@ -30,23 +22,59 @@
             });
         },
         methods: {
+            _initEeditApplyRoomDiscountDateInfo: function () {
+                $('.editStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editStartTime").val();
+                        vc.component.editApplyRoomDiscountInfo.startTime = value;
+                    });
+                $('.editEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editEndTime").val();
+                        var start = Date.parse(new Date(vc.component.editApplyRoomDiscountInfo.startTime))
+                        var end = Date.parse(new Date(value))
+                        if (start - end >= 0) {
+                            vc.toast("计费终止时间必须大于计费起始时间")
+                            $(".editEndTime").val('')
+                        } else {
+                            vc.component.editApplyRoomDiscountInfo.endTime = value;
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             editApplyRoomDiscountValidate: function () {
                 return vc.validate.validate({
                     editApplyRoomDiscountInfo: vc.component.editApplyRoomDiscountInfo
                 }, {
-                    'editApplyRoomDiscountInfo.discountId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "折扣不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "30",
-                            errInfo: "折扣错误"
-                        },
-                    ],
-
                     'editApplyRoomDiscountInfo.startTime': [
                         {
                             limit: "required",
@@ -95,7 +123,6 @@
                             param: "",
                             errInfo: "验房状态不能为空"
                         }]
-
                 });
             },
             editApplyRoomDiscount: function () {
@@ -122,49 +149,19 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
             refreshEditApplyRoomDiscountInfo: function () {
-                let _discounts = $that.editApplyRoomDiscountInfo.discounts;
                 vc.component.editApplyRoomDiscountInfo = {
                     ardId: '',
-                    discountId: '',
                     startTime: '',
                     endTime: '',
                     checkRemark: '',
-                    state: '',
-                    discounts: _discounts
+                    createRemark: '',
+                    state: ''
                 }
-            },
-            _loadEditApplyRoomDiscount: function () {
-
-                if ($that.addPayFeeConfigDiscountInfo.discountType == '') {
-                    return;
-                }
-                $that.addPayFeeConfigDiscountInfo.discounts = [];
-                var param = {
-                    params: {
-                        page: 1,
-                        row: 100,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        discountType: '3003'
-                    }
-                };
-                //发送get请求
-                vc.http.apiGet('/feeDiscount/queryFeeDiscount',
-                    param,
-                    function (json, res) {
-                        let _feeDiscountManageInfo = JSON.parse(json);
-
-                        $that.editApplyRoomDiscountInfo.discounts = _feeDiscountManageInfo.data;
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
             }
         }
     });
-
 })(window.vc, window.vc.component);

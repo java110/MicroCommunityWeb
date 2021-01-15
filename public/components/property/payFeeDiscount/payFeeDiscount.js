@@ -9,6 +9,9 @@
             payFeeDiscountInfo: {
                 feeDiscounts: [],
                 feeId: '',
+                payerObjId: '',
+                payerObjType: '',
+                endTime: '',
                 communityId: vc.getCurrentCommunity().communityId,
                 cycles: 1,
                 quanDiscount: false,
@@ -49,7 +52,10 @@
                         row: DEFAULT_ROWS,
                         feeId: $that.payFeeDiscountInfo.feeId,
                         communityId: $that.payFeeDiscountInfo.communityId,
-                        cycles: $that.payFeeDiscountInfo.cycles
+                        cycles: $that.payFeeDiscountInfo.cycles,
+                        payerObjId: $that.payFeeDiscountInfo.payerObjId,
+                        payerObjType: $that.payFeeDiscountInfo.payerObjType,
+                        endTime: $that.payFeeDiscountInfo.endTime
                     }
                 };
                 //发送get请求

@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -26,7 +26,6 @@
             $that._listApplyRoomDiscountTypes();
         },
         _initEvent: function () {
-
             vc.on('applyRoomDiscountManage', 'listApplyRoomDiscount', function (_param) {
                 vc.component._listApplyRoomDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -36,18 +35,18 @@
         },
         methods: {
             _listApplyRoomDiscounts: function (_page, _rows) {
-
                 vc.component.applyRoomDiscountManageInfo.conditions.page = _page;
                 vc.component.applyRoomDiscountManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.applyRoomDiscountManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/applyRoomDiscount/queryApplyRoomDiscount',
                     param,
                     function (json, res) {
                         var _applyRoomDiscountManageInfo = JSON.parse(json);
+                        console.log("here is _applyRoomDiscountManageInfo")
+                        console.log(_applyRoomDiscountManageInfo)
                         vc.component.applyRoomDiscountManageInfo.total = _applyRoomDiscountManageInfo.total;
                         vc.component.applyRoomDiscountManageInfo.records = _applyRoomDiscountManageInfo.records;
                         vc.component.applyRoomDiscountManageInfo.applyRoomDiscounts = _applyRoomDiscountManageInfo.data;
@@ -63,18 +62,21 @@
             _openAddApplyRoomDiscountModal: function () {
                 vc.emit('addApplyRoomDiscount', 'openAddApplyRoomDiscountModal', {});
             },
+            //验房
             _openEditApplyRoomDiscountModel: function (_applyRoomDiscount) {
                 vc.emit('editApplyRoomDiscount', 'openEditApplyRoomDiscountModal', _applyRoomDiscount);
+            },
+            //审核
+            _openReviewApplyRoomDiscountModel: function (_applyRoomDiscount) {
+                vc.emit('reviewApplyRoomDiscount', 'openReviewApplyRoomDiscountModal', _applyRoomDiscount);
             },
             _openDeleteApplyRoomDiscountModel: function (_applyRoomDiscount) {
                 vc.emit('deleteApplyRoomDiscount', 'openDeleteApplyRoomDiscountModal', _applyRoomDiscount);
             },
             _queryApplyRoomDiscountMethod: function () {
                 vc.component._listApplyRoomDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _listApplyRoomDiscountTypes: function (_page, _rows) {
-
                 var param = {
                     params: {
                         page: 1,
@@ -100,8 +102,6 @@
                     vc.component.applyRoomDiscountManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

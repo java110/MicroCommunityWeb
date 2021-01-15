@@ -33,7 +33,7 @@
                                         v-bind:value="feeDiscount.discountId"
                                         v-model="payFeeDiscountInfo.selectDiscountIds">
                                 </td>
-                                <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                                <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':(feeDiscount.discountType == '2002'?'违约':'优惠(需要申请)')}}</td>
                                 <td class="text-center">{{feeDiscount.discountName}}</td>
                                 <td class="text-center">
                                     <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">
@@ -42,6 +42,7 @@
                                 <!-- <td class="text-center">{{feeDiscount.discountPrice}}元</td> -->
                                 <td class="text-center" v-if="feeDiscount.discountType == '1001'">{{feeDiscount.discountPrice < 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}元</td>
                                 <td class="text-center" v-if="feeDiscount.discountType == '2002'">{{feeDiscount.discountPrice > 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}元</td>
+                                <td class="text-center" v-if="feeDiscount.discountType == '3003'">{{feeDiscount.discountPrice < 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}元</td>
                             </tr>
                         </tbody>
                         <tfoot>

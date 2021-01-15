@@ -19,6 +19,8 @@
                 receivedAmount: '',
                 communityId: vc.getCurrentCommunity().communityId,
                 payerObjName: '',
+                payerObjId: '',
+                payerObjType: '',
                 squarePrice: '',
                 remark: '',
                 builtUpArea: 0.0,
@@ -139,11 +141,11 @@
                     $that.payFeeOrderInfo.tempCycles = '1';
                 }
                 // 新增缴费周期必选项
-                if($that.payFeeOrderInfo.tempCycles == "" ){
+                if ($that.payFeeOrderInfo.tempCycles == "") {
                     vc.toast("请选择缴费周期");
                     return;
                 }
-                
+
                 if (!vc.component.payFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -227,7 +229,10 @@
                 // 触发折扣组件，计算折扣
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                     feeId: $that.payFeeOrderInfo.feeId,
-                    cycles: _cycles
+                    cycles: _cycles,
+                    payerObjId: $that.payFeeOrderInfo.payerObjId,
+                    payerObjType: $that.payFeeOrderInfo.payerObjType,
+                    endTime: $that.payFeeOrderInfo.endTime
                 });
             },
             /**
@@ -243,7 +248,10 @@
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                     feeId: $that.payFeeOrderInfo.feeId,
-                    cycles: _cycles
+                    cycles: _cycles,
+                    payerObjId: $that.payFeeOrderInfo.payerObjId,
+                    payerObjType: $that.payFeeOrderInfo.payerObjType,
+                    endTime: $that.payFeeOrderInfo.endTime
                 });
             },
 

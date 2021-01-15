@@ -33,12 +33,7 @@
                             limit: "required",
                             param: "",
                             errInfo: "业务类型不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "业务类型格式错误"
-                        },
+                        }
                     ],
                     'editBusinessDatabusInfo.beanName': [
                         {

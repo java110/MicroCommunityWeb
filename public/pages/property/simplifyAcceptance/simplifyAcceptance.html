@@ -16,7 +16,7 @@
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
             <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder"
-                v-model="simplifyAcceptanceInfo.searchValue" @keyup.enter="_doSearch()" />
+                   v-model="simplifyAcceptanceInfo.searchValue" @keyup.enter="_doSearch()"/>
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <button type="button" class="form-control btn btn-primary" @click="_doSearch()">查询</button>
@@ -29,7 +29,7 @@
         <div class="">
             <div class="text-center vc-float-left" style="width: 150px;">
                 <image width="120px" height="140px" v-bind:src="simplifyAcceptanceInfo.ownerPhoto"
-                    @error="errorLoadImg" />
+                       @error="errorLoadImg"/>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -75,11 +75,10 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">业主备注：</label>
-                                <label class="fix-width"  :title="simplifyAcceptanceInfo.ownerRemark">{{simplifyAcceptanceInfo.ownerRemark}}</label>
+                                <label class="fix-width" :title="simplifyAcceptanceInfo.ownerRemark">{{simplifyAcceptanceInfo.ownerRemark}}</label>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
@@ -122,7 +121,8 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">房屋备注：</label>
-                                <label class="fix-width"  :title="simplifyAcceptanceInfo.roomRemark">{{simplifyAcceptanceInfo.roomRemark }}</label>
+                                <label class="fix-width" :title="simplifyAcceptanceInfo.roomRemark">{{simplifyAcceptanceInfo.roomRemark
+                                    }}</label>
                             </div>
                         </div>
                     </div>
@@ -134,47 +134,48 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'}"
-                        v-on:click="changeTab('simplifyRoomFee')">房屋费用</a>
+                       v-on:click="changeTab('simplifyRoomFee')">房屋费用</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'}"
-                        v-on:click="changeTab('simplifyCarFee')">停车费用</a>
+                       v-on:click="changeTab('simplifyCarFee')">停车费用</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}"
-                        v-on:click="changeTab('simplifyOwnerMember')">家庭成员</a>
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}"
+                       v-on:click="changeTab('simplifyOwnerMember')">家庭成员</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'}"
-                        v-on:click="changeTab('simplifyOwnerCar')">车辆信息</a>
+                       v-on:click="changeTab('simplifyOwnerCar')">车辆信息</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'}"
-                        v-on:click="changeTab('simplifyOwnerRepair')">报修单</a>
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'}"
+                       v-on:click="changeTab('simplifyOwnerRepair')">报修单</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerComplaint'}"
-                        v-on:click="changeTab('simplifyOwnerComplaint')">投诉单</a>
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerComplaint'}"
+                       v-on:click="changeTab('simplifyOwnerComplaint')">投诉单</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerAccessContol'}"
-                        v-on:click="changeTab('simplifyOwnerAccessContol')">门禁同步</a>
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerAccessContol'}"
+                       v-on:click="changeTab('simplifyOwnerAccessContol')">门禁同步</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'}"
-                        v-on:click="changeTab('simplifyOwnerTransactionCar')">道闸同步</a>
+                    <a class="nav-link"
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'}"
+                       v-on:click="changeTab('simplifyOwnerTransactionCar')">道闸同步</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
-                        v-on:click="changeTab('simplifyFeeReceipt')">补打收据</a>
+                    <a class="nav-link"
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
+                       v-on:click="changeTab('simplifyFeeReceipt')">补打收据</a>
                 </li>
             </ul>
         </div>
-
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'">
             <vc:create path="property/simplifyRoomFee"></vc:create>
         </div>
@@ -202,21 +203,13 @@
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'">
             <vc:create path="property/simplifyFeeReceipt"></vc:create>
         </div>
-        
-
     </div>
-
     <vc:create path="property/deleteFee"></vc:create>
     <vc:create path="property/editFee"></vc:create>
     <vc:create path="property/roomCreateFeeAdd"></vc:create>
-
     <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
-
     <vc:create path="property/addProxyFee" callBackListener="" callBackFunction=""></vc:create>
-
     <vc:create path="property/searchRoom" emitChooseRoom="simplifyAcceptance" emitLoadData="list" roomFlag="1"
-        showSearchCondition="false"></vc:create>
-
+               showSearchCondition="false"></vc:create>
     <vc:create path="property/editMachineTranslate"></vc:create>
-
 </div>

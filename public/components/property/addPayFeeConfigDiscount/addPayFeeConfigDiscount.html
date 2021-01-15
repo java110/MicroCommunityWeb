@@ -1,5 +1,5 @@
 <div id="addPayFeeConfigDiscountModel" class="modal fade" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -11,11 +11,12 @@
                                 <label class="col-sm-2 col-form-label">折扣类型</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addPayFeeConfigDiscountInfo.discountType"
-                                        @change="_changeAddPayFeeConfigDiscountType()">
+                                            @change="_changeAddPayFeeConfigDiscountType()">
                                         <option selected disabled value="">必填，请选择折扣类型</option>
                                         <option value="1001">优惠</option>
                                         <option value="2002">违约</option>
-                                    </select> </div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">折扣名称</label>
@@ -23,40 +24,45 @@
                                     <select class="custom-select" v-model="addPayFeeConfigDiscountInfo.discountId">
                                         <option selected disabled value="">必填，请选择折扣名称</option>
                                         <option v-for="(item,index) in addPayFeeConfigDiscountInfo.discounts"
-                                            :value="item.discountId">{{item.discountName}}</option>
-                                    </select> </div>
+                                                :value="item.discountId">{{item.discountName}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">缴费起始时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="addPayFeeConfigDiscountInfo.startTime" type="text"
-                                        placeholder="必填，请填写缴费起始时间" class="form-control addPayFeeConfigDiscountStartTime"
-                                        name="startTime">
+                                           placeholder="必填，请填写缴费起始时间"
+                                           class="form-control addPayFeeConfigDiscountStartTime" name="startTime">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">缴费结束时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="addPayFeeConfigDiscountInfo.endTime" type="text"
-                                        placeholder="必填，请填写缴费结束时间" class="form-control addPayFeeConfigDiscountEndTime"
-                                        name="endTime">
+                                           placeholder="必填，请填写缴费结束时间"
+                                           class="form-control addPayFeeConfigDiscountEndTime" name="endTime">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">折扣终止时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="addPayFeeConfigDiscountInfo.payMaxEndTime" type="text"
-                                        placeholder="可选，填写折扣终止时间"
-                                        class="form-control addPayFeeConfigDiscountPaymaxEndTime" name="payMaxEndTime">
+                                           placeholder="可选，填写折扣终止时间"
+                                           class="form-control addPayFeeConfigDiscountPaymaxEndTime"
+                                           name="payMaxEndTime">
                                 </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="savePayFeeConfigDiscountInfo()"><i
-                                        class="fa fa-check"></i>&nbsp;保存</button>
+                                        v-on:click="savePayFeeConfigDiscountInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
                             </div>
                         </div>
                     </div>

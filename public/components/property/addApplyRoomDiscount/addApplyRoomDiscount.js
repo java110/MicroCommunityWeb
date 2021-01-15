@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -20,13 +19,7 @@
             }
         },
         _initMethod: function () {
-            vc.initDateTime('addStartTime', function (_value) {
-                $that.addApplyRoomDiscountInfo.startTime = _value;
-            });
-            vc.initDateTime('addEndTime', function (_value) {
-                $that.addApplyRoomDiscountInfo.endTime = _value;
-            });
-
+            vc.component._initAddApplyRoomDiscountDateInfo();
             $that._listAddApplyRoomDiscountTypes();
         },
         _initEvent: function () {
@@ -35,6 +28,55 @@
             });
         },
         methods: {
+            _initAddApplyRoomDiscountDateInfo: function () {
+                $('.addStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.addStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addStartTime").val();
+                        vc.component.addApplyRoomDiscountInfo.startTime = value;
+                    });
+                $('.addEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.addEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addEndTime").val();
+                        var start = Date.parse(new Date(vc.component.addApplyRoomDiscountInfo.startTime))
+                        var end = Date.parse(new Date(value))
+                        if (start - end >= 0) {
+                            vc.toast("计费终止时间必须大于计费起始时间")
+                            $(".addEndTime").val('')
+                        } else {
+                            vc.component.addApplyRoomDiscountInfo.endTime = value;
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control addStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control addEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             addApplyRoomDiscountValidate() {
                 return vc.validate.validate({
                     addApplyRoomDiscountInfo: vc.component.addApplyRoomDiscountInfo
@@ -128,10 +170,8 @@
             saveApplyRoomDiscountInfo: function () {
                 if (!vc.component.addApplyRoomDiscountValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addApplyRoomDiscountInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -139,7 +179,6 @@
                     $('#addApplyRoomDiscountModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/applyRoomDiscount/saveApplyRoomDiscount',
                     JSON.stringify(vc.component.addApplyRoomDiscountInfo),
@@ -154,17 +193,13 @@
                             $('#addApplyRoomDiscountModel').modal('hide');
                             vc.component.clearAddApplyRoomDiscountInfo();
                             vc.emit('applyRoomDiscountManage', 'listApplyRoomDiscount', {});
-
                             return;
                         }
-                        vc.message(_json.msg);
-
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddApplyRoomDiscountInfo: function () {
@@ -193,7 +228,6 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 if (_allNum.split('-').length == 3) {
                     let _allNums = _allNum.split('-')
                     param.params.floorNum = _allNums[0].trim();
@@ -203,7 +237,6 @@
                     vc.toast('房屋填写格式错误，请填写 楼栋-单元-房屋格式')
                     return;
                 }
-
                 //发送get请求
                 vc.http.get('roomCreateFee',
                     'listRoom',
@@ -211,24 +244,20 @@
                     function (json, res) {
                         let listRoomData = JSON.parse(json);
                         let _rooms = listRoomData.rooms;
-
                         if (_rooms.length < 1) {
                             vc.toast('未找到房屋');
                             $that.addApplyRoomDiscountInfo.roomName = '';
                             return;
                         }
-
                         $that.addApplyRoomDiscountInfo.roomId = _rooms[0].roomId;
                         $that.addApplyRoomDiscountInfo.createUserName = _rooms[0].ownerName;
                         $that.addApplyRoomDiscountInfo.createUserTel = _rooms[0].link;
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             _listAddApplyRoomDiscountTypes: function (_page, _rows) {
-
                 var param = {
                     params: {
                         page: 1,
@@ -249,5 +278,4 @@
             },
         }
     });
-
 })(window.vc);

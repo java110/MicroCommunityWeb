@@ -33,23 +33,18 @@
             }
         },
         _initMethod: function () {
-
             if (!vc.isBack()) {
                 return;
             }
-
             //检查是否有缓存数据
             let _tempData = vc.getData(TEMP_SEARCH);
-
             if (_tempData == null) {
                 return;
             }
-
             $that.simplifyAcceptanceInfo.searchType = _tempData.searchType;
             $that.simplifyAcceptanceInfo.searchValue = _tempData.searchValue;
             $that.simplifyAcceptanceInfo.searchPlaceholder = _tempData.searchPlaceholder;
             $that._doSearch();
-
         },
         _initEvent: function () {
             vc.on('simplifyAcceptance', 'chooseRoom', function (_room) {
@@ -64,30 +59,39 @@
                 switch ($that.simplifyAcceptanceInfo.searchType) {
                     case '1':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入房屋编号 楼栋-单元-房屋 如1-1-1';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                         break;
                     case '2':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入业主名称';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                         break;
                     case '3':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入业主手机号';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                         break;
                     case '4':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入业主身份证';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                         break;
                     case '5':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入业主车牌号';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                         break;
                     case '6':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入家庭成员名称';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                         break;
                     case '7':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入家庭成员电话';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                         break;
                     case '8':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入家庭成员身份证';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                         break;
                     default:
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入房屋编号 楼栋-单元-房屋 如1-1-1';
+                        $that.simplifyAcceptanceInfo.searchValue = "";
                 }
             },
             _doSearch: function () {
@@ -108,12 +112,10 @@
                     _param,
                     function (json, res) {
                         let _ownerJson = JSON.parse(json);
-
                         if (_ownerJson.code != 0) {
                             vc.toast(_ownerJson.msg);
                             return;
                         }
-
                         $that.saveTempSearchData();
                         let _owner = _ownerJson.data;
                         vc.copyObject(_owner, $that.simplifyAcceptanceInfo);
@@ -130,15 +132,11 @@
                         $that.simplifyAcceptanceInfo.roomRemark = _rooms[0].remark;
                         $that.simplifyAcceptanceInfo.roomName = _rooms[0].floorNum + '栋' + _rooms[0].unitNum + '单元' + _rooms[0].roomNum;
                         vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo);
-
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-
             },
-
             saveTempSearchData: function () {
                 let _searchType = $that.simplifyAcceptanceInfo.searchType;
                 let _searchValue = $that.simplifyAcceptanceInfo.searchValue;
@@ -152,7 +150,6 @@
             },
             changeTab: function (_tab) {
                 $that.simplifyAcceptanceInfo._currentTab = _tab;
-
                 vc.emit(_tab, 'switch', {
                     ownerId: $that.simplifyAcceptanceInfo.ownerId,
                     roomId: $that.simplifyAcceptanceInfo.roomId
@@ -161,7 +158,6 @@
             errorLoadImg: function () {
                 vc.component.simplifyAcceptanceInfo.ownerPhoto = "/img/noPhoto.jpg";
             },
-
             _clearData: function () {
                 let _searchType = $that.simplifyAcceptanceInfo.searchType;
                 let _searchValue = $that.simplifyAcceptanceInfo.searchValue;
@@ -191,7 +187,6 @@
                     roomRemark: ''
                 }
             }
-
         }
     });
 })(window.vc);

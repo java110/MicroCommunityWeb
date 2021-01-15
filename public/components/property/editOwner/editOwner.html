@@ -47,7 +47,7 @@
                         <div class="col-sm-6" style="text-align:center">
                             <div class="form-group row">
                                 <div style="width: 100%;height: 10rem;" v-show="editOwnerInfo.ownerPhoto != ''">
-                                    <img width="80%" height="150rem" v-bind:src="editOwnerInfo.ownerPhoto" alt="业主照片">
+                                    <img width="80%" height="150rem" v-bind:src="editOwnerInfo.ownerPhoto" onerror="this.src='/img/noPhoto.jpg';" alt="业主照片">
                                 </div>
                                 <div style="width: 100%;" v-show="editOwnerInfo.ownerPhoto == ''">
                                     <div v-show="editOwnerInfo.videoPlaying == true">

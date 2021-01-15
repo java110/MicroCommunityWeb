@@ -141,6 +141,8 @@
                 vc.component.reportFeeSummaryInfo.conditions.roomNum = "";
                 vc.component.reportFeeSummaryInfo.conditions.startTime = "";
                 vc.component.reportFeeSummaryInfo.conditions.endTime = "";
+                // 清除下拉框选项
+                vc.component.reportFeeSummaryInfo.roomUnits = [];
                 var param = {
                     params: vc.component.reportFeeSummaryInfo.conditions
                 };

@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -23,7 +23,6 @@
             vc.component._listBusinessDatabuss(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('businessDatabusManage', 'listBusinessDatabus', function (_param) {
                 vc.component._listBusinessDatabuss(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -33,13 +32,11 @@
         },
         methods: {
             _listBusinessDatabuss: function (_page, _rows) {
-
                 vc.component.businessDatabusManageInfo.conditions.page = _page;
                 vc.component.businessDatabusManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.businessDatabusManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/businessDatabus/queryBusinessDatabus',
                     param,
@@ -68,7 +65,6 @@
             },
             _queryBusinessDatabusMethod: function () {
                 vc.component._listBusinessDatabuss(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.businessDatabusManageInfo.moreCondition) {
@@ -77,8 +73,6 @@
                     vc.component.businessDatabusManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

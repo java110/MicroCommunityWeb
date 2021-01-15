@@ -239,6 +239,8 @@
                 vc.component.reportPayFeeDetailInfo.conditions.startTime = "";
                 vc.component.reportPayFeeDetailInfo.conditions.endTime = "";
                 vc.component.reportPayFeeDetailInfo.conditions.configId = "";
+                // 清除下拉框选项
+                vc.component.reportPayFeeDetailInfo.roomUnits = [];
                 var param = {
                     params: vc.component.reportPayFeeDetailInfo.conditions
                 };

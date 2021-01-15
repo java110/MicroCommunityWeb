@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -23,7 +22,6 @@
         },
         _initEvent: function () {
             vc.on('addPayFeeConfigDiscount', 'openAddPayFeeConfigDiscountModal', function (_param) {
-
                 vc.copyObject(_param, $that.addPayFeeConfigDiscountInfo);
                 $('#addPayFeeConfigDiscountModel').modal('show');
             });
@@ -160,7 +158,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.component.addPayFeeConfigDiscountInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -182,17 +179,13 @@
                             $('#addPayFeeConfigDiscountModel').modal('hide');
                             vc.component.clearAddPayFeeConfigDiscountInfo();
                             vc.emit('payFeeConfigDiscountManage', 'listPayFeeConfigDiscount', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddPayFeeConfigDiscountInfo: function () {
@@ -205,7 +198,6 @@
                 };
             },
             _changeAddPayFeeConfigDiscountType: function () {
-
                 if ($that.addPayFeeConfigDiscountInfo.discountType == '') {
                     return;
                 }
@@ -223,7 +215,6 @@
                     param,
                     function (json, res) {
                         let _feeDiscountManageInfo = JSON.parse(json);
-                        
                         $that.addPayFeeConfigDiscountInfo.discounts = _feeDiscountManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -232,5 +223,4 @@
             }
         }
     });
-
 })(window.vc);

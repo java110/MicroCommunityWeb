@@ -1,0 +1,97 @@
+<div id="reviewApplyRoomDiscountModel" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">审批</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                <label class="col-sm-2 col-form-label">折扣类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.discountType"
+                                            @change="_changeApplyRoomDiscountType()">
+                                        <option selected disabled value="">必填，请选择折扣类型</option>
+                                        <option value="3003">优惠(需要申请)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                <label class="col-sm-2 col-form-label">折扣名称</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.discountId">
+                                        <option selected disabled value="">必填，请选择折扣名称</option>
+                                        <option v-for="(item,index) in reviewApplyRoomDiscountInfo.discounts"
+                                                :value="item.discountId">
+                                            {{item.discountName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">开始时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="reviewApplyRoomDiscountInfo.startTime" type="text"
+                                           placeholder="必填，请填写开始时间" class="form-control reviewStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">结束时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="reviewApplyRoomDiscountInfo.endTime" type="text"
+                                           placeholder="必填，请填写结束时间" class="form-control reviewEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">审批状态</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.state">
+                                        <option selected disabled value="">必填，请选择状态</option>
+                                        <option value="4">审批通过</option>
+                                        <option value="5">审批不通过</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">申请备注</label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="reviewApplyRoomDiscountInfo.createRemark" readonly="readonly"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">验房备注</label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="reviewApplyRoomDiscountInfo.checkRemark" readonly="readonly"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">审批备注</label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="reviewApplyRoomDiscountInfo.reviewRemark"
+                                              placeholder="必填，请填写审批说明" class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="reviewApplyRoomDiscount()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

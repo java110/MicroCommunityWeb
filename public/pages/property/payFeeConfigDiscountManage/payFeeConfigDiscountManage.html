@@ -9,57 +9,55 @@
                             返回
                         </button>
                         <button type="button" class="btn btn-primary btn-sm"
-                            v-on:click="_openAddPayFeeConfigDiscountModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                                v-on:click="_openAddPayFeeConfigDiscountModal()">
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">费用折扣ID</th>
-                                <th class="text-center">费用项名称</th>
-                                <th class="text-center">折扣名称</th>
-                                <th class="text-center">规则</th>
-                                <th class="text-center">折扣类型</th>
-                                <th class="text-center">折扣起始时间</th>
-                                <th class="text-center">折扣结束时间</th>
-                                <th class="text-center">上次缴费最大时间</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">费用折扣ID</th>
+                            <th class="text-center">费用项名称</th>
+                            <th class="text-center">折扣名称</th>
+                            <th class="text-center">规则</th>
+                            <th class="text-center">折扣类型</th>
+                            <th class="text-center">折扣起始时间</th>
+                            <th class="text-center">折扣结束时间</th>
+                            <th class="text-center">上次缴费最大时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="payFeeConfigDiscount in payFeeConfigDiscountManageInfo.payFeeConfigDiscounts">
-                                <td class="text-center">{{payFeeConfigDiscount.configDiscountId}}</td>
-                                <td class="text-center">{{payFeeConfigDiscountManageInfo.feeName}}</td>
-                                <td class="text-center">{{payFeeConfigDiscount.discountName}}</td>
-                                <td class="text-center">
-                                    <div v-for="(item,index) in payFeeConfigDiscount.feeDiscountSpecs">
-                                        {{item.specName}}：{{item.specValue}}
-                                    </div>
-                                </td>
-                                <td class="text-center">{{payFeeConfigDiscount.discountType == '1001'?'优惠':'违约'}}</td>
-                                <td class="text-center">{{payFeeConfigDiscount.startTime}}</td>
-                                <td class="text-center">{{payFeeConfigDiscount.endTime}}</td>
-                                <td class="text-center">{{payFeeConfigDiscount.payMaxEndTime}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeletePayFeeConfigDiscountModel(payFeeConfigDiscount)">删除</button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                        <tr v-for="payFeeConfigDiscount in payFeeConfigDiscountManageInfo.payFeeConfigDiscounts">
+                            <td class="text-center">{{payFeeConfigDiscount.configDiscountId}}</td>
+                            <td class="text-center">{{payFeeConfigDiscountManageInfo.feeName}}</td>
+                            <td class="text-center">{{payFeeConfigDiscount.discountName}}</td>
+                            <td class="text-center">
+                                <div v-for="(item,index) in payFeeConfigDiscount.feeDiscountSpecs">
+                                    {{item.specName}}：{{item.specValue}}
+                                </div>
+                            </td>
+                            <td class="text-center">{{payFeeConfigDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                            <td class="text-center">{{payFeeConfigDiscount.startTime}}</td>
+                            <td class="text-center">{{payFeeConfigDiscount.endTime}}</td>
+                            <td class="text-center">{{payFeeConfigDiscount.payMaxEndTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeletePayFeeConfigDiscountModel(payFeeConfigDiscount)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

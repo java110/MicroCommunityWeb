@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -12,12 +11,10 @@
                 beanName: '',
                 seq: '',
                 databusName: '',
-                state: '',
-
+                state: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addBusinessDatabus', 'openAddBusinessDatabusModal', function () {
@@ -34,12 +31,7 @@
                             limit: "required",
                             param: "",
                             errInfo: "业务类型不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "业务类型格式错误"
-                        },
+                        }
                     ],
                     'addBusinessDatabusInfo.beanName': [
                         {
@@ -89,10 +81,8 @@
             saveBusinessDatabusInfo: function () {
                 if (!vc.component.addBusinessDatabusValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addBusinessDatabusInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -100,7 +90,6 @@
                     $('#addBusinessDatabusModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/businessDatabus/saveBusinessDatabus',
                     JSON.stringify(vc.component.addBusinessDatabusInfo),
@@ -115,17 +104,13 @@
                             $('#addBusinessDatabusModel').modal('hide');
                             vc.component.clearAddBusinessDatabusInfo();
                             vc.emit('businessDatabusManage', 'listBusinessDatabus', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddBusinessDatabusInfo: function () {
@@ -139,5 +124,4 @@
             }
         }
     });
-
 })(window.vc);

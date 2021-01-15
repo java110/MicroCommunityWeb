@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -19,13 +19,11 @@
         _initMethod: function () {
             let _configId = vc.getParam('configId');
             let _feeName = vc.getParam('feeName');
-
             $that.payFeeConfigDiscountManageInfo.configId = _configId;
             $that.payFeeConfigDiscountManageInfo.feeName = _feeName;
             vc.component._listPayFeeConfigDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('payFeeConfigDiscountManage', 'listPayFeeConfigDiscount', function (_param) {
                 vc.component._listPayFeeConfigDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -35,16 +33,14 @@
         },
         methods: {
             _listPayFeeConfigDiscounts: function (_page, _rows) {
-
                 let param = {
                     params: {
-                        page:_page,
-                        row:_rows,
-                        configId:$that.payFeeConfigDiscountManageInfo.configId,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: _page,
+                        row: _rows,
+                        configId: $that.payFeeConfigDiscountManageInfo.configId,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/payFeeConfigDiscount/queryPayFeeConfigDiscount',
                     param,
@@ -84,8 +80,6 @@
                     vc.component.payFeeConfigDiscountManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);
