@@ -62,6 +62,7 @@
                         <tr>
                             <th class="text-center">名单ID</th>
                             <th class="text-center">名单类型</th>
+                            <th class="text-center">停车场</th>
                             <th class="text-center">车牌号</th>
                             <th class="text-center">开始时间</th>
                             <th class="text-center">结束时间</th>
@@ -74,6 +75,7 @@
                         <tr v-for="carBlackWhite in carBlackWhiteManageInfo.carBlackWhites">
                             <td class="text-center">{{carBlackWhite.bwId}}</td>
                             <td class="text-center">{{carBlackWhite.blackWhiteName}}</td>
+                            <td class="text-center">{{carBlackWhite.paNum}}</td>
                             <td class="text-center">{{carBlackWhite.carNum}}</td>
                             <td class="text-center">{{carBlackWhite.startTime}}</td>
                             <td class="text-center">{{carBlackWhite.endTime}}</td>

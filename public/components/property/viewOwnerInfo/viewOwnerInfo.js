@@ -84,7 +84,8 @@
 
             },
             _callBackListOwner:function(_ownerId){
-                vc.jumpToPage("/admin.html#/pages/property/listOwner?ownerId="+_ownerId);
+               // vc.jumpToPage("/admin.html#/pages/property/listOwner?ownerId="+_ownerId);
+               vc.goBack();
             },
             _loadOwnerPhoto:function(){
                 vc.component.viewOwnerInfo.ownerPhoto = _fileUrl+"?objId="+

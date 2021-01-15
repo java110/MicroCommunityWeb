@@ -85,6 +85,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">费用类型</th>
+                                <th class="text-center">费用项</th>
                                 <th class="text-center">房屋</th>
                                 <th class="text-center">车位</th>
                                 <th class="text-center">总金额</th>
@@ -96,6 +97,7 @@
                         <tbody>
                             <tr v-for="feeReceipt in feeReceiptManageInfo.feeReceipts">
                                 <td class="text-center">{{feeReceipt.objType == '3333'? '房屋费':'车位费'}}</td>
+                                <td class="text-center">{{feeReceipt.feeName}}</td>
                                 <td class="text-center">{{feeReceipt.roomName}}</td>
                                 <td class="text-center">{{feeReceipt.carNum}}</td>
                                 <td class="text-center">{{feeReceipt.amount}}</td>

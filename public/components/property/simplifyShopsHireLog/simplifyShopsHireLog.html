@@ -1,0 +1,38 @@
+<div>
+    <div>
+        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="text-center">租客名称</th>
+                    <th class="text-center">租客电话</th>
+                    <th class="text-center">起租时间</th>
+                    <th class="text-center">截租时间</th>
+                    <th class="text-center">创建时间</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="owner in simplifyShopsHireLogInfo.owners">
+                    <td class="text-center">{{owner.name}}</td>
+                    <td class="text-center">{{owner.link}}</td>
+                    <td class="text-center">{{owner.startTime}}</td>
+                    <td class="text-center">{{owner.endTime}}</td>
+                    <td class="text-center">{{owner.createTime}}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs"
+                                v-on:click="_openShopsOwnerFee(owner)">查看费用
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-12 float-right">
+                <vc:create namespace="simplifyShopsHireLog" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <!-- <vc:create path="property/editMachineTranslate"></vc:create> -->
+</div>

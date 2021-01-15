@@ -56,6 +56,12 @@
         _initEvent: function () {
             vc.on('editCar', 'openEditCar', function (_carInfo) {
                 vc.copyObject(_carInfo, $that.editCarInfo);
+                if (_carInfo.startTime.indexOf(":") > -1) {
+                    $that.editCarInfo.startTime = $that.editCarInfo.startTime.substring(0,10);
+                }
+                if (_carInfo.endTime.indexOf(":") > -1) {
+                    $that.editCarInfo.endTime = $that.editCarInfo.endTime.substring(0,10);
+                }
                 $('#editCarModal').modal('show');
                 vc.component._initEditCarDateInfo();
             });
@@ -161,11 +167,12 @@
                     });
             },
             _initEditCarDateInfo: function () {
-                vc.component.editCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
+                //vc.component.editCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.editCarStartTime').datetimepicker({
+                    minView: "month",
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
@@ -178,9 +185,10 @@
                         vc.component.editCarInfo.startTime = value;
                     });
                 $('.editCarEndTime').datetimepicker({
+                    minView: "month",
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,

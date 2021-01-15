@@ -12,7 +12,7 @@
                 payObjId: '',
                 payObjType: '',
                 roomName: '',
-                receiptId: '',
+                receiptIds: '',
                 remark: ''
             }
         },
@@ -29,7 +29,7 @@
             let _payObjType = vc.getParam('payObjType');
             if (!vc.notNull(_payObjId)) {
                 vc.toast('非法操作');
-                vc.getBack();
+               vc.getBack();
                 return;
             }
             $that.owePayFeeOrderInfo.payObjId = _payObjId;
@@ -99,7 +99,8 @@
                                 squarePrice: _oweFeeItem.squarePrice,
                                 additionalAmount: _oweFeeItem.additionalAmount,
                                 feeName: _oweFeeItem.feeName,
-                                amount: _oweFeeItem.feePrice
+                                amount: _oweFeeItem.feePrice,
+                                roomName:$that.owePayFeeOrderInfo.roomName
                             });
                         }
                     })
@@ -125,13 +126,13 @@
                         $that._closeDoOwePayFeeModal();
                         if (_json.code == 0) {
 
-                            let _feeInfo = {
-                                totalAmount: $that.owePayFeeOrderInfo.feePrices,
-                                fees: _printFees
-                            }
                             let _data = JSON.parse(json).data;
+                            let receiptIds = '';
+                            _data.forEach(item=>{
+                                receiptIds +=(item.receiptId+',');
+                            })
 
-                            $that.owePayFeeOrderInfo.receiptId = _data.receiptId;
+                            $that.owePayFeeOrderInfo.receiptIds = receiptIds;
 
                             //vc.saveData('_feeInfo', _feeInfo);
                             //关闭model
@@ -157,7 +158,7 @@
             },
             _printAndBack: function () {
                 $('#payFeeResult').modal("hide");
-                window.open("/print.html#/pages/property/printPayFee?receiptId=" + $that.owePayFeeOrderInfo.receiptId)
+                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + $that.owePayFeeOrderInfo.receiptIds)
             },
             _dealSelectFee: function () {
                 let totalFee = 0.00;
@@ -177,7 +178,7 @@
                 vc.goBack();
             },
             _printOwnOrder: function () {
-                vc.saveData('java110_printFee', $that.owePayFeeOrderInfo.oweFees);
+                vc.saveData('java110_printFee', {fees:$that.owePayFeeOrderInfo.oweFees,roomName:$that.owePayFeeOrderInfo.roomName});
                 //打印催交单
                 window.open('/print.html#/pages/property/printOweFee?roomId=' + $that.owePayFeeOrderInfo.payObjId)
             }

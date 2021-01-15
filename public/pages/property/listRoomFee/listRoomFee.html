@@ -4,21 +4,21 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>{{listRoomCreateFeeInfo.roomName}}费用</h5>
-                    <div class="ibox-tools" style="top:10px;">
+                    <div class="ibox-tools" style="top:10px;" >
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                                v-on:click="_openProxyFeeModal()">
+                                v-on:click="_openProxyFeeModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             代收费用
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                                v-on:click="_openAddMeterWaterModal()">
+                                v-on:click="_openAddMeterWaterModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             水电抄表
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                                v-on:click="_openRoomCreateFeeAddModal()">
+                                v-on:click="_openRoomCreateFeeAddModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             创建费用
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                                v-on:click="_toOwnerPayFee()">
+                                v-on:click="_toOwnerPayFee()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             欠费缴费
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"

@@ -12,6 +12,7 @@
                 <option value="6">成员姓名</option>
                 <option value="7">成员手机号</option>
                 <option value="8">成员身份证</option>
+                <option value="9">商铺号</option>
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
@@ -80,10 +81,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3"  v-if="simplifyAcceptanceInfo.roomType=='1010301'">
                             <div class="form-group">
                                 <label class="col-form-label">房屋编号：</label>
                                 <label>{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"  v-else>
+                            <div class="form-group">
+                                <label class="col-form-label">商铺编号：</label>
+                                <label>{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -174,6 +181,10 @@
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
                        v-on:click="changeTab('simplifyFeeReceipt')">补打收据</a>
                 </li>
+                <li class="nav-item" v-if="simplifyAcceptanceInfo.roomType == '2020602'">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
+                        v-on:click="changeTab('simplifyShopsHireLog')">出租记录</a>
+                </li>
             </ul>
         </div>
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'">
@@ -202,6 +213,9 @@
         </div>
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'">
             <vc:create path="property/simplifyFeeReceipt"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'">
+            <vc:create path="property/simplifyShopsHireLog"></vc:create>
         </div>
     </div>
     <vc:create path="property/deleteFee"></vc:create>

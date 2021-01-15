@@ -1,4 +1,5 @@
 (function(vc){
+    var DEFAULT_ROWS = 10
     vc.extends({
         propTypes: {
            emitListener:vc.propTypes.string,
@@ -36,7 +37,7 @@
             });
 
             vc.on('addOrgCommunity','paginationPlus', 'page_event', function (_currentPage) {
-                vc.component._listOrgCommunitys(_currentPage, DEFAULT_ROWS);
+                vc.component._loadAllCommunityInfo(_currentPage, DEFAULT_ROWS);
             });
         },
         methods:{

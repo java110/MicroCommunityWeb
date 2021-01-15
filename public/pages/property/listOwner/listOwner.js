@@ -22,8 +22,9 @@
                     roomNum: '',
                     roomId: '',
                     roomNum: '',
+                    roomName: ''
                 },
-                listColumns:[]
+                listColumns: []
             }
         },
         _initMethod: function () {
@@ -33,7 +34,7 @@
             if (vc.notNull(_ownerId)) {
                 //vc.component.listOwnerInfo.conditions.ownerId = _ownerId;
             }
-            $that._getColumns(function(){
+            $that._getColumns(function () {
                 vc.component._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
@@ -130,7 +131,7 @@
                 vc.jumpToPage("/admin.html#/pages/property/sellParkingSpace?ownerId=" + _owner.ownerId);
             },
             _openOwnerDetailModel: function (_owner) {
-                vc.jumpToPage("/admin.html#/pages/property/ownerDetail?ownerId=" + _owner.ownerId+"&ownerName="+_owner.name);
+                vc.jumpToPage("/admin.html#/pages/property/ownerDetail?ownerId=" + _owner.ownerId + "&ownerName=" + _owner.name);
             },
             _openDeleteOwnerRoom: function (_owner) {
                 vc.jumpToPage("/admin.html#/pages/property/deleteOwnerRoom?ownerId=" + _owner.ownerId);
@@ -234,14 +235,14 @@
                     vc.component.listOwnerInfo.moreCondition = true;
                 }
             },
-            dealOwnerAttr: function (owners) {  
+            dealOwnerAttr: function (owners) {
                 owners.forEach(item => {
                     $that._getColumnsValue(item);
                 });
             },
             _getColumnsValue: function (_owner) {
                 _owner.listValues = [];
-                
+
                 if (!_owner.hasOwnProperty('ownerAttrDtos') || _owner.ownerAttrDtos.length < 1) {
                     $that.listOwnerInfo.listColumns.forEach(_value => {
                         _owner.listValues.push('');
@@ -251,12 +252,12 @@
 
                 let _ownerAttrDtos = _owner.ownerAttrDtos;
 
-             
+
 
                 $that.listOwnerInfo.listColumns.forEach(_value => {
                     let _tmpValue = '';
-                    _ownerAttrDtos.forEach(_attrItem =>{
-                        if(_value == _attrItem.specName){
+                    _ownerAttrDtos.forEach(_attrItem => {
+                        if (_value == _attrItem.specName) {
                             _tmpValue = _attrItem.valueName;
                         }
                     })
@@ -270,13 +271,13 @@
                 vc.getAttrSpec('building_owner_attr', function (data) {
                     $that.listOwnerInfo.listColumns = [];
                     data.forEach(item => {
-                        if(item.listShow == 'Y'){
+                        if (item.listShow == 'Y') {
                             $that.listOwnerInfo.listColumns.push(item.specName);
                         }
                     });
                     _call();
                 });
-             
+
             }
         }
     })

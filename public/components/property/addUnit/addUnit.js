@@ -115,6 +115,11 @@
                     return ;
                 }
 
+                if(vc.component.addUnitInfo.unitNum == '0'){
+                    vc.toast("0单元为商铺特有，不允许添加");
+                    return ;
+                }
+
                  vc.component.addUnitInfo.communityId = vc.getCurrentCommunity().communityId;
 
                 //不提交数据将数据 回调给侦听处理

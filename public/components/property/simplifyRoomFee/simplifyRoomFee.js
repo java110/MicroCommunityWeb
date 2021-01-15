@@ -120,7 +120,7 @@
                 if (_fee.state == '2009001') {
                     return "-";
                 }
-                return vc.dateSub(_fee.deadlineTime,_fee.feeFlag);
+                return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
             },
             _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {
@@ -154,6 +154,13 @@
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: _fee.feeId
                 });
+            },
+            _openTempImportRoomFeeModal:function(){
+                vc.emit('tempImportRoomFee', 'openImportRoomFeeModal',{
+                    roomId: $that.simplifyRoomFeeInfo.roomId,
+                    roomName: $that.simplifyRoomFeeInfo.roomName,
+                    ownerName: $that.simplifyRoomFeeInfo.name
+                })
             },
             clearSimplifyRoomFeeInfo: function () {
                 let _feeConfigs = $that.roomCreateFeeAddInfo.feeTypeCds;
@@ -197,6 +204,13 @@
             },
             _changeSimplifyRoomConfigId: function () {
                 vc.emit('simplifyRoomFee', 'notify', {});
+            },
+            _simplifyRoomGetFeeOwnerInfo: function (attrs) {
+
+                let ownerName = $that._getAttrValue(attrs, '390008');
+                let ownerLink = $that._getAttrValue(attrs, '390009');
+
+                return '业主：'+ownerName + ',电话：' + ownerLink;
             }
 
 

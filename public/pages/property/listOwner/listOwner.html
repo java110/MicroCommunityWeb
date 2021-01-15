@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入业主身份证号" v-model="listOwnerInfo.conditions.idCard"
+                                <input type="text" placeholder="请填写房屋编号 格式 楼栋-单元-房屋" v-model="listOwnerInfo.conditions.roomName"
                                     class=" form-control">
                             </div>
                         </div>
@@ -39,37 +39,16 @@
                         </div>
 
                     </div>
-                    <div class="row" v-show="listOwnerInfo.moreCondition == true">
-                        <div class="col-sm-4">
-                            <div class="form-group input-group">
-                                <vc:create path="property/floorSelect2" parentModal="listOwnerModel"
-                                    namespace="listOwner"></vc:create>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <vc:create path="property/unitSelect2" parentModal="listOwnerModel"
-                                    callBackListener="listOwner" callBackFunction="notify" namespace="listOwner">
-                                </vc:create>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <vc:create path="property/roomSelect2" parentModal="listOwnerModel"
-                                    callBackListener="listOwner" callBackFunction="notify" namespace="listOwner">
-                                </vc:create>
-                            </div>
-                        </div>
-
-
-                    </div>
                     <div class="row" v-if="listOwnerInfo.moreCondition == true">
-
-
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入业主ID" v-model="listOwnerInfo.conditions.ownerId"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入业主身份证号" v-model="listOwnerInfo.conditions.idCard"
                                     class=" form-control">
                             </div>
                         </div>

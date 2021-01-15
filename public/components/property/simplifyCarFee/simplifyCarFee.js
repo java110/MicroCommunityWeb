@@ -190,7 +190,15 @@
                     num: '',
                     parkingName: ''
                 }
+            },
+            _simplifyCarGetFeeOwnerInfo: function (attrs) {
+
+                let ownerName = $that._getAttrValue(attrs, '390008');
+                let ownerLink = $that._getAttrValue(attrs, '390009');
+
+                return '业主：'+ownerName + ',电话：' + ownerLink;
             }
+
 
         }
 

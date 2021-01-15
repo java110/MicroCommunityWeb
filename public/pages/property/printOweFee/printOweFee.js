@@ -9,8 +9,10 @@
                 fees: [],
                 feeTime: '',
                 wechatName: '',
-                content:'',
-                qrImg:''
+                content: '',
+                qrImg: '',
+                roomId: '',
+                builtUpArea: ''
             },
             printFlag: '0'
         },
@@ -18,19 +20,23 @@
             //vc.component._initPrintPurchaseApplyDateInfo();
 
             let _fees = vc.getData('java110_printFee');
-            $that.printPayFeeInfo.fees = _fees
+            $that.printPayFeeInfo.fees = _fees.fees
+
+            $that.printPayFeeInfo.roomId = vc.getParam('roomId')
+            $that._printOweRoom();
+
             $that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date().getTime());
 
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
 
             let _totalAmount = 0.0;
-            _fees.forEach(item => {
+            $that.printPayFeeInfo.fees.forEach(item => {
                 _totalAmount += item.feePrice;
             });
             _totalAmount = Math.round(_totalAmount * 100) / 100;
             $that.printPayFeeInfo.feePrices = _totalAmount;
 
-             $that._loadPrintSpec();
+            $that._loadPrintSpec();
         },
         _initEvent: function () {
 
@@ -81,6 +87,33 @@
             _closePage: function () {
                 window.opener = null;
                 window.close();
+            },
+            _printOweRoom: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        roomId: $that.printPayFeeInfo.roomId,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('roomCreateFee',
+                    'listRoom',
+                    param,
+                    function (json, res) {
+                        var listRoomData = JSON.parse(json);
+                        vc.copyObject(listRoomData.rooms[0], $that.printPayFeeInfo);
+                        if (listRoomData.rooms[0].roomType == '2020602') {
+                            $that.printPayFeeInfo.roomName = listRoomData.rooms[0].floorNum + '-' + listRoomData.rooms[0].roomNum;
+                        } else {
+                            $that.printPayFeeInfo.roomName = listRoomData.rooms[0].floorNum + '-' + listRoomData.rooms[0].unitNum + '-' + listRoomData.rooms[0].roomNum;
+                        }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+
             }
         }
     });
