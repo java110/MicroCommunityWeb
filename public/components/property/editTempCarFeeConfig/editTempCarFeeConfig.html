@@ -1,0 +1,115 @@
+<div id="editTempCarFeeConfigModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">修改标准</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">标准名称</label>
+                    <div class="col-sm-9">
+                      <input v-model="editTempCarFeeConfigInfo.feeName" type="text" placeholder="必填，请填写标准名称"
+                        class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">停车场</label>
+                    <div class="col-sm-9">
+                      <input v-model="editTempCarFeeConfigInfo.feeName" disabled type="text" placeholder="必填，请填写标准名称"
+                        class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">车辆类型</label>
+                    <div class="col-sm-9">
+                      <select class="custom-select" v-model="editTempCarFeeConfigInfo.carType">
+                        <option selected disabled value="">必填，请选择车辆类型</option>
+                        <option value="9901">家用小汽车</option>
+                        <option value="9904">电动车</option>
+                        <option value="9905">三轮车</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">收费规则</label>
+                    <div class="col-sm-9">
+                      <select class="custom-select" v-model="editTempCarFeeConfigInfo.ruleId" disabled="disabled">
+                        <option selected disabled value="">必填，请选择收费规则</option>
+                        <option :value="rule.ruleId" v-for="(rule,index) in editTempCarFeeConfigInfo.rules"
+                          :key="index">
+                          {{rule.ruleName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">开始时间</label>
+                    <div class="col-sm-9">
+                      <input v-model="editTempCarFeeConfigInfo.startTime" type="text" placeholder="必填，请填写开始时间"
+                        class="form-control addTempCarFeeConfigStartTime">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">结束时间</label>
+                    <div class="col-sm-9">
+                      <input v-model="editTempCarFeeConfigInfo.endTime" type="text" placeholder="必填，请填写结束时间"
+                        class="form-control addTempCarFeeConfigEndTime">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div v-for="(item,index) in editTempCarFeeConfigInfo.attrs">
+                <div class="row" v-if="index % 2 == 0">
+                  <div class="col-sm-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label padding-lr-sm text-right">{{item.specName}}</label>
+                      <div class="col-sm-9 ">
+                        <input v-model="item.value" type="text" :placeholder="item.remark" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6" v-if="index < editTempCarFeeConfigInfo.attrs.length-1">
+                    <div class="form-group row">
+                      <label
+                        class="col-sm-3 col-form-label padding-lr-sm text-right">{{editTempCarFeeConfigInfo.attrs[index+1].specName}}</label>
+                      <div class="col-sm-9 ">
+                        <input v-model="editTempCarFeeConfigInfo.attrs[index+1].value" type="text"
+                          :placeholder="editTempCarFeeConfigInfo.attrs[index+1].remark" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="editTempCarFeeConfig()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
