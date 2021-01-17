@@ -21,10 +21,21 @@
         _initEvent: function () {
             vc.on('editTempCarFeeConfig', 'openEditTempCarFeeConfigModal', function (_params) {
                 vc.component.refreshEditTempCarFeeConfigInfo();
+                vc.copyObject(_params, vc.component.editTempCarFeeConfigInfo);
+                $that.editTempCarFeeConfigInfo.attrs = _params.tempCarFeeConfigAttrs;
+                $that.editTempCarFeeConfigInfo.startTime = vc.dateFormat($that.editTempCarFeeConfigInfo.startTime);
+                $that.editTempCarFeeConfigInfo.endTime = vc.dateFormat($that.editTempCarFeeConfigInfo.endTime);
                 $that._loadEditTempCarFeeRules();
                 $('#editTempCarFeeConfigModel').modal('show');
-                vc.copyObject(_params, vc.component.editTempCarFeeConfigInfo);
                 vc.component.editTempCarFeeConfigInfo.communityId = vc.getCurrentCommunity().communityId;
+            });
+
+            $('#editTempCarFeeConfigModel').on('show.bs.modal', function (e) {
+                $(this).css('display', 'block');
+                let modalWidth = $(window).width() * 0.7;
+                $(this).find('.modal-dialog').css({
+                    'max-width': modalWidth
+                });
             });
         },
         methods: {
@@ -120,7 +131,7 @@
                 }
 
                 vc.http.apiPost(
-                    'tempCarFeeConfig.updateTempCarFeeConfig',
+                    'fee.updateTempCarFeeConfig',
                     JSON.stringify(vc.component.editTempCarFeeConfigInfo),
                     {
                         emulateJSON: true
@@ -162,7 +173,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        token: '123'
+                        ruleId: $that.editTempCarFeeConfigInfo.ruleId
                     }
                 };
                 //发送get请求
@@ -171,11 +182,21 @@
                     function (json, res) {
                         let _feeDiscountManageInfo = JSON.parse(json);
                         $that.editTempCarFeeConfigInfo.rules = _feeDiscountManageInfo.data;
+                        $that._freshCarFeeConfigRule($that.editTempCarFeeConfigInfo.rules[0].tempCarFeeRuleSpecs)
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
+            _freshCarFeeConfigRule: function (_attrs) {
+                $that.editTempCarFeeConfigInfo.attrs.forEach(item => {
+                    _attrs.forEach(attrItem =>{
+                        if (item.specCd == attrItem.specId) {
+                            item.specName = attrItem.specName;
+                        }
+                    })
+                });
+            }
         }
     });
 
