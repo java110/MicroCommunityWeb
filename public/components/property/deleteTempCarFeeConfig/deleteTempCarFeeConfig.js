@@ -21,7 +21,7 @@
             deleteTempCarFeeConfig:function(){
                 vc.component.deleteTempCarFeeConfigInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'tempCarFeeConfig.deleteTempCarFeeConfig',
+                    'fee.deleteTempCarFeeConfig',
                     JSON.stringify(vc.component.deleteTempCarFeeConfigInfo),
                     {
                         emulateJSON:true
