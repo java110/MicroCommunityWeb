@@ -16,6 +16,7 @@
                     feeName: '',
                     paId: '',
                     carType: '',
+                    communityId:vc.getCurrentCommunity().communityId
                 }
             }
         },
