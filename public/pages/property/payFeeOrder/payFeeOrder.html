@@ -162,7 +162,7 @@
                     <div class="row" v-if="payFeeOrderInfo.feeFlag != '2006012' && payFeeOrderInfo.showEndTime != ''">
                         <label class="col-sm-3 col-form-label">缴费时间段：</label>
                         <label class="col-sm-8 col-form-label">{{vc.dateFormat(payFeeOrderInfo.endTime)}} 至
-                            {{vc.dateSub(vc.dateFormat(payFeeOrderInfo.showEndTime),payFeeOrderInfo.feeFlag)}}</label>
+                            {{return vc.dateSubOneDay(payFeeOrderInfo.endTime,vc.dateFormat(payFeeOrderInfo.showEndTime),payFeeOrderInfo.feeFlag)}}</label>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label">应收金额：</label>

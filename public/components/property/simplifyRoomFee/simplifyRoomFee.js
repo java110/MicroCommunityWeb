@@ -120,7 +120,8 @@
                 if (_fee.state == '2009001') {
                     return "-";
                 }
-                return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
+                //return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
+                return vc.dateSubOneDay(_fee.startTime,_fee.deadlineTime, _fee.feeFlag);
             },
             _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {

@@ -360,13 +360,13 @@
         }
     };
 
-    vcFramework.i18n = function(_key){
-        if(!window.hasOwnProperty('lang')){
+    vcFramework.i18n = function (_key) {
+        if (!window.hasOwnProperty('lang')) {
             return _key;
         }
 
         let _lang = window.lang;
-        if(!_lang.hasOwnProperty(_key)){
+        if (!_lang.hasOwnProperty(_key)) {
             return _key;
         }
 
@@ -376,7 +376,7 @@
     /**
      * 解析 i18n 标签
      */
-    parseVcI18N = function(){
+    parseVcI18N = function () {
         let _tmpI18N = document.getElementsByTagName("vc:i18n");
         for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
             let _vcElement = _tmpI18N[_vcElementIndex];
@@ -384,11 +384,11 @@
             let textNode = document.createTextNode(vc.i18n(_name));
             _vcElement.parentNode.appendChild(textNode);
             //_vcElement.parentNode.replaceChild(textNode,_vcElement);
-           
+
         }
         for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
             let _vcElement = _tmpI18N[_vcElementIndex];
-            _vcElement.parentNode.removeChild(_vcElement);   
+            _vcElement.parentNode.removeChild(_vcElement);
         }
         _tmpI18N = document.head.getElementsByTagName("vc:i18n");
         for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
@@ -396,11 +396,11 @@
             let _name = _vcElement.getAttribute('name');
             let textNode = document.createTextNode(vc.i18n(_name));
             _vcElement.parentNode.appendChild(textNode);
-            
+
         }
         for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
             let _vcElement = _tmpI18N[_vcElementIndex];
-            _vcElement.parentNode.removeChild(_vcElement);   
+            _vcElement.parentNode.removeChild(_vcElement);
         }
 
     }
@@ -960,7 +960,7 @@
                 let _cacheData = vcFramework.getData(_getPath);
                 //浏览器缓存中能获取到
                 if (_cacheData != null && _cacheData != undefined) {
-                    successCallback(JSON.stringify(_cacheData), {status: 200});
+                    successCallback(JSON.stringify(_cacheData), { status: 200 });
                     return;
                 }
             }
@@ -1061,7 +1061,7 @@
                 let _cacheData = vcFramework.getData(_getPath);
                 //浏览器缓存中能获取到
                 if (_cacheData != null && _cacheData != undefined) {
-                    successCallback(JSON.stringify(_cacheData), {status: 200});
+                    successCallback(JSON.stringify(_cacheData), { status: 200 });
                     return;
                 }
             }
@@ -1565,7 +1565,7 @@
         return m < 10 ? '0' + m : m
     }
 
-    
+
 
     vcFramework.dateTimeFormat = function (shijianchuo) {
         //shijianchuo是整数，否则要parseInt转换
@@ -1587,14 +1587,40 @@
         return y + '-' + add0(m) + '-' + add0(d);
     }
 
-    vcFramework.dateSub = function (dateTime,feeFlag) {
-        if(!dateTime || dateTime == '-'){
+    vcFramework.dateSubOneDay = function (_startTime, _endTime, feeFlag) {
+        if (!_endTime || _endTime == '-') {
+            return _endTime
+        }
+        let dateTime = new Date(_endTime);
+        let startTime = new Date(_startTime);
+        //如果开始时间是31日 结束时间是30日 不做处理
+        let _startTimeLastDay = startTime.getDate();
+        let _endTimeLastDay = dateTime.getDate();
+        if (_startTimeLastDay == 31 && _endTimeLastDay == 30) {
+            return vcFramework.dateFormat(dateTime);
+        }
+
+        //2月份特殊处理
+        let _endTimeMonth = dateTime.getMonth();
+        if (_endTimeMonth == 1 && _endTimeLastDay > 26 && _startTimeLastDay > 26) {
+            return vcFramework.dateFormat(dateTime);
+        }
+
+        if (feeFlag != "2006012") {
+            dateTime = dateTime.setDate(dateTime.getDate() - 1);
+        }
+        dateTime = vcFramework.dateFormat(dateTime)
+        return dateTime;
+    }
+
+    vcFramework.dateSub = function (dateTime, feeFlag) {
+        if (!dateTime || dateTime == '-') {
             return dateTime
         }
-        console.log("feeFlag:"+feeFlag);
+        console.log("feeFlag:" + feeFlag);
         dateTime = new Date(dateTime);
-        if(feeFlag!="2006012"){
-            dateTime=dateTime.setDate(dateTime.getDate()-1);
+        if (feeFlag != "2006012") {
+            dateTime = dateTime.setDate(dateTime.getDate() - 1);
         }
         dateTime = vcFramework.dateFormat(dateTime)
         return dateTime;
