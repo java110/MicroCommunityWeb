@@ -56,10 +56,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">出账类型</label>
+                                <label class="col-sm-2 col-form-label">催缴类型</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addFeeConfigInfo.billType">
-                                        <option selected disabled value="">必填，请选择出账类型</option>
+                                        <option selected disabled value="">必填，请选择催缴类型</option>
                                         <option v-for="(item,index) in addFeeConfigInfo.billTypes" :key="index"
                                                 :value="item.statusCd">{{item.name}}
                                         </option>
