@@ -217,6 +217,9 @@
                     vc.component.payFeeOrderInfo.totalFeePrice = 0.00;
                     vc.component.payFeeOrderInfo.receivedAmount = '';
                     return;
+                }else if('-101' == _cycles){
+                    $that.payFeeOrderInfo.cycles = "101";
+                    return ;
                 }
                 let _newCycles = _cycles;
                 if (_cycles == '') {
