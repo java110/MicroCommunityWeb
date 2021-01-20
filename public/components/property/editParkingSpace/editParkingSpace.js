@@ -27,7 +27,7 @@
                 $('#editParkingSpaceModel').modal('show');
             });
              vc.on("editParkingSpace", "notify", function (_param) {
-                    vc.component.addParkingSpaceInfo.paId = _param.paId;
+                    vc.component.editParkingSpaceInfo.paId = _param.paId;
             });
         },
         methods:{
