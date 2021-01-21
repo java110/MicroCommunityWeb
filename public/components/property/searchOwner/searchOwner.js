@@ -21,6 +21,10 @@
                 vc.component._refreshSearchOwnerData();
                 vc.component._loadAllOwnerInfo(1, 10);
             });
+
+            vc.on('searchOwner','paginationPlus', 'page_event', function (_currentPage) {
+                vc.component._loadAllOwnerInfo(_currentPage, 10);
+            });
         },
         methods: {
             _loadAllOwnerInfo: function (_page, _row, _name) {
@@ -42,6 +46,10 @@
                     function (json) {
                         var _ownerInfo = JSON.parse(json);
                         vc.component.searchOwnerInfo.owners = _ownerInfo.owners;
+                        vc.emit('searchOwner','paginationPlus', 'init', {
+                            total: _ownerInfo.records,
+                            currentPage: _page
+                        });
                     }, function () {
                         console.log('请求失败处理');
                     }

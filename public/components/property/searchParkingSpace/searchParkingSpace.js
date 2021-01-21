@@ -33,6 +33,10 @@
                 $('#searchParkingSpaceModel').modal('show');
                 vc.component.searchParkingSpaceInfo.parkingSpaces=_parkingSpaces;
             });
+
+            vc.on('searchParkingSpace','paginationPlus', 'page_event', function (_currentPage) {
+                vc.component._loadAllParkingSpaceInfo(_currentPage, 10);
+            });
         },
         methods:{
             _loadAllParkingSpaceInfo:function(_page,_row){
@@ -56,6 +60,10 @@
                              function(json){
                                 var _parkingSpaceInfo = JSON.parse(json);
                                 vc.component.searchParkingSpaceInfo.parkingSpaces = _parkingSpaceInfo.parkingSpaces;
+                                vc.emit('searchParkingSpace','paginationPlus', 'init', {
+                                    total: _parkingSpaceInfo.records,
+                                    currentPage: _page
+                                });
                              },function(){
                                 console.log('请求失败处理');
                              }
