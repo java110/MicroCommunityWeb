@@ -26,6 +26,7 @@
                     section: '',
                     roomType:'1010301'
                 },
+                currentPage:DEFAULT_PAGE,
                 listColumns: []
 
             }
@@ -45,12 +46,13 @@
 
             });
             vc.on('room', 'listRoom', function (_param) {
-                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+                vc.component.listRoom($that.roomInfo.currentPage, DEFAULT_ROW);
             });
             vc.on('room', 'loadData', function (_param) {
-                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+                vc.component.listRoom($that.roomInfo.currentPage, DEFAULT_ROW);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
+                $that.roomInfo.currentPage = _currentPage;
                 vc.component.listRoom(_currentPage, DEFAULT_ROW);
             });
         },

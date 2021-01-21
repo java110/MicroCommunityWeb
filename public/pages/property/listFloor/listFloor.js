@@ -12,7 +12,8 @@
                     floorId: '',
                     floorNum: '',
                     floorName: ''
-                }
+                },
+                currentPage:DEFAULT_PAGE
             }
         },
         _initMethod: function () {
@@ -20,9 +21,10 @@
         },
         _initEvent: function () {
             vc.on('listFloor', 'listFloorData', function () {
-                vc.component._listFloorData(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listFloorData($that.listFloorInfo.currentPage, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
+                $that.listFloorInfo.currentPage = _currentPage;
                 vc.component._listFloorData(_currentPage, DEFAULT_ROWS);
             });
         },

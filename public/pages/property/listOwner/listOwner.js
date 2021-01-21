@@ -24,6 +24,7 @@
                     roomNum: '',
                     roomName: ''
                 },
+                currentPage:DEFAULT_PAGE,
                 listColumns: []
             }
         },
@@ -40,9 +41,10 @@
         },
         _initEvent: function () {
             vc.on('listOwner', 'listOwnerData', function () {
-                vc.component._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listOwnerData($that.listOwnerInfo.currentPage, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
+                $that.listOwnerInfo.currentPage = _currentPage;
                 vc.component._listOwnerData(_currentPage, DEFAULT_ROWS);
             });
 
