@@ -1,0 +1,199 @@
+(function(vc,vm){
+
+    vc.extends({
+        data:{
+            editAttendanceClassesInfo:{
+                classesId:'',
+classesName:'',
+timeOffset:'',
+clockCount:'',
+clockType:'',
+clockTypeValue:'',
+leaveOffset:'',
+lateOffset:'',
+classesObjType:'',
+classesObjId:'',
+
+            }
+        },
+         _initMethod:function(){
+
+         },
+         _initEvent:function(){
+             vc.on('editAttendanceClasses','openEditAttendanceClassesModal',function(_params){
+                vc.component.refreshEditAttendanceClassesInfo();
+                $('#editAttendanceClassesModel').modal('show');
+                vc.copyObject(_params, vc.component.editAttendanceClassesInfo );
+                vc.component.editAttendanceClassesInfo.communityId = vc.getCurrentCommunity().communityId;
+            });
+        },
+        methods:{
+            editAttendanceClassesValidate:function(){
+                        return vc.validate.validate({
+                            editAttendanceClassesInfo:vc.component.editAttendanceClassesInfo
+                        },{
+                            'editAttendanceClassesInfo.classesName':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"班次名称不能为空"
+                        },
+ {
+                            limit:"maxLength",
+                            param:"64",
+                            errInfo:"班次名称格式错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.timeOffset':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"打卡范围不能为空"
+                        },
+ {
+                            limit:"num",
+                            param:"",
+                            errInfo:"打卡范围格式错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.clockCount':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"打卡次数不能为空"
+                        },
+ {
+                            limit:"num",
+                            param:"",
+                            errInfo:"打卡次数错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.clockType':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"打卡类型不能为空"
+                        },
+ {
+                            limit:"num",
+                            param:"",
+                            errInfo:"打卡类型错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.clockTypeValue':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"打卡规则不能为空"
+                        },
+ {
+                            limit:"maxLength",
+                            param:"12",
+                            errInfo:"打卡规则格式错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.leaveOffset':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"迟到范围不能为空"
+                        },
+ {
+                            limit:"maxLength",
+                            param:"20",
+                            errInfo:"迟到范围错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.lateOffset':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"早退范围不能为空"
+                        },
+ {
+                            limit:"maxLength",
+                            param:"20",
+                            errInfo:"早退范围错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.classesObjType':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"班次对象类型不能为空"
+                        },
+ {
+                            limit:"num",
+                            param:"",
+                            errInfo:"班次对象类型错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.classesObjId':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"班次对象不能为空"
+                        },
+ {
+                            limit:"num",
+                            param:"",
+                            errInfo:"班次对象错误"
+                        },
+                    ],
+'editAttendanceClassesInfo.classesId':[
+{
+                            limit:"required",
+                            param:"",
+                            errInfo:"班组ID不能为空"
+                        }]
+
+                        });
+             },
+            editAttendanceClasses:function(){
+                if(!vc.component.editAttendanceClassesValidate()){
+                    vc.toast(vc.validate.errInfo);
+                    return ;
+                }
+
+                vc.http.apiPost(
+                    'attendanceClasses.updateAttendanceClasses',
+                    JSON.stringify(vc.component.editAttendanceClassesInfo),
+                    {
+                        emulateJSON:true
+                     },
+                     function(json,res){
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model
+                            $('#editAttendanceClassesModel').modal('hide');
+                             vc.emit('attendanceClassesManage','listAttendanceClasses',{});
+                            return ;
+                        }
+                        vc.message(_json.msg);
+                     },
+                     function(errInfo,error){
+                        console.log('请求失败处理');
+
+                        vc.message(errInfo);
+                     });
+            },
+            refreshEditAttendanceClassesInfo:function(){
+                vc.component.editAttendanceClassesInfo= {
+                  classesId:'',
+classesName:'',
+timeOffset:'',
+clockCount:'',
+clockType:'',
+clockTypeValue:'',
+leaveOffset:'',
+lateOffset:'',
+classesObjType:'',
+classesObjId:'',
+
+                }
+            }
+        }
+    });
+
+})(window.vc,window.vc.component);

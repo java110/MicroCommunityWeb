@@ -1,0 +1,98 @@
+<div id="editAttendanceClassesModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">修改</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">班次名称</label>
+                <div class="col-sm-10">
+                  <input v-model="editAttendanceClassesInfo.classesName" type="text" placeholder="必填，请填写班次名称"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">打卡范围</label>
+                <div class="col-sm-10">
+                  <input v-model="editAttendanceClassesInfo.timeOffset" type="text" placeholder="必填，请填写打卡范围"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">打卡次数</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editAttendanceClassesInfo.clockCount">
+                    <option selected disabled value="">必填，请选择打卡次数</option>
+                    <option value="2">2次</option>
+                    <option value="4">4次</option>
+                    <option value="6">6次</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">打卡类型</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editAttendanceClassesInfo.clockType">
+                    <option selected disabled value="">必填，请选择打卡类型</option>
+                    <option value="1001">每天打卡</option>
+                    <option value="1002">隔天打卡</option>
+                    <option value="1003">自定义</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">打卡规则</label>
+                <div class="col-sm-10">
+                  <input v-model="editAttendanceClassesInfo.clockTypeValue" type="text" placeholder="必填，请填写打卡规则"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">迟到范围</label>
+                <div class="col-sm-10">
+                  <input v-model="editAttendanceClassesInfo.leaveOffset" type="text" placeholder="必填，请填写迟到范围"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">早退范围</label>
+                <div class="col-sm-10">
+                  <input v-model="editAttendanceClassesInfo.lateOffset" type="text" placeholder="必填，请填写早退范围"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">班次对象类型</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editAttendanceClassesInfo.classesObjType">
+                    <option selected disabled value="">必填，请选择班次对象类型</option>
+                    <option value="1001">集团公司</option>
+                    <option value="1002">分公司</option>
+                    <option value="1003">部门</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">班次对象</label>
+                <div class="col-sm-10">
+                  <input v-model="editAttendanceClassesInfo.classesObjId" type="text" placeholder="必填，请填写班次对象"
+                    class="form-control">
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="editAttendanceClasses()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
