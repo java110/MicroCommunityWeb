@@ -15,7 +15,8 @@
                     paId:'',
                     areaNum: '',
                     state:''
-                }
+                },
+                currentPage:DEFAULT_PAGE
             }
         },
         _initMethod: function () {
@@ -23,7 +24,7 @@
         },
         _initEvent: function () {
             vc.on('listParkingSpace', 'listParkingSpaceData', function () {
-                vc.component._listParkingSpaceData(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listParkingSpaceData($that.listParkingSpaceInfo.currentPage, DEFAULT_ROWS);
                 vc.component.listParkingSpaceInfo.num = '';
             });
             vc.on('listParkingSpace', 'chooseParkingArea', function (_parkingArea) {
@@ -38,6 +39,7 @@
                 vc.component.listParkingSpaceInfo.num = '';
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
+                $that.listParkingSpaceInfo.currentPage = _currentPage;
                 vc.component._listParkingSpaceData(_currentPage, DEFAULT_ROWS);
             });
         },

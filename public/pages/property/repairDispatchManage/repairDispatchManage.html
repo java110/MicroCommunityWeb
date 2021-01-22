@@ -97,7 +97,7 @@
                                             v-on:click="_openDispatchRepairModel(ownerRepair)">转单
                                         </button>
                                     </div>
-                                    <div class="btn-group" v-if="ownerRepair.preStaffId != '-1' && ownerRepair.startStaffId != ownerRepair.preStaffId">
+                                    <div class="btn-group" v-if="ownerRepair.preStaffId != '-1' && ownerRepair.ruId != ownerRepair.preRuId">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openBackRepairModel(ownerRepair)">退单
                                         </button>
