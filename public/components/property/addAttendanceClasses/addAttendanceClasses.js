@@ -266,8 +266,8 @@
                 }
 
 
-                let _newAttrs = Object.keys(_attrs).sort(function (a, b) {
-                    return _attrs[b].seq - _attrs[a].seq;
+                let _newAttrs = _attrs.sort(function (a, b) {
+                    return a.seq - b.seq ;
                 });
 
                 $that.addAttendanceClassesInfo.attrs = _newAttrs;
