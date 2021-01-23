@@ -17,19 +17,43 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">打卡范围</label>
                 <div class="col-sm-10">
-                  <input v-model="editAttendanceClassesInfo.timeOffset" type="text" placeholder="必填，请填写打卡范围"
+                  <input v-model="editAttendanceClassesInfo.timeOffset" type="text" placeholder="必填，请填写打卡范围(分钟)"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">打卡次数</label>
                 <div class="col-sm-10">
-                  <select class="custom-select" v-model="editAttendanceClassesInfo.clockCount">
+                  <select class="custom-select" v-model="editAttendanceClassesInfo.clockCount" @change="_editAttendanceChangeClockCount()">
                     <option selected disabled value="">必填，请选择打卡次数</option>
                     <option value="2">2次</option>
                     <option value="4">4次</option>
                     <option value="6">6次</option>
                   </select>
+                </div>
+              </div>
+              <div v-for="(item,index) in editAttendanceClassesInfo.attrs">
+                <div class="row" v-if="index % 2 == 0">
+                  <div class="col-sm-6">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label padding-lr-sm">{{item.name}}</label>
+                      <div class="col-sm-8">
+                        <input v-model="item.value" type="text" :placeholder="'必填，请填写'+item.name" class="form-control"
+                          :class="item.specCd">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6" v-if="index < editAttendanceClassesInfo.attrs.length-1">
+                    <div class="form-group row">
+                      <label
+                        class="col-sm-3 col-form-label padding-lr-sm">{{editAttendanceClassesInfo.attrs[index+1].name}}</label>
+                      <div class="col-sm-9">
+                        <input v-model="editAttendanceClassesInfo.attrs[index+1].value" type="text"
+                          :placeholder="'必填，请填写'+editAttendanceClassesInfo.attrs[index+1].name" class="form-control "
+                          :class="editAttendanceClassesInfo.attrs[index+1].specCd">
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
@@ -43,11 +67,37 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row" v-if="editAttendanceClassesInfo.clockType == '1003'">
                 <label class="col-sm-2 col-form-label">打卡规则</label>
                 <div class="col-sm-10">
-                  <input v-model="editAttendanceClassesInfo.clockTypeValue" type="text" placeholder="必填，请填写打卡规则"
-                    class="form-control">
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="editAttendanceClassesInfo.clockTypeValues"
+                        value="1">星期一</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="editAttendanceClassesInfo.clockTypeValues"
+                        value="2">星期二</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="editAttendanceClassesInfo.clockTypeValues"
+                        value="3">星期三</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="editAttendanceClassesInfo.clockTypeValues"
+                        value="4">星期四</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="editAttendanceClassesInfo.clockTypeValues"
+                        value="5">星期五</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="editAttendanceClassesInfo.clockTypeValues"
+                        value="6">星期六</label>
+                  </div>
+                  <div class="checkbox custom-control-inline">
+                    <label><input type="checkbox" v-model="editAttendanceClassesInfo.clockTypeValues"
+                        value="7">星期日</label>
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
@@ -64,25 +114,6 @@
                     class="form-control">
                 </div>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">班次对象类型</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="editAttendanceClassesInfo.classesObjType">
-                    <option selected disabled value="">必填，请选择班次对象类型</option>
-                    <option value="1001">集团公司</option>
-                    <option value="1002">分公司</option>
-                    <option value="1003">部门</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">班次对象</label>
-                <div class="col-sm-10">
-                  <input v-model="editAttendanceClassesInfo.classesObjId" type="text" placeholder="必填，请填写班次对象"
-                    class="form-control">
-                </div>
-              </div>
-
               <div class="ibox-content">
                 <button class="btn btn-primary float-right" type="button" v-on:click="editAttendanceClasses()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>

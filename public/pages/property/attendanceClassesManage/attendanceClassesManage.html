@@ -69,25 +69,21 @@
                                 <th class="text-center">打卡规则</th>
                                 <th class="text-center">迟到范围</th>
                                 <th class="text-center">早退范围</th>
-                                <th class="text-center">班次对象类型</th>
-                                <th class="text-center">班次对象</th>
+                                <th class="text-center">考勤部门</th>
                                 <th class="text-center">操作</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="attendanceClasses in attendanceClassesManageInfo.attendanceClassess">
                                 <td class="text-center">{{attendanceClasses.classesId}}</td>
                                 <td class="text-center">{{attendanceClasses.classesName}}</td>
-                                <td class="text-center">{{attendanceClasses.timeOffset}}</td>
+                                <td class="text-center">{{attendanceClasses.timeOffset}}分钟</td>
                                 <td class="text-center">{{attendanceClasses.clockCount}}</td>
                                 <td class="text-center">{{attendanceClasses.clockType}}</td>
                                 <td class="text-center">{{attendanceClasses.clockTypeValue}}</td>
-                                <td class="text-center">{{attendanceClasses.leaveOffset}}</td>
-                                <td class="text-center">{{attendanceClasses.lateOffset}}</td>
-                                <td class="text-center">{{attendanceClasses.classesObjType}}</td>
-                                <td class="text-center">{{attendanceClasses.classesObjId}}</td>
+                                <td class="text-center">{{attendanceClasses.leaveOffset}}分钟</td>
+                                <td class="text-center">{{attendanceClasses.lateOffset}}分钟</td>
+                                <td class="text-center">{{attendanceClasses.classesObjName}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
