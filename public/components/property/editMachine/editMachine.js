@@ -18,6 +18,7 @@
                 unitNum: '',
                 roomId: '',
                 paId: '',
+                orgId: '',
                 locationTypeCd: '',
                 locationObjId: '',
                 roomNum: '',
@@ -75,6 +76,11 @@
                         paId: vc.component.editMachineInfo.paId,
                         num: vc.component.editMachineInfo.num
                     });
+                } else if (vc.component.editMachineInfo.locationTypeCd == '5000') {
+                    vc.emit('editMachine', 'orgSelect2', 'setOrg', {
+                        orgId: vc.component.editMachineInfo.orgId,
+                        num: vc.component.editMachineInfo.num
+                    });
                 }
 
                 if (_params.hasOwnProperty('machineAttrs')) {
@@ -104,6 +110,11 @@
                     vc.component.editMachineInfo.roomId = _param.roomId;
                 }
             });
+            vc.on('editMachine', 'staffSelect2', 'setStaff',function(_param){
+                if (_param.hasOwnProperty("orgId")) {
+                    vc.component.addMachineInfo.orgId = _param.orgId;
+                }
+            })
         },
         methods: {
             _initMachineUrl: function () {
@@ -234,7 +245,8 @@
                 vc.component.editMachineInfo.communityId = vc.getCurrentCommunity().communityId;
                 if (vc.component.editMachineInfo.locationType != '2000'
                     && vc.component.editMachineInfo.locationType != '3000'
-                    && vc.component.editMachineInfo.locationType != '4000') { //大门时直接写 小区ID
+                    && vc.component.editMachineInfo.locationType != '4000'
+                    && vc.component.editMachineInfo.locationType != '5000') { //大门时直接写 小区ID
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.communityId;
                 } else if (vc.component.editMachineInfo.locationType == '2000') {
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.unitId;
@@ -242,6 +254,8 @@
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.roomId;
                 } else if (vc.component.editMachineInfo.locationType == '4000') {
                     vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.paId;
+                } else if (vc.component.addMachineInfo.locationType == '5000') {
+                    vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.orgId;
                 } else {
                     vc.toast("设备位置值错误");
                     return;
