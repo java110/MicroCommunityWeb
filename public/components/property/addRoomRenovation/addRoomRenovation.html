@@ -1,0 +1,64 @@
+<div id="addRoomRenovationModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">添加</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">房屋</label>
+                <div class="col-sm-10">
+                  <input v-model="addRoomRenovationInfo.roomName" type="text" placeholder="必填，请填写房屋" @blur="_queryRoom"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">联系人</label>
+                <div class="col-sm-10">
+                  <input v-model="addRoomRenovationInfo.personName" type="text" placeholder="必填，请填写联系人"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">联系电话</label>
+                <div class="col-sm-10">
+                  <input v-model="addRoomRenovationInfo.personTel" type="text" placeholder="必填，请填写联系电话"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">装修时间</label>
+                <div class="col-sm-10">
+                  <input v-model="addRoomRenovationInfo.startTime" type="text" placeholder="必填，请填写装修时间"
+                    class="form-control addStartTime">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">结束时间</label>
+                <div class="col-sm-10">
+                  <input v-model="addRoomRenovationInfo.endTime" type="text" placeholder="必填，请填写结束时间"
+                    class="form-control addEndTime">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">备注</label>
+                <div class="col-sm-10">
+                  <input v-model="addRoomRenovationInfo.remark" type="text" placeholder="选填，请填写备注" class="form-control">
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveRoomRenovationInfo()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
