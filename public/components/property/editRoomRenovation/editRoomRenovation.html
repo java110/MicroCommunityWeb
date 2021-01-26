@@ -10,8 +10,8 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">房屋</label>
                 <div class="col-sm-10">
-                  <input v-model="editRoomRenovationInfo.roomName" type="text" placeholder="必填，请填写房屋"
-                    class="form-control">
+                  <input v-model="editRoomRenovationInfo.roomName" disabled="disabled" type="text"
+                    placeholder="必填，请填写房屋" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
@@ -32,21 +32,50 @@
                 <label class="col-sm-2 col-form-label">装修时间</label>
                 <div class="col-sm-10">
                   <input v-model="editRoomRenovationInfo.startTime" type="text" placeholder="必填，请填写装修时间"
-                    class="form-control">
+                    class="form-control editStartTime">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">结束时间</label>
                 <div class="col-sm-10">
                   <input v-model="editRoomRenovationInfo.endTime" type="text" placeholder="必填，请填写结束时间"
-                    class="form-control">
+                    class="form-control editEndTime">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">状态</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editRoomRenovationInfo.state">
+                    <option selected disabled value="">必填，请选择状态</option>
+                    <option value="1000">待装修</option>
+                    <option value="2000">待验收</option>
+                    <option value="3000">验收成功</option>
+                    <option value="4000">验收失败</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">是否违规</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editRoomRenovationInfo.isViolation">
+                    <option selected disabled value="">必填，请选择是否违规</option>
+                    <option value="Y">是</option>
+                    <option value="N">否</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row" v-if="editRoomRenovationInfo.isViolation == 'Y'">
+                <label class="col-sm-2 col-form-label">违规说明</label>
+                <div class="col-sm-10">
+                  <textarea v-model="editRoomRenovationInfo.violationDesc" placeholder="选填，请填写违规说明"
+                    class="form-control"></textarea>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">备注</label>
                 <div class="col-sm-10">
-                  <input v-model="editRoomRenovationInfo.remark" type="text" placeholder="选填，请填写备注"
-                    class="form-control">
+                  <textarea v-model="editRoomRenovationInfo.remark" placeholder="选填，请填写备注"
+                    class="form-control"></textarea>
                 </div>
               </div>
 

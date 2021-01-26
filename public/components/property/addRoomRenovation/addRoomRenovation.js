@@ -24,6 +24,20 @@
             vc.on('addRoomRenovation', 'openAddRoomRenovationModal', function () {
                 $('#addRoomRenovationModel').modal('show');
             });
+
+            
+            vc.initDate('addStartTime', function (_startTime) {
+                $that.addRoomRenovationInfo.startTime = _startTime;
+            });
+            vc.initDate('addEndTime', function (_endTime) {
+                $that.addRoomRenovationInfo.endTime = _endTime;
+                let start = Date.parse(new Date($that.addRoomRenovationInfo.startTime))
+                let end = Date.parse(new Date($that.addRoomRenovationInfo.endTime))
+                if (start - end >= 0) {
+                    vc.toast("结束时间必须大于开始时间")
+                    $that.addRoomRenovationInfo.endTime = '';
+                }
+            });
         },
         methods: {
             addRoomRenovationValidate() {
@@ -119,7 +133,7 @@
                 }
 
                 vc.http.apiPost(
-                    'roomRenovation.saveRoomRenovation',
+                    '/roomRenovation/saveRoomRenovation',
                     JSON.stringify(vc.component.addRoomRenovationInfo),
                     {
                         emulateJSON: true
