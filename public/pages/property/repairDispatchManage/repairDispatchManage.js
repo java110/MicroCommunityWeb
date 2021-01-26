@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -29,7 +29,6 @@
             //vc.component._validateParam();
         },
         _initEvent: function () {
-
             vc.on('repairDispatchManage', 'listOwnerRepair', function (_param) {
                 vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -90,7 +89,6 @@
                 var param = {
                     params: vc.component.repairDispatchManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('ownerRepair.listStaffRepairs',
                     param,
@@ -110,7 +108,6 @@
             },
             _queryOwnerRepairMethod: function () {
                 vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _openFinishRepair: function (_ownerRepair) {
                 vc.emit('finishRepair', 'openFinishRepairModal', _ownerRepair);
@@ -137,8 +134,6 @@
             _openAppraiseRepair: function (_repair) {
                 vc.emit('appraiseRepair', 'openAppraiseRepairModal', _repair);
             }
-
-
         }
     });
 })(window.vc);

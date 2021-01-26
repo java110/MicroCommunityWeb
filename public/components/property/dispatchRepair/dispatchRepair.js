@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             dispatchRepairInfo: {
@@ -21,7 +20,6 @@
                 $that.dispatchRepairInfo.repairId = _repair.repairId;
                 $that.dispatchRepairInfo.action = _repair.action;
                 $that._listRepairTypeUsers();
-
                 if (_repair.hasOwnProperty('action') && _repair.action == 'BACK') {
                     $that.dispatchRepairInfo.staffId = _repair.preStaffId;
                     $that.dispatchRepairInfo.staffName = _repair.preStaffName;
@@ -70,16 +68,11 @@
                         $that.dispatchRepairInfo.staffName = item.staffName;
                     }
                 });
-
                 if (!vc.component.dispatchRepairValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.dispatchRepairInfo.communityId = vc.getCurrentCommunity().communityId;
-
-
-
                 vc.http.apiPost(
                     'ownerRepair.repairDispatch',
                     JSON.stringify(vc.component.dispatchRepairInfo),
@@ -95,17 +88,12 @@
                             vc.component.clearDispatchRepairInfo();
                             vc.emit('repairPoolManage', 'listRepairPool', {});
                             vc.emit('repairDispatchManage', 'listOwnerRepair', {});
-
-                            return;
+                            vc.toast("操作成功");
                         }
-                        vc.toast(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearDispatchRepairInfo: function () {
@@ -120,7 +108,6 @@
                 };
             },
             _listRepairTypeUsers: function () {
-
                 var param = {
                     params: {
                         page: 1,
@@ -130,14 +117,12 @@
                         state: '9999'
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('repair.listRepairTypeUsers',
                     param,
                     function (json, res) {
                         var _repairTypeUserManageInfo = JSON.parse(json);
                         vc.component.dispatchRepairInfo.repairTypeUsers = _repairTypeUserManageInfo.data;
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -145,5 +130,4 @@
             },
         }
     });
-
 })(window.vc);

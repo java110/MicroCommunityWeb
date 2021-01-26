@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -30,19 +29,16 @@
                     vc.component.addOwnerRepairInfo.repairObjId = _param.floorId;
                     vc.component.addOwnerRepairInfo.repairObjName = _param.name;
                 }
-
                 if (_param.hasOwnProperty("unitId") && _repairObjType == '003') {
                     vc.component.addOwnerRepairInfo.repairObjId = _param.unitId;
                     vc.component.addOwnerRepairInfo.repairObjName = _param.name;
                 }
-
                 if (_param.hasOwnProperty("roomId") && _repairObjType == '004') {
                     vc.component.addOwnerRepairInfo.repairObjId = _param.roomId;
                     vc.component.addOwnerRepairInfo.repairObjName = _param.name;
                 }
             });
             vc.on('addOwnerRepair', 'openAddOwnerRepairModal', function (_ownerInfo) {
-
                 $('#addOwnerRepairModel').modal('show');
             });
         },
@@ -128,10 +124,8 @@
                 }
                 if (!vc.component.addOwnerRepairValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addOwnerRepairInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -139,7 +133,6 @@
                     $('#addOwnerRepairModel').modal('hide');
                     return;
                 }
-
                 vc.http.post(
                     'addOwnerRepair',
                     'save',
@@ -154,11 +147,9 @@
                             $('#addOwnerRepairModel').modal('hide');
                             vc.component.clearAddOwnerRepairInfo();
                             vc.emit('ownerRepairManage', 'listOwnerRepair', {});
-
                             return;
                         }
                         vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -195,18 +186,14 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.addAppointmentTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".addAppointmentTime").val();
                         vc.component.addOwnerRepairInfo.appointmentTime = value;
                     });
-
             },
             _listRepairSettings: function (_page, _rows, _publicArea) {
-
-
                 var param = {
                     params: {
                         page: _page,
@@ -215,7 +202,6 @@
                         publicArea: _publicArea
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('repair.listRepairSettings',
                     param,
@@ -238,5 +224,4 @@
             }
         }
     });
-
 })(window.vc);

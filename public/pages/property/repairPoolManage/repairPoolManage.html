@@ -6,7 +6,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{repairPoolManageInfo.moreCondition == true?'隐藏':'更多'}}
+                                v-on:click="_moreCondition()">{{repairPoolManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -14,18 +14,18 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-
                                 <select class="custom-select" v-model="repairPoolManageInfo.conditions.repairType">
                                     <option selected value="">请选择报修类型</option>
                                     <option v-for="(item,index) in repairPoolManageInfo.repairSettings"
-                                        :value="item.repairType">{{item.repairTypeName}}</option>
+                                            :value="item.repairType">{{item.repairTypeName}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入报修人"
-                                    v-model="repairPoolManageInfo.conditions.repairName" class=" form-control">
+                                       v-model="repairPoolManageInfo.conditions.repairName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -33,29 +33,31 @@
                                 <select class="custom-select" v-model="repairPoolManageInfo.conditions.state">
                                     <option selected value="">请选择报修状态</option>
                                     <option v-for="(item,index) in repairPoolManageInfo.states" :value="item.statusCd">
-                                        {{item.name}}</option>
+                                        {{item.name}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRepairPoolMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRepairPoolMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4" v-if="repairPoolManageInfo.moreCondition == true">
                             <input type="text" placeholder="请输入报修ID" v-model="repairPoolManageInfo.conditions.repairId"
-                                class=" form-control">
+                                   class=" form-control">
                         </div>
-                        <div class="col-sm-4" v-if="repairPoolManageInfo.moreCondition == true">
-
+                        <div class="col-sm-3" v-if="repairPoolManageInfo.moreCondition == true">
                             <input type="text" placeholder="请输入报修电话" v-model="repairPoolManageInfo.conditions.tel"
-                                class=" form-control">
+                                   class=" form-control">
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -66,64 +68,70 @@
                 <div class="ibox-title">
                     <h5><span v-text="repairPoolManageInfo.conditions.roomName"></span>报修工单池</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">工单编码</th>
-                                <th class="text-center">位置</th>
-                                <th class="text-center">报修类型</th>
-                                <th class="text-center">报修人</th>
-                                <th class="text-center">联系方式</th>
-                                <th class="text-center">预约时间</th>
-                                <th class="text-center">状态</th>
-                                <th class="text-right">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">工单编码</th>
+                            <th class="text-center">位置</th>
+                            <th class="text-center">报修类型</th>
+                            <th class="text-center">报修人</th>
+                            <th class="text-center">联系方式</th>
+                            <th class="text-center">预约时间</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="repairPool in repairPoolManageInfo.repairPools">
-                                <td class="text-center">{{repairPool.repairId}}</td>
-                                <td class="text-center">{{repairPool.repairObjName}}</td>
-                                <td class="text-center">{{repairPool.repairTypeName}}</td>
-                                <td class="text-center">{{repairPool.repairName}}</td>
-                                <td class="text-center">{{repairPool.tel}}</td>
-                                <td class="text-center">{{repairPool.appointmentTime}}</td>
-                                <td class="text-center">{{repairPool.stateName}}</td>
-                                <td class="text-right">
-                                    <div class="btn-group" v-if="repairPool.state == '1000'">
-                                        <button class="btn-white btn btn-xs"
+                        <tr v-for="repairPool in repairPoolManageInfo.repairPools">
+                            <td class="text-center">{{repairPool.repairId}}</td>
+                            <td class="text-center">{{repairPool.repairObjName}}</td>
+                            <td class="text-center">{{repairPool.repairTypeName}}</td>
+                            <td class="text-center">{{repairPool.repairName}}</td>
+                            <td class="text-center">{{repairPool.tel}}</td>
+                            <td class="text-center">{{repairPool.appointmentTime}}</td>
+                            <td class="text-center">{{repairPool.stateName}}</td>
+                            <td class="text-center">
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502021012067300023') && (repairPool.state == '1000' || repairPool.state == '1200')">
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditOwnerRepairModel(repairPool)">修改
-                                        </button>
-                                    </div>
-                                    <div class="btn-group" v-if="repairPool.repairWay == '200' && repairPool.state == '1000'">
-                                        <button class="btn-white btn btn-xs"
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502019101946430010') && repairPool.state == '1000'">
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openDispatchRepairModel(repairPool)">派单
-                                        </button>
-                                    </div>
-                                    <div class="btn-group" v-if="repairPool.repairWay == '100' && repairPool.state == '1000'">
-                                        <button class="btn-white btn btn-xs"
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502021012099350016') && repairPool.state == '1000'">
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openGrabbingRepairModel(repairPool)">抢单
-                                        </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openRepairDetail(repairPool)">详情
-                                        </button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-if="vc.hasPrivilege('502021012051410024') && (repairPool.state == '1000' || repairPool.state == '1200')"
+                                            v-on:click="_openDeleteRepairDetailModel(repairPool)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -132,8 +140,7 @@
             </div>
         </div>
     </div>
-
     <vc:create path="property/dispatchRepair"></vc:create>
     <vc:create path="property/editOwnerRepair"></vc:create>
-
+    <vc:create path="property/deleteOwnerRepair"></vc:create>
 </div>

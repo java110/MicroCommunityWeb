@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editOwnerRepairInfo: {
@@ -28,24 +27,20 @@
                     vc.component.editOwnerRepairInfo.repairObjId = _param.floorId;
                     vc.component.editOwnerRepairInfo.repairObjName = _param.floorName;
                 }
-
                 if (_param.hasOwnProperty("unitId") && _repairObjType == '003') {
                     vc.component.editOwnerRepairInfo.repairObjId = _param.unitId;
                     vc.component.editOwnerRepairInfo.repairObjName = _param.unitName;
                 }
-
                 if (_param.hasOwnProperty("roomId") && _repairObjType == '004') {
                     vc.component.editOwnerRepairInfo.repairObjId = _param.roomId;
                     vc.component.editOwnerRepairInfo.repairObjName = _param.name;
                 }
             });
             vc.on('editOwnerRepair', 'openEditOwnerRepairModal', function (_params) {
-
                 vc.component.refreshEditOwnerRepairInfo();
                 vc.copyObject(_params, vc.component.editOwnerRepairInfo);
                 $that._changeEditRepairObjType();
-                $('#editOwnerRepairModel').modal('show'); 
-                
+                $('#editOwnerRepairModel').modal('show');
                 vc.component.editOwnerRepairInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
@@ -127,7 +122,6 @@
                             param: "",
                             errInfo: "报修ID不能为空"
                         }]
-
                 });
             },
             editOwnerRepair: function () {
@@ -141,7 +135,6 @@
                     return;
                 }
                 vc.component.editOwnerRepairInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.post(
                     'editOwnerRepair',
                     'update',
@@ -155,13 +148,11 @@
                             //关闭model
                             $('#editOwnerRepairModel').modal('hide');
                             vc.emit('ownerRepairManage', 'listOwnerRepair', {});
-                            return;
+                            vc.toast("修改成功");
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -178,9 +169,8 @@
                     repairSettings: [],
                     repairObjType: '',
                     repairObjId: '',
-                    repairObjName: '',
+                    repairObjName: ''
                 }
-
                 vc.emit('addOwnerRepair', 'roomSelect2', 'clearRoom', {});
                 vc.emit('addOwnerRepair', 'unitSelect2', 'clearUnit', {});
                 vc.emit('addOwnerRepair', 'floorSelect2', 'clearFloor', {});
@@ -194,7 +184,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.editAppointmentTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -203,10 +192,8 @@
                     });
                 //加载报修类型
                 $that._listEditRepairSettings(1, 50);
-
             },
-            _listEditRepairSettings: function (_page, _rows,_publicArea) {
-
+            _listEditRepairSettings: function (_page, _rows, _publicArea) {
                 var param = {
                     params: {
                         page: _page,
@@ -215,7 +202,6 @@
                         publicArea: _publicArea
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('repair.listRepairSettings',
                     param,
@@ -234,9 +220,8 @@
                     _publicArea = "F";
                 }
                 //加载报修类型
-                $that._listEditRepairSettings(1, 50,_publicArea);
+                $that._listEditRepairSettings(1, 50, _publicArea);
             }
         }
     });
-
 })(window.vc, window.vc.component);

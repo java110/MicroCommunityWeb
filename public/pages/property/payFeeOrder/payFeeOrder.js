@@ -43,6 +43,7 @@
                 vc.component.payFeeOrderInfo.feePrice = vc.getParam('feePrice');
                 $that.payFeeOrderInfo.feeFlag = vc.getParam('feeFlag');
                 $that.payFeeOrderInfo.payerObjName = vc.getParam('payerObjName');
+                $that.payFeeOrderInfo.builtUpArea = vc.getParam('builtUpArea');
                 $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
                 $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
                 $that.payFeeOrderInfo.paymentCycles = [];
@@ -225,9 +226,10 @@
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
+                var price = parseFloat(_newCycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
                 // 调整为根据映射 取整
-                let unFixedNum = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
-                vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(unFixedNum);
+                // let unFixedNum = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
+                vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 // 触发折扣组件，计算折扣
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
@@ -246,8 +248,9 @@
                 if (_cycles == '') {
                     return;
                 }
-                let unFixedNum = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
-                vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(unFixedNum);
+                var price = parseFloat(_cycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
+                // let unFixedNum = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
+                vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                     feeId: $that.payFeeOrderInfo.feeId,
