@@ -22,6 +22,7 @@
                 unitName: '',
                 roomId: '',
                 paId: '',
+                orgId: '',
                 locationTypeCd: '',
                 locationObjId: '',
                 roomName: '',
@@ -57,7 +58,13 @@
                 if (_param.hasOwnProperty("paId")) {
                     vc.component.addMachineInfo.paId = _param.paId;
                 }
+                
             });
+            vc.on('addMachine', 'staffSelect2', 'setStaff',function(_param){
+                if (_param.hasOwnProperty("orgId")) {
+                    vc.component.addMachineInfo.orgId = _param.orgId;
+                }
+            })
         },
         methods: {
             addMachineValidate: function () {
@@ -167,6 +174,7 @@
                 if (vc.component.addMachineInfo.locationType != '2000'
                     && vc.component.addMachineInfo.locationType != '3000'
                     && vc.component.addMachineInfo.locationType != '4000'
+                    && vc.component.addMachineInfo.locationType != '5000'
                 ) { //大门时直接写 小区ID
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.communityId;
                 } else if (vc.component.addMachineInfo.locationType == '2000') {
@@ -175,6 +183,8 @@
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.roomId;
                 } else if (vc.component.addMachineInfo.locationType == '4000') {
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.paId;
+                } else if (vc.component.addMachineInfo.locationType == '5000') {
+                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.orgId;
                 } else {
                     vc.toast("设备位置值错误");
                     return;
@@ -241,7 +251,8 @@
                     unitId: '',
                     unitName: '',
                     roomId: '',
-                    paId: ''
+                    paId: '',
+                    orgId: ''
                 };
             },
             _initAddMachineData: function () {

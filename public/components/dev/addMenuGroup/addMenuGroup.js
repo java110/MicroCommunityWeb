@@ -14,6 +14,7 @@
                 label: '',
                 seq: '',
                 description: '',
+                groupType:''
 
             }
         },
@@ -126,7 +127,7 @@
                     label: '',
                     seq: '',
                     description: '',
-
+                    groupType:''
                 };
             }
         }

@@ -1,3 +1,5 @@
+
+
 (function (vc) {
 
     vc.extends({
@@ -12,11 +14,13 @@
                 timeOffset: '',
                 clockCount: '',
                 clockType: '',
+                clockTypeValues: [],
                 clockTypeValue: '',
                 leaveOffset: '',
                 lateOffset: '',
                 classesObjType: '',
                 classesObjId: '',
+                classesObjName: '',
                 attrs: [
 
                 ]
@@ -29,7 +33,13 @@
             vc.on('addAttendanceClasses', 'openAddAttendanceClassesModal', function () {
                 $('#addAttendanceClassesModel').modal('show');
             });
+            vc.on('addAttendanceClasses', 'staffSelect2', 'setStaff', function (_param) {
+                $that.addAttendanceClassesInfo.classesObjType = '1003';
+                $that.addAttendanceClassesInfo.classesObjId = _param.orgId;
+                $that.addAttendanceClassesInfo.classesObjName = _param.orgName;
+            });
         },
+
         methods: {
             addAttendanceClassesValidate() {
                 return vc.validate.validate({
@@ -150,6 +160,22 @@
                 });
             },
             saveAttendanceClassesInfo: function () {
+                let _clockType = $that.addAttendanceClassesInfo.clockType;
+                if (_clockType == '1001') {
+                    $that.addAttendanceClassesInfo.clockTypeValue = '*';
+                } else if (_clockType == '1002') {
+                    $that.addAttendanceClassesInfo.clockTypeValue = '?';
+                } else {
+                    let _clockTypeValue = '';
+                    $that.addAttendanceClassesInfo.clockTypeValues.forEach(item => {
+                        _clockTypeValue += (item + ',');
+                    })
+
+                    if (_clockTypeValue.endsWith(',')) {
+                        _clockTypeValue = _clockTypeValue.substring(0, _clockTypeValue.length - 1)
+                    }
+                    $that.addAttendanceClassesInfo.clockTypeValue = _clockTypeValue;
+                }
                 if (!vc.component.addAttendanceClassesValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -197,11 +223,13 @@
                     timeOffset: '',
                     clockCount: '',
                     clockType: '',
+                    clockTypeValues: [],
                     clockTypeValue: '',
                     leaveOffset: '',
                     lateOffset: '',
                     classesObjType: '',
                     classesObjId: '',
+                    classesObjName: '',
                     attrs: []
 
                 };
@@ -266,13 +294,26 @@
                 }
 
 
-                let _newAttrs = Object.keys(_attrs).sort(function (a, b) {
-                    return _attrs[b].seq - _attrs[a].seq;
+                let _newAttrs = _attrs.sort(function (a, b) {
+                    return a.seq - b.seq;
                 });
 
                 $that.addAttendanceClassesInfo.attrs = _newAttrs;
+
+
+                $that.$nextTick(function () {
+                    //方法
+                    $that.addAttendanceClassesInfo.attrs.forEach(item => {
+                        //初始化日期组件
+                        vc.initHourMinute(item.specCd, function (_value) {
+                            item.value = _value;
+                        });
+                    });
+                });
+
             }
         }
     });
+
 
 })(window.vc);

@@ -1697,6 +1697,25 @@
             });
     }
 
+    vcFramework.initHourMinute = function (_dateStr, _callBack) {
+        $('.' + _dateStr).datetimepicker({
+            language: 'zh-CN',
+            fontAwesome: 'fa',
+            format: 'hh:ii',
+            initTime: true,
+            startView: 'day',
+            autoClose: 1,
+            todayBtn: true
+
+        });
+        $('.' + _dateStr).datetimepicker()
+            .on('changeDate', function (ev) {
+                var value = $('.' + _dateStr).val();
+                //vc.component.addFeeConfigInfo.startTime = value;
+                _callBack(value);
+            });
+    }
+
     vcFramework.initDateMonth = function (_dateStr, _callBack) {
         $('.' + _dateStr).datetimepicker({
             language: 'zh-CN',
