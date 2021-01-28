@@ -156,6 +156,7 @@
                     mediaStreamTrack: null,
                     attrs:[]
                 };
+                this._loadOwnerAttrSpec();
             },
             _addUserMedia: function () {
                 return navigator.getUserMedia = navigator.getUserMedia ||
