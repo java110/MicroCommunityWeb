@@ -106,10 +106,11 @@
                 });
             },
             saveNoticeInfo: function () {
-                if($that.addNoticeViewInfo.noticeTypeCd != '1003'){
-                    $that.addNoticeViewInfo.objType ='001';
+                if ($that.addNoticeViewInfo.noticeTypeCd != '1003') {
+                    $that.addNoticeViewInfo.objType = '001';
                 }
-                if ($that.addNoticeViewInfo.objType == '001') {
+                if ($that.addNoticeViewInfo.objType == '001'
+                    || $that.addNoticeViewInfo.objType == '005') {
                     $that.addNoticeViewInfo.objId = vc.getCurrentCommunity().communityId;
                 } else if ($that.addNoticeViewInfo.objType == '002') {
                     $that.addNoticeViewInfo.objId = $that.addNoticeViewInfo.floorId;
@@ -129,9 +130,9 @@
                     return;
                 }
 
-                if($that.addNoticeViewInfo.objId == "" ){
+                if ($that.addNoticeViewInfo.objId == "") {
                     vc.toast("未选择发布范围");
-                    return ;
+                    return;
                 }
 
                 vc.component.addNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
