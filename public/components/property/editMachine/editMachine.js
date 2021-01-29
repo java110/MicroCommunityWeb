@@ -243,23 +243,6 @@
             },
             editMachine: function () {
                 vc.component.editMachineInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.editMachineInfo.locationType != '2000'
-                    && vc.component.editMachineInfo.locationType != '3000'
-                    && vc.component.editMachineInfo.locationType != '4000'
-                    && vc.component.editMachineInfo.locationType != '5000') { //大门时直接写 小区ID
-                    vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.communityId;
-                } else if (vc.component.editMachineInfo.locationType == '2000') {
-                    vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.unitId;
-                } else if (vc.component.editMachineInfo.locationType == '3000') {
-                    vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.roomId;
-                } else if (vc.component.editMachineInfo.locationType == '4000') {
-                    vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.paId;
-                } else if (vc.component.addMachineInfo.locationType == '5000') {
-                    vc.component.editMachineInfo.locationObjId = vc.component.editMachineInfo.orgId;
-                } else {
-                    vc.toast("设备位置值错误");
-                    return;
-                }
                 if (!vc.component.editMachineValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
