@@ -1310,7 +1310,13 @@
     //获取当前小区信息
     // @return   {"communityId":"123213","name":"测试小区"}
     vcFramework.getCurrentCommunity = function () {
-        return JSON.parse(window.localStorage.getItem('hc_currentCommunityInfo'));
+        let _community =  JSON.parse(window.localStorage.getItem('hc_currentCommunityInfo'));
+
+        // if(_community == null || _community == undefined){
+        //     vcFramework.toast('您还没有入驻小区请先入住小区');
+        // }
+
+        return _community;
     };
 
     //保存当前小区信息 _communityInfos : [{"communityId":"123213","name":"测试小区"}]
