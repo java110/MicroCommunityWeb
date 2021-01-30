@@ -88,14 +88,61 @@
                             $that.reportFloorUnitFeeSummaryInfo.conditions.endTime = '';
                         }
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control startTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName(" form-control endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
             _queryMethod: function () {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            //重置
+            _resetMethod: function () {
+                vc.component._resetFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //查询方法
             _listFees: function (_page, _rows) {
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.page = _page;
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.row = _rows;
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                var param = {
+                    params: vc.component.reportFloorUnitFeeSummaryInfo.conditions
+                };
+                //发送get请求
+                vc.http.apiGet('/reportFeeMonthStatistics/queryFloorUnitFeeSummary',
+                    param,
+                    function (json, res) {
+                        var _reportFloorUnitFeeSummaryInfo = JSON.parse(json);
+                        vc.component.reportFloorUnitFeeSummaryInfo.total = _reportFloorUnitFeeSummaryInfo.total;
+                        vc.component.reportFloorUnitFeeSummaryInfo.records = _reportFloorUnitFeeSummaryInfo.records;
+                        vc.component.reportFloorUnitFeeSummaryInfo.fees = _reportFloorUnitFeeSummaryInfo.data;
+                        vc.emit('pagination', 'init', {
+                            total: vc.component.reportFloorUnitFeeSummaryInfo.records,
+                            currentPage: _page
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            //重置方法
+            _resetFees: function (_page, _rows) {
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.floorName = "";
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.floorId = "";
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.unitId = "";
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.roomNum = "";
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.startTime = "";
+                vc.component.reportFloorUnitFeeSummaryInfo.conditions.endTime = "";
+                // 清除下拉框选项
+                vc.component.reportFloorUnitFeeSummaryInfo.roomUnits = [];
                 var param = {
                     params: vc.component.reportFloorUnitFeeSummaryInfo.conditions
                 };
@@ -143,6 +190,13 @@
             },
             _openChooseFloorMethod: function () {
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
+            },
+            _moreCondition: function () {
+                if (vc.component.reportFloorUnitFeeSummaryInfo.moreCondition) {
+                    vc.component.reportFloorUnitFeeSummaryInfo.moreCondition = false;
+                } else {
+                    vc.component.reportFloorUnitFeeSummaryInfo.moreCondition = true;
+                }
             },
             _exportFee: function () {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportFloorUnitFeeSummary");

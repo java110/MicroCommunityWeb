@@ -176,10 +176,11 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             vc.emit('repairPoolManage', 'listRepairPool', {});
-                            vc.toast(_json.msg);
+                            vc.toast("操作成功");
                             return;
+                        } else if (_json.code == 404) {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

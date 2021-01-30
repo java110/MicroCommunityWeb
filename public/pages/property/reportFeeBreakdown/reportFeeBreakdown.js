@@ -96,6 +96,18 @@
                             $that.reportFeeBreakdownInfo.conditions.endTime = '';
                         }
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control startTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName(" form-control endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
             //查询
             _queryMethod: function () {

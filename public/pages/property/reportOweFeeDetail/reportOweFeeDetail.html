@@ -5,6 +5,9 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{reportOweFeeDetailInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -15,7 +18,8 @@
                                        v-model="reportOweFeeDetailInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()"><i class="fa fa-search"></i> 选择
+                                            v-on:click="_openChooseFloorMethod()">
+                                        <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
@@ -32,19 +36,23 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
                                        v-model="reportOweFeeDetailInfo.conditions.roomNum">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
-                                    class="fa fa-search"></i> 查询
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>重置
                             </button>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-show="reportOweFeeDetailInfo.moreCondition == true">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择创建开始时间"

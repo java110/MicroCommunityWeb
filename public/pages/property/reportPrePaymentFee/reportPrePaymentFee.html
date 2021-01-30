@@ -5,37 +5,34 @@
                 <div class="ibox-title">
                     <h5>预缴费提醒</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <!-- <th class="text-center">信息ID</th> -->
-                                <th class="text-center">费用编号</th>
-                                <th class="text-center">房号</th>
-                                <th class="text-center">费用项</th>
-                                <th class="text-center">费用开始时间</th>
-                                <th class="text-center">距离费用开始时间（天）</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">费用编号</th>
+                            <th class="text-center">房号</th>
+                            <th class="text-center">费用项</th>
+                            <th class="text-center">费用开始时间</th>
+                            <th class="text-center">距离费用开始时间（天）</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(fee,index) in reportPrePaymentFeeInfo.fees">
-                                <td class="text-center">{{index+1}}</td>
-                                <td class="text-center">{{fee.objName}}</td>
-                                <td class="text-center">{{fee.feeName}}</td>
-                                <td class="text-center">{{fee.endTime}}</td>
-                                <td class="text-center">{{fee.oweDay}}</td>
-                            </tr>
+                        <tr v-for="(fee,index) in reportPrePaymentFeeInfo.fees">
+                            <td class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{fee.objName}}</td>
+                            <td class="text-center">{{fee.feeName}}</td>
+                            <td class="text-center">{{fee.endTime}}</td>
+                            <td class="text-center">{{fee.oweDay}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

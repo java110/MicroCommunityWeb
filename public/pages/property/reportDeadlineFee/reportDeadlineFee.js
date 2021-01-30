@@ -18,8 +18,8 @@
                     floorName: '',
                     roomNum: '',
                     unitId: '',
-                    startTime:'',
-                    endTime:''
+                    startTime: '',
+                    endTime: ''
                 }
             }
         },
@@ -28,7 +28,6 @@
             vc.initDateMonth('startTime', function (_startTime) {
                 $that.reportDeadlineFeeInfo.conditions.startTime = _startTime;
             });
-
             vc.initDateMonth('endTime', function (_endTime) {
                 $that.reportDeadlineFeeInfo.conditions.endTime = _endTime;
                 let start = Date.parse(new Date($that.reportDeadlineFeeInfo.conditions.startTime + "-01"))
@@ -38,33 +37,61 @@
                     $that.reportDeadlineFeeInfo.conditions.endTime = '';
                 }
             });
-
         },
         _initEvent: function () {
-
             vc.on('reportDeadlineFee', 'chooseFloor', function (_param) {
                 vc.component.reportDeadlineFeeInfo.conditions.floorId = _param.floorId;
                 vc.component.reportDeadlineFeeInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
-
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listFees(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _queryMethod:function(){
+            //查询
+            _queryMethod: function () {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            //重置
+            _resetMethod: function () {
+                vc.component._resetFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //查询方法
             _listFees: function (_page, _rows) {
-
                 vc.component.reportDeadlineFeeInfo.conditions.page = _page;
                 vc.component.reportDeadlineFeeInfo.conditions.row = _rows;
                 vc.component.reportDeadlineFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.reportDeadlineFeeInfo.conditions
                 };
-
+                //发送get请求
+                vc.http.apiGet('/reportFeeMonthStatistics/queryDeadlineFee',
+                    param,
+                    function (json, res) {
+                        var _reportDeadlineFeeInfo = JSON.parse(json);
+                        vc.component.reportDeadlineFeeInfo.total = _reportDeadlineFeeInfo.total;
+                        vc.component.reportDeadlineFeeInfo.records = _reportDeadlineFeeInfo.records;
+                        vc.component.reportDeadlineFeeInfo.fees = _reportDeadlineFeeInfo.data;
+                        vc.emit('pagination', 'init', {
+                            total: vc.component.reportDeadlineFeeInfo.records,
+                            currentPage: _page
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            //重置方法
+            _resetFees: function (_page, _rows) {
+                vc.component.reportDeadlineFeeInfo.conditions.floorName = "";
+                vc.component.reportDeadlineFeeInfo.conditions.floorId = "";
+                vc.component.reportDeadlineFeeInfo.conditions.unitId = "";
+                vc.component.reportDeadlineFeeInfo.conditions.roomNum = "";
+                vc.component.reportDeadlineFeeInfo.roomUnits = [];
+                var param = {
+                    params: vc.component.reportDeadlineFeeInfo.conditions
+                };
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryDeadlineFee',
                     param,
@@ -107,11 +134,11 @@
                         vc.toast(errInfo);
                     });
             },
-            _openChooseFloorMethod:function(){
-                vc.emit('searchFloor','openSearchFloorModel',{});
+            _openChooseFloorMethod: function () {
+                vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            _exportFee:function(){
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId='+vc.getCurrentCommunity().communityId+"&pagePath=reportDeadlineFee");
+            _exportFee: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportDeadlineFee");
             }
         }
     });

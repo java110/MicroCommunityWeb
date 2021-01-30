@@ -18,8 +18,8 @@
                     floorName: '',
                     roomNum: '',
                     unitId: '',
-                    startTime:'',
-                    endTime:''
+                    startTime: '',
+                    endTime: ''
                 }
             }
         },
@@ -91,12 +91,29 @@
                             $that.reportOweFeeDetailInfo.conditions.endTime = '';
                         }
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control startTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName(" form-control endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
-            _queryMethod:function(){
+            //查询
+            _queryMethod: function () {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            //重置
+            _resetMethod: function () {
+                vc.component._resetFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //查询方法
             _listFees: function (_page, _rows) {
-
                 vc.component.reportOweFeeDetailInfo.conditions.page = _page;
                 vc.component.reportOweFeeDetailInfo.conditions.row = _rows;
                 vc.component.reportOweFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -104,6 +121,35 @@
                     params: vc.component.reportOweFeeDetailInfo.conditions
                 };
 
+                //发送get请求
+                vc.http.apiGet('/reportFeeMonthStatistics/queryOweFeeDetail',
+                    param,
+                    function (json, res) {
+                        var _reportOweFeeDetailInfo = JSON.parse(json);
+                        vc.component.reportOweFeeDetailInfo.total = _reportOweFeeDetailInfo.total;
+                        vc.component.reportOweFeeDetailInfo.records = _reportOweFeeDetailInfo.records;
+                        vc.component.reportOweFeeDetailInfo.fees = _reportOweFeeDetailInfo.data;
+                        vc.emit('pagination', 'init', {
+                            total: vc.component.reportOweFeeDetailInfo.records,
+                            currentPage: _page
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            //重置方法
+            _resetFees: function (_page, _rows) {
+                vc.component.reportOweFeeDetailInfo.conditions.floorName = "";
+                vc.component.reportOweFeeDetailInfo.conditions.floorId = "";
+                vc.component.reportOweFeeDetailInfo.conditions.unitId = "";
+                vc.component.reportOweFeeDetailInfo.conditions.roomNum = "";
+                vc.component.reportOweFeeDetailInfo.conditions.startTime = "";
+                vc.component.reportOweFeeDetailInfo.conditions.endTime = "";
+                vc.component.reportOweFeeDetailInfo.roomUnits = [];
+                var param = {
+                    params: vc.component.reportOweFeeDetailInfo.conditions
+                };
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryOweFeeDetail',
                     param,
@@ -146,11 +192,18 @@
                         vc.toast(errInfo);
                     });
             },
-            _openChooseFloorMethod:function(){
-                vc.emit('searchFloor','openSearchFloorModel',{});
+            _openChooseFloorMethod: function () {
+                vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            _exportFee:function(){
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId='+vc.getCurrentCommunity().communityId+"&pagePath=reportOweFeeDetail");
+            _moreCondition: function () {
+                if (vc.component.reportOweFeeDetailInfo.moreCondition) {
+                    vc.component.reportOweFeeDetailInfo.moreCondition = false;
+                } else {
+                    vc.component.reportOweFeeDetailInfo.moreCondition = true;
+                }
+            },
+            _exportFee: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportOweFeeDetail");
             }
         }
     });

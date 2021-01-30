@@ -27,7 +27,6 @@
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listFees: function (_page, _rows) {
-
                 var param = {
                     params: {
                         page: _page,
@@ -35,7 +34,6 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryPrePayment',
                     param,

@@ -5,12 +5,15 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{reportFloorUnitFeeSummaryInfo.moreCondition ==
+                            true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择楼栋"
                                        v-model="reportFloorUnitFeeSummaryInfo.conditions.floorName"
@@ -41,14 +44,18 @@
                                        v-model="reportFloorUnitFeeSummaryInfo.conditions.roomNum">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
                                     class="fa fa-search"></i> 查询
                             </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>重置
+                            </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">
+                    <div class="row" v-show="reportFloorUnitFeeSummaryInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择缴费开始时间"
                                        v-model="reportFloorUnitFeeSummaryInfo.conditions.startTime"
@@ -89,6 +96,7 @@
                             <th class="text-center">应收金额(单位:元)</th>
                             <th class="text-center">实收金额(单位:元)</th>
                             <th class="text-center">欠费金额(单位:元)</th>
+                            <th class="text-center">创建时间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,6 +107,7 @@
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
                             <td class="text-center">{{fee.oweAmount}}</td>
+                            <td class="text-center">{{fee.createTime}}</td>
                         </tr>
                         </tbody>
                         <tfoot>
