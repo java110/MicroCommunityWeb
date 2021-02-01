@@ -14,14 +14,17 @@
                 classesId: '',
                 conditions: {
                     classesName: '',
-                    classesId: '',
-                    clockType: '',
-
+                    departmentName: '',
+                    date: vc.dateFormat(new Date())
                 }
             }
         },
         _initMethod: function () {
             vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
+
+            vc.initDate('queryDate',function(value){
+                $that.todayAttendanceManageInfo.conditions.date = value;
+            });
         },
         _initEvent: function () {
 
