@@ -1,0 +1,99 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入班组名称"
+                                    v-model="todayAttendanceManageInfo.conditions.classesName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入班组ID"
+                                    v-model="todayAttendanceManageInfo.conditions.classesId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="todayAttendanceManageInfo.conditions.clockType">
+                                <option selected value="">请选择打卡类型</option>
+                                <option value="1001">每天打卡</option>
+                                <option value="1002">隔天打卡</option>
+                                <option value="1003">自定义</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryTodayAttendanceMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>今日考勤</h5>
+                    <div class="ibox-tools" style="top:10px;">
+             
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">部门名称</th>
+                                <th class="text-center">员工名称</th>
+                                <th class="text-center">考勤班组</th>
+                                <th class="text-center">考勤时间</th>
+                                <th class="text-center">考勤状态</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="attendance in todayAttendanceManageInfo.attendances">
+                                <td class="text-center">{{attendance.departmentName}}</td>
+                                <td class="text-center">{{attendance.staffName}}</td>
+                                <td class="text-center">{{attendance.classesName}}</td>
+                                <td class="text-center">{{attendance.clockCount}}</td>
+                                <td class="text-center">{{attendance.stateName}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditAttendanceClassesModel(attendance)">详情</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
