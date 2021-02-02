@@ -61,12 +61,11 @@
                     }
                 );
             },
-            _openAddTodayAttendanceModal: function () {
-                vc.emit('addTodayAttendance', 'openAddTodayAttendanceModal', {});
+            _openAttendanceDetailModel: function (_attendance) {
+                vc.emit('todayAttendanceDetail', 'openTodayAttendanceDetail', _attendance);
             },
             _queryTodayAttendanceMethod: function () {
                 vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.todayAttendanceManageInfo.moreCondition) {
