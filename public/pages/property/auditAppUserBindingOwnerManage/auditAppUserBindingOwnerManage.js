@@ -102,6 +102,9 @@
             },
             _deleteAppUserBindingOwnerModel:function(_auditAppUserBindingOwner){
                 vc.emit('deleteAppUserBindingOwner','openDeleteAppUserBindingOwnerModal',_auditAppUserBindingOwner);
+            },
+            _resetUserPwdModel: function (_staff) {
+                vc.emit('resetStaffPwd', 'openResetStaffPwd', _staff);
             }
 
              

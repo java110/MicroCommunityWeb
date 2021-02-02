@@ -104,6 +104,11 @@
                                         v-on:click="_deleteAppUserBindingOwnerModel(auditAppUserBindingOwner)">
                                         解绑
                                     </button>
+
+                                    <button class="btn-white btn btn-xs"
+                                        v-on:click="_resetUserPwdModel(auditAppUserBindingOwner)">
+                                        重置密码
+                                    </button>
                                 </td>
 
                             </tr>
@@ -127,4 +132,6 @@
     </vc:create>
 
     <vc:create path="property/deleteAppUserBindingOwner"></vc:create>
+
+    <vc:create path="frame/resetStaffPwd"></vc:create>
 </div>
