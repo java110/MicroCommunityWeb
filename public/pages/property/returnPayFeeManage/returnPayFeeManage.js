@@ -93,6 +93,9 @@
             _openReturnPayFeeAuditModel(_payFee){
                 vc.component.returnPayFeeManageInfo.returnPayFee = _payFee;
                 vc.emit('audit','openAuditModal',{});
+            },
+            _toReturnFeeDetail:function(_payFee){
+                vc.jumpToPage('/admin.html#/pages/property/propertyFee?feeId='+_payFee.feeId);
             }
 
 

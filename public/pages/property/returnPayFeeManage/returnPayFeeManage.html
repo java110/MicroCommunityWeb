@@ -77,12 +77,17 @@
                                         v-else-if="payFee.state == '1200'">{{payFee.stateName}}</span>
                                     <span class="badge badge-info" v-else>{{payFee.stateName}}</span>
                                 </td>
-                                <td>
-                                    <div class="btn-group" v-if="payFee.state == 1000">
-                                        <button class="btn-white btn btn-xs"
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 1000"
                                             v-on:click="_openReturnPayFeeAuditModel(payFee)">审核
                                         </button>
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_toReturnFeeDetail(payFee)">详情
+                                        </button>
                                     </div>
+
+
                                 </td>
                             </tr>
                         </tbody>
