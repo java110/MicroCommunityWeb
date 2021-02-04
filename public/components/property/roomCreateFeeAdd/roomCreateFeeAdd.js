@@ -24,7 +24,13 @@
         _initMethod: function () {
             $that._initRoomCreateFeeAddInfo();
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
-                $that.roomCreateFeeAddInfo.feeTypeCds = _data;
+                var _datanew=[];
+                _data.forEach((item, index) => {
+                    if(item.statusCd!="888800010015" && item.statusCd!="888800010016" ){
+                        _datanew.push(item);
+                    }
+                });
+                $that.roomCreateFeeAddInfo.feeTypeCds = _datanew;
             });
         },
         _initEvent: function () {
