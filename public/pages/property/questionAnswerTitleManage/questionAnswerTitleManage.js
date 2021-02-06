@@ -16,7 +16,9 @@
                     titleType: '',
                     qaTitle: '',
                     titleId: '',
-                    qaId: ''
+                    qaId: '',
+                    objType: '',
+                    objId: ''
 
                 }
             }
@@ -24,6 +26,8 @@
         _initMethod: function () {
             let _qaId = vc.getParam('qaId');
             $that.questionAnswerTitleManageInfo.conditions.qaId = _qaId;
+            $that.questionAnswerTitleManageInfo.conditions.objType = vc.getParam('objType');
+            $that.questionAnswerTitleManageInfo.conditions.objId = vc.getParam('objId');
             vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -63,7 +67,9 @@
             },
             _openAddQuestionAnswerTitleModal: function () {
                 vc.emit('addQuestionAnswerTitle', 'openAddQuestionAnswerTitleModal', {
-                    qaId: $that.questionAnswerTitleManageInfo.conditions.qaId
+                    qaId: $that.questionAnswerTitleManageInfo.conditions.qaId,
+                    objId: $that.questionAnswerTitleManageInfo.conditions.objId,
+                    objType: $that.questionAnswerTitleManageInfo.conditions.objType,
                 });
             },
             _openEditQuestionAnswerTitleModel: function (_questionAnswerTitle) {

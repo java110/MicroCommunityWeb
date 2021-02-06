@@ -12,6 +12,8 @@
                 qaTitle: '',
                 seq: '',
                 qaId: '',
+                objId: '',
+                objType: '',
                 titleValues: []
             }
         },
@@ -20,7 +22,7 @@
         },
         _initEvent: function () {
             vc.on('addQuestionAnswerTitle', 'openAddQuestionAnswerTitleModal', function (_param) {
-                $that.addQuestionAnswerTitleInfo.qaId = _param.qaId;
+                vc.copyObject(_param, $that.addQuestionAnswerTitleInfo);
                 $('#addQuestionAnswerTitleModel').modal('show');
             });
         },
@@ -113,6 +115,8 @@
                     qaTitle: '',
                     seq: '',
                     qaId: '',
+                    objId: '',
+                    objType: '',
                     titleValues: []
                 };
             },
