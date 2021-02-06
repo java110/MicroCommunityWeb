@@ -72,7 +72,7 @@
 
             },
             _toQuestionAnswerTitle:function(_questionAnswer){
-
+                vc.jumpToPage('/admin.html#/pages/property/questionAnswerTitleManage?qaId='+_questionAnswer.qaId)
             },
             _moreCondition: function () {
                 if (vc.component.questionAnswerManageInfo.moreCondition) {
