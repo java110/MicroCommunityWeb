@@ -1,0 +1,103 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="staffAssessmentManageInfo.conditions.state">
+                                <option selected value="">请选择状态</option>
+                                <option value="1201">待考核</option>
+                                <option value="1202">考核完成</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入问卷名称"
+                                    v-model="staffAssessmentManageInfo.conditions.qaName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入问卷ID"
+                                    v-model="staffAssessmentManageInfo.conditions.qaId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryQuestionAnswerMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>员工考核</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">员工名称</th>
+                                <th class="text-center">问卷名称</th>
+                                <th class="text-center">开始时间</th>
+                                <th class="text-center">结束时间</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">自评得分</th>
+                                <th class="text-center">考核得分</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="questionAnswer in staffAssessmentManageInfo.questionAnswers">
+                                <td class="text-center">{{questionAnswer.personName}}</td>
+                                <td class="text-center">{{questionAnswer.qaName}}</td>
+                                <td class="text-center">{{questionAnswer.startTime}}</td>
+                                <td class="text-center">{{questionAnswer.endTime}}</td>
+                                <td class="text-center">{{_getStateName(questionAnswer.state)}}</td>
+                                <td class="text-center">{{questionAnswer.score}}</td>
+                                <td class="text-center">{{questionAnswer.evaluationScore}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-if="questionAnswer.state == '1202'">已考核</button>
+                                        <button class="btn-white btn btn-xs" v-else
+                                            v-on:click="_toQuestionAnswerTitle(questionAnswer)">考核</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -16,6 +16,7 @@
         "moreMsg":"more message",
         "title":"CommunityManagement|java110",
         "noAccount":"no account?",
-        "areyouhasaccount":"are you has account?"
+        "areyouhasaccount":"are you has account?",
+        "我的小区":"my community"
     }
 })(window)

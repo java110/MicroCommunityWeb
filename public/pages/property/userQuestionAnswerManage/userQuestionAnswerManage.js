@@ -14,7 +14,8 @@
                 qaId: '',
                 objType: '',
                 objId: '',
-                answerType: '1002'
+                answerType: '1002',
+                userQaId:'-1'
             }
         },
         _initMethod: function () {
@@ -23,6 +24,8 @@
             _that.qaId = _qaId;
             _that.objType = vc.getParam('objType');
             _that.objId = vc.getParam('objId');
+            _that.answerType = vc.getParam('answerType');
+            _that.userQaId = vc.getParam('userQaId');
             vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
