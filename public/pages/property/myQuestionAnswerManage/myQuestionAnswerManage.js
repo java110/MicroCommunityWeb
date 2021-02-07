@@ -16,7 +16,8 @@
                     qaType: '',
                     qaName: '',
                     qaId: '',
-                    communityId:vc.getCurrentCommunity().communityId
+                    communityId:vc.getCurrentCommunity().communityId,
+                    roleCd:'staff'
                 }
             }
         },
@@ -42,7 +43,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/questionAnswer/queryQuestionAnswer',
+                vc.http.apiGet('/userQuestionAnswer/queryUserQuestionAnswer',
                     param,
                     function (json, res) {
                         var _myQuestionAnswerManageInfo = JSON.parse(json);
@@ -59,7 +60,10 @@
                 );
             },
             _toQuestionAnswerTitle:function(_questionAnswer){
-                vc.jumpToPage('/admin.html#/pages/property/questionAnswerTitleManage?qaId='+_questionAnswer.qaId+"&objType="+_questionAnswer.objType+"&objId="+_questionAnswer.objId)
+                vc.jumpToPage('/admin.html#/pages/property/userQuestionAnswerManage?qaId='+_questionAnswer.qaId+"&objType="+_questionAnswer.objType+"&objId="+_questionAnswer.objId)
+            },
+            _queryQuestionAnswerMethod: function () {
+                vc.component._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.myQuestionAnswerManageInfo.moreCondition) {
@@ -67,6 +71,15 @@
                 } else {
                     vc.component.myQuestionAnswerManageInfo.moreCondition = true;
                 }
+            },
+            _getStateName:function(_state){
+                if(_state == '1201'){
+                    return '待领导评价';
+                }else if(_state == '1202'){
+                    return '完成';
+                }
+
+                return '待答题'
             }
 
 

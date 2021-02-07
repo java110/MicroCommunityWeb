@@ -61,6 +61,8 @@
                                 <th class="text-center">问卷名称</th>
                                 <th class="text-center">开始时间</th>
                                 <th class="text-center">结束时间</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">得分</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
@@ -71,9 +73,13 @@
                                 <td class="text-center">{{questionAnswer.qaName}}</td>
                                 <td class="text-center">{{questionAnswer.startTime}}</td>
                                 <td class="text-center">{{questionAnswer.endTime}}</td>
+                                <td class="text-center">{{_getStateName(questionAnswer.state)}}</td>
+                                <td class="text-center">{{questionAnswer.score}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
+                                        <button class="btn-white btn btn-xs" v-if="questionAnswer.state == '1201'"
+                                        >已答题</button>
+                                        <button class="btn-white btn btn-xs" v-else
                                             v-on:click="_toQuestionAnswerTitle(questionAnswer)">答题</button>
                                     </div>
                                 </td>
