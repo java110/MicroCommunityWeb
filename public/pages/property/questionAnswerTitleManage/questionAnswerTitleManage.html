@@ -75,7 +75,7 @@
                         <tbody>
                             <tr v-for="questionAnswerTitle in questionAnswerTitleManageInfo.questionAnswerTitles">
                                 <td class="text-center">{{questionAnswerTitle.titleId}}</td>
-                                <td class="text-center">{{questionAnswerTitle.titleType}}</td>
+                                <td class="text-center">{{_getTitleTypeName(questionAnswerTitle.titleType)}}</td>
                                 <td class="text-center">{{questionAnswerTitle.qaTitle}}</td>
                                 <td class="text-center">{{questionAnswerTitle.seq}}</td>
                                 <td class="text-center">

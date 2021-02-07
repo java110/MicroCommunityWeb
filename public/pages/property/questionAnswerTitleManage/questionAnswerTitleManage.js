@@ -91,6 +91,15 @@
                 } else {
                     vc.component.questionAnswerTitleManageInfo.moreCondition = true;
                 }
+            },
+            _getTitleTypeName:function(_titleType){
+                if(_titleType == '1001'){
+                    return '单选';
+                }else if(_titleType == '2002'){
+                    return '多选';
+                }else{
+                    return '简答';
+                }
             }
 
 
