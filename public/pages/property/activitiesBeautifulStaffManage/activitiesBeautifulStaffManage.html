@@ -1,5 +1,5 @@
 <div>
-    <div class="row">
+    <div class="row" v-if="activitiesBeautifulStaffManageInfo.componentShow =='activitiesBeautifulStaffManage'">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
@@ -44,11 +44,11 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="activitiesBeautifulStaffManageInfo.componentShow =='activitiesBeautifulStaffManage'">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>最美员工信息</h5>
+                    <h5>最美员工</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_openAddActivitiesBeautifulStaffModal()">
@@ -66,7 +66,7 @@
                                 <th class="text-center">活动规则</th>
                                 <th class="text-center">员工</th>
                                 <th class="text-center">员工编号</th>
-                                <th class="text-center">工作简介</th>
+                                <th class="text-center">创建时间</th>
                                 <th class="text-center">操作</th>
 
 
@@ -76,10 +76,10 @@
                             <tr
                                 v-for="activitiesBeautifulStaff in activitiesBeautifulStaffManageInfo.activitiesBeautifulStaffs">
                                 <td class="text-center">{{activitiesBeautifulStaff.beId}}</td>
-                                <td class="text-center">{{activitiesBeautifulStaff.ruleId}}</td>
-                                <td class="text-center">{{activitiesBeautifulStaff.staffId}}</td>
+                                <td class="text-center">{{activitiesBeautifulStaff.ruleName}}</td>
+                                <td class="text-center">{{activitiesBeautifulStaff.staffName}}</td>
                                 <td class="text-center">{{activitiesBeautifulStaff.activitiesNum}}</td>
-                                <td class="text-center">{{activitiesBeautifulStaff.workContent}}</td>
+                                <td class="text-center">{{activitiesBeautifulStaff.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
@@ -109,8 +109,9 @@
     </div>
 
 
-
-    <vc:create path="property/addActivitiesBeautifulStaff" callBackListener="" callBackFunction=""></vc:create>
+    <div v-bind:class="{no_display:activitiesBeautifulStaffManageInfo.componentShow != 'addActivitiesBeautifulStaff'}">
+        <vc:create path="property/addActivitiesBeautifulStaff" callBackListener="" callBackFunction=""></vc:create>
+    </div>
     <vc:create path="property/editActivitiesBeautifulStaff"></vc:create>
     <vc:create path="property/deleteActivitiesBeautifulStaff"></vc:create>
 
