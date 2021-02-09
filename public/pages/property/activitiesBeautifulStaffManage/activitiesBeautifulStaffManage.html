@@ -62,23 +62,21 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">ID</th>
+                                <!-- <th class="text-center">ID</th> -->
+                                <th class="text-center">评选编号</th>
                                 <th class="text-center">活动规则</th>
                                 <th class="text-center">员工</th>
-                                <th class="text-center">员工编号</th>
                                 <th class="text-center">创建时间</th>
                                 <th class="text-center">操作</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr
                                 v-for="activitiesBeautifulStaff in activitiesBeautifulStaffManageInfo.activitiesBeautifulStaffs">
-                                <td class="text-center">{{activitiesBeautifulStaff.beId}}</td>
+                                <!-- <td class="text-center">{{activitiesBeautifulStaff.beId}}</td> -->
+                                <td class="text-center">{{activitiesBeautifulStaff.activitiesNum}}</td>
                                 <td class="text-center">{{activitiesBeautifulStaff.ruleName}}</td>
                                 <td class="text-center">{{activitiesBeautifulStaff.staffName}}</td>
-                                <td class="text-center">{{activitiesBeautifulStaff.activitiesNum}}</td>
                                 <td class="text-center">{{activitiesBeautifulStaff.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
@@ -112,7 +110,9 @@
     <div v-bind:class="{no_display:activitiesBeautifulStaffManageInfo.componentShow != 'addActivitiesBeautifulStaff'}">
         <vc:create path="property/addActivitiesBeautifulStaff" callBackListener="" callBackFunction=""></vc:create>
     </div>
-    <vc:create path="property/editActivitiesBeautifulStaff"></vc:create>
+    <div v-bind:class="{no_display:activitiesBeautifulStaffManageInfo.componentShow != 'editActivitiesBeautifulStaff'}">
+        <vc:create path="property/editActivitiesBeautifulStaff"></vc:create>
+    </div>
     <vc:create path="property/deleteActivitiesBeautifulStaff"></vc:create>
 
 </div>

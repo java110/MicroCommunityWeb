@@ -65,6 +65,7 @@
                 vc.emit('addActivitiesBeautifulStaff', 'openAddActivitiesBeautifulStaffModal', {});
             },
             _openEditActivitiesBeautifulStaffModel: function (_activitiesBeautifulStaff) {
+                $that.activitiesBeautifulStaffManageInfo.componentShow = 'editActivitiesBeautifulStaff';
                 vc.emit('editActivitiesBeautifulStaff', 'openEditActivitiesBeautifulStaffModal', _activitiesBeautifulStaff);
             },
             _openDeleteActivitiesBeautifulStaffModel: function (_activitiesBeautifulStaff) {
