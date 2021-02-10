@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>最美员工信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewActivitiesBeautifulStaffInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectActivitiesBeautifulStaffInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择最美员工</button>
+
+                    <button type="button" v-if="viewActivitiesBeautifulStaffInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddActivitiesBeautifulStaffInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加最美员工</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >活动规则：</label>
+                            <label class="">{{viewActivitiesBeautifulStaffInfo.ruleId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >员工：</label>
+                            <label class="">{{viewActivitiesBeautifulStaffInfo.staffId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >员工编号：</label>
+                            <label class="">{{viewActivitiesBeautifulStaffInfo.activitiesNum}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >工作简介：</label>
+                            <label class="">{{viewActivitiesBeautifulStaffInfo.workContent}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addActivitiesBeautifulStaff"
+               callBackListener="viewActivitiesBeautifulStaffInfo"
+               callBackFunction="chooseActivitiesBeautifulStaff"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseActivitiesBeautifulStaff"
+               emitChooseActivitiesBeautifulStaff="viewActivitiesBeautifulStaffInfo"
+               emitLoadData="viewActivitiesBeautifulStaffInfo"
+    ></vc:create>
+</div>
