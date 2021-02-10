@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             ownerRepairDetailInfo: {
@@ -14,18 +13,17 @@
                 appointmentTime: '',
                 context: '',
                 stateName: '',
-                roomId: '',
                 userId: '',
                 userName: '',
                 repairUsers: [],
-                photos: []
-
-
+                photos: [],
+                repairPhotos: [],
+                beforePhotos: [],
+                afterPhotos: []
             }
         },
         _initMethod: function () {
             let repairId = vc.getParam('repairId');
-
             if (!vc.notNull(repairId)) {
                 vc.toast('非法操作');
                 vc.jumpToPage('/admin.html#/pages/property/repairPoolManage');
@@ -33,10 +31,8 @@
             }
             $that.ownerRepairDetailInfo.repairId = repairId;
             $that._listRepairPools()
-
         },
         _initEvent: function () {
-
         },
         methods: {
             _getRoom: function () {
@@ -68,7 +64,6 @@
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast("非法操作，未找到房屋信息");
-
                     }
                 );
             },
@@ -81,7 +76,6 @@
                         repairId: $that.ownerRepairDetailInfo.repairId
                     }
                 };
-
                 //发送get请求
                 vc.http.get('ownerRepairManage',
                     'list',
@@ -92,21 +86,13 @@
                         if (_repairs.length < 1) {
                             vc.toast("数据异常");
                             vc.jumpToPage('/admin.html#/pages/property/repairPoolManage');
-
                             return;
-
                         }
-
                         vc.copyObject(_repairs[0], $that.ownerRepairDetailInfo);
-
-                        
-
                         //查询房屋信息
                         //vc.component._getRoom();
-
                         //查询处理轨迹
                         $that._loadRepairUser();
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -136,9 +122,11 @@
             _goBack: function () {
                 vc.goBack()
             },
-            openFile:function(_photo){
-                vc.emit('viewImage','showImage',{
-                    url:_photo.url
+            openFile: function (_photo) {
+                console.log("here is _photo")
+                console.log(_photo)
+                vc.emit('viewImage', 'showImage', {
+                    url: _photo.url
                 });
             },
 
@@ -150,5 +138,4 @@
             },
         }
     });
-
 })(window.vc);

@@ -23,7 +23,12 @@
                     beginStartTime: '',
                     beginEndTime: '',
                     finishStartTime: '',
-                    finishEndTime: ''
+                    finishEndTime: '',
+                    dealNumber: '',   //处理中总数量
+                    dispatchNumber: '',   //派单总数量
+                    transferOrderNumber: '',   //转单总数量
+                    chargebackNumber: '',    //退单总数量
+                    statementNumber: ''   //结单总数量
                 }
             }
         },
@@ -156,12 +161,20 @@
                     param,
                     function (json, res) {
                         var _reportRepairInfo = JSON.parse(json);
-                        console.log("here is _reportRepairInfo")
-                        console.log(_reportRepairInfo)
                         vc.component.reportRepairInfo.total = _reportRepairInfo.total;
                         vc.component.reportRepairInfo.records = _reportRepairInfo.records;
                         vc.component.reportRepairInfo.repairs = _reportRepairInfo.data;
                         vc.component.reportRepairInfo.repairUsers = _reportRepairInfo.sumTotal;
+                        //处理中总数量
+                        vc.component.reportRepairInfo.conditions.dealNumber = _reportRepairInfo.rep.dealNumber;
+                        //派单总数量
+                        vc.component.reportRepairInfo.conditions.dispatchNumber = _reportRepairInfo.rep.dispatchNumber;
+                        //转单总数量
+                        vc.component.reportRepairInfo.conditions.transferOrderNumber = _reportRepairInfo.rep.transferOrderNumber;
+                        //退单总数量
+                        vc.component.reportRepairInfo.conditions.chargebackNumber = _reportRepairInfo.rep.chargebackNumber;
+                        //结单总数量
+                        vc.component.reportRepairInfo.conditions.statementNumber = _reportRepairInfo.rep.statementNumber;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportRepairInfo.records,
                             currentPage: _page,
@@ -196,6 +209,16 @@
                         vc.component.reportRepairInfo.total = _reportRepairInfo.total;
                         vc.component.reportRepairInfo.records = _reportRepairInfo.records;
                         vc.component.reportRepairInfo.repairs = _reportRepairInfo.data;
+                        //处理中总数量
+                        vc.component.reportRepairInfo.conditions.dealNumber = _reportRepairInfo.rep.dealNumber;
+                        //派单总数量
+                        vc.component.reportRepairInfo.conditions.dispatchNumber = _reportRepairInfo.rep.dispatchNumber;
+                        //转单总数量
+                        vc.component.reportRepairInfo.conditions.transferOrderNumber = _reportRepairInfo.rep.transferOrderNumber;
+                        //退单总数量
+                        vc.component.reportRepairInfo.conditions.chargebackNumber = _reportRepairInfo.rep.chargebackNumber;
+                        //结单总数量
+                        vc.component.reportRepairInfo.conditions.statementNumber = _reportRepairInfo.rep.statementNumber;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportRepairInfo.records,
                             currentPage: _page,
