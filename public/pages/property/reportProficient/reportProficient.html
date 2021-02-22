@@ -1,0 +1,74 @@
+<div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">{{reportProficientInfo.ownerCount}}</span>
+                    <h5>应收总额</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="ownerCount" style="height:250px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">{{reportProficientInfo.roomCount}}</span>
+                    <h5>楼栋费用占比</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="roomCount" style="height:250px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">{{reportProficientInfo.parkingSpaceCount}}</span>
+                    <h5>分项费用占比</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="parkingSpaceCount" style="height:250px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">{{reportProficientInfo.shopCount}}</span>
+                    <h5>费用提醒</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="shopCount" style="height:250px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <vc:create path="property/indexArrears"></vc:create> -->
+
+    <div class="white-bg margin-top padding-lg">
+        <div class="">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link"
+                        v-bind:class="{active:reportProficientInfo._currentTab == 'roomYearCollectionFeeTab'}"
+                        v-on:click="changeTab('roomYearCollectionFeeTab')">房屋费用年表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                        v-bind:class="{active:reportProficientInfo._currentTab == 'carYearCollectionFeeTab'}"
+                        v-on:click="changeTab('carYearCollectionFeeTab')">停车费用年表</a>
+                </li>
+            </ul>
+        </div>
+        <div v-if="reportProficientInfo._currentTab == 'roomYearCollectionFeeTab'">
+            <vc:create path="property/simplifyRoomFee"></vc:create>
+        </div>
+        <div v-if="reportProficientInfo._currentTab == 'carYearCollectionFeeTab'">
+            <vc:create path="property/simplifyRoomFee"></vc:create>
+        </div>
+    </div>
+
+</div>
