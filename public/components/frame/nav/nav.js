@@ -100,7 +100,9 @@
                             var tmpUserInfo = JSON.parse(json);
                             console.log(vm, tmpUserInfo);
                             vm.userName = tmpUserInfo.name;
-                            //                                   vc.saveData("_userInfo",tmpUserInfo);
+                            //加个水印
+                            
+	                        vc.watermark({watermark_txt:vc.i18n('systemName')+":"+tmpUserInfo.name});
                         }
                     }, function () {
                         console.log('请求失败处理');

@@ -40,7 +40,6 @@
                 );
             },
             _validateHasStore: function (_param) {
-                console.log("_param", _param);
                 var param = {
                     params: {
                         _uId: 'ccdd00opikookjuhyyttvhnnjuuu'

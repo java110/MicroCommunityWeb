@@ -46,28 +46,93 @@
         </div>
     </div>
 
-    <!-- <vc:create path="property/indexArrears"></vc:create> -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <!--费用类型-->
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="reportProficientInfo.feeTypeCd">
+                                <option selected value="">请选择费用类型</option>
+                                <option v-for="(item,index) in reportProficientInfo.feeTypeCds" :key="index"
+                                    v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportProficientInfo.configId">
+                                    <option selected value="">请选择收费项</option>
+                                    <option v-for="(item,index) in reportProficientInfo.feeConfigDtos" :key="index"
+                                            :value="item.configId">
+                                        {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
+                                       v-model="reportProficientInfo.roomNum">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
+                                    class="fa fa-search"></i>查询
+                            </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>重置
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择缴费开始时间"
+                                    v-model="reportProficientInfo.startTime" class=" form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择缴费结束时间"
+                                    v-model="reportProficientInfo.endTime" class=" form-control endTime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="white-bg margin-top padding-lg">
         <div class="">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link"
-                        v-bind:class="{active:reportProficientInfo._currentTab == 'roomYearCollectionFeeTab'}"
-                        v-on:click="changeTab('roomYearCollectionFeeTab')">房屋费用年表</a>
+                        v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientRoomFee'}"
+                        v-on:click="changeTab('reportProficientRoomFee')">房屋实收</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                        v-bind:class="{active:reportProficientInfo._currentTab == 'carYearCollectionFeeTab'}"
-                        v-on:click="changeTab('carYearCollectionFeeTab')">停车费用年表</a>
+                        v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientCarFee'}"
+                        v-on:click="changeTab('reportProficientCarFee')">停车实收</a>
                 </li>
             </ul>
         </div>
-        <div v-if="reportProficientInfo._currentTab == 'roomYearCollectionFeeTab'">
-            <vc:create path="property/simplifyRoomFee"></vc:create>
+        <div v-if="reportProficientInfo._currentTab == 'reportProficientRoomFee'">
+            <vc:create path="property/reportProficientRoomFee"></vc:create>
         </div>
-        <div v-if="reportProficientInfo._currentTab == 'carYearCollectionFeeTab'">
-            <vc:create path="property/simplifyRoomFee"></vc:create>
+        <div v-if="reportProficientInfo._currentTab == 'reportProficientCarFee'">
+            <vc:create path="property/reportProficientCarFee"></vc:create>
         </div>
     </div>
 

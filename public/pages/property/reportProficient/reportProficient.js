@@ -11,7 +11,7 @@
                 freeParkingSpaceCount: '0',
                 shopCount: '0',
                 freeShopCount: '0',
-                _currentTab:'roomYearCollectionFeeTab'
+                _currentTab:'reportProficientRoomFee'
             }
         },
         _initMethod: function () {
