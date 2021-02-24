@@ -59,7 +59,7 @@
                     <div class="row">
                         <!--费用类型-->
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="reportProficientInfo.feeTypeCd">
+                            <select class="custom-select" v-model="reportProficientInfo.conditions.feeTypeCd" @click="_changeReporficientFeeTypeCd()">
                                 <option selected value="">请选择费用类型</option>
                                 <option v-for="(item,index) in reportProficientInfo.feeTypeCds" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
@@ -69,7 +69,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
-                                        v-model="reportProficientInfo.configId">
+                                        v-model="reportProficientInfo.conditions.configId">
                                     <option selected value="">请选择收费项</option>
                                     <option v-for="(item,index) in reportProficientInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
@@ -81,7 +81,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
-                                       v-model="reportProficientInfo.roomNum">
+                                       v-model="reportProficientInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -98,13 +98,13 @@
                         <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择缴费开始时间"
-                                    v-model="reportProficientInfo.startTime" class=" form-control startTime">
+                                    v-model="reportProficientInfo.conditions.startTime" class=" form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择缴费结束时间"
-                                    v-model="reportProficientInfo.endTime" class=" form-control endTime">
+                                    v-model="reportProficientInfo.conditions.endTime" class=" form-control endTime">
                             </div>
                         </div>
                     </div>

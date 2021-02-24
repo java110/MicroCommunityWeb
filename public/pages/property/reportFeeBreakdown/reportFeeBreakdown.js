@@ -13,8 +13,8 @@
                 moreCondition: false,
                 title: '',
                 roomUnits: [],
-                feeConfigDtos: [],
                 feeTypeCds: [],
+                feeConfigDtos: [],
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -34,18 +34,6 @@
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.reportFeeBreakdownInfo.feeTypeCds = _data;
             });
-            // vc.initDateMonth('startTime', function (_startTime) {
-            //     $that.reportFeeBreakdownInfo.conditions.startTime = _startTime;
-            // });
-            // vc.initDateMonth('endTime', function (_endTime) {
-            //     $that.reportFeeBreakdownInfo.conditions.endTime = _endTime;
-            //     let start = Date.parse(new Date($that.reportFeeBreakdownInfo.conditions.startTime + "-01"))
-            //     let end = Date.parse(new Date($that.reportFeeBreakdownInfo.conditions.endTime + "-01"))
-            //     if (start - end >= 0) {
-            //         vc.toast("结束时间必须大于开始时间")
-            //         $that.reportFeeBreakdownInfo.conditions.endTime = '';
-            //     }
-            // });
         },
         _initEvent: function () {
             vc.on('reportFeeBreakdown', 'chooseFloor', function (_param) {

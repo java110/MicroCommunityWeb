@@ -70,7 +70,7 @@
                                         @change="_changeFeeTypeCdX(roomCreateFeeAddInfo.feeTypeCd)">
                                         <option selected disabled value="">必填，请选择费用类型</option>
                                         <option v-for="(item,index) in roomCreateFeeAddInfo.feeTypeCds" :key="index"
-                                            v-bind:value="item.statusCd" v-if="item.statusCd !='888800010008'">
+                                            v-bind:value="item.statusCd" v-if="item.statusCd !='888800010008' && item.statusCd !='888800010017'">
                                             {{item.name}}
                                         </option>
                                     </select>

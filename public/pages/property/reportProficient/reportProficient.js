@@ -11,11 +11,26 @@
                 freeParkingSpaceCount: '0',
                 shopCount: '0',
                 freeShopCount: '0',
-                _currentTab:'reportProficientRoomFee'
+                _currentTab: 'reportProficientRoomFee',
+                feeTypeCds: [],
+                feeConfigDtos: [],
+                conditions: {
+                    configId: '',
+                    feeTypeCd: '',
+                    startTime: '',
+                    endTime: '',
+                    roomNum: ''
+                }
             }
         },
         _initMethod: function () {
             vc.component._queryIndexContextData();
+            //关联字典表费用类型
+            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
+                vc.component.reportProficientInfo.feeTypeCds = _data;
+            });
+
+            $that._initDate();
         },
         _initEvent: function () {
             vc.on("indexContext", "_queryIndexContextData", function (_param) {
@@ -24,6 +39,56 @@
 
         },
         methods: {
+            _initDate: function () {
+                $(".startTime").datetimepicker({
+                    minView: "month",
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $(".endTime").datetimepicker({
+                    minView: "month",
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.startTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".startTime").val();
+                        vc.component.reportProficientInfo.conditions.startTime = value;
+                    });
+                $('.endTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".endTime").val();
+                        vc.component.reportProficientInfo.conditions.endTime = value;
+                        let start = Date.parse(new Date($that.reportProficientInfo.conditions.startTime))
+                        let end = Date.parse(new Date($that.reportProficientInfo.conditions.endTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            $that.reportProficientInfo.conditions.endTime = '';
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control startTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName(" form-control endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             _queryIndexContextData: function () {
                 if (vc.getCurrentCommunity() == null || vc.getCurrentCommunity() == undefined) {
                     return;
@@ -41,63 +106,20 @@
                         var indexData = JSON.parse(json);
                         vc.copyObject(indexData, vc.component.reportProficientInfo);
                         let _dom = document.getElementById('ownerCount');
-                        $that._initCharts2(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, '业主信息', '已入住', '未入住');
+                        $that._initCharts2(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, '业主信息', '欠费金额', '已收金额');
 
                         _dom = document.getElementById('roomCount');
                         $that._initCharts2(indexData.roomCount - indexData.freeRoomCount, indexData.freeRoomCount, _dom, '房屋信息', '已入住', '空闲');
 
                         _dom = document.getElementById('parkingSpaceCount');
-                        $that._initEcharts(indexData.parkingSpaceCount - indexData.freeParkingSpaceCount, indexData.freeParkingSpaceCount, _dom, '车位信息', '已使用', '空闲');
+                        $that._initCharts2(indexData.parkingSpaceCount - indexData.freeParkingSpaceCount, indexData.freeParkingSpaceCount, _dom, '车位信息', '已使用', '空闲');
 
                         _dom = document.getElementById('shopCount');
-                        $that._initCharts2(indexData.shopCount - indexData.freeShopCount, indexData.freeShopCount, _dom, '商铺信息', '已出售', '空闲');
+                        $that._initCharts2(indexData.shopCount - indexData.freeShopCount, indexData.freeShopCount, _dom, '商铺信息', '费用到期提醒', '预交费提醒');
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-
-            },
-            _initEcharts: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName) {
-                //let dom = document.getElementById("box2");
-                let myChart = echarts.init(dom);
-                let option = null;
-                option = {
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: '{a} <br/>{b}: {c} ({d}%)'
-                    },
-                    color: ['#66CDAA', '#FFDAB9'],
-                    series: [
-                        {
-                            name: _title,
-                            type: 'pie',
-                            radius: ['60%', '75%'],
-                            avoidLabelOverlap: false,
-                            label: {
-                                show: true,
-                                position: 'top'
-                            },
-                            emphasis: {
-                                label: {
-                                    show: true,
-                                    fontSize: '20',
-                                    fontWeight: 'bold'
-                                }
-                            },
-                            labelLine: {
-                                show: true
-                            },
-                            data: [
-                                { value: userCount, name: _userCountName },
-                                { value: freeCount, name: _freeCountName }
-                            ],
-                        }
-                    ]
-                };
-
-                if (option && typeof option === "object") {
-                    myChart.setOption(option, true);
-                }
 
             },
             _initCharts2: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName) {
@@ -138,44 +160,31 @@
                     myChart.setOption(option, true);
                 }
             },
-            _initCharts3: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName) {
-                //var dom = document.getElementById("box1");
-                let myChart = echarts.init(dom);
-                let option = null;
-                option = {
-                    title: {
-                        text: '',
-                        subtext: '',
-                        left: 'center'
-                    },
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: '{a} <br/>{b} : {c} ({d}%)'
-                    },
-                    color: ['#66CDAA', '#FFDAB9'],
-                    series: [
-                        {
-                            name: _title,
-                            type: 'pie',
-                            radius: ['20%', '75%'],
-                            center: ['50%', '50%'],
-                            roseType: 'area',
-                            data: [
-                                {value: userCount, name: _userCountName},
-                                {value: freeCount, name: _freeCountName}
-                            ]
-                        
-                        }
-                    ]
-                };
-
-                if (option && typeof option === "object") {
-                    myChart.setOption(option, true);
-                }
-            },
             changeTab: function (_tab) {
                 $that.reportProficientInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {})
+            },
+            _changeReporficientFeeTypeCd: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        feeTypeCd: $that.reportProficientInfo.conditions.feeTypeCd,
+                        isDefault: '',
+                        feeFlag: '1003006',
+                        valid: '1'
+                    }
+                };
+                //发送get请求
+                vc.http.get('roomCreateFeeAdd', 'list', param,
+                    function (json, res) {
+                        var _feeConfigManageInfo = JSON.parse(json);
+                        vc.component.reportProficientInfo.feeConfigDtos = _feeConfigManageInfo.feeConfigs;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    });
             },
         }
     })

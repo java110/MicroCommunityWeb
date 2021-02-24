@@ -2417,7 +2417,7 @@
 	    let cutWidth = page_width*0.0150;
 	     page_width=page_width-cutWidth;
 	    //获取页面最大高度
-	    let page_height = Math.max(document.body.scrollHeight,document.body.clientHeight);
+	    let page_height = Math.max(document.body.scrollHeight-80,document.body.clientHeight-40);
 	    // var page_height = document.body.scrollHeight+document.body.scrollTop;
 	    //如果将水印列数设置为0，或水印列数设置过大，超过页面最大宽度，则重新计算水印列数和水印x轴间隔
 	    if (defaultSettings.watermark_cols == 0 || (parseInt(defaultSettings.watermark_x + defaultSettings.watermark_width *defaultSettings.watermark_cols + defaultSettings.watermark_x_space * (defaultSettings.watermark_cols - 1)) > page_width)) {
@@ -2446,7 +2446,7 @@
 		            mask_div.style.OTransform = "rotate(-" + defaultSettings.watermark_angle + "deg)";
 		            mask_div.style.transform = "rotate(-" + defaultSettings.watermark_angle + "deg)";
 		            mask_div.style.visibility = "";
-		            mask_div.style.position = "absolute";
+		            mask_div.style.position = "fixed";
 		            mask_div.style.left = x + 'px';
 		            mask_div.style.top = y + 'px';
 		            mask_div.style.overflow = "hidden";
