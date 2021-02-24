@@ -106,16 +106,16 @@
                         var indexData = JSON.parse(json);
                         vc.copyObject(indexData, vc.component.reportProficientInfo);
                         let _dom = document.getElementById('ownerCount');
-                        $that._initCharts2(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, '业主信息', '欠费金额', '已收金额');
+                        $that._initCharts2(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, '应收总额', '欠费金额', '已收金额');
 
                         _dom = document.getElementById('roomCount');
-                        $that._initCharts2(indexData.roomCount - indexData.freeRoomCount, indexData.freeRoomCount, _dom, '房屋信息', '已入住', '空闲');
+                        $that._initCharts2(indexData.roomCount - indexData.freeRoomCount, indexData.freeRoomCount, _dom, '楼栋费用占比', '已入住', '空闲');
 
                         _dom = document.getElementById('parkingSpaceCount');
-                        $that._initCharts2(indexData.parkingSpaceCount - indexData.freeParkingSpaceCount, indexData.freeParkingSpaceCount, _dom, '车位信息', '已使用', '空闲');
+                        $that._initCharts2(indexData.parkingSpaceCount - indexData.freeParkingSpaceCount, indexData.freeParkingSpaceCount, _dom, '分项费用占比', '已使用', '空闲');
 
                         _dom = document.getElementById('shopCount');
-                        $that._initCharts2(indexData.shopCount - indexData.freeShopCount, indexData.freeShopCount, _dom, '商铺信息', '费用到期提醒', '预交费提醒');
+                        $that._initCharts2(indexData.shopCount - indexData.freeShopCount, indexData.freeShopCount, _dom, '费用提醒', '费用到期提醒', '预交费提醒');
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -123,7 +123,7 @@
 
             },
             _initCharts2: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName) {
-                //var dom = document.getElementById("box1");
+
                 let myChart = echarts.init(dom);
                 let option = null;
                 option = {
@@ -155,7 +155,6 @@
                         }
                     ]
                 };
-
                 if (option && typeof option === "object") {
                     myChart.setOption(option, true);
                 }
