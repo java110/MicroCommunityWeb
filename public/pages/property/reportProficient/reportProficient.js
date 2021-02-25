@@ -3,7 +3,7 @@
     vc.extends({
         data: {
             reportProficientInfo: {
-                ownerCount: '0',
+                receivableAmount: '0',
                 noEnterRoomCount: '0',
                 roomCount: '0',
                 freeRoomCount: '0',
@@ -99,30 +99,62 @@
                     }
                 }
                 //发送get请求
-                vc.http.get('indexContext',
-                    'getData',
+                vc.http.apiGet('/reportFeeMonthStatistics/queryReportProficient',
                     param,
                     function (json, res) {
-                        var indexData = JSON.parse(json);
-                        vc.copyObject(indexData, vc.component.reportProficientInfo);
+                        var indexData = JSON.parse(json).data;
+
+                        let _receivableInformation = indexData.receivableInformation;
+
+                        let _receivableAmount = _receivableInformation.receivableAmount;
+
+                        $that.reportProficientInfo.receivableAmount = _receivableAmount;
+
                         let _dom = document.getElementById('ownerCount');
-                        $that._initCharts2(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, '应收总额', '欠费金额', '已收金额');
+                        let _data = [
+                            { value: _receivableInformation.oweAmount, name: '欠费金额' },
+                            { value: _receivableInformation.receivedAmount, name: '已收金额' }
+                        ];
+                        $that._initCharts2(_dom, '应收总额', _data);
+
+                        let _floorReceivableInformations = indexData.floorReceivableInformations;
 
                         _dom = document.getElementById('roomCount');
-                        $that._initCharts2(indexData.roomCount - indexData.freeRoomCount, indexData.freeRoomCount, _dom, '楼栋费用占比', '已入住', '空闲');
+                        _data = [];
+
+                        _floorReceivableInformations.forEach(item => {
+                            _data.push({
+                                value: item.receivableAmount, name: item.name
+                            })
+                        });
+                        $that._initCharts2(_dom, '楼栋费用占比',_data);
+
+                        _data = [];
+
+                        let _feeConfigReceivableInformations = indexData.feeConfigReceivableInformations;
+                        _feeConfigReceivableInformations.forEach(item => {
+                            _data.push({
+                                value: item.receivableAmount, name: item.feeName
+                            })
+                        });
 
                         _dom = document.getElementById('parkingSpaceCount');
-                        $that._initCharts2(indexData.parkingSpaceCount - indexData.freeParkingSpaceCount, indexData.freeParkingSpaceCount, _dom, '分项费用占比', '已使用', '空闲');
+                        $that._initCharts2(_dom, '分项费用占比',_data);
 
+                        let _remindInfomation = indexData.remindInfomation;
+                        _data = [
+                            { value: _remindInfomation.deadlineFeeCount, name: '费用到期提醒' },
+                            { value: _remindInfomation.prePaymentCount, name: '费用提醒' }
+                        ];
                         _dom = document.getElementById('shopCount');
-                        $that._initCharts2(indexData.shopCount - indexData.freeShopCount, indexData.freeShopCount, _dom, '费用提醒', '费用到期提醒', '预交费提醒');
+                        $that._initCharts2(_dom, '费用提醒', _data);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
 
             },
-            _initCharts2: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName) {
+            _initCharts2: function (dom, _title, _data) {
 
                 let myChart = echarts.init(dom);
                 let option = null;
@@ -141,10 +173,7 @@
                             type: 'pie',
                             radius: '75%',
                             center: ['50%', '50%'],
-                            data: [
-                                { value: userCount, name: _userCountName },
-                                { value: freeCount, name: _freeCountName }
-                            ],
+                            data: _data,
                             emphasis: {
                                 itemStyle: {
                                     shadowBlur: 10,
