@@ -19,7 +19,7 @@
                     feeTypeCd: '',
                     startTime: '',
                     endTime: '',
-                    roomNum: ''
+                    roomName: ''
                 }
             }
         },
@@ -28,9 +28,15 @@
             //关联字典表费用类型
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.reportProficientInfo.feeTypeCds = _data;
+                if(_data.length> 0){
+                    $that.reportProficientInfo.conditions.feeTypeCd = _data[0].statusCd;
+                    $that._changeReporficientFeeTypeCd();
+                }
+               
             });
 
             $that._initDate();
+           
         },
         _initEvent: function () {
             vc.on("indexContext", "_queryIndexContextData", function (_param) {
@@ -190,7 +196,7 @@
             },
             changeTab: function (_tab) {
                 $that.reportProficientInfo._currentTab = _tab;
-                vc.emit(_tab, 'switch', {})
+                vc.emit(_tab, 'switch', $that.reportProficientInfo.conditions)
             },
             _changeReporficientFeeTypeCd: function () {
                 let param = {
@@ -208,12 +214,20 @@
                 vc.http.get('roomCreateFeeAdd', 'list', param,
                     function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
-                        vc.component.reportProficientInfo.feeConfigDtos = _feeConfigManageInfo.feeConfigs;
+                        let _feeConfigs = _feeConfigManageInfo.feeConfigs
+                        vc.component.reportProficientInfo.feeConfigDtos = _feeConfigs;
+                        if(_feeConfigs.length> 0){
+                            $that.reportProficientInfo.conditions.configId = _feeConfigs[0].configId;
+                            $that.changeTab($that.reportProficientInfo._currentTab)
+                        }
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
+            _changeReporficientConfigId:function(){
+                $that.changeTab($that.reportProficientInfo._currentTab)
+            }
         }
     })
 })(window.vc);
