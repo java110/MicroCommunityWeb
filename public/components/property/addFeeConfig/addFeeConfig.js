@@ -23,7 +23,8 @@
                 billTypes: [],
                 billType: '',
                 paymentCycle: '',
-                paymentCd: ''
+                paymentCd: '',
+                computingFormulaText:''
             }
         },
         _initMethod: function () {
@@ -230,21 +231,27 @@
                     });
             },
             saveFeeConfigInfo: function () {
-                //收费项目去空
-                vc.component.addFeeConfigInfo.feeName = vc.component.addFeeConfigInfo.feeName.trim();
-                //缴费周期去空
-                vc.component.addFeeConfigInfo.paymentCycle = vc.component.addFeeConfigInfo.paymentCycle.trim();
-                //计费单价去空
-                vc.component.addFeeConfigInfo.squarePrice = vc.component.addFeeConfigInfo.squarePrice.trim();
-                //附加费用去空
-                vc.component.addFeeConfigInfo.additionalAmount = vc.component.addFeeConfigInfo.additionalAmount.trim();
+               
                 //固定费用
                 if (vc.component.addFeeConfigInfo.computingFormula == '2002') {
                     vc.component.addFeeConfigInfo.squarePrice = "0.00";
                 }
+                //自定义费用
+                if (vc.component.addFeeConfigInfo.computingFormula == '7007') {
+                    vc.component.addFeeConfigInfo.squarePrice = "0.00";
+                    vc.component.addFeeConfigInfo.additionalAmount = "0.00";
+                }
                 if (vc.component.addFeeConfigInfo.feeFlag == '2006012') {
                     vc.component.addFeeConfigInfo.paymentCycle = '1';
                 }
+                 //收费项目去空
+                 vc.component.addFeeConfigInfo.feeName = vc.component.addFeeConfigInfo.feeName.trim();
+                 //缴费周期去空
+                 vc.component.addFeeConfigInfo.paymentCycle = vc.component.addFeeConfigInfo.paymentCycle.trim();
+                 //计费单价去空
+                 vc.component.addFeeConfigInfo.squarePrice = vc.component.addFeeConfigInfo.squarePrice.trim();
+                 //附加费用去空
+                 vc.component.addFeeConfigInfo.additionalAmount = vc.component.addFeeConfigInfo.additionalAmount.trim();
                 if (!vc.component.addFeeConfigValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -297,7 +304,8 @@
                     billTypes: _billTypes,
                     billType: '',
                     paymentCycle: '',
-                    paymentCd: ''
+                    paymentCd: '',
+                    computingFormulaText:''
                 };
             }
         }
