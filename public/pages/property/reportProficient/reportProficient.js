@@ -240,6 +240,16 @@
                     return '请填写房屋编号'
                 }
                 return '请填写车牌号';
+            },
+
+            _exportFee: function () {
+                let _objType = vc.component.reportProficientInfo._currentTab == 'reportProficientRoomFee'?"3333":"6666"
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' 
+                + vc.getCurrentCommunity().communityId 
+                +"&configId="+$that.reportProficientInfo.conditions.configId
+                +"&feeTypeCd="+$that.reportProficientInfo.conditions.feeTypeCd
+                +"&objType="+_objType
+                + "&pagePath=reportYearCollection");
             }
         }
     })
