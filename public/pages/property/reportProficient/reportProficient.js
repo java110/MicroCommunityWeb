@@ -35,7 +35,7 @@
                
             });
 
-            $that._initDate();
+           // $that._initDate();
            
         },
         _initEvent: function () {
@@ -227,6 +227,19 @@
             },
             _changeReporficientConfigId:function(){
                 $that.changeTab($that.reportProficientInfo._currentTab)
+            },
+            _queryMethod:function(){
+                $that.changeTab($that.reportProficientInfo._currentTab)
+            }
+            ,
+            _getReportProficientRoomName:function(){
+                if(vc.component.reportProficientInfo == undefined){
+                    return '请填写房屋编号';
+                }
+                if(vc.component.reportProficientInfo._currentTab == 'reportProficientRoomFee'){
+                    return '请填写房屋编号'
+                }
+                return '请填写车牌号';
             }
         }
     })

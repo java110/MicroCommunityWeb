@@ -97,6 +97,14 @@
             },
             dealReportProficientRoomFeeAttr: function (owners) {
                
+            },
+            _showFeeDetail:function(fee,item){
+                console.log(fee,item)
+                vc.emit('viewFeeDetail', 'listFeeDetail',{
+                    roomName:fee.objName,
+                    feeId:fee.feeId,
+                    curYear:item.collectionYear
+                })
             }
         }
     });

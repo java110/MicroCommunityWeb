@@ -2035,51 +2035,12 @@ a:hover {
     vertical-align: bottom;
 }
 
-.java110-td-fix-1{
-  position: absolute;
-  left: 0px;
-  margin-right: 100px;
-  z-index: 2;
-  width: 150px;
-}
 
-
-.java110-td-fix-2{
-  position: absolute;
-  left: 100px;
-  margin-right: 100px;
-  z-index: 2;
-  width: 150px;
-}
-
-.java110-td-fix-3{
-  position: absolute;
-  left: 200px;
-  margin-right: 100px;
-  z-index: 2;
-  width: 150px;
-}
-
-.java110-td-fix-4{
-  position: absolute;
-  left: 300px;
-  margin-right: 100px;
-  z-index: 2;
-  width: 150px;
-}
-
-.java110-td-fix-5{
-  position: absolute;
-  left: 400px;
-  margin-right: 100px;
-  z-index: 2;
-  width: 150px;
-}
-.java110-td-zhanwei{
-  width: 500px;
-  height: 30px;
-}
-
-.java110-td-scoll-width{
-   width: 100px;
+.java110-table-scoll-width{
+  white-space: 
+  nowrap; 
+  overflow: hidden; 
+  overflow-x: scroll;
+   -webkit-backface-visibility: hidden; 
+   -webkit-overflow-scrolling: touch;
 }

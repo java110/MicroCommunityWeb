@@ -23,7 +23,7 @@
         </div>
         <div class="col-lg-3">
             <div class="ibox ">
-                <div class="ibox-title">  
+                <div class="ibox-title">
                     <h5>分项费用占比</h5>
                 </div>
                 <div class="ibox-content">
@@ -49,15 +49,16 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        
+
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <!--费用类型-->
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="reportProficientInfo.conditions.feeTypeCd" @click="_changeReporficientFeeTypeCd()">
-                                <option v-for="(item,index) in reportProficientInfo.feeTypeCds" :key="index" 
+                            <select class="custom-select" v-model="reportProficientInfo.conditions.feeTypeCd"
+                                @click="_changeReporficientFeeTypeCd()">
+                                <option v-for="(item,index) in reportProficientInfo.feeTypeCds" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
@@ -65,10 +66,11 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
-                                        v-model="reportProficientInfo.conditions.configId" @click="_changeReporficientConfigId()">
+                                    v-model="reportProficientInfo.conditions.configId"
+                                    @click="_changeReporficientConfigId()">
                                     <option selected value="">请选择收费项</option>
                                     <option v-for="(item,index) in reportProficientInfo.feeConfigDtos" :key="index"
-                                            :value="item.configId">
+                                        :value="item.configId">
                                         {{item.feeName}}
                                     </option>
                                 </select>
@@ -76,8 +78,10 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
-                                       v-model="reportProficientInfo.conditions.roomName">
+                                <input type="text"
+                                    class="form-control form-control-md"
+                                    :placeholder="_getReportProficientRoomName()"
+                                    v-model="reportProficientInfo.conditions.roomName">
                             </div>
                         </div>
                         <div class="col-sm-2">

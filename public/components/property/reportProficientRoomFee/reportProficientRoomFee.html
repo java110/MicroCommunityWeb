@@ -1,32 +1,58 @@
 <div>
-    
+
     <div class="margin-top">
-        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
-            <thead>
-                <tr>
-                    <th class="text-center java110-td-fix-1"  style="border-bottom: none;" >姓名</th>
-                    <th class="text-center java110-td-fix-2"  style="border-bottom: none;">房号</th>
-                    <th class="text-center java110-td-fix-3"  style="border-bottom: none;">联系电话</th>
-                    <th class="text-center java110-td-fix-4"  style="border-bottom: none;">面积</th>
-                    <th class="text-center java110-td-fix-5"  style="border-bottom: none;">费用名称</th>  
-                    <th><div class="java110-td-zhanwei"></div></th>
-                    <th v-for="(item,index) in reportProficientRoomFeeInfo.listColumns" style="width:100px" class="java110-td-scoll-width">{{item}}</th>   
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="fee in reportProficientRoomFeeInfo.fees">
-                    <!-- <td class="text-center">{{fee.feeId}}</td> -->
-                    <td class="text-center java110-td-fix-1">{{fee.ownerName}}</td>
-                    <td class="text-center java110-td-fix-2">{{fee.objName}}</td>
-                    <td class="text-center java110-td-fix-3">{{fee.ownerLink}}</td>
-                    <td class="text-center java110-td-fix-4">{{fee.builtUpArea}}</td>
-                    <td class="text-center java110-td-fix-5">{{fee.feeName}}</td>
-                    <td><div class="java110-td-zhanwei"></div></td>
-                    <td v-for="item in fee.reportFeeYearCollectionDetailDtos" style="width:100px">
-                        {{item.receivedAmount}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-sm-5 margin-lr-0 padding-lr-0">
+                <table class="footable table table-stripped " style="margin-top:10px" data-page-size="10">
+                    <thead>
+                        <tr>
+                            <th class="text-center " style="border-bottom: none;">姓名</th>
+                            <th class="text-center" style="border-bottom: none;">房号</th>
+                            <th class="text-center " style="border-bottom: none;">联系电话</th>
+                            <th class="text-center " style="border-bottom: none;">面积</th>
+                            <th class="text-center " style="border-bottom: none;">费用名称</th>
+                            <th class="text-center " style="border-bottom: none;">应收金额</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="fee in reportProficientRoomFeeInfo.fees">
+                            <!-- <td class="text-center">{{fee.feeId}}</td> -->
+                            <td class="text-center ">{{fee.ownerName}}</td>
+                            <td class="text-center ">{{fee.objName}}</td>
+                            <td class="text-center ">{{fee.ownerLink}}</td>
+                            <td class="text-center" >{{fee.builtUpArea}}</td>
+                            <td class="text-center ">{{fee.feeName}}</td>
+                            <td class="text-center ">{{fee.receivableAmount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-7 margin-lr-0 padding-lr-0 java110-table-scoll-width">
+                <table class="footable table table-stripped " style="margin-top:10px;" data-page-size="10" >
+                    <thead>
+                        <tr>
+                            <th v-for="(item,index) in reportProficientRoomFeeInfo.listColumns" style="width:100px"
+                                class="java110-td-scoll-width">{{item}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="fee in reportProficientRoomFeeInfo.fees">
+                            <td v-for="item in fee.reportFeeYearCollectionDetailDtos" style="width:100px;cursor: pointer;" @click="_showFeeDetail(fee,item)">
+                                {{item.receivedAmount}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <span> </span>
+            </div>
+            <div class="col-sm-7 float-right">
+                <vc:create namespace="reportProficientRoomFee" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
     </div>
+    <vc:create path="property/viewFeeDetail"></vc:create>
 </div>
