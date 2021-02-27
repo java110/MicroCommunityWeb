@@ -33,7 +33,8 @@
                         page: 1,
                         row: 19,
                         communityId: vc.getCurrentCommunity().communityId,
-                        ownerId: $that.simplifyOwnerCarInfo.ownerId
+                        ownerId: $that.simplifyOwnerCarInfo.ownerId,
+                        carTypeCd:'1001'
                     }
                 }
                 //发送get请求
@@ -87,6 +88,9 @@
                     ownerCars: [],
                     ownerId: ''
                 }
+            },
+            _toCarMember:function(car){
+                vc.jumpToPage('/admin.html#/pages/property/listOwnerCarMember?carId='+car.carId)
             }
 
         }

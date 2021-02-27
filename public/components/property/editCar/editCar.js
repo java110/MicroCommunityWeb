@@ -7,6 +7,7 @@
         data: {
             editCarInfo: {
                 carId: '',
+                memberId:'',
                 carNum: '',
                 carBrand: '',
                 carType: '',
@@ -129,7 +130,14 @@
                             param: "12",
                             errInfo: "车颜色超出限制"
                         }
-                    ]
+                    ],
+                    'editCarInfo.memberId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "车辆数据错误"
+                        }
+                    ],
                 });
             },
             _submitEditCarInfo: function () {
@@ -153,6 +161,7 @@
                             $('#editCarModal').modal('hide');
                             vc.emit('listOwnerCar', 'listOwnerCarData', {});
                             vc.emit('simplifyOwnerCar', 'listOwnerCarData', {});
+                            vc.emit('listOwnerCarMember', 'listOwnerCarData', {});
                             for (let key in $that.editCarInfo) {
                                 $that.editCarInfo[key] = '';
                             }
