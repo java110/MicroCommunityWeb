@@ -16,7 +16,8 @@
                 formulas: [],
                 remark: '',
                 roomState: ['2001'],
-                roomType:'1010301'
+                roomType:'1010301',
+                feeLayer:'全部'
 
             }
         },
@@ -229,14 +230,24 @@
                     formulas: _formulas,
                     remark: '',
                     roomState: ['2001'],
-                    roomType:'1010301'
+                    roomType:'1010301',
+                    feeLayer:'全部'
                 };
             },
             feeSharingChangeRoomType: function () {
-                if ($that.roomCreateFeeAddInfo.roomType == '1010301') {
-                    $that.roomCreateFeeAddInfo.roomState = ['2001'];
+                if ($that.feeSharingInfo.roomType == '1010301') {
+                    $that.feeSharingInfo.roomState = ['2001'];
                 } else {
-                    $that.roomCreateFeeAddInfo.roomState = ['2006'];
+                    $that.feeSharingInfo.roomState = ['2006'];
+                }
+            },
+            _changeShareFeeLayer:function(){
+                let _feeLayer = $that.feeSharingInfo.feeLayer;
+
+                if(_feeLayer == '全部'){
+                    $that.feeSharingInfo.feeLayer = ''
+                }else{
+                    $that.feeSharingInfo.feeLayer = '全部'
                 }
             }
         }

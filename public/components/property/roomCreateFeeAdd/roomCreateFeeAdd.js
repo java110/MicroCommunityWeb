@@ -18,15 +18,16 @@
                 isMore: false,
                 locationTypeCdName: '',
                 startTime: '',
-                roomType: '1010301'
+                roomType: '1010301',
+                feeLayer: '全部'
             }
         },
         _initMethod: function () {
             $that._initRoomCreateFeeAddInfo();
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
-                var _datanew=[];
+                var _datanew = [];
                 _data.forEach((item, index) => {
-                    if(item.statusCd!="888800010015" && item.statusCd!="888800010016" ){
+                    if (item.statusCd != "888800010015" && item.statusCd != "888800010016") {
                         _datanew.push(item);
                     }
                 });
@@ -208,7 +209,8 @@
                     roomType: '1010301',
                     isMore: false,
                     locationTypeCdName: '',
-                    startTime: vc.dateTimeFormat(new Date().getTime())
+                    startTime: vc.dateTimeFormat(new Date().getTime()),
+                    feeLayer: '全部'
                 };
                 $that.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },
@@ -239,6 +241,15 @@
                     $that.roomCreateFeeAddInfo.roomState = ['2001'];
                 } else {
                     $that.roomCreateFeeAddInfo.roomState = ['2006'];
+                }
+            },
+            _changeFeeLayer:function(){
+                let _feeLayer = $that.roomCreateFeeAddInfo.feeLayer;
+
+                if(_feeLayer == '全部'){
+                    $that.roomCreateFeeAddInfo.feeLayer = ''
+                }else{
+                    $that.roomCreateFeeAddInfo.feeLayer = '全部'
                 }
             }
         }
