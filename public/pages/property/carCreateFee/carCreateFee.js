@@ -22,7 +22,8 @@
                     ownerName: '',
                     carNum: '',
                     allNum: '',
-                    state: ''
+                    state: '',
+                    carTypeCd:'1001'
                 }
             }
         },

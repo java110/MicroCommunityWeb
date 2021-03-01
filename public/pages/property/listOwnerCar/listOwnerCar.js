@@ -12,7 +12,8 @@
                 conditions: {
                     carNum: '',
                     num: '',
-                    state: ''
+                    state: '',
+                    carTypeCd:'1001'
                 }
             }
         },
@@ -105,6 +106,9 @@
             _toPayFee:function(_car){
                 vc.jumpToPage('/admin.html#/pages/property/listCarFee?carId='
                 +_car.carId+'&carNum='+_car.carNum+'&areaNum='+_car.areaNum+'&num='+_car.num);
+            },
+            _toCarMember:function(car){
+                vc.jumpToPage('/admin.html#/pages/property/listOwnerCarMember?carId='+car.carId)
             }
         }
     })
