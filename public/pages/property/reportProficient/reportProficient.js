@@ -28,15 +28,15 @@
             //关联字典表费用类型
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.reportProficientInfo.feeTypeCds = _data;
-                if(_data.length> 0){
+                if (_data.length > 0) {
                     $that.reportProficientInfo.conditions.feeTypeCd = _data[0].statusCd;
                     $that._changeReporficientFeeTypeCd();
                 }
-               
+
             });
 
-           // $that._initDate();
-           
+            // $that._initDate();
+
         },
         _initEvent: function () {
             vc.on("indexContext", "_queryIndexContextData", function (_param) {
@@ -133,7 +133,7 @@
                                 value: item.receivableAmount, name: item.name
                             })
                         });
-                        $that._initCharts2(_dom, '楼栋费用占比',_data);
+                        $that._initCharts2(_dom, '楼栋费用占比', _data);
 
                         _data = [];
 
@@ -145,7 +145,7 @@
                         });
 
                         _dom = document.getElementById('parkingSpaceCount');
-                        $that._initCharts2(_dom, '分项费用占比',_data);
+                        $that._initCharts2(_dom, '分项费用占比', _data);
 
                         let _remindInfomation = indexData.remindInfomation;
                         _data = [
@@ -186,6 +186,11 @@
                                     shadowOffsetX: 0,
                                     shadowColor: 'rgba(0, 0, 0, 0.5)'
                                 }
+                            },
+                            label: {
+                                normal: {
+                                    show: false
+                                }
                             }
                         }
                     ]
@@ -216,7 +221,7 @@
                         var _feeConfigManageInfo = JSON.parse(json);
                         let _feeConfigs = _feeConfigManageInfo.feeConfigs
                         vc.component.reportProficientInfo.feeConfigDtos = _feeConfigs;
-                        if(_feeConfigs.length> 0){
+                        if (_feeConfigs.length > 0) {
                             $that.reportProficientInfo.conditions.configId = _feeConfigs[0].configId;
                             $that.changeTab($that.reportProficientInfo._currentTab)
                         }
@@ -225,31 +230,31 @@
                         console.log('请求失败处理');
                     });
             },
-            _changeReporficientConfigId:function(){
+            _changeReporficientConfigId: function () {
                 $that.changeTab($that.reportProficientInfo._currentTab)
             },
-            _queryMethod:function(){
+            _queryMethod: function () {
                 $that.changeTab($that.reportProficientInfo._currentTab)
             }
             ,
-            _getReportProficientRoomName:function(){
-                if(vc.component.reportProficientInfo == undefined){
+            _getReportProficientRoomName: function () {
+                if (vc.component.reportProficientInfo == undefined) {
                     return '请填写房屋编号';
                 }
-                if(vc.component.reportProficientInfo._currentTab == 'reportProficientRoomFee'){
+                if (vc.component.reportProficientInfo._currentTab == 'reportProficientRoomFee') {
                     return '请填写房屋编号'
                 }
                 return '请填写车牌号';
             },
 
             _exportFee: function () {
-                let _objType = vc.component.reportProficientInfo._currentTab == 'reportProficientRoomFee'?"3333":"6666"
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' 
-                + vc.getCurrentCommunity().communityId 
-                +"&configId="+$that.reportProficientInfo.conditions.configId
-                +"&feeTypeCd="+$that.reportProficientInfo.conditions.feeTypeCd
-                +"&objType="+_objType
-                + "&pagePath=reportYearCollection");
+                let _objType = vc.component.reportProficientInfo._currentTab == 'reportProficientRoomFee' ? "3333" : "6666"
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId='
+                    + vc.getCurrentCommunity().communityId
+                    + "&configId=" + $that.reportProficientInfo.conditions.configId
+                    + "&feeTypeCd=" + $that.reportProficientInfo.conditions.feeTypeCd
+                    + "&objType=" + _objType
+                    + "&pagePath=reportYearCollection");
             }
         }
     })
