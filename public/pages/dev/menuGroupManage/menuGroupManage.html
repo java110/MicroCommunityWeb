@@ -35,8 +35,19 @@
                             </button>
                         </div>
                     </div>
-
-
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="menuGroupManageInfo.conditions.storeTypeCd">
+                                <option selected value="">请选择归属商户</option>
+                                <option value="800900000001">运营团队</option>
+                                <option value="800900000002">代理商</option>
+                                <option value="800900000003">物业</option>
+                                <option value="800900000004">物流公司</option>
+                                <option value="800900000005">商家</option>
+                                <option value="800900000000">开发团队</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,12 +72,11 @@
                                 <th class="text-center">组Id</th>
                                 <th class="text-center">组名称</th>
                                 <th class="text-center">组类型</th>
+                                <th class="text-center">归属商户</th>
                                 <th class="text-center">icon</th>
                                 <th class="text-center">标签</th>
                                 <th class="text-center">序列</th>
                                 <th class="text-center">操作</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
@@ -74,6 +84,7 @@
                                 <td class="text-center">{{menuGroup.gId}}</td>
                                 <td class="text-center">{{menuGroup.name}}</td>
                                 <td class="text-center">{{menuGroup.groupType == 'P_WEB'?'web菜单':'App菜单'}}</td>
+                                <td class="text-center">{{menuGroup.storeTypeCdName}}</td>
                                 <td class="text-center">{{menuGroup.icon}}</td>
                                 <td class="text-center">{{menuGroup.label}}</td>
                                 <td class="text-center">{{menuGroup.seq}}</td>
@@ -89,7 +100,6 @@
                                         </button>
                                     </div>
                                 </td>
-
                             </tr>
                         </tbody>
                         <tfoot>

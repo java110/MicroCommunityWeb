@@ -9,7 +9,8 @@
                 label: '',
                 seq: '',
                 description: '',
-                groupType: ''
+                groupType: '',
+                storeTypeCd: ''
             }
         },
         _initMethod: function () {
@@ -117,7 +118,8 @@
                     label: '',
                     seq: '',
                     description: '',
-                    groupType: ''
+                    groupType: '',
+                    storeTypeCd: ''
                 }
             }
         }
