@@ -44,7 +44,7 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         //feeId: vc.component.viewFeeDetailInfo.feeId,
                         curYear: vc.component.viewFeeDetailInfo.curYear,
-                        configId: vc.component.viewFeeDetailInfo.curYear,
+                        configId: vc.component.viewFeeDetailInfo.configId,
                         payerObjId: vc.component.viewFeeDetailInfo.payerObjId,
                     }
                 }
