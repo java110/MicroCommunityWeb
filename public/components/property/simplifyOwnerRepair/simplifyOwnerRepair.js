@@ -6,7 +6,8 @@
             simplifyOwnerRepairInfo: {
                 repairs: [],
                 ownerId: '',
-                roomId: ''
+                roomId: '',
+                roomName: ''
             }
         },
         _initMethod: function () {
@@ -15,15 +16,15 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyOwnerRepair', 'switch', function (_param) {
-                if(_param.roomId == ''){
-                    return ;
+                if (_param.roomId == '') {
+                    return;
                 }
                 $that.clearSimplifyOwnerRepairInfo();
                 vc.copyObject(_param, $that.simplifyOwnerRepairInfo)
                 $that._listSimplifyOwnerRepair(DEFAULT_PAGE, DEFAULT_ROWS);
             });
 
-            vc.on('simplifyOwnerRepair','paginationPlus', 'page_event',
+            vc.on('simplifyOwnerRepair', 'paginationPlus', 'page_event',
                 function (_currentPage) {
                     $that._listSimplifyOwnerRepair(_currentPage, DEFAULT_ROWS);
                 });
@@ -49,7 +50,7 @@
                         vc.component.simplifyOwnerRepairInfo.total = _repairPoolManageInfo.total;
                         vc.component.simplifyOwnerRepairInfo.records = _repairPoolManageInfo.records;
                         vc.component.simplifyOwnerRepairInfo.repairs = _repairPoolManageInfo.data;
-                        vc.emit('simplifyOwnerRepair','paginationPlus', 'init', {
+                        vc.emit('simplifyOwnerRepair', 'paginationPlus', 'init', {
                             total: vc.component.simplifyOwnerRepairInfo.records,
                             currentPage: _page
                         });
@@ -66,8 +67,12 @@
                 $that.simplifyOwnerRepairInfo = {
                     repairs: [],
                     ownerId: '',
-                    roomId: ''
+                    roomId: '',
+                    roomName: ''
                 }
+            },
+            _openAddOwnerRepairModal: function () {
+                vc.jumpToPage("/admin.html#/pages/common/addRoomRepair?roomId=" + $that.simplifyOwnerRepairInfo.roomId + "&roomName=" + $that.simplifyOwnerRepairInfo.roomName)
             }
 
         }

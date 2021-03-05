@@ -6,7 +6,8 @@
             simplifyOwnerComplaintInfo: {
                 complaints: [],
                 ownerId: '',
-                roomId: ''
+                roomId: '',
+                roomName: ''
             }
         },
         _initMethod: function () {
@@ -16,14 +17,14 @@
             //切换 至费用页面
             vc.on('simplifyOwnerComplaint', 'switch', function (_param) {
 
-                if(_param.roomId == ''){
-                    return ;
+                if (_param.roomId == '') {
+                    return;
                 }
                 $that.clearSimplifyOwnerComplaintInfo();
                 vc.copyObject(_param, $that.simplifyOwnerComplaintInfo)
                 $that._listSimplifyOwnerComplaint(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('simplifyOwnerComplaint','paginationPlus', 'page_event',
+            vc.on('simplifyOwnerComplaint', 'paginationPlus', 'page_event',
                 function (_currentPage) {
                     $that._listSimplifyOwnerComplaint(_currentPage, DEFAULT_ROWS);
                 });
@@ -49,7 +50,7 @@
                         vc.component.simplifyOwnerComplaintInfo.total = _complaintManageInfo.total;
                         vc.component.simplifyOwnerComplaintInfo.records = _complaintManageInfo.records;
                         vc.component.simplifyOwnerComplaintInfo.complaints = _complaintManageInfo.complaints;
-                        vc.emit('simplifyOwnerComplaint','paginationPlus', 'init', {
+                        vc.emit('simplifyOwnerComplaint', 'paginationPlus', 'init', {
                             total: vc.component.simplifyOwnerComplaintInfo.records,
                             currentPage: _page
                         });
@@ -93,7 +94,11 @@
                     ownerId: '',
                     roomId: ''
                 }
-            }
+            },
+            _openAddComplaintModal: function () {
+                //vc.emit('addComplaint', 'openAddComplaintModal', {});
+                vc.jumpToPage("/admin.html#/pages/common/addRoomComplaint?roomId=" + $that.simplifyOwnerComplaintInfo.roomId)
+            },
 
         }
 

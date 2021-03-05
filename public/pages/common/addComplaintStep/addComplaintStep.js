@@ -81,7 +81,8 @@
 
                             vc.toast('处理成功');
                             //关闭model
-                            vc.jumpToPage("/admin.html#/pages/common/complaintManage?" + vc.objToGetParam(JSON.parse(json)));
+                            //vc.jumpToPage("/admin.html#/pages/common/complaintManage?" + vc.objToGetParam(JSON.parse(json)));
+                            vc.goBack();
                             return;
                         }
                         vc.toast(json);

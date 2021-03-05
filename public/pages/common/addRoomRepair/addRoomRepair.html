@@ -1,0 +1,67 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>电话报修</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">报修类型</label>
+                        <div class="col-sm-10">
+                            <select class="custom-select" v-model="addRoomRepairInfo.repairType">
+                                <option selected disabled value="">必填，请选择报修类型</option>
+                                <option v-for="(item,index) in addRoomRepairInfo.repairSettings"
+                                        :value="item.repairType">{{item.repairTypeName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">报修人</label>
+                        <div class="col-sm-10">
+                            <input v-model="addRoomRepairInfo.repairName" type="text" placeholder="必填，请填写报修人"
+                                   class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">联系方式</label>
+                        <div class="col-sm-10">
+                            <input v-model="addRoomRepairInfo.tel" type="number" placeholder="必填，请填写联系方式"
+                                   class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">预约时间</label>
+                        <div class="col-sm-10">
+                            <input v-model="addRoomRepairInfo.appointmentTime" type="text"
+                                   placeholder="必填，请填写预约时间" class="form-control addAppointmentTime">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">报修内容</label>
+                        <div class="col-sm-10">
+                            <textarea placeholder="必填，请填写报修内容" cols="15" class="form-control"
+                                      v-model="addRoomRepairInfo.context"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
+            <button type="button" class="btn btn-warning" style="margin-left:10px;" v-on:click="_goBack()">返回
+            </button>
+            <button type="button" class="btn btn-primary" style="margin-left:10px;"
+                v-on:click="saveOwnerRepairInfo()">提交
+            </button>
+        </div>
+    </div>
+
+</div>

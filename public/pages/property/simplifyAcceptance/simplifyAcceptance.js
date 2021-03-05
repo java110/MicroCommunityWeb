@@ -156,7 +156,8 @@
                 $that.simplifyAcceptanceInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
                     ownerId: $that.simplifyAcceptanceInfo.ownerId,
-                    roomId: $that.simplifyAcceptanceInfo.roomId
+                    roomId: $that.simplifyAcceptanceInfo.roomId,
+                    roomName: $that.simplifyAcceptanceInfo.roomName,
                 })
             },
             errorLoadImg: function () {

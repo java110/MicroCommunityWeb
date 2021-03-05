@@ -1,4 +1,16 @@
 <div>
+    <div class="row margin-top">
+
+        <div class="col-lg-10 text-right">
+        </div>
+        <div class="col-lg-2 text-right" v-if="simplifyOwnerRepairInfo.roomId != ''">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_openAddOwnerRepairModal()">
+                <i class="fa fa-plus"></i>
+                电话报修
+            </button>
+        </div>
+    </div>
     <div>
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
