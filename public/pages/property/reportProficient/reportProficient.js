@@ -211,7 +211,7 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         feeTypeCd: $that.reportProficientInfo.conditions.feeTypeCd,
                         isDefault: '',
-                        feeFlag: '1003006',
+                        feeFlag: '',
                         valid: '1'
                     }
                 };

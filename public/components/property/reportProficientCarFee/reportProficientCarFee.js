@@ -89,6 +89,8 @@
                 vc.emit('viewFeeDetail', 'listFeeDetail',{
                     roomName:fee.objName,
                     feeId:fee.feeId,
+                    configId:fee.configId,
+                    payerObjId:fee.objId,
                     curYear:item.collectionYear
                 })
             }

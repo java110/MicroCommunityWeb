@@ -11,6 +11,8 @@
                 total: 0,
                 records: 1,
                 feeId: '',
+                configId:'',
+                payerObjId:'',
                 curYear: '',
                 roomName:''
             }
@@ -23,6 +25,8 @@
                 vc.component.viewFeeDetailInfo.feeId = _param.feeId;
                 vc.component.viewFeeDetailInfo.curYear = _param.curYear;
                 vc.component.viewFeeDetailInfo.roomName = _param.roomName;
+                vc.component.viewFeeDetailInfo.configId = _param.configId;
+                vc.component.viewFeeDetailInfo.payerObjId = _param.payerObjId;
                 vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
 
                 $('#viewFeeDetailModel').modal('show');
@@ -38,8 +42,10 @@
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        feeId: vc.component.viewFeeDetailInfo.feeId,
-                        curYear: vc.component.viewFeeDetailInfo.curYear
+                        //feeId: vc.component.viewFeeDetailInfo.feeId,
+                        curYear: vc.component.viewFeeDetailInfo.curYear,
+                        configId: vc.component.viewFeeDetailInfo.curYear,
+                        payerObjId: vc.component.viewFeeDetailInfo.payerObjId,
                     }
                 }
                 //发送get请求
