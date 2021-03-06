@@ -1,5 +1,4 @@
 <div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
@@ -7,7 +6,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{listOwnerCarInfo.moreCondition == true?'隐藏':'更多'}}
+                            v-on:click="_moreCondition()">{{listOwnerCarInfo.moreCondition == true ? '隐藏' : '更多'}}
                         </button> -->
                     </div>
                 </div>
@@ -16,13 +15,13 @@
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请输入车牌号" v-model="listOwnerCarInfo.conditions.carNum"
-                                    class="form-control">
+                                       class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写车位编号" class=" form-control"
-                                    v-model="listOwnerCarInfo.num">
+                                       v-model="listOwnerCarInfo.num">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -41,117 +40,112 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>车辆信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                         <form>
                             <div class="form-row">
                                 <div class="col">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_addOwnerCar()">
-                                        <i class="fa fa-plus"></i>
-                                        添加
+                                        <i class="fa fa-plus"></i>添加
                                     </button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th>车牌号</th>
-                                <th>房屋号</th>
-                                <th data-hide="phone">车辆品牌</th>
-                                <th data-hide="phone">车辆类型</th>
-                                <th data-hide="phone">颜色</th>
-                                <th data-hide="phone">业主</th>
-                                <th data-hide="phone">车位</th>
-                                <th data-hide="phone">起租时间</th>
-                                <th data-hide="phone">截止时间</th>
-                                <th data-hide="phone">状态</th>
-                                <th class="text-right">操作</th>
+                                <th class="text-center">车牌号</th>
+                                <th class="text-center">房屋号</th>
+                                <th data-hide="phone" class="text-center">车辆品牌</th>
+                                <th data-hide="phone" class="text-center">车辆类型</th>
+                                <th data-hide="phone" class="text-center">颜色</th>
+                                <th data-hide="phone" class="text-center">业主</th>
+                                <th data-hide="phone" class="text-center">车位</th>
+                                <th data-hide="phone" class="text-center">起租时间</th>
+                                <th data-hide="phone" class="text-center">截止时间</th>
+                                <th data-hide="phone" class="text-center">状态</th>
+                                <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="car in listOwnerCarInfo.ownerCars">
-                                <td>
+                                <td class="text-center">
                                     {{car.carNum}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{car.roomName}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{car.carBrand}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{car.carTypeName}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{car.carColor}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{car.ownerName}}({{car.link}})
                                 </td>
-                                <td v-if="car.areaNum">
+                                <td v-if="car.areaNum" class="text-center">
                                     {{car.areaNum}}车场{{car.num}}车位
                                 </td>
-                                <td v-else>
+                                <td v-else class="text-center">
                                     无
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{car.startTime}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{car.endTime}}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     {{car.stateName}}
                                 </td>
-                                <td class="text-right">
+                                <td class="text-center">
                                     <div class="btn-group" v-if="car.psId != '-1'">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_deleteCarParkingSpace(car)">释放车位</button>
+                                                v-on:click="_deleteCarParkingSpace(car)">释放车位
+                                        </button>
                                     </div>
                                     <div class="btn-group" v-else>
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_addCarParkingSpace(car)">续租车位</button>
+                                                v-on:click="_addCarParkingSpace(car)">续租车位
+                                        </button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_toPayFee(car)">费用</button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_toCarMember(car)">子母车辆</button>
+                                        <button class="btn-white btn btn-xs"
+                                                v-on:click="_openEditOwnerCar(car)">修改
+                                        </button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditOwnerCar(car)">修改</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDelOwnerCarModel(car)">删除</button>
+                                                v-on:click="_openDelOwnerCarModel(car)">删除
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -162,5 +156,4 @@
     </div>
     <vc:create path="property/editCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>
     <vc:create path="property/deleteOwnerCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>
-
 </div>

@@ -1,0 +1,52 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{roomRenovationRecordDetailsInfo.conditions.roomName}}装修记录</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_goBack()">
+                            <i class="fa fa-times"></i>返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">房屋</th>
+                            <th class="text-center">图片</th>
+                            <th class="text-center">创建时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="roomRenovationRecordDetail in roomRenovationRecordDetailsInfo.roomRenovationRecordDetails">
+                            <td class="text-center">{{roomRenovationRecordDetail.roomName}}</td>
+                            <td class="text-center">
+                                <img width="50" height="50" v-bind:src="roomRenovationRecordDetail.url"
+                                     onerror="this.src='/img/noPhoto.jpg';"
+                                     v-if="roomRenovationRecordDetail.relTypeCd == '19000'">
+                                <video width="200" height="200" controls autoplay
+                                       v-if="roomRenovationRecordDetail.relTypeCd == '21000'">
+                                    <source v-bind:src="roomRenovationRecordDetail.url" type="video/mp4">
+                                </video>
+                            </td>
+                            <td class="text-center">{{roomRenovationRecordDetail.createTime}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,5 @@
-<div >
+<div>
     <!--<vc:create path="property/unitSelectFloor"></vc:create>-->
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
@@ -14,19 +13,17 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择楼栋"
                                        v-model="unitInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()"><i
-                                            class="fa fa-search"></i> 选择
+                                            v-on:click="_openChooseFloorMethod()">
+                                        <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
@@ -41,11 +38,10 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryUnitMethod()"><i
-                                    class="fa fa-search"></i> 查询
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryUnitMethod()">
+                                <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="col-sm-4" v-if="unitInfo.moreCondition == true">
@@ -56,13 +52,10 @@
                             </select>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -76,19 +69,17 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
                             <!-- <th>单元ID</th> -->
-                            <th>楼栋</th>
-                            <th data-hide="phone">单元编号</th>
-                            <th data-hide="phone">总层数</th>
-                            <th data-hide="phone">建筑面积</th>
-                            <th data-hide="phone">是否有电梯</th>
-                            <th data-hide="phone,tablet">创建人</th>
-                            <th class="text-right">操作</th>
-
+                            <th class="text-center">楼栋</th>
+                            <th data-hide="phone" class="text-center">单元编号</th>
+                            <th data-hide="phone" class="text-center">总层数</th>
+                            <th data-hide="phone" class="text-center">建筑面积</th>
+                            <th data-hide="phone" class="text-center">是否有电梯</th>
+                            <th data-hide="phone,tablet" class="text-center">创建人</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -96,25 +87,25 @@
                             <!-- <td>
                                 {{unit.unitId}}
                             </td> -->
-                            <td>
+                            <td class="text-center">
                                 {{unitInfo.conditions.floorName}}
                             </td>
-                            <td>
+                            <td class="text-center"
                                 {{unit.unitNum}}单元
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{unit.layerCount}}层
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{unit.unitArea}}平方米
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{unit.lift == '1010'?'有':'无'}}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{unit.userName}}
                             </td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="btn-group" v-if="vc.hasPrivilege('502020082457897932')">
                                     <button class="btn-white btn btn-xs" v-on:click="_openEditUnitModel(unit)">修改
                                     </button>
@@ -134,20 +125,16 @@
                         </tr>
                         </tfoot>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
-
     <vc:create path="property/searchFloor"
                emitChooseFloor="unit"
-               emitLoadData="unit"
-    ></vc:create>
+               emitLoadData="unit"></vc:create>
     <vc:create path="property/addUnit"
                callBackListener=""
-               callBackFunction=""
-    ></vc:create>
+               callBackFunction=""></vc:create>
     <!-- 删除员工权限 -->
     <vc:create path="property/editUnit"></vc:create>
     <vc:create path="property/deleteUnit"></vc:create>

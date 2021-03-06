@@ -1,21 +1,20 @@
 <div>
     <div class="row margin-top">
-        
         <div class="col-lg-2 text-left">
             <select class="custom-select" v-model="simplifyCarFeeInfo.carId" @change="changeSimplifyCar()">
-                <option v-for="(item,index) in simplifyCarFeeInfo.ownerCars" :value="item.carId">{{item.carNum}}</option>
+                <option v-for="(item,index) in simplifyCarFeeInfo.ownerCars" :value="item.carId">{{item.carNum}}
+                </option>
             </select>
         </div>
         <div class="col-lg-4 text-right">
         </div>
         <div class="col-lg-6 text-right" v-if="simplifyCarFeeInfo.carId">
-
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                v-on:click="_openSimplifyCarAddMeterWaterModal()">
+                    v-on:click="_openSimplifyCarAddMeterWaterModal()">
                 水电抄表
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                v-on:click="_openSimplifyCarCreateFeeAddModal()">
+                    v-on:click="_openSimplifyCarCreateFeeAddModal()">
                 创建费用
             </button>
         </div>
@@ -23,59 +22,62 @@
     <div>
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
-                <tr>
-                    <th class="text-center">费用项目</th>
-                    <th class="text-center">费用标识</th>
-                    <th class="text-center">费用类型</th>
-                    <th class="text-center">应收金额</th>
-                    <th class="text-center">建账时间</th>
-                    <th class="text-center">计费起始时间</th>
-                    <th class="text-center">计费结束时间</th>
-                    <th class="text-center">说明</th>
-                    <th class="text-center">状态</th>
-                    <th class="text-center">操作</th>
-                </tr>
+            <tr>
+                <th class="text-center">费用项目</th>
+                <th class="text-center">费用标识</th>
+                <th class="text-center">费用类型</th>
+                <th class="text-center">应收金额</th>
+                <th class="text-center">建账时间</th>
+                <th class="text-center">计费起始时间</th>
+                <th class="text-center">计费结束时间</th>
+                <th class="text-center">说明</th>
+                <th class="text-center">状态</th>
+                <th class="text-center">操作</th>
+            </tr>
             </thead>
             <tbody>
-                <tr v-for="fee in simplifyCarFeeInfo.fees">
-                    <td class="text-center">{{fee.feeName}}</td>
-                    <td class="text-center">{{fee.feeFlagName}}</td>
-                    <td class="text-center">{{fee.feeTypeCdName}}</td>
-                    <td class="text-center">{{fee.amountOwed}}</td>
-                    <td class="text-center">{{fee.startTime}}</td>
-                    <td class="text-center">{{_getEndTime(fee)}}</td>
-                    <td class="text-center">{{_getDeadlineTime(fee)}}</td>
-                    <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' "  :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div>上期度数：{{fee.preDegrees}}</div>
-                        <div>本期度数：{{fee.curDegrees}} </div>
-                        <div>单价：{{fee.squarePrice}} </div>
-                        <div>附加费：{{fee.additionalAmount}}</div>
-                    </td>
-                    <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'"  :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
-                        <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
-                    </td>
-                    <td class="text-center" v-else  :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div>单价：{{fee.squarePrice}}</div>
-                        <div>固定费：{{fee.additionalAmount}}</div>
-                    </td>
-                    <td class="text-center">{{fee.stateName}}</td>
-                    <td class="text-right">
-                        <button class="btn btn-link btn-xs"
+            <tr v-for="fee in simplifyCarFeeInfo.fees">
+                <td class="text-center">{{fee.feeName}}</td>
+                <td class="text-center">{{fee.feeFlagName}}</td>
+                <td class="text-center">{{fee.feeTypeCdName}}</td>
+                <td class="text-center">{{fee.amountOwed}}</td>
+                <td class="text-center">{{fee.startTime}}</td>
+                <td class="text-center">{{_getEndTime(fee)}}</td>
+                <td class="text-center">{{_getDeadlineTime(fee)}}</td>
+                <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' "
+                    :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
+                    <div>上期度数：{{fee.preDegrees}}</div>
+                    <div>本期度数：{{fee.curDegrees}}</div>
+                    <div>单价：{{fee.squarePrice}}</div>
+                    <div>附加费：{{fee.additionalAmount}}</div>
+                </td>
+                <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'"
+                    :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
+                    <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
+                    <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
+                </td>
+                <td class="text-center" v-else :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
+                    <div>单价：{{fee.squarePrice}}</div>
+                    <div>固定费：{{fee.additionalAmount}}</div>
+                </td>
+                <td class="text-center">{{fee.stateName}}</td>
+                <td class="text-right">
+                    <button class="btn btn-link btn-xs"
                             v-if="fee.state != '2009001'  && vc.hasPrivilege('502020082314267912')"
                             v-on:click="_simplifyCarPayFee(fee)">缴费
-                        </button>
-                        <button class="btn btn-link btn-xs" v-on:click="_simplifyCarPayFeeHis(fee)">缴费历史
-                        </button>
-                        <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')"  
+                    </button>
+                    <button class="btn btn-link btn-xs" v-on:click="_simplifyCarPayFeeHis(fee)">缴费历史
+                    </button>
+                    <button class="btn btn-link btn-xs"
+                            v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')"
                             v-on:click="_simplifyCarDeleteFee(fee)">取消费用
-                        </button>
-                        <button class="btn btn-link btn-xs"
+                    </button>
+                    <button class="btn btn-link btn-xs"
                             v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
                             v-on:click="_simplifyCarEditFee(fee)">费用变更
-                        </button>
-                    </td>
-                </tr>
+                    </button>
+                </td>
+            </tr>
             </tbody>
         </table>
         <div class="row">
@@ -87,6 +89,5 @@
             </div>
         </div>
     </div>
-
     <vc:create path="property/carCreateFeeAdd"></vc:create>
 </div>

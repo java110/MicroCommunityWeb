@@ -5,14 +5,11 @@
                 <div class="ibox-title">
                     <h5>投诉历史单</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
                             <th class="text-center">投诉ID</th>
@@ -21,7 +18,7 @@
                             <th class="text-center">投诉人</th>
                             <th class="text-center">投诉电话</th>
                             <th class="text-center">投诉状态</th>
-                           <th class="text-right">操作</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,14 +31,13 @@
                             <td class="text-center">{{complaint.complaintName}}</td>
                             <td class="text-center">{{complaint.tel}}</td>
                             <td class="text-center">{{complaint.stateName}}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openComplaintDetailModel(complaint)">详情
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>

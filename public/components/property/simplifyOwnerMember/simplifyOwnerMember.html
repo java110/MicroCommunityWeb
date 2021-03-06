@@ -1,12 +1,10 @@
 <div>
     <div class="row margin-top">
-
-
         <div class="col-lg-10 text-right">
         </div>
         <div class="col-lg-2 text-right" v-if="simplifyOwnerMemberInfo.ownerId">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                v-on:click="openAddMemberModel()">
+                    v-on:click="openAddMemberModel()">
                 <i class="fa fa-plus"></i>
                 添加成员
             </button>
@@ -16,53 +14,48 @@
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
                 <tr>
-                    <th>成员ID</th>
-                    <th data-hide="phone">名称</th>
-                    <th data-hide="phone">性别</th>
-                    <th data-hide="phone">年龄</th>
-                    <th data-hide="phone">类型</th>
-                    <th data-hide="phone">身份证</th>
-                    <th data-hide="phone">联系方式</th>
-                    <th data-hide="phone">创建员工</th>
-                    <th data-hide="phone">备注</th>
-                    <th v-for="(item,index) in simplifyOwnerMemberInfo.listColumns">{{item}}</th>
+                    <th class="text-center">成员ID</th>
+                    <th data-hide="phone" class="text-center">名称</th>
+                    <th data-hide="phone" class="text-center">性别</th>
+                    <th data-hide="phone" class="text-center">年龄</th>
+                    <th data-hide="phone" class="text-center">类型</th>
+                    <th data-hide="phone" class="text-center">身份证</th>
+                    <th data-hide="phone" class="text-center">联系方式</th>
+                    <th data-hide="phone" class="text-center">创建员工</th>
+                    <th data-hide="phone" class="text-center">备注</th>
                     <th class="text-center">操作</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="owner in simplifyOwnerMemberInfo.members">
-                    <td>
+                    <td class="text-center">
                         {{owner.memberId}}
                     </td>
-
-                    <td>
+                    <td class="text-center">
                         {{owner.name}}
                     </td>
-                    <td>
+                    <td class="text-center">
                         {{owner.sex == 0 ? '男' : '女'}}
                     </td>
-                    <td>
+                    <td class="text-center">
                         {{owner.age}}
                     </td>
-                    <td>
+                    <td class="text-center">
                         {{owner.ownerTypeName}}
                     </td>
-                    <td>
+                    <td class="text-center">
                         {{owner.idCard}}
                     </td>
-                    <td>
+                    <td class="text-center">
                         {{owner.link}}
                     </td>
-                    <td>
+                    <td class="text-center">
                         {{owner.userName}}
                     </td>
-                    <td>
+                    <td class="text-center">
                         {{owner.remark}}
                     </td>
-                    <td v-for="item in owner.listValues">
-                        {{item}}
-                    </td>
-                    <td class="text-right">
+                    <td class="text-center">
                         <div class="btn-group">
                             <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerModel(owner)">修改</button>
                         </div>
@@ -74,7 +67,9 @@
             </tbody>
         </table>
     </div>
-    <vc:create path="property/addOwner" notifyLoadDataComponentName="simplifyOwnerMember" componentTitle="成员"></vc:create>
-    <vc:create path="property/editOwner" notifyLoadDataComponentName="simplifyOwnerMember" componentTitle="成员"></vc:create>
+    <vc:create path="property/addOwner" notifyLoadDataComponentName="simplifyOwnerMember"
+               componentTitle="成员"></vc:create>
+    <vc:create path="property/editOwner" notifyLoadDataComponentName="simplifyOwnerMember"
+               componentTitle="成员"></vc:create>
     <vc:create path="property/deleteOwner" notifyLoadDataComponentName="simplifyOwnerMember"></vc:create>
 </div>

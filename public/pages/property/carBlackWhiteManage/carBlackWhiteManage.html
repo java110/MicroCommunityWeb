@@ -1,11 +1,10 @@
-<div  class="animated fadeInRight ecommerce">
+<div class="animated fadeInRight ecommerce">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -15,7 +14,8 @@
                                 <option selected value="">请选择名单类型</option>
                                 <option value="1111">黑名单</option>
                                 <option value="2222">白名单</option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入车牌号"
@@ -35,8 +35,6 @@
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -48,16 +46,13 @@
                     <h5>黑白名单信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddCarBlackWhiteModal()">
-                            <i class="fa fa-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
                             <th class="text-center">名单ID</th>
@@ -67,8 +62,6 @@
                             <th class="text-center">开始时间</th>
                             <th class="text-center">结束时间</th>
                             <th class="text-center">操作</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -91,7 +84,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
@@ -108,13 +100,7 @@
             </div>
         </div>
     </div>
-
-
-    <vc:create path="property/addCarBlackWhite"
-               callBackListener=""
-               callBackFunction=""
-    ></vc:create>
+    <vc:create path="property/addCarBlackWhite" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editCarBlackWhite"></vc:create>
     <vc:create path="property/deleteCarBlackWhite"></vc:create>
-
 </div>

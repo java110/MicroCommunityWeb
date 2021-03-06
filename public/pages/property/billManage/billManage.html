@@ -1,12 +1,12 @@
 <div class=" animated fadeInRight ecommerce">
-    <div class="row" >
+    <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{billManageInfo.moreCondition == true?'隐藏':'更多'}}
+                                v-on:click="_moreCondition()">{{billManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入账单编号" v-model="billManageInfo.conditions.title"
-                                    class=" form-control">
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -23,12 +23,11 @@
                                 <option selected value="">请选择账单类型</option>
                                 <option value="T">当期账单</option>
                                 <option value="F">往期账单</option>
-
                             </select></div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入账单名称"
-                                    v-model="billManageInfo.conditions.billName" class=" form-control">
+                                       v-model="billManageInfo.conditions.billName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -41,71 +40,63 @@
                         <div class="col-sm-4" v-if="billManageInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入信息ID"
-                                    v-model="billManageInfo.conditions.activitiesId" class=" form-control">
+                                       v-model="billManageInfo.conditions.activitiesId" class=" form-control">
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-    <div class="row" >
+    <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>账单信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                       
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <!-- <th class="text-center">信息ID</th> -->
-                                <th class="text-center">账单编号</th>
-                                <th class="text-center">收费项目</th>
-                                <th class="text-center">账单名称</th>
-                                <th class="text-center">累计应收</th>
-                                <th class="text-center">当期应收</th>
-                                <th class="text-center">实收金额</th>
-                                <th class="text-center">账单日期</th>
-                                
-                                <th class="text-center">账单类型</th>
-                                <th class="text-right">操作</th>
-
-
-                            </tr>
+                        <tr>
+                            <!-- <th class="text-center">信息ID</th> -->
+                            <th class="text-center">账单编号</th>
+                            <th class="text-center">收费项目</th>
+                            <th class="text-center">账单名称</th>
+                            <th class="text-center">累计应收</th>
+                            <th class="text-center">当期应收</th>
+                            <th class="text-center">实收金额</th>
+                            <th class="text-center">账单日期</th>
+                            <th class="text-center">账单类型</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="bill in billManageInfo.bills">
-                                <td class="text-center">{{bill.billId}}</td>
-                                <td class="text-center">{{bill.feeName}}</td>
-                                <td class="text-center">{{bill.billName}}</td>
-                                <td class="text-center">{{bill.receivable}}元</td>
-                                <td class="text-center">{{bill.curReceivable}}元</td>
-                                <td class="text-center">{{bill.receipts}}元</td>
-                                <td class="text-center">{{bill.billTime}}</td>
-                                <td class="text-center">{{bill.curBill == 'T'?'当期账单':'往期账单'}}</td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
+                        <tr v-for="bill in billManageInfo.bills">
+                            <td class="text-center">{{bill.billId}}</td>
+                            <td class="text-center">{{bill.feeName}}</td>
+                            <td class="text-center">{{bill.billName}}</td>
+                            <td class="text-center">{{bill.receivable}}元</td>
+                            <td class="text-center">{{bill.curReceivable}}元</td>
+                            <td class="text-center">{{bill.receipts}}元</td>
+                            <td class="text-center">{{bill.billTime}}</td>
+                            <td class="text-center">{{bill.curBill == 'T'?'当期账单':'往期账单'}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openBillDetail(bill)">欠费清单
-                                        </button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -114,5 +105,4 @@
             </div>
         </div>
     </div>
-
 </div>

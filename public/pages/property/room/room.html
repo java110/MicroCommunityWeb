@@ -1,8 +1,6 @@
-<div >
+<div>
     <!--<vc:create path="property/roomSelectFloor"
-               openAddRoomModelName="addRoom"
-    ></vc:create>-->
-
+    openAddRoomModelName="addRoom"></vc:create>-->
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
@@ -16,11 +14,10 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-
-                        
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写房屋编号 格式 楼栋-单元-房屋" class="form-control form-control-sm"
+                                <input type="text" placeholder="请填写房屋编号 格式 楼栋-单元-房屋"
+                                       class="form-control form-control-sm"
                                        v-model="roomInfo.conditions.roomId">
                             </div>
                         </div>
@@ -42,11 +39,10 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRoomMethod()"><i
-                                    class="fa fa-search"></i> 查询
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRoomMethod()">
+                                <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
-
                     </div>
                     <div class="row" v-if="roomInfo.moreCondition == true">
                         <div class="col-sm-4">
@@ -60,7 +56,6 @@
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
@@ -80,12 +75,10 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -99,22 +92,20 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
                            data-page-size="10">
                         <thead>
                         <tr>
                             <!-- <th>房屋ID</th> -->
-                            <th data-hide="phone">房屋</th>
-                            <th data-hide="phone">楼层</th>
-                            <th data-hide="phone">业主</th>
-                            <th data-hide="phone">电话</th>
-                            <th data-hide="phone">建筑面积</th>
-                            <th data-hide="phone">算费系数</th>
-                            <th data-hide="phone">房屋状态</th>
-                            <th v-for="(item,index) in roomInfo.listColumns">{{item}}</th>
-                            <th class="text-right">操作</th>
-
+                            <th data-hide="phone" class="text-center">房屋</th>
+                            <th data-hide="phone" class="text-center">楼层</th>
+                            <th data-hide="phone" class="text-center">业主</th>
+                            <th data-hide="phone" class="text-center">电话</th>
+                            <th data-hide="phone" class="text-center">建筑面积</th>
+                            <th data-hide="phone" class="text-center">算费系数</th>
+                            <th data-hide="phone" class="text-center">房屋状态</th>
+                            <th v-for="(item,index) in roomInfo.listColumns" class="text-center">{{item}}</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -122,33 +113,31 @@
                             <!-- <td>
                                 {{room.roomId}}
                             </td> -->
-                            <td>
+                            <td class="text-center">
                                 {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{room.layer}}层
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{room.ownerName}}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{room.link}}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{room.builtUpArea}}平方米
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{room.feeCoefficient}}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{room.stateName}}
                             </td>
-
-                            <td v-for="item in room.listValues">
+                            <td v-for="item in room.listValues" class="text-center">
                                 {{item}}
                             </td>
-
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
                                     <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(room)">修改
                                     </button>
@@ -170,16 +159,11 @@
                     </table>
                     <!-- 分页 -->
                     <vc:create path="frame/pagination"></vc:create>
-
                 </div>
             </div>
         </div>
     </div>
-
-    <vc:create path="property/searchFloor"
-               emitChooseFloor="room"
-               emitLoadData="room"
-    ></vc:create>
+    <vc:create path="property/searchFloor" emitChooseFloor="room" emitLoadData="room"></vc:create>
     <!-- 删除员工权限 -->
     <vc:create path="property/editRoom"></vc:create>
     <vc:create path="property/deleteRoom"></vc:create>

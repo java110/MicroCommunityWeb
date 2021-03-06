@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editRoomRenovationInfo: {
@@ -13,11 +12,12 @@
                 state: '',
                 isViolation: 'N',
                 violationDesc: '',
-                roomId:''
+                roomId: ''
             }
         },
         _initMethod: function () {
-            vc.initDate('editStartTime', function (_startTime) {
+            vc.component.initEditRoomRenovation();
+            /*vc.initDate('editStartTime', function (_startTime) {
                 $that.editRoomRenovationInfo.startTime = _startTime;
             });
             vc.initDate('editEndTime', function (_endTime) {
@@ -28,7 +28,7 @@
                     vc.toast("结束时间必须大于开始时间")
                     $that.editRoomRenovationInfo.endTime = '';
                 }
-            });
+            });*/
         },
         _initEvent: function () {
             vc.on('editRoomRenovation', 'openEditRoomRenovationModal', function (_params) {
@@ -41,6 +41,57 @@
             });
         },
         methods: {
+            initEditRoomRenovation: function () {
+                $('.editStartTime').datetimepicker({
+                    minView: "month",
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editStartTime").val();
+                        vc.component.editRoomRenovationInfo.startTime = value;
+                    });
+                $('.editEndTime').datetimepicker({
+                    minView: "month",
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editEndTime").val();
+                        var start = Date.parse(new Date(vc.component.editRoomRenovationInfo.startTime))
+                        var end = Date.parse(new Date(value))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于起始时间")
+                            $(".editEndTime").val('')
+                        } else {
+                            vc.component.editRoomRenovationInfo.endTime = value;
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             editRoomRenovationValidate: function () {
                 return vc.validate.validate({
                     editRoomRenovationInfo: vc.component.editRoomRenovationInfo
@@ -118,7 +169,6 @@
                             param: "",
                             errInfo: "装修ID不能为空"
                         }]
-
                 });
             },
             editRoomRenovation: function () {
@@ -126,7 +176,10 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
+                vc.component.editRoomRenovationInfo.roomName = vc.component.editRoomRenovationInfo.roomName.trim();
+                vc.component.editRoomRenovationInfo.personName = vc.component.editRoomRenovationInfo.personName.trim();
+                vc.component.editRoomRenovationInfo.personTel = vc.component.editRoomRenovationInfo.personTel.trim();
+                vc.component.editRoomRenovationInfo.remark = vc.component.editRoomRenovationInfo.remark.trim();
                 vc.http.apiPost(
                     '/roomRenovation/updateRoomRenovation',
                     JSON.stringify(vc.component.editRoomRenovationInfo),
@@ -146,7 +199,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -162,10 +214,9 @@
                     state: '',
                     isViolation: 'N',
                     violationDesc: '',
-                    roomId:''
+                    roomId: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

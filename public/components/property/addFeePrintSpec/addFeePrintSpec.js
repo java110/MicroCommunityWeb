@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -11,17 +10,14 @@
                 specCd: '',
                 content: '',
                 qrImg: '',
-
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addFeePrintSpec', 'openAddFeePrintSpecModal', function () {
                 $('#addFeePrintSpecModel').modal('show');
             });
-
             vc.on('addFeePrintSpec', 'notifyUploadImage', function (_img) {
                 $that.addFeePrintSpecInfo.qrImg = _img[0];
             })
@@ -62,19 +58,13 @@
                             errInfo: "必填不能为空"
                         }
                     ],
-
-
-
-
                 });
             },
             saveFeePrintSpecInfo: function () {
                 if (!vc.component.addFeePrintSpecValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addFeePrintSpecInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -82,7 +72,6 @@
                     $('#addFeePrintSpecModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/feePrintSpec/saveFeePrintSpec',
                     JSON.stringify(vc.component.addFeePrintSpecInfo),
@@ -97,17 +86,13 @@
                             $('#addFeePrintSpecModel').modal('hide');
                             vc.component.clearAddFeePrintSpecInfo();
                             vc.emit('feePrintSpecManage', 'listFeePrintSpec', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddFeePrintSpecInfo: function () {
@@ -115,10 +100,8 @@
                     specCd: '',
                     content: '',
                     qrImg: '',
-
                 };
             }
         }
     });
-
 })(window.vc);

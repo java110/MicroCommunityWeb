@@ -1,48 +1,49 @@
 <div>
     <div class="row margin-top">
-        
         <div class="col-lg-2 text-left">
-            <select class="custom-select" v-model="simplifyOwnerTransactionCarInfo.carId" @change="changeTransactionCar()">
-                <option v-for="(item,index) in simplifyOwnerTransactionCarInfo.ownerCars" :value="item.carId">{{item.carNum}}</option>
+            <select class="custom-select" v-model="simplifyOwnerTransactionCarInfo.carId"
+                    @change="changeTransactionCar()">
+                <option v-for="(item,index) in simplifyOwnerTransactionCarInfo.ownerCars" :value="item.carId">
+                    {{item.carNum}}
+                </option>
             </select>
         </div>
         <div class="col-lg-10 text-right">
         </div>
-        
     </div>
     <div>
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
-                <tr>
-                    <th class="text-center">同步ID</th>
-                    <th class="text-center">设备编码</th>
-                    <th class="text-center">对象类型</th>
-                    <th class="text-center">对象名称</th>
-                    <th class="text-center">指令</th>
-                    <th class="text-center">状态</th>
-                    <th class="text-center" width="80px">说明</th>
-                    <th class="text-center">同步时间</th>
-                    <th class="text-center">操作</th>
-                </tr>
+            <tr>
+                <th class="text-center">同步ID</th>
+                <th class="text-center">设备编码</th>
+                <th class="text-center">对象类型</th>
+                <th class="text-center">对象名称</th>
+                <th class="text-center">指令</th>
+                <th class="text-center">状态</th>
+                <th class="text-center" width="80px">说明</th>
+                <th class="text-center">同步时间</th>
+                <th class="text-center">操作</th>
+            </tr>
             </thead>
             <tbody>
-                <tr v-for="machineTranslate in simplifyOwnerTransactionCarInfo.machineTranslates">
-                    <td class="text-center">{{machineTranslate.machineTranslateId}}</td>
-                    <td class="text-center">{{machineTranslate.machineCode}}</td>
-                    <td class="text-center">{{machineTranslate.typeCdName}}</td>
-                    <td class="text-center">{{machineTranslate.objName}}</td>
-                    <td class="text-center">{{machineTranslate.machineCmdName}}</td>
-                    <td class="text-center">{{machineTranslate.stateName}}</td>
-                    <td class="text-center">{{machineTranslate.remark}}</td>
-                    <td class="text-center">{{machineTranslate.updateTime}}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <button class="btn-white btn btn-xs"
+            <tr v-for="machineTranslate in simplifyOwnerTransactionCarInfo.machineTranslates">
+                <td class="text-center">{{machineTranslate.machineTranslateId}}</td>
+                <td class="text-center">{{machineTranslate.machineCode}}</td>
+                <td class="text-center">{{machineTranslate.typeCdName}}</td>
+                <td class="text-center">{{machineTranslate.objName}}</td>
+                <td class="text-center">{{machineTranslate.machineCmdName}}</td>
+                <td class="text-center">{{machineTranslate.stateName}}</td>
+                <td class="text-center">{{machineTranslate.remark}}</td>
+                <td class="text-center">{{machineTranslate.updateTime}}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <button class="btn-white btn btn-xs"
                                 v-on:click="_openEditCarTranslateModel(machineTranslate)">重新同步
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
         <div class="row">
@@ -51,5 +52,4 @@
             </div>
         </div>
     </div>
-    
 </div>

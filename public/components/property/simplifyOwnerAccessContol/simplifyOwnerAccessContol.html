@@ -2,36 +2,36 @@
     <div>
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
-                <tr>
-                    <th class="text-center">设备编码</th>
-                    <th class="text-center">设备名称</th>
-                    <th class="text-center">对象类型</th>
-                    <th class="text-center">对象名称</th>
-                    <th class="text-center">指令</th>
-                    <th class="text-center">状态</th>
-                    <th class="text-center">说明</th>
-                    <th class="text-center">同步时间</th>
-                    <th class="text-center">操作</th>
-                </tr>
+            <tr>
+                <th class="text-center">设备编码</th>
+                <th class="text-center">设备名称</th>
+                <th class="text-center">对象类型</th>
+                <th class="text-center">对象名称</th>
+                <th class="text-center">指令</th>
+                <th class="text-center">状态</th>
+                <th class="text-center">说明</th>
+                <th class="text-center">同步时间</th>
+                <th class="text-center">操作</th>
+            </tr>
             </thead>
             <tbody>
-                <tr v-for="machineTranslate in simplifyOwnerAccessContolInfo.machineTranslates">
-                    <td class="text-center">{{machineTranslate.machineCode}}</td>
-                    <td class="text-center">{{machineTranslate.machineName}}</td>
-                    <td class="text-center">{{machineTranslate.typeCdName}}</td>
-                    <td class="text-center">{{machineTranslate.objName}}</td>
-                    <td class="text-center">{{machineTranslate.machineCmdName}}</td>
-                    <td class="text-center">{{machineTranslate.stateName}}</td>
-                    <td class="text-center">{{machineTranslate.remark}}</td>
-                    <td class="text-center">{{machineTranslate.updateTime}}</td>
-                    <td class="text-center">
-                        <div class="btn-group" v-if="machineTranslate.state != '20000'">
-                            <button class="btn-white btn btn-xs"
+            <tr v-for="machineTranslate in simplifyOwnerAccessContolInfo.machineTranslates">
+                <td class="text-center">{{machineTranslate.machineCode}}</td>
+                <td class="text-center">{{machineTranslate.machineName}}</td>
+                <td class="text-center">{{machineTranslate.typeCdName}}</td>
+                <td class="text-center">{{machineTranslate.objName}}</td>
+                <td class="text-center">{{machineTranslate.machineCmdName}}</td>
+                <td class="text-center">{{machineTranslate.stateName}}</td>
+                <td class="text-center">{{machineTranslate.remark}}</td>
+                <td class="text-center">{{machineTranslate.updateTime}}</td>
+                <td class="text-center">
+                    <div class="btn-group" v-if="machineTranslate.state != '20000'">
+                        <button class="btn-white btn btn-xs"
                                 v-on:click="_openEditMachineTranslateModel(machineTranslate)">重新同步
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
         <div class="row">

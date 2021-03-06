@@ -33,12 +33,10 @@
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_queryTempCarFeeConfigMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -51,13 +49,11 @@
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_openAddTempCarFeeConfigModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
@@ -69,8 +65,6 @@
                                 <th class="text-center">开始时间</th>
                                 <th class="text-center">结束时间</th>
                                 <th class="text-center">操作</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
@@ -92,7 +86,6 @@
                                             v-on:click="_openDeleteTempCarFeeConfigModel(tempCarFeeConfig)">删除</button>
                                     </div>
                                 </td>
-
                             </tr>
                         </tbody>
                         <tfoot>
@@ -109,11 +102,7 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="property/addTempCarFeeConfig" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editTempCarFeeConfig"></vc:create>
     <vc:create path="property/deleteTempCarFeeConfig"></vc:create>
-
 </div>

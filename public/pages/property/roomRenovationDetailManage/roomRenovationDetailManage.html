@@ -6,40 +6,37 @@
                     <h5>{{roomRenovationDetailManageInfo.roomName}}验房明细</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_goBack()">
+                                v-on:click="_goBack()">
                             返回
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">明细ID</th>
-                                <th class="text-center">验房人</th>
-                                <th class="text-center">验房时间</th>
-                                <th class="text-center">状态</th>
-                                <th class="text-center">说明</th>
-
-
-                            </tr>
+                        <tr>
+                            <th class="text-center">明细ID</th>
+                            <th class="text-center">验房人</th>
+                            <th class="text-center">验房时间</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">说明</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="roomRenovationDetail in roomRenovationDetailManageInfo.roomRenovationDetails">
-                                <td class="text-center">{{roomRenovationDetail.detailId}}</td>
-                                <td class="text-center">{{roomRenovationDetail.staffName}}</td>
-                                <td class="text-center">{{roomRenovationDetail.createTime}}</td>
-                                <td class="text-center">{{_getStateName(roomRenovationDetail.state)}}</td>
-                                <td class="text-center">{{roomRenovationDetail.remark}}</td>
-                            </tr>
+                        <tr v-for="roomRenovationDetail in roomRenovationDetailManageInfo.roomRenovationDetails">
+                            <td class="text-center">{{roomRenovationDetail.detailId}}</td>
+                            <td class="text-center">{{roomRenovationDetail.staffName}}</td>
+                            <td class="text-center">{{roomRenovationDetail.createTime}}</td>
+                            <td class="text-center">{{_getStateName(roomRenovationDetail.state)}}</td>
+                            <td class="text-center">{{roomRenovationDetail.remark}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

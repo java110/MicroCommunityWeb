@@ -1,4 +1,3 @@
-
 <div id="component" class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="row">
         <div class="col-lg-12">
@@ -6,7 +5,6 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -14,7 +12,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="订单号"
-                                    v-model="itemOutManageInfo.conditions.applyOrderId" class=" form-control">
+                                       v-model="itemOutManageInfo.conditions.applyOrderId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -32,7 +30,6 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryInspectionPlanMethod()">
                                 <i class="fa fa-search"></i> 查询
@@ -50,16 +47,13 @@
                     <h5>物品领用</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddItemOutModal()">
-                            <i class="fa fa-plus"></i>
-                            领用申请
+                            <i class="fa fa-plus"></i>领用申请
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
                             <th class="text-center">单号</th>
@@ -67,7 +61,7 @@
                             <th class="text-center">申请人</th>
                             <th class="text-center">申请时间</th>
                             <th class="text-center">状态</th>
-                            <th class="text-right">操作</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -75,10 +69,9 @@
                             <td class="text-center">{{itemOut.applyOrderId}}</td>
                             <td class="text-center">{{itemOut.resourceNames}}</td>
                             <td class="text-center">{{itemOut.userName}}</td>
-                            <td class="text-center">{{itemOut.createTime}}</td>      
+                            <td class="text-center">{{itemOut.createTime}}</td>
                             <td class="text-center">{{itemOut.stateName}}</td>
-
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDetailItemOutModel(itemOut)">查看
@@ -95,7 +88,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
@@ -112,10 +104,6 @@
             </div>
         </div>
     </div>
-
-
     <!-- <vc:create path="common/deleteItemOut"></vc:create> -->
-
     <vc:create path="common/viewImage"></vc:create>
-
 </div>

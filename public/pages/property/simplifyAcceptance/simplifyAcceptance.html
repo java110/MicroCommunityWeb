@@ -81,13 +81,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3"  v-if="simplifyAcceptanceInfo.roomType=='1010301'">
+                        <div class="col-sm-3" v-if="simplifyAcceptanceInfo.roomType=='1010301'">
                             <div class="form-group">
                                 <label class="col-form-label">房屋编号：</label>
                                 <label>{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
                             </div>
                         </div>
-                        <div class="col-sm-3"  v-else>
+                        <div class="col-sm-3" v-else>
                             <div class="form-group">
                                 <label class="col-form-label">商铺编号：</label>
                                 <label>{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
@@ -128,8 +128,8 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">房屋备注：</label>
-                                <label class="fix-width" :title="simplifyAcceptanceInfo.roomRemark">{{simplifyAcceptanceInfo.roomRemark
-                                    }}</label>
+                                <label class="fix-width" :title="simplifyAcceptanceInfo.roomRemark">
+                                    {{simplifyAcceptanceInfo.roomRemark}}</label>
                             </div>
                         </div>
                     </div>
@@ -182,8 +182,9 @@
                        v-on:click="changeTab('simplifyFeeReceipt')">补打收据</a>
                 </li>
                 <li class="nav-item" v-if="simplifyAcceptanceInfo.roomType == '2020602'">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
-                        v-on:click="changeTab('simplifyShopsHireLog')">出租记录</a>
+                    <a class="nav-link"
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
+                       v-on:click="changeTab('simplifyShopsHireLog')">出租记录</a>
                 </li>
             </ul>
         </div>

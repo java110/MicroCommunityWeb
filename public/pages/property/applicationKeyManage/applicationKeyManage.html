@@ -47,8 +47,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -60,16 +58,13 @@
                     <h5>申请钥匙</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddApplicationKeyModal()">
-                            <i class="fa fa-plus"></i>
-                            申请
+                            <i class="fa fa-plus"></i>申请
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
                             <th class="text-center">钥匙申请ID</th>
@@ -83,8 +78,6 @@
                             <th class="text-center">开始时间</th>
                             <th class="text-center">结束时间</th>
                             <th class="text-center">操作</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -111,7 +104,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
@@ -128,15 +120,11 @@
             </div>
         </div>
     </div>
-
     <div v-show="applicationKeyManageInfo.showComponent == 'addApplicationKey'">
-        <vc:create path="property/addApplicationKey"
-                   callBackListener=""
-                   callBackFunction=""></vc:create>
+        <vc:create path="property/addApplicationKey" callBackListener="" callBackFunction=""></vc:create>
     </div>
     <div v-show="applicationKeyManageInfo.showComponent == 'editApplicationKey'">
         <vc:create path="property/editApplicationKey"></vc:create>
     </div>
     <vc:create path="property/deleteApplicationKey"></vc:create>
-
 </div>

@@ -1,4 +1,4 @@
-<div  class="animated fadeInRight ecommerce">
+<div class="animated fadeInRight ecommerce">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
@@ -23,7 +23,8 @@
                                 <option selected value="">请选择投诉类型</option>
                                 <option value="809001">投诉</option>
                                 <option value="809002">建议</option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入投诉人"
@@ -58,8 +59,6 @@
                         <div class="col-sm-1">
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -71,16 +70,13 @@
                     <h5>投诉建议信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddComplaintModal()">
-                            <i class="fa fa-plus"></i>
-                            投诉
+                            <i class="fa fa-plus"></i>投诉
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
                             <!-- <th class="text-center">投诉ID</th> -->
@@ -91,9 +87,7 @@
                             <th class="text-center">投诉状态</th>
                             <th class="text-center">处理人</th>
                             <th class="text-center">处理电话</th>
-                            <th class="text-right">操作</th>
-
-
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -106,9 +100,11 @@
                             <td class="text-center">{{complaint.complaintName}}</td>
                             <td class="text-center">{{complaint.tel}}</td>
                             <td class="text-center">{{complaint.stateName}}</td>
-                            <td class="text-center">{{complaint.currentUserName == '' ? '无':complaint.currentUserName}}</td>
+                            <td class="text-center">{{complaint.currentUserName == '' ?
+                                '无':complaint.currentUserName}}
+                            </td>
                             <td class="text-center">{{complaint.currentUserTel == ''?'无':complaint.currentUserTel}}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openComplaintDetailModel(complaint)">详情
@@ -130,7 +126,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>

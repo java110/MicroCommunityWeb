@@ -5,43 +5,40 @@
                 <div class="ibox-title">
                     <h5>领用已办单</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">订单号</th>
-                                <th class="text-center">订单类型</th>
-                                <th class="text-center">订单状态</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-right">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">订单号</th>
+                            <th class="text-center">订单类型</th>
+                            <th class="text-center">订单状态</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="auditOrderHistory in auditOrderHistorysInfo.auditOrderHistorys">
-                                <td class="text-center">{{auditOrderHistory.applyOrderId}}</td>
-                                <td class="text-center">{{auditOrderHistory.resOrderTypeName}}</td>
-                                <td class="text-center">{{auditOrderHistory.stateName}}</td>
-                                <td class="text-center">{{auditOrderHistory.createTime}}</td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
+                        <tr v-for="auditOrderHistory in auditOrderHistorysInfo.auditOrderHistorys">
+                            <td class="text-center">{{auditOrderHistory.applyOrderId}}</td>
+                            <td class="text-center">{{auditOrderHistory.resOrderTypeName}}</td>
+                            <td class="text-center">{{auditOrderHistory.stateName}}</td>
+                            <td class="text-center">{{auditOrderHistory.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openDetailPurchaseApplyModel(auditOrderHistory)">查看
-                                        </button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

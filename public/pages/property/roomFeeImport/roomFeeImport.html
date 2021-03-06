@@ -5,7 +5,6 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -13,27 +12,24 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入导入ID" v-model="roomFeeImport.conditions.importFeeId"
-                                    class=" form-control">
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="roomFeeImport.conditions.feeTypeCd">
                                 <option selected disabled value="">必填，请选择费用类型</option>
-
                                 <option v-for="(item,index) in roomFeeImport.feeTypeCds" :key="index"
-                                    v-bind:value="item.statusCd" v-if="item.statusCd !='888800010008'">
+                                        v-bind:value="item.statusCd" v-if="item.statusCd !='888800010008'">
                                     {{item.name}}
                                 </option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryImportFeeMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
@@ -45,49 +41,45 @@
                     <h5>费用导入</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_openFeeSharing(null,true)">
-                            费用公摊
+                                v-on:click="_openFeeSharing(null,true)">费用公摊
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_openRoomFeeImport(null,true)">
-                            费用导入
+                                v-on:click="_openRoomFeeImport(null,true)">费用导入
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <!-- <th class="text-center">信息ID</th> -->
-                                <th class="text-center">导入ID</th>
-                                <th class="text-center">费用类型</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-center">备注</th>
-                                <th class="text-right">操作</th>
-                            </tr>
+                        <tr>
+                            <!-- <th class="text-center">信息ID</th> -->
+                            <th class="text-center">导入ID</th>
+                            <th class="text-center">费用类型</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">备注</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="fee in roomFeeImport.improtFees">
-                                <td class="text-center">{{fee.importFeeId}}</td>
-                                <td class="text-center">{{fee.feeTypeCdName}}</td>
-                                <td class="text-center">{{fee.createTime}}</td>
-                                <td class="text-center">{{fee.remark}}</td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openImportFeeDetail(fee)">详情
-                                        </button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                        <tr v-for="fee in roomFeeImport.improtFees">
+                            <td class="text-center">{{fee.importFeeId}}</td>
+                            <td class="text-center">{{fee.feeTypeCdName}}</td>
+                            <td class="text-center">{{fee.createTime}}</td>
+                            <td class="text-center">{{fee.remark}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openImportFeeDetail(fee)">详情
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -97,6 +89,5 @@
         </div>
     </div>
     <vc:create path="property/importRoomFee"></vc:create>
-
     <vc:create path="property/feeSharing"></vc:create>
 </div>

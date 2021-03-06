@@ -1,4 +1,4 @@
-<div  class="animated fadeInRight ecommerce">
+<div class="animated fadeInRight ecommerce">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
@@ -24,7 +24,8 @@
                                 <option selected value="">请选择开门方式</option>
                                 <option value="1000">人脸开门</option>
                                 <option value="2000">钥匙开门</option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入用户手机"
@@ -44,24 +45,25 @@
                                 <option selected value="">请选择用户类型</option>
                                 <option value="1001">业主</option>
                                 <option value="1002">业主成员</option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="col-sm-4" v-if="machineVistorPhotoManageInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入设备名称"
-                                       v-model="machineVistorPhotoManageInfo.conditions.machineName" class=" form-control">
+                                       v-model="machineVistorPhotoManageInfo.conditions.machineName"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3" v-if="machineVistorPhotoManageInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入设备编码"
-                                       v-model="machineVistorPhotoManageInfo.conditions.machineCode" class=" form-control">
+                                       v-model="machineVistorPhotoManageInfo.conditions.machineCode"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -72,17 +74,15 @@
                 <div class="ibox-title">
                     <h5>开门记录</h5>
                     <div class="ibox-tools" style="top:10px;">
-<!--                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMachineRecordModal()">-->
-<!--                            <i class="fa fa-plus"></i>-->
-<!--                            添加开门记录-->
-<!--                        </button>-->
+                        <!--<button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMachineRecordModal()">
+                            <i class="fa fa-plus"></i>
+                            添加开门记录
+                        </button>-->
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
                             <th class="text-center">设备编码</th>
@@ -123,7 +123,5 @@
             </div>
         </div>
     </div>
-
     <vc:create path="property/machineRecordDetail"></vc:create>
-
 </div>

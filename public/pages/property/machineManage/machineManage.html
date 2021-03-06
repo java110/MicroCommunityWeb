@@ -6,7 +6,8 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{machineManageInfo.moreCondition == true?'隐藏':'更多'}}</button>
+                                v-on:click="_moreCondition()">{{machineManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -14,7 +15,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入设备编码"
-                                    v-model="machineManageInfo.conditions.machineCode" class=" form-control">
+                                       v-model="machineManageInfo.conditions.machineCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -28,7 +29,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入设备名称"
-                                    v-model="machineManageInfo.conditions.machineName" class=" form-control">
+                                       v-model="machineManageInfo.conditions.machineName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -41,18 +42,16 @@
                         <div class="col-sm-4" v-if="machineManageInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入设备IP"
-                                    v-model="machineManageInfo.conditions.machineIp" class=" form-control">
+                                       v-model="machineManageInfo.conditions.machineIp" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="machineManageInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入设备MAC"
-                                    v-model="machineManageInfo.conditions.machineMac" class=" form-control">
+                                       v-model="machineManageInfo.conditions.machineMac" class=" form-control">
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -64,72 +63,67 @@
                     <h5>设备信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMachineModal()">
-                            <i class="fa fa-plus"></i>
-                            添加设备
+                            <i class="fa fa-plus"></i>添加设备
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">设备编码</th>
-                                <th class="text-center">设备名称</th>
-                                <th class="text-center">设备类型</th>
-                                <th class="text-center">设备位置</th>
-                                <th class="text-center">方向</th>                              
-                                <th class="text-center">状态</th>
-                                <th class="text-center">心跳时间</th>
-                                <th v-for="(item,index) in machineManageInfo.listColumns">{{item}}</th>
-                                <th class="text-center">时间</th>
-                                <th class="text-right">操作</th>
-
-                            </tr>
+                        <tr>
+                            <th class="text-center">设备编码</th>
+                            <th class="text-center">设备名称</th>
+                            <th class="text-center">设备类型</th>
+                            <th class="text-center">设备位置</th>
+                            <th class="text-center">方向</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">心跳时间</th>
+                            <th v-for="(item,index) in machineManageInfo.listColumns" class="text-center">{{item}}</th>
+                            <th class="text-center">时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="machine in machineManageInfo.machines">
-                                <td class="text-center">{{machine.machineCode}}</td>
-                                <td class="text-center">{{machine.machineName}}</td>
-                                <td class="text-center">{{machine.machineTypeCdName}}</td>
-                                <td class="text-center">{{machine.locationObjName}}</td>
-                                <td class="text-center">{{machine.directionName}}</td>
-                                <td class="text-center">{{machine.stateName}}</td>
-                                <td class="text-center">{{machine.heartbeatTime}}</td>
-                                <td v-for="item in machine.listValues">
-                                    {{item}}
-                                </td>
-                                <td class="text-center">{{machine.createTime}}</td>
-                                <td class="text-right">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)">开门
-                                    </button>
-                                    <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
+                        <tr v-for="machine in machineManageInfo.machines">
+                            <td class="text-center">{{machine.machineCode}}</td>
+                            <td class="text-center">{{machine.machineName}}</td>
+                            <td class="text-center">{{machine.machineTypeCdName}}</td>
+                            <td class="text-center">{{machine.locationObjName}}</td>
+                            <td class="text-center">{{machine.directionName}}</td>
+                            <td class="text-center">{{machine.stateName}}</td>
+                            <td class="text-center">{{machine.heartbeatTime}}</td>
+                            <td v-for="item in machine.listValues" class="text-center">
+                                {{item}}
+                            </td>
+                            <td class="text-center">{{machine.createTime}}</td>
+                            <td class="text-center">
+                                <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)">开门
+                                </button>
+                                <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">变更
-                                    </button>
-                                    <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
-                                        <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)"
-                                                v-on:click="_openEditMachineModel(machine)">修改设备</a>
-                                            <span>|</span>
-                                            <a href="javascript:void(0)"
-                                                v-on:click="_openDeleteMachineModel(machine)">删除设备</a>
-                                        </p>
-                                        <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)"
-                                                v-on:click="_openRestartMachineModel(machine)">重启设备</a>
-                                        </p>
-                                    </div>
-
-                                </td>
-
-                            </tr>
+                                </button>
+                                <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
+                                    <p style="margin:10px 0;">
+                                        <a href="javascript:void(0)"
+                                           v-on:click="_openEditMachineModel(machine)">修改设备</a>
+                                        <span>|</span>
+                                        <a href="javascript:void(0)"
+                                           v-on:click="_openDeleteMachineModel(machine)">删除设备</a>
+                                    </p>
+                                    <p style="margin:10px 0;">
+                                        <a href="javascript:void(0)"
+                                           v-on:click="_openRestartMachineModel(machine)">重启设备</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -138,11 +132,8 @@
             </div>
         </div>
     </div>
-
-
     <vc:create path="property/addMachine" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editMachine"></vc:create>
     <vc:create path="property/deleteMachine"></vc:create>
     <vc:create path="property/machineState"></vc:create>
-
 </div>

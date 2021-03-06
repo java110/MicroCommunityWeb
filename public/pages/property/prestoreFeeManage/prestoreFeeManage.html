@@ -5,7 +5,6 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -13,7 +12,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="房屋ID" v-model="prestoreFeeManageInfo.conditions.roomId"
-                                    class=" form-control">
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -21,22 +20,21 @@
                                 <option selected value="">请选择预存类型</option>
                                 <option value="8003">水费</option>
                                 <option value="8004">电费</option>
-                            </select> </div>
-
+                            </select>
+                        </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="prestoreFeeManageInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
                                 <option value="1001">未使用</option>
                                 <option value="2002">已使用</option>
-                            </select> </div>
+                            </select>
+                        </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPrestoreFeeMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -54,57 +52,57 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">预付费用ID</th>
-                                <th class="text-center">房屋ID</th>
-                                <th class="text-center">预付类型</th>
-                                <th class="text-center">对象类型</th>
-                                <th class="text-center">预付金额</th>
-                                <th class="text-center">状态</th>
-                                <th class="text-center">备注</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">预付费用ID</th>
+                            <th class="text-center">房屋ID</th>
+                            <th class="text-center">预付类型</th>
+                            <th class="text-center">对象类型</th>
+                            <th class="text-center">预付金额</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">备注</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="prestoreFee in prestoreFeeManageInfo.prestoreFees">
-                                <td class="text-center">{{prestoreFee.prestoreFeeId}}</td>
-                                <td class="text-center">{{prestoreFee.roomId}}</td>
-                                <td class="text-center">
-                                    <span v-if="prestoreFee.prestoreFeeType == 8003">水费</span>
-                                    <span v-if="prestoreFee.prestoreFeeType == 8004">电费</span>
-                                </td>
-                                <td class="text-center">
-                                    <span v-if="prestoreFee.prestoreFeeObjType == 3333">房屋</span>
-                                    <span v-if="prestoreFee.prestoreFeeObjType == 6666">车位</span>
-                                </td>
-                                <td class="text-center">{{prestoreFee.prestoreFeeAmount}}</td>
-                                <td class="text-center">
-                                    <span v-if="prestoreFee.state == 1001">未使用</span>
-                                    <span v-if="prestoreFee.state == 2002">已使用</span>
-                                </td>
-                                <td class="text-center">{{prestoreFee.remark}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group" v-if="prestoreFee.state == '1001'">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditPrestoreFeeModel(prestoreFee)">修改</button>
-                                    </div>
-                                    <div class="btn-group" v-if="prestoreFee.state == '1001'">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeletePrestoreFeeModel(prestoreFee)">删除</button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                        <tr v-for="prestoreFee in prestoreFeeManageInfo.prestoreFees">
+                            <td class="text-center">{{prestoreFee.prestoreFeeId}}</td>
+                            <td class="text-center">{{prestoreFee.roomId}}</td>
+                            <td class="text-center">
+                                <span v-if="prestoreFee.prestoreFeeType == 8003">水费</span>
+                                <span v-if="prestoreFee.prestoreFeeType == 8004">电费</span>
+                            </td>
+                            <td class="text-center">
+                                <span v-if="prestoreFee.prestoreFeeObjType == 3333">房屋</span>
+                                <span v-if="prestoreFee.prestoreFeeObjType == 6666">车位</span>
+                            </td>
+                            <td class="text-center">{{prestoreFee.prestoreFeeAmount}}</td>
+                            <td class="text-center">
+                                <span v-if="prestoreFee.state == 1001">未使用</span>
+                                <span v-if="prestoreFee.state == 2002">已使用</span>
+                            </td>
+                            <td class="text-center">{{prestoreFee.remark}}</td>
+                            <td class="text-center">
+                                <div class="btn-group" v-if="prestoreFee.state == '1001'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditPrestoreFeeModel(prestoreFee)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group" v-if="prestoreFee.state == '1001'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeletePrestoreFeeModel(prestoreFee)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -113,11 +111,7 @@
             </div>
         </div>
     </div>
-
-
-
     <!-- <vc:create path="property/addPrestoreFee" callBackListener="" callBackFunction=""></vc:create> -->
     <vc:create path="property/editPrestoreFee"></vc:create>
     <!-- <vc:create path="property/deletePrestoreFee"></vc:create> -->
-
 </div>

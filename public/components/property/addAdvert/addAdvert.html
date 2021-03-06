@@ -20,7 +20,8 @@
                                         <option selected disabled value="">必填，请选择广告类型</option>
                                         <option value="10000">门禁机</option>
                                         <option value="20000">其他设备</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">广告分类</label>
@@ -33,7 +34,8 @@
                                         <option value="9004">酒店</option>
                                         <option value="9005">教育</option>
                                         <option value="9006">互联网</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">投放位置</label>
@@ -44,40 +46,36 @@
                                         <option value="4000">楼栋</option>
                                         <option value="2000">单元门</option>
                                         <option value="3000">房屋门</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row"
                                  v-show="addAdvertInfo.locationTypeCd == '2000' || addAdvertInfo.locationTypeCd == '3000' ||addAdvertInfo.locationTypeCd == '4000' ">
                                 <label class="col-sm-2 col-form-label">归属楼栋</label>
                                 <div class="col-sm-10">
-                                    <vc:create path="property/floorSelect2"
-                                               parentModal="addAdvertModel"
-                                               namespace="addAdvert"
-                                    ></vc:create>
+                                    <vc:create path="property/floorSelect2" parentModal="addAdvertModel"
+                                               namespace="addAdvert">
+                                    </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row"
                                  v-show="addAdvertInfo.locationTypeCd == '2000' || addAdvertInfo.locationTypeCd == '3000'  ">
                                 <label class="col-sm-2 col-form-label">归属单元</label>
                                 <div class="col-sm-10">
-                                    <vc:create path="property/unitSelect2"
-                                               parentModal="addAdvertModel"
-                                               callBackListener="addAdvert"
-                                               callBackFunction="notify"
-                                               namespace="addAdvert"
-                                    ></vc:create>
+                                    <vc:create path="property/unitSelect2" parentModal="addAdvertModel"
+                                               callBackListener="addAdvert" callBackFunction="notify"
+                                               namespace="addAdvert">
+                                    </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row"
                                  v-show="addAdvertInfo.locationTypeCd == '3000'  ">
                                 <label class="col-sm-2 col-form-label">归属房屋</label>
                                 <div class="col-sm-10">
-                                    <vc:create path="property/roomSelect2"
-                                               parentModal="addAdvertModel"
-                                               callBackListener="addAdvert"
-                                               callBackFunction="notify"
-                                               namespace="addAdvert"
-                                    ></vc:create>
+                                    <vc:create path="property/roomSelect2" parentModal="addAdvertModel"
+                                               callBackListener="addAdvert" callBackFunction="notify"
+                                               namespace="addAdvert">
+                                    </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -115,21 +113,17 @@
                             <div class="form-group row" v-if="addAdvertInfo.viewType == '8888'">
                                 <label class="col-sm-2 col-form-label">图片(800 * 373)</label>
                                 <div class="content-img col-sm-10">
-                                    <vc:create path="frame/uploadImage"
-                                               callBackListener="addAdvert"
-                                               callBackFunction="notifyUploadImage"
-                                               namespace="addAdvert"
-                                    ></vc:create>
+                                    <vc:create path="frame/uploadImage" callBackListener="addAdvert"
+                                               callBackFunction="notifyUploadImage" namespace="addAdvert">
+                                    </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row" v-if="addAdvertInfo.viewType == '9999'">
                                 <label class="col-sm-2 col-form-label">视频</label>
                                 <div class="content-img col-sm-10">
-                                    <vc:create path="frame/uploadVedio"
-                                               callBackListener="addAdvert"
-                                               callBackFunction="notifyUploadVedio"
-                                               namespace="addAdvert"
-                                    ></vc:create>
+                                    <vc:create path="frame/uploadVedio" callBackListener="addAdvert"
+                                               callBackFunction="notifyUploadVedio" namespace="addAdvert">
+                                    </vc:create>
                                 </div>
                             </div>
 

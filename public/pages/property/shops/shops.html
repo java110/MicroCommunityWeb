@@ -6,7 +6,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{shopsInfo.moreCondition == true?'隐藏':'更多'}}
+                            v-on:click="_moreCondition()">{{shopsInfo.moreCondition == true ? '隐藏' : '更多'}}
                         </button> -->
                     </div>
                 </div>
@@ -15,12 +15,12 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写商铺编号 格式 楼栋-商铺" class="form-control form-control-sm"
-                                    v-model="shopsInfo.conditions.roomName">
+                                       v-model="shopsInfo.conditions.roomName">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <select class="form-control-sm form-control input-s-sm inline"
-                                v-model="shopsInfo.conditions.state">
+                                    v-model="shopsInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
                                 <option value="2006">已出租</option>
                                 <option value="2007">已出售</option>
@@ -30,22 +30,19 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写商铺ID" class="form-control form-control-sm"
-                                    v-model="shopsInfo.conditions.roomId">
+                                       v-model="shopsInfo.conditions.roomId">
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryShopsMethod()"><i
-                                    class="fa fa-search"></i> 查询
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryShopsMethod()">
+                                <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -53,100 +50,101 @@
                     <h5>商铺信息</h5>
                     <div class="ibox-tools" style="top:10px;" v-if="vc.hasPrivilege('502020082453087940')">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_openAddShops()">
+                                v-on:click="_openAddShops()">
                             <i class="fa fa-plus"></i> 添加商铺
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                        data-page-size="10">
+                           data-page-size="10">
                         <thead>
-                            <tr>
-                                <!-- <th>商铺ID</th> -->
-                                <th data-hide="phone">商铺编号</th>
-                                <th data-hide="phone">楼层</th>
-                                <th data-hide="phone">业主/租方</th>
-                                <th data-hide="phone">联系电话</th>
-                                <th data-hide="phone">建筑面积</th>
-                                <th data-hide="phone">算费系数</th>
-                                <th data-hide="phone">商铺状态</th>
-                                <th v-for="(item,index) in shopsInfo.listColumns">{{item}}</th>
-                                <th class="text-right">操作</th>
-                            </tr>
+                        <tr>
+                            <!-- <th>商铺ID</th> -->
+                            <th data-hide="phone" class="text-center">商铺编号</th>
+                            <th data-hide="phone" class="text-center">楼层</th>
+                            <th data-hide="phone" class="text-center">业主/租方</th>
+                            <th data-hide="phone" class="text-center">联系电话</th>
+                            <th data-hide="phone" class="text-center">建筑面积</th>
+                            <th data-hide="phone" class="text-center">算费系数</th>
+                            <th data-hide="phone" class="text-center">商铺状态</th>
+                            <th v-for="(item,index) in shopsInfo.listColumns" class="text-center">{{item}}</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="shops in shopsInfo.shopss">
-                                <td>
-                                    {{shops.floorNum}}-{{shops.roomNum}}
-                                </td>
-                                <td>
-                                    {{shops.layer}}层
-                                </td>
-                                <td>
-                                    {{shops.ownerName}}
-                                </td>
-                                <td>
-                                    {{shops.link}}
-                                </td>
-                                <td>
-                                    {{shops.builtUpArea}}平方米
-                                </td>
-                                <td>
-                                    {{shops.feeCoefficient}}
-                                </td>
-                                <td>
-                                    {{shops.stateName}}
-                                </td>
-                                <td v-for="item in shops.listValues">
-                                    {{item}}
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group"
-                                        v-if="vc.hasPrivilege('502020082493857941')&& shops.state != '2007'">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openHireShopsModel(shops)">出租</button>
-                                    </div>
-                                    <div class="btn-group"
-                                        v-if="vc.hasPrivilege('502020082493857941') && shops.state == '2008'">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openSellShopsModel(shops)">出售</button>
-                                    </div>
-                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941') && shops.state != '2008' ">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteShopsOwnerModel(shops)">解绑</button>
-                                    </div>
-                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditShopsModel(shops)">修改</button>
-                                    </div>
-                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDelShopsModel(shops)">删除
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr v-for="shops in shopsInfo.shopss">
+                            <td class="text-center">
+                                {{shops.floorNum}}-{{shops.roomNum}}
+                            </td>
+                            <td class="text-center">
+                                {{shops.layer}}层
+                            </td>
+                            <td class="text-center">
+                                {{shops.ownerName}}
+                            </td>
+                            <td class="text-center">
+                                {{shops.link}}
+                            </td>
+                            <td class="text-center">
+                                {{shops.builtUpArea}}平方米
+                            </td>
+                            <td class="text-center">
+                                {{shops.feeCoefficient}}
+                            </td>
+                            <td class="text-center">
+                                {{shops.stateName}}
+                            </td>
+                            <td v-for="item in shops.listValues" class="text-center">
+                                {{item}}
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502020082493857941')&& shops.state != '2007'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openHireShopsModel(shops)">出租
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502020082493857941') && shops.state == '2008'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openSellShopsModel(shops)">出售
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502020082493857941') && shops.state != '2008' ">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteShopsOwnerModel(shops)">解绑
+                                    </button>
+                                </div>
+                                <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditShopsModel(shops)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDelShopsModel(shops)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
                     <vc:create path="frame/pagination"></vc:create>
-
                 </div>
             </div>
         </div>
     </div>
-
     <vc:create path="property/addShops" emitChooseFloor="shops" emitLoadData="shops"></vc:create>
     <vc:create path="property/bindOwnerShops" emitChooseFloor="shops" emitLoadData="shops"></vc:create>
-
     <vc:create path="property/editShops"></vc:create>
     <vc:create path="property/deleteRoom"></vc:create>
 </div>

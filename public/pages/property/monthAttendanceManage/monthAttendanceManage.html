@@ -5,7 +5,6 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -13,28 +12,27 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入班组名称"
-                                    v-model="monthAttendanceManageInfo.conditions.classesName" class=" form-control">
+                                       v-model="monthAttendanceManageInfo.conditions.classesName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入部门名称"
-                                    v-model="monthAttendanceManageInfo.conditions.departmentName" class=" form-control">
+                                       v-model="monthAttendanceManageInfo.conditions.departmentName"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <input type="text" placeholder="请选择打卡时间"
-                                    v-model="monthAttendanceManageInfo.conditions.date" class=" form-control queryDate">
+                                   v-model="monthAttendanceManageInfo.conditions.date" class=" form-control queryDate">
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryMonthAttendanceMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                    v-on:click="_queryMonthAttendanceMethod()">
+                                <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -51,33 +49,33 @@
 
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">部门名称</th>
-                                <th class="text-center">员工名称</th>
-                                <th class="text-center">正常考勤</th>
-                                <th class="text-center">迟到</th>
-                                <th class="text-center">早退</th>
-                                <th class="text-center">旷工</th>
-                                <th class="text-center">免考勤</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">部门名称</th>
+                            <th class="text-center">员工名称</th>
+                            <th class="text-center">正常考勤</th>
+                            <th class="text-center">迟到</th>
+                            <th class="text-center">早退</th>
+                            <th class="text-center">旷工</th>
+                            <th class="text-center">免考勤</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="attendance in monthAttendanceManageInfo.attendances">
-                                <td class="text-center">{{attendance.departmentName}}</td>
-                                <td class="text-center">{{attendance.staffName}}</td>
-                                <td class="text-center">{{attendance.clockIn}}</td>
-                                <td class="text-center">{{attendance.late}}</td>
-                                <td class="text-center">{{attendance.early}}</td>
-                                <td class="text-center">{{attendance.noClockIn}}</td>
-                                <td class="text-center">{{attendance.free}}</td>
-                            </tr>
+                        <tr v-for="attendance in monthAttendanceManageInfo.attendances">
+                            <td class="text-center">{{attendance.departmentName}}</td>
+                            <td class="text-center">{{attendance.staffName}}</td>
+                            <td class="text-center">{{attendance.clockIn}}</td>
+                            <td class="text-center">{{attendance.late}}</td>
+                            <td class="text-center">{{attendance.early}}</td>
+                            <td class="text-center">{{attendance.noClockIn}}</td>
+                            <td class="text-center">{{attendance.free}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
