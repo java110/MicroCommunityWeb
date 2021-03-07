@@ -4,6 +4,6 @@
 
 > vcFramework.js 是一套js 组件化编程框架
 
-* QQ:928255095
+* QQ:58957118
 
 [gitee](https://gitee.com/java110/MicrCommunityWeb)

@@ -53,7 +53,7 @@
 
 /**
  vc 函数初始化
- add by wuxw
+ add by Kevin
  **/
 (function (vc) {
     var DEFAULT_NAMESPACE = "default";

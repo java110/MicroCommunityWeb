@@ -1,4 +1,4 @@
-# HC小区管理系统是前后端完全开源的小区物业管理系统，包含小区后端项目，小区前段项目，物业版APP和业主版小程序,QQ群: 827669685
+# 智慧社区管理系统是前后端完全开源的小区物业管理系统，包含小区后端项目，小区前段项目，物业版APP和业主版小程序。
 
 ## 开源代码说明
 
@@ -15,13 +15,13 @@
 
 1. 开发工具：
 
-nodejs + vscode + MicroCommunity(HC小区后端)
+nodejs + vscode + MicroCommunity(YZ小区后端)
 
 2. 官方网站
 
    http://www.homecommunity.cn
    
-   技术业务交流群QQ: 827669685
+   技术业务交流QQ: 58957118
 
 3. 环境搭建
 
@@ -35,7 +35,7 @@ nodejs + vscode + MicroCommunity(HC小区后端)
 
 [http://www.homecommunity.cn/](http://www.homecommunity.cn/)
 
-物业 账号/密码：wuxw/admin
+物业 账号/密码：wy_admin/admin
 
 代理商 账号/密码：dails/admin
 
@@ -49,7 +49,7 @@ nodejs + vscode + MicroCommunity(HC小区后端)
 
 ![image](docs/img/login.jpg)
 
-    用户名为 wuxw 密码为 admin  如下图
+    用户名为 wy_admin 密码为 admin  如下图
 
     点击登录，进入如下图：
     

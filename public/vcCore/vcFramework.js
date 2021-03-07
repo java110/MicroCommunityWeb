@@ -1,7 +1,7 @@
 /**
  * vcFramework
  *
- * @author 吴学文
+ * @author Kevin Law
  *
  * @version 0.3
  *
@@ -9,9 +9,9 @@
  *
  * @time 2020-03-04
  *
- * @qq 928255095
+ * @qq 58957118
  *
- * @mail 928255095@qq.com
+ * @mail 58957118@qq.com
  *
  */
 /**
@@ -57,9 +57,9 @@
     vcFramework = {
         version: "v0.0.3",
         name: "vcFramework",
-        author: '吴学文',
-        email: '928255095@qq.com',
-        qq: '928255095',
+        author: 'Kevin Law',
+        email: '58957118@qq.com',
+        qq: '58957118',
         description: 'vcFramework 是自研的一套组件开发套件',
         vueCache: _vueCache,
         vmOptions: _vmOptions,
@@ -906,7 +906,7 @@
 
 /**
  vc 函数初始化
- add by wuxw
+ add by Kevin
  **/
 (function (vcFramework) {
     let DEFAULT_NAMESPACE = "default";
@@ -2137,10 +2137,10 @@
      * eg:
      * dataObj:
      * {
-     *      name:"wuxw",
+     *      name:"Kevin",
      *      age:"19",
      *      emailInfo:{
-     *          email:"928255095@qq.com"
+     *          email:"58957118@qq.com"
      *      }
      * }
      *
