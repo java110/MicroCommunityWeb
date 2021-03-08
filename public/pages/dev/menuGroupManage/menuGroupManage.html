@@ -37,7 +37,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <select class="custom-select" v-model="menuGroupManageInfo.conditions.storeTypeCd">
+                            <select class="custom-select" v-model="menuGroupManageInfo.conditions.storeType">
                                 <option selected value="">请选择归属商户</option>
                                 <option value="800900000001">运营团队</option>
                                 <option value="800900000002">代理商</option>
@@ -84,7 +84,7 @@
                                 <td class="text-center">{{menuGroup.gId}}</td>
                                 <td class="text-center">{{menuGroup.name}}</td>
                                 <td class="text-center">{{menuGroup.groupType == 'P_WEB'?'web菜单':'App菜单'}}</td>
-                                <td class="text-center">{{menuGroup.storeTypeCdName}}</td>
+                                <td class="text-center">{{_getStoreTypeName(menuGroup.storeType)}}</td>
                                 <td class="text-center">{{menuGroup.icon}}</td>
                                 <td class="text-center">{{menuGroup.label}}</td>
                                 <td class="text-center">{{menuGroup.seq}}</td>
