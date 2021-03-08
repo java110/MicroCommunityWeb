@@ -56,6 +56,30 @@
             },
             _refreshChooseMenuGroupInfo:function(){
                 vc.component.chooseMenuGroupInfo._currentMenuGroupName = "";
+            },
+            _getChooseStoreTypeName: function (_storeTypeCd) {
+                // <option value="800900000001">运营团队</option>
+                // <option value="800900000002">代理商</option>
+                // <option value="800900000003">物业</option>
+                // <option value="800900000004">物流公司</option>
+                // <option value="800900000005">商家</option>
+                // <option value="800900000000">开发团队</option>
+
+                if (_storeTypeCd == '800900000001') {
+                    return "运营团队";
+                } else if (_storeTypeCd == '800900000002') {
+                    return "代理商";
+                } else if (_storeTypeCd == '800900000003') {
+                    return "物业";
+                } else if (_storeTypeCd == '800900000004') {
+                    return "物流公司";
+                } else if (_storeTypeCd == '800900000005') {
+                    return "商家";
+                } else if (_storeTypeCd == '800900000000') {
+                    return "开发团队";
+                } else {
+                    return "未知";
+                }
             }
         }
 
