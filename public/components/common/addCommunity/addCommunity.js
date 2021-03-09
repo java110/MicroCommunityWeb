@@ -153,6 +153,10 @@
                     mapY: '101.33',
                     attrs: []
                 };
+                $that.selectProv = '';
+                $that.selectCity = '';
+                $that.selectArea = '';
+                $that.allCity = [];
             },
             getProv: function (_prov) {
                 vc.component._initArea('202', _prov);
