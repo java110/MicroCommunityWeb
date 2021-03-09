@@ -23,7 +23,7 @@
         },
         _initMethod: function () {
             vc.component._initArea('101', '0');
-            
+
         },
         _initEvent: function () {
             vc.on('addCommunity', 'openAddCommunityModal', function () {
@@ -145,8 +145,10 @@
                 vc.component.addCommunityInfo = {
                     name: '',
                     address: '',
+                    tmpAddress: '',
+                    areaAddress: '',
                     nearbyLandmarks: '',
-                    cityCode: '0971',
+                    cityCode: '',
                     mapX: '101.33',
                     mapY: '101.33',
                     attrs: []
