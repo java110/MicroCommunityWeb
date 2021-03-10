@@ -10,7 +10,7 @@
                                 <label class="col-sm-2 col-form-label">房屋类型</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="roomCreateFeeAddInfo.roomType"
-                                        @change="_createFeeAddChangeRoomType()">
+                                            @change="_createFeeAddChangeRoomType()">
                                         <option selected disabled value="">必填，请选择房屋类型</option>
                                         <option value="1010301">普通房屋</option>
                                         <option value="2020602">商铺</option>
@@ -21,7 +21,7 @@
                                 <label class="col-sm-2 col-form-label">收费范围</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="roomCreateFeeAddInfo.locationTypeCd"
-                                        v-if="roomCreateFeeAddInfo.isMore == true">
+                                            v-if="roomCreateFeeAddInfo.isMore == true">
                                         <option selected disabled value="">必填，请选择收费范围</option>
                                         <option value="1000">小区</option>
                                         <option value="4000">楼栋</option>
@@ -30,26 +30,26 @@
                                         <option value="3000">房屋/商铺</option>
                                     </select>
                                     <input v-model="roomCreateFeeAddInfo.locationTypeCdName" disabled="disabled"
-                                        v-if="!roomCreateFeeAddInfo.isMore" type="text" placeholder="必填，请填写收费范围"
-                                        class="form-control" />
+                                           v-if="!roomCreateFeeAddInfo.isMore" type="text" placeholder="必填，请填写收费范围"
+                                           class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group row"
-                                v-show="roomCreateFeeAddInfo.locationTypeCd == '2000' || roomCreateFeeAddInfo.locationTypeCd == '3000' ||roomCreateFeeAddInfo.locationTypeCd == '4000' ">
+                                 v-show="roomCreateFeeAddInfo.locationTypeCd == '2000' || roomCreateFeeAddInfo.locationTypeCd == '3000' ||roomCreateFeeAddInfo.locationTypeCd == '4000' ">
                                 <label class="col-sm-2 col-form-label">楼栋</label>
                                 <div class="col-sm-10">
                                     <vc:create path="property/floorSelect2" parentModal="roomCreateFeeAddModel"
-                                        namespace="roomCreateFeeAdd">
+                                               namespace="roomCreateFeeAdd">
                                     </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row"
-                                v-show="roomCreateFeeAddInfo.locationTypeCd == '2000' || roomCreateFeeAddInfo.locationTypeCd == '3000'  ">
+                                 v-show="roomCreateFeeAddInfo.locationTypeCd == '2000' || roomCreateFeeAddInfo.locationTypeCd == '3000'  ">
                                 <label class="col-sm-2 col-form-label">单元</label>
                                 <div class="col-sm-10">
                                     <vc:create path="property/unitSelect2" parentModal="roomCreateFeeAddModel"
-                                        callBackListener="roomCreateFeeAdd" callBackFunction="notify"
-                                        namespace="roomCreateFeeAdd">
+                                               callBackListener="roomCreateFeeAdd" callBackFunction="notify"
+                                               namespace="roomCreateFeeAdd">
                                     </vc:create>
                                 </div>
                             </div>
@@ -57,21 +57,20 @@
                                 <label class="col-sm-2 col-form-label">房屋</label>
                                 <div class="col-sm-10">
                                     <vc:create path="property/roomSelect2" parentModal="roomCreateFeeAddModel"
-                                        callBackListener="roomCreateFeeAdd" callBackFunction="notify"
-                                        namespace="roomCreateFeeAdd">
+                                               callBackListener="roomCreateFeeAdd" callBackFunction="notify"
+                                               namespace="roomCreateFeeAdd">
                                     </vc:create>
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">费用类型</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="roomCreateFeeAddInfo.feeTypeCd"
-                                        @change="_changeFeeTypeCdX(roomCreateFeeAddInfo.feeTypeCd)">
+                                            @change="_changeFeeTypeCdX(roomCreateFeeAddInfo.feeTypeCd)">
                                         <option selected disabled value="">必填，请选择费用类型</option>
                                         <option v-for="(item,index) in roomCreateFeeAddInfo.feeTypeCds" :key="index"
-                                            v-bind:value="item.statusCd"
-                                            v-if="item.statusCd !='888800010008' && item.statusCd !='888800010017'">
+                                                v-bind:value="item.statusCd"
+                                                v-if="item.statusCd !='888800010008' && item.statusCd !='888800010017'">
                                             {{item.name}}
                                         </option>
                                     </select>
@@ -83,7 +82,7 @@
                                     <select class="custom-select" v-model="roomCreateFeeAddInfo.configId">
                                         <option selected disabled value="">必填，请选择收费项目</option>
                                         <option v-for="(item,index) in roomCreateFeeAddInfo.feeConfigs" :key="index"
-                                            v-bind:value="item.configId">{{item.feeName}}
+                                                v-bind:value="item.configId">{{item.feeName}}
                                         </option>
                                     </select>
                                 </div>
@@ -92,17 +91,16 @@
                                 <label class="col-sm-2 col-form-label">楼层</label>
                                 <div class="col-sm-8" v-if="roomCreateFeeAddInfo.feeLayer != '全部'">
                                     <input type="text" v-model="roomCreateFeeAddInfo.feeLayer"
-                                        placeholder="请输入楼层 多个层时用#分隔，如1#2" class="form-control">
+                                           placeholder="请输入楼层 多个层时用#分隔，如1#2" class="form-control">
                                 </div>
                                 <div class="col-sm-8" v-else>
                                     <input type="text" v-model="roomCreateFeeAddInfo.feeLayer" disabled="disabled"
-                                        placeholder="请输入楼层 多个层时用#分隔，如1#2" class="form-control">
+                                           placeholder="请输入楼层 多个层时用#分隔，如1#2" class="form-control">
                                 </div>
                                 <div class="col-sm-2">
                                     <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="_changeFeeLayer()">
-                                        {{roomCreateFeeAddInfo.feeLayer==
-                                        '全部'?'自定义':'全部'}}
+                                            v-on:click="_changeFeeLayer()">
+                                        {{roomCreateFeeAddInfo.feeLayer== '全部'?'自定义':'全部'}}
                                     </button>
                                 </div>
                             </div>
@@ -110,49 +108,59 @@
                                 <label class="col-sm-2 col-form-label">房屋状态</label>
                                 <div class="col-sm-10" v-if="roomCreateFeeAddInfo.roomType == '1010301'">
                                     <div class="checkbox custom-control-inline">
-                                        <label><input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                value="2001">已入住</label>
+                                        <label>
+                                            <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
+                                                   value="2001">已入住
+                                        </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
-                                        <label><input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                value="2003">已交房</label>
+                                        <label>
+                                            <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
+                                                   value="2003">已交房
+                                        </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
-                                        <label><input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                value="2005">已装修</label>
+                                        <label>
+                                            <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
+                                                   value="2005">已装修
+                                        </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
-                                        <label><input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                value="2004">未入住</label>
+                                        <label>
+                                            <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
+                                                   value="2004">未入住
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-10" v-else>
                                     <div class="checkbox custom-control-inline">
-                                        <label><input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                value="2006">已出租</label>
+                                        <label>
+                                            <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
+                                                   value="2006">已出租
+                                        </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
-                                        <label><input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                value="2007">已出售</label>
+                                        <label>
+                                            <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
+                                                   value="2007">已出售
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">计费起始时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="roomCreateFeeAddInfo.startTime" type="text"
-                                        placeholder="必填，请填写计费起始时间" class="form-control roomCreateFeeStartTime">
+                                           placeholder="必填，请填写计费起始时间" class="form-control roomCreateFeeStartTime">
                                 </div>
                             </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="saveRoomCreateFeeInfo()">
+                                        v-on:click="saveRoomCreateFeeInfo()">
                                     <i class="fa fa-check"></i>&nbsp;提交
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">
+                                        data-dismiss="modal">
                                     <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>

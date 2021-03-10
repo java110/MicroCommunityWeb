@@ -22,8 +22,6 @@
         },
         _initEvent: function () {
             vc.on('addRoomRenovation', 'openAddRoomRenovationModal', function (_param) {
-                console.log("look here")
-                console.log(_param[0].userId)
                 vc.component.addRoomRenovationInfo.userId = _param[0].userId
                 $('#addRoomRenovationModel').modal('show');
             });

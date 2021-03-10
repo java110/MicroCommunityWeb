@@ -17,15 +17,17 @@
                     if (_fee.startTime.indexOf(":") == -1) {
                         $that.editFeeInfo.startTime = $that.editFeeInfo.startTime + " 00:00:00";
                     }
-                    if (_fee.endTime.indexOf(":") == -1) {
-                        $that.editFeeInfo.endTime = $that.editFeeInfo.endTime + " 00:00:00";
-                    }
+                    /*if (_fee.endTime.indexOf(":") == -1) {
+                        $that.editFeeInfo.endTime = $that.editFeeInfo.endTime;
+                    }*/
+                    $that.editFeeInfo.endTime = _fee.endTime.split(' ')[0];
                     $('#editFeeModel').modal('show');
                 });
         },
         methods: {
             _initEditFeeDateInfo: function () {
                 $('.editFeeStartTime').datetimepicker({
+                    minView: "month",
                     language: 'zh-CN',
                     fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -40,9 +42,10 @@
                         vc.component.editFeeInfo.startTime = value;
                     });
                 $('.editFeeEndTime').datetimepicker({
+                    minView: "month",
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
@@ -94,11 +97,6 @@
                             param: "",
                             errInfo: "计费起始时间不能为空"
                         },
-                            {
-                                limit: "dateTime",
-                                param: "",
-                                errInfo: "计费起始时间不是有效的时间格式"
-                            },
                         ]
                     });
             },

@@ -34,10 +34,8 @@
             currentPage: 1,
         },
         _initMethod: function () {
-
             //检查是否有缓存数据
             let _tempData = vc.getData(TEMP_SEARCH);
-
             if (_tempData == null) {
                 vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
                 vc.component.roomCreateFeeInfo.conditions.floorName = vc.getParam("floorName");
@@ -48,14 +46,12 @@
                 $that.updateCurrentPage(_tempData.currentPage);
                 vc.component.listRoom(_tempData.currentPage, DEFAULT_ROW);
             }
-
         },
         _initEvent: function () {
             vc.on('room', 'chooseFloor', function (_param) {
                 vc.component.roomCreateFeeInfo.conditions.floorId = _param.floorId;
                 vc.component.roomCreateFeeInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
-
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 $that.updateCurrentPage(_currentPage);
@@ -63,7 +59,6 @@
             });
         },
         methods: {
-
             listRoom: function (_page, _row) {
                 if (vc.component.roomCreateFeeInfo.conditions.floorName == '' || vc.component.roomCreateFeeInfo.conditions.floorName == null) {
                     vc.component.roomCreateFeeInfo.conditions.floorId = ''
@@ -177,11 +172,9 @@
                         vc.component.roomCreateFeeInfo.total = listRoomData.total;
                         vc.component.roomCreateFeeInfo.records = listRoomData.records;
                         vc.component.roomCreateFeeInfo.rooms = listRoomData.rooms;
-
                         // 缓存
                         $that.updateCurrentPage(DEFAULT_PAGE);
                         $that.saveTempSearchData();
-                        // 
                         vc.emit('pagination', 'init', {
                             total: vc.component.roomCreateFeeInfo.records,
                             dataCount: vc.component.roomCreateFeeInfo.total,
@@ -223,8 +216,7 @@
                         if (res.status == 200) {
                             var _floorInfo = JSON.parse(json);
                             var _tmpFloor = _floorInfo.apiFloorDataVoList[0];
-                            /*vc.emit('roomSelectFloor','chooseFloor', _tmpFloor);
-                            */
+                            /*vc.emit('roomSelectFloor','chooseFloor', _tmpFloor);*/
                             return;
                         }
                         vc.toast(json);
@@ -299,11 +291,11 @@
                     currentPage: $that.currentPage
                 });
             },
-            _downloadCollectionLetterOrder:function(){
-                vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId );
+            _downloadCollectionLetterOrder: function () {
+                vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId);
             },
-            _downloadRoomCollectionLetterOrder:function(_room){
-                vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId +"&roomId="+_room.roomId );
+            _downloadRoomCollectionLetterOrder: function (_room) {
+                vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId + "&roomId=" + _room.roomId);
             }
         }
     });
