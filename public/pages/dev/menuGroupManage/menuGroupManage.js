@@ -16,7 +16,7 @@
                     name: '',
                     icon: '',
                     label: '',
-                    storeTypeCd: ''
+                    storeType: ''
                 }
             }
         },
@@ -97,8 +97,10 @@
                     return "物流公司";
                 } else if (_storeTypeCd == '800900000005') {
                     return "商家";
-                } else {
+                } else if (_storeTypeCd == '800900000000') {
                     return "开发团队";
+                } else {
+                    return "未知";
                 }
             }
 
