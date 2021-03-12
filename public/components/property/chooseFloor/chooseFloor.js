@@ -19,6 +19,10 @@
                 vc.component._refreshChooseFloorInfo();
                 vc.component._loadAllFloorInfo(1,10,'');
             });
+
+            vc.on('chooseFloor','paginationPlus', 'page_event', function (_currentPage) {
+                vc.component._loadAllFloorInfo(_currentPage, 10);
+            });
         },
         methods:{
             _loadAllFloorInfo:function(_page,_row,_name){
@@ -39,6 +43,10 @@
                              function(json){
                                 var _floorInfo = JSON.parse(json);
                                 vc.component.chooseFloorInfo.floors = _floorInfo.apiFloorDataVoList;
+                                vc.emit('chooseFloor','paginationPlus', 'init', {
+                                    total: _floorInfo.records,
+                                    currentPage: _page
+                                });
                              },function(){
                                 console.log('请求失败处理');
                              }
