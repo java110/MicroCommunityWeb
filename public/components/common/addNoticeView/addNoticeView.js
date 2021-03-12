@@ -13,7 +13,8 @@
                 floorId: '',
                 unitId: '',
                 roomId: '',
-                state: '3000'
+                state: '3000',
+                isAll:'N'
 
             }
         },
@@ -179,8 +180,8 @@
                     floorId: '',
                     unitId: '',
                     roomId: '',
-                    state: '3000'
-
+                    state: '3000',
+                    isAll:'N'
                 };
             },
             _initNoticeInfo: function () {
