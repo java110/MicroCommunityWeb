@@ -108,6 +108,21 @@
                 }
                 window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids);
             },
+
+            _printFeeSmallReceipt:function(){
+                if ($that.simplifyFeeReceiptInfo.selectReceipts.length < 1) {
+                    vc.toast('请选择打印收据');
+                    return;
+                }
+                let receiptids = '';
+                $that.simplifyFeeReceiptInfo.selectReceipts.forEach(item => {
+                    receiptids += (item + ',');
+                })
+                if (receiptids.endsWith(',')) {
+                    receiptids = receiptids.substring(0, receiptids.length - 1);
+                }
+                window.open("/smallPrint.html#/pages/property/printSmallPayFee?receiptIds=" + receiptids);
+            },
             clearSimplifyFeeReceiptInfo: function () {
                 $that.simplifyFeeReceiptInfo = {
                     feeReceipts: [],
