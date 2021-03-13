@@ -285,6 +285,10 @@
                 //$('#payFeeResult').modal("hide");
                 window.open("/print.html#/pages/property/printPayFee?receiptId=" + $that.payFeeOrderInfo.receiptId)
             },
+            _printSmallAndBack: function () {
+                //$('#payFeeResult').modal("hide");
+                window.open("/smallPrint.html#/pages/property/printSmallPayFee?receiptId=" + $that.payFeeOrderInfo.receiptId)
+            },
             /**
              * 向上取整
              */
