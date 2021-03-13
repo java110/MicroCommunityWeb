@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             addCommunityInfo: {
@@ -8,6 +7,7 @@
                 tmpAddress: '',
                 areaAddress: '',
                 nearbyLandmarks: '',
+                tel: '',
                 cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
@@ -23,7 +23,6 @@
         },
         _initMethod: function () {
             vc.component._initArea('101', '0');
-
         },
         _initEvent: function () {
             vc.on('addCommunity', 'openAddCommunityModal', function () {
@@ -98,8 +97,13 @@
                             errInfo: "小区城市编码不能大于4个字符"
                         },
                     ],
-
-
+                    /*'addCommunityInfo.tel': [
+                        {
+                            limit: "phone",
+                            param: "",
+                            errInfo: "联系方式格式不正确"
+                        },
+                    ],*/
                 });
             },
             saveCommunityInfo: function () {
@@ -107,10 +111,8 @@
                 vc.component.addCommunityInfo.address = vc.component.addCommunityInfo.areaAddress + vc.component.addCommunityInfo.tmpAddress;
                 if (!vc.component.addCommunityValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.http.post(
                     'addCommunity',
                     'save',
@@ -126,18 +128,13 @@
                             $('#addCommunityModel').modal('hide');
                             vc.component.clearAddCommunityInfo();
                             vc.emit('communityManage', 'listCommunity', {});
-
                             return;
                         }
-
                         vc.toast(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddCommunityInfo: function () {
@@ -166,7 +163,6 @@
             },
             getArea: function (_area) {
                 vc.component.addCommunityInfo.cityCode = _area;
-
                 vc.component.addCommunityInfo.areaAddress = '';
                 if (vc.component.provs == null || vc.component.provs == undefined) {
                     return;
@@ -176,13 +172,11 @@
                         vc.component.addCommunityInfo.areaAddress = _param.areaName;
                     }
                 });
-
                 vc.component.citys.forEach(function (_param) {
                     if (_param.areaCode == vc.component.selectCity) {
                         vc.component.addCommunityInfo.areaAddress += _param.areaName;
                     }
                 });
-
                 vc.component.areas.forEach(function (_param) {
                     if (_param.areaCode == vc.component.selectArea) {
                         vc.component.addCommunityInfo.areaAddress += _param.areaName;
@@ -216,7 +210,6 @@
                         vc.toast("查询地区失败");
                     });
             },
-
             _loadCommunityAttrSpec: function () {
                 $that.addCommunityInfo.attrs = [];
                 vc.getAttrSpec('building_community_attr', function (data) {
@@ -228,7 +221,6 @@
                             $that.addCommunityInfo.attrs.push(item);
                         }
                     });
-
                 });
             },
             _loadAttrValue: function (_specCd, _values) {
@@ -238,10 +230,8 @@
                             _values.push(item);
                         }
                     });
-
                 });
             },
         }
     });
-
 })(window.vc);

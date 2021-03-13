@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editAdvertInfo: {
@@ -9,6 +8,7 @@
                 classify: '',
                 locationTypeCd: '',
                 locationObjId: '',
+                locationObjName: '',
                 state: '',
                 seq: '',
                 startTime: '',
@@ -22,26 +22,25 @@
                 roomNum: '',
                 photos: [],
                 viewType: '',
-                vedioName: '',
-
+                vedioName: ''
             }
         },
         _initMethod: function () {
             vc.component._initEditAdvertDateInfo();
-
         },
         _initEvent: function () {
             vc.on('editAdvert', 'openEditAdvertModal', function (_params) {
                 vc.component.refreshEditAdvertInfo();
                 $('#editAdvertModel').modal('show');
                 vc.copyObject(_params, vc.component.editAdvertInfo);
+                /*vc.component.editAdvertInfo.locationObjId = _params.locationObjId
+                vc.component.editAdvertInfo.locationObjName = _params.locationObjName*/
                 //根据位置类型 传输数据
                 if (vc.component.editAdvertInfo.locationTypeCd == '4000') {
                     vc.emit('editAdvert', 'floorSelect2', 'setFloor', {
                         floorId: vc.component.editAdvertInfo.floorId,
                         floorNum: vc.component.editAdvertInfo.floorNum
                     });
-
                 } else if (vc.component.editAdvertInfo.locationTypeCd == '2000') {
                     vc.emit('editAdvert', 'floorSelect2', 'setFloor', {
                         floorId: vc.component.editAdvertInfo.floorId,
@@ -51,7 +50,7 @@
                         floorId: vc.component.editAdvertInfo.floorId,
                         floorNum: vc.component.editAdvertInfo.floorNum,
                         unitId: vc.component.editAdvertInfo.unitId,
-                        unitNum: vc.component.editAdvertInfo.unitNum,
+                        unitNum: vc.component.editAdvertInfo.unitNum
                     });
                 } else if (vc.component.editAdvertInfo.locationTypeCd == '3000') {
                     vc.emit('editAdvert', 'floorSelect2', 'setFloor', {
@@ -62,7 +61,7 @@
                         floorId: vc.component.editAdvertInfo.floorId,
                         floorNum: vc.component.editAdvertInfo.floorNum,
                         unitId: vc.component.editAdvertInfo.unitId,
-                        unitNum: vc.component.editAdvertInfo.unitNum,
+                        unitNum: vc.component.editAdvertInfo.unitNum
                     });
                     vc.emit('editAdvert', 'roomSelect2', 'setRoom', {
                         floorId: vc.component.editAdvertInfo.floorId,
@@ -70,7 +69,7 @@
                         unitId: vc.component.editAdvertInfo.unitId,
                         unitNum: vc.component.editAdvertInfo.unitNum,
                         roomId: vc.component.editAdvertInfo.roomId,
-                        roomNum: vc.component.editAdvertInfo.roomNum,
+                        roomNum: vc.component.editAdvertInfo.roomNum
                     });
                 }
                 vc.component._loadAdvertItem();
@@ -82,16 +81,13 @@
                 if (_param.hasOwnProperty("floorId")) {
                     vc.component.editAdvertInfo.floorId = _param.floorId;
                 }
-
                 if (_param.hasOwnProperty("unitId")) {
                     vc.component.editAdvertInfo.unitId = _param.unitId;
                 }
-
                 if (_param.hasOwnProperty("roomId")) {
                     vc.component.editAdvertInfo.roomId = _param.roomId;
                 }
             });
-
             vc.on("editAdvert", "notifyUploadImage", function (_param) {
                 vc.component.editAdvertInfo.photos = _param;
             });
@@ -110,7 +106,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.editAdvertStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -238,7 +233,6 @@
                             param: "",
                             errInfo: "广告ID不能为空"
                         }]
-
                 });
             },
             editAdvert: function () {
@@ -259,14 +253,14 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 if (vc.component.editAdvertInfo.viewType == '8888') {
                     vc.component.editAdvertInfo.vedioName = '';
                 } else {
                     vc.component.editAdvertInfo.photos = [];
-
                 }
-
+                console.log("看一下")
+                console.log(vc.component.editAdvertInfo.locationObjId)
+                console.log(vc.component.editAdvertInfo.locationObjName)
                 vc.http.post(
                     'editAdvert',
                     'update',
@@ -286,7 +280,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -304,7 +297,6 @@
                     function (json, res) {
                         var _advertItemInfo = JSON.parse(json);
                         vc.component._freshPhotoOrVedio(_advertItemInfo.advertItems);
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -323,11 +315,8 @@
                             vc.component.editAdvertInfo.vedioName = _item.url;
                             vc.emit('editAdvert', 'uploadVedio', 'notifyVedio', _item.url);
                         }
-
                     }
                 );
-
-
             },
             refreshEditAdvertInfo: function () {
                 vc.component.editAdvertInfo = {
@@ -350,11 +339,9 @@
                     roomNum: '',
                     photos: [],
                     viewType: '',
-                    vedioName: '',
-
+                    vedioName: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

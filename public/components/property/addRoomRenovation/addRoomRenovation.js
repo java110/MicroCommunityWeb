@@ -22,7 +22,7 @@
         },
         _initEvent: function () {
             vc.on('addRoomRenovation', 'openAddRoomRenovationModal', function (_param) {
-                vc.component.addRoomRenovationInfo.userId = _param[0].userId
+                // vc.component.addRoomRenovationInfo.userId = _param[0].userId
                 $('#addRoomRenovationModel').modal('show');
             });
             /* vc.initDate('addStartTime', function (_startTime) {

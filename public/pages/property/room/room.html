@@ -25,11 +25,9 @@
                             <select class="form-control-sm form-control input-s-sm inline"
                                     v-model="roomInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
-                                <option value="2002">未销售</option>
-                                <option value="2001">已入住</option>
-                                <option value="2003">已交房</option>
-                                <option value="2004">未入住</option>
-                                <option value="2005">已装修</option>
+                                <option v-for="(item,index) in roomInfo.states" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
                             </select>
                         </div>
                         <div class="col-sm-4">
@@ -51,8 +49,8 @@
                                        v-model="roomInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()"><i
-                                            class="fa fa-search"></i> 选择
+                                            v-on:click="_openChooseFloorMethod()">
+                                        <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>

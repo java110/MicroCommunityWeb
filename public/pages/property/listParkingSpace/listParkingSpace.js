@@ -12,11 +12,11 @@
                 conditions: {
                     psId: '',
                     area: '',
-                    paId:'',
+                    paId: '',
                     areaNum: '',
-                    state:''
+                    state: ''
                 },
-                currentPage:DEFAULT_PAGE
+                currentPage: DEFAULT_PAGE
             }
         },
         _initMethod: function () {
@@ -32,7 +32,6 @@
                 vc.component.listParkingSpaceInfo.conditions.areaNum = _parkingArea.num;
                 vc.component.listParkingSpaceInfo.num = '';
             });
-
             vc.on('listParkingSpace', 'listParkingAreaData', function (_parkingArea) {
                 vc.component.listParkingSpaceInfo.conditions.paId = _parkingArea.paId;
                 vc.component._listParkingSpaceData(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -57,18 +56,15 @@
                         state: vc.component.listParkingSpaceInfo.conditions.state,
                     }
                 }
-
                 //发送get请求
                 vc.http.get('listParkingSpace',
                     'list',
                     param,
                     function (json, res) {
                         var listParkingSpaceData = JSON.parse(json);
-
                         vc.component.listParkingSpaceInfo.total = listParkingSpaceData.total;
                         vc.component.listParkingSpaceInfo.records = listParkingSpaceData.records;
                         vc.component.listParkingSpaceInfo.parkingSpaces = listParkingSpaceData.parkingSpaces;
-
                         vc.emit('pagination', 'init', {
                             total: vc.component.listParkingSpaceInfo.records,
                             dataCount: vc.component.listParkingSpaceInfo.total,
@@ -78,7 +74,6 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
             _openAddParkingSpaceModal: function () { //打开添加框
                 vc.emit('addParkingSpace', 'openAddParkingSpaceModal', -1);
@@ -89,11 +84,11 @@
             _openEditParkingSpaceModel: function (_parkingSpace) {
                 vc.emit('editParkingSpace', 'openEditParkingSpaceModal', _parkingSpace);
             },
-            _openToSellParkingSpaceModel:function(_parkingSpace){ // 出售
-                vc.jumpToPage('/admin.html#/pages/property/sellParkingSpace?'+vc.objToGetParam(_parkingSpace));
+            _openToSellParkingSpaceModel: function (_parkingSpace) { // 出售
+                vc.jumpToPage('/admin.html#/pages/property/sellParkingSpace?' + vc.objToGetParam(_parkingSpace));
             },
-            _openToHireParkingSpaceModel:function(_parkingSpace){ //出租
-                vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace?'+vc.objToGetParam(_parkingSpace));
+            _openToHireParkingSpaceModel: function (_parkingSpace) { //出租
+                vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace?' + vc.objToGetParam(_parkingSpace));
             },
             _viewParkingSpaceState: function (state) {
                 if (state == 'F') {
@@ -128,8 +123,8 @@
                     vc.component.listParkingSpaceInfo.moreCondition = true;
                 }
             },
-            _openChooseParkingArea:function(){
-                vc.emit('chooseParkingArea','openChooseParkingAreaModel',{});
+            _openChooseParkingArea: function () {
+                vc.emit('chooseParkingArea', 'openChooseParkingAreaModel', {});
             },
         }
     })
