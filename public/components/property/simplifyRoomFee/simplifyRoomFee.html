@@ -107,13 +107,25 @@
                     </button>
                     <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史
                     </button>
-                    <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')"
-                            v-on:click="_deleteFee(fee)">取消费用
-                    </button>
-                    <button class="btn btn-link btn-xs"
-                            v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
-                            v-on:click="_editFee(fee)">费用变更
-                    </button>
+                    <div class="btn-group btn-link btn-xs">
+                        <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">更多操作
+                        </button>
+                        <div class="dropdown-menu p-4 text-muted" style="max-width: 500px;">
+                            <p  v-if="vc.hasPrivilege('502020090604200029')">
+                                <a href="javascript:void(0)"
+                                   v-on:click="_deleteFee(fee)">取消费用</a>
+                            </p>
+                            <p>
+                                <a href="javascript:void(0)" 
+                                   v-on:click="_finishFee(fee)">手工结束</a>
+                            </p>
+                            <p  v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')">
+                                <a href="javascript:void(0)"  
+                                   v-on:click="_editFee(fee)">费用变更</a>
+                            </p>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
