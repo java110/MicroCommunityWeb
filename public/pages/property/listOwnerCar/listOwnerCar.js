@@ -13,7 +13,7 @@
                     carNum: '',
                     num: '',
                     state: '',
-                    carTypeCd:'1001'
+                    carTypeCd: '1001'
                 }
             }
         },
@@ -37,17 +37,14 @@
                 var param = {
                     params: _params
                 }
-
                 //发送get请求
                 vc.http.apiGet('owner.queryOwnerCars',
                     param,
                     function (json, res) {
                         var _json = JSON.parse(json);
-
                         $that.listOwnerCarInfo.total = _json.total;
                         $that.listOwnerCarInfo.records = _json.records;
                         $that.listOwnerCarInfo.ownerCars = _json.data;
-
                         vc.emit('pagination', 'init', {
                             total: $that.listOwnerCarInfo.records,
                             dataCount: $that.listOwnerCarInfo.total,
@@ -57,7 +54,6 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
             _addOwnerCar: function () { //出租
                 vc.jumpToPage('/admin.html#/pages/property/hireParkingSpace');
@@ -96,19 +92,18 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
             _addCarParkingSpace: function (_car) {
                 vc.jumpToPage('/admin.html#/pages/property/carAddParkingSpace?carId=' + _car.carId);
             },
-            _toPayFee:function(_car){
+            _toPayFee: function (_car) {
                 vc.jumpToPage('/admin.html#/pages/property/listCarFee?carId='
-                +_car.carId+'&carNum='+_car.carNum+'&areaNum='+_car.areaNum+'&num='+_car.num);
+                    + _car.carId + '&carNum=' + _car.carNum + '&areaNum=' + _car.areaNum + '&num=' + _car.num);
             },
-            _toCarMember:function(car){
-                vc.jumpToPage('/admin.html#/pages/property/listOwnerCarMember?carId='+car.carId)
+            _toCarMember: function (car) {
+                vc.jumpToPage('/admin.html#/pages/property/listOwnerCarMember?carId=' + car.carId)
             }
         }
     })
