@@ -156,6 +156,12 @@
                     feeId: _fee.feeId
                 });
             },
+            _finishFee:function(_fee){
+                vc.emit('finishFee', 'openFinishFeeModal', {
+                    communityId: vc.getCurrentCommunity().communityId,
+                    feeId: _fee.feeId
+                });
+            },
             _openTempImportRoomFeeModal:function(){
                 vc.emit('tempImportRoomFee', 'openImportRoomFeeModal',{
                     roomId: $that.simplifyRoomFeeInfo.roomId,

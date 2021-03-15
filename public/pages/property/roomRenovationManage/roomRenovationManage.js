@@ -89,6 +89,7 @@
             _openAddRoomRenovationModal: function () {
                 vc.emit('addRoomRenovation', 'openAddRoomRenovationModal', vc.component.roomRenovationManageInfo.roomRenovations);
             },
+            //修改
             _openEditRoomRenovationModel: function (_roomRenovation) {
                 vc.emit('editRoomRenovation', 'openEditRoomRenovationModal', _roomRenovation);
             },

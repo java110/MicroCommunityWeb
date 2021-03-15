@@ -19,7 +19,6 @@
         },
         methods:{
             deleteAttrSpec:function(){
-                vc.component.deleteAttrSpecInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/attrSpec/deleteAttrSpec',
                     JSON.stringify(vc.component.deleteAttrSpecInfo),

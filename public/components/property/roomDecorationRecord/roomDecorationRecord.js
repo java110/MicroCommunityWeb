@@ -35,7 +35,7 @@
                 vc.component.roomDecorationRecordInfo.photos = _param;
             });
             vc.on("roomDecorationRecord", "notifyUploadVedio", function (_param) {
-                vc.component.roomDecorationRecordInfo.videoName = _param.fileName;
+                vc.component.roomDecorationRecordInfo.videoName = _param.realFileName;
             });
         },
         methods: {
@@ -88,8 +88,6 @@
                     $('#roomDecorationRecordModel').modal('hide');
                     return;
                 }
-                console.log("here")
-                console.log(vc.component.roomDecorationRecordInfo)
                 vc.http.apiPost(
                     '/roomRenovation/updateRoomDecorationRecord',
                     JSON.stringify(vc.component.roomDecorationRecordInfo),
@@ -99,8 +97,6 @@
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
-                        console.log("12333121")
-                        console.log(_json)
                         if (_json.code == 0) {
                             //关闭model
                             $('#roomDecorationRecordModel').modal('hide');

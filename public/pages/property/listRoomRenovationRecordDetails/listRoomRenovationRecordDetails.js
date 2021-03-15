@@ -11,6 +11,8 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
+                imgBoxSwitch: false,
+                imgBoxUrl: '',
                 conditions: {
                     recordId: '',
                     roomName: '',
@@ -44,8 +46,6 @@
                     param,
                     function (json, res) {
                         var _roomRenovationRecordDetailsInfo = JSON.parse(json);
-                        console.log("here")
-                        console.log(_roomRenovationRecordDetailsInfo)
                         vc.component.roomRenovationRecordDetailsInfo.total = _roomRenovationRecordDetailsInfo.total;
                         vc.component.roomRenovationRecordDetailsInfo.records = _roomRenovationRecordDetailsInfo.records;
                         vc.component.roomRenovationRecordDetailsInfo.roomRenovationRecordDetails = _roomRenovationRecordDetailsInfo.data;
@@ -67,6 +67,13 @@
             },
             _goBack: function () {
                 vc.goBack();
+            },
+            showImg: function (e) {
+                vc.component.roomRenovationRecordDetailsInfo.imgBoxSwitch = true;
+                vc.component.roomRenovationRecordDetailsInfo.imgBoxUrl = e;
+            },
+            hideImgBox: function () {
+                vc.component.roomRenovationRecordDetailsInfo.imgBoxSwitch = false;
             }
         }
     });

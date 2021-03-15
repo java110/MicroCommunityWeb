@@ -16,8 +16,7 @@
                     adName: '',
                     adTypeCd: '',
                     classify: '',
-                    state: '',
-
+                    state: ''
                 }
             }
         },
@@ -25,7 +24,6 @@
             vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('advertManage', 'listAdvert', function (_param) {
                 vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -35,14 +33,12 @@
         },
         methods: {
             _listAdverts: function (_page, _rows) {
-
                 vc.component.advertManageInfo.conditions.page = _page;
                 vc.component.advertManageInfo.conditions.row = _rows;
                 vc.component.advertManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.advertManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.get('advertManage',
                     'list',
@@ -74,8 +70,8 @@
                 vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _viewAdvertPhotoOrPhoto:function(){
-                vc.emit('writeAdvertMachine', 'openWriteAdvertMachineModal',{});
+            _viewAdvertPhotoOrPhoto: function () {
+                vc.emit('writeAdvertMachine', 'openWriteAdvertMachineModal', {});
             },
             _moreCondition: function () {
                 if (vc.component.advertManageInfo.moreCondition) {
@@ -84,8 +80,6 @@
                     vc.component.advertManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

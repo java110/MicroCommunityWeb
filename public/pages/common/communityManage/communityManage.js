@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -20,8 +20,7 @@
             }
         },
         _initMethod: function () {
-
-            $that._getColumns(function(){
+            $that._getColumns(function () {
                 vc.component._listCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
@@ -38,7 +37,6 @@
         },
         methods: {
             _listCommunitys: function (_page, _rows) {
-
                 vc.component.communityManageInfo.conditions.page = _page;
                 vc.component.communityManageInfo.conditions.row = _rows;
                 var _param = {
@@ -94,11 +92,7 @@
                     })
                     return;
                 }
-
                 let _communityAttrDtos = _community.communityAttrDtos;
-
-
-
                 $that.communityManageInfo.listColumns.forEach(_value => {
                     let _tmpValue = '';
                     _communityAttrDtos.forEach(_attrItem => {
@@ -108,7 +102,6 @@
                     })
                     _community.listValues.push(_tmpValue);
                 })
-
             },
             _getColumns: function (_call) {
                 console.log('_getColumns');
@@ -118,8 +111,8 @@
                     data.forEach(item => {
                         if (item.listShow == 'Y') {
                             $that.communityManageInfo.listColumns.push({
-                                specCd:item.specCd,
-                                specName:item.specName
+                                specCd: item.specCd,
+                                specName: item.specName
                             });
                         }
                     });

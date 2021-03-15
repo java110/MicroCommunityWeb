@@ -104,7 +104,6 @@
                             <th class="text-center">费用项</th>
                             <th class="text-center">费用开始时间</th>
                             <th class="text-center">费用结束时间</th>
-                            <th class="text-center">缴费时间</th>
                             <th class="text-center">应收金额</th>
                             <th class="text-center">实收金额</th>
                         </tr>
@@ -118,7 +117,6 @@
                             <!--<td class="text-center">{{fee.deadlineTime}}</td>-->
                             <td class="text-center" v-if="fee.feeCreateTime >= fee.deadlineTime">{{vc.dateFormat(fee.deadlineTime)}}</td>
                             <td class="text-center" v-else>{{vc.dateSubOneDay(vc.dateFormat(fee.feeCreateTime),vc.dateFormat(fee.deadlineTime),fee.feeFlag)}}</td>
-                            <td class="text-center">{{fee.createTime}}</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
                         </tr>

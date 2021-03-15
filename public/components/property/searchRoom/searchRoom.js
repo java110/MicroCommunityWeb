@@ -36,6 +36,9 @@
                 $('#searchRoomModel').modal('show');
                 vc.component.searchRoomInfo.rooms=_rooms;
             });
+            vc.on('searchRoom','paginationPlus', 'page_event', function (_currentPage) {
+                vc.component._loadAllRoomInfo(_currentPage, 15,vc.component.searchRoomInfo._currentRoomNum);
+            });
         },
         methods:{
             _loadAllRoomInfo:function(_page,_row,_roomNum){
@@ -63,6 +66,10 @@
                              function(json){
                                 var _roomInfo = JSON.parse(json);
                                 vc.component.searchRoomInfo.rooms = _roomInfo.rooms;
+                                vc.emit('searchRoom','paginationPlus', 'init', {
+                                    total: _roomInfo.records,
+                                    currentPage: _page
+                                });
                              },function(){
                                 console.log('请求失败处理');
                              }

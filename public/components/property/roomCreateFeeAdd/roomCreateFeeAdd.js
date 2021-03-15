@@ -70,9 +70,10 @@
         methods: {
             _initRoomCreateFeeAddInfo: function () {
                 $('.roomCreateFeeStartTime').datetimepicker({
+                    minView: "month",
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
@@ -92,54 +93,50 @@
             },
             roomCreateFeeAddValidate() {
                 return vc.validate.validate({
-                    roomCreateFeeAddInfo: $that.roomCreateFeeAddInfo
-                },
+                        roomCreateFeeAddInfo: $that.roomCreateFeeAddInfo
+                    },
                     {
                         'roomCreateFeeAddInfo.locationTypeCd': [{
                             limit: "required",
                             param: "",
                             errInfo: "收费范围不能为空"
                         },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "收费范围格式错误"
-                        },
+                            {
+                                limit: "num",
+                                param: "",
+                                errInfo: "收费范围格式错误"
+                            },
                         ],
                         'roomCreateFeeAddInfo.locationObjId': [{
                             limit: "required",
                             param: "",
                             errInfo: "收费对象不能为空"
-                        }
-                        ],
+                        }],
                         'roomCreateFeeAddInfo.feeTypeCd': [{
                             limit: "required",
                             param: "",
                             errInfo: "费用类型不能为空"
-                        }
-                        ],
+                        }],
                         'roomCreateFeeAddInfo.configId': [{
                             limit: "required",
                             param: "",
                             errInfo: "费用项目不能为空"
-                        }
-                        ],
+                        }],
                         'roomCreateFeeAddInfo.roomState': [{
                             limit: "required",
                             param: "",
                             errInfo: "房屋状态不能为空"
-                        }
-                        ],
+                        }],
                         'roomCreateFeeAddInfo.startTime': [{
                             limit: "required",
                             param: "",
                             errInfo: "计费起始时间不能为空"
                         },
-                        {
-                            limit: "datetime",
-                            param: "",
-                            errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
-                        }]
+                            {
+                                limit: "datetime",
+                                param: "",
+                                errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
+                            }]
                     });
             },
             saveRoomCreateFeeInfo: function () {
@@ -169,8 +166,8 @@
                 _roomCreateFeeAddInfo.roomState = _roomCreateFeeAddInfo.roomState.join(',');
                 vc.http.post('roomCreateFeeAdd', 'save',
                     JSON.stringify(_roomCreateFeeAddInfo), {
-                    emulateJSON: true
-                },
+                        emulateJSON: true
+                    },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
@@ -209,7 +206,7 @@
                     roomType: '1010301',
                     isMore: false,
                     locationTypeCdName: '',
-                    startTime: vc.dateTimeFormat(new Date().getTime()),
+                    startTime: '',
                     feeLayer: '全部'
                 };
                 $that.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
@@ -243,12 +240,11 @@
                     $that.roomCreateFeeAddInfo.roomState = ['2006'];
                 }
             },
-            _changeFeeLayer:function(){
+            _changeFeeLayer: function () {
                 let _feeLayer = $that.roomCreateFeeAddInfo.feeLayer;
-
-                if(_feeLayer == '全部'){
+                if (_feeLayer == '全部') {
                     $that.roomCreateFeeAddInfo.feeLayer = ''
-                }else{
+                } else {
                     $that.roomCreateFeeAddInfo.feeLayer = '全部'
                 }
             }

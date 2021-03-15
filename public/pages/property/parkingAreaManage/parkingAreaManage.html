@@ -1,11 +1,10 @@
-<div  class=" animated fadeInRight ecommerce">
+<div class=" animated fadeInRight ecommerce">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -21,7 +20,8 @@
                                 <option selected value="">请选择停车场类型</option>
                                 <option value="1001">地上停车场</option>
                                 <option value="2001">地下停车场</option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入停车场ID"
@@ -34,8 +34,6 @@
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -47,16 +45,13 @@
                     <h5>停车场信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddParkingAreaModal()">
-                            <i class="fa fa-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
                             <th class="text-center">停车场ID</th>
@@ -85,7 +80,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
@@ -102,13 +96,7 @@
             </div>
         </div>
     </div>
-
-
-    <vc:create path="property/addParkingArea"
-               callBackListener=""
-               callBackFunction=""
-    ></vc:create>
+    <vc:create path="property/addParkingArea" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editParkingArea"></vc:create>
     <vc:create path="property/deleteParkingArea"></vc:create>
-
 </div>

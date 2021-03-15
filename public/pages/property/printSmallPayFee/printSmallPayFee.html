@@ -1,0 +1,37 @@
+
+<div>
+    <startprint></startprint>
+    <div class="print_container">
+        <div style="color:#000;font-size:32px" class="text-center">缴费收据单</div>
+        <span>**************************</span>
+        <div class="section2" style="font-size: 12px; margin-left: 5px;" >
+            <div>单号：{{printSmallPayFeeInfo.receiptNum}}</div>
+            <div>房号：{{printSmallPayFeeInfo.roomName}}</div>
+            <div>时间：{{printSmallPayFeeInfo.feeTime}}</div>
+        </div>
+        <span>**************************</span>
+        <div class="section2" style="font-size: 12px; margin-left: 5px;" v-for="(item,index) in printSmallPayFeeInfo.fees">
+            <div>收费项目：{{item.feeName}}</div>
+            <div>收费范围：{{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</div>
+            <div>单价/固定费：{{item.squarePrice}}</div>
+            <div>面积/用量：{{item.area}}</div>
+            <div>金额：{{item.amount}}</div>
+            <div>备注：{{item.remark}}</div>
+            <span>**************************</span>
+        </div>
+        <div class="section5" style="font-size: 12px; margin-left: 5px;">
+            <div>总计：{{printSmallPayFeeInfo.amount}}</div>
+            <div v-html="printSmallPayFeeInfo.content"></div>
+            <div><img :src="printSmallPayFeeInfo.qrImg" width="100px" height="100px"></div>
+        </div>
+        <span>**************************</span>
+    </div>
+    <endprint></endprint>
+    <div id="print-btn">
+        <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+            <i class="fa fa-check"></i>&nbsp;打印
+        </button>
+        <button type="button" class="btn btn-warning  float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+        </button>
+    </div>
+</div>

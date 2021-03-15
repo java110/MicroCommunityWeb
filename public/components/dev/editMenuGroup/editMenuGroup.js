@@ -10,7 +10,7 @@
                 seq: '',
                 description: '',
                 groupType: '',
-                storeTypeCd: ''
+                storeType: ''
             }
         },
         _initMethod: function () {
@@ -119,7 +119,7 @@
                     seq: '',
                     description: '',
                     groupType: '',
-                    storeTypeCd: ''
+                    storeType: ''
                 }
             }
         }
