@@ -18,7 +18,8 @@
                                        v-model="listParkingSpaceInfo.conditions.areaNum" class="form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseParkingArea()"><i class="fa fa-search"></i> 选择
+                                            v-on:click="_openChooseParkingArea()">
+                                        <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
                             </div>
@@ -63,7 +64,6 @@
                 <div class="ibox-title">
                     <h5>停车位信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                         <form>
                             <div class="form-row">
                                 <div class="col">
@@ -74,7 +74,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -84,6 +83,7 @@
                             <th data-hide="phone" class="text-center">停车场</th>
                             <th data-hide="phone" class="text-center">车位</th>
                             <th data-hide="phone" class="text-center">车位状态</th>
+                            <th data-hide="phone" class="text-center">车位类型</th>
                             <th data-hide="phone" class="text-center">面积</th>
                             <th class="text-center">车位ID</th>
                             <th class="text-center">操作</th>
@@ -99,6 +99,9 @@
                             </td>
                             <td class="text-center">
                                 {{vc.component._viewParkingSpaceState(parkingSpace.state)}}
+                            </td>
+                            <td class="text-center">
+                                {{parkingSpace.parkingTypeName}}
                             </td>
                             <td class="text-center">
                                 {{parkingSpace.area}}

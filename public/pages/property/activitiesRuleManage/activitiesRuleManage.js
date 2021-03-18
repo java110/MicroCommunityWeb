@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -24,7 +24,6 @@
             vc.component._listActivitiesRules(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('activitiesRuleManage', 'listActivitiesRule', function (_param) {
                 vc.component._listActivitiesRules(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,13 +33,11 @@
         },
         methods: {
             _listActivitiesRules: function (_page, _rows) {
-
                 vc.component.activitiesRuleManageInfo.conditions.page = _page;
                 vc.component.activitiesRuleManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.activitiesRuleManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/activitiesRule/queryActivitiesRule',
                     param,
@@ -69,7 +66,6 @@
             },
             _queryActivitiesRuleMethod: function () {
                 vc.component._listActivitiesRules(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.activitiesRuleManageInfo.moreCondition) {
@@ -79,7 +75,6 @@
                 }
             },
             _getActivitiesObjName: function (_activitiesObj) {
-
                 if (_activitiesObj == '2222') {
                     return '大众';
                 } else if (_activitiesObj == '3333') {
@@ -87,8 +82,6 @@
                 }
                 return '员工';
             }
-
-
         }
     });
 })(window.vc);

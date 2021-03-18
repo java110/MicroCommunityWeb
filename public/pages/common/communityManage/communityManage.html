@@ -1,11 +1,10 @@
-<div >
+<div>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -23,11 +22,9 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <vc:create path="common/areaSelect"
-                                       callBackListener="communityManage"
-                                       callBackFunction="notifyArea"
-                                       namespace="communityManage"
-                            ></vc:create>
+                            <vc:create path="common/areaSelect" callBackListener="communityManage"
+                                       callBackFunction="notifyArea" namespace="communityManage">
+                            </vc:create>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryCommunityMethod()">
@@ -35,8 +32,6 @@
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -48,13 +43,11 @@
                     <h5>小区信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddCommunityModal()">
-                            <i class="fa fa-plus"></i>
-                            添加小区
+                            <i class="fa fa-plus"></i>添加小区
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
@@ -99,7 +92,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
@@ -116,10 +108,8 @@
             </div>
         </div>
     </div>
-
     <vc:create path="common/addCommunity"></vc:create>
     <vc:create path="common/editCommunity"></vc:create>
     <vc:create path="common/deleteCommunity"></vc:create>
     <vc:create path="common/recallAuditFinishCommunity"></vc:create>
-
 </div>

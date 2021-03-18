@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -25,7 +24,6 @@
                 photos: [],
                 viewType: '',
                 vedioName: ''
-
             }
         },
         _initMethod: function () {
@@ -35,21 +33,17 @@
             vc.on('addAdvert', 'openAddAdvertModal', function () {
                 $('#addAdvertModel').modal('show');
             });
-
             vc.on("addAdvert", "notify", function (_param) {
                 if (_param.hasOwnProperty("floorId")) {
                     vc.component.addAdvertInfo.floorId = _param.floorId;
                 }
-
                 if (_param.hasOwnProperty("unitId")) {
                     vc.component.addAdvertInfo.unitId = _param.unitId;
                 }
-
                 if (_param.hasOwnProperty("roomId")) {
                     vc.component.addAdvertInfo.roomId = _param.roomId;
                 }
             });
-
             vc.on("addAdvert", "notifyUploadImage", function (_param) {
                 vc.component.addAdvertInfo.photos = _param;
             });
@@ -68,7 +62,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.addAdvertStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -190,8 +183,6 @@
                             errInfo: "不是有效的时间格式"
                         },
                     ],
-
-
                 });
             },
             saveAdvertInfo: function () {
@@ -216,9 +207,7 @@
                     vc.component.addAdvertInfo.vedioName = '';
                 } else {
                     vc.component.addAdvertInfo.photos = [];
-
                 }
-
                 vc.component.addAdvertInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -226,7 +215,6 @@
                     $('#addAdvertModel').modal('hide');
                     return;
                 }
-
                 vc.http.post(
                     'addAdvert',
                     'save',
@@ -241,17 +229,13 @@
                             $('#addAdvertModel').modal('hide');
                             vc.component.clearAddAdvertInfo();
                             vc.emit('advertManage', 'listAdvert', {});
-
                             return;
                         }
                         vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddAdvertInfo: function () {
@@ -261,7 +245,6 @@
                 vc.emit('addAdvert', 'uploadImage', 'clearImage', {});
                 vc.emit('addAdvert', 'uploadVedio', 'clearVedio', {});
                 vc.component._initAddAdvertDateInfo();
-
                 vc.component.addAdvertInfo = {
                     advertId: '',
                     adName: '',
@@ -285,5 +268,4 @@
             }
         }
     });
-
 })(window.vc);
