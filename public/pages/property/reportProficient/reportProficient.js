@@ -19,7 +19,7 @@
                     feeTypeCd: '',
                     startTime: '',
                     endTime: '',
-                    roomName: ''
+                    objName: ''
                 }
             }
         },
