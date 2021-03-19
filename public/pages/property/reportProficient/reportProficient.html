@@ -68,9 +68,9 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
+                                <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportProficientInfo.conditions.configId"
-                                    @click="_changeReporficientConfigId()">
+                                    v-model="reportProficientInfo.conditions.configId">
                                     <option selected value="">请选择收费项</option>
                                     <option v-for="(item,index) in reportProficientInfo.feeConfigDtos" :key="index"
                                         :value="item.configId">
