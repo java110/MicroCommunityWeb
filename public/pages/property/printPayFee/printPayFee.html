@@ -31,7 +31,9 @@
                     <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
                         <th scope="row" class="text-center">{{index +1}}</th>
                         <td class="text-center">{{item.feeName}}</td>
-                        <td class="text-center">{{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</td>
+                        <td class="text-center">
+                            {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
+                        </td>
                         <!--<td class="text-center">{{item.startTime}}至{{item.endTime}}</td>-->
                         <td class="text-center">{{item.cycle}}</td>
                         <td class="text-center">{{item.squarePrice}}</td>
@@ -61,13 +63,23 @@
                 </tbody>
             </table>
         </div>
-        <div id="print-btn">
-            <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
-                <i class="fa fa-check"></i>&nbsp;打印
-            </button>
-            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                v-on:click="_closePage()">取消
-            </button>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3">部门负责人：</div>
+                    <div class="col-md-3">经办人：</div>
+                    <div class="col-md-3">财务收款：</div>
+                    <div class="col-md-3">客户确认：</div>
+                </div>
+            </div>
+            <div class="col-md-4" id="print-btn">
+                <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+                    <i class="fa fa-check"></i>&nbsp;打印
+                </button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                    v-on:click="_closePage()">取消
+                </button>
+            </div>
         </div>
     </div>
 </div>

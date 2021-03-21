@@ -16,10 +16,24 @@
                 consumption: '',
                 configId: '',
                 ownerName: '',
-                objType: '3333'
+                objType: '3333',
+                startTime: '',
+                endTime: ''
             }
         },
         _initMethod: function () {
+            vc.initDate('proxyFeeStartTime', function (_startTime) {
+                $that.addProxyFeeInfo.startTime = _startTime;
+            });
+            vc.initDate('proxyFeeEndTime', function (_endTime) {
+                $that.addProxyFeeInfo.endTime = _endTime;
+                let start = Date.parse(new Date($that.addProxyFeeInfo.startTime))
+                let end = Date.parse(new Date($that.addProxyFeeInfo.endTime))
+                if (start - end >= 0) {
+                    vc.toast("结束时间必须大于开始时间")
+                    $that.addProxyFeeInfo.endTime = '';
+                }
+            });
         },
         _initEvent: function () {
             vc.on('addProxyFee', 'openAddProxyFeeModal', function (_param) {
@@ -75,7 +89,31 @@
                             param: "",
                             errInfo: "费用必填"
                         }
-                    ]
+                    ],
+                    'addProxyFeeInfo.startTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "开始时间不能为空"
+                        },
+                        {
+                            limit: "date",
+                            param: "",
+                            errInfo: "开始时间格式错误"
+                        },
+                    ],
+                    'addProxyFeeInfo.endTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "结束时间不能为空"
+                        },
+                        {
+                            limit: "date",
+                            param: "",
+                            errInfo: "结束时间格式错误"
+                        },
+                    ],
                 });
             },
             saveProxyInfo: function () {
@@ -154,7 +192,9 @@
                     feeConfigs: [],
                     configId: '',
                     ownerName: '',
-                    objType: '3333'
+                    objType: '3333',
+                    startTime: '',
+                    endTime: ''
                 };
             },
             _getConfig: function () {
