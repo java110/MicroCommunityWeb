@@ -7,18 +7,29 @@
                 num: '',
                 typeCd: '',
                 remark: '',
-
+                attrs: []
             }
         },
         _initMethod: function() {
-
-},
+            $that._loadEditParkingAreaAttrSpec();
+        },
         _initEvent: function() {
             vc.on('editParkingArea', 'openEditParkingAreaModal',
             function(_params) {
                 vc.component.refreshEditParkingAreaInfo();
                 $('#editParkingAreaModel').modal('show');
                 vc.copyObject(_params, vc.component.editParkingAreaInfo);
+                if (_params.hasOwnProperty('attrs')) {
+                    let _attrDtos = _params.attrs;
+                    _attrDtos.forEach(item => {
+                        $that.editParkingAreaInfo.attrs.forEach(attrItem => {
+                            if (item.specCd == attrItem.specCd) {
+                                attrItem.attrId = item.attrId;
+                                attrItem.value = item.value;
+                            }
+                        })
+                    })
+                }
                 vc.component.editParkingAreaInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
@@ -93,14 +104,39 @@
                 });
             },
             refreshEditParkingAreaInfo: function() {
+                let _attrs = $that.editParkingAreaInfo.attrs;
                 vc.component.editParkingAreaInfo = {
                     paId: '',
                     num: '',
                     typeCd: '',
                     remark: '',
-
+                    attrs: _attrs
                 }
-            }
+            },
+            _loadEditParkingAreaAttrSpec: function () {
+                $that.editParkingAreaInfo.attrs = [];
+                vc.getAttrSpec('parking_area_attr', function (data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        item.values = [];
+                        $that._loadEditAttrValue(item.specCd, item.values);
+                        if (item.specShow == 'Y') {
+                            $that.editParkingAreaInfo.attrs.push(item);
+                        }
+                    });
+
+                });
+            },
+            _loadEditAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if (item.valueShow == 'Y') {
+                            _values.push(item);
+                        }
+                    });
+
+                });
+            },
         }
     });
 

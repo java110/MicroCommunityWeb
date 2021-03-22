@@ -57,6 +57,7 @@
                             <th class="text-center">停车场ID</th>
                             <th class="text-center">停车场编号</th>
                             <th class="text-center">停车场类型</th>
+                            <th v-for="(item,index) in parkingAreaManageInfo.listColumns">{{item.specName}}</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
                         </tr>
@@ -67,6 +68,9 @@
                             <td class="text-center">{{parkingArea.num}}</td>
                             <td class="text-center" v-if="parkingArea.typeCd=='1001'">地上停车场</td>
                             <td class="text-center" v-if="parkingArea.typeCd=='2001'">地下停车场</td>
+                            <td v-for="item in parkingArea.listValues">
+                                {{item}}
+                            </td>
                             <td class="text-center">{{parkingArea.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
