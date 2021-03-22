@@ -12,6 +12,7 @@
                 num: '',
                 typeCd: '',
                 remark: '',
+                attrs: []
             }
         },
         _initMethod: function() {
@@ -20,6 +21,7 @@
         _initEvent: function() {
             vc.on('addParkingArea', 'openAddParkingAreaModal',
             function() {
+                $that._loadParkingAreaAttrSpec();
                 $('#addParkingAreaModel').modal('show');
             });
         },
@@ -90,11 +92,9 @@
                         return;
                     }
                     vc.toast(json);
-
                 },
                 function(errInfo, error) {
                     console.log('请求失败处理');
-
                     vc.toast(errInfo);
 
                 });
@@ -104,8 +104,31 @@
                     num: '',
                     typeCd: '',
                     remark: '',
+                    attrs: []
                 };
-            }
+            },
+            _loadParkingAreaAttrSpec: function () {
+                $that.addParkingAreaInfo.attrs = [];
+                vc.getAttrSpec('parking_area_attr', function (data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        if (item.specShow == 'Y') {
+                            item.values = [];
+                            $that._loadAttrValue(item.specCd, item.values);
+                            $that.addParkingAreaInfo.attrs.push(item);
+                        }
+                    });
+                });
+            },
+            _loadAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
+                    data.forEach(item => {
+                        if (item.valueShow == 'Y') {
+                            _values.push(item);
+                        }
+                    });
+                });
+            },
         }
     });
 })(window.vc);
