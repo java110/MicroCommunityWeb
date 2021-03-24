@@ -87,8 +87,9 @@
                         return;
                     }
 
-                    console.log('item',item);
-                    if (item.purchaseQuantity > item.stock) {
+                    let _purchaseQuantity = parseFloat(item.purchaseQuantity).toFixed(2);
+                    let _stock = parseFloat(item.stock).toFixed(2)
+                    if (_purchaseQuantity > _stock) {
                         vc.toast('库存不足');
                         _flag = false;
                         return;
