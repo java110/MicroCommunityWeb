@@ -12,19 +12,18 @@
                 records: 1,
                 moreCondition: false,
                 userName: '',
-                currentUserId:vc.getData('/nav/getUserInfo').userId,
+                currentUserId: vc.getData('/nav/getUserInfo').userId,
                 conditions: {
                     AuditOpenShopsId: '',
                     userName: '',
                     auditLink: '',
                 },
-                orderInfo:'',
-                procure:false
+                orderInfo: {},
+                procure: false
             }
         },
         _initMethod: function () {
             vc.component._listAuditOpenShops(DEFAULT_PAGE, DEFAULT_ROWS);
-            $that._loadStepStaff();
         },
         _initEvent: function () {
 
@@ -35,7 +34,7 @@
                 vc.component._listAuditOpenShops(_currentPage, DEFAULT_ROWS);
             });
 
-            vc.on('myAuditOpenShops','notifyAudit',function(_auditInfo){
+            vc.on('auditOpenShop', 'notifyAudit', function (_auditInfo) {
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
@@ -55,7 +54,7 @@
                         var _auditOpenShopInfo = JSON.parse(json);
                         vc.component.auditOpenShopInfo.total = _auditOpenShopInfo.total;
                         vc.component.auditOpenShopInfo.records = _auditOpenShopInfo.records;
-                        vc.component.auditOpenShopInfo.shops = _auditOpenShopInfo.resourceOrders;
+                        vc.component.auditOpenShopInfo.shops = _auditOpenShopInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditOpenShopInfo.records,
                             currentPage: _page
@@ -67,27 +66,31 @@
             },
             _openAuditOpenShopModel: function (_auditOrder) {
                 vc.component.auditOpenShopInfo.orderInfo = _auditOrder;
-                vc.emit('audit','openAuditModal',{});
+                vc.emit('audit', 'openAuditModal', {});
             },
             _queryAuditOpenShopsMethod: function () {
                 vc.component._listAuditOpenShops(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType);
+            _openDetailPurchaseApplyModel: function (_purchaseApply) {
+                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=" + _purchaseApply.resOrderType);
             },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
-                console.log("提交得参数："+_auditInfo);
-                _auditInfo.taskId = vc.component.auditOpenShopInfo.orderInfo.taskId;
-                _auditInfo.applyOrderId = vc.component.auditOpenShopInfo.orderInfo.applyOrderId;
+                console.log("提交得参数：" + _auditInfo);
                 //发送get请求
-                vc.http.post('myAuditOpenShops',
-                    'audit',
+                _auditInfo.shopId = $that.auditOpenShopInfo.orderInfo.shopId;
+                _auditInfo.storeId = $that.auditOpenShopInfo.orderInfo.storeId;
+                vc.http.apiPost('/shop/auditShop',
                     JSON.stringify(_auditInfo),
                     {
                         emulateJSON: true
                     },
                     function (json, res) {
+                        let _json = JSON.parse(json)
+                        if (_json.code != 0) {
+                            vc.toast(_json.msg);
+                            return;
+                        }
                         vc.toast("处理成功");
                         vc.component._listAuditOpenShops(DEFAULT_PAGE, DEFAULT_ROWS);
                     }, function (errInfo, error) {
