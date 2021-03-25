@@ -14,7 +14,7 @@
                 userName: '',
                 currentUserId:vc.getData('/nav/getUserInfo').userId,
                 conditions: {
-                    AuditOrdersId: '',
+                    AuditOpenShopsId: '',
                     userName: '',
                     auditLink: '',
                 },
@@ -23,24 +23,24 @@
             }
         },
         _initMethod: function () {
-            vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._listAuditOpenShops(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._loadStepStaff();
         },
         _initEvent: function () {
 
-            vc.on('myAuditOrders', 'listAuditOrders', function (_param) {
-                vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.on('myAuditOpenShops', 'listAuditOpenShops', function (_param) {
+                vc.component._listAuditOpenShops(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listAuditOrders(_currentPage, DEFAULT_ROWS);
+                vc.component._listAuditOpenShops(_currentPage, DEFAULT_ROWS);
             });
 
-            vc.on('myAuditOrders','notifyAudit',function(_auditInfo){
+            vc.on('myAuditOpenShops','notifyAudit',function(_auditInfo){
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
         methods: {
-            _listAuditOrders: function (_page, _rows) {
+            _listAuditOpenShops: function (_page, _rows) {
 
                 vc.component.auditOpenShopInfo.conditions.page = _page;
                 vc.component.auditOpenShopInfo.conditions.row = _rows;
@@ -49,8 +49,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('myAuditOrders',
-                    'list',
+                vc.http.apiGet('/shop/queryNeedAuditShop',
                     param,
                     function (json, res) {
                         var _auditOpenShopInfo = JSON.parse(json);
@@ -66,12 +65,12 @@
                     }
                 );
             },
-            _openAuditOrderModel: function (_auditOrder) {
+            _openAuditOpenShopModel: function (_auditOrder) {
                 vc.component.auditOpenShopInfo.orderInfo = _auditOrder;
                 vc.emit('audit','openAuditModal',{});
             },
-            _queryAuditOrdersMethod: function () {
-                vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+            _queryAuditOpenShopsMethod: function () {
+                vc.component._listAuditOpenShops(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openDetailPurchaseApplyModel:function(_purchaseApply){
                 vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType);
@@ -82,7 +81,7 @@
                 _auditInfo.taskId = vc.component.auditOpenShopInfo.orderInfo.taskId;
                 _auditInfo.applyOrderId = vc.component.auditOpenShopInfo.orderInfo.applyOrderId;
                 //发送get请求
-                vc.http.post('myAuditOrders',
+                vc.http.post('myAuditOpenShops',
                     'audit',
                     JSON.stringify(_auditInfo),
                     {
@@ -90,37 +89,13 @@
                     },
                     function (json, res) {
                         vc.toast("处理成功");
-                        vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                        vc.toast("处理失败：" + errInfo);
-                    }
-                );
-            },
-            _finishAuditOrder:function(_auditOrder){
-                let _auditInfo = {
-                    taskId: _auditOrder.taskId,
-                    applyOrderId: _auditOrder.applyOrderId,
-                    state:'1200',
-                    remark:'处理结束'
-                };
-                //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
-                    JSON.stringify(_auditInfo),
-                    {
-                        emulateJSON: true
-                    },
-                    function (json, res) {
-                        vc.toast("处理成功");
-                        vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+                        vc.component._listAuditOpenShops(DEFAULT_PAGE, DEFAULT_ROWS);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast("处理失败：" + errInfo);
                     }
                 );
             }
-
         }
     });
 })(window.vc);
