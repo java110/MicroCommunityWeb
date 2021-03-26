@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 repairName: '',
+                states: [],
                 conditions: {
                     repairId: '',
                     repairName: '',
@@ -25,6 +26,9 @@
             }
         },
         _initMethod: function () {
+            vc.getDict('r_repair_pool', "state", function (_data) {
+                vc.component.repairDispatchManageInfo.states = _data;
+            });
             vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._validateParam();
         },
