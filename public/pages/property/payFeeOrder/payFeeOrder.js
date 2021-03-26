@@ -269,7 +269,11 @@
                     return $that._mathToFixed1(num);
                 } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
                     return $that._mathCeil(num);
-                } else {
+                }else if ($that.payFeeOrderInfo.toFixedSign == 4) {
+                    return $that._mathFloor(num);
+                }else if ($that.payFeeOrderInfo.toFixedSign == 5) {
+                    return $that._mathRound(num);
+                }  else {
                     return $that._mathToFixed2(num);
                 }
             },
@@ -300,6 +304,12 @@
              */
             _mathFloor: function (_price) {
                 return Math.floor(_price);
+            },
+            /**
+             * 四首五入取整
+             */
+             _mathRound: function (_price) {
+                return Math.round(_price);
             },
             /**
              * 保留小数点后一位
