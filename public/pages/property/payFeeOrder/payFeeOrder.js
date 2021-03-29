@@ -345,7 +345,7 @@
                         // 由于返回的键与档期那页面自定义的键不一致，单独赋值toFiexedSign
                         let toFixedSign = listRoomData.data.val;
                         // 防止后台设置有误
-                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3) {
+                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3  || toFixedSign == 4  || toFixedSign == 5) {
                             $that.payFeeOrderInfo.toFixedSign = toFixedSign;
                         }
                         vc.emit('payFeeOrder', 'initData', listRoomData.data);
