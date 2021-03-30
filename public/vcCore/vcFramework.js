@@ -733,7 +733,7 @@
      * 深度拷贝对象
      */
     vcFramework.deepClone = function (obj) {
-        return JSON.stringify(JSON.stringify(obj));
+        return JSON.parse(JSON.stringify(obj));
     }
 
     vcFramework.changeNumMoneyToChinese = function (money) {
