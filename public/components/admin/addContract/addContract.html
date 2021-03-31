@@ -3,11 +3,43 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">添加合同</h3>
+        <h3 class="m-t-none m-b ">{{addContractInfo.parentContractCode?'续签合同':'起草合同'}}</h3>
         <div class="ibox-content">
           <div>
             <div>
+              <div class="row" v-if="addContractInfo.parentContractCode">
+                <div class="col-sm-4">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">父合同名称</label>
+                    <div class="col-sm-9 padding-lr-xs">
+                      <input v-model="addContractInfo.parentContractName" disabled type="text" placeholder="必填，请填写父合同名称"
+                        class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">父合同编号</label>
+                    <div class="col-sm-9 padding-lr-xs">
+                      <input v-model="addContractInfo.parentContractCode" disabled type="text" placeholder="必填，请填写父合同编号"
+                        class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">父合同状态</label>
+                    <div class="col-sm-9 padding-lr-xs">
+                      <input v-model="addContractInfo.parentStateName" disabled type="text" placeholder="必填，请填写父合同状态"
+                        class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
               <div class="row">
+
                 <div class="col-sm-4">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label padding-lr-sm text-right">合同名称</label>
@@ -158,7 +190,8 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label padding-lr-sm text-right">房屋</label>
                     <div class="col-sm-9 padding-lr-xs">
-                      <input v-model="addContractInfo.allNum" type="text" placeholder="选填，请填写房屋 楼栋-单元-房屋 如 1-1-1023" class="form-control" @blur="_queryRoom">
+                      <input v-model="addContractInfo.allNum" type="text" placeholder="选填，请填写房屋 楼栋-单元-房屋 如 1-1-1023"
+                        class="form-control" @blur="_queryRoom">
                     </div>
                   </div>
                 </div>

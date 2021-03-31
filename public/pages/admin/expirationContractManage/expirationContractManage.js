@@ -16,7 +16,7 @@
                     contractName: '',
                     contractCode: '',
                     contractType: '',
-                    expiration:'1'
+                    expiration: '1'
                 }
             }
         },
@@ -58,12 +58,10 @@
                     }
                 );
             },
-            _openAddContractModal: function () {
-                vc.emit('addContract', 'openAddContractModal', {});
+            _openAddContractModel: function (_contract) {
+                vc.emit('addContract', 'openAddContractModal', _contract);
             },
-            _openEditContractModel: function (_contract) {
-                vc.emit('editContract', 'openEditContractModal', _contract);
-            },
+
             _openDeleteContractModel: function (_contract) {
                 vc.emit('deleteContract', 'openDeleteContractModal', _contract);
             },

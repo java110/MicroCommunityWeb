@@ -82,7 +82,7 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditContractModel(contract)">续签</button>
+                                            v-on:click="_openAddContractModel(contract)">续签</button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
@@ -106,5 +106,6 @@
             </div>
         </div>
     </div>
+    <vc:create path="admin/addContract" callBackListener="" callBackFunction=""></vc:create>
 
 </div>
