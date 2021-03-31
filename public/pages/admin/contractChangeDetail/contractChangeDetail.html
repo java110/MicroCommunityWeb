@@ -1,0 +1,179 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>合同信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;"
+                            v-on:click="_openSelectContractInfoModel()">
+                            <i class="glyphicon glyphicon-search"></i> 选择合同</button>
+                        <button type="button" class="btn btn-white btn-sm" style="margin-right:10px;"
+                            v-on:click="_goBack()">
+                            返回</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">合同名称：</label>
+                                <label class="">{{contractChangeDetailInfo.contractName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">合同编号：</label>
+                                <label class="">{{contractChangeDetailInfo.contractCode}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">合同类型：</label>
+                                <label class="">{{contractChangeDetailInfo.contractType}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">甲方：</label>
+                                <label class="">{{contractChangeDetailInfo.partyA}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">甲方联系人：</label>
+                                <label class="">{{contractChangeDetailInfo.aContacts}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">甲方联系电话：</label>
+                                <label class="">{{contractChangeDetailInfo.aLink}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">乙方：</label>
+                                <label class="">{{contractChangeDetailInfo.partyB}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">乙方联系人：</label>
+                                <label class="">{{contractChangeDetailInfo.bContacts}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">乙方联系电话：</label>
+                                <label class="">{{contractChangeDetailInfo.bLink}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">经办人：</label>
+                                <label class="">{{contractChangeDetailInfo.operator}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">联系电话：</label>
+                                <label class="">{{contractChangeDetailInfo.operatorLink}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">合同金额：</label>
+                                <label class="">{{contractChangeDetailInfo.amount}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">开始时间：</label>
+                                <label class="">{{contractChangeDetailInfo.startTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">结束时间：</label>
+                                <label class="">{{contractChangeDetailInfo.endTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">签订时间：</label>
+                                <label class="">{{contractChangeDetailInfo.signingTime}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 主体变更 -->
+    <div v-if="contractChangeDetailInfo.param == 'contractChangeMainBody'">
+        <vc:create path="admin/contractChangeMainBody" emitChooseContract="contractChangeDetailInfo"
+            emitLoadData="notice"></vc:create>
+    </div>
+
+    <!-- 租期调整 -->
+    <div v-show="contractChangeDetailInfo.param == 'contractChangeLease'">
+        <vc:create path="admin/contractChangeLease" emitChooseContract="contractChangeDetailInfo" emitLoadData="notice">
+        </vc:create>
+    </div>
+    <!--资产调整-->
+    <div v-show="contractChangeDetailInfo.param == 'contractChangeAssets'">
+        <vc:create path="admin/contractChangeAssets" emitChooseContract="contractChangeDetailInfo"
+            emitLoadData="notice"></vc:create>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>变更说明</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">变更说明</label>
+                        <div class="col-sm-10 ">
+                            <textarea v-model="newContract.changeRemark" rows="5" placeholder="必填，请填写变更说明"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
+            <button type="button" class="btn btn-primary" style="margin-left:10px;"
+                v-on:click="_submitChangeContract()">提交
+            </button>
+        </div>
+    </div>
+
+    <vc:create path="admin/chooseContract" emitChooseContract="contractChangeDetailInfo"
+        emitLoadData="contractChangeDetailInfo">
+    </vc:create>
+</div>

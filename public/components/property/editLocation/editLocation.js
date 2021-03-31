@@ -72,7 +72,7 @@
                     },
                     function (json, res) {
                         let _json = JSON.parse(json);
-                        if (_json.code == 200) {
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editLocationModel').modal('hide');
                             vc.emit('locationManage', 'listLocation', {});

@@ -1,4 +1,5 @@
-<div id = "chooseContractModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseContractModelLabel" aria-hidden="true" >
+<div id="chooseContractModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseContractModelLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,10 +18,13 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入合同信息名称" type="text" v-model="chooseContractInfo._currentContractName" class="form-control form-control-sm">
+                                        <input placeholder="输入合同信息名称" type="text"
+                                            v-model="chooseContractInfo._currentContractName"
+                                            class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryContracts()">查询</button>
-                                            </span>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                v-on:click="queryContracts()">查询</button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -28,51 +32,33 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">合同ID</th>
-                            <th class="text-center">合同名称</th>
-                            <th class="text-center">合同编号</th>
-                            <th class="text-center">合同类型</th>
-                            <th class="text-center">甲方</th>
-                            <th class="text-center">乙方</th>
-                            <th class="text-center">甲方联系人</th>
-                            <th class="text-center">乙方联系人</th>
-                            <th class="text-center">甲方联系电话</th>
-                            <th class="text-center">乙方联系电话</th>
-                            <th class="text-center">经办人</th>
-                            <th class="text-center">联系电话</th>
-                            <th class="text-center">合同金额</th>
-                            <th class="text-center">开始时间</th>
-                            <th class="text-center">结束时间</th>
-                            <th class="text-center">签订时间</th>
-                            <th class="text-center">操作</th>
+                                            <th class="text-center">合同名称</th>
+                                            <th class="text-center">合同编号</th>
+                                            <th class="text-center">合同类型</th>
+                                            <th class="text-center">甲方</th>
+                                            <th class="text-center">乙方</th>
+                                            <th class="text-center">签订时间</th>
+                                            <th class="text-center">操作</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="contract in chooseContractInfo.contracts">
-                                                                        <td class="text-center">{{contract.contractId}}</td>
-                            <td class="text-center">{{contract.contractName}}</td>
-                            <td class="text-center">{{contract.contractCode}}</td>
-                            <td class="text-center">{{contract.contractType}}</td>
-                            <td class="text-center">{{contract.partyA}}</td>
-                            <td class="text-center">{{contract.partyB}}</td>
-                            <td class="text-center">{{contract.aContacts}}</td>
-                            <td class="text-center">{{contract.bContacts}}</td>
-                            <td class="text-center">{{contract.aLink}}</td>
-                            <td class="text-center">{{contract.bLink}}</td>
-                            <td class="text-center">{{contract.operator}}</td>
-                            <td class="text-center">{{contract.operatorLink}}</td>
-                            <td class="text-center">{{contract.amount}}</td>
-                            <td class="text-center">{{contract.startTime}}</td>
-                            <td class="text-center">{{contract.endTime}}</td>
-                            <td class="text-center">{{contract.signingTime}}</td>
+                                            <td class="text-center">{{contract.contractName}}</td>
+                                            <td class="text-center">{{contract.contractCode}}</td>
+                                            <td class="text-center">{{contract.contractTypeName}}</td>
+                                            <td class="text-center">{{contract.partyA}}</td>
+                                            <td class="text-center">{{contract.partyB}}</td>
+                                            <td class="text-center">{{contract.signingTime}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseContract(contract)">选择</button>
+                                                <button class="btn btn-primary btn-xs"
+                                                    v-on:click="chooseContract(contract)">选择</button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <vc:create namespace="chooseContract" path="frame/paginationPlus"></vc:create>
                             </div>
 
                         </div>

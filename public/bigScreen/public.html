@@ -1,0 +1,164 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>小区大屏</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="js/echarts.min.js" charset="utf-8"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="/js/vue/vue.min.js"></script>
+<script src="/js/vue/vue-resource.min.js"></script>
+
+
+<body>
+  <div class="bnt">
+    <div class="topbnt_left fl">
+      <ul>
+        <li><a href="/admin.html#/pages/property/reportProficient">报表专家</a></li>
+        <li><a href="/admin.html#/pages/property/reportFeeSummary">费用汇总</a></li>
+        <li><a href="/admin.html#/pages/property/reportFloorUnitFeeSummary">楼栋费用</a></li>
+        <li><a href="/admin.html#/pages/property/reportFeeBreakdown">费用分项</a></li>
+      </ul>
+    </div>
+    <h1 class="tith1 fl" id="community"></h1>
+    <div class=" fr topbnt_right">
+      <ul>
+        <li><a href="/">控制台</a></li>
+        <li><a href="/admin.html#/pages/property/reportDeadlineFee">费用到期提醒</a></li>
+        <li><a href="/admin.html#/pages/property/reportRepair">报修汇总</a></li>
+        <li><a href="/admin.html#/pages/property/reportPrePaymentFee">预交费提醒</a></li>
+      </ul>
+      </ul>
+    </div>
+  </div>
+  <!-- bnt end -->
+  <div class="puleft fl">
+    <div class="pulefttop">
+      <h2 class="tith2"><span>费用分析</span></h2>
+      <div class="lefttoday_tit">
+
+      </div>
+      <div class="box pbox">
+        <div class="lefttoday_bar pulefttoday_bar fl" id = "ownerCount">
+          
+        </div>
+        <div class="pvr fr pulefttoday_bar2" id="parkingSpaceCount">
+         
+        </div>
+      </div>
+      <!-- lefttoday_number end -->
+    </div>
+    <div class="puleftboxtmidd">
+      <h2 class="tith2">楼栋费用分析</h2>
+      <div class="lefttoday_tit">
+
+      </div>
+      <div class="box pbox">
+        <div id="roomCount" class="fl puleftboxtmidd1"></div>
+      </div>
+    </div>
+    <div class="puleftboxtbott">
+      <h2 class="tith2 pt1">缴费分析</h2>
+      <div class="lefttoday_tit">
+      </div>
+      <div class="box pbox">
+        <div id="box4" class="fl puleftboxtmidd1"></div>
+      </div>
+      
+    </div>
+  </div>
+  <!--  left1 end -->
+  <div class="fl pt6 puleft2">
+    <div class="pmidd_bott">
+      <div class="pumiddboxttop1 fl">
+        <h2 class="tith2 pt3">小区资产</h2>
+        <div class="lefttoday_tit">
+          <p class="fl">状态：在用</p>
+          <p class="fr">时间段：2018-06-10</p>
+        </div>
+        <div class="puleft2height">
+          <div class="widget-inline-box text-center ">
+            <p>楼栋</p>
+            <h3 class=" ceeb1fd f30" id="floorCount">0</h3>
+            <h4 class="text-muted "></h4>
+          </div>
+          <div class="widget-inline-box text-center ">
+            <p>房屋</p>
+            <h3 class=" c24c9ff f30" id="roomCount">0</h3>
+            <h4 class="text-muted "></h4>
+          </div>
+          <div class="widget-inline-box text-center ">
+            <p>车位</p>
+            <h3 class=" cffff00 f30" id="parkingSpaceCount">0</h3>
+            <h4 class="text-muted "></h4>
+          </div>
+          <div class="widget-inline-box text-center ">
+            <p>设备</p>
+            <h3 class=" ceeb1fd f30" id="machineCount">0</h3>
+            <h4 class="text-muted "></h4>
+          </div>
+        </div>
+      </div>
+      <div class="pumiddboxttop2 fl">
+        <h2 class="tith2 pt3">今日巡检</h2>
+        <div class="lefttoday_tit ">
+          <p class="fl">状态：正在巡检</p>
+          <p class="fr">时间段：2018-06-10</p>
+        </div>
+        <div class="left2_table pumiddboxttop2_cont">
+          <ul id="todayInpection">
+            <!-- <li>
+              <p class="text_l">村名王某因为被隔壁邻居的狗咬了，产生了纠纷，村名报警。</p>
+              <p class="text_r">新浪微博 转发：86 2018-06-14 11:08:56</p>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--  amidd_bott end-->
+    <div class="pmiddboxtbott">
+      <h2 class="tith2 pt1">开门次数</h2>
+      <div class="lefttoday_tit">
+
+      </div>
+      <div class="box pbox">
+        <div class="fl pumiddboxtbott1cont" id="box3_right"></div>
+      </div>
+    </div>
+    <!-- amidd_bott end -->
+  </div>
+  <!-- mrbox_top end -->
+  <div class="mr_right fl">
+    <div class="purightboxtop">
+      <h2 class="tith2 pt12">房屋分析</h2>
+      <div class="lefttoday_tit">
+        
+      </div>
+      <div id="box1" class="purightboxtopcont"></div>
+    </div>
+    <div class="purightboxmidd">
+      <h2 class="tith2 pt12">报修分析</h2>
+      <div class="lefttoday_tit">
+       
+      </div>
+      <div id="box2" class="purightboxmiddcont"></div>
+    </div>
+    <div class="purightboxbott">
+      <h2 class="tith2 pt12">缴费提醒分析</h2>
+      <div class="lefttoday_tit">
+      </div>
+      <div id="shopCount" class="purightboxbottcont"></div>
+    </div>
+  </div>
+  <!-- mrbox_top_right end -->
+  </div>
+
+
+  </div>
+  <script src="/vcCore/vcFramework.js"></script>
+  <script src="js/public.js"></script>
+
+</body>
+
+</html>
