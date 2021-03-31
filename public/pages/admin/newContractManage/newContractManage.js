@@ -6,7 +6,7 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            expirationContractInfo: {
+            newContractManageInfo: {
                 contracts: [],
                 total: 0,
                 records: 1,
@@ -16,7 +16,7 @@
                     contractName: '',
                     contractCode: '',
                     contractType: '',
-                    expiration: '1'
+                    state:'11'
                 }
             }
         },
@@ -25,7 +25,7 @@
         },
         _initEvent: function () {
 
-            vc.on('contractManage', 'listContract', function (_param) {
+            vc.on('newContractManage', 'listContract', function (_param) {
                 vc.component._listContracts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -35,22 +35,22 @@
         methods: {
             _listContracts: function (_page, _rows) {
 
-                vc.component.expirationContractInfo.conditions.page = _page;
-                vc.component.expirationContractInfo.conditions.row = _rows;
+                vc.component.newContractManageInfo.conditions.page = _page;
+                vc.component.newContractManageInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.expirationContractInfo.conditions
+                    params: vc.component.newContractManageInfo.conditions
                 };
 
                 //发送get请求
                 vc.http.apiGet('/contract/queryContract',
                     param,
                     function (json, res) {
-                        var _expirationContractInfo = JSON.parse(json);
-                        vc.component.expirationContractInfo.total = _expirationContractInfo.total;
-                        vc.component.expirationContractInfo.records = _expirationContractInfo.records;
-                        vc.component.expirationContractInfo.contracts = _expirationContractInfo.data;
+                        var _newContractManageInfo = JSON.parse(json);
+                        vc.component.newContractManageInfo.total = _newContractManageInfo.total;
+                        vc.component.newContractManageInfo.records = _newContractManageInfo.records;
+                        vc.component.newContractManageInfo.contracts = _newContractManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.expirationContractInfo.records,
+                            total: vc.component.newContractManageInfo.records,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -58,22 +58,23 @@
                     }
                 );
             },
-            _openAddContractModel: function (_contract) {
-                vc.emit('addContract', 'openAddContractModal', _contract);
+            _openAddContractModal: function () {
+                vc.emit('addContract', 'openAddContractModal', {});
             },
-
-            _stopContractModel: function (_contract) {
-                vc.emit('stopContract', 'openStopContractModal', _contract);
+            _openEditContractModel: function (_contract) {
+                vc.emit('editContract', 'openEditContractModal', _contract);
+            },
+            _openDeleteContractModel: function (_contract) {
+                vc.emit('deleteContract', 'openDeleteContractModal', _contract);
             },
             _queryContractMethod: function () {
                 vc.component._listContracts(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
-                if (vc.component.expirationContractInfo.moreCondition) {
-                    vc.component.expirationContractInfo.moreCondition = false;
+                if (vc.component.newContractManageInfo.moreCondition) {
+                    vc.component.newContractManageInfo.moreCondition = false;
                 } else {
-                    vc.component.expirationContractInfo.moreCondition = true;
+                    vc.component.newContractManageInfo.moreCondition = true;
                 }
             },
             _printContract: function (_contract) {
