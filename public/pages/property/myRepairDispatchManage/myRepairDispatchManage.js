@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -13,6 +13,7 @@
                 moreCondition: false,
                 repairName: '',
                 currentRepairId: '',
+                repairTypes: [],
                 states: [],
                 conditions: {
                     pageFlag: 'myRepairDispatch',
@@ -32,9 +33,16 @@
                 vc.component.myRepairDispatchInfo.states = _data;
             });
             vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+            //与字典表关联
+            vc.getDict('r_repair_pool', "repair_type", function (_data) {
+                vc.component.myRepairDispatchInfo.repairTypes = _data;
+            });
+            //与字典表关联
+            vc.getDict('r_repair_pool', "state", function (_data) {
+                vc.component.myRepairDispatchInfo.states = _data;
+            });
         },
         _initEvent: function () {
-
             vc.on('myRepairDispatch', 'listOwnerRepair', function (_param) {
                 vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -46,7 +54,6 @@
             });
         },
         methods: {
-
             _listOwnerRepairs: function (_page, _rows) {
                 vc.component.myRepairDispatchInfo.conditions.page = _page;
                 vc.component.myRepairDispatchInfo.conditions.row = _rows;
@@ -54,7 +61,6 @@
                 var param = {
                     params: vc.component.myRepairDispatchInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('ownerRepair.listStaffFinishRepairs',
                     param,
@@ -97,7 +103,6 @@
                 } else {
                     _repairDispatchParam.state = '10003';
                 }
-
                 vc.http.post(
                     'myRepairDispatch',
                     'closeOrder',
@@ -113,15 +118,11 @@
                             return;
                         }
                         vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
-
             },
             _openDispatchRepairDetail: function (_ownerRepair) {
                 vc.emit('ownerRepairDetail', 'openOwnerRepairDetailModal', _ownerRepair);
@@ -129,8 +130,6 @@
             _queryMyRepairDispatchMethod: function () {
                 vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             }
-
-
         }
     });
 })(window.vc);

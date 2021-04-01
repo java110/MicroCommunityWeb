@@ -7,6 +7,7 @@
                 feeId: '',
                 feeName: '',
                 feeTypeCdName: '',
+                feeTypeCd: '',
                 primeRates: '',
                 primeRate: '',
                 endTime: '',
@@ -39,6 +40,7 @@
                 vc.component.payFeeOrderInfo.feeId = vc.getParam('feeId');
                 vc.component.payFeeOrderInfo.feeName = vc.getParam('feeName');
                 vc.component.payFeeOrderInfo.feeTypeCdName = vc.getParam('feeTypeCdName');
+                vc.component.payFeeOrderInfo.feeTypeCd = vc.getParam('feeTypeCd');
                 vc.component.payFeeOrderInfo.endTime = vc.getParam('endTime').replace(/%3A/g, ':');
                 vc.component.payFeeOrderInfo.feePrice = vc.getParam('feePrice');
                 $that.payFeeOrderInfo.feeFlag = vc.getParam('feeFlag');

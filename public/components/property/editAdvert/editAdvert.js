@@ -258,9 +258,6 @@
                 } else {
                     vc.component.editAdvertInfo.photos = [];
                 }
-                console.log("看一下")
-                console.log(vc.component.editAdvertInfo.locationObjId)
-                console.log(vc.component.editAdvertInfo.locationObjName)
                 vc.http.post(
                     'editAdvert',
                     'update',

@@ -1,20 +1,24 @@
 (function (vc) {
-
     vc.extends({
         data: {
             appraiseRepairInfo: {
                 repairId: '',
                 repairType: '',
-                context: ''
+                context: '',
+                publicArea: '',
+                repairChannel: '',
+                maintenanceType: ''
             }
         },
         _initMethod: function () {
-            //vc.component._initAppraiseRepairInfo();
         },
         _initEvent: function () {
             vc.on('appraiseRepair', 'openAppraiseRepairModal', function (_repair) {
                 $that.appraiseRepairInfo.repairType = _repair.repairType;
                 $that.appraiseRepairInfo.repairId = _repair.repairId;
+                $that.appraiseRepairInfo.publicArea = _repair.publicArea;
+                $that.appraiseRepairInfo.repairChannel = _repair.repairChannel;
+                $that.appraiseRepairInfo.maintenanceType = _repair.maintenanceType;
                 $('#appraiseRepairModel').modal('show');
             });
         },
@@ -34,23 +38,17 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "处理意见不能为空"
+                            errInfo: "回访建议不能为空"
                         }
                     ]
                 });
             },
             _appraiseRepairInfo: function () {
-
-
                 if (!vc.component.appraiseRepairValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.appraiseRepairInfo.communityId = vc.getCurrentCommunity().communityId;
-
-
-
                 vc.http.apiPost(
                     'ownerRepair.appraiseRepair',
                     JSON.stringify(vc.component.appraiseRepairInfo),
@@ -65,17 +63,13 @@
                             $('#appraiseRepairModel').modal('hide');
                             vc.component.clearAppraiseRepairInfo();
                             vc.emit('repairDispatchManage', 'listOwnerRepair', {});
-
                             return;
                         }
                         vc.toast(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAppraiseRepairInfo: function () {
@@ -87,5 +81,4 @@
             },
         }
     });
-
 })(window.vc);

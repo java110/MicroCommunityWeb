@@ -50,8 +50,6 @@
                 </div>
             </div>
         </div>
-        <div v-show="roomRenovationRecordDetailsInfo.imgBoxSwitch" style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
-            <img v-bind:src="roomRenovationRecordDetailsInfo.imgBoxUrl" width="600" height="500" alt="" v-on:click="hideImgBox()">
-        </div>
     </div>
+    <vc:create path="common/viewImage"></vc:create>
 </div>
