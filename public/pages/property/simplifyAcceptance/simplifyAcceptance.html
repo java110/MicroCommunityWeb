@@ -13,6 +13,7 @@
                 <option value="7">成员手机号</option>
                 <option value="8">成员身份证</option>
                 <option value="9">商铺号</option>
+                <option value="10">合同号</option>
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
@@ -181,11 +182,18 @@
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
                        v-on:click="changeTab('simplifyFeeReceipt')">补打收据</a>
                 </li>
-                <li class="nav-item" v-if="simplifyAcceptanceInfo.roomType == '2020602'">
+                <li class="nav-item">
                     <a class="nav-link"
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
-                       v-on:click="changeTab('simplifyShopsHireLog')">出租记录</a>
+                       v-on:click="changeTab('simplifyShopsHireLog')">房屋绑定记录</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyContract'}"
+                       v-on:click="changeTab('simplifyContract')">关联合同</a>
+                </li>
+
+                
             </ul>
         </div>
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'">
@@ -217,6 +225,9 @@
         </div>
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'">
             <vc:create path="property/simplifyShopsHireLog"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyContract'">
+            <vc:create path="property/simplifyContract"></vc:create>
         </div>
     </div>
     <vc:create path="property/deleteFee"></vc:create>

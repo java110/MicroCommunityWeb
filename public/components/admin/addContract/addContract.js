@@ -291,6 +291,7 @@
                             $('#addContractModel').modal('hide');
                             vc.component.clearAddContractInfo();
                             vc.emit('contractManage', 'listContract', {});
+                            vc.emit('newContractManage', 'listContract', {});
                             vc.emit('rentingPoolManage', 'listRentingPool', {});
                             return;
                         }
@@ -428,7 +429,7 @@
                         $that.addContractInfo.objId = _rooms[0].roomId;
                         $that.addContractInfo.objName = $that.addContractInfo.allNum;
                         $that.addContractInfo.objPersonName=_rooms[0].ownerName;
-                        $that.addContractInfo.objPersonId_rooms[0].ownerId;
+                        $that.addContractInfo.objPersonId=_rooms[0].ownerId;
 
                     }, function (errInfo, error) {
                         console.log('请求失败处理');

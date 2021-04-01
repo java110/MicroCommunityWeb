@@ -93,6 +93,9 @@
                     case '9':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入商铺编号 楼栋-商铺 如1-1';
                         break;
+                    case '10':
+                        $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入合同号';
+                        break;
                     default:
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入房屋编号 楼栋-单元-房屋 如1-1-1';
                         $that.simplifyAcceptanceInfo.searchValue = "";
@@ -190,7 +193,7 @@
                     sex: 0,
                     ownerRemark: '',
                     roomRemark: '',
-                    roomType:''
+                    roomType: ''
                 }
             }
         }
