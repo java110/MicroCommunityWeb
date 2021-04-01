@@ -19,9 +19,9 @@
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="repairSettingManageInfo.conditions.repairWay">
                                 <option selected value="">请选择派单方式</option>
-                                <option value="100">抢单</option>
-                                <option value="200">指派</option>
-                                <option value="300">轮训</option>
+                                <option v-for="(item,index) in repairSettingManageInfo.repairWays" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
                             </select>
                         </div>
                         <div class="col-sm-3">

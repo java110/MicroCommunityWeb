@@ -11,8 +11,6 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                imgBoxSwitch: false,
-                imgBoxUrl: '',
                 conditions: {
                     recordId: '',
                     roomName: '',
@@ -69,11 +67,7 @@
                 vc.goBack();
             },
             showImg: function (e) {
-                vc.component.roomRenovationRecordDetailsInfo.imgBoxSwitch = true;
-                vc.component.roomRenovationRecordDetailsInfo.imgBoxUrl = e;
-            },
-            hideImgBox: function () {
-                vc.component.roomRenovationRecordDetailsInfo.imgBoxSwitch = false;
+                vc.emit('viewImage', 'showImage', {url: e});
             }
         }
     });

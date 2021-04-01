@@ -1,6 +1,6 @@
 <div id="viewImage" v-show="viewImageInfo.showImage" >
     <div style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background-color: #fff;">
-        <img v-bind:src="viewImageInfo.url" style="width:1000px;height:500px;" />
+        <img v-bind:src="viewImageInfo.url" v-bind:width="viewImageInfo.imgWidth" v-bind:height="viewImageInfo.imgHeight" />
         <span v-on:click="_closeImage()" class="fa fa-remove "
             style="position: absolute;right: 20px;top: 20px;font-size: 20px;color:red"></span>
     </div>

@@ -9,7 +9,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入物品ID"
                                        v-model="resourceStoreManageInfo.conditions.resId" class=" form-control">
@@ -27,10 +27,14 @@
                                        v-model="resourceStoreManageInfo.conditions.resCode" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryResourceStoreMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetResourceStoreMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
@@ -56,8 +60,10 @@
                         <tr>
                             <th class="text-center">物品ID</th>
                             <th class="text-center">物品名称</th>
+                            <th class="text-center">物品类型</th>
                             <th class="text-center">物品编码</th>
                             <th class="text-center">物品价格</th>
+                            <th class="text-center">收费标准</th>
                             <th class="text-center">物品库存</th>
                             <th class="text-center">操作</th>
                         </tr>
@@ -66,8 +72,10 @@
                         <tr v-for="resourceStore in resourceStoreManageInfo.resourceStores">
                             <td class="text-center">{{resourceStore.resId}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
+                            <td class="text-center">{{resourceStore.goodsTypeName}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
-                            <td class="text-center">{{resourceStore.price}}</td>
+                            <td class="text-center">{{resourceStore.price}}元</td>
+                            <td class="text-center">{{resourceStore.outPrice}}</td>
                             <td class="text-center">{{resourceStore.stock}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
