@@ -2,11 +2,11 @@
 
     vc.extends({
         data: {
-            templatecontent:'',
-            contractdata:'',
-            contractTypeSpec:'',
-            baseRepalce:'',
-            attrs:[],
+            templatecontent: '',
+            contractdata: '',
+            contractTypeSpec: '',
+            baseRepalce: [],
+            attrs: [],
             printContractInfo: {
                 contractId: '',
                 contractTypeId: '',
@@ -19,7 +19,7 @@
 
             $that.printContractInfo.contractTypeId = vc.getParam('contractTypeId');
             $that.printContractInfo.contractId = vc.getParam('contractId');
-            
+
             $that._loadContract();
         },
         _initEvent: function () {
@@ -35,7 +35,7 @@
                     params: {
                         page: 1,
                         row: 1,
-                        contractId:$that.printContractInfo.contractId,
+                        contractId: $that.printContractInfo.contractId,
                         contractTypeId: $that.printContractInfo.contractTypeId
                     }
                 };
@@ -50,28 +50,31 @@
                         $that.contractdata = _data.contract[0];
                         $that.attrs = _data.contract[0].attrs;
                         $that.contractTypeSpec = _data.contractTypeSpec;
-                        $that.contractTypeSpec.forEach(function(e){
+                        $that.contractTypeSpec.forEach(function (e) {
                             let rname = e.specName;
                             let rspecCd = e.specCd;
-                            $that.attrs.forEach(function(ea){
-                                if(rspecCd == ea.specCd){
-                                    let reg = '#'+rname+'#';
-                                    $that.templatecontent = $that.templatecontent.replaceAll(reg, ea.value)  
-                                }  
+                            $that.attrs.forEach(function (ea) {
+                                if (rspecCd == ea.specCd) {
+                                    let reg = '#' + rname + '#';
+                                    $that.templatecontent = $that.templatecontent.replaceAll(reg, ea.value)
+                                }
                             });
                         });
                         $that.baseRepalce = _data.baseRepalce;
-                        $that.baseRepalce.forEach(function(e){
-                            let rname = e.name;
-                            let rkey = e.key;
-                            var contractarr = Object.keys($that.contractdata);
-                            for(var a in contractarr){
-                                if(rkey == contractarr[a]){
-                                    let reg = '#'+rname+'#';
-                                    $that.templatecontent = $that.templatecontent.replaceAll(reg, $that.contractdata[contractarr[a]])  
-                                }  
-                            }
-                        });
+                        if ($that.baseRepalce != undefined) {
+                            $that.baseRepalce.forEach(function (e) {
+                                let rname = e.name;
+                                let rkey = e.key;
+                                var contractarr = Object.keys($that.contractdata);
+                                for (var a in contractarr) {
+                                    if (rkey == contractarr[a]) {
+                                        let reg = '#' + rname + '#';
+                                        $that.templatecontent = $that.templatecontent.replaceAll(reg, $that.contractdata[contractarr[a]])
+                                    }
+                                }
+                            });
+                        }
+
                         $that.printContractInfo.context = $that.templatecontent;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
