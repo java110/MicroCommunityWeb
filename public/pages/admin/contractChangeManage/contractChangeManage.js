@@ -78,10 +78,10 @@
                     vc.component.contractChangeManageInfo.moreCondition = true;
                 }
             },
-            _printContract: function (_contract) {
-                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType);
-            }
 
+            _printContract: function (_contract) {
+                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType+"&contractId="+_contract.contractId);
+            }
 
         }
     });
