@@ -28,14 +28,14 @@
         },
         _initEvent: function () {
 
-            vc.on('myAuditOrders', 'listAuditOrders', function (_param) {
+            vc.on('contractApplyAuditOrders', 'listAuditOrders', function (_param) {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAuditOrders(_currentPage, DEFAULT_ROWS);
             });
 
-            vc.on('myAuditOrders','notifyAudit',function(_auditInfo){
+            vc.on('contractApplyAuditOrders','notifyAudit',function(_auditInfo){
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
@@ -49,8 +49,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('myAuditOrders',
-                    'list',
+                vc.http.apiGet('/contract/queryContractTask',
                     param,
                     function (json, res) {
                         var _contractApplyAuditOrdersInfo = JSON.parse(json);
@@ -82,7 +81,7 @@
                 _auditInfo.taskId = vc.component.contractApplyAuditOrdersInfo.orderInfo.taskId;
                 _auditInfo.applyOrderId = vc.component.contractApplyAuditOrdersInfo.orderInfo.applyOrderId;
                 //发送get请求
-                vc.http.post('myAuditOrders',
+                vc.http.post('contractApplyAuditOrders',
                     'audit',
                     JSON.stringify(_auditInfo),
                     {
@@ -105,7 +104,7 @@
                     remark:'处理结束'
                 };
                 //发送get请求
-                vc.http.post('myAuditOrders',
+                vc.http.post('contractApplyAuditOrders',
                     'audit',
                     JSON.stringify(_auditInfo),
                     {
