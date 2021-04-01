@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 repairName: '',
+                repairTypes: [],
                 states: [],
                 conditions: {
                     repairId: '',
@@ -31,6 +32,14 @@
             });
             vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._validateParam();
+            //与字典表关联
+            vc.getDict('r_repair_pool', "repair_type", function (_data) {
+                vc.component.repairDispatchManageInfo.repairTypes = _data;
+            });
+            //与字典表关联
+            vc.getDict('r_repair_pool', "state", function (_data) {
+                vc.component.repairDispatchManageInfo.states = _data;
+            });
         },
         _initEvent: function () {
             vc.on('repairDispatchManage', 'listOwnerRepair', function (_param) {
@@ -113,6 +122,7 @@
             _queryOwnerRepairMethod: function () {
                 vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            //办结
             _openFinishRepair: function (_ownerRepair) {
                 vc.emit('finishRepair', 'openFinishRepairModal', _ownerRepair);
             },
@@ -135,6 +145,7 @@
                 _repair.action = "BACK";
                 vc.emit('dispatchRepair', 'openDispatchRepairModal', _repair);
             },
+            //回访
             _openAppraiseRepair: function (_repair) {
                 vc.emit('appraiseRepair', 'openAppraiseRepairModal', _repair);
             }

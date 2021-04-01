@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -12,12 +11,10 @@
                 resource: '',
                 domain: '',
                 description: '',
-                mId:''
-
+                mId: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addBasePrivilege', 'openAddBasePrivilegeModal', function (_item) {
@@ -80,25 +77,22 @@
                             errInfo: "非法操作，菜单为空"
                         }
                     ],
-
-
                 });
             },
             saveBasePrivilegeInfo: function () {
                 if (!vc.component.addBasePrivilegeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addBasePrivilegeInfo.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.addBasePrivilegeInfo.name=vc.component.addBasePrivilegeInfo.name.trim();
+                vc.component.addBasePrivilegeInfo.resource=vc.component.addBasePrivilegeInfo.resource.trim();
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addBasePrivilegeInfo);
                     $('#addBasePrivilegeModel').modal('hide');
                     return;
                 }
-
                 vc.http.post(
                     'addBasePrivilege',
                     'save',
@@ -113,28 +107,22 @@
                             $('#addBasePrivilegeModel').modal('hide');
                             vc.component.clearAddBasePrivilegeInfo();
                             vc.emit('basePrivilegeManage', 'listBasePrivilege', {});
-
                             return;
                         }
                         vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddBasePrivilegeInfo: function () {
                 vc.component.addBasePrivilegeInfo = {
                     name: '',
                     domain: '',
-                    description: '',
-
+                    description: ''
                 };
             }
         }
     });
-
 })(window.vc);

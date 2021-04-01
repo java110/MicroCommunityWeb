@@ -92,7 +92,13 @@
                             <td class="text-center">{{repairPool.repairName}}</td>
                             <td class="text-center">{{repairPool.tel}}</td>
                             <td class="text-center">{{repairPool.appointmentTime}}</td>
-                            <td class="text-center">{{repairPool.stateName}}</td>
+                            <td class="text-center"
+                                v-if="repairPool.state == '1800' && (repairPool.returnVisitFlag == '001' || repairPool.returnVisitFlag == '002')">
+                                {{repairPool.stateName}}(定时任务处理)
+                            </td>
+                            <td class="text-center" v-else>
+                                {{repairPool.stateName}}
+                            </td>
                             <td class="text-center">
                                 <div class="btn-group"
                                      v-if="vc.hasPrivilege('502021012067300023') && (repairPool.state == '1000' || repairPool.state == '1200')">
