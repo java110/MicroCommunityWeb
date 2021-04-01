@@ -34,7 +34,10 @@
                 contractParentId: '',
                 parentContractCode: '',
                 parentContractName: '',
-                parentStateName: ''
+                parentStateName: '',
+                objName: '',
+                objPersonName: '',
+                objPersonId: ''
             }
         },
         _initMethod: function () {
@@ -330,7 +333,10 @@
                     contractParentId: '',
                     parentContractCode: '',
                     parentContractName: '',
-                    parentStateName: ''
+                    parentStateName: '',
+                    objName: '',
+                    objPersonName: '',
+                    objPersonId: ''
                 };
             },
             _loadAddContractType: function () {
@@ -420,6 +426,9 @@
                         $that.addContractInfo.link = _rooms[0].link;
                         $that.addContractInfo.objType = '3333';
                         $that.addContractInfo.objId = _rooms[0].roomId;
+                        $that.addContractInfo.objName = $that.addContractInfo.allNum;
+                        $that.addContractInfo.objPersonName=_rooms[0].ownerName;
+                        $that.addContractInfo.objPersonId_rooms[0].ownerId;
 
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
