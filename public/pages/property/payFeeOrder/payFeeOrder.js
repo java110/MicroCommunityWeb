@@ -271,7 +271,11 @@
                     return $that._mathToFixed1(num);
                 } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
                     return $that._mathCeil(num);
-                } else {
+                }else if ($that.payFeeOrderInfo.toFixedSign == 4) {
+                    return $that._mathFloor(num);
+                }else if ($that.payFeeOrderInfo.toFixedSign == 5) {
+                    return $that._mathRound(num);
+                }  else {
                     return $that._mathToFixed2(num);
                 }
             },
@@ -302,6 +306,12 @@
              */
             _mathFloor: function (_price) {
                 return Math.floor(_price);
+            },
+            /**
+             * 四首五入取整
+             */
+             _mathRound: function (_price) {
+                return Math.round(_price);
             },
             /**
              * 保留小数点后一位
@@ -337,7 +347,7 @@
                         // 由于返回的键与档期那页面自定义的键不一致，单独赋值toFiexedSign
                         let toFixedSign = listRoomData.data.val;
                         // 防止后台设置有误
-                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3) {
+                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3  || toFixedSign == 4  || toFixedSign == 5) {
                             $that.payFeeOrderInfo.toFixedSign = toFixedSign;
                         }
                         vc.emit('payFeeOrder', 'initData', listRoomData.data);

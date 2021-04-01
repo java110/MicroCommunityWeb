@@ -30,7 +30,11 @@
                 ownerName: '',
                 link: '',
                 objType: '1111',
-                objId: '-1'
+                objId: '-1',
+                contractParentId: '',
+                parentContractCode: '',
+                parentContractName: '',
+                parentStateName: ''
             }
         },
         _initMethod: function () {
@@ -51,6 +55,19 @@
         _initEvent: function () {
             vc.on('addContract', 'openAddContractModal', function (_param) {
                 vc.copyObject(_param, $that.addContractInfo);
+
+                if (_param.hasOwnProperty("contractId")) {
+                    $that.addContractInfo.contractParentId = _param.contractId;
+                    $that.addContractInfo.parentContractCode = _param.contractCode;
+                    $that.addContractInfo.parentContractName = _param.contractName;
+                    $that.addContractInfo.parentStateName = _param.stateName;
+                    $that.addContractInfo.contractId = '';
+                    $that.addContractInfo.contractCode = '';
+                    $that.addContractInfo.contractName = '';
+                    $that.addContractInfo.allNum = _param.objId;
+                    $that._queryRoom();
+                }
+
                 $('#addContractModel').modal('show');
             });
             $('#addContractModel').on('show.bs.modal', function (e) {
@@ -309,7 +326,11 @@
                     ownerName: '',
                     link: '',
                     objId: '-1',
-                    objType: '1111'
+                    objType: '1111',
+                    contractParentId: '',
+                    parentContractCode: '',
+                    parentContractName: '',
+                    parentStateName: ''
                 };
             },
             _loadAddContractType: function () {
@@ -375,8 +396,7 @@
                     param.params.unitNum = _allNums[1].trim();
                     param.params.roomNum = _allNums[2].trim();
                 } else {
-                    vc.toast('房屋填写格式错误，请填写 楼栋-单元-房屋格式')
-                    return;
+                    param.params.roomId = _allNum;
                 }
 
                 //发送get请求
@@ -391,6 +411,8 @@
                             vc.toast('未找到房屋');
                             $that.addContractInfo.allNum = '';
                             return;
+                        } else {
+                            $that.addContractInfo.allNum = _rooms[0].floorNum + '-' + _rooms[0].unitNum + '-' + _rooms[0].roomNum;
                         }
 
                         $that.addContractInfo.roomId = _rooms[0].roomId;

@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 num: '',
+                listColumns: [],
                 conditions: {
                     num: '',
                     typeCd: '',
@@ -20,7 +21,10 @@
             }
         },
         _initMethod: function () {
-            vc.component._listParkingAreas(DEFAULT_PAGE, DEFAULT_ROWS);
+            
+            $that._getColumns(function () {
+                vc.component._listParkingAreas(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
         },
         _initEvent: function () {
             vc.on('parkingAreaManage', 'listParkingArea',
@@ -47,6 +51,7 @@
                         vc.component.parkingAreaManageInfo.total = _parkingAreaManageInfo.total;
                         vc.component.parkingAreaManageInfo.records = _parkingAreaManageInfo.records;
                         vc.component.parkingAreaManageInfo.parkingAreas = _parkingAreaManageInfo.parkingAreas;
+                        $that.dealParkingAreaAttr(_parkingAreaManageInfo.parkingAreas);
                         vc.emit('pagination', 'init', {
                             total: vc.component.parkingAreaManageInfo.records,
                             currentPage: _page
@@ -74,6 +79,46 @@
                 } else {
                     vc.component.parkingAreaManageInfo.moreCondition = true;
                 }
+            },
+            dealParkingAreaAttr: function (parkingAreas) {
+                parkingAreas.forEach(item => {
+                    $that._getColumnsValue(item);
+                });
+            },
+            _getColumnsValue: function (_parkingArea) {
+                _parkingArea.listValues = [];
+                if (!_parkingArea.hasOwnProperty('attrs') || _parkingArea.attrs.length < 1) {
+                    $that.parkingAreaManageInfo.listColumns.forEach(_value => {
+                        _parkingArea.listValues.push('');
+                    })
+                    return;
+                }
+                let _parkingAreaAttrDtos = _parkingArea.attrs;
+                $that.parkingAreaManageInfo.listColumns.forEach(_value => {
+                    let _tmpValue = '';
+                    _parkingAreaAttrDtos.forEach(_attrItem => {
+                        if (_value.specCd == _attrItem.specCd) {
+                            _tmpValue = _attrItem.value;
+                        }
+                    })
+                    _parkingArea.listValues.push(_tmpValue);
+                })
+            },
+            _getColumns: function (_call) {
+                console.log('_getColumns');
+                $that.parkingAreaManageInfo.listColumns = [];
+                vc.getAttrSpec('parking_area_attr', function (data) {
+                    $that.parkingAreaManageInfo.listColumns = [];
+                    data.forEach(item => {
+                        if (item.listShow == 'Y') {
+                            $that.parkingAreaManageInfo.listColumns.push({
+                                specCd: item.specCd,
+                                specName: item.specName
+                            });
+                        }
+                    });
+                    _call();
+                });
             }
         }
     });

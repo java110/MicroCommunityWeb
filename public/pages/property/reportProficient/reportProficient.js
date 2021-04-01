@@ -19,7 +19,7 @@
                     feeTypeCd: '',
                     startTime: '',
                     endTime: '',
-                    roomName: ''
+                    objName: ''
                 }
             }
         },
@@ -223,7 +223,7 @@
                         vc.component.reportProficientInfo.feeConfigDtos = _feeConfigs;
                         if (_feeConfigs.length > 0) {
                             $that.reportProficientInfo.conditions.configId = _feeConfigs[0].configId;
-                            $that.changeTab($that.reportProficientInfo._currentTab)
+                            //$that.changeTab($that.reportProficientInfo._currentTab)
                         }
                     },
                     function (errInfo, error) {

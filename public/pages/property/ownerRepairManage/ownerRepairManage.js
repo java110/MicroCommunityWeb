@@ -29,6 +29,9 @@
         _initMethod: function () {
             //vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._validateParam();
+            vc.getDict('r_repair_pool', "state", function (_data) {
+                vc.component.ownerRepairManageInfo.states = _data;
+            });
             vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表关联
             // vc.getDict('r_repair_pool', "repair_type", function (_data) {

@@ -52,8 +52,8 @@
                         <div class="col-sm-3" v-if="ownerRepairManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="ownerRepairManageInfo.conditions.state">
                                 <option selected value="">请选择报修状态</option>
-                                <option v-for="(item,index) in ownerRepairManageInfo.states" :key="index"
-                                        :value="item.statusCd">{{item.name}}
+                                <option v-for="(item,index) in ownerRepairManageInfo.states" :value="item.statusCd">
+                                    {{item.name}}
                                 </option>
                             </select>
                         </div>

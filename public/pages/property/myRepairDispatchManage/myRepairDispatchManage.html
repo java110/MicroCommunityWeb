@@ -48,8 +48,8 @@
                         <div class="col-sm-4" v-if="myRepairDispatchInfo.moreCondition == true">
                             <select class="custom-select" v-model="myRepairDispatchInfo.conditions.state">
                                 <option selected value="">请选择报修状态</option>
-                                <option v-for="(item,index) in myRepairDispatchInfo.states" :key="index"
-                                        :value="item.statusCd">{{item.name}}
+                                <option v-for="(item,index) in myRepairDispatchInfo.states" :value="item.statusCd">
+                                    {{item.name}}
                                 </option>
                             </select>
                         </div>
