@@ -23,7 +23,8 @@
                                 <option value="2002">不审核</option>
                                 <option value="3003">运营审核</option>
                                 <option value="4004">代理商审核</option>
-                            </select> </div>
+                            </select>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入类型编码"
@@ -60,19 +61,19 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">类型ID</th>
                                 <th class="text-center">类型名称</th>
                                 <th class="text-center">是否审核</th>
                                 <th class="text-center">描述</th>
+                                <th class="text-center">创建时间</th>
                                 <th class="text-right">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="contractType in contractTypeManageInfo.contractTypes">
-                                <td class="text-center">{{contractType.contractTypeId}}</td>
                                 <td class="text-center">{{contractType.typeName}}</td>
                                 <td class="text-center">{{contractType.auditName}}</td>
                                 <td class="text-center">{{contractType.remark}}</td>
+                                <td class="text-center">{{contractType.createTime}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"

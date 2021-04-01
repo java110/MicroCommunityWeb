@@ -19,7 +19,6 @@
         },
         methods:{
             deleteMenuGroup:function(){
-                vc.component.deleteMenuGroupInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteMenuGroup',
                     'delete',
