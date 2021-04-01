@@ -80,6 +80,9 @@
             },
             _printContract: function (_contract) {
                 window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType+"&contractId="+_contract.contractId);
+            },
+            _viewContract:function(_contract){
+               vc.jumpToPage("/admin.html#/pages/admin/contractDetailView?contractId="+_contract.contractId);
             }
         }
     });
