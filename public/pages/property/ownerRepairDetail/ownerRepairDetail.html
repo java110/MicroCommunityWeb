@@ -72,6 +72,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label">回访满意度:</label>
+                                        <label class="">{{ownerRepairDetailInfo.visitType=='1001'?'满意':'不满意'}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label class="col-form-label">回访内容:</label>
+                                        <label class="">{{ownerRepairDetailInfo.visitContext}}</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,9 +105,9 @@
                     <div>
                         <div class="row">
                             <div class="form-group margin-left"
-                                 v-for="(item,index) in ownerRepairDetailInfo.repairPhotos">
+                                v-for="(item,index) in ownerRepairDetailInfo.repairPhotos">
                                 <img style="width: 120px; height: 120px;" v-bind:src="item.url"
-                                     v-on:click="openFile(item)"/>
+                                    v-on:click="openFile(item)" />
                             </div>
                         </div>
                     </div>
@@ -113,9 +127,9 @@
                     <div>
                         <div class="row">
                             <div class="form-group margin-left"
-                                 v-for="(item,index) in ownerRepairDetailInfo.beforePhotos">
+                                v-for="(item,index) in ownerRepairDetailInfo.beforePhotos">
                                 <img style="width: 120px; height: 120px;" v-bind:src="item.url"
-                                     v-on:click="openFile(item)"/>
+                                    v-on:click="openFile(item)" />
                             </div>
                         </div>
                     </div>
@@ -135,9 +149,9 @@
                     <div>
                         <div class="row">
                             <div class="form-group margin-left"
-                                 v-for="(item,index) in ownerRepairDetailInfo.afterPhotos">
+                                v-for="(item,index) in ownerRepairDetailInfo.afterPhotos">
                                 <img style="width: 120px; height: 120px;" v-bind:src="item.url"
-                                     v-on:click="openFile(item)"/>
+                                    v-on:click="openFile(item)" />
                             </div>
                         </div>
                     </div>
@@ -157,24 +171,24 @@
                 <div class="ibox-content">
                     <table class="table table-stripped">
                         <thead>
-                        <tr>
-                            <th scope="col" class="text-center">序号</th>
-                            <th scope="col" class="text-center">处理人</th>
-                            <th scope="col" class="text-center">状态</th>
-                            <th scope="col" class="text-center">处理时间</th>
-                            <th scope="col" class="text-center">耗时</th>
-                            <th scope="col" class="text-center">意见</th>
-                        </tr>
+                            <tr>
+                                <th scope="col" class="text-center">序号</th>
+                                <th scope="col" class="text-center">处理人</th>
+                                <th scope="col" class="text-center">状态</th>
+                                <th scope="col" class="text-center">处理时间</th>
+                                <th scope="col" class="text-center">耗时</th>
+                                <th scope="col" class="text-center">意见</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(item,index) in ownerRepairDetailInfo.repairUsers">
-                            <td scope="row" class="text-center">{{index+1}}</td>
-                            <td class="text-center">{{item.staffName}}</td>
-                            <td class="text-center">{{item.stateName}}</td>
-                            <td class="text-center">{{item.endTime}}</td>
-                            <td class="text-center">{{item.duration}}</td>
-                            <td class="text-center">{{item.context}}</td>
-                        </tr>
+                            <tr v-for="(item,index) in ownerRepairDetailInfo.repairUsers">
+                                <td scope="row" class="text-center">{{index+1}}</td>
+                                <td class="text-center">{{item.staffName}}</td>
+                                <td class="text-center">{{item.stateName}}</td>
+                                <td class="text-center">{{item.endTime}}</td>
+                                <td class="text-center">{{item.duration}}</td>
+                                <td class="text-center">{{item.context}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

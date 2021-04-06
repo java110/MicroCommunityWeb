@@ -19,7 +19,9 @@
                 photos: [],
                 repairPhotos: [],
                 beforePhotos: [],
-                afterPhotos: []
+                afterPhotos: [],
+                visitType:'',
+                visitContext:''
             }
         },
         _initMethod: function () {
