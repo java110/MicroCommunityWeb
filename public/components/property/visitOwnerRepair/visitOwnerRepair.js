@@ -8,7 +8,6 @@
             }
         },
         _initMethod: function () {
-            vc.component._initEditOwnerRepairInfo();
         },
         _initEvent: function () {
            
