@@ -1,0 +1,166 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>合同信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-if="purchaseApplyDetailInfo.resOrderType == '10000'"
+                            v-on:click="_printPurchaseApply()">
+                            打印
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_callBackListPurchaseApply()">
+                            返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">合同名称：</label>
+                                <label class="">{{contractDetailInfo.contractName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">合同编号：</label>
+                                <label class="">{{contractDetailInfo.contractCode}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">合同类型：</label>
+                                <label class="">{{contractDetailInfo.contractType}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">甲方：</label>
+                                <label class="">{{contractDetailInfo.partyA}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">甲方联系人：</label>
+                                <label class="">{{contractDetailInfo.aContacts}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">甲方联系电话：</label>
+                                <label class="">{{contractDetailInfo.aLink}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">乙方：</label>
+                                <label class="">{{contractDetailInfo.partyB}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">乙方联系人：</label>
+                                <label class="">{{contractDetailInfo.bContacts}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">乙方联系电话：</label>
+                                <label class="">{{contractDetailInfo.bLink}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">经办人：</label>
+                                <label class="">{{contractDetailInfo.operator}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">联系电话：</label>
+                                <label class="">{{contractDetailInfo.operatorLink}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">合同金额：</label>
+                                <label class="">{{contractDetailInfo.amount}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">开始时间：</label>
+                                <label class="">{{contractDetailInfo.startTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">结束时间：</label>
+                                <label class="">{{contractDetailInfo.endTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">签订时间：</label>
+                                <label class="">{{contractDetailInfo.signingTime}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>工单流转</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th scope="col">序号</th>
+                                <th scope="col">处理人</th>
+                                <th scope="col">状态</th>
+                                <th scope="col">处理时间</th>
+                                <th scope="col">耗时</th>
+                                <th scope="col">意见</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                
+                            <tr v-for="(tItem,index) in auditUsers">
+                                <td>{{index+1}}</td>
+                                <td>{{tItem.auditName}}</td>
+                                <td>{{tItem.stateName}}</td>
+                                <td>{{tItem.auditTime}}</td>
+                                <td>{{tItem.duration}}</td>
+                                <td>{{tItem.message}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
