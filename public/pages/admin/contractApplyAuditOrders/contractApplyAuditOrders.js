@@ -72,8 +72,8 @@
             _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType);
+            _openDetailContractApplyModel:function(_auditOrder){
+                vc.jumpToPage("/admin.html#/pages/common/contractApplyDetail?applyOrderId="+_auditOrder.contractId+"&resOrderType="+_auditOrder.resOrderType);
             },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
