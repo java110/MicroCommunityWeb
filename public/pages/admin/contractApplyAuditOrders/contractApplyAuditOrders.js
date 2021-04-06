@@ -18,7 +18,7 @@
                     userName: '',
                     auditLink: '',
                 },
-                orderInfo:'',
+                orderInfo:{},
                 procure:false
             }
         },
@@ -73,16 +73,15 @@
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openDetailContractApplyModel:function(_auditOrder){
-                vc.jumpToPage("/admin.html#/pages/common/contractApplyDetail?applyOrderId="+_auditOrder.contractId+"&resOrderType="+_auditOrder.resOrderType);
+                vc.jumpToPage("/admin.html#/pages/common/contractApplyDetail?contractId="+_auditOrder.contractId);
             },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
                 console.log("提交得参数："+_auditInfo);
                 _auditInfo.taskId = vc.component.contractApplyAuditOrdersInfo.orderInfo.taskId;
-                _auditInfo.applyOrderId = vc.component.contractApplyAuditOrdersInfo.orderInfo.applyOrderId;
+                _auditInfo.contractId = vc.component.contractApplyAuditOrdersInfo.orderInfo.contractId;
                 //发送get请求
-                vc.http.post('contractApplyAuditOrders',
-                    'audit',
+                vc.http.apiPost('/contract/needAuditContract',
                     JSON.stringify(_auditInfo),
                     {
                         emulateJSON: true
@@ -99,13 +98,12 @@
             _finishAuditOrder:function(_auditOrder){
                 let _auditInfo = {
                     taskId: _auditOrder.taskId,
-                    applyOrderId: _auditOrder.applyOrderId,
+                    contractId: _auditOrder.contractId,
                     state:'1200',
                     remark:'处理结束'
                 };
                 //发送get请求
-                vc.http.post('contractApplyAuditOrders',
-                    'audit',
+                vc.http.post('/contract/needAuditContract',
                     JSON.stringify(_auditInfo),
                     {
                         emulateJSON: true

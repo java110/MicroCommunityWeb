@@ -5,12 +5,10 @@
                 <div class="ibox-title">
                     <h5>合同信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-if="purchaseApplyDetailInfo.resOrderType == '10000'"
-                            v-on:click="_printPurchaseApply()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_printContract()">
                             打印
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm"
-                            v-on:click="_callBackListPurchaseApply()">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_goback()">
                             返回
                         </button>
                     </div>
@@ -147,7 +145,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                
+
                             <tr v-for="(tItem,index) in auditUsers">
                                 <td>{{index+1}}</td>
                                 <td>{{tItem.auditName}}</td>

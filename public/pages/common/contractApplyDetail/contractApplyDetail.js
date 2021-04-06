@@ -30,41 +30,34 @@
             auditUsers: []
         },
         _initMethod: function () {
-            vc.component.contractDetailInfo.contractId = vc.getParam('applyOrderId');
-            vc.component.contractDetailInfo.resOrderType = vc.getParam('resOrderType');
-            vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component.contractDetailInfo.contractId = vc.getParam('contractId');
+            vc.component._listContractApply(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._loadAuditUser();
         },
         _initEvent: function () {
 
         },
         methods: {
-            _listPurchaseApply: function (_page, _rows) {
+            _listContractApply: function (_page, _rows) {
                 var param = {
                     params: {
                         page: _page,
                         row: _rows,
-                        contractId: vc.component.contractDetailInfo.contractId,
-                        resOrderType: vc.component.contractDetailInfo.resOrderType,
+                        contractId: vc.component.contractDetailInfo.contractId
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('/contract/queryContract',
                     param,
                     function (json) {
-                        console.log('json',json);
-                        var _purchaseApplyDetailInfo = JSON.parse(json);
-                        var _purchaseApply = _purchaseApplyDetailInfo[0];
-                        vc.copyObject(_purchaseApply, vc.component.contractDetailInfo);
+                        console.log('json', json);
+                        var _contractApplyDetailInfo = JSON.parse(json);
+                        var _contractApply = _contractApplyDetailInfo.data[0];
+                        vc.copyObject(_contractApply, vc.component.contractDetailInfo);
                     }, function () {
                         console.log('请求失败处理');
                     }
                 );
-
-
-
-
-                
             },
             _loadAuditUser: function () {
                 var param = {
@@ -85,12 +78,12 @@
                     }
                 );
             },
-            _callBackListPurchaseApply: function () {
+            _goback: function () {
                 vc.getBack();
             },
-            _printPurchaseApply:function(){
-                window.open("/print.html#/pages/property/printPurchaseApply?applyOrderId="+$that.contractDetailInfo.contractId+"&resOrderType="+$that.contractDetailInfo.resOrderType)
-                //vc.emit('printPurchaseApply', 'openPrintPurchaseApplyModal',vc.component.contractDetailInfo);
+            _printContract: function () {
+                let _contract = $that.contractDetailInfo;
+                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType + "&contractId=" + _contract.contractId);
             }
         }
     });

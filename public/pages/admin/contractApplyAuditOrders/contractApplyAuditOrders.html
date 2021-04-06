@@ -34,7 +34,7 @@
                                     </div>
                                     <div>
                                         <div class="btn-group"
-                                            v-if="contractApplyAuditOrdersInfo.currentUserId != auditOrder.userId">
+                                            v-if="contractApplyAuditOrdersInfo.currentUserId != auditOrder.startUserId">
                                             <button class="btn-white btn btn-xs"
                                                 v-on:click="_openAuditOrderModel(auditOrder)">审批
                                             </button>
@@ -62,5 +62,5 @@
             </div>
         </div>
     </div>
-    <vc:create path="common/audit" callBackListener="myAuditOrders" callBackFunction="notifyAudit"></vc:create>
+    <vc:create path="common/audit" callBackListener="contractApplyAuditOrders" callBackFunction="notifyAudit"></vc:create>
 </div>

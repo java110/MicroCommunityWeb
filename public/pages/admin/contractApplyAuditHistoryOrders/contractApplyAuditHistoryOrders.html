@@ -23,27 +23,14 @@
                             <tr v-for="auditOrder in contractApplyAuditOrdersInfo.contractApplyAuditOrders">
                                 <td class="text-center">{{auditOrder.contractCode}}</td>
                                 <td class="text-center">{{auditOrder.contractName}}</td>
-                                <td class="text-center">{{auditOrder.resOrderTypeName}}</td>
+                                <td class="text-center">{{auditOrder.contractTypeName}}</td>
                                 <td class="text-center">{{auditOrder.stateName}}</td>
-                                <td class="text-center">{{auditOrder.createTime}}</td>
+                                <td class="text-center">{{auditOrder.signingTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDetailPurchaseApplyModel(auditOrder)">查看
                                         </button>
-                                    </div>
-                                    <div>
-                                        <div class="btn-group"
-                                            v-if="contractApplyAuditOrdersInfo.currentUserId != auditOrder.userId">
-                                            <button class="btn-white btn btn-xs"
-                                                v-on:click="_openAuditOrderModel(auditOrder)">审批
-                                            </button>
-                                        </div>
-                                        <div class="btn-group" v-else>
-                                            <button class="btn-white btn btn-xs"
-                                                v-on:click="_finishAuditOrder(auditOrder)">结束
-                                            </button>
-                                        </div>
                                     </div>
                                 </td>
                             </tr>
