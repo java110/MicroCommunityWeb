@@ -15,12 +15,15 @@
                 conditions: {
                     resId: '',
                     resName: '',
-                    resCode: ''
-                }
+                    resCode: '',
+                    shId: ''
+                },
+                storehouses: []
             }
         },
         _initMethod: function () {
             vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listStorehouses();
         },
         _initEvent: function () {
             vc.on('resourceStoreManage', 'listResourceStore', function (_param) {
@@ -92,6 +95,9 @@
             _openEditResourceStoreModel: function (_resourceStore) {
                 vc.emit('editResourceStore', 'openEditResourceStoreModal', _resourceStore);
             },
+            _openAllocationStorehouseModel: function (_resourceStore) {
+                vc.emit('allocationStorehouse', 'openAllocationStorehouseModal', _resourceStore);
+            },
             _openDeleteResourceStoreModel: function (_resourceStore) {
                 vc.emit('deleteResourceStore', 'openDeleteResourceStoreModal', _resourceStore);
             },
@@ -109,7 +115,27 @@
                 } else {
                     vc.component.resourceStoreManageInfo.moreCondition = true;
                 }
-            }
+            },
+            _listStorehouses: function (_page, _rows) {
+
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listStorehouses',
+                    param,
+                    function (json, res) {
+                        var _storehouseManageInfo = JSON.parse(json);
+                        vc.component.resourceStoreManageInfo.storehouses = _storehouseManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);

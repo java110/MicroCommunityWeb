@@ -36,7 +36,8 @@
                         page:_page,
                         row:_row,
                         communityId:vc.getCurrentCommunity().communityId,
-                        resOrderType:vc.component.chooseResourceStoreInfo2.resOrderType
+                        resOrderType:vc.component.chooseResourceStoreInfo2.resOrderType,
+                        shType:'2806'
                     }
                 };
 
