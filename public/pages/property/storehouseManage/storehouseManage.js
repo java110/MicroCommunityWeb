@@ -37,6 +37,7 @@
 
                 vc.component.storehouseManageInfo.conditions.page = _page;
                 vc.component.storehouseManageInfo.conditions.row = _rows;
+                vc.component.storehouseManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.storehouseManageInfo.conditions
                 };

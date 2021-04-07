@@ -121,7 +121,8 @@
                 var param = {
                     params: {
                         page: 1,
-                        row: 100
+                        row: 100,
+                        communityId:vc.getCurrentCommunity().communityId
                     }
                 };
 

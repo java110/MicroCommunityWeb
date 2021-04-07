@@ -6,11 +6,11 @@
                 resName: '',
                 resCode: '',
                 remark: '',
-                stock:0,
-                curStock:0,
-                shId: '',
-                curShId:'',
-                shName:'',
+                stock: 0,
+                curStock: 0,
+                shIdz: '',
+                shIda: '',
+                shName: '',
                 storehouses: []
             }
         },
@@ -25,7 +25,7 @@
                 _that.resName = _param.resName;
                 _that.curStock = _param.stock;
                 _that.shName = _param.shName;
-                _that.curShId = _param.shId;
+                _that.shIda = _param.shId;
                 $('#allocationStorehouseModel').modal('show');
             });
         },
@@ -34,114 +34,59 @@
                 return vc.validate.validate({
                     allocationStorehouseInfo: vc.component.allocationStorehouseInfo
                 }, {
-                    'allocationStorehouseInfo.resName': [
+                    'allocationStorehouseInfo.resId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "物品名称不能为空"
-                        },
-                        {
-                            limit: "maxin",
-                            param: "2,100",
-                            errInfo: "物品名称长度为2至100"
-                        },
+                        }
                     ],
-                    'allocationStorehouseInfo.resCode': [
+                    'allocationStorehouseInfo.remark': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "备注不能为空"
+                        },
                         {
                             limit: "maxLength",
-                            param: "50",
-                            errInfo: "物品编码不能超过50位"
-                        },
+                            param: "512",
+                            errInfo: "备注太长"
+                        }
                     ],
-                    'allocationStorehouseInfo.price': [
+                    'allocationStorehouseInfo.stock': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "物品价格不能为空"
+                            errInfo: "调拨数量不能为空"
                         },
                         {
-                            limit: "money",
+                            limit: "num",
                             param: "",
-                            errInfo: "物品价格格式错误"
+                            errInfo: "调拨数量必须为正整数"
                         },
                     ],
-                    'allocationStorehouseInfo.description': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "描述不能为空"
-                        },
-                    ],
-                    'allocationStorehouseInfo.showMobile': [
+                    'allocationStorehouseInfo.shIdz': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "手机端显示不能为空"
-                        },
-                    ],
-                    'allocationStorehouseInfo.outLowPrice': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "最低收费标准不能为空"
-                        },
-                        {
-                            limit: "money",
-                            param: "",
-                            errInfo: "收费标准格式错误"
-                        },
-                    ],
-                    'allocationStorehouseInfo.outHighPrice': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "最高收费标准不能为空"
-                        },
-                        {
-                            limit: "money",
-                            param: "",
-                            errInfo: "收费标准格式错误"
-                        },
-                    ],
-                    'allocationStorehouseInfo.unitCode': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "单位不能为空"
-                        },
-                    ],
-                    'allocationStorehouseInfo.goodsType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "物品类型不能为空"
-                        },
-                    ],
-                    'allocationStorehouseInfo.shId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "仓库不能为空"
-                        },
-                    ],
+                            errInfo: "目标仓库不能为空"
+                        }
+                    ]
                 });
             },
-            saveResourceStoreInfo: function () {
-                if (!vc.component.allocationStorehouseValidate()) {
+            _allocationStorehouse: function () {
+                if (!$that.allocationStorehouseValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.allocationStorehouseInfo.communityId = vc.getCurrentCommunity().communityId;
-
-                vc.http.post(
-                    'allocationStorehouse',
-                    'save',
+                $that.allocationStorehouseInfo.communityId = vc.getCurrentCommunity().communityId;
+                vc.http.apiPost(
+                    'resourceStore.saveAllocationStorehouse',
                     JSON.stringify(vc.component.allocationStorehouseInfo),
                     {
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
                             $('#allocationStorehouseModel').modal('hide');
@@ -158,24 +103,19 @@
             },
             clearAllocationStorehouseInfo: function () {
                 vc.component.allocationStorehouseInfo = {
+                    resId: '',
                     resName: '',
                     resCode: '',
-                    price: '',
-                    description: '',
-                    outLowPrice: '',
-                    outHighPrice: '',
-                    showMobile: '',
                     remark: '',
-                    goodsType: '',
-                    goodsTypes: [],
-                    unitCode: '',
-                    shId: '',
-                    unitCodes: [],
+                    stock: 0,
+                    curStock: 0,
+                    shIdz: '',
+                    shIda: '',
+                    shName: '',
                     storehouses: []
                 };
             },
             _listAllocationStorehouse: function (_page, _rows) {
-
                 var param = {
                     params: {
                         page: 1,

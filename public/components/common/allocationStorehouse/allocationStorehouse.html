@@ -31,10 +31,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">目标仓库</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="allocationStorehouseInfo.shId">
+                                    <select class="custom-select" v-model="allocationStorehouseInfo.shIdz">
                                         <option selected disabled value="">必填，请选择仓库</option>
                                         <option v-for="(item,index) in allocationStorehouseInfo.storehouses"
-                                            :key="index" v-bind:value="item.shId" v-if="item.shId != allocationStorehouseInfo.curShId">
+                                            :key="index" v-bind:value="item.shId" v-if="item.shId != allocationStorehouseInfo.shIda">
                                             {{item.shName}}
                                         </option>
                                     </select>
@@ -50,7 +50,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">备注</label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="选填，请填写备注" class="form-control"
+                                    <textarea placeholder="必填，请填写备注" class="form-control"
                                         v-model="allocationStorehouseInfo.remark">
                                     </textarea>
                                 </div>

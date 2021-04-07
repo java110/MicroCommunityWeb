@@ -200,7 +200,8 @@
                     params: {
                         page: 1,
                         row: 100,
-                        shType: '2806'
+                        shType: '2806',
+                        communityId:vc.getCurrentCommunity().communityId
                     }
                 };
 
