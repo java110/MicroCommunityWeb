@@ -62,7 +62,7 @@
                 vc.jumpToPage('/admin.html#/pages/admin/contractChangeDetail?param=' + _param)
             },
             _openDeleteContractModel: function (_contract) {
-                vc.emit('deleteContract', 'openDeleteContractModal', _contract);
+                vc.emit('deleteContractChange', 'openDeleteContractPlanModal', _contract);
             },
             _toContractDetails:function(_contract){
                 vc.jumpToPage('/admin.html#/pages/admin/contractChangeDetails?planId=' + _contract.planId)
