@@ -24,7 +24,6 @@
         },
         _initMethod: function () {
             vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
-            $that._loadStepStaff();
         },
         _initEvent: function () {
 
@@ -49,14 +48,13 @@
                 };
 
                 //发送get请求
-                vc.http.get('myAuditOrders',
-                    'list',
+                vc.http.apiGet('resourceStore.listAllocationStoreAuditOrders',
                     param,
                     function (json, res) {
                         var _allocationStorehouseAuditOrdersInfo = JSON.parse(json);
                         vc.component.allocationStorehouseAuditOrdersInfo.total = _allocationStorehouseAuditOrdersInfo.total;
                         vc.component.allocationStorehouseAuditOrdersInfo.records = _allocationStorehouseAuditOrdersInfo.records;
-                        vc.component.allocationStorehouseAuditOrdersInfo.auditOrders = _allocationStorehouseAuditOrdersInfo.resourceOrders;
+                        vc.component.allocationStorehouseAuditOrdersInfo.auditOrders = _allocationStorehouseAuditOrdersInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.allocationStorehouseAuditOrdersInfo.records,
                             currentPage: _page
@@ -77,10 +75,9 @@
             _auditOrderInfo: function (_auditInfo) {
                 console.log("提交得参数：" + _auditInfo);
                 _auditInfo.taskId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.taskId;
-                _auditInfo.applyOrderId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.applyOrderId;
+                _auditInfo.asId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.asId;
                 //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
+                vc.http.apiPost('resourceStore.auditAllocationStoreOrder',
                     JSON.stringify(_auditInfo),
                     {
                         emulateJSON: true
@@ -97,13 +94,12 @@
             _finishAuditOrder: function (_auditOrder) {
                 let _auditInfo = {
                     taskId: _auditOrder.taskId,
-                    applyOrderId: _auditOrder.applyOrderId,
+                    asId: _auditOrder.asId,
                     state: '1200',
                     remark: '处理结束'
                 };
                 //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
+                vc.http.apiPost('resourceStore.auditAllocationStoreOrder',
                     JSON.stringify(_auditInfo),
                     {
                         emulateJSON: true
