@@ -10,6 +10,7 @@
                 feeReceipts: [],
                 objType: '3333',
                 objId: '',
+                payObjId:'',
                 roomId: '',
                 carId: '',
                 total: '',
@@ -17,6 +18,7 @@
                 ownerId: '',
                 ownerCars: [],
                 selectReceipts: [],
+                ownerFlag:'',
                 quan: false
             }
         },
@@ -44,6 +46,7 @@
                 $that.clearSimplifyFeeReceiptInfo();
                 vc.copyObject(_param, $that.simplifyFeeReceiptInfo);
                 $that.simplifyFeeReceiptInfo.objId = _param.roomId;
+                $that.simplifyFeeReceiptInfo.payObjId = _param.ownerId;
                 $that._listSimplifyFeeReceipt(DEFAULT_PAGE, DEFAULT_ROWS);
             });
 
@@ -74,6 +77,11 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
+                //根据业主去查询
+                if( $that.simplifyFeeReceiptInfo.ownerFlag == 'T'){
+                    param.params.objId = '';
+                    param.params.payObjId = $that.simplifyFeeReceiptInfo.payObjId;
+                }
                 //发送get请求
                 vc.http.apiGet('/feeReceipt/queryFeeReceipt',
                     param,
@@ -92,7 +100,7 @@
                 );
             },
             _queryFeeReceiptMethod: function () {
-                vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listSimplifyFeeReceipt(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _printFeeReceipt: function (_receipt) {
                 if ($that.simplifyFeeReceiptInfo.selectReceipts.length < 1) {
@@ -135,6 +143,7 @@
                     ownerId: '',
                     ownerCars: [],
                     selectReceipts: [],
+                    ownerFlag:'',
                     quan: false
                 }
             },

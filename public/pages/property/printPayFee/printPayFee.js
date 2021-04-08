@@ -12,7 +12,8 @@
                 feeTime: '',
                 wechatName: '',
                 content: '',
-                qrImg: ''
+                qrImg: '',
+                payObjName:''
             },
             printFlag: '0'
         },
@@ -64,6 +65,7 @@
                         $that.printPayFeeInfo.roomName = _feeReceipt[0].objName;
                         $that.printPayFeeInfo.feeTime = _feeReceipt[0].createTime;
                         $that.printPayFeeInfo.receiptNum = _feeReceipt[0].receiptId;
+                        $that.printPayFeeInfo.payObjName = _feeReceipt[0].payObjName;
 
                         $that._loadReceiptDetail();
 
