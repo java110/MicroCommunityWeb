@@ -18,7 +18,7 @@
                 ownerId: '',
                 ownerCars: [],
                 selectReceipts: [],
-                ownerFlag:'',
+                ownerFlag:'F',
                 quan: false
             }
         },
@@ -143,7 +143,7 @@
                     ownerId: '',
                     ownerCars: [],
                     selectReceipts: [],
-                    ownerFlag:'',
+                    ownerFlag:'F',
                     quan: false
                 }
             },

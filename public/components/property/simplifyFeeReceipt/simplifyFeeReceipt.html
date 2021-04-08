@@ -18,9 +18,8 @@
         <div class="col-lg-2 padding-right-xs padding-left-xl">
             <select class="custom-select custom-select-sm" v-model="simplifyFeeReceiptInfo.ownerFlag"
                 @change="_queryFeeReceiptMethod()">
-                <option selected value="">选择是否按业主来查询</option>
-                <option value="F">不按业主查询</option>
-                <option value="T">按业主查询</option>
+                <option value="F">当前{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}</option>
+                <option value="T">全部{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}</option>
             </select>
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '6666'">
