@@ -12,7 +12,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="resourceStoreManageInfo.conditions.shId">
-                                    <option selected disabled value="">必填，请选择仓库</option>
+                                    <option selected  value="">必填，请选择仓库</option>
                                     <option v-for="(item,index) in resourceStoreManageInfo.storehouses" :key="index"
                                         v-bind:value="item.shId">
                                         {{item.shName}}

@@ -77,7 +77,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId:vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
 
@@ -92,6 +92,9 @@
                     }
                 );
             },
+            _toDetail: function (_item) {
+                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
+            }
         }
     });
 })(window.vc);

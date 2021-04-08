@@ -34,7 +34,7 @@
                 vc.component._listAuditOrders(_currentPage, DEFAULT_ROWS);
             });
 
-            vc.on('myAuditOrders', 'notifyAudit', function (_auditInfo) {
+            vc.on('allocationStorehouseAuditOrders', 'notifyAudit', function (_auditInfo) {
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
@@ -112,6 +112,9 @@
                         vc.toast("处理失败：" + errInfo);
                     }
                 );
+            },
+            _toDetail: function (_item) {
+                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
             }
         }
     });

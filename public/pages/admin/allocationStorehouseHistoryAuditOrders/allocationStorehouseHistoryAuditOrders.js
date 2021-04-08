@@ -48,7 +48,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('resourceStore.listAllocationStoreAuditOrders',
+                vc.http.apiGet('resourceStore.listAllocationStoreHisAuditOrders',
                     param,
                     function (json, res) {
                         var _allocationStorehouseHistoryAuditOrdersInfo = JSON.parse(json);
@@ -71,6 +71,9 @@
             _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            _toDetail: function (_item) {
+                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
+            }
         }
     });
 })(window.vc);
