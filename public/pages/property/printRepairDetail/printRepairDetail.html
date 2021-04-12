@@ -52,7 +52,15 @@
                         <td>位置：{{printRepairDetailInfo.repairObjName}}</td>
                     </tr>
                     <tr>
-                        <td colspan="3">报修内容：{{printRepairDetailInfo.context}}</td>
+                        <td>报修内容：{{printRepairDetailInfo.context}}</td>
+                        <td v-if="printRepairDetailInfo.maintenanceType != null && printRepairDetailInfo.maintenanceType != ''">报修类型：
+                            <span v-if="printRepairDetailInfo.maintenanceType == '1001'">有偿服务</span>
+                            <span v-else>无偿服务</span>
+                        </td>
+                        <td v-if="printRepairDetailInfo.maintenanceType == '1001'">报修用料：{{printRepairDetailInfo.repairMaterials}}</td>
+                    </tr>
+                    <tr v-if="printRepairDetailInfo.maintenanceType == '1001'">
+                        <td colspan="3">费用明细：{{printRepairDetailInfo.repairFee}}元 &nbsp;&nbsp;(单价*数量)</td>
                     </tr>
                 </tbody>
             </table>

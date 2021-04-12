@@ -72,7 +72,7 @@
                             return {
                                 name: _term,
                                 page: 1,
-                                row: 10,
+                                row: 50,
                                 parentOrgId:this.staffSelect2Info.companyId,
                                 departmentOrgId:this.staffSelect2Info.departmentId,
                                 communityId: vc.getCurrentCommunity().communityId

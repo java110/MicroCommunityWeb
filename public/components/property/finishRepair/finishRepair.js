@@ -20,7 +20,11 @@
                 conditions: {
                     goodsType: '',
                     resId: ''
-                }
+                },
+                selectedGoodsInfo: {},
+                useNumber: 1,
+                totalPrice: 0,
+                resId: ''
             }
         },
         _initMethod: function () {
@@ -88,6 +92,13 @@
                             errInfo: "商品价格格式错误"
                         },
                     ],
+                    'finishRepairInfo.useNumber': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "商品数量不能为零"
+                        }
+                    ],
                     'finishRepairInfo.context': [
                         {
                             limit: "required",
@@ -126,6 +137,10 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+                if (vc.component.finishRepairInfo.publicArea == 'T' || vc.component.finishRepairInfo.maintenanceType == '1002'){
+                    // 无偿服务 修改商品数量为零
+                    vc.component.finishRepairInfo.useNumber = 0;
+                }
                 vc.component.finishRepairInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'ownerRepair.repairFinish',
@@ -150,9 +165,10 @@
                         vc.toast(errInfo);
                     });
             },
-            //选择商品
+            //选择商品类型
             _choseGoods: function () {
                 vc.component.finishRepairInfo.conditions.resId = '';
+                vc.component.finishRepairInfo.resId = '';
                 var select = document.getElementById("goods");
                 vc.component.finishRepairInfo.conditions.goodsType = select.value;
                 if (vc.component.finishRepairInfo.conditions.goodsType == null || vc.component.finishRepairInfo.conditions.goodsType == '') {
@@ -174,10 +190,18 @@
                     }
                 );
             },
-            //选择价格
+            //选择商品
             _chosePrice: function () {
+                var _that = this;
                 var select = document.getElementById("goodsPrice");
                 vc.component.finishRepairInfo.conditions.resId = select.value;
+                vc.component.finishRepairInfo.resId = select.value;
+                // 保存选中的商品信息
+                vc.component.finishRepairInfo.resourceStores.forEach((item) => {
+                    if(item.resId == select.value){
+                        vc.component.finishRepairInfo.selectedGoodsInfo = item;
+                    }
+                })
                 if (vc.component.finishRepairInfo.conditions.resId == null || vc.component.finishRepairInfo.conditions.resId == '') {
                     return;
                 }
@@ -194,6 +218,7 @@
                         } else {
                             vc.component.finishRepairInfo.price = '';
                         }
+                        _that._updateTotalPrice();
                         vc.component.finishRepairInfo.outLowPrice = _prices.data[0].outLowPrice;
                         vc.component.finishRepairInfo.outHighPrice = _prices.data[0].outHighPrice;
                     }, function (errInfo, error) {
@@ -201,6 +226,39 @@
                     }
                 );
             },
+
+            // 监听价格变化 更新总金额
+            singlePriceChanged: function(){
+              this._updateTotalPrice();  
+            },
+
+            // 商品数量减少
+            _useNumDec: function(){
+                if (vc.component.finishRepairInfo.useNumber <= 1){
+                    vc.toast("不能再减少了");
+                    return;
+                }
+                vc.component.finishRepairInfo.useNumber -= 1;
+                this._updateTotalPrice();
+            },
+
+            // 商品数量增加
+            _useNumInc: function () {
+                var goodsInfo = vc.component.finishRepairInfo.selectedGoodsInfo;
+                if (vc.component.finishRepairInfo.useNumber >= goodsInfo.stock){
+                    vc.toast("库存不足");
+                    return;
+                }
+                vc.component.finishRepairInfo.useNumber += 1;
+                this._updateTotalPrice();
+            },
+
+            // 更新总金额
+            _updateTotalPrice: function(){
+                let totalPrice = vc.component.finishRepairInfo.useNumber * vc.component.finishRepairInfo.price
+                vc.component.finishRepairInfo.totalPrice = totalPrice.toFixed(2);
+            },
+
             clearFinishRepairInfo: function () {
                 vc.component.finishRepairInfo = {
                     repairId: '',
@@ -219,7 +277,11 @@
                     conditions: {
                         goodsType: '',
                         resId: ''
-                    }
+                    },
+                    selectedGoodsInfo: {},
+                    useNumber: 1,
+                    totalPrice: 0,
+                    resId: ''
                 };
             }
         }

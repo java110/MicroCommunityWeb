@@ -11,6 +11,9 @@
                 repairObjName: '',
                 context: '',
                 repairUsers: [],
+                maintenanceType: '',
+                repairMaterials: '',
+                repairFee: '',
             },
             printFlag:'0',
             nowTime: ''

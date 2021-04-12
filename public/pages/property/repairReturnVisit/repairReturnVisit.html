@@ -88,7 +88,7 @@
                                 <td class="text-center">{{repairPool.appointmentTime}}</td>
                                 
                                 <td class="text-center">
-                                    <div class="btn-group">
+                                    <div class="btn-group" v-if="!repairPool.visitId">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditOwnerRepairModel(repairPool)">回访
                                         </button>
