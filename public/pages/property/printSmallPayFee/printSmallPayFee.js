@@ -12,7 +12,8 @@
                 feeTime: '',
                 wechatName: '',
                 content: '',
-                qrImg: ''
+                qrImg: '',
+                payObjName:''
             },
             printFlag: '0'
         },
@@ -64,6 +65,8 @@
                         $that.printSmallPayFeeInfo.roomName = _feeReceipt[0].objName;
                         $that.printSmallPayFeeInfo.feeTime = _feeReceipt[0].createTime;
                         $that.printSmallPayFeeInfo.receiptNum = _feeReceipt[0].receiptId;
+                        $that.printSmallPayFeeInfo.payObjName = _feeReceipt[0].payObjName;
+                        
 
                         $that._loadReceiptDetail();
 

@@ -20,21 +20,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="auditOrder in contractApplyAuditOrdersInfo.contractApplyAuditOrders">
+                            <tr v-for="auditOrder in contractChangeAuditOrdersInfo.contractChangeAuditOrders">
                                 <td class="text-center">{{auditOrder.contractCode}}</td>
                                 <td class="text-center">{{auditOrder.contractName}}</td>
-                                <td class="text-center">{{auditOrder.resOrderTypeName}}</td>
+                                <td class="text-center">{{auditOrder.contractTypeName}}</td>
                                 <td class="text-center">{{auditOrder.stateName}}</td>
                                 <td class="text-center">{{auditOrder.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDetailPurchaseApplyModel(auditOrder)">查看
+                                            v-on:click="_viewChangeDetail(auditOrder)">查看
                                         </button>
                                     </div>
                                     <div>
                                         <div class="btn-group"
-                                            v-if="contractApplyAuditOrdersInfo.currentUserId != auditOrder.userId">
+                                            v-if="contractChangeAuditOrdersInfo.currentUserId != auditOrder.changePerson">
                                             <button class="btn-white btn btn-xs"
                                                 v-on:click="_openAuditOrderModel(auditOrder)">审批
                                             </button>
@@ -62,5 +62,5 @@
             </div>
         </div>
     </div>
-    <vc:create path="common/audit" callBackListener="myAuditOrders" callBackFunction="notifyAudit"></vc:create>
+    <vc:create path="common/audit" callBackListener="contractChangeAuditOrders" callBackFunction="notifyAudit"></vc:create>
 </div>

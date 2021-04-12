@@ -19,7 +19,9 @@
                 showMobile: '',
                 description: '',
                 remark: '',
-                photos: []
+                shId: '',
+                photos: [],
+                storehouses: []
             }
         },
         _initMethod: function () {
@@ -34,6 +36,7 @@
         },
         _initEvent: function () {
             vc.on('addResourceStore', 'openAddResourceStoreModal', function () {
+                $that._listAddStorehouses();
                 $('#addResourceStoreModel').modal('show');
             });
             vc.on("addResourceStore", "notifyUploadImage", function (_param) {
@@ -128,6 +131,13 @@
                             errInfo: "物品类型不能为空"
                         },
                     ],
+                    'addResourceStoreInfo.shId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "仓库不能为空"
+                        },
+                    ],
                 });
             },
             saveResourceStoreInfo: function () {
@@ -178,10 +188,35 @@
                     goodsType: '',
                     goodsTypes: [],
                     unitCode: '',
+                    shId: '',
                     unitCodes: [],
-                    photos: []
+                    photos: [],
+                    storehouses: []
                 };
-            }
+            },
+            _listAddStorehouses: function (_page, _rows) {
+
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        shType: '2806',
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listStorehouses',
+                    param,
+                    function (json, res) {
+                        let _storehouseManageInfo = JSON.parse(json);
+                        vc.component.addResourceStoreInfo.storehouses = _storehouseManageInfo.data;
+                     
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);

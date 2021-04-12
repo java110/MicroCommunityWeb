@@ -65,89 +65,17 @@
                     }
                 );
             },
-            _openAuditOrderModel: function (_auditOrder) {
-                vc.component.contractApplyAuditOrdersInfo.orderInfo = _auditOrder;
-                vc.emit('audit','openAuditModal',{});
-            },
+           
             _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openDetailPurchaseApplyModel:function(_purchaseApply){
                 vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType);
             },
-            //提交审核信息
-            _auditOrderInfo: function (_auditInfo) {
-                console.log("提交得参数："+_auditInfo);
-                _auditInfo.taskId = vc.component.contractApplyAuditOrdersInfo.orderInfo.taskId;
-                _auditInfo.applyOrderId = vc.component.contractApplyAuditOrdersInfo.orderInfo.applyOrderId;
-                //发送get请求
-                vc.http.post('contractApplyAuditOrders',
-                    'audit',
-                    JSON.stringify(_auditInfo),
-                    {
-                        emulateJSON: true
-                    },
-                    function (json, res) {
-                        vc.toast("处理成功");
-                        vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                        vc.toast("处理失败：" + errInfo);
-                    }
-                );
-            },
-            _finishAuditOrder:function(_auditOrder){
-                let _auditInfo = {
-                    taskId: _auditOrder.taskId,
-                    applyOrderId: _auditOrder.applyOrderId,
-                    state:'1200',
-                    remark:'处理结束'
-                };
-                //发送get请求
-                vc.http.post('contractApplyAuditOrders',
-                    'audit',
-                    JSON.stringify(_auditInfo),
-                    {
-                        emulateJSON: true
-                    },
-                    function (json, res) {
-                        vc.toast("处理成功");
-                        vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                        vc.toast("处理失败：" + errInfo);
-                    }
-                );
-            },
-            _loadStepStaff: function () {
-
-                var param = {
-                    params: {
-                        page:1,
-                        row:1,
-                        staffId: $that.contractApplyAuditOrdersInfo.currentUserId,
-                        staffRole: '2002'
-                    }
-                };
-
-                //发送get请求
-                vc.http.apiGet('workflow.listWorkflowStepStaffs',
-                    param,
-                    function (json, res) {
-                        var _json = JSON.parse(json);
-                        if(_json.data.length > 0){
-                            $that.contractApplyAuditOrdersInfo.procure = true;
-                        }
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-
-            _procureEnterOrder:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/resourceEnterManage?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType+"&taskId="+_purchaseApply.taskId);
+            
+            _viewChangeDetail: function (_plan) {
+                vc.jumpToPage("/admin.html#/pages/admin/contractChangeDetails?planId=" + _plan.planId);
             }
-
 
         }
     });

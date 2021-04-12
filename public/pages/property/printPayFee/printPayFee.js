@@ -12,7 +12,9 @@
                 feeTime: '',
                 wechatName: '',
                 content: '',
-                qrImg: ''
+                qrImg: '',
+                payObjName:'',
+                feeReceipt:[]
             },
             printFlag: '0'
         },
@@ -64,6 +66,8 @@
                         $that.printPayFeeInfo.roomName = _feeReceipt[0].objName;
                         $that.printPayFeeInfo.feeTime = _feeReceipt[0].createTime;
                         $that.printPayFeeInfo.receiptNum = _feeReceipt[0].receiptId;
+                        $that.printPayFeeInfo.payObjName = _feeReceipt[0].payObjName;
+                        $that.printPayFeeInfo.feeReceipt = _feeReceipt;
 
                         $that._loadReceiptDetail();
 
@@ -90,7 +94,16 @@
                     function (json, res) {
                         var _feeReceiptManageInfo = JSON.parse(json);
                         let _feeReceiptDetails = _feeReceiptManageInfo.data;
+                        _feeReceiptDetails.forEach(item=>{
+                            $that.printPayFeeInfo.feeReceipt.forEach(im =>{
+                                if(item.receiptId == im.receiptId){
+                                    item.objName = im.objName;
+                                }
+                            })
+                        })
                         $that.printPayFeeInfo.fees = _feeReceiptDetails;
+
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
