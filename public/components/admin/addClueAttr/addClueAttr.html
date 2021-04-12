@@ -1,0 +1,42 @@
+<div id = "addClueAttrModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">添加跟进</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label">跟进时间</label>
+            <div class="col-sm-10">
+            <input v-model="addClueAttrInfo.nowTime" type="text" placeholder="必填，请填跟进时间"
+                class="form-control addNowTime">
+            </div>
+            </div>
+         <div class="form-group row">
+         <label class="col-sm-2 col-form-label">目前进展情况</label>
+         <div class="col-sm-10">
+           <textarea placeholder="必填，请填写目前进展情况" cols="15" class="form-control"
+           v-model="addClueAttrInfo.nowSituation"></textarea>
+
+         </div>
+            </div>
+        <div class="form-group row">
+                <label class="col-sm-2 col-form-label">下一步推进计划</label>
+                <div class="col-sm-10">
+                <textarea placeholder="选填，请填写下一步推进计划" cols="15" class="form-control"
+                v-model="addClueAttrInfo.nextSituation"></textarea>
+                </div>
+        </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveClueAttrInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
