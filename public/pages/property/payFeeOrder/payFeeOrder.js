@@ -220,9 +220,9 @@
                     vc.component.payFeeOrderInfo.totalFeePrice = 0.00;
                     vc.component.payFeeOrderInfo.receivedAmount = '';
                     return;
-                }else if('-101' == _cycles){
+                } else if ('-101' == _cycles) {
                     $that.payFeeOrderInfo.cycles = "101";
-                    return ;
+                    return;
                 }
                 let _newCycles = _cycles;
                 if (_cycles == '') {
@@ -271,11 +271,11 @@
                     return $that._mathToFixed1(num);
                 } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
                     return $that._mathCeil(num);
-                }else if ($that.payFeeOrderInfo.toFixedSign == 4) {
+                } else if ($that.payFeeOrderInfo.toFixedSign == 4) {
                     return $that._mathFloor(num);
-                }else if ($that.payFeeOrderInfo.toFixedSign == 5) {
+                } else if ($that.payFeeOrderInfo.toFixedSign == 5) {
                     return $that._mathRound(num);
-                }  else {
+                } else {
                     return $that._mathToFixed2(num);
                 }
             },
@@ -310,7 +310,7 @@
             /**
              * 四首五入取整
              */
-             _mathRound: function (_price) {
+            _mathRound: function (_price) {
                 return Math.round(_price);
             },
             /**
@@ -347,10 +347,21 @@
                         // 由于返回的键与档期那页面自定义的键不一致，单独赋值toFiexedSign
                         let toFixedSign = listRoomData.data.val;
                         // 防止后台设置有误
-                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3  || toFixedSign == 4  || toFixedSign == 5) {
+                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3 || toFixedSign == 4 || toFixedSign == 5) {
                             $that.payFeeOrderInfo.toFixedSign = toFixedSign;
                         }
                         vc.emit('payFeeOrder', 'initData', listRoomData.data);
+
+                        //如果 是一次性费用，计算优惠
+                        if ($that.payFeeOrderInfo.feeFlag == '2006012') {
+                            vc.emit('payFeeDiscount', 'computeFeeDiscount', {
+                                feeId: $that.payFeeOrderInfo.feeId,
+                                cycles: '1',
+                                payerObjId: $that.payFeeOrderInfo.payerObjId,
+                                payerObjType: $that.payFeeOrderInfo.payerObjType,
+                                endTime: $that.payFeeOrderInfo.endTime
+                            });
+                        }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
