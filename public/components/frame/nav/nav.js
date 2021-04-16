@@ -101,8 +101,9 @@
                             console.log(vm, tmpUserInfo);
                             vm.userName = tmpUserInfo.name;
                             //加个水印
-                            
-	                        vc.watermark({watermark_txt:vc.i18n('systemName')+":"+tmpUserInfo.name});
+                            if (tmpUserInfo.watermark == 'true') {
+                                vc.watermark({ watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name });
+                            }
                         }
                     }, function () {
                         console.log('请求失败处理');
@@ -199,8 +200,8 @@
             _chooseMoreCommunity: function () {
                 vc.emit('chooseEnterCommunity', 'openChooseEnterCommunityModel', {});
             },
-            _viewDocument:function(){
-                vc.emit('document','openDocument', {});
+            _viewDocument: function () {
+                vc.emit('document', 'openDocument', {});
             }
         }
     });
