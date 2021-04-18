@@ -103,7 +103,7 @@
                     remark:'处理结束'
                 };
                 //发送get请求
-                vc.http.post('/contract/needAuditContract',
+                vc.http.apiPost('/contract/needAuditContract',
                     JSON.stringify(_auditInfo),
                     {
                         emulateJSON: true
