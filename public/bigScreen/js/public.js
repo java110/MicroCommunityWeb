@@ -432,7 +432,7 @@
 
                 let _floorReceivableInformations = indexData.floorReceivableInformations;
 
-                _dom = document.getElementById('roomCount');
+                _dom = document.getElementById('foorFeeAnsicis');
                 _data = [];
 
                 _floorReceivableInformations.forEach(item => {
@@ -451,7 +451,7 @@
                     })
                 });
 
-                _dom = document.getElementById('parkingSpaceCount');
+                _dom = document.getElementById('feeAnsicis');
                 _initCharts2(_dom, '分项费用占比', _data);
 
 
