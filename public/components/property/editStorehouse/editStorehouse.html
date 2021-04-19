@@ -1,5 +1,5 @@
 <div id="editStorehouseModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -11,23 +11,37 @@
                                 <label class="col-sm-2 col-form-label">仓库名称</label>
                                 <div class="col-sm-10">
                                     <input v-model="editStorehouseInfo.shName" type="text" placeholder="必填，请填写仓库名称"
-                                        class="form-control">
+                                           class="form-control">
                                 </div>
                             </div>
-
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">仓库类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editStorehouseInfo.shType" disabled>
+                                        <option selected value="">请选择仓库类型</option>
+                                        <option v-for="(item,index) in storehouseManageInfo.shTypes" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">描述</label>
                                 <div class="col-sm-10">
                                     <textarea v-model="editStorehouseInfo.shDesc" placeholder="必填，请填写描述"
-                                        class="form-control"></textarea>
+                                              class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="editStorehouse()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                        v-on:click="editStorehouse()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
                             </div>
                         </div>
                     </div>

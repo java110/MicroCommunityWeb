@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editStorehouseInfo: {
@@ -7,11 +6,13 @@
                 shName: '',
                 shType: '',
                 shDesc: '',
-
+                shTypes: []
             }
         },
         _initMethod: function () {
-
+            vc.getDict('storehouse', "sh_type", function (_data) {
+                vc.component.editStorehouseInfo.shTypes = _data;
+            });
         },
         _initEvent: function () {
             vc.on('editStorehouse', 'openEditStorehouseModal', function (_params) {
@@ -68,7 +69,6 @@
                             param: "",
                             errInfo: "仓库编号不能为空"
                         }]
-
                 });
             },
             editStorehouse: function () {
@@ -76,7 +76,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'resourceStore.updateStorehouse',
                     JSON.stringify(vc.component.editStorehouseInfo),
@@ -96,7 +95,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -105,11 +103,9 @@
                     shId: '',
                     shName: '',
                     shType: '',
-                    shDesc: '',
-
+                    shDesc: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

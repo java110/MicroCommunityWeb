@@ -1,6 +1,6 @@
 /**
-    //入库
-**/
+ //入库
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -21,7 +21,6 @@
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
         },
         methods: {
             _listPurchaseApply: function (_page, _rows) {
@@ -33,7 +32,6 @@
                         resOrderType: vc.component.resourceOutManageInfo.resOrderType,
                     }
                 };
-
                 //发送get请求
                 vc.http.get('purchaseApplyManage',
                     'list',
@@ -46,7 +44,6 @@
                             item.purchaseQuantity = '';
                             item.price = '';
                             item.purchaseRemark = '';
-
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -61,7 +58,6 @@
             },
             _queryResourceEnterMethod: function () {
                 vc.component._listResourceEnters(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.resourceOutManageInfo.moreCondition) {
@@ -74,19 +70,16 @@
                 vc.component._listResourceEnters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddResourceQuantityModel: function () {
-
             },
             _submit: function () {
                 let _flag = true;
                 //校验 是否填写正确
                 $that.resourceOutManageInfo.purchaseApplyDetailVo.forEach(function (item) {
-
                     if (!vc.notNull(item.purchaseQuantity)) {
                         vc.toast('采购数量未填写');
                         _flag = false;
                         return;
                     }
-
                     let _purchaseQuantity = parseFloat(item.purchaseQuantity).toFixed(2);
                     let _stock = parseFloat(item.stock).toFixed(2)
                     if (_purchaseQuantity > _stock) {
@@ -95,11 +88,9 @@
                         return;
                     }
                 });
-
-                if(_flag == false){
+                if (_flag == false) {
                     return;
                 }
-
                 vc.http.apiPost(
                     '/collection/resourceOut',
                     JSON.stringify($that.resourceOutManageInfo),
@@ -117,7 +108,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -144,8 +134,6 @@
                     }
                 );
             },
-
-
         }
     });
 })(window.vc);

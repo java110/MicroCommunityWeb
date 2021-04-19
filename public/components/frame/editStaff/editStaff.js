@@ -14,10 +14,15 @@
                 address:'',
                 errorInfo:'',
                 videoPlaying: false,
-                photo:''
+                photo:'',
+                relCd: '',
+                relCds: [],
             }
         },
         _initMethod:function(){
+            vc.getDict('u_org_staff_rel', "rel_cd", function (_data) {
+                vc.component.editStaffInfo.relCds = _data;
+            });
         },
         _initEvent:function(){
              vc.component.$on('edit_staff_event',function(_staffInfo){
@@ -34,6 +39,7 @@
                 vc.component.editStaffInfo.tel = _staffInfo.tel;
                 vc.component.editStaffInfo.sex = _staffInfo.sex;
                 vc.component.editStaffInfo.address = _staffInfo.address;
+                vc.component.editStaffInfo.relCd = _staffInfo.relCd;
 
                 vc.component.editStaffInfo.photo = _fileUrl + "?objId=" +
                 vc.component.editStaffInfo.userId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=12000&time=" + new Date();
@@ -71,6 +77,13 @@
                             limit:"required",
                             param:"",
                             errInfo:"性别不能为空"
+                        }
+                    ],
+                    'editStaffInfo.relCd': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "岗位不能为空"
                         }
                     ],
                     'editStaffInfo.address':[

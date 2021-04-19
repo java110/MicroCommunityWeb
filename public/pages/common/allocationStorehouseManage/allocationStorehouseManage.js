@@ -29,6 +29,9 @@
             vc.on('allocationStorehouse', 'listAllocationStorehouse', function (_param) {
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('allocationStorehouseManage', 'listAllocationStorehouse', function (_param) {
+                vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAllocationStorehouses(_currentPage, DEFAULT_ROWS);
             });
@@ -62,17 +65,11 @@
                     }
                 );
             },
-
-
-            _openDeleteAllocationStorehouseModel: function (_resourceStore) {
-                vc.emit('deleteAllocationStorehouse', 'openDeleteAllocationStorehouseModal', _resourceStore);
-            },
             //查询
             _queryAllocationStorehouseMethod: function () {
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listStorehouses: function (_page, _rows) {
-
                 var param = {
                     params: {
                         page: 1,
@@ -80,7 +77,6 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
@@ -92,6 +88,11 @@
                     }
                 );
             },
+            //取消调拨
+            _openDeleteResourceStoreModel: function (_resourceStore) {
+                vc.emit('deleteStorehouseManage', 'openDeleteStorehouseManageModal', _resourceStore);
+            },
+            //详情
             _toDetail: function (_item) {
                 vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
             }

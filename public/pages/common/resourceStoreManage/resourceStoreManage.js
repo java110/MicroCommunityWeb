@@ -22,6 +22,10 @@
             }
         },
         _initMethod: function () {
+            let _shId = vc.getParam('shId');
+            if(_shId){
+                vc.component.resourceStoreManageInfo.conditions.shId = _shId;
+            }
             vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listStorehouses();
         },

@@ -7,7 +7,6 @@
                 <div class="ibox-content">
                     <div>
                         <div>
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">审核状态</label>
                                 <div class="col-sm-10">
@@ -15,7 +14,8 @@
                                         <option selected disabled value="">请审核</option>
                                         <option value="1100">同意</option>
                                         <option value="1200">拒绝</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">原因</label>
@@ -23,13 +23,14 @@
                                     <textarea placeholder="必填，请填写原因" class="form-control"
                                               v-model="auditInfo.remark"></textarea></div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="_auditSubmit()"><i class="fa fa-check"></i>&nbsp;提交
+                                        v-on:click="_auditSubmit()">
+                                    <i class="fa fa-check"></i>&nbsp;提交
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>
                         </div>

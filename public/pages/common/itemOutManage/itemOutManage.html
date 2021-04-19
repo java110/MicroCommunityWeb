@@ -77,14 +77,14 @@
                                             v-on:click="_openDetailItemOutModel(itemOut)">查看
                                     </button>
                                 </div>
-                                <!-- <div class="btn-group" v-if="itemOut.state == '1000'">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteItemOutModel(itemOut)">取消
-                                    </button>
-                                </div> -->
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openRunWorkflowImage(itemOut)">流程图
+                                    </button>
+                                </div>
+                                <div class="btn-group" v-if="itemOut.state == '1000'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteItemOutModel(itemOut)">取消领用
                                     </button>
                                 </div>
                             </td>
@@ -104,6 +104,6 @@
             </div>
         </div>
     </div>
-    <!-- <vc:create path="common/deleteItemOut"></vc:create> -->
+    <vc:create path="common/deleteItemOut"></vc:create>
     <vc:create path="common/viewImage"></vc:create>
 </div>

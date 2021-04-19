@@ -16,8 +16,7 @@
                     inspectionId: '',
                     machineId: '',
                     inspectionName: '',
-                    machineCode:'',
-
+                    machineCode: ''
                 }
             }
         },
@@ -25,7 +24,6 @@
             vc.component._listInspectionPoints(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('inspectionPointManage', 'listInspectionPoint', function (_param) {
                 vc.component._listInspectionPoints(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -35,14 +33,12 @@
         },
         methods: {
             _listInspectionPoints: function (_page, _rows) {
-
                 vc.component.inspectionPointManageInfo.conditions.page = _page;
                 vc.component.inspectionPointManageInfo.conditions.row = _rows;
                 vc.component.inspectionPointManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.inspectionPointManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.get('inspectionPointManage',
                     'list',
@@ -72,7 +68,6 @@
             },
             _queryInspectionPointMethod: function () {
                 vc.component._listInspectionPoints(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.inspectionPointManageInfo.moreCondition) {
@@ -81,8 +76,6 @@
                     vc.component.inspectionPointManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

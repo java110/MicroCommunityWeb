@@ -1,31 +1,31 @@
 (function (vc, vm) {
     vc.extends({
         data: {
-            deletePurchaseApplyInfo: {}
+            deleteItemOutInfo: {}
         },
         _initMethod: function () {
         },
         _initEvent: function () {
-            vc.on('deletePurchaseApply', 'openDeletePurchaseApplyModal', function (_params) {
-                vc.component.deletePurchaseApplyInfo = _params;
-                $('#deletePurchaseApplyModel').modal('show');
+            vc.on('deleteItemOut', 'openDeleteItemOutModal', function (_params) {
+                vc.component.deleteItemOutInfo = _params;
+                $('#deleteItemOutModel').modal('show');
             });
         },
         methods: {
-            deletePurchaseApply: function () {
-                vc.component.deletePurchaseApplyInfo.communityId = vc.getCurrentCommunity().communityId;
+            deleteItemOut: function () {
+                vc.component.deleteItemOutInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deletePurchaseApply',
                     'delete',
-                    JSON.stringify(vc.component.deletePurchaseApplyInfo),
+                    JSON.stringify(vc.component.deleteItemOutInfo),
                     {
                         emulateJSON: true
                     },
                     function (json, res) {
                         if (res.status == 200) {
                             //关闭model
-                            $('#deletePurchaseApplyModel').modal('hide');
-                            vc.emit('purchaseApplyManage', 'listPurchaseApply', {});
+                            $('#deleteItemOutModel').modal('hide');
+                            vc.emit('itemOutManage', 'listItemOut', {});
                             return;
                         }
                         vc.toast(json);
@@ -35,8 +35,8 @@
                         vc.toast(json);
                     });
             },
-            closeDeletePurchaseApplyModel: function () {
-                $('#deletePurchaseApplyModel').modal('hide');
+            closeDeleteItemOutModel: function () {
+                $('#deleteItemOutModel').modal('hide');
             }
         }
     });

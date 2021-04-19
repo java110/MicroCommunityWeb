@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -11,11 +10,23 @@
                 shName: '',
                 shType: '',
                 shDesc: '',
-
+                shTypes: []
             }
         },
         _initMethod: function () {
-
+            vc.getDict('storehouse',"sh_type",function(_data){
+                // 根据登录用户的权限 显示可选择的仓库类型
+                // 权限用户,显示所有仓库类型
+                // 非权限用户,只显示2807小区仓库
+                if (!vc.hasPrivilege('502021041902760001')){
+                    _data.forEach((item, index) => {
+                        if (item.statusCd != "2807"){
+                            _data.splice(index, 1);
+                        }
+                    })
+                }
+                vc.component.addStorehouseInfo.shTypes = _data;
+            });
         },
         _initEvent: function () {
             vc.on('addStorehouse', 'openAddStorehouseModal', function () {
@@ -63,19 +74,13 @@
                             errInfo: "描述太长"
                         },
                     ],
-
-
-
-
                 });
             },
             saveStorehouseInfo: function () {
                 if (!vc.component.addStorehouseValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addStorehouseInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -83,7 +88,6 @@
                     $('#addStorehouseModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'resourceStore.saveStorehouse',
                     JSON.stringify(vc.component.addStorehouseInfo),
@@ -98,28 +102,22 @@
                             $('#addStorehouseModel').modal('hide');
                             vc.component.clearAddStorehouseInfo();
                             vc.emit('storehouseManage', 'listStorehouse', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddStorehouseInfo: function () {
                 vc.component.addStorehouseInfo = {
                     shName: '',
                     shType: '',
-                    shDesc: '',
-
+                    shDesc: ''
                 };
             }
         }
     });
-
 })(window.vc);

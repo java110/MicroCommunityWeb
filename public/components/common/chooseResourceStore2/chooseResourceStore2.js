@@ -28,6 +28,14 @@
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._loadAllResourceStoreInfo(_currentPage, DEFAULT_ROWS);
             });
+            // 监听移除选中项
+            vc.on('chooseResourceStore2', 'removeSelectResourceStoreItem', function (_resId) {
+                vc.component.chooseResourceStoreInfo2.selectResourceStores.forEach((item, index) => {
+                    if(item == _resId){
+                        vc.component.chooseResourceStoreInfo2.selectResourceStores.splice(index, 1);
+                    }
+                })
+            });
         },
         methods: {
             _loadAllResourceStoreInfo: function (_page, _row) {
@@ -81,6 +89,7 @@
             },
             getSelectResourceStores: function () {
                 var selectResourceStores = vc.component.chooseResourceStoreInfo2.selectResourceStores;
+                console.log(selectResourceStores);
                 var resourceStores = vc.component.chooseResourceStoreInfo2.resourceStores;
                 if (selectResourceStores.length < 1) {
                     vc.toast("请选择需要采购的物品");

@@ -14,7 +14,7 @@
                                 <select class="custom-select" v-model="allocationStorehouseManageInfo.conditions.shId">
                                     <option selected disabled value="">必填，请选择目标仓库</option>
                                     <option v-for="(item,index) in allocationStorehouseManageInfo.storehouses"
-                                        :key="index" v-bind:value="item.shId">
+                                            :key="index" v-bind:value="item.shId">
                                         {{item.shName}}
                                     </option>
                                 </select>
@@ -23,18 +23,20 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入物品名称"
-                                    v-model="allocationStorehouseManageInfo.conditions.resName" class=" form-control">
+                                       v-model="allocationStorehouseManageInfo.conditions.resName"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入物品编码"
-                                    v-model="allocationStorehouseManageInfo.conditions.resCode" class=" form-control">
+                                       v-model="allocationStorehouseManageInfo.conditions.resCode"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryAllocationStorehouseMethod()">
+                                    v-on:click="_queryAllocationStorehouseMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
@@ -49,22 +51,22 @@
                 <div class="ibox-title">
                     <h5>调拨记录</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">物品ID</th>
-                                <th class="text-center">物品名称</th>
-                                <th class="text-center">源仓库</th>
-                                <th class="text-center">目标仓库</th>
-                                <th class="text-center">调拨数量</th>
-                                <th class="text-center">申请人</th>
-                                <th class="text-center">状态</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">物品ID</th>
+                            <th class="text-center">物品名称</th>
+                            <th class="text-center">源仓库</th>
+                            <th class="text-center">目标仓库</th>
+                            <th class="text-center">调拨数量</th>
+                            <th class="text-center">申请人</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
                             <tr v-for="resourceStore in allocationStorehouseManageInfo.resourceStores">
@@ -75,8 +77,9 @@
                                 <td class="text-center">{{resourceStore.stock}}</td>
                                 <td class="text-center">{{resourceStore.startUserName}}</td>
                                 <td class="text-center">{{resourceStore.stateName}}</td>
+                                <td class="text-center">{{resourceStore.createTime}}</td>
                                 <td class="text-center">
-                                    <div class="btn-group">
+                                    <div class="btn-group" v-if="resourceStore.state==1201">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteResourceStoreModel(resourceStore)">取消调拨
                                         </button>
@@ -90,11 +93,11 @@
                             </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -104,6 +107,5 @@
         </div>
     </div>
     <vc:create path="common/allocationStorehouse"></vc:create>
-
-
+    <vc:create path="common/deleteStorehouseManage"></vc:create>
 </div>

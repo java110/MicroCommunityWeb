@@ -5,7 +5,6 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -37,8 +36,6 @@
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -51,16 +48,13 @@
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_openAddInspectionPointModal()">
-                            <i class="fa fa-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
                             <th class="text-center">巡检点名称</th>
@@ -68,8 +62,6 @@
                             <th class="text-center">巡检位置</th>
                             <th class="text-center">巡检点ID</th>
                             <th class="text-center">操作</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -90,7 +82,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
@@ -107,13 +98,7 @@
             </div>
         </div>
     </div>
-
-
-    <vc:create path="property/addInspectionPoint"
-               callBackListener=""
-               callBackFunction=""
-    ></vc:create>
+    <vc:create path="property/addInspectionPoint" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editInspectionPoint"></vc:create>
     <vc:create path="property/deleteInspectionPoint"></vc:create>
-
 </div>

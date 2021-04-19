@@ -1,20 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteStorehouseInfo: {
-
-            }
+            deleteStorehouseInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteStorehouse', 'openDeleteStorehouseModal', function (_params) {
-
                 vc.component.deleteStorehouseInfo = _params;
                 $('#deleteStorehouseModel').modal('show');
-
             });
         },
         methods: {
@@ -35,12 +29,11 @@
                             vc.emit('storehouseManage', 'listStorehouse', {});
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteStorehouseModel: function () {
@@ -48,5 +41,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);
