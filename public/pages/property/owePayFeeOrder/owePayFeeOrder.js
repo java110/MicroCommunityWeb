@@ -29,7 +29,7 @@
             let _payObjType = vc.getParam('payObjType');
             if (!vc.notNull(_payObjId)) {
                 vc.toast('非法操作');
-               vc.getBack();
+                vc.getBack();
                 return;
             }
             $that.owePayFeeOrderInfo.payObjId = _payObjId;
@@ -100,7 +100,7 @@
                                 additionalAmount: _oweFeeItem.additionalAmount,
                                 feeName: _oweFeeItem.feeName,
                                 amount: _oweFeeItem.feePrice,
-                                roomName:$that.owePayFeeOrderInfo.roomName
+                                roomName: $that.owePayFeeOrderInfo.roomName
                             });
                         }
                     })
@@ -128,8 +128,8 @@
 
                             let _data = JSON.parse(json).data;
                             let receiptIds = '';
-                            _data.forEach(item=>{
-                                receiptIds +=(item.receiptId+',');
+                            _data.forEach(item => {
+                                receiptIds += (item.receiptId + ',');
                             })
 
                             $that.owePayFeeOrderInfo.receiptIds = receiptIds;
@@ -178,11 +178,28 @@
                 vc.goBack();
             },
             _printOwnOrder: function () {
-                vc.saveData('java110_printFee', {fees:$that.owePayFeeOrderInfo.oweFees,roomName:$that.owePayFeeOrderInfo.roomName});
+                vc.saveData('java110_printFee', { fees: $that.owePayFeeOrderInfo.oweFees, roomName: $that.owePayFeeOrderInfo.roomName });
                 //打印催交单
                 window.open('/print.html#/pages/property/printOweFee?roomId=' + $that.owePayFeeOrderInfo.payObjId)
-            }
+            },
+            _getDeadlineTime: function (_fee) {
 
+                if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
+                    return "-";
+                }
+
+                if (_fee.state == '2009001') {
+                    return "-";
+                }
+                //return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
+                return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
+            },
+            _getEndTime: function (_fee) {
+                if (_fee.state == '2009001') {
+                    return "-";
+                }
+                return vc.dateFormat(_fee.endTime);
+            },
         }
 
     });

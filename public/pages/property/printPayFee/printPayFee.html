@@ -2,7 +2,8 @@
     <div>
         <div>
             <div class=" text-center">
-                <div style="color:#000;font-size:36px">{{printPayFeeInfo.communityName}} 收据单</div>
+                <div style="color:#000;font-size:36px">{{printPayFeeInfo.communityName}} {{printPayFeeInfo.apply ==
+                    'Y'?'申请单':'收据单'}}</div>
                 <span style="color:#000;font-size:20px">单号：{{printPayFeeInfo.receiptNum}}</span>
             </div>
             <div class="row " style="color:#000;font-size:20px">

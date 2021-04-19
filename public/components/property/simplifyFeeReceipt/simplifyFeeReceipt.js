@@ -114,7 +114,22 @@
                 if (receiptids.endsWith(',')) {
                     receiptids = receiptids.substring(0, receiptids.length - 1);
                 }
-                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids);
+                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids+"&apply=N");
+            },
+
+            _printApplyFeeReceipt: function (_receipt) {
+                if ($that.simplifyFeeReceiptInfo.selectReceipts.length < 1) {
+                    vc.toast('请选择');
+                    return;
+                }
+                let receiptids = '';
+                $that.simplifyFeeReceiptInfo.selectReceipts.forEach(item => {
+                    receiptids += (item + ',');
+                })
+                if (receiptids.endsWith(',')) {
+                    receiptids = receiptids.substring(0, receiptids.length - 1);
+                }
+                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids+"&apply=Y");
             },
 
             _printFeeSmallReceipt:function(){

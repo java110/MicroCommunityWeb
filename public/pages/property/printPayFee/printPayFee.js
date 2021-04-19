@@ -14,7 +14,8 @@
                 content: '',
                 qrImg: '',
                 payObjName:'',
-                feeReceipt:[]
+                feeReceipt:[],
+                apply:'N'
             },
             printFlag: '0'
         },
@@ -23,6 +24,8 @@
 
             $that.printPayFeeInfo.receiptId = vc.getParam('receiptId');
             $that.printPayFeeInfo.receiptIds = vc.getParam('receiptIds');
+            $that.printPayFeeInfo.apply = vc.getParam('apply');
+            
             //$that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
 
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
