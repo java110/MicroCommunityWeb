@@ -24,7 +24,9 @@
                 selectedGoodsInfo: {},
                 useNumber: 1,
                 totalPrice: 0,
-                resId: ''
+                resId: '',
+                isCustom: false,
+                customGoodsName: ''
             }
         },
         _initMethod: function () {
@@ -184,6 +186,9 @@
                         var _goods = JSON.parse(json);
                         console.log("123")
                         console.log(_goods)
+                        if (vc.component.finishRepairInfo.conditions.goodsType == '1003') {
+                            _goods.data.push({'resName': '自定义', 'resId': 'custom'});
+                        }
                         vc.component.finishRepairInfo.resourceStores = _goods.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -194,6 +199,13 @@
             _chosePrice: function () {
                 var _that = this;
                 var select = document.getElementById("goodsPrice");
+                // 如果选择自定义商品
+                if(select.value == 'custom'){
+                    vc.component.finishRepairInfo.isCustom = true;
+                    return;
+                }else{
+                    vc.component.finishRepairInfo.isCustom = false;
+                }
                 vc.component.finishRepairInfo.conditions.resId = select.value;
                 vc.component.finishRepairInfo.resId = select.value;
                 // 保存选中的商品信息
@@ -281,7 +293,9 @@
                     selectedGoodsInfo: {},
                     useNumber: 1,
                     totalPrice: 0,
-                    resId: ''
+                    resId: '',
+                    isCustom: false,
+                    customGoodsName: ''
                 };
             }
         }
