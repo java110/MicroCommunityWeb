@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">合同详情</h3>
+        <h3 class="m-t-none m-b ">编辑合同</h3>
         <div class="ibox-content">
           <div>
             <div>
@@ -186,8 +186,38 @@
                 </div>
               </div>
 
+              <div class="row">
+                <div class="col-sm-10">
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">合同附件</label>
+                    <div class="col-sm-10">
+                        <div class="row " style="margin-left: 0px;">
+                            <button type="button" class="btn btn-primary" @click="addEditFileStep()">添加附件</button>
+                        </div>
+                        <div v-for="(item,index) in editContractInfo.contractFilePo">
+                            <div class="row margin-0 margin-top">
+                                <div  class="col-sm-1 text-center">
+                                    <label class="col-form-label">第{{index+1}}个</label>
+                                </div>
+                                <input type="file"
+                                class="custom-file-input form-control" name="excelTemplate" style="width: 11%;opacity: 1;"
+                                v-on:change="getEditFile($event,index)" accept=".png,.pdf,.jpg">
+                                <label  class="col-sm-5 col-form-label padding-lr-sm text-right">{{item.fileRealName}}</label>
+                                <div>
+                                    <button type="button" class="btn btn-link" @click="deleteEditStep(item)">删除附件</button>
+                                </div>
+                              
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+
               <div class="ibox-content">
-                
+                <button class="btn btn-primary float-right" type="button" v-on:click="editContract()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
                   data-dismiss="modal">取消</button>
               </div>

@@ -25,6 +25,7 @@
                 signingTime: '',
                 param: '',
                 planType: '',
+                files:[]
 
             },
             auditUsers: []
@@ -33,6 +34,7 @@
             vc.component.contractDetailInfo.contractId = vc.getParam('contractId');
             vc.component._listContractApply(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._loadAuditUser();
+            $that._loadContractFiles();
         },
         _initEvent: function () {
 
@@ -77,6 +79,28 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _loadContractFiles: function () {
+                let param = {
+                    params: {
+                        contractId: vc.component.contractDetailInfo.contractId,
+                        page: 1,
+                        row: 100
+                    }
+                }
+                //发送get请求
+                vc.http.apiGet('/contractFile/queryContractFile',
+                    param,
+                    function (json, res) {
+                        var _contractTFile = JSON.parse(json);
+                        vc.component.contractDetailInfo.files = _contractTFile.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _viewFile: function (_file) {
+                window.open(_file.fileSaveName);
             },
             _goback: function () {
                 vc.getBack();

@@ -1,10 +1,6 @@
 (function (vc) {
 
     vc.extends({
-        propTypes: {
-            callBackListener: vc.propTypes.string, //父组件名称
-            callBackFunction: vc.propTypes.string //父组件监听方法
-        },
         data: {
             addContractInfo: {
                 contractId: '',
@@ -37,11 +33,26 @@
                 parentStateName: '',
                 objName: '',
                 objPersonName: '',
-                objPersonId: ''
+                objPersonId: '',
+                rooms: [],
+                contractFilePo: [],
+                tempfile: ''
             }
         },
         _initMethod: function () {
             $that._loadAddContractType();
+
+            if (vc.getParam("contractId")) {
+                $that.addContractInfo.contractParentId = vc.getParam("contractId");
+                $that.addContractInfo.parentContractCode = vc.getParam("contractCode");
+                $that.addContractInfo.parentContractName = vc.getParam("contractName");
+                $that.addContractInfo.parentStateName = vc.getParam("stateName");
+                $that.addContractInfo.contractId = '';
+                $that.addContractInfo.contractCode = '';
+                $that.addContractInfo.contractName = '';
+                $that.addContractInfo.allNum = vc.getParam("objId");
+                $that._queryRoom();
+            }
 
             vc.initDateTime('addStartTime', function (_value) {
                 $that.addContractInfo.startTime = _value;
@@ -54,32 +65,13 @@
                 $that.addContractInfo.signingTime = _value;
             });
 
+            $that.addContractInfo.signingTime = vc.dateTimeFormat(new Date().getTime());
+
         },
         _initEvent: function () {
-            vc.on('addContract', 'openAddContractModal', function (_param) {
-                vc.copyObject(_param, $that.addContractInfo);
-
-                if (_param.hasOwnProperty("contractId")) {
-                    $that.addContractInfo.contractParentId = _param.contractId;
-                    $that.addContractInfo.parentContractCode = _param.contractCode;
-                    $that.addContractInfo.parentContractName = _param.contractName;
-                    $that.addContractInfo.parentStateName = _param.stateName;
-                    $that.addContractInfo.contractId = '';
-                    $that.addContractInfo.contractCode = '';
-                    $that.addContractInfo.contractName = '';
-                    $that.addContractInfo.allNum = _param.objId;
-                    $that._queryRoom();
-                }
-
-                $('#addContractModel').modal('show');
-            });
-            $('#addContractModel').on('show.bs.modal', function (e) {
-                $(this).css('display', 'block');
-                let modalWidth = $(window).width() * 0.7;
-                $(this).find('.modal-dialog').css({
-                    'max-width': modalWidth
-                });
-            });
+            vc.on('addContract', 'chooseRoom', function (param) {
+                $that.addContractInfo.rooms.push(param);
+            })
         },
         methods: {
             addContractValidate() {
@@ -266,7 +258,6 @@
             saveContractInfo: function () {
                 if (!vc.component.addContractValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addContractInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -290,7 +281,6 @@
                             //关闭model
                             $('#addContractModel').modal('hide');
                             vc.component.clearAddContractInfo();
-                            vc.emit('contractManage', 'listContract', {});
                             vc.emit('newContractManage', 'listContract', {});
                             vc.emit('rentingPoolManage', 'listRentingPool', {});
                             return;
@@ -337,7 +327,10 @@
                     parentStateName: '',
                     objName: '',
                     objPersonName: '',
-                    objPersonId: ''
+                    objPersonId: '',
+                    rooms: [],
+
+                    objType: '1111'
                 };
             },
             _loadAddContractType: function () {
@@ -384,58 +377,88 @@
                     }
                 );
             },
-            _queryRoom: function () {
-                let _allNum = $that.addContractInfo.allNum;
-                if (_allNum == '') {
+            _goBack: function () {
+                vc.goBack();
+            },
+            _selectRoom: function () {
+                vc.emit('searchRoom', 'openSearchRoomModel', {})
+            },
+            _openDelRoomModel: function (_room) {
+
+                let _tmpRooms = [];
+                $that.addContractInfo.rooms.forEach(item => {
+                    if (item.roomId != _room.roomId) {
+                        _tmpRooms.push(item);
+                    }
+                });
+                $that.addContractInfo.rooms = _tmpRooms; 
+            },
+            addFileStep: function () {
+                let _file = {
+                    seq: $that.addContractInfo.contractFilePo.length,
+                    fileSaveName: '',
+                    fileRealName: ''
+                }
+                $that.addContractInfo.contractFilePo.push(_file);
+            },
+
+
+            deleteStep: function (_step) {
+                for (var i = 0; i < $that.addContractInfo.contractFilePo.length; i++) {
+                    if ($that.addContractInfo.contractFilePo[i].seq == _step.seq) {
+
+                        $that.addContractInfo.contractFilePo.splice(i, 1);
+                    }
+                }
+            },
+            getFile: function (e,index) {
+                vc.component.addContractInfo.tempfile = e.target.files[0];
+                $that.addContractInfo.contractFilePo[index].fileRealName = vc.component.addContractInfo.tempfile.name;
+                this._importData(index);
+            },
+            _importData: function (index) {
+                // 导入数据
+                if (!vc.component.checkFileType(vc.component.addContractInfo.tempfile.name.split('.')[1])) {
+                    vc.toast('操作失败，请上传图片、PDF格式的文件');
                     return;
                 }
-                let param = {
-                    params: {
-                        page: 1,
-                        row: 1,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
 
-                if (_allNum.split('-').length == 3) {
-                    let _allNums = _allNum.split('-')
-                    param.params.floorNum = _allNums[0].trim();
-                    param.params.unitNum = _allNums[1].trim();
-                    param.params.roomNum = _allNums[2].trim();
-                } else {
-                    param.params.roomId = _allNum;
-                }
-
-                //发送get请求
-                vc.http.get('roomCreateFee',
-                    'listRoom',
+                var param = new FormData();
+                param.append("uploadFile", vc.component.addContractInfo.tempfile);
+                vc.http.upload(
+                    'importRoomFee',
+                    'uploadContactFile',
                     param,
-                    function (json, res) {
-                        let listRoomData = JSON.parse(json);
-                        let _rooms = listRoomData.rooms;
-
-                        if (_rooms.length < 1) {
-                            vc.toast('未找到房屋');
-                            $that.addContractInfo.allNum = '';
-                            return;
-                        } else {
-                            $that.addContractInfo.allNum = _rooms[0].floorNum + '-' + _rooms[0].unitNum + '-' + _rooms[0].roomNum;
+                    {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
                         }
-
-                        $that.addContractInfo.roomId = _rooms[0].roomId;
-                        $that.addContractInfo.ownerName = _rooms[0].ownerName;
-                        $that.addContractInfo.link = _rooms[0].link;
-                        $that.addContractInfo.objType = '3333';
-                        $that.addContractInfo.objId = _rooms[0].roomId;
-                        $that.addContractInfo.objName = $that.addContractInfo.allNum;
-                        $that.addContractInfo.objPersonName=_rooms[0].ownerName;
-                        $that.addContractInfo.objPersonId=_rooms[0].ownerId;
-
-                    }, function (errInfo, error) {
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            $that.addContractInfo.contractFilePo[index].fileSaveName = json;
+                            vc.toast("上传成功");
+                            return;
+                        }
+                        vc.toast(json, 10000);
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-                    }
-                );
+                        vc.toast(errInfo, 10000);
+                    });
             },
+            checkFileType: function (fileType) {
+                const acceptTypes = ['png','pdf','jpg'];
+                for (var i = 0; i < acceptTypes.length; i++) {
+                    if (fileType === acceptTypes[i]) {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
     });
 
