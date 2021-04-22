@@ -79,7 +79,11 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label padding-lr-sm text-right">甲方</label>
                 <div class="col-sm-9 padding-lr-xs">
-                  <input v-model="addContractInfo.partyA" type="text" placeholder="必填，请填写甲方" class="form-control">
+                  <select class="custom-select" v-model="addContractInfo.partyA" @change="_changeContractPartyA()">
+                    <option selected disabled value="">必填，请选择甲方</option>
+                    <option v-for="(item,index) in addContractInfo.contractPartyAs" :key="index"
+                      :value="item.partyA">{{item.partyA}}</option>
+                  </select>
                 </div>
               </div>
             </div>

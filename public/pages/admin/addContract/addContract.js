@@ -36,11 +36,13 @@
                 objPersonId: '',
                 rooms: [],
                 contractFilePo: [],
-                tempfile: ''
+                tempfile: '',
+                contractPartyAs: []
             }
         },
         _initMethod: function () {
             $that._loadAddContractType();
+            $that._loadAddContractParkA();
 
             if (vc.getParam("contractId")) {
                 $that.addContractInfo.contractParentId = vc.getParam("contractId");
@@ -261,12 +263,6 @@
                     return;
                 }
                 vc.component.addContractInfo.communityId = vc.getCurrentCommunity().communityId;
-                //不提交数据将数据 回调给侦听处理
-                if (vc.notNull($props.callBackListener)) {
-                    vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addContractInfo);
-                    $('#addContractModel').modal('hide');
-                    return;
-                }
 
                 vc.http.apiPost(
                     '/contract/saveContract',
@@ -329,6 +325,7 @@
                     objPersonName: '',
                     objPersonId: '',
                     rooms: [],
+                    contractPartyAs: [],
 
                     objType: '1111'
                 };
@@ -346,6 +343,24 @@
                     function (json, res) {
                         var _contractTypeManageInfo = JSON.parse(json);
                         vc.component.addContractInfo.contractTypes = _contractTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadAddContractParkA: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100
+                    }
+                }
+                //发送get请求
+                vc.http.apiGet('/contractPartya/queryContractPartya',
+                    param,
+                    function (json, res) {
+                        var _contractTypeManageInfo = JSON.parse(json);
+                        vc.component.addContractInfo.contractPartyAs = _contractTypeManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -391,7 +406,7 @@
                         _tmpRooms.push(item);
                     }
                 });
-                $that.addContractInfo.rooms = _tmpRooms; 
+                $that.addContractInfo.rooms = _tmpRooms;
             },
             addFileStep: function () {
                 let _file = {
@@ -411,7 +426,7 @@
                     }
                 }
             },
-            getFile: function (e,index) {
+            getFile: function (e, index) {
                 vc.component.addContractInfo.tempfile = e.target.files[0];
                 $that.addContractInfo.contractFilePo[index].fileRealName = vc.component.addContractInfo.tempfile.name;
                 this._importData(index);
@@ -451,13 +466,23 @@
                     });
             },
             checkFileType: function (fileType) {
-                const acceptTypes = ['png','pdf','jpg'];
+                const acceptTypes = ['png', 'pdf', 'jpg'];
                 for (var i = 0; i < acceptTypes.length; i++) {
                     if (fileType === acceptTypes[i]) {
                         return true;
                     }
                 }
                 return false;
+            },
+            _changeContractPartyA:function(){
+                let _partyA = $that.addContractInfo.partyA;
+                $that.addContractInfo.contractPartyAs.forEach(item=>{
+                    if(_partyA == item.partyA){
+                        $that.addContractInfo.aLink = item.aLink;
+                        $that.addContractInfo.aContacts = item.aContacts;
+
+                    }
+                })
             }
         }
     });
