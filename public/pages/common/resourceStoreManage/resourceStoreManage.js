@@ -23,7 +23,7 @@
         },
         _initMethod: function () {
             let _shId = vc.getParam('shId');
-            if(_shId){
+            if (_shId) {
                 vc.component.resourceStoreManageInfo.conditions.shId = _shId;
             }
             vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -121,15 +121,13 @@
                 }
             },
             _listStorehouses: function (_page, _rows) {
-
                 var param = {
                     params: {
                         page: 1,
                         row: 100,
-                        communityId:vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
@@ -141,6 +139,10 @@
                     }
                 );
             },
+            // 跳转出入库页面
+            _jump2InAndOutPage: function () {
+                vc.jumpToPage("/admin.html#/pages/common/inAndOutStep");
+            }
         }
     });
 })(window.vc);

@@ -21,14 +21,11 @@
                 remark: '',
                 shId: '',
                 photos: [],
-                storehouses: []
+                storehouses: [],
+                resourceStoreTypes: []
             }
         },
         _initMethod: function () {
-            //与字典表物品类型关联
-            vc.getDict('resource_store', "goods_type", function (_data) {
-                vc.component.addResourceStoreInfo.goodsTypes = _data;
-            });
             //与字典表单位关联
             vc.getDict('resource_store', "unit_code", function (_data) {
                 vc.component.addResourceStoreInfo.unitCodes = _data;
@@ -36,6 +33,7 @@
         },
         _initEvent: function () {
             vc.on('addResourceStore', 'openAddResourceStoreModal', function () {
+                $that._listAddResourceStoreType();
                 $that._listAddStorehouses();
                 $('#addResourceStoreModel').modal('show');
             });
@@ -175,6 +173,27 @@
                         vc.toast(errInfo);
                     });
             },
+            //查询物品类型
+            _listAddResourceStoreType: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreType = JSON.parse(json);
+                        vc.component.addResourceStoreInfo.resourceStoreTypes = _resourceStoreType.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             clearAddResourceStoreInfo: function () {
                 vc.component.addResourceStoreInfo = {
                     resName: '',
@@ -195,23 +214,21 @@
                 };
             },
             _listAddStorehouses: function (_page, _rows) {
-
                 var param = {
                     params: {
                         page: 1,
                         row: 100,
                         shType: '2806',
-                        communityId:vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
                     function (json, res) {
                         let _storehouseManageInfo = JSON.parse(json);
                         vc.component.addResourceStoreInfo.storehouses = _storehouseManageInfo.data;
-                     
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
