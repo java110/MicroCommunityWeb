@@ -34,7 +34,9 @@
                 objName: '',
                 objPersonName: '',
                 objPersonId: '',
-                rooms: []
+                rooms: [],
+                contractFilePo: [],
+                tempfile: ''
             }
         },
         _initMethod: function () {
@@ -279,7 +281,6 @@
                             //关闭model
                             $('#addContractModel').modal('hide');
                             vc.component.clearAddContractInfo();
-                            vc.emit('contractManage', 'listContract', {});
                             vc.emit('newContractManage', 'listContract', {});
                             vc.emit('rentingPoolManage', 'listRentingPool', {});
                             return;
@@ -327,7 +328,9 @@
                     objName: '',
                     objPersonName: '',
                     objPersonId: '',
-                    rooms: []
+                    rooms: [],
+
+                    objType: '1111'
                 };
             },
             _loadAddContractType: function () {
@@ -388,7 +391,73 @@
                         _tmpRooms.push(item);
                     }
                 });
-                $that.addContractInfo.rooms = _tmpRooms;
+                $that.addContractInfo.rooms = _tmpRooms; 
+            },
+            addFileStep: function () {
+                let _file = {
+                    seq: $that.addContractInfo.contractFilePo.length,
+                    fileSaveName: '',
+                    fileRealName: ''
+                }
+                $that.addContractInfo.contractFilePo.push(_file);
+            },
+
+
+            deleteStep: function (_step) {
+                for (var i = 0; i < $that.addContractInfo.contractFilePo.length; i++) {
+                    if ($that.addContractInfo.contractFilePo[i].seq == _step.seq) {
+
+                        $that.addContractInfo.contractFilePo.splice(i, 1);
+                    }
+                }
+            },
+            getFile: function (e,index) {
+                vc.component.addContractInfo.tempfile = e.target.files[0];
+                $that.addContractInfo.contractFilePo[index].fileRealName = vc.component.addContractInfo.tempfile.name;
+                this._importData(index);
+            },
+            _importData: function (index) {
+                // 导入数据
+                if (!vc.component.checkFileType(vc.component.addContractInfo.tempfile.name.split('.')[1])) {
+                    vc.toast('操作失败，请上传图片、PDF格式的文件');
+                    return;
+                }
+
+                var param = new FormData();
+                param.append("uploadFile", vc.component.addContractInfo.tempfile);
+                vc.http.upload(
+                    'importRoomFee',
+                    'uploadContactFile',
+                    param,
+                    {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            $that.addContractInfo.contractFilePo[index].fileSaveName = json;
+                            vc.toast("上传成功");
+                            return;
+                        }
+                        vc.toast(json, 10000);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo, 10000);
+                    });
+            },
+            checkFileType: function (fileType) {
+                const acceptTypes = ['png','pdf','jpg'];
+                for (var i = 0; i < acceptTypes.length; i++) {
+                    if (fileType === acceptTypes[i]) {
+                        return true;
+                    }
+                }
+                return false;
             }
         }
     });
