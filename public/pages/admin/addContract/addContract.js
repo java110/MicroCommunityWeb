@@ -1,10 +1,6 @@
 (function (vc) {
 
     vc.extends({
-        propTypes: {
-            callBackListener: vc.propTypes.string, //父组件名称
-            callBackFunction: vc.propTypes.string //父组件监听方法
-        },
         data: {
             addContractInfo: {
                 contractId: '',
@@ -37,11 +33,24 @@
                 parentStateName: '',
                 objName: '',
                 objPersonName: '',
-                objPersonId: ''
+                objPersonId: '',
+                rooms: []
             }
         },
         _initMethod: function () {
             $that._loadAddContractType();
+
+            if (vc.getParam("contractId")) {
+                $that.addContractInfo.contractParentId = vc.getParam("contractId");
+                $that.addContractInfo.parentContractCode = vc.getParam("contractCode");
+                $that.addContractInfo.parentContractName = vc.getParam("contractName");
+                $that.addContractInfo.parentStateName = vc.getParam("stateName");
+                $that.addContractInfo.contractId = '';
+                $that.addContractInfo.contractCode = '';
+                $that.addContractInfo.contractName = '';
+                $that.addContractInfo.allNum = vc.getParam("objId");
+                $that._queryRoom();
+            }
 
             vc.initDateTime('addStartTime', function (_value) {
                 $that.addContractInfo.startTime = _value;
@@ -54,32 +63,13 @@
                 $that.addContractInfo.signingTime = _value;
             });
 
+            $that.addContractInfo.signingTime = vc.dateTimeFormat(new Date().getTime());
+
         },
         _initEvent: function () {
-            vc.on('addContract', 'openAddContractModal', function (_param) {
-                vc.copyObject(_param, $that.addContractInfo);
-
-                if (_param.hasOwnProperty("contractId")) {
-                    $that.addContractInfo.contractParentId = _param.contractId;
-                    $that.addContractInfo.parentContractCode = _param.contractCode;
-                    $that.addContractInfo.parentContractName = _param.contractName;
-                    $that.addContractInfo.parentStateName = _param.stateName;
-                    $that.addContractInfo.contractId = '';
-                    $that.addContractInfo.contractCode = '';
-                    $that.addContractInfo.contractName = '';
-                    $that.addContractInfo.allNum = _param.objId;
-                    $that._queryRoom();
-                }
-
-                $('#addContractModel').modal('show');
-            });
-            $('#addContractModel').on('show.bs.modal', function (e) {
-                $(this).css('display', 'block');
-                let modalWidth = $(window).width() * 0.7;
-                $(this).find('.modal-dialog').css({
-                    'max-width': modalWidth
-                });
-            });
+            vc.on('addContract', 'chooseRoom', function (param) {
+                $that.addContractInfo.rooms.push(param);
+            })
         },
         methods: {
             addContractValidate() {
@@ -266,7 +256,6 @@
             saveContractInfo: function () {
                 if (!vc.component.addContractValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addContractInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -337,7 +326,8 @@
                     parentStateName: '',
                     objName: '',
                     objPersonName: '',
-                    objPersonId: ''
+                    objPersonId: '',
+                    rooms: []
                 };
             },
             _loadAddContractType: function () {
@@ -384,58 +374,22 @@
                     }
                 );
             },
-            _queryRoom: function () {
-                let _allNum = $that.addContractInfo.allNum;
-                if (_allNum == '') {
-                    return;
-                }
-                let param = {
-                    params: {
-                        page: 1,
-                        row: 1,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
-
-                if (_allNum.split('-').length == 3) {
-                    let _allNums = _allNum.split('-')
-                    param.params.floorNum = _allNums[0].trim();
-                    param.params.unitNum = _allNums[1].trim();
-                    param.params.roomNum = _allNums[2].trim();
-                } else {
-                    param.params.roomId = _allNum;
-                }
-
-                //发送get请求
-                vc.http.get('roomCreateFee',
-                    'listRoom',
-                    param,
-                    function (json, res) {
-                        let listRoomData = JSON.parse(json);
-                        let _rooms = listRoomData.rooms;
-
-                        if (_rooms.length < 1) {
-                            vc.toast('未找到房屋');
-                            $that.addContractInfo.allNum = '';
-                            return;
-                        } else {
-                            $that.addContractInfo.allNum = _rooms[0].floorNum + '-' + _rooms[0].unitNum + '-' + _rooms[0].roomNum;
-                        }
-
-                        $that.addContractInfo.roomId = _rooms[0].roomId;
-                        $that.addContractInfo.ownerName = _rooms[0].ownerName;
-                        $that.addContractInfo.link = _rooms[0].link;
-                        $that.addContractInfo.objType = '3333';
-                        $that.addContractInfo.objId = _rooms[0].roomId;
-                        $that.addContractInfo.objName = $that.addContractInfo.allNum;
-                        $that.addContractInfo.objPersonName=_rooms[0].ownerName;
-                        $that.addContractInfo.objPersonId=_rooms[0].ownerId;
-
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+            _goBack: function () {
+                vc.goBack();
             },
+            _selectRoom: function () {
+                vc.emit('searchRoom', 'openSearchRoomModel', {})
+            },
+            _openDelRoomModel: function (_room) {
+
+                let _tmpRooms = [];
+                $that.addContractInfo.rooms.forEach(item => {
+                    if (item.roomId != _room.roomId) {
+                        _tmpRooms.push(item);
+                    }
+                });
+                $that.addContractInfo.rooms = _tmpRooms;
+            }
         }
     });
 

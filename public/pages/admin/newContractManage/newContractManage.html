@@ -61,7 +61,6 @@
                                 <th class="text-center">合同编号</th>
                                 <th class="text-center">父合同编号</th>
                                 <th class="text-center">合同类型</th>
-                                <th class="text-center">关联房屋</th>
                                 <th class="text-center">经办人</th>
                                 <th class="text-center">合同金额</th>
                                 <th class="text-center">开始时间</th>
@@ -77,7 +76,6 @@
                                 <td class="text-center">
                                     {{contract.parentContractCode?contract.parentContractCode:'-'}}</td>
                                 <td class="text-center">{{contract.contractTypeName}}</td>
-                                <td class="text-center">{{contract.objName}}</td>
                                 <td class="text-center">{{contract.operator}}</td>
                                 <td class="text-center">{{contract.amount}}</td>
                                 <td class="text-center">{{contract.startTime}}</td>
@@ -115,9 +113,6 @@
         </div>
     </div>
 
-
-
-    <vc:create path="admin/addContract" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="admin/editContract"></vc:create>
     <vc:create path="admin/deleteContract"></vc:create>
 
