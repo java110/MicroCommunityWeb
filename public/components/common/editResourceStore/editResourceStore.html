@@ -17,8 +17,31 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">物品编码</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editResourceStoreInfo.resCode" type="text" placeholder="选填，请填写物品编码，如终端串码"
+                                    <input v-model="editResourceStoreInfo.resCode" type="text" disabled="disabled"
+                                           placeholder="选填，请填写物品编码，如终端串码"
                                            class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">物品类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editResourceStoreInfo.goodsType">
+                                        <option v-for="(item,index) in editResourceStoreInfo.goodsTypes" :key="index"
+                                                v-bind:value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">物品单位</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editResourceStoreInfo.unitCode">
+                                        <option v-for="(item,index) in editResourceStoreInfo.unitCodes" :key="index"
+                                                v-bind:value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -28,20 +51,63 @@
                                            class="form-control">
                                 </div>
                             </div>
-
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">最低收费标准</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editResourceStoreInfo.outLowPrice" type="text"
+                                           placeholder="必填，请填写物品最低收费标准"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">最高收费标准</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editResourceStoreInfo.outHighPrice" type="text"
+                                           placeholder="必填，请填写物品最高收费标准"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">是否在维修材料中显示</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editResourceStoreInfo.showMobile">
+                                        <option value="Y">是</option>
+                                        <option value="N">否</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">备注</label>
+                                <div class="col-sm-10">
+                                    <textarea placeholder="选填，请填写备注" class="form-control"
+                                              v-model="editResourceStoreInfo.remark">
+                                    </textarea>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">描述</label>
                                 <div class="col-sm-10">
                                     <textarea placeholder="选填，请填写描述" class="form-control"
-                                              v-model="editResourceStoreInfo.description"></textarea></div>
+                                              v-model="editResourceStoreInfo.description">
+                                    </textarea>
+                                </div>
                             </div>
-
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">图片</label>
+                                <div class="content-img col-sm-10">
+                                    <vc:create path="frame/uploadImage" callBackListener="editResourceStore"
+                                               callBackFunction="notifyUploadImage" namespace="editResourceStore">
+                                    </vc:create>
+                                </div>
+                            </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="editResourceStore()"><i class="fa fa-check"></i>&nbsp;保存
+                                        v-on:click="editResourceStore()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>
                         </div>

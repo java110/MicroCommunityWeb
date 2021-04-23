@@ -12,7 +12,7 @@
                 repairWay: '',
                 remark: '',
                 publicArea: '',
-                payFeeFlag: '',
+                payFeeFlag: 'F',
                 priceScope: '',
                 returnVisitFlag: ''
 
@@ -141,7 +141,7 @@
                     repairWay: '',
                     remark: '',
                     publicArea: '',
-                    payFeeFlag: '',
+                    payFeeFlag: 'F',
                     priceScope: '',
                     returnVisitFlag: ''
                 };

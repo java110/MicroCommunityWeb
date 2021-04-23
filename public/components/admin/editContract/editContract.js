@@ -20,8 +20,9 @@
                 endTime: '',
                 signingTime: '',
                 contractTypes: [],
-                contractTypeSpecs: []
-
+                contractTypeSpecs: [],
+                tempfile:'',
+                contractFilePo:[]
             }
         },
         _initMethod: function () {
@@ -44,6 +45,7 @@
                 $('#editContractModel').modal('show');
                 vc.copyObject(_params, vc.component.editContractInfo);
                 $that._loadContractType(_params);
+                $that._loadFiles();
             });
             $('#editContractModel').on('show.bs.modal', function (e) {
                 $(this).css('display', 'block');
@@ -260,7 +262,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#editContractModel').modal('hide');
-                            vc.emit('contractManage', 'listContract', {});
+                            vc.emit('newContractManage', 'listContract', {});
                             return;
                         }
                         vc.message(_json.msg);
@@ -291,7 +293,9 @@
                     endTime: '',
                     signingTime: '',
                     contractTypes: _contractTypes,
-                    contractTypeSpecs: []
+                    contractTypeSpecs: [],
+                    tempfile:'',
+                    contractFilePo:[]
                 }
             },
             _loadEditContractType: function () {
@@ -345,7 +349,114 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _loadFiles: function () {
+                let param = {
+                    params: {
+                        contractId: vc.component.editContractInfo.contractId,
+                        page: 1,
+                        row: 100
+                    }
+                }
+                //发送get请求
+                vc.http.apiGet('/contractFile/queryContractFile',
+                    param,
+                    function (json, res) {
+                        var _contractTFile = JSON.parse(json);
+                        let _steps = [];
+                        for (let stepIndex = 0; stepIndex < _contractTFile.data.length; stepIndex++) {
+                            let _fileStep = _contractTFile.data[stepIndex];
+                            let _step = {
+                                seq: stepIndex,
+                                fileSaveName: _fileStep.fileSaveName,
+                                fileRealName: _fileStep.fileRealName
+                            };
+                            _steps.push(_step);
+                        }
+                        vc.component.editContractInfo.contractFilePo = _steps;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            addEditFileStep: function () {
+                let _file = {
+                    seq: $that.editContractInfo.contractFilePo.length,
+                    fileSaveName: '',
+                    fileRealName: ''
+                }
+                $that.editContractInfo.contractFilePo.push(_file);
+            },
+            deleteEditStep: function (_step) {
+                for (var i = 0; i < $that.editContractInfo.contractFilePo.length; i++) {
+                    if ($that.editContractInfo.contractFilePo[i].seq == _step.seq) {
+                       
+                        $that.editContractInfo.contractFilePo.splice(i, 1);
+                    }
+                }
+            },
+            getEditFile: function (e,index) {
+                vc.component.editContractInfo.tempfile = e.target.files[0];
+                $that.editContractInfo.contractFilePo[index].fileRealName = vc.component.editContractInfo.tempfile.name;
+                this._importEditData(index);
+            },
+            _importEditData: function (index) {
+                // 导入数据
+                if (!vc.component.checkFileType(vc.component.editContractInfo.tempfile.name.split('.')[1])) {
+                    vc.toast('操作失败，请上传图片、PDF格式的文件');
+                    return;
+                }
+           
+                var param = new FormData();
+                param.append("uploadFile", vc.component.editContractInfo.tempfile);
+                vc.http.upload(
+                    'importRoomFee',
+                    'uploadContactFile',
+                    param,
+                    {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            $that.editContractInfo.contractFilePo[index].fileSaveName = json;
+                            vc.toast("上传成功");
+                            return;
+                        }
+                        vc.toast(json, 10000);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo, 10000);
+                    });
+            },
+            checkEditFileType: function (fileType) {
+                const acceptTypes = ['png','pdf','jpg'];
+                for (var i = 0; i < acceptTypes.length; i++) {
+                    if (fileType === acceptTypes[i]) {
+                        return true;
+                    }
+                }
+                return false;
             }
+
+,
+
+            _loadFilesddd: function (_data) {
+                
+                $that.workflowSettingInfo.describle = _data.describle;
+                let _steps = [];
+                if (!_data.hasOwnProperty("workflowSteps")) {
+                    return;
+                }
+
+                
+
+            },
         }
     });
 

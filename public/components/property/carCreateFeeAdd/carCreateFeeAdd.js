@@ -13,8 +13,10 @@
                 carState: ['H', 'S'],
                 isMore: false,
                 locationTypeCdName: '',
-                startTime: vc.dateTimeFormat(new Date().getTime()),
-                paId: ''
+                startTime: '',
+                paId: '',
+                feeFlag: '',
+                endTime: ''
             }
         },
         _initMethod: function () {
@@ -42,20 +44,19 @@
         },
         methods: {
             _initCarCreateFeeAddDateInfo: function () {
-                $('.carCreateFeeStartTime').datetimepicker({
-                    language: 'zh-CN',
-                    fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
-                    initTime: true,
-                    initialDate: new Date(),
-                    autoClose: 1,
-                    todayBtn: true
+
+                vc.initDate('carCreateFeeStartTime', function (_startTime) {
+                    $that.carCreateFeeAddInfo.startTime = _startTime;
                 });
-                $('.carCreateFeeStartTime').datetimepicker()
-                    .on('changeDate', function (ev) {
-                        var value = $(".carCreateFeeStartTime").val();
-                        vc.component.carCreateFeeAddInfo.startTime = value;
-                    });
+                vc.initDate('carCreateFeeEndTime', function (_endTime) {
+                    $that.carCreateFeeAddInfo.endTime = _endTime;
+                    let start = Date.parse(new Date($that.carCreateFeeAddInfo.startTime))
+                    let end = Date.parse(new Date($that.carCreateFeeAddInfo.endTime))
+                    if (start - end >= 0) {
+                        vc.toast("结束时间必须大于开始时间")
+                        $that.carCreateFeeAddInfo.endTime = '';
+                    }
+                });
                 //防止多次点击时间插件失去焦点,这里报错先取消 
                 //document.getElementsByClassName('form-control carCreateFeeStartTime')[0].addEventListener('click', myfunc)
 
@@ -65,19 +66,19 @@
             },
             carCreateFeeAddValidate() {
                 return vc.validate.validate({
-                        carCreateFeeAddInfo: vc.component.carCreateFeeAddInfo
-                    },
+                    carCreateFeeAddInfo: vc.component.carCreateFeeAddInfo
+                },
                     {
                         'carCreateFeeAddInfo.locationTypeCd': [{
                             limit: "required",
                             param: "",
                             errInfo: "收费范围不能为空"
                         },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "收费范围格式错误"
-                            },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "收费范围格式错误"
+                        },
                         ],
                         'carCreateFeeAddInfo.locationObjId': [{
                             limit: "required",
@@ -108,11 +109,11 @@
                             param: "",
                             errInfo: "计费起始时间不能为空"
                         },
-                            {
-                                limit: "datetime",
-                                param: "",
-                                errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
-                            }]
+                        {
+                            limit: "datetime",
+                            param: "",
+                            errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
+                        }]
                     });
             },
             saveCarCreateFeeInfo: function () {
@@ -133,8 +134,8 @@
                 }
                 vc.component.carCreateFeeAddInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post('parkingSpaceCreateFeeAdd', 'save', JSON.stringify(vc.component.carCreateFeeAddInfo), {
-                        emulateJSON: true
-                    },
+                    emulateJSON: true
+                },
                     function (json, res) {
                         if (res.status == 200) {
                             //关闭model
@@ -170,7 +171,9 @@
                     isMore: false,
                     locationTypeCdName: '',
                     startTime: vc.dateTimeFormat(new Date().getTime()),
-                    paId: ''
+                    paId: '',
+                    feeFlag: '',
+                    endTime: ''
                 };
                 vc.component.carCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
                 vc.component.carCreateFeeAddInfo.parkingAreas = _parkingAreas;
@@ -215,6 +218,15 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                     });
+            },
+            _carCreateFeeAddIfOnceFee(_configId) {
+                $that.carCreateFeeAddInfo.endTime = '';
+                $that.carCreateFeeAddInfo.feeConfigs.forEach(item => {
+                    if (_configId == item.configId) {
+                        $that.carCreateFeeAddInfo.feeFlag = item.feeFlag;
+                        return;
+                    }
+                });
             }
         }
     });

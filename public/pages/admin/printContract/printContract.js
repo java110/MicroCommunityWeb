@@ -2,7 +2,13 @@
 
     vc.extends({
         data: {
+            templatecontent: '',
+            contractdata: '',
+            contractTypeSpec: '',
+            baseRepalce: [],
+            attrs: [],
             printContractInfo: {
+                contractId: '',
                 contractTypeId: '',
                 context: ''
             },
@@ -12,6 +18,7 @@
             //vc.component._initPrintPurchaseApplyDateInfo();
 
             $that.printContractInfo.contractTypeId = vc.getParam('contractTypeId');
+            $that.printContractInfo.contractId = vc.getParam('contractId');
 
             $that._loadContract();
         },
@@ -28,24 +35,51 @@
                     params: {
                         page: 1,
                         row: 1,
+                        contractId: $that.printContractInfo.contractId,
                         contractTypeId: $that.printContractInfo.contractTypeId
                     }
                 };
 
-                //发送get请求
-                vc.http.apiGet('/contract/queryContractTypeTemplate',
+                //发送模板get请求
+                vc.http.apiGet('/contract/printContractTemplate',
                     param,
                     function (json, res) {
                         let _info = JSON.parse(json);
                         let _data = _info.data;
-                        if (_data.length > 0) {
-                            $that.printContractInfo.context = _data[0].context;
+                        $that.templatecontent = _data.contractTypeTemplate[0].context;
+                        $that.contractdata = _data.contract[0];
+                        $that.attrs = _data.contract[0].attrs;
+                        $that.contractTypeSpec = _data.contractTypeSpec;
+                        $that.contractTypeSpec.forEach(function (e) {
+                            let rname = e.specName;
+                            let rspecCd = e.specCd;
+                            $that.attrs.forEach(function (ea) {
+                                if (rspecCd == ea.specCd) {
+                                    let reg = '#' + rname + '#';
+                                    $that.templatecontent = $that.templatecontent.replaceAll(reg, ea.value)
+                                }
+                            });
+                        });
+                        $that.baseRepalce = _data.baseRepalce;
+                        if ($that.baseRepalce != undefined) {
+                            $that.baseRepalce.forEach(function (e) {
+                                let rname = e.name;
+                                let rkey = e.key;
+                                var contractarr = Object.keys($that.contractdata);
+                                for (var a in contractarr) {
+                                    if (rkey == contractarr[a]) {
+                                        let reg = '#' + rname + '#';
+                                        $that.templatecontent = $that.templatecontent.replaceAll(reg, $that.contractdata[contractarr[a]])
+                                    }
+                                }
+                            });
                         }
+
+                        $that.printContractInfo.context = $that.templatecontent;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-
             },
 
             _printContractDiv: function () {

@@ -12,6 +12,8 @@
                 records: 1,
                 moreCondition: false,
                 repairName: '',
+                repairTypes: [],
+                states: [],
                 conditions: {
                     repairId: '',
                     repairName: '',
@@ -19,14 +21,28 @@
                     repairType: '',
                     repairTypeName: '',
                     ownerId: '',
-                    state: ''
+                    state: '',
+                    reqSource: 'pc_mobile'
                 }
             }
         },
         _initMethod: function () {
             //vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._validateParam();
+            vc.getDict('r_repair_pool', "state", function (_data) {
+                vc.component.ownerRepairManageInfo.states = _data;
+            });
             vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+            //与字典表关联
+            // vc.getDict('r_repair_pool', "repair_type", function (_data) {
+            //     vc.component.ownerRepairManageInfo.repairTypes = _data;
+            // });
+            // 获取repair_types 不再从字典表查询
+            $that._listRepairTypes(DEFAULT_PAGE, 50);
+            //与字典表关联
+            vc.getDict('r_repair_pool', "state", function (_data) {
+                vc.component.ownerRepairManageInfo.states = _data;
+            });
         },
         _initEvent: function () {
             vc.on('ownerRepairManage', 'listOwnerRepair', function (_param) {
@@ -37,6 +53,26 @@
             });
         },
         methods: {
+            // 查询repair_types
+            _listRepairTypes: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: _page,
+                        row: _rows,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('repair.listRepairSettings',
+                    param,
+                    function (json, res) {
+                        var _repairTypesInfo = JSON.parse(json);
+                        vc.component.ownerRepairManageInfo.repairTypes = _repairTypesInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             //查询方法
             _listOwnerRepairs: function (_page, _rows) {
                 vc.component.ownerRepairManageInfo.conditions.page = _page;

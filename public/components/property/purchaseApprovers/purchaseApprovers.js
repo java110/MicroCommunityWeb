@@ -1,10 +1,9 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
             callBackFunction: vc.propTypes.string, //父组件监听方法
-            flowType:vc.propTypes.string='30003'
+            flowType: vc.propTypes.string = '30003'
         },
         data: {
             purchaseApproversInfo: {
@@ -13,8 +12,8 @@
                 staffName: '',
                 companyName: '',
                 departmentName: '',
-                departmentId:'',
-                companyId:''
+                departmentId: '',
+                companyId: ''
             }
         },
         watch: {
@@ -27,7 +26,6 @@
         },
         _initMethod: function () {
             $that._loadStaffOrg();
-
         },
         _initEvent: function () {
             vc.on("purchaseApprovers", "notify", function (_param) {
@@ -54,14 +52,14 @@
                 //发送get请求
                 vc.http.apiGet('/workflow/getFirstStaff',
                     param,
-                    function (json,res) {
+                    function (json, res) {
                         var _staffInfo = JSON.parse(json);
                         if (_staffInfo.code != 0) {
                             vc.toast(_staffInfo.msg);
-                            return ; 
+                            return;
                         }
                         let _data = _staffInfo.data;
-                        vc.copyObject(_data,$that.purchaseApproversInfo);
+                        vc.copyObject(_data, $that.purchaseApproversInfo);
                         $that.purchaseApproversInfo.companyName = _data.parentOrgName;
                         $that.purchaseApproversInfo.departmentName = _data.orgName;
                     }, function () {
@@ -101,7 +99,6 @@
                     return;
                 }
             },
-
         }
     });
 

@@ -7,19 +7,6 @@
                 <div class="ibox-content">
                     <div>
                         <div>
-                            <!--<div class="form-group row">
-                                <label class="col-sm-2 col-form-label">楼名称</label>
-                                <div class="col-sm-10"><input v-model="addFloorInfo.name" type="text" placeholder="必填，请填写名称" class="form-control"></div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">楼编号</label>
-                                <div class="col-sm-10"><input v-model="addFloorInfo.floorNum" type="email" placeholder="必填，请填写编号" class="form-control"></div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
-                                <div class="col-sm-10"><input v-model="addFloorInfo.remark" type="tel" placeholder="可填，请填写备注" class="form-control"></div>
-                            </div>-->
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">物品名称</label>
                                 <div class="col-sm-10">
@@ -35,6 +22,42 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">仓库</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addResourceStoreInfo.shId">
+                                        <option selected disabled value="">必填，请选择仓库</option>
+                                        <option v-for="(item,index) in addResourceStoreInfo.storehouses" :key="index"
+                                                v-bind:value="item.shId">
+                                            {{item.shName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">物品类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addResourceStoreInfo.goodsType">
+                                        <option selected disabled value="">必填，请选择物品类型</option>
+                                        <option v-for="(item,index) in addResourceStoreInfo.goodsTypes" :key="index"
+                                                v-bind:value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">物品单位</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addResourceStoreInfo.unitCode">
+                                        <option selected disabled value="">必填，请选择物品单位</option>
+                                        <option v-for="(item,index) in addResourceStoreInfo.unitCodes" :key="index"
+                                                v-bind:value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">物品价格</label>
                                 <div class="col-sm-10">
                                     <input v-model="addResourceStoreInfo.price" type="text" placeholder="必填，请填写物品价格"
@@ -42,18 +65,63 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">最低收费标准</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceStoreInfo.outLowPrice" type="text"
+                                           placeholder="必填，请填写物品最低收费标准"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">最高收费标准</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceStoreInfo.outHighPrice" type="text"
+                                           placeholder="必填，请填写物品最高收费标准"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">是否在维修材料中显示</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addResourceStoreInfo.showMobile">
+                                        <option selected disabled value="">必填，请选择是否在维修材料中显示</option>
+                                        <option value="Y">是</option>
+                                        <option value="N">否</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">备注</label>
+                                <div class="col-sm-10">
+                                    <textarea placeholder="选填，请填写备注" class="form-control"
+                                              v-model="addResourceStoreInfo.remark">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">描述</label>
                                 <div class="col-sm-10">
                                     <textarea placeholder="选填，请填写描述" class="form-control"
-                                              v-model="addResourceStoreInfo.description"></textarea></div>
+                                              v-model="addResourceStoreInfo.description">
+                                    </textarea>
+                                </div>
                             </div>
-
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">上传图片</label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadImage" callBackListener="addResourceStore"
+                                               callBackFunction="notifyUploadImage" namespace="addResourceStore">
+                                    </vc:create>
+                                </div>
+                            </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="saveResourceStoreInfo()"><i class="fa fa-check"></i>&nbsp;保存
+                                        v-on:click="saveResourceStoreInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>
                         </div>

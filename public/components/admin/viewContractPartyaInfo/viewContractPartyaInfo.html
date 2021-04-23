@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>合同甲方信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewContractPartyaInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectContractPartyaInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择合同甲方</button>
+
+                    <button type="button" v-if="viewContractPartyaInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddContractPartyaInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加合同甲方</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >甲方：</label>
+                            <label class="">{{viewContractPartyaInfo.partyA}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >甲方联系人：</label>
+                            <label class="">{{viewContractPartyaInfo.aContacts}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >联系电话：</label>
+                            <label class="">{{viewContractPartyaInfo.aLink}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="admin/addContractPartya"
+               callBackListener="viewContractPartyaInfo"
+               callBackFunction="chooseContractPartya"
+    ></vc:create>
+
+
+    <vc:create path="admin/chooseContractPartya"
+               emitChooseContractPartya="viewContractPartyaInfo"
+               emitLoadData="viewContractPartyaInfo"
+    ></vc:create>
+</div>

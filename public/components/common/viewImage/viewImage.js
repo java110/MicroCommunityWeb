@@ -4,7 +4,9 @@
         data: {
             viewImageInfo: {
                 url: '',
-                showImage: false
+                showImage: false,
+                imgWidth: 800,
+                imgHeight: 800
             }
         },
         _initMethod: function () {
@@ -13,8 +15,17 @@
             vc.on('viewImage', 'showImage', function (_param) {
                 $that.viewImageInfo.url = _param.url;
                 $that.viewImageInfo.showImage = true;
-
                 $that._launchIntoFullscreen();
+
+                var img = new Image();
+                img.src = _param.url;
+                // 加载完成执行
+                img.onload = function () {
+                    let imgScale = img.width / img.height;
+                    console.log(imgScale);
+                    $that.viewImageInfo.imgWidth = 800;
+                    $that.viewImageInfo.imgHeight = 800 / imgScale;
+                };
             });
         },
         methods: {

@@ -91,7 +91,7 @@
                                     </button>
                                 </div>
                                 <div class="btn-group"
-                                     v-if="roomRenovation.state == '1000' && roomRenovation.isViolation == 'N'">
+                                     v-if="roomRenovation.state == '1000' && roomRenovation.isViolation == 'N' && vc.hasPrivilege('502021031698730003')">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openToExamine(roomRenovation)">审核
                                     </button>
@@ -103,7 +103,7 @@
                                     </button>
                                 </div>
                                 <div class="btn-group"
-                                     v-if="roomRenovation.state == '4000' && roomRenovation.isViolation == 'N'">
+                                     v-if="roomRenovation.state == '4000' && roomRenovation.isViolation == 'N' && vc.hasPrivilege('502021012701630060')">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDecorationAcceptanceModel(roomRenovation)">装修验收
                                     </button>

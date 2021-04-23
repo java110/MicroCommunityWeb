@@ -156,9 +156,9 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">房屋</label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">楼栋</label>
                     <div class="col-sm-9 padding-lr-xs">
-                      <input v-model="addContractInfo.allNum" type="text" placeholder="选填，请填写房屋 楼栋-单元-房屋 如 1-1-1023" class="form-control" @blur="_queryRoom">
+                      <input v-model="addContractInfo.allNum" type="text" placeholder="选填，请填写 楼栋编码" class="form-control" @blur="_queryRoom">
                     </div>
                   </div>
                 </div>
@@ -211,6 +211,35 @@
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-sm-10">
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">合同附件</label>
+                    <div class="col-sm-10">
+                        <div class="row " style="margin-left: 0px;">
+                            <button type="button" class="btn btn-primary" @click="addFileStep()">添加附件</button>
+                        </div>
+                        <div v-for="(item,index) in addContractInfo.contractFilePo">
+                            <div class="row margin-0 margin-top">
+                                <div  class="col-sm-1 text-center">
+                                    <label class="col-form-label">第{{index+1}}个</label>
+                                </div>
+                                <input type="file"
+                                class="custom-file-input form-control" name="excelTemplate" style="width: 11%;opacity: 1;"
+                                v-on:change="getFile($event,index)" accept=".png,.pdf,.jpg">
+                                <label  class="col-sm-5 col-form-label padding-lr-sm text-right">{{item.fileRealName}}</label>
+                                <div>
+                                    <button type="button" class="btn btn-link" @click="deleteStep(item)">删除附件</button>
+                                </div>
+                              
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
                 </div>
               </div>
 

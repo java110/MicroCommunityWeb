@@ -66,13 +66,17 @@
             _nextStep: function () {
                 vc.emit('viewResourceStoreInfo2', 'getSelectResourceStores', null);
                 let _resourceStores = vc.component.addItemOutStepInfo.purchaseApply.resourceStores;
+                if (_resourceStores.length <= 0) {
+                    vc.toast("请选择物品");
+                    return;
+                }
                 var _currentData = vc.component.addItemOutStepInfo.infos[vc.component.addItemOutStepInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
                 for (var i = 0; i < _resourceStores.length; i++) {
-                    if (_resourceStores[i].quantity <= 0) {
+                    if (!_resourceStores[i].hasOwnProperty("quantity") || _resourceStores[i].quantity <= 0) {
                         vc.toast("请完善物品信息");
                         return;
                     }

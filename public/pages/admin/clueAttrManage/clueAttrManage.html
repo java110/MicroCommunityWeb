@@ -1,0 +1,99 @@
+<div >
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+<div class="col-sm-4" >
+<div class="form-group">
+                                <input type="text" placeholder="请输入目前进展情况" v-model="clueAttrManageInfo.conditions.nowSituation" class=" form-control">
+                            </div>                        </div><div class="col-sm-4" >
+<div class="form-group">
+                                <input type="text" placeholder="请输入跟进计划" v-model="clueAttrManageInfo.conditions.nextSituation" class=" form-control">
+                            </div>                        </div><div class="col-sm-1">
+                                <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryClueAttrMethod()">
+                                    <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>线索管理信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm margin-right"
+                            v-on:click="_goBack()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            返回
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddClueAttrModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            添加跟进
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny"
+                           data-page-size="15"
+                    >
+                        <thead>
+                        <tr>
+                            <th class="text-center">跟进ID</th>
+                            <th class="text-center">跟进时间</th>
+                            <th class="text-center">目前进展情况</th>
+                            <th class="text-center">下一步推进计划</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="clueAttr in clueAttrManageInfo.clueAttrs">
+                            <td class="text-center">{{clueAttr.attrId}}</td>
+                            <td class="text-center">{{clueAttr.nowTime}}</td>
+                            <td class="text-center">{{clueAttr.nowSituation}}</td>
+                            <td class="text-center">{{clueAttr.nextSituation}}</td>
+                            <td class="text-center"><div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditClueAttrModel(clueAttr)">修改</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteClueAttrModel(clueAttr)">删除</button>
+                                </div></td>
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <vc:create path="admin/addClueAttr"
+               callBackListener=""
+               callBackFunction=""
+    ></vc:create>
+    <vc:create path="admin/editClueAttr"></vc:create>
+    <vc:create path="admin/deleteClueAttr"></vc:create>
+
+</div>

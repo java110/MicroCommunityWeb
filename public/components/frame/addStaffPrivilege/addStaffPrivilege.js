@@ -39,7 +39,10 @@
          },
          _initEvent:function(){
              vc.on('addStaffPrivilege','addStaffPrivilegeModel',function(_params){
-                $('#addStaffPrivilegeModel').modal('show');
+                 $('#addStaffPrivilegeModel').modal('show');
+                 // 初始化时清空已选择权限
+                 vc.component.addStaffPrivilegeInfo.selectPrivileges = [];
+                 vc.component.addStaffPrivilegeInfo.selectPrivilegeGroups = [];
                 vc.component._refreshData(_params);
             });
         },

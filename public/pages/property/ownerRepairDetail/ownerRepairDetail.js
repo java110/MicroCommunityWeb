@@ -19,7 +19,12 @@
                 photos: [],
                 repairPhotos: [],
                 beforePhotos: [],
-                afterPhotos: []
+                afterPhotos: [],
+                visitType: '',
+                visitContext: '',
+                maintenanceType: '',
+                repairMaterials: '',
+                repairFee: ''
             }
         },
         _initMethod: function () {
@@ -123,13 +128,10 @@
                 vc.goBack()
             },
             openFile: function (_photo) {
-                console.log("here is _photo")
-                console.log(_photo)
                 vc.emit('viewImage', 'showImage', {
                     url: _photo.url
                 });
             },
-
             /**
              * 新增打印功能，跳转打印页面
              */

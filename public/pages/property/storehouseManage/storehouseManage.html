@@ -1,0 +1,108 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入仓库名称"
+                                       v-model="storehouseManageInfo.conditions.shName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="storehouseManageInfo.conditions.shType">
+                                <option selected value="">请选择仓库类型</option>
+                                <option v-for="(item,index) in storehouseManageInfo.shTypes" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入仓库编号" v-model="storehouseManageInfo.conditions.shId"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryStorehouseMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetStorehouseMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>仓库信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStorehouseModal()">
+                            <i class="fa fa-plus"></i>添加
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">仓库编号</th>
+                            <th class="text-center">仓库名称</th>
+                            <th class="text-center">仓库类型</th>
+                            <th class="text-center">描述</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="storehouse in storehouseManageInfo.storehouses">
+                                <td class="text-center">{{storehouse.shId}}</td>
+                                <td class="text-center">{{storehouse.shName}}</td>
+                                <td class="text-center">{{storehouse.shType == '2806'?'集团仓库':'小区仓库'}}</td>
+                                <td class="text-center">{{storehouse.shDesc}}</td>
+                                <td class="text-center">{{storehouse.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditStorehouseModel(storehouse)">修改</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteStorehouseModel(storehouse)">删除</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDetailStorehouseModel(storehouse)">详情</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/addStorehouse" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editStorehouse"></vc:create>
+    <vc:create path="property/deleteStorehouse"></vc:create>
+</div>

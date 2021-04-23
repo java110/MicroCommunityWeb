@@ -178,7 +178,7 @@
                             vc.emit('repairPoolManage', 'listRepairPool', {});
                             vc.toast("操作成功");
                             return;
-                        } else if (_json.code == 404) {
+                        } else {
                             vc.toast(_json.msg);
                         }
                     },

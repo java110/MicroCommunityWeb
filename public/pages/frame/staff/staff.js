@@ -7,6 +7,7 @@
                 moreCondition: false,
                 branchOrgs: [],
                 departmentOrgs: [],
+                relCds: [],
                 conditions: {
                     branchOrgId: '',
                     departmentOrgId: '',
@@ -41,8 +42,13 @@
             }
         },
         _initMethod: function () {
-            vc.component.loadData(1, 10);
-            vc.component._getOrgsByOrgLevelStaff(DEFAULT_PAGE, DEFAULT_ROWS, 2, '');
+            // 查询岗位列表
+            vc.getDict('u_org_staff_rel', "rel_cd", function (_data) {
+                vc.component.staffInfo.relCds = _data;
+                // 岗位列表获取比较慢， 获取到岗位列表后再加载数据
+                vc.component.loadData(1, 10);
+                vc.component._getOrgsByOrgLevelStaff(DEFAULT_PAGE, DEFAULT_ROWS, 2, '');
+            });
         },
         _initEvent: function () {
             vc.component.$on('pagination_page_event', function (_currentPage) {
@@ -72,7 +78,17 @@
                     param,
                     function (json) {
                         var _staffInfo = JSON.parse(json);
-                        vc.component.staffData = _staffInfo.staffs;
+                        // 员工列表 和 岗位列表匹配
+                        let staffList = _staffInfo.staffs;
+                        let relCdsList = vc.component.staffInfo.relCds;
+                        staffList.forEach((staff) => {
+                            relCdsList.forEach((rel) => {
+                                if (staff.relCd == rel.statusCd){
+                                    staff.relCdName = rel.name;
+                                }
+                            })
+                        })
+                        vc.component.staffData = staffList;
                         vc.component.$emit('pagination_info_event', {
                             total: _staffInfo.records,
                             currentPage: _staffInfo.page

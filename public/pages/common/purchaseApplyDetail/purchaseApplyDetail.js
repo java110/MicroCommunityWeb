@@ -29,7 +29,6 @@
             $that._loadAuditUser();
         },
         _initEvent: function () {
-
         },
         methods: {
             _listPurchaseApply: function (_page, _rows) {
@@ -38,10 +37,9 @@
                         page: _page,
                         row: _rows,
                         applyOrderId: vc.component.purchaseApplyDetailInfo.applyOrderId,
-                        resOrderType: vc.component.purchaseApplyDetailInfo.resOrderType,
+                        resOrderType: vc.component.purchaseApplyDetailInfo.resOrderType
                     }
                 };
-
                 //发送get请求
                 vc.http.get('purchaseApplyManage',
                     'list',
@@ -62,7 +60,6 @@
                         communityId: vc.getCurrentCommunity().communityId,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowAuditInfo',
                     param,
@@ -77,8 +74,8 @@
             _callBackListPurchaseApply: function () {
                 vc.getBack();
             },
-            _printPurchaseApply:function(){
-                window.open("/print.html#/pages/property/printPurchaseApply?applyOrderId="+$that.purchaseApplyDetailInfo.applyOrderId+"&resOrderType="+$that.purchaseApplyDetailInfo.resOrderType)
+            _printPurchaseApply: function () {
+                window.open("/print.html#/pages/property/printPurchaseApply?applyOrderId=" + $that.purchaseApplyDetailInfo.applyOrderId + "&resOrderType=" + $that.purchaseApplyDetailInfo.resOrderType)
                 //vc.emit('printPurchaseApply', 'openPrintPurchaseApplyModal',vc.component.purchaseApplyDetailInfo);
             }
         }
