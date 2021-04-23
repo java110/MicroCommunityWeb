@@ -223,7 +223,33 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-10">
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">合同附件</label>
+                <div class="col-sm-10">
+                  <div class="row " style="margin-left: 0px;">
+                    <button type="button" class="btn btn-primary" @click="addFileStep()">添加附件</button>
+                  </div>
+                  <div v-for="(item,index) in addContractInfo.contractFilePo">
+                    <div class="row margin-0 margin-top">
+                      <div class="col-sm-1 text-center">
+                        <label class="col-form-label">第{{index+1}}个</label>
+                      </div>
+                      <input type="file" class="custom-file-input form-control" name="excelTemplate"
+                        style="width: 11%;opacity: 1;" v-on:change="getFile($event,index)" accept=".png,.pdf,.jpg">
+                      <label class="col-sm-5 col-form-label padding-lr-sm text-right">{{item.fileRealName}}</label>
+                      <div>
+                        <button type="button" class="btn btn-link" @click="deleteStep(item)">删除附件</button>
+                      </div>
 
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -295,6 +321,7 @@
         class="fa fa-check"></i>&nbsp;提交</button>
   </div>
 </div>
-<vc:create path="property/searchRoom" emitChooseRoom="addContract" emitLoadData="addContract" roomFlag=""></vc:create>
+<vc:create path="property/searchRoom" emitChooseRoom="addContract" emitLoadData="addContract" roomFlag="">
+</vc:create>
 <vc:create path="property/searchOwner" emitChooseOwner="addContract" emitLoadData="addContract"></vc:create>
 </div>

@@ -422,27 +422,29 @@
                 $that.addContractInfo.contractFilePo.push(_file);
             },
 
-
+             
             deleteStep: function (_step) {
                 for (var i = 0; i < $that.addContractInfo.contractFilePo.length; i++) {
                     if ($that.addContractInfo.contractFilePo[i].seq == _step.seq) {
-
+                       
                         $that.addContractInfo.contractFilePo.splice(i, 1);
                     }
                 }
             },
-            getFile: function (e, index) {
+            getFile: function (e,index) {
                 vc.component.addContractInfo.tempfile = e.target.files[0];
                 $that.addContractInfo.contractFilePo[index].fileRealName = vc.component.addContractInfo.tempfile.name;
                 this._importData(index);
             },
             _importData: function (index) {
                 // 导入数据
-                if (!vc.component.checkFileType(vc.component.addContractInfo.tempfile.name.split('.')[1])) {
+                let _fileName = vc.component.addContractInfo.tempfile.name;
+                let _suffix = _fileName.substring(_fileName.lastIndexOf('.') + 1);
+                if (!vc.component.checkFileType(_suffix.toLowerCase())) {
                     vc.toast('操作失败，请上传图片、PDF格式的文件');
                     return;
                 }
-
+           
                 var param = new FormData();
                 param.append("uploadFile", vc.component.addContractInfo.tempfile);
                 vc.http.upload(
@@ -471,7 +473,7 @@
                     });
             },
             checkFileType: function (fileType) {
-                const acceptTypes = ['png', 'pdf', 'jpg'];
+                const acceptTypes = ['png','pdf','jpg'];
                 for (var i = 0; i < acceptTypes.length; i++) {
                     if (fileType === acceptTypes[i]) {
                         return true;

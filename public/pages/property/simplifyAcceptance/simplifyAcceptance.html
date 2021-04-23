@@ -150,6 +150,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyContract'}"
+                       v-on:click="changeTab('simplifyContract')">业主合同</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}"
                        v-on:click="changeTab('simplifyOwnerMember')">家庭成员</a>
                 </li>
@@ -187,11 +192,7 @@
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
                        v-on:click="changeTab('simplifyShopsHireLog')">房屋绑定记录</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyContract'}"
-                       v-on:click="changeTab('simplifyContract')">业主合同</a>
-                </li>
+                
 
                 
             </ul>
