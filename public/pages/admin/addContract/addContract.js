@@ -275,10 +275,8 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#addContractModel').modal('hide');
-                            vc.component.clearAddContractInfo();
-                            vc.emit('newContractManage', 'listContract', {});
-                            vc.emit('rentingPoolManage', 'listRentingPool', {});
+                            vc.toast('提交成功');
+                            $that._goBack();
                             return;
                         }
                         vc.message(_json.msg);

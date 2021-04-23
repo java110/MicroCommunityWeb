@@ -102,8 +102,10 @@
 
                         if (_fee.payerObjType == '3333') {
                             $that._loadRoomAndOwnerByRoomId();
-                        } else {
+                        } else if(_fee.payerObjType == '6666'){
                             $that._loadRoomAndOwnerByCarId();
+                        }else{
+                            $that._loadContractAndOwnerByContractId();
                         }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -167,6 +169,47 @@
                         $that.mainFeeInfo.payerObjName = _payerObjName;
 
                         $that.mainFeeInfo.builtUpArea = _room.builtUpArea;
+
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadContractAndOwnerByContractId: function () {
+
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        contractId: $that.mainFeeInfo.payerObjId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/contract/queryContract',
+                    param,
+                    function (json, res) {
+                        var listRoomData = JSON.parse(json);
+
+                        let total = listRoomData.total;
+
+                        if (total < 1) {
+                            return;
+                        }
+
+                        let _contract = listRoomData.data[0];
+                        let _payerObjName = _contract.contractName;
+
+                        if (_contract.hasOwnProperty('ownerName')) {
+                            _payerObjName += ('(' + _contract.ownerName + ')')
+                        } else {
+                            _payerObjName += ('(' + _contract.contractCode + ')')
+                        }
+
+                        $that.mainFeeInfo.payerObjName = _payerObjName;
+
+                        $that.mainFeeInfo.builtUpArea = _contract.builtUpArea;
 
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
