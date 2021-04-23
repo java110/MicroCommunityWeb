@@ -84,7 +84,11 @@
             _viewContract:function(_contract){
                vc.jumpToPage("/admin.html#/pages/common/contractApplyDetail?contractId="+_contract.contractId);
 
-            }
+            },
+        
+            _openContractFee: function (_contract) {
+                vc.jumpToPage("/admin.html#/pages/property/listContractFee?contractId=" + _contract.contractId + "&contractCode=" + _contract.contractCode);
+            },
         }
     });
 })(window.vc);

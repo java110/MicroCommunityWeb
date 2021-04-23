@@ -81,8 +81,8 @@
                 <div class="col-sm-9 padding-lr-xs">
                   <select class="custom-select" v-model="addContractInfo.partyA" @change="_changeContractPartyA()">
                     <option selected disabled value="">必填，请选择甲方</option>
-                    <option v-for="(item,index) in addContractInfo.contractPartyAs" :key="index"
-                      :value="item.partyA">{{item.partyA}}</option>
+                    <option v-for="(item,index) in addContractInfo.contractPartyAs" :key="index" :value="item.partyA">
+                      {{item.partyA}}</option>
                   </select>
                 </div>
               </div>
@@ -108,8 +108,13 @@
             <div class="col-sm-4">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label padding-lr-sm text-right">乙方</label>
-                <div class="col-sm-9 padding-lr-xs">
+                <div class="col-sm-7 padding-lr-xs">
                   <input v-model="addContractInfo.partyB" type="text" placeholder="必填，请填写乙方" class="form-control">
+                </div>
+                <div class="col-sm-2 padding-lr-xs">
+                  <button type="button" class="btn btn-link btn-sm" v-on:click="_searchOwner()">
+                    选择
+                  </button>
                 </div>
               </div>
             </div>
@@ -238,7 +243,7 @@
           </div>
         </div>
         <div class="ibox-content">
-        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+          <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
               <tr>
                 <!-- <th>房屋ID</th> -->
@@ -290,9 +295,6 @@
         class="fa fa-check"></i>&nbsp;提交</button>
   </div>
 </div>
-<vc:create path="property/searchRoom"
-               emitChooseRoom="addContract"
-               emitLoadData="addContract"
-               roomFlag=""
-    ></vc:create>
+<vc:create path="property/searchRoom" emitChooseRoom="addContract" emitLoadData="addContract" roomFlag=""></vc:create>
+<vc:create path="property/searchOwner" emitChooseOwner="addContract" emitLoadData="addContract"></vc:create>
 </div>

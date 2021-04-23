@@ -74,6 +74,13 @@
             vc.on('addContract', 'chooseRoom', function (param) {
                 $that.addContractInfo.rooms.push(param);
             })
+
+            vc.on('addContract', 'chooseOwner', function (param) {
+                $that.addContractInfo.partyB = param.name;
+                $that.addContractInfo.bContacts = param.name;
+                $that.addContractInfo.bLink = param.link;
+                $that.addContractInfo.objId = param.ownerId;
+            })
         },
         methods: {
             addContractValidate() {
@@ -481,6 +488,9 @@
 
                     }
                 })
+            },
+            _searchOwner:function(){
+                vc.emit('searchOwner', 'openSearchOwnerModel',{});
             }
         }
     });
