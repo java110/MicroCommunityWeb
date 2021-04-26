@@ -9,6 +9,7 @@
             contractChangeAssetsInfo: {
                 rooms: [],
                 contractId: '',
+                planType: '3003'
             }
         },
         watch: {
