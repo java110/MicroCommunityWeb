@@ -3,7 +3,8 @@
         <div class="col-lg-6 padding-right-xs padding-left-xl">
            
         </div>
-        <div class="col-lg-6 text-right" v-if="simplifyRoomFeeInfo.roomId">
+        <div class="col-lg-6 text-right" v-if="contractInfo.ownerId">
+            
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddContractModal()">
                 起草合同
             </button>

@@ -7,8 +7,8 @@
     vc.extends({
         data: {
             contractInfo: {
-                roomId: '',
-                roomName: '',
+                ownerId: '',
+                ownerName: '',
                 contracts: [],
                 total: 0,
                 records: 1,
@@ -32,7 +32,7 @@
                     return;
                 }
                 $that.clearContractInfoInfo();
-                vc.copyObject(_param, $that.simplifyRoomFeeInfo);
+                vc.copyObject(_param, $that.contractInfo);
                 $that.contractInfo.conditions.objId = _param.ownerId;
                 $that._listContractInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -83,8 +83,8 @@
             },
             clearContractInfoInfo: function () {
                 $that.contractInfo = {
-                    roomId: '',
-                    roomName: '',
+                    ownerId: '',
+                    ownerName: '',
                     contracts: [],
                     total: 0,
                     records: 1,

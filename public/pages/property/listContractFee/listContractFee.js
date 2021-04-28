@@ -27,7 +27,7 @@
             if (vc.notNull(vc.getParam('ownerId'))) {
                 $that.listContractFeeInfo.urlOwnerId = vc.getParam("ownerId");
             }
-          
+
             vc.component._loadListContractFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -67,6 +67,14 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _openTempImportContractFeeModal: function () {
+                vc.emit('tempImportRoomFee', 'openImportRoomFeeModal', {
+                    roomId: $that.listContractFeeInfo.contractId,
+                    objType: '7777',
+                    roomName: $that.listContractFeeInfo.contractName,
+                    ownerName: $that.listContractFeeInfo.ownerName
+                })
             },
             _payFee: function (_fee) {
                 _fee.contractName = $that.listContractFeeInfo.contractName;
@@ -151,7 +159,7 @@
                             return;
                         }
                         vc.copyObject(listRoomData.data[0], $that.listContractFeeInfo);
-                        
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
