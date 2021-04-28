@@ -48,10 +48,10 @@
                                 <label class="">{{purchaseApplyDetailInfo.createTime}}</label>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4" v-if="purchaseApplyDetailInfo.resOrderType==10000 && purchaseApplyDetailInfo.warehousingWay!=10000">
                             <div class="form-group">
-                                <label class="col-form-label">参考价格：</label>
-                                <label class="">{{purchaseApplyDetailInfo.totalPrice}}</label>
+                                <label class="col-form-label">参考总价格：</label>
+                                <label class="">￥{{purchaseApplyDetailInfo.totalPrice}}</label>
                             </div>
                         </div>
                     </div>
@@ -62,6 +62,20 @@
                                 <label class="">{{purchaseApplyDetailInfo.stateName}}</label>
                             </div>
                         </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">{{purchaseApplyDetailInfo.resOrderType==10000 ? '入库方式' : '出库方式'}}：</label>
+                                <label class="">{{purchaseApplyDetailInfo.resOrderType==10000 ? (purchaseApplyDetailInfo.warehousingWay==10000 ? '直接入库' : '采购入库') : (purchaseApplyDetailInfo.warehousingWay==10000 ? '直接出库' : '审核出库')}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" v-if="purchaseApplyDetailInfo.resOrderType==10000">
+                            <div class="form-group">
+                                <label class="col-form-label">采购总价格：</label>
+                                <label class="">{{purchaseApplyDetailInfo.purchaseTotalPrice > 0 ? '￥' + purchaseApplyDetailInfo.purchaseTotalPrice : '-'}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="col-form-label">说明：</label>
@@ -85,25 +99,31 @@
                         <tr>
                             <th class="text-center">物资</th>
                             <th class="text-center">物资编码</th>
-                            <th class="text-center">单价</th>
-                            <th class="text-center">库存</th>
+                            <th class="text-center">参考单价</th>
+                            <th class="text-center">现有库存</th>
                             <th class="text-center">申请数量</th>
-                            <th class="text-center">备注</th>
+                            <th class="text-center">申请备注</th>
+                            <th class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000">采购单价</th>
+                            <th class="text-center">{{purchaseApplyDetailInfo.resOrderType==10000 ? '采购数量' : '领用数量'}}</th>
+                            <th class="text-center">{{purchaseApplyDetailInfo.resOrderType==10000 ? '采购备注' : '领用备注'}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="resourceStore in purchaseApplyDetailInfo.purchaseApplyDetailVo">
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
-                            <td class="text-center">{{resourceStore.price}}</td>
+                            <td class="text-center">￥{{resourceStore.price}}</td>
                             <td class="text-center">{{resourceStore.stock}}</td>
                             <td class="text-center">{{resourceStore.quantity}}</td>
                             <td class="text-center">{{resourceStore.remark}}</td>
+                            <td class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000">{{resourceStore.purchasePrice ? '￥' + resourceStore.purchasePrice : '-'}}</td>
+                            <td class="text-center">{{resourceStore.purchaseQuantity? resourceStore.purchaseQuantity : '-'}}</td>
+                            <td class="text-center">{{resourceStore.purchaseRemark? resourceStore.purchaseRemark : '-'}}</td>
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="10">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
@@ -113,7 +133,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="purchaseApplyDetailInfo.warehousingWay != 10000">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">

@@ -21,11 +21,10 @@
                                 <label class="col-sm-2 col-form-label">商品类型</label>
                                 <div class="col-sm-10">
                                     <select id="goods" class="custom-select"
-                                            v-model="finishRepairInfo.conditions.goodsType"
-                                            v-on:change="_choseGoods()">
+                                            v-model="finishRepairInfo.conditions.goodsType" v-on:change="_choseGoods()">
                                         <option selected value="">请选择商品类型</option>
-                                        <option v-for="(item,index) in finishRepairInfo.goodsTypes" :key="index"
-                                                :value="item.statusCd">{{item.name}}
+                                        <option v-for="(item,index) in finishRepairInfo.resourceStoreTypes" :key="index"
+                                                :value="item.goodsType">{{item.name}}
                                         </option>
                                     </select>
                                 </div>
@@ -35,8 +34,7 @@
                                 <label class="col-sm-2 col-form-label">商品</label>
                                 <div class="col-sm-10">
                                     <select id="goodsPrice" class="custom-select"
-                                            v-model="finishRepairInfo.conditions.resId"
-                                            v-on:change="_chosePrice()">
+                                            v-model="finishRepairInfo.conditions.resId" v-on:change="_chosePrice()">
                                         <option selected value="">请选择商品</option>
                                         <option v-for="(item,index) in finishRepairInfo.resourceStores" :key="index"
                                                 :value="item.resId">{{item.resName}}
@@ -49,30 +47,35 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">商品名</label>
                                         <div class="col-sm-10">
-                                            <input placeholder="必填，请填写商品名" cols="15" class="form-control" v-model="finishRepairInfo.customGoodsName">
+                                            <input placeholder="必填，请填写商品名" cols="15" class="form-control"
+                                                   v-model="finishRepairInfo.customGoodsName">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">自定义价格</label>
                                         <div class="col-sm-10">
-                                            <input placeholder='必填，请填写自定义价格' cols="15" class="form-control" v-model="finishRepairInfo.price"
-                                                @input="singlePriceChanged()">
+                                            <input placeholder='必填，请填写自定义价格' cols="15" class="form-control"
+                                                   v-model="finishRepairInfo.price" @input="singlePriceChanged()">
                                         </div>
                                     </div>
                                 </div>
                                 <div v-else>
-                                    <div class="form-group row" v-if="finishRepairInfo.outLowPrice == finishRepairInfo.outHighPrice">
+                                    <div class="form-group row"
+                                         v-if="finishRepairInfo.outLowPrice == finishRepairInfo.outHighPrice">
                                         <label class="col-sm-2 col-form-label">商品价格</label>
                                         <div class="col-sm-10">
-                                            <input placeholder="必填，请填写商品价格" cols="15" class="form-control" disabled="disabled"
-                                                v-model="finishRepairInfo.price">
+                                            <input placeholder="必填，请填写商品价格" cols="15" class="form-control"
+                                                   disabled="disabled"
+                                                   v-model="finishRepairInfo.price">
                                         </div>
                                     </div>
-                                    <div class="form-group row" v-if="finishRepairInfo.outLowPrice != finishRepairInfo.outHighPrice">
+                                    <div class="form-group row"
+                                         v-if="finishRepairInfo.outLowPrice != finishRepairInfo.outHighPrice">
                                         <label class="col-sm-2 col-form-label">自定义价格</label>
                                         <div class="col-sm-10">
-                                            <input placeholder='必填，请填写自定义价格' cols="15" class="form-control" v-model="finishRepairInfo.price"
-                                                @input="singlePriceChanged()">价格范围{{finishRepairInfo.outLowPrice}}-{{finishRepairInfo.outHighPrice}}
+                                            <input placeholder='必填，请填写自定义价格' cols="15" class="form-control"
+                                                   v-model="finishRepairInfo.price"
+                                                   @input="singlePriceChanged()">价格范围{{finishRepairInfo.outLowPrice}}-{{finishRepairInfo.outHighPrice}}
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +86,8 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" type="button" v-on:click="_useNumDec()">-</button>
                                             </span>
-                                            <input type="text" class="form-control" disabled="disabled" v-model="finishRepairInfo.useNumber" >
+                                            <input type="text" class="form-control" disabled="disabled"
+                                                   v-model="finishRepairInfo.useNumber">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" type="button" v-on:click="_useNumInc()">+</button>
                                             </span>
@@ -94,11 +98,10 @@
                                     <label class="col-sm-2 col-form-label">商品总金额</label>
                                     <div class="col-sm-10">
                                         <input cols="15" class="form-control" disabled="disabled"
-                                            v-model="finishRepairInfo.totalPrice">
+                                               v-model="finishRepairInfo.totalPrice">
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">处理意见</label>
                                 <div class="col-sm-10">

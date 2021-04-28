@@ -59,8 +59,10 @@
                             <th class="text-center">单号</th>
                             <th class="text-center">物品</th>
                             <th class="text-center">申请人</th>
+                            <th class="text-center">操作人</th>
                             <th class="text-center">申请时间</th>
                             <th class="text-center">状态</th>
+                            <th class="text-center">领用方式</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
@@ -69,15 +71,17 @@
                             <td class="text-center">{{itemOut.applyOrderId}}</td>
                             <td class="text-center">{{itemOut.resourceNames}}</td>
                             <td class="text-center">{{itemOut.userName}}</td>
+                            <td class="text-center">{{itemOut.createUserName}}</td>
                             <td class="text-center">{{itemOut.createTime}}</td>
                             <td class="text-center">{{itemOut.stateName}}</td>
+                            <td class="text-center">{{itemOut.warehousingWay == 10000 ? '直接出库' : '审核出库'}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDetailItemOutModel(itemOut)">查看
                                     </button>
                                 </div>
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="itemOut.warehousingWay != 10000">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openRunWorkflowImage(itemOut)">流程图
                                     </button>

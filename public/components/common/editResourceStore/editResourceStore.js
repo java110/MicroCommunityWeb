@@ -15,6 +15,7 @@
                 outHighPrice: '',
                 showMobile: '',
                 fileUrls: [],
+                resourceStoreTypes: [],
                 remark: ''
             }
         },
@@ -22,23 +23,20 @@
         },
         _initEvent: function () {
             vc.on('editResourceStore', 'openEditResourceStoreModal', function (_params) {
-                vc.component.refreshEditResourceStoreInfo();
                 $('#editResourceStoreModel').modal('show');
+                vc.component.refreshEditResourceStoreInfo();
+                $that._listEditResourceStoreType();
                 vc.copyObject(_params, vc.component.editResourceStoreInfo);
                 vc.component.editResourceStoreInfo.fileUrls = _params.fileUrls
                 vc.component._freshPhoto(vc.component.editResourceStoreInfo.fileUrls);
-                //与字典表物品类型关联
-                vc.getDict('resource_store', "goods_type", function (_data) {
-                    vc.component.editResourceStoreInfo.goodsTypes = _data;
-                });
                 //与字典表单位关联
                 vc.getDict('resource_store', "unit_code", function (_data) {
                     vc.component.editResourceStoreInfo.unitCodes = _data;
                 });
                 vc.component.editResourceStoreInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.on("editResourceStore", "notifyUploadImage", function (_param) {
-                    vc.component.editResourceStoreInfo.fileUrls = _param;
-                });
+            });
+            vc.on("editResourceStore", "notifyUploadImage", function (_param) {
+                vc.component.editResourceStoreInfo.fileUrls = _param;
             });
         },
         methods: {
@@ -167,6 +165,27 @@
             },
             _freshPhoto: function (_photos) {
                 vc.emit('editResourceStore', 'uploadImage', 'notifyPhotos', _photos);
+            },
+            //查询物品类型
+            _listEditResourceStoreType: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreType = JSON.parse(json);
+                        vc.component.editResourceStoreInfo.goodsTypes = _resourceStoreType.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             refreshEditResourceStoreInfo: function () {
                 vc.component.editResourceStoreInfo = {

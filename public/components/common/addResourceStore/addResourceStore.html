@@ -38,8 +38,8 @@
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addResourceStoreInfo.goodsType">
                                         <option selected disabled value="">必填，请选择物品类型</option>
-                                        <option v-for="(item,index) in addResourceStoreInfo.goodsTypes" :key="index"
-                                                v-bind:value="item.statusCd">
+                                        <option v-for="(item,index) in addResourceStoreInfo.resourceStoreTypes" :key="index"
+                                                v-bind:value="item.goodsType">
                                             {{item.name}}
                                         </option>
                                     </select>
