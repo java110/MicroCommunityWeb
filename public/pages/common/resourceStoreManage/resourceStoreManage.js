@@ -99,9 +99,7 @@
             _openEditResourceStoreModel: function (_resourceStore) {
                 vc.emit('editResourceStore', 'openEditResourceStoreModal', _resourceStore);
             },
-            _openAllocationStorehouseModel: function (_resourceStore) {
-                vc.emit('allocationStorehouse', 'openAllocationStorehouseModal', _resourceStore);
-            },
+            
             _openDeleteResourceStoreModel: function (_resourceStore) {
                 vc.emit('deleteResourceStore', 'openDeleteResourceStoreModal', _resourceStore);
             },

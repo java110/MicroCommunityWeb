@@ -1,8 +1,9 @@
-<div id = "chooseResourceStoreModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseResourceStoreModelLabel" aria-hidden="true" >
+<div id="chooseResourceStoreModel" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="chooseResourceStoreModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseResourceStoreModelLabel">选择物品管理</h3>
+                <h3 class="modal-title" id="chooseResourceStoreModelLabel">选择物品</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -17,10 +18,13 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入物品管理名称" type="text" v-model="chooseResourceStoreInfo._currentResourceStoreName" class="form-control form-control-sm">
+                                        <input placeholder="输入物品管理名称" type="text"
+                                            v-model="chooseResourceStoreInfo._currentResourceStoreName"
+                                            class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryResourceStores()">查询</button>
-                                            </span>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                v-on:click="queryResourceStores()">查询</button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -28,33 +32,30 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">物品ID</th>
-                            <th class="text-center">物品名称</th>
-                            <th class="text-center">物品编码</th>
-                            <th class="text-center">物品价格</th>
-                            <th class="text-center">物品库存</th>
-                            <th class="text-center">描述</th>
-                            <th class="text-center">操作</th>
+                                            <th class="text-center">仓库名称</th>
+                                            <th class="text-center">物品名称</th>
+                                            <th class="text-center">物品编码</th>
+                                            <th class="text-center">物品库存</th>
+                                            <th class="text-center">操作</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="resourceStore in chooseResourceStoreInfo.resourceStores">
-                                                                        <td class="text-center">{{resourceStore.resId}}</td>
-                            <td class="text-center">{{resourceStore.resName}}</td>
-                            <td class="text-center">{{resourceStore.resCode}}</td>
-                            <td class="text-center">{{resourceStore.price}}</td>
-                            <td class="text-center">{{resourceStore.stock}}</td>
-                            <td class="text-center">{{resourceStore.description}}</td>
+                                            <td class="text-center">{{resourceStore.shName}}</td>
+                                            <td class="text-center">{{resourceStore.resName}}</td>
+                                            <td class="text-center">{{resourceStore.resCode}}</td>
+                                            <td class="text-center">{{resourceStore.stock}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseResourceStore(resourceStore)">选择</button>
+                                                <button class="btn btn-primary btn-xs"
+                                                    v-on:click="chooseResourceStore(resourceStore)">选择</button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-
+                            <vc:create namespace="chooseResourceStore" path="frame/paginationPlus"></vc:create>
                         </div>
                     </div>
                 </div>

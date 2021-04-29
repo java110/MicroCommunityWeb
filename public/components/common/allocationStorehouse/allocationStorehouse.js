@@ -20,12 +20,6 @@
         _initEvent: function () {
             vc.on('allocationStorehouse', 'openAllocationStorehouseModal', function (_param) {
                 $that._listAllocationStorehouse();
-                let _that = $that.allocationStorehouseInfo;
-                _that.resId = _param.resId;
-                _that.resName = _param.resName;
-                _that.curStock = _param.stock;
-                _that.shName = _param.shName;
-                _that.shIda = _param.shId;
                 $('#allocationStorehouseModel').modal('show');
             });
         },

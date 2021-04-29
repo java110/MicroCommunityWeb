@@ -87,11 +87,11 @@
                             <td class="text-center">{{resourceStore.outPrice}}</td>
                             <td class="text-center">{{resourceStore.stock}}</td>
                             <td class="text-center">
-                                <div class="btn-group" v-if="resourceStore.stock>0">
+                                <!-- <div class="btn-group" v-if="resourceStore.stock>0">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openAllocationStorehouseModel(resourceStore)">调拨
                                     </button>
-                                </div>
+                                </div> -->
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditResourceStoreModel(resourceStore)">修改
@@ -121,6 +121,5 @@
     </div>
     <vc:create path="common/addResourceStore" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="common/editResourceStore"></vc:create>
-    <vc:create path="common/allocationStorehouse"></vc:create>
     <vc:create path="common/deleteResourceStore"></vc:create>
 </div>

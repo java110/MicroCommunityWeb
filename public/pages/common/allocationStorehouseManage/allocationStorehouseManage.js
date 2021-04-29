@@ -95,6 +95,9 @@
             //详情
             _toDetail: function (_item) {
                 vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
+            },
+            _openAllocationStorehouseApplyModal: function () {
+                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseApplyManage");
             }
         }
     });
