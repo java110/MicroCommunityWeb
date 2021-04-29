@@ -57,35 +57,20 @@
                         var _resourceStoreManageInfo = JSON.parse(json);
                         vc.component.resourceStoreManageInfo.total = _resourceStoreManageInfo.total;
                         vc.component.resourceStoreManageInfo.records = _resourceStoreManageInfo.records;
-                        vc.component.resourceStoreManageInfo.resourceStores = _resourceStoreManageInfo.resourceStores;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.resourceStoreManageInfo.records,
-                            currentPage: _page
+                        // 总价列计算
+                        _resourceStoreManageInfo.resourceStores.forEach((item) => {
+                            if (!item.hasOwnProperty('averagePrice')){
+                                let averagePrice = 0;
+                                item.averagePrice = averagePrice.toFixed(2);
+                            }else{
+                                item.averagePrice = parseFloat(item.averagePrice).toFixed(2);
+                            }
+                            item.totalPrice = (item.averagePrice * item.stock).toFixed(2);
                         });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-            //重置方法
-            _resetResourceStores: function (_page, _rows) {
-                vc.component.resourceStoreManageInfo.conditions.resId = '';
-                vc.component.resourceStoreManageInfo.conditions.resName = '';
-                vc.component.resourceStoreManageInfo.conditions.resCode = '';
-                var param = {
-                    params: vc.component.resourceStoreManageInfo.conditions
-                };
-                //发送get请求
-                vc.http.get('resourceStoreManage',
-                    'list',
-                    param,
-                    function (json, res) {
-                        var _resourceStoreManageInfo = JSON.parse(json);
-                        vc.component.resourceStoreManageInfo.total = _resourceStoreManageInfo.total;
-                        vc.component.resourceStoreManageInfo.records = _resourceStoreManageInfo.records;
                         vc.component.resourceStoreManageInfo.resourceStores = _resourceStoreManageInfo.resourceStores;
                         vc.emit('pagination', 'init', {
                             total: vc.component.resourceStoreManageInfo.records,
+                            dataCount: vc.component.resourceStoreManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -109,7 +94,11 @@
             },
             //重置
             _resetResourceStoreMethod: function () {
-                vc.component._resetResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component.resourceStoreManageInfo.conditions.resId = '';
+                vc.component.resourceStoreManageInfo.conditions.resName = '';
+                vc.component.resourceStoreManageInfo.conditions.resCode = '';
+                vc.component.resourceStoreManageInfo.conditions.shId = '';
+                $that._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.resourceStoreManageInfo.moreCondition) {

@@ -54,6 +54,7 @@
                         vc.component.purchaseApplyManageInfo.purchaseApplys = _purchaseApplyManageInfo.purchaseApplys;
                         vc.emit('pagination', 'init', {
                             total: vc.component.purchaseApplyManageInfo.records,
+                            dataCount: vc.component.purchaseApplyManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

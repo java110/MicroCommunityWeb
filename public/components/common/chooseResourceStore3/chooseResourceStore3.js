@@ -89,7 +89,6 @@
             },
             getSelectResourceStores: function () {
                 var selectResourceStores = vc.component.chooseResourceStoreInfo3.selectResourceStores;
-                console.log(selectResourceStores);
                 var resourceStores = vc.component.chooseResourceStoreInfo3.resourceStores;
                 if (selectResourceStores.length < 1) {
                     vc.toast("请选择需要采购的物品");
@@ -106,6 +105,7 @@
                                 price: resourceStores[j].price,
                                 stock: resourceStores[j].stock,
                                 description: resourceStores[j].description,
+                                resourceSupplierDtos: resourceStores[j].resourceSupplierDtos
                             })
                         }
                     }

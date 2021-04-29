@@ -55,10 +55,12 @@
                     function (json) {
                         var _returnPayFeeManageInfo = JSON.parse(json);
                         vc.component.returnPayFeeManageInfo.total = _returnPayFeeManageInfo.total;
-                        vc.component.returnPayFeeManageInfo.records = parseInt(_returnPayFeeManageInfo.total/_rows +1);
+                        // vc.component.returnPayFeeManageInfo.records = parseInt(_returnPayFeeManageInfo.total/_rows +1);
+                        vc.component.returnPayFeeManageInfo.records = _returnPayFeeManageInfo.records;
                         vc.component.returnPayFeeManageInfo.returnPayFees = _returnPayFeeManageInfo.returnPayFees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.returnPayFeeManageInfo.records,
+                            dataCount: vc.component.returnPayFeeManageInfo.total,
                             currentPage: _page
                         });
                     }, function () {

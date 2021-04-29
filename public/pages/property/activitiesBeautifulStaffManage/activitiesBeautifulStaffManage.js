@@ -49,6 +49,7 @@
                         vc.component.activitiesBeautifulStaffManageInfo.activitiesBeautifulStaffs = _activitiesBeautifulStaffManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.activitiesBeautifulStaffManageInfo.records,
+                            dataCount: vc.component.activitiesBeautifulStaffManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

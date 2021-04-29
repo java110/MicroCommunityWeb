@@ -50,6 +50,7 @@
                         vc.component.rentingAppointmentManageInfo.rentingAppointments = _rentingAppointmentManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.rentingAppointmentManageInfo.records,
+                            dataCount: vc.component.rentingAppointmentManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

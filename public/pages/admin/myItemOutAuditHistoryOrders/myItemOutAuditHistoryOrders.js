@@ -46,6 +46,7 @@
                         vc.component.auditOrderHistorysInfo.auditOrderHistorys = _auditOrderHistorysInfo.resourceOrders;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditOrderHistorysInfo.records,
+                            dataCount: vc.component.auditOrderHistorysInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

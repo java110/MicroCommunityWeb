@@ -76,10 +76,12 @@
                     function (json, res) {
                         var _tempCarInoutFeeManageInfo = JSON.parse(json);
                         vc.component.tempCarInoutFeeManageInfo.total = _tempCarInoutFeeManageInfo.total;
-                        vc.component.tempCarInoutFeeManageInfo.records = parseInt(_tempCarInoutFeeManageInfo.total/_rows +1);
+                        // vc.component.tempCarInoutFeeManageInfo.records = parseInt(_tempCarInoutFeeManageInfo.total/_rows +1);
+                        vc.component.tempCarInoutFeeManageInfo.records = _tempCarInoutFeeManageInfo.records;
                         vc.component.tempCarInoutFeeManageInfo.payFees = _tempCarInoutFeeManageInfo.tempCarInoutFees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.tempCarInoutFeeManageInfo.records,
+                            dataCount: vc.component.tempCarInoutFeeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

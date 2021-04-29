@@ -99,6 +99,7 @@
                         vc.component.ownerRepairManageInfo.ownerRepairs = _ownerRepairManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.ownerRepairManageInfo.records,
+                            dataCount: vc.component.ownerRepairManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -113,26 +114,7 @@
                 vc.component.ownerRepairManageInfo.conditions.tel = '';
                 vc.component.ownerRepairManageInfo.conditions.repairType = '';
                 vc.component.ownerRepairManageInfo.conditions.state = '';
-                var param = {
-                    params: vc.component.ownerRepairManageInfo.conditions
-                };
-                //发送get请求
-                vc.http.get('ownerRepairManage',
-                    'list',
-                    param,
-                    function (json, res) {
-                        var _ownerRepairManageInfo = JSON.parse(json);
-                        vc.component.ownerRepairManageInfo.total = _ownerRepairManageInfo.total;
-                        vc.component.ownerRepairManageInfo.records = _ownerRepairManageInfo.records;
-                        vc.component.ownerRepairManageInfo.ownerRepairs = _ownerRepairManageInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.ownerRepairManageInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listOwnerRepairs(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openAddOwnerRepairModal: function () {
                 vc.emit('addOwnerRepair', 'openAddOwnerRepairModal', vc.component.ownerRepairManageInfo.conditions);

@@ -130,6 +130,7 @@
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeDetailInfo.records,
+                            dataCount: vc.component.reportFeeDetailInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -150,39 +151,7 @@
                 vc.component.reportFeeDetailInfo.conditions.startTime = '';
                 vc.component.reportFeeDetailInfo.conditions.endTime = '';
                 vc.component.reportFeeDetailInfo.conditions.configId = '';
-                // 清除下拉框选项
-                vc.component.reportFeeDetailInfo.roomUnits = [];
-                var param = {
-                    params: vc.component.reportFeeDetailInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('/reportFeeMonthStatistics/queryFeeDetail',
-                    param,
-                    function (json, res) {
-                        var _reportFeeDetailInfo = JSON.parse(json);
-                        vc.component.reportFeeDetailInfo.total = _reportFeeDetailInfo.total;
-                        vc.component.reportFeeDetailInfo.records = _reportFeeDetailInfo.records;
-                        vc.component.reportFeeDetailInfo.fees = _reportFeeDetailInfo.data;
-                        if (_reportFeeDetailInfo.data.length > 0) {
-                            vc.component.reportFeeDetailInfo.totalReceivableAmount = _reportFeeDetailInfo.data[0].totalReceivableAmount;
-                            vc.component.reportFeeDetailInfo.allReceivableAmount = _reportFeeDetailInfo.data[0].allReceivableAmount;
-                            vc.component.reportFeeDetailInfo.totalReceivedAmount = _reportFeeDetailInfo.data[0].totalReceivedAmount;
-                            vc.component.reportFeeDetailInfo.allReceivedAmount = _reportFeeDetailInfo.data[0].allReceivedAmount;
-                            vc.component.reportFeeDetailInfo.feeConfigDtos = _reportFeeDetailInfo.data[0].feeConfigDtos;
-                        } else {
-                            vc.component.reportFeeDetailInfo.totalReceivableAmount = 0.0;
-                            vc.component.reportFeeDetailInfo.totalReceivedAmount = 0.0;
-                            vc.component.reportFeeDetailInfo.allReceivableAmount = 0.0;
-                            vc.component.reportFeeDetailInfo.allReceivedAmount = 0.0;
-                        }
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.reportFeeDetailInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+               $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {

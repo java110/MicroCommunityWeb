@@ -70,6 +70,7 @@
                         vc.component.prestoreFeeManageInfo.prestoreFees = _prestoreFeeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.prestoreFeeManageInfo.records,
+                            dataCount: vc.component.prestoreFeeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

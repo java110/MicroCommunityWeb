@@ -49,6 +49,7 @@
                         vc.component.activitiesRuleManageInfo.activitiesRules = _activitiesRuleManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.activitiesRuleManageInfo.records,
+                            dataCount: vc.component.activitiesRuleManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

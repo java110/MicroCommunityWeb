@@ -75,6 +75,7 @@
                     vc.component.carInManageInfo.carIns = _tmpCarIns;
                     vc.emit('pagination', 'init', {
                         total: vc.component.carInManageInfo.records,
+                        dataCount: vc.component.carInManageInfo.total,
                         currentPage: _page
                     });
                 },

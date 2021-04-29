@@ -17,6 +17,7 @@
                             <th class="text-center">投诉人</th>
                             <th class="text-center">投诉电话</th>
                             <th class="text-center">投诉状态</th>
+                            <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
@@ -30,6 +31,7 @@
                             <td class="text-center">{{complaint.complaintName}}</td>
                             <td class="text-center">{{complaint.tel}}</td>
                             <td class="text-center">{{complaint.stateName}}</td>
+                            <td class="text-center">{{complaint.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group"
                                      v-if="myAuditComplaintsInfo.curUserId != complaint.startUserId">
@@ -64,7 +66,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

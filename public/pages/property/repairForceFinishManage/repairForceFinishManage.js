@@ -69,6 +69,7 @@
                         vc.component.repairForceFinishManageInfo.repairPools = _repairForceFinishManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.repairForceFinishManageInfo.records,
+                            dataCount: vc.component.repairForceFinishManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -83,26 +84,7 @@
                 vc.component.repairForceFinishManageInfo.conditions.state = '';
                 vc.component.repairForceFinishManageInfo.conditions.repairId = '';
                 vc.component.repairForceFinishManageInfo.conditions.tel = '';
-                var param = {
-                    params: vc.component.repairForceFinishManageInfo.conditions
-                };
-                //发送get请求
-                vc.http.get('ownerRepairManage',
-                    'list',
-                    param,
-                    function (json, res) {
-                        var _repairForceFinishManageInfo = JSON.parse(json);
-                        vc.component.repairForceFinishManageInfo.total = _repairForceFinishManageInfo.total;
-                        vc.component.repairForceFinishManageInfo.records = _repairForceFinishManageInfo.records;
-                        vc.component.repairForceFinishManageInfo.repairPools = _repairForceFinishManageInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.repairForceFinishManageInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listRepairPools(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openRepairDetail: function (_repairPool) {
                 vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)

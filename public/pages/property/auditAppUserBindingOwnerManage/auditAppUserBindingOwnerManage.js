@@ -56,6 +56,7 @@
                         vc.component.auditAppUserBindingOwnerManageInfo.auditAppUserBindingOwners = _auditAppUserBindingOwnerManageInfo.auditAppUserBindingOwners;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditAppUserBindingOwnerManageInfo.records,
+                            dataCount: vc.component.auditAppUserBindingOwnerManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

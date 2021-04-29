@@ -83,6 +83,7 @@
                         vc.component.feeConfigManageInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeConfigManageInfo.records,
+                            dataCount: vc.component.feeConfigManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -99,24 +100,7 @@
                 vc.component.feeConfigManageInfo.conditions.paymentCd = '';
                 vc.component.feeConfigManageInfo.conditions.billType = '';
                 vc.component.feeConfigManageInfo.conditions.isDefault = '';
-                var param = {
-                    params: vc.component.feeConfigManageInfo.conditions
-                };
-                //发送get请求
-                vc.http.get('feeConfigManage', 'list', param,
-                    function (json, res) {
-                        var _feeConfigManageInfo = JSON.parse(json);
-                        vc.component.feeConfigManageInfo.total = _feeConfigManageInfo.total;
-                        vc.component.feeConfigManageInfo.records = _feeConfigManageInfo.records;
-                        vc.component.feeConfigManageInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.feeConfigManageInfo.records,
-                            currentPage: _page
-                        });
-                    },
-                    function (errInfo, error) {
-                        console.log('请求失败处理');
-                    });
+                $that._listFeeConfigs(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openAddFeeConfigModal: function () {
                 vc.emit('addFeeConfig', 'openAddFeeConfigModal', {});

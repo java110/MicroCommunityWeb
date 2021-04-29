@@ -51,6 +51,7 @@
                         vc.component.tempCarFeeConfigManageInfo.tempCarFeeConfigs = _tempCarFeeConfigManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.tempCarFeeConfigManageInfo.records,
+                            dataCount: vc.component.tempCarFeeConfigManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

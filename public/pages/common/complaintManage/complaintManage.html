@@ -87,6 +87,7 @@
                             <th class="text-center">投诉状态</th>
                             <th class="text-center">处理人</th>
                             <th class="text-center">处理电话</th>
+                            <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
@@ -104,6 +105,7 @@
                                 '无':complaint.currentUserName}}
                             </td>
                             <td class="text-center">{{complaint.currentUserTel == ''?'无':complaint.currentUserTel}}</td>
+                            <td class="text-center">{{complaint.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
@@ -130,7 +132,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

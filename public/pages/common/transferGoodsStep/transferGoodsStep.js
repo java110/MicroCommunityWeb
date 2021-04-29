@@ -1,0 +1,121 @@
+/**
+ 入驻小区
+ **/
+(function (vc) {
+    vc.extends({
+        data: {
+            transferGoodsStepInfo: {
+                $step: {},
+                index: 0,
+                infos: [],
+                purchaseApply: {
+                    resourceStores: [],
+                    description: '',
+                    endUserName: '',
+                    endUserTel: '',
+                    file: '',
+                    resOrderType: '10000',
+                    acceptUserId: '',
+                    acceptUserName: '',
+                    stock: '',
+                    giveQuantity: '',
+                    storeId: '',
+                    purchaseRemark: '',
+                    resId: '',
+                    resName: ''
+                }
+            }
+        },
+        _initMethod: function () {
+            vc.component._initStep();
+        },
+        _initEvent: function () {
+            vc.on("transferGoodsStep", "notify", function (goodsInfo) {
+                vc.component.transferGoodsStepInfo.purchaseApply.resourceStores = goodsInfo.resourceStores;
+                vc.component.transferGoodsStepInfo.infos[0] = goodsInfo.resourceStores;
+                vc.component.transferGoodsStepInfo.purchaseApply.giveQuantity = goodsInfo.resourceStores[0].giveQuantity;
+                vc.component.transferGoodsStepInfo.purchaseApply.purchaseRemark = goodsInfo.resourceStores[0].purchaseRemark;
+                vc.component.transferGoodsStepInfo.purchaseApply.resId = goodsInfo.resourceStores[0].resId;
+                vc.component.transferGoodsStepInfo.purchaseApply.resName = goodsInfo.resourceStores[0].resName;
+                vc.component.transferGoodsStepInfo.purchaseApply.stock = goodsInfo.resourceStores[0].stock;
+            });
+            vc.on("transferGoodsStep", "notify2", function (info) {
+                vc.component.transferGoodsStepInfo.purchaseApply.description = info.description;
+                vc.component.transferGoodsStepInfo.purchaseApply.endUserName = info.endUserName;
+                vc.component.transferGoodsStepInfo.purchaseApply.endUserTel = info.endUserTel;
+                vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId = info.staffId;
+                vc.component.transferGoodsStepInfo.purchaseApply.acceptUserName = info.staffName;
+                vc.component.transferGoodsStepInfo.infos[1] = info;
+            });
+        },
+        methods: {
+            _initStep: function () {
+                vc.component.transferGoodsStepInfo.$step = $("#step");
+                vc.component.transferGoodsStepInfo.$step.step({
+                    index: 0,
+                    time: 500,
+                    title: ["选择物品", "选择员工"]
+                });
+                vc.component.transferGoodsStepInfo.index = vc.component.transferGoodsStepInfo.$step.getIndex();
+            },
+            _prevStep: function () {
+                vc.component.transferGoodsStepInfo.$step.prevStep();
+                vc.component.transferGoodsStepInfo.index = vc.component.transferGoodsStepInfo.$step.getIndex();
+                vc.emit('viewResourceStaffInfo', 'onIndex', vc.component.transferGoodsStepInfo.index);
+            },
+            _nextStep: function () {
+                vc.emit('viewResourceStaffInfo', 'getSelectResourceStores', null);
+                let _resourceStores = vc.component.transferGoodsStepInfo.purchaseApply.resourceStores;
+                if (_resourceStores.length <= 0) {
+                    vc.toast("请选择物品");
+                    return;
+                }
+                var _currentData = vc.component.transferGoodsStepInfo.infos[vc.component.transferGoodsStepInfo.index];
+                if (_currentData == null || _currentData == undefined) {
+                    vc.toast("请选择或填写必选信息");
+                    return;
+                }
+                // 校验商品信息
+                for (var i = 0; i < _resourceStores.length; i++) {
+                    if (!_resourceStores[i].hasOwnProperty("giveQuantity") || _resourceStores[i].giveQuantity <= 0) {
+                        vc.toast("请完善物品信息");
+                        return;
+                    }
+                    if (_resourceStores[i].giveQuantity > _resourceStores[i].stock) {
+                        vc.toast(_resourceStores[i].resName + ",库存不足");
+                        return;
+                    }
+                }
+                vc.component.transferGoodsStepInfo.$step.nextStep();
+                vc.component.transferGoodsStepInfo.index = vc.component.transferGoodsStepInfo.$step.getIndex();
+                vc.emit('addTransferStoreInfo', 'onIndex', vc.component.transferGoodsStepInfo.index);
+            },
+            _finishStep: function () {
+                var _currentData = vc.component.transferGoodsStepInfo.infos[vc.component.transferGoodsStepInfo.index];
+                if (_currentData == null || _currentData == undefined) {
+                    vc.toast("请选择或填写必选信息");
+                    return;
+                }
+                vc.http.post('addAllocationUserStorehouse',
+                    'save',
+                    JSON.stringify(vc.component.transferGoodsStepInfo.purchaseApply),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model
+                            vc.jumpToPage("/admin.html#/pages/common/myResourceStoreManage");
+                            return;
+                        }
+                        vc.toast(_json.msg);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
+            }
+        }
+    });
+})(window.vc);

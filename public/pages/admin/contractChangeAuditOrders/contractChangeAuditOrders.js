@@ -57,6 +57,7 @@
                         vc.component.contractChangeAuditOrdersInfo.contractChangeAuditOrders = _contractChangeAuditOrdersInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractChangeAuditOrdersInfo.records,
+                            dataCount: vc.component.contractChangeAuditOrdersInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

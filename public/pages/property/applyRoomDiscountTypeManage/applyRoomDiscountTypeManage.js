@@ -50,6 +50,7 @@
                         vc.component.applyRoomDiscountTypeManageInfo.applyRoomDiscountTypes = _applyRoomDiscountTypeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.applyRoomDiscountTypeManageInfo.records,
+                            dataCount: vc.component.applyRoomDiscountTypeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

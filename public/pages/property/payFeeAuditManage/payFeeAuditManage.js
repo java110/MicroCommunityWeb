@@ -59,6 +59,7 @@
                         vc.component.payFeeAuditManageInfo.payFees = _payFeeAuditManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.payFeeAuditManageInfo.records,
+                            dataCount: vc.component.payFeeAuditManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

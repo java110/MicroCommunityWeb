@@ -49,6 +49,7 @@
                         vc.component.roomRenovationRecordDetailsInfo.roomRenovationRecordDetails = _roomRenovationRecordDetailsInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.roomRenovationRecordDetailsInfo.records,
+                            dataCount: vc.component.roomRenovationRecordDetailsInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

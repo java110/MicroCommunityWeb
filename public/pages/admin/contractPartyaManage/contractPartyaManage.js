@@ -51,6 +51,7 @@
                         vc.component.contractPartyaManageInfo.contractPartyas = _contractPartyaManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractPartyaManageInfo.records,
+                            dataCount: vc.component.contractPartyaManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -53,6 +53,7 @@
                         vc.component.inspectionRouteManageInfo.inspectionRoutes = _inspectionRouteManageInfo.inspectionRoutes;
                         vc.emit('pagination', 'init', {
                             total: vc.component.inspectionRouteManageInfo.records,
+                            dataCount: vc.component.inspectionRouteManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

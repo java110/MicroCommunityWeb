@@ -57,6 +57,7 @@
                         vc.component.inspectionPlanManageInfo.inspectionPlans = _inspectionPlanManageInfo.inspectionPlans;
                         vc.emit('pagination', 'init', {
                             total: vc.component.inspectionPlanManageInfo.records,
+                            dataCount: vc.component.inspectionPlanManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

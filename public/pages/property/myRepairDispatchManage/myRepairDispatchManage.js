@@ -71,6 +71,7 @@
                         vc.component.myRepairDispatchInfo.ownerRepairs = _myRepairDispatchInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.myRepairDispatchInfo.records,
+                            dataCount: vc.component.myRepairDispatchInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

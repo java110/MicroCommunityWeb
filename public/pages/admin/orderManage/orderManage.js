@@ -46,7 +46,8 @@
                                 vc.component.orderManageInfo.orderDataVos = _orderManageInfo.data;
                                 
                                 vc.emit('pagination','init',{
-                                     total:vc.component.orderManageInfo.records,
+                                    total: vc.component.orderManageInfo.records,
+                                    dataCount: vc.component.orderManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

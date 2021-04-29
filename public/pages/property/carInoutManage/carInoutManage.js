@@ -54,7 +54,8 @@ endTime:'',
                                 vc.component.carInoutManageInfo.records = _carInoutManageInfo.records;
                                 vc.component.carInoutManageInfo.carInouts = _carInoutManageInfo.carInouts;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.carInoutManageInfo.records,
+                                    total: vc.component.carInoutManageInfo.records,
+                                    dataCount: vc.component.carInoutManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

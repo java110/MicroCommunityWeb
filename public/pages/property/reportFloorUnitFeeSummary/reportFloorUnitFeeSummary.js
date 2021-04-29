@@ -126,6 +126,7 @@
                         vc.component.reportFloorUnitFeeSummaryInfo.fees = _reportFloorUnitFeeSummaryInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFloorUnitFeeSummaryInfo.records,
+                            dataCount: vc.component.reportFloorUnitFeeSummaryInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -141,27 +142,7 @@
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.roomNum = "";
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.startTime = "";
                 vc.component.reportFloorUnitFeeSummaryInfo.conditions.endTime = "";
-                // 清除下拉框选项
-                vc.component.reportFloorUnitFeeSummaryInfo.roomUnits = [];
-                var param = {
-                    params: vc.component.reportFloorUnitFeeSummaryInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('/reportFeeMonthStatistics/queryFloorUnitFeeSummary',
-                    param,
-                    function (json, res) {
-                        var _reportFloorUnitFeeSummaryInfo = JSON.parse(json);
-                        vc.component.reportFloorUnitFeeSummaryInfo.total = _reportFloorUnitFeeSummaryInfo.total;
-                        vc.component.reportFloorUnitFeeSummaryInfo.records = _reportFloorUnitFeeSummaryInfo.records;
-                        vc.component.reportFloorUnitFeeSummaryInfo.fees = _reportFloorUnitFeeSummaryInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.reportFloorUnitFeeSummaryInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {

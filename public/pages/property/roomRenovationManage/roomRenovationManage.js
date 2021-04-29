@@ -52,6 +52,7 @@
                         vc.component.roomRenovationManageInfo.roomRenovations = _roomRenovationManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.roomRenovationManageInfo.records,
+                            dataCount: vc.component.roomRenovationManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -66,25 +67,7 @@
                 vc.component.roomRenovationManageInfo.conditions.roomName = '';
                 vc.component.roomRenovationManageInfo.conditions.personName = '';
                 vc.component.roomRenovationManageInfo.conditions.personTel = '';
-                var param = {
-                    params: vc.component.roomRenovationManageInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('/roomRenovation/queryRoomRenovation',
-                    param,
-                    function (json, res) {
-                        var _roomRenovationManageInfo = JSON.parse(json);
-                        vc.component.roomRenovationManageInfo.total = _roomRenovationManageInfo.total;
-                        vc.component.roomRenovationManageInfo.records = _roomRenovationManageInfo.records;
-                        vc.component.roomRenovationManageInfo.roomRenovations = _roomRenovationManageInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.roomRenovationManageInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listRoomRenovations(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openAddRoomRenovationModal: function () {
                 vc.emit('addRoomRenovation', 'openAddRoomRenovationModal', vc.component.roomRenovationManageInfo.roomRenovations);

@@ -99,6 +99,32 @@
                 //vc.emit('addComplaint', 'openAddComplaintModal', {});
                 vc.jumpToPage("/admin.html#/pages/common/addRoomComplaint?roomId=" + $that.simplifyOwnerComplaintInfo.roomId)
             },
+            // 流程图
+            _openRunWorkflowImage: function (_complaint) {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        businessKey: _complaint.complaintId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('workflow.listRunWorkflowImage',
+                    param,
+                    function (json, res) {
+                        var _workflowManageInfo = JSON.parse(json);
+                        if (_workflowManageInfo.code != '0') {
+                            vc.toast(_workflowManageInfo.msg);
+
+                            return;
+                        }
+                        vc.emit('viewImage', 'showImage', {
+                            url: 'data:image/png;base64,' + _workflowManageInfo.data
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            }
 
         }
 

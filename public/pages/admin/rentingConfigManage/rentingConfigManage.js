@@ -51,6 +51,7 @@
                         vc.component.rentingConfigManageInfo.rentingConfigs = _rentingConfigManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.rentingConfigManageInfo.records,
+                            dataCount: vc.component.rentingConfigManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

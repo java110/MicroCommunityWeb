@@ -52,6 +52,7 @@
                         vc.component.inspectionTaskManageInfo.inspectionTasks = _inspectionTaskManageInfo.inspectionTasks;
                         vc.emit('pagination', 'init', {
                             total: vc.component.inspectionTaskManageInfo.records,
+                            dataCount: vc.component.inspectionTaskManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="purchaseApplyManageInfo.conditions.state">
-                                <option selected disabled value="">请选择状态</option>
+                                <option selected value="">请选择状态</option>
                                 <option v-for="(item,index) in purchaseApplyManageInfo.states" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -103,7 +103,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

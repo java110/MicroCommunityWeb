@@ -4,21 +4,21 @@
     </div>
     <!-- 选择类型 -->
     <div v-if="inAndOutStepInfo.index == 0">
-        <vc:create path="common/chooseInAndOutType"
-                   callBackListener="inAndOutStep"
-                   callBackFunction="notify"></vc:create>
+        <vc:create path="common/chooseInAndOutType" callBackListener="inAndOutStep"
+                   callBackFunction="notify">
+        </vc:create>
     </div>
     <!-- 选择商品 -->
     <div v-if="inAndOutStepInfo.index == 1">
-        <vc:create path="common/viewResourceStoreInfo3"
-                   callBackListener="inAndOutStep"
-                   callBackFunction="notify2"></vc:create>
+        <vc:create path="common/viewResourceStoreInfo3" callBackListener="inAndOutStep"
+                   callBackFunction="notify2">
+        </vc:create>
     </div>
     <!-- 其他信息 -->
     <div v-show="inAndOutStepInfo.index == 2">
-        <vc:create path="common/addPurchaseApplyView2"
-                   callBackListener="inAndOutStep"
-                   callBackFunction="notify3"></vc:create>
+        <vc:create path="common/addPurchaseApplyView2" callBackListener="inAndOutStep"
+                   callBackFunction="notify3">
+        </vc:create>
     </div>
     <div class="row">
         <div class="col-md-10"></div>

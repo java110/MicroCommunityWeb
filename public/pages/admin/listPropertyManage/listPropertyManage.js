@@ -49,6 +49,7 @@
                         vc.component.listPropertyManageInfo.listPropertys = _listPropertyManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.listPropertyManageInfo.records,
+                            dataCount: vc.component.listPropertyManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

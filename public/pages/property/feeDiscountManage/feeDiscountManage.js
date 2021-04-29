@@ -48,6 +48,7 @@
                         vc.component.feeDiscountManageInfo.feeDiscounts = _feeDiscountManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeDiscountManageInfo.records,
+                            dataCount: vc.component.feeDiscountManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

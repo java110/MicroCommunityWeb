@@ -54,6 +54,7 @@
                         vc.component.auditOrdersInfo.auditOrders = _auditOrdersInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditOrdersInfo.records,
+                            dataCount: vc.component.auditOrdersInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

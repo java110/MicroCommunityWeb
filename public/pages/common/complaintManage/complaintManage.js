@@ -56,6 +56,7 @@
                         vc.component.complaintManageInfo.complaints = _complaintManageInfo.complaints;
                         vc.emit('pagination', 'init', {
                             total: vc.component.complaintManageInfo.records,
+                            dataCount: vc.component.complaintManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

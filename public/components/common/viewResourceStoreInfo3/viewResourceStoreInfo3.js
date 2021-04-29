@@ -17,11 +17,12 @@
                 stock: '',
                 description: '',
                 resourceStores: [],
-                resOrderType: ''
+                resOrderType: '',
+                resourceSuppliers: []
             }
         },
         _initMethod: function () {
-
+            vc.component._loadResourceSuppliers();
         },
         _initEvent: function () {
             vc.on('viewResourceStoreInfo3', 'setResourcesOut', function (_resOrderType) {
@@ -35,15 +36,18 @@
                 vc.component.viewResourceStoreInfo3.index = _index;
             });
             vc.on('viewResourceStoreInfo3', 'setSelectResourceStores', function (resourceStores) {
+                console.log('selected :',resourceStores);
                 // 保留用户之前输入的数量和备注
                 let oldList = vc.component.viewResourceStoreInfo3.resourceStores;
                 resourceStores.forEach((newItem) => {
                     newItem.quantity = 0;
+                    newItem.rsId = '';
                     oldList.forEach((oldItem) => {
                         if(oldItem.resId == newItem.resId){
                             newItem.purchaseQuantity = oldItem.purchaseQuantity;
                             newItem.price = oldItem.price;
                             newItem.purchaseRemark = oldItem.purchaseRemark;
+                            newItem.rsId = oldItem.rsId;
                         }
                     })
                 })
@@ -55,6 +59,21 @@
             });
         },
         methods: {
+            _loadResourceSuppliers() {
+                var param = {
+                    params: { page: 1, row: 50 }
+                };
+                //发送get请求
+                vc.http.apiGet('resourceSupplier.listResourceSuppliers',
+                    param,
+                    function (json, res) {
+                        var _resourceSupplierManageInfo = JSON.parse(json);
+                        vc.component.viewResourceStoreInfo3.resourceSuppliers = _resourceSupplierManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _openSelectResourceStoreInfoModel() {
                 vc.emit('chooseResourceStore3', 'openChooseResourceStoreModel3', {});
             },

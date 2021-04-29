@@ -57,6 +57,7 @@
                         vc.component.allocationStorehouseAuditOrdersInfo.auditOrders = _allocationStorehouseAuditOrdersInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.allocationStorehouseAuditOrdersInfo.records,
+                            dataCount: vc.component.allocationStorehouseAuditOrdersInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

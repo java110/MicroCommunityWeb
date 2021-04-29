@@ -52,6 +52,7 @@
                         vc.component.meterWaterManageInfo.meterWaters = _meterWaterManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.meterWaterManageInfo.records,
+                            dataCount: vc.component.meterWaterManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

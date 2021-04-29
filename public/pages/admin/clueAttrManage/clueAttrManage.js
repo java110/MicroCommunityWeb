@@ -53,7 +53,8 @@
                                 vc.component.clueAttrManageInfo.records = _clueAttrManageInfo.records;
                                 vc.component.clueAttrManageInfo.clueAttrs = _clueAttrManageInfo.data;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.clueAttrManageInfo.records,
+                                    total: vc.component.clueAttrManageInfo.records,
+                                    dataCount: vc.component.clueAttrManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

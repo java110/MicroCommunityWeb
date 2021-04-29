@@ -16,7 +16,8 @@
                 showMobile: '',
                 fileUrls: [],
                 resourceStoreTypes: [],
-                remark: ''
+                remark: '',
+                warningStock: ''
             }
         },
         _initMethod: function () {
@@ -73,6 +74,14 @@
                             limit: "money",
                             param: "",
                             errInfo: "物品价格格式错误"
+                        },
+                    ],
+
+                    'editResourceStoreInfo.warningStock': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "警告库存不能为空"
                         },
                     ],
                     'editResourceStoreInfo.description': [
@@ -201,7 +210,8 @@
                     outLowPrice: '',
                     outHighPrice: '',
                     showMobile: '',
-                    remark: ''
+                    remark: '',
+                    warningStock: ''
                 }
             }
         }
