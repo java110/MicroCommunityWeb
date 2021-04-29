@@ -51,6 +51,7 @@
                         vc.component.resourceStoreTypeManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.resourceStoreTypeManageInfo.records,
+                            dataCount: vc.component.resourceStoreTypeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -60,31 +61,10 @@
             },
             //重置方法
             _resetResourceStoreTypes: function (_page, _rows) {
-                vc.component.resourceStoreTypeManageInfo.conditions.page = _page;
-                vc.component.resourceStoreTypeManageInfo.conditions.row = _rows;
+                vc.component.resourceStoreTypeManageInfo.conditions.goodsType = '';
+                vc.component.resourceStoreTypeManageInfo.conditions.name = '';
                 vc.component.resourceStoreTypeManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                var param = {
-                    params: vc.component.resourceStoreTypeManageInfo.conditions
-                };
-                param.params.goodsType = '';
-                param.params.name = '';
-                //发送post请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
-                    param,
-                    function (json, res) {
-                        var _resourceStoreTypeManageInfo = JSON.parse(json);
-                        vc.component.resourceStoreTypeManageInfo.total = _resourceStoreTypeManageInfo.total;
-                        vc.component.resourceStoreTypeManageInfo.records = _resourceStoreTypeManageInfo.records;
-                        vc.component.resourceStoreTypeManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.resourceStoreTypeManageInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listResourceStoreTypes(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openAddResourceStoreTypeModal: function () {
                 vc.emit('addResourceStoreType', 'openAddResourceStoreTypeModal', {});

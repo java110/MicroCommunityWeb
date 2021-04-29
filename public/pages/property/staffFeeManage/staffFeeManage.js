@@ -80,6 +80,7 @@
                         vc.component.staffFeeManageInfo.staffFees = _staffFeeManageInfo.staffFees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.staffFeeManageInfo.records,
+                            dataCount: vc.component.staffFeeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -53,7 +53,8 @@
                 <div class="ibox-title">
                     <h5>物品信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_jump2InAndOutPage()" v-if="vc.hasPrivilege('502021042137960001')">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_jump2InAndOutPage()"
+                                v-if="vc.hasPrivilege('502021042137960001')">
                             <i class="fa fa-plus"></i>入库与领用
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddResourceStoreModal()">
@@ -70,22 +71,27 @@
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品类型</th>
                             <th class="text-center">物品编码</th>
-                            <th class="text-center">物品价格</th>
+                            <th class="text-center">采购参考价格</th>
                             <th class="text-center">收费标准</th>
                             <th class="text-center">物品库存</th>
+                            <th class="text-center">物品均价</th>
+                            <th class="text-center">物品总价</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="resourceStore in resourceStoreManageInfo.resourceStores">
+                        <tr v-for="resourceStore in resourceStoreManageInfo.resourceStores"
+                            :class="{ 'table-danger' : resourceStore.stock < resourceStore.warningStock}">
                             <td class="text-center">{{resourceStore.resId}}</td>
                             <td class="text-center">{{resourceStore.shName}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.goodsTypeName}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
-                            <td class="text-center">{{resourceStore.price}}元</td>
-                            <td class="text-center">{{resourceStore.outPrice}}</td>
+                            <td class="text-center">{{'￥' + resourceStore.price}}</td>
+                            <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' + resourceStore.outLowPrice : '￥' + resourceStore.outLowPrice + '-￥' + resourceStore.outHighPrice}}</td>
                             <td class="text-center">{{resourceStore.stock}}</td>
+                            <td class="text-center">{{resourceStore.averagePrice ? '￥' + resourceStore.averagePrice : '￥0'}}</td>
+                            <td class="text-center">{{'￥' + resourceStore.totalPrice}}</td>
                             <td class="text-center">
                                 <div class="btn-group" v-if="resourceStore.stock>0">
                                     <button class="btn-white btn btn-xs"
@@ -107,7 +113,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="11">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

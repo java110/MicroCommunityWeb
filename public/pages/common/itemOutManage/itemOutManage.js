@@ -49,6 +49,7 @@
                         vc.component.itemOutManageInfo.itemOuts = _itemOutManageInfo.purchaseApplys;
                         vc.emit('pagination', 'init', {
                             total: vc.component.itemOutManageInfo.records,
+                            dataCount: vc.component.itemOutManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -54,6 +54,7 @@
                         $that.dealCommunityAttr(_communityManageInfo.communitys);
                         vc.emit('pagination', 'init', {
                             total: vc.component.communityManageInfo.records,
+                            dataCount: vc.component.communityManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

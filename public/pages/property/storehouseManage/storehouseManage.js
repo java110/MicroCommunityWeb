@@ -55,6 +55,7 @@
                         vc.component.storehouseManageInfo.storehouses = _storehouseManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.storehouseManageInfo.records,
+                            dataCount: vc.component.storehouseManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -67,25 +68,7 @@
                 vc.component.storehouseManageInfo.conditions.shId = "";
                 vc.component.storehouseManageInfo.conditions.shName = "";
                 vc.component.storehouseManageInfo.conditions.shType = "";
-                var param = {
-                    params: vc.component.storehouseManageInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('resourceStore.listStorehouses',
-                    param,
-                    function (json, res) {
-                        var _storehouseManageInfo = JSON.parse(json);
-                        vc.component.storehouseManageInfo.total = _storehouseManageInfo.total;
-                        vc.component.storehouseManageInfo.records = _storehouseManageInfo.records;
-                        vc.component.storehouseManageInfo.storehouses = _storehouseManageInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.storehouseManageInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listStorehouses(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openAddStorehouseModal: function () {
                 vc.emit('addStorehouse', 'openAddStorehouseModal', {});

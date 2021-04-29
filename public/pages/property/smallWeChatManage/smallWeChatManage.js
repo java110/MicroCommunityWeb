@@ -52,6 +52,7 @@
                         vc.component.smallWeChatManageInfo.smallWeChats = _smallWeChatManageInfo.smallWeChats;
                         vc.emit('pagination', 'init', {
                             total: vc.component.smallWeChatManageInfo.records,
+                            dataCount: vc.component.smallWeChatManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

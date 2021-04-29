@@ -50,6 +50,7 @@
                         vc.component.advertManageInfo.adverts = _advertManageInfo.adverts;
                         vc.emit('pagination', 'init', {
                             total: vc.component.advertManageInfo.records,
+                            dataCount: vc.component.advertManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

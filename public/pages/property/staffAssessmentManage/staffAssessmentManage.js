@@ -53,6 +53,7 @@
                         vc.component.staffAssessmentManageInfo.questionAnswers = _staffAssessmentManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.staffAssessmentManageInfo.records,
+                            dataCount: vc.component.staffAssessmentManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

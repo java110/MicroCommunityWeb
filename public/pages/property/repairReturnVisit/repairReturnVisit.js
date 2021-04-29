@@ -68,6 +68,7 @@
                         vc.component.repairReturnVisitInfo.repairPools = _repairReturnVisitInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.repairReturnVisitInfo.records,
+                            dataCount: vc.component.repairReturnVisitInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

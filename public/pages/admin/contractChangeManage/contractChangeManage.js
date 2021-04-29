@@ -51,6 +51,7 @@
                         vc.component.contractChangeManageInfo.contracts = _contractChangeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractChangeManageInfo.records,
+                            dataCount: vc.component.contractChangeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

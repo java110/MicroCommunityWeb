@@ -58,6 +58,7 @@
                         vc.component.questionAnswerTitleManageInfo.questionAnswerTitles = _questionAnswerTitleManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.questionAnswerTitleManageInfo.records,
+                            dataCount: vc.component.questionAnswerTitleManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

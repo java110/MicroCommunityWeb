@@ -16,12 +16,14 @@
                 price: '',
                 stock: '',
                 description: '',
-                resourceStores: []
+                resourceStores: [],
+                resourceSuppliers: []
             }
         },
         _initMethod: function () {
             //根据请求参数查询 查询 业主信息
             vc.component._loadResourceStoreInfoData();
+            vc.component._loadResourceSuppliers();
         },
         _initEvent: function () {
             vc.on('viewResourceStoreInfo2', 'chooseResourceStore', function (_app) {
@@ -35,10 +37,12 @@
                 // 保留用户之前输入的数量和备注
                 let oldList = vc.component.viewResourceStoreInfo2.resourceStores;
                 resourceStores.forEach((newItem) => {
+                    newItem.rsId = '';
                     oldList.forEach((oldItem) => {
                         if(oldItem.resId == newItem.resId){
                             newItem.quantity = oldItem.quantity;
                             newItem.remark = oldItem.remark;
+                            newItem.rsId = oldItem.rsId;
                         }
                     })
                 })
@@ -50,6 +54,21 @@
             });
         },
         methods: {
+            _loadResourceSuppliers(){
+                var param = {
+                    params: {page:1,row:50}
+                };
+                //发送get请求
+                vc.http.apiGet('resourceSupplier.listResourceSuppliers',
+                    param,
+                    function (json, res) {
+                        var _resourceSupplierManageInfo = JSON.parse(json);
+                        vc.component.viewResourceStoreInfo2.resourceSuppliers = _resourceSupplierManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _openSelectResourceStoreInfoModel() {
                 vc.emit('chooseResourceStore2', 'openChooseResourceStoreModel2', {});
             },

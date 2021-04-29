@@ -43,7 +43,8 @@
         },
         _initEvent: function () {
             vc.on('repairDispatchManage', 'listOwnerRepair', function (_param) {
-                vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                location.reload();
+                // vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listOwnerRepairs(_currentPage, DEFAULT_ROWS);
@@ -112,6 +113,7 @@
                         vc.component.repairDispatchManageInfo.ownerRepairs = _repairDispatchManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.repairDispatchManageInfo.records,
+                            dataCount: vc.component.repairDispatchManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

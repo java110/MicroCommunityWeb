@@ -58,6 +58,7 @@
                         vc.component.activitiesManageInfo.activitiess = _activitiesManageInfo.activitiess;
                         vc.emit('pagination', 'init', {
                             total: vc.component.activitiesManageInfo.records,
+                            dataCount: vc.component.activitiesManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

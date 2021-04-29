@@ -52,6 +52,7 @@
                         vc.component.rentingPoolManageInfo.rentingPools = _rentingPoolManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.rentingPoolManageInfo.records,
+                            dataCount: vc.component.rentingPoolManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -16,7 +16,8 @@
                     resId: '',
                     resName: '',
                     resCode: '',
-                    shId: ''
+                    shIda: '',
+                    shIdz: ''
                 },
                 storehouses: []
             }
@@ -58,6 +59,7 @@
                         vc.component.allocationStorehouseManageInfo.resourceStores = _allocationStorehouseManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.allocationStorehouseManageInfo.records,
+                            dataCount: vc.component.allocationStorehouseManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -95,6 +97,13 @@
             //详情
             _toDetail: function (_item) {
                 vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
+            },
+            _moreCondition: function () {
+                if (vc.component.allocationStorehouseManageInfo.moreCondition) {
+                    vc.component.allocationStorehouseManageInfo.moreCondition = false;
+                } else {
+                    vc.component.allocationStorehouseManageInfo.moreCondition = true;
+                }
             }
         }
     });

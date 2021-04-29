@@ -96,6 +96,8 @@
                         <tr>
                             <th class="text-center">菜单ID</th>
                             <th class="text-center">菜单名称</th>
+                            <th class="text-center">菜单组</th>
+                            <th class="text-center">归属商户</th>
                             <th class="text-center">菜单地址</th>
                             <th class="text-center">序列</th>
                             <th class="text-center">菜单显示</th>
@@ -106,6 +108,8 @@
                         <tr v-for="menu in menuManageInfo.menus">
                             <td class="text-center">{{menu.mId}}</td>
                             <td class="text-center">{{menu.name}}</td>
+                            <td class="text-center">{{menu.menuGroupName}}</td>
+                            <td class="text-center">{{menu.storeTypeName}}</td>
                             <td class="text-center">{{menu.url}}</td>
                             <td class="text-center">{{menu.seq}}</td>
                             <td class="text-center">{{menu.isShowName}}</td>
@@ -127,7 +131,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

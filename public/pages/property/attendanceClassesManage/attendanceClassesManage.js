@@ -51,6 +51,7 @@
                         vc.component.attendanceClassesManageInfo.attendanceClassess = _attendanceClassesManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.attendanceClassesManageInfo.records,
+                            dataCount: vc.component.attendanceClassesManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

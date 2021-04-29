@@ -52,6 +52,7 @@
                         vc.component.locationManageInfo.locations = _locationManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.locationManageInfo.records,
+                            dataCount: vc.component.locationManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

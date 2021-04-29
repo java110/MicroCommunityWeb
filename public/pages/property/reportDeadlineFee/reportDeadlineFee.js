@@ -75,6 +75,7 @@
                         vc.component.reportDeadlineFeeInfo.fees = _reportDeadlineFeeInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportDeadlineFeeInfo.records,
+                            dataCount: vc.component.reportDeadlineFeeInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -89,25 +90,7 @@
                 vc.component.reportDeadlineFeeInfo.conditions.unitId = "";
                 vc.component.reportDeadlineFeeInfo.conditions.roomNum = "";
                 vc.component.reportDeadlineFeeInfo.roomUnits = [];
-                var param = {
-                    params: vc.component.reportDeadlineFeeInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('/reportFeeMonthStatistics/queryDeadlineFee',
-                    param,
-                    function (json, res) {
-                        var _reportDeadlineFeeInfo = JSON.parse(json);
-                        vc.component.reportDeadlineFeeInfo.total = _reportDeadlineFeeInfo.total;
-                        vc.component.reportDeadlineFeeInfo.records = _reportDeadlineFeeInfo.records;
-                        vc.component.reportDeadlineFeeInfo.fees = _reportDeadlineFeeInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.reportDeadlineFeeInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {

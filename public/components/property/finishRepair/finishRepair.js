@@ -31,17 +31,12 @@
             }
         },
         _initMethod: function () {
-            //与字典表关联
-            vc.getDict('r_repair_pool', "maintenance_type", function (_data) {
-                vc.component.finishRepairInfo.maintenanceTypes = _data;
-            });
-            /*//与字典表关联
-            vc.getDict('resource_store', "goods_type", function (_data) {
-                vc.component.finishRepairInfo.goodsTypes = _data;
-            });*/
+            vc.component.clearFinishRepairInfo();
         },
         _initEvent: function () {
             vc.on('finishRepair', 'openFinishRepairModal', function (_repair) {
+                vc.component.clearFinishRepairInfo();
+                $that._loadMaintenanceType();
                 $that._listResourceStoreType();
                 $that.finishRepairInfo.repairType = _repair.repairType;
                 $that.finishRepairInfo.repairId = _repair.repairId;
@@ -52,6 +47,11 @@
             });
         },
         methods: {
+            _loadMaintenanceType() {
+                vc.getDict('r_repair_pool', "maintenance_type", function (_data) {
+                    vc.component.finishRepairInfo.maintenanceTypes = _data;
+                });
+            },
             finishRepairValidate() {
                 return vc.validate.validate({
                     finishRepairInfo: vc.component.finishRepairInfo
@@ -112,6 +112,54 @@
                     ]
                 });
             },
+            yongLiaoValidate() {
+                return vc.validate.validate({
+                    finishRepairInfo: vc.component.finishRepairInfo
+                }, {
+                    'finishRepairInfo.repairId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "报修单不能为空"
+                        }
+                    ],
+                    'finishRepairInfo.maintenanceType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "维修类型不能为空"
+                        }
+                    ],
+                    'finishRepairInfo.conditions.goodsType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "商品类型不能为空"
+                        }
+                    ],
+                    'finishRepairInfo.conditions.resId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "商品不能为空"
+                        }
+                    ],
+                    'finishRepairInfo.useNumber': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "商品数量不能为零"
+                        }
+                    ],
+                    'finishRepairInfo.context': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "处理意见不能为空"
+                        }
+                    ]
+                });
+            },
             repairValidate() {
                 return vc.validate.validate({
                     finishRepairInfo: vc.component.finishRepairInfo
@@ -133,15 +181,26 @@
                 });
             },
             _finishRepairInfo: function () {
-                if (!vc.component.finishRepairValidate() && vc.component.finishRepairInfo.maintenanceType != '1002' && vc.component.finishRepairInfo.publicArea == 'F') {
+                // 有偿
+                if (vc.component.finishRepairInfo.maintenanceType == '1001' && !vc.component.finishRepairValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                if (!vc.component.repairValidate() && vc.component.finishRepairInfo.maintenanceType == '1002' && vc.component.finishRepairInfo.publicArea == 'T') {
+                // 用料
+                if (vc.component.finishRepairInfo.maintenanceType == '1003' && !vc.component.yongLiaoValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                if (vc.component.finishRepairInfo.publicArea == 'T' || vc.component.finishRepairInfo.maintenanceType == '1002') {
+                // 无偿 或 不用料
+                if (vc.component.finishRepairInfo.maintenanceType != '1001' && vc.component.finishRepairInfo.maintenanceType != '1003' && !vc.component.repairValidate()) {
+                    vc.toast(vc.validate.errInfo);
+                    return;
+                }
+                // 自定义商品验证
+                if (vc.component.finishRepairInfo.isCustom && vc.component.finishRepairInfo.customGoodsName == ''){
+                    vc.toast('商品名不能为空');
+                }
+                if (vc.component.finishRepairInfo.maintenanceType == '1002' || vc.component.finishRepairInfo.maintenanceType == '1004') {
                     // 无偿服务 修改商品数量为零
                     vc.component.finishRepairInfo.useNumber = 0;
                 }
@@ -153,7 +212,6 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
@@ -167,7 +225,8 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
-                    });
+                    }
+                );
             },
             //选择商品类型
             _choseGoods: function () {
@@ -229,29 +288,6 @@
                 _that._updateTotalPrice();
                 vc.component.finishRepairInfo.outLowPrice = vc.component.finishRepairInfo.selectedGoodsInfo.outLowPrice;
                 vc.component.finishRepairInfo.outHighPrice = vc.component.finishRepairInfo.selectedGoodsInfo.outHighPrice;
-                // if (vc.component.finishRepairInfo.conditions.resId == null || vc.component.finishRepairInfo.conditions.resId == '') {
-                //     return;
-                // }
-                // var param = {
-                //     params: vc.component.finishRepairInfo.conditions
-                // };
-                // //发送get请求
-                // vc.http.apiGet('/resourceStore/queryResourceStorePrice',
-                //     param,
-                //     function (json, res) {
-                //         var _prices = JSON.parse(json);
-                //         if (_prices.data[0].outLowPrice == _prices.data[0].outHighPrice) {
-                //             vc.component.finishRepairInfo.price = _prices.data[0].outLowPrice;
-                //         } else {
-                //             vc.component.finishRepairInfo.price = '';
-                //         }
-                //         _that._updateTotalPrice();
-                //         vc.component.finishRepairInfo.outLowPrice = _prices.data[0].outLowPrice;
-                //         vc.component.finishRepairInfo.outHighPrice = _prices.data[0].outHighPrice;
-                //     }, function (errInfo, error) {
-                //         console.log('请求失败处理');
-                //     }
-                // );
             },
             // 监听价格变化 更新总金额
             singlePriceChanged: function () {

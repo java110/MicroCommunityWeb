@@ -51,6 +51,7 @@
                         vc.component.contractCollectionPlanManageInfo.contractCollectionPlans = _contractCollectionPlanManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractCollectionPlanManageInfo.records,
+                            dataCount: vc.component.contractCollectionPlanManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

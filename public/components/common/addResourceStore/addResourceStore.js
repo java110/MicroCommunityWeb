@@ -22,7 +22,8 @@
                 shId: '',
                 photos: [],
                 storehouses: [],
-                resourceStoreTypes: []
+                resourceStoreTypes: [],
+                warningStock: ''
             }
         },
         _initMethod: function () {
@@ -75,6 +76,13 @@
                             limit: "money",
                             param: "",
                             errInfo: "物品价格格式错误"
+                        },
+                    ],
+                    'addResourceStoreInfo.warningStock': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "警告库存不能为空"
                         },
                     ],
                     'addResourceStoreInfo.description': [
@@ -210,7 +218,8 @@
                     shId: '',
                     unitCodes: [],
                     photos: [],
-                    storehouses: []
+                    storehouses: [],
+                    warningStock: ''
                 };
             },
             _listAddStorehouses: function (_page, _rows) {

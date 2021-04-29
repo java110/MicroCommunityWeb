@@ -49,6 +49,7 @@
                         vc.component.listStoreManageInfo.listStores = _listStoreManageInfo.stores;
                         vc.emit('pagination', 'init', {
                             total: vc.component.listStoreManageInfo.records,
+                            dataCount: vc.component.listStoreManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

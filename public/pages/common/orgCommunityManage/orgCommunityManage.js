@@ -56,6 +56,7 @@
                         vc.component.orgCommunityManageInfo.orgCommunitys = _orgCommunityManageInfo.orgCommunitys;
                         vc.emit('pagination', 'init', {
                             total: vc.component.orgCommunityManageInfo.records,
+                            dataCount: vc.component.orgCommunityManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

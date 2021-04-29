@@ -62,6 +62,7 @@
                         vc.component.listRoomCreateFeeInfo.fees = _feeConfigInfo.fees;
                         vc.emit('pagination', 'init', {
                             total: _feeConfigInfo.records,
+                            dataCount: _feeConfigInfo.total,
                             currentPage: _page
                         });
                     }, function () {

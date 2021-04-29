@@ -65,7 +65,7 @@
                 vc.emit('chooseInAndOutType', 'getSelectOrderType', null);
                 vc.emit('viewResourceStoreInfo3', 'getSelectResourceStores', null);
                 let _resourceStores = vc.component.inAndOutStepInfo.purchaseApply.resourceStores;
-                if (vc.component.inAndOutStepInfo.index > 0 && _resourceStores.length <= 0){
+                if (vc.component.inAndOutStepInfo.index > 0 && _resourceStores.length <= 0) {
                     vc.toast("请选择物品");
                     return;
                 }
@@ -81,7 +81,7 @@
                             return;
                         }
                         if (vc.component.inAndOutStepInfo.purchaseApply.resOrderType == "20000") {
-                            if (_resourceStores[i].purchaseQuantity > _resourceStores[i].stock) {
+                            if (parseInt(_resourceStores[i].purchaseQuantity) > parseInt(_resourceStores[i].stock)) {
                                 vc.toast(_resourceStores[i].resName + ",库存不足");
                                 return;
                             }
@@ -91,7 +91,7 @@
                 vc.component.inAndOutStepInfo.$step.nextStep();
                 vc.component.inAndOutStepInfo.index = vc.component.inAndOutStepInfo.$step.getIndex();
                 vc.emit('viewResourceStoreInfo3', 'onIndex', vc.component.inAndOutStepInfo.index);
-                vc.emit('addPurchaseApplyView', 'onIndex', vc.component.inAndOutStepInfo.index);
+                vc.emit('addPurchaseApplyViewInfo2', 'onIndex', vc.component.inAndOutStepInfo.index);
             },
             _finishStep: function () {
                 vc.emit('addPurchaseApplyViewInfo2', 'setPurchaseApplyInfo', null);
@@ -102,7 +102,7 @@
                         return;
                     }
                 }
-                console.log(vc.component.inAndOutStepInfo.purchaseApply);debugger
+                console.log(vc.component.inAndOutStepInfo.purchaseApply);
                 var postUrl = vc.component.inAndOutStepInfo.purchaseApply.resOrderType == 10000 ? '/purchase/purchaseStorage' : '/collection/goodsDelivery';
                 vc.http.apiPost(
                     postUrl,
@@ -115,7 +115,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             if (vc.component.inAndOutStepInfo.purchaseApply.resOrderType == "10000") {
-                                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyManage");
+                                vc.jumpToPage("/admin.html#/pages/common/resourceStoreManage");
                             } else {
                                 vc.jumpToPage("/admin.html#/pages/common/itemOutManage");
                             }

@@ -52,7 +52,8 @@
                                 vc.component.inspectionRoutePointManageInfo.records = _inspectionRouteManageInfo.records;
                                 vc.component.inspectionRoutePointManageInfo.inspectionPoints = _inspectionRouteManageInfo.inspectionPoints;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.inspectionRoutePointManageInfo.records,
+                                    total: vc.component.inspectionRoutePointManageInfo.records,
+                                    dataCount: vc.component.inspectionRoutePointManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

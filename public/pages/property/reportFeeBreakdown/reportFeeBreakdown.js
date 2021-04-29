@@ -122,6 +122,7 @@
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeBreakdownInfo.records,
+                            dataCount: vc.component.reportFeeBreakdownInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -143,30 +144,7 @@
                 vc.component.reportFeeBreakdownInfo.conditions.startTime = "";
                 vc.component.reportFeeBreakdownInfo.conditions.endTime = "";
                 vc.component.reportFeeBreakdownInfo.conditions.feeTypeCd = "";
-                // 清除下拉框选项
-                vc.component.reportFeeBreakdownInfo.roomUnits = [];
-                var param = {
-                    params: vc.component.reportFeeBreakdownInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('/reportFeeMonthStatistics/queryFeeBreakdown',
-                    param,
-                    function (json, res) {
-                        var _reportFeeBreakdownInfo = JSON.parse(json);
-                        vc.component.reportFeeBreakdownInfo.total = _reportFeeBreakdownInfo.total;
-                        vc.component.reportFeeBreakdownInfo.records = _reportFeeBreakdownInfo.records;
-                        vc.component.reportFeeBreakdownInfo.fees = _reportFeeBreakdownInfo.data;
-                        if (_reportFeeBreakdownInfo.data.length > 0) {
-                            vc.component.reportFeeBreakdownInfo.feeConfigDtos = _reportFeeBreakdownInfo.data[0].feeConfigDtos;
-                        }
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.reportFeeBreakdownInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {

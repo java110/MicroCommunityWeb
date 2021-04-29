@@ -137,7 +137,7 @@
                         }
                         vc.copyObject(_rooms[0], $that.simplifyAcceptanceInfo);
                         $that.simplifyAcceptanceInfo.roomRemark = _rooms[0].remark;
-                        $that.simplifyAcceptanceInfo.roomName = _rooms[0].floorNum + '栋' + _rooms[0].unitNum + '单元' + _rooms[0].roomNum;
+                        $that.simplifyAcceptanceInfo.roomName = _rooms[0].floorNum + '栋' + _rooms[0].unitNum + '单元' + _rooms[0].roomNum + '室';
                         vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');

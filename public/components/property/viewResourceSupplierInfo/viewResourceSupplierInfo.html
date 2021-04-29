@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>供应商信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewResourceSupplierInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectResourceSupplierInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择供应商</button>
+
+                    <button type="button" v-if="viewResourceSupplierInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddResourceSupplierInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加供应商</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >供应商名称：</label>
+                            <label class="">{{viewResourceSupplierInfo.supplierName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >供应商地址：</label>
+                            <label class="">{{viewResourceSupplierInfo.address}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >供应商联系方式：</label>
+                            <label class="">{{viewResourceSupplierInfo.tel}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >联系人姓名：</label>
+                            <label class="">{{viewResourceSupplierInfo.contactName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >开户行：</label>
+                            <label class="">{{viewResourceSupplierInfo.accountBank}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >开户行账号：</label>
+                            <label class="">{{viewResourceSupplierInfo.bankAccountNumber}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >备注：</label>
+                            <label class="">{{viewResourceSupplierInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addResourceSupplier"
+               callBackListener="viewResourceSupplierInfo"
+               callBackFunction="chooseResourceSupplier"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseResourceSupplier"
+               emitChooseResourceSupplier="viewResourceSupplierInfo"
+               emitLoadData="viewResourceSupplierInfo"
+    ></vc:create>
+</div>

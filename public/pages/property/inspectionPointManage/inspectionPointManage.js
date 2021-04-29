@@ -50,6 +50,7 @@
                         vc.component.inspectionPointManageInfo.inspectionPoints = _inspectionPointManageInfo.inspectionPoints;
                         vc.emit('pagination', 'init', {
                             total: vc.component.inspectionPointManageInfo.records,
+                            dataCount: vc.component.inspectionPointManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

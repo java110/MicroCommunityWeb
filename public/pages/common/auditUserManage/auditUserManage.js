@@ -52,6 +52,7 @@
                         vc.component.auditUserManageInfo.auditUsers = _auditUserManageInfo.auditUsers;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditUserManageInfo.records,
+                            dataCount: vc.component.auditUserManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -54,6 +54,7 @@
                         vc.component.myResourceStoreManageInfo.resourceStores = _myResourceStoreManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.myResourceStoreManageInfo.records,
+                            dataCount: vc.component.myResourceStoreManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -75,6 +76,11 @@
                 } else {
                     vc.component.myResourceStoreManageInfo.moreCondition = true;
                 }
+            },
+
+            // 跳转转增商品页面
+            _jump2TransferGoodsPage: function () {
+                vc.jumpToPage("/admin.html#/pages/common/transferGoodsStep");
             }
         }
     });

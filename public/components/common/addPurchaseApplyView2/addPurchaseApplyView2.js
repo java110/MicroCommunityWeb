@@ -34,8 +34,6 @@
             });
 
             vc.on("addPurchaseApplyViewInfo2", "notify", function (_param) {
-                console.log(_param);
-                console.log('noti doing');
                 if (_param.hasOwnProperty("staffId")) {
                     vc.component.addPurchaseApplyViewInfo2.staffId = _param.staffId;
                     vc.component.addPurchaseApplyViewInfo2.staffName = _param.staffName;

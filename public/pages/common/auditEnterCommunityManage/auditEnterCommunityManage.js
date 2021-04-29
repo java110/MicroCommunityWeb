@@ -54,7 +54,8 @@
                                 vc.component.auditEnterCommunityManageInfo.records = _auditEnterCommunityManageInfo.records;
                                 vc.component.auditEnterCommunityManageInfo.communitys = _auditEnterCommunityManageInfo.communitys;
                                 vc.emit('pagination','init',{
-                                    total:vc.component.auditEnterCommunityManageInfo.records,
+                                    total: vc.component.auditEnterCommunityManageInfo.records,
+                                    dataCount: vc.component.auditEnterCommunityManageInfo.total,
                                     currentPage:_page
                                 });
                              },function(errInfo,error){

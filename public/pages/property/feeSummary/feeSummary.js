@@ -45,6 +45,7 @@
                         vc.component.feeSummaryInfo.fees = _feeSummaryInfo.fees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeSummaryInfo.records,
+                            dataCount: vc.component.feeSummaryInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

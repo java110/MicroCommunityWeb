@@ -47,6 +47,7 @@
                         vc.component.shopManageInfo.shops = _shopManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.shopManageInfo.records,
+                            dataCount: vc.component.shopManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

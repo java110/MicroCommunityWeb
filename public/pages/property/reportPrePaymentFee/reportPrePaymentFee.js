@@ -44,6 +44,7 @@
                         vc.component.reportPrePaymentFeeInfo.fees = _reportPrePaymentFeeInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportPrePaymentFeeInfo.records,
+                            dataCount: vc.component.reportPrePaymentFeeInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

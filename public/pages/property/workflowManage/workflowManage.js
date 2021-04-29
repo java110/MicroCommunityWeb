@@ -56,6 +56,7 @@
                         vc.component.workflowManageInfo.workflows = _workflowManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.workflowManageInfo.records,
+                            dataCount: vc.component.workflowManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

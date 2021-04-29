@@ -51,6 +51,7 @@
                         vc.component.expirationContractInfo.contracts = _expirationContractInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.expirationContractInfo.records,
+                            dataCount: vc.component.expirationContractInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

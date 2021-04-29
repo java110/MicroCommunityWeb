@@ -50,7 +50,8 @@ personId:'',
                                 vc.component.machineAuthManageInfo.records = _machineAuthManageInfo.records;
                                 vc.component.machineAuthManageInfo.machineAuths = _machineAuthManageInfo.data;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.machineAuthManageInfo.records,
+                                    total: vc.component.machineAuthManageInfo.records,
+                                    dataCount: vc.component.machineAuthManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

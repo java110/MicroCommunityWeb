@@ -61,6 +61,7 @@
                         $that.dealMachineAttr(vc.component.machineManageInfo.machines);
                         vc.emit('pagination', 'init', {
                             total: vc.component.machineManageInfo.records,
+                            dataCount: vc.component.machineManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -55,6 +55,7 @@
                         vc.component.roomDecorationRecordsInfo.roomRenovationRecords = _roomDecorationRecordsInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.roomDecorationRecordsInfo.records,
+                            dataCount: vc.component.roomDecorationRecordsInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
