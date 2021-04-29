@@ -12,7 +12,8 @@
                 records: 1,
                 moreCondition: false,
                 resName: '',
-                storehouses: []
+                storehouses: [],
+                remark: ''
             }
         },
         _initMethod: function () {
@@ -28,8 +29,8 @@
                         return;
                     }
                 });
-                if(!_addFlag){
-                    return ;
+                if (!_addFlag) {
+                    return;
                 }
                 _param.shaName = _param.shName;
                 _param.shzId = '';
@@ -78,6 +79,54 @@
                     }
                 );
             },
+            _goBack: function () {
+                vc.goBack();
+            },
+            _submitApply: function () {
+                //校验数据
+                if ($that.allocationStorehouseManageInfo.remark == '') {
+                    vc.toast('申请说明不能为空');
+                    return;
+                }
+
+                let _saveFlag = true;
+
+                if ($that.allocationStorehouseManageInfo.resourceStores.length < 1) {
+                    vc.toast('请选择物品');
+                    return;
+                }
+
+                $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
+                    if (parseInt(item.curStock) > parseInt(item.stock)) {
+                        vc.toast(item.name + "库存不足");
+                        _saveFlag = false;
+                        return;
+                    }
+                });
+
+                if (!_saveFlag) {
+                    return;
+                }
+                vc.http.apiPost(
+                    'resourceStore.saveAllocationStorehouse',
+                    JSON.stringify($that.allocationStorehouseManageInfo),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        if (res.status == 200) {
+                            //关闭model
+                            vc.goBack();
+                            return;
+                        }
+                        vc.toast(json);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
+
+            }
         }
     });
 })(window.vc);

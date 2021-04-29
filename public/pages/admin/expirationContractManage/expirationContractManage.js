@@ -60,7 +60,8 @@
                 );
             },
             _openAddContractModel: function (_contract) {
-                vc.emit('addContract', 'openAddContractModal', _contract);
+                //vc.emit('addContract', 'openAddContractModal', _contract);
+                vc.jumpToPage('/admin.html#/pages/admin/addContract?contractId='+_contract.contractId)
             },
 
             _stopContractModel: function (_contract) {
