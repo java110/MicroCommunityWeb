@@ -3,24 +3,22 @@
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 1;
+    var DEFAULT_ROWS = 100;
     vc.extends({
         data: {
             allocationStorehouseDetailInfo: {
-                asId: '',
-                resId: '',
-                resName: '',
-                shaName: '',
-                shzName: '',
-                stock: '',
-                stateName: '',
-                startUserName: '',
+                applyId: '',
+                resourceStores: [],
                 remark: '',
-                auditUsers: []
+                startUserName:'',
+                createTime:'',
+                auditUsers: [],
+                stateName:''
             }
         },
         _initMethod: function () {
-            vc.component.allocationStorehouseDetailInfo.asId = vc.getParam('asId');
+            vc.component.allocationStorehouseDetailInfo.applyId = vc.getParam('applyId');
+            $that._listAllocationStorehouseApply();
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._loadAuditUser();
         },
@@ -33,7 +31,7 @@
                     params: {
                         page: _page,
                         row: _rows,
-                        applyOrderId: vc.component.allocationStorehouseDetailInfo.asId
+                        applyId: vc.component.allocationStorehouseDetailInfo.applyId
                     }
                 };
 
@@ -43,7 +41,28 @@
                     function (json, res) {
                         var _allocationStorehouseDetailInfo = JSON.parse(json);
                         var _purchaseApply = _allocationStorehouseDetailInfo.data;
-                        vc.copyObject(_purchaseApply[0], vc.component.allocationStorehouseDetailInfo);
+                        vc.component.allocationStorehouseDetailInfo.resourceStores = _purchaseApply;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listAllocationStorehouseApply: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        applyId: vc.component.allocationStorehouseDetailInfo.applyId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listAllocationStorehouseApplys',
+                    param,
+                    function (json, res) {
+                        var _allocationStorehouseDetailInfo = JSON.parse(json);
+                        var _purchaseApply = _allocationStorehouseDetailInfo.data[0];
+                        vc.copyObject(_purchaseApply,vc.component.allocationStorehouseDetailInfo);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -52,7 +71,7 @@
             _loadAuditUser: function () {
                 var param = {
                     params: {
-                        businessKey: vc.component.allocationStorehouseDetailInfo.asId,
+                        businessKey: vc.component.allocationStorehouseDetailInfo.applyId,
                         communityId: vc.getCurrentCommunity().communityId,
                     }
                 };

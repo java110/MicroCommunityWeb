@@ -50,7 +50,7 @@
                 param.params.resName = param.params.resName.trim();
                 param.params.resCode = param.params.resCode.trim();
                 //发送get请求
-                vc.http.apiGet('resourceStore.listAllocationStorehouses',
+                vc.http.apiGet('resourceStore.listAllocationStorehouseApplys',
                     param,
                     function (json, res) {
                         var _allocationStorehouseManageInfo = JSON.parse(json);
@@ -96,7 +96,7 @@
             },
             //详情
             _toDetail: function (_item) {
-                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
+                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?applyId=" + _item.applyId);
             },
 
             _openAllocationStorehouseApplyModal: function () {
