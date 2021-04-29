@@ -18,7 +18,7 @@
                                 <select class="custom-select" v-model="allocationStorehouseManageInfo.conditions.shIda">
                                     <option selected value="">必填，请选择源仓库</option>
                                     <option v-for="(item,index) in allocationStorehouseManageInfo.storehouses"
-                                            :key="index" v-bind:value="item.shId">
+                                        :key="index" v-bind:value="item.shId">
                                         {{item.shName}}
                                     </option>
                                 </select>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_queryAllocationStorehouseMethod()">
+                                v-on:click="_queryAllocationStorehouseMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
@@ -68,6 +68,9 @@
                 <div class="ibox-title">
                     <h5>调拨记录</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPurchaseApplyModal()">
+                            <i class="fa fa-plus"></i>申请调拨
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">

@@ -43,10 +43,8 @@
                                 var _orderManageInfo=JSON.parse(json);
                                 vc.component.orderManageInfo.total = _orderManageInfo.total;
                                 vc.component.orderManageInfo.records = _orderManageInfo.records;
-                                vc.component.orderManageInfo.orderDataVos = _orderManageInfo.corderDataVos;
-                                vc.component.orderManageInfo.orderDataVos.map(item=>{
-                                    item.requestTime=item.requestTime.substring(0,4)+"-"+item.requestTime.substring(4,6)+"-"+item.requestTime.substring(6,8)+"  "+item.requestTime.substring(8,10)+":"+item.requestTime.substring(10,12)+":"+item.requestTime.substring(12,14)
-                                })
+                                vc.component.orderManageInfo.orderDataVos = _orderManageInfo.data;
+                                
                                 vc.emit('pagination','init',{
                                     total: vc.component.orderManageInfo.records,
                                     dataCount: vc.component.orderManageInfo.total,

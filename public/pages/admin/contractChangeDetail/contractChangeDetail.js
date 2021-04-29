@@ -25,6 +25,7 @@
                 signingTime: '',
                 param: '',
                 planType: '',
+                rooms:[]
 
             },
             newContract: {
@@ -39,11 +40,17 @@
         _initEvent: function () {
             vc.on('contractChangeDetailInfo', 'chooseContract', function (_app) {
                 vc.copyObject(_app, vc.component.contractChangeDetailInfo);
+                if($that.contractChangeDetailInfo.param == 'contractChangeAssets'){
+                    vc.emit('contractChangeAssets','contractInfo',vc.component.contractChangeDetailInfo);
+                }
             });
             vc.on('contractChangeDetailInfo', 'notice', function (item) {
                 let _changeRemark = $that.newContract.changeRemark;
                 $that.newContract = vc.deepClone($that.contractChangeDetailInfo);
                 $that.newContract.changeRemark = _changeRemark;
+                if(item.hasOwnProperty('rooms')){
+                    $that.newContract.rooms = item.rooms;
+                }
                 vc.copyObject(item, $that.newContract);
             });
 
