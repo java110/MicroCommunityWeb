@@ -50,7 +50,7 @@
                     vc.component.addMeterWaterInfo.roomId = _param.roomId;
                     vc.component.addMeterWaterInfo.objId = _param.roomId;
                     // $that.addMeterWaterInfo.objName = _param.name.replace('0单元', ''); //处理商铺;
-                    $that.addMeterWaterInfo.objName = $that.transRoomName(_param.roomName);
+                    $that.addMeterWaterInfo.objName = $that.transRoomName(_param.name);
                     $that._queryPreMeterWater(_param.roomId);
                 }
             });
@@ -259,6 +259,8 @@
                 let _feeTypeCd = $that.addMeterWaterInfo.feeTypeCd;
                 if (_feeTypeCd == '888800010015') {
                     _meterType = '2020';
+                }else if(_feeTypeCd == '888800010009'){
+                    _meterType = '3030';
                 }
                 let param = {
                     params: {

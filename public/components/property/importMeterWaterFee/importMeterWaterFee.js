@@ -112,6 +112,8 @@
 
                 if(_feeTypeCd == '888800010015'){
                     _meterType = '2020';
+                }else if(_feeTypeCd == '888800010009'){
+                    _meterType = '3030';
                 }
                 vc.jumpToPage('/callComponent/importMeterWaterFee/exportData?communityId=' + vc.getCurrentCommunity().communityId+'&meterType='+_meterType);
             },

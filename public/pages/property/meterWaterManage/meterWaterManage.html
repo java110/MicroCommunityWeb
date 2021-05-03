@@ -77,7 +77,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="meterWater in meterWaterManageInfo.meterWaters">
-                                <td class="text-center">{{meterWater.meterType == '1010'?'电表':'水表'}}</td>
+                                <td class="text-center">{{_getMeteTypeName(meterWater.meterType)}}</td>
                                 <td class="text-center">{{meterWater.objName}}</td>
                                 <td class="text-center">{{meterWater.preDegrees}}</td>
                                 <td class="text-center">{{meterWater.curDegrees}}</td>
