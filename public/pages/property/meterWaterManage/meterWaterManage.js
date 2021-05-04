@@ -82,6 +82,14 @@
             },
             _openMeterWaterImport:function(){
                 vc.emit('importMeterWaterFee', 'openImportMeterWaterFeeModal',{});
+            },
+            _getMeteTypeName:function(_meterType){
+                if(_meterType == '1010'){
+                    return "电表";
+                }else if(_meterType == '2020'){
+                    return "水表";
+                }
+                return "煤气费";
             }
         }
     });
