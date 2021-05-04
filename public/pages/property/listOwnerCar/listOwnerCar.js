@@ -11,6 +11,7 @@
                 moreCondition: false,
                 conditions: {
                     carNum: '',
+                    carNumLike: '',
                     num: '',
                     state: '',
                     carTypeCd: '1001'
