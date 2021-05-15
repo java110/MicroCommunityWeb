@@ -168,6 +168,17 @@
                     })
                 })
                 return _amountOwed;
+            },
+            _exportFee:function(){
+                let _configIds = "";
+                $that.listOweFeeInfo.feeConfigNames.forEach(item => {
+                    _configIds += (item.configId + ',')
+                })
+
+                if (_configIds.endsWith(',')) {
+                    _configIds = _configIds.substring(0, _configIds.length - 1);
+                }
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=listOweFee&configIds="+_configIds);
             }
 
         }

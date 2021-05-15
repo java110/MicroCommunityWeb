@@ -38,8 +38,7 @@
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <select class="selectpicker" id="configIds" placeholder="请选择收费项"
-                                     multiple>
+                                <select class="selectpicker" id="configIds" placeholder="请选择收费项" multiple>
                                     <option v-for="(item,index) in listOweFeeInfo.feeConfigs" :key="index"
                                         :value="item.configId">
                                         {{item.feeName}}
@@ -64,7 +63,9 @@
                 <div class="ibox-title">
                     <h5>欠费清单</h5>
                     <div class="ibox-tools" style="top:10px;">
-
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
+                            <i class="fa fa-plus"></i>导出
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -80,8 +81,9 @@
                                 <th class="text-center">开始时间</th>
                                 <th class="text-center">结束时间</th>
                                 <!-- <th class="text-center">面积</th> -->
-                                <th class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">{{item.configName}}</th>
-                                <th class="text-center" >合计</th>
+                                <th class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
+                                    {{item.configName}}</th>
+                                <th class="text-center">合计</th>
                                 <th class="text-center">更新时间</th>
                             </tr>
                         </thead>
@@ -92,7 +94,8 @@
                                 <td class="text-center">{{fee.ownerName}}</td>
                                 <td class="text-center">{{fee.endTime}}</td>
                                 <td class="text-center">{{fee.deadlineTime}}</td>
-                                <td class="text-center" v-for="item in listOweFeeInfo.feeConfigNames">{{_getFeeOweAmount(item,fee)}}</td>
+                                <td class="text-center" v-for="item in listOweFeeInfo.feeConfigNames">
+                                    {{_getFeeOweAmount(item,fee)}}</td>
                                 <td class="text-center">{{_getAllFeeOweAmount(fee)}}</td>
                                 <td class="text-center">{{fee.updateTime}}</td>
                             </tr>
