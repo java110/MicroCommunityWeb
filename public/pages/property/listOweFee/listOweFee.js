@@ -1,85 +1,147 @@
-(function(vc){
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
-        data:{
-            listOweFeeInfo:{
-                fees:[],
-                roomName:'',
-                roomId:'',
+        data: {
+            listOweFeeInfo: {
+                fees: [],
+                roomName: '',
+                roomId: '',
                 total: 0,
                 records: 1,
-                moreCondition:false,
-                roomNum:'',
-                conditions:{
-                    floorName:'',
-                    payObjType:'3333',
-                    billType:'00123'
+                moreCondition: false,
+                roomNum: '',
+                conditions: {
+                    floorName: '',
+                    configIds: '',
+                    payObjType: '3333',
+                    billType: '00123'
                 },
-                roomUnits:[],
-                floorId:'',
-                unitId:'',
+                feeConfigs: [],
+                feeConfigNames: [],
+                floorId: '',
+                unitId: '',
             }
         },
-        _initMethod:function(){
-            vc.component._loadListOweFeeInfo(1,10);
+        watch: {
+            'listOweFeeInfo.feeConfigs': function () {//'goodList'是我要渲染的对象，也就是我要等到它渲染完才能调用函数
+                this.$nextTick(function () {
+                    $('#configIds').selectpicker({
+                        title: '请选择费用项',
+                        styleBase:'form-control',
+                        width:'auto'
+                    });
+                })
+            }
         },
-        _initEvent:function(){
-            
+        _initMethod: function () {
+            vc.component._loadListOweFeeInfo(1, 10);
+            $that._listFeeConfigs();
+        },
+        _initEvent: function () {
+            $('#configIds').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                // do something...
+                console.log(e, clickedIndex, isSelected, previousValue)
+                if (isSelected) {
+                    $that.listOweFeeInfo.feeConfigNames.push({
+                        configId: $that.listOweFeeInfo.feeConfigs[clickedIndex].configId,
+                        configName: $that.listOweFeeInfo.feeConfigs[clickedIndex].feeName
+                    })
+                } else {
+
+                    let _feeConfigNames = [];
+                    $that.listOweFeeInfo.feeConfigNames.forEach(item => {
+                        if (item.configId != $that.listOweFeeInfo.feeConfigs[clickedIndex].configId) {
+                            _feeConfigNames.push(item);
+                        }
+                    });
+
+                    $that.listOweFeeInfo.feeConfigNames = _feeConfigNames;
+
+                }
+            });
+
             vc.on('pagination', 'page_event',
-                function(_currentPage) {
+                function (_currentPage) {
                     vc.component._loadListOweFeeInfo(_currentPage, DEFAULT_ROWS);
                 });
         },
-        methods:{
-            _loadListOweFeeInfo:function(_page,_row){
+        methods: {
+            _loadListOweFeeInfo: function (_page, _row) {
 
                 vc.component.listOweFeeInfo.conditions.page = _page;
                 vc.component.listOweFeeInfo.conditions.row = _row;
                 vc.component.listOweFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                let _configIds = "";
+                $that.listOweFeeInfo.feeConfigNames.forEach(item=>{
+                    _configIds += (item.configId + ',')
+                })
+
+                if(_configIds.endsWith(',')){
+                    _configIds = _configIds.substring(0,_configIds.length-1);
+                }
+                $that.listOweFeeInfo.conditions.configIds = _configIds;
+
                 let param = {
                     params: vc.component.listOweFeeInfo.conditions
                 };
 
                 //发送get请求
-               vc.http.apiGet('/feeApi/getOweFees',
-                             param,
-                             function(json){
-                                var _feeConfigInfo = JSON.parse(json);
-                                vc.component.listOweFeeInfo.total = _feeConfigInfo.total;
-                                vc.component.listOweFeeInfo.records = _feeConfigInfo.records;
-                                vc.component.listOweFeeInfo.fees = _feeConfigInfo.data;
-                                vc.emit('pagination', 'init', {
-                                    total: _feeConfigInfo.records,
-                                    dataCount: _feeConfigInfo.total,
-                                    currentPage: _page
-                                });
-                             },function(){
-                                console.log('请求失败处理');
-                             }
-                           );
+                vc.http.apiGet('/reportOweFee/queryReportOweFee',
+                    param,
+                    function (json) {
+                        var _feeConfigInfo = JSON.parse(json);
+                        vc.component.listOweFeeInfo.total = _feeConfigInfo.total;
+                        vc.component.listOweFeeInfo.records = _feeConfigInfo.records;
+                        vc.component.listOweFeeInfo.fees = _feeConfigInfo.data;
+                        vc.emit('pagination', 'init', {
+                            total: _feeConfigInfo.records,
+                            dataCount: _feeConfigInfo.total,
+                            currentPage: _page
+                        });
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack();
             },
-            _toOwnerPayFee:function(_fee){
-                console.log('_fee',_fee);
-                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId='+_fee.payerObjId+"&payObjType="+_fee.payerObjType+"&roomName="+_fee.roomName);
-            },
-            _moreCondition:function(){
-                if(vc.component.listOweFeeInfo.moreCondition){
+            _moreCondition: function () {
+                if (vc.component.listOweFeeInfo.moreCondition) {
                     vc.component.listOweFeeInfo.moreCondition = false;
-                }else{
+                } else {
                     vc.component.listOweFeeInfo.moreCondition = true;
                 }
             },
-            _openChooseFloorMethod:function(){
-                vc.emit('searchFloor','openSearchFloorModel',{});
+            _queryOweFeeMethod: function () {
+                vc.component._loadListOweFeeInfo(1, 10);
             },
-            _queryOweFeeMethod:function(){
-                vc.component._loadListOweFeeInfo(1,10);
+            _listFeeConfigs: function () {
+
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.get('feeConfigManage', 'list', param,
+                    function (json, res) {
+                        var _feeConfigManageInfo = JSON.parse(json);
+                        vc.component.listOweFeeInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
+
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    });
+            },
+            _getFeeOweAmount: function (item, fee) {
+                return "0";
             }
-        
+
         }
 
     });
