@@ -79,21 +79,21 @@
                                 <th class="text-center">业主名称</th>
                                 <th class="text-center">开始时间</th>
                                 <th class="text-center">结束时间</th>
-                                <th class="text-center">面积</th>
+                                <!-- <th class="text-center">面积</th> -->
                                 <th class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">{{item.configName}}</th>
                                 <th class="text-center" >合计</th>
                                 <th class="text-center">更新时间</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="fee in listOweFeeInfo.fees">
-                                <td class="text-center">{{index+1}}</td>
+                            <tr v-for="(fee,i) in listOweFeeInfo.fees">
+                                <td class="text-center">{{i+1}}</td>
                                 <td class="text-center">{{fee.payerObjName}}</td>
                                 <td class="text-center">{{fee.ownerName}}</td>
                                 <td class="text-center">{{fee.endTime}}</td>
                                 <td class="text-center">{{fee.deadlineTime}}</td>
-                                <td class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">{{_getFeeOweAmount(item,fee)}}</td>
-                                <td class="text-center">{{fee.amountOwed}}</td>
+                                <td class="text-center" v-for="item in listOweFeeInfo.feeConfigNames">{{_getFeeOweAmount(item,fee)}}</td>
+                                <td class="text-center">{{_getAllFeeOweAmount(fee)}}</td>
                                 <td class="text-center">{{fee.updateTime}}</td>
                             </tr>
                         </tbody>

@@ -28,8 +28,8 @@
                 this.$nextTick(function () {
                     $('#configIds').selectpicker({
                         title: '请选择费用项',
-                        styleBase:'form-control',
-                        width:'auto'
+                        styleBase: 'form-control',
+                        width: 'auto'
                     });
                 })
             }
@@ -73,12 +73,12 @@
                 vc.component.listOweFeeInfo.conditions.row = _row;
                 vc.component.listOweFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 let _configIds = "";
-                $that.listOweFeeInfo.feeConfigNames.forEach(item=>{
+                $that.listOweFeeInfo.feeConfigNames.forEach(item => {
                     _configIds += (item.configId + ',')
                 })
 
-                if(_configIds.endsWith(',')){
-                    _configIds = _configIds.substring(0,_configIds.length-1);
+                if (_configIds.endsWith(',')) {
+                    _configIds = _configIds.substring(0, _configIds.length - 1);
                 }
                 $that.listOweFeeInfo.conditions.configIds = _configIds;
 
@@ -139,7 +139,35 @@
                     });
             },
             _getFeeOweAmount: function (item, fee) {
-                return "0";
+                let _items = fee.items;
+                if (!_items) {
+                    return 0;
+                }
+                let _value = 0;
+                _items.forEach(tmp => {
+                    if (tmp.configId == item.configId) {
+                        _value = tmp.amountOwed
+                        return;
+                    }
+                })
+                return _value;
+            },
+            _getAllFeeOweAmount: function (_fee) {
+                let _feeConfigNames = $that.listOweFeeInfo.feeConfigNames;
+                if (_feeConfigNames.length < 1) {
+                    return _fee.amountOwed;
+                }
+
+                let _amountOwed = 0.0;
+                let _items = _fee.items;
+                _feeConfigNames.forEach(_feeItem =>{
+                    _items.forEach(_item=>{
+                        if(_feeItem.configId == _item.configId){
+                            _amountOwed += parseFloat(_item.amountOwed);
+                        }
+                    })
+                })
+                return _amountOwed;
             }
 
         }
