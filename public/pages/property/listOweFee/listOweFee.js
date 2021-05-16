@@ -160,15 +160,27 @@
 
                 let _amountOwed = 0.0;
                 let _items = _fee.items;
-                _feeConfigNames.forEach(_feeItem =>{
-                    _items.forEach(_item=>{
-                        if(_feeItem.configId == _item.configId){
+                _feeConfigNames.forEach(_feeItem => {
+                    _items.forEach(_item => {
+                        if (_feeItem.configId == _item.configId) {
                             _amountOwed += parseFloat(_item.amountOwed);
                         }
                     })
                 })
                 return _amountOwed.toFixed(2);
+            },
+            _exportFee: function () {
+                let _configIds = "";
+                $that.listOweFeeInfo.feeConfigNames.forEach(item => {
+                    _configIds += (item.configId + ',')
+                })
+
+                if (_configIds.endsWith(',')) {
+                    _configIds = _configIds.substring(0, _configIds.length - 1);
+                }
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=listOweFee&configIds=" + _configIds);
             }
+
 
         }
 
