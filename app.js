@@ -36,11 +36,11 @@ let opts = {
 //app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012',opts));
 
 
-//app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012',opts));
-//app.use('/app',proxy('http://api.demo.winqi.cn:8012',opts));
+app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012',opts));
+app.use('/app',proxy('http://api.demo.winqi.cn:8012',opts));
 
-app.use('/callComponent',proxy('http://proxy.homecommunity.cn:9011',opts));
-app.use('/app',proxy('http://proxy.homecommunity.cn:9011',opts));
+//app.use('/callComponent',proxy('http://proxy.homecommunity.cn:9011',opts));
+//app.use('/app',proxy('http://proxy.homecommunity.cn:9011',opts));
 
 // app.use('/callComponent',proxy('http://192.168.1.106:8012',opts));
 // app.use('/app',proxy('http://192.168.1.106:8012',opts));
