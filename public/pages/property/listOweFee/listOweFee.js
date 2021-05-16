@@ -167,7 +167,7 @@
                         }
                     })
                 })
-                return _amountOwed;
+                return _amountOwed.toFixed(2);
             }
 
         }
