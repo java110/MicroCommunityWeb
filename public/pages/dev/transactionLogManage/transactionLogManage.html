@@ -61,6 +61,7 @@
                                 <th class="text-center">服务编码</th>
                                 <th class="text-center">耗时</th>
                                 <th class="text-center">状态</th>
+                                <th class="text-center">请求时间</th>
                                 <th class="text-right">操作</th>
                             </tr>
                         </thead>
@@ -72,6 +73,7 @@
                                 <td class="text-center">{{log.serviceCode}}</td>
                                 <td class="text-center">{{log.costTime}}</td>
                                 <td class="text-center">{{log.state=='F'?'失败':'成功'}}</td>
+                                <td class="text-center">{{log.createTime}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="viewLogMessage(log)">查看报文
