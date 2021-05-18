@@ -46,8 +46,12 @@
                     function (json, res) {
                         let _info = JSON.parse(json);
                         let _data = _info.data;
+                        //拿到模板内容
                         $that.templatecontent = _data.contractTypeTemplate[0].context;
+                        // 合同信息
                         $that.contractdata = _data.contract[0];
+
+                        //合同属性
                         $that.attrs = _data.contract[0].attrs;
                         $that.contractTypeSpec = _data.contractTypeSpec;
                         $that.contractTypeSpec.forEach(function (e) {
@@ -61,7 +65,7 @@
                             });
                         });
                         $that.baseRepalce = _data.baseRepalce;
-                        if ($that.baseRepalce != undefined) {
+                        if ($that.baseRepalce) {
                             $that.baseRepalce.forEach(function (e) {
                                 let rname = e.name;
                                 let rkey = e.key;
