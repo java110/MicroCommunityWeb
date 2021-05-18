@@ -35,7 +35,6 @@
             _listAdverts: function (_page, _rows) {
                 vc.component.advertManageInfo.conditions.page = _page;
                 vc.component.advertManageInfo.conditions.row = _rows;
-                vc.component.advertManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.advertManageInfo.conditions
                 };
