@@ -13,7 +13,9 @@
                 payObjType: '',
                 roomName: '',
                 receiptIds: '',
-                remark: ''
+                remark: '',
+                primeRate: '',
+                primeRates: []
             }
         },
         watch: {
@@ -36,6 +38,10 @@
             $that.owePayFeeOrderInfo.payObjType = _payObjType;
             $that.owePayFeeOrderInfo.roomName = vc.getParam('roomName');
             $that._loadOweFees();
+            //与字典表支付方式关联
+            vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
+                vc.component.owePayFeeOrderInfo.primeRates = _data;
+            });
         },
         _initEvent: function () {
 
@@ -85,6 +91,10 @@
             _doPayFee: function () {
                 let _fees = [];
                 let _printFees = [];
+                if($that.owePayFeeOrderInfo.primeRate == ''){
+                    vc.toast('请选择支付方式');
+                    return ;
+                }
                 $that.owePayFeeOrderInfo.selectPayFeeIds.forEach(function (_item) {
                     $that.owePayFeeOrderInfo.oweFees.forEach(function (_oweFeeItem) {
                         if (_item == _oweFeeItem.feeId) {
@@ -92,7 +102,8 @@
                                 feeId: _item,
                                 startTime: _oweFeeItem.endTime,
                                 endTime: _oweFeeItem.deadlineTime,
-                                receivedAmount: _oweFeeItem.feePrice
+                                receivedAmount: _oweFeeItem.feePrice,
+                                primeRate:$that.owePayFeeOrderInfo.primeRate
                             });
                             _printFees.push({
                                 feeId: _item,
@@ -100,7 +111,8 @@
                                 additionalAmount: _oweFeeItem.additionalAmount,
                                 feeName: _oweFeeItem.feeName,
                                 amount: _oweFeeItem.feePrice,
-                                roomName: $that.owePayFeeOrderInfo.roomName
+                                roomName: $that.owePayFeeOrderInfo.roomName,
+                                primeRate:$that.owePayFeeOrderInfo.primeRate
                             });
                         }
                     })

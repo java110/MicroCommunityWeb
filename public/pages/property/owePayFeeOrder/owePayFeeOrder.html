@@ -79,17 +79,28 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <label class="col-sm-2 col-form-label">房屋：</label>
-                        <label class="col-sm-10 col-form-label">{{owePayFeeOrderInfo.roomName}}</label>
+                        <label class="col-sm-3 col-form-label">房屋：</label>
+                        <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.roomName}}</label>
                     </div>
                   
                     <div class="row">
-                        <label class="col-sm-2 col-form-label">金额：</label>
-                        <label class="col-sm-10 col-form-label">{{owePayFeeOrderInfo.feePrices}}元</label>
+                        <label class="col-sm-3 col-form-label">金额：</label>
+                        <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.feePrices}}元</label>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-3 col-form-label" >支付方式:</label>
+                        <div class="col-sm-9">
+                            <select class="custom-select" v-model="owePayFeeOrderInfo.primeRate">
+                                <option selected disabled value="">必填，请选择支付方式</option>
+                                <option v-for="(item,index) in owePayFeeOrderInfo.primeRates" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
                     </div>     
                     <div class="row">
-                        <label class="col-sm-2 col-form-label">备注：</label>
-                        <label class="col-sm-10 col-form-label">
+                        <label class="col-sm-3 col-form-label">备注：</label>
+                        <label class="col-sm-9 col-form-label">
                             <textarea placeholder="可填，请填写备注" class="form-control"
                                               v-model="owePayFeeOrderInfo.remark">
                                     </textarea>
