@@ -353,6 +353,7 @@
                     repairObjType: '',
                     maintenanceTypes: [],
                     maintenanceType: '',
+                    repairChannel: '',
                     goodsTypes: [],
                     resourceStores: [],
                     price: '',

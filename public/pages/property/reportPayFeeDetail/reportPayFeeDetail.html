@@ -112,8 +112,9 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">费用编号</th>
+                            <th class="text-center">订单号</th>
                             <th class="text-center">房号</th>
+                            <th class="text-center">业主</th>
                             <th class="text-center">费用项</th>
                             <th class="text-center">支付方式</th>
                             <th class="text-center">费用开始时间</th>
@@ -130,8 +131,9 @@
                         </thead>
                         <tbody>
                         <tr v-for="(fee,index) in reportPayFeeDetailInfo.fees">
-                            <td class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{fee.oId}}</td>
                             <td class="text-center">{{fee.objName}}</td>
+                            <td class="text-center">{{fee.ownerName}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
                             <td class="text-center">{{fee.primeRate}}</td>
                             <td class="text-center">{{vc.dateFormat(fee.startTime)}}</td>
