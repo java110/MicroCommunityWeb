@@ -97,13 +97,13 @@
                             errInfo: "小区城市编码不能大于4个字符"
                         },
                     ],
-                    /*'addCommunityInfo.tel': [
+                    'addCommunityInfo.tel': [
                         {
-                            limit: "phone",
+                            limit: "required",
                             param: "",
-                            errInfo: "联系方式格式不正确"
-                        },
-                    ],*/
+                            errInfo: "联系方式不能为空"
+                        }
+                    ],
                 });
             },
             saveCommunityInfo: function () {

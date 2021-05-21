@@ -13,7 +13,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入物品使用记录编号"
                                        v-model="resourceStoreUseRecordManageInfo.conditions.rsurId"
@@ -34,15 +34,19 @@
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryResourceStoreUseRecordMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetResourceStoreUseRecordMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4" v-if="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3" v-if="resourceStoreUseRecordManageInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入物品使用人Id"
                                        v-model="resourceStoreUseRecordManageInfo.conditions.createUserId"
@@ -54,6 +58,31 @@
                                 <input type="text" placeholder="请输入物品使用人用户名"
                                        v-model="resourceStoreUseRecordManageInfo.conditions.createUserName"
                                        class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" v-if="resourceStoreUseRecordManageInfo.moreCondition == true">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.rstId"
+                                        @change="_listResourceStoreSpecifications">
+                                    <option selected value="">请选择物品类型</option>
+                                    <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreTypes" :key="index"
+                                            v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.rssId">
+                                    <option selected value="">请选择物品规格</option>
+                                    <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreSpecifications" :key="index"
+                                        v-bind:value="item.rssId">
+                                        {{item.specName}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -75,11 +104,14 @@
                             <th class="text-center">物品使用记录编号</th>
                             <th class="text-center">维修工单编号</th>
                             <th class="text-center">物品资源编号</th>
-                            <th class="text-center">物品资源名称</th>
+                            <th class="text-center">物品类型</th>
+                            <th class="text-center">物品名称</th>
+                            <th class="text-center">物品规格</th>
                             <th class="text-center">物品使用数量</th>
                             <th class="text-center">物品价格</th>
                             <th class="text-center">使用人ID</th>
                             <th class="text-center">使用人</th>
+                            <th class="text-center">创建时间</th>
                             <th class="text-center">备注</th>
                         </tr>
                         </thead>
@@ -88,17 +120,20 @@
                             <td class="text-center">{{resourceStoreUseRecord.rsurId}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.repairId}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.resId}}</td>
-                            <td class="text-center">{{resourceStoreUseRecord.resName}}</td>
+                            <td class="text-center">{{resourceStoreUseRecord.rstName ? resourceStoreUseRecord.rstName : '-'}}</td>
+                            <td class="text-center">{{resourceStoreUseRecord.resourceStoreName ? resourceStoreUseRecord.resourceStoreName : '-'}}</td>
+                            <td class="text-center">{{resourceStoreUseRecord.specName ? resourceStoreUseRecord.specName : '-'}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.quantity}}</td>
-                            <td class="text-center">{{resourceStoreUseRecord.unitPrice}}</td>
+                            <td class="text-center">{{resourceStoreUseRecord.unitPrice ? resourceStoreUseRecord.unitPrice : '-'}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.createUserId}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.createUserName}}</td>
+                            <td class="text-center">{{resourceStoreUseRecord.createTime}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.remark}}</td>
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="12">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

@@ -12,7 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 conditions: {
-                    goodsType: '',
+                    rstId: '',
                     name: '',
                     description: ''
                 }
@@ -38,7 +38,7 @@
                 var param = {
                     params: vc.component.resourceStoreTypeManageInfo.conditions
                 };
-                param.params.goodsType = param.params.goodsType.trim();
+                param.params.rstId = param.params.rstId.trim();
                 param.params.name = param.params.name.trim();
                 //发送post请求
                 vc.http.get('resourceStoreTypeManage',
@@ -61,7 +61,7 @@
             },
             //重置方法
             _resetResourceStoreTypes: function (_page, _rows) {
-                vc.component.resourceStoreTypeManageInfo.conditions.goodsType = '';
+                vc.component.resourceStoreTypeManageInfo.conditions.rstId = '';
                 vc.component.resourceStoreTypeManageInfo.conditions.name = '';
                 vc.component.resourceStoreTypeManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 $that._listResourceStoreTypes(DEFAULT_PAGE,DEFAULT_ROWS);

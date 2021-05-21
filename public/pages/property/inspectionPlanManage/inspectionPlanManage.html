@@ -9,20 +9,20 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入计划ID"
+                                       v-model="inspectionPlanManageInfo.conditions.inspectionPlanId" class=" form-control">
+                            </div>
+                        </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="计划名称"
+                                <input type="text" placeholder="请输入计划名称"
                                        v-model="inspectionPlanManageInfo.conditions.inspectionPlanName"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="执行人员姓名"
-                                       v-model="inspectionPlanManageInfo.conditions.staffName" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionPlanManageInfo.conditions.state">
                                 <option selected disabled value="">请选择状态</option>
                                 <option v-for="(item,index) in inspectionPlanManageInfo.states" :key="index"
@@ -30,10 +30,14 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryInspectionPlanMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetInspectionPlanMethod()">
+                                <i class="fa fa-search"></i> 重置
                             </button>
                         </div>
                     </div>
@@ -57,10 +61,10 @@
                            data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">计划</th>
-                            <th class="text-center">路线</th>
-                            <th class="text-center">周期</th>
-                            <!-- <th class="text-center">执行人</th> -->
+                            <th class="text-center">计划ID</th>
+                            <th class="text-center">计划名称</th>
+                            <th class="text-center">计划路线</th>
+                            <th class="text-center">计划周期</th>
                             <th class="text-center">签到方式</th>
                             <th class="text-center">开始时间</th>
                             <th class="text-center">结束时间</th>
@@ -72,10 +76,10 @@
                         </thead>
                         <tbody>
                         <tr v-for="inspectionPlan in inspectionPlanManageInfo.inspectionPlans">
+                            <td class="text-center">{{inspectionPlan.inspectionPlanId}}</td>
                             <td class="text-center">{{inspectionPlan.inspectionPlanName}}</td>
                             <td class="text-center">{{inspectionPlan.inspectionRouteName}}</td>
                             <td class="text-center">{{inspectionPlan.inspectionPlanPeriodName}}</td>
-                            <!-- <td class="text-center">{{inspectionPlan.staffName}}</td> -->
                             <td class="text-center">{{inspectionPlan.signTypeName}}</td>
                             <td class="text-center">{{inspectionPlan.startTime}}</td>
                             <td class="text-center">{{inspectionPlan.endTime}}</td>

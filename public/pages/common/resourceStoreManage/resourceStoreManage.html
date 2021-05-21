@@ -5,6 +5,9 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                            {{resourceStoreManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -12,7 +15,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="resourceStoreManageInfo.conditions.shId">
-                                    <option selected value="">必填，请选择仓库</option>
+                                    <option selected value="">请选择仓库</option>
                                     <option v-for="(item,index) in resourceStoreManageInfo.storehouses" :key="index"
                                             v-bind:value="item.shId">
                                         {{item.shName}}
@@ -43,6 +46,35 @@
                             </button>
                         </div>
                     </div>
+                    <div class="row" v-show="resourceStoreManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">请选择物品类型</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreTypes" :key="index" v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.rssId">
+                                    <option selected value="">请选择物品规格</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreSpecifications" :key="index"
+                                        v-bind:value="item.rssId">
+                                        {{item.specName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入物品ID" v-model="resourceStoreManageInfo.conditions.resId"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,8 +100,9 @@
                         <tr>
                             <th class="text-center">物品ID</th>
                             <th class="text-center">仓库名称</th>
-                            <th class="text-center">物品名称</th>
                             <th class="text-center">物品类型</th>
+                            <th class="text-center">物品名称</th>
+                            <th class="text-center">物品规格</th>
                             <th class="text-center">物品编码</th>
                             <th class="text-center">采购参考价格</th>
                             <th class="text-center">收费标准</th>
@@ -81,11 +114,12 @@
                         </thead>
                         <tbody>
                         <tr v-for="resourceStore in resourceStoreManageInfo.resourceStores"
-                            :class="{ 'table-danger' : resourceStore.stock < resourceStore.warningStock}">
+                            :class="{ 'table-danger' : parseInt(resourceStore.stock) < parseInt(resourceStore.warningStock)}">
                             <td class="text-center">{{resourceStore.resId}}</td>
                             <td class="text-center">{{resourceStore.shName}}</td>
+                            <td class="text-center">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
-                            <td class="text-center">{{resourceStore.goodsTypeName}}</td>
+                            <td class="text-center">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
                             <td class="text-center">{{'￥' + resourceStore.price}}</td>
                             <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' + resourceStore.outLowPrice : '￥' + resourceStore.outLowPrice + '-￥' + resourceStore.outHighPrice}}</td>
@@ -120,7 +154,20 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row">
+                        <div class="col-md-6 text-left">
+                            <span class="margin-left"><span class="col-md-1"><b>小计</b></span>
+                                <span class="col-md-1 margin-left">物品总价：{{resourceStoreManageInfo.subTotalPrice}}元</span>
+                            </span>
+                            <br/>
+                            <span class="margin-left"><span class="col-md-1"><b>大计</b></span>
+                                <span class="col-md-1 margin-left">物品总价：{{resourceStoreManageInfo.highTotalPrice}}元</span>
+                            </span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,13 +9,13 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="订单号"
                                        v-model="purchaseApplyManageInfo.conditions.applyOrderId" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="custom-select" v-model="purchaseApplyManageInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
                                 <option v-for="(item,index) in purchaseApplyManageInfo.states" :key="index"
@@ -23,16 +23,20 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写申请人姓名"
                                        v-model="purchaseApplyManageInfo.conditions.userName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryInspectionPlanMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetInspectionPlanMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>

@@ -9,9 +9,12 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
+                            <th class="text-center">物品类型</th>
                             <th class="text-center">物品名称</th>
+                            <th class="text-center">物品规格</th>
                             <th class="text-center">物品编码</th>
                             <th class="text-center">物品库存</th>
+                            <th class="text-center">参考单价</th>
                             <th class="text-center">申请数量</th>
                             <th class="text-center">采购数量</th>
                             <th class="text-center">采购单价</th>
@@ -20,9 +23,12 @@
                         </thead>
                         <tbody>
                         <tr v-for="resourceEnter in resourceEnterManageInfo.purchaseApplyDetailVo">
+                            <td class="text-center">{{resourceEnter.rstName ? resourceEnter.rstName : '-'}}</td>
                             <td class="text-center">{{resourceEnter.resName}}</td>
+                            <td class="text-center">{{resourceEnter.specName ? resourceEnter.specName : '-'}}</td>
                             <td class="text-center">{{resourceEnter.resCode}}</td>
                             <td class="text-center">{{resourceEnter.stock}}</td>
+                            <td class="text-center">￥{{resourceEnter.standardPrice}}</td>
                             <td class="text-center">{{resourceEnter.quantity}}</td>
                             <td class="text-center">
                                 <input v-model="resourceEnter.purchaseQuantity" type="number"

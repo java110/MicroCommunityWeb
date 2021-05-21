@@ -70,7 +70,15 @@
             _openDeleteInspectionRouteModel: function (_inspectionRoute) {
                 vc.emit('deleteInspectionRoute', 'openDeleteInspectionRouteModal', _inspectionRoute);
             },
+            //查询
             _queryInspectionRouteMethod: function () {
+                vc.component._listInspectionRoutes(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetInspectionRouteMethod: function () {
+                vc.component.inspectionRouteManageInfo.conditions.inspectionRouteId = '';
+                vc.component.inspectionRouteManageInfo.conditions.routeName = '';
+                vc.component.inspectionRouteManageInfo.conditions.seq = '';
                 vc.component._listInspectionRoutes(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openInspectionPointModel: function (_inspectionRoute) {

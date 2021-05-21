@@ -6,7 +6,7 @@
         },
         data: {
             addResourceStoreTypeInfo: {
-                goodsType: '',
+                rstId: '',
                 name: '',
                 description: ''
             }
@@ -23,13 +23,6 @@
                 return vc.validate.validate({
                     addResourceStoreTypeInfo: vc.component.addResourceStoreTypeInfo
                 }, {
-                    'addResourceStoreTypeInfo.goodsType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "物品类型编码不能为空"
-                        }
-                    ],
                     'addResourceStoreTypeInfo.name': [
                         {
                             limit: "required",
@@ -82,7 +75,7 @@
             },
             clearAddResourceStoreTypeInfo: function () {
                 vc.component.addResourceStoreTypeInfo = {
-                    goodsType: '',
+                    rstId: '',
                     name: '',
                     description: ''
                 };

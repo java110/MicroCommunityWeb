@@ -20,7 +20,7 @@
             $that._listAllocationStorehouse();
         },
         _initEvent: function () {
-            vc.on('allocationStorehouseApply', 'chooseResourceStore', function (_param) {
+            vc.on('allocationStorehouseApply', 'chooseResourceStore_BACK', function (_param) {
                 let _addFlag = true;
                 $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
                     if (item.resId == _param.resId) {
@@ -37,6 +37,27 @@
                 _param.curStock = '0'
                 $that.allocationStorehouseManageInfo.resourceStores.push(_param);
             })
+            vc.on('allocationStorehouseApply', 'chooseResourceStore', function (resourceStores) {
+                let oldList = vc.component.allocationStorehouseManageInfo.resourceStores;
+                // 过滤重复选择的商品
+                resourceStores.forEach((newItem, newIndex) => {
+                    newItem.shaName = newItem.shName;
+                    newItem.shzId = '';
+                    newItem.curStock = '0'
+                    oldList.forEach((oldItem) => {
+                        if (oldItem.resId == newItem.resId) {
+                            delete resourceStores[newIndex];
+                        }
+                    })
+                })
+                // 合并已有商品和新添加商品
+                resourceStores.push.apply(resourceStores, oldList);
+                // 过滤空元素
+                resourceStores = resourceStores.filter((s) => {
+                    return s.hasOwnProperty('resId');
+                });
+                vc.component.allocationStorehouseManageInfo.resourceStores = resourceStores;
+            })
 
         },
         methods: {
@@ -52,6 +73,8 @@
                 })
 
                 $that.allocationStorehouseManageInfo.resourceStores = _tmpResourceStore;
+                // 同时移除子页面复选框选项
+                vc.emit('chooseResourceStore', 'removeSelectResourceStoreItem', _resourceStore.resId);
             },
 
             _openAllocationStorehouseModel: function () {
@@ -98,7 +121,17 @@
 
                 $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
                     if (parseInt(item.curStock) > parseInt(item.stock)) {
-                        vc.toast(item.name + "库存不足");
+                        vc.toast(item.resName + "库存不足");
+                        _saveFlag = false;
+                        return;
+                    }
+                    if(!item.shzId){
+                        vc.toast("请选择目标库存");
+                        _saveFlag = false;
+                        return;
+                    }
+                    if (item.curStock < 1){
+                        vc.toast("请填写调拨数量");
                         _saveFlag = false;
                         return;
                     }

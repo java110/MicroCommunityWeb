@@ -36,25 +36,26 @@
                 vc.component.viewResourceStoreInfo3.index = _index;
             });
             vc.on('viewResourceStoreInfo3', 'setSelectResourceStores', function (resourceStores) {
-                console.log('selected :',resourceStores);
-                // 保留用户之前输入的数量和备注
                 let oldList = vc.component.viewResourceStoreInfo3.resourceStores;
-                resourceStores.forEach((newItem) => {
+                // 过滤重复选择的商品
+                resourceStores.forEach((newItem, newIndex) => {
                     newItem.quantity = 0;
                     newItem.rsId = '';
                     oldList.forEach((oldItem) => {
                         if(oldItem.resId == newItem.resId){
-                            newItem.purchaseQuantity = oldItem.purchaseQuantity;
-                            newItem.price = oldItem.price;
-                            newItem.purchaseRemark = oldItem.purchaseRemark;
-                            newItem.rsId = oldItem.rsId;
+                            delete resourceStores[newIndex];
                         }
                     })
                 })
+                // 合并已有商品和新添加商品
+                resourceStores.push.apply(resourceStores,oldList);
+                // 过滤空元素
+                resourceStores = resourceStores.filter((s) => {
+                    return s.hasOwnProperty('resId');
+                });
                 vc.component.viewResourceStoreInfo3.resourceStores = resourceStores;
             });
-            vc.on('viewResourceStoreInfo3', 'getSelectResourceStores', function (resourceStores) {
-                //vc.component.viewResourceStoreInfo3.resourceStores = resourceStores;
+            vc.on('viewResourceStoreInfo3', 'getSelectResourceStores', function () {
                 vc.emit($props.callBackListener, $props.callBackFunction, vc.component.viewResourceStoreInfo3);
             });
         },

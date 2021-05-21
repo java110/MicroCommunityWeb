@@ -20,6 +20,7 @@
                 handler: function () {
                     vc.emit($namespace, 'unitSelect2', 'clearUnit', {});
                     vc.emit($namespace, 'unitSelect2', "transferFloor", this.floorSelect2Info);
+                    console.log(this.floorSelect2Info);
                     vc.emit($namespace, $props.callBackListener, $props.callBackFunction, this.floorSelect2Info);
 
                 }
@@ -84,7 +85,7 @@
                             };
                         },
                         processResults: function (data) {
-                            console.log(data, this._filterFloorData(data.apiFloorDataVoList));
+                            // console.log(data, this._filterFloorData(data.apiFloorDataVoList));
                             return {
                                 results: this._filterFloorData(data.apiFloorDataVoList)
                             };
@@ -114,7 +115,7 @@
                 for (var i = 0; i < _floors.length; i++) {
                     var _tmpFloor = {
                         id: _floors[i].floorId,
-                        text: _floors[i].floorNum
+                        text: _floors[i].floorNum + '栋'
                     };
                     _tmpFloors.push(_tmpFloor);
                 }

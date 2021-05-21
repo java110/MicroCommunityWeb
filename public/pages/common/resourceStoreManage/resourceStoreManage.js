@@ -12,13 +12,19 @@
                 records: 1,
                 moreCondition: false,
                 resName: '',
+                subTotalPrice: 0.0,
+                highTotalPrice: 0.0,
                 conditions: {
                     resId: '',
                     resName: '',
                     resCode: '',
-                    shId: ''
+                    shId: '',
+                    rstId: '',
+                    rssId: ''
                 },
-                storehouses: []
+                storehouses: [],
+                resourceStoreTypes: [],
+                resourceStoreSpecifications: []
             }
         },
         _initMethod: function () {
@@ -28,6 +34,8 @@
             }
             vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listStorehouses();
+            $that._listResourceStoreTypes();
+            $that._listResourceStoreSpecifications();
         },
         _initEvent: function () {
             vc.on('resourceStoreManage', 'listResourceStore', function (_param) {
@@ -59,15 +67,19 @@
                         vc.component.resourceStoreManageInfo.records = _resourceStoreManageInfo.records;
                         // 总价列计算
                         _resourceStoreManageInfo.resourceStores.forEach((item) => {
-                            if (!item.hasOwnProperty('averagePrice')){
+                            if (!item.hasOwnProperty('averagePrice')) {
                                 let averagePrice = 0;
                                 item.averagePrice = averagePrice.toFixed(2);
-                            }else{
+                            } else {
                                 item.averagePrice = parseFloat(item.averagePrice).toFixed(2);
                             }
                             item.totalPrice = (item.averagePrice * item.stock).toFixed(2);
                         });
                         vc.component.resourceStoreManageInfo.resourceStores = _resourceStoreManageInfo.resourceStores;
+                        if (_resourceStoreManageInfo.resourceStores.length > 0) {
+                            vc.component.resourceStoreManageInfo.subTotalPrice = _resourceStoreManageInfo.resourceStores[0].subTotalPrice;
+                            vc.component.resourceStoreManageInfo.highTotalPrice = _resourceStoreManageInfo.resourceStores[0].highTotalPrice;
+                        }
                         vc.emit('pagination', 'init', {
                             total: vc.component.resourceStoreManageInfo.records,
                             dataCount: vc.component.resourceStoreManageInfo.total,
@@ -84,7 +96,7 @@
             _openEditResourceStoreModel: function (_resourceStore) {
                 vc.emit('editResourceStore', 'openEditResourceStoreModal', _resourceStore);
             },
-            
+
             _openDeleteResourceStoreModel: function (_resourceStore) {
                 vc.emit('deleteResourceStore', 'openDeleteResourceStoreModal', _resourceStore);
             },
@@ -98,6 +110,8 @@
                 vc.component.resourceStoreManageInfo.conditions.resName = '';
                 vc.component.resourceStoreManageInfo.conditions.resCode = '';
                 vc.component.resourceStoreManageInfo.conditions.shId = '';
+                vc.component.resourceStoreManageInfo.conditions.rstId = '';
+                vc.component.resourceStoreManageInfo.conditions.rssId = '';
                 $that._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
@@ -121,6 +135,49 @@
                     function (json, res) {
                         var _storehouseManageInfo = JSON.parse(json);
                         vc.component.resourceStoreManageInfo.storehouses = _storehouseManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listResourceStoreTypes: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeManageInfo = JSON.parse(json);
+                        vc.component.resourceStoreManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listResourceStoreSpecifications: function () {
+                vc.component.resourceStoreManageInfo.resourceStoreSpecifications = [];
+                vc.component.resourceStoreManageInfo.conditions.rssId = '';
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        rstId: vc.component.resourceStoreManageInfo.conditions.rstId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreManageInfo = JSON.parse(json);
+                        vc.component.resourceStoreManageInfo.resourceStoreSpecifications = _resourceStoreManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

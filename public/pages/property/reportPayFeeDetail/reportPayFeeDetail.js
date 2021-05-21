@@ -48,19 +48,6 @@
             vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
                 vc.component.reportPayFeeDetailInfo.primeRates = _data;
             });
-            // vc.initDateMonth('startTime', function (_startTime) {
-            //     $that.reportPayFeeDetailInfo.conditions.startTime = _startTime;
-            // });
-
-            // vc.initDateMonth('endTime', function (_endTime) {
-            //     $that.reportPayFeeDetailInfo.conditions.endTime = _endTime;
-            //     let start = Date.parse(new Date($that.reportPayFeeDetailInfo.conditions.startTime + "-01"))
-            //     let end = Date.parse(new Date($that.reportPayFeeDetailInfo.conditions.endTime + "-01"))
-            //     if (start - end >= 0) {
-            //         vc.toast("结束时间必须大于开始时间")
-            //         $that.reportPayFeeDetailInfo.conditions.endTime = '';
-            //     }
-            // });
         },
         _initEvent: function () {
             vc.on('reportPayFeeDetail', 'chooseFloor', function (_param) {

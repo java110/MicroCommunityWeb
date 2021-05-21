@@ -40,7 +40,8 @@
                                 vc.component.listDemoInfo.demos = listDemoDate;
 
                                 vc.emit('pagination','init',{
-                                    total:vc.component.listDemoInfo.records,
+                                    total: vc.component.listDemoInfo.records,
+                                    dataCount: vc.component.listDemoInfo.total,
                                     currentPage:_page
                                 });
                              },function(errInfo,error){

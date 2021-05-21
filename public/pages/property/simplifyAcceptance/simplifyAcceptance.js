@@ -161,6 +161,9 @@
                     ownerId: $that.simplifyAcceptanceInfo.ownerId,
                     roomId: $that.simplifyAcceptanceInfo.roomId,
                     roomName: $that.simplifyAcceptanceInfo.roomName,
+                    floorNum: $that.simplifyAcceptanceInfo.floorNum,
+                    unitNum: $that.simplifyAcceptanceInfo.unitNum,
+                    roomNum: $that.simplifyAcceptanceInfo.roomNum
                 })
             },
             errorLoadImg: function () {

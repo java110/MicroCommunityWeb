@@ -5,10 +5,11 @@
                 resId: '',
                 resName: '',
                 resCode: '',
+                rstId: '',
+                rssId: '',
                 price: '',
                 description: '',
-                goodsType: '',
-                goodsTypes: [],
+                rstIds: [],
                 unitCode: '',
                 unitCodes: [],
                 outLowPrice: '',
@@ -17,24 +18,30 @@
                 fileUrls: [],
                 resourceStoreTypes: [],
                 remark: '',
-                warningStock: ''
+                warningStock: '',
+                resourceStoreSpecifications: []
             }
         },
         _initMethod: function () {
+
         },
         _initEvent: function () {
             vc.on('editResourceStore', 'openEditResourceStoreModal', function (_params) {
+                console.log(_params);
                 $('#editResourceStoreModel').modal('show');
                 vc.component.refreshEditResourceStoreInfo();
                 $that._listEditResourceStoreType();
                 vc.copyObject(_params, vc.component.editResourceStoreInfo);
                 vc.component.editResourceStoreInfo.fileUrls = _params.fileUrls
-                vc.component._freshPhoto(vc.component.editResourceStoreInfo.fileUrls);
+                if (_params.fileUrls) {
+                    vc.component._freshPhoto(vc.component.editResourceStoreInfo.fileUrls);
+                }
                 //与字典表单位关联
                 vc.getDict('resource_store', "unit_code", function (_data) {
                     vc.component.editResourceStoreInfo.unitCodes = _data;
                 });
                 vc.component.editResourceStoreInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that._loadResourceStoreSpecificationEdit();
             });
             vc.on("editResourceStore", "notifyUploadImage", function (_param) {
                 vc.component.editResourceStoreInfo.fileUrls = _param;
@@ -136,7 +143,7 @@
                             errInfo: "单位不能为空"
                         },
                     ],
-                    'editResourceStoreInfo.goodsType': [
+                    'editResourceStoreInfo.rstId': [
                         {
                             limit: "required",
                             param: "",
@@ -190,7 +197,38 @@
                     param,
                     function (json, res) {
                         var _resourceStoreType = JSON.parse(json);
-                        vc.component.editResourceStoreInfo.goodsTypes = _resourceStoreType.data;
+                        vc.component.editResourceStoreInfo.rstIds = _resourceStoreType.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 分类改变事件
+            resourceStoreTypesOnChangeEdit: function () {
+                if (vc.component.editResourceStoreInfo.rstId == '') {
+                    vc.component.resourceStoreSpecification = [];
+                    return;
+                }
+                vc.component._loadResourceStoreSpecificationEdit();
+            },
+            // 根据分类查询规格
+            _loadResourceStoreSpecificationEdit: function () {
+                if (!vc.component.editResourceStoreInfo.rstId) return;
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        rstId: vc.component.editResourceStoreInfo.rstId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
+                    param,
+                    function (json, res) {
+                        var _editResourceStoreInfo = JSON.parse(json);
+                        console.log('res', _editResourceStoreInfo.data);
+                        vc.component.editResourceStoreInfo.resourceStoreSpecifications = _editResourceStoreInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -201,17 +239,19 @@
                     resId: '',
                     resName: '',
                     resCode: '',
+                    rstId: '',
+                    rssId: '',
                     price: '',
                     description: '',
-                    goodsType: '',
-                    goodsTypes: [],
+                    rstIds: [],
                     unitCode: '',
                     unitCodes: [],
                     outLowPrice: '',
                     outHighPrice: '',
                     showMobile: '',
                     remark: '',
-                    warningStock: ''
+                    warningStock: '',
+                    resourceStoreSpecifications: []
                 }
             }
         }

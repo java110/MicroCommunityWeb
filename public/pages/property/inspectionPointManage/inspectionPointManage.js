@@ -12,15 +12,21 @@
                 records: 1,
                 moreCondition: false,
                 inspectionName: '',
+                pointObjTypes: [],
                 conditions: {
                     inspectionId: '',
                     machineId: '',
                     inspectionName: '',
-                    machineCode: ''
+                    machineCode: '',
+                    pointObjType: ''
                 }
             }
         },
         _initMethod: function () {
+            //与字典表关联
+            vc.getDict('inspection_point', "point_obj_type", function (_data) {
+                vc.component.inspectionPointManageInfo.pointObjTypes = _data;
+            });
             vc.component._listInspectionPoints(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -39,6 +45,9 @@
                 var param = {
                     params: vc.component.inspectionPointManageInfo.conditions
                 };
+                param.params.inspectionId = param.params.inspectionId.trim();
+                param.params.inspectionName = param.params.inspectionName.trim();
+                param.params.machineCode = param.params.machineCode.trim();
                 //发送get请求
                 vc.http.get('inspectionPointManage',
                     'list',
@@ -67,7 +76,16 @@
             _openDeleteInspectionPointModel: function (_inspectionPoint) {
                 vc.emit('deleteInspectionPoint', 'openDeleteInspectionPointModal', _inspectionPoint);
             },
+            //查询
             _queryInspectionPointMethod: function () {
+                vc.component._listInspectionPoints(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetInspectionPointMethod: function () {
+                vc.component.inspectionPointManageInfo.conditions.inspectionId = '';
+                vc.component.inspectionPointManageInfo.conditions.inspectionName = '';
+                vc.component.inspectionPointManageInfo.conditions.machineCode = '';
+                vc.component.inspectionPointManageInfo.conditions.pointObjType = '';
                 vc.component._listInspectionPoints(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

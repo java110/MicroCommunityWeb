@@ -27,7 +27,8 @@
                 totalPrice: 0,
                 resId: '',
                 isCustom: false,
-                customGoodsName: ''
+                customGoodsName: '',
+                choosedGoodsList: []
             }
         },
         _initMethod: function () {
@@ -338,6 +339,10 @@
                     }
                 );
             },
+            // 选择商品
+            _openChooseSingleResourceModel: function () {
+                vc.emit('chooseSingleResource', 'openChooseSingleResourceModel', {});
+            },
             clearFinishRepairInfo: function () {
                 vc.component.finishRepairInfo = {
                     repairId: '',
@@ -362,7 +367,8 @@
                     totalPrice: 0,
                     resId: '',
                     isCustom: false,
-                    customGoodsName: ''
+                    customGoodsName: '',
+                    choosedGoodsList: []
                 };
             }
         }

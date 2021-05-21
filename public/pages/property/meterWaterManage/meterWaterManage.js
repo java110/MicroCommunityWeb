@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -15,8 +15,7 @@
                 conditions: {
                     waterId: '',
                     meterType: '',
-                    roomNum: '',
-
+                    roomNum: ''
                 }
             }
         },
@@ -24,7 +23,6 @@
             vc.component._listMeterWaters(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('meterWaterManage', 'listMeterWater', function (_param) {
                 vc.component._listMeterWaters(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,14 +32,12 @@
         },
         methods: {
             _listMeterWaters: function (_page, _rows) {
-
                 vc.component.meterWaterManageInfo.conditions.page = _page;
                 vc.component.meterWaterManageInfo.conditions.row = _rows;
                 vc.component.meterWaterManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.meterWaterManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('meterWater.listMeterWaters',
                     param,
@@ -71,7 +67,6 @@
             },
             _queryMeterWaterMethod: function () {
                 vc.component._listMeterWaters(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.meterWaterManageInfo.moreCondition) {
@@ -80,13 +75,13 @@
                     vc.component.meterWaterManageInfo.moreCondition = true;
                 }
             },
-            _openMeterWaterImport:function(){
-                vc.emit('importMeterWaterFee', 'openImportMeterWaterFeeModal',{});
+            _openMeterWaterImport: function () {
+                vc.emit('importMeterWaterFee', 'openImportMeterWaterFeeModal', {});
             },
-            _getMeteTypeName:function(_meterType){
-                if(_meterType == '1010'){
+            _getMeteTypeName: function (_meterType) {
+                if (_meterType == '1010') {
                     return "电表";
-                }else if(_meterType == '2020'){
+                } else if (_meterType == '2020') {
                     return "水表";
                 }
                 return "煤气费";

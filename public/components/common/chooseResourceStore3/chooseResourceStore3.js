@@ -11,10 +11,28 @@
                 resourceStores: [],
                 selectResourceStores: [],
                 _currentResourceStoreName: '',
-                resOrderType: ''
+                rstId: '',
+                shId: '',
+                resOrderType: '',
+                storehouses: [],
+                resourceStoreTypes: []
+            }
+        },
+        watch: { // 监视双向绑定的数据数组
+            chooseResourceStoreInfo3: {
+                handler() { // 数据数组有变化将触发此函数
+                    if (vc.component.chooseResourceStoreInfo3.selectResourceStores.length == vc.component.chooseResourceStoreInfo3.resourceStores.length) {
+                        document.querySelector('#quan').checked = true;
+                    } else {
+                        document.querySelector('#quan').checked = false;
+                    }
+                },
+                deep: true // 深度监视
             }
         },
         _initMethod: function () {
+            $that._listStorehouses();
+            $that._listResourceStoreTypes();
         },
         _initEvent: function () {
             vc.on('chooseResourceStore3', 'setResourcesOut', function (_resOrderType) {
@@ -52,7 +70,10 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         resOrderType: _resOrderType,
-                        shType: _shType
+                        shType: _shType,
+                        resName: vc.component.chooseResourceStoreInfo3._currentResourceStoreName,
+                        rstId: vc.component.chooseResourceStoreInfo3.rstId,
+                        shId: vc.component.chooseResourceStoreInfo3.shId
                     }
                 };
 
@@ -67,6 +88,7 @@
                         vc.component.chooseResourceStoreInfo3.records = _resourceStoreInfo.records;
                         vc.emit('pagination', 'init', {
                             total: vc.component.chooseResourceStoreInfo3.records,
+                            dataCount: vc.component.chooseResourceStoreInfo3.total,
                             currentPage: _page
                         });
                     }, function () {
@@ -85,7 +107,7 @@
                 $('#chooseResourceStoreModel').modal('hide');
             },
             queryResourceStores: function () {
-                vc.component._loadAllResourceStoreInfo(1, 10, vc.component.chooseResourceStoreInfo3._currentResourceStoreName);
+                vc.component._loadAllResourceStoreInfo(1, 10);
             },
             getSelectResourceStores: function () {
                 var selectResourceStores = vc.component.chooseResourceStoreInfo3.selectResourceStores;
@@ -98,21 +120,65 @@
                 for (var i = 0; i < selectResourceStores.length; i++) {
                     for (j = 0; j < resourceStores.length; j++) {
                         if (selectResourceStores[i] == resourceStores[j].resId) {
-                            _resourceStores.push({
-                                resId: resourceStores[j].resId,
-                                resName: resourceStores[j].resName,
-                                resCode: resourceStores[j].resCode,
-                                price: resourceStores[j].price,
-                                stock: resourceStores[j].stock,
-                                description: resourceStores[j].description,
-                                resourceSupplierDtos: resourceStores[j].resourceSupplierDtos
-                            })
+                            _resourceStores.push(resourceStores[j])
                         }
                     }
                 }
                 //传参
                 vc.emit("viewResourceStoreInfo3", "setSelectResourceStores", _resourceStores);
                 $('#chooseResourceStoreModel3').modal('hide');
+            },
+            _listStorehouses: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('resourceStore.listStorehouses',
+                    param,
+                    function (json, res) {
+                        var _storehouseManageInfo = JSON.parse(json);
+                        vc.component.chooseResourceStoreInfo3.storehouses = _storehouseManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listResourceStoreTypes: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeManageInfo = JSON.parse(json);
+                        vc.component.chooseResourceStoreInfo3.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+
+            checkAll: function (e) {
+                var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
+                if (e.target.checked) { // 判定全选checkbox的勾选状态
+                    for (var i = 0; i < checkObj.length; i++) {
+                        if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
+                            vc.component.chooseResourceStoreInfo3.selectResourceStores.push(checkObj[i].value);
+                        }
+                    }
+                } else { // 如果是去掉全选则清空checkbox选项绑定数组
+                    vc.component.chooseResourceStoreInfo3.selectResourceStores = [];
+                }
             }
         }
 

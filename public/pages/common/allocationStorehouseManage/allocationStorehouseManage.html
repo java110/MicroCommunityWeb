@@ -15,47 +15,51 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="allocationStorehouseManageInfo.conditions.shIda">
-                                    <option selected value="">必填，请选择源仓库</option>
-                                    <option v-for="(item,index) in allocationStorehouseManageInfo.storehouses"
-                                        :key="index" v-bind:value="item.shId">
-                                        {{item.shName}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <select class="custom-select" v-model="allocationStorehouseManageInfo.conditions.shIdz">
-                                    <option selected value="">必填，请选择目标仓库</option>
-                                    <option v-for="(item,index) in allocationStorehouseManageInfo.storehouses"
-                                            :key="index" v-bind:value="item.shId">
-                                        {{item.shName}}
-                                    </option>
-                                </select>
+                                <input type="text" placeholder="请输入申请ID"
+                                       v-model="allocationStorehouseManageInfo.conditions.applyId"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入物品名称"
-                                       v-model="allocationStorehouseManageInfo.conditions.resName"
-                                       class=" form-control">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择调拨开始时间"
+                                       v-model="allocationStorehouseManageInfo.conditions.startTime"
+                                       class=" form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择调拨结束时间"
+                                       v-model="allocationStorehouseManageInfo.conditions.endTime"
+                                       class=" form-control endTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryAllocationStorehouseMethod()">
+                                    v-on:click="_queryAllocationStorehouseMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetAllocationStorehouseMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-3" v-if="allocationStorehouseManageInfo.moreCondition == true">
+                    <div class="row" v-show="allocationStorehouseManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入物品编码"
-                                       v-model="allocationStorehouseManageInfo.conditions.resCode"
+                                <input type="text" placeholder="请输入申请人ID"
+                                       v-model="allocationStorehouseManageInfo.conditions.startUserId"
                                        class=" form-control">
                             </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="allocationStorehouseManageInfo.conditions.state">
+                                <option selected value="">请选择调拨状态</option>
+                                <option v-for="(item,index) in allocationStorehouseManageInfo.states" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -68,7 +72,8 @@
                 <div class="ibox-title">
                     <h5>调拨记录</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAllocationStorehouseApplyModal()">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAllocationStorehouseApplyModal()">
                             <i class="fa fa-plus"></i>申请调拨
                         </button>
                     </div>
@@ -77,8 +82,9 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">调度编号</th>
-                            <th class="text-center">调拨数量</th>
+                            <th class="text-center">申请ID</th>
+                            <th class="text-center">调拨总数量</th>
+                            <th class="text-center">申请人ID</th>
                             <th class="text-center">申请人</th>
                             <th class="text-center">状态</th>
                             <th class="text-center">时间</th>
@@ -89,11 +95,12 @@
                         <tr v-for="resourceStore in allocationStorehouseManageInfo.resourceStores">
                             <td class="text-center">{{resourceStore.applyId}}</td>
                             <td class="text-center">{{resourceStore.applyCount}}</td>
+                            <td class="text-center">{{resourceStore.startUserId}}</td>
                             <td class="text-center">{{resourceStore.startUserName}}</td>
                             <td class="text-center">{{resourceStore.stateName}}</td>
                             <td class="text-center">{{resourceStore.createTime}}</td>
                             <td class="text-center">
-                                <div class="btn-group" v-if="resourceStore.state==1201">
+                                <div class="btn-group" v-if="resourceStore.state==1200">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteResourceStoreModel(resourceStore)">取消调拨
                                     </button>

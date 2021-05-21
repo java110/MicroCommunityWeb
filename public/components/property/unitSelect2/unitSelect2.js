@@ -90,7 +90,7 @@
                             };
                         },
                         processResults: function (data) {
-                            console.log(data, this._filterUnitData(data));
+                            // console.log(data, this._filterUnitData(data));
                             return {
                                 results: this._filterUnitData(data)
                             };
@@ -123,7 +123,7 @@
                 for (var i = 0; i < _units.length; i++) {
                     var _tmpUnit = {
                         id: _units[i].unitId,
-                        text: _units[i].unitNum
+                        text: _units[i].unitNum + '单元'
                     };
                     _tmpUnits.push(_tmpUnit);
                 }

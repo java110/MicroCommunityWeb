@@ -50,6 +50,7 @@
                         vc.component.transactionLogManageInfo.logs = _transactionLogManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.transactionLogManageInfo.records,
+                            dataCount: vc.component.transactionLogManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

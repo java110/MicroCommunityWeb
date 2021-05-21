@@ -87,13 +87,13 @@
                             errInfo: "地区Y坐标不能为空"
                         }
                     ],
-                    /*'editCommunityAreaInfo.tel': [
+                    'editCommunityAreaInfo.tel': [
                         {
-                            limit: "phone",
+                            limit: "required",
                             param: "",
-                            errInfo: "联系方式格式不正确"
-                        },
-                    ],*/
+                            errInfo: "联系方式不能为空"
+                        }
+                    ],
                     'editCommunityAreaInfo.communityArea': [{
                         limit: "required",
                         param: "",

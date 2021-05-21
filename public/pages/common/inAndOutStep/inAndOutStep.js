@@ -114,11 +114,12 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            if (vc.component.inAndOutStepInfo.purchaseApply.resOrderType == "10000") {
-                                vc.jumpToPage("/admin.html#/pages/common/resourceStoreManage");
-                            } else {
-                                vc.jumpToPage("/admin.html#/pages/common/itemOutManage");
-                            }
+                            vc.jumpToPage("/admin.html#/pages/common/resourceStoreManage");
+                            // if (vc.component.inAndOutStepInfo.purchaseApply.resOrderType == "10000") {
+                            //     vc.jumpToPage("/admin.html#/pages/common/purchaseApplyManage");
+                            // } else {
+                            //     vc.jumpToPage("/admin.html#/pages/common/itemOutManage");
+                            // }
                             return;
                         }
                         vc.toast(_json.msg);

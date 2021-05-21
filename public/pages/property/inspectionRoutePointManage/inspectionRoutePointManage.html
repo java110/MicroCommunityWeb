@@ -5,52 +5,47 @@
                 <h5>巡检点信息</h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm " v-on:click="_goBack()"
-                        style="margin-right:10px">
-                        返回
+                            style="margin-right:10px">
+                        <i class="fa fa-close"></i>返回
                     </button>
                     <button type="button" class="btn btn-primary btn-sm"
-                        v-on:click="_openAddInspectionRoutePointModal()">
-                        <i class="fa fa-plus"></i>
-                        添加
+                            v-on:click="_openAddInspectionRoutePointModal()">
+                        <i class="fa fa-plus"></i>添加
                     </button>
                 </div>
             </div>
             <div class="ibox-content">
-
                 <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                     <thead>
-                        <tr>
-                            <th class="text-center">巡检点名称</th>
-
-                            <th class="text-center">巡检点类型</th>
-                            <th class="text-center">巡检位置</th>
-                            <th class="text-center">巡检点ID</th>
-                            <th class="text-right">操作</th>
-                        </tr>
+                    <tr>
+                        <th class="text-center">巡检点ID</th>
+                        <th class="text-center">巡检点名称</th>
+                        <th class="text-center">巡检点类型</th>
+                        <th class="text-center">巡检位置</th>
+                        <th class="text-right">操作</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="inspectionPoint in inspectionRoutePointManageInfo.inspectionPoints">
-                            <td class="text-center">{{inspectionPoint.inspectionName}}</td>
-
-                            <td class="text-center">{{inspectionPoint.pointObjType=='1001'?'设备':'环境'}}</td>
-                            <td class="text-center">{{inspectionPoint.pointObjName}}</td>
-                            <td class="text-center">{{inspectionPoint.inspectionId}}</td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                    <tr v-for="inspectionPoint in inspectionRoutePointManageInfo.inspectionPoints">
+                        <td class="text-center">{{inspectionPoint.inspectionId}}</td>
+                        <td class="text-center">{{inspectionPoint.inspectionName}}</td>
+                        <td class="text-center">{{inspectionPoint.pointTypeName}}</td>
+                        <td class="text-center">{{inspectionPoint.pointObjName}}</td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button class="btn-white btn btn-xs"
                                         v-on:click="_openDeleteInspectionRoutePointModel(inspectionPoint)">删除
-                                    </button>
-                                </div>
-                            </td>
-
-                        </tr>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td colspan="7">
+                            <ul class="pagination float-right"></ul>
+                        </td>
+                    </tr>
                     </tfoot>
                 </table>
                 <!-- 分页 -->
@@ -59,7 +54,7 @@
         </div>
     </div>
     <vc:create path="property/chooseInspectionRoutePoint" emitListener="inspectionRoutePointManage"
-        emitFunction="listInspectionPoint"></vc:create>
-
+               emitFunction="listInspectionPoint">
+    </vc:create>
     <vc:create path="property/deleteInspectionRoutePoint"></vc:create>
 </div>

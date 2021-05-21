@@ -1,23 +1,29 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editInspectionPointInfo: {
                 inspectionId: '',
                 pointObjId: '',
                 pointObjType: '',
+                pointObjTypes: [],
                 pointObjName: '',
                 inspectionName: '',
                 communityId: '',
-                remark: '',
+                pointStartTime: '',
+                pointEndTime: '',
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
+            vc.component._initEditInspectionPointDateInfo();
             vc.on('editInspectionPoint', 'openEditInspectionPointModal', function (_params) {
                 vc.component.refreshEditInspectionPointInfo();
+                //与字典表关联
+                vc.getDict('inspection_point', "point_obj_type", function (_data) {
+                    vc.component.editInspectionPointInfo.pointObjTypes = _data;
+                });
                 $('#editInspectionPointModel').modal('show');
                 vc.copyObject(_params, vc.component.editInspectionPointInfo);
                 //传输数据到machineSelect2组件
@@ -27,10 +33,8 @@
                         machineName: vc.component.editInspectionPointInfo.pointObjName,
                     });
                 }
-
                 vc.component.editInspectionPointInfo.communityId = vc.getCurrentCommunity().communityId;
             });
-
             vc.on("editInspectionPointInfo", "notify", function (_param) {
                 if (_param.hasOwnProperty("machineId") && $that.editInspectionPointInfo.pointObjType == '1001') {
                     vc.component.editInspectionPointInfo.pointObjId = _param.machineId;
@@ -76,6 +80,30 @@
                             errInfo: "巡检位置不能为空"
                         },
                     ],
+                    'editInspectionPointInfo.pointStartTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "开始时间不能为空"
+                        },
+                        {
+                            limit: "dateTime",
+                            param: "",
+                            errInfo: "巡检开始时间不是有效的时间格式"
+                        },
+                    ],
+                    'editInspectionPointInfo.pointEndTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "结束时间不能为空"
+                        },
+                        {
+                            limit: "dateTime",
+                            param: "",
+                            errInfo: "巡检结束时间不是有效的时间格式"
+                        },
+                    ],
                     'editInspectionPointInfo.remark': [
                         {
                             limit: "maxLength",
@@ -89,7 +117,6 @@
                             param: "",
                             errInfo: "巡检点ID不能为空"
                         }]
-
                 });
             },
             editInspectionPoint: function () {
@@ -100,7 +127,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.post(
                     'editInspectionPoint',
                     'update',
@@ -120,7 +146,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -129,14 +154,57 @@
                     inspectionId: '',
                     pointObjId: '',
                     pointObjType: '',
+                    pointObjTypes: [],
                     pointObjName: '',
                     inspectionName: '',
                     communityId: '',
-                    remark: '',
+                    pointStartTime: '',
+                    pointEndTime: '',
+                    remark: ''
+                }
+            },
+            _initEditInspectionPointDateInfo: function () {
+                $('.editInspectionPointStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editInspectionPointStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editInspectionPointStartTime").val();
+                        vc.component.editInspectionPointInfo.pointStartTime = value;
+                    });
+                $('.editInspectionPointEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editInspectionPointEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editInspectionPointEndTime").val();
+                        vc.component.editInspectionPointInfo.pointEndTime = value;
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editInspectionPointStartTime')[0].addEventListener('click', myfunc)
 
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editInspectionPointEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

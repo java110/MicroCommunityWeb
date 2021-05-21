@@ -3,7 +3,6 @@
         data: {
             editResourceStoreTypeInfo: {
                 rstId: '',
-                goodsType: '',
                 name: '',
                 description: ''
             }
@@ -23,13 +22,6 @@
                 return vc.validate.validate({
                     editResourceStoreTypeInfo: vc.component.editResourceStoreTypeInfo
                 }, {
-                    'editResourceStoreTypeInfo.goodsType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "物品类型编码不能为空"
-                        }
-                    ],
                     'editResourceStoreTypeInfo.name': [
                         {
                             limit: "required",
@@ -77,7 +69,6 @@
                 vc.component.editResourceStoreTypeInfo = {
                     rstId: '',
                     name: '',
-                    goodsType: '',
                     description: ''
                 }
             }

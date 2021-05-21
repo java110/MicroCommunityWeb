@@ -24,6 +24,7 @@
             vc.component._initStep();
             //10000 采购 20000出库
             vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType = vc.getParam('resOrderType');
+            vc.emit("viewResourceStoreInfo2", "setResourcesOut", vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType);
             vc.emit("chooseResourceStore2", "setResourcesOut", vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType);
         },
         _initEvent: function () {

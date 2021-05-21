@@ -14,7 +14,6 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
-
                                 <div class="col-sm-7 m-b-xs">
                                 </div>
                                 <div class="col-sm-5">
@@ -23,9 +22,15 @@
                                                v-model="chooseInspectionRoutePointInfo.inspectionName"
                                                class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryPoints()">查询</button>
-                                            </span>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                    v-on:click="queryPoints()">
+                                                    <i class="fa fa-search"></i>查询
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                    style="margin-left: 1px" v-on:click="resetPoints()">
+                                                    <i class="fa fa-times"></i>重置
+                                            </button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -34,17 +39,19 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center">
-                                            <input type="checkbox"  class="i-checks " @click="checkAll($event)" id="quan">
+                                            <input type="checkbox" class="i-checks " @click="checkAll($event)"
+                                                   id="quan">
                                         </th>
                                         <th class="text-center">巡检点ID</th>
                                         <th class="text-center">巡检点名称</th>
-
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr v-for="inspectionPoint in chooseInspectionRoutePointInfo.points">
                                         <td class="text-center">
-                                            <input type="checkbox" class="i-checks checkItem" v-bind:value="inspectionPoint.inspectionId" v-model="chooseInspectionRoutePointInfo.selectPoints" >
+                                            <input type="checkbox" class="i-checks checkItem"
+                                                   v-bind:value="inspectionPoint.inspectionId"
+                                                   v-model="chooseInspectionRoutePointInfo.selectPoints">
                                         </td>
                                         <td class="text-center">{{inspectionPoint.inspectionId}}</td>
                                         <td class="text-center">{{inspectionPoint.inspectionName}}</td>
@@ -52,18 +59,19 @@
                                     </tbody>
                                 </table>
                                 <!-- 分页 -->
-                                <vc:create namespace="chooseInspectionRoutePoint" path="frame/paginationPlus"></vc:create>
+                                <vc:create namespace="chooseInspectionRoutePoint"
+                                           path="frame/paginationPlus"></vc:create>
                                 <div class="ibox-content" v-if="chooseInspectionRoutePointInfo.points.length > 0">
-
-                                    <button class="btn btn-primary float-right" type="button" v-on:click="_chooseInspectionRoutePoint()"><i
-                                            class="fa fa-check"></i>&nbsp;提交
+                                    <button class="btn btn-primary float-right" type="button"
+                                            v-on:click="_chooseInspectionRoutePoint()">
+                                        <i class="fa fa-check"></i>&nbsp;提交
                                     </button>
                                     <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                            data-dismiss="modal">取消
+                                            data-dismiss="modal">
+                                        <i class="fa fa-times"></i>&nbsp;取消
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
