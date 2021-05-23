@@ -101,6 +101,9 @@
                 }else{
                     return '简答';
                 }
+            },
+            _openQuestionValueModel:function(_questionAnswerTitle){
+                vc.emit('questionValue','openQuestionValueModel',_questionAnswerTitle);
             }
 
 
