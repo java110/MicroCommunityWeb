@@ -104,6 +104,9 @@
             },
             _openQuestionValueModel:function(_questionAnswerTitle){
                 vc.emit('questionValue','openQuestionValueModel',_questionAnswerTitle);
+            },
+            _toQuestionValueModel:function(_questionAnswerTitle){
+                vc.jumpToPage('/admin.html#/pages/property/questionAnswerTitleValueManage?titleId='+_questionAnswerTitle.titleId)
             }
 
 
