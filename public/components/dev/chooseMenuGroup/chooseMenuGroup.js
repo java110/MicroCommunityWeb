@@ -44,6 +44,7 @@
                                  vc.component.chooseMenuGroupInfo.menuGroups = _menuGroupInfo.menuGroups;
                                  vc.emit('chooseMenuGroup', 'paginationPlus', 'init', {
                                      total: _menuGroupInfo.records,
+                                     dataCount: _menuGroupInfo.total,
                                      currentPage: _page
                                  });
                              },function(){

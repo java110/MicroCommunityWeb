@@ -47,6 +47,7 @@
                         vc.component.businessDatabusManageInfo.businessDatabuss = _businessDatabusManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.businessDatabusManageInfo.records,
+                            dataCount: vc.component.businessDatabusManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

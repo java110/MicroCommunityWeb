@@ -11,9 +11,27 @@
                 resourceStores: [],
                 selectResourceStores: [],
                 _currentResourceStoreName: '',
+                rstId: '',
+                // shId: '',
+                storehouses: [],
+                resourceStoreTypes: []
+            }
+        },
+        watch: { // 监视双向绑定的数据数组
+            chooseResourceStaffInfo: {
+                handler() { // 数据数组有变化将触发此函数
+                    if (vc.component.chooseResourceStaffInfo.selectResourceStores.length == vc.component.chooseResourceStaffInfo.resourceStores.length) {
+                        document.querySelector('#quan').checked = true;
+                    } else {
+                        document.querySelector('#quan').checked = false;
+                    }
+                },
+                deep: true // 深度监视
             }
         },
         _initMethod: function () {
+            $that._listStorehouses();
+            $that._listResourceStoreTypes();
         },
         _initEvent: function () {
             vc.on('chooseResourceStaff', 'openChooseResourceStaffModel', function (_param) {
@@ -39,7 +57,10 @@
                     params: {
                         page: _page,
                         row: _row,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        resName: vc.component.chooseResourceStaffInfo._currentResourceStoreName,
+                        rstId: vc.component.chooseResourceStaffInfo.rstId,
+                        // shId: vc.component.chooseResourceStaffInfo.shId
                     }
                 };
 
@@ -53,6 +74,7 @@
                         vc.component.chooseResourceStaffInfo.records = _resourceStaffInfo.records;
                         vc.emit('pagination', 'init', {
                             total: vc.component.chooseResourceStaffInfo.records,
+                            dataCount: vc.component.chooseResourceStaffInfo.total,
                             currentPage: _page
                         });
                     }, function () {
@@ -99,6 +121,59 @@
                 //传参
                 vc.emit("viewResourceStaffInfo", "setSelectResourceStores", _resourceStores);
                 $('#chooseResourceStaffModel').modal('hide');
+            },
+
+            _listStorehouses: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('resourceStore.listStorehouses',
+                    param,
+                    function (json, res) {
+                        var _storehouseManageInfo = JSON.parse(json);
+                        vc.component.chooseResourceStaffInfo.storehouses = _storehouseManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listResourceStoreTypes: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeManageInfo = JSON.parse(json);
+                        vc.component.chooseResourceStaffInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+
+            checkAll: function (e) {
+                var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
+                if (e.target.checked) { // 判定全选checkbox的勾选状态
+                    for (var i = 0; i < checkObj.length; i++) {
+                        if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
+                            vc.component.chooseResourceStaffInfo.selectResourceStores.push(checkObj[i].value);
+                        }
+                    }
+                } else { // 如果是去掉全选则清空checkbox选项绑定数组
+                    vc.component.chooseResourceStaffInfo.selectResourceStores = [];
+                }
             }
         }
 

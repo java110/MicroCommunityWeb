@@ -126,7 +126,8 @@
             },
             //办结
             _openFinishRepair: function (_ownerRepair) {
-                vc.emit('finishRepair', 'openFinishRepairModal', _ownerRepair);
+                // vc.emit('finishRepair', 'openFinishRepairModal', _ownerRepair);
+                vc.jumpToPage('/admin.html#/pages/property/finishRepair?repairType=' + _ownerRepair.repairType + '&repairId=' + _ownerRepair.repairId + '&repairObjType=' + _ownerRepair.repairObjType + '&publicArea=' + _ownerRepair.publicArea + '&repairChannel=' + _ownerRepair.repairChannel);
             },
             _openDispatchRepairDetail: function (_ownerRepair) {
                 //vc.emit('ownerRepairDetail','openOwnerRepairDetailModal',_ownerRepair);

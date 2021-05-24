@@ -74,9 +74,9 @@
             },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
-                console.log("提交得参数：" + _auditInfo);
+                console.log("提交得参数：", _auditInfo);
                 _auditInfo.taskId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.taskId;
-                _auditInfo.asId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.asId;
+                _auditInfo.applyId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.applyId;
                 //发送get请求
                 vc.http.apiPost('resourceStore.auditAllocationStoreOrder',
                     JSON.stringify(_auditInfo),
@@ -95,7 +95,7 @@
             _finishAuditOrder: function (_auditOrder) {
                 let _auditInfo = {
                     taskId: _auditOrder.taskId,
-                    asId: _auditOrder.asId,
+                    applyId: _auditOrder.applyId,
                     state: '1200',
                     remark: '处理结束'
                 };

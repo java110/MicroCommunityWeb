@@ -139,7 +139,9 @@
                             <td class="text-center">{{vc.dateFormat(fee.startTime)}}</td>
                             <td class="text-center" v-if="fee.startTime >= fee.endTime">{{vc.dateFormat(fee.endTime)}}
                             </td>
-                            <td class="text-center" v-else>{{vc.dateSubOneDay(vc.dateFormat(fee.startTime),vc.dateFormat(fee.endTime),fee.feeFlag)}}</td>
+                            <td class="text-center" v-else>
+                                {{vc.dateSubOneDay(vc.dateFormat(fee.startTime),vc.dateFormat(fee.endTime),fee.feeFlag)}}
+                            </td>
                             <td class="text-center">{{fee.createTime}}</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
@@ -168,7 +170,7 @@
                                 <span class="col-md-1 margin-left">减免: {{reportPayFeeDetailInfo.totalDeductionAmount}}元</span>
                                 <span class="col-md-1 margin-left">滞纳金: {{reportPayFeeDetailInfo.totalLateFee}}元</span>
                                 <span class="col-md-1 margin-left">空置房打折: {{reportPayFeeDetailInfo.totalVacantHousingDiscount}}元</span>
-                                <span class="col-md-1 margin-left">空置房减免: {{reportPayFeeDetailInfo.allVacantHousingReduction}}元</span>
+                                <span class="col-md-1 margin-left">空置房减免: {{reportPayFeeDetailInfo.totalVacantHousingReduction}}元</span>
                             </span>
                         </div>
                     </div>

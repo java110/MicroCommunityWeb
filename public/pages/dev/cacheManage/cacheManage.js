@@ -52,6 +52,7 @@
                         vc.component.cacheManageInfo.caches = _cacheManageInfo.caches;
                         vc.emit('pagination', 'init', {
                             total: vc.component.cacheManageInfo.records,
+                            dataCount: vc.component.cacheManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

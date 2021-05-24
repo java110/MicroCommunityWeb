@@ -6,11 +6,11 @@
         },
         data: {
             addResourceStoreInfo: {
-                goodsType: '',
-                goodsTypes: [],
                 unitCode: '',
                 unitCodes: [],
                 resId: '',
+                rstId: '',
+                rssId: '',
                 resName: '',
                 resCode: '',
                 price: '',
@@ -23,6 +23,7 @@
                 photos: [],
                 storehouses: [],
                 resourceStoreTypes: [],
+                resourceStoreSpecifications: [],
                 warningStock: ''
             }
         },
@@ -130,7 +131,7 @@
                             errInfo: "单位不能为空"
                         },
                     ],
-                    'addResourceStoreInfo.goodsType': [
+                    'addResourceStoreInfo.rstId': [
                         {
                             limit: "required",
                             param: "",
@@ -143,7 +144,7 @@
                             param: "",
                             errInfo: "仓库不能为空"
                         },
-                    ],
+                    ]
                 });
             },
             saveResourceStoreInfo: function () {
@@ -202,18 +203,47 @@
                     }
                 );
             },
+            // 分类改变事件
+            resourceStoreTypesOnChangeAdd: function () {
+                console.log('111');
+              if(vc.component.addResourceStoreInfo.rstId == ''){
+                  vc.component.resourceStoreSpecification = [];
+                  return;
+              }
+                vc.component._loadResourceStoreSpecificationAdd();
+            },
+            // 根据分类查询规格
+            _loadResourceStoreSpecificationAdd: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        rstId: vc.component.addResourceStoreInfo.rstId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
+                    param,
+                    function (json, res) {
+                        var _addResourceStoreInfo = JSON.parse(json);
+                        vc.component.addResourceStoreInfo.resourceStoreSpecifications = _addResourceStoreInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             clearAddResourceStoreInfo: function () {
                 vc.component.addResourceStoreInfo = {
                     resName: '',
                     resCode: '',
+                    rstId: '',
                     price: '',
                     description: '',
                     outLowPrice: '',
                     outHighPrice: '',
                     showMobile: '',
                     remark: '',
-                    goodsType: '',
-                    goodsTypes: [],
                     unitCode: '',
                     shId: '',
                     unitCodes: [],

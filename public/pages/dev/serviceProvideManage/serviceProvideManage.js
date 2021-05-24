@@ -53,7 +53,8 @@ queryModel:'',
                                 vc.component.serviceProvideManageInfo.records = _serviceProvideManageInfo.records;
                                 vc.component.serviceProvideManageInfo.serviceProvides = _serviceProvideManageInfo.serviceProvides;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.serviceProvideManageInfo.records,
+                                    total: vc.component.serviceProvideManageInfo.records,
+                                    dataCount: vc.component.serviceProvideManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

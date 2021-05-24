@@ -11,8 +11,8 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入物品类型"
-                                       v-model="resourceStoreTypeManageInfo.conditions.goodsType" class=" form-control">
+                                <input type="text" placeholder="请输入物品ID"
+                                       v-model="resourceStoreTypeManageInfo.conditions.rstId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -53,8 +53,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">物品类型ID</th>
-                            <th class="text-center">物品类型编码</th>
-                            <th class="text-center">类型名称</th>
+                            <th class="text-center">物品类型名称</th>
                             <th class="text-center">物品描述</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
@@ -63,7 +62,6 @@
                         <tbody>
                         <tr v-for="resourceStoreType in resourceStoreTypeManageInfo.resourceStoreTypes">
                             <td class="text-center">{{resourceStoreType.rstId}}</td>
-                            <td class="text-center">{{resourceStoreType.goodsType}}</td>
                             <td class="text-center">{{resourceStoreType.name}}</td>
                             <td class="text-center">{{resourceStoreType.description}}</td>
                             <td class="text-center">{{resourceStoreType.createTime}}</td>

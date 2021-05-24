@@ -12,17 +12,28 @@
                 records: 1,
                 moreCondition: false,
                 resName: '',
+                states: [],
                 conditions: {
+                    applyId: '',
                     resId: '',
                     resName: '',
                     resCode: '',
                     shIda: '',
-                    shIdz: ''
+                    shIdz: '',
+                    startTime: '',
+                    endTime: '',
+                    startUserId: '',
+                    state: ''
                 },
                 storehouses: []
             }
         },
         _initMethod: function () {
+            //与字典表关联
+            vc.getDict('allocation_storehouse_apply', "state", function (_data) {
+                vc.component.allocationStorehouseManageInfo.states = _data;
+            });
+            vc.component._initDate();
             vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listStorehouses();
         },
@@ -38,6 +49,54 @@
             });
         },
         methods: {
+            _initDate: function () {
+                $(".startTime").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $(".endTime").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.startTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".startTime").val();
+                        vc.component.allocationStorehouseManageInfo.conditions.startTime = value;
+                    });
+                $('.endTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".endTime").val();
+                        vc.component.allocationStorehouseManageInfo.conditions.endTime = value;
+                        let start = Date.parse(new Date($that.allocationStorehouseManageInfo.conditions.startTime))
+                        let end = Date.parse(new Date($that.allocationStorehouseManageInfo.conditions.endTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            $that.allocationStorehouseManageInfo.conditions.endTime = '';
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control startTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName(" form-control endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             //查询方法
             _listAllocationStorehouses: function (_page, _rows) {
                 vc.component.allocationStorehouseManageInfo.conditions.page = _page;
@@ -46,9 +105,7 @@
                 var param = {
                     params: vc.component.allocationStorehouseManageInfo.conditions
                 };
-                param.params.resId = param.params.resId.trim();
-                param.params.resName = param.params.resName.trim();
-                param.params.resCode = param.params.resCode.trim();
+                param.params.applyId = param.params.applyId.trim();
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStorehouseApplys',
                     param,
@@ -69,6 +126,13 @@
             },
             //查询
             _queryAllocationStorehouseMethod: function () {
+                vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetAllocationStorehouseMethod: function () {
+                vc.component.allocationStorehouseManageInfo.conditions.applyId = "";
+                vc.component.allocationStorehouseManageInfo.conditions.startTime = "";
+                vc.component.allocationStorehouseManageInfo.conditions.endTime = "";
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listStorehouses: function (_page, _rows) {

@@ -37,6 +37,9 @@
                 var param = {
                     params: vc.component.resourceSupplierManageInfo.conditions
                 };
+                param.params.supplierName = param.params.supplierName.trim();
+                param.params.tel = param.params.tel.trim();
+                param.params.rsId = param.params.rsId.trim();
                 //发送get请求
                 vc.http.apiGet('resourceSupplier.listResourceSuppliers',
                     param,
@@ -64,7 +67,15 @@
             _openDeleteResourceSupplierModel: function (_resourceSupplier) {
                 vc.emit('deleteResourceSupplier', 'openDeleteResourceSupplierModal', _resourceSupplier);
             },
+            //查询
             _queryResourceSupplierMethod: function () {
+                vc.component._listResourceSuppliers(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetResourceSupplierMethod: function () {
+                vc.component.resourceSupplierManageInfo.conditions.supplierName = "";
+                vc.component.resourceSupplierManageInfo.conditions.tel = "";
+                vc.component.resourceSupplierManageInfo.conditions.rsId = "";
                 vc.component._listResourceSuppliers(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

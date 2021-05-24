@@ -73,7 +73,7 @@
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _toDetail: function (_item) {
-                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
+                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?applyId=" + _item.applyId);
             }
         }
     });

@@ -24,7 +24,8 @@
                 visitContext: '',
                 maintenanceType: '',
                 repairMaterials: '',
-                repairFee: ''
+                repairFee: '',
+                resourceStoreInfo: []
             }
         },
         _initMethod: function () {
@@ -96,8 +97,38 @@
                         vc.copyObject(_repairs[0], $that.ownerRepairDetailInfo);
                         //查询房屋信息
                         //vc.component._getRoom();
+                        // 查询物品信息
+                        if ($that.ownerRepairDetailInfo.maintenanceType == '1001' || $that.ownerRepairDetailInfo.maintenanceType == '1003') {
+                            $that._loadResourceStoreList();
+                        }
                         //查询处理轨迹
                         $that._loadRepairUser();
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadResourceStoreList: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        repairId: $that.ownerRepairDetailInfo.repairId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('resourceStore.listResourceStoreUseRecords',
+                    param,
+                    function (json, res) {
+                        var _repairResourceStoreInfo = JSON.parse(json);
+                        let _resource = _repairResourceStoreInfo.data;
+                        $that.ownerRepairDetailInfo.resourceStoreInfo = _resource;
+                        vc.component.ownerRepairDetailInfo.resourceStoreInfo.forEach((item) => {
+                            if (item.resId == '666666') {
+                                item.rstName = item.specName = '自定义';
+                            }
+                        })
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

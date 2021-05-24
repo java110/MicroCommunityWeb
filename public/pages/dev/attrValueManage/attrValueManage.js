@@ -53,6 +53,7 @@
                         vc.component.attrValueManageInfo.attrValues = _attrValueManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.attrValueManageInfo.records,
+                            dataCount: vc.component.attrValueManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

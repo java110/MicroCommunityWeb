@@ -30,7 +30,7 @@
         },
         _initEvent: function () {
             vc.on('addMeterWater', 'openAddMeterWaterModal', function (_param) {
-                console.log('params :',_param);
+                console.log('params :', _param);
                 if (_param.hasOwnProperty("objType")) {
                     $that.addMeterWaterInfo.objType = _param.objType;
                 }
@@ -59,7 +59,7 @@
             // 将1-1-1 转化为 1栋1单元1室
             transRoomName: function (roomName) {
                 // 没有-则返回
-                if(roomName.indexOf('-') < 0){
+                if (roomName.indexOf('-') < 0) {
                     return roomName;
                 }
                 roomName = roomName.split('-');
@@ -188,14 +188,11 @@
                             errInfo: "备注格式错误"
                         },
                     ],
-
-
                 });
             },
             saveMeterWaterInfo: function () {
                 if (!vc.component.addMeterWaterValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addMeterWaterInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -259,7 +256,7 @@
                 let _feeTypeCd = $that.addMeterWaterInfo.feeTypeCd;
                 if (_feeTypeCd == '888800010015') {
                     _meterType = '2020';
-                }else if(_feeTypeCd == '888800010009'){
+                } else if (_feeTypeCd == '888800010009') {
                     _meterType = '3030';
                 }
                 let param = {

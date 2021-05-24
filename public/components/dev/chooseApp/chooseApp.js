@@ -44,6 +44,7 @@
                         vc.component.chooseAppInfo.apps = _appInfo.apps;
                         vc.emit('chooseApp', 'paginationPlus', 'init', {
                             total: _appInfo.records,
+                            dataCount: _appInfo.total,
                             currentPage: _page
                         });
                     }, function () {

@@ -60,6 +60,7 @@
                         vc.component.menuManageInfo.menus = _menuManageInfo.menus;
                         vc.emit('pagination', 'init', {
                             total: vc.component.menuManageInfo.records,
+                            dataCount: vc.component.menuManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
