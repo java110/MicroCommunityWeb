@@ -51,6 +51,7 @@
                         vc.component.questionAnswerManageInfo.questionAnswers = _questionAnswerManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.questionAnswerManageInfo.records,
+                            dataCount: vc.component.questionAnswerManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

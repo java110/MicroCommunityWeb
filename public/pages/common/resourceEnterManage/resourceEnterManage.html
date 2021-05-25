@@ -6,61 +6,62 @@
                     <h5>单号：{{resourceEnterManageInfo.applyOrderId}}</h5>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">物品名称</th>
-                                <th class="text-center">物品编码</th>
-                                <th class="text-center">物品库存</th>
-                                <th class="text-center">申请数量</th>
-                                <th class="text-center">采购数量</th>
-                                <th class="text-center">采购单价</th>
-                                <th class="text-center">备注</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">物品类型</th>
+                            <th class="text-center">物品名称</th>
+                            <th class="text-center">物品规格</th>
+                            <th class="text-center">物品编码</th>
+                            <th class="text-center">物品库存</th>
+                            <th class="text-center">参考单价</th>
+                            <th class="text-center">申请数量</th>
+                            <th class="text-center">采购数量</th>
+                            <th class="text-center">采购单价</th>
+                            <th class="text-center">备注</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="resourceEnter in resourceEnterManageInfo.purchaseApplyDetailVo">
-                                <td class="text-center">{{resourceEnter.resName}}</td>
-                                <td class="text-center">{{resourceEnter.resCode}}</td>
-                                <td class="text-center">{{resourceEnter.stock}}</td>
-                                <td class="text-center">{{resourceEnter.quantity}}</td>
-                                <td class="text-center">
-                                    <input v-model="resourceEnter.purchaseQuantity" type="number"
-                                           placeholder="必填，请填写采购数量" class="form-control">
-                                </td>
-                                <td class="text-center">
-                                    <input v-model="resourceEnter.price" type="text"
-                                           placeholder="必填，请填写采购单价" class="form-control">
-                                </td>
-                                <td class="text-center">
-                                    <input v-model="resourceEnter.purchaseRemark" type="text" placeholder="可填，请填写备注" class="form-control">
-                                </td>
-
-                            </tr>
+                        <tr v-for="resourceEnter in resourceEnterManageInfo.purchaseApplyDetailVo">
+                            <td class="text-center">{{resourceEnter.rstName ? resourceEnter.rstName : '-'}}</td>
+                            <td class="text-center">{{resourceEnter.resName}}</td>
+                            <td class="text-center">{{resourceEnter.specName ? resourceEnter.specName : '-'}}</td>
+                            <td class="text-center">{{resourceEnter.resCode}}</td>
+                            <td class="text-center">{{resourceEnter.stock}}</td>
+                            <td class="text-center">￥{{resourceEnter.standardPrice}}</td>
+                            <td class="text-center">{{resourceEnter.quantity}}</td>
+                            <td class="text-center">
+                                <input v-model="resourceEnter.purchaseQuantity" type="number"
+                                       placeholder="必填，请填写采购数量" class="form-control">
+                            </td>
+                            <td class="text-center">
+                                <input v-model="resourceEnter.price" type="text"
+                                       placeholder="必填，请填写采购单价" class="form-control">
+                            </td>
+                            <td class="text-center">
+                                <input v-model="resourceEnter.purchaseRemark" type="text" placeholder="可填，请填写备注"
+                                       class="form-control">
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            
-            <button  type="button" class="btn btn-primary"
+            <button type="button" class="btn btn-primary"
                     style="margin-left:10px;" v-on:click="_submit()">提交
             </button>
         </div>
     </div>
-
-
 </div>

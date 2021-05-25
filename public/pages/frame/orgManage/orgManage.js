@@ -177,6 +177,7 @@
                         vc.component.orgManageInfo.orgs = _orgManageInfo.orgs;
                         vc.emit('pagination', 'init', {
                             total: vc.component.orgManageInfo.records,
+                            dataCount: vc.component.orgManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

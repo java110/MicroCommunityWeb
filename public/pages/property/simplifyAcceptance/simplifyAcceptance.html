@@ -150,6 +150,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyContract'}"
+                       v-on:click="changeTab('simplifyContract')">业主合同</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}"
                        v-on:click="changeTab('simplifyOwnerMember')">家庭成员</a>
                 </li>
@@ -188,12 +193,9 @@
                        v-on:click="changeTab('simplifyShopsHireLog')">房屋绑定记录</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyContract'}"
-                       v-on:click="changeTab('simplifyContract')">关联合同</a>
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyMeterWaterFee'}"
+                        v-on:click="changeTab('simplifyMeterWaterFee')">水电抄表记录</a>
                 </li>
-
-                
             </ul>
         </div>
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'">
@@ -228,6 +230,9 @@
         </div>
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyContract'">
             <vc:create path="property/simplifyContract"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyMeterWaterFee'">
+            <vc:create path="property/simplifyMeterWaterLog"></vc:create>
         </div>
     </div>
     <vc:create path="property/deleteFee"></vc:create>

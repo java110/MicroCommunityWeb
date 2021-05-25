@@ -43,7 +43,8 @@
         },
         _initEvent: function () {
             vc.on('repairDispatchManage', 'listOwnerRepair', function (_param) {
-                vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                location.reload();
+                // vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listOwnerRepairs(_currentPage, DEFAULT_ROWS);
@@ -112,6 +113,7 @@
                         vc.component.repairDispatchManageInfo.ownerRepairs = _repairDispatchManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.repairDispatchManageInfo.records,
+                            dataCount: vc.component.repairDispatchManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -124,7 +126,8 @@
             },
             //办结
             _openFinishRepair: function (_ownerRepair) {
-                vc.emit('finishRepair', 'openFinishRepairModal', _ownerRepair);
+                // vc.emit('finishRepair', 'openFinishRepairModal', _ownerRepair);
+                vc.jumpToPage('/admin.html#/pages/property/finishRepair?repairType=' + _ownerRepair.repairType + '&repairId=' + _ownerRepair.repairId + '&repairObjType=' + _ownerRepair.repairObjType + '&publicArea=' + _ownerRepair.publicArea + '&repairChannel=' + _ownerRepair.repairChannel);
             },
             _openDispatchRepairDetail: function (_ownerRepair) {
                 //vc.emit('ownerRepairDetail','openOwnerRepairDetailModal',_ownerRepair);

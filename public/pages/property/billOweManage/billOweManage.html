@@ -21,8 +21,9 @@
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="billOweManageInfo.conditions.state">
                                 <option selected value="">请选择交费状态</option>
-                                <option value="1000">未交费</option>
-                                <option value="2000">已缴费</option>
+                                <option value="1000">未催缴</option>
+                                <!-- <option value="2000">已缴费</option> -->
+                                <option value="2000">已催缴</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
@@ -76,7 +77,7 @@
                                 <th class="text-center">计费截止时间</th>
                                 <th class="text-center">业主姓名</th>
                                 <th class="text-center">联系电话</th>
-                                <!-- <th class="text-center">状态</th> -->
+                                <th class="text-center">状态</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,10 +89,11 @@
                                 <td class="text-center">{{billOwe.deadlineTime}}</td>
                                 <td class="text-center">{{billOwe.ownerName}}</td>
                                 <td class="text-center">{{billOwe.ownerTel}}</td>
-                                <!-- <td class="text-center">
+                                <td class="text-center">
                                     <span class="badge badge-success" v-if="billOwe.state == '2000'">已缴费</span>
-                                    <span class="badge badge-danger" v-else>未交费</span>
-                                </td> -->
+                                    <span class="badge badge-success" v-else-if="billOwe.state == '3000'">已催缴</span>
+                                    <span class="badge badge-danger" v-else>未催缴</span>
+                                </td>
 
 
                             </tr>

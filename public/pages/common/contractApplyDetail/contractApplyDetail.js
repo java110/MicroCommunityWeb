@@ -25,7 +25,8 @@
                 signingTime: '',
                 param: '',
                 planType: '',
-                files:[]
+                files:[],
+                rooms:[]
 
             },
             auditUsers: []
@@ -35,6 +36,7 @@
             vc.component._listContractApply(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._loadAuditUser();
             $that._loadContractFiles();
+            $that._loadContractRooms();
         },
         _initEvent: function () {
 
@@ -94,6 +96,25 @@
                     function (json, res) {
                         var _contractTFile = JSON.parse(json);
                         vc.component.contractDetailInfo.files = _contractTFile.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadContractRooms: function () {
+                let param = {
+                    params: {
+                        contractId: vc.component.contractDetailInfo.contractId,
+                        page: 1,
+                        row: 100
+                    }
+                }
+                //发送get请求
+                vc.http.apiGet('/contract/queryContractRoom',
+                    param,
+                    function (json, res) {
+                        var _contractTFile = JSON.parse(json);
+                        vc.component.contractDetailInfo.rooms = _contractTFile.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

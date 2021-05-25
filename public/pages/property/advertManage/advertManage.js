@@ -35,7 +35,6 @@
             _listAdverts: function (_page, _rows) {
                 vc.component.advertManageInfo.conditions.page = _page;
                 vc.component.advertManageInfo.conditions.row = _rows;
-                vc.component.advertManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.advertManageInfo.conditions
                 };
@@ -50,6 +49,7 @@
                         vc.component.advertManageInfo.adverts = _advertManageInfo.adverts;
                         vc.emit('pagination', 'init', {
                             total: vc.component.advertManageInfo.records,
+                            dataCount: vc.component.advertManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

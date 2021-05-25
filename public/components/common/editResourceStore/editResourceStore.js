@@ -5,40 +5,46 @@
                 resId: '',
                 resName: '',
                 resCode: '',
+                rstId: '',
+                rssId: '',
                 price: '',
                 description: '',
-                goodsType: '',
-                goodsTypes: [],
+                rstIds: [],
                 unitCode: '',
                 unitCodes: [],
                 outLowPrice: '',
                 outHighPrice: '',
                 showMobile: '',
                 fileUrls: [],
-                remark: ''
+                resourceStoreTypes: [],
+                remark: '',
+                warningStock: '',
+                resourceStoreSpecifications: []
             }
         },
         _initMethod: function () {
+
         },
         _initEvent: function () {
             vc.on('editResourceStore', 'openEditResourceStoreModal', function (_params) {
-                vc.component.refreshEditResourceStoreInfo();
+                console.log(_params);
                 $('#editResourceStoreModel').modal('show');
+                vc.component.refreshEditResourceStoreInfo();
+                $that._listEditResourceStoreType();
                 vc.copyObject(_params, vc.component.editResourceStoreInfo);
                 vc.component.editResourceStoreInfo.fileUrls = _params.fileUrls
-                vc.component._freshPhoto(vc.component.editResourceStoreInfo.fileUrls);
-                //与字典表物品类型关联
-                vc.getDict('resource_store', "goods_type", function (_data) {
-                    vc.component.editResourceStoreInfo.goodsTypes = _data;
-                });
+                if (_params.fileUrls) {
+                    vc.component._freshPhoto(vc.component.editResourceStoreInfo.fileUrls);
+                }
                 //与字典表单位关联
                 vc.getDict('resource_store', "unit_code", function (_data) {
                     vc.component.editResourceStoreInfo.unitCodes = _data;
                 });
                 vc.component.editResourceStoreInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.on("editResourceStore", "notifyUploadImage", function (_param) {
-                    vc.component.editResourceStoreInfo.fileUrls = _param;
-                });
+                $that._loadResourceStoreSpecificationEdit();
+            });
+            vc.on("editResourceStore", "notifyUploadImage", function (_param) {
+                vc.component.editResourceStoreInfo.fileUrls = _param;
             });
         },
         methods: {
@@ -75,6 +81,14 @@
                             limit: "money",
                             param: "",
                             errInfo: "物品价格格式错误"
+                        },
+                    ],
+
+                    'editResourceStoreInfo.warningStock': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "警告库存不能为空"
                         },
                     ],
                     'editResourceStoreInfo.description': [
@@ -129,7 +143,7 @@
                             errInfo: "单位不能为空"
                         },
                     ],
-                    'editResourceStoreInfo.goodsType': [
+                    'editResourceStoreInfo.rstId': [
                         {
                             limit: "required",
                             param: "",
@@ -168,21 +182,76 @@
             _freshPhoto: function (_photos) {
                 vc.emit('editResourceStore', 'uploadImage', 'notifyPhotos', _photos);
             },
+            //查询物品类型
+            _listEditResourceStoreType: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreType = JSON.parse(json);
+                        vc.component.editResourceStoreInfo.rstIds = _resourceStoreType.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 分类改变事件
+            resourceStoreTypesOnChangeEdit: function () {
+                if (vc.component.editResourceStoreInfo.rstId == '') {
+                    vc.component.resourceStoreSpecification = [];
+                    return;
+                }
+                vc.component._loadResourceStoreSpecificationEdit();
+            },
+            // 根据分类查询规格
+            _loadResourceStoreSpecificationEdit: function () {
+                if (!vc.component.editResourceStoreInfo.rstId) return;
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        rstId: vc.component.editResourceStoreInfo.rstId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
+                    param,
+                    function (json, res) {
+                        var _editResourceStoreInfo = JSON.parse(json);
+                        console.log('res', _editResourceStoreInfo.data);
+                        vc.component.editResourceStoreInfo.resourceStoreSpecifications = _editResourceStoreInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             refreshEditResourceStoreInfo: function () {
                 vc.component.editResourceStoreInfo = {
                     resId: '',
                     resName: '',
                     resCode: '',
+                    rstId: '',
+                    rssId: '',
                     price: '',
                     description: '',
-                    goodsType: '',
-                    goodsTypes: [],
+                    rstIds: [],
                     unitCode: '',
                     unitCodes: [],
                     outLowPrice: '',
                     outHighPrice: '',
                     showMobile: '',
-                    remark: ''
+                    remark: '',
+                    warningStock: '',
+                    resourceStoreSpecifications: []
                 }
             }
         }

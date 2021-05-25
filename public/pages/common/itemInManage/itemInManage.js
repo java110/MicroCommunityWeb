@@ -53,6 +53,7 @@
                         vc.component.resourceStoreManageInfo.resourceStores = _resourceStoreManageInfo.resourceStores;
                         vc.emit('pagination', 'init', {
                             total: vc.component.resourceStoreManageInfo.records,
+                            dataCount: vc.component.resourceStoreManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

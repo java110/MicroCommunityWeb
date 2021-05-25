@@ -54,6 +54,7 @@
                         vc.component.todayAttendanceManageInfo.attendances = _todayAttendanceManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.todayAttendanceManageInfo.records,
+                            dataCount: vc.component.todayAttendanceManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

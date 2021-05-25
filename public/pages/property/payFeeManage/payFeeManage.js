@@ -141,6 +141,7 @@
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.payFeeManageInfo.records,
+                            dataCount: vc.component.payFeeManageInfo.total,
                             currentPage: _page,
                             // dataCount: vc.component.payFeeManageInfo.total
                         });

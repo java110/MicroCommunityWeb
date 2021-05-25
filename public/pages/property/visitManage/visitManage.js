@@ -46,6 +46,7 @@
                         vc.component.appManageInfo.visits = _visitManageInfo.visits;
                         vc.emit('pagination', 'init', {
                             total: _visitManageInfo.records,
+                            dataCount: _visitManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

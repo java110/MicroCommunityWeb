@@ -47,7 +47,8 @@
                                 vc.component.mappingManageInfo.records = _mappingManageInfo.records;
                                 vc.component.mappingManageInfo.mappings = _mappingManageInfo.mappings;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.mappingManageInfo.records,
+                                    total: vc.component.mappingManageInfo.records,
+                                    dataCount: vc.component.mappingManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

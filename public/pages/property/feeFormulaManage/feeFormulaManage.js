@@ -49,7 +49,8 @@
                                 vc.component.feeFormulaManageInfo.records = _feeFormulaManageInfo.records;
                                 vc.component.feeFormulaManageInfo.feeFormulas = _feeFormulaManageInfo.data;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.feeFormulaManageInfo.records,
+                                    total: vc.component.feeFormulaManageInfo.records,
+                                    dataCount: vc.component.feeFormulaManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

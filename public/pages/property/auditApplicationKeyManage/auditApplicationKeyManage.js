@@ -55,6 +55,7 @@
                         vc.component.auditApplicationKeyManageInfo.applicationKeys = _auditApplicationKeyManageInfo.applicationKeys;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditApplicationKeyManageInfo.records,
+                            dataCount: vc.component.auditApplicationKeyManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

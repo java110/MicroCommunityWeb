@@ -1,6 +1,6 @@
 /**
-    //入库
-**/
+ *入库
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -9,7 +9,7 @@
             resourceEnterManageInfo: {
                 resourceEnters: [],
                 applyOrderId: '',
-                taskId:'',
+                taskId: '',
                 resOrderType: '',
                 purchaseApplyDetailVo: [],
             }
@@ -21,7 +21,6 @@
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
         },
         methods: {
             _listPurchaseApply: function (_page, _rows) {
@@ -33,7 +32,6 @@
                         resOrderType: vc.component.resourceEnterManageInfo.resOrderType,
                     }
                 };
-
                 //发送get请求
                 vc.http.get('purchaseApplyManage',
                     'list',
@@ -46,7 +44,6 @@
                             item.purchaseQuantity = '';
                             item.price = '';
                             item.purchaseRemark = '';
-
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -61,7 +58,6 @@
             },
             _queryResourceEnterMethod: function () {
                 vc.component._listResourceEnters(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.resourceEnterManageInfo.moreCondition) {
@@ -74,7 +70,6 @@
                 vc.component._listResourceEnters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddResourceQuantityModel: function () {
-
             },
             _submit: function () {
                 //校验 是否填写正确
@@ -89,7 +84,6 @@
                         return;
                     }
                 });
-
                 vc.http.apiPost(
                     '/purchase/resourceEnter',
                     JSON.stringify($that.resourceEnterManageInfo),
@@ -111,12 +105,12 @@
                         vc.toast(errInfo);
                     });
             },
-            _finishAuditOrder:function(){
+            _finishAuditOrder: function () {
                 let _auditInfo = {
                     taskId: $that.resourceEnterManageInfo.taskId,
                     applyOrderId: $that.resourceEnterManageInfo.applyOrderId,
-                    state:'1100',
-                    remark:'采购入库完成'
+                    state: '1100',
+                    remark: '采购入库完成'
                 };
                 //发送get请求
                 vc.http.post('myAuditOrders',
@@ -133,9 +127,7 @@
                         vc.toast("处理失败：" + errInfo);
                     }
                 );
-            },
-
-
+            }
         }
     });
 })(window.vc);

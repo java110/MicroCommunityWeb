@@ -11,9 +11,9 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                applyOrderId: '',
                 states: '',
                 conditions: {
+                    applyOrderId: '',
                     state: '',
                     userName: '',
                     resOrderType: '20000'
@@ -21,6 +21,10 @@
             }
         },
         _initMethod: function () {
+            //与字典表关联
+            vc.getDict('purchase_apply', "state", function (_data) {
+                vc.component.itemOutManageInfo.states = _data;
+            });
             vc.component._listItemOuts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -38,6 +42,8 @@
                 var param = {
                     params: vc.component.itemOutManageInfo.conditions
                 };
+                param.params.applyOrderId = param.params.applyOrderId.trim();
+                param.params.userName = param.params.userName.trim();
                 //发送get请求
                 vc.http.get('purchaseApplyManage',
                     'list',
@@ -49,6 +55,7 @@
                         vc.component.itemOutManageInfo.itemOuts = _itemOutManageInfo.purchaseApplys;
                         vc.emit('pagination', 'init', {
                             total: vc.component.itemOutManageInfo.records,
+                            dataCount: vc.component.itemOutManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -75,7 +82,15 @@
                     vc.component.itemOutManageInfo.moreCondition = true;
                 }
             },
+            //查询
             _queryInspectionPlanMethod: function () {
+                vc.component._listItemOuts(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetInspectionPlanMethod: function () {
+                vc.component.itemOutManageInfo.conditions.applyOrderId = "";
+                vc.component.itemOutManageInfo.conditions.state = "";
+                vc.component.itemOutManageInfo.conditions.userName = "";
                 vc.component._listItemOuts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openRunWorkflowImage: function (_itemOut) {

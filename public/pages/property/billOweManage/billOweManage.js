@@ -58,6 +58,7 @@
                         vc.component.billOweManageInfo.billOwes = _billOweManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.billOweManageInfo.records,
+                            dataCount: vc.component.billOweManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

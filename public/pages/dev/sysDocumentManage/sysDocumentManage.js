@@ -54,6 +54,7 @@
                         vc.component.sysDocumentManageInfo.sysDocuments = _sysDocumentManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.sysDocumentManageInfo.records,
+                            dataCount: vc.component.sysDocumentManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -87,6 +87,7 @@
                         vc.component.contractManageInfo.contracts = _contractManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractManageInfo.records,
+                            dataCount: vc.component.contractManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

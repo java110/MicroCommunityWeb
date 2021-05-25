@@ -47,6 +47,7 @@
                         vc.component.jobManageInfo.jobs = _jobManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.jobManageInfo.records,
+                            dataCount: vc.component.jobManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -14,14 +14,14 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请输入车牌号" v-model="listOwnerCarInfo.conditions.carNum"
+                                <input type="text" placeholder="请输入车牌号" v-model="listOwnerCarInfo.conditions.carNumLike"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写车位编号" class=" form-control"
-                                       v-model="listOwnerCarInfo.num">
+                                       v-model="listOwnerCarInfo.conditions.num">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -148,7 +148,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="11">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

@@ -54,6 +54,7 @@
                         vc.component.billManageInfo.bills = _billManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.billManageInfo.records,
+                            dataCount: vc.component.billManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

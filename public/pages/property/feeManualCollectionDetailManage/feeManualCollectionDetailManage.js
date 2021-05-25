@@ -57,6 +57,7 @@
                         vc.component.feeManualCollectionDetailManageInfo.feeManualCollectionDetails = _feeManualCollectionDetailManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeManualCollectionDetailManageInfo.records,
+                            dataCount: vc.component.feeManualCollectionDetailManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -51,6 +51,7 @@
                         vc.component.basePrivilegeManageInfo.basePrivileges = _basePrivilegeManageInfo.basePrivileges;
                         vc.emit('pagination', 'init', {
                             total: vc.component.basePrivilegeManageInfo.records,
+                            dataCount: vc.component.basePrivilegeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

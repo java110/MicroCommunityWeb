@@ -7,8 +7,8 @@
     vc.extends({
         data: {
             contractInfo: {
-                roomId: '',
-                roomName: '',
+                ownerId: '',
+                ownerName: '',
                 contracts: [],
                 total: 0,
                 records: 1,
@@ -28,12 +28,12 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyContract', 'switch', function (_param) {
-                if (_param.roomId == '') {
+                if (_param.ownerId == '') {
                     return;
                 }
                 $that.clearContractInfoInfo();
-                vc.copyObject(_param, $that.simplifyRoomFeeInfo);
-                $that.contractInfo.conditions.objId = _param.roomId;
+                vc.copyObject(_param, $that.contractInfo);
+                $that.contractInfo.conditions.objId = _param.ownerId;
                 $that._listContractInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             });
 
@@ -79,12 +79,12 @@
                 window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType + "&contractId=" + _contract.contractId);
             },
             _viewContract: function (_contract) {
-                //vc.jumpToPage("/admin.html#/pages/admin/contractDetailView?contractId=" + _contract.contractId);
+                vc.jumpToPage("/admin.html#/pages/common/contractApplyDetail?contractId="+_contract.contractId);
             },
             clearContractInfoInfo: function () {
                 $that.contractInfo = {
-                    roomId: '',
-                    roomName: '',
+                    ownerId: '',
+                    ownerName: '',
                     contracts: [],
                     total: 0,
                     records: 1,
@@ -97,6 +97,9 @@
 
                     }
                 }
+            },
+            _openContractFee: function (_contract) {
+                vc.jumpToPage("/admin.html#/pages/property/listContractFee?contractId=" + _contract.contractId + "&contractCode=" + _contract.contractCode);
             },
 
 

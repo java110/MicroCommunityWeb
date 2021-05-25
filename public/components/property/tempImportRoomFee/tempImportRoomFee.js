@@ -5,6 +5,7 @@
             tempImportRoomFeeInfo: {
                 communityId: vc.getCurrentCommunity().communityId,
                 feeTypeCd: '',
+                objType: '',
                 feeTypeCds: [],
                 feeName: '',
                 objName: '',
@@ -37,6 +38,7 @@
                     $that.clearTempImportRoomFeeInfo();
                     $that.tempImportRoomFeeInfo.objId = _room.roomId;
                     $that.tempImportRoomFeeInfo.objName = _room.roomName;
+                    $that.tempImportRoomFeeInfo.objType = _room.objType;
                     $('#tempImportRoomFeeModel').modal('show');
 
                 });
@@ -135,7 +137,7 @@
                 vc.component.tempImportRoomFeeInfo.communityId = vc.getCurrentCommunity().communityId;
 
                 vc.http.post(
-                    'importRoomFee','importTempData',
+                    'importRoomFee', 'importTempData',
                     JSON.stringify(vc.component.tempImportRoomFeeInfo),
                     {
                         emulateJSON: true
@@ -148,6 +150,7 @@
                             $('#tempImportRoomFeeModel').modal('hide');
                             vc.emit('listRoomFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});
+                            vc.emit('listContractFee', 'notify', {});
                         }
                         vc.message(_json.msg);
                     },

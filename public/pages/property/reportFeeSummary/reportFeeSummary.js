@@ -110,6 +110,7 @@
                         vc.component.reportFeeSummaryInfo.fees = _reportFeeSummaryInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeSummaryInfo.records,
+                            dataCount: vc.component.reportFeeSummaryInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -129,27 +130,7 @@
                 vc.component.reportFeeSummaryInfo.conditions.roomNum = "";
                 vc.component.reportFeeSummaryInfo.conditions.startTime = "";
                 vc.component.reportFeeSummaryInfo.conditions.endTime = "";
-                // 清除下拉框选项
-                vc.component.reportFeeSummaryInfo.roomUnits = [];
-                var param = {
-                    params: vc.component.reportFeeSummaryInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('/reportFeeMonthStatistics/queryReportFeeSummary',
-                    param,
-                    function (json, res) {
-                        var _reportFeeSummaryInfo = JSON.parse(json);
-                        vc.component.reportFeeSummaryInfo.total = _reportFeeSummaryInfo.total;
-                        vc.component.reportFeeSummaryInfo.records = _reportFeeSummaryInfo.records;
-                        vc.component.reportFeeSummaryInfo.fees = _reportFeeSummaryInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.reportFeeSummaryInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {

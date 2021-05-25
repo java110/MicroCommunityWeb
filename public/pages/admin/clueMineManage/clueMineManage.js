@@ -49,7 +49,8 @@
                                 vc.component.clueManageInfo.records = _clueManageInfo.records;
                                 vc.component.clueManageInfo.clues = _clueManageInfo.data;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.clueManageInfo.records,
+                                    total: vc.component.clueManageInfo.records,
+                                    dataCount: vc.component.clueManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

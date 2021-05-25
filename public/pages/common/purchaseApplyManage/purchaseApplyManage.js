@@ -11,10 +11,10 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                applyOrderId: '',
                 states: '',
                 conditions: {
                     state: '',
+                    applyOrderId: '',
                     userName: '',
                     resOrderType: '10000'
                 }
@@ -41,6 +41,9 @@
                 var param = {
                     params: vc.component.purchaseApplyManageInfo.conditions
                 };
+                param.params.applyOrderId = param.params.applyOrderId.trim();
+                param.params.state = param.params.state.trim();
+                param.params.userName = param.params.userName.trim();
                 //发送get请求
                 vc.http.get('purchaseApplyManage',
                     'list',
@@ -54,6 +57,7 @@
                         vc.component.purchaseApplyManageInfo.purchaseApplys = _purchaseApplyManageInfo.purchaseApplys;
                         vc.emit('pagination', 'init', {
                             total: vc.component.purchaseApplyManageInfo.records,
+                            dataCount: vc.component.purchaseApplyManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -71,7 +75,15 @@
             _openDeletePurchaseApplyModel: function (_purchaseApply) {
                 vc.emit('deletePurchaseApply', 'openDeletePurchaseApplyModal', _purchaseApply);
             },
+            //查询
             _queryPurchaseApplyMethod: function () {
+                vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetInspectionPlanMethod: function () {
+                vc.component.purchaseApplyManageInfo.conditions.applyOrderId = "";
+                vc.component.purchaseApplyManageInfo.conditions.state = "";
+                vc.component.purchaseApplyManageInfo.conditions.userName = "";
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

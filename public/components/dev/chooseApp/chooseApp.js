@@ -19,6 +19,10 @@
                 vc.component._refreshChooseAppInfo();
                 vc.component._loadAllAppInfo(1, 10, '');
             });
+
+            vc.on('chooseApp', 'paginationPlus', 'page_event', function (_currentPage) {
+                vc.component._loadAllAppInfo(_currentPage, 10);
+            });
         },
         methods: {
             _loadAllAppInfo: function (_page, _row, _name) {
@@ -38,6 +42,11 @@
                     function (json) {
                         var _appInfo = JSON.parse(json);
                         vc.component.chooseAppInfo.apps = _appInfo.apps;
+                        vc.emit('chooseApp', 'paginationPlus', 'init', {
+                            total: _appInfo.records,
+                            dataCount: _appInfo.total,
+                            currentPage: _page
+                        });
                     }, function () {
                         console.log('请求失败处理');
                     }

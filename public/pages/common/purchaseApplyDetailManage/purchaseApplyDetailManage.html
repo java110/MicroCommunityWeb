@@ -1,0 +1,209 @@
+<div id="component" class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{purchaseApplyDetailManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="订单号"
+                                       v-model="purchaseApplyDetailManageInfo.conditions.applyOrderId"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.state">
+                                <option selected value="">请选择状态</option>
+                                <option v-for="(item,index) in purchaseApplyDetailManageInfo.states" :key="index"
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写申请人姓名"
+                                       v-model="purchaseApplyDetailManageInfo.conditions.userName"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryInspectionPlanMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetInspectionPlanMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="purchaseApplyDetailManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写使用人姓名" class="form-control"
+                                       v-model="purchaseApplyDetailManageInfo.conditions.endUserName">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写物品名称" class="form-control"
+                                       v-model="purchaseApplyDetailManageInfo.conditions.resName">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select"
+                                    v-model="purchaseApplyDetailManageInfo.conditions.warehousingWay">
+                                <option selected value="">请选择采购方式</option>
+                                <option v-for="(item,index) in purchaseApplyDetailManageInfo.warehousingWays"
+                                        :key="index"
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" v-show="purchaseApplyDetailManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <select class="custom-select"
+                                    v-model="purchaseApplyDetailManageInfo.conditions.resOrderType">
+                                <option selected disabled value="">请选择出入库方式</option>
+                                <option v-for="(item,index) in purchaseApplyDetailManageInfo.resOrderTypes" :key="index"
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择创建开始时间"
+                                       v-model="purchaseApplyDetailManageInfo.conditions.startTime"
+                                       class=" form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择创建结束时间"
+                                       v-model="purchaseApplyDetailManageInfo.conditions.endTime"
+                                       class=" form-control endTime">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="purchaseApplyDetailManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rsId">
+                                    <option selected value="">请选择供应商</option>
+                                    <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceSuppliers"
+                                            :key="index"
+                                            :value="item.rsId">{{item.supplierName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rstId"
+                                        @change="_listResourceStoreSpecifications">
+                                    <option selected value="">请选择物品类型</option>
+                                    <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceStoreTypes"
+                                            :key="index"
+                                            v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rssId">
+                                    <option selected value="">请选择物品规格</option>
+                                    <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceStoreSpecifications"
+                                            :key="index"
+                                            v-bind:value="item.rssId">
+                                        {{item.specName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>出入库明细</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">申请单号</th>
+                            <th class="text-center">申请人</th>
+                            <th class="text-center">使用人</th>
+                            <th class="text-center">出入库类型</th>
+                            <th class="text-center">物品类型</th>
+                            <th class="text-center">物品名称</th>
+                            <th class="text-center">物品规格</th>
+                            <th class="text-center">物品供应商</th>
+                            <th class="text-center">采购/出库方式</th>
+                            <th class="text-center">申请数量</th>
+                            <th class="text-center">采购/出库数量</th>
+                            <th class="text-center">采购价格</th>
+                            <th class="text-center">采购总价</th>
+                            <th class="text-center">申请备注</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">创建时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="purchaseApplyDetail in purchaseApplyDetailManageInfo.purchaseApplyDetails">
+                            <td class="text-center">{{purchaseApplyDetail.applyOrderId}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.userName}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.endUserName}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.resOrderTypeName}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.rstName ? purchaseApplyDetail.rstName :
+                                '-'}}
+                            </td>
+                            <td class="text-center">{{purchaseApplyDetail.resName}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.specName ? purchaseApplyDetail.specName :
+                                '-'}}
+                            </td>
+                            <td class="text-center">{{purchaseApplyDetail.supplierName? purchaseApplyDetail.supplierName : '-'}}</td>
+                            <td class="text-center">
+                                {{purchaseApplyDetail.warehousingWayName}}{{purchaseApplyDetail.resOrderTypeName}}
+                            </td>
+                            <td class="text-center">{{purchaseApplyDetail.quantity}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.purchaseQuantity ? purchaseApplyDetail.purchaseQuantity : '-'}}</td>
+                            <td class="text-center">￥{{purchaseApplyDetail.price ? purchaseApplyDetail.price : '0.00'}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.resOrderType == '10000' ? '￥' + purchaseApplyDetail.totalApplyPrice : '-'}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.remark}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.stateName}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.createTime}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="16">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/viewImage"></vc:create>
+</div>

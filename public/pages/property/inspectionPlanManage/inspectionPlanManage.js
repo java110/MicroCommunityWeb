@@ -17,7 +17,8 @@
                 conditions: {
                     inspectionPlanName: '',
                     staffName: '',
-                    state: ''
+                    state: '',
+                    inspectionPlanId: ''
                 }
             }
         },
@@ -46,6 +47,9 @@
                 var param = {
                     params: vc.component.inspectionPlanManageInfo.conditions
                 };
+                param.params.inspectionPlanId = param.params.inspectionPlanId.trim();
+                param.params.inspectionPlanName = param.params.inspectionPlanName.trim();
+                param.params.state = param.params.state.trim();
                 //发送get请求
                 vc.http.get('inspectionPlanManage',
                     'list',
@@ -57,6 +61,7 @@
                         vc.component.inspectionPlanManageInfo.inspectionPlans = _inspectionPlanManageInfo.inspectionPlans;
                         vc.emit('pagination', 'init', {
                             total: vc.component.inspectionPlanManageInfo.records,
+                            dataCount: vc.component.inspectionPlanManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -73,7 +78,15 @@
             _openDeleteInspectionPlanModel: function (_inspectionPlan) {
                 vc.emit('deleteInspectionPlan', 'openDeleteInspectionPlanModal', _inspectionPlan);
             },
+            //查询
             _queryInspectionPlanMethod: function () {
+                vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetInspectionPlanMethod: function () {
+                vc.component.inspectionPlanManageInfo.conditions.inspectionPlanName = "";
+                vc.component.inspectionPlanManageInfo.conditions.inspectionPlanId = "";
+                vc.component.inspectionPlanManageInfo.conditions.state = "";
                 vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //启用计划

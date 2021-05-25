@@ -3,7 +3,8 @@
         <div class="col-lg-6 padding-right-xs padding-left-xl">
            
         </div>
-        <div class="col-lg-6 text-right" v-if="simplifyRoomFeeInfo.roomId">
+        <div class="col-lg-6 text-right" v-if="contractInfo.ownerId">
+            
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddContractModal()">
                 起草合同
             </button>
@@ -17,8 +18,6 @@
                     <th class="text-center">合同编号</th>
                     <th class="text-center">父合同编号</th>
                     <th class="text-center">合同类型</th>
-                    <th class="text-center">关联房屋</th>
-                    <th class="text-center">关联业主</th>
                     <th class="text-center">开始时间</th>
                     <th class="text-center">结束时间</th>
                     <th class="text-center">状态</th>
@@ -32,16 +31,14 @@
                     <td class="text-center">
                         {{contract.parentContractCode?contract.parentContractCode:'-'}}</td>
                     <td class="text-center">{{contract.contractTypeName}}</td>
-                    <td class="text-center">{{contract.objName}}</td>
-                    <td class="text-center">{{contract.objPersonName}}</td>
                     <td class="text-center">{{contract.startTime}}</td>
                     <td class="text-center">{{contract.endTime}}</td>
                     <td class="text-center">{{contract.stateName}}</td>
                     <td class="text-center">
-                        <!-- <div class="btn-group">
+                        <div class="btn-group">
                             <button class="btn-white btn btn-xs"
-                                v-on:click="_openEditContractModel(contract)">修改</button>
-                        </div> -->
+                                v-on:click="_openContractFee(contract)">费用</button>
+                        </div>
                         <button class="btn-white btn btn-xs"
                                 v-on:click="_viewContract(contract)">查看
                         </button>

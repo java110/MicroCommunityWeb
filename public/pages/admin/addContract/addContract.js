@@ -1,10 +1,6 @@
 (function (vc) {
 
     vc.extends({
-        propTypes: {
-            callBackListener: vc.propTypes.string, //父组件名称
-            callBackFunction: vc.propTypes.string //父组件监听方法
-        },
         data: {
             addContractInfo: {
                 contractId: '',
@@ -31,12 +27,34 @@
                 link: '',
                 objType: '1111',
                 objId: '-1',
-                contractFilePo:[],
-                tempfile:''
+                contractParentId: '',
+                parentContractCode: '',
+                parentContractName: '',
+                parentStateName: '',
+                objName: '',
+                objPersonName: '',
+                objPersonId: '',
+                rooms: [],
+                contractFilePo: [],
+                tempfile: '',
+                contractPartyAs: []
             }
         },
         _initMethod: function () {
             $that._loadAddContractType();
+            $that._loadAddContractParkA();
+
+            if (vc.getParam("contractId")) {
+                $that.addContractInfo.contractParentId = vc.getParam("contractId");
+                $that.addContractInfo.parentContractCode = vc.getParam("contractCode");
+                $that.addContractInfo.parentContractName = vc.getParam("contractName");
+                $that.addContractInfo.parentStateName = vc.getParam("stateName");
+                $that.addContractInfo.contractId = '';
+                $that.addContractInfo.contractCode = '';
+                $that.addContractInfo.contractName = '';
+                $that.addContractInfo.allNum = vc.getParam("objId");
+                $that._queryRoom();
+            }
 
             vc.initDateTime('addStartTime', function (_value) {
                 $that.addContractInfo.startTime = _value;
@@ -49,19 +67,20 @@
                 $that.addContractInfo.signingTime = _value;
             });
 
+            $that.addContractInfo.signingTime = vc.dateTimeFormat(new Date().getTime());
+
         },
         _initEvent: function () {
-            vc.on('addContract', 'openAddContractModal', function (_param) {
-                vc.copyObject(_param, $that.addContractInfo);
-                $('#addContractModel').modal('show');
-            });
-            $('#addContractModel').on('show.bs.modal', function (e) {
-                $(this).css('display', 'block');
-                let modalWidth = $(window).width() * 0.7;
-                $(this).find('.modal-dialog').css({
-                    'max-width': modalWidth
-                });
-            });
+            vc.on('addContract', 'chooseRoom', function (param) {
+                $that.addContractInfo.rooms.push(param);
+            })
+
+            vc.on('addContract', 'chooseOwner', function (param) {
+                $that.addContractInfo.partyB = param.name;
+                $that.addContractInfo.bContacts = param.name;
+                $that.addContractInfo.bLink = param.link;
+                $that.addContractInfo.objId = param.ownerId;
+            })
         },
         methods: {
             addContractValidate() {
@@ -248,16 +267,9 @@
             saveContractInfo: function () {
                 if (!vc.component.addContractValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addContractInfo.communityId = vc.getCurrentCommunity().communityId;
-                //不提交数据将数据 回调给侦听处理
-                if (vc.notNull($props.callBackListener)) {
-                    vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addContractInfo);
-                    $('#addContractModel').modal('hide');
-                    return;
-                }
 
                 vc.http.apiPost(
                     '/contract/saveContract',
@@ -270,19 +282,17 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#addContractModel').modal('hide');
-                            vc.component.clearAddContractInfo();
-                            vc.emit('newContractManage', 'listContract', {});
-                            vc.emit('rentingPoolManage', 'listRentingPool', {});
+                            vc.toast('提交成功');
+                            $that._goBack();
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
 
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
 
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
 
                     });
             },
@@ -311,6 +321,17 @@
                     ownerName: '',
                     link: '',
                     objId: '-1',
+                    objType: '1111',
+                    contractParentId: '',
+                    parentContractCode: '',
+                    parentContractName: '',
+                    parentStateName: '',
+                    objName: '',
+                    objPersonName: '',
+                    objPersonId: '',
+                    rooms: [],
+                    contractPartyAs: [],
+
                     objType: '1111'
                 };
             },
@@ -327,6 +348,24 @@
                     function (json, res) {
                         var _contractTypeManageInfo = JSON.parse(json);
                         vc.component.addContractInfo.contractTypes = _contractTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadAddContractParkA: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100
+                    }
+                }
+                //发送get请求
+                vc.http.apiGet('/contractPartya/queryContractPartya',
+                    param,
+                    function (json, res) {
+                        var _contractTypeManageInfo = JSON.parse(json);
+                        vc.component.addContractInfo.contractPartyAs = _contractTypeManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -358,47 +397,21 @@
                     }
                 );
             },
-            _queryRoom: function () {
-                let _allNum = $that.addContractInfo.allNum;
-                if (_allNum == '') {
-                    return;
-                }
-                let param = {
-                    params: {
-                        page: 1,
-                        row: 1,
-                        communityId: vc.getCurrentCommunity().communityId
+            _goBack: function () {
+                vc.goBack();
+            },
+            _selectRoom: function () {
+                vc.emit('searchRoom', 'openSearchRoomModel', {})
+            },
+            _openDelRoomModel: function (_room) {
+
+                let _tmpRooms = [];
+                $that.addContractInfo.rooms.forEach(item => {
+                    if (item.roomId != _room.roomId) {
+                        _tmpRooms.push(item);
                     }
-                };
-
-                param.params.floorNum = '0';
-                param.params.unitNum = '0';
-                param.params.roomNum = _allNum;
-
-                //发送get请求
-                vc.http.get('roomCreateFee',
-                    'listRoom',
-                    param,
-                    function (json, res) {
-                        let listRoomData = JSON.parse(json);
-                        let _rooms = listRoomData.rooms;
-
-                        if (_rooms.length < 1) {
-                            vc.toast('未找到房屋');
-                            $that.addContractInfo.allNum = '';
-                            return;
-                        }
-
-                        $that.addContractInfo.roomId = _rooms[0].roomId;
-                        $that.addContractInfo.ownerName = _rooms[0].ownerName;
-                        $that.addContractInfo.link = _rooms[0].link;
-                        $that.addContractInfo.objType = '3333';
-                        $that.addContractInfo.objId = _rooms[0].roomId;
-
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                });
+                $that.addContractInfo.rooms = _tmpRooms;
             },
             addFileStep: function () {
                 let _file = {
@@ -425,7 +438,9 @@
             },
             _importData: function (index) {
                 // 导入数据
-                if (!vc.component.checkFileType(vc.component.addContractInfo.tempfile.name.split('.')[1])) {
+                let _fileName = vc.component.addContractInfo.tempfile.name;
+                let _suffix = _fileName.substring(_fileName.lastIndexOf('.') + 1);
+                if (!vc.component.checkFileType(_suffix.toLowerCase())) {
                     vc.toast('操作失败，请上传图片、PDF格式的文件');
                     return;
                 }
@@ -465,6 +480,19 @@
                     }
                 }
                 return false;
+            },
+            _changeContractPartyA:function(){
+                let _partyA = $that.addContractInfo.partyA;
+                $that.addContractInfo.contractPartyAs.forEach(item=>{
+                    if(_partyA == item.partyA){
+                        $that.addContractInfo.aLink = item.aLink;
+                        $that.addContractInfo.aContacts = item.aContacts;
+
+                    }
+                })
+            },
+            _searchOwner:function(){
+                vc.emit('searchOwner', 'openSearchOwnerModel',{});
             }
         }
     });

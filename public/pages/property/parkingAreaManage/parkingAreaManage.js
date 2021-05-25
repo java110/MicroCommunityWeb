@@ -54,6 +54,7 @@
                         $that.dealParkingAreaAttr(_parkingAreaManageInfo.parkingAreas);
                         vc.emit('pagination', 'init', {
                             total: vc.component.parkingAreaManageInfo.records,
+                            dataCount: vc.component.parkingAreaManageInfo.total,
                             currentPage: _page
                         });
                     },

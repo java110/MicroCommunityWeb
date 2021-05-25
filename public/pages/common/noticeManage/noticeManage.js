@@ -50,7 +50,8 @@
                                 vc.component.noticeManageInfo.records = _noticeManageInfo.records;
                                 vc.component.noticeManageInfo.notices = _noticeManageInfo.notices;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.noticeManageInfo.records,
+                                    total: vc.component.noticeManageInfo.records,
+                                    dataCount: vc.component.noticeManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

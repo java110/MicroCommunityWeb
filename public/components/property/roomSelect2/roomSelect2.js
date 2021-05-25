@@ -24,15 +24,15 @@
                 handler: function () {
                     let _name = '';
                     if (this.roomSelect2Info.floorNum != '') {
-                        _name = this.roomSelect2Info.floorNum + "栋";
+                        _name = this.roomSelect2Info.floorNum;
                     }
 
                     if (this.roomSelect2Info.unitNum != '') {
-                        _name += (this.roomSelect2Info.unitNum + "单元")
+                        _name += this.roomSelect2Info.unitNum;
                     }
 
                     if (this.roomSelect2Info.roomNum != '') {
-                        _name += (this.roomSelect2Info.roomNum + "室")
+                        _name += this.roomSelect2Info.roomNum;
                     }
                     this.roomSelect2Info.name = _name;
                     vc.emit($props.callBackListener, $props.callBackFunction, this.roomSelect2Info);
@@ -135,7 +135,7 @@
                 for (var i = 0; i < _rooms.length; i++) {
                     var _tmpRoom = {
                         id: _rooms[i].roomId,
-                        text: _rooms[i].roomNum
+                        text: _rooms[i].roomNum + '室'
                     };
                     _tmpRooms.push(_tmpRoom);
                 }

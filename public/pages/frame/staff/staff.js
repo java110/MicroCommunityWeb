@@ -91,6 +91,7 @@
                         vc.component.staffData = staffList;
                         vc.component.$emit('pagination_info_event', {
                             total: _staffInfo.records,
+                            dataCount: _staffInfo.total,
                             currentPage: _staffInfo.page
                         });
                     }, function () {

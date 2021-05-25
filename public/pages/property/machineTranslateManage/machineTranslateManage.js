@@ -53,6 +53,7 @@
                         vc.component.machineTranslateManageInfo.machineTranslates = _machineTranslateManageInfo.machineTranslates;
                         vc.emit('pagination', 'init', {
                             total: vc.component.machineTranslateManageInfo.records,
+                            dataCount: vc.component.machineTranslateManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

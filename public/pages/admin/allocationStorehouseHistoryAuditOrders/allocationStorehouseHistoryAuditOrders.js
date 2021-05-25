@@ -57,6 +57,7 @@
                         vc.component.allocationStorehouseHistoryAuditOrdersInfo.auditOrders = _allocationStorehouseHistoryAuditOrdersInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.allocationStorehouseHistoryAuditOrdersInfo.records,
+                            dataCount: vc.component.allocationStorehouseHistoryAuditOrdersInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -72,7 +73,7 @@
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _toDetail: function (_item) {
-                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?asId=" + _item.asId);
+                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?applyId=" + _item.applyId);
             }
         }
     });

@@ -54,6 +54,7 @@
                         vc.component.attendanceLogManageInfo.attendances = _attendanceLogManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.attendanceLogManageInfo.records,
+                            dataCount: vc.component.attendanceLogManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -10,6 +10,7 @@
                 resourceNames: '',
                 state: '',
                 totalPrice: '',
+                purchaseTotalPrice: '',
                 applyOrderId: '',
                 description: '',
                 createTime: '',
@@ -19,14 +20,14 @@
                 stateName: '',
                 resOrderType: '',
                 purchaseApplyDetailVo: [],
-                auditUsers: []
+                auditUsers: [],
+                warehousingWay: ''
             }
         },
         _initMethod: function () {
             vc.component.purchaseApplyDetailInfo.applyOrderId = vc.getParam('applyOrderId');
             vc.component.purchaseApplyDetailInfo.resOrderType = vc.getParam('resOrderType');
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
-            $that._loadAuditUser();
         },
         _initEvent: function () {
         },
@@ -48,6 +49,9 @@
                         var _purchaseApplyDetailInfo = JSON.parse(json);
                         var _purchaseApply = _purchaseApplyDetailInfo.purchaseApplys;
                         vc.copyObject(_purchaseApply[0], vc.component.purchaseApplyDetailInfo);
+                        if (vc.component.purchaseApplyDetailInfo.warehousingWay != 10000){
+                            $that._loadAuditUser();
+                        }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

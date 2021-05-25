@@ -6,11 +6,11 @@
         },
         data: {
             addResourceStoreInfo: {
-                goodsType: '',
-                goodsTypes: [],
                 unitCode: '',
                 unitCodes: [],
                 resId: '',
+                rstId: '',
+                rssId: '',
                 resName: '',
                 resCode: '',
                 price: '',
@@ -21,14 +21,13 @@
                 remark: '',
                 shId: '',
                 photos: [],
-                storehouses: []
+                storehouses: [],
+                resourceStoreTypes: [],
+                resourceStoreSpecifications: [],
+                warningStock: ''
             }
         },
         _initMethod: function () {
-            //与字典表物品类型关联
-            vc.getDict('resource_store', "goods_type", function (_data) {
-                vc.component.addResourceStoreInfo.goodsTypes = _data;
-            });
             //与字典表单位关联
             vc.getDict('resource_store', "unit_code", function (_data) {
                 vc.component.addResourceStoreInfo.unitCodes = _data;
@@ -36,6 +35,7 @@
         },
         _initEvent: function () {
             vc.on('addResourceStore', 'openAddResourceStoreModal', function () {
+                $that._listAddResourceStoreType();
                 $that._listAddStorehouses();
                 $('#addResourceStoreModel').modal('show');
             });
@@ -77,6 +77,13 @@
                             limit: "money",
                             param: "",
                             errInfo: "物品价格格式错误"
+                        },
+                    ],
+                    'addResourceStoreInfo.warningStock': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "警告库存不能为空"
                         },
                     ],
                     'addResourceStoreInfo.description': [
@@ -124,7 +131,7 @@
                             errInfo: "单位不能为空"
                         },
                     ],
-                    'addResourceStoreInfo.goodsType': [
+                    'addResourceStoreInfo.rstId': [
                         {
                             limit: "required",
                             param: "",
@@ -137,7 +144,7 @@
                             param: "",
                             errInfo: "仓库不能为空"
                         },
-                    ],
+                    ]
                 });
             },
             saveResourceStoreInfo: function () {
@@ -175,43 +182,92 @@
                         vc.toast(errInfo);
                     });
             },
+            //查询物品类型
+            _listAddResourceStoreType: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreType = JSON.parse(json);
+                        vc.component.addResourceStoreInfo.resourceStoreTypes = _resourceStoreType.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 分类改变事件
+            resourceStoreTypesOnChangeAdd: function () {
+                console.log('111');
+              if(vc.component.addResourceStoreInfo.rstId == ''){
+                  vc.component.resourceStoreSpecification = [];
+                  return;
+              }
+                vc.component._loadResourceStoreSpecificationAdd();
+            },
+            // 根据分类查询规格
+            _loadResourceStoreSpecificationAdd: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        rstId: vc.component.addResourceStoreInfo.rstId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
+                    param,
+                    function (json, res) {
+                        var _addResourceStoreInfo = JSON.parse(json);
+                        vc.component.addResourceStoreInfo.resourceStoreSpecifications = _addResourceStoreInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             clearAddResourceStoreInfo: function () {
                 vc.component.addResourceStoreInfo = {
                     resName: '',
                     resCode: '',
+                    rstId: '',
                     price: '',
                     description: '',
                     outLowPrice: '',
                     outHighPrice: '',
                     showMobile: '',
                     remark: '',
-                    goodsType: '',
-                    goodsTypes: [],
                     unitCode: '',
                     shId: '',
                     unitCodes: [],
                     photos: [],
-                    storehouses: []
+                    storehouses: [],
+                    warningStock: ''
                 };
             },
             _listAddStorehouses: function (_page, _rows) {
-
                 var param = {
                     params: {
                         page: 1,
                         row: 100,
                         shType: '2806',
-                        communityId:vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
                     function (json, res) {
                         let _storehouseManageInfo = JSON.parse(json);
                         vc.component.addResourceStoreInfo.storehouses = _storehouseManageInfo.data;
-                     
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

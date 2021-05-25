@@ -16,13 +16,19 @@
                     resId: '',
                     resName: '',
                     resCode: '',
-                    shId: ''
+                    shId: '',
+                    rstId: '',
+                    rssId: ''
                 },
-                storehouses: []
+                storehouses: [],
+                resourceStoreTypes: [],
+                resourceStoreSpecifications: []
             }
         },
         _initMethod: function () {
             vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listResourceStoreTypes();
+            $that._listResourceStoreSpecifications();
         },
         _initEvent: function () {
             vc.on('myResourceStoreManage', 'listResourceStore', function (_param) {
@@ -54,6 +60,7 @@
                         vc.component.myResourceStoreManageInfo.resourceStores = _myResourceStoreManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.myResourceStoreManageInfo.records,
+                            dataCount: vc.component.myResourceStoreManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -67,7 +74,12 @@
             },
             //重置
             _resetResourceStoreMethod: function () {
-                vc.component._resetResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component.myResourceStoreManageInfo.conditions.resId = "";
+                vc.component.myResourceStoreManageInfo.conditions.resName = "";
+                vc.component.myResourceStoreManageInfo.conditions.resCode = "";
+                vc.component.myResourceStoreManageInfo.conditions.rstId = "";
+                vc.component.myResourceStoreManageInfo.conditions.rssId = "";
+                vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.myResourceStoreManageInfo.moreCondition) {
@@ -75,6 +87,54 @@
                 } else {
                     vc.component.myResourceStoreManageInfo.moreCondition = true;
                 }
+            },
+            _listResourceStoreTypes: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeManageInfo = JSON.parse(json);
+                        vc.component.myResourceStoreManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listResourceStoreSpecifications: function () {
+                vc.component.myResourceStoreManageInfo.resourceStoreSpecifications = [];
+                vc.component.myResourceStoreManageInfo.conditions.rssId = '';
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        rstId: vc.component.myResourceStoreManageInfo.conditions.rstId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
+                    param,
+                    function (json, res) {
+                        var _myResourceStoreManageInfo = JSON.parse(json);
+                        vc.component.myResourceStoreManageInfo.resourceStoreSpecifications = _myResourceStoreManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+
+            // 跳转转增商品页面
+            _jump2TransferGoodsPage: function () {
+                vc.jumpToPage("/admin.html#/pages/common/transferGoodsStep");
             }
         }
     });

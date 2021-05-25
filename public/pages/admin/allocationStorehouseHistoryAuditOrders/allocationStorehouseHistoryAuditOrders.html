@@ -11,25 +11,21 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">物品ID</th>
-                                <th class="text-center">物品名称</th>
-                                <th class="text-center">源仓库</th>
-                                <th class="text-center">目标仓库</th>
+                                <th class="text-center">调度编号</th>
                                 <th class="text-center">调拨数量</th>
                                 <th class="text-center">申请人</th>
-                                <th class="text-center">申请说明</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">时间</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="auditOrder in allocationStorehouseHistoryAuditOrdersInfo.auditOrders">
-                                <td class="text-center">{{auditOrder.resId}}</td>
-                                <td class="text-center">{{auditOrder.resName}}</td>
-                                <td class="text-center">{{auditOrder.shaName}}</td>
-                                <td class="text-center">{{auditOrder.shzName}}</td>
-                                <td class="text-center">{{auditOrder.stock}}</td>
+                                <td class="text-center">{{auditOrder.applyId}}</td>
+                                <td class="text-center">{{auditOrder.applyCount}}</td>
                                 <td class="text-center">{{auditOrder.startUserName}}</td>
-                                <td class="text-center">{{auditOrder.remark}}</td>
+                                <td class="text-center">{{auditOrder.stateName}}</td>
+                                <td class="text-center">{{auditOrder.createTime}}</td>
                                 <td class="text-center">
                                     <div>
                                         <div class="btn-group">
@@ -43,7 +39,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="7">
+                                <td colspan="8">
                                     <ul class="pagination float-right"></ul>
                                 </td>
                             </tr>

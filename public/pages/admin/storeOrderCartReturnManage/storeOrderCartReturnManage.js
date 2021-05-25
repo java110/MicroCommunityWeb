@@ -61,6 +61,7 @@
 
                         vc.emit('pagination', 'init', {
                             total: vc.component.storeOrderCartReturnManageInfo.records,
+                            dataCount: vc.component.storeOrderCartReturnManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

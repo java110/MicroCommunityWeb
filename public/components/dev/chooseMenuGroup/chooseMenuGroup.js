@@ -1,4 +1,6 @@
-(function(vc){
+(function (vc) {
+    var DEFAULT_PAGE = 1;
+    var DEFAULT_ROWS = 10;
     vc.extends({
         propTypes: {
            emitChooseMenuGroup:vc.propTypes.string,
@@ -16,7 +18,11 @@
             vc.on('chooseMenuGroup','openChooseMenuGroupModel',function(_param){
                 $('#chooseMenuGroupModel').modal('show');
                 vc.component._refreshChooseMenuGroupInfo();
-                vc.component._loadAllMenuGroupInfo(1,10,'');
+                vc.component._loadAllMenuGroupInfo(DEFAULT_PAGE, DEFAULT_ROWS,'');
+            });
+
+            vc.on('chooseMenuGroup', 'paginationPlus', 'page_event', function (_currentPage) {
+                vc.component._loadAllMenuGroupInfo(_currentPage, DEFAULT_ROWS);
             });
         },
         methods:{
@@ -35,7 +41,12 @@
                              param,
                              function(json){
                                 var _menuGroupInfo = JSON.parse(json);
-                                vc.component.chooseMenuGroupInfo.menuGroups = _menuGroupInfo.menuGroups;
+                                 vc.component.chooseMenuGroupInfo.menuGroups = _menuGroupInfo.menuGroups;
+                                 vc.emit('chooseMenuGroup', 'paginationPlus', 'init', {
+                                     total: _menuGroupInfo.records,
+                                     dataCount: _menuGroupInfo.total,
+                                     currentPage: _page
+                                 });
                              },function(){
                                 console.log('请求失败处理');
                              }
@@ -52,7 +63,7 @@
                 $('#chooseMenuGroupModel').modal('hide');
             },
             queryMenuGroups:function(){
-                vc.component._loadAllMenuGroupInfo(1,10,vc.component.chooseMenuGroupInfo._currentMenuGroupName);
+                vc.component._loadAllMenuGroupInfo(DEFAULT_PAGE, DEFAULT_ROWS,vc.component.chooseMenuGroupInfo._currentMenuGroupName);
             },
             _refreshChooseMenuGroupInfo:function(){
                 vc.component.chooseMenuGroupInfo._currentMenuGroupName = "";

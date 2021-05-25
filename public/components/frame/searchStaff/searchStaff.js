@@ -24,6 +24,10 @@
                 }
                 vc.component._loadAllStaffInfo(1,10);
             });
+
+            vc.on('searchStaff', 'paginationPlus', 'page_event', function (_currentPage) {
+                vc.component._loadAllStaffInfo(_currentPage, 10);
+            });
         },
         methods:{
             _loadAllStaffInfo:function(_page,_rows,_staffName){
@@ -43,6 +47,11 @@
                              function(json){
                                 var _staffInfo = JSON.parse(json);
                                 vc.component.searchStaffInfo.staffs = _staffInfo.staffs;
+                                 vc.emit('searchStaff', 'paginationPlus', 'init', {
+                                     total: _staffInfo.records,
+                                     dataCount: _staffInfo.total,
+                                    currentPage: _page
+                                });
                              },function(){
                                 console.log('请求失败处理');
                              }
