@@ -1,0 +1,65 @@
+<div id = "editStoreInfoModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">修改商户信息管理</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+         <label class="col-sm-2 col-form-label">商户名称</label>
+         <div class="col-sm-10">
+           <input v-model="editStoreInfoInfo.name"                   type="text" placeholder="必填，请填写商户名称" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">图片地址</label>
+         <div class="col-sm-10">
+           <input v-model="editStoreInfoInfo.icon"                   type="text" placeholder="选填，请填写图片地址" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">商户电话</label>
+         <div class="col-sm-10">
+           <input v-model="editStoreInfoInfo.tel"                   type="text" placeholder="选填，请填写商户电话" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">商户位置</label>
+         <div class="col-sm-10">
+           <input v-model="editStoreInfoInfo.site"                   type="text" placeholder="选填，请填写商户位置" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">显示序号</label>
+         <div class="col-sm-10">
+           <input v-model="editStoreInfoInfo.seq"                   type="text" placeholder="必填，请填写显示序号" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">工作时间</label>
+         <div class="col-sm-10">
+           <input v-model="editStoreInfoInfo.workTime"                   type="text" placeholder="选填，请填写工作时间" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+  <label class="col-sm-2 col-form-label">商家信息</label>
+  <div class="col-sm-10 ">
+    <div class=" no-padding">
+      <div class="editSummernote"></div>
+    </div>
+    <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" placeholder="必填，请填写公告内容" class="form-control"></textarea>-->
+  </div>
+</div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editStoreInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
