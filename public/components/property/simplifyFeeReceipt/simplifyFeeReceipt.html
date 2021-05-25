@@ -6,24 +6,35 @@
                 <option disabled value="">请选择收费类型</option>
                 <option selected value="3333">房屋费</option>
                 <option value="6666">车位费</option>
+                <option value="7777">合同费</option>
             </select>
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType == '6666'">
-            <select class="custom-select custom-select-sm" v-model="simplifyCarFeeInfo.carId" @change="changeSimplifyFeeReceiptCar()">
+            <select class="custom-select custom-select-sm" v-model="simplifyCarFeeInfo.carId"
+                @change="changeSimplifyFeeReceiptCar()">
                 <option disabled value="">请选择车辆</option>
                 <option v-for="(item,index) in simplifyFeeReceiptInfo.ownerCars" :value="item.carId">{{item.carNum}}
                 </option>
             </select>
         </div>
-        <div class="col-lg-2 padding-right-xs padding-left-xl">
+        <div class="col-lg-2 padding-right-xs padding-left-xl" v-else-if="simplifyFeeReceiptInfo.objType == '7777'">
+            <select class="custom-select custom-select-sm" v-model="simplifyCarFeeInfo.contractId"
+                @change="changeSimplifyFeeReceiptCar()">
+                <option disabled value="">请选择合同</option>
+                <option v-for="(item,index) in simplifyFeeReceiptInfo.ownerContracts" :value="item.contractId">
+                    {{item.contractCode}}
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '7777'">
             <select class="custom-select custom-select-sm" v-model="simplifyFeeReceiptInfo.ownerFlag"
                 @change="_queryFeeReceiptMethod()">
                 <option value="F">当前{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}</option>
                 <option value="T">全部{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}</option>
             </select>
         </div>
-        <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '6666'">
-            
+        <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '6666' ">
+
         </div>
         <div class="col-lg-6 text-right padding-right-lg">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
@@ -49,7 +60,7 @@
                             @click="checkAllReceipt($event)">
                     </th>
                     <th class="text-center">费用类型</th>
-                    <th class="text-center">{{simplifyFeeReceiptInfo.objType == '3333'?'房屋':'车位'}}</th>
+                    <th class="text-center">{{_getFeeObjName(simplifyFeeReceiptInfo.objType)}}</th>
                     <th class="text-center">总金额</th>
                     <th class="text-center">缴费时间</th>
                     <th class="text-center">收据ID</th>
@@ -61,7 +72,7 @@
                         <input type="checkbox" class="i-checks checReceiptItem" v-bind:value="feeReceipt.receiptId"
                             v-model="simplifyFeeReceiptInfo.selectReceipts">
                     </td>
-                    <td class="text-center">{{feeReceipt.objType == '3333'? '房屋费':'车位费'}}</td>
+                    <td class="text-center">{{_getFeeObjName(feeReceipt.objType)}}费</td>
                     <td class="text-center">{{feeReceipt.objName}}</td>
                     <td class="text-center">{{feeReceipt.amount}}</td>
                     <td class="text-center">{{feeReceipt.createTime}}</td>

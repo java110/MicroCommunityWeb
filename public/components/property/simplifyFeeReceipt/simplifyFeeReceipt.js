@@ -10,15 +10,17 @@
                 feeReceipts: [],
                 objType: '3333',
                 objId: '',
-                payObjId:'',
+                payObjId: '',
                 roomId: '',
                 carId: '',
                 total: '',
                 records: '',
                 ownerId: '',
                 ownerCars: [],
+                ownerContracts: [],
                 selectReceipts: [],
-                ownerFlag:'F',
+                ownerFlag: 'F',
+                contractId: '',
                 quan: false
             }
         },
@@ -65,9 +67,15 @@
             _listSimplifyFeeReceipt: function (_page, _rows) {
                 $that.simplifyFeeReceiptInfo.selectReceipts = [];
                 $that.simplifyFeeReceiptInfo.quan = false;
-                let _objId = $that.simplifyFeeReceiptInfo.objType == '3333'
-                    ? $that.simplifyFeeReceiptInfo.roomId
-                    : $that.simplifyFeeReceiptInfo.carId;
+                let _objId = '';
+
+                if ($that.simplifyFeeReceiptInfo.objType == '3333') {
+                    _objId = $that.simplifyFeeReceiptInfo.roomId
+                } else if ($that.simplifyFeeReceiptInfo.objType == '6666') {
+                    _objId = $that.simplifyFeeReceiptInfo.carId
+                } else {
+                    _objId = $that.simplifyFeeReceiptInfo.contractId
+                }
                 var param = {
                     params: {
                         page: _page,
@@ -78,7 +86,7 @@
                     }
                 };
                 //根据业主去查询
-                if( $that.simplifyFeeReceiptInfo.ownerFlag == 'T'){
+                if ($that.simplifyFeeReceiptInfo.ownerFlag == 'T') {
                     param.params.objId = '';
                     param.params.payObjId = $that.simplifyFeeReceiptInfo.payObjId;
                 }
@@ -114,7 +122,7 @@
                 if (receiptids.endsWith(',')) {
                     receiptids = receiptids.substring(0, receiptids.length - 1);
                 }
-                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids+"&apply=N");
+                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids + "&apply=N");
             },
 
             _printApplyFeeReceipt: function (_receipt) {
@@ -129,10 +137,10 @@
                 if (receiptids.endsWith(',')) {
                     receiptids = receiptids.substring(0, receiptids.length - 1);
                 }
-                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids+"&apply=Y");
+                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids + "&apply=Y");
             },
 
-            _printFeeSmallReceipt:function(){
+            _printFeeSmallReceipt: function () {
                 if ($that.simplifyFeeReceiptInfo.selectReceipts.length < 1) {
                     vc.toast('请选择打印收据');
                     return;
@@ -157,8 +165,10 @@
                     records: '',
                     ownerId: '',
                     ownerCars: [],
+                    ownerContracts: [],
                     selectReceipts: [],
-                    ownerFlag:'F',
+                    ownerFlag: 'F',
+                    contractId: '',
                     quan: false
                 }
             },
@@ -166,14 +176,22 @@
 
                 if ($that.simplifyFeeReceiptInfo.objType == '3333') {
                     vc.emit('simplifyFeeReceipt', 'notify', {});
-                    return;
+                } else if ($that.simplifyFeeReceiptInfo.objType == '6666') {
+                    $that._listSimplifyFeeReceiptOwnerCar()
+                        .then((data) => {
+                            vc.emit('simplifyFeeReceipt', 'notify', {});
+                        }, (err) => {
+                            //vc.toast(err);
+                        })
+                } else {
+                    $that._listSimplifyFeeReceiptOwnerContract()
+                        .then((data) => {
+                            vc.emit('simplifyFeeReceipt', 'notify', {});
+                        }, (err) => {
+                            //vc.toast(err);
+                        })
                 }
-                $that._listSimplifyFeeReceiptOwnerCar()
-                    .then((data) => {
-                        vc.emit('simplifyFeeReceipt', 'notify', {});
-                    }, (err) => {
-                        //vc.toast(err);
-                    })
+
             },
             changeSimplifyFeeReceiptCar: function () {
                 $that._changeSimplifyFeeReceiptFeeTypeCd();
@@ -204,6 +222,34 @@
                             reject(errInfo);
                         }
                     );
+                })
+            },
+            _listSimplifyFeeReceiptOwnerContract: function () {
+                return new Promise((resolve, reject) => {
+                    let param = {
+                        params: {
+                            page: 1,
+                            row: 50,
+                            objId: $that.simplifyFeeReceiptInfo.ownerId,
+                            communityId: vc.getCurrentCommunity().communityId
+                        }
+                    }
+                    //发送get请求
+                    vc.http.apiGet('/contract/queryContract',
+                        param,
+                        function (json, res) {
+                            let _json = JSON.parse(json);
+                            $that.simplifyFeeReceiptInfo.ownerContracts = _json.data;
+                            if (_json.data.length > 0) {
+                                $that.simplifyFeeReceiptInfo.contractId = _json.data[0].contractId;
+                                resolve(_json.data);
+                                return;
+                            }
+                            reject("没有车位");
+                        }, function (errInfo, error) {
+                            reject(errInfo);
+                        }
+                    );
 
                 })
 
@@ -219,6 +265,17 @@
                 } else { // 如果是去掉全选则清空checkbox选项绑定数组
                     vc.component.simplifyFeeReceiptInfo.selectReceipts = [];
                 }
+            },
+            _getFeeObjName:function(_feeTypeCd){
+                if(_feeTypeCd == '3333'){
+
+                   return '房屋';
+                }else if(_feeTypeCd == '6666'){
+                    return '车位';
+                }else{
+                    return '合同';
+                }
+
             }
         }
     });
