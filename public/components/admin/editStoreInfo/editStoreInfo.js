@@ -4,13 +4,13 @@
         data:{
             editStoreInfoInfo:{
                 storeInfoId:'',
-name:'',
-icon:'',
-tel:'',
-site:'',
-seq:'',
-workTime:'',
-remark:'',
+                name:'',
+                icon:'',
+                tel:'',
+                site:'',
+                seq:'',
+                workTime:'',
+                remark:'',
 
             }
         },
@@ -22,8 +22,21 @@ remark:'',
                 vc.component.refreshEditStoreInfoInfo();
                 $('#editStoreInfoModel').modal('show');
                 vc.copyObject(_params, vc.component.editStoreInfoInfo );
+
+                let _photos = [];
+                _photos.push(vc.component.editStoreInfoInfo.icon);
+                vc.emit('editIconCover','uploadImage', 'notifyPhotos',_photos);
                 vc.component.editStoreInfoInfo.communityId = vc.getCurrentCommunity().communityId;
                 $(".editSummernote").summernote('code', vc.component.editStoreInfoInfo.remark);
+            });
+
+            vc.on("editIcon", "notifyUploadCoverImage", function (_param) {
+                if(_param.length > 0){
+                    vc.component.editStoreInfoInfo.icon = _param[0];
+                }else{
+                    vc.component.editStoreInfoInfo.icon = '';
+                }
+                
             });
         },
         methods:{
@@ -190,20 +203,24 @@ remark:'',
                     });
 
             },
+            _closeStoreInfo: function () {
+                $that.refreshEditStoreInfoInfo();
+                vc.emit('storeInfoManage','listStoreInfo',{});
+            },
             refreshEditStoreInfoInfo:function(){
                 vc.component.editStoreInfoInfo= {
                   storeInfoId:'',
-name:'',
-icon:'',
-tel:'',
-site:'',
-seq:'',
-workTime:'',
-remark:'',
+                    name:'',
+                    icon:'',
+                    tel:'',
+                    site:'',
+                    seq:'',
+                    workTime:'',
+                    remark:'',
 
-                }
-            }
-        }
-    });
+                                    }
+                                }
+                            }
+                        });
 
 })(window.vc,window.vc.component);

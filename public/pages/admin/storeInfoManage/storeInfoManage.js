@@ -12,6 +12,7 @@
                 records:1,
                 moreCondition:false,
                 name:'',
+                componentShow:'storeInfoManage',
                 conditions:{
                     name:'',
 
@@ -24,6 +25,7 @@
         _initEvent:function(){
             
             vc.on('storeInfoManage','listStoreInfo',function(_param){
+                $that.storeInfoManageInfo.componentShow = 'storeInfoManage';
                   vc.component._listStoreInfos(DEFAULT_PAGE, DEFAULT_ROWS);
             });
              vc.on('pagination','page_event',function(_currentPage){
@@ -57,9 +59,11 @@
                            );
             },
             _openAddStoreInfoModal:function(){
-                vc.emit('addStoreInfo','openAddStoreInfoModal',{});
+                $that.storeInfoManageInfo.componentShow = 'addStoreInfo';
+                //vc.emit('addStoreInfo','openAddStoreInfoModal',{});
             },
             _openEditStoreInfoModel:function(_storeInfo){
+                $that.storeInfoManageInfo.componentShow = 'editStoreInfo';
                 vc.emit('editStoreInfo','openEditStoreInfoModal',_storeInfo);
             },
             _openDeleteStoreInfoModel:function(_storeInfo){

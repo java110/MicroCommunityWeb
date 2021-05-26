@@ -4,11 +4,11 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>便民服务菜单信息</h5>
+                    <h5>便民服务</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddConvenienceMenusModal()">
                             <i class="glyphicon glyphicon-plus"></i>
-                            添加便民服务菜单
+                            添加
                         </button>
                     </div>
                 </div>
@@ -62,12 +62,13 @@
         </div>
     </div>
 
-    
-
     <vc:create path="admin/addConvenienceMenus"
                callBackListener=""
                callBackFunction=""
     ></vc:create>
+
+
+    
     <vc:create path="admin/editConvenienceMenus"></vc:create>
     <vc:create path="admin/deleteConvenienceMenus"></vc:create>
 

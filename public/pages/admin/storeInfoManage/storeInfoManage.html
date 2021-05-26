@@ -1,14 +1,14 @@
 <div >
    
-    <div class="row">
+    <div class="row" v-if="storeInfoManageInfo.componentShow == 'storeInfoManage'">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>商户信息管理信息</h5>
+                    <h5>商户信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStoreInfoModal()">
                             <i class="glyphicon glyphicon-plus"></i>
-                            添加商户信息管理
+                            添加
                         </button>
                     </div>
                 </div>
@@ -64,13 +64,15 @@
         </div>
     </div>
 
-    
 
-    <vc:create path="admin/addStoreInfo"
-               callBackListener=""
-               callBackFunction=""
-    ></vc:create>
-    <vc:create path="admin/editStoreInfo"></vc:create>
+    <div v-bind:class="{no_display:storeInfoManageInfo.componentShow != 'addStoreInfo'}">
+        <vc:create path="admin/addStoreInfo" callBackListener="" callBackFunction=""></vc:create>
+    </div>
+    <div v-bind:class="{no_display:storeInfoManageInfo.componentShow != 'editStoreInfo'}">
+        <vc:create path="admin/editStoreInfo"></vc:create>
+    </div>
+
+
     <vc:create path="admin/deleteStoreInfo"></vc:create>
 
 </div>

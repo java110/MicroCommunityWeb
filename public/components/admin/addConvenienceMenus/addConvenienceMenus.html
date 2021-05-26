@@ -15,9 +15,8 @@
 <div class="form-group row">
          <label class="col-sm-2 col-form-label">图片地址</label>
          <div content-img  class="col-sm-10">
-           <input v-model="addConvenienceMenusInfo.icon"                   type="text" placeholder="选填，请填写图片地址" class="form-control">
-           <vc:create path="frame/uploadImage" callBackListener="addProduct"
-           callBackFunction="notifyUploadCoverImage" namespace="addProductCover" imageCount="1"></vc:create>
+           <vc:create path="frame/uploadImage" callBackListener="addIcon"
+           callBackFunction="notifyUploadCoverImage" namespace="addIconCover" imageCount="1"></vc:create>
          </div>
 
 </div>

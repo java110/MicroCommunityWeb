@@ -4,11 +4,11 @@
         data:{
             editConvenienceMenusInfo:{
                 convenienceMenusId:'',
-name:'',
-icon:'',
-url:'',
-seq:'',
-remark:'',
+                name:'',
+                icon:'',
+                url:'',
+                seq:'',
+                remark:'',
 
             }
         },
@@ -20,7 +20,19 @@ remark:'',
                 vc.component.refreshEditConvenienceMenusInfo();
                 $('#editConvenienceMenusModel').modal('show');
                 vc.copyObject(_params, vc.component.editConvenienceMenusInfo );
+                let _photos = [];
+                _photos.push(vc.component.editConvenienceMenusInfo.icon);
+                vc.emit('editIconCover','uploadImage', 'notifyPhotos',_photos);
                 vc.component.editConvenienceMenusInfo.communityId = vc.getCurrentCommunity().communityId;
+            });
+
+            vc.on("editIcon", "notifyUploadCoverImage", function (_param) {
+                if(_param.length > 0){
+                    vc.component.editConvenienceMenusInfo.icon = _param[0];
+                }else{
+                    vc.component.editConvenienceMenusInfo.icon = '';
+                }
+                
             });
         },
         methods:{
@@ -114,11 +126,11 @@ remark:'',
             refreshEditConvenienceMenusInfo:function(){
                 vc.component.editConvenienceMenusInfo= {
                   convenienceMenusId:'',
-name:'',
-icon:'',
-url:'',
-seq:'',
-remark:'',
+                    name:'',
+                    icon:'',
+                    url:'',
+                    seq:'',
+                    remark:'',
 
                 }
             }

@@ -9,10 +9,10 @@
             addConvenienceMenusInfo:{
                 convenienceMenusId:'',
                 name:'',
-icon:'',
-url:'',
-seq:'',
-remark:'',
+                icon:'',
+                url:'',
+                seq:'',
+                remark:'',
 
             }
         },
@@ -22,6 +22,13 @@ remark:'',
          _initEvent:function(){
             vc.on('addConvenienceMenus','openAddConvenienceMenusModal',function(){
                 $('#addConvenienceMenusModel').modal('show');
+            });
+            vc.on("addIcon", "notifyUploadCoverImage", function (_param) {
+                if(_param.length > 0){
+                    vc.component.addConvenienceMenusInfo.icon = _param[0];
+                }else{
+                    vc.component.addConvenienceMenusInfo.icon = '';
+                }
             });
         },
         methods:{
@@ -39,13 +46,6 @@ remark:'',
                             limit:"maxLength",
                             param:"50",
                             errInfo:"菜单名称太长"
-                        },
-                    ],
-'addConvenienceMenusInfo.icon':[
- {
-                            limit:"maxLength",
-                            param:"100",
-                            errInfo:"图片地址太长"
                         },
                     ],
 'addConvenienceMenusInfo.url':[

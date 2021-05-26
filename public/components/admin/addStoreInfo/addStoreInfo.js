@@ -25,6 +25,13 @@
             vc.on('addStoreInfo','openAddStoreInfoModal',function(){
                 $('#addStoreInfoModel').modal('show');
             });
+            vc.on("addIcon", "notifyUploadCoverImage", function (_param) {
+                if(_param.length > 0){
+                    vc.component.addStoreInfoInfo.icon = _param[0];
+                }else{
+                    vc.component.addStoreInfoInfo.icon = '';
+                }
+            });
         },
         methods:{
             addStoreInfoValidate(){
@@ -198,6 +205,10 @@
                         vc.toast(errInfo);
                     });
 
+            },
+            _closeAddProductInfo: function () {
+                $that.clearAddStoreInfoInfo();
+                vc.emit('storeInfoManage','listStoreInfo',{});
             },
             clearAddStoreInfoInfo:function(){
                 vc.component.addStoreInfoInfo = {
