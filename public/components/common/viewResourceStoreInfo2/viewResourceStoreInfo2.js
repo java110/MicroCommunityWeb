@@ -24,7 +24,7 @@
         _initMethod: function () {
             //根据请求参数查询 查询 业主信息
             vc.component._loadResourceStoreInfoData();
-            vc.component._loadResourceSuppliers();
+            // vc.component._loadResourceSuppliers();
         },
         _initEvent: function () {
             vc.on('viewResourceStoreInfo2', 'setResourcesOut', function (_resOrderType) {

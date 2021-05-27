@@ -34,7 +34,7 @@
                                 </div>
                                 <div style="display: inline-block;" v-if="auditOrdersInfo.procure == false">
                                     <div class="btn-group"
-                                         v-if="auditOrdersInfo.currentUserId != auditOrder.userId">
+                                         v-if="auditOrder.state == 1000 || auditOrder.state == 1001">
                                         <button class="btn-white btn btn-xs"
                                                 v-on:click="_openAuditOrderModel(auditOrder)">审批
                                         </button>
@@ -47,7 +47,11 @@
                                 </div>
                                 <div class="btn-group" v-else>
                                     <button class="btn-white btn btn-xs"
+                                            v-if="auditOrder.state == 1001"
                                             v-on:click="_distributionOrder(auditOrder)">物品发放
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-else
+                                            v-on:click="_finishAuditOrder(auditOrder)">结束
                                     </button>
                                 </div>
                             </td>

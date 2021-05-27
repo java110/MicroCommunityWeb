@@ -100,6 +100,7 @@
                             <th class="text-center">物品类型</th>
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
+                            <th class="text-center">供应商</th>
                             <th class="text-center">物品编码</th>
                             <th class="text-center">参考单价</th>
                             <th class="text-center">原有库存</th>
@@ -116,6 +117,7 @@
                             <td class="text-center">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
+                            <td class="text-center">{{resourceStore.supplierName ? resourceStore.supplierName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
                             <td class="text-center">￥{{resourceStore.price}}</td>
                             <td class="text-center">{{resourceStore.originalStock}}</td>
@@ -129,7 +131,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="12">
+                            <td colspan="13">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

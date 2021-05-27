@@ -18,6 +18,7 @@
                             <th class="text-center">申请数量</th>
                             <th class="text-center">采购数量</th>
                             <th class="text-center">采购单价</th>
+                            <th class="text-center">供应商</th>
                             <th class="text-center">备注</th>
                         </tr>
                         </thead>
@@ -37,6 +38,14 @@
                             <td class="text-center">
                                 <input v-model="resourceEnter.price" type="text"
                                        placeholder="必填，请填写采购单价" class="form-control">
+                            </td>
+                            <td class="text-center">
+                                <select class="form-control" name="" id="" v-model="resourceEnter.rsId">
+                                    <option value="" selected>请选择</option>
+                                    <option v-for="supplier in resourceEnterManageInfo.resourceSuppliers" :value="supplier.rsId">
+                                        {{supplier.supplierName}}
+                                    </option>
+                                </select>
                             </td>
                             <td class="text-center">
                                 <input v-model="resourceEnter.purchaseRemark" type="text" placeholder="可填，请填写备注"

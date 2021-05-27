@@ -12,6 +12,7 @@
                 taskId: '',
                 resOrderType: '',
                 purchaseApplyDetailVo: [],
+                resourceSuppliers: [],
             }
         },
         _initMethod: function () {
@@ -19,6 +20,7 @@
             vc.component.resourceEnterManageInfo.resOrderType = vc.getParam('resOrderType');
             vc.component.resourceEnterManageInfo.taskId = vc.getParam('taskId');
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._loadResourceSuppliers();
         },
         _initEvent: function () {
         },
@@ -44,7 +46,23 @@
                             item.purchaseQuantity = '';
                             item.price = '';
                             item.purchaseRemark = '';
+                            item.rsId = '';
                         });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadResourceSuppliers() {
+                var param = {
+                    params: { page: 1, row: 50 }
+                };
+                //发送get请求
+                vc.http.apiGet('resourceSupplier.listResourceSuppliers',
+                    param,
+                    function (json, res) {
+                        var _resourceSupplierManageInfo = JSON.parse(json);
+                        vc.component.resourceEnterManageInfo.resourceSuppliers = _resourceSupplierManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
