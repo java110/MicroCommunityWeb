@@ -1,0 +1,71 @@
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>添加商户</h5>
+          <div class="ibox-tools" style="top:10px;">
+
+          </div>
+        </div>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+ <div class="form-group row">
+         <label class="col-sm-2 col-form-label text-right">商户名称</label>
+         <div class="col-sm-10">
+           <input v-model="addStoreInfoInfo.name"                   type="text" placeholder="必填，请填写商户名称" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label text-right">图片地址</label>
+         <div class="col-sm-10">
+           <vc:create path="frame/uploadImage" callBackListener="addIcon"
+           callBackFunction="notifyUploadCoverImage" namespace="addIconCover" imageCount="1"></vc:create>
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label text-right">商户电话</label>
+         <div class="col-sm-10">
+           <input v-model="addStoreInfoInfo.tel"                   type="text" placeholder="选填，请填写商户电话" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label text-right">商户位置</label>
+         <div class="col-sm-10">
+           <input v-model="addStoreInfoInfo.site"                   type="text" placeholder="选填，请填写商户位置" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label text-right">显示序号</label>
+         <div class="col-sm-10">
+           <input v-model="addStoreInfoInfo.seq"                   type="text" placeholder="必填，请填写显示序号" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label text-right">工作时间</label>
+         <div class="col-sm-10">
+           <input v-model="addStoreInfoInfo.workTime"                   type="text" placeholder="选填，请填写工作时间" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+  <label class="col-sm-2 col-form-label text-right">商家信息</label>
+  <div class="col-sm-10 ">
+    <div class=" no-padding">
+      <div class="summernote"></div>
+    </div>
+    <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" placeholder="必填，请填写公告内容" class="form-control"></textarea>-->
+  </div>
+</div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveStoreInfoInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" v-on:click="_closeAddProductInfo()" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
