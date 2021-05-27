@@ -20,6 +20,7 @@
                         <th class="text-center">物品编码</th>
                         <!-- <th class="text-center">物品价格</th> -->
                         <th class="text-center">物品库存</th>
+                        <th class="text-center">参考单价</th>
                         <th class="text-center">{{viewResourceStoreInfo3.resOrderType == 10000 ? '采购数量' : '出库数量'}}</th>
                         <th class="text-center" v-if="viewResourceStoreInfo3.resOrderType == 10000">采购单价</th>
                         <th class="text-center" v-if="viewResourceStoreInfo3.resOrderType == 10000">供应商</th>
@@ -35,6 +36,7 @@
                         <td class="text-center">{{resourceStore.resCode}}</td>
                         <!-- <td class="text-center">{{resourceStore.price}}</td> -->
                         <td class="text-center">{{resourceStore.stock}}</td>
+                        <td class="text-center">{{resourceStore.price}}</td>
                         <td class="text-center">
                             <input v-model="resourceStore.purchaseQuantity" type="number" placeholder="必填，请填写数量" class="form-control">
                         </td>

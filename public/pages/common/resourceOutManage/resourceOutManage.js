@@ -82,7 +82,7 @@
                     }
                     let _purchaseQuantity = parseFloat(item.purchaseQuantity).toFixed(2);
                     let _stock = parseFloat(item.stock).toFixed(2)
-                    if (_purchaseQuantity > _stock) {
+                    if (parseFloat(_purchaseQuantity) > parseFloat(_stock)) {
                         vc.toast('库存不足');
                         _flag = false;
                         return;
