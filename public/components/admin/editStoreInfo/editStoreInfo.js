@@ -56,13 +56,6 @@
                             errInfo:"商户名称太长"
                         },
                     ],
-'editStoreInfoInfo.icon':[
- {
-                            limit:"maxLength",
-                            param:"100",
-                            errInfo:"图片地址太长"
-                        },
-                    ],
 'editStoreInfoInfo.tel':[
  {
                             limit:"maxLength",

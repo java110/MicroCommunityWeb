@@ -34,7 +34,10 @@
                         <tr v-for="convenienceMenus in convenienceMenusManageInfo.convenienceMenuss">
                                                         <td class="text-center">{{convenienceMenus.convenienceMenusId}}</td>
                             <td class="text-center">{{convenienceMenus.name}}</td>
-                            <td class="text-center">{{convenienceMenus.icon}}</td>
+                            <td class="text-center">
+                                <img style="width: 60px; height: 60px; border-radius: 5px;"
+                                v-bind:src="convenienceMenus.icon"></img>
+                            </td>
                             <td class="text-center">{{convenienceMenus.url}}</td>
                             <td class="text-center">{{convenienceMenus.seq}}</td>
                             <td class="text-center">{{convenienceMenus.remark}}</td>

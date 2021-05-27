@@ -52,13 +52,6 @@
                             errInfo:"菜单名称太长"
                         },
                     ],
-'editConvenienceMenusInfo.icon':[
- {
-                            limit:"maxLength",
-                            param:"100",
-                            errInfo:"图片地址太长"
-                        },
-                    ],
 'editConvenienceMenusInfo.url':[
  {
                             limit:"maxLength",
