@@ -9,6 +9,8 @@
             addStoreInfoInfo:{
                 storeInfoId:'',
                 name:'',
+                convenienceMenusId:'',
+                isShow:'',
                 icon:'',
                 tel:'',
                 site:'',
@@ -206,6 +208,8 @@
             clearAddStoreInfoInfo:function(){
                 vc.component.addStoreInfoInfo = {
                                             name:'',
+                                            convenienceMenusId:'',
+                                            isShow:'',
                                             icon:'',
                                             tel:'',
                                             site:'',
