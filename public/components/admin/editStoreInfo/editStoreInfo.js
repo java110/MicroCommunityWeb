@@ -5,6 +5,8 @@
             editStoreInfoInfo:{
                 storeInfoId:'',
                 name:'',
+                convenienceMenusId:'',
+                isShow:'',
                 icon:'',
                 tel:'',
                 site:'',
@@ -204,6 +206,8 @@
                 vc.component.editStoreInfoInfo= {
                   storeInfoId:'',
                     name:'',
+                    convenienceMenusId:'',
+                    isShow:'',
                     icon:'',
                     tel:'',
                     site:'',

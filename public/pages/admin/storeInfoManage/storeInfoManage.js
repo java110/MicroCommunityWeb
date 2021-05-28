@@ -8,6 +8,7 @@
         data:{
             storeInfoManageInfo:{
                 storeInfos:[],
+                menuInfos:[],
                 total:0,
                 records:1,
                 moreCondition:false,
@@ -15,12 +16,15 @@
                 componentShow:'storeInfoManage',
                 conditions:{
                     name:'',
+                    isShow:'',
+                    convenienceMenusId:'',
 
                 }
             }
         },
         _initMethod:function(){
             vc.component._listStoreInfos(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._listConvenienceMenuss(DEFAULT_PAGE, 50);
         },
         _initEvent:function(){
             
@@ -33,6 +37,26 @@
             });
         },
         methods:{
+            _listConvenienceMenuss:function(_page, _rows){
+                vc.component.storeInfoManageInfo.conditions.page = _page;
+                vc.component.storeInfoManageInfo.conditions.row = _rows;
+                
+                var param = {
+                    params:vc.component.storeInfoManageInfo.conditions
+               };
+
+               //发送get请求
+               vc.http.apiGet('/convenienceMenus/queryConvenienceMenus',
+                             param,
+                             function(json,res){
+                                var _convenienceMenusManageInfo=JSON.parse(json);
+                                vc.component.storeInfoManageInfo.menuInfos = _convenienceMenusManageInfo.data;
+                             },function(errInfo,error){
+                                console.log('请求失败处理');
+                             }
+                           );
+            },
+
             _listStoreInfos:function(_page, _rows){
 
                 vc.component.storeInfoManageInfo.conditions.page = _page;
