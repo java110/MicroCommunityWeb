@@ -15,7 +15,8 @@
                 conditions: {
                     hktName: '',
                     isShow: '',
-                    shopId: '9999'
+                    shopId: '9999',
+                    typeCd:''
                 }
             }
         },
