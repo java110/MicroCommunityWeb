@@ -218,8 +218,7 @@
             _loadAdvertItem: function () {
                 var param = {
                     params: {
-                        advertId: vc.component.editAdvertInfo.advertId,
-                        communityId: '9999'
+                        advertId: vc.component.editAdvertInfo.advertId
                     }
                 };
                 //发送get请求
