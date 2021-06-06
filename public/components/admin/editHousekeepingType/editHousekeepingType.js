@@ -22,6 +22,9 @@
                 vc.component.refreshEditHousekeepingTypeInfo();
                 $('#editHousekeepingTypeModel').modal('show');
                 vc.copyObject(_params, vc.component.editHousekeepingTypeInfo);
+                let _photos = [];
+                _photos.push(_params.hktIcon);
+                vc.emit('editHousekeepingType', 'uploadImage', 'notifyPhotos', _photos);
             });
             vc.on("editHousekeepingType", "notifyUploadCoverImage", function (_param) {
                 if (_param.length > 0) {
