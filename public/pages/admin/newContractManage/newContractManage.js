@@ -13,7 +13,7 @@
                 moreCondition: false,
                 contractId: '',
                 conditions: {
-                    contractName: '',
+                    contractNameLike: '',
                     contractCode: '',
                     contractType: '',
                     state:'11'

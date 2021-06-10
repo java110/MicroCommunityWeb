@@ -65,7 +65,7 @@
                             _amount += parseFloat(item.amount)
                         });
 
-                        $that.printPayFeeInfo.amount = _amount;
+                        $that.printPayFeeInfo.amount = _amount.toFixed(2);
                         $that.printPayFeeInfo.roomName = _feeReceipt[0].objName;
                         $that.printPayFeeInfo.feeTime = _feeReceipt[0].createTime;
                         $that.printPayFeeInfo.receiptNum = _feeReceipt[0].receiptId;
