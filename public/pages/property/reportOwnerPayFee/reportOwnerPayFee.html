@@ -1,0 +1,62 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>业主缴费明细</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
+                            <i class="fa fa-plus"></i> 导出
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">业主</th>
+                            <th class="text-center">房屋</th>
+                            <th class="text-center">费用项目</th>
+                            <th class="text-center">1月</th>
+                            <th class="text-center">2月</th>
+                            <th class="text-center">3月</th>
+                            <th class="text-center">4月</th>
+                            <th class="text-center">5月</th>
+                            <th class="text-center">6月</th>
+                            <th class="text-center">7月</th>
+                            <th class="text-center">8月</th>
+                            <th class="text-center">9月</th>
+                            <th class="text-center">10月</th>
+                            <th class="text-center">11月</th>
+                            <th class="text-center">12月</th>
+                            <th class="text-center">合计</th>
+                            <th class="text-center">应收</th>
+                            <th class="text-center">预收</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(fee,index) in reportOwnerPayFeeInfo.ownerPayFees">
+                            <td class="text-center">{{fee.ownerName}}</td>
+                            <td class="text-center">{{fee.roomName}}</td>
+                            <td class="text-center">{{fee.feeName}}</td>
+                            <td class="text-center">{{fee.month}}</td>
+                            <td class="text-center">{{fee.link}}</td>
+                            <td class="text-center">{{fee.link}}</td>
+                            <td class="text-center">{{fee.link}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="8">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
