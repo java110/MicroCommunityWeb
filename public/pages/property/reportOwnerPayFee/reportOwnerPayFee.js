@@ -12,8 +12,8 @@
                 records: 1,
                 moreCondition: false,
                 conditions: {
-                   
-                   
+
+
                 }
             }
         },
@@ -26,7 +26,7 @@
             });
         },
         methods: {
-            
+
             //查询
             _queryMethod: function () {
                 vc.component._listOwnerPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -47,7 +47,7 @@
                         vc.component.reportOwnerPayFeeInfo.total = _reportOwnerPayFeeInfo.total;
                         vc.component.reportOwnerPayFeeInfo.records = _reportOwnerPayFeeInfo.records;
                         vc.component.reportOwnerPayFeeInfo.ownerPayFees = _reportOwnerPayFeeInfo.data;
-                        
+
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportOwnerPayFeeInfo.records,
                             currentPage: _page,
@@ -64,6 +64,87 @@
                 } else {
                     vc.component.reportOwnerPayFeeInfo.moreCondition = true;
                 }
+            },
+            _getAmountByMonth: function (_fee, month) {
+                let _amount = 0;
+                if (!_fee.hasOwnProperty('reportOwnerPayFeeDtos')) {
+                    return _amount;
+                }
+
+                let _reportOwnerPayFeeDtos = _fee.reportOwnerPayFeeDtos;
+                if (_reportOwnerPayFeeDtos.length == 0) {
+                    return _amount;
+                }
+
+                _reportOwnerPayFeeDtos.forEach(item => {
+                    if (item.pfMonth == month) {
+                        _amount = item.amount;
+                        return;
+                    }
+                });
+
+                return amount;
+            },
+            _getTotalAmount: function (_fee) {
+                let _amount = 0;
+                if (!_fee.hasOwnProperty('reportOwnerPayFeeDtos')) {
+                    return _amount;
+                }
+
+                let _reportOwnerPayFeeDtos = _fee.reportOwnerPayFeeDtos;
+                if (_reportOwnerPayFeeDtos.length == 0) {
+                    return _amount;
+                }
+
+                _reportOwnerPayFeeDtos.forEach(item => {
+                    _amount += item.amount;
+                });
+
+                return amount;
+            },
+            _getReceivableTotalAmount: function (_fee) {
+                let _amount = 0;
+                if (!_fee.hasOwnProperty('reportOwnerPayFeeDtos')) {
+                    return _amount;
+                }
+
+                let _reportOwnerPayFeeDtos = _fee.reportOwnerPayFeeDtos;
+                if (_reportOwnerPayFeeDtos.length == 0) {
+                    return _amount;
+                }
+
+                let _now = new Date();
+                let _month = _now.getMonth() + 1;
+
+                _reportOwnerPayFeeDtos.forEach(item => {
+                    if (parseInt(item.pfMonth) <= _month) {
+                        _amount += item.amount;
+                    }
+                });
+
+                return amount;
+            },
+            _getCollectTotalAmount: function (_fee) {
+                let _amount = 0;
+                if (!_fee.hasOwnProperty('reportOwnerPayFeeDtos')) {
+                    return _amount;
+                }
+
+                let _reportOwnerPayFeeDtos = _fee.reportOwnerPayFeeDtos;
+                if (_reportOwnerPayFeeDtos.length == 0) {
+                    return _amount;
+                }
+
+                let _now = new Date();
+                let _month = _now.getMonth() + 1;
+
+                _reportOwnerPayFeeDtos.forEach(item => {
+                    if (parseInt(item.pfMonth) > _month) {
+                        _amount += item.amount;
+                    }
+                });
+
+                return amount;
             }
         }
     });

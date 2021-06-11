@@ -5,9 +5,9 @@
                 <div class="ibox-title">
                     <h5>业主缴费明细</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
+                        <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
                             <i class="fa fa-plus"></i> 导出
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -39,10 +39,21 @@
                             <td class="text-center">{{fee.ownerName}}</td>
                             <td class="text-center">{{fee.roomName}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
-                            <td class="text-center">{{fee.month}}</td>
-                            <td class="text-center">{{fee.link}}</td>
-                            <td class="text-center">{{fee.link}}</td>
-                            <td class="text-center">{{fee.link}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,1)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,2)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,3)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,4)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,5)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,6)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,7)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,8)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,9)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,10)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,11)}}</td>
+                            <td class="text-center">{{_getAmountByMonth(fee,12)}}</td>
+                            <td class="text-center">{{_getTotalAmount(fee)}}</td>
+                            <td class="text-center">{{_getReceivableTotalAmount(fee)}}</td>
+                            <td class="text-center">{{_getCollectTotalAmount(fee)}}</td>
                         </tr>
                         </tbody>
                         <tfoot>
