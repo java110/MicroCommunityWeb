@@ -21,7 +21,7 @@
             }
         },
         _initMethod: function () {
-            vc.component._listshopAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
 
@@ -42,7 +42,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/account/queryAccount',
+                vc.http.apiGet('/account/queryOwnerAccount',
                     param,
                     function (json, res) {
                         var _accountManageInfo = JSON.parse(json);
@@ -58,8 +58,8 @@
                     }
                 );
             },
-            _queryshopAccountMethod: function () {
-                vc.component._listshopAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
+            _queryAccountMethod: function () {
+                vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
             _moreCondition: function () {
