@@ -89,14 +89,17 @@
                                             v-model="editFeeConfigInfo.computingFormula">
                                         <option selected disabled value="">必填，请选择计算公式</option>
                                         <option v-for="(item,index) in editFeeConfigInfo.computingFormulas" :key="index"
-                                                v-if="item.statusCd != '4004'" v-bind:value="item.statusCd">
+                                                v-bind:value="item.statusCd">
                                             {{item.name}}
                                         </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row"
-                                 v-show="editFeeConfigInfo.computingFormula != '2002' && editFeeConfigInfo.computingFormula != '7007' && editFeeConfigInfo.computingFormula != '8008'">
+                                 v-show="editFeeConfigInfo.computingFormula != '2002' 
+                                 && editFeeConfigInfo.computingFormula != '7007' 
+                                 && editFeeConfigInfo.computingFormula != '8008'
+                                 && editFeeConfigInfo.computingFormula != '4004'">
                                 <label class="col-sm-2 col-form-label">计费单价</label>
                                 <div class="col-sm-10">
                                     <input v-model="editFeeConfigInfo.squarePrice" type="text" placeholder="必填，请填写计费单价"
@@ -104,7 +107,9 @@
                                 </div>
                             </div>
                             <div class="form-group row"
-                                 v-show="editFeeConfigInfo.computingFormula != '7007' && editFeeConfigInfo.computingFormula != '8008'">
+                                 v-show="editFeeConfigInfo.computingFormula != '7007' 
+                                 && editFeeConfigInfo.computingFormula != '8008'
+                                 && editFeeConfigInfo.computingFormula != '4004'">
                                 <label class="col-sm-2 col-form-label">{{editFeeConfigInfo.computingFormula
                                     == '1001'
                                     ?'附加费用':'固定费用'}}</label>
