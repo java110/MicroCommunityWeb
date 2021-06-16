@@ -74,8 +74,8 @@
 
 
                 vc.http.upload(
-                    'importMeterWaterFee2',
-                    'importData',
+                    'importMeterWaterFee',
+                    'importData2',
                     param,
                     {
                         emulateJSON: true,

@@ -73,8 +73,9 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#prestoreAccountModel').modal('hide');
-                            vc.component.clearAddFloorInfo();
-                            vc.emit('listFloor', 'listFloorData', {});
+                            vc.component.clearPrestoreAccountInfo();
+                            vc.emit('accountManage', 'listshopAccount', {});
+                            vc.toast('预存成功');
 
                             return;
                         }
@@ -88,7 +89,7 @@
 
                     });
             },
-            clearAddFloorInfo: function () {
+            clearPrestoreAccountInfo: function () {
                 vc.component.prestoreAccountInfo = {
                     tel: '',
                     ownerId: '',

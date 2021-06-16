@@ -68,7 +68,10 @@
                 }
             },
             _prestoreAccount: function () {
-                vc.emit('prestoreAccount','openAddModal',{});
+                vc.emit('prestoreAccount', 'openAddModal', {});
+            },
+            _accountDetail: function (_account) {
+                vc.jumpToPage('/admin.html#/pages/property/accountDetailManage?acctId=' + _account.acctId);
             }
 
 
