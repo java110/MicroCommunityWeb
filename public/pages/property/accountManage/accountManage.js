@@ -34,7 +34,6 @@
         },
         methods: {
             _listAccounts: function (_page, _rows) {
-
                 vc.component.accountManageInfo.conditions.page = _page;
                 vc.component.accountManageInfo.conditions.row = _rows;
                 var param = {
@@ -60,7 +59,6 @@
             },
             _queryAccountMethod: function () {
                 vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.accountManageInfo.moreCondition) {
@@ -69,8 +67,8 @@
                     vc.component.accountManageInfo.moreCondition = true;
                 }
             },
-            _toPayGold: function () {
-                vc.jumpToPage('/admin.html#/pages/goods/buyGold')
+            _prestoreAccount: function () {
+                vc.emit('prestoreAccount','openAddModal',{});
             }
 
 
