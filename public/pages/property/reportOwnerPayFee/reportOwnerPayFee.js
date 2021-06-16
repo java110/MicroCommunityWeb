@@ -11,14 +11,23 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
+                feeTypeCds: [],
+                feeConfigDtos: [],
                 conditions: {
-
-
+                    feeTypeCd: '',
+                    configId: '',
+                    roomName: '',
+                    ownerName: '',
+                    pfYear: new Date().getFullYear()
                 }
             }
         },
         _initMethod: function () {
             vc.component._listOwnerPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            //关联字典表费用类型
+            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
+                vc.component.reportOwnerPayFeeInfo.feeTypeCds = _data;
+            });
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -145,7 +154,30 @@
                 });
 
                 return amount;
-            }
+            },
+            _changeReporficientFeeTypeCd: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        feeTypeCd: $that.reportOwnerPayFeeInfo.conditions.feeTypeCd,
+                        isDefault: '',
+                        feeFlag: '',
+                        valid: '1'
+                    }
+                };
+                //发送get请求
+                vc.http.get('roomCreateFeeAdd', 'list', param,
+                    function (json, res) {
+                        var _feeConfigManageInfo = JSON.parse(json);
+                        let _feeConfigs = _feeConfigManageInfo.feeConfigs
+                        vc.component.reportOwnerPayFeeInfo.feeConfigDtos = _feeConfigs;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    });
+            },
         }
     });
 })(window.vc);

@@ -1,6 +1,75 @@
 <div class=" animated fadeInRight ecommerce">
     <div class="row">
         <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <!--费用类型-->
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="reportOwnerPayFeeInfo.conditions.feeTypeCd"
+                                @click="_changeReporficientFeeTypeCd()">
+                                <option selected value="">请选择收费大类</option>
+                                <option v-for="(item,index) in reportOwnerPayFeeInfo.feeTypeCds" :key="index"
+                                    v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <!-- @click="_changeReporficientConfigId()"-->
+                                <select class="form-control-md form-control input-s-sm inline"
+                                    v-model="reportOwnerPayFeeInfo.conditions.configId">
+                                    <option selected value="">请选择收费项</option>
+                                    <option v-for="(item,index) in reportOwnerPayFeeInfo.feeConfigDtos" :key="index"
+                                        :value="item.configId">
+                                        {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text"
+                                    class="form-control form-control-md"
+                                    placeholder="请填写房屋编号"
+                                    v-model="reportOwnerPayFeeInfo.conditions.roomName">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
+                                    class="fa fa-search"></i>查询
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--费用类型-->
+                        <div class="col-sm-3">
+                            <input type="text"
+                                    class="form-control form-control-md"
+                                    placeholder="请填写年份"
+                                    v-model="reportOwnerPayFeeInfo.conditions.pfYear">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text"
+                                    class="form-control form-control-md"
+                                    placeholder="请填写业主名称"
+                                    v-model="reportOwnerPayFeeInfo.conditions.ownerName">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>业主缴费明细</h5>
