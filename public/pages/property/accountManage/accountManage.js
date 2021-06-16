@@ -47,7 +47,7 @@
                         var _accountManageInfo = JSON.parse(json);
                         vc.component.accountManageInfo.total = _accountManageInfo.total;
                         vc.component.accountManageInfo.records = _accountManageInfo.records;
-                        vc.component.accountManageInfo.shopAccounts = _accountManageInfo.data;
+                        vc.component.accountManageInfo.accounts = _accountManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.accountManageInfo.records,
                             currentPage: _page
