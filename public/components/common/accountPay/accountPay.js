@@ -30,7 +30,7 @@
             });
         },
         methods: {
-            auditValidate() {
+            accountPayValidate() {
                 return vc.validate.validate({
                     accountPayInfo: vc.component.accountPayInfo
                 }, {
@@ -60,8 +60,8 @@
                     ]
                 });
             },
-            _auditSubmit: function () {
-                if (!vc.component.auditValidate()) {
+            _accountPaySubmit: function () {
+                if (!vc.component.accountPayValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }

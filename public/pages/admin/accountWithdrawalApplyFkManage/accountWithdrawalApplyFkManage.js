@@ -51,7 +51,7 @@
                         var _accountWithdrawalApplyFkManageInfo = JSON.parse(json);
                         vc.component.accountWithdrawalApplyFkManageInfo.total = _accountWithdrawalApplyFkManageInfo.total;
                         vc.component.accountWithdrawalApplyFkManageInfo.records = _accountWithdrawalApplyFkManageInfo.records;
-                        vc.component.accountWithdrawalApplyFkManageInfo.accountWithdrawalApplys = _accountWithdrawalApplyFkManageInfo.data;
+                        vc.component.accountWithdrawalApplyFkManageInfo.accountWithdrawalApplyFks = _accountWithdrawalApplyFkManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.accountWithdrawalApplyFkManageInfo.records,
                             currentPage: _page
@@ -74,7 +74,7 @@
                 vc.component._listAccountWithdrawalApplyFks(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _openAuditAccountWithdrawalApplyFkModal:function(_accountWithdrawalApplyFks){
+            _openAccountPaykModal:function(_accountWithdrawalApplyFks){
                 vc.component.accountWithdrawalApplyFkManageInfo.applyId = _accountWithdrawalApplyFks.applyId;
                 vc.emit('accountPay', 'accountPayModel',{});
             },
@@ -86,8 +86,8 @@
                     _accountWithdrawalApplyFk.state='687';
                 }
                 _accountWithdrawalApplyFk.applyId = vc.component.accountWithdrawalApplyFkManageInfo.applyId;
-                _accountWithdrawalApplyFk.context = _accountWithdrawalApply.remark;
-                vc.http.post(
+                _accountWithdrawalApplyFk.context = _accountWithdrawalApplyFk.remark;
+                vc.http.apiPost(
                     '/accountWithdrawalApply/upAccountWithdrawalApply',
                     JSON.stringify(_accountWithdrawalApplyFk),
                     {

@@ -51,7 +51,7 @@
                         var _accountWithdrawalApplyShManageInfo = JSON.parse(json);
                         vc.component.accountWithdrawalApplyShManageInfo.total = _accountWithdrawalApplyShManageInfo.total;
                         vc.component.accountWithdrawalApplyShManageInfo.records = _accountWithdrawalApplyShManageInfo.records;
-                        vc.component.accountWithdrawalApplyShManageInfo.accountWithdrawalApplys = _accountWithdrawalApplyShManageInfo.data;
+                        vc.component.accountWithdrawalApplyShManageInfo.accountWithdrawalApplyShs = _accountWithdrawalApplyShManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.accountWithdrawalApplyShManageInfo.records,
                             currentPage: _page
@@ -87,7 +87,7 @@
                 }
                 _accountWithdrawalApplySh.applyId = vc.component.accountWithdrawalApplyShManageInfo.applyId;
                 _accountWithdrawalApplySh.context = _accountWithdrawalApplySh.remark;
-                vc.http.post(
+                vc.http.apiPost(
                     '/accountWithdrawalApply/upAccountWithdrawalApply',
                     JSON.stringify(_accountWithdrawalApplySh),
                     {
