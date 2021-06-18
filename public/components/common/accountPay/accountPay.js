@@ -9,7 +9,7 @@
                 accountBank: {
                     personName: '',
                     bankName: '',
-                    bankCode: '',
+                    bankCode: ''
                 },
                 state: '',
                 remark: ''
@@ -91,10 +91,10 @@
             },
             clearAddBasePrivilegeInfo: function () {
                 vc.component.accountPayInfo = {
-                    accountBanks: {
+                    accountBank: {
                         personName: '',
                         bankName: '',
-                        bankCode: '',
+                        bankCode: ''
                     },
                     state: '',
                     remark: ''

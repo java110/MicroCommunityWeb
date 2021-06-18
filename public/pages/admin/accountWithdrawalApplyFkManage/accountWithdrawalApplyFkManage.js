@@ -120,6 +120,7 @@
                 _accountWithdrawalApplyFk.applyId = vc.component.accountWithdrawalApplyFkManageInfo.applyId;
                 _accountWithdrawalApplyFk.acctId = vc.component.accountWithdrawalApplyFkManageInfo.acctId;
                 _accountWithdrawalApplyFk.context = _accountWithdrawalApplyFk.remark;
+   
                 vc.http.apiPost(
                     '/accountWithdrawalApply/upAccountWithdrawalApply',
                     JSON.stringify(_accountWithdrawalApplyFk),
