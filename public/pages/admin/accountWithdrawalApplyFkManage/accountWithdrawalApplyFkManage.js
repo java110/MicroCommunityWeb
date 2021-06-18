@@ -81,7 +81,10 @@
                         vc.component.accountWithdrawalApplyFkManageInfo.total = _accountBankManageInfo.total;
                         vc.component.accountWithdrawalApplyFkManageInfo.records = _accountBankManageInfo.records;
                         vc.component.accountWithdrawalApplyFkManageInfo.accountBanks = _accountBankManageInfo.data;
-                       
+
+                        var _accountBank = vc.component.accountWithdrawalApplyFkManageInfo.accountBanks;
+                        vc.emit('accountPay', 'accountPayModel',{_accountBank});
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -105,9 +108,7 @@
                 vc.component.accountWithdrawalApplyFkManageInfo.acctId = _accountWithdrawalApplyFks.acctId;
 
                 $that._listAccountBanks(_accountWithdrawalApplyFks.bankId);
-                var _accountBank = $that.accountWithdrawalApplyFkManageInfo.accountBanks;
-                
-                vc.emit('accountPay', 'accountPayModel',{_accountBank});
+              
             },
             _auditAccountWithdrawalApplyFkState:function(_accountWithdrawalApplyFk){
 

@@ -6,7 +6,11 @@
         },
         data: {
             accountPayInfo: {
-                accountBanks: [],
+                accountBank: {
+                    personName: '',
+                    bankName: '',
+                    bankCode: '',
+                },
                 state: '',
                 remark: ''
             }
@@ -27,7 +31,10 @@
         },
         _initEvent: function () {
             vc.on('accountPay', 'accountPayModel', function (param) {
-                vc.accountPayInfo.accountBanks = param;
+                console.log(param);
+                vc.component.accountPayInfo.accountBank.personName = param._accountBank[0].personName;
+                vc.component.accountPayInfo.accountBank.bankName = param._accountBank[0].bankName;
+                vc.component.accountPayInfo.accountBank.bankCode = param._accountBank[0].bankCode;
                 $('#accountPayModel').modal('show');
             });
         },
@@ -84,6 +91,11 @@
             },
             clearAddBasePrivilegeInfo: function () {
                 vc.component.accountPayInfo = {
+                    accountBanks: {
+                        personName: '',
+                        bankName: '',
+                        bankCode: '',
+                    },
                     state: '',
                     remark: ''
                 }
