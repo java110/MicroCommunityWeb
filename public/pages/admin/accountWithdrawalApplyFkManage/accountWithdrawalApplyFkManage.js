@@ -8,6 +8,7 @@
         data: {
             accountWithdrawalApplyFkManageInfo: {
                 accountWithdrawalApplyFks: [],
+                accountBanks: [],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -62,6 +63,30 @@
                     }
                 );
             },
+            _listAccountBanks: function (_bankId) {
+
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        bankId: _bankId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/accountBank/queryAccountBank',
+                    param,
+                    function (json, res) {
+                        var _accountBankManageInfo = JSON.parse(json);
+                        vc.component.accountWithdrawalApplyFkManageInfo.total = _accountBankManageInfo.total;
+                        vc.component.accountWithdrawalApplyFkManageInfo.records = _accountBankManageInfo.records;
+                        vc.component.accountWithdrawalApplyFkManageInfo.accountBanks = _accountBankManageInfo.data;
+                       
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _openAddAccountWithdrawalApplyModal: function () {
                 vc.emit('addAccountWithdrawalApply', 'openAddAccountWithdrawalApplyModal', {});
             },
@@ -78,7 +103,11 @@
             _openAccountPaykModal:function(_accountWithdrawalApplyFks){
                 vc.component.accountWithdrawalApplyFkManageInfo.applyId = _accountWithdrawalApplyFks.applyId;
                 vc.component.accountWithdrawalApplyFkManageInfo.acctId = _accountWithdrawalApplyFks.acctId;
-                vc.emit('accountPay', 'accountPayModel',{});
+
+                $that._listAccountBanks(_accountWithdrawalApplyFks.bankId);
+                var _accountBank = $that.accountWithdrawalApplyFkManageInfo.accountBanks;
+                
+                vc.emit('accountPay', 'accountPayModel',{_accountBank});
             },
             _auditAccountWithdrawalApplyFkState:function(_accountWithdrawalApplyFk){
 

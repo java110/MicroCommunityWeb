@@ -6,6 +6,7 @@
         },
         data: {
             accountPayInfo: {
+                accountBanks: [],
                 state: '',
                 remark: ''
             }
@@ -25,7 +26,8 @@
         _initMethod: function () {
         },
         _initEvent: function () {
-            vc.on('accountPay', 'accountPayModel', function () {
+            vc.on('accountPay', 'accountPayModel', function (param) {
+                vc.accountPayInfo.accountBanks = param;
                 $('#accountPayModel').modal('show');
             });
         },
