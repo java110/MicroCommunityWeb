@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 applyId: '',
+                acctId: '',
                 conditions: {
                     state: ''
 
@@ -76,6 +77,7 @@
             },
             _openAccountPaykModal:function(_accountWithdrawalApplyFks){
                 vc.component.accountWithdrawalApplyFkManageInfo.applyId = _accountWithdrawalApplyFks.applyId;
+                vc.component.accountWithdrawalApplyFkManageInfo.acctId = _accountWithdrawalApplyFks.acctId;
                 vc.emit('accountPay', 'accountPayModel',{});
             },
             _auditAccountWithdrawalApplyFkState:function(_accountWithdrawalApplyFk){
@@ -86,6 +88,7 @@
                     _accountWithdrawalApplyFk.state='687';
                 }
                 _accountWithdrawalApplyFk.applyId = vc.component.accountWithdrawalApplyFkManageInfo.applyId;
+                _accountWithdrawalApplyFk.acctId = vc.component.accountWithdrawalApplyFkManageInfo.acctId;
                 _accountWithdrawalApplyFk.context = _accountWithdrawalApplyFk.remark;
                 vc.http.apiPost(
                     '/accountWithdrawalApply/upAccountWithdrawalApply',

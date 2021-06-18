@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 applyId: '',
+                acctId: '',
                 conditions: {
                     state: ''
 
@@ -76,6 +77,7 @@
             },
             _openAuditAccountWithdrawalApplyModal:function(_accountWithdrawalApply){
                 vc.component.accountWithdrawalApplyShManageInfo.applyId = _accountWithdrawalApply.applyId;
+                vc.component.accountWithdrawalApplyShManageInfo.acctId = _accountWithdrawalApply.acctId;
                 vc.emit('audit','openAuditModal',{});
             },
             _auditAccountWithdrawalApplyShState:function(_accountWithdrawalApplySh){
@@ -87,6 +89,7 @@
                 }
                 _accountWithdrawalApplySh.applyId = vc.component.accountWithdrawalApplyShManageInfo.applyId;
                 _accountWithdrawalApplySh.context = _accountWithdrawalApplySh.remark;
+                _accountWithdrawalApplySh.acctId = vc.component.accountWithdrawalApplyShManageInfo.acctId;
                 vc.http.apiPost(
                     '/accountWithdrawalApply/upAccountWithdrawalApply',
                     JSON.stringify(_accountWithdrawalApplySh),
