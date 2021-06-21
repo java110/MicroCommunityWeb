@@ -6,7 +6,7 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            allocationStorehouseManageInfo: {
+            returnStorehouseManageInfo: {
                 resourceStores: [],
                 total: 0,
                 records: 1,
@@ -15,32 +15,15 @@
                 storehouses: [],
                 remark: '',
                 communityId: vc.getCurrentCommunity().communityId,
-                apply_type: 10000
+                apply_type: 20000
             }
         },
         _initMethod: function () {
-            $that._listAllocationStorehouse();
+            $that._listReturnStorehouse();
         },
         _initEvent: function () {
-            vc.on('allocationStorehouseApply', 'chooseResourceStore_BACK', function (_param) {
-                let _addFlag = true;
-                $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
-                    if (item.resId == _param.resId) {
-                        vc.toast('物品已经选择，请确认');
-                        _addFlag = false;
-                        return;
-                    }
-                });
-                if (!_addFlag) {
-                    return;
-                }
-                _param.shaName = _param.shName;
-                _param.shzId = '';
-                _param.curStock = '0'
-                $that.allocationStorehouseManageInfo.resourceStores.push(_param);
-            })
-            vc.on('allocationStorehouseApply', 'chooseResourceStore', function (resourceStores) {
-                let oldList = vc.component.allocationStorehouseManageInfo.resourceStores;
+            vc.on('returnStorehouseApply', 'setSelectResourceStores', function (resourceStores) {
+                let oldList = vc.component.returnStorehouseManageInfo.resourceStores;
                 // 过滤重复选择的商品
                 resourceStores.forEach((newItem, newIndex) => {
                     newItem.shaName = newItem.shName;
@@ -58,28 +41,26 @@
                 resourceStores = resourceStores.filter((s) => {
                     return s.hasOwnProperty('resId');
                 });
-                vc.component.allocationStorehouseManageInfo.resourceStores = resourceStores;
+                vc.component.returnStorehouseManageInfo.resourceStores = resourceStores;
             })
         },
         methods: {
-            //取消调拨
+            //取消退还
             _openDeleteResourceStoreModel: function (_resourceStore) {
                 let _tmpResourceStore = [];
-                $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
+                $that.returnStorehouseManageInfo.resourceStores.forEach(item => {
                     if (item.resId != _resourceStore.resId) {
                         _tmpResourceStore.push(item);
                     }
                 })
-                $that.allocationStorehouseManageInfo.resourceStores = _tmpResourceStore;
+                $that.returnStorehouseManageInfo.resourceStores = _tmpResourceStore;
                 // 同时移除子页面复选框选项
-                vc.emit('chooseResourceStore', 'removeSelectResourceStoreItem', _resourceStore.resId);
+                vc.emit('chooseResourceStaff', 'removeSelectResourceStaffItem', _resourceStore.resId);
             },
-            _openAllocationStorehouseModel: function () {
-                vc.emit('chooseResourceStore', 'openChooseResourceStoreModel', {
-                    resOrderType: '20000'
-                });
+            _openReturnStorehouseModel: function () {
+                vc.emit('chooseResourceStaff', 'openChooseResourceStaffModel', {});
             },
-            _listAllocationStorehouse: function (_page, _rows) {
+            _listReturnStorehouse: function (_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -92,7 +73,7 @@
                     param,
                     function (json, res) {
                         let _storehouseManageInfo = JSON.parse(json);
-                        vc.component.allocationStorehouseManageInfo.storehouses = _storehouseManageInfo.data;
+                        vc.component.returnStorehouseManageInfo.storehouses = _storehouseManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -103,16 +84,21 @@
             },
             _submitApply: function () {
                 //校验数据
-                if ($that.allocationStorehouseManageInfo.remark == '') {
-                    vc.toast('申请说明不能为空');
+                if ($that.returnStorehouseManageInfo.remark == '') {
+                    vc.toast('退还说明不能为空');
                     return;
                 }
                 let _saveFlag = true;
-                if ($that.allocationStorehouseManageInfo.resourceStores.length < 1) {
+                if ($that.returnStorehouseManageInfo.resourceStores.length < 1) {
                     vc.toast('请选择物品');
                     return;
                 }
-                $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
+                $that.returnStorehouseManageInfo.resourceStores.forEach(item => {
+                    if (item.curStock < 1) {
+                        vc.toast("请填写退还数量");
+                        _saveFlag = false;
+                        return;
+                    }
                     if (parseInt(item.curStock) > parseInt(item.stock)) {
                         vc.toast(item.resName + "库存不足");
                         _saveFlag = false;
@@ -123,18 +109,14 @@
                         _saveFlag = false;
                         return;
                     }
-                    if (item.curStock < 1) {
-                        vc.toast("请填写调拨数量");
-                        _saveFlag = false;
-                        return;
-                    }
                 });
                 if (!_saveFlag) {
                     return;
                 }
+                console.log($that.returnStorehouseManageInfo);debugger;
                 vc.http.apiPost(
                     'resourceStore.saveAllocationStorehouse',
-                    JSON.stringify($that.allocationStorehouseManageInfo),
+                    JSON.stringify($that.returnStorehouseManageInfo),
                     {
                         emulateJSON: true
                     },
@@ -149,7 +131,8 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
-                    });
+                    }
+                );
             }
         }
     });

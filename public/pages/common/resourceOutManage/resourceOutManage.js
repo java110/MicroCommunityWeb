@@ -81,6 +81,11 @@
                         return;
                     }
                     let _purchaseQuantity = parseFloat(item.purchaseQuantity).toFixed(2);
+                    if (parseFloat(_purchaseQuantity) <= 0 ){
+                        vc.toast('采购数量无效');
+                        _flag = false;
+                        return;
+                    }
                     let _stock = parseFloat(item.stock).toFixed(2)
                     if (parseFloat(_purchaseQuantity) > parseFloat(_stock)) {
                         vc.toast('库存不足');
@@ -116,7 +121,8 @@
                     taskId: $that.resourceOutManageInfo.taskId,
                     applyOrderId: $that.resourceOutManageInfo.applyOrderId,
                     state: '1100',
-                    remark: '出库完成'
+                    remark: '出库完成',
+                    noticeState: '1002'
                 };
                 //发送get请求
                 vc.http.post('myAuditOrders',

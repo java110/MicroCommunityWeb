@@ -14,11 +14,12 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入调拨申请ID"
-                                       v-model="allocationStorehousesInfo.conditions.applyId"
-                                       class=" form-control">
-                            </div>
+                            <select class="custom-select" v-model="allocationStorehousesInfo.conditions.applyType">
+                                <option selected value="">请选择类型</option>
+                                <option v-for="(item,index) in allocationStorehousesInfo.applyTypes" :key="index" :value="item.statusCd">
+                                    {{item.name}}
+                                </option>
+                            </select>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
@@ -108,6 +109,14 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row" v-show="allocationStorehousesInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入调拨申请ID" v-model="allocationStorehousesInfo.conditions.applyId"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,7 +156,8 @@
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
                             <td class="text-center">{{resourceStore.originalStock}}</td>
                             <td class="text-center">{{resourceStore.stock}}</td>
-                            <td class="text-center">{{resourceStore.shaName}}</td>
+                            <td class="text-center" v-if="resourceStore.applyType == '20000'">{{resourceStore.startUserName}}</td>
+                            <td class="text-center" v-else>{{resourceStore.shaName}}</td>
                             <td class="text-center">{{resourceStore.shzName}}</td>
                             <td class="text-center">{{resourceStore.startUserId}}</td>
                             <td class="text-center">{{resourceStore.startUserName}}</td>
@@ -158,7 +168,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="10">
+                            <td colspan="14">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

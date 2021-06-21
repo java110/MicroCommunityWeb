@@ -16,7 +16,8 @@
                     file: '',
                     resOrderType: '10000',
                     receiverUserId: '',
-                    receiverUserName: ''
+                    receiverUserName: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -37,12 +38,14 @@
                 vc.component.inAndOutStepInfo.infos[1] = viewResourceStoreInfo3.resourceStores;
             });
             vc.on("inAndOutStep", "notify3", function (info) {
-                vc.component.inAndOutStepInfo.purchaseApply.description = info.description;
-                vc.component.inAndOutStepInfo.purchaseApply.endUserName = info.endUserName;
-                vc.component.inAndOutStepInfo.purchaseApply.endUserTel = info.endUserTel;
-                vc.component.inAndOutStepInfo.purchaseApply.receiverUserId = info.staffId;
-                vc.component.inAndOutStepInfo.purchaseApply.receiverUserName = info.staffName;
                 vc.component.inAndOutStepInfo.infos[2] = info;
+                if (info) {
+                    vc.component.inAndOutStepInfo.purchaseApply.description = info.description;
+                    vc.component.inAndOutStepInfo.purchaseApply.endUserName = info.endUserName;
+                    vc.component.inAndOutStepInfo.purchaseApply.endUserTel = info.endUserTel;
+                    vc.component.inAndOutStepInfo.purchaseApply.receiverUserId = info.staffId;
+                    vc.component.inAndOutStepInfo.purchaseApply.receiverUserName = info.staffName;
+                }
             });
         },
         methods: {
@@ -94,13 +97,11 @@
                 vc.emit('addPurchaseApplyViewInfo2', 'onIndex', vc.component.inAndOutStepInfo.index);
             },
             _finishStep: function () {
-                vc.emit('addPurchaseApplyViewInfo2', 'setPurchaseApplyInfo', null);
+                // vc.emit('addPurchaseApplyViewInfo2', 'setPurchaseApplyInfo', null);
                 var _currentData = vc.component.inAndOutStepInfo.infos[vc.component.inAndOutStepInfo.index];
-                if (vc.component.inAndOutStepInfo.index != 2) {
-                    if (_currentData == null || _currentData == undefined) {
-                        vc.toast("请选择或填写必选信息");
-                        return;
-                    }
+                if (_currentData == null || _currentData == undefined) {
+                    vc.toast("请选择或填写必选信息");
+                    return;
                 }
                 console.log(vc.component.inAndOutStepInfo.purchaseApply);
                 var postUrl = vc.component.inAndOutStepInfo.purchaseApply.resOrderType == 10000 ? '/purchase/purchaseStorage' : '/collection/goodsDelivery';

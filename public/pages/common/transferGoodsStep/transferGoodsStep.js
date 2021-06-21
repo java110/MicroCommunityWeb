@@ -11,18 +11,9 @@
                 purchaseApply: {
                     resourceStores: [],
                     description: '',
-                    endUserName: '',
-                    endUserTel: '',
                     file: '',
-                    resOrderType: '10000',
                     acceptUserId: '',
-                    acceptUserName: '',
-                    stock: '',
-                    giveQuantity: '',
-                    storeId: '',
-                    purchaseRemark: '',
-                    resId: '',
-                    resName: ''
+                    acceptUserName: ''
                 }
             }
         },
@@ -33,16 +24,9 @@
             vc.on("transferGoodsStep", "notify", function (goodsInfo) {
                 vc.component.transferGoodsStepInfo.purchaseApply.resourceStores = goodsInfo.resourceStores;
                 vc.component.transferGoodsStepInfo.infos[0] = goodsInfo.resourceStores;
-                vc.component.transferGoodsStepInfo.purchaseApply.giveQuantity = goodsInfo.resourceStores[0].giveQuantity;
-                vc.component.transferGoodsStepInfo.purchaseApply.purchaseRemark = goodsInfo.resourceStores[0].purchaseRemark;
-                vc.component.transferGoodsStepInfo.purchaseApply.resId = goodsInfo.resourceStores[0].resId;
-                vc.component.transferGoodsStepInfo.purchaseApply.resName = goodsInfo.resourceStores[0].resName;
-                vc.component.transferGoodsStepInfo.purchaseApply.stock = goodsInfo.resourceStores[0].stock;
             });
             vc.on("transferGoodsStep", "notify2", function (info) {
                 vc.component.transferGoodsStepInfo.purchaseApply.description = info.description;
-                vc.component.transferGoodsStepInfo.purchaseApply.endUserName = info.endUserName;
-                vc.component.transferGoodsStepInfo.purchaseApply.endUserTel = info.endUserTel;
                 vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId = info.staffId;
                 vc.component.transferGoodsStepInfo.purchaseApply.acceptUserName = info.staffName;
                 vc.component.transferGoodsStepInfo.infos[1] = info;
@@ -91,6 +75,12 @@
                 vc.emit('addTransferStoreInfo', 'onIndex', vc.component.transferGoodsStepInfo.index);
             },
             _finishStep: function () {
+                let currentUserId = vc.getData("/nav/getUserInfo").userId;
+                if (currentUserId == vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId){
+                    vc.toast("不能转赠给自己");
+                    return;
+                }
+
                 var _currentData = vc.component.transferGoodsStepInfo.infos[vc.component.transferGoodsStepInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -114,7 +104,8 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
-                    });
+                    }
+                );
             }
         }
     });

@@ -128,7 +128,8 @@
                     taskId: $that.resourceEnterManageInfo.taskId,
                     applyOrderId: $that.resourceEnterManageInfo.applyOrderId,
                     state: '1100',
-                    remark: '采购入库完成'
+                    remark: '采购入库完成',
+                    noticeState: '1002'
                 };
                 //发送get请求
                 vc.http.post('myAuditOrders',

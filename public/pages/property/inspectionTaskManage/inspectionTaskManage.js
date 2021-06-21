@@ -12,17 +12,23 @@
                 records: 1,
                 moreCondition: false,
                 taskId: '',
+                stateTypes: [],
                 conditions: {
                     planUserName: '',
                     inspectionPlanId: '',
                     inspectionPlanName: '',
                     actInsTime: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    state: ''
                 }
             }
         },
         _initMethod: function () {
+            //与字典表关联
+            vc.getDict('inspection_task', "state", function (_data) {
+                vc.component.inspectionTaskManageInfo.stateTypes = _data;
+            });
             vc.component._initInspectionTaskDateInfo();
             vc.component._listInspectionTasks(DEFAULT_PAGE, DEFAULT_ROWS);
         },
@@ -30,6 +36,11 @@
             vc.on('inspectionTaskManage', 'listInspectionTask', function (_param) {
                 vc.component._listInspectionTasks(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+
+            vc.on('inspectionTaskManage', 'pageReload', function (_param) {
+                location.reload();
+            });
+
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listInspectionTasks(_currentPage, DEFAULT_ROWS);
             });
@@ -108,6 +119,9 @@
             _openInspectionTaskDetail: function (_inspectionTask) {
                 vc.emit('inspectionTaskDetail', 'openInspectionTaskDetail', _inspectionTask);
             },
+            _openInspectionTaskTransfer: function (_inspectionTask) {
+                vc.emit('inspectionTaskTransfer', 'openInspectionTaskTransferModal', _inspectionTask);
+            },
             //查询
             _queryInspectionTaskMethod: function () {
                 vc.component._listInspectionTasks(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -119,6 +133,7 @@
                 vc.component.inspectionTaskManageInfo.conditions.inspectionPlanName = "";
                 vc.component.inspectionTaskManageInfo.conditions.startTime = "";
                 vc.component.inspectionTaskManageInfo.conditions.endTime = "";
+                vc.component.inspectionTaskManageInfo.conditions.state = "";
                 vc.component._listInspectionTasks(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

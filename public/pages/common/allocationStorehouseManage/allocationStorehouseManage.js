@@ -13,6 +13,7 @@
                 moreCondition: false,
                 resName: '',
                 states: [],
+                applyTypes: [],
                 conditions: {
                     applyId: '',
                     resId: '',
@@ -23,7 +24,8 @@
                     startTime: '',
                     endTime: '',
                     startUserId: '',
-                    state: ''
+                    state: '',
+                    applyType: ''
                 },
                 storehouses: []
             }
@@ -32,6 +34,10 @@
             //与字典表关联
             vc.getDict('allocation_storehouse_apply', "state", function (_data) {
                 vc.component.allocationStorehouseManageInfo.states = _data;
+            });
+            //与字典表关联
+            vc.getDict('allocation_storehouse_apply', "apply_type", function (_data) {
+                vc.component.allocationStorehouseManageInfo.applyTypes = _data;
             });
             vc.component._initDate();
             vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -106,6 +112,7 @@
                     params: vc.component.allocationStorehouseManageInfo.conditions
                 };
                 param.params.applyId = param.params.applyId.trim();
+                param.params.startUserId = param.params.startUserId.trim();
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStorehouseApplys',
                     param,
@@ -133,6 +140,9 @@
                 vc.component.allocationStorehouseManageInfo.conditions.applyId = "";
                 vc.component.allocationStorehouseManageInfo.conditions.startTime = "";
                 vc.component.allocationStorehouseManageInfo.conditions.endTime = "";
+                vc.component.allocationStorehouseManageInfo.conditions.state = "";
+                vc.component.allocationStorehouseManageInfo.conditions.startUserId = "";
+                vc.component.allocationStorehouseManageInfo.conditions.applyType = "";
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listStorehouses: function (_page, _rows) {
@@ -160,11 +170,34 @@
             },
             //详情
             _toDetail: function (_item) {
-                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?applyId=" + _item.applyId);
+                vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseDetail?applyId=" + _item.applyId + '&applyType=' + _item.applyType + '&applyTypeName=' + _item.applyTypeName);
             },
-
             _openAllocationStorehouseApplyModal: function () {
                 vc.jumpToPage("/admin.html#/pages/common/allocationStorehouseApplyManage");
+            },
+            _openRunWorkflowImage: function (_purchaseApply) {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        businessKey: _purchaseApply.applyId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('workflow.listRunWorkflowImage',
+                    param,
+                    function (json, res) {
+                        var _workflowManageInfo = JSON.parse(json);
+                        if (_workflowManageInfo.code != '0') {
+                            vc.toast(_workflowManageInfo.msg);
+                            return;
+                        }
+                        vc.emit('viewImage', 'showImage', {
+                            url: 'data:image/png;base64,' + _workflowManageInfo.data
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             _moreCondition: function () {
                 if (vc.component.allocationStorehouseManageInfo.moreCondition) {
@@ -174,6 +207,5 @@
                 }
             }
         }
-
     });
 })(window.vc);

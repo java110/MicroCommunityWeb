@@ -16,7 +16,7 @@
             vc.initDateTime('editStartTime', function (_startTime) {
                 $that.editQuestionAnswerInfo.startTime = _startTime;
             });
-            vc.initDateTime('editStartTime', function (_endTime) {
+            vc.initDateTime('editEndTime', function (_endTime) {
                 $that.editQuestionAnswerInfo.endTime = _endTime;
                 let start = Date.parse(new Date($that.editQuestionAnswerInfo.startTime))
                 let end = Date.parse(new Date($that.editQuestionAnswerInfo.endTime))

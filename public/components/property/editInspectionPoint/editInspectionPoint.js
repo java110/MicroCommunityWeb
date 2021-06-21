@@ -9,15 +9,12 @@
                 pointObjName: '',
                 inspectionName: '',
                 communityId: '',
-                pointStartTime: '',
-                pointEndTime: '',
                 remark: ''
             }
         },
         _initMethod: function () {
         },
         _initEvent: function () {
-            vc.component._initEditInspectionPointDateInfo();
             vc.on('editInspectionPoint', 'openEditInspectionPointModal', function (_params) {
                 vc.component.refreshEditInspectionPointInfo();
                 //与字典表关联
@@ -80,30 +77,6 @@
                             errInfo: "巡检位置不能为空"
                         },
                     ],
-                    'editInspectionPointInfo.pointStartTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "开始时间不能为空"
-                        },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "巡检开始时间不是有效的时间格式"
-                        },
-                    ],
-                    'editInspectionPointInfo.pointEndTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "结束时间不能为空"
-                        },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "巡检结束时间不是有效的时间格式"
-                        },
-                    ],
                     'editInspectionPointInfo.remark': [
                         {
                             limit: "maxLength",
@@ -158,53 +131,9 @@
                     pointObjName: '',
                     inspectionName: '',
                     communityId: '',
-                    pointStartTime: '',
-                    pointEndTime: '',
                     remark: ''
                 }
             },
-            _initEditInspectionPointDateInfo: function () {
-                $('.editInspectionPointStartTime').datetimepicker({
-                    language: 'zh-CN',
-                    fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
-                    initTime: true,
-                    initialDate: new Date(),
-                    autoClose: 1,
-                    todayBtn: true
-                });
-                $('.editInspectionPointStartTime').datetimepicker()
-                    .on('changeDate', function (ev) {
-                        var value = $(".editInspectionPointStartTime").val();
-                        vc.component.editInspectionPointInfo.pointStartTime = value;
-                    });
-                $('.editInspectionPointEndTime').datetimepicker({
-                    language: 'zh-CN',
-                    fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
-                    initTime: true,
-                    initialDate: new Date(),
-                    autoClose: 1,
-                    todayBtn: true
-                });
-                $('.editInspectionPointEndTime').datetimepicker()
-                    .on('changeDate', function (ev) {
-                        var value = $(".editInspectionPointEndTime").val();
-                        vc.component.editInspectionPointInfo.pointEndTime = value;
-                    });
-                //防止多次点击时间插件失去焦点
-                document.getElementsByClassName('form-control editInspectionPointStartTime')[0].addEventListener('click', myfunc)
-
-                function myfunc(e) {
-                    e.currentTarget.blur();
-                }
-
-                document.getElementsByClassName("form-control editInspectionPointEndTime")[0].addEventListener('click', myfunc)
-
-                function myfunc(e) {
-                    e.currentTarget.blur();
-                }
-            }
         }
     });
 })(window.vc, window.vc.component);

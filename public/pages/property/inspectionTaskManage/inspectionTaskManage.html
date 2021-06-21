@@ -59,6 +59,14 @@
                                        class=" form-control">
                             </div>
                         </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="inspectionTaskManageInfo.conditions.state">
+                                <option selected value="">请选择巡检状态</option>
+                                <option v-for="(item,index) in inspectionTaskManageInfo.stateTypes" :key="index" :value="item.statusCd">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,9 +87,11 @@
                             <th class="text-center">任务编码</th>
                             <th class="text-center">巡检计划ID</th>
                             <th class="text-center">巡检计划</th>
-                            <th class="text-center">巡检时间</th>
+                            <th class="text-center">巡检人<br/>开始/结束时间</th>
                             <th class="text-center">实际巡检时间</th>
-                            <th class="text-center">巡检人</th>
+                            <th class="text-center">计划巡检人</th>
+                            <th class="text-center">当前巡检人</th>
+                            <th class="text-center">转移描述</th>
                             <th class="text-center">巡检方式</th>
                             <th class="text-center">巡检状态</th>
                             <th class="text-center">操作</th>
@@ -92,13 +102,18 @@
                             <td class="text-center">{{inspectionTask.taskId}}</td>
                             <td class="text-center">{{inspectionTask.inspectionPlanId}}</td>
                             <td class="text-center">{{inspectionTask.inspectionPlanName}}</td>
-                            <td class="text-center">{{inspectionTask.planInsTime}}</td>
-                            <td class="text-center">{{inspectionTask.actInsTime}}</td>
+                            <td class="text-center">{{inspectionTask.planInsTime}}<br/>{{inspectionTask.planEndTime}}</td>
+                            <td class="text-center">{{inspectionTask.actInsTime ? inspectionTask.actInsTime : '-'}}</td>
+                            <td class="text-center">{{inspectionTask.originalPlanUserName ? inspectionTask.originalPlanUserName : '-'}}</td>
                             <td class="text-center">{{inspectionTask.planUserName}}</td>
+                            <td class="text-center">{{inspectionTask.transferDesc ? inspectionTask.transferDesc : '-'}}</td>
                             <td class="text-center">{{inspectionTask.signTypeName}}</td>
-                            <td class="text-center">{{inspectionTask.stateName}}</td>
+                            <td class="text-center text-danger font-bold" v-if="inspectionTask.state == '20200408'">{{inspectionTask.stateName}}</td>
+                            <td class="text-center" v-else>{{inspectionTask.stateName}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openInspectionTaskTransfer(inspectionTask)" v-if="inspectionTask.state == '20200406' || inspectionTask.state == '20200405'">流转
+                                    </button>
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openInspectionTaskDetail(inspectionTask)">详情
                                     </button>
@@ -108,7 +123,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="8">
+                            <td colspan="11">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
@@ -121,4 +136,5 @@
         </div>
     </div>
     <vc:create path="property/inspectionTaskDetail"></vc:create>
+    <vc:create path="property/inspectionTaskTransfer"></vc:create>
 </div>

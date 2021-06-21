@@ -42,6 +42,9 @@
                 if (_tmpMenus != null && _tmpMenus != undefined) {
                     this.miniMenu();
                     this.menus = _tmpMenus;
+                    // 子菜单默认选中
+                    var _currentHref = window.location.pathname + window.location.hash;
+                    this._setSelectedMenusChild(_currentHref);
                     return;
                 }
 
@@ -73,6 +76,7 @@
                 );
             },
             refreshMenuActive: function (jsonArray, _id) {
+                console.log(jsonArray);
                 for (var menuIndex = 0; menuIndex < jsonArray.length; menuIndex++) {
 
                     if (jsonArray[menuIndex].hasOwnProperty('childs')) {
@@ -120,11 +124,18 @@
                 vc.setMenuState('OFF');
             },
             _gotoPage: function (_href) {
+                // 子菜单默认选中
+                this._setSelectedMenusChild(_href);
+                vc.jumpToPage(_href);
+            },
+ 
+            // 子菜单默认选中
+            _setSelectedMenusChild(_href) {
                 for (var menuIndex = 0; menuIndex < this.menus.length; menuIndex++) {
                     if (this.menus[menuIndex].hasOwnProperty('childs')) {
                         var _childs = this.menus[menuIndex].childs;
-                        for(var childIndex = 0; childIndex < _childs.length; childIndex++){
-                            if(_href == _childs[childIndex].href){
+                        for (var childIndex = 0; childIndex < _childs.length; childIndex++) {
+                            if (_href == _childs[childIndex].href) {
                                 this.menus[menuIndex].childs[childIndex].active = true;
                             } else {
                                 this.menus[menuIndex].childs[childIndex].active = false;
@@ -133,7 +144,6 @@
                     }
                 }
                 this.$forceUpdate();
-                vc.jumpToPage(_href);
             }
 
         },

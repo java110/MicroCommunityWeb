@@ -24,6 +24,7 @@
         },
         _initMethod: function () {
             vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._loadStepStaff();
         },
         _initEvent: function () {
 
@@ -74,9 +75,17 @@
             },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
-                console.log("提交得参数：", _auditInfo);
                 _auditInfo.taskId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.taskId;
                 _auditInfo.applyId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.applyId;
+                _auditInfo.procure = vc.component.allocationStorehouseAuditOrdersInfo.procure;
+                // 新增通知状态字段，区别是否为仓管及对应状态
+                if (_auditInfo.state == '1200') {
+                    _auditInfo.noticeState = '1203';
+                } else if (vc.component.allocationStorehouseAuditOrdersInfo.procure) {
+                    _auditInfo.noticeState = '1204';
+                } else {
+                    _auditInfo.noticeState = '1201';
+                }
                 //发送get请求
                 vc.http.apiPost('resourceStore.auditAllocationStoreOrder',
                     JSON.stringify(_auditInfo),
@@ -111,6 +120,28 @@
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast("处理失败：" + errInfo);
+                    }
+                );
+            },
+            _loadStepStaff: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        staffId: $that.allocationStorehouseAuditOrdersInfo.currentUserId,
+                        staffRole: '3003'
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('workflow.listWorkflowStepStaffs',
+                    param,
+                    function (json, res) {
+                        var _json = JSON.parse(json);
+                        if (_json.data.length > 0) {
+                            $that.allocationStorehouseAuditOrdersInfo.procure = true;
+                        }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
                     }
                 );
             },

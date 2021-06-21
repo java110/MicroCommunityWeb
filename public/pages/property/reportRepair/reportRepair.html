@@ -95,6 +95,7 @@
                             <th class="text-center">派单(条)</th>
                             <th class="text-center">转单(条)</th>
                             <th class="text-center">退单(条)</th>
+                            <th class="text-center">已回访(条)</th>
                             <th class="text-center">已完结(条)</th>
                         </tr>
                         </thead>
@@ -107,6 +108,7 @@
                             <td class="text-center">{{repair.dispatchAmount}}</td>
                             <td class="text-center">{{repair.transferOrderAmount}}</td>
                             <td class="text-center">{{repair.chargebackAmount}}</td>
+                            <td class="text-center">{{repair.returnAmount}}</td>
                             <td class="text-center">{{repair.statementAmount}}</td>
                         </tr>
                         <td class="text-center" style="font-size:20px;color: red">统计</td>
@@ -125,12 +127,15 @@
                             {{reportRepairInfo.conditions.chargebackNumber}}
                         </td>
                         <td class="text-center" style="font-size:20px;color: red">
+                            {{reportRepairInfo.conditions.returnNumber}}
+                        </td>
+                        <td class="text-center" style="font-size:20px;color: red">
                             {{reportRepairInfo.conditions.statementNumber}}
                         </td>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

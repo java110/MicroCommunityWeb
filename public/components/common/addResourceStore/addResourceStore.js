@@ -16,7 +16,7 @@
                 price: '',
                 outLowPrice: '',
                 outHighPrice: '',
-                showMobile: '',
+                showMobile: 'N',
                 description: '',
                 remark: '',
                 shId: '',
@@ -66,6 +66,11 @@
                             param: "50",
                             errInfo: "物品编码不能超过50位"
                         },
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "物品编码不能为空"
+                        }
                     ],
                     'addResourceStoreInfo.price': [
                         {
@@ -172,7 +177,7 @@
                             //关闭model
                             $('#addResourceStoreModel').modal('hide');
                             vc.component.clearAddResourceStoreInfo();
-                            vc.emit('resourceStoreManage', 'listResourceStore', {});
+                            vc.emit('resourceStoreManage', 'pageReload', {});
                             return;
                         }
                         vc.toast(json);

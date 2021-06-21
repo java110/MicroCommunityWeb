@@ -41,6 +41,9 @@
             vc.on('resourceStoreManage', 'listResourceStore', function (_param) {
                 vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('resourceStoreManage', 'pageReload', function (_param) {
+                location.reload();
+            });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listResourceStores(_currentPage, DEFAULT_ROWS);
             });
