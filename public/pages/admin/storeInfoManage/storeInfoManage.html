@@ -13,7 +13,25 @@
                 <div class="col-sm-4" >
                             <div class="form-group">
                                 <input type="text" placeholder="请输入商户名称" v-model="storeInfoManageInfo.conditions.name" class=" form-control">
-                            </div>                        </div>
+                            </div>    
+                        
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="storeInfoManageInfo.conditions.convenienceMenusId">
+                                    <option value="">请选择便民种类</option>
+                                    <option :value="item.convenienceMenusId" v-for="(item,index) in storeInfoManageInfo.menuInfos">
+                                        {{item.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="storeInfoManageInfo.conditions.isShow">
+                                <option selected value="">请选择是否显示</option>
+                                <option value="Y">是</option>
+                                <option value="N">否</option>
+                            </select> </div>
                             <div class="col-sm-1">
                                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryStoreInfoMethod()">
                                     <i class="glyphicon glyphicon-search"></i> 查询
@@ -54,11 +72,10 @@
                                                         <th class="text-center">商户信息ID</th>
                             <th class="text-center">商户名称</th>
                             <th class="text-center">图片地址</th>
-                            
                             <th class="text-center">商户电话</th>
                             <th class="text-center">商户位置</th>
                             <th class="text-center">显示序号</th>
-                            <th class="text-center">工作时间</th>
+                            <th class="text-center">是否显示</th>
                             <th class="text-center">操作</th>
 
 
@@ -75,7 +92,7 @@
                             <td class="text-center">{{storeInfo.tel}}</td>
                             <td class="text-center">{{storeInfo.site}}</td>
                             <td class="text-center">{{storeInfo.seq}}</td>
-                            <td class="text-center">{{storeInfo.workTime}}</td>
+                            <td class="text-center">{{storeInfo.isShow == 'Y'?'是':'否'}}</td>
                             <td class="text-center"><div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-on:click="_openEditStoreInfoModel(storeInfo)">修改</button>
                                 </div>

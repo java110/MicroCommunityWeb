@@ -24,7 +24,7 @@
                 billType: '',
                 paymentCycle: '',
                 paymentCd: '',
-                computingFormulaText:''
+                computingFormulaText: ''
             }
         },
         _initMethod: function () {
@@ -109,96 +109,96 @@
             },
             addFeeConfigValidate() {
                 return vc.validate.validate({
-                        addFeeConfigInfo: vc.component.addFeeConfigInfo
-                    },
+                    addFeeConfigInfo: vc.component.addFeeConfigInfo
+                },
                     {
                         'addFeeConfigInfo.feeTypeCd': [{
                             limit: "required",
                             param: "",
                             errInfo: "费用类型不能为空"
                         },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "费用类型格式错误"
-                            },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "费用类型格式错误"
+                        },
                         ],
                         'addFeeConfigInfo.feeName': [{
                             limit: "required",
                             param: "",
                             errInfo: "收费项目不能为空"
                         },
-                            {
-                                limit: "maxin",
-                                param: "1,100",
-                                errInfo: "收费项目不能超过100位"
-                            },
+                        {
+                            limit: "maxin",
+                            param: "1,100",
+                            errInfo: "收费项目不能超过100位"
+                        },
                         ],
                         'addFeeConfigInfo.feeFlag': [{
                             limit: "required",
                             param: "",
                             errInfo: "费用标识不能为空"
                         },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "费用类型格式错误"
-                            },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "费用类型格式错误"
+                        },
                         ],
                         'addFeeConfigInfo.startTime': [{
                             limit: "required",
                             param: "",
                             errInfo: "计费起始时间不能为空"
                         },
-                            {
-                                limit: "dateTime",
-                                param: "",
-                                errInfo: "计费起始时间不是有效的时间格式"
-                            },
+                        {
+                            limit: "dateTime",
+                            param: "",
+                            errInfo: "计费起始时间不是有效的时间格式"
+                        },
                         ],
                         'addFeeConfigInfo.endTime': [{
                             limit: "required",
                             param: "",
                             errInfo: "计费终止时间不能为空"
                         },
-                            {
-                                limit: "dateTime",
-                                param: "",
-                                errInfo: "计费终止时间不是有效的时间格式"
-                            },
+                        {
+                            limit: "dateTime",
+                            param: "",
+                            errInfo: "计费终止时间不是有效的时间格式"
+                        },
                         ],
                         'addFeeConfigInfo.computingFormula': [{
                             limit: "required",
                             param: "",
                             errInfo: "计算公式不能为空"
                         },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "计算公式格式错误"
-                            },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "计算公式格式错误"
+                        },
                         ],
                         'addFeeConfigInfo.squarePrice': [{
                             limit: "required",
                             param: "",
                             errInfo: "计费单价不能为空"
                         },
-                            {
-                                limit: "moneyModulus",
-                                param: "",
-                                errInfo: "计费单价格式错误，如1.5000"
-                            },
+                        {
+                            limit: "moneyModulus",
+                            param: "",
+                            errInfo: "计费单价格式错误，如1.5000"
+                        },
                         ],
                         'addFeeConfigInfo.additionalAmount': [{
                             limit: "required",
                             param: "",
                             errInfo: "附加费用不能为空"
                         },
-                            {
-                                limit: "money",
-                                param: "",
-                                errInfo: "附加费用格式错误"
-                            },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "附加费用格式错误"
+                        },
                         ],
                         'addFeeConfigInfo.billType': [{
                             limit: "required",
@@ -211,47 +211,49 @@
                             param: "",
                             errInfo: "缴费周期不能为空"
                         },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "缴费周期必须为数字 单位月"
-                            },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "缴费周期必须为数字 单位月"
+                        },
                         ],
                         'addFeeConfigInfo.paymentCd': [{
                             limit: "required",
                             param: "",
                             errInfo: "付费类型不能为空"
                         },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "付费类型格式错误"
-                            },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "付费类型格式错误"
+                        },
                         ]
                     });
             },
             saveFeeConfigInfo: function () {
-               
+
                 //固定费用
                 if (vc.component.addFeeConfigInfo.computingFormula == '2002') {
                     vc.component.addFeeConfigInfo.squarePrice = "0.00";
                 }
                 //自定义费用
-                if (vc.component.addFeeConfigInfo.computingFormula == '7007') {
+                if (vc.component.addFeeConfigInfo.computingFormula == '7007' ||
+                    vc.component.addFeeConfigInfo.computingFormula == '4004'||
+                    vc.component.addFeeConfigInfo.computingFormula == '9009') {
                     vc.component.addFeeConfigInfo.squarePrice = "0.00";
                     vc.component.addFeeConfigInfo.additionalAmount = "0.00";
                 }
                 if (vc.component.addFeeConfigInfo.feeFlag == '2006012') {
                     vc.component.addFeeConfigInfo.paymentCycle = '1';
                 }
-                 //收费项目去空
-                 vc.component.addFeeConfigInfo.feeName = vc.component.addFeeConfigInfo.feeName.trim();
-                 //缴费周期去空
-                 vc.component.addFeeConfigInfo.paymentCycle = vc.component.addFeeConfigInfo.paymentCycle.trim();
-                 //计费单价去空
-                 vc.component.addFeeConfigInfo.squarePrice = vc.component.addFeeConfigInfo.squarePrice.trim();
-                 //附加费用去空
-                 vc.component.addFeeConfigInfo.additionalAmount = vc.component.addFeeConfigInfo.additionalAmount.trim();
+                //收费项目去空
+                vc.component.addFeeConfigInfo.feeName = vc.component.addFeeConfigInfo.feeName.trim();
+                //缴费周期去空
+                vc.component.addFeeConfigInfo.paymentCycle = vc.component.addFeeConfigInfo.paymentCycle.trim();
+                //计费单价去空
+                vc.component.addFeeConfigInfo.squarePrice = vc.component.addFeeConfigInfo.squarePrice.trim();
+                //附加费用去空
+                vc.component.addFeeConfigInfo.additionalAmount = vc.component.addFeeConfigInfo.additionalAmount.trim();
                 if (!vc.component.addFeeConfigValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -264,8 +266,8 @@
                     return;
                 }
                 vc.http.post('addFeeConfig', 'save', JSON.stringify(vc.component.addFeeConfigInfo), {
-                        emulateJSON: true
-                    },
+                    emulateJSON: true
+                },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
@@ -305,7 +307,7 @@
                     billType: '',
                     paymentCycle: '',
                     paymentCd: '',
-                    computingFormulaText:''
+                    computingFormulaText: ''
                 };
             }
         }

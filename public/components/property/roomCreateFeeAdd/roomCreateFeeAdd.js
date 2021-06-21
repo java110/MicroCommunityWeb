@@ -21,7 +21,9 @@
                 roomType: '1010301',
                 feeLayer: '全部',
                 feeFlag: '',
-                endTime: ''
+                endTime: '',
+                computingFormula:'',
+                amount:''
             }
         },
         _initMethod: function () {
@@ -210,6 +212,8 @@
                     feeLayer: '全部',
                     feeFlag: '',
                     endTime: '',
+                    computingFormula:'',
+                    amount:''
                 };
                 $that.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },
@@ -255,6 +259,7 @@
                 $that.roomCreateFeeAddInfo.feeConfigs.forEach(item => {
                     if (_configId == item.configId) {
                         $that.roomCreateFeeAddInfo.feeFlag = item.feeFlag;
+                        $that.roomCreateFeeAddInfo.computingFormula = item.computingFormula;
                         return;
                     }
                 });

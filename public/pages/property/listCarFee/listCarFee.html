@@ -51,7 +51,7 @@
                                     v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' ">
                                     <div>上期度数：{{fee.preDegrees}}</div>
                                     <div>本期度数：{{fee.curDegrees}} </div>
-                                    <div>单价：{{fee.squarePrice}} </div>
+                                    <div>单价：{{fee.mwPrice?fee.mwPrice:fee.squarePrice}} </div>
                                     <div>附加费：{{fee.additionalAmount}}</div>
                                 </td>
                                 <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">

@@ -228,7 +228,8 @@
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
-                var price = parseFloat(_newCycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
+                //var price = parseFloat(_newCycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
+                var price = parseFloat(_newCycles) * parseFloat($that.payFeeOrderInfo.feePrice);
                 // 调整为根据映射 取整
                 // let unFixedNum = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
@@ -250,7 +251,7 @@
                 if (_cycles == '') {
                     return;
                 }
-                var price = parseFloat(_cycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
+                var price = parseFloat(_cycles) * parseFloat($that.payFeeOrderInfo.feePrice);
                 // let unFixedNum = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;

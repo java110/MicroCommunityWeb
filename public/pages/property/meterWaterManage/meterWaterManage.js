@@ -78,6 +78,9 @@
             _openMeterWaterImport: function () {
                 vc.emit('importMeterWaterFee', 'openImportMeterWaterFeeModal', {});
             },
+            _openMeterWaterImport2:function(){
+                vc.emit('importMeterWaterFee2', 'openImportMeterWaterFeeModal', {});
+            },
             _getMeteTypeName: function (_meterType) {
                 if (_meterType == '1010') {
                     return "电表";
