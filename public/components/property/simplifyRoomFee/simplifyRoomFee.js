@@ -18,7 +18,8 @@
                 configId: '',
                 feeTypeCds: [],
                 feeTypeCd: '',
-                state: '2008001'
+                state: '2008001',
+                totalAmount:0.0
             }
         },
         _initMethod: function () {
@@ -71,6 +72,12 @@
                         let _feeConfigInfo = JSON.parse(json);
                         vc.component.simplifyRoomFeeInfo.total = _feeConfigInfo.total;
                         vc.component.simplifyRoomFeeInfo.records = _feeConfigInfo.records;
+                        let _totalAmount = 0.0;
+                        _feeConfigInfo.fees.forEach(item => {
+                            _totalAmount += parseFloat(item.amountOwed);
+
+                        })
+                        $that.simplifyRoomFeeInfo.totalAmount = _totalAmount;
                         vc.component.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees;
                         vc.emit('simplifyRoomFee', 'paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
@@ -183,7 +190,8 @@
                     feeConfigs: _feeConfigs,
                     feeTypeCd: '',
                     configId: '',
-                    state: '2008001'
+                    state: '2008001',
+                    totalAmount: 0.0
                 }
             },
             _changeSimplifyRoomFeeFeeTypeCd: function (_feeTypeCd) {

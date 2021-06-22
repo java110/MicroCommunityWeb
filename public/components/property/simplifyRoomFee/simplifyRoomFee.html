@@ -134,7 +134,10 @@
             <div class="col-sm-5">
                 <span> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</span>
             </div>
-            <div class="col-sm-7 float-right">
+            <div class="col-sm-2">
+                <span> 欠费小计：{{simplifyRoomFeeInfo.totalAmount}}</span>
+            </div>
+            <div class="col-sm-5 float-right">
                 <vc:create namespace="simplifyRoomFee" path="frame/paginationPlus"></vc:create>
             </div>
         </div>

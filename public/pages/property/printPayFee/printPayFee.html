@@ -34,7 +34,11 @@
                         <th scope="row" class="text-center">{{index +1}}</th>
                         <td class="text-center">{{item.feeName}}</td>
                         <td class="text-center">{{item.objName}}</td>
-                        <td class="text-center">
+                        <td class="text-center" v-if="item.preDegrees">
+                            {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
+                            {{item.preDegrees}} 至 {{item.curDegree}}
+                        </td>
+                        <td class="text-center" v-else>
                             {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
                         </td>
                         <!--<td class="text-center">{{item.startTime}}至{{item.endTime}}</td>-->
