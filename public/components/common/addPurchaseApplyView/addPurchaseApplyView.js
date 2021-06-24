@@ -84,6 +84,9 @@
                     //侦听回传
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addPurchaseApplyViewInfo);
                     return;
+                }else{
+                    vc.toast(vc.validate.errInfo);
+                    vc.emit($props.callBackListener, $props.callBackFunction, null);
                 }
             }
         }

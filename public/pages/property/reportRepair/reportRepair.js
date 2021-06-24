@@ -28,7 +28,8 @@
                     dispatchNumber: '',   //派单总数量
                     transferOrderNumber: '',   //转单总数量
                     chargebackNumber: '',    //退单总数量
-                    statementNumber: ''   //结单总数量
+                    statementNumber: '',   //结单总数量
+                    returnNumber: ''   //回访总数量
                 }
             }
         },
@@ -175,6 +176,8 @@
                         vc.component.reportRepairInfo.conditions.chargebackNumber = _reportRepairInfo.rep.chargebackNumber;
                         //结单总数量
                         vc.component.reportRepairInfo.conditions.statementNumber = _reportRepairInfo.rep.statementNumber;
+                        //回访总数量
+                        vc.component.reportRepairInfo.conditions.returnNumber = _reportRepairInfo.rep.returnNumber;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportRepairInfo.records,
                             currentPage: _page,
@@ -219,6 +222,8 @@
                         vc.component.reportRepairInfo.conditions.chargebackNumber = _reportRepairInfo.rep.chargebackNumber;
                         //结单总数量
                         vc.component.reportRepairInfo.conditions.statementNumber = _reportRepairInfo.rep.statementNumber;
+                        //回访总数量
+                        vc.component.reportRepairInfo.conditions.returnNumber = _reportRepairInfo.rep.returnNumber;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportRepairInfo.records,
                             currentPage: _page,

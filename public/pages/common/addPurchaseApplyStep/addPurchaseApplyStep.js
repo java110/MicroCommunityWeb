@@ -16,7 +16,8 @@
                     file: '',
                     resOrderType: '',
                     staffId: '',
-                    staffName: ''
+                    staffName: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -33,10 +34,12 @@
                 vc.component.addPurchaseApplyStepInfo.infos[0] = viewResourceStoreInfo2.resourceStores;
             });
             vc.on("addPurchaseApplyStep", "notify2", function (info) {
-                vc.component.addPurchaseApplyStepInfo.purchaseApply.description = info.description;
-                vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserName = info.endUserName;
-                vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserTel = info.endUserTel;
                 vc.component.addPurchaseApplyStepInfo.infos[1] = info;
+                if (info) {
+                    vc.component.addPurchaseApplyStepInfo.purchaseApply.description = info.description;
+                    vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserName = info.endUserName;
+                    vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserTel = info.endUserTel;
+                }
             });
             vc.on("addPurchaseApplyStep", "notify3", function (info) {
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.staffId = info.staffId;
@@ -63,7 +66,7 @@
             _nextStep: function () {
                 vc.emit('viewResourceStoreInfo2', 'getSelectResourceStores', null);
                 let _resourceStores = vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores;
-                if(_resourceStores.length <= 0){
+                if (_resourceStores.length <= 0) {
                     vc.toast("请选择物品");
                     return;
                 }

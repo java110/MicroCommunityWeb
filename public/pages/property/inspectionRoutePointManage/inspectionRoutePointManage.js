@@ -65,6 +65,10 @@
                 _inspectionPoint.inspectionRouteId = $that.inspectionRoutePointManageInfo.inspectionRouteId;
                 vc.emit('deleteInspectionRoutePoint', 'openDeleteInspectionRoutePointModal', _inspectionPoint);
             },
+            _openEditInspectionRoutePointModel: function (_inspectionPoint) {
+                _inspectionPoint.inspectionRouteId = $that.inspectionRoutePointManageInfo.inspectionRouteId;
+                vc.emit('editInspectionRoutePoint', 'openEditInspectionRoutePointModal', _inspectionPoint);
+            },
             _goBack: function () {
                 vc.emit('inspectionRouteManage', 'goBack', {});
             }

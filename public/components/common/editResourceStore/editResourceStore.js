@@ -14,7 +14,7 @@
                 unitCodes: [],
                 outLowPrice: '',
                 outHighPrice: '',
-                showMobile: '',
+                showMobile: 'N',
                 fileUrls: [],
                 resourceStoreTypes: [],
                 remark: '',
@@ -70,6 +70,11 @@
                             param: "50",
                             errInfo: "物品编码不能超过50位"
                         },
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "物品编码不能为空"
+                        }
                     ],
                     'editResourceStoreInfo.price': [
                         {

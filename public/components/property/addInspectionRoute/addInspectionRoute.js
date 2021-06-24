@@ -89,7 +89,7 @@
             clearAddInspectionRouteInfo: function () {
                 vc.component.addInspectionRouteInfo = {
                     routeName: '',
-                    seq: '',
+                    // seq: '',
                     remark: ''
                 };
             }

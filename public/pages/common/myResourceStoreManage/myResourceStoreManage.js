@@ -135,6 +135,11 @@
             // 跳转转增商品页面
             _jump2TransferGoodsPage: function () {
                 vc.jumpToPage("/admin.html#/pages/common/transferGoodsStep");
+            },
+
+            // 退还商品
+            _jump2ReturnGoodsPage: function () {
+                vc.jumpToPage("/admin.html#/pages/common/returnStorehouseApplyManage");
             }
         }
     });

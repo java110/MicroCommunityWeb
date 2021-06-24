@@ -77,9 +77,18 @@
             },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
-                console.log("提交得参数：" + _auditInfo);
                 _auditInfo.taskId = vc.component.auditOrdersInfo.orderInfo.taskId;
                 _auditInfo.applyOrderId = vc.component.auditOrdersInfo.orderInfo.applyOrderId;
+                _auditInfo.communityId = vc.getCurrentCommunity().communityId
+                // 新增通知状态字段，区别是否为仓管及对应状态
+                if(_auditInfo.state == '1200'){
+                    _auditInfo.noticeState = '1004';
+                } else if (vc.component.auditOrdersInfo.procure){
+                    _auditInfo.noticeState = '1002';
+                } else {
+                    _auditInfo.noticeState = '1001';
+                }
+                console.log("提交得参数：" , _auditInfo);
                 //发送get请求
                 vc.http.post('myAuditOrders',
                     'audit',

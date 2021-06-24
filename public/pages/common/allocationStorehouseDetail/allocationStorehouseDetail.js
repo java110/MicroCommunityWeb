@@ -13,17 +13,19 @@
                 startUserName:'',
                 createTime:'',
                 auditUsers: [],
-                stateName:''
+                stateName:'',
+                applyType: '',
+                applyTypeName: ''
             }
         },
         _initMethod: function () {
             vc.component.allocationStorehouseDetailInfo.applyId = vc.getParam('applyId');
+            vc.component.allocationStorehouseDetailInfo.applyType = vc.getParam('applyType');
+            vc.component.allocationStorehouseDetailInfo.applyTypeName = vc.getParam('applyTypeName');
             $that._listAllocationStorehouseApply();
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
-            $that._loadAuditUser();
         },
         _initEvent: function () {
-
         },
         methods: {
             _listPurchaseApply: function (_page, _rows) {
@@ -34,7 +36,6 @@
                         applyId: vc.component.allocationStorehouseDetailInfo.applyId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStorehouses',
                     param,
@@ -55,14 +56,16 @@
                         applyId: vc.component.allocationStorehouseDetailInfo.applyId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStorehouseApplys',
                     param,
                     function (json, res) {
                         var _allocationStorehouseDetailInfo = JSON.parse(json);
                         var _purchaseApply = _allocationStorehouseDetailInfo.data[0];
-                        vc.copyObject(_purchaseApply,vc.component.allocationStorehouseDetailInfo);
+                        vc.copyObject(_purchaseApply, vc.component.allocationStorehouseDetailInfo);
+                        if (vc.component.allocationStorehouseDetailInfo.applyType == 10000) {
+                            $that._loadAuditUser();
+                        }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -75,7 +78,6 @@
                         communityId: vc.getCurrentCommunity().communityId,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowAuditInfo',
                     param,

@@ -46,7 +46,7 @@
                                             普通流程
                                         </label>
                                     </div>
-                                    <div class="form-check form-check-inline col-form-label">
+                                    <div class="form-check form-check-inline col-form-label" v-show="index!=0">
                                         <input class="form-check-input" type="radio" v-bind:name="index+'-radio'"
                                             v-bind:id="index+'-radio2'" value="1" v-model="item.type">
                                         <label class="form-check-label" v-bind:for="index+'-radio2'">
@@ -71,7 +71,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="margin-left" @click="chooseStaffRole(item)" v-if="workflowSettingInfo.flowType == '40004'">
+                                <div class="margin-left" @click="chooseStaffRole(item)" v-if="workflowSettingInfo.flowType == '40004' || workflowSettingInfo.flowType == '70007'">
                                     <div class="form-check form-check-inline col-form-label">
                                         <input class="form-check-input" type="radio" v-bind:name="index+'-radio2'"
                                             v-bind:id="index+'-radio5'" value="3003" v-model="item.staffRole" checked>

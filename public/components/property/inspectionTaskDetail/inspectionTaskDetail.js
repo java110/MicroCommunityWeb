@@ -4,7 +4,7 @@
         data: {
             inspectionTaskDetailInfo: {
                 taskDetails: [],
-                taskId: '',
+                taskId: ''
             }
         },
         _initMethod: function () {
@@ -51,13 +51,22 @@
                     taskDetails: [],
                     taskId: '',
                 };
-            }, 
-            openFile:function(_photo){
-                vc.emit('viewImage','showImage',{
-                    url:_photo.url
+            },
+            openFile: function (_photo) {
+                vc.emit('viewImage', 'showImage', {
+                    url: _photo.url
                 });
-             }
+            },
+            openMap: function (lat, lng) {
+                if(!lat || !lng){
+                    vc.toast('暂无位置信息');
+                    return;
+                }
+                vc.emit('viewMap', 'showMap', {
+                    lat: lat,
+                    lng: lng
+                });
+            }
         }
-
     });
 })(window.vc);

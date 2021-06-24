@@ -12,15 +12,12 @@
                 pointObjTypes: [],
                 pointObjName: '',
                 inspectionName: '',
-                pointStartTime: '',
-                pointEndTime: '',
                 remark: ''
             }
         },
         _initMethod: function () {
         },
         _initEvent: function () {
-            vc.component._initAddInspectionPointInfo();
             //与字典表关联
             vc.getDict('inspection_point', "point_obj_type", function (_data) {
                 vc.component.addInspectionPointInfo.pointObjTypes = _data;
@@ -59,31 +56,6 @@
                             errInfo: "巡检类型不能为空"
                         },
                     ],
-
-                    'addInspectionPointInfo.pointStartTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "巡检开始时间不能为空"
-                        },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "巡检开始时间不是有效的时间格式"
-                        },
-                    ],
-                    'addInspectionPointInfo.pointEndTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "巡检结束时间不能为空"
-                        },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "巡检结束时间不是有效的时间格式"
-                        },
-                    ],
                     'addInspectionPointInfo.remark': [
                         {
                             limit: "maxLength",
@@ -118,48 +90,6 @@
                         },
                     ]
                 });
-            },
-            _initAddInspectionPointInfo: function () {
-                $('.addInspectionPointStartTime').datetimepicker({
-                    language: 'zh-CN',
-                    fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
-                    initTime: true,
-                    initialDate: new Date(),
-                    autoClose: 1,
-                    todayBtn: true
-                });
-                $('.addInspectionPointStartTime').datetimepicker()
-                    .on('changeDate', function (ev) {
-                        var value = $(".addInspectionPointStartTime").val();
-                        vc.component.addInspectionPointInfo.pointStartTime = value;
-                    });
-                $('.addInspectionPointEndTime').datetimepicker({
-                    language: 'zh-CN',
-                    fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
-                    initTime: true,
-                    initialDate: new Date(),
-                    autoClose: 1,
-                    todayBtn: true
-                });
-                $('.addInspectionPointEndTime').datetimepicker()
-                    .on('changeDate', function (ev) {
-                        var value = $(".addInspectionPointEndTime").val();
-                        vc.component.addInspectionPointInfo.pointEndTime = value;
-                    });
-                //防止多次点击时间插件失去焦点
-                document.getElementsByClassName('form-control addInspectionPointStartTime')[0].addEventListener('click', myfunc)
-
-                function myfunc(e) {
-                    e.currentTarget.blur();
-                }
-
-                document.getElementsByClassName("form-control addInspectionPointEndTime")[0].addEventListener('click', myfunc)
-
-                function myfunc(e) {
-                    e.currentTarget.blur();
-                }
             },
             saveInspectionPointInfo: function () {
                 if ($that.addInspectionPointInfo.pointObjType == '2002') {

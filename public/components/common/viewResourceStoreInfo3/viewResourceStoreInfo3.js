@@ -39,6 +39,8 @@
                 let oldList = vc.component.viewResourceStoreInfo3.resourceStores;
                 // 过滤重复选择的商品
                 resourceStores.forEach((newItem, newIndex) => {
+                    newItem.contrastPrice = newItem.price;
+                    newItem.price = 0;
                     newItem.quantity = 0;
                     newItem.rsId = '';
                     oldList.forEach((oldItem) => {

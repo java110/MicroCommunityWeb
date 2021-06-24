@@ -119,7 +119,7 @@
                     }
                 }
                 //传参
-                vc.emit("viewResourceStaffInfo", "setSelectResourceStores", _resourceStores);
+                vc.emit($props.emitChooseResourceStore, "setSelectResourceStores", _resourceStores);
                 $('#chooseResourceStaffModel').modal('hide');
             },
 

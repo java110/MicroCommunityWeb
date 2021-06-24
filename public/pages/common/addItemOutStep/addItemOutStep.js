@@ -16,7 +16,8 @@
                     file: '',
                     resOrderType: '',
                     staffId: '',
-                    staffName: ''
+                    staffName: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -34,10 +35,12 @@
             });
 
             vc.on("addItemOutStep", "notify2", function (info) {
-                vc.component.addItemOutStepInfo.purchaseApply.description = info.description;
-                vc.component.addItemOutStepInfo.purchaseApply.endUserName = info.endUserName;
-                vc.component.addItemOutStepInfo.purchaseApply.endUserTel = info.endUserTel;
                 vc.component.addItemOutStepInfo.infos[1] = info;
+                if (info) {
+                    vc.component.addItemOutStepInfo.purchaseApply.description = info.description;
+                    vc.component.addItemOutStepInfo.purchaseApply.endUserName = info.endUserName;
+                    vc.component.addItemOutStepInfo.purchaseApply.endUserTel = info.endUserTel;
+                }
             });
             vc.on("addItemOutStep", "notify3", function (info) {
                 vc.component.addItemOutStepInfo.purchaseApply.staffId = info.staffId;
@@ -72,6 +75,7 @@
                     return;
                 }
                 var _currentData = vc.component.addItemOutStepInfo.infos[vc.component.addItemOutStepInfo.index];
+                console.log('here is cur ', _currentData);
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
                     return;

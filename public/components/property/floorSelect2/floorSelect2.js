@@ -80,7 +80,7 @@
                             return {
                                 floorNum: _term,
                                 page: 1,
-                                row: 10,
+                                row: 30,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },

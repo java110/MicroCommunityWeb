@@ -13,6 +13,7 @@
                 records: 1,
                 moreCondition: false,
                 states: [],
+                applyTypes: [],
                 conditions: {
                     asId: '',
                     applyId: '',
@@ -25,7 +26,8 @@
                     shIdz: '',
                     stock: '',
                     startUserId: '',
-                    state: ''
+                    state: '',
+                    applyType: ''
                 },
                 resourceStoreTypes: [],
                 resourceStoreSpecifications: []
@@ -35,6 +37,10 @@
             //与字典表关联
             vc.getDict('allocation_storehouse_apply', "state", function (_data) {
                 vc.component.allocationStorehousesInfo.states = _data;
+            });
+            //与字典表关联
+            vc.getDict('allocation_storehouse_apply', "apply_type", function (_data) {
+                vc.component.allocationStorehousesInfo.applyTypes = _data;
             });
             vc.component._listAllocationStores(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listStorehouses();
@@ -95,6 +101,7 @@
                 vc.component.allocationStorehousesInfo.conditions.rstId = "";
                 vc.component.allocationStorehousesInfo.conditions.rssId = "";
                 vc.component.allocationStorehousesInfo.conditions.state = "";
+                vc.component.allocationStorehousesInfo.conditions.applyType = "";
                 vc.component._listAllocationStores(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listStorehouses: function (_page, _rows) {
