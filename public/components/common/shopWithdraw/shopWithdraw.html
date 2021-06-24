@@ -8,12 +8,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <tr align="center"><th>确定撤回该审核吗?</th></tr>
-                <br/>
-                <tr align="center">
-                    <th><textarea v-model="shopWithdrawInfo.remark" rows="3" cols="4"  placeholder="必填，请填写撤回意见"
-                    class="form-control" style="font-size:14px;" >
-                </textarea></th></tr>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">撤回说明</label>
+                    <div class="col-sm-9">
+                        <textarea v-model="shopWithdrawInfo.remark" rows="3" cols="4"  placeholder="必填，请填写撤回意见"
+                        class="form-control" style="font-size:14px;" >
+                    </textarea>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeShopWithdrawModel()">点错了</button>
