@@ -62,6 +62,7 @@
                                 <th class="text-center">开始时间</th>
                                 <th class="text-center">结束时间</th>
                                 <th class="text-center">状态</th>
+                                <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,6 +74,13 @@
                                 <td class="text-center">{{shopCommunity.startTime}}</td>
                                 <td class="text-center">{{shopCommunity.endTime}}</td>
                                 <td class="text-center">{{shopCommunity.stateName}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                         <button class="btn-white btn btn-xs"
+                                             v-on:click="_openShopCommunityWithdrawModel(shopCommunity)">撤回
+                                         </button>
+                                     </div>  
+                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
