@@ -64,6 +64,9 @@
                     }
                 );
             },
+            _openShopCommunityWithdrawModel: function(_shopCommunity){
+                vc.emit('shopCommunityWithdraw','shopCommunityWithdrawModel', _shopCommunity);
+            },
             _queryAuditShopCommunitysMethod: function () {
                 vc.component._listAuditShopCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
             },
