@@ -56,7 +56,7 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "200",
+                            param: "30",
                             errInfo: "商品编号太长"
                         },
                     ],
@@ -144,6 +144,7 @@
                 vc.component.addMainCategoryProductInfo = {
                     mainCategoryId: '',
                     productId: '',
+                    productName: '',
                     startTime: '',
                     endTime: '',
                     seq: '',
