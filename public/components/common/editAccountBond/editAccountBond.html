@@ -1,0 +1,56 @@
+<div id="editAccountBondModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">修改保证金</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">店铺类型</label>
+                <div class="col-sm-10">
+                  <input v-model="editAccountBondInfo.bondName" disabled="disabled" type="text" placeholder="选填，请填写类型ID" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">保证金名称</label>
+                <div class="col-sm-10">
+                  <input v-model="editAccountBondInfo.bondName" disabled="disabled" type="text" placeholder="必填，请填写保证金名称"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">保证金金额</label>
+                <div class="col-sm-10">
+                  <input v-model="editAccountBondInfo.amount" type="text" placeholder="必填，请填写保证金金额"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">有效月份</label>
+                <div class="col-sm-10">
+                  <input v-model="editAccountBondInfo.bondMonth" type="text" placeholder="选填，请填写有效月份"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">备注</label>
+                <div class="col-sm-10">
+                  <textarea v-model="editAccountBondInfo.remark" type="text" placeholder="选填，请填写备注"
+                    class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="editAccountBond()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
