@@ -13,7 +13,8 @@
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="mainCategoryManageInfo.conditions.categoryType">
                                 <option selected value="">请选择目录类别</option>
-                                <option value="120406">首页目录</option>
+                                <option value="1">家政</option>
+                                <option value="2">商圈</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
@@ -74,7 +75,7 @@
                             <tr v-for="mainCategory in mainCategoryManageInfo.mainCategorys">
                                 <td class="text-center">{{mainCategory.mainCategoryId}}</td>
                                 <td class="text-center">{{mainCategory.categoryName}}</td>
-                                <td class="text-center">{{mainCategory.categoryType}}</td>
+                                <td class="text-center">{{mainCategory.categoryType == '1'?'家政':'商圈'}}</td>
                                 <td class="text-center">{{mainCategory.startTime}}</td>
                                 <td class="text-center">{{mainCategory.endTime}}</td>
                                 <td class="text-center">{{mainCategory.seq}}</td>

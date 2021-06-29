@@ -10,7 +10,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select"
                                 v-model="mainCategoryProductManageInfo.conditions.mainCategoryId">
                                 <option selected value="">请选择目录</option>
@@ -20,13 +20,19 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入商品编号"
+                                <input type="text" placeholder="请输入编号"
                                     v-model="mainCategoryProductManageInfo.conditions.productId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入名称"
+                                    v-model="mainCategoryProductManageInfo.conditions.productName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
                             <select class="custom-select" v-model="mainCategoryProductManageInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
                                 <option value="10021">待审核</option>
@@ -67,7 +73,8 @@
                             <tr>
 
                                 <th class="text-center">目录</th>
-                                <th class="text-center">商品编号</th>
+                                <th class="text-center">编号</th>
+                                <th class="text-center">名称</th>
                                 <th class="text-center">开始时间</th>
                                 <th class="text-center">结束时间</th>
                                 <th class="text-center">排序</th>
@@ -80,6 +87,7 @@
 
                                 <td class="text-center">{{mainCategoryProduct.categoryName}}</td>
                                 <td class="text-center">{{mainCategoryProduct.productId}}</td>
+                                <td class="text-center">{{mainCategoryProduct.productName}}</td>
                                 <td class="text-center">{{mainCategoryProduct.startTime}}</td>
                                 <td class="text-center">{{mainCategoryProduct.endTime}}</td>
                                 <td class="text-center">{{mainCategoryProduct.seq}}</td>

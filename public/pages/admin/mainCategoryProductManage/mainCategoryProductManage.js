@@ -16,6 +16,7 @@
                 conditions: {
                     mainCategoryId: '',
                     productId: '',
+                    productName: '',
                     state: '',
 
                 }
