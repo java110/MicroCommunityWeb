@@ -9,7 +9,7 @@
             addAccountBondInfo: {
                 bondId: '',
                 bondName: '',
-                amount: '',
+                amount: '0',
                 bondMonth: '',
                 objId: '',
                 bondType: '6006',
