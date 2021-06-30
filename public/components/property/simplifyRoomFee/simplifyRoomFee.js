@@ -51,6 +51,16 @@
                 });
         },
         methods: {
+            getOnePrice1:function(fee) {
+                let _price = fee.mwPrice;
+                if (!_price) {
+                    return fee.squarePrice;
+                }
+                if (parseFloat(_price) > 0) {
+                    return _price;
+                }
+                return fee.squarePrice;
+            },
             _listSimplifyRoomFee: function (_page, _row) {
                 let param = {
                     params: {
