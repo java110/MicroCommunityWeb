@@ -18,6 +18,7 @@
                     repairWay: '',
                     servName: '',
                     hktId: '',
+                    state: '2002',
                     createTime: ''
                     //shopId:vc.getCurrentCommunity().shopId
 
@@ -87,7 +88,7 @@
                 );
             },
             _initservSjtmentTimeInfo: function () {
-                vc.component.housekeepingServManageInfo.conditions.createTime = vc.dateTimeFormat(new Date().getTime());
+
                 $('.servSjtmentTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',

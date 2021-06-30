@@ -15,7 +15,7 @@
                 componentShow: 'productManage',
                 conditions: {
                     categoryId: '',
-                    state: '',
+                    state: '2002',
                     prodName: '',
                     keyword: '',
                     barCode: '',
@@ -65,7 +65,7 @@
                 );
             },
             _initservSjtmentTimeInfo: function () {
-                vc.component.productManageInfo.conditions.createTime = vc.dateTimeFormat(new Date().getTime());
+
                 $('.productSjtmentTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -83,11 +83,11 @@
             },
             _listProductsToDay: function(){
                 vc.component.productManageInfo.conditions.createTime = vc.dateTimeFormat(new Date().getTime());
-                vc.component._listHousekeepingServs(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listProducts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listProductsAll: function(){
                 vc.component.productManageInfo.conditions.createTime = '';
-                vc.component._listHousekeepingServs(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listProducts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddProductModal: function () {
                 //vc.emit('addProduct', 'openAddProductModal', {});

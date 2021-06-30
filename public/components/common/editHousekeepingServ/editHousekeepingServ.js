@@ -162,7 +162,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                $that.editHousekeepingServInfo.shopId=vc.getCurrentCommunity().shopId;
+                //$that.editHousekeepingServInfo.shopId=vc.getCurrentCommunity().shopId;
                 vc.http.apiPost(
                     '/housekeepingServ/updateHousekeepingServ',
                     JSON.stringify(vc.component.editHousekeepingServInfo),
@@ -192,7 +192,7 @@
                         page: 1,
                         row: 50,
                         typeCd:1001,
-                        shopId:vc.getCurrentCommunity().shopId
+                        //shopId:vc.getCurrentCommunity().shopId
                     }
                 };
 

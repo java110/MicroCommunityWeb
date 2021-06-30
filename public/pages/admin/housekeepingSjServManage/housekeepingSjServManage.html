@@ -16,12 +16,12 @@
                                     v-model="housekeepingServManageInfo.conditions.servName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <!--<div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请选择上架日期"
                                     v-model="housekeepingServManageInfo.conditions.createTime" class=" form-control servSjtmentTime">
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="housekeepingServManageInfo.conditions.hktId">
@@ -129,7 +129,7 @@
 
 
     <div v-bind:class="{no_display:housekeepingServManageInfo.componentShow != 'editHousekeepingServ'}">
-        <vc:create path="goods/editHousekeepingServ"></vc:create>
+        <vc:create path="common/editHousekeepingServ"></vc:create>
     </div>
-    <vc:create path="goods/deleteHousekeepingServ"></vc:create>
+    <vc:create path="common/deleteHousekeepingServ"></vc:create>
 </div>

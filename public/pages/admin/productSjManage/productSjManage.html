@@ -16,12 +16,12 @@
                                     class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <!--<div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请选择上架日期"
                                     v-model="productManageInfo.conditions.createTime" class=" form-control productSjtmentTime">
                             </div>
-                        </div>                    
+                        </div>-->                    
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryProductMethod()">
                                 <i class="glyphicon glyphicon-search"></i> 查询
@@ -39,6 +39,16 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>上架商品</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_listProductsToDay()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            今日上架服务
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_listProductsAll()"> 所有上架服务
+                        </button>
+                    </div>
                 </div>
                 <div class="ibox-content">
 
@@ -100,9 +110,9 @@
     </div>
 
     <div v-bind:class="{no_display:productManageInfo.componentShow != 'editProduct'}">
-        <vc:create path="goods/editProduct"></vc:create>
+        <vc:create path="common/editProduct"></vc:create>
     </div>
-    <vc:create path="goods/deleteProduct"></vc:create>
+    <vc:create path="common/deleteProduct"></vc:create>
     
 
 </div>

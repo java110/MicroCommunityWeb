@@ -166,7 +166,7 @@
                     return;
                 }
 
-                $that.editProductInfo.shopId = vc.getCurrentCommunity().shopId;
+                //$that.editProductInfo.shopId = vc.getCurrentCommunity().shopId;
 
                 vc.http.apiPost(
                     '/product/updateProduct',
@@ -226,7 +226,7 @@
                     params: {
                         page:1,
                         row:50,
-                        shopId:vc.getCurrentCommunity().shopId
+                        //shopId:vc.getCurrentCommunity().shopId
                     }
                 };
                 //发送get请求
