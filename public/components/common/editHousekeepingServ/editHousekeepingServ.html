@@ -1,0 +1,146 @@
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>服务信息</h5>
+          <div class="ibox-tools" style="top:10px;">
+
+          </div>
+        </div>
+        <div class="ibox-content">
+
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">服务名称</label>
+            <div class="col-sm-5">
+              <input v-model="editHousekeepingServInfo.servName" type="text" disabled="disabled" placeholder="必填，请填写服务名称" class="form-control">
+            </div>
+            <label class="col-sm-1 col-form-label text-right">服务描述</label>
+            <div class="col-sm-5">
+              <input v-model="editHousekeepingServInfo.servDesc" type="text" disabled="disabled" placeholder="必填，请填写服务名称" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">关键词</label>
+            <div class="col-sm-5">
+              <input v-model="editHousekeepingServInfo.keyword" type="text" disabled="disabled" placeholder="必填，请填写关键词,多个关键词用;分隔"
+                class="form-control">
+            </div>
+            <label class="col-sm-1 col-form-label text-right">家政类型</label>
+            <div class="col-sm-5">
+              <select class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.hktId">
+                <option selected disabled value="">必填，请选择家政类型</option>
+                <option v-for="(item,index) in editHousekeepingServInfo.housekeepingTypes" :value="item.hktId">
+                  {{item.hktName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">销量</label>
+            <div class="col-sm-5">
+              <input v-model="editHousekeepingServInfo.sales" type="text" disabled="disabled" placeholder="选填，请填写销量" class="form-control">
+            </div>
+            <label class="col-sm-1 col-form-label text-right">排序</label>
+            <div class="col-sm-5">
+              <input v-model="editHousekeepingServInfo.sort" type="text" disabled="disabled" placeholder="选填，请填写排序" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">上架状态</label>
+            <div class="col-sm-5">
+              <select class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.state">
+                <option selected disabled value="">必填，请选择上架状态</option>
+                <option value="1001">未上架</option>
+                <option value="2002">上架</option>
+              </select>
+            </div>
+            <label class="col-sm-1 col-form-label text-right">派单方式</label>
+            <div class="col-sm-5">
+              <select class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.repairWay">
+                <option selected disabled value="">必填，请选择派单方式</option>
+                <option value="100">抢单</option>
+                <option value="200">指派</option>
+                <option value="300">轮训</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">回访方式</label>
+            <div class="col-sm-5">
+              <select class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.returnVisitFlag">
+                <option selected disabled value="">必填，请选择回访方式</option>
+                <option value="001">都不回访</option>
+                <option value="002">已评价不回访</option>
+                <option value="003">都回访</option>
+              </select>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>服务图片</h5>
+          <div class="ibox-tools" style="top:10px;">
+
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">服务封面</label>
+            <div class="content-img col-sm-11">
+              <vc:create path="frame/uploadImage" callBackListener="editHousekeepingServ"
+                callBackFunction="notifyUploadCoverImage" namespace="editHousekeepingServCover" imageCount="1"></vc:create>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">服务轮播</label>
+            <div class="content-img col-sm-11">
+              <vc:create path="frame/uploadImage" callBackListener="editHousekeepingServ"
+                callBackFunction="notifyUploadCarouselFigureImage" namespace="editHousekeepingServCarouselFigure" imageCount="3">
+              </vc:create>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>服务扩展</h5>
+          <div class="ibox-tools" style="top:10px;">
+
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label text-right">服务详情</label>
+            <div class="col-sm-11 ">
+              <div class=" no-padding">
+                <div class="editServSummernote"></div>
+              </div>
+              <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" placeholder="必填，请填写公告内容" class="form-control"></textarea>-->
+            </div>
+          </div>
+
+          <div class="ibox-content">
+            <!--<button class="btn btn-primary float-right" type="button" v-on:click="editHousekeepingServ()"><i
+                class="fa fa-check"></i>&nbsp;保存</button>-->
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+              v-on:click="_refreshEditHousekeepingServInfo()">取消</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
