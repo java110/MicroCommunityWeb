@@ -49,7 +49,7 @@
                 if (parseFloat(_price) > 0) {
                     return _price;
                 }
-                return fee.mwPrice;
+                return fee.squarePrice;
             },
             _loadListRoomCreateFeeInfo: function (_page, _row) {
                 var param = {
