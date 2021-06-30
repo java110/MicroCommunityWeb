@@ -179,7 +179,7 @@
                     }
                 );
             },
-            _getOnePrice: function (fee) {
+            _getOnePrice:function (fee) {
                 let _price = fee.mwPrice;
                 if (!_price) {
                     return fee.squarePrice;
