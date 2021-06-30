@@ -179,6 +179,16 @@
                     }
                 );
             },
+            _getOnePrice: function (fee) {
+                let _price = fee.mwPrice;
+                if (!_price) {
+                    return fee.squarePrice;
+                }
+                if (parseFloat(_price) > 0) {
+                    return _price;
+                }
+                return fee.mwPrice;
+            }
         }
     });
 })(window.vc);
