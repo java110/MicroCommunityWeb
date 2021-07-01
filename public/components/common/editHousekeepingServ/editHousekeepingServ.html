@@ -95,15 +95,16 @@
           <div class="form-group row">
             <label class="col-sm-1 col-form-label text-right">服务封面</label>
             <div class="content-img col-sm-11">
-              <vc:create path="frame/uploadImage" callBackListener="editHousekeepingServ"
-                callBackFunction="notifyUploadCoverImage" namespace="editHousekeepingServCover" imageCount="1"></vc:create>
-            </div>
+                <img style="width: 60px; height: 60px; border-radius: 5px;"
+                v-bind:src="editHousekeepingServInfo.coverPhoto"></img>
+              </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-1 col-form-label text-right">服务轮播</label>
             <div class="content-img col-sm-11">
-              <vc:create path="frame/uploadImage" callBackListener="editHousekeepingServ"
-                callBackFunction="notifyUploadCarouselFigureImage" namespace="editHousekeepingServCarouselFigure" imageCount="3">
+              
+                <img style="width: 60px; height: 60px; border-radius: 5px;" v-for="(item) in editHousekeepingServInfo.carouselFigurePhoto"
+                v-bind:src="item"></img>
               </vc:create>
             </div>
           </div>

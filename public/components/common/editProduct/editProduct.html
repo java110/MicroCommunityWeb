@@ -68,15 +68,15 @@
           <div class="form-group row">
             <label class="col-sm-1 col-form-label text-right">商品封面</label>
             <div class="content-img col-sm-11">
-              <vc:create path="frame/uploadImage" callBackListener="editProduct"
-                callBackFunction="notifyUploadCoverImage" namespace="editProductCover" imageCount="1"></vc:create>
+                <img style="width: 60px; height: 60px; border-radius: 5px;"
+                v-bind:src="editProductInfo.coverPhoto"></img>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-1 col-form-label text-right">商品轮播</label>
             <div class="content-img col-sm-11">
-              <vc:create path="frame/uploadImage" callBackListener="editProduct"
-                callBackFunction="notifyUploadCarouselFigureImage" namespace="editProductCarouselFigure" imageCount="3">
+                <img style="width: 60px; height: 60px; border-radius: 5px;" v-for="(item) in editProductInfo.carouselFigurePhoto"
+                v-bind:src="item"></img>
               </vc:create>
             </div>
           </div>
@@ -90,12 +90,6 @@
       <div class="ibox">
         <div class="ibox-title">
           <h5>商品规格</h5>
-          <div class="ibox-tools" style="top:10px;">
-            <button type="button" class="btn btn-primary btn-sm" v-on:click="_openEditChooseSpecModal()">
-              <i class="glyphicon glyphicon-plus"></i>
-              选择规格
-            </button>
-          </div>
         </div>
         <div class="ibox-content">
           <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
@@ -118,22 +112,21 @@
                 <td class="text-center">
                   <span v-html="productSpec.specValue"></span>
                 </td>
+                <td class="text-center">{{productSpec.stock}}</td>
                 <td class="text-center">
-                  <input class="form-control" v-model="productSpec.stock" type="number" /></td>
-                <td class="text-center">
-                  <input class="form-control" v-model="productSpec.sales" type="number" />
+                  {{productSpec.sales}}
                 </td>
                 <td class="text-center">
-                  <input class="form-control" v-model="productSpec.price" type="number" />
+                  {{productSpec.price}}
                 </td>
                 <td class="text-center">
-                  <input class="form-control" v-model="productSpec.costPrice" type="number" />
+                  {{productSpec.costPrice}}
                 </td>
                 <td class="text-center">
-                  <input class="form-control" v-model="productSpec.vipPrice" type="number" />
+                  {{productSpec.vipPrice}}
                 </td>
                 <td class="text-center">
-                  <input class="form-control" v-model="productSpec.otPrice" type="number" />
+                  {{productSpec.otPrice}}
                 </td>
                 <!--<td class="text-right">
                   <div class="btn-group">

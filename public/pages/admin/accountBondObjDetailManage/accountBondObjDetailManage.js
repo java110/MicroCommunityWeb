@@ -67,17 +67,17 @@
                 };
 
                //发送get请求
-               vc.http.apiGet('/shop/queryShop',
-                             param,
-                             function(json,res){
-                                var _shopManageInfo=JSON.parse(json);
-                                vc.component.accountBondObjDetailManageInfo.total = _shopManageInfo.total;
-                                vc.component.accountBondObjDetailManageInfo.records = _shopManageInfo.records;
-                                vc.component.accountBondObjDetailManageInfo.shops = _shopManageInfo.data;
-                             },function(errInfo,error){
-                                console.log('请求失败处理');
-                             }
-                           );
+               vc.http.apiGet('/shop/queryShopsByAdmin',
+                    param,
+                    function(json,res){
+                    var _shopManageInfo=JSON.parse(json);
+                    vc.component.accountBondObjDetailManageInfo.total = _shopManageInfo.total;
+                    vc.component.accountBondObjDetailManageInfo.records = _shopManageInfo.records;
+                    vc.component.accountBondObjDetailManageInfo.shops = _shopManageInfo.data;
+                    },function(errInfo,error){
+                    console.log('请求失败处理');
+                    }
+                );
             },
             _openDeleteAccountBondObjModel: function (_accountBondObj) {
                 vc.emit('deleteAccountBondObj', 'openDeleteAccountBondObjModal', _accountBondObj);

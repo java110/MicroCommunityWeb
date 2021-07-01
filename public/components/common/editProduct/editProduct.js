@@ -54,95 +54,7 @@
             });
         },
         methods: {
-            editProductValidate() {
-                return vc.validate.validate({
-                    editProductInfo: vc.component.editProductInfo
-                }, {
-                    'editProductInfo.categoryId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品大类不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "商品大类错误"
-                        },
-                    ],
-                    'editProductInfo.prodName': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品名称不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "128",
-                            errInfo: "商品名称不能超过128位"
-                        },
-                    ],
-                    'editProductInfo.prodDesc': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品简介不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "256",
-                            errInfo: "商品简介不能超过256位"
-                        },
-                    ],
-                    'editProductInfo.keyword': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "关键词不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "256",
-                            errInfo: "关键词不能超过256位"
-                        },
-                    ],
-                    'editProductInfo.barCode': [
-                        {
-                            limit: "maxLength",
-                            param: "15",
-                            errInfo: "产品条码不能超过15位"
-                        },
-                    ],
-                    'editProductInfo.unitName': [
-                        {
-                            limit: "maxLength",
-                            param: "32",
-                            errInfo: "单位不能超过32位"
-                        },
-                    ],
-                    'editProductInfo.sort': [
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "排序格式错误"
-                        },
-                    ],
-                    'editProductInfo.isPostage': [
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "是否包邮格式错误"
-                        },
-                    ],
-                    'editProductInfo.postage': [
-                        {
-                            limit: "money",
-                            param: "",
-                            errInfo: "邮费格式错误,请填写如 3.00"
-                        },
-                    ],
-                });
-            },
+        
             _editProductInfo: function () {
                 let hasDefault = false;
                 vc.component.editProductInfo.productSpecs.forEach(item =>{
@@ -157,11 +69,6 @@
 
                 if(!hasDefault){
                     vc.toast("未选择默认规格");
-
-                    return;
-                }
-                if (!vc.component.editProductValidate()) {
-                    vc.toast(vc.validate.errInfo);
 
                     return;
                 }
@@ -246,58 +153,10 @@
                     height: 300,
                     placeholder: '必填，请输入商品描述',
                     callbacks: {
-                        onImageUpload: function (files, editor, $editable) {
-                            $that.sendEditFile($summernote, files);
-                        },
-                        onChange: function (contents, $editable) {
-                            $that.editProductInfo.content = contents;
-                        }
                     },
                     toolbar: [
-                        ['style', ['style']],
-                        ['font', ['bold', 'italic', 'underline', 'clear']],
-                        ['fontname', ['fontname']],
-                        ['color', ['color']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['height', ['height']],
-                        ['table', ['table']],
-                        ['insert', ['link', 'picture']],
-                        ['view', ['fullscreen', 'codeview']],
-                        ['help', ['help']]
                     ],
                 });
-
-            },
-            sendEditFile: function ($summernote, files) {
-
-                var param = new FormData();
-                param.append("uploadFile", files[0]);
-
-                vc.http.upload(
-                    'addNoticeView',
-                    'uploadImage',
-                    param,
-                    {
-                        emulateJSON: true,
-                        //添加请求头
-                        headers: {
-                            "Content-Type": "multipart/form-data"
-                        }
-                    },
-                    function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
-                            var data = JSON.parse(json);
-                            //关闭model
-                            $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId);
-                            return;
-                        }
-                        vc.toast(json);
-                    },
-                    function (errInfo, error) {
-                        console.log('请求失败处理');
-                        vc.toast(errInfo);
-                    });
 
             },
             _openEditChooseSpecModal:function(){

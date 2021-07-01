@@ -11,7 +11,7 @@
          },
          _initEvent:function(){
              vc.on('deleteProduct','openDeleteProductModal',function(_params){
-
+                console.log(_params);
                 vc.component.deleteProductInfo = _params;
                 $('#deleteProductModel').modal('show');
 
