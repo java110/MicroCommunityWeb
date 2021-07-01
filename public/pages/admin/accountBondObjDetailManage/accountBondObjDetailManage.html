@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select class="custom-select" v-model="accountBondObjDetailManageInfo.conditions.objID">
+                                <select class="custom-select" v-model="accountBondObjDetailManageInfo.conditions.objId">
                                     <option selected disabled value="">请选择商铺</option>
                                     <option :value="item.shopId" v-for="(item,index) in accountBondObjDetailManageInfo.shops">
                                         {{item.shopName}}
