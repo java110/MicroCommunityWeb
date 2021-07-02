@@ -179,7 +179,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/product/queryProduct',
+                vc.http.apiGet('/product/queryAdminProduct',
                     param,
                     function (json, res) {
                         var _productManageInfo = JSON.parse(json);
