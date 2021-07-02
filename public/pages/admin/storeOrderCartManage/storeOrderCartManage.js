@@ -54,22 +54,8 @@
                         vc.component.storeOrderCartManageInfo.total = _storeOrderCartManageInfo.total;
                         vc.component.storeOrderCartManageInfo.records = _storeOrderCartManageInfo.records;
                         $that.storeOrderCartManageInfo.orderCarts = _storeOrderCartManageInfo.data;
-
-                        let _orderCarts = $that.storeOrderCartManageInfo.orderCarts;
-
-                        _orderCarts.forEach(item => {
-                            let _productSpecDetails = item.productSpecDetails;
-                            let _specValue = '';
-                            _productSpecDetails.forEach(detail => {
-                                _specValue += (detail.detailValue + "/");
-                            });
-
-                            item.specValue = _specValue;
-                        });
-
                         vc.emit('pagination', 'init', {
                             total: vc.component.storeOrderCartManageInfo.records,
-                            dataCount: vc.component.storeOrderCartManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
