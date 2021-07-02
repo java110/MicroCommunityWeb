@@ -137,7 +137,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/productCategory/queryProductCategory',
+                vc.http.apiGet('/productCategory/queryAdminProductCategory',
                     param,
                     function (json, res) {
                         let _productCategoryManageInfo = JSON.parse(json);

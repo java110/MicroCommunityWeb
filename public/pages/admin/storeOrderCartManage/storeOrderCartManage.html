@@ -35,6 +35,17 @@
                                        v-model="storeOrderCartManageInfo.conditions.prodName" class=" form-control">
                             </div>
                         </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="storeOrderCartManageInfo.conditions.shopId">
+                                    <option selected disabled value="">请选择商铺</option>
+                                    <option :value="item.shopId" v-for="(item,index) in storeOrderCartManageInfo.shops">
+                                        {{item.shopName}}
+                                    </option>
+                                  </select>
+                            </div>
+                        </div>
+
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryOrdersMethod()">
@@ -68,7 +79,7 @@
                             <th class="text-center">支付金额</th>
                             <th class="text-center">订单状态</th>
                             <th class="text-center">创建时间</th>
-                            <th class="text-right">操作</th>
+                            
                         </tr>
                         </thead>
                         <tbody>
@@ -81,16 +92,6 @@
                             <td class="text-center">{{order.payPrice}}</td>
                             <td class="text-center">{{order.stateName}}</td>
                             <td class="text-center">{{order.createTime}}</td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openSendOrderCartModel(order)">发货
-                                    </button>
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openOrderDetailModel(order)">订单详情
-                                    </button>
-                                </div>
-                            </td>
                         </tr>
                         </tbody>
                         <tfoot>
@@ -107,7 +108,7 @@
             </div>
         </div>
     </div>
-    <div id="storeOrderCartModal" class="modal" tabindex="-1" role="dialog">
+    <!--<div id="storeOrderCartModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -136,6 +137,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 </div>

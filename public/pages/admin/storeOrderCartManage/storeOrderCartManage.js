@@ -9,9 +9,11 @@
                 total: 0,
                 records: 1,
                 orderDetail: false,
+                shops:[],
                 conditions: {
                     cartId: '',
                     state: '',
+                    shopId: '',
                     prodName: ''
                 },
                 address: {
@@ -24,6 +26,7 @@
         },
         _initMethod: function () {
             vc.component._listOrders(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._listOrderShops(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
             vc.on('storeOrderCartManage', 'goBack', function (_param) {
@@ -44,7 +47,7 @@
                     params: vc.component.storeOrderCartManageInfo.conditions
                 };
                 //发送get请求
-                vc.http.apiGet('/storeOrder/queryStoreOrderCart',
+                vc.http.apiGet('/storeOrder/queryAdminStoreOrderCart',
                     param,
                     function (json, res) {
                         var _storeOrderCartManageInfo = JSON.parse(json);
@@ -71,6 +74,27 @@
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
+                    }
+                );
+            },
+            _listOrderShops:function(_page, _rows){
+                var param = {
+                    params: {
+                        page: _page,
+                        row: _rows,
+                    }
+                };
+
+               //发送get请求
+               vc.http.apiGet('/shop/queryShopsByAdmin',
+                    param,
+                    function(json,res){
+                    var _shopManageInfo=JSON.parse(json);
+                    vc.component.storeOrderCartManageInfo.total = _shopManageInfo.total;
+                    vc.component.storeOrderCartManageInfo.records = _shopManageInfo.records;
+                    vc.component.storeOrderCartManageInfo.shops = _shopManageInfo.data;
+                    },function(errInfo,error){
+                    console.log('请求失败处理');
                     }
                 );
             },

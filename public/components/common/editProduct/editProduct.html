@@ -17,7 +17,7 @@
             </div>
             <label class="col-sm-1 col-form-label text-right">商品分组</label>
             <div class="col-sm-5">
-              <select class="custom-select" disabled="disabled" v-model="editProductInfo.categoryId">
+              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editProductInfo.categoryId">
                 <option selected disabled value="">必填，请选择商品分组</option>
                 <option v-for="(item,index) in productManageInfo.productCategorys" :value="item.categoryId">
                   {{item.categoryName}}</option>
@@ -167,7 +167,7 @@
           <div class="form-group row">
             <label class="col-sm-1 col-form-label text-right">商品状态</label>
             <div class="col-sm-11">
-              <select class="custom-select" disabled="disabled" v-model="editProductInfo.state">
+              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editProductInfo.state">
                 <option selected disabled value="">选填，请选择状态</option>
                 <option value="1001">未上架</option>
                 <option value="2002">上架</option>

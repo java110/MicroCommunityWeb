@@ -28,7 +28,7 @@
             </div>
             <label class="col-sm-1 col-form-label text-right">家政类型</label>
             <div class="col-sm-5">
-              <select class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.hktId">
+              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.hktId">
                 <option selected disabled value="">必填，请选择家政类型</option>
                 <option v-for="(item,index) in editHousekeepingServInfo.housekeepingTypes" :value="item.hktId">
                   {{item.hktName}}</option>
@@ -48,7 +48,7 @@
           <div class="form-group row">
             <label class="col-sm-1 col-form-label text-right">上架状态</label>
             <div class="col-sm-5">
-              <select class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.state">
+              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.state">
                 <option selected disabled value="">必填，请选择上架状态</option>
                 <option value="1001">未上架</option>
                 <option value="2002">上架</option>
@@ -56,7 +56,7 @@
             </div>
             <label class="col-sm-1 col-form-label text-right">派单方式</label>
             <div class="col-sm-5">
-              <select class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.repairWay">
+              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.repairWay">
                 <option selected disabled value="">必填，请选择派单方式</option>
                 <option value="100">抢单</option>
                 <option value="200">指派</option>
@@ -67,7 +67,7 @@
           <div class="form-group row">
             <label class="col-sm-1 col-form-label text-right">回访方式</label>
             <div class="col-sm-5">
-              <select class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.returnVisitFlag">
+              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.returnVisitFlag">
                 <option selected disabled value="">必填，请选择回访方式</option>
                 <option value="001">都不回访</option>
                 <option value="002">已评价不回访</option>
