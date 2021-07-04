@@ -26,11 +26,11 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.state">
+                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.valid">
                                     <option selected value="">必填，请选择车位状态</option>
-                                    <option value="1001">正常</option>
-                                    <option value="2002">欠费状态</option>
-                                    <option value="3003">车位释放</option>
+                                    <option value="1">正常</option>
+                                    <option value="0">到期</option>
+                                    <option value="2">无车位</option>
                                 </select>
                             </div>
                         </div>
@@ -79,7 +79,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="car in listOwnerCarInfo.ownerCars">
+                        <tr v-for="car in listOwnerCarInfo.ownerCars"
+                        :class="{ 'table-danger' : _getCarState(car) == '到期'}"
+                        >
                             <td class="text-center">
                                 {{car.carNum}}
                             </td>
@@ -111,7 +113,7 @@
                                 {{car.endTime}}
                             </td>
                             <td class="text-center">
-                                {{car.stateName}}
+                                {{_getCarState(car)}}
                             </td>
                             <td class="text-center">
                                 <div class="btn-group" v-if="car.psId != '-1'">
