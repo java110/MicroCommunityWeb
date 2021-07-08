@@ -21,7 +21,7 @@
                 idCard: '',
                 videoPlaying: true,
                 mediaStreamTrack: null,
-                attrs:[]
+                attrs: []
             }
         },
         _initMethod: function () {
@@ -36,11 +36,11 @@
                 $('#editOwnerModel').modal('show');
                 vc.component._initAddOwnerMediaForEdit();
 
-                if(_owner.hasOwnProperty('ownerAttrDtos')){
+                if (_owner.hasOwnProperty('ownerAttrDtos')) {
                     let _ownerAttrDtos = _owner.ownerAttrDtos;
                     _ownerAttrDtos.forEach(item => {
                         $that.editOwnerInfo.attrs.forEach(attrItem => {
-                            if(item.specCd == attrItem.specCd){
+                            if (item.specCd == attrItem.specCd) {
                                 attrItem.attrId = item.attrId;
                                 attrItem.value = item.value;
                             }
@@ -173,7 +173,7 @@
                     idCard: '',
                     videoPlaying: true,
                     mediaStreamTrack: null,
-                    attrs:_attrs
+                    attrs: _attrs
                 };
             },
             _editUserMedia: function () {
@@ -236,11 +236,11 @@
                             h = Math.floor(h / _rate);
                         }
                     }
-                    canvas.getContext('2d').drawImage(video, 0, 0,w,h);
+                    canvas.getContext('2d').drawImage(video, 0, 0, w, h);
                     var data = canvas.toDataURL('image/jpeg', 0.3);
                     vc.component.editOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
-                }else{
+                } else {
                     vc.toast('未检测到摄像头');
                 }
             },
@@ -259,15 +259,17 @@
                     var reader = new FileReader(); //新建FileReader对象
                     reader.readAsDataURL(file); //读取为base64
                     reader.onloadend = function (e) {
-                        vc.component.editOwnerInfo.ownerPhoto = reader.result;
+                        vc.translate(reader.result, function (_data) {
+                            vc.component.editOwnerInfo.ownerPhoto = _data;
+                        })
                     }
                 }
             },
-            _reOpenVedioForEdit:function(){
-                vc.component.editOwnerInfo.ownerPhoto="";
+            _reOpenVedioForEdit: function () {
+                vc.component.editOwnerInfo.ownerPhoto = "";
                 vc.component._initAddOwnerMediaForEdit();
             },
-            _closeVedioForEdit:function(){
+            _closeVedioForEdit: function () {
                 if (vc.component.editOwnerInfo.mediaStreamTrack != null) {
                     vc.component.editOwnerInfo.mediaStreamTrack.stop();
                 }
@@ -278,18 +280,18 @@
                     data.forEach(item => {
                         item.value = '';
                         item.values = [];
-                        $that._loadEditAttrValue(item.specCd,item.values);
-                        if(item.specShow == 'Y'){
+                        $that._loadEditAttrValue(item.specCd, item.values);
+                        if (item.specShow == 'Y') {
                             $that.editOwnerInfo.attrs.push(item);
                         }
                     });
 
                 });
             },
-            _loadEditAttrValue:function(_specCd,_values){
+            _loadEditAttrValue: function (_specCd, _values) {
                 vc.getAttrValue(_specCd, function (data) {
                     data.forEach(item => {
-                        if(item.valueShow == 'Y'){
+                        if (item.valueShow == 'Y') {
                             _values.push(item);
                         }
                     });
