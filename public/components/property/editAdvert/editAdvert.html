@@ -43,6 +43,24 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">发布类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editAdvertInfo.advertType">
+                                        <option selected disabled value="">必填，请选择发布类型</option>
+                                        <option value="1">站内</option>
+                                        <option value="2">站外</option>
+                                        <option value="3">不跳转</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">跳转路径</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editAdvertInfo.pageUrl" type="text" placeholder="请填写跳转路径"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">播放顺序</label>
                                 <div class="col-sm-10">
                                     <input v-model="editAdvertInfo.seq" type="text" placeholder="必填，请填写播放顺序"

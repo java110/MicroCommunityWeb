@@ -70,17 +70,19 @@
                                 <th class="text-center">广告ID</th>
                                 <th class="text-center">广告名称</th>
                                 <th class="text-center">投放位置</th>
+                                <th class="text-center">发布类型</th>
                                 <th class="text-center">投放时间</th>
                                 <th class="text-center">结束时间</th>
                                 <th class="text-center">创建时间</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
                             <tr v-for="advert in advertManageInfo.adverts">
                                 <td class="text-center">{{advert.advertId}}</td>
                                 <td class="text-center">{{advert.adName}}</td>
                                 <td class="text-center">{{advert.locationObjName}}</td>
+                                <td class="text-center">{{advertManageInfo.advertTypeName[advert.advertType]}}</td>
                                 <td class="text-center">{{advert.startTime}}</td>
                                 <td class="text-center">{{advert.endTime}}</td>
                                 <td class="text-center">{{advert.createTime}}</td>
