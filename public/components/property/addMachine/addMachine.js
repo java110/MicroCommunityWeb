@@ -175,6 +175,7 @@
                     && vc.component.addMachineInfo.locationType != '3000'
                     && vc.component.addMachineInfo.locationType != '4000'
                     && vc.component.addMachineInfo.locationType != '5000'
+                    && vc.component.addMachineInfo.locationType != '6000'
                 ) { //大门时直接写 小区ID
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.communityId;
                 } else if (vc.component.addMachineInfo.locationType == '2000') {
@@ -185,6 +186,8 @@
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.paId;
                 } else if (vc.component.addMachineInfo.locationType == '5000') {
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.orgId;
+                } else if (vc.component.addMachineInfo.locationType == '6000') {
+                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.floorId;
                 } else {
                     vc.toast("设备位置值错误");
                     return;
