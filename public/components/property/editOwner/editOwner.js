@@ -219,10 +219,27 @@
                 if (vc.component.editOwnerInfo.videoPlaying) {
                     var canvas = document.getElementById('canvasForEdit');
                     var video = document.getElementById('ownerPhotoForEdit');
-                    canvas.width = 208;
-                    canvas.height = 208;
-                    canvas.getContext('2d').drawImage(video, 0, 0, 208, 208);
-                    var data = canvas.toDataURL('image/jpeg', 1.0);
+                    let w = video.videoWidth;
+
+                    // 默认按比例压缩
+                    let h = video.videoHeight;
+
+                    if (h > 1080 || w > 1080) {
+                        let _rate = 0;
+                        if (h > w) {
+                            _rate = h / 1080;
+                            h = 1080;
+                            w = Math.floor(w / _rate);
+                        } else {
+                            _rate = w / 1080;
+                            w = 1080;
+                            h = Math.floor(h / _rate);
+                        }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext('2d').drawImage(video, 0, 0);
+                    var data = canvas.toDataURL('image/jpeg', 0.3);
                     vc.component.editOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }else{
