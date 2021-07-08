@@ -242,7 +242,9 @@
                     var reader = new FileReader(); //新建FileReader对象
                     reader.readAsDataURL(file); //读取为base64
                     reader.onloadend = function (e) {
-                        vc.component.addOwnerInfo.ownerPhoto = reader.result;
+                        vc.translate(reader.result, function (_data) {
+                            vc.component.addOwnerInfo.ownerPhoto = _data;
+                        })
                     }
                 }
             },
