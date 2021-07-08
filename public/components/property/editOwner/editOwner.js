@@ -236,8 +236,6 @@
                             h = Math.floor(h / _rate);
                         }
                     }
-                    canvas.width = w;
-                    canvas.height = h;
                     canvas.getContext('2d').drawImage(video, 0, 0,w,h);
                     var data = canvas.toDataURL('image/jpeg', 0.3);
                     vc.component.editOwnerInfo.ownerPhoto = data;
