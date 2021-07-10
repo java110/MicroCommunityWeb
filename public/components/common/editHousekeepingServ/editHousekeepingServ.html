@@ -26,10 +26,10 @@
               <input v-model="editHousekeepingServInfo.keyword" type="text" disabled="disabled" placeholder="必填，请填写关键词,多个关键词用;分隔"
                 class="form-control">
             </div>
-            <label class="col-sm-1 col-form-label text-right">家政类型</label>
+            <label class="col-sm-1 col-form-label text-right">服务类型</label>
             <div class="col-sm-5">
               <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.hktId">
-                <option selected disabled value="">必填，请选择家政类型</option>
+                <option selected disabled value="">必填，请选择服务类型</option>
                 <option v-for="(item,index) in editHousekeepingServInfo.housekeepingTypes" :value="item.hktId">
                   {{item.hktName}}</option>
               </select>
