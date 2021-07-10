@@ -13,13 +13,11 @@
                 bondMonth: '',
                 objId: '',
                 bondType: '6006',
-                remark: '',
-                shopTypes : []
-
+                remark: ''
             }
         },
         _initMethod: function () {
-            $that._listAddShopTypes();
+           
         },
         _initEvent: function () {
             vc.on('addAccountBond', 'openAddAccountBondModal', function () {
@@ -117,30 +115,8 @@
 
                     });
             },
-            _listAddShopTypes:function(){
-
-               var param = {
-                params: {
-                    page: 1,
-                    row: 100
-                }
-            };
-               //发送get请求
-               vc.http.apiGet('/shopType/queryShopType',
-                             param,
-                             function(json,res){
-                                var _shopTypeManageInfo=JSON.parse(json);
-                                vc.component.addAccountBondInfo.total = _shopTypeManageInfo.total;
-                                vc.component.addAccountBondInfo.records = _shopTypeManageInfo.records;
-                                vc.component.addAccountBondInfo.shopTypes = _shopTypeManageInfo.data;
-                             },function(errInfo,error){
-                                console.log('请求失败处理');
-                             }
-                           );
-            },
             setAddBondName:function(_objId){
-
-                $that.addAccountBondInfo.shopTypes.forEach(item => {
+                $that.accountBondManageInfo.shopTypes.forEach(item => {
                     if (item.shopTypeId == _objId) {
                         $that.addAccountBondInfo.bondName = item.typeName;
                     }
@@ -153,8 +129,7 @@
                     bondMonth: '',
                     objId: '',
                     bondType: '6006',
-                    remark: '',
-                    shopTypes : []
+                    remark: ''
 
                 };
             }
