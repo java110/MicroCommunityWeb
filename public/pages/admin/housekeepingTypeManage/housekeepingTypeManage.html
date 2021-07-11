@@ -59,6 +59,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
+                                <th class="text-center">菜单id</th>
                                 <th class="text-center">菜单名称</th>
                                 <th class="text-center">小图标</th>
                                 <th class="text-center">菜单描述</th>
@@ -71,6 +72,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="housekeepingType in housekeepingTypeManageInfo.housekeepingTypes">
+                                <td class="text-center">{{housekeepingType.hktId}}</td>
                                 <td class="text-center">{{housekeepingType.hktName}}</td>
                                 <td class="text-center">
                                     <img style="width: 60px; height: 60px; border-radius: 5px;"
