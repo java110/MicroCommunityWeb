@@ -46,6 +46,7 @@
             _initCarCreateFeeAddDateInfo: function () {
 
                 vc.initDate('carCreateFeeStartTime', function (_startTime) {
+                    console.log(_startTime)
                     $that.carCreateFeeAddInfo.startTime = _startTime;
                 });
                 vc.initDate('carCreateFeeEndTime', function (_endTime) {
