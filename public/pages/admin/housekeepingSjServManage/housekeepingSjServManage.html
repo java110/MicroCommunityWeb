@@ -25,7 +25,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="housekeepingServManageInfo.conditions.hktId">
-                                    <option selected value="">请选择家政类型</option>
+                                    <option selected value="">请选择服务类型</option>
                                     <option v-for="(item,index) in housekeepingServManageInfo.housekeepingTypes" :value="item.hktId">
                                         {{item.hktName}}
                                     </option>
@@ -68,7 +68,7 @@
                                 <th class="text-center">服务编号</th>
                                 <th class="text-center">服务名称</th>
                                 <th class="text-center">服务描述</th>
-                                <th class="text-center">家政类型</th>
+                                <th class="text-center">服务类型</th>
                                 <th class="text-center">派单方式</th>
                                 <th class="text-center">回访方式</th>
                                 <th class="text-center">销量</th>

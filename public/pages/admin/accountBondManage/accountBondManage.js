@@ -16,11 +16,13 @@
                     bondName: '',
                     objId: '',
 
-                }
+                },
+                shopTypes : []
             }
         },
         _initMethod: function () {
             vc.component._listAccountBonds(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listAddShopTypes();
         },
         _initEvent: function () {
 
@@ -76,7 +78,26 @@
                 } else {
                     vc.component.accountBondManageInfo.moreCondition = true;
                 }
-            }
+            },
+            _listAddShopTypes:function(){
+                var param = {
+                 params: {
+                     page: 1,
+                     row: 100
+                 }
+             };
+                //发送get请求
+                vc.http.apiGet('/shopType/queryShopType',
+                              param,
+                              function(json,res){
+                                 var _shopTypeManageInfo=JSON.parse(json);
+                                 vc.component.accountBondManageInfo.shopTypes = _shopTypeManageInfo.data;
+                              },function(errInfo,error){
+                                 console.log('请求失败处理');
+                              }
+                            );
+             },
+            
 
 
         }

@@ -16,6 +16,8 @@
                 startTime: '',
                 endTime: '',
                 floorId: '',
+                advertType: '',
+                pageUrl: '',
                 floorNum: '',
                 floorName: '',
                 unitId: '',
@@ -135,6 +137,13 @@
                             errInfo: "投放位置格式错误"
                         },
                     ],
+                    'addAdvertInfo.advertType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "发布类型不能为空"
+                        }
+                    ],
                     'addAdvertInfo.seq': [
                         {
                             limit: "required",
@@ -226,6 +235,8 @@
                     seq: '',
                     startTime: '',
                     endTime: '',
+                    advertType: '',
+                    pageUrl: '',
                     floorId: '',
                     floorNum: '',
                     floorName: '',

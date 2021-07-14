@@ -19,7 +19,7 @@
                     typeCd: '',
                     staffName: '',
                     activitiesId: '',
-
+                    endTimeFlag:'1'
                 }
             }
         },

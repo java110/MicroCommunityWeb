@@ -18,13 +18,20 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入店铺类型"
-                                    v-model="accountBondManageInfo.conditions.objId" class=" form-control">
+                                    <select class="custom-select" v-model="accountBondManageInfo.conditions.objId"  >
+                                        <option value="">请选择物品类型</option>
+                                        <option v-for="(item,index) in accountBondManageInfo.shopTypes" :value="item.shopTypeId">
+                                            {{item.typeName}}
+                                        </option>
+                                    </select>
                             </div>
                         </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAccountBondMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

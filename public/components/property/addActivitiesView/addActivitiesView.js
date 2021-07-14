@@ -142,6 +142,7 @@
                     });
             },
             clearaddActivitiesViewInfo: function () {
+                let _typeCds = $that.addActivitiesViewInfo.typeCds;
                 vc.component.addActivitiesViewInfo = {
                     activitiesId: '',
                     title: '',
@@ -149,8 +150,8 @@
                     headerImg: '',
                     context: '',
                     startTime: '',
-                    endTime: ''
-
+                    endTime: '',
+                    typeCds:_typeCds
                 };
             },
             _initActivitiesInfo: function () {
