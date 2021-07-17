@@ -121,6 +121,12 @@
                     .on('changeDate', function (ev) {
                         var value = $(".addVisitTime").val();
                         vc.component.addVisitInfo.visitTime = value;
+                        let start = Date.parse(new Date(vc.component.addVisitInfo.visitTime))
+                        let end = Date.parse(new Date(vc.component.addVisitInfo.departureTime))
+                        if (end != 0 && start - end >= 0) {
+                            vc.toast("开始时间必须小于结束时间")
+                            vc.component.addVisitInfo.visitTime = '';
+                        }
                     });
                 $('.addDepartureTime').datetimepicker({
                     language: 'zh-CN',
@@ -135,6 +141,12 @@
                     .on('changeDate', function (ev) {
                         var value = $(".addDepartureTime").val();
                         vc.component.addVisitInfo.departureTime = value;
+                        let start = Date.parse(new Date(vc.component.addVisitInfo.visitTime))
+                        let end = Date.parse(new Date(vc.component.addVisitInfo.departureTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            vc.component.addVisitInfo.departureTime = '';
+                        }
                     });
             }
         }

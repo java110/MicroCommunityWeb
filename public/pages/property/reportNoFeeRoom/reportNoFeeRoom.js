@@ -12,16 +12,16 @@
                 records: 1,
                 moreCondition: false,
                 conditions: {
-                   
-                   
+                    floorNum: '',
+                    unitNum: '',
+                    roomNum: '',
+                    ownerName: '',
+                    link: ''
                 }
             }
         },
         _initMethod: function () {
-           
             vc.component._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
-            
-          
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -29,7 +29,6 @@
             });
         },
         methods: {
-            
             //查询
             _queryMethod: function () {
                 vc.component._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -67,6 +66,10 @@
                 } else {
                     vc.component.reportNoFeeRoomInfo.moreCondition = true;
                 }
+            },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportNoFeeRoom");
             }
         }
     });

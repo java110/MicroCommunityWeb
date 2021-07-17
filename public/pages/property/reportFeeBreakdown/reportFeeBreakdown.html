@@ -101,7 +101,7 @@
                 <div class="ibox-title">
                     <h5>费用分项表</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>导出
                         </button>
                     </div>
@@ -114,6 +114,7 @@
                             <th class="text-center">费用类型</th>
                             <th class="text-center">费用项</th>
                             <th class="text-center">费用开始时间</th>
+                            <th class="text-center">费用结束时间</th>
                             <th class="text-center">应收金额(单位:元)</th>
                             <th class="text-center">实收金额(单位:元)</th>
                             <th class="text-center">欠费金额(单位:元)</th>
@@ -124,7 +125,8 @@
                             <td class="text-center">{{index+1}}</td>
                             <td class="text-center">{{fee.feeTypeCd}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
-                            <td class="text-center">{{fee.feeCreateTime}}</td>
+                            <td class="text-center">{{fee.feeStartTime}}</td>
+                            <td class="text-center">{{fee.feeEndTime}}</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
                             <td class="text-center">{{fee.oweAmount}}</td>

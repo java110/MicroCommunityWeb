@@ -27,7 +27,8 @@
                     stock: '',
                     startUserId: '',
                     state: '',
-                    applyType: ''
+                    applyType: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 },
                 resourceStoreTypes: [],
                 resourceStoreSpecifications: []
@@ -172,6 +173,9 @@
                 } else {
                     vc.component.allocationStorehousesInfo.moreCondition = true;
                 }
+            },
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=allocationStorehouseDetail&' + vc.objToGetParam($that.allocationStorehousesInfo.conditions));
             }
         }
     });

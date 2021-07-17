@@ -12,24 +12,25 @@
                 records: 1,
                 moreCondition: false,
                 title: '',
-                billName:'',
+                billName: '',
+                states: [],
                 conditions: {
                     ownerName: '',
                     state: '',
                     billName: '',
-                    billId: '',
-
+                    billId: ''
                 }
             }
         },
         _initMethod: function () {
+            vc.getDict('bill_owe_fee', "state", function (_data) {
+                vc.component.billOweManageInfo.states = _data;
+            });
             $that.billOweManageInfo.conditions.billId = vc.getParam('billId');
             $that.billOweManageInfo.billName = vc.getParam('billName');
-
             $that._listOwebills(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('billOweManage', 'listbillOwe', function (_param) {
                 vc.component.billOweManageInfo.componentShow = 'billOweList';
                 vc.component._listOwebills(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -40,14 +41,13 @@
         },
         methods: {
             _listOwebills: function (_page, _rows) {
-
                 vc.component.billOweManageInfo.conditions.page = _page;
                 vc.component.billOweManageInfo.conditions.row = _rows;
                 vc.component.billOweManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.billOweManageInfo.conditions
                 };
-
+                param.params.ownerName = param.params.ownerName.trim();
                 //发送get请求
                 vc.http.apiGet('fee.listBillOweFee',
                     param,
@@ -67,12 +67,16 @@
                 );
             },
             _openBillDetail: function () {
-
-
             },
+            //查询
             _querybillMethod: function () {
                 vc.component._listOwebills(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetbillMethod: function () {
+                vc.component.billOweManageInfo.conditions.state = "";
+                vc.component.billOweManageInfo.conditions.ownerName = "";
+                vc.component._listOwebills(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.billOweManageInfo.moreCondition) {
@@ -81,11 +85,9 @@
                     vc.component.billOweManageInfo.moreCondition = true;
                 }
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack();
             }
-
-
         }
     });
 })(window.vc);

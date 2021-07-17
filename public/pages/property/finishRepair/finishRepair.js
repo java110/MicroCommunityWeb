@@ -93,6 +93,20 @@
                             param: "",
                             errInfo: "处理意见不能为空"
                         }
+                    ],
+                    'finishRepairInfo.beforeRepairPhotos': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "维修前图片不能为空"
+                        }
+                    ],
+                    'finishRepairInfo.afterRepairPhotos': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "维修后图片不能为空"
+                        }
                     ]
                 });
             },
@@ -108,7 +122,6 @@
                     }
                 }
                 vc.component.finishRepairInfo.communityId = vc.getCurrentCommunity().communityId;
-                console.log('post data : ', vc.component.finishRepairInfo);
                 vc.http.apiPost(
                     'ownerRepair.repairFinish',
                     JSON.stringify(vc.component.finishRepairInfo),

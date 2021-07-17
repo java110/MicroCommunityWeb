@@ -43,10 +43,12 @@
                     $that.addMeterWaterInfo.ownerName = _param.roomName + '(' + _param.ownerName + ')';
                     $that._queryPreMeterWater(_param.roomId);
                 }
+                $that.addMeterWaterInfo.preReadingTime = vcFramework.dateTimeFormat(new Date().getTime());
+                $that.addMeterWaterInfo.preDegrees = 0;
                 $('#addMeterWaterModel').modal('show');
             });
             vc.on("addMeterWater", "notify", function (_param) {
-                if (_param.hasOwnProperty("roomId")) {
+                if (_param.hasOwnProperty("roomId") && _param.roomId != "") {
                     vc.component.addMeterWaterInfo.roomId = _param.roomId;
                     vc.component.addMeterWaterInfo.objId = _param.roomId;
                     // $that.addMeterWaterInfo.objName = _param.name.replace('0单元', ''); //处理商铺;
@@ -66,7 +68,6 @@
                 return roomName[0] + '栋' + roomName[1] + '单元' + roomName[2] + '室';
             },
             _initAddMeterWaterDateInfo: function () {
-                vc.component.addMeterWaterInfo.preReadingTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addPreReadingTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -252,6 +253,9 @@
                 $that._queryPreMeterWater($that.addMeterWaterInfo.roomId);
             },
             _queryPreMeterWater: function (_roomId) {
+                if(!_roomId){
+                    return;
+                }
                 let _meterType = '1010';
                 let _feeTypeCd = $that.addMeterWaterInfo.feeTypeCd;
                 if (_feeTypeCd == '888800010015') {
@@ -274,6 +278,7 @@
                         let _total = _meterWaterInfo.total;
                         if (_total < 1) {
                             $that.addMeterWaterInfo.preDegrees = '0';
+                            $that.addMeterWaterInfo.preReadingTime = vcFramework.dateTimeFormat(new Date().getTime());
                             return;
                         }
                         $that.addMeterWaterInfo.preDegrees = _meterWaterInfo.data[0].curDegrees;
@@ -282,6 +287,16 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                     });
+            },
+            getChange: function () {
+                //上期度数
+                var preDegrees = parseFloat(vc.component.addMeterWaterInfo.preDegrees);
+                //本期度数
+                var curDegrees = parseFloat(vc.component.addMeterWaterInfo.curDegrees);
+                if (preDegrees > curDegrees) {
+                    vc.toast("本期度数不能小于上期度数！");
+                    vc.component.addMeterWaterInfo.curDegrees = "";
+                }
             },
             clearAddMeterWaterInfo: function () {
                 vc.component.addMeterWaterInfo = {

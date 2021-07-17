@@ -19,7 +19,8 @@
                     roomNum: '',
                     unitId: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -179,8 +180,8 @@
                     vc.component.reportFloorUnitFeeSummaryInfo.moreCondition = true;
                 }
             },
-            _exportFee: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportFloorUnitFeeSummary");
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFloorUnitFeeSummary&' + vc.objToGetParam($that.reportFloorUnitFeeSummaryInfo.conditions));
             }
         }
     });

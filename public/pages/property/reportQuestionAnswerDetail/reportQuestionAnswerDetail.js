@@ -19,7 +19,8 @@
                     roomNum: '',
                     unitId: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -87,6 +88,8 @@
                     param,
                     function (json, res) {
                         var _reportQuestionAnswerDetailInfo = JSON.parse(json);
+                        console.log("123")
+                        console.log(_reportQuestionAnswerDetailInfo)
                         vc.component.reportQuestionAnswerDetailInfo.total = _reportQuestionAnswerDetailInfo.total;
                         vc.component.reportQuestionAnswerDetailInfo.records = _reportQuestionAnswerDetailInfo.records;
                         vc.component.reportQuestionAnswerDetailInfo.questions = _reportQuestionAnswerDetailInfo.data;
@@ -106,6 +109,10 @@
                 } else {
                     vc.component.reportQuestionAnswerDetailInfo.moreCondition = true;
                 }
+            },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportQuestionAnswerDetail&' + vc.objToGetParam($that.reportQuestionAnswerDetailInfo.conditions));
             }
         }
     });

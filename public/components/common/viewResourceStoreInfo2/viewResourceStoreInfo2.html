@@ -46,11 +46,11 @@
                             </select>
                         </td> -->
                         <td class="text-center">
-                            <input v-model="resourceStore.remark" type="text" class="form-control">
+                            <input v-model="resourceStore.remark" type="text" class="form-control" placeholder="选填，请填写备注">
                         </td>
-                        <td class="text-center">
+                        <td class=" text-center">
                             <button type="button" class="btn btn-danger btn-sm" style="margin-right:10px;"
-                                v-on:click="_removeSelectResourceStoreItem(resourceStore.resId)">
+                                    v-on:click="_removeSelectResourceStoreItem(resourceStore.resId)">
                                 <i class="fa fa-times"></i> 移除
                             </button>
                         </td>
@@ -67,6 +67,7 @@
             </div>
         </div>
         <vc:create path="common/chooseResourceStore2" emitChooseResourceStore="viewResourceStoreInfo"
-                   emitLoadData="viewResourceStoreInfo"></vc:create>
+                   emitLoadData="viewResourceStoreInfo">
+        </vc:create>
     </div>
 </div>

@@ -11,6 +11,8 @@
                 description: '',
                 rstIds: [],
                 unitCode: '',
+                miniUnitCode: '',
+                miniUnitStock: '',
                 unitCodes: [],
                 outLowPrice: '',
                 outHighPrice: '',
@@ -19,15 +21,14 @@
                 resourceStoreTypes: [],
                 remark: '',
                 warningStock: '',
-                resourceStoreSpecifications: []
+                resourceStoreSpecifications: [],
+                shType: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editResourceStore', 'openEditResourceStoreModal', function (_params) {
-                console.log(_params);
                 $('#editResourceStoreModel').modal('show');
                 vc.component.refreshEditResourceStoreInfo();
                 $that._listEditResourceStoreType();
@@ -148,6 +149,20 @@
                             errInfo: "单位不能为空"
                         },
                     ],
+                    'editResourceStoreInfo.miniUnitCode': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "最小计量单位不能为空"
+                        },
+                    ],
+                    'editResourceStoreInfo.miniUnitStock': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "最小计量单位数量不能为空"
+                        },
+                    ],
                     'editResourceStoreInfo.rstId': [
                         {
                             limit: "required",
@@ -250,13 +265,16 @@
                     description: '',
                     rstIds: [],
                     unitCode: '',
+                    miniUnitCode: '',
+                    miniUnitStock: '',
                     unitCodes: [],
                     outLowPrice: '',
                     outHighPrice: '',
                     showMobile: '',
                     remark: '',
                     warningStock: '',
-                    resourceStoreSpecifications: []
+                    resourceStoreSpecifications: [],
+                    shType: ''
                 }
             }
         }

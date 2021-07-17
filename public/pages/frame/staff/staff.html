@@ -12,7 +12,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group ">
                                 <select class="custom-select" v-model="staffInfo.conditions.branchOrgId">
                                     <option selected value="">必填，请选择分公司</option>
@@ -39,14 +39,17 @@
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryStaffMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetStaffMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4" v-if="staffInfo.moreCondition == true">
+                        <div class="col-sm-3" v-if="staffInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="number" placeholder="请输入手机号" v-model="staffInfo.conditions.tel"
                                        class=" form-control">
@@ -118,11 +121,11 @@
                         </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="10">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="10">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

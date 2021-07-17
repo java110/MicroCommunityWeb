@@ -24,6 +24,7 @@
                                 <th class="text-center">物品规格</th>
                                 <!-- <th class="text-center">源仓库</th> -->
                                 <th class="text-center">库存</th>
+                                <th class="text-center">最小计量总数</th>
                                 <th class="text-center">目标仓库</th>
                                 <th class="text-center">退还数量</th>
                                 <th class="text-center">操作</th>
@@ -37,6 +38,7 @@
                                 <td class="text-center">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
                                 <!-- <td class="text-center">{{resourceStore.shaName}}</td> -->
                                 <td class="text-center">{{resourceStore.stock}}</td>
+                                <td class="text-center">{{resourceStore.miniStock}}</td>
                                 <td class="text-center">
                                     <select class="custom-select" v-model="resourceStore.shzId">
                                         <option value="">必填，请选择源仓库</option>
@@ -48,8 +50,10 @@
                                     </select>
                                 </td>
                                 <td class="text-center">
-                                    <input v-model="resourceStore.curStock" type="text" placeholder="必填，请填写库存"
-                                        class="form-control">
+                                    <div class="input-group">
+                                        <input v-model="resourceStore.curStock" type="text" placeholder="必填，请填写数量" class="form-control">
+                                        <button type="button" class="btn btn-info" v-on:click="_itemReturnAll(resourceStore)">全部退还</button>
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
@@ -62,7 +66,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="8">
+                                <td colspan="9">
                                     <ul class="pagination float-right"></ul>
                                 </td>
                             </tr>

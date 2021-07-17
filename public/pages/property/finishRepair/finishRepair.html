@@ -57,7 +57,8 @@
                                             <div class="col-sm-2">数量</div>
                                             <div class="col-sm-2">操作</div>
                                         </div>
-                                        <div class="row" style="margin-bottom: 10px;" v-for="(item,index) in finishRepairInfo.choosedGoodsList">
+                                        <div class="row" style="margin-bottom: 10px;"
+                                             v-for="(item,index) in finishRepairInfo.choosedGoodsList">
                                             <div class="col-sm-2">
                                                 <input cols="15" class="form-control" disabled="disabled"
                                                        v-model="item.rstName">
@@ -71,18 +72,22 @@
                                                        v-model="item.resName">
                                             </div>
                                             <div class="col-sm-3" v-show="finishRepairInfo.maintenanceType == '1001'">
-                                                <input cols="15" class="form-control" :disabled="!item.isCustom && item.outHighPrice == item.outLowPrice"
+                                                <input cols="15" class="form-control"
+                                                       :disabled="!item.isCustom && item.outHighPrice == item.outLowPrice"
                                                        v-model="item.price" v-on:input="_updateTotalPrice()">
                                                 <span v-show="!item.isCustom && item.outHighPrice != item.outLowPrice">价格范围({{item.outLowPrice}} - {{item.outHighPrice}})</span>
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="input-group">
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-primary" type="button" v-on:click="_useNumberDec(index)">-</button>
+                                                        <button class="btn btn-primary" type="button"
+                                                                v-on:click="_useNumberDec(index)">-</button>
                                                     </span>
-                                                    <input cols="15" class="form-control" v-model="item.useNumber" v-on:input="_updateTotalPrice()">
+                                                    <input cols="15" class="form-control" v-model="item.useNumber"
+                                                           v-on:input="_updateTotalPrice()">
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-primary" type="button" v-on:click="_useNumberInc(index)">+</button>
+                                                        <button class="btn btn-primary" type="button"
+                                                                v-on:click="_useNumberInc(index)">+</button>
                                                     </span>
                                                 </div>
                                             </div>
@@ -114,16 +119,18 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">维修前图片</label>
                                 <div class="content-img col-sm-10">
-                                    <vc:create path="frame/uploadImage" callBackListener="finishRepairInfo" callBackFunction="notifyUploadBeforeReapirImage"
-                                        namespace="finishRepair1">
+                                    <vc:create path="frame/uploadImage" callBackListener="finishRepairInfo"
+                                               callBackFunction="notifyUploadBeforeReapirImage"
+                                               namespace="finishRepair1">
                                     </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">维修后图片</label>
                                 <div class="content-img col-sm-10">
-                                    <vc:create path="frame/uploadImage" callBackListener="finishRepairInfo" callBackFunction="notifyUploadAfterReapirImage"
-                                        namespace="finishRepair2">
+                                    <vc:create path="frame/uploadImage" callBackListener="finishRepairInfo"
+                                               callBackFunction="notifyUploadAfterReapirImage"
+                                               namespace="finishRepair2">
                                     </vc:create>
                                 </div>
                             </div>

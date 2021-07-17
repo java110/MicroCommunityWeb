@@ -92,6 +92,9 @@
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddResourceStoreModal()">
                             <i class="fa fa-plus"></i>添加
                         </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i>导出
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -107,6 +110,8 @@
                             <th class="text-center">采购参考价格</th>
                             <th class="text-center">收费标准</th>
                             <th class="text-center">物品库存</th>
+                            <th class="text-center">最小计量</th>
+                            <th class="text-center">最小计量总数</th>
                             <th class="text-center">物品均价</th>
                             <th class="text-center">物品总价</th>
                             <th class="text-center">操作</th>
@@ -123,7 +128,9 @@
                             <td class="text-center">{{resourceStore.resCode}}</td>
                             <td class="text-center">{{'￥' + resourceStore.price}}</td>
                             <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' + resourceStore.outLowPrice : '￥' + resourceStore.outLowPrice + '-￥' + resourceStore.outHighPrice}}</td>
-                            <td class="text-center">{{resourceStore.stock}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">1{{resourceStore.unitCodeName}}={{resourceStore.miniUnitStock}}{{resourceStore.miniUnitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.miniStock}}</td>
                             <td class="text-center">{{resourceStore.averagePrice ? '￥' + resourceStore.averagePrice : '￥0'}}</td>
                             <td class="text-center">{{'￥' + resourceStore.totalPrice}}</td>
                             <td class="text-center">
@@ -147,7 +154,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="12">
+                            <td colspan="16">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

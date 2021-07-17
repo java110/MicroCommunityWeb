@@ -45,7 +45,7 @@
             // 监听移除选中项
             vc.on('chooseResourceStaff', 'removeSelectResourceStaffItem', function (_resId) {
                 vc.component.chooseResourceStaffInfo.selectResourceStores.forEach((item, index) => {
-                    if(item == _resId){
+                    if (item == _resId) {
                         vc.component.chooseResourceStaffInfo.selectResourceStores.splice(index, 1);
                     }
                 })
@@ -60,10 +60,10 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         resName: vc.component.chooseResourceStaffInfo._currentResourceStoreName,
                         rstId: vc.component.chooseResourceStaffInfo.rstId,
+                        giveType: 1
                         // shId: vc.component.chooseResourceStaffInfo.shId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listUserStorehouses',
                     param,
@@ -114,6 +114,10 @@
                                 price: resourceStores[j].price,
                                 stock: resourceStores[j].stock,
                                 description: resourceStores[j].description,
+                                unitCodeName: resourceStores[j].unitCodeName,
+                                miniStock: resourceStores[j].miniStock,
+                                miniUnitCodeName: resourceStores[j].miniUnitCodeName,
+                                miniUnitStock: resourceStores[j].miniUnitStock
                             })
                         }
                     }
@@ -122,7 +126,6 @@
                 vc.emit($props.emitChooseResourceStore, "setSelectResourceStores", _resourceStores);
                 $('#chooseResourceStaffModel').modal('hide');
             },
-
             _listStorehouses: function (_page, _rows) {
                 var param = {
                     params: {
@@ -162,7 +165,6 @@
                     }
                 );
             },
-
             checkAll: function (e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
@@ -176,6 +178,5 @@
                 }
             }
         }
-
     });
 })(window.vc);

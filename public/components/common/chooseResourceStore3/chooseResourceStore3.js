@@ -49,7 +49,7 @@
             // 监听移除选中项
             vc.on('chooseResourceStore3', 'removeSelectResourceStoreItem', function (_resId) {
                 vc.component.chooseResourceStoreInfo3.selectResourceStores.forEach((item, index) => {
-                    if(item == _resId){
+                    if (item == _resId) {
                         vc.component.chooseResourceStoreInfo3.selectResourceStores.splice(index, 1);
                     }
                 })
@@ -58,9 +58,7 @@
         methods: {
             _loadAllResourceStoreInfo: function (_page, _row) {
                 let _resOrderType = vc.component.chooseResourceStoreInfo3.resOrderType;
-
                 let _shType = '2806';
-
                 if (_resOrderType == '20000') {
                     _shType = '2807';
                 }
@@ -76,7 +74,6 @@
                         shId: vc.component.chooseResourceStoreInfo3.shId
                     }
                 };
-
                 //发送get请求
                 vc.http.get('chooseResourceStore',
                     'list',
@@ -167,7 +164,6 @@
                     }
                 );
             },
-
             checkAll: function (e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
@@ -181,6 +177,5 @@
                 }
             }
         }
-
     });
 })(window.vc);

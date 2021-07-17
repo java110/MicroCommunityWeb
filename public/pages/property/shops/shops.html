@@ -100,7 +100,7 @@
                             </td>
                             <td class="text-center">
                                 <div class="btn-group"
-                                     v-if="vc.hasPrivilege('502020082493857941')&& shops.state != '2007'">
+                                     v-if="vc.hasPrivilege('502020082493857941')&& shops.state == '2008'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openHireShopsModel(shops)">出租
                                     </button>
@@ -131,7 +131,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

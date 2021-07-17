@@ -112,11 +112,9 @@
                     });
             },
             clearAddStorehouseInfo: function () {
-                vc.component.addStorehouseInfo = {
-                    shName: '',
-                    shType: '',
-                    shDesc: ''
-                };
+                    vc.component.addStorehouseInfo.shName = '';
+                    vc.component.addStorehouseInfo.shType = '';
+                    vc.component.addStorehouseInfo.shDesc = '';
             }
         }
     });

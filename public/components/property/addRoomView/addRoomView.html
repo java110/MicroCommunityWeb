@@ -4,23 +4,21 @@
             <div class="ibox-title">
                 <h5>添加房屋</h5>
                 <div class="ibox-tools" style="top:10px;">
-
                 </div>
             </div>
             <div class="ibox-content">
-
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">房屋编号</label>
                     <div class="col-sm-10">
                         <input v-model="addRoomViewInfo.roomNum" type="text" placeholder="必填，请填写房屋编号"
-                            class="form-control">
+                               class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">房屋楼层</label>
                     <div class="col-sm-10">
                         <input v-model="addRoomViewInfo.layer" type="text" placeholder="必填，请填写房屋楼层"
-                            class="form-control">
+                               class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -57,14 +55,14 @@
                     <label class="col-sm-2 col-form-label">建筑面积(平方)</label>
                     <div class="col-sm-10">
                         <input v-model="addRoomViewInfo.builtUpArea" type="text" placeholder="必填，请填写建筑面积! 平方"
-                            class="form-control">
+                               class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">算费系数</label>
                     <div class="col-sm-10">
                         <input v-model="addRoomViewInfo.feeCoefficient" type="text" placeholder="请填写算费系数"
-                            class="form-control">
+                               class="form-control">
                     </div>
                 </div>
                 <div v-for="(item,index) in addRoomViewInfo.attrs">
@@ -72,10 +70,9 @@
                         <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                         <div class="col-sm-10">
                             <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
-                                class="form-control">
+                                   class="form-control">
                         </div>
                     </div>
-
                     <div class="form-group row" v-if="item.specType == '3344'">
                         <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                         <div class="col-sm-10">
@@ -89,14 +86,14 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">备注</label>
                     <div class="col-sm-10">
                         <textarea placeholder="选填，请填写备注" class="form-control"
-                            v-model="addRoomViewInfo.remark"></textarea></div>
+                                  v-model="addRoomViewInfo.remark">
+                        </textarea>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>

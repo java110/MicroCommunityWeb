@@ -19,7 +19,8 @@
                     roomNum: '',
                     unitId: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -100,6 +101,7 @@
                 var param = {
                     params: vc.component.reportFeeSummaryInfo.conditions
                 };
+                param.params.roomNum = param.params.roomNum.trim();
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryReportFeeSummary',
                     param,
@@ -119,18 +121,14 @@
                 );
             },
             //重置
-            _resetMethod: function(){
-                vc.component._resetFees(DEFAULT_PAGE, DEFAULT_ROWS);
-            },
-            //重置方法
-            _resetFees: function (_page, _rows) {
+            _resetMethod: function (_page, _rows) {
                 vc.component.reportFeeSummaryInfo.conditions.floorName = "";
                 vc.component.reportFeeSummaryInfo.conditions.floorId = "";
                 vc.component.reportFeeSummaryInfo.conditions.unitId = "";
                 vc.component.reportFeeSummaryInfo.conditions.roomNum = "";
                 vc.component.reportFeeSummaryInfo.conditions.startTime = "";
                 vc.component.reportFeeSummaryInfo.conditions.endTime = "";
-                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {
@@ -167,8 +165,8 @@
                     vc.component.reportFeeSummaryInfo.moreCondition = true;
                 }
             },
-            _exportFee: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportFeeSummary");
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeSummary&' + vc.objToGetParam($that.reportFeeSummaryInfo.conditions));
             }
         }
     });

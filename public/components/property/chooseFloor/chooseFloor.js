@@ -31,7 +31,7 @@
                         page:_page,
                         row:_row,
                         communityId:vc.getCurrentCommunity().communityId,
-                        name:_name,
+                        floorName:_name,
                         floorNum:vc.component.chooseFloorInfo._currentFloorNum
                     }
                 };

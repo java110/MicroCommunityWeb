@@ -53,6 +53,13 @@
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPurchaseApplyModal()">
                             <i class="fa fa-plus"></i>采购申请
                         </button>
+                        <button type="button" class="btn btn-primary btn-sm"  v-if="vc.hasPrivilege('502021071043650029')"
+                                v-on:click="_openUrgentPurchaseApplyModal()">
+                            <i class="fa fa-plus"></i>紧急采购
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i>导出
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -84,7 +91,10 @@
                             <!-- <td class="text-center">{{purchaseApply.purchaseApplyDetailVo[0].quantity}}</td>
                             <td class="text-center">{{purchaseApply.purchaseApplyDetailVo[0].price}}</td> -->
                             <!-- <td class="text-center">{{purchaseApply.totalPrice}}</td> -->
-                            <td class="text-center">{{purchaseApply.warehousingWay == 10000 ? '直接入库' : '采购入库'}}</td>
+                            <td class="text-center">
+                                {{purchaseApply.warehousingWay == 10000 ? '直接入库' : purchaseApply.warehousingWay == 20000
+                                ? '采购入库' : '紧急采购'}}
+                            </td>
                             <td class="text-center">{{purchaseApply.stateName}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
@@ -92,12 +102,13 @@
                                             v-on:click="_openDetailPurchaseApplyModel(purchaseApply)">查看
                                     </button>
                                 </div>
-                                <div class="btn-group" v-if="purchaseApply.warehousingWay != 10000">
+                                <div class="btn-group"
+                                     v-if="purchaseApply.warehousingWay != 10000 && purchaseApply.warehousingWay != 30000">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openRunWorkflowImage(purchaseApply)">流程图
                                     </button>
                                 </div>
-                                <div class="btn-group" v-if="purchaseApply.state == '1000'">
+                                <div class="btn-group" v-if="purchaseApply.state == '1000' && purchaseApplyManageInfo.currentUserId == purchaseApply.createUserId">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeletePurchaseApplyModel(purchaseApply)">取消申请
                                     </button>

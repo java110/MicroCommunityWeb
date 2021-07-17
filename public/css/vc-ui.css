@@ -1252,9 +1252,10 @@ table.table-mail tr td {
 }
 
 /*防止select2不会自动失去焦点*/
+/* 20210709修改 zindex 由16000改为2050  与modal的zindex持平即可 */
 
 .select2-container {
-  z-index: 16000 !important;
+  z-index: 2050 !important;
   width: 100%;
 }
 
@@ -1283,6 +1284,9 @@ table.table-mail tr td {
 .uploadImage .uploadButton i {
   font-size: 24px;
   color: #888;
+}
+.note-editor{
+  z-index: 3000!important;
 }
 
 /* FILE MANAGER */

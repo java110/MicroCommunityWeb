@@ -88,10 +88,36 @@
                                         <label class="">{{ownerRepairDetailInfo.repairMaterials}}</label>
                                     </div>
                                 </div>
-                                <div class="col-sm-8" v-if="ownerRepairDetailInfo.maintenanceType == '1001'">
+                                <div class="col-sm-4" v-if="ownerRepairDetailInfo.maintenanceType == '1001'">
                                     <div class="form-group">
                                         <label class="col-form-label">费用明细：</label>
                                         <label class="">{{ownerRepairDetailInfo.repairFee}}元 &nbsp;&nbsp;(单价*数量)</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" v-if="ownerRepairDetailInfo.appraiseScore != '0'">
+                                    <div class="form-group">
+                                        <label class="col-form-label">综合评价得分：</label>
+                                        <label class="">{{ownerRepairDetailInfo.appraiseScore}}分</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4" v-if="ownerRepairDetailInfo.doorSpeedScore != '0'">
+                                    <div class="form-group">
+                                        <label class="col-form-label">上门速度评分：</label>
+                                        <label class="">{{ownerRepairDetailInfo.doorSpeedScore}}分</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" v-if="ownerRepairDetailInfo.repairmanServiceScore != '0'">
+                                    <div class="form-group">
+                                        <label class="col-form-label">维修员服务评分：</label>
+                                        <label class="">{{ownerRepairDetailInfo.repairmanServiceScore}}分</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" v-if="ownerRepairDetailInfo.average != '0.0'">
+                                    <div class="form-group">
+                                        <label class="col-form-label">平均分：</label>
+                                        <label class="">{{ownerRepairDetailInfo.average}}分</label>
                                     </div>
                                 </div>
                             </div>

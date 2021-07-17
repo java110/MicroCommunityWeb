@@ -1,6 +1,7 @@
 (function () {
     let community = document.getElementById("community");
     community.innerHTML = vc.getCurrentCommunity().name;
+
     /********************************今日巡检 start****************************************** */
     function _loadAssetInspection() {
         let param = {
@@ -27,6 +28,7 @@
 
             });
     }
+
     function initInspeciton(_dataArr) {
         let _todayInpection = document.getElementById("todayInpection");
         let _li = "";
@@ -40,6 +42,7 @@
         }
         _todayInpection.innerHTML = _li;
     }
+
     _loadAssetInspection();
     /********************************今日巡检  end****************************************** */
 
@@ -79,6 +82,7 @@
     }
 
     _loadAssets();
+
     /********************************小区资产 end****************************************** */
     /********************************开门次数 start****************************************** */
     function _initOpenDoorChart(_data) {
@@ -178,6 +182,7 @@
             myChart.setOption(option, true);
         }
     }
+
     function _getAssetOpenDoor() {
         let param = {
             params: {
@@ -206,7 +211,9 @@
 
             });
     }
+
     _getAssetOpenDoor();
+
     /********************************开门次数 end****************************************** */
 
 
@@ -258,8 +265,8 @@
                     radius: '55%',
                     center: ['50%', '50%'],
                     data: [
-                        { value: _sellRoomCount, name: '已售' },
-                        { value: _freeRoomCount, name: '空闲' }
+                        {value: _sellRoomCount, name: '已售'},
+                        {value: _freeRoomCount, name: '空闲'}
                     ],
                     emphasis: {
                         itemStyle: {
@@ -274,7 +281,7 @@
                                 show: true,
                                 formatter: '{b} : {c} '
                             },
-                            labelLine: { show: true }
+                            labelLine: {show: true}
                         }
                     }
                 }
@@ -288,6 +295,7 @@
 
 
     _loadAssetRoom();
+
     /********************************房屋分析 end*************************************** */
     /********************************报修分析 start*************************************** */
 
@@ -370,9 +378,9 @@
                         show: false
                     },
                     data: [
-                        { value: unDealCount, name: '待处理', color: '#FFF' },
-                        { value: dealingCount, name: '处理中' },
-                        { value: dealedCount, name: '已处理' }
+                        {value: unDealCount, name: '待处理', color: '#FFF'},
+                        {value: dealingCount, name: '处理中'},
+                        {value: dealedCount, name: '已处理'}
                     ],
                     itemStyle: {
                         normal: {
@@ -381,7 +389,7 @@
                                 formatter: '{b} : {c} ',
 
                             },
-                            labelLine: { show: true }
+                            labelLine: {show: true}
                         }
                     }
                 }
@@ -395,6 +403,7 @@
     }
 
     _loadAssetsRepair();
+
     /********************************报修分析 end*************************************** */
 
     /********************************费用分析 start*************************************** */
@@ -417,16 +426,16 @@
 
                 let _remindInfomation = indexData.remindInfomation;
                 let _data = [
-                    { value: _remindInfomation.deadlineFeeCount, name: '费用到期提醒' },
-                    { value: _remindInfomation.prePaymentCount, name: '费用提醒' }
+                    {value: _remindInfomation.deadlineFeeCount, name: '费用到期提醒'},
+                    {value: _remindInfomation.prePaymentCount, name: '费用提醒'}
                 ];
                 let _dom = document.getElementById('shopCount');
                 _initCharts2(_dom, '费用提醒', _data);
 
                 _dom = document.getElementById('ownerCount');
                 _data = [
-                    { value: _receivableInformation.oweAmount, name: '欠费金额' },
-                    { value: _receivableInformation.receivedAmount, name: '已收金额' }
+                    {value: _receivableInformation.oweAmount, name: '欠费金额'},
+                    {value: _receivableInformation.receivedAmount, name: '已收金额'}
                 ];
                 _initCharts2(_dom, '应收总额', _data);
 
@@ -450,27 +459,20 @@
                         value: item.receivableAmount, name: item.feeName
                     })
                 });
-
                 _dom = document.getElementById('feeAnsicis');
                 _initCharts2(_dom, '分项费用占比', _data);
-
-
             }, function (errInfo, error) {
                 console.log('请求失败处理');
             }
         );
-
     }
 
     function _initCharts2(dom, _title, _data) {
-
         let myChart = echarts.init(dom);
         let option = null;
         option = {
-          
             textStyle: {//图例文字的样式
                 fontSize: 12,
-              
             },
             tooltip: {
                 trigger: 'item',
@@ -511,11 +513,10 @@
             myChart.setOption(option, true);
         }
     }
-
     _queryIndexContextData()
+
     /*********************************************************缴费分析开始 ************************/
     function _loadAssetFee() {
-
         let param = {
             params: {
                 communityId: vc.getCurrentCommunity().communityId
@@ -535,22 +536,16 @@
             },
             function (errInfo, error) {
                 console.log('请求失败处理');
-
                 vc.toast(errInfo);
-
             });
     }
-
-
     function renderBrushed(params) {
         var brushed = [];
         var brushComponent = params.batch[0];
-
         for (var sIdx = 0; sIdx < brushComponent.selected.length; sIdx++) {
             var rawIndices = brushComponent.selected[sIdx].dataIndex;
             brushed.push('[Series ' + sIdx + '] ' + rawIndices.join(', '));
         }
-
         myChart.setOption({
             title: {
                 backgroundColor: '#333',
@@ -565,7 +560,6 @@
             }
         });
     }
-
     function initFeeChart(_data) {
         let dom = document.getElementById("box4");
         let myChart = echarts.init(dom);
@@ -573,7 +567,6 @@
         let xAxisData = [];
         let data1 = [];
         let data2 = [];
-
         _data.forEach(item => {
             xAxisData.push(item.feeName);
             data1.push(item.normalCount);
@@ -594,7 +587,7 @@
             },
             legend: {
                 data: ['已缴费', '未缴费'],
-                color:"#FFF"
+                color: "#FFF"
             },
             toolbox: {
                 show: true,
@@ -602,18 +595,17 @@
                 left: 'right',
                 top: 'center',
                 feature: {
-                    mark: { show: true },
-                    dataView: { show: true, readOnly: false },
-                    magicType: { show: true, type: ['line', 'bar', 'stack', 'tiled'] },
-                    restore: { show: true },
-                    saveAsImage: { show: true }
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
                 }
             },
             xAxis: [
                 {
                     type: 'category',
-                    axisTick: { show: false },
-                    
+                    axisTick: {show: false},
                     data: xAxisData
                 }
             ],
@@ -642,15 +634,11 @@
                 }
             ]
         };
-
         myChart.on('brushSelected', renderBrushed);
-
         if (option && typeof option === "object") {
             myChart.setOption(option, true);
         }
-
     }
-
     _loadAssetFee();
     /******************************************************************** */
 

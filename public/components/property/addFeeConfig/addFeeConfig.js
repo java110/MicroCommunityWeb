@@ -184,9 +184,9 @@
                             errInfo: "计费单价不能为空"
                         },
                         {
-                            limit: "moneyModulus",
+                            limit: "money",
                             param: "",
-                            errInfo: "计费单价格式错误，如1.5000"
+                            errInfo: "计费单价格式错误"
                         },
                         ],
                         'addFeeConfigInfo.additionalAmount': [{

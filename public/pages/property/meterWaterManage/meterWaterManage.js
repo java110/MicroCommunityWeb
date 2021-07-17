@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 waterId: '',
+                meterTypes: [],
                 conditions: {
                     waterId: '',
                     meterType: '',
@@ -20,6 +21,9 @@
             }
         },
         _initMethod: function () {
+            vc.getDict('meter_water', "meter_type", function (_data) {
+                vc.component.meterWaterManageInfo.meterTypes = _data;
+            });
             vc.component._listMeterWaters(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -38,6 +42,8 @@
                 var param = {
                     params: vc.component.meterWaterManageInfo.conditions
                 };
+                param.params.waterId = param.params.waterId.trim();
+                param.params.roomNum = param.params.roomNum.trim();
                 //发送get请求
                 vc.http.apiGet('meterWater.listMeterWaters',
                     param,
@@ -65,7 +71,15 @@
             _openDeleteMeterWaterModel: function (_meterWater) {
                 vc.emit('deleteMeterWater', 'openDeleteMeterWaterModal', _meterWater);
             },
+            //查询
             _queryMeterWaterMethod: function () {
+                vc.component._listMeterWaters(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetMeterWaterMethod: function () {
+                vc.component.meterWaterManageInfo.conditions.roomNum = "";
+                vc.component.meterWaterManageInfo.conditions.meterType = "";
+                vc.component.meterWaterManageInfo.conditions.waterId = "";
                 vc.component._listMeterWaters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
@@ -78,7 +92,7 @@
             _openMeterWaterImport: function () {
                 vc.emit('importMeterWaterFee', 'openImportMeterWaterFeeModal', {});
             },
-            _openMeterWaterImport2:function(){
+            _openMeterWaterImport2: function () {
                 vc.emit('importMeterWaterFee2', 'openImportMeterWaterFeeModal', {});
             },
             _getMeteTypeName: function (_meterType) {

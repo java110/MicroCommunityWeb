@@ -72,6 +72,9 @@
                 var param = {
                     params: vc.component.staffInfo.conditions
                 };
+                param.params.name = param.params.name.trim();
+                param.params.tel = param.params.tel.trim();
+                param.params.staffId = param.params.staffId.trim();
                 //发送get请求
                 vc.http.get('staff',
                     'loadData',
@@ -83,7 +86,7 @@
                         let relCdsList = vc.component.staffInfo.relCds;
                         staffList.forEach((staff) => {
                             relCdsList.forEach((rel) => {
-                                if (staff.relCd == rel.statusCd){
+                                if (staff.relCd == rel.statusCd) {
                                     staff.relCdName = rel.name;
                                 }
                             })
@@ -143,7 +146,18 @@
             _openAddStaffStepPage: function () {
                 vc.jumpToPage("/admin.html#/pages/frame/addStaffStep")
             },
+            //查询
             _queryStaffMethod: function () {
+                vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS)
+            },
+            //重置
+            _resetStaffMethod: function () {
+                vc.component.staffInfo.conditions.branchOrgId = "";
+                vc.component.staffInfo.conditions.orgId = "";
+                vc.component.staffInfo.conditions.departmentOrgId = "";
+                vc.component.staffInfo.conditions.name = "";
+                vc.component.staffInfo.conditions.tel = "";
+                vc.component.staffInfo.conditions.staffId = "";
                 vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS)
             },
             _resetStaffPwd: function (_staff) {

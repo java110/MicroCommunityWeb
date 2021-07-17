@@ -18,19 +18,21 @@
                 inspectionPointList: [],
                 inspectionPlanList: [],
                 inspectionRouteList: [],
+                patrolTypes: [],
                 conditions: {
                     planUserName: '',
                     taskDetailId: '',
                     inspectionPlanName: '',
                     actInsTime: '',
-                    startTime: '',
-                    endTime: '',
+                    inspectionStartTime: '',
+                    inspectionEndTime: '',
                     state: '',
                     inspectionState: '',
                     inspectionId: '',
                     inspectionPlanId: '',
                     inspectionRouteId: '',
-                    taskState: ''
+                    taskState: '',
+                    patrolType: ''
                 }
             }
         },
@@ -44,6 +46,9 @@
             });
             vc.getDict('inspection_task_detail', "state", function (_data) {
                 vc.component.inspectionTaskDetailManageInfo.taskStates = _data;
+            });
+            vc.getDict('inspection_task_detail', "patrol_type", function (_data) {
+                vc.component.inspectionTaskDetailManageInfo.patrolTypes = _data;
             });
             vc.component._initInspectionTaskDetailDateInfo();
             vc.component._listInspectionTasksDetailList(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -73,7 +78,7 @@
                 $('.startTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".startTime").val();
-                        vc.component.inspectionTaskDetailManageInfo.conditions.startTime = value;
+                        vc.component.inspectionTaskDetailManageInfo.conditions.inspectionStartTime = value;
                     });
                 $('.endTime').datetimepicker({
                     language: 'zh-CN',
@@ -87,7 +92,7 @@
                 $('.endTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".endTime").val();
-                        vc.component.inspectionTaskDetailManageInfo.conditions.endTime = value;
+                        vc.component.inspectionTaskDetailManageInfo.conditions.inspectionEndTime = value;
                     });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByClassName(' form-control startTime')[0].addEventListener('click', myfunc)
@@ -141,14 +146,15 @@
                 vc.component.inspectionTaskDetailManageInfo.conditions.taskDetailId = "";
                 vc.component.inspectionTaskDetailManageInfo.conditions.inspectionPlanName = "";
                 vc.component.inspectionTaskDetailManageInfo.conditions.actInsTime = "";
-                vc.component.inspectionTaskDetailManageInfo.conditions.startTime = "";
-                vc.component.inspectionTaskDetailManageInfo.conditions.endTime = "";
+                vc.component.inspectionTaskDetailManageInfo.conditions.inspectionStartTime = "";
+                vc.component.inspectionTaskDetailManageInfo.conditions.inspectionEndTime = "";
                 vc.component.inspectionTaskDetailManageInfo.conditions.state = "";
                 vc.component.inspectionTaskDetailManageInfo.conditions.inspectionId = '';
                 vc.component.inspectionTaskDetailManageInfo.conditions.inspectionPlanId = '';
                 vc.component.inspectionTaskDetailManageInfo.conditions.inspectionRouteId = '';
                 vc.component.inspectionTaskDetailManageInfo.conditions.inspectionState = "";
                 vc.component.inspectionTaskDetailManageInfo.conditions.taskState = "";
+                vc.component.inspectionTaskDetailManageInfo.conditions.patrolType = "";
                 vc.component._listInspectionTasksDetailList(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

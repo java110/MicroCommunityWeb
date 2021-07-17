@@ -29,7 +29,7 @@
                                 <td class="text-center">
                                     <div v-if="allocationStorehouseAuditOrdersInfo.procure == false">
                                         <div class="btn-group"
-                                             v-if="auditOrder.state == 1200 || auditOrder.state == 1201">
+                                             v-if="(auditOrder.state == 1200 || auditOrder.state == 1201)">
                                             <!--allocationStorehouseAuditOrdersInfo.currentUserId != auditOrder.startUserId-->
                                             <!--当前操作人UserId != 申请人userId-->
                                             <button class="btn-white btn btn-xs"

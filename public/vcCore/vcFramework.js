@@ -2120,7 +2120,25 @@
                 return false;
             }
             return true;
-        }
+        },
+        /**
+            校验最小值
+        **/
+        min: function (text, minVal) {
+            if (parseFloat(text) >= parseFloat(minVal)) {
+                return true;
+            }
+            return false;
+        },
+        /**
+            校验最大值
+        **/
+        max: function (text, maxVal) {
+            if (parseFloat(text) <= parseFloat(maxVal)) {
+                return true;
+            }
+            return false;
+        },
 
     };
     vc.validate = validate;
@@ -2214,6 +2232,12 @@
                     }
                     if (configObj.limit == 'idCard') {
                         validate.setState(validate.idCard(tmpDataObj), configObj.errInfo);
+                    }
+                    if (configObj.limit == 'min') {
+                        validate.setState(validate.min(tmpDataObj, configObj.param), configObj.errInfo);
+                    }
+                    if (configObj.limit == 'max') {
+                        validate.setState(validate.max(tmpDataObj, configObj.param), configObj.errInfo);
                     }
                 });
 

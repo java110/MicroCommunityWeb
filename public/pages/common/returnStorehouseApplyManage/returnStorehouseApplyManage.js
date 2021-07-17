@@ -57,6 +57,14 @@
                 // 同时移除子页面复选框选项
                 vc.emit('chooseResourceStaff', 'removeSelectResourceStaffItem', _resourceStore.resId);
             },
+            // 退还全部
+            _itemReturnAll: function (_resourceStore) {
+                $that.returnStorehouseManageInfo.resourceStores.forEach(item => {
+                    if (item.resId == _resourceStore.resId) {
+                        item.curStock = item.miniStock;
+                    }
+                })
+            },
             _openReturnStorehouseModel: function () {
                 vc.emit('chooseResourceStaff', 'openChooseResourceStaffModel', {});
             },
@@ -94,12 +102,12 @@
                     return;
                 }
                 $that.returnStorehouseManageInfo.resourceStores.forEach(item => {
-                    if (item.curStock < 1) {
+                    if (item.curStock <= 0) {
                         vc.toast("请填写退还数量");
                         _saveFlag = false;
                         return;
                     }
-                    if (parseInt(item.curStock) > parseInt(item.stock)) {
+                    if (parseInt(item.curStock) > parseInt(item.miniStock)) {
                         vc.toast(item.resName + "库存不足");
                         _saveFlag = false;
                         return;
@@ -113,7 +121,6 @@
                 if (!_saveFlag) {
                     return;
                 }
-                console.log($that.returnStorehouseManageInfo);debugger;
                 vc.http.apiPost(
                     'resourceStore.saveAllocationStorehouse',
                     JSON.stringify($that.returnStorehouseManageInfo),

@@ -20,7 +20,8 @@
                     resCode: '',
                     shId: '',
                     rstId: '',
-                    rssId: ''
+                    rssId: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 },
                 storehouses: [],
                 resourceStoreTypes: [],
@@ -82,6 +83,9 @@
                         if (_resourceStoreManageInfo.resourceStores.length > 0) {
                             vc.component.resourceStoreManageInfo.subTotalPrice = _resourceStoreManageInfo.resourceStores[0].subTotalPrice;
                             vc.component.resourceStoreManageInfo.highTotalPrice = _resourceStoreManageInfo.resourceStores[0].highTotalPrice;
+                        } else {
+                            vc.component.resourceStoreManageInfo.subTotalPrice = 0.0;
+                            vc.component.resourceStoreManageInfo.highTotalPrice = 0.0;
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.resourceStoreManageInfo.records,
@@ -189,6 +193,10 @@
             // 跳转出入库页面
             _jump2InAndOutPage: function () {
                 vc.jumpToPage("/admin.html#/pages/common/inAndOutStep");
+            },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=resourceStoreManage&' + vc.objToGetParam($that.resourceStoreManageInfo.conditions));
             }
         }
     });

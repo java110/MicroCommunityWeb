@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -10,19 +9,20 @@
                 discountId: '',
                 discountName: '',
                 discountType: '',
+                discountTypes: [],
                 ruleId: '',
                 discountDesc: '',
                 rules: [],
                 feeDiscountRuleSpecs: []
-
             }
         },
         _initMethod: function () {
-
+            vc.getDict('fee_discount', "discount_type", function (_data) {
+                vc.component.addFeeDiscountInfo.discountTypes = _data;
+            });
         },
         _initEvent: function () {
             vc.on('addFeeDiscount', 'openAddFeeDiscountModal', function () {
-
                 $('#addFeeDiscountModel').modal('show');
             });
         },
@@ -68,26 +68,19 @@
                         },
                     ],
                     'addFeeDiscountInfo.discountDesc': [
-                       
                         {
                             limit: "maxLength",
                             param: "500",
                             errInfo: "描述不能超过500位"
                         },
                     ],
-
-
-
-
                 });
             },
             saveFeeDiscountInfo: function () {
                 if (!vc.component.addFeeDiscountValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addFeeDiscountInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -95,7 +88,6 @@
                     $('#addFeeDiscountModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/feeDiscount/saveFeeDiscount',
                     JSON.stringify(vc.component.addFeeDiscountInfo),
@@ -110,35 +102,27 @@
                             $('#addFeeDiscountModel').modal('hide');
                             vc.component.clearAddFeeDiscountInfo();
                             vc.emit('feeDiscountManage', 'listFeeDiscount', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddFeeDiscountInfo: function () {
-                vc.component.addFeeDiscountInfo = {
-                    discountName: '',
-                    discountType: '',
-                    ruleId: '',
-                    discountDesc: '',
-                    rules: [],
-                    feeDiscountRuleSpecs: []
-                };
+                vc.component.addFeeDiscountInfo.discountName = '';
+                vc.component.addFeeDiscountInfo.discountType = '';
+                vc.component.addFeeDiscountInfo.ruleId = '';
+                vc.component.addFeeDiscountInfo.discountDesc = '';
+                vc.component.addFeeDiscountInfo.rules = [];
+                vc.component.addFeeDiscountInfo.feeDiscountRuleSpecs = [];
             },
             _loadAddFeeDiscountRules: function () {
-
                 if ($that.addFeeDiscountInfo.discountType == '') {
                     return;
                 }
-
                 var param = {
                     params: {
                         page: 1,
@@ -165,7 +149,6 @@
                             specItem.specValue = "";
                         })
                         $that.addFeeDiscountInfo.feeDiscountRuleSpecs = item.feeDiscountRuleSpecs;
-
                     }
                 });
             },
@@ -174,5 +157,4 @@
             }
         }
     });
-
 })(window.vc);

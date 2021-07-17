@@ -13,8 +13,8 @@
             }
         },
         _initMethod: function () {
+            $that.listOwnerCarMemberInfo.carId = vc.getParam('carId');
             $that._listOwnerCarMember(DEFAULT_PAGE, DEFAULT_ROWS);
-            $that.listOwnerCarMemberInfo.carId = vc.getParam('carId')
         },
         _initEvent: function () {
             vc.on('listOwnerCarMember', 'listOwnerCarData', function () {

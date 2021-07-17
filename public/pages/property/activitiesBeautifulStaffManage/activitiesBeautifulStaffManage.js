@@ -13,6 +13,7 @@
                 moreCondition: false,
                 componentShow: 'activitiesBeautifulStaffManage',
                 beId: '',
+                activitiesRules: [],
                 conditions: {
                     ruleId: '',
                     staffName: '',
@@ -21,6 +22,7 @@
             }
         },
         _initMethod: function () {
+            vc.component._queryActivitiesRules();
             vc.component._listActivitiesBeautifulStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -39,6 +41,8 @@
                 var param = {
                     params: vc.component.activitiesBeautifulStaffManageInfo.conditions
                 };
+                param.params.staffName = param.params.staffName.trim();
+                param.params.activitiesNum = param.params.activitiesNum.trim();
                 //发送get请求
                 vc.http.apiGet('/activitiesRule/queryActivitiesBeautifulStaff',
                     param,
@@ -57,6 +61,26 @@
                     }
                 );
             },
+            //查询规则
+            _queryActivitiesRules: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/activitiesRule/queryActivitiesRule',
+                    param,
+                    function (json, res) {
+                        var _activitiesRuleManageInfo = JSON.parse(json);
+                        $that.activitiesBeautifulStaffManageInfo.activitiesRules = _activitiesRuleManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _openAddActivitiesBeautifulStaffModal: function () {
                 $that.activitiesBeautifulStaffManageInfo.componentShow = 'addActivitiesBeautifulStaff';
                 vc.emit('addActivitiesBeautifulStaff', 'openAddActivitiesBeautifulStaffModal', {});
@@ -68,7 +92,15 @@
             _openDeleteActivitiesBeautifulStaffModel: function (_activitiesBeautifulStaff) {
                 vc.emit('deleteActivitiesBeautifulStaff', 'openDeleteActivitiesBeautifulStaffModal', _activitiesBeautifulStaff);
             },
+            //查询
             _queryActivitiesBeautifulStaffMethod: function () {
+                vc.component._listActivitiesBeautifulStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetActivitiesBeautifulStaffMethod: function () {
+                vc.component.activitiesBeautifulStaffManageInfo.conditions.ruleId = "";
+                vc.component.activitiesBeautifulStaffManageInfo.conditions.staffName = "";
+                vc.component.activitiesBeautifulStaffManageInfo.conditions.activitiesNum = "";
                 vc.component._listActivitiesBeautifulStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

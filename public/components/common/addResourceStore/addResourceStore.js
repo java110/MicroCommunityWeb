@@ -7,6 +7,8 @@
         data: {
             addResourceStoreInfo: {
                 unitCode: '',
+                miniUnitCode: '',
+                miniUnitStock: '',
                 unitCodes: [],
                 resId: '',
                 rstId: '',
@@ -89,6 +91,25 @@
                             limit: "required",
                             param: "",
                             errInfo: "警告库存不能为空"
+                        },
+                        {
+                            limit: "min",
+                            param: "0",
+                            errInfo: "警告库存最小为零"
+                        }
+                    ],
+                    'addResourceStoreInfo.miniUnitCode': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "最小计量单位不能为空"
+                        },
+                    ],
+                    'addResourceStoreInfo.miniUnitStock': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "最小计量单位数量不能为空"
                         },
                     ],
                     'addResourceStoreInfo.description': [
@@ -211,10 +232,10 @@
             // 分类改变事件
             resourceStoreTypesOnChangeAdd: function () {
                 console.log('111');
-              if(vc.component.addResourceStoreInfo.rstId == ''){
-                  vc.component.resourceStoreSpecification = [];
-                  return;
-              }
+                if (vc.component.addResourceStoreInfo.rstId == '') {
+                    vc.component.resourceStoreSpecification = [];
+                    return;
+                }
                 vc.component._loadResourceStoreSpecificationAdd();
             },
             // 根据分类查询规格

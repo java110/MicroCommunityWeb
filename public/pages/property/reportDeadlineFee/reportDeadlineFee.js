@@ -19,7 +19,8 @@
                     roomNum: '',
                     unitId: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -120,8 +121,8 @@
             _openChooseFloorMethod: function () {
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            _exportFee: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportDeadlineFee");
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportDeadlineFee&' + vc.objToGetParam($that.reportDeadlineFeeInfo.conditions));
             }
         }
     });

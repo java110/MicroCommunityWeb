@@ -12,11 +12,13 @@
                 records: 1,
                 moreCondition: false,
                 states: '',
+                currentUserId: vc.getData('/nav/getUserInfo').userId,
                 conditions: {
                     applyOrderId: '',
                     state: '',
                     userName: '',
-                    resOrderType: '20000'
+                    resOrderType: '20000',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -117,6 +119,10 @@
                     }
                 );
             },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=itemOutManage&' + vc.objToGetParam($that.itemOutManageInfo.conditions));
+            }
         }
     });
 })(window.vc);

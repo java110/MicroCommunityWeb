@@ -10,14 +10,14 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">物品名称</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editResourceStoreInfo.resName" type="text" placeholder="必填，请填写物品名称"
+                                    <input v-model="editResourceStoreInfo.resName" type="text" :disabled="editResourceStoreInfo.shType == '2807'" placeholder="必填，请填写物品名称"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">物品类型</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editResourceStoreInfo.rstId"
+                                    <select class="custom-select" v-model="editResourceStoreInfo.rstId" :disabled="editResourceStoreInfo.shType == '2807'"
                                             @change="resourceStoreTypesOnChangeEdit">
                                         <option v-for="(item,index) in editResourceStoreInfo.rstIds" :key="index"
                                                 v-bind:value="item.rstId">
@@ -29,11 +29,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">物品规格</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editResourceStoreInfo.rssId">
+                                    <select class="custom-select" v-model="editResourceStoreInfo.rssId" :disabled="editResourceStoreInfo.shType == '2807'">
                                         <option selected disabled value="">选填，请选择物品规格</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.resourceStoreSpecifications"
-                                                :key="index"
-                                                v-bind:value="item.rssId">
+                                                :key="index" v-bind:value="item.rssId">
                                             {{item.specName}}
                                         </option>
                                     </select>
@@ -42,7 +41,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">物品单位</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editResourceStoreInfo.unitCode">
+                                    <select class="custom-select" v-model="editResourceStoreInfo.unitCode" :disabled="editResourceStoreInfo.shType == '2807'">
                                         <option v-for="(item,index) in editResourceStoreInfo.unitCodes" :key="index"
                                                 v-bind:value="item.statusCd">
                                             {{item.name}}
@@ -54,16 +53,14 @@
                                 <label class="col-sm-2 col-form-label">物品编码</label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.resCode" type="text" disabled="disabled"
-                                           placeholder="必填，请填写物品编码，如终端串码"
-                                           class="form-control">
+                                           placeholder="必填，请填写物品编码，如终端串码" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">采购参考价格</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editResourceStoreInfo.price" type="text"
-                                           placeholder="必填，请填写物品采购参考价格"
-                                           class="form-control">
+                                    <input v-model="editResourceStoreInfo.price" type="text" :disabled="editResourceStoreInfo.shType == '2807'"
+                                           placeholder="必填，请填写物品采购参考价格" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -74,19 +71,36 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">最低收费标准</label>
+                                <label class="col-sm-2 col-form-label">最小计量单位</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editResourceStoreInfo.outLowPrice" type="text"
-                                           placeholder="必填，请填写物品最低收费标准"
-                                           class="form-control">
+                                    <select class="custom-select" v-model="editResourceStoreInfo.miniUnitCode" :disabled="editResourceStoreInfo.shType == '2807'">
+                                        <option selected disabled value="">必填，请选择物品最小计量单位</option>
+                                        <option v-for="(item,index) in editResourceStoreInfo.unitCodes" :key="index"
+                                                v-bind:value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">最高收费标准</label>
+                                <label class="col-sm-2 col-form-label">最小计量单位数量</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editResourceStoreInfo.miniUnitStock" type="text" :disabled="editResourceStoreInfo.shType == '2807'"
+                                           placeholder="必填，请填写最小计量单位数量" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">最低收费标准(最小计量单位)</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editResourceStoreInfo.outLowPrice" type="text"
+                                           placeholder="必填，请填写物品最小计量单位，最低收费标准" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">最高收费标准(最小计量单位)</label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.outHighPrice" type="text"
-                                           placeholder="必填，请填写物品最高收费标准"
-                                           class="form-control">
+                                           placeholder="必填，请填写物品最小计量单位，最高收费标准" class="form-control">
                                 </div>
                             </div>
                             <!-- <div class="form-group row">

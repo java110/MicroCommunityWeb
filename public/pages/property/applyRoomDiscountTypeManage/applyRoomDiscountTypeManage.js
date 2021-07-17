@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -15,7 +15,7 @@
                 conditions: {
                     typeName: '',
                     applyType: '',
-                    communityId:vc.getCurrentCommunity().communityId
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -23,7 +23,6 @@
             vc.component._listApplyRoomDiscountTypes(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('applyRoomDiscountTypeManage', 'listApplyRoomDiscountType', function (_param) {
                 vc.component._listApplyRoomDiscountTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -33,13 +32,11 @@
         },
         methods: {
             _listApplyRoomDiscountTypes: function (_page, _rows) {
-
                 vc.component.applyRoomDiscountTypeManageInfo.conditions.page = _page;
                 vc.component.applyRoomDiscountTypeManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.applyRoomDiscountTypeManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/applyRoomDiscount/queryApplyRoomDiscountType',
                     param,
@@ -67,9 +64,15 @@
             _openDeleteApplyRoomDiscountTypeModel: function (_applyRoomDiscountType) {
                 vc.emit('deleteApplyRoomDiscountType', 'openDeleteApplyRoomDiscountTypeModal', _applyRoomDiscountType);
             },
+            //查询
             _queryApplyRoomDiscountTypeMethod: function () {
                 vc.component._listApplyRoomDiscountTypes(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetApplyRoomDiscountTypeMethod: function () {
+                vc.component.applyRoomDiscountTypeManageInfo.conditions.typeName = "";
+                vc.component.applyRoomDiscountTypeManageInfo.conditions.applyType = "";
+                vc.component._listApplyRoomDiscountTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.applyRoomDiscountTypeManageInfo.moreCondition) {
@@ -78,8 +81,6 @@
                     vc.component.applyRoomDiscountTypeManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

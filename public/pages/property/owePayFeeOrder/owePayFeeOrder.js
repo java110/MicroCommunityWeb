@@ -1,4 +1,3 @@
-
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -44,10 +43,8 @@
             });
         },
         _initEvent: function () {
-
         },
         methods: {
-
             _loadOweFees: function () {
                 var param = {
                     params: {
@@ -70,12 +67,10 @@
                             return;
                         }
                         $that.owePayFeeOrderInfo.oweFees = _fees;
-
                         $that.owePayFeeOrderInfo.selectPayFeeIds = [];
                         $that.owePayFeeOrderInfo.oweFees.forEach(item => {
                             $that.owePayFeeOrderInfo.selectPayFeeIds.push(item.feeId);
                         });
-
                     }, function () {
                         console.log('请求失败处理');
                     }
@@ -91,9 +86,9 @@
             _doPayFee: function () {
                 let _fees = [];
                 let _printFees = [];
-                if($that.owePayFeeOrderInfo.primeRate == ''){
+                if ($that.owePayFeeOrderInfo.primeRate == '') {
                     vc.toast('请选择支付方式');
-                    return ;
+                    return;
                 }
                 $that.owePayFeeOrderInfo.selectPayFeeIds.forEach(function (_item) {
                     $that.owePayFeeOrderInfo.oweFees.forEach(function (_oweFeeItem) {
@@ -103,7 +98,7 @@
                                 startTime: _oweFeeItem.endTime,
                                 endTime: _oweFeeItem.deadlineTime,
                                 receivedAmount: _oweFeeItem.feePrice,
-                                primeRate:$that.owePayFeeOrderInfo.primeRate
+                                primeRate: $that.owePayFeeOrderInfo.primeRate
                             });
                             _printFees.push({
                                 feeId: _item,
@@ -112,7 +107,7 @@
                                 feeName: _oweFeeItem.feeName,
                                 amount: _oweFeeItem.feePrice,
                                 roomName: $that.owePayFeeOrderInfo.roomName,
-                                primeRate:$that.owePayFeeOrderInfo.primeRate
+                                primeRate: $that.owePayFeeOrderInfo.primeRate
                             });
                         }
                     })
@@ -137,22 +132,18 @@
                         let _json = JSON.parse(json);
                         $that._closeDoOwePayFeeModal();
                         if (_json.code == 0) {
-
                             let _data = JSON.parse(json).data;
                             let receiptIds = '';
                             _data.forEach(item => {
                                 receiptIds += (item.receiptId + ',');
                             })
-
                             $that.owePayFeeOrderInfo.receiptIds = receiptIds;
-
                             //vc.saveData('_feeInfo', _feeInfo);
                             //关闭model
                             $("#payFeeResult").modal({
                                 backdrop: "static",//点击空白处不关闭对话框
                                 show: true
                             });
-
                             $that._loadOweFees();
                             return;
                         }
@@ -181,25 +172,24 @@
                             totalFee += _oweFeeItem.feePrice;
                         }
                     });
-
                 })
-
                 $that.owePayFeeOrderInfo.feePrices = Math.round(totalFee * 100, 2) / 100;
             },
             _goBack: function () {
                 vc.goBack();
             },
             _printOwnOrder: function () {
-                vc.saveData('java110_printFee', { fees: $that.owePayFeeOrderInfo.oweFees, roomName: $that.owePayFeeOrderInfo.roomName });
+                vc.saveData('java110_printFee', {
+                    fees: $that.owePayFeeOrderInfo.oweFees,
+                    roomName: $that.owePayFeeOrderInfo.roomName
+                });
                 //打印催交单
                 window.open('/print.html#/pages/property/printOweFee?roomId=' + $that.owePayFeeOrderInfo.payObjId)
             },
             _getDeadlineTime: function (_fee) {
-
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
                     return "-";
                 }
-
                 if (_fee.state == '2009001') {
                     return "-";
                 }
@@ -212,7 +202,19 @@
                 }
                 return vc.dateFormat(_fee.endTime);
             },
-        }
 
+            checkAll: function (e) {
+                var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
+                if (e.target.checked) { // 判定全选checkbox的勾选状态
+                    for (var i = 0; i < checkObj.length; i++) {
+                        if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
+                            vc.component.owePayFeeOrderInfo.selectPayFeeIds.push(checkObj[i].value);
+                        }
+                    }
+                } else { // 如果是去掉全选则清空checkbox选项绑定数组
+                    vc.component.owePayFeeOrderInfo.selectPayFeeIds = [];
+                }
+            }
+        }
     });
 })(window.vc);

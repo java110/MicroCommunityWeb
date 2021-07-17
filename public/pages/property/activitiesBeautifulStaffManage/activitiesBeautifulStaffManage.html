@@ -13,10 +13,12 @@
                             <select class="custom-select"
                                     v-model="activitiesBeautifulStaffManageInfo.conditions.ruleId">
                                 <option selected value="">请选择活动规则</option>
-                                <option value="6666">最美员工</option>
+                                <option v-for="(item,index) in activitiesBeautifulStaffManageInfo.activitiesRules" :key="index"
+                                        :value="item.ruleId">{{item.ruleName}}
+                                </option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入员工名称"
                                        v-model="activitiesBeautifulStaffManageInfo.conditions.staffName"
@@ -25,15 +27,19 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入员工编号"
+                                <input type="text" placeholder="请输入评选编号"
                                        v-model="activitiesBeautifulStaffManageInfo.conditions.activitiesNum"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryActivitiesBeautifulStaffMethod()">
                                 <i class="fa fa-search"></i>查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetActivitiesBeautifulStaffMethod()">
+                                <i class="fa fa-repeat"></i>重置
                             </button>
                         </div>
                     </div>
@@ -59,6 +65,7 @@
                         <tr>
                             <th class="text-center">评选编号</th>
                             <th class="text-center">活动规则</th>
+                            <th class="text-center">员工ID</th>
                             <th class="text-center">员工</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
@@ -68,6 +75,7 @@
                         <tr v-for="activitiesBeautifulStaff in activitiesBeautifulStaffManageInfo.activitiesBeautifulStaffs">
                             <td class="text-center">{{activitiesBeautifulStaff.activitiesNum}}</td>
                             <td class="text-center">{{activitiesBeautifulStaff.ruleName}}</td>
+                            <td class="text-center">{{activitiesBeautifulStaff.staffId}}</td>
                             <td class="text-center">{{activitiesBeautifulStaff.staffName}}</td>
                             <td class="text-center">{{activitiesBeautifulStaff.createTime}}</td>
                             <td class="text-center">

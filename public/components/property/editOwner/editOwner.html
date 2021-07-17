@@ -9,8 +9,10 @@
                         <div class="col-sm-6">
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">名称</label>
-                                <div class="col-sm-10"><input v-model="editOwnerInfo.name" type="text"
-                                                              placeholder="必填，请填写名称" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editOwnerInfo.name" type="text" placeholder="必填，请填写名称"
+                                           class="form-control">
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">性别</label>
@@ -24,8 +26,10 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">年龄</label>
-                                <div class="col-sm-10"><input v-model="editOwnerInfo.age" type="number"
-                                                              placeholder="必填，请填写年龄" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editOwnerInfo.age" type="number" placeholder="必填，请填写年龄"
+                                           class="form-control">
+                                </div>
                             </div>
                             <div class="form-group row" v-if="editOwnerInfo.componentTitle == '成员'">
                                 <label class="col-sm-2 col-form-label">类型</label>
@@ -35,19 +39,22 @@
                                         <option value="1002">家庭成员</option>
                                         <option value="1003">租客</option>
                                         <option value="1005">其他</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">身份证</label>
-                                <div class="col-sm-10"><input v-model="editOwnerInfo.idCard" type="text"
-                                                              placeholder="可选，请填写身份证" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editOwnerInfo.idCard" type="text" placeholder="可选，请填写身份证"
+                                           class="form-control">
+                                </div>
                             </div>
                         </div>
-
                         <div class="col-sm-6" style="text-align:center">
                             <div class="form-group row">
                                 <div style="width: 100%;height: 10rem;" v-show="editOwnerInfo.ownerPhoto != ''">
-                                    <img width="80%" height="150rem" v-bind:src="editOwnerInfo.ownerPhoto" onerror="this.src='/img/noPhoto.jpg';" alt="业主照片">
+                                    <img width="80%" height="150rem" v-bind:src="editOwnerInfo.ownerPhoto"
+                                         onerror="this.src='/img/noPhoto.jpg';" alt="业主照片">
                                 </div>
                                 <div style="width: 100%;" v-show="editOwnerInfo.ownerPhoto == ''">
                                     <div v-show="editOwnerInfo.videoPlaying == true">
@@ -60,15 +67,21 @@
                                 </div>
                                 <div style="margin: 10px auto 0px auto;" class="text-center">
 
-                                    <button class="btn btn-primary" type="button" v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhoto != ''" v-on:click="_reOpenVedioForEdit()"><span
-                                        class="glyphicon glyphicon-camera"></span>摄像头</button>
-                                    <button class="btn btn-primary" type="button" v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhoto == ''" v-on:click="_takePhotoForEdit()"><span
-                                            class="glyphicon glyphicon-camera"></span> 拍照</button>
+                                    <button class="btn btn-primary" type="button"
+                                            v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhoto != ''"
+                                            v-on:click="_reOpenVedioForEdit()"><span
+                                            class="fa fa-camera"></span>摄像头
+                                    </button>
+                                    <button class="btn btn-primary" type="button"
+                                            v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhoto == ''"
+                                            v-on:click="_takePhotoForEdit()"><span
+                                            class="fa fa-camera"></span> 拍照
+                                    </button>
                                     <span class="btn btn-default btn-file" v-on:click="_uploadEditPhoto($event)">
                                         <span class="fileinput-new">上传照片</span>
                                     </span>
-                                    <input type="file" class="file"  accept=".jpg" id="uploadEditOwnerPhoto" hidden
-                                        v-on:change="_chooseEditPhoto($event)">
+                                    <input type="file" class="file" accept=".jpg" id="uploadEditOwnerPhoto" hidden
+                                           v-on:change="_chooseEditPhoto($event)">
                                 </div>
                             </div>
                         </div>
@@ -77,27 +90,30 @@
                         <div class="col-sm-6">
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">手机</label>
-                                <div class="col-sm-10"><input v-model="editOwnerInfo.link" type="number"
-                                                              placeholder="必填，请填写联系方式" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editOwnerInfo.link" type="number" placeholder="必填，请填写联系方式"
+                                           class="form-control">
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">备注</label>
-                                <div class="col-sm-10"><input v-model="editOwnerInfo.remark" type="tel"
-                                                              placeholder="可填，请填写备注" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editOwnerInfo.remark" type="tel" placeholder="可填，请填写备注"
+                                           class="form-control">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div v-for="(item,index) in editOwnerInfo.attrs">
-
                         <div class="row" v-if="index % 2 == 0">
                             <div class="col-sm-6">
                                 <div class="form-group row" v-if="item.specType == '2233'">
                                     <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                                     <div class="col-sm-10">
                                         <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
-                                            class="form-control">
+                                               class="form-control">
                                     </div>
                                 </div>
 
@@ -107,10 +123,8 @@
                                         <select class="custom-select" v-model="item.value">
                                             <option selected disabled value="">{{item.specHoldplace}}</option>
                                             <option v-for="value in item.values" :label="value.valueName"
-                                                :value="value.value">
-                                                {{item.valueName}}
+                                                    :value="value.value">{{item.valueName}}
                                             </option>
-
                                         </select>
                                     </div>
                                 </div>
@@ -119,20 +133,22 @@
                                 <div class="form-group row" v-if="editOwnerInfo.attrs[index+1].specType == '2233'">
                                     <label class="col-sm-2 col-form-label">{{editOwnerInfo.attrs[index+1].specName}}</label>
                                     <div class="col-sm-10">
-                                        <input v-model="editOwnerInfo.attrs[index+1].value" type="text" :placeholder="editOwnerInfo.attrs[index+1].specHoldplace"
-                                            class="form-control">
+                                        <input v-model="editOwnerInfo.attrs[index+1].value" type="text"
+                                               :placeholder="editOwnerInfo.attrs[index+1].specHoldplace"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row" v-if="editOwnerInfo.attrs[index+1].specType == '3344'">
                                     <label class="col-sm-2 col-form-label">{{editOwnerInfo.attrs[index+1].specName}}</label>
                                     <div class="col-sm-10">
                                         <select class="custom-select" v-model="editOwnerInfo.attrs[index+1].value">
-                                            <option selected disabled value="">{{editOwnerInfo.attrs[index+1].specHoldplace}}</option>
-                                            <option v-for="value in editOwnerInfo.attrs[index+1].values" :label="value.valueName"
-                                                :value="value.value">
+                                            <option selected disabled value="">
+                                                {{editOwnerInfo.attrs[index+1].specHoldplace}}
+                                            </option>
+                                            <option v-for="value in editOwnerInfo.attrs[index+1].values"
+                                                    :label="value.valueName" :value="value.value">
                                                 {{editOwnerInfo.attrs[index+1].valueName}}
                                             </option>
-
                                         </select>
                                     </div>
                                 </div>
@@ -140,11 +156,12 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <button class="btn btn-primary float-right" type="button" v-on:click="editOwnerMethod()"><i
-                                class="fa fa-check"></i>&nbsp;保存
+                        <button class="btn btn-primary float-right" type="button" v-on:click="editOwnerMethod()">
+                            <i class="fa fa-check"></i>&nbsp;保存
                         </button>
                         <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                data-dismiss="modal">取消
+                                data-dismiss="modal">
+                            <i class="fa fa-close"></i>&nbsp;取消
                         </button>
                     </div>
                 </div>

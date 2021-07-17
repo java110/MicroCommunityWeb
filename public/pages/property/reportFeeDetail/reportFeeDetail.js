@@ -27,7 +27,8 @@
                     roomNum: '',
                     unitId: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -37,7 +38,6 @@
             // vc.initDateMonth('startTime', function (_startTime) {
             //     $that.reportFeeDetailInfo.conditions.startTime = _startTime;
             // });
-
             // vc.initDateMonth('endTime', function (_endTime) {
             //     $that.reportFeeDetailInfo.conditions.endTime = _endTime;
             //     let start = Date.parse(new Date($that.reportFeeDetailInfo.conditions.startTime + "-01"))
@@ -97,7 +97,7 @@
                         }
                     });
             },
-            _queryMethod:function(){
+            _queryMethod: function () {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //查询方法
@@ -151,7 +151,7 @@
                 vc.component.reportFeeDetailInfo.conditions.startTime = '';
                 vc.component.reportFeeDetailInfo.conditions.endTime = '';
                 vc.component.reportFeeDetailInfo.conditions.configId = '';
-               $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {
@@ -189,7 +189,7 @@
                 }
             },
             _exportFee: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportFeeDetail");
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeDetail&' + vc.objToGetParam($that.reportFeeDetailInfo.conditions));
             }
         }
     });

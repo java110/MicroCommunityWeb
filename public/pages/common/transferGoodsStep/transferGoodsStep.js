@@ -26,10 +26,15 @@
                 vc.component.transferGoodsStepInfo.infos[0] = goodsInfo.resourceStores;
             });
             vc.on("transferGoodsStep", "notify2", function (info) {
-                vc.component.transferGoodsStepInfo.purchaseApply.description = info.description;
-                vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId = info.staffId;
-                vc.component.transferGoodsStepInfo.purchaseApply.acceptUserName = info.staffName;
-                vc.component.transferGoodsStepInfo.infos[1] = info;
+                console.log('noti2', info);
+                if (info.hasOwnProperty("staffId") && info.staffId != '-1') {
+                    vc.component.transferGoodsStepInfo.purchaseApply.description = info.description;
+                    vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId = info.staffId;
+                    vc.component.transferGoodsStepInfo.purchaseApply.acceptUserName = info.staffName;
+                    vc.component.transferGoodsStepInfo.infos[1] = info;
+                }else{
+                    delete vc.component.transferGoodsStepInfo.infos[1];
+                }
             });
         },
         methods: {
@@ -65,7 +70,7 @@
                         vc.toast("请完善物品信息");
                         return;
                     }
-                    if (parseInt(_resourceStores[i].giveQuantity) > parseInt(_resourceStores[i].stock)) {
+                    if (parseInt(_resourceStores[i].giveQuantity) > parseInt(_resourceStores[i].miniStock)) {
                         vc.toast(_resourceStores[i].resName + ",库存不足");
                         return;
                     }

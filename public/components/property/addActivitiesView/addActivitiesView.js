@@ -127,7 +127,7 @@
                             //关闭model
 
                             vc.component.clearaddActivitiesViewInfo();
-                            vc.emit('activitiesManage', 'listActivities', {});
+                            vc.emit('activitiesManage', 'pageReload', {});
 
                             return;
                         }
@@ -142,16 +142,13 @@
                     });
             },
             clearaddActivitiesViewInfo: function () {
-                vc.component.addActivitiesViewInfo = {
-                    activitiesId: '',
-                    title: '',
-                    typeCd: '',
-                    headerImg: '',
-                    context: '',
-                    startTime: '',
-                    endTime: ''
-
-                };
+                vc.component.addActivitiesViewInfo.activitiesId = '';
+                vc.component.addActivitiesViewInfo.title = '';
+                vc.component.addActivitiesViewInfo.typeCd = '';
+                vc.component.addActivitiesViewInfo.headerImg = '';
+                vc.component.addActivitiesViewInfo.context = '';
+                vc.component.addActivitiesViewInfo.startTime = '';
+                vc.component.addActivitiesViewInfo.endTime = '';
             },
             _initActivitiesInfo: function () {
                 vc.component.addActivitiesViewInfo.startTime = vc.dateTimeFormat(new Date().getTime());

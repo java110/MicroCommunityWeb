@@ -29,7 +29,9 @@
                     transferOrderNumber: '',   //转单总数量
                     chargebackNumber: '',    //退单总数量
                     statementNumber: '',   //结单总数量
-                    returnNumber: ''   //回访总数量
+                    returnNumber: '',   //回访总数量
+                    score: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -240,6 +242,9 @@
                 } else {
                     vc.component.reportRepairInfo.moreCondition = true;
                 }
+            },
+            _exportFee: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportRepairDetail&' + vc.objToGetParam($that.reportRepairInfo.conditions));
             }
         }
     });

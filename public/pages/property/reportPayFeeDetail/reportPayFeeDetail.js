@@ -37,7 +37,8 @@
                     configId: '',
                     primeRate: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },

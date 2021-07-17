@@ -18,7 +18,9 @@
                     resCode: '',
                     shId: '',
                     rstId: '',
-                    rssId: ''
+                    rssId: '',
+                    searchUserName: '',
+                    searchUserId: ''
                 },
                 storehouses: [],
                 resourceStoreTypes: [],
@@ -50,6 +52,8 @@
                 param.params.resId = param.params.resId.trim();
                 param.params.resName = param.params.resName.trim();
                 param.params.resCode = param.params.resCode.trim();
+                param.params.searchUserId = param.params.searchUserId.trim();
+                param.params.searchUserName = param.params.searchUserName.trim();
                 //发送get请求
                 vc.http.apiGet('resourceStore.listUserStorehouses',
                     param,
@@ -79,6 +83,8 @@
                 vc.component.myResourceStoreManageInfo.conditions.resCode = "";
                 vc.component.myResourceStoreManageInfo.conditions.rstId = "";
                 vc.component.myResourceStoreManageInfo.conditions.rssId = "";
+                vc.component.myResourceStoreManageInfo.conditions.searchUserId = "";
+                vc.component.myResourceStoreManageInfo.conditions.searchUserName = "";
                 vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
@@ -132,7 +138,7 @@
                 );
             },
 
-            // 跳转转增商品页面
+            // 跳转转赠商品页面
             _jump2TransferGoodsPage: function () {
                 vc.jumpToPage("/admin.html#/pages/common/transferGoodsStep");
             },

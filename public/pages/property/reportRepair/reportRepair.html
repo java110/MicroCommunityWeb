@@ -78,11 +78,11 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>报修汇总表</h5>
-                    <!--<div class="ibox-tools" style="top:10px;">
+                    <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
                             <i class="fa fa-plus"></i> 导出
                         </button>
-                    </div>-->
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
@@ -97,6 +97,7 @@
                             <th class="text-center">退单(条)</th>
                             <th class="text-center">已回访(条)</th>
                             <th class="text-center">已完结(条)</th>
+                            <th class="text-center">员工评分</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -110,6 +111,7 @@
                             <td class="text-center">{{repair.chargebackAmount}}</td>
                             <td class="text-center">{{repair.returnAmount}}</td>
                             <td class="text-center">{{repair.statementAmount}}</td>
+                            <td class="text-center">{{repair.score?repair.score:'-'}}</td>
                         </tr>
                         <td class="text-center" style="font-size:20px;color: red">统计</td>
                         <td class="text-center" style="font-size:20px;color: red">---</td>
@@ -132,10 +134,11 @@
                         <td class="text-center" style="font-size:20px;color: red">
                             {{reportRepairInfo.conditions.statementNumber}}
                         </td>
+                        <td class="text-center" style="font-size:20px;color: red">---</td>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="9">
+                            <td colspan="10">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

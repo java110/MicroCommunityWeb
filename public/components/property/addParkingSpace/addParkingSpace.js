@@ -111,12 +111,11 @@
                     });
             },
             clearAddParkingSpaceInfo: function () {
-                vc.component.addParkingSpaceInfo = {
-                    num: '',
-                    paId: '',
-                    area: '',
-                    remark: ''
-                };
+                vc.component.addParkingSpaceInfo.num = '';
+                vc.component.addParkingSpaceInfo.paId = '';
+                vc.component.addParkingSpaceInfo.area = '';
+                vc.component.addParkingSpaceInfo.remark = '';
+                vc.component.addParkingSpaceInfo.parkingType = '';
                 vc.emit('addParkingSpace', 'parkingAreaSelect2', 'setParkingArea', {
                     paId: '',
                     num: ''

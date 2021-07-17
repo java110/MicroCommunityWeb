@@ -25,7 +25,11 @@
                 maintenanceType: '',
                 repairMaterials: '',
                 repairFee: '',
-                resourceStoreInfo: []
+                resourceStoreInfo: [],
+                appraiseScore: 0,
+                doorSpeedScore: 0,
+                repairmanServiceScore: 0,
+                average: 0.0
             }
         },
         _initMethod: function () {

@@ -15,6 +15,7 @@
                 warehousingWays: [],
                 resOrderTypes: [],
                 resourceSuppliers: [],
+                storehouses: [],
                 conditions: {
                     applyOrderId: '',
                     state: '',
@@ -27,7 +28,10 @@
                     rstId: '',
                     warehousingWay: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    shId: '',
+                    shName: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 },
                 resourceStoreTypes: [],
                 resourceStoreSpecifications: []
@@ -35,6 +39,7 @@
         },
         _initMethod: function () {
             vc.component._initDate();
+            vc.component._queryStorehouses();
             vc.component._listPurchaseApplyDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.getDict('purchase_apply', "state", function (_data) {
                 vc.component.purchaseApplyDetailManageInfo.states = _data;
@@ -155,8 +160,6 @@
                     param,
                     function (json, res) {
                         var _resourceSupplierManageInfo = JSON.parse(json);
-                        console.log("look at here")
-                        console.log(_resourceSupplierManageInfo)
                         vc.component.purchaseApplyDetailManageInfo.resourceSuppliers = _resourceSupplierManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -184,6 +187,8 @@
                 vc.component.purchaseApplyDetailManageInfo.conditions.rsId = "";
                 vc.component.purchaseApplyDetailManageInfo.conditions.rstId = "";
                 vc.component.purchaseApplyDetailManageInfo.conditions.rssId = "";
+                vc.component.purchaseApplyDetailManageInfo.conditions.shId = "";
+                vc.component.purchaseApplyDetailManageInfo.conditions.shName = "";
                 vc.component._listPurchaseApplyDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
@@ -235,8 +240,31 @@
                     }
                 );
             },
+            //查询仓库
+            _queryStorehouses: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('resourceStore.listStorehouses',
+                    param,
+                    function (json, res) {
+                        var _storehouseManageInfo = JSON.parse(json);
+                        $that.purchaseApplyDetailManageInfo.storehouses = _storehouseManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _queryInspectionPlanMethod: function () {
                 vc.component._listPurchaseApplyDetails(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=purchaseApplyDetail&' + vc.objToGetParam($that.purchaseApplyDetailManageInfo.conditions));
             }
         }
     });

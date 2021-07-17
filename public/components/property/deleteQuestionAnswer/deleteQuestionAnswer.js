@@ -21,7 +21,7 @@
             deleteQuestionAnswer:function(){
                 vc.component.deleteQuestionAnswerInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'questionAnswer.deleteQuestionAnswer',
+                    '/questionAnswer/deleteQuestionAnswer',
                     JSON.stringify(vc.component.deleteQuestionAnswerInfo),
                     {
                         emulateJSON:true
