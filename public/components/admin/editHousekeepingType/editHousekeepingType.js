@@ -101,7 +101,7 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "家政服务ID不能为空"
+                            errInfo: "服务ID不能为空"
                         }],
 
                     'editHousekeepingTypeInfo.typeCd': [

@@ -41,6 +41,16 @@
                 });
         },
         methods: {
+            getOnePrice1:function(fee) {
+                let _price = fee.mwPrice;
+                if (!_price) {
+                    return fee.squarePrice;
+                }
+                if (parseFloat(_price) > 0) {
+                    return _price;
+                }
+                return fee.squarePrice;
+            },
             _loadListRoomCreateFeeInfo: function (_page, _row) {
                 var param = {
                     params: {
@@ -178,7 +188,7 @@
                         console.log('请求失败处理');
                     }
                 );
-            },
+            }
         }
     });
 })(window.vc);

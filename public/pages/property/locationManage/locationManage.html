@@ -26,9 +26,13 @@
                             <select class="custom-select" v-model="locationManageInfo.conditions.locationType">
                                 <option selected value="">请选择位置类型</option>
                                 <option value="1000">小区</option>
+                                <option value="6000">楼栋</option>
                                 <option value="2000">单元</option>
                                 <option value="3000">房屋</option>
-                            </select> </div>
+                                <option value="4000">停车场</option>
+                                <option value="5000">部门</option>
+                            </select>
+                        </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryLocationMethod()">
                                 <i class="glyphicon glyphicon-search"></i> 查询

@@ -1,0 +1,99 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="accountBondObjDetailManageInfo.conditions.objId">
+                                    <option selected disabled value="">请选择商铺</option>
+                                    <option :value="item.shopId" v-for="(item,index) in accountBondObjDetailManageInfo.shops">
+                                        {{item.shopName}}
+                                    </option>
+                                  </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="accountBondObjDetailManageInfo.conditions.state">
+                                    <option selected disabled value="">请选择状态</option>
+                                    <option :value="3308">交保证金</option>
+                                    <option :value="3309">退保证金</option>
+                                  </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAccountBondObjDetailMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>保证金明细</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddAccountBondObjModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            保证金明细
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">保证金ID</th>
+                                <th class="text-center">保证金对象</th>
+                                <th class="text-center">应收金额</th>
+                                <th class="text-center">实收金额</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">开始时间</th>
+                                <th class="text-center">结束时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="accountBondObjDetail in accountBondObjDetailManageInfo.accountBondObjDetails">
+                                <td class="text-center">{{accountBondObjDetail.bobjId}}</td>
+                                <td class="text-center">{{accountBondObjDetail.objName}}</td>
+                                <td class="text-center">{{accountBondObjDetail.receivableAmount}}</td>
+                                <td class="text-center">{{accountBondObjDetail.receivedAmount}}</td>
+                                <td class="text-center">{{accountBondObjDetail.state == 3308?'交保证金':'退保证金'}}</td>
+                                <td class="text-center">{{accountBondObjDetail.startTime}}</td>
+                                <td class="text-center">{{accountBondObjDetail.endTime}}</td>
+                                
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

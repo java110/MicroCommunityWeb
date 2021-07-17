@@ -190,10 +190,28 @@
                 if (vc.component.addOwnerInfo.videoPlaying) {
                     var canvas = document.getElementById('canvas');
                     var video = document.getElementById('ownerPhoto');
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-                    canvas.getContext('2d').drawImage(video, 0, 0);
-                    var data = canvas.toDataURL('image/jpeg', 1.0);
+
+                    let w = video.videoWidth;
+
+                    // 默认按比例压缩
+                    let h = video.videoHeight;
+
+                    if (h > 1080 || w > 1080) {
+                        let _rate = 0;
+                        if (h > w) {
+                            _rate = h / 1080;
+                            h = 1080;
+                            w = Math.floor(w / _rate);
+                        } else {
+                            _rate = w / 1080;
+                            w = 1080;
+                            h = Math.floor(h / _rate);
+                        }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext('2d').drawImage(video, 0, 0,w,h);
+                    var data = canvas.toDataURL('image/jpeg', 0.3);
                     vc.component.addOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                     //关闭拍照摄像头
@@ -219,7 +237,9 @@
                     var reader = new FileReader(); //新建FileReader对象
                     reader.readAsDataURL(file); //读取为base64
                     reader.onloadend = function (e) {
-                        vc.component.addOwnerInfo.ownerPhoto = reader.result;
+                        vc.translate(reader.result, function (_data) {
+                            vc.component.addOwnerInfo.ownerPhoto = _data;
+                        })
                     }
                 }
             },

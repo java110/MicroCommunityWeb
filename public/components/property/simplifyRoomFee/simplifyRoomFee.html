@@ -80,7 +80,7 @@
                     :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
                     <div>上期度数：{{fee.preDegrees}}</div>
                     <div>本期度数：{{fee.curDegrees}}</div>
-                    <div>单价：{{fee.mwPrice?fee.mwPrice:fee.squarePrice}}</div>
+                    <div>单价：{{getOnePrice1(fee)}}</div>
                     <div>附加费：{{fee.additionalAmount}}</div>
                 </td>
                 <td class="text-center" v-else-if="fee.computingFormula == '6006'"
@@ -107,7 +107,10 @@
                     </button>
                     <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史
                     </button>
-                    <div class="btn-group btn-link btn-xs">
+                    <div class="btn-group btn-link btn-xs"
+                        v-if="vc.hasPrivilege('502020090604200029') 
+                        || vc.hasPrivilege('502021070488970005')
+                        || vc.hasPrivilege('502020090427190001')">
                         <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">更多操作
                         </button>
@@ -116,7 +119,7 @@
                                 <a href="javascript:void(0)"
                                    v-on:click="_deleteFee(fee)">取消费用</a>
                             </p>
-                            <p>
+                            <p  v-if="vc.hasPrivilege('502021070488970005')">
                                 <a href="javascript:void(0)" 
                                    v-on:click="_finishFee(fee)">手工结束</a>
                             </p>
@@ -134,7 +137,10 @@
             <div class="col-sm-5">
                 <span> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</span>
             </div>
-            <div class="col-sm-7 float-right">
+            <div class="col-sm-2">
+                <span> 欠费小计：{{simplifyRoomFeeInfo.totalAmount}}</span>
+            </div>
+            <div class="col-sm-5 float-right">
                 <vc:create namespace="simplifyRoomFee" path="frame/paginationPlus"></vc:create>
             </div>
         </div>

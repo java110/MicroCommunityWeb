@@ -35,6 +35,17 @@
                                        v-model="storeOrderCartManageInfo.conditions.prodName" class=" form-control">
                             </div>
                         </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="storeOrderCartManageInfo.conditions.shopId">
+                                    <option selected disabled value="">请选择商铺</option>
+                                    <option :value="item.shopId" v-for="(item,index) in storeOrderCartManageInfo.shops">
+                                        {{item.shopName}}
+                                    </option>
+                                  </select>
+                            </div>
+                        </div>
+
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryOrdersMethod()">
@@ -61,36 +72,30 @@
                         <thead>
                         <tr>
                             <th class="text-center">订单号</th>
-                            <th class="text-center">商品名称</th>
-                            <th class="text-center">商品规格</th>
+                            <th class="text-center">平台</th>
+                            <th class="text-center">商铺</th>
+                            <th class="text-center">类型</th>
+                            <th class="text-center">名称</th>
                             <th class="text-center">数量</th>
                             <th class="text-center">用户名称</th>
                             <th class="text-center">支付金额</th>
                             <th class="text-center">订单状态</th>
                             <th class="text-center">创建时间</th>
-                            <th class="text-right">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="order in storeOrderCartManageInfo.orderCarts">
                             <td class="text-center">{{order.cartId}}</td>
-                            <td class="text-center">{{order.prodName}}</td>
-                            <td class="text-center">{{order.specValue}}</td>
+                            <td class="text-center">{{order.appName}}</td>
+                            <td class="text-center">{{order.shopName}}</td>
+                            <td class="text-center">{{order.cartType == '3307'?'服务':'商品'}}</td>
+                            <td class="text-center" v-if="order.cartType == '3307'">{{order.prodName}}</td>
+                            <td class="text-center" v-else>{{order.prodName}}({{order.specValue}})</td>
                             <td class="text-center">{{order.cartNum}}</td>
                             <td class="text-center">{{order.personName}}</td>
                             <td class="text-center">{{order.payPrice}}</td>
                             <td class="text-center">{{order.stateName}}</td>
                             <td class="text-center">{{order.createTime}}</td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openSendOrderCartModel(order)">发货
-                                    </button>
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openOrderDetailModel(order)">订单详情
-                                    </button>
-                                </div>
-                            </td>
                         </tr>
                         </tbody>
                         <tfoot>
@@ -107,7 +112,7 @@
             </div>
         </div>
     </div>
-    <div id="storeOrderCartModal" class="modal" tabindex="-1" role="dialog">
+    <!--<div id="storeOrderCartModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -136,6 +141,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 </div>

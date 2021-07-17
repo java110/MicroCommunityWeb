@@ -11,6 +11,8 @@
                 locationObjName: '',
                 state: '',
                 seq: '',
+                advertType: '',
+                pageUrl: '',
                 startTime: '',
                 endTime: '',
                 floorId: '',
@@ -126,6 +128,13 @@
                             param: "",
                             errInfo: "广告分类格式错误"
                         },
+                    ],
+                    'editAdvertInfo.advertType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "发布类型不能为空"
+                        }
                     ],
                     'editAdvertInfo.locationTypeCd': [
                         {
@@ -259,6 +268,8 @@
                     locationObjId: '',
                     state: '',
                     seq: '',
+                    advertType: '',
+                    pageUrl: '',
                     startTime: '',
                     endTime: '',
                     floorId: '',

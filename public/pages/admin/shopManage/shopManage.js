@@ -29,6 +29,9 @@
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listShops(_currentPage, DEFAULT_ROWS);
             });
+            vc.on('shop', 'shopManage', function () {
+                vc.component._listShops(DEFAULT_PAGE,DEFAULT_ROWS);
+            });
         },
         methods: {
             _listShops: function (_page, _rows) {
@@ -57,6 +60,9 @@
             },
             _queryOrdersMethod: function () {
                 vc.component._listShops(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _openShopWithdrawModel: function(_shop){
+                vc.emit('shopWithdraw','shopWithdrawModel', _shop);
             },
             _openOrderDetailModel: function (_order) {
                 vc.component.shopManageInfo.orderDetail = true;

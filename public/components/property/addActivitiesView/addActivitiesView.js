@@ -142,13 +142,17 @@
                     });
             },
             clearaddActivitiesViewInfo: function () {
-                vc.component.addActivitiesViewInfo.activitiesId = '';
-                vc.component.addActivitiesViewInfo.title = '';
-                vc.component.addActivitiesViewInfo.typeCd = '';
-                vc.component.addActivitiesViewInfo.headerImg = '';
-                vc.component.addActivitiesViewInfo.context = '';
-                vc.component.addActivitiesViewInfo.startTime = '';
-                vc.component.addActivitiesViewInfo.endTime = '';
+                let _typeCds = $that.addActivitiesViewInfo.typeCds;
+                vc.component.addActivitiesViewInfo = {
+                    activitiesId: '',
+                    title: '',
+                    typeCd: '',
+                    headerImg: '',
+                    context: '',
+                    startTime: '',
+                    endTime: '',
+                    typeCds:_typeCds
+                };
             },
             _initActivitiesInfo: function () {
                 vc.component.addActivitiesViewInfo.startTime = vc.dateTimeFormat(new Date().getTime());

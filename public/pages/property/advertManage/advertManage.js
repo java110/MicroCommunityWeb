@@ -7,6 +7,7 @@
     vc.extends({
         data: {
             advertManageInfo: {
+                advertTypeName:["","站内","站外","不跳转"],
                 adverts: [],
                 total: 0,
                 records: 1,
