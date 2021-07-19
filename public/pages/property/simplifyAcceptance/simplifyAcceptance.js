@@ -30,7 +30,11 @@
                 stateName: '',
                 roomName: '',
                 roomType: '',
-                sex: 0
+                roomSubTypeName: '',
+                roomSubType: '',
+                roomArea:'',
+                sex: 0,
+                roomRent:''
             }
         },
         _initMethod: function () {
@@ -196,7 +200,11 @@
                     sex: 0,
                     ownerRemark: '',
                     roomRemark: '',
-                    roomType: ''
+                    roomType: '',
+                    roomSubTypeName: '',
+                    roomSubType: '',
+                    roomArea:'',
+                    roomRent:''
                 }
             }
         }

@@ -19,8 +19,11 @@
                 feeCoefficient: '1.00',
                 state: '2002',
                 remark: '',
+                roomSubType: '110',
+                roomArea: '',
+                roomRent: '0',
                 communityId: vc.getCurrentCommunity().communityId,
-                attrs:[]
+                attrs: []
             }
         },
         watch: {
@@ -93,16 +96,27 @@
                             errInfo: "建筑面积错误，如 300.00"
                         },
                         ],
-                        'addRoomViewInfo.feeCoefficient':[
+                        'addRoomViewInfo.roomArea': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "室内面积不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "室内面积错误，如 300.00"
+                        },
+                        ],
+                        'addRoomViewInfo.feeCoefficient': [
                             {
-                                limit:"required",
-                                param:"",
-                                errInfo:"算费系数不能为空"
+                                limit: "required",
+                                param: "",
+                                errInfo: "算费系数不能为空"
                             },
                             {
-                                limit:"money",
-                                param:"",
-                                errInfo:"算费系数错误，如 300.00"
+                                limit: "money",
+                                param: "",
+                                errInfo: "算费系数错误，如 300.00"
                             }
                         ],
                         'addRoomViewInfo.state': [{
@@ -115,6 +129,12 @@
                             param: "12",
                             errInfo: "房屋状态 不能超过12位"
                         },
+                        ],
+                        'addRoomViewInfo.roomSubType': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋类型不能为空"
+                        }
                         ],
                         'addRoomViewInfo.remark': [{
                             limit: "maxLength",
@@ -130,19 +150,19 @@
                 vc.getAttrSpec('building_room_attr', function (data) {
                     data.forEach(item => {
                         item.value = '';
-                        if(item.specShow == 'Y'){
+                        if (item.specShow == 'Y') {
                             item.values = [];
-                            $that._loadAttrValue(item.specCd,item.values);
+                            $that._loadAttrValue(item.specCd, item.values);
                             $that.addRoomViewInfo.attrs.push(item);
                         }
                     });
 
                 });
             },
-            _loadAttrValue:function(_specCd,_values){
+            _loadAttrValue: function (_specCd, _values) {
                 vc.getAttrValue(_specCd, function (data) {
                     data.forEach(item => {
-                        if(item.valueShow == 'Y'){
+                        if (item.valueShow == 'Y') {
                             _values.push(item);
                         }
                     });
