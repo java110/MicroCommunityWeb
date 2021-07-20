@@ -11,10 +11,12 @@
                 records: 1,
                 moreCondition: false,
                 roomNum: '',
+                payObjTypes: [],
                 conditions: {
                     floorName: '',
                     configIds: '',
-                    payObjType: '3333',
+                    payObjType: '',
+                    num: '',
                     billType: '00123'
                 },
                 feeConfigs: [],
@@ -35,6 +37,9 @@
             }
         },
         _initMethod: function () {
+            vc.getDict('report_owe_fee', "payer_obj_type", function (_data) {
+                vc.component.listOweFeeInfo.payObjTypes = _data;
+            });
             vc.component._loadListOweFeeInfo(1, 10);
             $that._listFeeConfigs();
         },
@@ -55,12 +60,9 @@
                             _feeConfigNames.push(item);
                         }
                     });
-
                     $that.listOweFeeInfo.feeConfigNames = _feeConfigNames;
-
                 }
             });
-
             vc.on('pagination', 'page_event',
                 function (_currentPage) {
                     vc.component._loadListOweFeeInfo(_currentPage, DEFAULT_ROWS);
@@ -68,7 +70,6 @@
         },
         methods: {
             _loadListOweFeeInfo: function (_page, _row) {
-
                 vc.component.listOweFeeInfo.conditions.page = _page;
                 vc.component.listOweFeeInfo.conditions.row = _row;
                 vc.component.listOweFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -76,16 +77,13 @@
                 $that.listOweFeeInfo.feeConfigNames.forEach(item => {
                     _configIds += (item.configId + ',')
                 })
-
                 if (_configIds.endsWith(',')) {
                     _configIds = _configIds.substring(0, _configIds.length - 1);
                 }
                 $that.listOweFeeInfo.conditions.configIds = _configIds;
-
                 let param = {
                     params: vc.component.listOweFeeInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportOweFee/queryReportOweFee',
                     param,
@@ -114,11 +112,17 @@
                     vc.component.listOweFeeInfo.moreCondition = true;
                 }
             },
+            //查询
             _queryOweFeeMethod: function () {
-                vc.component._loadListOweFeeInfo(1, 10);
+                vc.component._loadListOweFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetOweFeeMethod: function () {
+                vc.component.listOweFeeInfo.conditions.payObjType = "";
+                vc.component.listOweFeeInfo.conditions.num = "";
+                vc.component._loadListOweFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listFeeConfigs: function () {
-
                 var param = {
                     params: {
                         page: 1,
@@ -126,13 +130,11 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.get('feeConfigManage', 'list', param,
                     function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.listOweFeeInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -157,7 +159,6 @@
                 if (_feeConfigNames.length < 1) {
                     return _fee.amountOwed;
                 }
-
                 let _amountOwed = 0.0;
                 let _items = _fee.items;
                 _feeConfigNames.forEach(_feeItem => {
@@ -174,15 +175,11 @@
                 $that.listOweFeeInfo.feeConfigNames.forEach(item => {
                     _configIds += (item.configId + ',')
                 })
-
                 if (_configIds.endsWith(',')) {
                     _configIds = _configIds.substring(0, _configIds.length - 1);
                 }
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=listOweFee&configIds=" + _configIds);
             }
-
-
         }
-
     });
 })(window.vc);

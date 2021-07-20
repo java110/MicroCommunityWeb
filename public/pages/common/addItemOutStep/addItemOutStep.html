@@ -1,34 +1,23 @@
 <div>
-
     <div class="java110_step">
         <div id="step"></div>
     </div>
-
     <!-- 选择物品 -->
     <div v-if="addItemOutStepInfo.index == 0">
-        <vc:create path="common/viewResourceStoreInfo2"
-                   callBackListener="addItemOutStep"
-                   callBackFunction="notify"
-        ></vc:create>
+        <vc:create path="common/viewResourceStoreInfo2" callBackListener="addItemOutStep" callBackFunction="notify">
+        </vc:create>
     </div>
     <!-- 联系人 -->
     <div v-if="addItemOutStepInfo.index == 1">
-        <vc:create path="common/addPurchaseApplyView"
-                   callBackListener="addItemOutStep"
-                   callBackFunction="notify2"
-        ></vc:create>
+        <vc:create path="common/addPurchaseApplyView" callBackListener="addItemOutStep" callBackFunction="notify2">
+        </vc:create>
     </div>
     <!-- 审批人 -->
     <div v-show="addItemOutStepInfo.index == 2">
-        <vc:create path="property/purchaseApprovers"
-                   callBackListener="addItemOutStep"
-                   callBackFunction="notify3"
-                   flowType="40004"
-        ></vc:create>
+        <vc:create path="property/purchaseApprovers" callBackListener="addItemOutStep" callBackFunction="notify3"
+                   flowType="40004">
+        </vc:create>
     </div>
-
-
-
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
@@ -41,5 +30,4 @@
             </button>
         </div>
     </div>
-
 </div>

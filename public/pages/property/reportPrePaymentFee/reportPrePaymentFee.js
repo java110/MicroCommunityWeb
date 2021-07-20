@@ -51,6 +51,10 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportPrePaymentFee");
             }
         }
     });

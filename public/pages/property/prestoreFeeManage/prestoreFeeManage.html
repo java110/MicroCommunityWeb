@@ -9,29 +9,34 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="房屋ID" v-model="prestoreFeeManageInfo.conditions.roomId"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="custom-select" v-model="prestoreFeeManageInfo.conditions.prestoreFeeType">
                                 <option selected value="">请选择预存类型</option>
-                                <option value="8003">水费</option>
-                                <option value="8004">电费</option>
+                                <option v-for="(item,index) in prestoreFeeManageInfo.prestoreFeeTypes" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="prestoreFeeManageInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
-                                <option value="1001">未使用</option>
-                                <option value="2002">已使用</option>
+                                <option v-for="(item,index) in prestoreFeeManageInfo.states" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPrestoreFeeMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetPrestoreFeeMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>

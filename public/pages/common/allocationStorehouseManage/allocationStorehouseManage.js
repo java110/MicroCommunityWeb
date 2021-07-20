@@ -11,9 +11,9 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                resName: '',
                 states: [],
                 applyTypes: [],
+                currentUserId: vc.getData('/nav/getUserInfo').userId,
                 conditions: {
                     applyId: '',
                     resId: '',
@@ -24,8 +24,10 @@
                     startTime: '',
                     endTime: '',
                     startUserId: '',
+                    startUserName: '',
                     state: '',
-                    applyType: ''
+                    applyType: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 },
                 storehouses: []
             }
@@ -113,6 +115,9 @@
                 };
                 param.params.applyId = param.params.applyId.trim();
                 param.params.startUserId = param.params.startUserId.trim();
+                param.params.startUserName = param.params.startUserName.trim();
+                param.params.resId = param.params.resId.trim();
+                param.params.resName = param.params.resName.trim();
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStorehouseApplys',
                     param,
@@ -142,6 +147,9 @@
                 vc.component.allocationStorehouseManageInfo.conditions.endTime = "";
                 vc.component.allocationStorehouseManageInfo.conditions.state = "";
                 vc.component.allocationStorehouseManageInfo.conditions.startUserId = "";
+                vc.component.allocationStorehouseManageInfo.conditions.startUserName = "";
+                vc.component.allocationStorehouseManageInfo.conditions.resId = "";
+                vc.component.allocationStorehouseManageInfo.conditions.resName = "";
                 vc.component.allocationStorehouseManageInfo.conditions.applyType = "";
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
@@ -205,6 +213,9 @@
                 } else {
                     vc.component.allocationStorehouseManageInfo.moreCondition = true;
                 }
+            },
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=allocationStorehouse&' + vc.objToGetParam($that.allocationStorehouseManageInfo.conditions));
             }
         }
     });

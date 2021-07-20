@@ -109,7 +109,7 @@
                     ownerName: $that.simplifyRoomFeeInfo.name
                 });
             },
-            _openAddMeterWaterModal: function () {
+            _openAddMeterWaterSimplifyModal: function () {
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId: $that.simplifyRoomFeeInfo.roomId,
                     roomName: $that.simplifyRoomFeeInfo.roomName,

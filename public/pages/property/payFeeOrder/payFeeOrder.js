@@ -72,7 +72,7 @@
                 let _totalDiscountMoney = _param.totalDiscountMoney;
                 //如果应收小区 优惠金额 则不优惠
                 if (_totalFeePrice < _totalDiscountMoney) {
-                    return;
+                    vc.toast("实收款不能为负数！")
                 }
                 $that.payFeeOrderInfo.selectDiscount = _param.selectDiscount;
                 $that.payFeeOrderInfo.totalDiscountMoney = _totalDiscountMoney;
@@ -228,8 +228,9 @@
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
-                //var price = parseFloat(_newCycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
-                var price = parseFloat(_newCycles) * parseFloat($that.payFeeOrderInfo.feePrice);
+                var price = parseFloat(_newCycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
+                console.log(price)
+                // var price = parseFloat(_newCycles) * parseFloat($that.payFeeOrderInfo.feePrice);
                 // 调整为根据映射 取整
                 // let unFixedNum = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
@@ -251,7 +252,8 @@
                 if (_cycles == '') {
                     return;
                 }
-                var price = parseFloat(_cycles) * parseFloat($that.payFeeOrderInfo.feePrice);
+                // var price = parseFloat(_cycles) * parseFloat($that.payFeeOrderInfo.feePrice);
+                var price = parseFloat(_cycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
                 // let unFixedNum = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;

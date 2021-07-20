@@ -23,7 +23,8 @@
                     configId: '',
                     feeTypeCd: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -144,7 +145,7 @@
                 vc.component.reportFeeBreakdownInfo.conditions.startTime = "";
                 vc.component.reportFeeBreakdownInfo.conditions.endTime = "";
                 vc.component.reportFeeBreakdownInfo.conditions.feeTypeCd = "";
-                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {
@@ -181,8 +182,8 @@
                     vc.component.reportFeeBreakdownInfo.moreCondition = true;
                 }
             },
-            _exportFee: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportFeeBreakdown");
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeBreakdown&' + vc.objToGetParam($that.reportFeeBreakdownInfo.conditions));
             }
         }
     });

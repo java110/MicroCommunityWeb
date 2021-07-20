@@ -100,7 +100,7 @@
                 vc.component.feeConfigManageInfo.conditions.paymentCd = '';
                 vc.component.feeConfigManageInfo.conditions.billType = '';
                 vc.component.feeConfigManageInfo.conditions.isDefault = '';
-                $that._listFeeConfigs(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listFeeConfigs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddFeeConfigModal: function () {
                 vc.emit('addFeeConfig', 'openAddFeeConfigModal', {});

@@ -9,33 +9,36 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="请填写房屋编号,如1-1-1123"
-                                       v-model="meterWaterManageInfo.conditions.roomNum" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <select class="custom-select" v-model="meterWaterManageInfo.conditions.meterType">
-                                <option selected value="">请选择表类型</option>
-                                <option value="1010">电表</option>
-                                <option value="2020">水表</option>
-                            </select>
-                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入表ID"
                                        v-model="meterWaterManageInfo.conditions.waterId" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="meterWaterManageInfo.conditions.meterType">
+                                <option selected value="">请选择表类型</option>
+                                <option v-for="(item,index) in meterWaterManageInfo.meterTypes" :key="index"
+                                        v-bind:value="item.statusCd">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写房屋编号,如1-1-1123"
+                                       v-model="meterWaterManageInfo.conditions.roomNum" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMeterWaterMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetMeterWaterMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -47,8 +50,7 @@
                     <h5>抄表信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMeterWaterModal()">
-                            <i class="fa fa-plus"></i>
-                            抄表
+                            <i class="fa fa-plus"></i>抄表
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                                 v-on:click="_openMeterWaterImport(null,true)">
@@ -64,6 +66,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
+                            <th class="text-center">表ID</th>
                             <th class="text-center">表类型</th>
                             <th class="text-center">对象名称</th>
                             <th class="text-center">上期度数</th>
@@ -76,6 +79,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="meterWater in meterWaterManageInfo.meterWaters">
+                            <td class="text-center">{{meterWater.waterId}}</td>
                             <td class="text-center">{{_getMeteTypeName(meterWater.meterType)}}</td>
                             <td class="text-center">{{meterWater.objName}}</td>
                             <td class="text-center">{{meterWater.preDegrees}}</td>

@@ -1,5 +1,5 @@
 <div id="editStaffModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -10,13 +10,14 @@
                             <video id="staffPhotoForEdit" style="width: 100%;"></video>
                             <canvas id="canvasForEdit" style="display:none;"></canvas>
                             <div style="margin-top:20px">
-                                <button class="btn btn-primary" type="button" v-on:click="_takePhotoForEdit()"><span
-                                        class="glyphicon glyphicon-camera"></span> 拍照</button>
+                                <button class="btn btn-primary" type="button" v-on:click="_takePhotoForEdit()">
+                                    <span class="fa fa-camera"></span> 拍照
+                                </button>
                                 <span class="btn btn-default btn-file" v-on:click="_uploadEditPhoto($event)">
                                     <span class="fileinput-new">上传照片</span>
                                 </span>
                                 <input type="file" class="file" accept="images/*" id="uploadEditStaffPhoto" hidden
-                                    v-on:change="_chooseEditPhoto($event)">
+                                       v-on:change="_chooseEditPhoto($event)">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -25,15 +26,18 @@
                                 <div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">员工名称</label>
-                                        <div class="col-sm-10"><input v-model="editStaffInfo.username" type="text"
-                                                placeholder="必填，请填写员工名称" class="form-control"></div>
+                                        <div class="col-sm-10">
+                                            <input v-model="editStaffInfo.username" type="text" placeholder="必填，请填写员工名称"
+                                                   class="form-control">
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">员工岗位</label>
                                         <div class="col-sm-10">
                                             <select class="custom-select" v-model="editStaffInfo.relCd">
                                                 <option selected disabled value="">必填，请选择岗位</option>
-                                                <option v-for="(item,index) in editStaffInfo.relCds" :key="index" v-bind:value="item.statusCd">
+                                                <option v-for="(item,index) in editStaffInfo.relCds" :key="index"
+                                                        v-bind:value="item.statusCd">
                                                     {{item.name}}
                                                 </option>
                                             </select>
@@ -41,13 +45,17 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">员工邮箱</label>
-                                        <div class="col-sm-10"><input v-model="editStaffInfo.email" type="email"
-                                                placeholder="可选，请填写员工名称" class="form-control"></div>
+                                        <div class="col-sm-10">
+                                            <input v-model="editStaffInfo.email" type="email" placeholder="可选，请填写员工名称"
+                                                   class="form-control">
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">手机号码</label>
-                                        <div class="col-sm-10"><input v-model="editStaffInfo.tel" type="tel"
-                                                placeholder="必填，请填写手机号码" class="form-control"></div>
+                                        <div class="col-sm-10">
+                                            <input v-model="editStaffInfo.tel" type="tel" placeholder="必填，请填写手机号码"
+                                                   class="form-control">
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">员工性别</label>
@@ -61,22 +69,29 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">家庭住址</label>
-                                        <div class="col-sm-10"><input v-model="editStaffInfo.address" type="text"
-                                                placeholder="请填写家庭住址" class="form-control"></div>
+                                        <div class="col-sm-10">
+                                            <input v-model="editStaffInfo.address" type="text" placeholder="请填写家庭住址"
+                                                   class="form-control">
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">照片</label>
-                                        <div class="col-sm-10"><img width="150" height="150"
-                                                v-bind:src="editStaffInfo.photo" onerror="this.src='/img/noPhoto.jpg';" alt="业主照片"></div>
+                                        <div class="col-sm-10">
+                                            <img width="150" height="150" v-bind:src="editStaffInfo.photo"
+                                                 onerror="this.src='/img/noPhoto.jpg';" alt="业主照片">
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="editStaffSubmit()"><i class="fa fa-check"></i>&nbsp;修改</button>
+                                        v-on:click="editStaffSubmit()">
+                                    <i class="fa fa-check"></i>&nbsp;修改
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
                             </div>
                         </div>
                     </div>

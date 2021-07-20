@@ -127,7 +127,7 @@
                             //关闭model
 
                             vc.component.clearaddActivitiesViewInfo();
-                            vc.emit('activitiesManage', 'listActivities', {});
+                            vc.emit('activitiesManage', 'pageReload', {});
 
                             return;
                         }

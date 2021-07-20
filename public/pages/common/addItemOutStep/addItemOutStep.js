@@ -33,7 +33,6 @@
                 vc.component.addItemOutStepInfo.purchaseApply.resourceStores = viewResourceStoreInfo2.resourceStores;
                 vc.component.addItemOutStepInfo.infos[0] = viewResourceStoreInfo2.resourceStores;
             });
-
             vc.on("addItemOutStep", "notify2", function (info) {
                 vc.component.addItemOutStepInfo.infos[1] = info;
                 if (info) {
@@ -47,7 +46,6 @@
                 vc.component.addItemOutStepInfo.purchaseApply.staffName = info.staffName;
                 vc.component.addItemOutStepInfo.infos[2] = info;
             });
-
         },
         methods: {
             _initStep: function () {
@@ -62,10 +60,8 @@
             _prevStep: function () {
                 vc.component.addItemOutStepInfo.$step.prevStep();
                 vc.component.addItemOutStepInfo.index = vc.component.addItemOutStepInfo.$step.getIndex();
-
                 vc.emit('viewResourceStoreInfo2', 'onIndex', vc.component.addItemOutStepInfo.index);
                 vc.emit('addItemOutView', 'onIndex', vc.component.addItemOutStepInfo.index);
-
             },
             _nextStep: function () {
                 vc.emit('viewResourceStoreInfo2', 'getSelectResourceStores', null);
@@ -92,10 +88,8 @@
                 }
                 vc.component.addItemOutStepInfo.$step.nextStep();
                 vc.component.addItemOutStepInfo.index = vc.component.addItemOutStepInfo.$step.getIndex();
-
                 vc.emit('viewResourceStoreInfo2', 'onIndex', vc.component.addItemOutStepInfo.index);
                 vc.emit('addItemOutView', 'onIndex', vc.component.addItemOutStepInfo.index);
-
             },
             _finishStep: function () {
                 vc.emit('addItemOutViewInfo', 'setItemOutInfo', null);
@@ -127,7 +121,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             }

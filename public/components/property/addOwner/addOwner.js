@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             notifyLoadDataComponentName: vc.propTypes.string,
@@ -52,7 +51,11 @@
                         },
                     ],
                     'addOwnerInfo.age': [
-
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "年龄不能为空"
+                        },
                         {
                             limit: "num",
                             param: "",
@@ -93,23 +96,19 @@
                         }
                     ],
                     'addOwnerInfo.remark': [
-
                         {
                             limit: "maxLength",
                             param: "200",
                             errInfo: "备注长度不能超过200位"
                         }
                     ]
-
                 });
             },
             saveOwnerInfo: function () {
                 if (!vc.component.addOwnerValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addOwnerInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'addOwner',
@@ -126,17 +125,13 @@
                             $('#addOwnerModel').modal('hide');
                             vc.component.clearAddOwnerInfo();
                             vc.emit($props.notifyLoadDataComponentName, 'listOwnerData', {});
-
                             return;
                         }
                         vc.toast(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddOwnerInfo: function () {
@@ -268,7 +263,6 @@
                             $that.addOwnerInfo.attrs.push(item);
                         }
                     });
-
                 });
             },
             _loadAttrValue: function (_specCd, _values) {
@@ -278,10 +272,8 @@
                             _values.push(item);
                         }
                     });
-
                 });
             },
         }
     });
-
 })(window.vc);

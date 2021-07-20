@@ -1,46 +1,48 @@
 <div>
-
     <div class="margin-top">
         <div class="row">
             <div class="col-sm-5 margin-lr-0 padding-lr-0">
                 <table class="footable table table-stripped " style="margin-top:10px" data-page-size="10">
                     <thead>
-                        <tr>
-                            <th class="text-center " style="border-bottom: none;">姓名</th>
-                            <th class="text-center" style="border-bottom: none;">车牌号</th>
-                            <th class="text-center " style="border-bottom: none;">联系电话</th>
-                            <th class="text-center " style="border-bottom: none;">面积</th>
-                            <th class="text-center " style="border-bottom: none;">费用名称</th>
-                            <th class="text-center " style="border-bottom: none;">应收金额</th>
-                        </tr>
+                    <tr>
+                        <th class="text-center " style="border-bottom: none;">姓名</th>
+                        <th class="text-center " style="border-bottom: none;">车牌号</th>
+                        <th class="text-center " style="border-bottom: none;">联系电话</th>
+                        <th class="text-center " style="border-bottom: none;">面积</th>
+                        <th class="text-center " style="border-bottom: none;">收费类型</th>
+                        <th class="text-center " style="border-bottom: none;">费用名称</th>
+                        <th class="text-center " style="border-bottom: none;">应收金额</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="fee in reportProficientCarFeeInfo.fees">
-                            <!-- <td class="text-center">{{fee.feeId}}</td> -->
-                            <td class="text-center ">{{fee.ownerName}}</td>
-                            <td class="text-center ">{{fee.objName}}</td>
-                            <td class="text-center ">{{fee.ownerLink}}</td>
-                            <td class="text-center" >{{fee.builtUpArea}}</td>
-                            <td class="text-center ">{{fee.feeName}}</td>
-                            <td class="text-center ">{{fee.receivableAmount}}</td>
-                        </tr>
+                    <tr v-for="fee in reportProficientCarFeeInfo.fees">
+                        <td class="text-center ">{{fee.ownerName}}</td>
+                        <td class="text-center ">{{fee.objName}}</td>
+                        <td class="text-center ">{{fee.ownerLink}}</td>
+                        <td class="text-center ">{{fee.builtUpArea}}</td>
+                        <td class="text-center ">{{fee.feeTypeCdName}}</td>
+                        <td class="text-center ">{{fee.feeName}}</td>
+                        <td class="text-center ">{{fee.receivableAmount}}</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-sm-7 margin-lr-0 padding-lr-0 java110-table-scoll-width">
-                <table class="footable table table-stripped " style="margin-top:10px;" data-page-size="10" >
+                <table class="footable table table-stripped " style="margin-top:10px;" data-page-size="10">
                     <thead>
-                        <tr>
-                            <th v-for="(item,index) in reportProficientCarFeeInfo.listColumns" width="100px"
-                                class="java110-td-scoll-width">{{item}}</th>
-                        </tr>
+                    <tr>
+                        <th v-for="(item,index) in reportProficientCarFeeInfo.listColumns" width="100px"
+                            class="java110-td-scoll-width">{{item}}
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="fee in reportProficientCarFeeInfo.fees">
-                            <td v-for="item in fee.reportFeeYearCollectionDetailDtos" style="width:100px;cursor: pointer;" class="text-left " @click="_showCarFeeDetail(fee,item)">
-                                {{item.receivedAmount}}
-                            </td>
-                        </tr>
+                    <tr v-for="fee in reportProficientCarFeeInfo.fees">
+                        <td v-for="item in fee.reportFeeYearCollectionDetailDtos" style="width:100px;cursor: pointer;"
+                            class="text-left " @click="_showCarFeeDetail(fee,item)">
+                            {{item.receivedAmount}}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

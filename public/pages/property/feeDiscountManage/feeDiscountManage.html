@@ -9,7 +9,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入折扣名称"
                                        v-model="feeDiscountManageInfo.conditions.discountName" class=" form-control">
@@ -18,8 +18,9 @@
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="feeDiscountManageInfo.conditions.discountType">
                                 <option selected value="">请选择折扣类型</option>
-                                <option value="1001">优惠</option>
-                                <option value="2002">违约</option>
+                                <option v-for="(item,index) in feeDiscountManageInfo.discountTypes" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
                             </select>
                         </div>
                         <div class="col-sm-3">
@@ -28,9 +29,12 @@
                                        v-model="feeDiscountManageInfo.conditions.ruleName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeDiscountMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetFeeDiscountMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
@@ -45,8 +49,7 @@
                     <h5>折扣信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddFeeDiscountModal()">
-                            <i class="fa fa-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
@@ -67,7 +70,7 @@
                         <tr v-for="feeDiscount in feeDiscountManageInfo.feeDiscounts">
                             <td class="text-center">{{feeDiscount.discountId}}</td>
                             <td class="text-center">{{feeDiscount.discountName}}</td>
-                            <td class="text-center">{{feeDiscount.discountType == '1001'?'优惠':(feeDiscount.discountType == '2002'?'违约':'优惠(需要申请)')}}</td>
+                            <td class="text-center">{{feeDiscount.discountTypeName}}</td>
                             <td class="text-center">{{feeDiscount.ruleName}}</td>
                             <td class="text-center">
                                 <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">

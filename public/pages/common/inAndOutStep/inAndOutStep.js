@@ -103,7 +103,6 @@
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
-                console.log(vc.component.inAndOutStepInfo.purchaseApply);
                 var postUrl = vc.component.inAndOutStepInfo.purchaseApply.resOrderType == 10000 ? '/purchase/purchaseStorage' : '/collection/goodsDelivery';
                 vc.http.apiPost(
                     postUrl,

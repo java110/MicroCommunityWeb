@@ -43,7 +43,7 @@
                 vc.component.carCreateFeeInfo.conditions.page = _page;
                 vc.component.carCreateFeeInfo.conditions.row = _row;
                 vc.component.carCreateFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                let _allNum = $that.carCreateFeeInfo.conditions.allNum;
+                let _allNum = $that.carCreateFeeInfo.conditions.allNum.trim();
                 let _conditions = JSON.parse(JSON.stringify(vc.component.carCreateFeeInfo.conditions));
                 let param = {
                     params: _conditions

@@ -35,7 +35,6 @@
                     vc.component.editOwnerInfo.memberId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=10000&time=" + new Date();
                 $('#editOwnerModel').modal('show');
                 vc.component._initAddOwnerMediaForEdit();
-
                 if (_owner.hasOwnProperty('ownerAttrDtos')) {
                     let _ownerAttrDtos = _owner.ownerAttrDtos;
                     _ownerAttrDtos.forEach(item => {
@@ -105,27 +104,20 @@
                         }
                     ],
                     'editOwnerInfo.remark': [
-
                         {
                             limit: "maxLength",
                             param: "200",
                             errInfo: "备注长度不能超过200位"
                         }
                     ]
-
                 });
             },
-
             editOwnerMethod: function () {
-
                 if (!vc.component.editOwnerValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.editOwnerInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 //编辑时 ownerPhoto 中内容不是照片内容，则清空
                 if (vc.component.editOwnerInfo.ownerPhoto.indexOf(_fileUrl) != -1) {
                     vc.component.editOwnerInfo.ownerPhoto = "";
@@ -145,11 +137,9 @@
                             $('#editOwnerModel').modal('hide');
                             vc.component.clearEditOwnerInfo();
                             vc.emit($props.notifyLoadDataComponentName, 'listOwnerData', {});
-
                             return;
                         }
                         vc.toast(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -206,9 +196,6 @@
                         vc.component.editOwnerInfo.videoPlaying = true;
                     }, function (error) {
                         vc.component.editOwnerInfo.videoPlaying = false;
-
-                        console.log("ERROR");
-                        console.log(error);
                     });
                 } else {
                     vc.component.editOwnerInfo.videoPlaying = false;
@@ -285,7 +272,6 @@
                             $that.editOwnerInfo.attrs.push(item);
                         }
                     });
-
                 });
             },
             _loadEditAttrValue: function (_specCd, _values) {
@@ -295,10 +281,8 @@
                             _values.push(item);
                         }
                     });
-
                 });
             },
         }
     });
-
 })(window.vc);

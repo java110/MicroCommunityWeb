@@ -40,7 +40,8 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        giveType: 1
                     }
                 };
                 //发送get请求
@@ -87,6 +88,7 @@
                         resId: vc.component.chooseSingleResourceInfo.resId,
                         communityId: vc.getCurrentCommunity().communityId,
                         chooseType: "repair",
+                        giveType: 1
                     }
                 };
                 //发送get请求

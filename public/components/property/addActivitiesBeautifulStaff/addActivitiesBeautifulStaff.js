@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -81,19 +80,13 @@
                             errInfo: "工作简介说明太长"
                         },
                     ],
-
-
-
-
                 });
             },
             saveActivitiesBeautifulStaffInfo: function () {
                 if (!vc.component.addActivitiesBeautifulStaffValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addActivitiesBeautifulStaffInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -101,7 +94,6 @@
                     $('#addActivitiesBeautifulStaffModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/activitiesRule/saveActivitiesBeautifulStaff',
                     JSON.stringify(vc.component.addActivitiesBeautifulStaffInfo),
@@ -116,17 +108,13 @@
                             $('#addActivitiesBeautifulStaffModel').modal('hide');
                             vc.component.clearAddActivitiesBeautifulStaffInfo();
                             vc.emit('activitiesBeautifulStaffManage', 'listActivitiesBeautifulStaff', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddActivitiesBeautifulStaffInfo: function () {
@@ -163,11 +151,9 @@
             },
             sendFile: function ($summernote, files) {
                 console.log('上传图片', files);
-
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
-
                 vc.http.upload(
                     'addNoticeView',
                     'uploadImage',
@@ -224,5 +210,4 @@
             },
         }
     });
-
 })(window.vc);

@@ -21,7 +21,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('viewResourceStaffInfo', 'setResourcesOut', function (_resOrderType) {
@@ -49,6 +48,8 @@
                     })
                 })
                 vc.component.viewResourceStaffInfo.resourceStores = resourceStores;
+                console.log("这里呢")
+                console.log(resourceStores)
             });
             vc.on('viewResourceStaffInfo', 'getSelectResourceStores', function (resourceStores) {
                 //vc.component.viewResourceStaffInfo.resourceStores = resourceStores;

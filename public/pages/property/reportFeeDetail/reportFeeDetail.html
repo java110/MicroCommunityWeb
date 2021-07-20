@@ -115,8 +115,12 @@
                             <td class="text-center">{{fee.feeName}}</td>
                             <td class="text-center">{{vc.dateFormat(fee.feeCreateTime)}}</td>
                             <!--<td class="text-center">{{fee.deadlineTime}}</td>-->
-                            <td class="text-center" v-if="fee.feeCreateTime >= fee.deadlineTime">{{vc.dateFormat(fee.deadlineTime)}}</td>
-                            <td class="text-center" v-else>{{vc.dateSubOneDay(vc.dateFormat(fee.feeCreateTime),vc.dateFormat(fee.deadlineTime),fee.feeFlag)}}</td>
+                            <td class="text-center" v-if="fee.feeCreateTime >= fee.deadlineTime">
+                                {{vc.dateFormat(fee.deadlineTime)}}
+                            </td>
+                            <td class="text-center" v-else>
+                                {{vc.dateSubOneDay(vc.dateFormat(fee.feeCreateTime),vc.dateFormat(fee.deadlineTime),fee.feeFlag)}}
+                            </td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
                         </tr>

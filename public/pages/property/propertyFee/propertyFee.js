@@ -24,7 +24,6 @@
                 vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('propertyFee', 'listParkingSpaceData', function (_param) {
-                console.log("返回", _param);
                 vc.component.feeDetailInfo.feeId = _param.feeId;
                 vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
             });

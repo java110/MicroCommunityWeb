@@ -230,7 +230,9 @@
                     vc.component.payFeeManageInfo.moreCondition = true;
                 }
             },
+            //导出
             _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeManage&' + vc.objToGetParam($that.payFeeManageInfo.conditions));
             },
             _listFeeType: function () {
                 var param = {

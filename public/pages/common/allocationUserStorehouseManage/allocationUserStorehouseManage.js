@@ -20,7 +20,8 @@
                     acceptUserId: '',
                     acceptUserName: '',
                     rstId: '',
-                    rssId: ''
+                    rssId: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 },
                 resourceStoreTypes: [],
                 resourceStoreSpecifications: []
@@ -138,6 +139,10 @@
                 } else {
                     vc.component.allocationUserStorehouseManageInfo.moreCondition = true;
                 }
+            },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=allocationUserStorehouseManage&' + vc.objToGetParam($that.allocationUserStorehouseManageInfo.conditions));
             }
         }
     });

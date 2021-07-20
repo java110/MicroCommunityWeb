@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -10,12 +9,10 @@
                 formulaId: '',
                 formulaValue: '',
                 formulaDesc: '',
-                price:''
-
+                price: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addFeeFormula', 'openAddFeeFormulaModal', function () {
@@ -45,11 +42,11 @@
                             param: "",
                             errInfo: "单价不能为空"
                         },
-                        // {
-                        //     limit: "money",
-                        //     param: "",
-                        //     errInfo: "单价填写有误，如1.50"
-                        // },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "单价格式错误"
+                        },
                         {
                             limit: "moneyModulus",
                             param: "",
@@ -63,19 +60,13 @@
                             errInfo: "描述太长"
                         },
                     ],
-
-
-
-
                 });
             },
             saveFeeFormulaInfo: function () {
                 if (!vc.component.addFeeFormulaValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addFeeFormulaInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -83,7 +74,6 @@
                     $('#addFeeFormulaModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/feeFormula/saveFeeFormula',
                     JSON.stringify(vc.component.addFeeFormulaInfo),
@@ -98,27 +88,22 @@
                             $('#addFeeFormulaModel').modal('hide');
                             vc.component.clearAddFeeFormulaInfo();
                             vc.emit('feeFormulaManage', 'listFeeFormula', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddFeeFormulaInfo: function () {
                 vc.component.addFeeFormulaInfo = {
                     formulaValue: '',
                     formulaDesc: '',
-                    price:''
+                    price: ''
                 };
             }
         }
     });
-
 })(window.vc);

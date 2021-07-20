@@ -33,6 +33,9 @@
                 vc.component.activitiesManageInfo.componentShow = 'activitiesList';
                 vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('activitiesManage', 'pageReload', function () {
+                location.reload();
+            });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listActivitiess(_currentPage, DEFAULT_ROWS);
             });

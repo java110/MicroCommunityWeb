@@ -12,11 +12,13 @@
                 records: 1,
                 moreCondition: false,
                 states: '',
+                currentUserId: vc.getData('/nav/getUserInfo').userId,
                 conditions: {
                     state: '',
                     applyOrderId: '',
                     userName: '',
-                    resOrderType: '10000'
+                    resOrderType: '10000',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -50,8 +52,6 @@
                     param,
                     function (json, res) {
                         var _purchaseApplyManageInfo = JSON.parse(json);
-                        console.log("look at here")
-                        console.log(_purchaseApplyManageInfo)
                         vc.component.purchaseApplyManageInfo.total = _purchaseApplyManageInfo.total;
                         vc.component.purchaseApplyManageInfo.records = _purchaseApplyManageInfo.records;
                         vc.component.purchaseApplyManageInfo.purchaseApplys = _purchaseApplyManageInfo.purchaseApplys;
@@ -65,9 +65,15 @@
                     }
                 );
             },
+            //采购申请
             _openAddPurchaseApplyModal: function () {
                 vc.emit('viewResourceStoreInfo2', 'setResourcesOut', "10000");
                 vc.jumpToPage("/admin.html#/pages/common/addPurchaseApplyStep?resOrderType=" + this.purchaseApplyManageInfo.conditions.resOrderType);
+            },
+            //紧急采购
+            _openUrgentPurchaseApplyModal: function () {
+                vc.emit('viewResourceStoreInfo4', 'setResourcesOut', "10000");
+                vc.jumpToPage("/admin.html#/pages/common/urgentPurchaseApplyStep?resOrderType=" + this.purchaseApplyManageInfo.conditions.resOrderType);
             },
             _openDetailPurchaseApplyModel: function (_purchaseApply) {
                 vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=10000");
@@ -119,6 +125,10 @@
             },
             _queryInspectionPlanMethod: function () {
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=purchaseApplyManage&' + vc.objToGetParam($that.purchaseApplyManageInfo.conditions));
             }
         }
     });

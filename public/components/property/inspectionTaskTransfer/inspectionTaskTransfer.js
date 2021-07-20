@@ -25,6 +25,7 @@
                 statusCd: '',
                 taskId: '',
                 taskType: 2000,
+                currentUserId: vc.getData('/nav/getUserInfo').userId
             }
         },
         _initMethod: function () {
@@ -76,6 +77,10 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+                if (vc.component.inspectionTaskTransferInfo.staffId == vc.component.inspectionTaskTransferInfo.planUserId){
+                    vc.toast("不能流转给当前巡检人");
+                    return;
+                }
                 vc.component.inspectionTaskTransferInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'inspectionTask.updateInspectionTask',
@@ -123,6 +128,7 @@
                     statusCd: '',
                     taskId: '',
                     taskType: 2000,
+                    currentUserId: vc.getData('/nav/getUserInfo').userId
                 };
             }
         }

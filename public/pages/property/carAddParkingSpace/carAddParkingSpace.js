@@ -11,7 +11,8 @@
                 endTime: '',
                 carId: '',
                 communityId: vc.getCurrentCommunity().communityId,
-                psId: ''
+                psId: '',
+                memberId: ''
             }
         },
         _initMethod: function () {
@@ -122,6 +123,7 @@
                         var _json = JSON.parse(json);
                         let data = _json.data[0];
                         data.psId = '';
+                        data.startTime = data.endTime = data.remark = '';
                         vc.copyObject(data, $that.carAddParkingSpaceInfo);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');

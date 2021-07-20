@@ -42,7 +42,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
@@ -50,8 +49,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
-                            <i class="fa fa-plus"></i>
-                            导出
+                            <i class="fa fa-plus"></i>导出
                         </button>
                     </div>
                 </div>
@@ -60,9 +58,10 @@
                         <!--费用类型-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportProficientInfo.conditions.feeTypeCd"
-                                @click="_changeReporficientFeeTypeCd()">
+                                    @click="_changeReporficientFeeTypeCd()">
+                                <option selected value="">请选择收费类型</option>
                                 <option v-for="(item,index) in reportProficientInfo.feeTypeCds" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}
+                                        v-bind:value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
                         </div>
@@ -70,10 +69,10 @@
                             <div class="form-group">
                                 <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportProficientInfo.conditions.configId">
+                                        v-model="reportProficientInfo.conditions.configId">
                                     <option selected value="">请选择收费项</option>
                                     <option v-for="(item,index) in reportProficientInfo.feeConfigDtos" :key="index"
-                                        :value="item.configId">
+                                            :value="item.configId">
                                         {{item.feeName}}
                                     </option>
                                 </select>
@@ -81,20 +80,19 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text"
-                                    class="form-control form-control-md"
-                                    :placeholder="_getReportProficientRoomName()"
-                                    v-model="reportProficientInfo.conditions.objName">
+                                <input type="text" class="form-control form-control-md"
+                                       :placeholder="_getReportProficientRoomName()"
+                                       v-model="reportProficientInfo.conditions.objName">
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
-                                    class="fa fa-search"></i>查询
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <i class="fa fa-search"></i>查询
                             </button>
-                            <!-- <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                             <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
                                 style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i>重置
-                            </button> -->
+                            </button>
                         </div>
                     </div>
                     <!-- <div class="row" >
@@ -115,19 +113,18 @@
             </div>
         </div>
     </div>
-
     <div class="white-bg margin-top padding-lg">
         <div class="">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link"
-                        v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientRoomFee'}"
-                        v-on:click="changeTab('reportProficientRoomFee')">房屋费台账</a>
+                       v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientRoomFee'}"
+                       v-on:click="changeTab('reportProficientRoomFee')">房屋费台账</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                        v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientCarFee'}"
-                        v-on:click="changeTab('reportProficientCarFee')">车辆费台账</a>
+                       v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientCarFee'}"
+                       v-on:click="changeTab('reportProficientCarFee')">车辆费台账</a>
                 </li>
             </ul>
         </div>
@@ -138,5 +135,4 @@
             <vc:create path="property/reportProficientCarFee"></vc:create>
         </div>
     </div>
-
 </div>

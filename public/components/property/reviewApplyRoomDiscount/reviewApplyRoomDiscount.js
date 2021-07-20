@@ -19,8 +19,8 @@
         },
         _initEvent: function () {
             vc.on('reviewApplyRoomDiscount', 'openReviewApplyRoomDiscountModal', function (_params) {
-                console.log("here is params")
-                console.log(_params)
+                _params = JSON.parse(_params);
+                delete _params.state;
                 vc.component.refreshReviewApplyRoomDiscountInfo();
                 $('#reviewApplyRoomDiscountModel').modal('show');
                 vc.copyObject(_params, vc.component.reviewApplyRoomDiscountInfo);
@@ -196,11 +196,11 @@
                             vc.emit('applyRoomDiscountManage', 'listApplyRoomDiscount', {});
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             refreshReviewApplyRoomDiscountInfo: function () {

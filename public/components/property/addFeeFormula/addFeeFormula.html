@@ -1,5 +1,5 @@
 <div id="addFeeFormulaModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -11,21 +11,21 @@
                                 <label class="col-sm-2 col-form-label">公式</label>
                                 <div class="col-sm-10">
                                     <textarea placeholder="必填，请填写公式" class="form-control"
-                                    v-model="addFeeFormulaInfo.formulaValue"></textarea>
+                                              v-model="addFeeFormulaInfo.formulaValue"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">单价</label>
                                 <div class="col-sm-10">
                                     <input placeholder="必填，请填写单价" type="text" class="form-control"
-                                    v-model="addFeeFormulaInfo.price">
+                                           v-model="addFeeFormulaInfo.price">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">描述</label>
                                 <div class="col-sm-10">
                                     <textarea v-model="addFeeFormulaInfo.formulaDesc" placeholder="选填，请填写描述"
-                                        class="form-control"></textarea>
+                                              class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -39,16 +39,19 @@
                                     <div>X 代表房屋收费系数（房屋管理中配置）</div>
                                     <div>L 代表房屋对应楼栋房屋数</div>
                                     <div>D 代表房屋对应单元房屋数</div>
-                                    <div>举例：公共区域公摊电费  电量/楼栋面积*房屋面积</div>
+                                    <div>举例：公共区域公摊电费 电量/楼栋面积*房屋面积</div>
                                     <div>公式：T/F * R</div>
                                 </div>
                             </div>
 
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="saveFeeFormulaInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                        v-on:click="saveFeeFormulaInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                        data-dismiss="modal">取消
+                                </button>
                             </div>
                         </div>
                     </div>
