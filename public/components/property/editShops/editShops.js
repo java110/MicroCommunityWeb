@@ -12,7 +12,10 @@
                 feeCoefficient: '1.0',
                 remark: '',
                 communityId: '',
-                attrs: []
+                attrs: [],
+                roomRent: '',
+                roomArea: '',
+                roomSubType: '120'
             }
         },
         _initMethod: function () {
@@ -109,6 +112,28 @@
                             errInfo: "建筑面积数字长度不能超过6位"
                         }
                     ],
+                    'editShopsInfo.roomArea': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "室内面积不能为空"
+                    },
+                    {
+                        limit: "money",
+                        param: "",
+                        errInfo: "室内面积错误，如 300.00"
+                    },
+                    ],
+                    'editShopsInfo.roomRent': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "租金不能为空"
+                    },
+                    {
+                        limit: "money",
+                        param: "",
+                        errInfo: "租金错误，如 300.00"
+                    },
+                    ],
                     'editShopsInfo.feeCoefficient': [
                         {
                             limit: "required",
@@ -179,7 +204,10 @@
                     remark: '',
                     communityId: '',
                     apartment: '',
-                    attrs: _attrs
+                    attrs: _attrs,
+                    roomRent: '',
+                    roomArea: '',
+                    roomSubType: '120'
                 }
             }
         }
