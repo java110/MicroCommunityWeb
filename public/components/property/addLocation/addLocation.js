@@ -33,7 +33,7 @@
                             errInfo: "位置名称不能为空"
                         },
                         {
-                            limit: "max",
+                            limit: "maxin",
                             param: "1,100",
                             errInfo: "位置名称不能超过100位"
                         },
