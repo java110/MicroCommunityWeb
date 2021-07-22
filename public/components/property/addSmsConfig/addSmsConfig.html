@@ -1,0 +1,93 @@
+<div id="addSmsConfigModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">短信配置</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">短信商</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addSmsConfigInfo.smsType">
+                    <option selected disabled value="">必填，请选择短信商</option>
+                    <option value="ALI">阿里</option>
+                    <option value="TECENT">腾讯</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">短信业务</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addSmsConfigInfo.smsBusi">
+                    <option selected disabled value="">必填，请选择短信业务</option>
+                    <option value="1001">欠费催缴</option>
+                    <option value="2002">工单通知</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">短信模板</label>
+                <div class="col-sm-10">
+                  <input v-model="addSmsConfigInfo.templateCode" type="text" placeholder="必填，请填写短信模板"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">短信签名</label>
+                <div class="col-sm-10">
+                  <input v-model="addSmsConfigInfo.signName" type="text" placeholder="必填，请填写短信签名" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">访问KEY</label>
+                <div class="col-sm-10">
+                  <input v-model="addSmsConfigInfo.accessKeyId" type="text" placeholder="必填，请填写访问KEY"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">短信秘钥</label>
+                <div class="col-sm-10">
+                  <input v-model="addSmsConfigInfo.accessSecret" type="text" placeholder="必填，请填写短信秘钥"
+                    class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">区域</label>
+                <div class="col-sm-10">
+                  <input v-model="addSmsConfigInfo.region" type="text" placeholder="必填，请填写区域" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">日志</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addSmsConfigInfo.logSwitch">
+                    <option selected disabled value="">必填，请选择日志</option>
+                    <option value="ON">记录</option>
+                    <option value="OFF">不记录</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">备注</label>
+                <div class="col-sm-10">
+                  <textarea v-model="addSmsConfigInfo.remark" placeholder="选填，请填写备注" class="form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveSmsConfigInfo()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
