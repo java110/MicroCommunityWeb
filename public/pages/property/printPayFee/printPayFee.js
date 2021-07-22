@@ -131,6 +131,9 @@
                         if (_data.length > 0) {
                             $that.printPayFeeInfo.content = _data[0].content;
                             $that.printPayFeeInfo.qrImg = _data[0].qrImg;
+                            if(_data[0].printName){
+                                $that.printPayFeeInfo.communityName = _data[0].printName;
+                            }
                         }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');

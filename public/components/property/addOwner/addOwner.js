@@ -46,8 +46,8 @@
                         },
                         {
                             limit: "maxin",
-                            param: "2,10",
-                            errInfo: "姓名长度必须在2位至10位"
+                            param: "2,64",
+                            errInfo: "姓名长度必须在2位至64位"
                         },
                     ],
                     'addOwnerInfo.age': [
