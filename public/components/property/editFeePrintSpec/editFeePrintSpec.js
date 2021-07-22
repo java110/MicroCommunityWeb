@@ -7,7 +7,7 @@
                 specCd: '',
                 content: '',
                 qrImg: '',
-
+                printName:'',
             }
         },
         _initMethod: function () {
@@ -47,6 +47,18 @@
                             limit: "num",
                             param: "",
                             errInfo: "规格不是有效数字"
+                        },
+                    ],
+                    'editFeePrintSpecInfo.printName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "名称不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "128",
+                            errInfo: "名称太长"
                         },
                     ],
                     'editFeePrintSpecInfo.content': [
@@ -106,7 +118,7 @@
                     specCd: '',
                     content: '',
                     qrImg: '',
-
+                    printName:'',
                 }
             }
         }
