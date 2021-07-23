@@ -16,6 +16,7 @@
                     collectionName: '',
                     staffName: '',
                     collectionWay: '',
+                    state:'',
                     communityId: vc.getCurrentCommunity().communityId
                 }
             }

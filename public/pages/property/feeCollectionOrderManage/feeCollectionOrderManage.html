@@ -12,9 +12,13 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入名称"
-                                    v-model="feeCollectionOrderManageInfo.conditions.collectionName"
-                                    class=" form-control">
+                                <select class="custom-select"
+                                v-model="feeCollectionOrderManageInfo.conditions.state">
+                                <option selected disabled value="">请选择状态</option>
+                                <option value="W">待催缴</option>
+                                <option value="D">催缴中</option>
+                                <option value="F">催缴完成</option>
+                            </select>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -25,9 +29,13 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入催缴方式"
-                                    v-model="feeCollectionOrderManageInfo.conditions.collectionWay"
-                                    class=" form-control">
+                                <select class="custom-select"
+                                    v-model="feeCollectionOrderManageInfo.conditions.collectionWay">
+                                    <option selected disabled value="">请选择催缴方式</option>
+                                    <option value="001">仅短信方式</option>
+                                    <option value="002">短信微信方式</option>
+                                    <option value="003">仅微信方式</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-1">
