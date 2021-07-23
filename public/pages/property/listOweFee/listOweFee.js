@@ -15,7 +15,7 @@
                 conditions: {
                     floorName: '',
                     configIds: '',
-                    payObjType: '',
+                    payObjType: '3333',
                     num: '',
                     billType: '00123'
                 },
@@ -179,6 +179,9 @@
                     _configIds = _configIds.substring(0, _configIds.length - 1);
                 }
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=listOweFee&configIds=" + _configIds);
+            },
+            _toFeeCollectionOrderManage:function(){
+                vc.jumpToPage('/admin.html#/pages/property/feeCollectionOrderManage');
             }
         }
     });
