@@ -16,7 +16,7 @@
                     collectionName: '',
                     staffName: '',
                     collectionWay: '',
-                    state:'',
+                    state: '',
                     communityId: vc.getCurrentCommunity().communityId
                 }
             }
@@ -62,15 +62,37 @@
             _openAddFeeCollectionOrderModal: function () {
                 vc.emit('addFeeCollectionOrder', 'openAddFeeCollectionOrderModal', {});
             },
-            _openEditFeeCollectionOrderModel: function (_feeCollectionOrder) {
-                vc.emit('editFeeCollectionOrder', 'openEditFeeCollectionOrderModal', _feeCollectionOrder);
-            },
             _openDeleteFeeCollectionOrderModel: function (_feeCollectionOrder) {
                 vc.emit('deleteFeeCollectionOrder', 'openDeleteFeeCollectionOrderModal', _feeCollectionOrder);
             },
             _queryFeeCollectionOrderMethod: function () {
                 vc.component._listFeeCollectionOrders(DEFAULT_PAGE, DEFAULT_ROWS);
 
+            },
+            _getStateName: function (_state) {
+
+                //状态 W 等待催缴 ，D 催缴中  F 催缴完成
+                if (_state == 'W') {
+                    return '待催缴';
+                }else if(_state == 'D'){
+                    return '催缴中';
+                }
+
+                return "催缴完成";
+            },
+            _getCollectionWayName: function (_collectionWay) {
+
+                //状态 W 等待催缴 ，D 催缴中  F 催缴完成
+                if (_collectionWay == '001') {
+                    return '短信方式';
+                }else if(_collectionWay == '002'){
+                    return '短信微信方式';
+                }
+
+                return "微信方式";
+            },
+            _toFeeCollectionDetailModel:function(order){
+                vc.jumpToPage('/admin.html#/pages/property/feeCollectionDetailManage?orderId='+order.orderId)
             },
             _moreCondition: function () {
                 if (vc.component.feeCollectionOrderManageInfo.moreCondition) {

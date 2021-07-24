@@ -1,0 +1,101 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入房屋/车位"
+                                v-model="feeCollectionDetailManageInfo.conditions.ownerName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入房屋/车位"
+                                    v-model="feeCollectionDetailManageInfo.conditions.payerObjName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select"
+                                    v-model="feeCollectionDetailManageInfo.conditions.collectionWay">
+                                    <option selected disabled value="">请选择催缴方式</option>
+                                    <option value="001">仅短信方式</option>
+                                    <option value="002">短信微信方式</option>
+                                    <option value="003">仅微信方式</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryFeeCollectionOrderMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>催缴明细</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                       
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">房屋/车位</th>
+                                <th class="text-center">业主</th>
+                                <th class="text-center">费用</th>
+                                <th class="text-center">催缴方式</th>
+                                <th class="text-center">金额</th>
+                                <th class="text-center">时间</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">说明</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="feeCollectionDetail in feeCollectionDetailManageInfo.feeCollectionDetails">
+                                <td class="text-center">{{feeCollectionDetail.payerObjName}}</td>
+                                <td class="text-center">{{feeCollectionDetail.ownerName}}</td>
+                                <td class="text-center">{{feeCollectionDetail.feeName}}</td>
+                                <td class="text-center">{{feeCollectionDetail.collectionWay}}</td>
+                                <td class="text-center">{{feeCollectionDetail.oweAmount}}</td>
+                                <td class="text-center">{{feeCollectionDetail.createTime}}</td>
+                                <td class="text-center">{{feeCollectionDetail.stateName}}</td>
+                                <td class="text-center">{{feeCollectionDetail.remark}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
