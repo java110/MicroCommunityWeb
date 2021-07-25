@@ -38,7 +38,7 @@
                             errInfo: "菜单名称不能为空"
                         },
                         {
-                            limit: "max",
+                            limit: "maxIn",
                             param: "1,7",
                             errInfo: "菜单名称不能超过7位"
                         },
