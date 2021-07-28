@@ -236,6 +236,9 @@
                 }
             },
             dealOwnerAttr: function (owners) {
+                if(!owners){
+                    return;
+                }
                 owners.forEach(item => {
                     $that._getColumnsValue(item);
                 });

@@ -32,7 +32,8 @@
                 $('.addStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
@@ -46,7 +47,8 @@
                 $('.addEndTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,

@@ -113,7 +113,8 @@
                     return;
                 }
                 $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
-                    if (parseInt(item.curStock) > parseInt(item.stock)) {
+                    item.curStock = parseInt(item.curStock);
+                    if (item.curStock > parseInt(item.stock)) {
                         vc.toast(item.resName + "库存不足");
                         _saveFlag = false;
                         return;

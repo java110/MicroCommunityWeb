@@ -172,6 +172,12 @@
                     ],
                 });
             },
+            decide: function () {
+                if ($that.editResourceStoreInfo.outLowPrice > $that.editResourceStoreInfo.outHighPrice) {
+                    vc.toast("最高收费标准不能小于最低收费标准！")
+                    $that.editResourceStoreInfo.outHighPrice = "";
+                }
+            },
             editResourceStore: function () {
                 if (!vc.component.editResourceStoreValidate()) {
                     vc.toast(vc.validate.errInfo);

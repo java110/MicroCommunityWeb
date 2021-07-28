@@ -71,15 +71,16 @@
                     return;
                 }
                 for (var i = 0; i < _resourceStores.length; i++) {
-                    if (!_resourceStores[i].hasOwnProperty("quantity") || _resourceStores[i].quantity <= 0) {
+                    if (!_resourceStores[i].hasOwnProperty("quantity") || parseInt(_resourceStores[i].quantity) <= 0) {
                         vc.toast("请填写采购数量");
                         return;
                     }
-                    if(!_resourceStores[i].hasOwnProperty("urgentPrice") || _resourceStores[i].urgentPrice == null
-                        || _resourceStores[i].urgentPrice == ''  || _resourceStores[i].urgentPrice == 'undefined'){
+                    _resourceStores[i].quantity = parseInt(_resourceStores[i].quantity);
+                    if(!_resourceStores[i].hasOwnProperty("urgentPrice") || parseFloat(_resourceStores[i].urgentPrice) <= 0){
                         vc.toast("请填写物品采购价格");
                         return;
                     }
+                    _resourceStores[i].urgentPrice = parseFloat(_resourceStores[i].urgentPrice);
                     if (vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "20000") {
                         if (_resourceStores[i].quantity > _resourceStores[i].stock) {
                             vc.toast(_resourceStores[i].resName + ",库存不足");

@@ -85,7 +85,7 @@
                             <td class="text-center">{{roomRenovation.violationDesc}}</td>
                             <td class="text-center">{{roomRenovation.remark}}</td>
                             <td class="text-center">
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="roomRenovation.state == '1000'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openRoomRenovationFee(roomRenovation)">费用
                                     </button>
@@ -124,7 +124,7 @@
                                             v-on:click="_openDeleteRoomRenovationModel(roomRenovation)">删除
                                     </button>
                                 </div>
-                                <div class="btn-group">
+                                <div class="btn-group" v-if="roomRenovation.state == '3000'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openRoomDecorationRecord(roomRenovation)">跟踪记录
                                     </button>

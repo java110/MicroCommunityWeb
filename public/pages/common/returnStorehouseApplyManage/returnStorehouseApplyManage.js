@@ -102,12 +102,13 @@
                     return;
                 }
                 $that.returnStorehouseManageInfo.resourceStores.forEach(item => {
+                    item.curStock = parseInt(item.curStock);
                     if (item.curStock <= 0) {
                         vc.toast("请填写退还数量");
                         _saveFlag = false;
                         return;
                     }
-                    if (parseInt(item.curStock) > parseInt(item.miniStock)) {
+                    if (item.curStock > parseInt(item.miniStock)) {
                         vc.toast(item.resName + "库存不足");
                         _saveFlag = false;
                         return;

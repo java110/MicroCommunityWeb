@@ -66,11 +66,12 @@
                 }
                 // 校验商品信息
                 for (var i = 0; i < _resourceStores.length; i++) {
-                    if (!_resourceStores[i].hasOwnProperty("giveQuantity") || _resourceStores[i].giveQuantity <= 0) {
-                        vc.toast("请完善物品信息");
+                    if (!_resourceStores[i].hasOwnProperty("giveQuantity") || parseInt(_resourceStores[i].giveQuantity) <= 0) {
+                        vc.toast("请填写数量");
                         return;
                     }
-                    if (parseInt(_resourceStores[i].giveQuantity) > parseInt(_resourceStores[i].miniStock)) {
+                    _resourceStores[i].giveQuantity = parseInt(_resourceStores[i].giveQuantity);
+                    if (_resourceStores[i].giveQuantity > parseInt(_resourceStores[i].miniStock)) {
                         vc.toast(_resourceStores[i].resName + ",库存不足");
                         return;
                     }

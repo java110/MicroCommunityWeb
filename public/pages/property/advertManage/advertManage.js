@@ -7,7 +7,7 @@
     vc.extends({
         data: {
             advertManageInfo: {
-                advertTypeName:["","站内","站外","不跳转"],
+                advertTypeName: ["", "站内", "站外", "不跳转"],
                 adverts: [],
                 total: 0,
                 records: 1,
@@ -69,7 +69,6 @@
             },
             _queryAdvertMethod: function () {
                 vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _viewAdvertPhotoOrPhoto: function () {
                 vc.emit('writeAdvertMachine', 'openWriteAdvertMachineModal', {});

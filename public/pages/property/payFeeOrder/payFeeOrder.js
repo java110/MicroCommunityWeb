@@ -65,7 +65,19 @@
         _initEvent: function () {
             // 子组件折扣change事件
             vc.on('payFeeOrder', 'changeDiscountPrice', function (_param) {
-                let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
+                let tempCycles = vc.component.payFeeOrderInfo.tempCycles;
+                let _cycle = tempCycles;
+                // 没选择缴费周期或缴费周期为“自定义金额”
+                if(tempCycles == '' || tempCycles == '-101'){
+                    return;
+                }
+                // 如果是自定义周期
+                if(tempCycles == '-102'){
+                    _cycle = vc.component.payFeeOrderInfo.cycles;
+                }
+                // 用未格式化的总金额减优惠金额
+                // let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
+                let _totalFeePrice = parseFloat(_cycle) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
                 if (_totalFeePrice < 0) {
                     return;
                 }

@@ -119,6 +119,7 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.component.addFloorInfo.errorInfo = errInfo;
+                        vc.toast(errInfo)
                     });
             },
             clearAddFloorInfo: function () {

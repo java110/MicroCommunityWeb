@@ -75,19 +75,12 @@
                 let _flag = true;
                 //校验 是否填写正确
                 $that.resourceOutManageInfo.purchaseApplyDetailVo.forEach(function (item) {
-                    if (!vc.notNull(item.purchaseQuantity)) {
-                        vc.toast('采购数量未填写');
-                        _flag = false;
+                    if(!item.hasOwnProperty("purchaseQuantity") || parseInt(item.purchaseQuantity) <= 0){
+                        vc.toast('采购数量未填写')
                         return;
                     }
-                    let _purchaseQuantity = parseFloat(item.purchaseQuantity).toFixed(2);
-                    if (parseFloat(_purchaseQuantity) <= 0 ){
-                        vc.toast('采购数量无效');
-                        _flag = false;
-                        return;
-                    }
-                    let _stock = parseFloat(item.stock).toFixed(2)
-                    if (parseFloat(_purchaseQuantity) > parseFloat(_stock)) {
+                    item.purchaseQuantity = parseInt(item.purchaseQuantity);
+                    if (item.purchaseQuantity > parseInt(item._stock)) {
                         vc.toast('库存不足');
                         _flag = false;
                         return;

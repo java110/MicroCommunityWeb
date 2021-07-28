@@ -36,12 +36,7 @@
                             limit: "required",
                             param: "",
                             errInfo: "类型名称不能为空"
-                        },
-                        {
-                            limit: "max",
-                            param: "1,200",
-                            errInfo: "类型名称不能超过200位"
-                        },
+                        }
                     ],
                     'addRepairSettingInfo.repairWay': [
                         {

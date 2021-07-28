@@ -20,7 +20,8 @@
                         <th class="text-center">物品编码</th>
                         <th class="text-center">参考价格</th>
                         <th class="text-center">物品库存</th>
-                        <th class="text-center">申请数量</th>
+                        <th class="text-center" width="200">申请数量</th>
+                        <th class="text-center">单位</th>
                         <!-- <th class="text-center" v-if="viewResourceStoreInfo2.resOrderType == '10000'">供应商</th> -->
                         <th class="text-center">备注</th>
                         <th class="text-center">操作</th>
@@ -38,6 +39,7 @@
                             <input v-model="resourceStore.quantity" type="number" placeholder="必填，请填写申请数量"
                                    class="form-control">
                         </td>
+                        <td class="text-center">{{resourceStore.unitCodeName}}</td>
                         <!-- <td class="text-center" v-if="viewResourceStoreInfo2.resOrderType == '10000'">
                             <select class="form-control" name="" id="" v-model="resourceStore.rsId">
                                 <option value="" selected>请选择</option>

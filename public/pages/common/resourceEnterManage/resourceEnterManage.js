@@ -91,17 +91,24 @@
             },
             _submit: function () {
                 //校验 是否填写正确
+                let msg = '';
                 $that.resourceEnterManageInfo.purchaseApplyDetailVo.forEach(function (item) {
-
-                    if (!vc.notNull(item.purchaseQuantity)) {
-                        vc.toast('采购数量未填写')
+                    console.log(item);
+                    if(!item.hasOwnProperty("purchaseQuantity") || !item.purchaseQuantity || parseInt(item.purchaseQuantity) <= 0){
+                        msg = '采购数量未填写';
                         return;
                     }
-                    if (!vc.notNull(item.price)) {
-                        vc.toast('单价未填写')
+                    item.purchaseQuantity = parseInt(item.purchaseQuantity);
+                    if(!item.hasOwnProperty("price") || !item.price || parseFloat(item.price) <= 0){
+                        msg = '单价未填写';
                         return;
                     }
+                    item.price = parseFloat(item.price);
                 });
+                if(msg != ''){
+                    vc.toast(msg);
+                    return;
+                }
                 vc.http.apiPost(
                     '/purchase/resourceEnter',
                     JSON.stringify($that.resourceEnterManageInfo),

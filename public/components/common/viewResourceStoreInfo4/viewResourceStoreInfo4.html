@@ -20,8 +20,9 @@
                         <th class="text-center">物品编码</th>
                         <th class="text-center">参考价格</th>
                         <th class="text-center">物品库存</th>
-                        <th class="text-center">申请数量</th>
-                        <th class="text-center">采购价格</th>
+                        <th class="text-center" width="200">申请数量</th>
+                        <th class="text-center">单位</th>
+                        <th class="text-center" width="200">采购价格</th>
                         <th class="text-center">备注</th>
                         <th class="text-center">操作</th>
                     </tr>
@@ -38,6 +39,7 @@
                             <input v-model="resourceStore.quantity" type="number" placeholder="必填，请填写申请数量"
                                    class="form-control">
                         </td>
+                        <td class="text-center">{{resourceStore.unitCodeName}}</td>
                         <td class="text-center">
                             <input v-model="resourceStore.urgentPrice" type="number" placeholder="必填，请填写采购价格"
                                    class="form-control">

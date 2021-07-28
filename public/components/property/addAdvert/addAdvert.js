@@ -25,7 +25,8 @@
                 roomId: '',
                 photos: [],
                 viewType: '',
-                vedioName: ''
+                vedioName: '',
+                communityId: ''
             }
         },
         _initMethod: function () {
@@ -192,6 +193,14 @@
                 } else {
                     vc.component.addAdvertInfo.photos = [];
                 }
+                if (vc.component.addAdvertInfo.viewType == '8888' && vc.component.addAdvertInfo.photos.length < 1) {
+                    vc.toast('请上传图片');
+                    return;
+                } else if (vc.component.addAdvertInfo.viewType == '9999' && vc.component.addAdvertInfo.vedioName == '') {
+                    vc.toast('请上传视频');
+                    return;
+                }
+                vc.component.addAdvertInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addAdvertInfo);

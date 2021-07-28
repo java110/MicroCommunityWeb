@@ -76,10 +76,11 @@
                     return;
                 }
                 for (var i = 0; i < _resourceStores.length; i++) {
-                    if (!_resourceStores[i].hasOwnProperty("quantity") || _resourceStores[i].quantity <= 0) {
-                        vc.toast("请完善物品信息");
+                    if (!_resourceStores[i].hasOwnProperty("quantity") || parseInt(_resourceStores[i].quantity) <= 0) {
+                        vc.toast("请填写数量");
                         return;
                     }
+                    _resourceStores[i].quantity = parseInt(_resourceStores[i].quantity);
                     if (vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "20000") {
                         if (_resourceStores[i].quantity > _resourceStores[i].stock) {
                             vc.toast(_resourceStores[i].resName + ",库存不足");

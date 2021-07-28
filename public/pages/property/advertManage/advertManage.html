@@ -6,7 +6,7 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{advertManageInfo.moreCondition == true?'隐藏':'更多'}}
+                                v-on:click="_moreCondition()">{{advertManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入广告名称" v-model="advertManageInfo.conditions.adName"
-                                    class=" form-control">
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -66,46 +66,46 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">广告ID</th>
-                                <th class="text-center">广告名称</th>
-                                <th class="text-center">投放位置</th>
-                                <th class="text-center">发布类型</th>
-                                <th class="text-center">投放时间</th>
-                                <th class="text-center">结束时间</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">广告ID</th>
+                            <th class="text-center">广告名称</th>
+                            <th class="text-center">投放位置</th>
+                            <th class="text-center">发布类型</th>
+                            <th class="text-center">投放时间</th>
+                            <th class="text-center">结束时间</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
-                        <tbody> 
-                            <tr v-for="advert in advertManageInfo.adverts">
-                                <td class="text-center">{{advert.advertId}}</td>
-                                <td class="text-center">{{advert.adName}}</td>
-                                <td class="text-center">{{advert.locationObjName}}</td>
-                                <td class="text-center">{{advertManageInfo.advertTypeName[advert.advertType]}}</td>
-                                <td class="text-center">{{advert.startTime}}</td>
-                                <td class="text-center">{{advert.endTime}}</td>
-                                <td class="text-center">{{advert.createTime}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
+                        <tbody>
+                        <tr v-for="advert in advertManageInfo.adverts">
+                            <td class="text-center">{{advert.advertId}}</td>
+                            <td class="text-center">{{advert.adName}}</td>
+                            <td class="text-center">{{advert.locationObjName}}</td>
+                            <td class="text-center">{{advertManageInfo.advertTypeName[advert.advertType]}}</td>
+                            <td class="text-center">{{advert.startTime}}</td>
+                            <td class="text-center">{{advert.endTime}}</td>
+                            <td class="text-center">{{advert.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditAdvertModel(advert)">修改
-                                        </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteAdvertModel(advert)">删除
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="8">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="8">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
