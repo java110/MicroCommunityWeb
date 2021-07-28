@@ -42,7 +42,7 @@
                             errInfo: "名称不能为空"
                         },
                         {
-                            limit: "max",
+                            limit: "maxIn",
                             param: "1,100",
                             errInfo: "名称不能超过100位"
                         },

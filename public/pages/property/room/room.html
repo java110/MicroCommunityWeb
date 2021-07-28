@@ -13,15 +13,15 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    
+
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择楼栋"
-                                       v-model="roomInfo.conditions.floorName" class=" form-control">
+                                <input type="text" placeholder="请选择楼栋" v-model="roomInfo.conditions.floorName"
+                                    class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()">
+                                        v-on:click="_openChooseFloorMethod()">
                                         <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
@@ -30,7 +30,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-sm form-control input-s-sm inline"
-                                        v-model="roomInfo.conditions.unitId">
+                                    v-model="roomInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
                                     <option v-for="(unit,index) in roomUnits" :key="index" v-bind:value="unit.unitId">
                                         {{unit.unitNum}}单元
@@ -41,7 +41,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-sm"
-                                       v-model="roomInfo.conditions.roomNum">
+                                    v-model="roomInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -55,17 +55,25 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号 格式 楼栋-单元-房屋"
-                                       class="form-control form-control-sm"
-                                       v-model="roomInfo.conditions.roomId">
+                                    class="form-control form-control-sm" v-model="roomInfo.conditions.roomId">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <select class="form-control-sm form-control input-s-sm inline"
-                                    v-model="roomInfo.conditions.state">
+                                v-model="roomInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
-                                <option v-for="(item,index) in roomInfo.states" :key="index"
-                                        :value="item.statusCd">{{item.name}}
+                                <option v-for="(item,index) in roomInfo.states" :key="index" :value="item.statusCd">
+                                    {{item.name}}
                                 </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control-sm form-control input-s-sm inline"
+                                v-model="roomInfo.conditions.roomSubType">
+                                <option selected disabled value="">必填，请选择房屋类型</option>
+                                <option value="110">住宅</option>
+                                <option value="120">办公</option>
+                                <option value="119">宿舍</option>
                             </select>
                         </div>
                     </div>
@@ -79,76 +87,84 @@
                 <div class="ibox-title">
                     <h5>房屋信息</h5>
                     <div class="ibox-tools" style="top:10px;" v-if="vc.hasPrivilege('502020082453087940')">
-                        <button type="button" class="btn btn-primary btn-sm"
-                                style="margin-left:10px" v-on:click="_openAddRoom()">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                            v-on:click="_openAddRoom()">
                             <i class="fa fa-plus"></i> 添加房屋
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                           data-page-size="10">
+                        data-page-size="10">
                         <thead>
-                        <tr>
-                            <!-- <th>房屋ID</th> -->
-                            <th data-hide="phone" class="text-center">房屋</th>
-                            <th data-hide="phone" class="text-center">楼层</th>
-                            <th data-hide="phone" class="text-center">业主</th>
-                            <th data-hide="phone" class="text-center">电话</th>
-                            <th data-hide="phone" class="text-center">建筑面积</th>
-                            <th data-hide="phone" class="text-center">算费系数</th>
-                            <th data-hide="phone" class="text-center">房屋状态</th>
-                            <th v-for="(item,index) in roomInfo.listColumns" class="text-center">{{item}}</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <!-- <th>房屋ID</th> -->
+                                <th data-hide="phone" class="text-center">房屋</th>
+                                <th data-hide="phone" class="text-center">楼层</th>
+                                <th data-hide="phone" class="text-center">业主</th>
+                                <th data-hide="phone" class="text-center">电话</th>
+                                <th data-hide="phone" class="text-center">类型</th>
+                                <th data-hide="phone" class="text-center">建筑面积</th>
+                                <th data-hide="phone" class="text-center">室内面积</th>
+                                <th data-hide="phone" class="text-center">算费系数</th>
+                                <th data-hide="phone" class="text-center">房屋状态</th>
+                                <th v-for="(item,index) in roomInfo.listColumns" class="text-center">{{item}}</th>
+                                <th class="text-center">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="room in roomInfo.rooms">
-                            <!-- <td>
+                            <tr v-for="room in roomInfo.rooms">
+                                <!-- <td>
                                 {{room.roomId}}
                             </td> -->
-                            <td class="text-center">
-                                {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
-                            </td>
-                            <td class="text-center">
-                                {{room.layer}}层
-                            </td>
-                            <td class="text-center">
-                                {{room.ownerName}}
-                            </td>
-                            <td class="text-center">
-                                {{room.link}}
-                            </td>
-                            <td class="text-center">
-                                {{room.builtUpArea}}平方米
-                            </td>
-                            <td class="text-center">
-                                {{room.feeCoefficient}}
-                            </td>
-                            <td class="text-center">
-                                {{room.stateName}}
-                            </td>
-                            <td v-for="item in room.listValues" class="text-center">
-                                {{item}}
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(room)">修改
-                                    </button>
-                                </div>
-                                <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDelRoomModel(room)">删除
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                                <td class="text-center">
+                                    {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
+                                </td>
+                                <td class="text-center">
+                                    {{room.layer}}层
+                                </td>
+                                <td class="text-center">
+                                    {{room.ownerName}}
+                                </td>
+                                <td class="text-center">
+                                    {{room.link}}
+                                </td>
+                                <td class="text-center">
+                                    {{room.roomSubTypeName}}
+                                </td>
+                                <td class="text-center">
+                                    {{room.builtUpArea}}平方米
+                                </td>
+                                <td class="text-center">
+                                    {{room.roomArea}}平方米
+                                </td>
+                                <td class="text-center">
+                                    {{room.feeCoefficient}}
+                                </td>
+                                <td class="text-center">
+                                    {{room.stateName}}
+                                </td>
+                                <td v-for="item in room.listValues" class="text-center">
+                                    {{item}}
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(room)">修改
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDelRoomModel(room)">删除
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="10">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="10">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

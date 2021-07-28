@@ -52,10 +52,35 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">房屋类型</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" v-model="addRoomViewInfo.roomSubType">
+                            <option selected disabled value="">必填，请选择房屋类型</option>
+                            <option value="110">住宅</option>
+                            <option value="120">办公</option>
+                            <option value="119">宿舍</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row" v-if="addRoomViewInfo.roomSubType != '110'">
+                    <label class="col-sm-2 col-form-label">租金</label>
+                    <div class="col-sm-10">
+                        <input v-model="addRoomViewInfo.roomRent" type="text" placeholder="必填，请填写租金"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">建筑面积(平方)</label>
                     <div class="col-sm-10">
                         <input v-model="addRoomViewInfo.builtUpArea" type="text" placeholder="必填，请填写建筑面积! 平方"
                                class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">室内面积(平方)</label>
+                    <div class="col-sm-10">
+                        <input v-model="addRoomViewInfo.roomArea" type="text" placeholder="必填，请填写室内面积! 平方"
+                            class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">

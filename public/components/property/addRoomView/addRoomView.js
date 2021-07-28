@@ -18,6 +18,9 @@
                 feeCoefficient: '1.00',
                 state: '2002',
                 remark: '',
+                roomSubType: '110',
+                roomArea: '',
+                roomRent: '0',
                 communityId: vc.getCurrentCommunity().communityId,
                 attrs: []
             }
@@ -90,6 +93,17 @@
                                 errInfo: "建筑面积错误，如 300.00"
                             },
                         ],
+                        'addRoomViewInfo.roomArea': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "室内面积不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "室内面积错误，如 300.00"
+                        },
+                        ],
                         'addRoomViewInfo.feeCoefficient': [
                             {
                                 limit: "required",
@@ -112,6 +126,12 @@
                                 param: "12",
                                 errInfo: "房屋状态 不能超过12位"
                             },
+                        ],
+                        'addRoomViewInfo.roomSubType': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋类型不能为空"
+                        }
                         ],
                         'addRoomViewInfo.remark': [{
                             limit: "maxLength",

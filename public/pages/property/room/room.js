@@ -24,7 +24,8 @@
                     roomId: '',
                     state: '',
                     section: '',
-                    roomType: '1010301'
+                    roomType: '1010301',
+                    roomSubType: ''
                 },
                 currentPage: DEFAULT_PAGE,
                 listColumns: []
