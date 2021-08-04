@@ -18,6 +18,7 @@
                 configId: '',
                 feeTypeCds: [],
                 feeTypeCd: '',
+                roomType:'',
                 state: '2008001',
                 totalAmount:0.0
             }
@@ -197,6 +198,7 @@
                     floorNum: '',
                     unitNum: '',
                     roomNum: '',
+                    roomType:'',
                     feeConfigs: _feeConfigs,
                     feeTypeCd: '',
                     configId: '',
