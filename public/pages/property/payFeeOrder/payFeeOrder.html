@@ -140,11 +140,12 @@
                 </div>
                 <div class="modal-body">
                     <p>缴费成功</p>
+                    <p v-if="!payFeeOrderInfo.receiptId">请到业务受理页面补打收据</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="_back()">返回</button>
-                    <button type="button" class="btn btn-primary" @click="_printSmallAndBack()">打印小票</button>
-                    <button type="button" class="btn btn-primary" @click="_printAndBack()">打印收据</button>
+                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId" @click="_printSmallAndBack()">打印小票</button>
+                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId" @click="_printAndBack()">打印收据</button>
                 </div>
             </div>
         </div>

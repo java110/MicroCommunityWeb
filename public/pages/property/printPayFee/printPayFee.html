@@ -38,6 +38,10 @@
                             {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</br>
                             {{item.preDegrees}} 至 {{item.curDegrees}}
                         </td>
+                        <!-- 根据山东 需求 如果为押金时 显示为无-->
+                        <td class="text-center" v-else-if="item.feeTypeCd == '888800010006'">
+                            无
+                        </td>
                         <td class="text-center" v-else>
                             {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
                         </td>
