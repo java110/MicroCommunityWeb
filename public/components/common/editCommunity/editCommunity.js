@@ -50,8 +50,8 @@
                         },
                         {
                             limit: "maxin",
-                            param: "4,20",
-                            errInfo: "小区名称必须在4至20字符之间"
+                            param: "1,20",
+                            errInfo: "小区名称必须在1至20字符之间"
                         },
                         ],
                         'editCommunityInfo.address': [{
