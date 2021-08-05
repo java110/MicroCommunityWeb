@@ -6,28 +6,35 @@
         },
         data:{
             chooseinitializeCommunityInfo:{
-                initializeCommunitys: [],
-                _devPassword:'',
+                communityName: '',
+                communityId: '',
+                _devPassword:''
             }
         },
         _initMethod:function(){
         },
         _initEvent:function(){
             vc.on('chooseinitializeCommunity','openChooseinitializeCommunityModel',function(_param){
+                console.log(_param);
+                vc.component.chooseinitializeCommunityInfo.communityName = _param._initializeCommunity.name;
+                vc.component.chooseinitializeCommunityInfo.communityId = _param._initializeCommunity.communityId;
                 $('#chooseinitializeCommunityModel').modal('show');
                 vc.component._refreshChooseinitializeCommunityInfo();
             });
         },
         methods:{
-            chooseinitializeCommunity:function(devPassword){
-                vc.emit($props.emitChooseinitializeCommunity,'chooseinitializeCommunity',devPassword);
+            chooseinitializeCommunity:function(){
+                vc.emit($props.emitChooseinitializeCommunity,'chooseinitializeCommunity', vc.component.chooseinitializeCommunityInfo);
                 $('#chooseinitializeCommunityModel').modal('hide');
             },
-            queryServices:function(){
-                vc.component.chooseinitializeCommunity(vc.component.ChooseinitializeCommunityInfo._devPassword);
+            authenticationDevPassword:function(){
+                vc.component.chooseinitializeCommunity();
             },
             _refreshChooseinitializeCommunityInfo:function(){
-                vc.component.ChooseinitializeCommunityInfo._devPassword = "";
+                vc.component.chooseinitializeCommunityInfo._devPassword = "";
+            },
+            closeInitializeCommunityModel:function(){
+                $('#chooseinitializeCommunityModel').modal('hide');
             }
         }
 

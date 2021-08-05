@@ -12,6 +12,7 @@
                 records: 1,
                 storeTypeCd: vc.getData('/nav/getUserInfo').storeTypeCd,
                 devPassword:'',
+                msgData: '',
                 conditions: {
                     name: '',
                     cityCode: '',
@@ -28,8 +29,7 @@
                 vc.component._listCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on("chooseinitializeCommunity", "chooseinitializeCommunity",function (_param) {
-                console.log(_param);
-
+                $that._initializeCommunity(_param);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listCommunitys(_currentPage, DEFAULT_ROWS);
@@ -64,8 +64,9 @@
             _initializeCommunity: function (_community) {
                 var _param = {
                     communityId: _community.communityId,
-                    devPassword: vc.component.initializeCommunityManageInfo.devPassword
+                    devPassword: _community._devPassword
                 }
+                console.log(JSON.stringify(_param));
                 vc.http.apiPost(
                     '/initializeBuildingUnit/deleteBuildingUnit',
                     JSON.stringify(_param),
@@ -76,19 +77,20 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
+                            vc.component.initializeCommunityManageInfo.msgData = _json.data;
                             //关闭model
                             vc.emit('initializeCommunityManage', 'listCommunity', {});
                             return;
                         }
-                        vc.toast(_json.msg);
+                             vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _openChooseinInitializeCommunity: function(){
-                vc.emit('chooseinitializeCommunity','openChooseinitializeCommunityModel', {});
+            _openChooseinInitializeCommunity: function(_initializeCommunity){
+                vc.emit('chooseinitializeCommunity','openChooseinitializeCommunityModel', {_initializeCommunity});
             }
         }
     });

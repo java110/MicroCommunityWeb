@@ -11,12 +11,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <li style="color: red;">请慎重操作，此操作将清空所有本小区数据。谨慎期间，请再次跟相关人员核实确认！</li>
+                <li style="color: red;">请慎重操作，此操作将清空所有【{{chooseinitializeCommunityInfo.communityName}}】小区数据,小区编码为【{{chooseinitializeCommunityInfo.communityId}}】。谨慎期间，请再次跟相关人员核实确认！</li>
             </br>
                 <input placeholder="请输入开发者密码" type="text" v-model="chooseinitializeCommunityInfo._devPassword" class="form-control form-control-sm">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeDeleteMappingModel()">点错了</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeInitializeCommunityModel()">点错了</button>
                 <button type="button" class="btn btn-primary" v-on:click="authenticationDevPassword()">确认格式化</button>
             </div>
         </div>
