@@ -97,6 +97,9 @@
             _exitCommunityData: function () {
                 vc.jumpToPage('/callComponent/assetImport/exitCommunityData?communityId='+vc.getCurrentCommunity().communityId);
             },
+            _openAssetImportLog:function(){
+                vc.jumpToPage('/admin.html#/pages/property/assetImportLog')
+            },
             checkFileType: function (fileType) {
                 const acceptTypes = ['xls', 'xlsx'];
                 for (var i = 0; i < acceptTypes.length; i++) {
