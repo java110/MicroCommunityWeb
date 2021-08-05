@@ -88,7 +88,7 @@
                         if (res.status == 200) {
                             //关闭model
                             vc.toast("处理成功");
-                            //vc.jumpToPage('/admin.html#/pages/property/roomCreateFee')
+                            vc.jumpToPage('/admin.html#/pages/property/assetImportLog')
                             return;
                         }
                         vc.toast(json, 10000);
