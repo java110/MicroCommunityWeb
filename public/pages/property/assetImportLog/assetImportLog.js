@@ -52,6 +52,12 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _goBack:function(){
+                vc.goBack();
+            },
+            _openDetail:function(_log){
+                vc.jumpToPage('/admin.html#/pages/property/assetImportLogDetail?logId='+_log.logId);
             }
         }
     });

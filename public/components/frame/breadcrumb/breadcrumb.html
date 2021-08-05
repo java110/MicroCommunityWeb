@@ -1,4 +1,4 @@
-<div id="breadcrumb" class="border-bottom white-bg page-heading">
+<div id="breadcrumb" class="border-bottom white-bg page-heading" v-if="breadCrumbs.length > 0">
     <div class="row">
         <div class="col-lg-12" style="margin-left: 5px;">
             <h2>{{breadCrumbs.length > 0 ? breadCrumbs[breadCrumbs.length-1].pageName : ''}}</h2>
