@@ -18,7 +18,9 @@
             }
         },
         _initMethod: function () {
-
+            vc.initDateTime('addBackTime', function (_value) {
+                $that.addReportInfoBackCityInfo.backTime = _value;
+            });
         },
         _initEvent: function () {
             vc.on('addReportInfoBackCity', 'openAddReportInfoBackCityModal', function () {
