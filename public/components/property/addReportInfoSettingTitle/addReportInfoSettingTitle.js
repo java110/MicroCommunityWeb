@@ -7,7 +7,7 @@
         },
         data: {
             addReportInfoSettingTitleInfo: {
-                titleId: '',
+                titleId: '0000',
                 titleType: '',
                 title: '',
                 seq: '',

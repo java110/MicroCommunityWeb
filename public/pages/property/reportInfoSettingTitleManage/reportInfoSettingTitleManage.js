@@ -16,7 +16,8 @@
                     titleType: '',
                     title: '',
                     titleId: '',
-                    settingid: ''
+                    settingid: '',
+                    communityId:vc.getCurrentCommunity().communityId
 
                 }
             }
