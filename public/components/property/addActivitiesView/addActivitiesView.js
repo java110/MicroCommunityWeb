@@ -10,7 +10,8 @@
                 context: '',
                 startTime: '',
                 endTime: '',
-                typeCds: []
+                typeCds: [],
+                isMoreCommunity:'N'
 
             }
         },
@@ -151,7 +152,8 @@
                     context: '',
                     startTime: '',
                     endTime: '',
-                    typeCds:_typeCds
+                    typeCds:_typeCds,
+                    isMoreCommunity:'N'
                 };
             },
             _initActivitiesInfo: function () {
