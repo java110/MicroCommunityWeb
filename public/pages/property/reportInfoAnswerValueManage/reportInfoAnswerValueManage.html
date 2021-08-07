@@ -16,15 +16,23 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">问卷人</th>
+                                <th class="text-center">提交着</th>
+                                <th class="text-center">项目</th>
+                                <th class="text-center">题目</th>
+                                <th class="text-center">说明</th>
                                 <th class="text-center">内容</th>
+                                <th class="text-center">类型</th>
                                 <th class="text-center">时间</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="value in questionAnswerTitleValueManageInfo.values">
+                            <tr v-for="value in reportInfoAnswerValueManageInfo.values">
                                 <td class="text-center">{{value.userName}}</td>
-                                <td class="text-center">{{value.qaValue}}</td>
+                                <td class="text-center">{{value.repName}}</td>
+                                <td class="text-center">{{value.repTitle}}</td>
+                                <td class="text-center">{{value.repValue}}</td>
+                                <td class="text-center">{{value.valueContent}}</td>
+                                <td class="text-center">{{value.repTypeName}}</td>
                                 <td class="text-center">{{value.createTime}}</td>
                             </tr>
                         </tbody>

@@ -6,7 +6,7 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            questionAnswerTitleValueManageInfo: {
+            reportInfoAnswerValueManageInfo: {
                 values: [],
                 total: 0,
                 records: 1,
@@ -16,7 +16,7 @@
         },
         _initMethod: function () {
             let _titleId = vc.getParam('titleId');
-            $that.questionAnswerTitleValueManageInfo.titleId = _titleId;
+            $that.reportInfoAnswerValueManageInfo.titleId = _titleId;
             vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -30,22 +30,22 @@
                     params: {
                         page:_page,
                         row:_rows,
-                        titleId:$that.questionAnswerTitleValueManageInfo.titleId,
+                        titleId:$that.reportInfoAnswerValueManageInfo.titleId,
                         communityId:vc.getCurrentCommunity().communityId
                     }
                 };
 
                 //发送get请求
-                vc.http.apiGet('/reportQuestionAnswer/queryUserQuestionAnswerValue',
+                vc.http.apiGet('/reportInfoAnswerValue/queryReportInfoAnswerValue',
                     param,
                     function (json, res) {
-                        var _questionAnswerTitleValueManageInfo = JSON.parse(json);
-                        vc.component.questionAnswerTitleValueManageInfo.total = _questionAnswerTitleValueManageInfo.total;
-                        vc.component.questionAnswerTitleValueManageInfo.records = _questionAnswerTitleValueManageInfo.records;
-                        vc.component.questionAnswerTitleValueManageInfo.values = _questionAnswerTitleValueManageInfo.data;
+                        var _reportInfoAnswerValueManageInfo = JSON.parse(json);
+                        vc.component.reportInfoAnswerValueManageInfo.total = _reportInfoAnswerValueManageInfo.total;
+                        vc.component.reportInfoAnswerValueManageInfo.records = _reportInfoAnswerValueManageInfo.records;
+                        vc.component.reportInfoAnswerValueManageInfo.values = _reportInfoAnswerValueManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.questionAnswerTitleValueManageInfo.records,
-                            dataCount: vc.component.questionAnswerTitleValueManageInfo.total,
+                            total: vc.component.reportInfoAnswerValueManageInfo.records,
+                            dataCount: vc.component.reportInfoAnswerValueManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

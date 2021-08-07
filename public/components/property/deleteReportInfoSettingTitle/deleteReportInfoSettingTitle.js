@@ -2,7 +2,7 @@
 
     vc.extends({
         data:{
-            deleteQuestionAnswerTitleInfo:{
+            deleteReportInfoSettingTitleInfo:{
 
             }
         },
@@ -10,19 +10,19 @@
 
          },
          _initEvent:function(){
-             vc.on('deleteQuestionAnswerTitle','openDeleteQuestionAnswerTitleModal',function(_params){
+             vc.on('deleteReportInfoSettingTitle','openDeleteReportInfoSettingTitleModal',function(_params){
 
-                vc.component.deleteQuestionAnswerTitleInfo = _params;
-                $('#deleteQuestionAnswerTitleModel').modal('show');
+                vc.component.deleteReportInfoSettingTitleInfo = _params;
+                $('#deleteReportInfoSettingTitleModel').modal('show');
 
             });
         },
         methods:{
-            deleteQuestionAnswerTitle:function(){
-                vc.component.deleteQuestionAnswerTitleInfo.communityId=vc.getCurrentCommunity().communityId;
+            deleteReportInfoSettingTitle:function(){
+                vc.component.deleteReportInfoSettingTitleInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'questionAnswerTitle.deleteQuestionAnswerTitle',
-                    JSON.stringify(vc.component.deleteQuestionAnswerTitleInfo),
+                    '/reportInfoSettingTitle/deleteSettingTitle',
+                    JSON.stringify(vc.component.deleteReportInfoSettingTitleInfo),
                     {
                         emulateJSON:true
                      },
@@ -31,8 +31,8 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#deleteQuestionAnswerTitleModel').modal('hide');
-                            vc.emit('questionAnswerTitleManage','listQuestionAnswerTitle',{});
+                            $('#deleteReportInfoSettingTitleModel').modal('hide');
+                            vc.emit('reportInfoSettingTitleManage','listReportInfoSettingTitle',{});
                             return ;
                         }
                         vc.message(_json.msg);
@@ -43,8 +43,8 @@
 
                      });
             },
-            closeDeleteQuestionAnswerTitleModel:function(){
-                $('#deleteQuestionAnswerTitleModel').modal('hide');
+            closeDeleteReportInfoSettingTitleModel:function(){
+                $('#deleteReportInfoSettingTitleModel').modal('hide');
             }
         }
     });

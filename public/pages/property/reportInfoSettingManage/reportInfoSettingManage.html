@@ -12,13 +12,13 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入问卷名称"
+                                <input type="text" placeholder="请输入项目名称"
                                     v-model="reportInfoSettingManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入问卷ID"
+                                <input type="text" placeholder="请输入项目ID"
                                     v-model="reportInfoSettingManageInfo.conditions.settingId" class=" form-control">
                             </div>
                         </div>
@@ -39,7 +39,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>问卷信息</h5>
+                    <h5>项目信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddReportInfoSettingModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -52,9 +52,9 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">问卷ID</th>
-                                <th class="text-center">问卷类型</th>
-                                <th class="text-center">问卷名称</th>
+                                <th class="text-center">项目ID</th>
+                                <th class="text-center">项目类型</th>
+                                <th class="text-center">项目名称</th>
                                 <th class="text-center">开始时间</th>
                                 <th class="text-center">结束时间</th>
                                 <th class="text-center">操作</th>
