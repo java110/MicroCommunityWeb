@@ -16,11 +16,14 @@
                                     v-model="reportInfoAnswerValueManageInfo.conditions.userName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入项目名称"
-                                    v-model="reportInfoAnswerValueManageInfo.conditions.repName" class=" form-control">
-                            </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.repName">
+                                <option selected value="">请输入项目名称</option>
+                                <option v-for="(item,index) in reportInfoAnswerValueManageInfo.reportInfoSettings" :key="index"
+                                        :value="item.name">{{item.name}}
+                                </option>
+                            </select>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">

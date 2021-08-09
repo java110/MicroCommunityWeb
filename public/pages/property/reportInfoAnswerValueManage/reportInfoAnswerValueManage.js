@@ -9,6 +9,7 @@
             reportInfoAnswerValueManageInfo: {
                 values: [],
                 total: 0,
+                reportInfoSettings:[],
                 records: 1,
                 moreCondition: false,
                 titleId: '',
@@ -24,6 +25,7 @@
         },
         _initMethod: function () {
             vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._listReportInfoSettings(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -52,6 +54,27 @@
                             dataCount: vc.component.reportInfoAnswerValueManageInfo.total,
                             currentPage: _page
                         });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listReportInfoSettings: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: _page,
+                        row: _rows,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                vc.http.apiGet('/reportInfoSetting/queryReportInfoSetting',
+                    param,
+                    function (json, res) {
+                        var _reportInfoSettingManageInfo = JSON.parse(json);
+                        vc.component.reportInfoAnswerValueManageInfo.total = _reportInfoSettingManageInfo.total;
+                        vc.component.reportInfoAnswerValueManageInfo.records = _reportInfoSettingManageInfo.records;
+                        vc.component.reportInfoAnswerValueManageInfo.reportInfoSettings = _reportInfoSettingManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
