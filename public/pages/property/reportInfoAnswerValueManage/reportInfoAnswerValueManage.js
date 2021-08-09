@@ -12,11 +12,17 @@
                 records: 1,
                 moreCondition: false,
                 titleId: '',
+                conditions:{
+                    userName:'',
+                    repName:'',
+                    repTitle:'',
+                    valueContent:'',
+                    communityId:vc.getCurrentCommunity().communityId
+
+                }
             }
         },
         _initMethod: function () {
-            let _titleId = vc.getParam('titleId');
-            $that.reportInfoAnswerValueManageInfo.titleId = _titleId;
             vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -26,13 +32,11 @@
         },
         methods: {
             _listQuestionAnswerTitles: function (_page, _rows) {
-                let param = {
-                    params: {
-                        page:_page,
-                        row:_rows,
-                        titleId:$that.reportInfoAnswerValueManageInfo.titleId,
-                        communityId:vc.getCurrentCommunity().communityId
-                    }
+
+                vc.component.reportInfoAnswerValueManageInfo.conditions.page = _page;
+                vc.component.reportInfoAnswerValueManageInfo.conditions.row = _rows;
+                var param = {
+                    params: vc.component.reportInfoAnswerValueManageInfo.conditions
                 };
 
                 //发送get请求
@@ -53,7 +57,9 @@
                     }
                 );
             },
-           
+            _queryReportInfoAnswerValueMethod: function(){
+                vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
             _goBack: function () {
                 vc.goBack();
             }

@@ -1,15 +1,58 @@
 <div>
     <div class="row">
         <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入提交着名称"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.userName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入项目名称"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.repName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入题目"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.repTitle" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入内容"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.valueContent" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryReportInfoAnswerValueMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>简答题</h5>
-                    <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm"
-                            v-on:click="_goBack()">
-                            返回
-                        </button>
-                    </div>
+                    <h5>疫情上报</h5>
+
                 </div>
                 <div class="ibox-content">
 
