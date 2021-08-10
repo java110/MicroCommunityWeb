@@ -14,6 +14,7 @@
                 discountId: '',
                 discountTypes: '',
                 conditions: {
+                    discountId: '',
                     discountName: '',
                     discountType: '',
                     ruleName: '',
@@ -44,6 +45,7 @@
                 };
                 param.params.discountName = param.params.discountName.trim();
                 param.params.ruleName = param.params.ruleName.trim();
+                param.params.discountId = param.params.discountId.trim();
                 //发送get请求
                 vc.http.apiGet('/feeDiscount/queryFeeDiscount',
                     param,
@@ -80,6 +82,7 @@
                 vc.component.feeDiscountManageInfo.conditions.discountName = "";
                 vc.component.feeDiscountManageInfo.conditions.discountType = "";
                 vc.component.feeDiscountManageInfo.conditions.ruleName = "";
+                vc.component.feeDiscountManageInfo.conditions.discountId = "";
                 vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

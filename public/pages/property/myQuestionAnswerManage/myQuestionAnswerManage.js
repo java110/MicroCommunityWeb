@@ -61,6 +61,13 @@
                 );
             },
             _toQuestionAnswerTitle: function (_questionAnswer) {
+                let now = new Date().getTime();
+                let start = new Date(_questionAnswer.startTime.replace(/-/g,'/')).getTime();
+                let end = new Date(_questionAnswer.endTime.replace(/-/g,'/')).getTime();
+                if(now < start || now > end){
+                    vc.toast('不在开放时段内！');
+                    return;
+                }
                 vc.jumpToPage('/admin.html#/pages/property/userQuestionAnswerManage?qaId=' 
                 + _questionAnswer.qaId + "&objType=" + _questionAnswer.objType 
                 + "&objId=" + _questionAnswer.objId 

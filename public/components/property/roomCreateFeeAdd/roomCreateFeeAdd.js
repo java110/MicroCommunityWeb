@@ -49,6 +49,7 @@
                         $that.roomCreateFeeAddInfo.roomState.push('2003');
                         $that.roomCreateFeeAddInfo.roomState.push('2004');
                         $that.roomCreateFeeAddInfo.roomState.push('2005');
+                        $that.roomCreateFeeAddInfo.roomState.push('2009');
                         $that.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum + '-' + room.unitNum + '-' + room.roomNum + '(' + room.ownerName + ')';
                     }
                     if (!_room.isMore && room.roomType == '2020602') {

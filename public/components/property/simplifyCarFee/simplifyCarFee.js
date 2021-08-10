@@ -57,6 +57,9 @@
                         payerObjId: vc.component.simplifyCarFeeInfo.carId
                     }
                 };
+                if(!vc.component.simplifyCarFeeInfo.carId){
+                    return;
+                }
                 //发送get请求
                 vc.http.get('listParkingSpaceFee',
                     'list',

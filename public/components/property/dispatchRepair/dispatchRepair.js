@@ -94,7 +94,7 @@
                             vc.emit('repairPoolManage', 'listRepairPool', {});
                             vc.emit('repairDispatchManage', 'listOwnerRepair', {});
                             vc.toast("操作成功");
-                        } else if(_json.code == 404){
+                        } else if(_json.code == 5010){
                             vc.toast(_json.msg);
                         }
                     },

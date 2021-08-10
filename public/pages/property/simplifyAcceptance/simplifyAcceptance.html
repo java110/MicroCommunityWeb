@@ -71,7 +71,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">性别：</label>
-                                <label class="">{{simplifyAcceptanceInfo.sex == 0 ? '男' : '女'}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.sex == '0' ? '男' : (simplifyAcceptanceInfo.sex == '1' ? '女' : ' ')}}</label>
                             </div>
                         </div>
                         <div class="col-sm-6">

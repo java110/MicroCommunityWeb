@@ -68,8 +68,8 @@
                         },
                         {
                             limit: "maxin",
-                            param: "2,50",
-                            errInfo: "报修人名称必须在2至50字符之间"
+                            param: "2,10",
+                            errInfo: "报修人名称必须在2至10字符之间"
                         },
                     ],
                     'addOwnerRepairInfo.tel': [

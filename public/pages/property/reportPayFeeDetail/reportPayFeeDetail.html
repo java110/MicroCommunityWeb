@@ -83,11 +83,33 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.feeTypeCd" @change="_selectConfig()">
+                                    <option selected value="">请选择费用类型</option>
+                                    <option v-for="(item,index) in reportPayFeeDetailInfo.feeTypeCds" :key="index"
+                                            :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportPayFeeDetailInfo.conditions.configId">
                                     <option selected value="">请选择收费项</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
                                         {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.state">
+                                    <option selected value="">请选择费用状态</option>
+                                    <option v-for="(item,index) in reportPayFeeDetailInfo.states" :key="index"
+                                            :value="item.statusCd">{{item.name}}
                                     </option>
                                 </select>
                             </div>
@@ -116,6 +138,8 @@
                             <th class="text-center">房号</th>
                             <th class="text-center">业主</th>
                             <th class="text-center">费用项</th>
+                            <th class="text-center">费用类型</th>
+                            <th class="text-center">费用状态</th>
                             <th class="text-center">支付方式</th>
                             <th class="text-center">费用开始时间</th>
                             <th class="text-center">费用结束时间</th>
@@ -135,6 +159,8 @@
                             <td class="text-center">{{fee.objName}}</td>
                             <td class="text-center">{{fee.ownerName}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
+                            <td class="text-center">{{fee.feeTypeCdName}}</td>
+                            <td class="text-center">{{fee.stateName}}</td>
                             <td class="text-center">{{fee.primeRate}}</td>
                             <td class="text-center">{{vc.dateFormat(fee.startTime)}}</td>
                             <td class="text-center" v-if="fee.startTime >= fee.endTime">{{vc.dateFormat(fee.endTime)}}

@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="payFeeManageInfo.conditions.payObjType">
-                                <option selected value="">请选择费用类型</option>
+                                <option selected value="">请选择收费对象</option>
                                 <option v-for="(item,index) in payFeeManageInfo.payObjTypes" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
