@@ -1,0 +1,46 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>详情</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
+                            返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny"
+                           data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">名称</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">错误描述</th>
+                            <th class="text-center">导入时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="log in assetImportLogDetailInfo.logs">
+                            <td class="text-center">{{log.objName}}</td>
+                            <td class="text-center">{{log.state}}</td>
+                            <td class="text-center">{{log.message}}</td>
+                            <td class="text-center">{{log.createTime}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

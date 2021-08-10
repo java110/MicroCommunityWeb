@@ -101,6 +101,7 @@
                             $that.printPayFeeInfo.feeReceipt.forEach(im =>{
                                 if(item.receiptId == im.receiptId){
                                     item.objName = im.objName;
+                                    item.feeTypeCd = im.feeTypeCd;
                                 }
                             })
                         })

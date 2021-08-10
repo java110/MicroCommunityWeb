@@ -61,6 +61,7 @@
                     </th>
                     <th class="text-center">费用类型</th>
                     <th class="text-center">{{_getFeeObjName(simplifyFeeReceiptInfo.objType)}}</th>
+                    <th class="text-center">费用项目</th>
                     <th class="text-center">总金额</th>
                     <th class="text-center">缴费时间</th>
                     <th class="text-center">收据ID</th>
@@ -74,6 +75,7 @@
                     </td>
                     <td class="text-center">{{_getFeeObjName(feeReceipt.objType)}}费</td>
                     <td class="text-center">{{feeReceipt.objName}}</td>
+                    <td class="text-center">{{feeReceipt.feeName}}</td>
                     <td class="text-center">{{feeReceipt.amount}}</td>
                     <td class="text-center">{{feeReceipt.createTime}}</td>
                     <td class="text-center">{{feeReceipt.receiptId}}</td>

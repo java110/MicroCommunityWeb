@@ -1,0 +1,99 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入提交着名称"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.userName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.repName">
+                                <option selected value="">请输入项目名称</option>
+                                <option v-for="(item,index) in reportInfoAnswerValueManageInfo.reportInfoSettings" :key="index"
+                                        :value="item.name">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入题目"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.repTitle" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入内容"
+                                    v-model="reportInfoAnswerValueManageInfo.conditions.valueContent" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryReportInfoAnswerValueMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>疫情上报</h5>
+
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">提交着</th>
+                                <th class="text-center">项目</th>
+                                <th class="text-center">题目</th>
+                                <th class="text-center">说明</th>
+                                <th class="text-center">内容</th>
+                                <th class="text-center">类型</th>
+                                <th class="text-center">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="value in reportInfoAnswerValueManageInfo.values">
+                                <td class="text-center">{{value.userName}}</td>
+                                <td class="text-center">{{value.repName}}</td>
+                                <td class="text-center">{{value.repTitle}}</td>
+                                <td class="text-center">{{value.repValue}}</td>
+                                <td class="text-center">{{value.valueContent}}</td>
+                                <td class="text-center">{{value.repTypeName}}</td>
+                                <td class="text-center">{{value.createTime}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

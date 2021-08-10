@@ -55,7 +55,7 @@
                 $that.listPayFeeOrderRoom();
             }
             // 修改为按照单价面积等，重新计算，此时可能未获取到映射数值，所以默认保留两位小数
-            vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(vc.getParam('squarePrice') * vc.getParam('builtUpArea') + vc.getParam('additionalAmount'));
+            vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(vc.getParam('feePrice'));
             vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
             //与字典表支付方式关联
             vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
@@ -77,7 +77,7 @@
                 }
                 // 用未格式化的总金额减优惠金额
                 // let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
-                let _totalFeePrice = parseFloat(_cycle) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
+                let _totalFeePrice = parseFloat(_cycle) * parseFloat($that.payFeeOrderInfo.feePrice);
                 if (_totalFeePrice < 0) {
                     return;
                 }
@@ -240,11 +240,8 @@
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
-                var price = parseFloat(_newCycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
-                console.log(price)
-                // var price = parseFloat(_newCycles) * parseFloat($that.payFeeOrderInfo.feePrice);
-                // 调整为根据映射 取整
-                // let unFixedNum = Math.floor(parseFloat(_newCycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
+                 let price = parseFloat(_newCycles) * parseFloat($that.payFeeOrderInfo.feePrice);
+
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 // 触发折扣组件，计算折扣
@@ -264,9 +261,7 @@
                 if (_cycles == '') {
                     return;
                 }
-                // var price = parseFloat(_cycles) * parseFloat($that.payFeeOrderInfo.feePrice);
-                var price = parseFloat(_cycles) * ((vc.component.payFeeOrderInfo.builtUpArea) * (vc.component.payFeeOrderInfo.squarePrice) + parseFloat(vc.component.payFeeOrderInfo.additionalAmount));
-                // let unFixedNum = Math.floor(parseFloat(_cycles) * parseFloat(vc.component.payFeeOrderInfo.feePrice) * 100) / 100;
+                let price = parseFloat(_cycles) * parseFloat($that.payFeeOrderInfo.feePrice);
                 vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
                 vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                 vc.emit('payFeeDiscount', 'computeFeeDiscount', {
