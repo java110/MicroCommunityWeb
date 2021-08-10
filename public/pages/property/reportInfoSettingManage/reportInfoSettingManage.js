@@ -95,13 +95,11 @@
                     },
                     function (json, res) {
                         let _json = JSON.parse(json);
-                        if (_json.code == 0) {
-                            //谈二维码
-                            $that._openRweiMaSettingModel(_json.codeUrl);
-                            $('#payFeeResult').modal('show');
-                            return;
-                        }
-                        vc.toast(_json.msg);
+                        //谈二维码
+                        $that._openRweiMaSettingModel(_json.codeUrl);
+                        $('#payFeeResult').modal('show');
+                        return;
+
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
