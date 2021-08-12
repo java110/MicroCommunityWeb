@@ -15,7 +15,7 @@
                 conditions: {
                     floorName: '',
                     configIds: '',
-                    payObjType: '3333',
+                    payObjType: '',
                     num: '',
                     billType: '00123'
                 },

@@ -88,7 +88,7 @@
                             <td class="text-center">{{applyRoomDiscount.startTime}}</td>
                             <td class="text-center">{{applyRoomDiscount.endTime}}</td>
                             <td class="text-center">{{applyRoomDiscount.stateName}}</td>
-                            <td class="text-center">{{applyRoomDiscount.isUse == '0' ? '未使用' : '已使用'}}</td>
+                            <td class="text-center">{{applyRoomDiscount.inUse == '0' ? '未使用' : '已使用'}}</td>
                             <td class="text-center">
                                 <div class="btn-group"
                                      v-if="applyRoomDiscount.state == '1' && vc.hasPrivilege('502021010723590006')">

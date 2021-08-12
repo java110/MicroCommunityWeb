@@ -221,6 +221,7 @@
                             vc.emit('listParkingSpaceFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});
                             vc.emit('simplifyCarFee', 'notify', {});
+                            vc.emit('addMeterWater', 'floorSelect2', 'clearFloor', {});
                             return;
                         }
                         vc.message(_json.msg);
