@@ -21,7 +21,7 @@
             deleteFeeCollectionOrder:function(){
                 vc.component.deleteFeeCollectionOrderInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'feeCollectionOrder.deleteFeeCollectionOrder',
+                    '/feeCollectionOrder/deleteFeeCollectionOrder',
                     JSON.stringify(vc.component.deleteFeeCollectionOrderInfo),
                     {
                         emulateJSON:true

@@ -24,8 +24,9 @@
             vc.component._listAuditOrderHistorys(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
-        
+            vc.on('pagination', 'page_event', function (_currentPage) {
+                vc.component._listAuditOrderHistorys(_currentPage, DEFAULT_ROWS);
+            });
         },
         methods: {
             _listAuditOrderHistorys: function (_page, _rows) {

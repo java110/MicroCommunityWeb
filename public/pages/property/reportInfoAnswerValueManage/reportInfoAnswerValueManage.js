@@ -6,18 +6,26 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            questionAnswerTitleValueManageInfo: {
+            reportInfoAnswerValueManageInfo: {
                 values: [],
                 total: 0,
+                reportInfoSettings:[],
                 records: 1,
                 moreCondition: false,
                 titleId: '',
+                conditions:{
+                    userName:'',
+                    repName:'',
+                    repTitle:'',
+                    valueContent:'',
+                    communityId:vc.getCurrentCommunity().communityId
+
+                }
             }
         },
         _initMethod: function () {
-            let _titleId = vc.getParam('titleId');
-            $that.questionAnswerTitleValueManageInfo.titleId = _titleId;
             vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._listReportInfoSettings(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -26,26 +34,24 @@
         },
         methods: {
             _listQuestionAnswerTitles: function (_page, _rows) {
-                let param = {
-                    params: {
-                        page:_page,
-                        row:_rows,
-                        titleId:$that.questionAnswerTitleValueManageInfo.titleId,
-                        communityId:vc.getCurrentCommunity().communityId
-                    }
+
+                vc.component.reportInfoAnswerValueManageInfo.conditions.page = _page;
+                vc.component.reportInfoAnswerValueManageInfo.conditions.row = _rows;
+                var param = {
+                    params: vc.component.reportInfoAnswerValueManageInfo.conditions
                 };
 
                 //发送get请求
-                vc.http.apiGet('/reportQuestionAnswer/queryUserQuestionAnswerValue',
+                vc.http.apiGet('/reportInfoAnswerValue/queryReportInfoAnswerValue',
                     param,
                     function (json, res) {
-                        var _questionAnswerTitleValueManageInfo = JSON.parse(json);
-                        vc.component.questionAnswerTitleValueManageInfo.total = _questionAnswerTitleValueManageInfo.total;
-                        vc.component.questionAnswerTitleValueManageInfo.records = _questionAnswerTitleValueManageInfo.records;
-                        vc.component.questionAnswerTitleValueManageInfo.values = _questionAnswerTitleValueManageInfo.data;
+                        var _reportInfoAnswerValueManageInfo = JSON.parse(json);
+                        vc.component.reportInfoAnswerValueManageInfo.total = _reportInfoAnswerValueManageInfo.total;
+                        vc.component.reportInfoAnswerValueManageInfo.records = _reportInfoAnswerValueManageInfo.records;
+                        vc.component.reportInfoAnswerValueManageInfo.values = _reportInfoAnswerValueManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.questionAnswerTitleValueManageInfo.records,
-                            dataCount: vc.component.questionAnswerTitleValueManageInfo.total,
+                            total: vc.component.reportInfoAnswerValueManageInfo.records,
+                            dataCount: vc.component.reportInfoAnswerValueManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -53,7 +59,30 @@
                     }
                 );
             },
-           
+            _listReportInfoSettings: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: _page,
+                        row: _rows,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                vc.http.apiGet('/reportInfoSetting/queryReportInfoSetting',
+                    param,
+                    function (json, res) {
+                        var _reportInfoSettingManageInfo = JSON.parse(json);
+                        vc.component.reportInfoAnswerValueManageInfo.total = _reportInfoSettingManageInfo.total;
+                        vc.component.reportInfoAnswerValueManageInfo.records = _reportInfoSettingManageInfo.records;
+                        vc.component.reportInfoAnswerValueManageInfo.reportInfoSettings = _reportInfoSettingManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _queryReportInfoAnswerValueMethod: function(){
+                vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
             _goBack: function () {
                 vc.goBack();
             }

@@ -2,35 +2,35 @@
 
     vc.extends({
         data: {
-            editQuestionAnswerTitleInfo: {
+            editReportInfoSettingTitleInfo: {
                 titleId: '',
                 titleType: '',
-                qaTitle: '',
+                title: '',
                 seq: '',
-                qaId: '',
-                objId: '',
-                objType: '',
+                settingId: '',
                 titleValues: []
+                
             }
         },
         _initMethod: function () {
 
         },
         _initEvent: function () {
-            vc.on('editQuestionAnswerTitle', 'openEditQuestionAnswerTitleModal', function (_params) {
-                vc.component.refreshEditQuestionAnswerTitleInfo();
-                $('#editQuestionAnswerTitleModel').modal('show');
-                vc.copyObject(_params, vc.component.editQuestionAnswerTitleInfo);
-                $that.editQuestionAnswerTitleInfo.titleValues = _params.questionAnswerTitleValues;
-                vc.component.editQuestionAnswerTitleInfo.communityId = vc.getCurrentCommunity().communityId;
+            vc.on('editReportInfoSettingTitle', 'openEditReportInfoSettingTitleModal', function (_params) {
+                vc.component.refreshEditReportInfoSettingTitleInfo();
+                $('#editReportInfoSettingTitleModel').modal('show');
+                vc.copyObject(_params, vc.component.editReportInfoSettingTitleInfo);
+                console.log(_params);
+                $that.editReportInfoSettingTitleInfo.titleValues = _params.reportInfoSettingTitleValueDtos;
+                vc.component.editReportInfoSettingTitleInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
         methods: {
-            editQuestionAnswerTitleValidate: function () {
+            editReportInfoSettingTitleValidate: function () {
                 return vc.validate.validate({
-                    editQuestionAnswerTitleInfo: vc.component.editQuestionAnswerTitleInfo
+                    editReportInfoSettingTitleInfo: vc.component.editReportInfoSettingTitleInfo
                 }, {
-                    'editQuestionAnswerTitleInfo.titleType': [
+                    'editReportInfoSettingTitleInfo.titleType': [
                         {
                             limit: "required",
                             param: "",
@@ -42,7 +42,7 @@
                             errInfo: "题目类型格式错误"
                         },
                     ],
-                    'editQuestionAnswerTitleInfo.qaTitle': [
+                    'editReportInfoSettingTitleInfo.title': [
                         {
                             limit: "required",
                             param: "",
@@ -54,7 +54,7 @@
                             errInfo: "问卷题目太长"
                         },
                     ],
-                    'editQuestionAnswerTitleInfo.seq': [
+                    'editReportInfoSettingTitleInfo.seq': [
                         {
                             limit: "required",
                             param: "",
@@ -66,7 +66,7 @@
                             errInfo: "顺序必须是数字"
                         },
                     ],
-                    'editQuestionAnswerTitleInfo.titleId': [
+                    'editReportInfoSettingTitleInfo.titleId': [
                         {
                             limit: "required",
                             param: "",
@@ -75,15 +75,15 @@
 
                 });
             },
-            editQuestionAnswerTitle: function () {
-                if (!vc.component.editQuestionAnswerTitleValidate()) {
+            editReportInfoSettingTitle: function () {
+                if (!vc.component.editReportInfoSettingTitleValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
 
                 vc.http.apiPost(
-                    '/questionAnswer/updateQuestionAnswerTitle',
-                    JSON.stringify(vc.component.editQuestionAnswerTitleInfo),
+                    '/reportInfoSettingTitle/updateSettingTitle',
+                    JSON.stringify(vc.component.editReportInfoSettingTitleInfo),
                     {
                         emulateJSON: true
                     },
@@ -92,8 +92,8 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#editQuestionAnswerTitleModel').modal('hide');
-                            vc.emit('questionAnswerTitleManage', 'listQuestionAnswerTitle', {});
+                            $('#editReportInfoSettingTitleModel').modal('hide');
+                            vc.emit('reportInfoSettingTitleManage', 'listReportInfoSettingTitle', {});
                             return;
                         }
                         vc.message(_json.msg);
@@ -104,22 +104,21 @@
                         vc.message(errInfo);
                     });
             },
-            refreshEditQuestionAnswerTitleInfo: function () {
-                vc.component.editQuestionAnswerTitleInfo = {
+            refreshEditReportInfoSettingTitleInfo: function () {
+                vc.component.editReportInfoSettingTitleInfo = {
                     titleId: '',
                     titleType: '',
-                    qaTitle: '',
+                    title: '',
                     seq: '',
-                    objId: '',
-                    objType: '',
+                    settingId: '',
                     titleValues: []
                 }
             },
             _addEditTitleValue: function () {
-                $that.editQuestionAnswerTitleInfo.titleValues.push(
+                $that.editReportInfoSettingTitleInfo.titleValues.push(
                     {
                         qaValue: '',
-                        seq: $that.editQuestionAnswerTitleInfo.titleValues.length + 1
+                        seq: $that.editReportInfoSettingTitleInfo.titleValues.length + 1
                     }
                 );
             },
@@ -127,7 +126,7 @@
                 console.log(_seq);
 
                 let _newTitleValues = [];
-                let _tmpTitleValues = $that.editQuestionAnswerTitleInfo.titleValues;
+                let _tmpTitleValues = $that.editReportInfoSettingTitleInfo.titleValues;
                 _tmpTitleValues.forEach(item => {
                     if (item.seq != _seq) {
                         _newTitleValues.push({
@@ -137,7 +136,7 @@
                     }
                 });
 
-                $that.editQuestionAnswerTitleInfo.titleValues = _newTitleValues;
+                $that.editReportInfoSettingTitleInfo.titleValues = _newTitleValues;
             }
         }
     });

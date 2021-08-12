@@ -28,8 +28,7 @@
             vc.component._listReportInfoSettingTitles(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
-            vc.on('reportInfoSettingTitleManage', 'listreportInfoSettingTitle', function (_param) {
+            vc.on('reportInfoSettingTitleManage', 'listReportInfoSettingTitle', function (_param) {
                 vc.component._listReportInfoSettingTitles(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -69,10 +68,10 @@
                 });
             },
             _openEditReportInfoSettingTitleModel: function (_reportInfoSettingTitle) {
-                vc.emit('editreportInfoSettingTitle', 'openEditreportInfoSettingTitleModal', _reportInfoSettingTitle);
+                vc.emit('editReportInfoSettingTitle', 'openEditReportInfoSettingTitleModal', _reportInfoSettingTitle);
             },
             _openDeleteReportInfoSettingTitleModel: function (_reportInfoSettingTitle) {
-                vc.emit('deletereportInfoSettingTitle', 'openDeletereportInfoSettingTitleModal', _reportInfoSettingTitle);
+                vc.emit('deleteReportInfoSettingTitle', 'openDeleteReportInfoSettingTitleModal', _reportInfoSettingTitle);
             },
             _queryReportInfoSettingTitleMethod: function () {
                 vc.component._listReportInfoSettingTitles(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -98,10 +97,10 @@
                 }
             },
             _openQuestionValueModel:function(_reportInfoSettingTitle){
-                vc.emit('questionValue','openQuestionValueModel',_reportInfoSettingTitle);
+                vc.emit('reportInfoSettingTitleValue','openreportInfoSettingTitleValueModel',_reportInfoSettingTitle);
             },
             _toQuestionValueModel:function(_reportInfoSettingTitle){
-                vc.jumpToPage('/admin.html#/pages/property/reportInfoSettingTitleValueManage?titleId='+_reportInfoSettingTitle.titleId)
+                vc.jumpToPage('/admin.html#/pages/property/reportInfoAnswerValueManage?titleId='+_reportInfoSettingTitle.titleId)
             }
 
 

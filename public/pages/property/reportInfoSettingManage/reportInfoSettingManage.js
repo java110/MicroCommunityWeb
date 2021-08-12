@@ -79,6 +79,50 @@
                 } else {
                     vc.component.reportInfoSettingManageInfo.moreCondition = true;
                 }
+            },
+            _payInGoOut: function (_reportInfoSetting) {
+
+                let _data = {
+                    settingId: _reportInfoSetting.settingId,
+                    communityId: vc.getCurrentCommunity().communityId
+                }
+
+                vc.http.apiPost(
+                    '/payment/toQrInGoOutPay',
+                    JSON.stringify(_data),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        //谈二维码
+                        $that._openRweiMaSettingModel(_json.codeUrl);
+                        $('#payFeeResult').modal('show');
+                        return;
+
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    }
+                );
+            },
+            _back: function () {
+                $('#payFeeResult').modal('hide');
+            },
+            _openRweiMaSettingModel: function(_url){
+
+                document.getElementById("qrcode").innerHTML="";
+                let qrcode = new QRCode(document.getElementById("qrcode"), {
+                    text: "出入登记",  //你想要填写的文本
+                    width: 200, //生成的二维码的宽度
+                    height: 200, //生成的二维码的高度
+                    colorDark: "#000000", // 生成的二维码的深色部分
+                    colorLight: "#ffffff", //生成二维码的浅色部分
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                console.log(_url);
+                qrcode.makeCode(_url);
             }
 
 

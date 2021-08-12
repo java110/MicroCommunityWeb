@@ -33,7 +33,7 @@
                 roomSubTypeName: '',
                 roomSubType: '',
                 roomArea:'',
-                sex: 0,
+                sex: '',
                 roomRent:''
             }
         },
@@ -197,7 +197,7 @@
                     feeCoefficient: '',
                     stateName: '',
                     roomName: '',
-                    sex: 0,
+                    sex: '',
                     ownerRemark: '',
                     roomRemark: '',
                     roomType: '',

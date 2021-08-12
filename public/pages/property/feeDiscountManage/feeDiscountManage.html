@@ -5,29 +5,33 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{feeDiscountManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
+                                <input type="text" placeholder="请输入折扣ID"
+                                       v-model="feeDiscountManageInfo.conditions.discountId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
                                 <input type="text" placeholder="请输入折扣名称"
                                        v-model="feeDiscountManageInfo.conditions.discountName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="feeDiscountManageInfo.conditions.discountType">
                                 <option selected value="">请选择折扣类型</option>
                                 <option v-for="(item,index) in feeDiscountManageInfo.discountTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入规则名称"
-                                       v-model="feeDiscountManageInfo.conditions.ruleName" class=" form-control">
-                            </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeDiscountMethod()">
@@ -36,6 +40,14 @@
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetFeeDiscountMethod()">
                                 <i class="fa fa-repeat"></i> 重置
                             </button>
+                        </div>
+                    </div>
+                    <div class="row"  v-show="feeDiscountManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入规则名称"
+                                       v-model="feeDiscountManageInfo.conditions.ruleName" class=" form-control">
+                            </div>
                         </div>
                     </div>
                 </div>

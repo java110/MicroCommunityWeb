@@ -227,7 +227,8 @@
                     params: {
                         page: 1,
                         row: 1,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        flag: 0
                     }
                 };
                 if (_allNum.split('-').length == 3) {

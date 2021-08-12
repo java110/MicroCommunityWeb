@@ -20,7 +20,8 @@
                 feeTypeCd: '',
                 roomType:'',
                 state: '2008001',
-                totalAmount:0.0
+                totalAmount:0.0,
+                roomType: ''
             }
         },
         _initMethod: function () {
@@ -203,7 +204,8 @@
                     feeTypeCd: '',
                     configId: '',
                     state: '2008001',
-                    totalAmount: 0.0
+                    totalAmount: 0.0,
+                    roomType: '',
                 }
             },
             _changeSimplifyRoomFeeFeeTypeCd: function (_feeTypeCd) {

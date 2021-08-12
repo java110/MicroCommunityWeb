@@ -64,13 +64,15 @@
                         <tr>
                             <th class="text-center">申请ID</th>
                             <th class="text-center">房屋(楼栋-单元-房屋)</th>
-                            <th class="text-center">优惠ID</th>
+                            <th class="text-center">折扣ID</th>
+                            <th class="text-center">折扣名称</th>
                             <th class="text-center">申请类型</th>
                             <th class="text-center">申请人</th>
                             <th class="text-center">申请电话</th>
                             <th class="text-center">开始时间</th>
                             <th class="text-center">结束时间</th>
                             <th class="text-center">状态</th>
+                            <th class="text-center">使用状态</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
@@ -79,12 +81,14 @@
                             <td class="text-center">{{applyRoomDiscount.ardId}}</td>
                             <td class="text-center">{{applyRoomDiscount.roomName}}</td>
                             <td class="text-center">{{applyRoomDiscount.discountId}}</td>
+                            <td class="text-center">{{applyRoomDiscount.discountName}}</td>
                             <td class="text-center">{{applyRoomDiscount.applyTypeName}}</td>
                             <td class="text-center">{{applyRoomDiscount.createUserName}}</td>
                             <td class="text-center">{{applyRoomDiscount.createUserTel}}</td>
                             <td class="text-center">{{applyRoomDiscount.startTime}}</td>
                             <td class="text-center">{{applyRoomDiscount.endTime}}</td>
                             <td class="text-center">{{applyRoomDiscount.stateName}}</td>
+                            <td class="text-center">{{applyRoomDiscount.isUse == '0' ? '未使用' : '已使用'}}</td>
                             <td class="text-center">
                                 <div class="btn-group"
                                      v-if="applyRoomDiscount.state == '1' && vc.hasPrivilege('502021010723590006')">
@@ -108,7 +112,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="10">
+                            <td colspan="12">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
