@@ -10,7 +10,7 @@ var ACTIVITI = ACTIVITI || {};
 
 ACTIVITI.CONFIG = {
 	'onPremise' : true,
-	'contextRoot' : '/service',
+	'contextRoot' : '/',
 	'webContextRoot' : '/activiti-app'
 };
 /*
