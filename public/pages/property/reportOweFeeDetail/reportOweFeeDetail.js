@@ -13,6 +13,8 @@
                 moreCondition: false,
                 title: '',
                 roomUnits: [],
+                totalPreferentialAmount:0.0,
+                allOweAmount:0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -130,6 +132,18 @@
                         vc.component.reportOweFeeDetailInfo.total = _reportOweFeeDetailInfo.total;
                         vc.component.reportOweFeeDetailInfo.records = _reportOweFeeDetailInfo.records;
                         vc.component.reportOweFeeDetailInfo.fees = _reportOweFeeDetailInfo.data;
+
+                         //计算小计
+                         let _totalPreferentialAmount=0.0;
+                        
+                         _reportOweFeeDetailInfo.data.forEach(item => {
+                             _totalPreferentialAmount += parseFloat(item.oweAmount);
+                         });
+ 
+                         $that.reportOweFeeDetailInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+                         if(_reportOweFeeDetailInfo.data.length>0){
+                             $that.reportOweFeeDetailInfo.allOweAmount = _reportOweFeeDetailInfo.data[0].allOweAmount;
+                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportOweFeeDetailInfo.records,
                             dataCount: vc.component.reportOweFeeDetailInfo.total,

@@ -13,6 +13,12 @@
                 moreCondition: false,
                 title: '',
                 roomUnits: [],
+                totalReceivableAmount:0.0,
+                allReceivableAmount:0.0,
+                totalReceivedAmount:0.0,
+                allReceivedAmount:0.0,
+                totalPreferentialAmount:0.0,
+                allOweAmount:0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -110,6 +116,27 @@
                         vc.component.reportFeeSummaryInfo.total = _reportFeeSummaryInfo.total;
                         vc.component.reportFeeSummaryInfo.records = _reportFeeSummaryInfo.records;
                         vc.component.reportFeeSummaryInfo.fees = _reportFeeSummaryInfo.data;
+                        //计算小计
+                        let _totalReceivableAmount=0.0;
+                        let _totalReceivedAmount=0.0;
+                        let _totalPreferentialAmount=0.0;
+                       
+                        _reportFeeSummaryInfo.data.forEach(item => {
+                            _totalReceivableAmount += parseFloat(item.receivableAmount);
+                            _totalReceivedAmount += parseFloat(item.receivedAmount);
+                            _totalPreferentialAmount += parseFloat(item.oweAmount);
+                        });
+
+                        $that.reportFeeSummaryInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
+                        $that.reportFeeSummaryInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
+                        $that.reportFeeSummaryInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+
+                        if(_reportFeeSummaryInfo.data.length>0){
+                            $that.reportFeeSummaryInfo.allReceivableAmount = _reportFeeSummaryInfo.data[0].allReceivableAmount;
+                            $that.reportFeeSummaryInfo.allReceivedAmount = _reportFeeSummaryInfo.data[0].allReceivedAmount;
+                            $that.reportFeeSummaryInfo.allOweAmount = _reportFeeSummaryInfo.data[0].allOweAmount;
+                        }
+
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeSummaryInfo.records,
                             dataCount: vc.component.reportFeeSummaryInfo.total,
