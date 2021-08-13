@@ -1,0 +1,78 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <!--费用类型-->
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="reportHuaningInfo.conditions.feeTypeCd"
+                                @click="_changeReporficientFeeTypeCd()">
+                                <option selected value="">请选择收费类型</option>
+                                <option v-for="(item,index) in reportHuaningInfo.feeTypeCds" :key="index"
+                                    v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <!-- @click="_changeReporficientConfigId()"-->
+                                <select class="form-control-md form-control input-s-sm inline"
+                                    v-model="reportHuaningInfo.conditions.configId">
+                                    <option selected value="">请选择收费项</option>
+                                    <option v-for="(item,index) in reportHuaningInfo.feeConfigDtos" :key="index"
+                                        :value="item.configId">
+                                        {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-md"
+                                    :placeholder="_getReportProficientRoomName()"
+                                    v-model="reportHuaningInfo.conditions.objName">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <i class="fa fa-search"></i>查询
+                            </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-bg margin-top padding-lg">
+        <div class="">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFee'}"
+                        v-on:click="changeTab('reportHuaningOweFee')">未收情况表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningCarFee'}"
+                        v-on:click="changeTab('reportHuaningCarFee')">当月收费情况表</a>
+                </li>
+            </ul>
+        </div>
+        <div v-if="reportHuaningInfo._currentTab == 'reportHuaningOweFee'">
+            <vc:create path="property/reportHuaningOweFee"></vc:create>
+        </div>
+        <!-- 
+        <div v-if="reportHuaningInfo._currentTab == 'reportHuaningCarFee'">
+            <vc:create path="property/reportHuaningCarFee"></vc:create>
+        </div> -->
+    </div>
+</div>
