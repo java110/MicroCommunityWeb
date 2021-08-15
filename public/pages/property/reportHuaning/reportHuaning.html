@@ -87,6 +87,10 @@
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFeeTwo'}"
                         v-on:click="changeTab('reportHuaningPayFeeTwo')">当月收费情况表2</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFeeDetail'}"
+                        v-on:click="changeTab('reportHuaningOweFeeDetail')">物业费欠费明细表</a>
+                </li>
             </ul>
         </div>
         <div v-if="reportHuaningInfo._currentTab == 'reportHuaningOweFee'">
@@ -99,5 +103,9 @@
         <div v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFeeTwo'">
             <vc:create path="property/reportHuaningPayFeeTwo"></vc:create>
         </div>
+        <div v-if="reportHuaningInfo._currentTab == 'reportHuaningOweFeeDetail'">
+            <vc:create path="property/reportHuaningOweFeeDetail"></vc:create>
+        </div>
+        
     </div>
 </div>

@@ -1,0 +1,44 @@
+<div>
+    <div class="margin-top">
+        <div class="row">
+            <div class="col-sm-12 margin-lr-0 padding-lr-0">
+                <table class="footable table table-stripped " style="margin-top:10px" data-page-size="10">
+                    <thead>
+                        <tr>
+                            <th class="text-center " style="border-bottom: none;">房号</th>
+                            <th class="text-center" style="border-bottom: none;">面积</th>
+                            <th class="text-center " style="border-bottom: none;">单价</th>
+                            <th class="text-center " style="border-bottom: none;">月收费</th>
+                            <th class="text-center " style="border-bottom: none;">费用开始时间</th>
+                            <th class="text-center " style="border-bottom: none;">费用截止时间</th>
+                            <th class="text-center " style="border-bottom: none;">总未收金额</th>
+                            <th class="text-center " style="border-bottom: none;">2021年1-7月未收金额</th>
+                            <th class="text-center " style="border-bottom: none;">2021年前未收金额</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="fee in reportHuaningOweFeeDetailInfo.fees">
+                            <td class="text-center ">{{fee.payerObjName}}</td>
+                            <td class="text-center ">{{fee.builtUpArea}}</td>
+                            <td class="text-center ">{{fee.squarePrice}}</td>
+                            <td class="text-center">{{_getMonthFee(fee)}}</td>
+                            <td class="text-center">{{fee.startTime}}</td>
+                            <td class="text-center">{{fee.endTime}}</td>
+                            <td class="text-center">{{fee.oweAmount}}</td>
+                            <td class="text-center">{{fee.btAmount}}</td>
+                            <td class="text-center">{{fee.bfAmount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <span> </span>
+            </div>
+            <div class="col-sm-7 float-right">
+                <vc:create namespace="reportHuaningOweFeeDetail" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>
