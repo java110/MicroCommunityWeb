@@ -35,9 +35,14 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-md"
-                                    :placeholder="_getReportProficientRoomName()"
-                                    v-model="reportHuaningInfo.conditions.objName">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                    v-model="reportHuaningInfo.conditions.floorNum">
+                                    <option selected value="">请选择楼栋</option>
+                                    <option v-for="(item,index) in reportHuaningInfo.floors" :key="index"
+                                        :value="item.floorNum">
+                                        {{item.floorNum}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -48,6 +53,19 @@
                                 style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i>重置
                             </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--费用类型-->
+                        <div class="col-sm-3" v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFee'">
+                            <input type="text" placeholder="请填写年份" class="form-control form-control-md"
+                                       v-model="reportHuaningInfo.conditions.year">
+                        </div>
+                        <div class="col-sm-3" v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFee'">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写月份" class="form-control form-control-md"
+                                v-model="reportHuaningInfo.conditions.month">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,17 +80,24 @@
                         v-on:click="changeTab('reportHuaningOweFee')">未收情况表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningCarFee'}"
-                        v-on:click="changeTab('reportHuaningCarFee')">当月收费情况表</a>
+                    <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFee'}"
+                        v-on:click="changeTab('reportHuaningPayFee')">当月收费情况表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFeeTwo'}"
+                        v-on:click="changeTab('reportHuaningPayFeeTwo')">当月收费情况表2</a>
                 </li>
             </ul>
         </div>
         <div v-if="reportHuaningInfo._currentTab == 'reportHuaningOweFee'">
             <vc:create path="property/reportHuaningOweFee"></vc:create>
         </div>
-        <!-- 
-        <div v-if="reportHuaningInfo._currentTab == 'reportHuaningCarFee'">
-            <vc:create path="property/reportHuaningCarFee"></vc:create>
-        </div> -->
+        
+        <div v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFee'">
+            <vc:create path="property/reportHuaningPayFee"></vc:create>
+        </div>
+        <div v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFeeTwo'">
+            <vc:create path="property/reportHuaningPayFeeTwo"></vc:create>
+        </div>
     </div>
 </div>

@@ -20,21 +20,21 @@
         _initEvent: function () {
             //切换 至费用页面
             vc.on('reportHuaningOweFee', 'switch', function (_param) {
-                $that.clearReportProficientRoomFeeInfo();
+                $that.clearReportHuaningOweFeeInfo();
                 $that.reportHuaningOweFeeInfo.conditions = _param;
                 console.log($that.reportHuaningOweFeeInfo.conditions)
-                $that._listReportProficientRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listReportHuaningOweFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('reportHuaningOweFee', 'notify', function () {
-                $that._listReportProficientRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listReportHuaningOweFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('reportHuaningOweFee', 'paginationPlus', 'page_event',
                 function (_currentPage) {
-                    vc.component._listReportProficientRoomFee(_currentPage, DEFAULT_ROWS);
+                    vc.component._listReportHuaningOweFee(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
-            _listReportProficientRoomFee: function (_page, _row) {
+            _listReportHuaningOweFee: function (_page, _row) {
                 $that.reportHuaningOweFeeInfo.conditions.page = _page;
                 $that.reportHuaningOweFeeInfo.conditions.row = _row;
                 $that.reportHuaningOweFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -80,7 +80,7 @@
                 });
                 return _value;
             },
-            clearReportProficientRoomFeeInfo: function () {
+            clearReportHuaningOweFeeInfo: function () {
                 $that.reportHuaningOweFeeInfo = {
                     fees: [],
                     roomId: '',
@@ -115,7 +115,7 @@
                 return year + "年前未收金额";
             },
             _getPreAmount:function(_fee){
-                return parseFloat(_fee.oweAmount) - parseFloat(_fee.curOweAmount);
+                return (parseFloat(_fee.oweAmount) - parseFloat(_fee.curOweAmount)).toFixed(2);
             }
         }
     });

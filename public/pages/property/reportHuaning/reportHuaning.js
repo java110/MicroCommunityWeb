@@ -13,12 +13,13 @@
                 _currentTab: 'reportHuaningOweFee',
                 feeTypeCds: [],
                 feeConfigDtos: [],
+                floors: [],
                 conditions: {
                     configId: '',
                     feeTypeCd: '',
-                    startTime: '',
-                    endTime: '',
-                    objName: ''
+                    floorNum: '',
+                    year: new Date().getFullYear(),
+                    month: new Date().getMonth() + 1
                 }
             }
         },
@@ -28,6 +29,7 @@
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.reportHuaningInfo.feeTypeCds = _data;
             });
+            $that._listFloorData();
         },
         _initEvent: function () {
             vc.on("indexContext", "_queryIndexContextData", function (_param) {
@@ -43,7 +45,7 @@
                 let param = {
                     params: {
                         page: 1,
-                        row: 50,
+                        row: 100,
                         communityId: vc.getCurrentCommunity().communityId,
                         feeTypeCd: $that.reportHuaningInfo.conditions.feeTypeCd,
                         isDefault: '',
@@ -95,7 +97,29 @@
                     + "&feeTypeCd=" + $that.reportHuaningInfo.conditions.feeTypeCd
                     + "&objType=" + _objType
                     + "&pagePath=reportYearCollection");
-            }
+            },
+            _listFloorData: function (_page, _rows) {
+                var param = {
+                    params: {
+                        communityId:vc.getCurrentCommunity().communityId,
+                        row:50,
+                        page:1
+                    }
+                };
+
+                //发送get请求
+                vc.http.get('listFloor',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var listFloorData = JSON.parse(json);
+                        vc.component.reportHuaningInfo.floors = listFloorData.apiFloorDataVoList;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+
+            },
         }
     })
 })(window.vc);

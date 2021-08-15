@@ -1,0 +1,38 @@
+<div>
+    <div class="margin-top">
+        <div class="row">
+            <div class="col-sm-12 margin-lr-0 padding-lr-0">
+                <table class="footable table table-stripped " style="margin-top:10px" data-page-size="10">
+                    <thead>
+                        <tr>
+                            <th class="text-center " style="border-bottom: none;">楼栋号</th>
+                            <th class="text-center" style="border-bottom: none;">应收</th>
+                            <th class="text-center " style="border-bottom: none;">已收</th>
+                            <th class="text-center " style="border-bottom: none;">促收优惠</th>
+                            <th class="text-center " style="border-bottom: none;">未收</th>
+                            <th class="text-center " style="border-bottom: none;">预收</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="fee in reportHuaningPayFeeTwoInfo.fees">
+                            <td class="text-center ">{{fee.floorNum}}</td>
+                            <td class="text-center ">{{fee.receivableAmount}}</td>
+                            <td class="text-center ">{{fee.receivedAmount}}</td>
+                            <td class="text-center">{{fee.receivedAmount1}}</td>
+                            <td class="text-center">{{fee.receivedAmount2}}</td>
+                            <td class="text-center">{{fee.receivedAmount3}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <span> </span>
+            </div>
+            <div class="col-sm-7 float-right">
+                <vc:create namespace="reportHuaningPayFeeTwo" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>
