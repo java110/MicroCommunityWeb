@@ -73,6 +73,9 @@
                     dateStr: vc.dateFormat(new Date().getTime())
                 }
             },
+            _getOweFeeTwo:function(_fee){
+               return  _fee.receivedAmount2 + _fee.receivableAmount - _fee.receivedAmount - _fee.receivedAmount1;
+            }
         }
     });
 })(window.vc);
