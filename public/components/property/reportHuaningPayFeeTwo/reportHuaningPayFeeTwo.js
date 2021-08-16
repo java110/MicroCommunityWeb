@@ -83,7 +83,7 @@
                     return 0;
                 }
 
-                return _temp;
+                return _temp.toFixed(2);
             }
         }
     });
