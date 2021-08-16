@@ -19,9 +19,8 @@
         },
         methods: {
             deleteOaWorkflow: function () {
-                vc.component.deleteOaWorkflowInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'oaWorkflow.deleteOaWorkflow',
+                    '/oaWorkflow/deleteOaWorkflow',
                     JSON.stringify(vc.component.deleteOaWorkflowInfo),
                     {
                         emulateJSON: true

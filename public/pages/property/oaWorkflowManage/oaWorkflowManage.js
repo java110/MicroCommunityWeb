@@ -41,7 +41,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('oaWorkflow.listOaWorkflows',
+                vc.http.apiGet('/oaWorkflow/queryOaWorkflow',
                     param,
                     function (json, res) {
                         var _oaWorkflowManageInfo = JSON.parse(json);
