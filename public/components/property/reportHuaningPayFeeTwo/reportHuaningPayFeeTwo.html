@@ -16,11 +16,11 @@
                     <tbody>
                         <tr v-for="fee in reportHuaningPayFeeTwoInfo.fees">
                             <td class="text-center ">{{fee.floorNum}}</td>
-                            <td class="text-center ">{{fee.receivableAmount}}</td>
-                            <td class="text-center ">{{fee.receivedAmount}}</td>
-                            <td class="text-center">{{fee.receivedAmount1}}</td>
+                            <td class="text-center ">{{fee.receivableAmount || 0}}</td>
+                            <td class="text-center ">{{fee.receivedAmount || 0}}</td>
+                            <td class="text-center">{{fee.receivedAmount1 || 0}}</td>
                             <td class="text-center">{{_getOweFeeTwo(fee)}}</td>
-                            <td class="text-center">{{fee.receivedAmount2}}</td>
+                            <td class="text-center">{{fee.receivedAmount2 || 0}}</td>
                         </tr>
                     </tbody>
                 </table>

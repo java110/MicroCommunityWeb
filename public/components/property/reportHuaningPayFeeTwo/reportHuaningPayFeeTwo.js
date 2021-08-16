@@ -73,8 +73,17 @@
                     dateStr: vc.dateFormat(new Date().getTime())
                 }
             },
-            _getOweFeeTwo:function(_fee){
-               return  _fee.receivedAmount2 + _fee.receivableAmount - _fee.receivedAmount - _fee.receivedAmount1;
+            _getOweFeeTwo: function (_fee) {
+                let _receivedAmount2 = _fee.receivedAmount2 || 0;
+                let _receivableAmount = _fee.receivableAmount || 0;
+                let _receivedAmount = _fee.receivedAmount || 0;
+                let _receivedAmount1 = _fee.receivedAmount1 || 0;
+                let _temp = _receivedAmount2 + _receivableAmount - _receivedAmount - _receivedAmount1;
+                if (_temp < 0) {
+                    return 0;
+                }
+
+                return _temp;
             }
         }
     });
