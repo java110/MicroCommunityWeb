@@ -70,11 +70,15 @@
                             <tr v-for="oaWorkflow in oaWorkflowManageInfo.oaWorkflows">
                                 <td class="text-center">{{oaWorkflow.flowId}}</td>
                                 <td class="text-center">{{oaWorkflow.flowName}}</td>
-                                <td class="text-center">{{oaWorkflow.flowType}}</td>
+                                <td class="text-center">{{oaWorkflow.flowType == '1001'?'普通流程':'未知'}}</td>
                                 <td class="text-center">{{oaWorkflow.modelId}}</td>
                                 <td class="text-center">{{oaWorkflow.flowKey}}</td>
                                 <td class="text-center">{{oaWorkflow.createTime}}</td>
                                 <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openWorkflowEditorApp(oaWorkflow)">流程</button>
+                                    </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditOaWorkflowModel(oaWorkflow)">修改</button>

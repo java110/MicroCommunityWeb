@@ -76,6 +76,9 @@
                 } else {
                     vc.component.oaWorkflowManageInfo.moreCondition = true;
                 }
+            },
+            _openWorkflowEditorApp:function(_oaWorkflow){
+                window.open('/editorIndex.html#/editor/'+_oaWorkflow.modelId);
             }
 
 

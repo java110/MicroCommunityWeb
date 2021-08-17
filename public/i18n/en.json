@@ -1,1818 +1,1732 @@
 {
-    "COMMON" : {
-        "SELECT-FOLDER": "Select folder..."
-    },
-    "GENERAL" : {
-        "MAIN-TITLE": "Activiti - Kickstart",
-        "NAVIGATION" : {
-            "PROCESSES": "Processes",
-            "FORMS": "Forms",
-            "DECISION-TABLES": "Decision Tables",
-            "APPS": "Apps"
-        },
-        "TITLE": {
-            "ADD-COMMENT": "Create new comment",
-            "SELECT-PEOPLE": "Select person",
-            "INVOLVE-PEOPLE": "Select person",
-            "SELECT-GROUP" :"Select group",
-            "RECENT-PEOPLE": "Recent people",
-            "MATCHING-PEOPLE": "Matching people",
-            "MATCHING-GROUPS": "Matching groups",
-            "FILTER": "Filter",
-            "COMMENTS": "Comments",
-            "HISTORY": "History"
-        },
-        "ACTION": {
-            "LOGOUT": "Sign out",
-            "RETURN-TO-LIST": "Show all definitions",
-            "CANCEL": "Cancel",
-            "CLOSE": "Close",
-            "EDIT": "Edit",
-            "SAVE": "Save",
-            "OPEN": "Open",
-            "OK": "Ok",
-            "CONFIRM": "Confirm",
-            "CONFIRM-AND-CLOSE": "Confirm and close",
-            "NEW-FORM": "New form",
-            "CREATE-FORM": "Create form",
-            "NEW-DECISION-TABLE": "New Decision Table",
-            "CREATE-DECISION-TABLE": "Create Decision Table"
-        },
-        "MESSAGE": {
-          "SELECT-PEOPLE-HELP": "Use &uparrow; and &downarrow; to select and press Enter to confirm",
-          "SELECT-GROUP-HELP": "Use &uparrow; and &downarrow; to select and press Enter to confirm",
-          "ADD-COMMENT-PLACEHOLDER": "Enter a new comment",
-          "PEOPLE-NO-MATCHING-RESULTS": "No matching users were found",
-          "GROUP-NO-MATCHING-RESULTS": "No matching groups were found",
-          "GROUP-SOURCE-TYPE": "Group source",
-          "GROUP-SOURCE-SEARCH-OPTION": "Group search",
-          "GROUP-SOURCE-FIELD-OPTION": "Form field"
-        },
-        "ERROR": {
-            "UNKNOWN": "Sorry, an error occured while performing the requested operation.",
-            "BAD_REQUEST": "An error occured while performing the requested operation",
-            "NOT_FOUND": "The resource you are trying to access does not exist",
-            "UNAUTHORIZED": "You should sign in in order to perform the requested operation.",
-            "FORBIDDEN": "You are not allowed to perform the requested operation",
-            "INTERNAL_SERVER_ERROR": "Sorry, an unexpected error occured while performing the requested operation.",
-            "CAPTCHA": {
-                "EXPIRED":"The captcha has expired. Please solve the new challenge.",
-                "WRONG":"The captcha solution you provided did not match the challenge. Please solve the new challenge."
-            },
-            "QUOTA-EXCEEDED-APPS": "As a trial user, you can only have {{quota}} app definitions at the same time.",
-            "QUOTA-EXCEEDED-LICENSE-APPS": "The license only permits {{quota}} app definitions at the same time."
-        },
-        "ABOUT": {
-          "TYPE": "Type",
-          "LICENSED-TO": "Licensed To",
-          "EXPIRES": "Expires",
-          "COPYRIGHT": "© 2005-2015 Alfresco Software Inc. All rights reserved.",
-          "LEGAL": "Legal and License"
-        }
-    },
-
-    "EDITOR": {
-      "POPUP": {
-        "UNSAVED-CHANGES": {
-          "TITLE": "You have unsaved changes",
-          "DESCRIPTION": "What do you want to do with your unsaved changes?",
-          "ACTION": {
-            "SAVE": "Save changes",
-            "DISCARD": "Discard changes",
-            "CONTINUE": "Continue editing"
-          }
-        }
-      }
-    },
-
-    "PROCESS-LIST" : {
-        "TITLE" : "Business Process Models",
-        "SEARCH-PLACEHOLDER": "Search",
-        "LOADING": "Getting models...",
-
-        "ACTION" : {
-            "CREATE": "Create Process",
-            "IMPORT": "Import Process",
-            "CREATE-INLINE": "Create a new business process model now!",
-            "SHOW-MORE": "Show more..."
-        },
-
-        "FILTER" : {
-            "MY-PROCESSES": "My processes",
-            "MY-PROCESSES-COUNT": "You have {{total}} business process models",
-            "MY-PROCESSES-ONE": "You have one business process model",
-            "MY-PROCESSES-EMPTY": "It looks like you have not created any business process models yet. You can design process models, user forms and then bundle them up into a process app to share with any colleagues. The first step is to create a process model:",
-            "MY-PROCESSES-BPMN-HINT": "Create a BPMN model using the BPMN Visual Editor.",
-            "MY-PROCESSES-BPMN-IMPORT-HINT": "You can also import existing BPMN models.",
-            "MY-PROCESSES-STEP-HINT": "If you are new to designing processes, you can use the Step Editor.",
-            "FILTER-TEXT": ", matching \"{{filterText}}\"",
-            "FILTER-TEXT-EMPTY": "You have no business process models, matching \"{{filterText}}\"",
-            "RECENT": "Recent",
-            "RECENT-COUNT": "{{total}} recently used models",
-            "RECENT-ONE": "One recently used models",
-            "RECENT-EMPTY": "No recently used models"
-        },
-
-        "SORT": {
-            "MODIFIED-ASC": "Oldest",
-            "MODIFIED-DESC": "Last modified",
-            "NAME-ASC": "Name, A-Z",
-            "NAME-DESC": "Name, Z-A"
-        }
-    },
-
-    "FORMS-LIST" : {
-        "TITLE" : "Forms",
-        "SEARCH-PLACEHOLDER": "Search",
-        "LOADING": "Getting forms...",
-
-        "ACTION" : {
-            "CREATE": "Create Form",
-            "CREATE-INLINE": "Create a new form now!",
-            "SHOW-MORE": "Show more..."
-        },
-
-        "FILTER" : {
-            "MY-REUSABLE-FORMS": "My reusable forms",
-            "MY-REUSABLE-FORMS-COUNT": "You have {{total}} reusable forms",
-            "MY-REUSABLE-FORMS-ONE": "You have one reusable form",
-            "MY-REUSABLE-FORMS-EMPTY": "You have no reusable forms.  To add one, click Create Form.",
-            "FILTER-TEXT": ", matching \"{{filterText}}\"",
-            "FILTER-TEXT-EMPTY": "You have no form, matching \"{{filterText}}\""
-        },
-
-        "SORT": {
-            "MODIFIED-ASC": "Oldest",
-            "MODIFIED-DESC": "Last modified",
-            "NAME-ASC": "Name, A-Z",
-            "NAME-DESC": "Name, Z-A"
-        }
-    },
-
-    "DECISION-TABLES-LIST": {
-        "TITLE": "Decision Tables",
-        "SEARCH-PLACEHOLDER": "Search",
-        "LOADING": "Getting decision-tables...",
-
-        "ACTION": {
-            "CREATE": "Create Decision Table",
-            "IMPORT": "Import Decision Table",
-            "CREATE-INLINE": "Create a new decision table now!",
-            "SHOW-MORE": "Show more..."
-        },
-
-        "FILTER": {
-            "MY-REUSABLE-DECISION-TABLES": "My reusable decision tables",
-            "MY-REUSABLE-DECISION-TABLES-COUNT": "You have {{total}} reusable decision tables",
-            "MY-REUSABLE-DECISION-TABLES-ONE": "You have one reusable decision table",
-            "MY-REUSABLE-DECISION-TABLES-EMPTY": "You have no decision tables.  To add one, click Create Decision Table.",
-            "FILTER-TEXT": ", matching \"{{filterText}}\"",
-            "FILTER-TEXT-EMPTY": "You have no decision table, matching \"{{filterText}}\""
-        },
-
-        "SORT": {
-            "MODIFIED-ASC": "Oldest",
-            "MODIFIED-DESC": "Last modified",
-            "NAME-ASC": "Name, A-Z",
-            "NAME-DESC": "Name, Z-A"
-        }
-    },
-
-    "APPS-LIST" : {
-        "TITLE" : "App definitions",
-        "SEARCH-PLACEHOLDER": "Search",
-        "LOADING": "Getting app definitions...",
-
-        "ACTION" : {
-            "CREATE": "Create App",
-            "CREATE-INLINE": "Create a new app definition now!",
-            "IMPORT": "Import App",
-            "SHOW-MORE": "Show more..."
-        },
-
-        "FILTER" : {
-            "MY-APPS": "My app definitions",
-            "MY-APPS-COUNT": "You have {{total}} app definitions",
-            "MY-APPS-ONE": "You have one app definition",
-            "MY-APPS-EMPTY": "You have no app definitions.  To add one, click Create App Definition.",
-            "FILTER-TEXT": ", matching \"{{filterText}}\"",
-            "FILTER-TEXT-EMPTY": "You have no app definitions, matching \"{{filterText}}\"",
-
-            "SHARED-WITH-ME": "Shared with Me",
-            "SHARED-WITH-ME-COUNT": "{{total}} app definitions have been shared with you",
-            "SHARED-WITH-ME-ONE": "One app definition has been shared with you",
-            "SHARED-WITH-ME-EMPTY": "There are no app definitions shared with you",
-
-            "SHARED-WITH-OTHERS": "Shared with others",
-            "SHARED-WITH-OTHERS-COUNT": "You have shared {{total}} app definitions with others",
-            "SHARED-WITH-OTHERS-ONE": "You have shared one app definition model with others",
-            "SHARED-WITH-OTHERS-EMPTY": "You have not shared any app definitions with others",
-
-            "NO-APPS": "You can create a Process App by publishing a bundle of Process Models and sharing it with your colleagues. You can add any Process App that has been shared with you on your Activiti home page. You can even create a Process App with no processes if you just want to group simple collaborative tasks!",
-            "NO-APPS-CALL-TO-ACTION": "You can create a Process App now.",
-            "NO-APPS-NOTE": "Remember to Publish it when you are ready to use it."
-        },
-
-        "SORT": {
-            "MODIFIED-ASC": "Oldest",
-            "MODIFIED-DESC": "Last modified",
-            "NAME-ASC": "Name, A-Z",
-            "NAME-DESC": "Name, Z-A"
-        }
-    },
-
-    "LOGIN": {
-        "TITLE": "User Sign In",
-        "FORM": {
-            "USERNAME": "Email address",
-            "USERNAME.PLACEHOLDER": "Enter your email",
-            "PASSWORD": "Password",
-            "PASSWORD.PLACEHOLDER": "Enter your password",
-            "REMEMBERME": "Automatic Login",
-            "BUTTON": "Sign in"
-        },
-        "MESSAGES": {
-            "ERROR": {
-                "AUTHENTICATION": "Sign in failed! Please check your sign in details and try again."
-            }
-        }
-    },
-
-    "PROCESS": {
-      "NAME": "Model name",
-      "KEY": "Model key",
-      "DESCRIPTION": "Description",
-      "VERSION-COMMENT": "Version comment",
-      "EDITOR-TYPE": "Editor type",
-      "STENCIL": "Stencil",
-      "ACTION": {
-            "DETAILS": "Show details",
-            "EDIT": "Modify model properties",
-            "DUPLICATE": "Duplicate this model",
-            "COMPARE": "Compare with another version",
-            "SHARE": "Share this model",
-            "SHARE-CONFIRM": "Confirm changes",
-            "EXPORT_BPMN20": "Export to BPMN 2.0",
-            "DELETE": "Delete this model",
-            "ADD-COMMENT": "Add comment",
-            "ADD-COMMENT-CONFIRM": "Add comment",
-            "CREATE-CONFIRM": "Create new model",
-            "DUPLICATE-CONFIRM": "Duplicate the model",
-            "OPEN-IN-EDITOR": "Visual Editor",
-            "EDIT-CONFIRM": "Save",
-            "DELETE-CONFIRM": "Delete process model",
-            "USE-AS-NEW-VERSION": "Use as new version",
-            "USE-AS-NEW-VERSION-CONFIRM": "Use as new version",
-            "FAVORITE": "Favorite this model"
-
-        },
-        "DETAILS": {
-          "TITLE": "Business process model details {{name}}",
-          "COMPARE-WITH-TITLE": "Compare with",
-          "STENCIL": "Stencil:",
-          "HISTORY-TITLE": "History",
-          "COMMENTS-TITLE": "Comments",
-          "LAST-UPDATED-BY": "Last updated by {{lastUpdatedByFullName}} - {{lastUpdated | dateformat}}",
-          "CREATED-BY": "Created by {{createdByFullName}}",
-          "VERSION": "(Version {{version}})",
-          "NO-DESCRIPTION": "This model has no description. Modify the model properties to add one"
-        },
-        "EDIT": {
-          "TITLE": "Edit process"
-        },
-
-        "POPUP": {
-          "ADD-COMMENT-TITLE": "Add Comment",
-          "ADD-COMMENT-DESCRIPTION" : "Enter a new comment below for \"{{name}}\"",
-          "ADD-COMMENT-SIZE-ERROR": "The comment cannot exceed 4000 characters",
-          "CREATE-TITLE": "Create a new business process model",
-          "DUPLICATE-TITLE": "Duplicate the business process model",
-          "CREATE-DESCRIPTION": "You need to give a name for the new model and you may want to add a description at the same time.",
-          "DUPLICATE-DESCRIPTION": "You can change the name for the new model and you may want to change the description at the same time.",
-          "EDIT-DESCRIPTION": "Change any of the model properties below and then press Save to update the model.",
-          "EDIT-TITLE":"Edit model details",
-          "DELETE-TITLE": "Delete model",
-          "DELETE-DESCRIPTION": "Are you sure you want to delete the business process model \"{{name}}\"?",
-          "DELETE-CASCADE-FALSE": "Only delete the current version of this model (v{{version}})",
-          "DELETE-CASCADE-TRUE": "Also delete all previous versions of this model",
-          "DELETE-LOADING-RELATIONS": "Checking model usage...",
-          "DELETE-RELATIONS-DESCRIPTION-SINGLE": "This model cannot be deleted, because another model is using it:",
-          "DELETE-RELATIONS-DESCRIPTION": "This model cannot be deleted, because it is used by other models:",
-          "DELETE-PROCESS-RELATION": "Process model",
-          "DELETE-FORM-RELATION": "Form model",
-          "DELETE-APP-RELATION": "App model",
-          "IMPORT-DESCRIPTION": "Please browse for or drop a BPMN XML definition with an .bpmn or .bpmn20.xml extension",
-          "IMPORT-TITLE": "Import a process model",
-          "USE-AS-NEW-TITLE": "Use as new version",
-          "USE-AS-NEW-DESCRIPTION": "Are you sure you want to use version {{version}} to create a new version of \"{{name}}\"?",
-          "USE-AS-NEW-UNRESOLVED-MODELS-ERROR": "Could not fully restore the app model to the chosen version: some referenced models are missing due to being deleted in the past. Please update the app model accordingly. Missing models:",
-          "USE-AS-NEW-UNRESOLVED-MODEL": "Model '{{name}}' with internal id {{id}}, created by {{createdBy}}",
-          "SHARE-TITLE":"Share process model",
-          "SHARE-DESCRIPTION": "You can decide who you wish to share this business process model with and if they can edit it.",
-          "NOT-SHARED" : "This business process model is not shared with anyone.",
-          "SHARED-WITH": "Shared with",
-          "PERMISSION": "Permission",
-          "ACTIONS": "Actions",
-          "IMPORT": {
-              "DROPZONE": "Drop a .bpmn or .bpmn20.xml BPMN XML file",
-              "CANCEL-UPLOAD": "Cancel the upload",
-              "ERROR": "Error while processing the BPMN XML file",
-              "NO-DROP": "Drag and drop not supported"
-          }
-        },
-        "ALERT": {
-          "EDIT-CONFIRM": "Model updated",
-          "FAVORITE-CONFIRM": "This model is now favorited",
-          "UN-FAVORITE-CONFIRM": "This model is no longer favorited",
-          "DELETE-CONFIRM": "Model deleted",
-          "SHARE-CONFIRM": "The model sharing options have been updated",
-          "NEW-VERSION-CONFIRM": "A new version of the business process model has been created",
-          "COMMENT-ADDED-CONFIRM": "A new comment was added to the model"
-        },
-        "ERROR": {
-          "NOT-FOUND": "The requested model does not exist"
-        }
-    },
-
-    "SUBPROCESS": {
-        "NAME": "Sub process name",
-        "DESCRIPTION": "Description",
-        "TITLE": "Sub process",
-        "ACTION": {
-            "CREATE-CONFIRM": "Create new sub process"
-        },
-        "POPUP": {
-            "CREATE-TITLE": "Create a new sub process",
-            "CREATE-DESCRIPTION": "You need to give a name for the new sub process and you may want to add a description at the same time."
-        },
-        "POPOVER": {
-            "SELECT-TITLE": "Select sub process",
-            "NONE-SELECTED": "No sub process selected...",
-            "CREATE": "+ Create sub process",
-            "OPEN": "Open",
-            "CLEAR": "Clear",
-            "SEARCH-PLACEHOLDER": "Search sub process",
-            "MATCHING": "Matching sub processes",
-            "NONE-MATCHING": "No matching sub processes"
-        }
-    },
-
-    "FORM": {
-      "NAME": "Form name",
-      "KEY": "Form key",
-      "DESCRIPTION": "Description",
-      "REUSABLE": "Reusable form",
-      "VERSION-COMMENT": "Version comment",
-      "ACTION": {
-            "DETAILS": "Show details",
-            "EDIT": "Modify model properties",
-            "COMPARE": "Compare with another version",
-            "SHARE": "Share this form",
-            "SHARE-CONFIRM": "Confirm changes",
-            "DELETE": "Delete this form",
-            "ADD-COMMENT": "+ Add comment",
-            "ADD-COMMENT-CONFIRM": "Add comment",
-            "CREATE-CONFIRM": "Create new form",
-            "DUPLICATE-CONFIRM": "Duplicate the form",
-            "OPEN-IN-EDITOR": "Form Editor",
-            "EDIT-CONFIRM": "Save",
-            "DELETE-CONFIRM": "Delete form",
-            "USE-AS-NEW-VERSION": "Use as new version",
-            "USE-AS-NEW-VERSION-CONFIRM": "Use as new version",
-            "FAVORITE": "Favorite this form"
-
-        },
-        "DETAILS": {
-          "TITLE": "Form details {{name}}",
-          "COMPARE-WITH-TITLE": "Compare with",
-          "HISTORY-TITLE": "History",
-          "COMMENTS-TITLE": "Comments",
-          "LAST-UPDATED-BY": "Last updated by {{lastUpdatedByFullName}} - {{lastUpdated | dateformat}}",
-          "CREATED-BY": "Created by {{createdByFullName}}",
-          "VERSION": "(Version {{version}})"
-        },
-        "EDIT": {
-          "TITLE": "Edit form"
-        },
-
-        "POPUP": {
-          "ADD-COMMENT-TITLE": "Add Comment",
-          "ADD-COMMENT-DESCRIPTION" : "Enter a new comment below for \"{{name}}\"",
-          "ADD-COMMENT-SIZE-ERROR": "The comment cannot exceed 4000 characters",
-          "CREATE-TITLE": "Create a new form",
-          "DUPLICATE-TITLE": "Duplicate form",
-          "CREATE-DESCRIPTION": "You need to give a name for the new form and you may want to add a description at the same time.",
-          "DUPLICATE-DESCRIPTION": "You need to give a name for the new form and you may want to add a description at the same time.",
-          "SAVE-FORM-TITLE": "Save form",
-          "EDIT-DESCRIPTION": "Change any of the form properties below and then press Save to update the form.",
-          "EDIT-TITLE":"Edit form details",
-          "DELETE-TITLE": "Delete form",
-          "DELETE-DESCRIPTION": "Are you sure you want to delete the form \"{{name}}\"?",
-          "DELETE-CASCADE-FALSE": "Only delete the current version of this form (v{{version}})",
-          "DELETE-CASCADE-TRUE": "Also delete all previous versions of this form",
-          "USE-AS-NEW-TITLE": "Use as new version",
-          "USE-AS-NEW-DESCRIPTION": "Are you sure you want to use version {{version}} to create a new version of \"{{name}}\"?",
-          "SHARE-TITLE":"Share form",
-          "SHARE-DESCRIPTION": "You can decide who you wish to share this form with and if they can edit it.",
-          "NOT-SHARED" : "This form is not shared with anyone."
-        },
-        "ALERT": {
-          "EDIT-CONFIRM": "Form updated",
-          "FAVORITE-CONFIRM": "This form is now favorited",
-          "UN-FAVORITE-CONFIRM": "This form is no longer favorited",
-          "DELETE-CONFIRM": "Form deleted",
-          "SHARE-CONFIRM": "The form sharing options have been updated",
-          "NEW-VERSION-CONFIRM": "A new version of the form has been created",
-          "COMMENT-ADDED-CONFIRM": "A new comment was added to the form"
-        },
-        "ERROR": {
-          "NOT-FOUND": "The requested form does not exist"
-        }
-    },
-
-    "DECISION-TABLE": {
-        "NAME": "Decision Table name",
-        "KEY": "Decision Table key",
-        "DESCRIPTION": "Description",
-        "REUSABLE": "Reusable decision table",
-        "VERSION-COMMENT": "Version comment",
-        "HIT-POLICY": "Hit Policy:",
-        "ACTION": {
-            "DETAILS": "Show details",
-            "EDIT": "Modify model properties",
-            "COMPARE": "Compare with another version",
-            "SHARE": "Share this decision table",
-            "SHARE-CONFIRM": "Confirm changes",
-            "DELETE": "Delete this decision table",
-            "ADD-COMMENT": "+ Add comment",
-            "ADD-COMMENT-CONFIRM": "Add comment",
-            "CREATE-CONFIRM": "Create new decision table",
-            "DUPLICATE-CONFIRM": "Duplicate the decision table",
-            "CANCEL": "Cancel",
-            "OPEN-IN-EDITOR": "Decision Table Editor",
-            "EXPORT": "Export decision table",
-            "EDIT-CONFIRM": "Save",
-            "DELETE-CONFIRM": "Delete decision table",
-            "USE-AS-NEW-VERSION": "Use as new version",
-            "USE-AS-NEW-VERSION-CONFIRM": "Use as new version",
-            "FAVORITE": "Favorite this decision table",
-            "DUPLICATE": "Duplicate this decision table"
-
-        },
-        "DETAILS": {
-            "TITLE": "Decision table details {{name}}",
-            "COMPARE-WITH-TITLE": "Compare with",
-            "HISTORY-TITLE": "History",
-            "COMMENTS-TITLE": "Comments",
-            "LAST-UPDATED-BY": "Last updated by {{lastUpdatedByFullName}} - {{lastUpdated | dateformat}}",
-            "CREATED-BY": "Created by {{createdByFullName}}",
-            "VERSION": "(Version {{version}})"
-        },
-        "EDIT": {
-            "TITLE": "Edit decision table"
-        },
-        "HIT-POLICIES": {
-            "FIRST": "First (Single pass)",
-            "ANY": "Any (Single pass)"
-        },
-        "POPUP": {
-            "ADD-COMMENT-TITLE": "Add Comment",
-            "ADD-COMMENT-DESCRIPTION": "Enter a new comment below for \"{{name}}\"",
-            "ADD-COMMENT-SIZE-ERROR": "The comment cannot exceed 4000 characters",
-            "CREATE-TITLE": "Create a new decision table",
-            "DUPLICATE-TITLE": "Duplicate decision table",
-            "CREATE-DESCRIPTION": "You need to give a name for the new decision table and you may want to add a description at the same time.",
-            "SAVE-DESCRIPTION": "You need to give a name and a unique key for the new decision table and you may want to add a description at the same time.",
-            "DUPLICATE-DESCRIPTION": "You need to give a name for the new decision table and you may want to add a description at the same time.",
-            "SAVE-DECISION-TABLE-TITLE": "Save decision table",
-            "IMPORT-DESCRIPTION": "Browse for or drop a DMN XML definition with an .dmn or .dmn.xml extension",
-            "IMPORT-TITLE": "Import a DMN model",
- 	        "IMPORT": {
- 	            "DROPZONE": "Drop a .dmn or .dmn.xml DMN XML file",
- 	            "CANCEL-UPLOAD": "Cancel the upload",
- 	            "ERROR": "Error while processing the DMN XML file",
- 	            "NO-DROP": "Drag and drop not supported"
- 	        },
-            "EDIT-DESCRIPTION": "Change any of the decision table properties below and then click Save to update the decision table.",
-            "EDIT-TITLE":"Edit decision table details",
-
-            "DELETE-TITLE": "Delete decision table",
-            "DELETE-DESCRIPTION": "Are you sure you want to delete the decision table \"{{name}}\"?",
-            "DELETE-CASCADE-FALSE": "Only delete the current version of this decision table (v{{version}})",
-            "DELETE-CASCADE-TRUE": "Also delete all previous versions of this decision table",
-            "USE-AS-NEW-TITLE": "Use as new version",
-            "USE-AS-NEW-DESCRIPTION": "Are you sure you want to use version {{version}} to create a new version of \"{{name}}\"?",
-            "SHARE-TITLE": "Share decision table",
-            "SHARE-DESCRIPTION": "You can decide who you wish to share this decision table with and if they can edit it.",
-            "NOT-SHARED": "This decision table is not shared with anyone.",
-            "IMPORT-DROPZONE": "Drop a .dmn or .xml decision table file",
-            "IMPORT-NO-DROP": "Drag and drop not supported",
-            "IMPORT-CANCEL-UPLOAD": "Cancel the upload",
-            "IMPORT-ERROR": "Error while processing the decision table file",
-            "REUSABLE": "Reusable decision table",
-            "SAVE-EMBEDDED": "Embed this decision table within the current process model?",
-            "SAVE-EMBEDDED-COPY": "A copy of the decision table will be created since other processes are also using it"
-        },
-        "ALERT": {
-            "EDIT-CONFIRM": "Decision table updated",
-            "FAVORITE-CONFIRM": "This decision table is now favorited",
-            "UN-FAVORITE-CONFIRM": "This decision table is no longer favorited",
-            "DELETE-CONFIRM": "Decision table deleted",
-            "SHARE-CONFIRM": "The decision table sharing options have been updated",
-            "NEW-VERSION-CONFIRM": "A new version of the decision table has been created",
-            "COMMENT-ADDED-CONFIRM": "A new comment was added to the decision table"
-        },
-        "ERROR": {
-            "NOT-FOUND": "The requested decision table does not exist"
-        }
-    },
-
-    "APP": {
-        "NAME": "App definition name",
-        "KEY": "App definition key",
-        "DESCRIPTION": "Description",
-        "VERSION-COMMENT": "Version comment",
-        "ICON": "Icon",
-        "THEME": "Theme",
-        "ACTION": {
-            "DETAILS": "Show details",
-            "EDIT": "Modify app definition properties",
-            "DUPLICATE": "Duplicate this application",
-            "COMPARE": "Compare with another version",
-            "SHARE": "Share this app definition",
-            "SHARE-CONFIRM": "Confirm changes",
-            "DELETE": "Delete this app definition",
-            "ADD-COMMENT": "Add comment",
-            "ADD-COMMENT-CONFIRM": "Add comment",
-            "CREATE-CONFIRM": "Create new app definition",
-            "DUPLICATE-CONFIRM": "Duplicate the app definition",
-            "EDIT-CONFIRM": "Save",
-            "DELETE-CONFIRM": "Delete app definition",
-            "USE-AS-NEW-VERSION": "Use as new version",
-            "USE-AS-NEW-VERSION-CONFIRM": "Use as new version",
-            "FAVORITE": "Favorite this app definition",
-            "OPEN-IN-EDITOR": "App Editor",
-            "PUBLISH": "Publish",
-            "PUBLISH-CONFIRM": "Publish app definition",
-            "SELECT-ICON": "Change icon...",
-            "SELECT-THEME": "Change theme...",
-            "EDIT-MODELS": "Edit included models",
-            "EXPORT-ZIP": "Export app definition as a zip file"
-
-        },
-        "DETAILS": {
-          "TITLE": "App definition details: {{name}}",
-          "COMPARE-WITH-TITLE": "Compare with",
-          "HISTORY-TITLE": "History",
-          "COMMENTS-TITLE": "Comments",
-          "MODELS-TITLE": "Models included in the app definition",
-          "THEME-TITLE": "This is a preview of the selected app definition theme. You can select a different icon and theme color by hovering over the preview.",
-          "LAST-UPDATED-BY": "Last updated by {{lastUpdatedByFullName}} - {{lastUpdated | dateformat}}",
-          "CREATED-BY": "Created by {{createdByFullName}}",
-          "VERSION": "(Version {{version}})",
-          "NO-DESCRIPTION": "This app definition has no description. Modify the app definition properties to add one",
-          "NO-MODELS-SELECTED": "No models are selected for this app"
-        },
-        "EDIT": {
-          "TITLE": "Edit app definition"
-        },
-
-        "TITLE": {
-          "SELECT-ICON": "Select app icon",
-          "SELECT-THEME": "Select app colors",
-          "PREVIEW": "Preview"
-
-        },
-        "POPUP": {
-          "ADD-COMMENT-TITLE": "Add Comment",
-          "ADD-COMMENT-DESCRIPTION" : "Enter a new comment below for \"{{name}}\"",
-          "ADD-COMMENT-SIZE-ERROR": "The comment cannot exceed 4000 characters",
-          "CREATE-TITLE": "Create a new app definition",
-          "DUPLICATE-TITLE": "Duplicate an app definition",
-          "SAVE-APP-TITLE": "Save app definition",
-          "SAVE-APP-SAVE-SUCCESS": "Saved app definition",
-          "SAVE-APP-SAVE-FAIL": "App definition could not be saved",
-          "CREATE-DESCRIPTION": "You need to give a name for the new app definition and you may want to add a description at the same time.",
-          "DUPLICATE-DESCRIPTION": "You can give a name for the new app definition and you may want to change the description at the same time.",
-          "EDIT-DESCRIPTION": "Change any of the app definition properties below and then press Save to update the app definition.",
-          "EDIT-TITLE": "Edit app definition details",
-          "PUBLISH-TITLE": "Publish app definition",
-          "PUBLISH-DESCRIPTION": "Are you sure you want to publish the app definition \"{{name}}\"? Note that this app definition will be versioned and the workflow app will be updated if existing already.",
-          "PUBLISH-FIELD": "Publish? Note that if publish is enabled, this app definition will be versioned and the workflow app will be updated if existing already.",
-          "PUBLISH-ERROR-PROCDEF-KEY-CONFLICT": "Your process model \"{{modelInAppName}}\" has the same identifier \"{{processDefinitionKey}}\" as the existing deployed process \"{{conflictingModelName}}\" of the app \"{{conflictingAppName}}\". Please change this \"id\" property of the process model to something different.",
-          "PUBLISH-ERROR-PROCESS-ALREADY-USED": "Following process models are already used in another app. Is this ok?",
-          "PUBLISH-ERROR-PROCESS-ALREADY-USED-APP": "App",
-          "PUBLISH-ERROR-PROCDEF-DUPLICATE-KEYS": "Invalid app: duplicate process identifiers found (change the \"id\" property of the offending process models):",
-          "DELETE-TITLE": "Delete app definition",
-          "DELETE-DESCRIPTION": "Are you sure you want to delete the app definition \"{{name}}\"?",
-          "DELETE-DESCRIPTION-WITH-RUNTIME": "Are you sure you want to delete the app definition \"{{name}}\"? Note that this app definition has been deployed to the task landing page and by confirming, the app will be removed from the task app landing page.",
-          "DELETE-CASCADE-FALSE": "Only delete the current version of this app definition (v{{version}})",
-          "DELETE-CASCADE-TRUE": "Also delete all previous versions of this app definition",
-          "USE-AS-NEW-TITLE": "Use as new version",
-          "USE-AS-NEW-DESCRIPTION": "Are you sure you want to use version {{version}} to create a new version of \"{{name}}\"?",
-          "SHARE-TITLE":"Share app definition",
-          "SHARE-DESCRIPTION": "You can decide who you wish to share this app definition with and if they can edit it.",
-          "NOT-SHARED" : "This app definition is not shared with anyone.",
-          "HAS-CUSTOM-STENCILITEM" : "Model \"{{modelName}}\" uses a stencil with custom stencil items. It is not possible to use this model in an app definition.",
-          "HAS-VALIDATIONERROR" : "Model \"{{modelName}}\" has validation errors and cannot be added to an app definition. Open the model in the editor to see more details about the validation error(s).",
-          "IMPORT-DESCRIPTION":"Please browse for or drop a app definition with a .zip extension",
-          "IMPORT-TITLE":"Import an app definition model",
-          "IMPORT": {
-              "DROPZONE": "Drop a .zip app definition file",
-              "CANCEL-UPLOAD": "Cancel the upload",
-              "RENEWIDM-IDS": "Renew the user and group identifiers when importing step and BPMN models. This is often required when importing the app definition into a different Activiti environment. It will try to link the human steps and user tasks to the right user and group in this target environment.",
-              "ERROR": "Error while processing the app definition file",
-              "NO-DROP": "Drag and drop not supported"
-          },
-          "INCLUDE-MODELS-TITLE": "Models included in the app definition"
-        },
-        "ALERT": {
-          "EDIT-CONFIRM": "App definition updated",
-          "FAVORITE-CONFIRM": "This app definition is now favorited",
-          "UN-FAVORITE-CONFIRM": "This app definition is no longer favorited",
-          "DELETE-CONFIRM": "App definition deleted",
-          "SHARE-CONFIRM": "The app definition sharing options have been updated",
-          "NEW-VERSION-CONFIRM": "A new version of the app definition has been created",
-          "COMMENT-ADDED-CONFIRM": "A new comment was added to the app definition",
-          "PUBLISH-ERROR": "Could not publish app definition. Please check the validity of the referenced process models"
-        },
-        "ERROR": {
-          "NOT-FOUND": "The requested app definition does not exist"
-        },
-        "KICKSTART": {
-          "TITLE": "Kickstart App",
-          "TITLE-PROCESSES": "Process models",
-          "TITLE-FORMS": "Form models",
-          "TITLE-APPS": "App models",
-          "TITLE-STENCILS": "Stencils"
-        },
-        "ADMINISTRATOR": {
-          "TITLE": "Admin App"
-        },
-        "TASKS": {
-          "TITLE": "Task App",
-          "TITLE-TASKS": "Tasks",
-          "TITLE-PROCESSES": "Processes"
-        },
-        "IDENTITY-MANAGEMENT": {
-          "TITLE": "Profile",
-          "TITLE-TENANT-ADMIN": "Identity management",
-          "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
-          "TITLE-TENANT-ADMIN-USER-MGMT": "Users",
-          "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Capabilities",
-          "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organization",
-          "TITLE-TENANT-ADMIN-PROFILE": "Profile",
-          "TITLE-PROFILE": "Profile"
-        },
-        "ANALYTICS": {
-          "TITLE": "Analytics App"
-        },
-        "CUSTOM-APP" : {
-           "TITLE-TASKS": "tasks",
-           "TITLE-PROCESSES": "processes"
-        }
-    },
-
-    "SHARE-INFO": {
-        "PERMISSION": "Permission",
-        "PERMISSION-READ": "View model",
-        "PERMISSION-WRITE": "Edit model",
-        "PERMISSION-REMOVE": "Stop sharing this model",
-        "STENCIL-PERMISSION-READ": "View stencil",
-        "STENCIL-PERMISSION-WRITE": "Edit stencil",
-        "STENCIL-PERMISSION-REMOVE": "Stop sharing this stencil",
-        "ADD-PERSON": "Add person",
-        "ADD-PERSON-PLACEHOLDER": "Email address of who you wish to share with",
-        "ADD-PERSON-PLACEHOLDER-ON-PREM": "Search for users to share with",
-        "ACTION": {
-          "ADD": "Add another person",
-          "ADD-GROUP": "Add another group"
-        }
-    },
-
-    "ACCOUNT": {
-      "POPUP": {
-          "EDIT": {
-            "TITLE": "Edit account",
-            "FIRSTNAME": "First name",
-            "LASTNAME": "Last name",
-            "FIRSTNAME-PLACEHOLDER": "Enter first name",
-            "LASTNAME-PLACEHOLDER": "Enter last name",
-            "COMPANY": "Company (optional)",
-            "COMPANY-PLACEHOLDER": "Enter your company",
-            "CONFIRM": "Save profile"
-          },
-          "CHANGE-PASSWORD": {
-            "TITLE": "Edit your password",
-            "OLD-PASSWORD": "Current password",
-            "OLD-PASSWORD-PLACEHOLDER": "Enter your current password",
-            "NEW-PASSWORD": "New password",
-            "NEW-PASSWORD-PLACEHOLDER": "Enter your new password",
-            "NEW-PASSWORD-REPEAT": "Repeat password",
-            "NEW-PASSWORD-STRENGTH": "Password strength:",
-            "CONFIRM": "Change password",
-            "UNKNOWN-ERROR": "Your password is not changed, an error occured while updating.",
-            "OLD_PASSWORD-ERROR": "The current password you provided is not correct.",
-            "PASSWORDS-NOT-EQUAL": "Passwords don\"t match"
-          }
-      },
-      "ALERT": {
-          "UPDATED": "Your profile has been updated.",
-          "PASSWORD-CHANGED": "Your password has been changed."
-      }
-    },
-
-    "MODELER": {
-        "ALERT": {
-              "VALIDATION-OK": "Process model contains no validation errors.",
-              "VALIDATION-ERROR": "Process model contains validation errors."
-        }
-    },
-
-    "KICKSTART-MODEL": {
-        "VERSION": "Version {{version}}",
-        "LAST-UPDATED": "Last updated by {{lastUpdatedByFullName}}, {{lastUpdated | dateformat}}",
-        "ALERT": {
-            "SAVED": "The model has been saved",
-            "ERROR-SAVE": "The model could not be saved due to an unexpected error",
-            "DEPLOYED": "The model has been deployed successfully",
-            "DELETED": "The model has been deleted successfully"
-        }
-    },
-
-    "FORM-BUILDER": {
-        "PALLETTE": {
-            "TEXT": "Text",
-            "CONTAINER": "Container",
-            "MULTILINE-TEXT": "Multiline text",
-            "NUMBER": "Number",
-            "CHECKBOX": "Checkbox",
-            "DATE": "Date",
-            "DROPDOWN": "Dropdown",
-            "RADIO": "Radio buttons",
-            "PEOPLE": "People",
-            "GROUP-OF-PEOPLE": "Group of people",
-            "TABLE": "Dynamic table",
-            "HEADER": "Header",
-            "UPLOAD": "Upload",
-            "EXPRESSION": "Expression",
-            "DISPLAY-VALUE": "Display value",
-            "DISPLAY-TEXT": "Display text"
-        },
-        "TABS": {
-            "GENERAL": "General",
-            "OPTIONS": "Options",
-            "UPLOAD-OPTIONS": "Upload options",
-            "TABLE-COLUMNS": "Table columns",
-            "URL-OPTIONS": "Url options",
-            "GROUP-RESTRICTIONS": "Group restrictions",
-            "VISIBILITY": "Visibility"
-        },
-        "VERSION": "Version {{version}}",
-        "LAST-UPDATED": "Last updated by {{lastUpdatedByFullName}}, {{lastUpdated | dateformat}}",
-        "TITLE": {
-            "PREVIEW": "Preview",
-            "DESIGN": "Design",
-            "DETAILS": "Details",
-            "OUTCOME": "Outcomes",
-            "COMPONENTS": "Form components",
-            "EDIT-COMPONENT": "Edit form component"
-        },
-        "POPUP": {
-            "EDIT-TITLE": "Edit field '{{name}}'",
-            "EXPRESSION-TITLE": "Edit expression"
-        },
-        "MESSAGE": {
-            "EMPTY-CANVAS": "The form is currently empty. Add components to the form by dragging a desired component from the list on the left. Click on a component on the canvas to alter the label and other properties...",
-            "SELECT-FIELD": "(No field selected)",
-            "EMPTY-EXPRESSION": "(No expression value)",
-            "FIELD-VALUE": "Show value of field \"{{field}}\"",
-            "SELECT-READONLY-FIELD": "Field:",
-            "EXPRESSION-HELP": "You can also display values previously submitted in any form, as part of the text, by referencing them using a notation as follows ${myFieldId}.",
-            "HYPERLINK-HELP": "You can also display values previously submitted in any form, as part of the HYPERLINK URL. Select a field below to insert it at the position of the cursor.",
-            "HYPERLINK-HELP-RESPONSE-VARIABLE": "You can also display REST response variables as part of the HYPERLINK URL. Select a field below to insert it at the position of the cursor.",
-            "DISPLAY-TEXT-HELP": "You can also display values previously submitted in any form, as part of the DISPLAY TEXT. Select a field below to insert it at the position of the cursor.",
-            "VARIABLE-NAME": "Variable name:"
-        },
-        "LABEL" : {
-            "FUNCTIONAL-GROUP": "Select group..",
-            "PERSON": "Select person..",
-            "SEARCH": "Search"
-        },
-        "COMPONENT": {
-            "LABEL": "Label:",
-            "NAME": "Name:",
-            "OVERRIDEID": "Override id?",
-            "ID": "Id:",
-            "PLACEHOLDER": "Placeholder:",
-            "OPTIONS-TYPE": "Options type:",
-            "OPTIONS": "Options",
-            "RADIO-BUTTON-DEFAULT": "Option 1",
-            "DROPDOWN-DEFAULT-EMPTY-SELECTION": "Please choose one...",
-            "DROPDOWN-EMPTY-VALUE-HELP": "This is the 'empty value' option. Selecting this at runtime is the taken to mean 'no value' or 'empty'.  This is allowed for optional fields, but not allowed for required fields.",
-            "DISPLAY-TEXT-DEFAULT": "Display text as part of the form",
-            "BASE-ENDPOINT": "Base endpoint",
-            "REQUIRED": "Required",
-            "EXPRESSION": "Expression",
-            "READONLY": "Read only",
-            "ADD-OPTION": "+ Add a new option",
-            "UPLOAD-ALLOW-MULTIPLE": "Allow uploading multiple files",
-            "DOCUMENTS-EDITABLE": "Allow editing documents in Office",
-            "READONLY-TEXT": "Text to display",
-            "ONLY-LINKS": "Only link selected content, don't copy",
-            "ONLY-LINKS-HELP": "The user won't be allowed to upload a file from his device. Rather, content can be selected from external sources which will be linked instead of copying the content.",
-            "HEADER-ID" : "Property id",
-            "PLACEHOLDER-ID" : "Enter a property id",
-            "HEADER-NAME" : "Property name",
-            "PLACEHOLDER-NAME" : "Enter a property name",
-            "HEADER-TYPE": "Property type",
-            "REQUIRED" : "Required",
-            "EDITABLE" : "Editable",
-            "SORTABLE" : "Sortable",
-            "VISIBLE" : "Show in table",
-            "PROPERTY-UNSELECTED" : "No property selected",
-            "DISPLAY-TEXT": "Display text",
-            "AMOUNT-CURRENCY-PROPERTY": "Currency",
-            "AMOUNT-ENABLE-FRACTIONS": "Enable fractions"
-        },
-        "OPTIONS": {
-            "MANUAL": "Manual",
-            "REST": "Rest service"
-        },
-        "OUTCOMES": {
-            "DESCRIPTION": "You can define multiple outcomes for this task. When completing a task, the users selects one of the available outcomes, which can be used in eg. a condition further on in the process.",
-            "NO-OUTCOMES-OPTION": "Don't use custom outcomes, only show a 'Complete' button.",
-            "OUTCOMES-OPTION": "Use custom outcomes for this form.",
-            "POSSIBLE-OUTCOMES": "Possible outcomes",
-            "NEW-OUTCOME-PLACEHOLDER": "Enter new outcome",
-            "ADD": "Add outcome",
-            "REMOVE": "Remove"
-        },
-        "VALIDATOR-POPUP": {
-            "DESCRIPTION": "Description",
-            "WARNING": "Warning",
-            "VALIDATOR-SET": "Validator set"
-        },
-        "GROUP-RESTRICTION": {
-            "LABEL": "Restricted by group"
-        },
-        "ALERT": {
-          "VALIDATION-OK": "Form contains no validation errors.",
-          "VALIDATION-ERROR": "Form contains validation errors."
-        }
-    },
-
-    "DECISION-TABLE-EDITOR": {
-        "EMPTY-MESSAGES": {
-            "NO-COLUMN": "You need to create at least 1 condition and 1 action column before you can start adding decision rows to your table.",
-            "NO-CONDITION-COLUMN": "Great! You now have an action column for '{{variable}}', now go ahead and create a condition column...",
-            "NO-ACTION-COLUMN": "Great! You now have a condition column for '{{variable}}', now go ahead and create an action column...",
-            "NO-VARIABLE-SELECTED": "Undefined"
-        },
-        "POPUP": {
-            "EXPRESSION-EDITOR": {
-                "INPUT-TITLE": "Edit input column",
-                "INPUT-DESCRIPTION": "Select input variable as input for the column",
-                "OUTPUT-TITLE": "Edit output column",
-                "OUTPUT-DESCRIPTION": "Select an existing output variable or create a new one",
-                "EXPRESSION-LABEL": "Column label:",
-                "EXPRESSION-PLACEHOLDER": "Enter an optional label",
-                "EXPRESSION-TYPE-LABEL": "Column type:",
-                "EXPRESSION-TYPE-VARIABLE": "Expression",
-                "EXPRESSION-TYPE-SCRIPT": "Script",
-                "EXPRESSION-VARIABLE-TYPE-LABEL": "Variable type:",
-                "EXPRESSION-VARIABLE-TYPE-BOOLEAN": "Boolean",
-                "EXPRESSION-VARIABLE-TYPE-DATE": "Date",
-                "EXPRESSION-VARIABLE-TYPE-DATE_EXECUTION": "Execution Date",
-                "EXPRESSION-VARIABLE-TYPE-NUMBER": "Number",
-                "EXPRESSION-VARIABLE-TYPE-STRING": "String",
-                "EXPRESSION-VARIABLE-TYPE-FORMFIELD": "Form field",
-                "EXPRESSION-VARIABLE-TYPE-VARIABLE": "Variable",
-                "EXPRESSION-VARIABLE-TYPE-STATIC": "Static",
-                "EXPRESSION-VARIABLE-NAME": "Variable name:",
-                "EXPRESSION-VARIABLE-NAME-PLACEHOLDER": "Enter a variable name",
-                "INPUT-EXISTING-VARIABLE": "Existing",
-                "INPUT-NEW-VARIABLE": "Create new",
-                "OUTPUT-EXISTING-VARIABLE": "Existing",
-                "OUTPUT-NEW-VARIABLE": "Create new",
-                "OUTPUT-NEW-VARIABLE-ID": "Variable ID:",
-                "OUTPUT-NEW-VARIABLE-TYPE": "Variable type:"
-            },
-            "RULE-EDITOR": {
-                "TITLE": "Edit rule expression for column \"{{name }}\"",
-                "DESCRIPTION": "Compose the \"{{columnType}}\" expression",
-                "OPERATOR-LABEL": "Operator:",
-                "DATE-TYPE-LABEL": "Date type:",
-                "DATE-LABEL": "Date:",
-                "METHOD-LABEL": "Method:",
-                "YEARS-LABEL": "Years:",
-                "MONTHS-LABEL": "Months:",
-                "DAYS-LABEL": "Days:",
-                "DATE-TYPE-FIXED": "Fixed",
-                "DATE-TYPE-DYNAMIC": "Dynamic",
-                "NUMBER-LABEL": "Number:",
-                "NUMBER-FORMAT-MESSAGE": "123.45",
-                "BOOLEAN-LABEL": "Boolean:",
-                "STRING-LABEL": "String:",
-                "SELECT-VALUE": "Select value...",
-                "DATE_CALCULATION-LABEL": "Calculation:",
-                "DATE_EXECUTION-LABEL": "Execution Date:",
-                "DATE_EXECUTION-TEXT": "The date when the decision table is being executed will be used",
-                "ERROR": "The cell expression could not be understood by the graphical editor. This does NOT mean that the expression is invalid.<br/>To keep the expression click \"Cancel\". To create a new expression just complete  the form and click \"OK\".",
-                "NUMBER_CALCULATION-LABEL": "Calculation:",
-                "NUMBER_CALCULATION-PARAM1-LABEL": "Number:"
-            }
-        },
-        "OPERATOR": {
-            "STRING": {
-                "==": "Equals",
-                "!=": "Not equals",
-                ".startsWith": "Starts with",
-                ".endsWith": "Ends with",
-                ".contains": "Contains",
-                "__isEmpty__": "Is empty",
-                "__isNotEmpty__": "Is Not empty"
-            },
-            "BOOLEAN": {
-                "==": "Equals",
-                "!=": "Not equals",
-                "__isEmpty__": "Is empty",
-                "__isNotEmpty__": "Is Not empty"
-            },
-            "DATE": {
-                "==": "Same as",
-                "!=": "Other than",
-                ">": "After",
-                "<": "Before",
-                ">=": "After or same as",
-                "<=": "Before or same as",
-                ".startsWith": "Starts with",
-                ".endsWith": "Ends with",
-                ".contains": "Contains",
-                "__isEmpty__": "Is empty",
-                "__isNotEmpty__": "Is Not empty"
-            },
-            "NUMBER": {
-                "==": "Equals",
-                "!=": "Not equals",
-                ">": "Greater than",
-                "<": "Less than",
-                ">=": "Greater than or equals",
-                "<=": "Less than or equals",
-                "__isEmpty__": "Is empty",
-                "__isNotEmpty__": "Is Not empty"
-            }
-        },
-        "CALCULATION": {
-            "DATE": {
-                "NONE": "",
-                "ADD": "Add",
-                "SUBTRACT": "Subtract"
-            },
-            "NUMBER": {
-                "NONE": "",
-                "ADD": "Add",
-                "SUBTRACT": "Subtract",
-                "DIVIDE": "Divide",
-                "MULTIPLY": "Multiply"
-            }
-        },
-        "BUTTON-ADD-INPUT-LABEL": "Add input",
-        "BUTTON-ADD-OUTPUT-LABEL": "Add output",
-        "BUTTON-ADD-RULE-LABEL": "Add rule",
-        "BUTTON-MOVE-RULE-UPWARDS-LABEL": "Move up",
-        "BUTTON-MOVE-RULE-DOWNWARDS-LABEL": "Move down",
-        "BUTTON-REMOVE-RULE-LABEL": "Remove rule",
-        "ALERT": {
-            "EXPRESSION-VARIABLE-REQUIRED-ERROR": "All input and output expressions must reference a form field or variable.",
-            "SAVE-CONFIRM": "Saved decision table '{{name}}'",
-            "SAVE-ERROR": "Decision table '{{name}}' could not be saved",
-            "VALIDATION-OK": "Decision table model contains no validation errors.",
-            "VALIDATION-ERROR": "Decision table model contains validation errors."
-        }
-    },
-
-    "RECAPTCHA": {
-        "RECAPTCHA-IMAGE": "Enter the words you read below",
-        "RECAPTCHA-AUDIO": "Enter the numbers you hear",
-        "RECAPTCHA-PLACEHOLDER": "Enter your response",
-        "RECAPTCHA-RELOAD": "Get another captcha",
-        "RECAPTCHA-GET-AUDIO": "Use audio captcha",
-        "RECAPTCHA-GET-IMAGE": "Show image captcha",
-        "RECAPTCHA-HELP": "Help"
-    },
-
-    "TOUR": {
-        "WELCOME-TITLE": "Welcome, {{userName}}",
-        "WELCOME-CONTENT": "This a short tour of the Alfresco Activiti Editor. The next few steps will guide you through the different sections of the application to get you started. Press the ESC key to stop at any time." ,
-        "PALETTE-TITLE": "The Palette",
-        "PALETTE-CONTENT": "All the available constructs to create a business process can be found here. They are arranged in logical groups. To open a group simply click on it:",
-        "CANVAS-TITLE": "The Canvas",
-        "CANVAS-CONTENT": "This is the work space on which you create your business process. Drag elements from the palette on the left and drop them on this canvas to start modeling.",
-        "DRAGDROP-TITLE": "Drag and Drop Example",
-        "DRAGDROP-CONTENT": "Here is an example how you get started with modeling:",
-        "PROPERTIES-TITLE": "Properties",
-        "PROPERTIES-CONTENT": "Here you can configure the properties of a business process construct. Simply select the item on the canvas and its properties will be shown. Click on the property if you want to edit it",
-        "TOOLBAR-TITLE": "The Toolbar",
-        "TOOLBAR-CONTENT": "All the actions can be found here: saving or validating a model, copy and pasting parts of a process, and so on. Hover over the buttons to get a description for an action.",
-        "END-TITLE": "The End",
-        "END-CONTENT": "That's it! You can now start modeling your processes. If you have any questions, feel free to ask them on the <a href=\"http://forums.activiti.org/\" target=\"_blank\">Alfresco Activiti Forum</a> "
-    },
-
-    "FEATURE-TOUR" : {
-        "BENDPOINT" : {
-            "TITLE": "Bend point tutorial",
-            "DESCRIPTION" : "When you are connecting process steps with each other using sequence flow (those arrows between process steps), you might find that these sequence flow cross each other or you would like to arrange them differently. To do this, you can add or remove a bend point to or from a sequence flow.<br/><br/> As shown below in the picture, you first click the 'add bendpoint' and then click on a sequence flow to add it. Note that the sequence flow will show you a subtle indication in green to show the bendpoint can be added there.<br/><br/> Removing a bendpoint again follows a similar pattern: click the 'remove bendpoint' button and click on the bend point to remove it again."
-        }
-    },
-
-  "INVOLVE-PEOPLE": {
-      "NO-MATCHING-RESULTS": "Use the search box above to find users or ",
-      "SEARCH-PLACEHOLDER": "Search user",
-      "USE-EMAIL": "select someone using an email address",
-      "EMAIL-PLACEHOLDER": "Enter an email address",
-      "EMAIL-HELP": "Press Enter or click the button to continue. This person will be notified by email or invited to sign up",
-      "BACK-TO-SEARCH": "Back to search",
-      "ACTION-SELECT": "Select",
-      "SOURCE": {
-          "TYPE": "Source",
-          "SEARCH-OPTION": "User search",
-          "FIELD-OPTION": "Form field"
-      }
-  },
-
-    "BPMN-EDITOR": {
-        "GROUP": {
-            "ACTIVITIES": "Activities",
-            "ALFRESCO": "Alfresco",
-            "ARTIFACTS": "Artifacts",
-            "BOUNDARY-EVENTS": "Boundary Events",
-            "CONNECTING-OBJECTS": "Connecting Objects",
-            "END-EVENTS": "End Events",
-            "GATEWAYS": "Gateways",
-            "INTERMEDIATE-CATCH-EVENTS": "Intermediate Catching Events",
-            "INTERMEDIATE-THROW-EVENTS": "Intermediate Throwing Events",
-            "START-EVENTS": "Start Events",
-            "STRUCTURAL": "Structural",
-            "SWIMLANES": "Swimlanes"
-        },
-        "ITEM": {
-            "ASSOCIATION": {
-                "TITLE": "Association",
-                "DESCRIPTION": "Associates a text annotation with an element"
-            },
-            "BOUNDARY-ERROR-EVENT": {
-                "TITLE": "Boundary error event",
-                "DESCRIPTION": "A boundary event that catches a BPMN error"
-            },
-            "BOUNDARY-MESSAGE-EVENT": {
-                "TITLE": "Boundary message event",
-                "DESCRIPTION": "A boundary event with a message trigger"
-            },
-            "BOUNDARY-SIGNAL-EVENT": {
-                "TITLE": "Boundary signal event",
-                "DESCRIPTION": "A boundary event with a signal trigger"
-            },
-            "BOUNDARY-TIMER-EVENT": {
-                "TITLE": "Boundary timer event",
-                "DESCRIPTION": "A boundary event with a timer trigger"
-            },
-            "BUSINESSRULETASK": {
-                "TITLE": "Business rule task",
-                "DESCRIPTION": "An automatic task with rule logic"
-            },
-            "CALL-ACTIVITY": {
-                "TITLE": "Call activity",
-                "DESCRIPTION": "A call activity"
-            },
-            "CAMELTASK": {
-                "TITLE": "Camel task",
-                "DESCRIPTION": "A task that sends a message to Camel"
-            },
-            "COLLAPSED-SUBPROCESS": {
-                "TITLE": "Collapsed sub process",
-                "DESCRIPTION": "Provide a reference to a reusable sub process definition"
-            },
-            "DATA-ASSOCIATION": {
-                "TITLE": "Data association",
-                "DESCRIPTION": "Associates a data element with an activity"
-            },
-            "DATASTORE": {
-                "TITLE": "Data store",
-                "DESCRIPTION": "Reference to a data store"
-            },
-            "END-ERROR-EVENT": {
-                "TITLE": "Error end event",
-                "DESCRIPTION": "An end event that throws an error event"
-            },
-            "END-NONE-EVENT": {
-                "TITLE": "End event",
-                "DESCRIPTION": "An end event without a specific trigger"
-            },
-            "EVENT-GATEWAY": {
-                "TITLE": "Event gateway",
-                "DESCRIPTION": "An event gateway"
-            },
-            "EVENT-SUBPROCESS": {
-                "TITLE": "Event sub process",
-                "DESCRIPTION": "A event sub process scope"
-            },
-            "EXCLUSIVE-GATEWAY": {
-                "TITLE": "Exclusive gateway",
-                "DESCRIPTION": "A choice gateway"
-            },
-            "INCLUSIVE-GATEWAY": {
-                "TITLE": "Inclusive gateway",
-                "DESCRIPTION": "An inclusive gateway"
-            },
-            "INTERMEDIATE-MESSAGE-CATCH-EVENT": {
-                "TITLE": "Intermediate message catching event",
-                "DESCRIPTION": "An intermediate catching event with a message trigger"
-            },
-            "INTERMEDIATE-SIGNAL-CATCH-EVENT": {
-                "TITLE": "Intermediate signal catching event",
-                "DESCRIPTION": "An intermediate catching event with a signal trigger"
-            },
-            "INTERMEDIATE-TIMER-CATCH-EVENT": {
-                "TITLE": "Intermediate timer catching event",
-                "DESCRIPTION": "An intermediate catching event with a timer trigger"
-            },
-            "INTERMEDIATE-NONE-THROW-EVENT": {
-                "TITLE": "Intermediate none throwing event",
-                "DESCRIPTION": "An intermediate event without a specific trigger"
-            },
-            "INTERMEDIATE-SIGNAL-THROW-EVENT": {
-                "TITLE": "Intermediate signal throwing event",
-                "DESCRIPTION": "An intermediate event with a signal trigger"
-            },
-            "LANE": {
-                "TITLE": "Lane",
-                "DESCRIPTION": "A lane to stucture the process definition"
-            },
-            "MAILTASK": {
-                "TITLE": "Mail task",
-                "DESCRIPTION": "A mail task"
-            },
-            "MANUALTASK": {
-                "TITLE": "Manual task",
-                "DESCRIPTION": "An automatic task with no logic"
-            },
-            "MESSAGE-FLOW": {
-                "TITLE": "Message flow",
-                "DESCRIPTION": "Message flow to connect elements in different pools"
-            },
-            "MULETASK": {
-                "TITLE": "Mule task",
-                "DESCRIPTION": "A task that sends a message to Mule"
-            },
-            "PARALLEL-GATEWAY": {
-                "TITLE": "Parallel gateway",
-                "DESCRIPTION": "A parallel gateway"
-            },
-            "POOL": {
-                "TITLE": "Pool",
-                "DESCRIPTION": "A pool to stucture the process definition"
-            },
-            "RECEIVETASK": {
-                "TITLE": "Receive task",
-                "DESCRIPTION": "A task that waits for a signal"
-            },
-            "SCRIPTTASK": {
-                "TITLE": "Script task",
-                "DESCRIPTION": "An automatic task with script logic"
-            },
-            "SERVICETASK": {
-                "TITLE": "Service task",
-                "DESCRIPTION": "An automatic task with service logic"
-            },
-            "SENDTASK": {
-                "TITLE": "Send task",
-                "DESCRIPTION": "A task that sends a message"
-            },
-            "SEQUENCE-FLOW": {
-                "TITLE": "Sequence flow",
-                "DESCRIPTION": "Sequence flow defines the execution order of activities"
-            },
-            "START-ERROR-EVENT": {
-                "TITLE": "Start error event",
-                "DESCRIPTION": "A start event that catches a thrown BPMN error"
-            },
-            "START-MESSAGE-EVENT": {
-                "TITLE": "Start message event",
-                "DESCRIPTION": "A start event with a message trigger"
-            },
-            "START-NONE-EVENT": {
-                "TITLE": "Start event",
-                "DESCRIPTION": "A start event without a specific trigger"
-            },
-            "START-SIGNAL-EVENT": {
-                "TITLE": "Start signal event",
-                "DESCRIPTION": "A start event with a signal trigger"
-            },
-            "START-TIMER-EVENT": {
-                "TITLE": "Start timer event",
-                "DESCRIPTION": "A start event with a timer trigger"
-            },
-            "SUBPROCESS": {
-                "TITLE": "Sub process",
-                "DESCRIPTION": "A sub process scope"
-            },
-            "TEXTANNOTATION": {
-                "TITLE": "Text annotation",
-                "DESCRIPTION": "Annotates elements with description text"
-            },
-            "USERTASK": {
-                "TITLE": "User task",
-                "DESCRIPTION": "A manual task assigned to a specific person"
-            }
-        },
-        "PROPERTY": {
-            "ASYNC": {
-                "TITLE": "Asynchronous",
-                "DESCRIPTION": "Define the activity as asynchronous."
-            },
-            "CALLED-ELEMENT": {
-                "TITLE": "Called element",
-                "DESCRIPTION": "Reference to a sub process."
-            },
-            "CAMEL-CONTEXT": {
-                "TITLE": "Camel context",
-                "DESCRIPTION": "An optional camel context definition, if left empty the default is used."
-            },
-            "CANCEL-ACTIVITY": {
-                "TITLE": "Cancel activity",
-                "DESCRIPTION": "Should the activity be cancelled."
-            },
-            "COMPENSATION": {
-                "TITLE": "Is for compensation",
-                "DESCRIPTION": "A flag that identifies whether this activity is intended for the purposes of compensation."
-            },
-            "COLLAPSED-SUBPROCESS-REFERENCE": {
-                "TITLE": "Referenced Subprocess",
-                "DESCRIPTION": "Reference to a subprocess that is included in the collapsed subprocess."
-            },
-            "DOCUMENTATION": {
-                "TITLE": "Documentation",
-                "DESCRIPTION": "The descriptive description of the BPMN element."
-            },
-            "ENDPOINT-URL": {
-                "TITLE": "Endpoint url",
-                "DESCRIPTION": "A required endpoint url to sent the message to Mule."
-            },
-            "ERROR-REF": {
-                "TITLE": "Error reference",
-                "DESCRIPTION": "Define the error name."
-            },
-            "EVENT-LISTENERS": {
-                "TITLE": "Event listeners",
-                "DESCRIPTION": "Listeners for any event happening in the Activiti Engine. It's also possible to rethrow the event as a signal, message or error event."
-            },
-            "EXCLUSIVE": {
-                "TITLE": "Exclusive",
-                "DESCRIPTION": "Define the activity as exclusive."
-            },
-            "EXECUTION-LISTENERS": {
-                "TITLE": "Execution listeners",
-                "DESCRIPTION": "Listeners for an activity, process, sequence flow, start and end event."
-            },
-            "FORM-KEY": {
-                "TITLE": "Form key",
-                "DESCRIPTION": "Form key that provides a reference to a form."
-            },
-            "FORM-PROPERTIES": {
-                "TITLE": "Form properties",
-                "DESCRIPTION": "Definition of the form with a list of form properties."
-            },
-            "FORM-REFERENCE": {
-                "TITLE": "Referenced form",
-                "DESCRIPTION": "Reference to a form."
-            },
-            "ID": {
-                "TITLE": "Id",
-                "DESCRIPTION": "Unique identifier of the element."
-            },
-            "IN-PARAMETERS": {
-                "TITLE": "In parameters",
-                "DESCRIPTION": "Definition of the input parameters."
-            },
-            "MAILTASK-BCC": {
-                "TITLE": "Bcc",
-                "DESCRIPTION": "The bcc's of the e-mail. Multiple recipients are defined in a comma-separated list."
-            },
-            "MAILTASK-CC": {
-                "TITLE": "Cc",
-                "DESCRIPTION": "The cc's of the e-mail. Multiple recipients are defined in a comma-separated list."
-            },
-            "MAILTASK-CHARSET": {
-                "TITLE": "Charset",
-                "DESCRIPTION": "Allows to change the charset of the email, which is necessary for many non-English languages."
-            },
-            "MAILTASK-FROM": {
-                "TITLE": "From",
-                "DESCRIPTION": "The sender e-mail address. If not provided, the default configured from address is used."
-            },
-            "MAILTASK-HTML": {
-                "TITLE": "Html",
-                "DESCRIPTION": "A piece of HTML that is the content of the e-mail."
-            },
-            "MAILTASK-SUBJECT": {
-                "TITLE": "Subject",
-                "DESCRIPTION": "The subject of the e-mail."
-            },
-            "MAILTASK-TEXT": {
-                "TITLE": "Text",
-                "DESCRIPTION": "The content of the e-mail, in case one needs to send plain none-rich e-mails. Can be used in combination with html, for e-mail clients that don't support rich content. The client will then fall back to this text-only alternative."
-            },
-            "MAILTASK-TO": {
-                "TITLE": "To",
-                "DESCRIPTION": "The recipients if the e-mail. Multiple recipients are defined in a comma-separated list."
-            },
-            "MESSAGE-REF": {
-                "TITLE": "Message reference",
-                "DESCRIPTION": "Define the message name."
-            },
-            "MULETASK-LANGUAGE": {
-                "TITLE": "Language",
-                "DESCRIPTION": "A required definition for the language to resolve the payload expression, like juel."
-            },
-            "MULETASK-PAYLOAD": {
-                "TITLE": "Payload expression",
-                "DESCRIPTION": "A required definition for the payload of the message sent to Mule."
-            },
-            "MULETASK-RESULT-VARIABLE": {
-                "TITLE": "Result variable",
-                "DESCRIPTION": "An optional result variable for the payload returned."
-            },
-            "MULTI-INSTANCE-CARDINALITY": {
-                "TITLE": "Cardinality (Multi-instance)",
-                "DESCRIPTION": "Define the cardinality of multi instance."
-            },
-            "MULTI-INSTANCE-COLLECTION": {
-                "TITLE": "Collection (Multi-instance)",
-                "DESCRIPTION": "Define the collection for the multi instance."
-            },
-            "MULTI-INSTANCE-CONDITION": {
-                "TITLE": "Completion condition (Multi-instance)",
-                "DESCRIPTION": "Define the completion condition for the multi instance."
-            },
-            "MULTI-INSTANCE-TYPE": {
-                "TITLE": "Multi-instance type",
-                "DESCRIPTION": "Repeated activity execution (parallel or sequential) can be displayed through different loop types."
-            },
-            "MULTI-INSTANCE-VARIABLE": {
-                "TITLE": "Element variable (Multi-instance)",
-                "DESCRIPTION": "Define the element variable for the multi instance."
-            },
-            "NAME": {
-                "TITLE": "Name",
-                "DESCRIPTION": "The descriptive name of the BPMN element."
-            },
-            "OUT-PARAMETERS": {
-                "TITLE": "Out parameters",
-                "DESCRIPTION": "Definition of the output parameters"
-            },
-            "PROCESS-AUTHOR": {
-                "TITLE": "Process author",
-                "DESCRIPTION": "Author of the process definition."
-            },
-            "PROCESS-ID": {
-                "TITLE": "Process identifier",
-                "DESCRIPTION": "Unique identifier of the process definition."
-            },
-            "PROCESS-INITIATOR": {
-                "TITLE": "Process initiator",
-                "DESCRIPTION": "Initiator of the process."
-            },
-            "PROCESS-NAMESPACE": {
-                "TITLE": "Target namespace",
-                "DESCRIPTION": "Target namespace for the process definition."
-            },
-            "PROCESS-VERSION": {
-                "TITLE": "Process version string (documentation only)",
-                "DESCRIPTION": "Version identifier for documentation purpose."
-            },
-            "RULE-EXCLUDE": {
-                "TITLE": "Exclude",
-                "DESCRIPTION": "Use the rules property as exclusion."
-            },
-            "RULE-INPUT-VARIABLES": {
-                "TITLE": "Input variables",
-                "DESCRIPTION": "Input variables of the rule task."
-            },
-            "RULE-RESULT-VARIABLE": {
-                "TITLE": "Result variable",
-                "DESCRIPTION": "Result variable of the rule task."
-            },
-            "RULE-RULESDEF": {
-                "TITLE": "Rules",
-                "DESCRIPTION": "Rules of the rule task."
-            },
-            "SCRIPTTASK-FORMAT": {
-                "TITLE": "Script format",
-                "DESCRIPTION": "Script format of the script task."
-            },
-            "SCRIPTTASK-TEXT": {
-                "TITLE": "Script",
-                "DESCRIPTION": "Script text of the script task."
-            },
-            "SERVICETASK-CLASS": {
-                "TITLE": "Class",
-                "DESCRIPTION": "Class that implements the service task logic."
-            },
-            "SERVICETASK-DELEGATE-EXPRESSION": {
-                "TITLE": "Delegate expression",
-                "DESCRIPTION": "Service task logic defined with a delegate expression."
-            },
-            "SERVICETASK-EXPRESSION": {
-                "TITLE": "Expression",
-                "DESCRIPTION": "Service task logic defined with an expression."
-            },
-            "SERVICETASK-FIELDS": {
-                "TITLE": "Class fields",
-                "DESCRIPTION": "Field extensions for a service task."
-            },
-            "SERVICETASK-RESULT-VARIABLE": {
-                "TITLE": "Result variable name",
-                "DESCRIPTION": "Process variable name to store the service task result."
-            },
-            "SEQUENCE-FLOW-CONDITION": {
-                "TITLE": "Flow condition",
-                "DESCRIPTION": "The condition of the sequence flow."
-            },
-            "SEQUENCE-FLOW-CONDITIONAL": {
-                "TITLE": "Conditional flow",
-                "DESCRIPTION": "Define the sequence flow with a condition."
-            },
-            "SEQUENCE-FLOW-DEFAULT": {
-                "TITLE": "Default flow",
-                "DESCRIPTION": "Define the sequence flow as default."
-            },
-            "SEQUENCE-FLOW-ORDER": {
-                "TITLE": "Flow order",
-                "DESCRIPTION": "Order outgoing sequence flows."
-            },
-            "SIGNAL-DEFINITIONS": {
-                "TITLE": "Signal definitions",
-                "DESCRIPTION": "Definitions of signals that are used in signal catch and throw events in the process."
-            },
-           "MESSAGE-DEFINITIONS": {
-                "TITLE": "Message definitions",
-                "DESCRIPTION": "Definitions of messages that are used in message catch and throw events in the process."
-            },
-            "SIGNAL-REF": {
-                "TITLE": "Signal reference",
-                "DESCRIPTION": "Define the signal name."
-            },
-            "TASK-LISTENERS": {
-                "TITLE": "Task listeners",
-                "DESCRIPTION": "Listeners for a user task."
-            },
-            "TEXT-ANNOTATION-TEXT": {
-                "TITLE": "Text",
-                "DESCRIPTION": "The text of the text annotation."
-            },
-            "TIMER-CYCLE": {
-                "TITLE": "Time cycle (e.g. R3/PT10H)",
-                "DESCRIPTION": "Define the timer with a ISO-8601 cycle."
-            },
-            "TIMER-DATE": {
-                "TITLE": "Time date in ISO-8601",
-                "DESCRIPTION": "Define the timer with a ISO-8601 date definition."
-            },
-            "TIMER-DURATION": {
-                "TITLE": "Time duration (e.g. PT5M)",
-                "DESCRIPTION": "Define the timer with a ISO-8601 duration."
-            },
-            "USERTASK-ASSIGNMENT": {
-                "TITLE": "Assignment",
-                "DESCRIPTION": "Assignment definition for the user task."
-            },
-            "USERTASK-CATEGORY": {
-                "TITLE": "Category",
-                "DESCRIPTION": "Category of the user task."
-            },
-            "USERTASK-DUEDATE": {
-                "TITLE": "Due date",
-                "DESCRIPTION": "Due date of the user task."
-            },
-            "USERTASK-PRIORITY": {
-                "TITLE": "Priority",
-                "DESCRIPTION": "Priority of the user task."
-            },
-            "USERTASK-SEND-EMAIL": {
-                "TITLE": "Allow email notifications",
-                "DESCRIPTION": "Allow the system to notify the assignee when a task is assigned."
-            }
-        }
-    },
-
-    "HEADER.BRAND" : "Activiti Editor",
-    "HEADER.BRAND_TAGLINE" : "powered by Alfresco",
-    "PAGE.HEADER" : "Orchestration Details",
-
-    "ACTION.OK" : "Ok",
-    "ACTION.SAVE" : "Save",
-    "ACTION.SAVE-AND-CLOSE" : "Save and close editor",
-    "ACTION.SEND" : "Send",
-    "ACTION.CANCEL" : "Cancel",
-    "ACTION.SELECT" : "Select",
-    "ACTION.ADD" : "Add",
-    "ACTION.REMOVE" : "Remove",
-    "ACTION.MOVE.UP" : "Move entry up",
-    "ACTION.MOVE.DOWN" : "Move entry down",
-
-    "MAIN_NAVIGATION_ORCHESTRATIONS" : "Orchestrations",
-    "MAIN_NAVIGATION_DISPATCH_RULES" : "Dispatch Rules",
-    "MAIN_NAVIGATION_ASSET_GROUPS" : "Assert Groups",
-    "MAIN_NAVIGATION_SOLUTIONS" : "Solutions",
-
-    "TOOLBAR.ACTION.CLOSE" : "Close the editor and go back to the overview page",
-    "TOOLBAR.ACTION.SAVE" : "Save the model",
-    "TOOLBAR.ACTION.VALIDATE": "Validate the model",
-    "TOOLBAR.ACTION.CUT" : "Cut (select one or more elements in your business process)",
-    "TOOLBAR.ACTION.COPY" : "Copy (select one or more elements in your business process)",
-    "TOOLBAR.ACTION.PASTE" : "Paste",
-    "TOOLBAR.ACTION.DELETE" : "Delete the selected element",
-    "TOOLBAR.ACTION.UNDO" : "Undo",
-    "TOOLBAR.ACTION.REDO" : "Redo",
-    "TOOLBAR.ACTION.ZOOMIN" : "Zoom in",
-    "TOOLBAR.ACTION.ZOOMOUT" : "Zoom out",
-    "TOOLBAR.ACTION.ZOOMACTUAL" : "Zoom to actual size",
-    "TOOLBAR.ACTION.ZOOMFIT" : "Zoom to fit",
-    "TOOLBAR.ACTION.MOVE" : "Move",
-    "TOOLBAR.ACTION.IMPORT" : "Import",
-    "TOOLBAR.ACTION.EXPORT" : "Export",
-    "TOOLBAR.ACTION.BENDPOINT.ADD" : "Add bend-point to the selected sequence flow",
-    "TOOLBAR.ACTION.BENDPOINT.REMOVE" : "Remove bend-point from the selected sequence flow",
-    "TOOLBAR.ACTION.ALIGNHORIZONTAL" : "Align model horizontal",
-    "TOOLBAR.ACTION.ALIGNVERTICAL" : "Align model vertical",
-    "TOOLBAR.ACTION.SAMESIZE" : "Same size",
-    "TOOLBAR.ACTION.HELP": "Start the guided tour",
-    "TOOLBAR.ACTION.FEEDBACK": "Provide feedback",
-
-    "KICKSTART.PROCESS_TOOLBAR.ACTION.SAVE" : "Save the model",
-    "KICKSTART.PROCESS_TOOLBAR.ACTION.VALIDATE": "Validate the model",
-    "KICKSTART.PROCESS_TOOLBAR.ACTION.HELP": "Start the guided tour",
-    "KICKSTART.PROCESS_TOOLBAR.ACTION.FEEDBACK": "Provide feedback",
-
-    "FORM_TOOLBAR.ACTION.SAVE" : "Save the model",
-    "FORM_TOOLBAR.ACTION.VALIDATE": "Validate the model",
-    "FORM_TOOLBAR.ACTION.HELP": "Start the guided tour",
-    "FORM_TOOLBAR.ACTION.FEEDBACK": "Provide feedback",
-
-    "DECISION_TABLE_TOOLBAR.ACTION.SAVE" : "Save the decision table",
-    "DECISION_TABLE_TOOLBAR.ACTION.CLOSE" : "Close",
-
-    "APP_DEFINITION_TOOLBAR.ACTION.SAVE" : "Save the app definition",
-    "APP_DEFINITION_TOOLBAR.ACTION.VALIDATE" : "Validate the app definition",
-    "APP_DEFINITION_TOOLBAR.ACTION.HELP" : "Start the guided tour",
-    "APP_DEFINITION_TOOLBAR.ACTION.FEEDBACK" : "Provide feedback",
-
-    "BUTTON.ACTION.DELETE.TOOLTIP": "Delete the element from the model",
-    "BUTTON.ACTION.MORPH.TOOLTIP": "Change the element type",
-
-    "ELEMENT.AUTHOR" : "Author",
-    "ELEMENT.DATE_CREATED" : "Date created",
-    "ELEMENT.SELECTED_EMPTY_TITLE" : "(No name)",
-
-    "PROPERTY.REMOVED" : "removed",
-    "PROPERTY.EMPTY" : "No value",
-    "PROPERTY.PROPERTY.EDIT.TITLE" : "Change value for ",
-
-    "PROPERTY.FEEDBACK.TITLE" : "Please fill-in your feedback",
-
-    "PROPERTY.ASSIGNMENT.TITLE" : "Assignment",
-    "PROPERTY.ASSIGNMENT.TYPE" : "Type",
-    "PROPERTY.ASSIGNMENT.TYPE.IDENTITYSTORE" : "Identity store",
-    "PROPERTY.ASSIGNMENT.TYPE.STATIC" : "Fixed values",
-    "PROPERTY.ASSIGNMENT.ASSIGNEE" : "Assignee",
-    "PROPERTY.ASSIGNMENT.NO_ASSIGNEE" : "No assignee selected...",
-    "PROPERTY.ASSIGNMENT.MATCHING" : "Use &uparrow; and &downarrow; to select and press Enter to confirm or use the mouse",
-    "PROPERTY.ASSIGNMENT.ASSIGNEE_PLACEHOLDER" : "Enter an assignee",
-    "PROPERTY.ASSIGNMENT.EMPTY" : "No assignment selected",
-    "PROPERTY.ASSIGNMENT.ASSIGNEE_DISPLAY" : "Assignee {{assignee}}",
-    "PROPERTY.ASSIGNMENT.CANDIDATE_USERS_DISPLAY" : "{{length}} Candidate users",
-    "PROPERTY.ASSIGNMENT.CANDIDATE_USERS" : "Candidate users",
-    "PROPERTY.ASSIGNMENT.CANDIDATE_GROUPS_DISPLAY" :  "{{length}} Candidate groups",
-    "PROPERTY.ASSIGNMENT.CANDIDATE_GROUPS" :  "Candidate groups",
-    "PROPERTY.ASSIGNMENT.IDM.NO_ASSIGNEE" :  "No assignee selected...",
-    "PROPERTY.ASSIGNMENT.USER_IDM_DISPLAY": "User {{firstName}} {{lastName}}",
-    "PROPERTY.ASSIGNMENT.USER_IDM_EMAIL_DISPLAY": "User {{email}}",
-    "PROPERTY.ASSIGNMENT.USER_IDM_FIELD_DISPLAY": "Field {{name}}",
-    "PROPERTY.ASSIGNMENT.IDM_EMPTY" : "Process initiator",
-    "PROPERTY.ASSIGNMENT.IDM.TYPE" : "Assignment",
-    "PROPERTY.ASSIGNMENT.IDM.NO_CANDIDATE_USERS" : "No candidate users selected...",
-    "PROPERTY.ASSIGNMENT.IDM.NO_CANDIDATE_GROUPS" : "No candidate groups selected...",
-    "PROPERTY.ASSIGNMENT.IDM.DROPDOWN.INITIATOR" : "Assigned to process initiator",
-    "PROPERTY.ASSIGNMENT.IDM.DROPDOWN.USER" : "Assigned to single user",
-    "PROPERTY.ASSIGNMENT.IDM.DROPDOWN.USERS" : "Candidate users",
-    "PROPERTY.ASSIGNMENT.IDM.DROPDOWN.GROUPS" : "Candidate groups",
-    "PROPERTY.ASSIGNMENT.EMAIL.HELP" : "Type an email address and press Enter to continue",
-    "PROPERTY.ASSIGNMENT.INITIATOR-CAN-COMPLETE" : "Allow process initiator to complete task",
-    "PROPERTY.ASSIGNMENT.IDM.NO_CANDIDATE":"There is no assignment candidate selected",
-
-    "PROPERTY.EXECUTIONLISTENERS.DISPLAY" : "{{length}} execution listeners",
-    "PROPERTY.EXECUTIONLISTENERS.EMPTY" : "No execution listeners configured",
-    "PROPERTY.EXECUTIONLISTENERS.EVENT" : "Event",
-    "PROPERTY.EXECUTIONLISTENERS.CLASS" : "Class",
-    "PROPERTY.EXECUTIONLISTENERS.CLASS.PLACEHOLDER" : "Enter a classname",
-    "PROPERTY.EXECUTIONLISTENERS.EXPRESSION" : "Expression",
-    "PROPERTY.EXECUTIONLISTENERS.EXPRESSION.PLACEHOLDER" : "Enter an expression",
-    "PROPERTY.EXECUTIONLISTENERS.DELEGATEEXPRESSION" : "Delegate expression",
-    "PROPERTY.EXECUTIONLISTENERS.DELEGATEEXPRESSION.PLACEHOLDER" : "Enter a delegate expression",
-    "PROPERTY.EXECUTIONLISTENERS.UNSELECTED" : "No execution listener selected",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.NAME" : "Name",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.NAME.PLACEHOLDER" : "Enter a name",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.EXPRESSION" : "Expression",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.EXPRESSION.PLACEHOLDER" : "Enter an expression",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.STRINGVALUE" : "String value",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.STRINGVALUE.PLACEHOLDER" : "Enter a string value",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.STRING" : "String",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.STRING.PLACEHOLDER" : "Enter a string",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.IMPLEMENTATION" : "Implementation",
-    "PROPERTY.EXECUTIONLISTENERS.FIELDS.EMPTY" : "No Field selected",
-
-    "PROPERTY.FIELDS" : "{{length}} fields",
-    "PROPERTY.FIELDS.EMPTY" : "No fields selected",
-    "PROPERTY.FIELDS.NAME" : "Name",
-    "PROPERTY.FIELDS.NAME.PLACEHOLDER" : "Enter a name",
-    "PROPERTY.FIELDS.EXPRESSION" : "Expression",
-    "PROPERTY.FIELDS.EXPRESSION.PLACEHOLDER" : "Enter an expression",
-    "PROPERTY.FIELDS.STRINGVALUE" : "String value",
-    "PROPERTY.FIELDS.STRINGVALUE.PLACEHOLDER" : "Enter a string value",
-    "PROPERTY.FIELDS.STRING" : "String",
-    "PROPERTY.FIELDS.STRING.PLACEHOLDER" : "Enter a string",
-    "PROPERTY.FIELDS.IMPLEMENTATION" : "Implementation",
-    "PROPERTY.FIELDS.UNSELECTED" : "No Field selected",
-
-    "PROPERTY.FORMPROPERTIES.VALUE" : "{{length}} form properties",
-    "PROPERTY.FORMPROPERTIES.EMPTY" : "No form properties selected",
-    "PROPERTY.FORMPROPERTIES.ID" : "Id",
-    "PROPERTY.FORMPROPERTIES.ID.PLACEHOLDER" : "Enter an id",
-    "PROPERTY.FORMPROPERTIES.NAME" : "Name",
-    "PROPERTY.FORMPROPERTIES.NAME.PLACEHOLDER" : "Enter a name",
-    "PROPERTY.FORMPROPERTIES.TYPE" : "Type",
-    "PROPERTY.FORMPROPERTIES.DATEPATTERN" : "Date pattern",
-    "PROPERTY.FORMPROPERTIES.DATEPATTERN.PLACEHOLDER" : "Enter date pattern",
-    "PROPERTY.FORMPROPERTIES.VALUES" : "Values",
-    "PROPERTY.FORMPROPERTIES.ENUMVALUES.EMPTY" : "No enum value selected",
-    "PROPERTY.FORMPROPERTIES.VALUES.ID" : "Id",
-    "PROPERTY.FORMPROPERTIES.VALUES.NAME" : "Name",
-    "PROPERTY.FORMPROPERTIES.VALUES.ID.PLACEHOLDER" : "Enter id of a value",
-  	"PROPERTY.FORMPROPERTIES.VALUES.NAME.PLACEHOLDER" : "Enter name of a value",
-    "PROPERTY.FORMPROPERTIES.EXPRESSION" : "Expression",
-    "PROPERTY.FORMPROPERTIES.EXPRESSION.PLACEHOLDER" : "Enter an expression",
-    "PROPERTY.FORMPROPERTIES.VARIABLE" : "Variable",
-    "PROPERTY.FORMPROPERTIES.VARIABLE.PLACEHOLDER" : "Enter a variable",
-    "PROPERTY.FORMPROPERTIES.REQUIRED" : "Required",
-    "PROPERTY.FORMPROPERTIES.READABLE" : "Readable",
-    "PROPERTY.FORMPROPERTIES.WRITABLE" : "Writable",
-
-    "PROPERTY.INPARAMETERS.VALUE" : "{{length}} in-parameters",
-    "PROPERTY.INPARAMETERS.EMPTY" : "No in-parameters configured",
-
-    "PROPERTY.OUTPARAMETERS.VALUE" : "{{length}} out-parameters",
-    "PROPERTY.OUTPARAMETERS.EMPTY" : "No out-parameters configured",
-
-    "PROPERTY.PARAMETER.SOURCE" : "Source",
-    "PROPERTY.PARAMETER.SOURCE.PLACEHOLDER" : "Enter a source",
-    "PROPERTY.PARAMETER.SOURCEEXPRESSION" : "Source expression",
-    "PROPERTY.PARAMETER.SOURCEEXPRESSION.PLACEHOLDER" : "Enter a source expression",
-    "PROPERTY.PARAMETER.TARGET" : "Target",
-    "PROPERTY.PARAMETER.TARGET.PLACEHOLDER" : "Enter a target",
-    "PROPERTY.PARAMETER.EMPTY" : "No parameter selected",
-
-    "PROPERTY.SUBPROCESSREFERENCE.EMPTY" : "No reference selected",
-    "PROPERTY.SUBPROCESSREFERENCE.TITLE" : "Collapsed subprocess reference",
-    "PROPERTY.SUBPROCESSREFERENCE.ERROR.SUBPROCESS" : "There was an error loading the subprocesses. Try again later",
-    "PROPERTY.SUBPROCESSREFERENCE.FOLDER.ROOT" : "Folders",
-    "PROPERTY.SUBPROCESSREFERENCE.FOLDER.LOADING" : "Loading folders...",
-    "PROPERTY.SUBPROCESSREFERENCE.FOLDER.EMPTY" : "This folder contains no sub-folders",
-    "PROPERTY.SUBPROCESSREFERENCE.SUBPROCESS.LOADING" : "Loading subprocesses...",
-    "PROPERTY.SUBPROCESSREFERENCE.SUBPROCESS.EMPTY" : "This folder contains no subprocesses",
-
-    "PROPERTY.FORMREFERENCE.EMPTY" : "No reference selected",
-    "PROPERTY.FORMREFERENCE.TITLE" : "Form reference",
-    "PROPERTY.FORMREFERENCE.ERROR.FORM" : "There was an error loading the forms. Try again later",
-    "PROPERTY.FORMREFERENCE.FOLDER.ROOT" : "Folders",
-    "PROPERTY.FORMREFERENCE.FOLDER.LOADING" : "Loading folders...",
-    "PROPERTY.FORMREFERENCE.FOLDER.EMPTY" : "This folder contains no sub-folders",
-    "PROPERTY.FORMREFERENCE.FORM.LOADING" : "Loading forms...",
-    "PROPERTY.FORMREFERENCE.FORM.EMPTY" : "This folder contains no forms",
-
-    "PROPERTY.TASKLISTENERS.VALUE" : "{{length}} task listeners",
-    "PROPERTY.TASKLISTENERS.EMPTY" : "No task listeners configured",
-    "PROPERTY.TASKLISTENERS.EVENT" : "Event",
-    "PROPERTY.TASKLISTENERS.CLASS" : "Class",
-    "PROPERTY.TASKLISTENERS.CLASS.PLACEHOLDER" : "Enter a classname",
-    "PROPERTY.TASKLISTENERS.EXPRESSION" : "Expression",
-    "PROPERTY.TASKLISTENERS.EXPRESSION.PLACEHOLDER" : "Enter an expression",
-    "PROPERTY.TASKLISTENERS.DELEGATEEXPRESSION" : "Delegate expression",
-    "PROPERTY.TASKLISTENERS.DELEGATEEXPRESSION.PLACEHOLDER" : "Enter a delegate expression",
-    "PROPERTY.TASKLISTENERS.UNSELECTED" : "No task listener selected",
-    "PROPERTY.TASKLISTENERS.FIELDS.NAME" : "Name",
-    "PROPERTY.TASKLISTENERS.FIELDS.NAME.PLACEHOLDER" : "Enter a name",
-    "PROPERTY.TASKLISTENERS.FIELDS.EXPRESSION" : "Expression",
-    "PROPERTY.TASKLISTENERS.FIELDS.EXPRESSION.PLACEHOLDER" : "Enter an expression",
-    "PROPERTY.TASKLISTENERS.FIELDS.STRINGVALUE" : "String value",
-    "PROPERTY.TASKLISTENERS.FIELDS.STRINGVALUE.PLACEHOLDER" : "Enter a string value",
-    "PROPERTY.TASKLISTENERS.FIELDS.STRING" : "String",
-    "PROPERTY.TASKLISTENERS.FIELDS.STRING.PLACEHOLDER" : "Enter a string",
-    "PROPERTY.TASKLISTENERS.FIELDS.IMPLEMENTATION" : "Implementation",
-    "PROPERTY.TASKLISTENERS.FIELDS.EMPTY" : "No Field selected",
-
-    "PROPERTY.EVENTLISTENERS.DISPLAY" : "{{length}} event listeners",
-    "PROPERTY.EVENTLISTENERS.EMPTY" : "No event listeners configured",
-    "PROPERTY.EVENTLISTENERS.EVENTS": "Events",
-    "PROPERTY.EVENTLISTENERS.RETHROW": "Rethrow event?",
-    "PROPERTY.EVENTLISTENERS.CLASS" : "Class",
-    "PROPERTY.EVENTLISTENERS.CLASS.PLACEHOLDER" : "Enter a classname",
-    "PROPERTY.EVENTLISTENERS.DELEGATEEXPRESSION" : "Delegate expression",
-    "PROPERTY.EVENTLISTENERS.DELEGATEEXPRESSION.PLACEHOLDER" : "Enter a delegate expression",
-    "PROPERTY.EVENTLISTENERS.ENTITYTYPE" : "Entity type",
-    "PROPERTY.EVENTLISTENERS.ENTITYTYPE.PLACEHOLDER" : "Enter an entity type",
-    "PROPERTY.EVENTLISTENERS.RETHROWTYPE": "Rethrow event type",
-    "PROPERTY.EVENTLISTENERS.ERRORCODE" : "Error code",
-    "PROPERTY.EVENTLISTENERS.ERRORCODE.PLACEHOLDER" : "Enter an error code",
-    "PROPERTY.EVENTLISTENERS.MESSAGENAME" : "Message name",
-    "PROPERTY.EVENTLISTENERS.MESSAGENAME.PLACEHOLDER" : "Enter a message name",
-    "PROPERTY.EVENTLISTENERS.SIGNALNAME" : "Signal name",
-    "PROPERTY.EVENTLISTENERS.SIGNALNAME.PLACEHOLDER" : "Enter a signal name",
-    "PROPERTY.EVENTLISTENERS.UNSELECTED" : "No event listener selected",
-
-    "PROPERTY.SIGNALDEFINITIONS.DISPLAY" : "{{length}} signal definitions",
-    "PROPERTY.SIGNALDEFINITIONS.EMPTY" : "No signal definitions configured",
-    "PROPERTY.SIGNALDEFINITIONS.SCOPE-GLOBAL": "Global",
-    "PROPERTY.SIGNALDEFINITIONS.SCOPE-PROCESSINSTANCE": "Process Instance",
-    "PROPERTY.SIGNALDEFINITIONS.ID" : "Id",
-    "PROPERTY.SIGNALDEFINITIONS.NAME" : "Name",
-    "PROPERTY.SIGNALDEFINITIONS.SCOPE" : "Scope",
-
-    "PROPERTY.MESSAGEDEFINITIONS.DISPLAY" : "{{length}} message definitions",
-    "PROPERTY.MESSAGEDEFINITIONS.EMPTY" : "No message definitions configured",
-    "PROPERTY.MESSAGEDEFINITIONS.ID" : "Id",
-    "PROPERTY.MESSAGEDEFINITIONS.NAME" : "Name",
-
-    "PROPERTY.SEQUENCEFLOW.ORDER.EMPTY" : "No sequence flow order determined",
-    "PROPERTY.SEQUENCEFLOW.ORDER.NOT.EMPTY" : "Sequence flow order set",
-    "PROPERTY.SEQUENCEFLOW.ORDER.NO.OUTGOING.SEQUENCEFLOW.FOUND" : "No outgoing sequence flow found.",
-    "PROPERTY.SEQUENCEFLOW.ORDER.DESCRIPTION" : "Set the order in which the sequence flow need to be evaluated:",
-    "PROPERTY.SEQUENCEFLOW.ORDER.SEQUENCEFLOW.VALUE" : "Sequence flow to {{targetType}} {{targetTitle}}",
-
-    "PROPERTY.SEQUENCEFLOW.CONDITION.TITLE" : "Sequence flow condition",
-    "PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.TITLE" : "Condition type",
-    "PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.VARIABLE" : "Select variables",
-    "PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.STATIC" : "Fixed value",
-    "PROPERTY.SEQUENCEFLOW.CONDITION.STATIC" : "Condition expression",
-    "PROPERTY.SEQUENCEFLOW.CONDITION.STATIC_PLACEHOLDER" : "Fill-in expression value",
-    "PROPERTY.SEQUENCEFLOW.CONDITION.NO-CONDITION-DISPLAY": "No condition set",
-
-    "PROPERTY.DUEDATE.EMPTY" : "No due date",
-    "PROPERTY.DUEDATE.DEFINED" : "Due date defined",
-    "PROPERTY.DUEDATE.TITLE" : "Due date",
-    "PROPERTY.DUEDATE.EXPRESSION-LABEL" : "Due date expression",
-    "PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.NO-DUEDATE" : "No due date",
-    "PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.EXPRESSION" : "Expression definition",
-    "PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.STATIC" : "Fixed duration after task creation",
-    "PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.FIELD" : "Based on field",
-
-    "MODEL.SAVE.TITLE" : "Save model",
-    "MODEL.NAME" : "Name",
-    "MODEL.KEY" : "Key",
-    "MODEL.DESCRIPTION" : "Description",
-    "MODEL.SAVE.NEWVERSION" : "Save this as a new version?  This means you can always go back to a previous version",
-    "MODEL.SAVE.COMMENT" : "Comment",
-    "MODEL.SAVE.SAVING" : "Saving model",
-    "MODEL.LASTMODIFIEDDATE" : "Last saved",
-    "MODEL.SAVE.ERROR": "Unexpected error: could not save model",
-    "MODEL.VALIDATIONERRORS": "Note that the model contains validation errors. This means that the model can not be deployed on the Activiti Engine in its current state.",
-    "MODEL.CONFLICT.WRITE": "Could not save model: '{{userFullName}}' has made changes to this model",
-    "MODEL.CONFLICT.WRITE.OPTIONS": "Select an option to resolve this conflict:",
-    "MODEL.CONFLICT.WRITE.OPTION.OVERWRITE": "Overwrite other model",
-    "MODEL.CONFLICT.WRITE.OPTION.DISCARDCHANGES": "Discard my changes",
-    "MODEL.CONFLICT.WRITE.OPTION.SAVEAS": "Save as new model",
-    "MODEL.CONFLICT.WRITE.OPTION.NEWVERSION": "Create new version",
-    "MODEL.CONFLICT.SAVEAS" : "Save as:",
-
-    "EVENT_TYPE.ACTIVITY.COMPENSATE.TOOLTIP": "An activity is about to be executed as a compensation for another activity. The event targets the activity that is about to be executed for compensation",
-    "EVENT_TYPE.ACTIVITY.COMPLETED.TOOLTIP": "An activity has been completed successfully",
-    "EVENT_TYPE.ACTIVITY.ERROR.RECEIVED.TOOLTIP": "An activity has received an error event. Dispatched before the actual error has been received by the activity",
-    "EVENT_TYPE.MEMBERSHIP.CREATED.TOOLTIP": "A new membership has been created",
-    "EVENT_TYPE.MEMBERSHIP.DELETED.TOOLTIP": "A single membership has been deleted",
-    "EVENT_TYPE.MEMBERSHIPS.DELETED.TOOLTIP": "All memberships in the related group have been deleted. No individual events will be dispatched due to possible performance reasons",
-    "EVENT_TYPE.TASK.ASSIGNED.TOOLTIP": "A task as been assigned. This is thrown alongside with an ENTITY_UPDATED event",
-    "EVENT_TYPE.TASK.COMPLETED.TOOLTIP": "A task has been completed. Dispatched before the task entity is deleted",
-    "EVENT_TYPE.UNCAUGHT.BPMNERROR.TOOLTIP": "When a BPMN Error was thrown, but was not caught within in the process",
-    "EVENT_TYPE.VARIABLE.CREATED.TOOLTIP": "A new variable has been created",
-    "EVENT_TYPE.VARIABLE.DELETED.TOOLTIP": "An existing variable has been deleted",
-    "EVENT_TYPE.VARIABLE.UPDATED.TOOLTIP": "An existing variable has been updated",
-
-    "PROPERTY.DECISIONTABLEREFERENCE.EMPTY" : "No reference selected",
-    "PROPERTY.DECISIONTABLEREFERENCE.TITLE" : "Decision table reference",
-    "PROPERTY.DECISIONTABLEREFERENCE.ERROR.FORM" : "There was an error loading the decision tables. Try again later",
-    "PROPERTY.DECISIONTABLEREFERENCE.FOLDER.ROOT" : "Folders",
-    "PROPERTY.DECISIONTABLEREFERENCE.FOLDER.LOADING" : "Loading folders...",
-    "PROPERTY.DECISIONTABLEREFERENCE.FOLDER.EMPTY" : "This folder contains no subfolders",
-    "PROPERTY.DECISIONTABLEREFERENCE.DECISIONTABLE.LOADING" : "Loading decision tables...",
-    "PROPERTY.DECISIONTABLEREFERENCE.DECISIONTABLE.EMPTY" : "This folder contains no decision tables"
+	"PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.FIELD": "基于字段",
+	"APP": {
+		"POPUP": {
+			"ADD-COMMENT-SIZE-ERROR": "注释不能超过4000个字符",
+			"EDIT-DESCRIPTION": "更改以下任何应用程序属性，然后单击“保存”更新应用程序。",
+			"PUBLISH-FIELD": "发布？请注意，如果启用了发布，则此应用程序将被版本化，并且工作流应用程序将在现有的情况下更新。",
+			"SHARE-TITLE": "共享应用程序",
+			"HAS-CUSTOM-STENCILITEM": "模型\"{{modelName}}\"使用带有自定义模板项的模板，无法在应用程序中使用此模型。",
+			"SAVE-APP-SAVE-SUCCESS": "已保存的应用程序",
+			"DELETE-TITLE": "删除应用程序",
+			"PUBLISH-ERROR-PROCESS-ALREADY-USED-APP": "应用程序",
+			"INCLUDE-MODELS-TITLE": "应用程序中包含的模型",
+			"DELETE-DESCRIPTION-WITH-RUNTIME": "是否确定要删除应用程序\"{{name}}\"? 请注意，此应用程序已部署到首页，确认删除后，该应用程序将从首页中删除。",
+			"CREATE-TITLE": "创建新的应用程序",
+			"PUBLISH-ERROR-PROCDEF-DUPLICATE-KEYS": "无效应用：找到重复的进程标识符（更改有问题的进程模型的“id”属性）：",
+			"IMPORT": {
+				"CANCEL-UPLOAD": "取消上传",
+				"DROPZONE": "删除.zip应用程序文件",
+				"NO-DROP": "不支持拖放",
+				"RENEWIDM-IDS": "导入步骤和BPMN模型时，请更新用户和组标识符。当将APP定义导入到不同的Actudio环境时，通常需要这样做。它将尝试将人工步骤和用户任务链接到此目标环境中的正确用户和组。",
+				"ERROR": "处理应用定义文件时出错"
+			},
+			"DELETE-CASCADE-TRUE": "还删除此应用程序的所有以前版本",
+			"HAS-VALIDATIONERROR": "模型\"{{modelName}}\"存在验证错误，无法添加到应用程序中。在编辑器中打开模型以查看有关验证错误的详细信息。",
+			"SAVE-APP-SAVE-FAIL": "无法保存应用定义",
+			"USE-AS-NEW-TITLE": "用作新版本",
+			"ADD-COMMENT-TITLE": "添加注释",
+			"PUBLISH-TITLE": "发布应用定义",
+			"PUBLISH-ERROR-PROCDEF-KEY-CONFLICT": "您的流程模型\"{{modelInAppName}}\"的标识符\"{{processDefinitionKey}}\"与已部署的应用程序\"{{conflictingAppName}}\"的流程\"{{conflictingModelName}}\"相同。请将流程模型的\"id\"属性更改为其他属性。",
+			"PUBLISH-DESCRIPTION": "是否确定要发布应用程序\"{{name}}\"? 注意，如果此应用程序已经存在，将被版本化，并且工作流应用程序将更新",
+			"DUPLICATE-DESCRIPTION": "您可以为新的应用程序指定一个名称，并且您可能希望同时更改描述。",
+			"SHARE-DESCRIPTION": "您可以决定要与谁共享此应用程序，以及他们是否可以编辑它。",
+			"USE-AS-NEW-DESCRIPTION": "您确定要使用 {{version}} 来为\"{{name}}\"创建一个新的版本吗?",
+			"DELETE-CASCADE-FALSE": "仅删除此应用程序的当前版本 (v{{version}})",
+			"IMPORT-TITLE": "导入应用程序模型",
+			"DELETE-DESCRIPTION": "确定要删除应用程序\"{{name}}\"?",
+			"NOT-SHARED": "此应用程序未与任何人共享。",
+			"DUPLICATE-TITLE": "复制到应用程序的定义",
+			"CREATE-DESCRIPTION": "您需要为新的应用程序提供一个名称，并且您可能希望同时添加一个描述。",
+			"EDIT-TITLE": "编辑应用程序细节",
+			"SAVE-APP-TITLE": "保存应用定义",
+			"IMPORT-DESCRIPTION": "请浏览或删除扩展名为.zip的应用程序",
+			"PUBLISH-ERROR-PROCESS-ALREADY-USED": "以下流程模型已在另一个应用程序中使用。这样行吗？",
+			"ADD-COMMENT-DESCRIPTION": "在下面为\"{{name}}\"输入新评论"
+		},
+		"VERSION-COMMENT": "版本注释",
+		"KICKSTART": {
+			"TITLE-PROCESSES": "过程模型",
+			"TITLE-APPS": "应用程序模型",
+			"TITLE-STENCILS": "模版",
+			"TITLE": "启动程序",
+			"TITLE-FORMS": "形态模型"
+		},
+		"DETAILS": {
+			"CREATED-BY": "由 {{createdBy}} 创建",
+			"COMMENTS-TITLE": "评论",
+			"MODELS-TITLE": "应用程序中包含的模型",
+			"NO-DESCRIPTION": "此应用程序没有说明。修改APP定义属性以添加一个属性",
+			"VERSION": "(版本 {{version}})",
+			"NO-MODELS-SELECTED": "没有为此应用选择模型",
+			"COMPARE-WITH-TITLE": "与...比较",
+			"HISTORY-TITLE": "历史",
+			"LAST-UPDATED-BY": "最后一次更新于 {{lastUpdatedByFullName}} - {{lastUpdated | dateformat}}",
+			"TITLE": "应用程序细节 {{name}}",
+			"THEME-TITLE": "这是所选应用程序主题的预览。通过将鼠标悬停在预览上，可以选择不同的图标和主题颜色。"
+		},
+		"THEME": "主题",
+		"ANALYTICS": {
+			"TITLE": "分析应用程序"
+		},
+		"EDIT": {
+			"TITLE": "编辑应用定义"
+		},
+		"ALERT": {
+			"EDIT-CONFIRM": "应用定义已更新",
+			"UN-FAVORITE-CONFIRM": "此应用程序不再受欢迎",
+			"COMMENT-ADDED-CONFIRM": "已将新注释添加到应用程序中",
+			"DELETE-CONFIRM": "删除应用程序",
+			"FAVORITE-CONFIRM": "此应用程序现在最受欢迎",
+			"NEW-VERSION-CONFIRM": "已创建应用程序的新版本",
+			"SHARE-CONFIRM": "应用定义共享选项已更新",
+			"PUBLISH-ERROR": "无法发布应用定义。请检查引用的流程模型的有效性"
+		},
+		"NAME": "应用定义名称",
+		"ADMINISTRATOR": {
+			"TITLE": "管理应用程序"
+		},
+		"TASKS": {
+			"TITLE-PROCESSES": "过程",
+			"TITLE-TASKS": "任务",
+			"TITLE": "任务应用程序"
+		},
+		"IDENTITY-MANAGEMENT": {
+			"TITLE-TENANT-ADMIN": "身份管理",
+			"TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "能力",
+			"TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "组织机构",
+			"TITLE": "简况",
+			"TITLE-PROFILE": "简况",
+			"TITLE-TENANT-ADMIN-USER-MGMT": "用户",
+			"TITLE-TENANT-ADMIN-PROFILE": "简况",
+			"TITLE-TENANT-ADMIN-TENANT-MGMT": "租户"
+		},
+		"ACTION": {
+			"OPEN-IN-EDITOR": "应用程序编辑器",
+			"DUPLICATE-CONFIRM": "复制应用程序",
+			"SELECT-ICON": "更改图标...",
+			"ADD-COMMENT-CONFIRM": "添加注释",
+			"EDIT-CONFIRM": "保存",
+			"DETAILS": "显示细节",
+			"DELETE-CONFIRM": "删除应用程序",
+			"EDIT": "修改应用定义属性",
+			"USE-AS-NEW-VERSION": "用作新版本",
+			"PUBLISH": "发布",
+			"SHARE": "共享此应用定义",
+			"USE-AS-NEW-VERSION-CONFIRM": "用作新版本",
+			"EDIT-MODELS": "编辑包含的模型",
+			"DELETE": "删除此应用定义",
+			"DUPLICATE": "复制此应用程序",
+			"PUBLISH-CONFIRM": "发布应用定义",
+			"ADD-COMMENT": "添加注释",
+			"EXPORT-ZIP": "将应用程序导出为zip文件",
+			"COMPARE": "与其他版本比较",
+			"SELECT-THEME": "修改主题...",
+			"FAVORITE": "喜欢这个应用程序",
+			"CREATE-CONFIRM": "创建新的应用程序",
+			"SHARE-CONFIRM": "确认更改"
+		},
+		"DESCRIPTION": "描述",
+		"TITLE": {
+			"SELECT-ICON": "选择应用图标",
+			"SELECT-THEME": "选择应用程序颜色",
+			"PREVIEW": "预览"
+		},
+		"ERROR": {
+			"NOT-FOUND": "请求的应用程序不存在"
+		},
+		"CUSTOM-APP": {
+			"TITLE-PROCESSES": "过程",
+			"TITLE-TASKS": "任务"
+		},
+		"ICON": "偶像",
+		"KEY": "应用定义键"
+	},
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.NAME.PLACEHOLDER": "输入名称",
+	"FORM_TOOLBAR.ACTION.FEEDBACK": "反馈",
+	"PROPERTY.FORMREFERENCE.FORM.LOADING": "表单加载中...",
+	"PROPERTY.EVENTLISTENERS.SIGNALNAME.PLACEHOLDER": "请输入信号名称",
+	"PROPERTY.DUEDATE.EMPTY": "没有到期日",
+	"PROPERTY.TASKLISTENERS.UNSELECTED": "没有选择任务监听",
+	"PROPERTY.FORMREFERENCE.EMPTY": "没有引用表单",
+	"DECISION-TABLE": {
+		"POPUP": {
+			"ADD-COMMENT-SIZE-ERROR": "注释不能超过4000个字符",
+			"EDIT-DESCRIPTION": "更改下面的任何决策表属性，然后单击保存以更新决策表。",
+			"REUSABLE": "可重用决策表",
+			"SHARE-TITLE": "股份决定表",
+			"DELETE-TITLE": "删除决策表",
+			"IMPORT-NO-DROP": "不支持拖放",
+			"CREATE-TITLE": "新建决策表",
+			"IMPORT-CANCEL-UPLOAD": "取消上传",
+			"SAVE-DECISION-TABLE-TITLE": "保存决策表",
+			"IMPORT": {
+				"CANCEL-UPLOAD": "取消上传",
+				"DROPZONE": "删除.DMN或.DMN.XML DMN XML文件",
+				"NO-DROP": "不支持拖放",
+				"ERROR": "处理DMN XML文件时出错"
+			},
+			"DELETE-CASCADE-TRUE": "同时删除此决策表的所有以前版本",
+			"USE-AS-NEW-TITLE": "用作新版本",
+			"ADD-COMMENT-TITLE": "添加注释",
+			"SAVE-DESCRIPTION": "您需要为新的决策表提供一个名称和一个唯一的键，并且您可能希望同时添加一个描述。",
+			"IMPORT-DROPZONE": "删除.dmn或.xml决策表文件",
+			"SAVE-EMBEDDED": "是否在当前流程模型中嵌入此决策表？",
+			"DUPLICATE-DESCRIPTION": "您需要为新的决策表提供一个名称，并且您可能希望同时添加一个描述。",
+			"SHARE-DESCRIPTION": "您可以决定希望与谁共享此决策表，以及他们是否可以编辑它。",
+			"USE-AS-NEW-DESCRIPTION": "您确定要使用 {{version}} 来为\"{{name}}\"创建一个新的版本吗?",
+			"IMPORT-TITLE": "导入DMN模型",
+			"DELETE-CASCADE-FALSE": "仅删除此决策表的当前版本 (v{{version}})",
+			"IMPORT-ERROR": "处理决策表文件时出错",
+			"DELETE-DESCRIPTION": "确定要删除决策表\"{{name}}\"?",
+			"NOT-SHARED": "此决策表不与任何人共享。",
+			"DUPLICATE-TITLE": "重复的决策表",
+			"CREATE-DESCRIPTION": "您需要为新的决策表提供一个名称，并且您可能希望同时添加一个描述。",
+			"EDIT-TITLE": "编辑决策表细节",
+			"SAVE-EMBEDDED-COPY": "将创建决策表的副本，因为其他进程也在使用它",
+			"IMPORT-DESCRIPTION": "浏览或删除扩展名为.dmn或.dmn.xml的dmn xml定义",
+			"ADD-COMMENT-DESCRIPTION": "在下面为\"{{name}}\"输入新评论"
+		},
+		"REUSABLE": "可重用决策表",
+		"VERSION-COMMENT": "版本注释",
+		"DETAILS": {
+			"CREATED-BY": "由 {{createdBy}} 创建",
+			"COMMENTS-TITLE": "评论",
+			"VERSION": "(版本 {{version}})",
+			"COMPARE-WITH-TITLE": "与...比较",
+			"HISTORY-TITLE": "历史",
+			"LAST-UPDATED-BY": "最后一次更新于 {{lastUpdatedByFullName}} - {{lastUpdated | dateformat}}",
+			"TITLE": "决策表细节 {{name}}"
+		},
+		"HIT-POLICIES": {
+			"FIRST": "第一次（单程）",
+			"ANY": "任意（单程）"
+		},
+		"EDIT": {
+			"TITLE": "编辑决策表"
+		},
+		"HIT-POLICY": "打击政策：",
+		"ALERT": {
+			"EDIT-CONFIRM": "决策表已更新",
+			"UN-FAVORITE-CONFIRM": "此决策表不再受欢迎",
+			"COMMENT-ADDED-CONFIRM": "已将新注释添加到决策表中",
+			"DELETE-CONFIRM": "决策表已删除",
+			"FAVORITE-CONFIRM": "这个决策表现在很受欢迎",
+			"NEW-VERSION-CONFIRM": "已创建决策表的新版本",
+			"SHARE-CONFIRM": "决策表共享选项已更新"
+		},
+		"NAME": "决策表名称",
+		"ACTION": {
+			"OPEN-IN-EDITOR": "决策表编辑器",
+			"DUPLICATE-CONFIRM": "复制决策表",
+			"ADD-COMMENT-CONFIRM": "添加注释",
+			"EDIT-CONFIRM": "保存",
+			"DETAILS": "显示细节",
+			"EXPORT": "出口决策表",
+			"DELETE-CONFIRM": "删除决策表",
+			"EDIT": "修改模型属性",
+			"USE-AS-NEW-VERSION": "用作新版本",
+			"SHARE": "共享此决策表",
+			"USE-AS-NEW-VERSION-CONFIRM": "用作新版本",
+			"DELETE": "删除此决策表",
+			"DUPLICATE": "复制此决策表",
+			"ADD-COMMENT": "+ 添加注释",
+			"COMPARE": "与其他版本比较",
+			"CANCEL": "取消",
+			"FAVORITE": "最喜欢此决策表",
+			"CREATE-CONFIRM": "创建新决策表",
+			"SHARE-CONFIRM": "确认更改"
+		},
+		"DESCRIPTION": "描述",
+		"ERROR": {
+			"NOT-FOUND": "请求的决策表不存在"
+		},
+		"KEY": "决策表键"
+	},
+	"PROPERTY.EXECUTIONLISTENERS.EXPRESSION.PLACEHOLDER": "输入表达式",
+	"MODEL.SAVE.SAVING": "保存",
+	"PROCESS": {
+		"POPUP": {
+			"PERMISSION": "许可",
+			"ADD-COMMENT-SIZE-ERROR": "注释不能超过4000个字符",
+			"EDIT-DESCRIPTION": "更改下面的任何模型属性，然后单击“保存”更新模型。",
+			"USE-AS-NEW-UNRESOLVED-MODEL": "内部id为 {{id}} 的模型'{{name}}', 由 {{createdBy}} 创建",
+			"SHARE-TITLE": "共享过程模型",
+			"DELETE-TITLE": "删除模型",
+			"CREATE-TITLE": "创建新的业务流程模型",
+			"IMPORT": {
+				"CANCEL-UPLOAD": "取消上传",
+				"DROPZONE": "删除.bpmn或.bpmn20.xml bpmn xml文件",
+				"NO-DROP": "不支持拖放",
+				"ERROR": "处理bpmn xml文件时出错"
+			},
+			"DELETE-CASCADE-TRUE": "同时删除此模型的所有早期版本",
+			"USE-AS-NEW-TITLE": "用作新版本",
+			"USE-AS-NEW-UNRESOLVED-MODELS-ERROR": "无法将应用程序模型完全还原到所选版本：某些引用的模型由于在过去被删除而丢失。请相应地更新应用程序模型。缺失模型：",
+			"ACTIONS": "行动",
+			"ADD-COMMENT-TITLE": "添加注释",
+			"DELETE-FORM-RELATION": "表单模型",
+			"DELETE-RELATIONS-DESCRIPTION": "无法删除此模型，因为它被其他模型使用：",
+			"DUPLICATE-DESCRIPTION": "您可以更改新模型的名称，也可以同时更改描述。",
+			"DELETE-APP-RELATION": "应用程序模型",
+			"SHARE-DESCRIPTION": "您可以决定希望与谁共享此业务流程模型，以及他们是否可以编辑它。",
+			"DELETE-RELATIONS-DESCRIPTION-SINGLE": "无法删除此模型，因为另一个模型正在使用它：",
+			"USE-AS-NEW-DESCRIPTION": "您确定要使用 {{version}} 来为\"{{name}}\"创建一个新的版本吗?",
+			"SHARED-WITH": "与共享",
+			"DELETE-CASCADE-FALSE": "仅删除此模型的当前版本 (v{{version}})",
+			"IMPORT-TITLE": "导入流程模型",
+			"DELETE-LOADING-RELATIONS": "正在检查模型用法...",
+			"DELETE-DESCRIPTION": "确定要删除业务流程模型\"{{name}}\"?",
+			"NOT-SHARED": "此业务流程模型不与任何人共享。",
+			"DUPLICATE-TITLE": "复制业务流程模型",
+			"CREATE-DESCRIPTION": "您需要为新模型提供一个名称，并且可能希望同时添加一个描述。",
+			"EDIT-TITLE": "编辑模型详细信息",
+			"DELETE-PROCESS-RELATION": "过程模型",
+			"IMPORT-DESCRIPTION": "请浏览或删除扩展名为.bpmn或.bpmn20.xml的bpmn xml定义",
+			"ADD-COMMENT-DESCRIPTION": "在下面为\"{{name}}\"输入新评论"
+		},
+		"STENCIL": "模版",
+		"VERSION-COMMENT": "版本注释",
+		"ACTION": {
+			"OPEN-IN-EDITOR": "可视化编辑器",
+			"DUPLICATE-CONFIRM": "复制模型",
+			"ADD-COMMENT-CONFIRM": "添加注释",
+			"EDIT-CONFIRM": "保存",
+			"DETAILS": "显示细节",
+			"DELETE-CONFIRM": "删除流程模型",
+			"EDIT": "修改模型属性",
+			"USE-AS-NEW-VERSION": "用作新版本",
+			"SHARE": "共享此模型",
+			"USE-AS-NEW-VERSION-CONFIRM": "用作新版本",
+			"DELETE": "删除此模型",
+			"DUPLICATE": "复制此模型",
+			"EXPORT_BPMN20": "导出到bpmn 2.0",
+			"ADD-COMMENT": "添加注释",
+			"COMPARE": "与其他版本比较",
+			"FAVORITE": "喜欢这个型号",
+			"CREATE-CONFIRM": "创建",
+			"SHARE-CONFIRM": "确认更改"
+		},
+		"DESCRIPTION": "描述",
+		"DETAILS": {
+			"STENCIL": "模板：",
+			"CREATED-BY": "由 {{createdBy}} 创建",
+			"COMMENTS-TITLE": "评论",
+			"NO-DESCRIPTION": "此模型没有描述。修改模型属性以添加一个属性",
+			"VERSION": "(版本 {{version}})",
+			"COMPARE-WITH-TITLE": "与...比较",
+			"HISTORY-TITLE": "历史",
+			"LAST-UPDATED-BY": "最后一次更新于 {{lastUpdatedByFullName}} - {{lastUpdated | dateformat}}",
+			"TITLE": "业务流程模型细节 {{name}}"
+		},
+		"EDIT": {
+			"TITLE": "编辑过程"
+		},
+		"ERROR": {
+			"NOT-FOUND": "请求的模型不存在"
+		},
+		"ALERT": {
+			"EDIT-CONFIRM": "模型更新",
+			"UN-FAVORITE-CONFIRM": "这个型号不再受欢迎了",
+			"COMMENT-ADDED-CONFIRM": "已将新注释添加到模型中",
+			"DELETE-CONFIRM": "模型删除",
+			"FAVORITE-CONFIRM": "这个型号现在很受欢迎",
+			"NEW-VERSION-CONFIRM": "已创建业务流程模型的新版本",
+			"SHARE-CONFIRM": "模型共享选项已更新"
+		},
+		"EDITOR-TYPE": "编辑器类型",
+		"KEY": "模型密钥",
+		"NAME": "型号名称"
+	},
+	"TOOLBAR.ACTION.SAVE": "保存",
+	"PROPERTY.EXECUTIONLISTENERS.DELEGATEEXPRESSION": "委托表达式",
+	"PROPERTY.FIELDS.STRING": "字符串",
+	"MAIN_NAVIGATION_DISPATCH_RULES": "调度规则",
+	"PROPERTY.PARAMETER.SOURCEEXPRESSION.PLACEHOLDER": "输入源表达式",
+	"PROPERTY.TASKLISTENERS.FIELDS.STRINGVALUE": "字符串",
+	"PROPERTY.OUTPARAMETERS.VALUE": "{{length}}返回参数",
+	"ACTION.MOVE.UP": "上移",
+	"PROPERTY.PARAMETER.TARGET": "目标",
+	"MODEL.LASTMODIFIEDDATE": "上次保存时间",
+	"PROPERTY.FORMREFERENCE.FOLDER.LOADING": "文件夹加载中...",
+	"ELEMENT.AUTHOR": "作者",
+	"PROPERTY.EXECUTIONLISTENERS.UNSELECTED": "没有配置执行监听",
+	"PAGE.HEADER": "业务流程详细信息",
+	"PROPERTY.ASSIGNMENT.MATCHING": "使用上下方向键选择并按回车键确认或使用鼠标",
+	"PROPERTY.FORMPROPERTIES.NAME.PLACEHOLDER": "输入名称",
+	"PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.TITLE": "条件类型",
+	"TOOLBAR.ACTION.PASTE": "粘贴",
+	"MODEL.CONFLICT.WRITE.OPTION.OVERWRITE": "覆盖其他模型",
+	"PROPERTY.DECISIONTABLEREFERENCE.DECISIONTABLE.LOADING": "正在加载决策表...",
+	"MAIN_NAVIGATION_ORCHESTRATIONS": "业务流程",
+	"PROPERTY.SEQUENCEFLOW.ORDER.SEQUENCEFLOW.VALUE": "顺序流{{targetType}} {{targetTitle}}",
+	"PROPERTY.DECISIONTABLEREFERENCE.ERROR.FORM": "加载决策表时出错。以后再试一次",
+	"EVENT_TYPE.ACTIVITY.ERROR.RECEIVED.TOOLTIP": "在收到活动错误之前,活动已收到错误事件",
+	"TOOLBAR.ACTION.COPY": "复制",
+	"PROPERTY.DUEDATE.EXPRESSION-LABEL": "到期日期表达式",
+	"FORM_TOOLBAR.ACTION.HELP": "预览",
+	"PROPERTY.PARAMETER.TARGET.PLACEHOLDER": "输入目标",
+	"TOOLBAR.ACTION.CLOSE": "关闭编辑器并返回到概述页面",
+	"PROPERTY.DUEDATE.DEFINED": "定义的截止日期",
+	"TOOLBAR.ACTION.MOVE": "移动",
+	"PROPERTY.DUEDATE.TITLE": "到期日",
+	"PROPERTY.FIELDS.EXPRESSION": "表达式",
+	"PROPERTY.EVENTLISTENERS.RETHROWTYPE": "抛出事件类型",
+	"APP_DEFINITION_TOOLBAR.ACTION.SAVE": "保存",
+	"PROPERTY.TASKLISTENERS.EVENT": "事件",
+	"PROPERTY.FIELDS.NAME": "名称",
+	"PROPERTY.FORMREFERENCE.FORM.EMPTY": "文件夹包含子文件夹",
+	"TOOLBAR.ACTION.SAMESIZE": "相同大小",
+	"PROPERTY.SUBPROCESSREFERENCE.ERROR.SUBPROCESS": "子流程加载错误.请稍后再试",
+	"MODEL.CONFLICT.WRITE.OPTION.DISCARDCHANGES": "放弃我的修改",
+	"PROPERTY.SEQUENCEFLOW.CONDITION.NO-CONDITION-DISPLAY": "没有条件",
+	"PROPERTY.INPARAMETERS.EMPTY": "没有配置输入参数",
+	"PROPERTY.TASKLISTENERS.VALUE": "{{length}}任务监听",
+	"MODEL.CONFLICT.WRITE.OPTION.SAVEAS": "另存为新模型",
+	"PROPERTY.FORMREFERENCE.TITLE": "表单引用",
+	"PROPERTY.ASSIGNMENT.TYPE": "类型",
+	"INVOLVE-PEOPLE": {
+		"ACTION-SELECT": "选择",
+		"EMAIL-HELP": "按Enter键或单击按钮继续。将通过电子邮件通知此人或邀请其注册。",
+		"USE-EMAIL": "选择使用电子邮件地址的人",
+		"BACK-TO-SEARCH": "回到搜索",
+		"NO-MATCHING-RESULTS": "使用“搜索”框，找到两个或以上的用户",
+		"SOURCE": {
+			"FIELD-OPTION": "表单字段",
+			"TYPE": "来源",
+			"SEARCH-OPTION": "用户搜索"
+		},
+		"EMAIL-PLACEHOLDER": "输入电子邮件地址",
+		"SEARCH-PLACEHOLDER": "搜索用户"
+	},
+	"EVENT_TYPE.VARIABLE.UPDATED.TOOLTIP": "一个变量被更新",
+	"PROPERTY.SUBPROCESSREFERENCE.FOLDER.LOADING": "文件夹加载中...",
+	"PROPERTY.MESSAGEDEFINITIONS.EMPTY": "没有配置消息定义",
+	"DECISION-TABLE-EDITOR": {
+		"POPUP": {
+			"RULE-EDITOR": {
+				"DATE-TYPE-FIXED": "固定的",
+				"STRING-LABEL": "字符串：",
+				"NUMBER-LABEL": "号码：",
+				"DATE-TYPE-DYNAMIC": "动态的",
+				"NUMBER-FORMAT-MESSAGE": "123.45",
+				"DATE_CALCULATION-LABEL": "计算：",
+				"NUMBER_CALCULATION-PARAM1-LABEL": "号码：",
+				"METHOD-LABEL": "方法：",
+				"DATE_EXECUTION-LABEL": "执行日期：",
+				"DATE-TYPE-LABEL": "约会类型：",
+				"MONTHS-LABEL": "月：",
+				"DESCRIPTION": "编写\"{{columnType}}\"的表达式",
+				"YEARS-LABEL": "年：",
+				"OPERATOR-LABEL": "操作员：",
+				"DAYS-LABEL": "天：",
+				"BOOLEAN-LABEL": "布尔：",
+				"NUMBER_CALCULATION-LABEL": "计算：",
+				"TITLE": "编辑列\"{{name }}\"的规则表达式",
+				"ERROR": "图形编辑器无法理解单元格表达式。这并不意味着表达式无效。<br/>要保留表达式，请单击“取消”。要创建新表达式，只需填写表单并单击“确定”。",
+				"SELECT-VALUE": "选择值...",
+				"DATE_EXECUTION-TEXT": "将使用执行决策表的日期",
+				"DATE-LABEL": "戴特："
+			},
+			"EXPRESSION-EDITOR": {
+				"INPUT-TITLE": "编辑输入列",
+				"EXPRESSION-PLACEHOLDER": "输入可选标签",
+				"OUTPUT-EXISTING-VARIABLE": "现有的",
+				"EXPRESSION-LABEL": "的标签：柱",
+				"EXPRESSION-VARIABLE-TYPE-STATIC": "静态的",
+				"EXPRESSION-TYPE-VARIABLE": "表情",
+				"OUTPUT-NEW-VARIABLE-TYPE": "变量的类型：",
+				"EXPRESSION-VARIABLE-TYPE-FORMFIELD": "表单字段",
+				"EXPRESSION-VARIABLE-TYPE-DATE_EXECUTION": "执行日期",
+				"EXPRESSION-VARIABLE-NAME-PLACEHOLDER": "输入变量名",
+				"INPUT-EXISTING-VARIABLE": "现有的",
+				"OUTPUT-NEW-VARIABLE": "创建",
+				"INPUT-DESCRIPTION": "选择输入变量作为列的输入",
+				"EXPRESSION-TYPE-LABEL": "列类型：",
+				"EXPRESSION-VARIABLE-TYPE-STRING": "弦",
+				"EXPRESSION-VARIABLE-TYPE-VARIABLE": "变量",
+				"INPUT-NEW-VARIABLE": "创建",
+				"OUTPUT-NEW-VARIABLE-ID": "变量：",
+				"EXPRESSION-VARIABLE-NAME": "变量名：",
+				"OUTPUT-DESCRIPTION": "选择现有输出变量或创建新的输出变量",
+				"EXPRESSION-VARIABLE-TYPE-LABEL": "变量的类型：",
+				"EXPRESSION-VARIABLE-TYPE-NUMBER": "数",
+				"OUTPUT-TITLE": "编辑输出列",
+				"EXPRESSION-VARIABLE-TYPE-BOOLEAN": "布尔",
+				"EXPRESSION-VARIABLE-TYPE-DATE": "日期",
+				"EXPRESSION-TYPE-SCRIPT": "脚本"
+			}
+		},
+		"BUTTON-REMOVE-RULE-LABEL": "删除规则",
+		"BUTTON-ADD-INPUT-LABEL": "添加输入",
+		"OPERATOR": {
+			"DATE": {
+				"==": "等同于",
+				"<=": "在...之前或与...相同",
+				".contains": "包含",
+				"__isEmpty__": "是空的",
+				".startsWith": "从开始",
+				"!=": "以外",
+				"<": "以前",
+				">": "后",
+				".endsWith": "以结束",
+				"__isNotEmpty__": "不是空的",
+				">=": "在...之后或与...相同"
+			},
+			"NUMBER": {
+				"==": "等于",
+				"<=": "小于或等于",
+				"__isEmpty__": "是空的",
+				"!=": "不等于",
+				"<": "小于",
+				">": "大于",
+				"__isNotEmpty__": "不是空的",
+				">=": "大于或等于"
+			},
+			"STRING": {
+				"==": "等于",
+				".contains": "包含",
+				"__isEmpty__": "是空的",
+				".startsWith": "从开始",
+				"!=": "不等于",
+				".endsWith": "以结束",
+				"__isNotEmpty__": "不是空的"
+			},
+			"BOOLEAN": {
+				"==": "等于",
+				"__isEmpty__": "是空的",
+				"!=": "不等于",
+				"__isNotEmpty__": "不是空的"
+			}
+		},
+		"CALCULATION": {
+			"DATE": {
+				"ADD": "添加",
+				"NONE": "",
+				"SUBTRACT": "减去"
+			},
+			"NUMBER": {
+				"ADD": "添加",
+				"MULTIPLY": "乘法",
+				"NONE": "",
+				"SUBTRACT": "减去",
+				"DIVIDE": "分"
+			}
+		},
+		"EMPTY-MESSAGES": {
+			"NO-COLUMN": "在开始向表中添加决策行之前，至少需要创建一个条件和一个操作列。",
+			"NO-CONDITION-COLUMN": "做得好! 现在，您有一个'{{variable}}'的动作列，现在继续创建一个条件列...",
+			"NO-ACTION-COLUMN": "做得好! 现在，您有一个'{{variable}}'的条件列，现在继续创建一个动作列...",
+			"NO-VARIABLE-SELECTED": "未定义"
+		},
+		"BUTTON-ADD-RULE-LABEL": "添加规则",
+		"BUTTON-MOVE-RULE-DOWNWARDS-LABEL": "向下移动",
+		"BUTTON-ADD-OUTPUT-LABEL": "添加输出",
+		"BUTTON-MOVE-RULE-UPWARDS-LABEL": "向上移动",
+		"ALERT": {
+			"EXPRESSION-VARIABLE-REQUIRED-ERROR": "所有输入和输出表达式都必须引用窗体字段或变量。",
+			"SAVE-ERROR": "决策表'{{name}}'无法被保存",
+			"SAVE-CONFIRM": "保存决策表'{{name}}'",
+			"VALIDATION-OK": "决策表模型不包含验证错误。",
+			"VALIDATION-ERROR": "决策表模型包含验证错误。"
+		}
+	},
+	"KICKSTART.PROCESS_TOOLBAR.ACTION.FEEDBACK": "反馈",
+	"PROPERTY.ASSIGNMENT.INITIATOR-CAN-COMPLETE": "允许进程发起程序完成任务",
+	"PROPERTY.DECISIONTABLEREFERENCE.FOLDER.EMPTY": "此文件夹不包含子文件夹",
+	"PROPERTY.SUBPROCESSREFERENCE.SUBPROCESS.LOADING": "子流程加载中...",
+	"TOOLBAR.ACTION.ZOOMIN": "放大",
+	"PROPERTY.FORMPROPERTIES.DATEPATTERN.PLACEHOLDER": "输入日期",
+	"PROPERTY.SIGNALDEFINITIONS.EMPTY": "没有配置信号定义",
+	"TOUR": {
+		"END-TITLE": "结束",
+		"PALETTE-TITLE": "调色板",
+		"CANVAS-TITLE": "画布",
+		"TOOLBAR-TITLE": "工具栏",
+		"DRAGDROP-CONTENT": "下面是如何开始建模的示例：",
+		"END-CONTENT": "就是这样！现在可以开始为流程建模。如果您有任何问题，可以在<a href=\"http://forums.activiti.org/\" target=\"_blank\">Alfresco Activiti Forum</a>上随时询问。",
+		"PALETTE-CONTENT": "可以在这里找到创建业务流程的所有可用构造。它们按逻辑分组。要打开一个组，只需单击它：",
+		"WELCOME-TITLE": "欢迎您, {{userName}}",
+		"CANVAS-CONTENT": "这是用于创建业务流程的工作空间。从左侧的调色板中拖动元素，并将它们放到画布上以开始建模。",
+		"PROPERTIES-CONTENT": "在这里，您可以配置业务流程构造的属性。只需选择画布上的项目，它的属性就会显示出来。如果要编辑属性，请单击它",
+		"PROPERTIES-TITLE": "性质",
+		"TOOLBAR-CONTENT": "所有操作都可以在这里找到：保存或验证模型，复制和粘贴流程的部分，等等。将鼠标悬停在按钮上以获取操作的说明。",
+		"DRAGDROP-TITLE": "拖放示例",
+		"WELCOME-CONTENT": "这是Alfresco Activiti编辑的短途旅行。接下来的几个步骤将指导您完成应用程序的不同部分，以便开始使用。按Esc键随时停止。"
+	},
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.NAME": "名称",
+	"PROPERTY.SUBPROCESSREFERENCE.FOLDER.EMPTY": "文件夹未包含子文件夹",
+	"ACTION.REMOVE": "清除",
+	"ACTION.SAVE-AND-CLOSE": "保存并关闭",
+	"ACCOUNT": {
+		"POPUP": {
+			"EDIT": {
+				"LASTNAME": "姓",
+				"COMPANY-PLACEHOLDER": "输入您的公司",
+				"FIRSTNAME-PLACEHOLDER": "输入名字",
+				"TITLE": "编辑帐户",
+				"FIRSTNAME": "名字",
+				"LASTNAME-PLACEHOLDER": "输入姓氏",
+				"CONFIRM": "保存配置文件",
+				"COMPANY": "公司（可选）"
+			},
+			"CHANGE-PASSWORD": {
+				"OLD-PASSWORD": "当前密码",
+				"NEW-PASSWORD-REPEAT": "重复密码",
+				"NEW-PASSWORD-PLACEHOLDER": "输入新密码",
+				"OLD_PASSWORD-ERROR": "您提供的当前密码不正确。",
+				"NEW-PASSWORD": "新密码",
+				"NEW-PASSWORD-STRENGTH": "密码强度：",
+				"TITLE": "编辑您的密码",
+				"PASSWORDS-NOT-EQUAL": "密码不匹配",
+				"CONFIRM": "更改密码",
+				"UNKNOWN-ERROR": "您的密码未更改，更新时出错。",
+				"OLD-PASSWORD-PLACEHOLDER": "输入当前密码"
+			}
+		},
+		"ALERT": {
+			"PASSWORD-CHANGED": "您的密码已更改。",
+			"UPDATED": "您的个人资料已更新。"
+		}
+	},
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.IMPLEMENTATION": "实现类",
+	"PROPERTY.EXECUTIONLISTENERS.CLASS": "类",
+	"PROPERTY.EVENTLISTENERS.DISPLAY": "{{length}}事件监听",
+	"MODEL.VALIDATIONERRORS": "请注意，模型包含验证错误。这意味着在当前状态下，不能在Activiti引擎上部署模型。",
+	"TOOLBAR.ACTION.REDO": "重复",
+	"DECISION_TABLE_TOOLBAR.ACTION.CLOSE": "关闭",
+	"PROPERTY.DECISIONTABLEREFERENCE.DECISIONTABLE.EMPTY": "此文件夹不包含决策表",
+	"HEADER.BRAND_TAGLINE": "由Alfresco提供动力",
+	"PROPERTY.TASKLISTENERS.EMPTY": "未配置任务监听",
+	"ELEMENT.DATE_CREATED": "创建日期",
+	"MODELER": {
+		"ALERT": {
+			"VALIDATION-OK": "流程模型不包含验证错误。",
+			"VALIDATION-ERROR": "流程模型包含验证错误。"
+		}
+	},
+	"BUTTON.ACTION.DELETE.TOOLTIP": "从模型中删除元素",
+	"PROPERTY.EXECUTIONLISTENERS.DISPLAY": "{{length}}执行监听",
+	"PROPERTY.EVENTLISTENERS.UNSELECTED": "没有选择事件监听",
+	"TOOLBAR.ACTION.ZOOMFIT": "适应屏幕",
+	"ELEMENT.SELECTED_EMPTY_TITLE": "(输入名称)",
+	"SHARE-INFO": {
+		"PERMISSION": "许可",
+		"STENCIL-PERMISSION-REMOVE": "停止分享这一步",
+		"PERMISSION-REMOVE": "停止共享此模型",
+		"ADD-PERSON-PLACEHOLDER": "希望与之共享的电子邮件地址",
+		"ADD-PERSON": "添加人",
+		"ACTION": {
+			"ADD": "添加其他人",
+			"ADD-GROUP": "添加其他组"
+		},
+		"PERMISSION-READ": "视图模型",
+		"STENCIL-PERMISSION-READ": "视图模版",
+		"STENCIL-PERMISSION-WRITE": "编辑模版",
+		"PERMISSION-WRITE": "编辑模型",
+		"ADD-PERSON-PLACEHOLDER-ON-PREM": "搜索要与之共享的用户"
+	},
+	"PROPERTY.ASSIGNMENT.IDM.DROPDOWN.GROUPS": "候选组",
+	"PROPERTY.FORMPROPERTIES.VARIABLE.PLACEHOLDER": "输入变量",
+	"PROPERTY.OUTPARAMETERS.EMPTY": "没有配置返回参数",
+	"PROPERTY.EVENTLISTENERS.RETHROW": "抛出事件?",
+	"PROPERTY.FIELDS.IMPLEMENTATION": "实现类",
+	"PROCESS-LIST": {
+		"LOADING": "正在获取模型...",
+		"FILTER": {
+			"MY-PROCESSES-BPMN-IMPORT-HINT": "您还可以导入现有的BPMN模型。",
+			"RECENT-COUNT": "{{total}} 个最近使用的模型",
+			"RECENT": "最近的",
+			"FILTER-TEXT": ", 匹配 \"{{filterText}}\"",
+			"MY-PROCESSES-COUNT": "您有 {{total}} 个业务流程模型",
+			"RECENT-EMPTY": "没有最近使用的型号",
+			"MY-PROCESSES": "我的过程",
+			"MY-PROCESSES-EMPTY": "看起来您还没有创建任何业务流程模型。您可以设计流程模型、用户表单，然后将它们打包到流程应用程序中，与任何同事共享。第一步是创建流程模型：",
+			"MY-PROCESSES-BPMN-HINT": "使用bpmn可视化编辑器创建bpmn模型。",
+			"RECENT-ONE": "最近使用过的一种型号",
+			"MY-PROCESSES-ONE": "您有一个业务流程模型",
+			"MY-PROCESSES-STEP-HINT": "如果您是设计流程的新手，可以使用步骤编辑器。",
+			"FILTER-TEXT-EMPTY": "您没有和\"{{filterText}}\"匹配的业务流程模型"
+		},
+		"ACTION": {
+			"CREATE-INLINE": "立即创建新的业务流程模型！",
+			"IMPORT": "导入流程",
+			"SHOW-MORE": "展示更多...",
+			"CREATE": "创建流程"
+		},
+		"SORT": {
+			"NAME-ASC": "按名称正序",
+			"MODIFIED-DESC": "按修改时间倒序",
+			"NAME-DESC": "按名称倒序",
+			"MODIFIED-ASC": "按修改时间正序"
+		},
+		"TITLE": "业务流程模型",
+		"SEARCH-PLACEHOLDER": "搜索"
+	},
+	"PROPERTY.ASSIGNMENT.ASSIGNEE": "代理人",
+	"PROPERTY.FORMPROPERTIES.TYPE": "类型",
+	"PROPERTY.ASSIGNMENT.ASSIGNEE_DISPLAY": "代理人 {{assignee}}",
+	"PROPERTY.TASKLISTENERS.FIELDS.STRING": "字符串",
+	"TOOLBAR.ACTION.ALIGNHORIZONTAL": "水平对齐",
+	"PROPERTY.ASSIGNMENT.TYPE.STATIC": "静态值",
+	"PROPERTY.ASSIGNMENT.CANDIDATE_GROUPS_DISPLAY": "{{length}}候选组",
+	"MODEL.CONFLICT.WRITE.OPTION.NEWVERSION": "创建新版本",
+	"PROPERTY.EVENTLISTENERS.ERRORCODE.PLACEHOLDER": "请输入错误代码",
+	"MODEL.CONFLICT.SAVEAS": "另存为：",
+	"SUBPROCESS": {
+		"POPUP": {
+			"CREATE-DESCRIPTION": "您需要为新的子流程提供一个名称，并且您可能希望同时添加一个描述。",
+			"CREATE-TITLE": "创建新的子流程"
+		},
+		"ACTION": {
+			"CREATE-CONFIRM": "创建新的子流程"
+		},
+		"DESCRIPTION": "描述",
+		"POPOVER": {
+			"CREATE": "+ 创建子流程",
+			"SELECT-TITLE": "选择子流程",
+			"MATCHING": "匹配子进程",
+			"NONE-MATCHING": "没有匹配的子进程",
+			"NONE-SELECTED": "未选择子进程...",
+			"SEARCH-PLACEHOLDER": "搜索子流程",
+			"CLEAR": "清除",
+			"OPEN": "正常开放"
+		},
+		"TITLE": "子过程",
+		"NAME": "子流程名称"
+	},
+	"PROPERTY.MESSAGEDEFINITIONS.NAME": "名称",
+	"APP_DEFINITION_TOOLBAR.ACTION.FEEDBACK": "反馈",
+	"PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.NO-DUEDATE": "没有到期日",
+	"PROPERTY.PARAMETER.SOURCEEXPRESSION": "源表达式",
+	"MODEL.SAVE.ERROR": "未知错误:保存失败!",
+	"KICKSTART.PROCESS_TOOLBAR.ACTION.HELP": "预览",
+	"BUTTON.ACTION.MORPH.TOOLTIP": "更改元素类型",
+	"PROPERTY.FORMPROPERTIES.EXPRESSION": "表达式",
+	"GENERAL": {
+		"MESSAGE": {
+			"SELECT-PEOPLE-HELP": "使用&uparrow；和&downarrow；选择并按Enter确认",
+			"GROUP-SOURCE-TYPE": "群源",
+			"GROUP-SOURCE-FIELD-OPTION": "表单字段",
+			"ADD-COMMENT-PLACEHOLDER": "输入新注释",
+			"PEOPLE-NO-MATCHING-RESULTS": "找不到匹配的用户",
+			"GROUP-NO-MATCHING-RESULTS": "找不到匹配的组",
+			"GROUP-SOURCE-SEARCH-OPTION": "群搜索",
+			"SELECT-GROUP-HELP": "使用&uparrow；和&downarrow；选择并按Enter确认"
+		},
+		"ACTION": {
+			"LOGOUT": "退出",
+			"CONFIRM-AND-CLOSE": "确认并关闭",
+			"NEW-DECISION-TABLE": "新建决策表",
+			"EDIT": "编辑",
+			"CLOSE": "关闭",
+			"NEW-FORM": "新表单",
+			"CREATE-DECISION-TABLE": "创建决策表",
+			"OPEN": "正常开放",
+			"CREATE-FORM": "创建表单",
+			"RETURN-TO-LIST": "显示所有定义",
+			"CANCEL": "取消",
+			"SAVE": "保存",
+			"OK": "好啊",
+			"CONFIRM": "确认"
+		},
+		"TITLE": {
+			"SELECT-GROUP": "选择组",
+			"MATCHING-GROUPS": "匹配组",
+			"FILTER": "筛选",
+			"ADD-COMMENT": "创建新注释",
+			"SELECT-PEOPLE": "选择人物",
+			"MATCHING-PEOPLE": "匹配人",
+			"COMMENTS": "评论",
+			"INVOLVE-PEOPLE": "选择人物",
+			"RECENT-PEOPLE": "最近人",
+			"HISTORY": "历史"
+		},
+		"ERROR": {
+			"INTERNAL_SERVER_ERROR": "抱歉，执行请求的操作时发生意外错误。",
+			"CAPTCHA": {
+				"EXPIRED": "验证码已过期。请解决新的挑战。",
+				"WRONG": "您提供的验证码解决方案与挑战不匹配。请解决新的挑战。"
+			},
+			"UNAUTHORIZED": "为了执行所请求的操作，您应该登录。",
+			"BAD_REQUEST": "执行请求的操作时出错",
+			"NOT_FOUND": "您试图访问的资源不存在",
+			"QUOTA-EXCEEDED-APPS": "作为试用用户，您只能同时拥有 {{quota}} 个应用程序。",
+			"UNKNOWN": "抱歉，执行请求的操作时出错。",
+			"FORBIDDEN": "不允许您执行请求的操作",
+			"QUOTA-EXCEEDED-LICENSE-APPS": "此许可只允许同时使用 {{quota}} 个应用程序。"
+		},
+		"MAIN-TITLE": "活动-Kickstart",
+		"NAVIGATION": {
+			"FORMS": "表单",
+			"DECISION-TABLES": "决策表",
+			"PROCESSES": "过程",
+			"APPS": "应用程序"
+		},
+		"ABOUT": {
+			"LICENSED-TO": "授权给",
+			"EXPIRES": "到期",
+			"LEGAL": "法律和许可证",
+			"COPYRIGHT": "？2005-2015 Alfresco Software Inc.保留所有权利。",
+			"TYPE": "类型"
+		}
+	},
+	"TOOLBAR.ACTION.VALIDATE": "校验",
+	"PROPERTY.PARAMETER.EMPTY": "没有选择参数",
+	"PROPERTY.FORMREFERENCE.FOLDER.EMPTY": "文件夹未包含子文件夹",
+	"PROPERTY.TASKLISTENERS.FIELDS.STRING.PLACEHOLDER": "请输入字符串",
+	"MODEL.CONFLICT.WRITE": "无法保存修改: '{{userFullName}}' 已经修改了此模型",
+	"PROPERTY.FIELDS.UNSELECTED": "没有选择字段",
+	"MODEL.SAVE.NEWVERSION": "保存为新版本? 这样你可以随时回到以前的版本",
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.EXPRESSION": "表达式",
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.STRING.PLACEHOLDER": "输入字符串",
+	"PROPERTY.FORMPROPERTIES.EXPRESSION.PLACEHOLDER": "输入表达式",
+	"EVENT_TYPE.UNCAUGHT.BPMNERROR.TOOLTIP": "一个BPMN被抛出,但没有捕获",
+	"ACTION.CANCEL": "取消",
+	"PROPERTY.FIELDS.EXPRESSION.PLACEHOLDER": "输入表达式",
+	"PROPERTY.PARAMETER.SOURCE": "源",
+	"PROPERTY.EVENTLISTENERS.ENTITYTYPE.PLACEHOLDER": "请输入类型",
+	"TOOLBAR.ACTION.DELETE": "删除",
+	"ACTION.SELECT": "选择",
+	"TOOLBAR.ACTION.BENDPOINT.ADD": "为选定的流程连线添加弯曲点",
+	"PROPERTY.SEQUENCEFLOW.CONDITION.STATIC_PLACEHOLDER": "输入表达式值",
+	"DECISION-TABLES-LIST": {
+		"LOADING": "获取决策表...",
+		"FILTER": {
+			"MY-REUSABLE-DECISION-TABLES-COUNT": "您有 {{total}} 个可重用决策表",
+			"MY-REUSABLE-DECISION-TABLES": "我的可重用决策表",
+			"FILTER-TEXT": ", 匹配 \"{{filterText}}\"",
+			"MY-REUSABLE-DECISION-TABLES-EMPTY": "您没有决策表。若要添加决策表，请单击“创建决策表”。",
+			"FILTER-TEXT-EMPTY": "您没有与\"{{filterText}}\"匹配的决策表",
+			"MY-REUSABLE-DECISION-TABLES-ONE": "您有一个可重用的决策表"
+		},
+		"ACTION": {
+			"CREATE-INLINE": "现在创建一个新的决策表！",
+			"IMPORT": "导入决策表",
+			"SHOW-MORE": "展示更多...",
+			"CREATE": "创建决策表"
+		},
+		"SORT": {
+			"NAME-ASC": "按名称正序",
+			"MODIFIED-DESC": "按修改时间倒序",
+			"NAME-DESC": "按名称倒序",
+			"MODIFIED-ASC": "按修改时间正序"
+		},
+		"TITLE": "决策表",
+		"SEARCH-PLACEHOLDER": "搜索"
+	},
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.STRINGVALUE.PLACEHOLDER": "输入字符串",
+	"HEADER.BRAND": "Activiti编辑",
+	"PROPERTY.FEEDBACK.TITLE": "请填写您的反馈意见",
+	"PROPERTY.EVENTLISTENERS.SIGNALNAME": "信号名称",
+	"FORM": {
+		"POPUP": {
+			"ADD-COMMENT-SIZE-ERROR": "注释不能超过4000个字符",
+			"EDIT-DESCRIPTION": "更改下面的任何表单属性，然后单击“保存”更新表单。",
+			"DUPLICATE-DESCRIPTION": "您需要为新表单提供一个名称，并且可能希望同时添加说明。",
+			"SHARE-TITLE": "分享表单",
+			"SHARE-DESCRIPTION": "您可以决定与谁共享此表单，以及他们是否可以编辑此表单。",
+			"USE-AS-NEW-DESCRIPTION": "您确定要使用 {{version}} 来为\"{{name}}\"创建一个新的版本吗?",
+			"DELETE-TITLE": "删除表单",
+			"DELETE-CASCADE-FALSE": "仅删除此表单的当前版本 (v{{version}})",
+			"DELETE-DESCRIPTION": "确定要删除表单\"{{name}}\"?",
+			"NOT-SHARED": "此表单不与任何人共享。",
+			"CREATE-TITLE": "创建新表单",
+			"DUPLICATE-TITLE": "复制表单",
+			"CREATE-DESCRIPTION": "您需要为新表单提供一个名称，并且可能希望同时添加说明。",
+			"SAVE-FORM-TITLE": "保存窗体",
+			"EDIT-TITLE": "编辑表单详细信息",
+			"DELETE-CASCADE-TRUE": "同时删除此表单的所有以前版本",
+			"USE-AS-NEW-TITLE": "用作新版本",
+			"ADD-COMMENT-TITLE": "添加注释",
+			"ADD-COMMENT-DESCRIPTION": "在下面为\"{{name}}\"输入新评论"
+		},
+		"REUSABLE": "可重用窗体",
+		"VERSION-COMMENT": "版本注释",
+		"ACTION": {
+			"OPEN-IN-EDITOR": "表单编辑器",
+			"DUPLICATE-CONFIRM": "复制表单",
+			"ADD-COMMENT-CONFIRM": "添加注释",
+			"EDIT-CONFIRM": "保存",
+			"DETAILS": "显示细节",
+			"DELETE-CONFIRM": "删除窗体",
+			"EDIT": "修改模型属性",
+			"USE-AS-NEW-VERSION": "用作新版本",
+			"SHARE": "分享此表单",
+			"USE-AS-NEW-VERSION-CONFIRM": "用作新版本",
+			"DELETE": "删除此表单",
+			"ADD-COMMENT": "+ 添加注释",
+			"COMPARE": "与其他版本比较",
+			"FAVORITE": "收藏此表单",
+			"CREATE-CONFIRM": "创建",
+			"SHARE-CONFIRM": "确认更改"
+		},
+		"DESCRIPTION": "描述",
+		"DETAILS": {
+			"CREATED-BY": "由 {{createdBy}} 创建",
+			"COMMENTS-TITLE": "评论",
+			"VERSION": "(版本 {{version}})",
+			"COMPARE-WITH-TITLE": "与...比较",
+			"HISTORY-TITLE": "历史",
+			"LAST-UPDATED-BY": "最后一次更新于 {{lastUpdatedByFullName}} - {{lastUpdated | dateformat}}",
+			"TITLE": "表单细节 {{name}}"
+		},
+		"EDIT": {
+			"TITLE": "编辑表单"
+		},
+		"ERROR": {
+			"NOT-FOUND": "请求的表单不存在"
+		},
+		"ALERT": {
+			"EDIT-CONFIRM": "表格更新",
+			"UN-FAVORITE-CONFIRM": "此表单不再受欢迎",
+			"COMMENT-ADDED-CONFIRM": "已将新注释添加到表单中",
+			"DELETE-CONFIRM": "删除窗体",
+			"FAVORITE-CONFIRM": "这张表格现在很受欢迎",
+			"NEW-VERSION-CONFIRM": "已创建表单的新版本",
+			"SHARE-CONFIRM": "表单共享选项已更新"
+		},
+		"KEY": "表单键",
+		"NAME": "表单名称"
+	},
+	"PROPERTY.FORMPROPERTIES.VALUE": "{{length}}表单属性",
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.EXPRESSION.PLACEHOLDER": "输入表达式",
+	"APPS-LIST": {
+		"LOADING": "获取应用程序...",
+		"FILTER": {
+			"SHARED-WITH-OTHERS-COUNT": "您已共享 {{total}} 个应用程序给其他人",
+			"SHARED-WITH-ME-COUNT": "已与您共享 {{total}} 个应用程序",
+			"FILTER-TEXT": ", 匹配 \"{{filterText}}\"",
+			"SHARED-WITH-ME": "与我分享",
+			"MY-APPS": "我的应用程序",
+			"SHARED-WITH-OTHERS": "与他人分享",
+			"SHARED-WITH-ME-EMPTY": "没有与您共享的应用程序",
+			"MY-APPS-ONE": "你有一个应用程序",
+			"NO-APPS-NOTE": "记住在准备好使用它时发布它。",
+			"NO-APPS-CALL-TO-ACTION": "现在可以创建流程应用程序。",
+			"NO-APPS": "您可以通过发布一系列流程模型并与同事共享来创建流程应用程序。您可以在Activiti主页上添加任何与您共享的流程应用程序。你甚至可以创建一个没有任何进程的进程应用程序，如果你只想分组简单的协作任务！",
+			"SHARED-WITH-ME-ONE": "已与您共享一个应用程序",
+			"MY-APPS-EMPTY": "您没有应用程序。若要添加应用程序，请单击“创建应用程序”。",
+			"SHARED-WITH-OTHERS-ONE": "您已经与其他人共享了一个应用程序模型。",
+			"FILTER-TEXT-EMPTY": "您没有和\"{{filterText}}\"匹配的应用程序",
+			"MY-APPS-COUNT": "您有 {{total}} 个应用程序",
+			"SHARED-WITH-OTHERS-EMPTY": "您没有与其他人共享任何应用程序"
+		},
+		"ACTION": {
+			"CREATE-INLINE": "立即创建新的应用程序！",
+			"IMPORT": "导入应用程序",
+			"SHOW-MORE": "展示更多...",
+			"CREATE": "创建应用程序"
+		},
+		"SORT": {
+			"NAME-ASC": "按名称正序",
+			"MODIFIED-DESC": "按修改时间倒序",
+			"NAME-DESC": "按名称倒序",
+			"MODIFIED-ASC": "按修改时间正序"
+		},
+		"TITLE": "应用程序",
+		"SEARCH-PLACEHOLDER": "搜索"
+	},
+	"PROPERTY.EXECUTIONLISTENERS.EMPTY": "没有配置执行监听",
+	"PROPERTY.SIGNALDEFINITIONS.NAME": "名称",
+	"PROPERTY.TASKLISTENERS.FIELDS.EXPRESSION": "表达式",
+	"KICKSTART-MODEL": {
+		"VERSION": "版本 {{version}}",
+		"ALERT": {
+			"ERROR-SAVE": "由于意外错误，无法保存模型",
+			"DEPLOYED": "该模型已成功部署。",
+			"SAVED": "模型已保存",
+			"DELETED": "模型已成功删除"
+		},
+		"LAST-UPDATED": "最后一次更新于 {{lastUpdatedByFullName}}, {{lastUpdated | dateformat}}"
+	},
+	"PROPERTY.TASKLISTENERS.FIELDS.EMPTY": "未选择字段",
+	"TOOLBAR.ACTION.FEEDBACK": "提供反馈",
+	"PROPERTY.FIELDS.EMPTY": "没有选择字段",
+	"EDITOR": {
+		"POPUP": {
+			"UNSAVED-CHANGES": {
+				"ACTION": {
+					"CONTINUE": "继续编辑",
+					"DISCARD": "放弃修改",
+					"SAVE": "保存更改"
+				},
+				"DESCRIPTION": "您希望如何处理未保存的更改？",
+				"TITLE": "您有未保存的更改"
+			}
+		}
+	},
+	"MODEL.DESCRIPTION": "描述",
+	"PROPERTY.MESSAGEDEFINITIONS.DISPLAY": "{{length}}消息定义",
+	"ACTION.MOVE.DOWN": "下移",
+	"PROPERTY.EVENTLISTENERS.ERRORCODE": "错误代码",
+	"DECISION_TABLE_TOOLBAR.ACTION.SAVE": "保存决策表",
+	"PROPERTY.FORMPROPERTIES.NAME": "名称",
+	"KICKSTART.PROCESS_TOOLBAR.ACTION.SAVE": "保存",
+	"PROPERTY.ASSIGNMENT.IDM.NO_CANDIDATE_GROUPS": "没有选择候选组...",
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.STRING": "字符串",
+	"PROPERTY.FORMPROPERTIES.DATEPATTERN": "时间选择框",
+	"PROPERTY.EXECUTIONLISTENERS.DELEGATEEXPRESSION.PLACEHOLDER": "输入委托表达式",
+	"EVENT_TYPE.TASK.ASSIGNED.TOOLTIP": "在ENTITY_UPDATED事件抛出时，任务已经被分配",
+	"PROPERTY.ASSIGNMENT.ASSIGNEE_PLACEHOLDER": "请输入代理人",
+	"PROPERTY.SEQUENCEFLOW.ORDER.DESCRIPTION": "不能设置已经被使用的编号:",
+	"PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.VARIABLE": "选择的变量",
+	"PROPERTY.SIGNALDEFINITIONS.DISPLAY": "{{length}}信号定义",
+	"PROPERTY.TASKLISTENERS.EXPRESSION.PLACEHOLDER": "请输入表达式",
+	"FORM-BUILDER": {
+		"POPUP": {
+			"EDIT-TITLE": "编辑字段 '{{name}}'",
+			"EXPRESSION-TITLE": "编辑表达式"
+		},
+		"PALLETTE": {
+			"NUMBER": "数",
+			"CHECKBOX": "复选框",
+			"TEXT": "文本",
+			"HEADER": "页眉",
+			"TABLE": "动态表",
+			"DISPLAY-TEXT": "显示文本",
+			"MULTILINE-TEXT": "多行文本",
+			"DATE": "日期",
+			"DROPDOWN": "下拉",
+			"UPLOAD": "上传",
+			"CONTAINER": "集装箱",
+			"RADIO": "单选按钮",
+			"GROUP-OF-PEOPLE": "一群人",
+			"PEOPLE": "人",
+			"EXPRESSION": "表情",
+			"DISPLAY-VALUE": "显示值"
+		},
+		"ALERT": {
+			"VALIDATION-OK": "表单不包含验证错误。",
+			"VALIDATION-ERROR": "表单包含验证错误。"
+		},
+		"OPTIONS": {
+			"REST": "休息服务",
+			"MANUAL": "手册"
+		},
+		"VALIDATOR-POPUP": {
+			"DESCRIPTION": "描述",
+			"VALIDATOR-SET": "验证集",
+			"WARNING": "警告"
+		},
+		"MESSAGE": {
+			"EMPTY-EXPRESSION": "（无表达式值）",
+			"EXPRESSION-HELP": "您还可以显示以前以任何形式提交的值，作为文本的一部分，方法是使用下面的符号来引用这些值。",
+			"SELECT-FIELD": "（未选择字段）",
+			"DISPLAY-TEXT-HELP": "还可以显示任何形式提交的值，作为显示文本的一部分。选择下面的字段将其插入光标位置。",
+			"SELECT-READONLY-FIELD": "字段：",
+			"HYPERLINK-HELP-RESPONSE-VARIABLE": "您还可以将REST响应变量显示为超链接URL的一部分。选择下面的字段将其插入光标位置。",
+			"HYPERLINK-HELP": "您还可以显示以前以任何形式提交的值，作为超链接URL的一部分。选择下面的字段将其插入光标位置。",
+			"EMPTY-CANVAS": "窗体当前为空。通过从左侧列表中拖动所需组件，将组件添加到表单中。单击画布上的组件以更改标签和其他属性...",
+			"VARIABLE-NAME": "变量名：",
+			"FIELD-VALUE": "显示字段\"{{field}}\"的值"
+		},
+		"VERSION": "版本 {{version}}",
+		"TABS": {
+			"UPLOAD-OPTIONS": "上传选项",
+			"VISIBILITY": "能见度",
+			"TABLE-COLUMNS": "表列",
+			"GROUP-RESTRICTIONS": "组限制",
+			"GENERAL": "一般",
+			"OPTIONS": "选项",
+			"URL-OPTIONS": "URL选项"
+		},
+		"LABEL": {
+			"PERSON": "选择个人...",
+			"SEARCH": "搜索",
+			"FUNCTIONAL-GROUP": "选择组..."
+		},
+		"TITLE": {
+			"DESIGN": "设计",
+			"OUTCOME": "结果",
+			"DETAILS": "细节",
+			"COMPONENTS": "表单组件",
+			"PREVIEW": "预览",
+			"EDIT-COMPONENT": "编辑表单组件"
+		},
+		"COMPONENT": {
+			"SORTABLE": "可分类的",
+			"AMOUNT-ENABLE-FRACTIONS": "使能分数",
+			"UPLOAD-ALLOW-MULTIPLE": "允许上传多个文件",
+			"EDITABLE": "可编辑的",
+			"OVERRIDEID": "重写ID？",
+			"VISIBLE": "表中显示",
+			"HEADER-TYPE": "属性类型",
+			"DISPLAY-TEXT": "显示文本",
+			"PLACEHOLDER-ID": "输入属性ID",
+			"LABEL": "标签：",
+			"BASE-ENDPOINT": "基端点",
+			"READONLY-TEXT": "显示文本",
+			"ID": "身份证件：",
+			"AMOUNT-CURRENCY-PROPERTY": "货币",
+			"DOCUMENTS-EDITABLE": "允许在Office中编辑文档",
+			"DROPDOWN-DEFAULT-EMPTY-SELECTION": "请选择一个...",
+			"DROPDOWN-EMPTY-VALUE-HELP": "这是“空值”选项。在运行时选择此选项意味着“无值”或“空”。这允许用于可选字段，但不允许用于必需字段。",
+			"RADIO-BUTTON-DEFAULT": "备选案文1",
+			"OPTIONS-TYPE": "标准选项：",
+			"REQUIRED": "要求的",
+			"PROPERTY-UNSELECTED": "未选择属性",
+			"PLACEHOLDER-NAME": "按Enter a property name",
+			"OPTIONS": "选项",
+			"HEADER-NAME": "属性名",
+			"NAME": "姓名：",
+			"PLACEHOLDER": "placeholder：",
+			"ONLY-LINKS-HELP": "不允许用户从设备上传文件。相反，可以从将链接的外部源中选择内容，而不是复制内容。",
+			"ADD-OPTION": "+ 添加新选项",
+			"HEADER-ID": "属性ID",
+			"ONLY-LINKS": "只链接选择的内容，不要复制",
+			"DISPLAY-TEXT-DEFAULT": "将文本显示为表单的一部分",
+			"EXPRESSION": "表情",
+			"READONLY": "只读"
+		},
+		"OUTCOMES": {
+			"ADD": "添加结果",
+			"DESCRIPTION": "您可以为此任务定义多个结果。当完成一个任务时，用户选择一个可用的结果，它可以在流程中进一步的条件中使用。",
+			"OUTCOMES-OPTION": "使用此表单的自定义结果。",
+			"NO-OUTCOMES-OPTION": "不要使用自定义结果，只显示“完成”按钮。",
+			"REMOVE": "去除",
+			"POSSIBLE-OUTCOMES": "可能的结果",
+			"NEW-OUTCOME-PLACEHOLDER": "输入新结果"
+		},
+		"LAST-UPDATED": "最后一次更新于 {{lastUpdatedByFullName}}, {{lastUpdated | dateformat}}",
+		"GROUP-RESTRICTION": {
+			"LABEL": "受组限制"
+		}
+	},
+	"LOGIN": {
+		"FORM": {
+			"USERNAME.PLACEHOLDER": "输入您的电子邮件",
+			"PASSWORD": "密码",
+			"BUTTON": "登录",
+			"USERNAME": "电子邮件地址",
+			"PASSWORD.PLACEHOLDER": "输入您的密码",
+			"REMEMBERME": "自动登录"
+		},
+		"MESSAGES": {
+			"ERROR": {
+				"AUTHENTICATION": "登录失败！请检查您的登录详细信息，然后重试。"
+			}
+		},
+		"TITLE": "用户登录"
+	},
+	"FORM_TOOLBAR.ACTION.VALIDATE": "校验模型",
+	"PROPERTY.EVENTLISTENERS.EVENTS": "事件",
+	"PROPERTY.ASSIGNMENT.IDM.DROPDOWN.USER": "分派给一个用户",
+	"MODEL.NAME": "名称",
+	"PROPERTY.ASSIGNMENT.IDM.TYPE": "任务",
+	"PROPERTY.EVENTLISTENERS.ENTITYTYPE": "类型",
+	"PROPERTY.SIGNALDEFINITIONS.SCOPE-PROCESSINSTANCE": "流程初始化",
+	"MAIN_NAVIGATION_SOLUTIONS": "解决",
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.STRINGVALUE": "字符串",
+	"PROPERTY.TASKLISTENERS.DELEGATEEXPRESSION.PLACEHOLDER": "请输入委托表达式",
+	"PROPERTY.TASKLISTENERS.DELEGATEEXPRESSION": "委托表达式",
+	"PROPERTY.EVENTLISTENERS.MESSAGENAME": "消息名称",
+	"COMMON": {
+		"SELECT-FOLDER": "选择文件夹..."
+	},
+	"PROPERTY.PARAMETER.SOURCE.PLACEHOLDER": "输入源",
+	"EVENT_TYPE.ACTIVITY.COMPENSATE.TOOLTIP": "一个活动被另外一个活动替代执行",
+	"PROPERTY.FIELDS.STRING.PLACEHOLDER": "输入字符串",
+	"EVENT_TYPE.VARIABLE.DELETED.TOOLTIP": "一个变量被删除",
+	"PROPERTY.TASKLISTENERS.FIELDS.STRINGVALUE.PLACEHOLDER": "请输入字符串",
+	"PROPERTY.SEQUENCEFLOW.ORDER.NO.OUTGOING.SEQUENCEFLOW.FOUND": "没有输出顺序流.",
+	"PROPERTY.FORMREFERENCE.ERROR.FORM": "表单加载错误.请稍后再试!",
+	"MODEL.SAVE.TITLE": "保存模型",
+	"PROPERTY.FORMPROPERTIES.REQUIRED": "必输",
+	"PROPERTY.SIGNALDEFINITIONS.ID": "编号",
+	"FORMS-LIST": {
+		"LOADING": "正在获取表单...",
+		"FILTER": {
+			"MY-REUSABLE-FORMS": "我的可重用表单",
+			"MY-REUSABLE-FORMS-EMPTY": "您没有可重用的表单。若要添加表单，请单击“创建表单”。",
+			"FILTER-TEXT": ", 匹配 \"{{filterText}}\"",
+			"MY-REUSABLE-FORMS-ONE": "你有一个可重用的表单",
+			"FILTER-TEXT-EMPTY": "您没有和\"{{filterText}}\"匹配的表单",
+			"MY-REUSABLE-FORMS-COUNT": "您有 {{total}} 个可重用表单"
+		},
+		"ACTION": {
+			"CREATE-INLINE": "立即创建新表单！",
+			"SHOW-MORE": "展示更多...",
+			"CREATE": "创建表单"
+		},
+		"SORT": {
+			"NAME-ASC": "按名称正序",
+			"MODIFIED-DESC": "按修改时间倒序",
+			"NAME-DESC": "按名称倒序",
+			"MODIFIED-ASC": "按修改时间正序"
+		},
+		"TITLE": "表单",
+		"SEARCH-PLACEHOLDER": "搜索"
+	},
+	"TOOLBAR.ACTION.ZOOMACTUAL": "实际大小",
+	"PROPERTY.TASKLISTENERS.CLASS": "类",
+	"PROPERTY.ASSIGNMENT.EMAIL.HELP": "键入一个电子邮件地址，然后按回车键继续",
+	"PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.EXPRESSION": "表达式定义",
+	"PROPERTY.FIELDS.NAME.PLACEHOLDER": "输入名称",
+	"PROPERTY.EVENTLISTENERS.DELEGATEEXPRESSION": "委托表达式",
+	"PROPERTY.EVENTLISTENERS.EMPTY": "未配置事件监听",
+	"MODEL.CONFLICT.WRITE.OPTIONS": "选择解决此冲突的选项：",
+	"PROPERTY.FORMPROPERTIES.VALUES": "值",
+	"PROPERTY.SEQUENCEFLOW.ORDER.NOT.EMPTY": "顺序流排序",
+	"TOOLBAR.ACTION.ZOOMOUT": "缩小",
+	"PROPERTY.INPARAMETERS.VALUE": "{{length}}输入参数",
+	"PROPERTY.SUBPROCESSREFERENCE.SUBPROCESS.EMPTY": "文件夹包含子文件夹",
+	"MAIN_NAVIGATION_ASSET_GROUPS": "审批组",
+	"PROPERTY.EVENTLISTENERS.DELEGATEEXPRESSION.PLACEHOLDER": "请输入委托表达式",
+	"PROPERTY.SUBPROCESSREFERENCE.EMPTY": "没有引用子流程",
+	"PROPERTY.EMPTY": "",
+	"TOOLBAR.ACTION.BENDPOINT.REMOVE": "为选定的流程连线删除弯曲点",
+	"PROPERTY.DECISIONTABLEREFERENCE.FOLDER.LOADING": "正在加载文件夹...",
+	"PROPERTY.ASSIGNMENT.CANDIDATE_USERS_DISPLAY": "{{length}}候选人",
+	"PROPERTY.FORMPROPERTIES.READABLE": "可读",
+	"EVENT_TYPE.MEMBERSHIPS.DELETED.TOOLTIP": "所有成员都被删除.可能是由于没有事件被分配",
+	"PROPERTY.MESSAGEDEFINITIONS.ID": "编号",
+	"PROPERTY.EXECUTIONLISTENERS.EXPRESSION": "表达式",
+	"APP_DEFINITION_TOOLBAR.ACTION.VALIDATE": "校验模型",
+	"ACTION.OK": "确认",
+	"PROPERTY.SIGNALDEFINITIONS.SCOPE": "范围",
+	"ACTION.ADD": "添加",
+	"PROPERTY.ASSIGNMENT.IDM.DROPDOWN.USERS": "候选人",
+	"ACTION.SEND": "发送",
+	"PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.STATIC": "静态值",
+	"TOOLBAR.ACTION.ALIGNVERTICAL": "垂直对齐",
+	"EVENT_TYPE.ACTIVITY.COMPLETED.TOOLTIP": "一个活动被成功的执行",
+	"EVENT_TYPE.VARIABLE.CREATED.TOOLTIP": "一个变量被创建",
+	"RECAPTCHA": {
+		"RECAPTCHA-PLACEHOLDER": "输入您的答复",
+		"RECAPTCHA-RELOAD": "再拿一个验证码",
+		"RECAPTCHA-GET-AUDIO": "使用音频验证码",
+		"RECAPTCHA-IMAGE": "在下面输入您读到的单词",
+		"RECAPTCHA-AUDIO": "输入您听到的数字",
+		"RECAPTCHA-GET-IMAGE": "显示图像验证码",
+		"RECAPTCHA-HELP": "帮助"
+	},
+	"PROPERTY.ASSIGNMENT.IDM.NO_CANDIDATE_USERS": "没有选择候选人...",
+	"PROPERTY.DECISIONTABLEREFERENCE.TITLE": "决策表参考",
+	"PROPERTY.PROPERTY.EDIT.TITLE": "修改 {{title}}",
+	"TOOLBAR.ACTION.EXPORT": "导出",
+	"PROPERTY.EXECUTIONLISTENERS.EVENT": "事件",
+	"APP_DEFINITION_TOOLBAR.ACTION.HELP": "预览",
+	"PROPERTY.EVENTLISTENERS.CLASS.PLACEHOLDER": "输入类名",
+	"PROPERTY.FIELDS": "{{length}}字段",
+	"PROPERTY.ASSIGNMENT.IDM.NO_CANDIDATE": "没有指定的候选候选者",
+	"EVENT_TYPE.MEMBERSHIP.CREATED.TOOLTIP": "一个唯一的成员被创建",
+	"PROPERTY.ASSIGNMENT.USER_IDM_EMAIL_DISPLAY": "用户{{email}}",
+	"EVENT_TYPE.TASK.COMPLETED.TOOLTIP": "在任务实体删除前任务已经被完成",
+	"PROPERTY.FORMPROPERTIES.WRITABLE": "可写",
+	"PROPERTY.EVENTLISTENERS.CLASS": "类",
+	"PROPERTY.TASKLISTENERS.EXPRESSION": "表达式",
+	"PROPERTY.DECISIONTABLEREFERENCE.EMPTY": "未选择引用",
+	"PROPERTY.ASSIGNMENT.EMPTY": "无代理人",
+	"PROPERTY.ASSIGNMENT.IDM.DROPDOWN.INITIATOR": "分派给发起人",
+	"KICKSTART.PROCESS_TOOLBAR.ACTION.VALIDATE": "校验模型",
+	"PROPERTY.EXECUTIONLISTENERS.FIELDS.EMPTY": "没有选择字段",
+	"PROPERTY.SUBPROCESSREFERENCE.TITLE": "引用错误的子流程",
+	"PROPERTY.FORMPROPERTIES.VARIABLE": "变量",
+	"PROPERTY.ASSIGNMENT.CANDIDATE_USERS": "候选人",
+	"PROPERTY.FIELDS.STRINGVALUE.PLACEHOLDER": "输入字符串",
+	"PROPERTY.TASKLISTENERS.FIELDS.IMPLEMENTATION": "执行",
+	"BPMN-EDITOR": {
+		"GROUP": {
+			"SWIMLANES": "泳道",
+			"END-EVENTS": "结束事件",
+			"INTERMEDIATE-CATCH-EVENTS": "中间捕捉事件",
+			"ARTIFACTS": "人工产品",
+			"CONNECTING-OBJECTS": "连接对象",
+			"ACTIVITIES": "活动",
+			"INTERMEDIATE-THROW-EVENTS": "中间投掷项目",
+			"GATEWAYS": "网关",
+			"ALFRESCO": "露天的",
+			"BOUNDARY-EVENTS": "边界事件",
+			"START-EVENTS": "启动事件",
+			"STRUCTURAL": "结构的"
+		},
+		"ITEM": {
+			"SUBPROCESS": {
+				"DESCRIPTION": "子流程范围",
+				"TITLE": "子过程"
+			},
+			"INTERMEDIATE-MESSAGE-CATCH-EVENT": {
+				"DESCRIPTION": "带有消息触发器的中间捕获事件",
+				"TITLE": "中间消息捕获事件"
+			},
+			"USERTASK": {
+				"DESCRIPTION": "分配给特定人员的手动任务",
+				"TITLE": "用户任务"
+			},
+			"EVENT-GATEWAY": {
+				"DESCRIPTION": "事件网关",
+				"TITLE": "事件网关"
+			},
+			"SENDTASK": {
+				"DESCRIPTION": "发送消息的任务",
+				"TITLE": "发送任务"
+			},
+			"EVENT-SUBPROCESS": {
+				"DESCRIPTION": "事件子过程范围",
+				"TITLE": "事件子流程"
+			},
+			"END-NONE-EVENT": {
+				"DESCRIPTION": "没有特定触发器的结束事件",
+				"TITLE": "结束事件"
+			},
+			"RECEIVETASK": {
+				"DESCRIPTION": "等待信号的任务",
+				"TITLE": "接收任务"
+			},
+			"END-ERROR-EVENT": {
+				"DESCRIPTION": "引发错误事件的结束事件",
+				"TITLE": "错误结束事件"
+			},
+			"INCLUSIVE-GATEWAY": {
+				"DESCRIPTION": "包容性网关",
+				"TITLE": "非独占网关"
+			},
+			"MANUALTASK": {
+				"DESCRIPTION": "没有逻辑的自动任务",
+				"TITLE": "手工作业"
+			},
+			"CALL-ACTIVITY": {
+				"DESCRIPTION": "通话活动",
+				"TITLE": "通话活动"
+			},
+			"LANE": {
+				"DESCRIPTION": "构建流程定义的通道",
+				"TITLE": "车道"
+			},
+			"INTERMEDIATE-NONE-THROW-EVENT": {
+				"DESCRIPTION": "没有特定触发器的中间事件",
+				"TITLE": "中间无引发事件"
+			},
+			"COLLAPSED-SUBPROCESS": {
+				"DESCRIPTION": "提供对可重用子流程定义的引用",
+				"TITLE": "折叠的子流程"
+			},
+			"INTERMEDIATE-TIMER-CATCH-EVENT": {
+				"DESCRIPTION": "使用计时器触发器的中间捕获事件",
+				"TITLE": "中间计时器捕捉事件"
+			},
+			"START-MESSAGE-EVENT": {
+				"DESCRIPTION": "带有消息触发器的开始事件",
+				"TITLE": "开始消息事件"
+			},
+			"SCRIPTTASK": {
+				"DESCRIPTION": "具有脚本逻辑的自动任务",
+				"TITLE": "脚本任务"
+			},
+			"INTERMEDIATE-SIGNAL-THROW-EVENT": {
+				"DESCRIPTION": "带有信号触发器的中间事件",
+				"TITLE": "中间信号引发事件"
+			},
+			"BOUNDARY-SIGNAL-EVENT": {
+				"DESCRIPTION": "带有信号触发器的边界事件",
+				"TITLE": "边界信号事件"
+			},
+			"DATASTORE": {
+				"DESCRIPTION": "对数据存储的引用",
+				"TITLE": "数据存储"
+			},
+			"BOUNDARY-MESSAGE-EVENT": {
+				"DESCRIPTION": "带有消息触发器的边界事件",
+				"TITLE": "边界消息事件"
+			},
+			"BOUNDARY-ERROR-EVENT": {
+				"DESCRIPTION": "捕捉bpmn错误的边界事件",
+				"TITLE": "边界误差事件"
+			},
+			"MESSAGE-FLOW": {
+				"DESCRIPTION": "连接不同池中元素的消息流",
+				"TITLE": "消息流"
+			},
+			"START-NONE-EVENT": {
+				"DESCRIPTION": "没有特定触发器的启动事件",
+				"TITLE": "启动事件"
+			},
+			"DATA-ASSOCIATION": {
+				"DESCRIPTION": "将数据元素与活动关联",
+				"TITLE": "数据关联"
+			},
+			"MULETASK": {
+				"DESCRIPTION": "向MULE发送消息的任务",
+				"TITLE": "骡任务"
+			},
+			"BOUNDARY-TIMER-EVENT": {
+				"DESCRIPTION": "带有计时器触发器的边界事件",
+				"TITLE": "边界计时器事件"
+			},
+			"MAILTASK": {
+				"DESCRIPTION": "邮件任务",
+				"TITLE": "邮件任务"
+			},
+			"SERVICETASK": {
+				"DESCRIPTION": "具有服务逻辑的自动任务",
+				"TITLE": "服务任务"
+			},
+			"PARALLEL-GATEWAY": {
+				"DESCRIPTION": "并行网关",
+				"TITLE": "并行网关"
+			},
+			"EXCLUSIVE-GATEWAY": {
+				"DESCRIPTION": "选择网关",
+				"TITLE": "独占网关"
+			},
+			"START-TIMER-EVENT": {
+				"DESCRIPTION": "带有计时器触发器的启动事件",
+				"TITLE": "启动计时器事件"
+			},
+			"TEXTANNOTATION": {
+				"DESCRIPTION": "用描述文本注释元素",
+				"TITLE": "文本注释"
+			},
+			"CAMELTASK": {
+				"DESCRIPTION": "向camel发送消息的任务",
+				"TITLE": "驼峰任务"
+			},
+			"START-ERROR-EVENT": {
+				"DESCRIPTION": "捕获引发的bpmn错误的开始事件",
+				"TITLE": "启动错误事件"
+			},
+			"BUSINESSRULETASK": {
+				"DESCRIPTION": "具有规则逻辑的自动任务",
+				"TITLE": "业务规则任务"
+			},
+			"START-SIGNAL-EVENT": {
+				"DESCRIPTION": "带有信号触发器的启动事件",
+				"TITLE": "启动信号事件"
+			},
+			"POOL": {
+				"DESCRIPTION": "用于构造流程定义的池",
+				"TITLE": "池"
+			},
+			"ASSOCIATION": {
+				"DESCRIPTION": "将文本注释与元素关联",
+				"TITLE": "联想"
+			},
+			"INTERMEDIATE-SIGNAL-CATCH-EVENT": {
+				"DESCRIPTION": "带有信号触发器的中间捕捉事件",
+				"TITLE": "中间信号捕获事件"
+			},
+			"SEQUENCE-FLOW": {
+				"DESCRIPTION": "序列流定义活动的执行顺序",
+				"TITLE": "层序流动"
+			}
+		},
+		"PROPERTY": {
+			"RULE-RESULT-VARIABLE": {
+				"DESCRIPTION": "规则任务的结果变量。",
+				"TITLE": "结果变量"
+			},
+			"MAILTASK-SUBJECT": {
+				"DESCRIPTION": "电子邮件的主题。",
+				"TITLE": "主体"
+			},
+			"USERTASK-CATEGORY": {
+				"DESCRIPTION": "类的用户任务。",
+				"TITLE": "类别"
+			},
+			"CANCEL-ACTIVITY": {
+				"DESCRIPTION": "是否应取消活动。",
+				"TITLE": "取消活动"
+			},
+			"SEQUENCE-FLOW-CONDITION": {
+				"DESCRIPTION": "顺序流的条件。",
+				"TITLE": "流动条件"
+			},
+			"TIMER-DURATION": {
+				"DESCRIPTION": "定义具有ISO-8601持续时间的计时器。",
+				"TITLE": "持续时间（如pt5m）"
+			},
+			"SERVICETASK-FIELDS": {
+				"DESCRIPTION": "服务任务的字段扩展。",
+				"TITLE": "类字段"
+			},
+			"USERTASK-ASSIGNMENT": {
+				"DESCRIPTION": "用户任务的分配定义。",
+				"TITLE": "转让"
+			},
+			"MULTI-INSTANCE-VARIABLE": {
+				"DESCRIPTION": "为多实例定义元素变量。",
+				"TITLE": "元素变量（多实例）"
+			},
+			"ID": {
+				"DESCRIPTION": "元素的唯一标识符。",
+				"TITLE": "身份证件"
+			},
+			"MULTI-INSTANCE-CARDINALITY": {
+				"DESCRIPTION": "定义多实例的基数。",
+				"TITLE": "基数（多实例）"
+			},
+			"FORM-PROPERTIES": {
+				"DESCRIPTION": "用窗体属性列表定义窗体。",
+				"TITLE": "表单属性"
+			},
+			"MULETASK-RESULT-VARIABLE": {
+				"DESCRIPTION": "返回有效负载的可选结果变量。",
+				"TITLE": "结果变量"
+			},
+			"CALLED-ELEMENT": {
+				"DESCRIPTION": "对子流程的引用。",
+				"TITLE": "被叫元素"
+			},
+			"SERVICETASK-DELEGATE-EXPRESSION": {
+				"DESCRIPTION": "用委托表达式定义的服务任务逻辑。",
+				"TITLE": "委托表达式"
+			},
+			"MULETASK-LANGUAGE": {
+				"DESCRIPTION": "语言解析有效负载表达式所需的定义，如juel。",
+				"TITLE": "语言"
+			},
+			"NAME": {
+				"DESCRIPTION": "bpmn元素的描述性名称。",
+				"TITLE": "名字"
+			},
+			"ERROR-REF": {
+				"DESCRIPTION": "定义错误名称。",
+				"TITLE": "误差参考"
+			},
+			"PROCESS-VERSION": {
+				"DESCRIPTION": "用于文档目的的版本标识符。",
+				"TITLE": "进程版本字符串（仅文档）"
+			},
+			"TIMER-DATE": {
+				"DESCRIPTION": "使用ISO-8601日期定义定义计时器。",
+				"TITLE": "ISO-8601中的时间日期"
+			},
+			"CAMEL-CONTEXT": {
+				"DESCRIPTION": "可选的camel上下文定义，如果保留为空，则使用默认值。",
+				"TITLE": "骆驼语境"
+			},
+			"TIMER-CYCLE": {
+				"DESCRIPTION": "用ISO-8601周期定义计时器。",
+				"TITLE": "时间周期（如r3/pt10h）"
+			},
+			"USERTASK-DUEDATE": {
+				"DESCRIPTION": "用户任务的截止日期。",
+				"TITLE": "到期日"
+			},
+			"USERTASK-SEND-EMAIL": {
+				"DESCRIPTION": "允许系统在分配任务时通知代理人。",
+				"TITLE": "允许电子邮件通知"
+			},
+			"RULE-RULESDEF": {
+				"DESCRIPTION": "规则任务的规则。",
+				"TITLE": "规则"
+			},
+			"DOCUMENTATION": {
+				"DESCRIPTION": "bpmn元素的描述性描述。",
+				"TITLE": "文档"
+			},
+			"FORM-REFERENCE": {
+				"DESCRIPTION": "对窗体的引用。",
+				"TITLE": "引用表单"
+			},
+			"MAILTASK-CHARSET": {
+				"DESCRIPTION": "允许修改电子邮件的字符集，这是许多非英语语言所必需的。",
+				"TITLE": "字符集"
+			},
+			"MESSAGE-REF": {
+				"DESCRIPTION": "定义消息名称。",
+				"TITLE": "消息引用"
+			},
+			"SCRIPTTASK-TEXT": {
+				"DESCRIPTION": "脚本任务的脚本文本。",
+				"TITLE": "脚本"
+			},
+			"PROCESS-ID": {
+				"DESCRIPTION": "进程定义的唯一标识符。",
+				"TITLE": "进程ID"
+			},
+			"COLLAPSED-SUBPROCESS-REFERENCE": {
+				"DESCRIPTION": "对包含在折叠的子流程中的子流程的引用。",
+				"TITLE": "引用子过程"
+			},
+			"SEQUENCE-FLOW-DEFAULT": {
+				"DESCRIPTION": "将序列流定义为默认值。",
+				"TITLE": "缺省流"
+			},
+			"MULETASK-PAYLOAD": {
+				"DESCRIPTION": "发送给MULE的消息有效载荷的必要定义。",
+				"TITLE": "有效负载表达式"
+			},
+			"SCRIPTTASK-FORMAT": {
+				"DESCRIPTION": "脚本任务的脚本格式。",
+				"TITLE": "脚本格式"
+			},
+			"SIGNAL-REF": {
+				"DESCRIPTION": "定义信号名称。",
+				"TITLE": "信号参考"
+			},
+			"SIGNAL-DEFINITIONS": {
+				"DESCRIPTION": "过程中用于信号捕获和引发事件的信号定义。",
+				"TITLE": "信号定义"
+			},
+			"TASK-LISTENERS": {
+				"DESCRIPTION": "用户任务的监听器。",
+				"TITLE": "任务监听器"
+			},
+			"OUT-PARAMETERS": {
+				"DESCRIPTION": "输出参数的定义",
+				"TITLE": "输出参数"
+			},
+			"PROCESS-INITIATOR": {
+				"DESCRIPTION": "进程的发起方。",
+				"TITLE": "流程发起人"
+			},
+			"USERTASK-PRIORITY": {
+				"DESCRIPTION": "用户任务的优先级。",
+				"TITLE": "优先"
+			},
+			"SEQUENCE-FLOW-CONDITIONAL": {
+				"DESCRIPTION": "用条件定义序列流。",
+				"TITLE": "条件流"
+			},
+			"MULTI-INSTANCE-COLLECTION": {
+				"DESCRIPTION": "定义多实例的集合。",
+				"TITLE": "集合（多实例）"
+			},
+			"MAILTASK-TO": {
+				"DESCRIPTION": "如果是电子邮件，则为收件人。在逗号分隔的列表中定义了多个收件人。",
+				"TITLE": "到"
+			},
+			"SERVICETASK-EXPRESSION": {
+				"DESCRIPTION": "用表达式定义的服务任务逻辑。",
+				"TITLE": "表情"
+			},
+			"SERVICETASK-CLASS": {
+				"DESCRIPTION": "实现服务任务逻辑的类。",
+				"TITLE": "等级"
+			},
+			"TEXT-ANNOTATION-TEXT": {
+				"DESCRIPTION": "文本批注的文本。",
+				"TITLE": "文本"
+			},
+			"RULE-EXCLUDE": {
+				"DESCRIPTION": "将Rules属性用作排除项。",
+				"TITLE": "排除"
+			},
+			"MESSAGE-DEFINITIONS": {
+				"DESCRIPTION": "在进程中的消息捕获和引发事件中使用的消息定义。",
+				"TITLE": "消息定义"
+			},
+			"MULTI-INSTANCE-TYPE": {
+				"DESCRIPTION": "重复的活动执行（并行或顺序）可以通过不同的循环类型显示。",
+				"TITLE": "多实例类型"
+			},
+			"IN-PARAMETERS": {
+				"DESCRIPTION": "输入参数的定义。",
+				"TITLE": "在参数中"
+			},
+			"PROCESS-AUTHOR": {
+				"DESCRIPTION": "过程定义的作者。",
+				"TITLE": "过程作者"
+			},
+			"EXCLUSIVE": {
+				"DESCRIPTION": "将活动定义为独占。",
+				"TITLE": "排外的"
+			},
+			"MAILTASK-BCC": {
+				"DESCRIPTION": "电子邮件的密件抄送。在逗号分隔的列表中定义了多个收件人。",
+				"TITLE": "秘密抄送"
+			},
+			"COMPENSATION": {
+				"DESCRIPTION": "标识此活动是否用于补偿的标志。",
+				"TITLE": "是为了补偿"
+			},
+			"SEQUENCE-FLOW-ORDER": {
+				"DESCRIPTION": "顺序输出序列流。",
+				"TITLE": "流顺序"
+			},
+			"MAILTASK-CC": {
+				"DESCRIPTION": "电子邮件的抄送。多个收件人在逗号分隔的列表中定义。",
+				"TITLE": "抄送"
+			},
+			"ASYNC": {
+				"DESCRIPTION": "将活动定义为异步。",
+				"TITLE": "异步的"
+			},
+			"EXECUTION-LISTENERS": {
+				"DESCRIPTION": "活动、流程、序列流、开始和结束事件的监听器。",
+				"TITLE": "执行监听器"
+			},
+			"FORM-KEY": {
+				"DESCRIPTION": "为窗体提供引用的窗体键。",
+				"TITLE": "表单键"
+			},
+			"MULTI-INSTANCE-CONDITION": {
+				"DESCRIPTION": "定义多实例的完成条件。",
+				"TITLE": "完成条件（多实例）"
+			},
+			"ENDPOINT-URL": {
+				"DESCRIPTION": "向MULE发送消息所需的端点URL。",
+				"TITLE": "端点URL"
+			},
+			"EVENT-LISTENERS": {
+				"DESCRIPTION": "监听Activiti引擎中发生的任何事件。也可以将事件作为信号、消息或错误事件重新引发。",
+				"TITLE": "事件监听器"
+			},
+			"MAILTASK-TEXT": {
+				"DESCRIPTION": "电子邮件的内容，以防需要发送不丰富的普通电子邮件。可与HTML结合使用，用于不支持丰富内容的电子邮件客户端。然后，客户机将返回到此文本唯一的备选方案。",
+				"TITLE": "文本"
+			},
+			"SERVICETASK-RESULT-VARIABLE": {
+				"DESCRIPTION": "存储服务任务结果的进程变量名。",
+				"TITLE": "结果变量名称"
+			},
+			"MAILTASK-HTML": {
+				"DESCRIPTION": "一段HTML，它是电子邮件的内容。",
+				"TITLE": "HTML"
+			},
+			"RULE-INPUT-VARIABLES": {
+				"DESCRIPTION": "规则任务的输入变量。",
+				"TITLE": "输入变量"
+			},
+			"MAILTASK-FROM": {
+				"DESCRIPTION": "发件人电子邮件地址。如果未提供，则使用从地址配置的默认值。",
+				"TITLE": "从"
+			},
+			"PROCESS-NAMESPACE": {
+				"DESCRIPTION": "进程定义的目标命名空间。",
+				"TITLE": "目标命名空间"
+			}
+		}
+	},
+	"PROPERTY.REMOVED": "清除",
+	"TOOLBAR.ACTION.UNDO": "撤销",
+	"PROPERTY.SEQUENCEFLOW.CONDITION.STATIC": "条件表达式",
+	"PROPERTY.TASKLISTENERS.FIELDS.NAME.PLACEHOLDER": "请输入名称",
+	"PROPERTY.TASKLISTENERS.FIELDS.NAME": "名称",
+	"PROPERTY.FORMREFERENCE.FOLDER.ROOT": "文件夹",
+	"PROPERTY.EXECUTIONLISTENERS.CLASS.PLACEHOLDER": "输入类名",
+	"PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.STATIC": "任务创建后的固定持续时间",
+	"TOOLBAR.ACTION.IMPORT": "导入",
+	"PROPERTY.DECISIONTABLEREFERENCE.FOLDER.ROOT": "文件夹",
+	"MODEL.SAVE.COMMENT": "注释",
+	"PROPERTY.TASKLISTENERS.CLASS.PLACEHOLDER": "输入类名",
+	"PROPERTY.FORMPROPERTIES.ID.PLACEHOLDER": "输入活动编号",
+	"TOOLBAR.ACTION.HELP": "开始导游之旅",
+	"PROPERTY.FIELDS.STRINGVALUE": "字符串",
+	"FEATURE-TOUR": {
+		"BENDPOINT": {
+			"DESCRIPTION": "当您使用序列流（流程步骤之间的箭头）将流程步骤彼此连接时，您可能会发现这些序列流相互交叉，或者希望以不同的方式排列它们。要执行此操作，可以在序列流中添加或删除弯板点。<br/><br/>如下图所示，首先单击“添加弯板点”，然后单击序列流添加弯板点。请注意，序列流将以绿色显示一个微妙的指示，以显示可以在其中添加弯点。<br/><br/><br/>再次删除弯点遵循类似的模式：单击“删除弯点”按钮，然后单击弯点再次删除弯点。",
+			"TITLE": "弯曲点教程"
+		}
+	},
+	"PROPERTY.ASSIGNMENT.CANDIDATE_GROUPS": "候选组",
+	"PROPERTY.ASSIGNMENT.IDM_EMPTY": "发起人",
+	"PROPERTY.SEQUENCEFLOW.ORDER.EMPTY": "没有确定顺序流排序",
+	"PROPERTY.FORMPROPERTIES.EMPTY": "没有配置表单",
+	"PROPERTY.TASKLISTENERS.FIELDS.EXPRESSION.PLACEHOLDER": "请输入表达式",
+	"MODEL.KEY": "钥匙",
+	"PROPERTY.SIGNALDEFINITIONS.SCOPE-GLOBAL": "全局",
+	"PROPERTY.ASSIGNMENT.TYPE.IDENTITYSTORE": "身份存储",
+	"PROPERTY.ASSIGNMENT.TITLE": "指派",
+	"EVENT_TYPE.MEMBERSHIP.DELETED.TOOLTIP": "一个唯一的成员被删除",
+	"FORM_TOOLBAR.ACTION.SAVE": "保存",
+	"PROPERTY.ASSIGNMENT.USER_IDM_DISPLAY": "用户{{firstName}} {{lastName}}",
+	"PROPERTY.FORMPROPERTIES.ID": "活动编号",
+	"PROPERTY.SEQUENCEFLOW.CONDITION.TITLE": "条件",
+	"TOOLBAR.ACTION.CUT": "剪切",
+	"PROPERTY.SUBPROCESSREFERENCE.FOLDER.ROOT": "文件夹",
+	"ACTION.SAVE": "保存",
+	"PROPERTY.EVENTLISTENERS.MESSAGENAME.PLACEHOLDER": "请输入消息名称"
 }
