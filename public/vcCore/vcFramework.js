@@ -177,6 +177,7 @@
             await findVcLabel(_tree, _vcElement);
             let _res = _tree.html;
         }
+        
         //渲染组件html
         reader(treeList, _componentScript);
         //执行组件js
@@ -2402,7 +2403,7 @@
 //图片压缩处理
 
 (function (vcFramework) {
-    vcFramework.translate = function(imgSrc, callback) {
+    vcFramework.translate = function (imgSrc, callback) {
         var img = new Image();
         img.src = imgSrc;
         img.onload = function () {

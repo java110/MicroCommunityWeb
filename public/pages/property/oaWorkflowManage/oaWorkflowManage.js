@@ -78,10 +78,8 @@
                 }
             },
             _openWorkflowEditorApp:function(_oaWorkflow){
-                window.open('/editorIndex.html#/editor/'+_oaWorkflow.modelId);
+                window.open('/bpmnjs/index.html?flowId='+_oaWorkflow.flowId);
             }
-
-
         }
     });
 })(window.vc);

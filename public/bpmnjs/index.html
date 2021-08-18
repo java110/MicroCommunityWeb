@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>bpmn-js流程图</title>
+  <vc:create path="frame/commonTop" location="head"></vc:create>
+  <link rel="stylesheet" href="vendor/bpmn-js/assets/diagram-js.css" />
+  <link rel="stylesheet" href="vendor/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css" />
+  <link rel="stylesheet" href="vendor/bpmn-js-properties-panel/assets/bpmn-js-properties-panel.css" />
+  <script src="/js/vue/vue.min.js"></script>
+  <script src="/js/vue/vue-resource.min.js"></script>
+  <link rel="stylesheet" href="app.css" />
+</head>
+
+<body>
+  <vc:create path="frame/bodyTop"></vc:create>
+  <div class="content with-diagram" id="js-drop-zone">
+    <div id="component" class="message intro">
+      <div class="note">
+
+      </div>
+    </div>
+    <div class="message error">
+      <div class="note">
+        <p>出错了.</p>
+
+        <div class="details">
+          <span>Import Error Details</span>
+          <pre></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="canvas" id="js-canvas"></div>
+    <div class="properties-panel-parent" id="js-properties-panel"></div>
+  </div>
+
+  <ul class="buttons">
+    <li>
+      <a id="js-download-diagram" href title="download BPMN diagram">
+        BPMN 下载
+      </a>
+    </li>
+    <li>
+      <a id="js-download-svg" href title="download as SVG image">
+        SVG 图片下载
+      </a>
+    </li>
+    <li>
+      <a id="js-save-diagram" class="active" style="cursor:pointer" title="download as SVG image">
+        保存
+      </a>
+    </li>
+  </ul>
+
+  <script src="app.js"></script>
+  <script src="/vcCore/vcFramework.js"></script>
+  <script src="index.js"></script>
+
+  <style>
+    .no_display {
+      display: none;
+    }
+  </style>
+
+</html>
