@@ -78,7 +78,7 @@
                 }
             },
             _openWorkflowEditorApp:function(_oaWorkflow){
-                window.open('/bpmnjs/index.html?flowId='+_oaWorkflow.flowId);
+                window.open('/bpmnjs/index.html?flowId='+_oaWorkflow.flowId+"&modelId="+_oaWorkflow.modelId);
             }
         }
     });

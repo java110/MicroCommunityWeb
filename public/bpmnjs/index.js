@@ -5,8 +5,9 @@
 
     let _doSaveDiagram = function (_xml) {
         //发送get请求
-        vc.http.apiPost('/a/n',
-            _xml,
+        let _modelId = vc.getParam('modelId');
+        vc.http.apiPost('/activiti/model/' + _modelId + '/save',
+            { 'xml': _xml },
             function (json, res) {
                 var listRoomData = JSON.parse(json);
 
