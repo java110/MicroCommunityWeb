@@ -77,8 +77,28 @@
                     vc.component.oaWorkflowManageInfo.moreCondition = true;
                 }
             },
-            _openWorkflowEditorApp:function(_oaWorkflow){
-                window.open('/bpmnjs/index.html?flowId='+_oaWorkflow.flowId+"&modelId="+_oaWorkflow.modelId);
+            _openWorkflowEditorApp: function (_oaWorkflow) {
+                window.open('/bpmnjs/index.html?flowId=' + _oaWorkflow.flowId + "&modelId=" + _oaWorkflow.modelId);
+            },
+            _openDeployWorkflow: function (_oaWorkflow) {
+                let _param = {
+                    modelId: _oaWorkflow.modelId
+                };
+                //发送get请求
+                vc.http.apiPost('/workflow/deployModel',
+
+                    JSON.stringify(_param),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        vc.toast(_json.msg)
+                        vc.emit('oaWorkflowManage', 'listOaWorkflow', {});
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });

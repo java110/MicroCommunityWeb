@@ -62,6 +62,7 @@
                                 <th class="text-center">流程类型</th>
                                 <th class="text-center">模型ID</th>
                                 <th class="text-center">KEY</th>
+                                <th class="text-center">状态</th>
                                 <th class="text-center">创建时间</th>
                                 <th class="text-center">操作</th>
                             </tr>
@@ -73,11 +74,16 @@
                                 <td class="text-center">{{oaWorkflow.flowType == '1001'?'普通流程':'未知'}}</td>
                                 <td class="text-center">{{oaWorkflow.modelId}}</td>
                                 <td class="text-center">{{oaWorkflow.flowKey}}</td>
+                                <td class="text-center">{{oaWorkflow.state == 'C'?'已部署':'待部署'}}</td>
                                 <td class="text-center">{{oaWorkflow.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openWorkflowEditorApp(oaWorkflow)">流程</button>
+                                    </div>
+                                    <div class="btn-group" v-if="oaWorkflow.state == 'W'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeployWorkflow(oaWorkflow)">发布</button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
