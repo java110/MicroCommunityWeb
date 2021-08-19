@@ -63,4 +63,8 @@
     }
 
     _initBpmn();
+
+    _closeBpmnjs = function(){
+        window.close();
+    }
 })(window.vc);
