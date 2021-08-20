@@ -15,6 +15,12 @@
                 roomUnits: [],
                 feeTypeCds: [],
                 feeConfigDtos: [],
+                totalReceivableAmount:0.0,
+                allReceivableAmount:0.0,
+                totalReceivedAmount:0.0,
+                allReceivedAmount:0.0,
+                totalPreferentialAmount:0.0,
+                allOweAmount:0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -121,6 +127,28 @@
                         if (_reportFeeBreakdownInfo.data.length > 0) {
                             vc.component.reportFeeBreakdownInfo.feeConfigDtos = _reportFeeBreakdownInfo.data[0].feeConfigDtos;
                         }
+
+                         //计算小计
+                         let _totalReceivableAmount=0.0;
+                         let _totalReceivedAmount=0.0;
+                         let _totalPreferentialAmount=0.0;
+                        
+                         _reportFeeBreakdownInfo.data.forEach(item => {
+                             _totalReceivableAmount += parseFloat(item.receivableAmount);
+                             _totalReceivedAmount += parseFloat(item.receivedAmount);
+                             _totalPreferentialAmount += parseFloat(item.oweAmount);
+                         });
+ 
+                         $that.reportFeeBreakdownInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
+                         $that.reportFeeBreakdownInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
+                         $that.reportFeeBreakdownInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+ 
+                         if(_reportFeeBreakdownInfo.data.length>0){
+                             $that.reportFeeBreakdownInfo.allReceivableAmount = _reportFeeBreakdownInfo.data[0].allReceivableAmount;
+                             $that.reportFeeBreakdownInfo.allReceivedAmount = _reportFeeBreakdownInfo.data[0].allReceivedAmount;
+                             $that.reportFeeBreakdownInfo.allOweAmount = _reportFeeBreakdownInfo.data[0].allOweAmount;
+                         }
+
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeBreakdownInfo.records,
                             dataCount: vc.component.reportFeeBreakdownInfo.total,

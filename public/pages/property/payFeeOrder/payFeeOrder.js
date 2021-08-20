@@ -32,7 +32,8 @@
                 selectDiscount: [],
                 totalDiscountMoney: 0.0,
                 toFixedSign: 1, // 编码映射-应收款取值标识
-                receivedAmountSwitch: ''
+                receivedAmountSwitch: '',
+                createTime:vc.dateTimeFormat(new Date().getTime())
             }
         },
         _initMethod: function () {
@@ -60,6 +61,10 @@
             //与字典表支付方式关联
             vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
                 vc.component.payFeeOrderInfo.primeRates = _data;
+            });
+
+            vc.initDateTime('payFeeOrderCreateTime', function (_createTime) {
+                $that.payFeeOrderInfo.createTime = _createTime;
             });
         },
         _initEvent: function () {

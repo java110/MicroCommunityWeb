@@ -1,0 +1,35 @@
+<div>
+    <div class="margin-top">
+        <div class="row">
+            <div class="col-sm-12 margin-lr-0 padding-lr-0">
+                <table class="footable table table-stripped " style="margin-top:10px" data-page-size="10">
+                    <thead>
+                        <tr>
+                            <th class="text-center " style="border-bottom: none;">楼栋号</th>
+                            <th class="text-center" style="border-bottom: none;">总未收金额(截止{{reportHuaningOweFeeInfo.dateStr}})</th>
+                            <th class="text-center " style="border-bottom: none;">{{_getCurYear()}}未收金额</th>
+                            <th class="text-center " style="border-bottom: none;">{{_getPreCurYear()}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="fee in reportHuaningOweFeeInfo.fees">
+                            <td class="text-center ">{{fee.floorNum}}</td>
+                            <td class="text-center ">{{fee.oweAmount}}</td>
+                            <td class="text-center ">{{fee.curOweAmount}}</td>
+                            <td class="text-center">{{_getPreAmount(fee)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <span> </span>
+            </div>
+            <div class="col-sm-7 float-right">
+                <vc:create namespace="reportHuaningOweFee" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/viewFeeDetail"></vc:create>
+</div>

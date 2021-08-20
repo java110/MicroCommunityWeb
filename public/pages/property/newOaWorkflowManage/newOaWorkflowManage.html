@@ -1,0 +1,15 @@
+<div>
+    <div class="row white-bg padding margin-xs" style="min-height: 500px; ">
+        <div class="col-md-1 text-center" style="cursor:pointer"
+            v-for="(item,index) in newOaWorkflowManageInfo.newOaWorkflows"
+            @click="newFlow(item)">
+            <div>
+                <img src="/img/flow.png" width="80px" />
+            </div>
+            <div class="margin-top">
+                <span style="color: #333333;">{{item.flowName}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>

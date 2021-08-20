@@ -1,0 +1,240 @@
+/**
+ * Theming
+ */
+ .fjs-container {
+    --color-blue-base-65: #4d90ff;
+    --color-blue-base-65-opacity-10: rgba(77, 144, 255, 0.1);
+    --color-blue-darken-48: #005df7;
+    --color-blue-darken-55: #1a70ff;
+    --color-blue-darken-62: #3c85ff;
+    --color-blue-lighten-75: #80b0ff;
+    --color-blue-lighten-82: #a2c5ff;
+    --color-blue-lighten-93: #dbe9ff;
+  
+    --color-silver-base-97: #f8f8f8;
+    --color-silver-lighten-99: #fcfcfc;
+    --color-silver-darken-80: #cdcdcd;
+    --color-silver-darken-87: #dedede;
+    --color-silver-darken-94: #efefef;
+  
+    --color-grey-base-40: #666666;
+    --color-grey-lighten-56: #909090;
+    --color-grey-darken-23: #3b3b3b;
+    --color-grey-darken-30: #4c4c4c;
+    --color-grey-darken-33: #535353;
+  
+    --color-red-base-62: #ff3d3d;
+    --color-red-darken-38: #C20000;
+    --color-red-lighten-85: #ffb3b3;
+  
+    --color-black: #000000;
+    --color-white: #ffffff;
+  
+    --color-background: var(--color-white);
+    --color-background-disabled: var(--color-silver-darken-94);
+    --color-text: var(--color-grey-darken-23);
+    --color-text-light: var(--color-grey-lighten-56);
+    --color-text-lighter: var(--color-grey-base-40);
+    --color-text-inverted: var(--color-white);
+    --color-borders: var(--color-grey-lighten-56);
+    --color-borders-disabled: var(--color-silver-darken-80);
+    --color-warning: var(--color-red-darken-38);
+    --color-accent: var(--color-blue-darken-62);
+    --color-accent-dark: var(--color-blue-darken-48);
+  
+    --font-family: 'IBM Plex Sans', sans-serif;
+  
+    height: 100%;
+  }
+  
+  /**
+   * Layout styles
+   */
+  .fjs-container .fjs-vertical-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fjs-container .fjs-columns {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .fjs-container .fjs-column {
+    flex-grow: 1;
+  }
+  
+  .fjs-container img {
+    max-width: 100%;
+  }
+  
+  /**
+   * Visual styles
+   */
+  .fjs-container .fjs-form {
+    font-family: var(--font-family);
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 400;
+  
+    color: var(--color-text);
+    background-color: var(--color-background);
+  
+    position: relative;
+  }
+  
+  .fjs-container .fjs-form * {
+    box-sizing: border-box;
+  }
+  
+  .fjs-container .fjs-form-field {
+    margin: 16px;
+  }
+  
+  .fjs-container .fjs-form-field-placeholder {
+    color: var(--color-text-light);
+  }
+  
+  .fjs-container .fjs-input,
+  .fjs-container .fjs-textarea,
+  .fjs-container .fjs-select {
+    border-color: var(--color-borders);
+    background-color: var(--color-background);
+  }
+  .fjs-container .fjs-input::placeholder,
+  .fjs-container .fjs-textarea::placeholder,
+  .fjs-container .fjs-select > option:disabled,
+  .fjs-container .fjs-select [disabled] {
+    font-style: italic;
+    letter-spacing: .25px;
+  
+    color: var(--color-text-light);
+  }
+  
+  .fjs-container .fjs-form-field-label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .fjs-container .fjs-form-field-description {
+    display: block;
+    color: var(--color-text-lighter);
+  }
+  
+  .fjs-container .fjs-form-field-label,
+  .fjs-container .fjs-form-field-description {
+    margin: 4px 0;
+  }
+  
+  .fjs-container .fjs-form-field.required label::after,
+  .fjs-container .fjs-form-field.required .group-title::after {
+    content: "*";
+  }
+  
+  .fjs-container .fjs-checkbox.group.required label::after,
+  .fjs-container .fjs-radio.required label::after {
+    display: none;
+  }
+  
+  .fjs-container .fjs-input[type=text],
+  .fjs-container .fjs-input[type=number],
+  .fjs-container .fjs-button[type=submit],
+  .fjs-container .fjs-button[type=reset],
+  .fjs-container .fjs-textarea,
+  .fjs-container .fjs-select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+  }
+  
+  .fjs-container .fjs-textarea {
+    height: 90px;
+  }
+  
+  .fjs-container .fjs-radio {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fjs-container .fjs-input[type=checkbox],
+  .fjs-container .fjs-input[type=radio] {
+    margin: 6px 10px 6px 4px;
+  }
+  
+  .fjs-container .fjs-button[type=submit] {
+    color: var(--color-text-inverted);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  
+  .fjs-container .fjs-button[type=reset] {
+    color: var(--color-text);
+    background-color: transparent;
+    border-color: var(--color-borders);
+  }
+  
+  .fjs-container .fjs-button[type=submit],
+  .fjs-container .fjs-button[type=reset] {
+    min-width: 100px;
+    width: auto;
+  }
+  
+  .fjs-container .fjs-button[type=submit] {
+    font-weight: 600;
+  }
+  
+  .fjs-container .fjs-input[type=text]:focus,
+  .fjs-container .fjs-input[type=number]:focus,
+  .fjs-container .fjs-button[type=submit]:focus,
+  .fjs-container .fjs-button[type=reset]:focus,
+  .fjs-container .fjs-textarea:focus,
+  .fjs-container .fjs-select:focus {
+    outline: none;
+    padding: 7px;
+    border-width: 2px;
+  }
+  
+  .fjs-container .fjs-button[type=submit]:focus {
+    border-color: var(--color-accent-dark);
+  }
+  
+  .fjs-container .fjs-input:disabled,
+  .fjs-container .fjs-textarea:disabled,
+  .fjs-container .fjs-select:disabled {
+    background-color: var(--color-background-disabled);
+    border-color: var(--color-borders-disabled);
+  }
+  
+  .fjs-container .fjs-button[type=submit]:disabled,
+  .fjs-container .fjs-button[type=reset]:disabled {
+    color: var(--text-light);
+    background-color: var(--color-background-disabled);
+    border-color: var(--color-borders-disabled);
+  }
+  
+  .fjs-container .fjs-form-field.fjs-has-errors .fjs-input,
+  .fjs-container .fjs-form-field.fjs-has-errors .fjs-textarea {
+    border-color: var(--color-warning);
+  }
+  
+  .fjs-container .fjs-form-field-error {
+    color: var(--color-warning);
+  }
+  
+  .fjs-container .fjs-form-field-error > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .fjs-container .fjs-form-field-error > ul > li {
+    list-style-type: none;
+  }
+  
+  .fjs-container .fjs-form-field-text a {
+    color: var(--color-blue-darken-48);
+  }

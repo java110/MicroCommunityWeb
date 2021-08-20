@@ -118,7 +118,29 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row">
+                        <span class="col-md-1 margin-left">
+                            <div class="row"><b>小计</b></div>
+                            <div class="row"><b>大计</b></div>
+                        </span>
+                        <span class="col-md-2">
+                            <div class="row">应收: {{reportFloorUnitFeeSummaryInfo.totalReceivableAmount}}元</div>
+                            <div class="row">应收: {{reportFloorUnitFeeSummaryInfo.allReceivableAmount}}元</div>
+                        </span>
+                        <span class="col-md-2">
+                            <div class="row">实收: {{reportFloorUnitFeeSummaryInfo.totalReceivedAmount}}元</div>
+                            <div class="row">实收: {{reportFloorUnitFeeSummaryInfo.allReceivedAmount}}元</div>
+                        </span>
+                        <span class="col-md-2">
+                            <div class="row">欠费: {{reportFloorUnitFeeSummaryInfo.totalPreferentialAmount}}元</div>
+                            <div class="row">欠费: {{reportFloorUnitFeeSummaryInfo.allOweAmount}}元</div>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
