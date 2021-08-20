@@ -65,6 +65,7 @@
         _initEvent: function () {
             // 子组件折扣change事件
             vc.on('payFeeOrder', 'changeDiscountPrice', function (_param) {
+                console.log(_param);
                 let tempCycles = vc.component.payFeeOrderInfo.tempCycles;
                 let _cycle = tempCycles;
                 // 没选择缴费周期或缴费周期为“自定义金额”
@@ -240,18 +241,18 @@
                 if (_cycles == '') {
                     _newCycles = $that.payFeeOrderInfo.paymentCycles[0];
                 }
-                 let price = parseFloat(_newCycles) * parseFloat($that.payFeeOrderInfo.feePrice);
-
-                vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
-                vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+                // let price = parseFloat(_newCycles) * parseFloat($that.payFeeOrderInfo.feePrice);
+                // vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
+                // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+                $that.getComputedAmount(_newCycles);
                 // 触发折扣组件，计算折扣
-                vc.emit('payFeeDiscount', 'computeFeeDiscount', {
-                    feeId: $that.payFeeOrderInfo.feeId,
-                    cycles: _cycles,
-                    payerObjId: $that.payFeeOrderInfo.payerObjId,
-                    payerObjType: $that.payFeeOrderInfo.payerObjType,
-                    endTime: $that.payFeeOrderInfo.endTime
-                });
+                // vc.emit('payFeeDiscount', 'computeFeeDiscount', {
+                //     feeId: $that.payFeeOrderInfo.feeId,
+                //     cycles: _cycles,
+                //     payerObjId: $that.payFeeOrderInfo.payerObjId,
+                //     payerObjType: $that.payFeeOrderInfo.payerObjType,
+                //     endTime: $that.payFeeOrderInfo.endTime
+                // });
             },
             /**
              * 输入 自定义 缴费周期
@@ -261,16 +262,17 @@
                 if (_cycles == '') {
                     return;
                 }
-                let price = parseFloat(_cycles) * parseFloat($that.payFeeOrderInfo.feePrice);
-                vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
-                vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
-                vc.emit('payFeeDiscount', 'computeFeeDiscount', {
-                    feeId: $that.payFeeOrderInfo.feeId,
-                    cycles: _cycles,
-                    payerObjId: $that.payFeeOrderInfo.payerObjId,
-                    payerObjType: $that.payFeeOrderInfo.payerObjType,
-                    endTime: $that.payFeeOrderInfo.endTime
-                });
+                // let price = parseFloat(_cycles) * parseFloat($that.payFeeOrderInfo.feePrice);
+                // vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(price);
+                // vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+                $that.getComputedAmount(_cycles);
+                // vc.emit('payFeeDiscount', 'computeFeeDiscount', {
+                //     feeId: $that.payFeeOrderInfo.feeId,
+                //     cycles: _cycles,
+                //     payerObjId: $that.payFeeOrderInfo.payerObjId,
+                //     payerObjType: $that.payFeeOrderInfo.payerObjType,
+                //     endTime: $that.payFeeOrderInfo.endTime
+                // });
             },
 
             /**
@@ -372,6 +374,39 @@
                                 endTime: $that.payFeeOrderInfo.endTime
                             });
                         }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+
+            getComputedAmount: function (_cycles) {
+                if (!vc.notNull($that.payFeeOrderInfo.feeId)) {
+                    return;
+                }
+                let param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        feeId: $that.payFeeOrderInfo.feeId,
+                        page: 1,
+                        row: 1,
+                        cycle: _cycles
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/feeApi/listFeeObj',
+                    param,
+                    function (json, res) {
+                        let listRoomData = JSON.parse(json);
+                        vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(listRoomData.data.feeTotalPrice);
+                        vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+                        vc.emit('payFeeDiscount', 'computeFeeDiscount', {
+                            feeId: $that.payFeeOrderInfo.feeId,
+                            cycles: _cycles,
+                            payerObjId: $that.payFeeOrderInfo.payerObjId,
+                            payerObjType: $that.payFeeOrderInfo.payerObjType,
+                            endTime: $that.payFeeOrderInfo.endTime
+                        });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

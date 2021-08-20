@@ -80,8 +80,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="car in listOwnerCarInfo.ownerCars"
-                        :class="{ 'table-danger' : _getCarState(car) == '到期'}"
-                        >
+                            :class="{ 'table-danger' : _getCarState(car) == '到期'}">
                             <td class="text-center">
                                 {{car.carNum}}
                             </td>
@@ -100,11 +99,11 @@
                             <td class="text-center">
                                 {{car.ownerName}}({{car.link}})
                             </td>
-                            <td v-if="car.areaNum" class="text-center">
+                            <td v-if="car.areaNum && car.state == '1001'" class="text-center">
                                 {{car.areaNum}}车场{{car.num}}车位
                             </td>
                             <td v-else class="text-center">
-                                无
+                                车位已释放
                             </td>
                             <td class="text-center">
                                 {{car.startTime}}
@@ -116,7 +115,7 @@
                                 {{_getCarState(car)}}
                             </td>
                             <td class="text-center">
-                                <div class="btn-group" v-if="car.psId != '-1'">
+                                <div class="btn-group" v-if="car.state != '3003'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_deleteCarParkingSpace(car)">释放车位
                                     </button>

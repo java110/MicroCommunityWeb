@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     vc.extends({
         data: {
@@ -20,7 +20,6 @@
             $that._loadCarInfo();
             $that._initDateInfo();
         },
-
         _initEvent: function () {
             vc.on("carAddParkingSpace", "notify", function (_info) {
                 $that.carAddParkingSpaceInfo.psId = _info.psId;
@@ -105,7 +104,6 @@
                     ]
                 });
             },
-
             _loadCarInfo: function () {
                 var param = {
                     params: {
@@ -115,16 +113,16 @@
                         carId: $that.carAddParkingSpaceInfo.carId
                     }
                 }
-
                 //发送get请求
                 vc.http.apiGet('owner.queryOwnerCars',
                     param,
                     function (json, res) {
                         var _json = JSON.parse(json);
                         let data = _json.data[0];
-                        data.psId = '';
-                        data.startTime = data.endTime = data.remark = '';
+                        /*data.psId = '';
+                        data.startTime = data.endTime = data.remark = '';*/
                         vc.copyObject(data, $that.carAddParkingSpaceInfo);
+                        vc.emit('viewSelectParkingSpace', 'showParkingSpace', data);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -153,7 +151,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             }

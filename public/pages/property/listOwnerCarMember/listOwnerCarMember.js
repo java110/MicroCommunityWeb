@@ -35,17 +35,14 @@
                         carTypeCd: '1002'
                     }
                 }
-
                 //发送get请求
                 vc.http.apiGet('owner.queryOwnerCars',
                     param,
                     function (json, res) {
                         var _json = JSON.parse(json);
-
                         $that.listOwnerCarMemberInfo.total = _json.total;
                         $that.listOwnerCarMemberInfo.records = _json.records;
                         $that.listOwnerCarMemberInfo.ownerCars = _json.data;
-
                         vc.emit('pagination', 'init', {
                             total: $that.listOwnerCarMemberInfo.records,
                             dataCount: $that.listOwnerCarMemberInfo.total,
@@ -55,7 +52,6 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
             _addOwnerCarMember: function () {
                 vc.emit('addCarModal', 'openAddCarModel', {
@@ -68,7 +64,7 @@
             _openDelOwnerCarModel: function (_car) {
                 vc.emit('deleteOwnerCar', 'openOwnerCarModel', _car);
             },
-            _getBack:function(){
+            _getBack: function () {
                 vc.goBack();
             }
         }

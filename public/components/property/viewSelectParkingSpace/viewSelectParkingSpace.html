@@ -5,14 +5,15 @@
                 <h5>停车位信息</h5>
                 <div class="ibox-tools" style="top:10px;" v-if="parkingSpaceInfo.parkingSpaceFlag == ''">
                     <button type="button" class="btn btn-primary btn-sm" v-on:click="openSearchParkingSpaceModel()">
-                        <i class="fa fa-search"></i> 选择车位</button>
+                        <i class="fa fa-search"></i> 选择车位
+                    </button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >车位ID：</label>
+                            <label class="col-form-label">车位ID：</label>
                             <label class="">{{parkingSpaceInfo.psId}}</label>
                         </div>
                     </div>
@@ -24,24 +25,21 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >停车场：</label>
+                            <label class="col-form-label">停车场：</label>
                             <label class="">{{parkingSpaceInfo.areaNum}}</label>
                         </div>
                     </div>
-
-
                 </div>
-
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >车位状态：</label>
+                            <label class="col-form-label">车位状态：</label>
                             <label class="">{{parkingSpaceInfo.stateName}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >面积：</label>
+                            <label class="col-form-label">面积：</label>
                             <label class="">{{parkingSpaceInfo.area}}平方米</label>
                         </div>
                     </div>
@@ -51,14 +49,12 @@
                             <label class="">{{parkingSpaceInfo.remark}}</label>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     <vc:create path="property/searchParkingSpace"
                emitChooseParkingSpace="viewSelectParkingSpace"
-               emitLoadData="sellRoomOther"
-               parkingSpaceFlag="F"
-    ></vc:create>
+               emitLoadData="sellRoomOther" parkingSpaceFlag="F">
+    </vc:create>
 </div>

@@ -32,6 +32,9 @@
             vc.on('inspectionPlanManage', 'listInspectionPlan', function (_param) {
                 vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('inspectionPlanManage', 'reload', function (_param) {
+                location.reload();
+            });
             vc.on('inspectionPlanManage', 'goBack', function (_param) {
                 vc.component.inspectionPlanManageInfo.inspectionPlanStaffModel = false;
             });

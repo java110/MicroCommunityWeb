@@ -33,10 +33,7 @@
                 vc.component.myRepairDispatchInfo.states = _data;
             });
             vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
-            //与字典表关联
-            vc.getDict('r_repair_pool', "repair_type", function (_data) {
-                vc.component.myRepairDispatchInfo.repairTypes = _data;
-            });
+            vc.component._listRepairTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表关联
             vc.getDict('r_repair_pool', "state", function (_data) {
                 vc.component.myRepairDispatchInfo.states = _data;
@@ -82,6 +79,26 @@
             _openDealRepair: function (_ownerRepair) {
                 vc.component.myRepairDispatchInfo.currentRepairId = _ownerRepair.repairId;
                 vc.emit('closeOrder', 'openCloseOrderModal', {});
+            },
+            //查询报修类型
+            _listRepairTypes: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: _page,
+                        row: _rows,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('repair.listRepairSettings',
+                    param,
+                    function (json, res) {
+                        var _repairTypesInfo = JSON.parse(json);
+                        vc.component.myRepairDispatchInfo.repairTypes = _repairTypesInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             _moreCondition: function () {
                 if (vc.component.myRepairDispatchInfo.moreCondition) {

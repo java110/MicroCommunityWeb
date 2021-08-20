@@ -181,11 +181,11 @@
                             vc.emit('payFeeConfigDiscountManage', 'listPayFeeConfigDiscount', {});
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             clearAddPayFeeConfigDiscountInfo: function () {

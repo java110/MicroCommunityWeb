@@ -1,8 +1,7 @@
 /**
-    权限组
-**/
+ 权限组
+ **/
 (function (vc) {
-
     vc.extends({
         data: {
             addCarModelInfo: {
@@ -13,7 +12,6 @@
                 carColor: '',
                 remark: "",
                 carId: ''
-
             },
             carTypes: [
                 {
@@ -43,13 +41,11 @@
                 param,
                 function (json, res) {
                     var carTypes = JSON.parse(json);
-
                     vc.component.carTypes = carTypes;
                 }, function (errInfo, error) {
                     console.log('请求失败处理');
                 }
             );
-
         },
         _initEvent: function () {
             vc.on('addCarModal', 'openAddCarModel',
@@ -63,7 +59,6 @@
                 return vc.validate.validate({
                     addCarModelInfo: vc.component.addCarModelInfo
                 }, {
-
                     'addCarModelInfo.carNum': [
                         {
                             limit: "required",
@@ -118,11 +113,9 @@
                 }
                 vc.component.addCarModelInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost('owner.saveOwnerCarMember', JSON.stringify(vc.component.addCarModelInfo), {
-                    emulateJSON: true
-                },
+                        emulateJSON: true
+                    },
                     function (json, res) {
-
-
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
@@ -149,11 +142,8 @@
                     remark: "",
                     carNumType: '',
                     carId: ''
-
                 }
-
             }
         }
     });
-
 })(window.vc);

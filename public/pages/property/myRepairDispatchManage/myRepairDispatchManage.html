@@ -42,9 +42,10 @@
                             <select class="custom-select" v-model="myRepairDispatchInfo.conditions.repairType">
                                 <option selected value="">请选择报修类型</option>
                                 <option v-for="(item,index) in myRepairDispatchInfo.repairTypes" :key="index"
-                                        :value="item.statusCd">{{item.name}}
+                                        :value="item.repairType">{{item.repairTypeName}}
                                 </option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="col-sm-4" v-if="myRepairDispatchInfo.moreCondition == true">
                             <select class="custom-select" v-model="myRepairDispatchInfo.conditions.state">
                                 <option selected value="">请选择报修状态</option>
@@ -76,7 +77,7 @@
                             <th class="text-center">联系方式</th>
                             <th class="text-center">预约时间</th>
                             <th class="text-center">状态</th>
-                            <th class="text-right">操作</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -89,7 +89,7 @@
                             _totalAmount += parseFloat(item.amountOwed);
 
                         })
-                        $that.simplifyRoomFeeInfo.totalAmount = _totalAmount;
+                        $that.simplifyRoomFeeInfo.totalAmount = _totalAmount.toFixed(2);
                         vc.component.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees;
                         vc.emit('simplifyRoomFee', 'paginationPlus', 'init', {
                             total: _feeConfigInfo.records,

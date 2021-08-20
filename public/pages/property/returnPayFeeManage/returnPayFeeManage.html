@@ -10,26 +10,28 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="缴费ID"
-                                    v-model="returnPayFeeManageInfo.conditions.detailId" class=" form-control">
+                                       v-model="returnPayFeeManageInfo.conditions.detailId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="returnPayFeeManageInfo.conditions.feeTypeCd">
                                 <option value="" selected>选择费用类型</option>
                                 <option v-for="(item,index) in returnPayFeeManageInfo.feeTypes" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}</option>
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="returnPayFeeManageInfo.conditions.state">
                                 <option value="" selected>选择审核状态</option>
                                 <option v-for="(item,index) in returnPayFeeManageInfo.returnPayFeeStates" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}</option>
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
                             </select>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryReturnPayFeeMethod()">
+                                    v-on:click="_queryReturnPayFeeMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
@@ -46,57 +48,54 @@
                     <h5>退费申请单</h5>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">退款单号</th>
-                                <th class="text-center">缴费ID</th>
-                                <th class="text-center">费用类型</th>
-                                <th class="text-center">付费周期</th>
-                                <th class="text-center">应付金额</th>
-                                <th class="text-center">实付金额</th>
-                                <th class="text-center">退费原因</th>
-                                <th class="text-center">审核状态</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">退款单号</th>
+                            <th class="text-center">缴费ID</th>
+                            <th class="text-center">费用类型</th>
+                            <th class="text-center">付费周期</th>
+                            <th class="text-center">应付金额</th>
+                            <th class="text-center">实付金额</th>
+                            <th class="text-center">退费原因</th>
+                            <th class="text-center">审核状态</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="payFee in returnPayFeeManageInfo.returnPayFees">
-                                <td class="text-center">{{payFee.returnFeeId}}</td>
-                                <td class="text-center">{{payFee.detailId}}</td>
-                                <td class="text-center">{{payFee.feeTypeCdName}}</td>
-                                <td class="text-center">{{payFee.cycles}}个月</td>
-                                <td class="text-center">{{payFee.receivableAmount}}</td>
-                                <td class="text-center">{{payFee.receivedAmount}}</td>
-                                <td class="text-center">{{payFee.reason}}</td>
-                                <td class="text-center">
+                        <tr v-for="payFee in returnPayFeeManageInfo.returnPayFees">
+                            <td class="text-center">{{payFee.returnFeeId}}</td>
+                            <td class="text-center">{{payFee.detailId}}</td>
+                            <td class="text-center">{{payFee.feeTypeCdName}}</td>
+                            <td class="text-center">{{payFee.cycles}}个月</td>
+                            <td class="text-center">{{payFee.receivableAmount}}</td>
+                            <td class="text-center">{{payFee.receivedAmount}}</td>
+                            <td class="text-center">{{payFee.reason}}</td>
+                            <td class="text-center">
                                     <span class="badge badge-success"
-                                        v-if="payFee.state == '1100'">{{payFee.stateName}}</span>
-                                    <span class="badge badge-danger"
-                                        v-else-if="payFee.state == '1200'">{{payFee.stateName}}</span>
-                                    <span class="badge badge-info" v-else>{{payFee.stateName}}</span>
-                                </td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 1000"
+                                          v-if="payFee.state == '1100'">{{payFee.stateName}}</span>
+                                <span class="badge badge-danger"
+                                      v-else-if="payFee.state == '1200'">{{payFee.stateName}}</span>
+                                <span class="badge badge-info" v-else>{{payFee.stateName}}</span>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-if="payFee.state == 1000"
                                             v-on:click="_openReturnPayFeeAuditModel(payFee)">审核
-                                        </button>
-                                        <button class="btn-white btn btn-xs"
+                                    </button>
+                                    <button class="btn-white btn btn-xs"
                                             v-on:click="_toReturnFeeDetail(payFee)">详情
-                                        </button>
-                                    </div>
-
-
-                                </td>
-                            </tr>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="9">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="9">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

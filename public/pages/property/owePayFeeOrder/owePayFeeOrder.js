@@ -77,6 +77,10 @@
                 );
             },
             _payFee: function () {
+                if(vc.component.owePayFeeOrderInfo.selectPayFeeIds.length <= 0){
+                    vc.toast('未选择费用');
+                    return;
+                }
                 //打开model
                 $("#doOwePayFeeModal").modal('show');
             },
@@ -144,6 +148,7 @@
                                 backdrop: "static",//点击空白处不关闭对话框
                                 show: true
                             });
+                            vc.component.owePayFeeOrderInfo.selectPayFeeIds = [];
                             $that._loadOweFees();
                             return;
                         }

@@ -208,7 +208,7 @@
                             //关闭model
                             $('#addInspectionPlanModel').modal('hide');
                             vc.component.clearAddInspectionPlanInfo();
-                            vc.emit('inspectionPlanManage', 'listInspectionPlan', {});
+                            vc.emit('inspectionPlanManage', 'reload', {});
                             return;
                         }
                         vc.toast(json);
