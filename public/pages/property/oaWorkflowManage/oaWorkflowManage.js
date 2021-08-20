@@ -80,6 +80,9 @@
             _openWorkflowEditorApp: function (_oaWorkflow) {
                 window.open('/bpmnjs/index.html?flowId=' + _oaWorkflow.flowId + "&modelId=" + _oaWorkflow.modelId);
             },
+            _openWorkflowForm: function (_oaWorkflow) {
+                window.open('/formjs/editor.html?flowId=' + _oaWorkflow.flowId + "&modelId=" + _oaWorkflow.modelId);
+            },
             _openDeployWorkflow: function (_oaWorkflow) {
                 let _param = {
                     modelId: _oaWorkflow.modelId

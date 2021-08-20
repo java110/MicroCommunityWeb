@@ -81,6 +81,10 @@
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openWorkflowEditorApp(oaWorkflow)">流程</button>
                                     </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openWorkflowForm(oaWorkflow)">设计表单</button>
+                                    </div>
                                     <div class="btn-group" v-if="oaWorkflow.state == 'W'">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeployWorkflow(oaWorkflow)">发布</button>
