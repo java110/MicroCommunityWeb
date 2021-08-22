@@ -1,3 +1,12 @@
+/**
+ * HC小区管理系统作者 吴学文（mail:928255095@qq.com） 对原有的https://bpmn.io 的 formjs 框架做了 相应修改 主要修改如下：
+ * 加入 多行文本框，时间组件，日期组件，部分汉化功能
+ * 
+ * HC小区管理系统官方尊重作者的贡献未去除bpmn 版权信息，如果您想去除请先联系 bpmn作者，经作者同意后，可以在1758行去除bpmn版权，
+ * 在未经作者允许的情况下去除bpmn版权造成的侵权问题，HC小区管理系统将不会承担任何责任，由去除版权的公司或者个人承担相应的责任！
+ * 
+ * 版权归 https://bpmn.io/ 所有，非常感谢bpmn.io 提供这么优秀的框架
+ */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -1746,6 +1755,16 @@
           onChange: onChange
         }), o$1(PoweredBy, {})]
       });
+      //去除 bpmn 版权，开源不容易 官方不去除 bpmn 版权信息，如果 老铁们想去除 注释上面 开放下面即可
+      // return o$1("form", {
+      //      class: "fjs-form",
+      //      onSubmit: handleSubmit,
+      //      onReset: handleReset,
+      //      children: [o$1(FormField, {
+      //        field: schema,
+      //        onChange: onChange
+      //      })]
+      //    });
     }
   
     const type$2 = 'number';
@@ -5753,7 +5772,7 @@
       if (!field || field.type === 'default') {
         return o$1("div", {
           class: "fjs-properties-panel-placeholder",
-          children: "Select a form field to edit its properties."
+          children: "请拖拽选择组件，自定义表单"
         });
       }
   

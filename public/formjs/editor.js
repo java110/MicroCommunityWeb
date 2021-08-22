@@ -58,34 +58,29 @@
 
     _initFormJs = function () {
         let _flowId = vc.getParam('flowId');
-        // let _param = {
-        //     params: {
-        //         flowId: _flowId,
-        //         page: 1,
-        //         row: 1
-        //     }
-        // }
-        // vc.http.apiGet('/oaWorkflow/queryOaWorkflowXml',
-        //     _param,
-        //     function (json, res) {
-        //         let _flowXml = JSON.parse(json);
-        //         if (_flowXml.data.length > 0) {
-        //             //初始化
-        //             initFormJs(_flowXml.data[0].bpmnXml);
-        //             return;
-        //         }
-        //         //初始化
-        //         window.initFormJs();
-        //     }, function (errInfo, error) {
-        //         console.log('请求失败处理');
-        //     }
-        // );
-
-        window.initFormJs(default_json);
+        let _param = {
+            params: {
+                flowId: _flowId,
+                page: 1,
+                row: 1
+            }
+        }
+        vc.http.apiGet('/oaWorkflow/queryOaWorkflowForm',
+            _param,
+            function (json, res) {
+                let _flowXml = JSON.parse(json);
+                if (_flowXml.data.length > 0) {
+                    //初始化
+                    initFormJs(_flowXml.data[0].bpmnXml);
+                    return;
+                }
+                //初始化
+                window.initFormJs(default_json);
+            }, function (errInfo, error) {
+                console.log('请求失败处理');
+            }
+        );
     }
-
-
-
     _initFormJs();
 
     _closeBpmnjs = function () {
