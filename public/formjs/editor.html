@@ -36,16 +36,23 @@
     body{
       background: #fff;
     }
+
+    .no_display {
+      display: none;
+    }
   </style>
 </head>
 
 <body>
+  <vc:create path="frame/bodyTop"></vc:create>
+  <div id="component">
+  </div>
   <div id="form"></div>
 
   <div>
     <div class="r btn-group">
-      <button type="button" class="btn btn-white ">返回</button>
-      <button type="button" class="btn btn-primary" style="margin-left:10px">
+      <button type="button" class="btn btn-white " onclick="_closeBpmnjs()">返回</button>
+      <button type="button" class="btn btn-primary" onclick="_doSaveDiagram()" style="margin-left:10px">
         保存
       </button>
     

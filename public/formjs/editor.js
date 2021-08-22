@@ -18,26 +18,22 @@
         container: document.querySelector('#form')
     });
 
-    let _doSaveDiagram = function (_xml, svg) {
-        //发送get请求
-        let _modelId = vc.getParam('modelId');
+    _doSaveDiagram = function (_xml, svg) {
         let _param = {
-            'xml': _xml,
-            'svg': svg
+            'formJson': JSON.stringify(formEditor.saveSchema()),
+            'flowId': vc.getParam('flowId')
         };
-        vc.http.apiPost('/activiti/model/' + _modelId + '/save',
+        vc.http.apiPost('/oaWorkflow/saveOaWorkflowForm',
             JSON.stringify(_param),
             {
                 emulateJSON: true
             },
             function (json, res) {
                 let listRoomData = JSON.parse(json);
-                console.log(json)
+                vc.toast(listRoomData.msg);
                 if (listRoomData.code == 0) {
-                    vc.toast('保存成功');
                     window.close();
                 }
-
             }, function (errInfo, error) {
                 console.log('请求失败处理');
             }
@@ -45,13 +41,14 @@
     }
     initFormJs = function (_context) {
         try {
-             formEditor.importSchema(_context);
+            console.log(_context)
+            formEditor.importSchema(_context);
         } catch (err) {
             console.log('importing form failed', err);
         }
     };
 
-    window._getSchema = function(){
+    window._getSchema = function () {
         const schema = formEditor.saveSchema();
         console.log('exported schema', JSON.stringify(schema));
     }
@@ -71,7 +68,7 @@
                 let _flowXml = JSON.parse(json);
                 if (_flowXml.data.length > 0) {
                     //初始化
-                    initFormJs(_flowXml.data[0].bpmnXml);
+                    initFormJs(JSON.parse(_flowXml.data[0].formJson));
                     return;
                 }
                 //初始化
