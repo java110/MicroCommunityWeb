@@ -82,8 +82,8 @@
                     _cycle = vc.component.payFeeOrderInfo.cycles;
                 }
                 // 用未格式化的总金额减优惠金额
-                // let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
-                let _totalFeePrice = parseFloat(_cycle) * parseFloat($that.payFeeOrderInfo.feePrice);
+                let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
+                //let _totalFeePrice = parseFloat(_cycle) * parseFloat($that.payFeeOrderInfo.feePrice);
                 if (_totalFeePrice < 0) {
                     return;
                 }

@@ -14,6 +14,10 @@
         "type": "default"
     };
 
+    window.formEditor = new FormEditor.FormEditor({
+        container: document.querySelector('#form')
+    });
+
     let _doSaveDiagram = function (_xml, svg) {
         //发送get请求
         let _modelId = vc.getParam('modelId');
@@ -40,15 +44,17 @@
         );
     }
     initFormJs = function (_context) {
-        const container = document.querySelector('#form');
-        FormEditor.createFormEditor({
-            container,
-            schema: _context
-        });
-        // container.onsubmit = function(){
-        //    console.log();
-        // }
+        try {
+             formEditor.importSchema(_context);
+        } catch (err) {
+            console.log('importing form failed', err);
+        }
     };
+
+    window._getSchema = function(){
+        const schema = formEditor.saveSchema();
+        console.log('exported schema', JSON.stringify(schema));
+    }
 
     _initFormJs = function () {
         let _flowId = vc.getParam('flowId');
