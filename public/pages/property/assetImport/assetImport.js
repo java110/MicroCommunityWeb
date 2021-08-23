@@ -80,7 +80,6 @@
                         }
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
                             vc.toast("处理成功");

@@ -45,7 +45,30 @@
                 );
             },
             newFlow: function (_flow) {
-               console.log('流程',_flow);
+                //判断流程是否已部署
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        flowId: _flow.flowId,
+                        state: 'C'
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/oaWorkflow/queryOaWorkflow',
+                    param,
+                    function (json, res) {
+                        var _oaWorkflowManageInfo = JSON.parse(json);
+                        let oaWorkflows = _oaWorkflowManageInfo.data;
+                        if (oaWorkflows.length < 1) {
+                            vc.toast('流程未部署');
+                            return;
+                        }
+                        vc.jumpToPage('/form.html#/pages/property/newOaWorkflowForm?flowId=' + _flow.flowId)
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });

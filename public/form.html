@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <title>HC小区管理系统|java110</title>
+    <vc:create path="frame/commonTop" location="head"></vc:create>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
+    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/css/animate.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="/css/toastr.css" />
+    <!-- SUMMERNOTE 富文本组件-->
+    <link href="/css/plugins/summernote/summernote-bs4.min.css" rel="stylesheet">
+    <link href="/css/plugins/jsTree/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/vc-ui.css" />
+    <link rel="stylesheet" href="/css/plugins/bootstrap-submenu/bootstrap-submenu.css">
+    <link rel="stylesheet" href="/formjs/css/form-js.css">
+
+    <script src="/js/bootstrap/jquery-3.3.1.min.js"></script>
+    <script src="/js/vue/vue.min.js"></script>
+    <script src="/js/vue/vue-resource.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/bootstrap/bootstrap-datetimepicker.js"></script>
+    <script src="/js/bootstrap/bootstrap-select.min.js"></script>
+    <script src="/js/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap-treeview.min.css" />
+    <script src="/js/bootstrap/bootstrap-treeview.min.js"></script>
+    <script src="/js/plugins/qrcode/qrcode.min.js"></script>
+    <script src="/js/toastr.min.js"></script>
+    <script src="/js/plugins/jsTree/jstree.min.js"></script>
+</head>
+
+<body class="vc-body">
+    <vc:create path="frame/bodyTop"></vc:create>
+    <div class="vc">
+        <vc:create path="frame/menu"></vc:create>
+        <div id="vc-page" class="gray-bg dashbard-1 vc-page-height">
+            <div class="border-bottom">
+                <vc:create path="frame/nav"></vc:create>
+            </div>
+            <div class="vc-wrapper vc-content" style="padding-bottom: 0px;">
+                <vc:create path="frame/breadcrumb"></vc:create>
+            </div>
+            <!--  -->
+            <div id="component" class="vc-wrapper vc-content animated fadeInRight"
+                vc-path="/common/chooseEnterCommunity">
+                <vc:create path="/pages/common/enterCommunity"></vc:create>
+            </div>
+
+            <vc:create path="frame/copyright"></vc:create>
+
+        </div>
+    </div>
+</body>
+<script src="/vcCore/vc-zh.js"></script>
+<script src="/vcCore/vcFramework.js"></script>
+<script src="/formjs/js/form-viewer.umd.js"></script>
+<vc:create path="frame/commonBottom" location="body"></vc:create>
+
+
+</html>
