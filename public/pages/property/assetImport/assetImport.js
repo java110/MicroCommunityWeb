@@ -91,7 +91,7 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(errInfo,10000);
+                        vc.toast("数据提交导入，请到导入日志中查看导入是否成功");
                     });
             },
             _exitCommunityData: function () {
