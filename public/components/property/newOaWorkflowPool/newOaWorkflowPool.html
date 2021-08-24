@@ -53,25 +53,26 @@
                         <thead>
                             <tr>
                                 <th class="text-center">申请人</th>
-                                <th class="text-center">公告类型</th>
-                                <th class="text-center">开始时间</th>
-                                <th class="text-center">结束时间</th>
+                                <th class="text-center" v-for="(item,index) in newOaWorkflowPoolInfo.formJson"
+                                    v-if="item.type != 'text' && item.type != 'button'  && item.type != 'textarea'">
+                                    {{item.label}}</th>
                                 <th class="text-center">状态</th>
                                 <th class="text-center">创建时间</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="pool in newOaWorkflowPoolInfo.pools">
-                                <td class="text-center">{{pool.createUserName}}</td>
-                                <td class="text-center">{{pool.noticeTypeCdName}}</td>
-                                <td class="text-center">{{pool.startTime}}</td>
-                                <td class="text-center">{{pool.endTime}}</td>
+                            <tr v-for="(pool,index) in newOaWorkflowPoolInfo.pools" :key="pool.id">
+                                <td class="text-center">{{pool.create_user_name}}</td>
+                                <td class="text-center" v-for="(item1,index1) in newOaWorkflowPoolInfo.formJson"
+                                    v-if="item1.type != 'text' && item1.type != 'button'  && item1.type != 'textarea'">
+                                    {{pool[item1.key]}}</td>
                                 <td class="text-center">{{pool.stateName}}</td>
-                                <td class="text-center">{{notice.createTime}}</td>
+                                <td class="text-center">{{pool.create_time}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openNewOaWorkflowPoolDetail(pool)">详情
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openNewOaWorkflowPoolDetail(pool)">详情
                                         </button>
                                     </div>
                                 </td>
