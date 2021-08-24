@@ -64,7 +64,7 @@
                             vc.toast('流程未部署');
                             return;
                         }
-                        vc.jumpToPage('/form.html#/pages/property/newOaWorkflowForm?flowId=' + _flow.flowId)
+                        vc.jumpToPage('/form.html#/pages/property/newOaWorkflow?flowId=' + _flow.flowId)
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

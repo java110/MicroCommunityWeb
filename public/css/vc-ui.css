@@ -2015,6 +2015,11 @@ a:hover {
   float:right
 }
 
+.vc-node-selected{
+  color: #FFFFFF;
+  background-color: #1ab394;
+}
+
 .vc-line{
   width:100%;
   height:2px;

@@ -1,0 +1,94 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入申请人"
+                                    v-model="newOaWorkflowPoolInfo.conditions.createUserName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入开始时间"
+                                    v-model="newOaWorkflowPoolInfo.conditions.startTime"
+                                    class=" form-control poolStartTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入结束时间"
+                                    v-model="newOaWorkflowPoolInfo.conditions.endTime"
+                                    class=" form-control poolEndTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryOaWorkflowPoolMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>流程工单</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">申请人</th>
+                                <th class="text-center">公告类型</th>
+                                <th class="text-center">开始时间</th>
+                                <th class="text-center">结束时间</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">创建时间</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="pool in newOaWorkflowPoolInfo.pools">
+                                <td class="text-center">{{pool.createUserName}}</td>
+                                <td class="text-center">{{pool.noticeTypeCdName}}</td>
+                                <td class="text-center">{{pool.startTime}}</td>
+                                <td class="text-center">{{pool.endTime}}</td>
+                                <td class="text-center">{{pool.stateName}}</td>
+                                <td class="text-center">{{notice.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openNewOaWorkflowPoolDetail(pool)">详情
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

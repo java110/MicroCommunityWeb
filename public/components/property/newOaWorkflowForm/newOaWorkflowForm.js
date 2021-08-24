@@ -9,17 +9,17 @@
             newOaWorkflowFormInfo: {
                 formJson: {},
                 conditions: {
-                }
+                },
+                flowId: ''
             }
         },
         _initMethod: function () {
-            vc.component._listOaWorkflowForm(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
-            vc.on('newOaWorkflowForm', 'listNewOaWorkflow', function (_param) {
-                vc.component._listNewOaWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
-            });
+            vc.on('newOaWorkflowForm', 'witch', function (_value) {
+                $that.newOaWorkflowFormInfo.flowId = _value.flowId;
+                vc.component._listOaWorkflowForm(DEFAULT_PAGE, DEFAULT_ROWS);
+            })
         },
         methods: {
             _listOaWorkflowForm: function (_page, _rows) {
@@ -27,7 +27,7 @@
                     params: {
                         page: 1,
                         row: 1,
-                        flowId: vc.getParam('flowId')
+                        flowId: $that.newOaWorkflowFormInfo.flowId
                     }
                 };
 
@@ -49,7 +49,7 @@
                     container,
                     schema: $that.newOaWorkflowFormInfo.formJson
                 });
-            }
+            },
         }
     });
 })(window.vc);
