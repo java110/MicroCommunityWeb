@@ -66,7 +66,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/oaWorkflow/queryOaWorkflowFormData',
+                vc.http.apiGet('/oaWorkflow/queryOaWorkflowUserHisTaskFormData',
                     param,
                     function (json, res) {
                         var _newOaWorkflowFinishInfo = JSON.parse(json);

@@ -1126,23 +1126,23 @@
         }
   
         if (validate.required && (typeof value === 'undefined' || value === '')) {
-          errors = [...errors, 'Field is required.'];
+          errors = [...errors, '此项必填.'];
         }
   
         if ('min' in validate && value && value < validate.min) {
-          errors = [...errors, `Field must have minimum value of ${validate.min}.`];
+          errors = [...errors, `此项值不得小于 ${validate.min}.`];
         }
   
         if ('max' in validate && value && value > validate.max) {
-          errors = [...errors, `Field must have maximum value of ${validate.max}.`];
+          errors = [...errors, `此项值不得大于 ${validate.max}.`];
         }
   
         if ('minLength' in validate && value && value.trim().length < validate.minLength) {
-          errors = [...errors, `Field must have minimum length of ${validate.minLength}.`];
+          errors = [...errors, `此项字数不得少于 ${validate.minLength}.`];
         }
   
         if ('maxLength' in validate && value && value.trim().length > validate.maxLength) {
-          errors = [...errors, `Field must have maximum length of ${validate.maxLength}.`];
+          errors = [...errors, `此项字数不得大于 ${validate.maxLength}.`];
         }
   
         return errors;

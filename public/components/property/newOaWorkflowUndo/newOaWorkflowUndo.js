@@ -66,7 +66,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/oaWorkflow/queryOaWorkflowFormData',
+                vc.http.apiGet('/oaWorkflow/queryOaWorkflowUserTaskFormData',
                     param,
                     function (json, res) {
                         var _newOaWorkflowUndoInfo = JSON.parse(json);

@@ -17,6 +17,9 @@
             vc.on('newOaWorkflow', 'listNewOaWorkflow', function (_param) {
                 vc.component._listNewOaWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
             });
+            vc.on('newOaWorkflow','switch',function(_switchValue){
+                $that.swatch(_switchValue);
+            })
         },
         methods: {
             swatch: function (_value) {
