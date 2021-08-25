@@ -1,0 +1,75 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>工单详情</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">返回</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label">工单编码：</label>
+                                        <label class="">{{newOaWorkflowDetailInfo.repairId}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label">报修类型：</label>
+                                        <label class="">{{newOaWorkflowDetailInfo.repairTypeName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label">报修人：</label>
+                                        <label class="">{{newOaWorkflowDetailInfo.repairName}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>工单流转</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-center">序号</th>
+                            <th scope="col" class="text-center">处理人</th>
+                            <th scope="col" class="text-center">状态</th>
+                            <th scope="col" class="text-center">处理时间</th>
+                            <th scope="col" class="text-center">耗时</th>
+                            <th scope="col" class="text-center">意见</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in newOaWorkflowDetailInfo.repairUsers">
+                            <td scope="row" class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{item.staffName}}</td>
+                            <td class="text-center">{{item.stateName}}</td>
+                            <td class="text-center">{{item.endTime}}</td>
+                            <td class="text-center">{{item.duration}}</td>
+                            <td class="text-center">{{item.context}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

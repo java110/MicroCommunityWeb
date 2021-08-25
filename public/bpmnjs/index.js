@@ -1,5 +1,6 @@
 /**
  入驻小区
+ https://www.cnblogs.com/zsg88/p/12552378.html
  **/
 (function (vc) {
 
@@ -56,6 +57,8 @@
                 }
                 //初始化
                 window.initBpmnjs();
+                //生成编号
+                document.getElementById('camunda-id').value = "java110_" + _flowId
             }, function (errInfo, error) {
                 console.log('请求失败处理');
             }
@@ -64,7 +67,7 @@
 
     _initBpmn();
 
-    _closeBpmnjs = function(){
+    _closeBpmnjs = function () {
         window.close();
     }
 })(window.vc);
