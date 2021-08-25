@@ -11,23 +11,33 @@
                 <div class="ibox-content">
                     <div>
                         <div>
+                            <div class="row" v-if="newOaWorkflowDetailInfo.pools">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label">申请人：</label>
+                                        <label class="">{{newOaWorkflowDetailInfo.pools.create_user_name}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label">申请时间：</label>
+                                        <label class="">{{newOaWorkflowDetailInfo.pools.create_time}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label">状态：</label>
+                                        <label
+                                            class="">{{_getNewOaWorkflowDetailState(newOaWorkflowDetailInfo.pools)}}</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-4" v-for="(item,index) in newOaWorkflowDetailInfo.formJson"
+                                    v-if="item.type != 'text' && item.type != 'button' ">
                                     <div class="form-group">
-                                        <label class="col-form-label">工单编码：</label>
-                                        <label class="">{{newOaWorkflowDetailInfo.repairId}}</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label class="col-form-label">报修类型：</label>
-                                        <label class="">{{newOaWorkflowDetailInfo.repairTypeName}}</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label class="col-form-label">报修人：</label>
-                                        <label class="">{{newOaWorkflowDetailInfo.repairName}}</label>
+                                        <label class="col-form-label">{{item.label}}：</label>
+                                        <label class="">{{newOaWorkflowDetailInfo.pools[item.key]}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -48,24 +58,22 @@
                 <div class="ibox-content">
                     <table class="table table-stripped">
                         <thead>
-                        <tr>
-                            <th scope="col" class="text-center">序号</th>
-                            <th scope="col" class="text-center">处理人</th>
-                            <th scope="col" class="text-center">状态</th>
-                            <th scope="col" class="text-center">处理时间</th>
-                            <th scope="col" class="text-center">耗时</th>
-                            <th scope="col" class="text-center">意见</th>
-                        </tr>
+                            <tr>
+                                <th scope="col" class="text-center">序号</th>
+                                <th scope="col" class="text-center">处理人</th>
+                                <th scope="col" class="text-center">状态</th>
+                                <th scope="col" class="text-center">耗时</th>
+                                <th scope="col" class="text-center">意见</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(item,index) in newOaWorkflowDetailInfo.repairUsers">
-                            <td scope="row" class="text-center">{{index+1}}</td>
-                            <td class="text-center">{{item.staffName}}</td>
-                            <td class="text-center">{{item.stateName}}</td>
-                            <td class="text-center">{{item.endTime}}</td>
-                            <td class="text-center">{{item.duration}}</td>
-                            <td class="text-center">{{item.context}}</td>
-                        </tr>
+                            <tr v-for="(item,index) in newOaWorkflowDetailInfo.comments">
+                                <td scope="row" class="text-center">{{index+1}}</td>
+                                <td class="text-center">{{item.auditName}}</td>
+                                <td class="text-center">{{item.stateName}}</td>
+                                <td class="text-center">{{item.duration}}</td>
+                                <td class="text-center">{{item.message}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

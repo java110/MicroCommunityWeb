@@ -34,7 +34,7 @@
                 $that._listOaWorkFlowPoolForm();
                 vc.component._listOaWorkflowPools(DEFAULT_PAGE, DEFAULT_ROWS);
             })
-            vc.on('newOaWorkflowPool','paginationPlus', 'page_event', function (_currentPage) {
+            vc.on('newOaWorkflowPool', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._listOaWorkflowPools(_currentPage, DEFAULT_ROWS);
             });
         },
@@ -73,7 +73,7 @@
                         vc.component.newOaWorkflowPoolInfo.total = _newOaWorkflowPoolInfo.total;
                         vc.component.newOaWorkflowPoolInfo.records = _newOaWorkflowPoolInfo.records;
                         vc.component.newOaWorkflowPoolInfo.pools = _newOaWorkflowPoolInfo.data;
-                        vc.emit('newOaWorkflowPool','paginationPlus', 'init', {
+                        vc.emit('newOaWorkflowPool', 'paginationPlus', 'init', {
                             total: vc.component.newOaWorkflowPoolInfo.records,
                             dataCount: vc.component.newOaWorkflowPoolInfo.total,
                             currentPage: _page
@@ -83,8 +83,8 @@
                     }
                 );
             },
-            _openNewOaWorkflowPoolDetail: function (_notice) {
-                vc.jumpToPage("/admin.html#/pages/common/noticeDetail?noticeId=" + _notice.noticeId);
+            _openNewOaWorkflowPoolDetail: function (_pool) {
+                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _pool.id + "&flowId=" + $that.newOaWorkflowPoolInfo.conditions.flowId);
             },
             _queryOaWorkflowPoolMethod: function () {
                 vc.component._listOaWorkflowPools(DEFAULT_PAGE, DEFAULT_ROWS);
