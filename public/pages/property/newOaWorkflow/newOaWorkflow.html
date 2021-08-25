@@ -10,10 +10,10 @@
                         :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowForm'}" @click="swatch('newOaWorkflowForm')">
                         起草流程</li>
                     <li class="list-group-item node-orgTree "
-                        :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='undo'}" @click="swatch('undo')">流程待办
+                        :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowUndo'}" @click="swatch('newOaWorkflowUndo')">流程待办
                     </li>
                     <li class="list-group-item node-orgTree "
-                        :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='finish'}" @click="swatch('finish')">
+                        :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowFinish'}" @click="swatch('newOaWorkflowFinish')">
                         流程已办</li>
                 </ul>
             </div>
@@ -24,6 +24,12 @@
             </div>
             <div v-if="newOaWorkflowInfo.switchValue=='newOaWorkflowForm'">
                 <vc:create path="property/newOaWorkflowForm"></vc:create>
+            </div>
+            <div v-show="newOaWorkflowInfo.switchValue=='newOaWorkflowUndo'">
+                <vc:create path="property/newOaWorkflowUndo"></vc:create>
+            </div>
+            <div v-show="newOaWorkflowInfo.switchValue=='newOaWorkflowFinish'">
+                <vc:create path="property/newOaWorkflowFinish"></vc:create>
             </div>
         </div>
     </div>

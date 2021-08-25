@@ -12,26 +12,26 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入申请人"
-                                    v-model="newOaWorkflowPoolInfo.conditions.createUserName" class=" form-control">
+                                    v-model="newOaWorkflowUndoInfo.conditions.createUserName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入开始时间"
-                                    v-model="newOaWorkflowPoolInfo.conditions.startTime"
-                                    class=" form-control poolStartTime">
+                                    v-model="newOaWorkflowUndoInfo.conditions.startTime"
+                                    class=" form-control undoStartTime">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入结束时间"
-                                    v-model="newOaWorkflowPoolInfo.conditions.endTime"
-                                    class=" form-control poolEndTime">
+                                    v-model="newOaWorkflowUndoInfo.conditions.endTime"
+                                    class=" form-control undoEndTime">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryOaWorkflowPoolMethod()">
+                                v-on:click="_queryOaWorkflowUndoMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
@@ -44,7 +44,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>流程工单</h5>
+                    <h5>待办流程</h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">申请人</th>
-                                <th class="text-center" v-for="(item,index) in newOaWorkflowPoolInfo.formJson"
+                                <th class="text-center" v-for="(item,index) in newOaWorkflowUndoInfo.formJson"
                                     v-if="item.type != 'text' && item.type != 'button'  && item.type != 'textarea'">
                                     {{item.label}}</th>
                                 <th class="text-center">状态</th>
@@ -62,17 +62,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(pool,index) in newOaWorkflowPoolInfo.pools" :key="pool.id">
-                                <td class="text-center">{{pool.create_user_name}}</td>
-                                <td class="text-center" v-for="(item1,index1) in newOaWorkflowPoolInfo.formJson"
+                            <tr v-for="(undo,index) in newOaWorkflowUndoInfo.undos" :key="undo.id">
+                                <td class="text-center">{{undo.create_user_name}}</td>
+                                <td class="text-center" v-for="(item1,index1) in newOaWorkflowUndoInfo.formJson"
                                     v-if="item1.type != 'text' && item1.type != 'button'  && item1.type != 'textarea'">
-                                    {{pool[item1.key]}}</td>
-                                <td class="text-center">{{_getNewOaWorkflowPoolState(pool)}}</td>
-                                <td class="text-center">{{pool.create_time}}</td>
+                                    {{undo[item1.key]}}</td>
+                                <td class="text-center">{{_getNewOaWorkflowUndoState(undo)}}</td>
+                                <td class="text-center">{{undo.create_time}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openNewOaWorkflowPoolDetail(pool)">详情
+                                            v-on:click="_openNewOaWorkflowUndoDetail(undo)">审核
+                                        </button>
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openNewOaWorkflowUndoDetail(undo)">委托
+                                        </button>
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openNewOaWorkflowUndoDetail(undo)">详情
                                         </button>
                                     </div>
                                 </td>
@@ -87,7 +93,7 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/paginationPlus" namespace="newOaWorkflowPool"></vc:create>
+                    <vc:create path="frame/paginationPlus" namespace="newOaWorkflowUndo"></vc:create>
                 </div>
             </div>
         </div>

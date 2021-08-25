@@ -6,8 +6,8 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            newOaWorkflowPoolInfo: {
-                pools: [],
+            newOaWorkflowUndoInfo: {
+                undos: [],
                 total: 0,
                 records: 1,
                 formJson: [],
@@ -23,28 +23,28 @@
 
         },
         _initEvent: function () {
-            vc.on('newOaWorkflowPool', 'witch', function (_value) {
-                $that.newOaWorkflowPoolInfo.conditions.flowId = _value.flowId;
-                vc.initDateTime('poolStartTime', function (_value) {
-                    $that.newOaWorkflowPoolInfo.conditions.startTime = _value;
+            vc.on('newOaWorkflowUndo', 'witch', function (_value) {
+                $that.newOaWorkflowUndoInfo.conditions.flowId = _value.flowId;
+                vc.initDateTime('undoStartTime', function (_value) {
+                    $that.newOaWorkflowUndoInfo.conditions.startTime = _value;
                 });
-                vc.initDateTime('poolEndTime', function (_value) {
-                    $that.newOaWorkflowPoolInfo.conditions.endTime = _value;
+                vc.initDateTime('undoEndTime', function (_value) {
+                    $that.newOaWorkflowUndoInfo.conditions.endTime = _value;
                 });
-                $that._listOaWorkFlowPoolForm();
-                vc.component._listOaWorkflowPools(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOaWorkFlowUndoForm();
+                vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
             })
-            vc.on('newOaWorkflowPool','paginationPlus', 'page_event', function (_currentPage) {
-                vc.component._listOaWorkflowPools(_currentPage, DEFAULT_ROWS);
+            vc.on('newOaWorkflowUndo','paginationPlus', 'page_event', function (_currentPage) {
+                vc.component._listOaWorkflowUndos(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listOaWorkFlowPoolForm: function () {
+            _listOaWorkFlowUndoForm: function () {
                 var param = {
                     params: {
                         page: 1,
                         row: 1,
-                        flowId: $that.newOaWorkflowPoolInfo.conditions.flowId
+                        flowId: $that.newOaWorkflowUndoInfo.conditions.flowId
                     }
                 };
                 //发送get请求
@@ -52,30 +52,30 @@
                     param,
                     function (json, res) {
                         let _newOaWorkflowFormInfo = JSON.parse(json);
-                        $that.newOaWorkflowPoolInfo.formJson = JSON.parse(_newOaWorkflowFormInfo.data[0].formJson).components;
+                        $that.newOaWorkflowUndoInfo.formJson = JSON.parse(_newOaWorkflowFormInfo.data[0].formJson).components;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listOaWorkflowPools: function (_page, _rows) {
-                vc.component.newOaWorkflowPoolInfo.conditions.page = _page;
-                vc.component.newOaWorkflowPoolInfo.conditions.row = _rows;
+            _listOaWorkflowUndos: function (_page, _rows) {
+                vc.component.newOaWorkflowUndoInfo.conditions.page = _page;
+                vc.component.newOaWorkflowUndoInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.newOaWorkflowPoolInfo.conditions
+                    params: vc.component.newOaWorkflowUndoInfo.conditions
                 };
 
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowFormData',
                     param,
                     function (json, res) {
-                        var _newOaWorkflowPoolInfo = JSON.parse(json);
-                        vc.component.newOaWorkflowPoolInfo.total = _newOaWorkflowPoolInfo.total;
-                        vc.component.newOaWorkflowPoolInfo.records = _newOaWorkflowPoolInfo.records;
-                        vc.component.newOaWorkflowPoolInfo.pools = _newOaWorkflowPoolInfo.data;
-                        vc.emit('newOaWorkflowPool','paginationPlus', 'init', {
-                            total: vc.component.newOaWorkflowPoolInfo.records,
-                            dataCount: vc.component.newOaWorkflowPoolInfo.total,
+                        var _newOaWorkflowUndoInfo = JSON.parse(json);
+                        vc.component.newOaWorkflowUndoInfo.total = _newOaWorkflowUndoInfo.total;
+                        vc.component.newOaWorkflowUndoInfo.records = _newOaWorkflowUndoInfo.records;
+                        vc.component.newOaWorkflowUndoInfo.undos = _newOaWorkflowUndoInfo.data;
+                        vc.emit('newOaWorkflowUndo','paginationPlus', 'init', {
+                            total: vc.component.newOaWorkflowUndoInfo.records,
+                            dataCount: vc.component.newOaWorkflowUndoInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -83,21 +83,21 @@
                     }
                 );
             },
-            _openNewOaWorkflowPoolDetail: function (_notice) {
+            _openNewOaWorkflowUndoDetail: function (_notice) {
                 vc.jumpToPage("/admin.html#/pages/common/noticeDetail?noticeId=" + _notice.noticeId);
             },
-            _queryOaWorkflowPoolMethod: function () {
-                vc.component._listOaWorkflowPools(DEFAULT_PAGE, DEFAULT_ROWS);
+            _queryOaWorkflowUndoMethod: function () {
+                vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _getNewOaWorkflowPoolState: function (_pool) {
+            _getNewOaWorkflowUndoState: function (_undo) {
                 /**
                  * 1001 申请 1002 待审核 1003 退回 1004 委托 1005 办结
                  */
-                if (!_pool.hasOwnProperty('state')) {
+                if (!_undo.hasOwnProperty('state')) {
                     return "未知";
                 }
 
-                switch (_pool.state) {
+                switch (_undo.state) {
                     case '1001':
                         return "申请";
                     case '1002':
