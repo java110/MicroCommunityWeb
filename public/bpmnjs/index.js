@@ -8,7 +8,7 @@
         //发送get请求
         let _modelId = vc.getParam('modelId');
         let _param = {
-            'xml': _xml,
+            'xml': _xml.replaceAll('Process_1',"java110_" + vc.getParam('flowId')),
             'svg': svg
         };
         vc.http.apiPost('/activiti/model/' + _modelId + '/save',
@@ -57,8 +57,6 @@
                 }
                 //初始化
                 window.initBpmnjs();
-                //生成编号
-                document.getElementById('camunda-id').value = "java110_" + _flowId
             }, function (errInfo, error) {
                 console.log('请求失败处理');
             }
