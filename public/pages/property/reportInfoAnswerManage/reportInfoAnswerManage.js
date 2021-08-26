@@ -12,7 +12,10 @@
                 records: 1,
                 moreCondition: false,
                 reportInfoSettings: [],
-                settingId:''
+                settingId:'',
+                communityId:vc.getCurrentCommunity().communityId,
+                personId: '',
+                personName: ''
             }
         },
         _initMethod: function () {
@@ -57,6 +60,7 @@
                             }
 
                         });
+                        vc.component.userQuestionAnswerManageInfo.moreCondition = true;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -110,7 +114,7 @@
             },
             _saveUserQuestionAnswer: function () {
                 vc.http.apiPost(
-                    '/userQuestionAnswer/saveUserQuestionAnswerValue',
+                    '/reportInfoAnswerValue/saveReportInfoAnswerValue',
                     JSON.stringify(vc.component.userQuestionAnswerManageInfo),
                     {
                         emulateJSON: true

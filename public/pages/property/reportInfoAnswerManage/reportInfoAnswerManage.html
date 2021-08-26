@@ -47,6 +47,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" v-if="userQuestionAnswerManageInfo.moreCondition">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入被登记人名称"
+                                v-model="userQuestionAnswerManageInfo.personName" class=" form-control">
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
