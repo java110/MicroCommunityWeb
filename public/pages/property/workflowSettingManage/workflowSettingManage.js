@@ -19,7 +19,6 @@
         methods: {
             saveWorkflowSettingInfo: function () {
 
-
                 vc.component.workflowSettingInfo.communityId = vc.getCurrentCommunity().communityId;
 
                 vc.http.apiPost(
@@ -39,9 +38,7 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             _initWorkflowSettingInfo: function () {
@@ -124,9 +121,7 @@
                     _steps.push(_step);
 
                 }
-
                 $that.workflowSettingInfo.steps = _steps;
-
             },
             addWorkflowStep: function () {
                 let _step = {

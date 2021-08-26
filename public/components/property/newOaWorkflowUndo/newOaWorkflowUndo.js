@@ -83,8 +83,14 @@
                     }
                 );
             },
-            _openNewOaWorkflowUndoDetail: function (_notice) {
-                vc.jumpToPage("/admin.html#/pages/common/noticeDetail?noticeId=" + _notice.noticeId);
+            _openNewOaWorkflowUndoDetail: function (_undo) {
+                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
+            },
+            _openAuditNewOaWorkflowUndoDetail:function(_undo){
+                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _undo.id 
+                + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId
+                + "&action=Audit"
+                + "&taskId="+_undo.taskId);
             },
             _queryOaWorkflowUndoMethod: function () {
                 vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
