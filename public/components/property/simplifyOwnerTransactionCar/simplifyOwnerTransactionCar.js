@@ -23,11 +23,11 @@
                 vc.copyObject(_param, $that.simplifyOwnerTransactionCarInfo)
                 $that._listTransactionOwnerCar()
                     .then((data) => {
-                        $that._listSimplifyOwnerTransactionCar(DEFAULT_PAGE, DEFAULT_ROWS);
+                        console.log('DEFAULT_PAGE',DEFAULT_PAGE)
+                        $that._listSimplifyOwnerTransactionCar(1, 10);
                     }, (err) => {
 
                     })
-
             });
 
             vc.on('simplifyOwnerTransactionCar', 'listMachineTranslate', function (_param) {
