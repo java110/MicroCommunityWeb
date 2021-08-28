@@ -23,8 +23,7 @@
                 vc.copyObject(_param, $that.simplifyOwnerTransactionCarInfo)
                 $that._listTransactionOwnerCar()
                     .then((data) => {
-                        console.log('DEFAULT_PAGE',DEFAULT_PAGE)
-                        $that._listSimplifyOwnerTransactionCar(1, 10);
+                        $that._listSimplifyOwnerTransactionCar(DEFAULT_PAGE, DEFAULT_ROWS);
                     }, (err) => {
 
                     })
@@ -119,7 +118,7 @@
                 if (_car == null) {
                     return;
                 }
-                $that._listSimplifyOwnerTransactionCar();
+                $that._listSimplifyOwnerTransactionCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             clearSimplifyOwnerTransactionCarInfo: function () {
                 $that.simplifyOwnerTransactionCarInfo = {
