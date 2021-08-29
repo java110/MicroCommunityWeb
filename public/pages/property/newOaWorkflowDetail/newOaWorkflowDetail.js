@@ -158,7 +158,7 @@
                     case '1003':
                         return "退回";
                     case '1004':
-                        return "委托";
+                        return "转单";
                     case '1005':
                         return "办结";
                 }
