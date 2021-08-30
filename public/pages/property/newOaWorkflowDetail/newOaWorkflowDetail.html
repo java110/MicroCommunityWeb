@@ -72,11 +72,11 @@
                                 <td scope="row" class="text-center">{{index+1}}</td>
                                 <td scope="row" class="text-center" v-if="item.orgName">{{item.orgName}}</td>
                                 <td scope="row" class="text-center" v-else>管理员</td>
-                                <td class="text-center" v-if="item.userName">{{item.userName}}</td>
-                                <td class="text-center" v-else>{{item.auditName}}</td>
-                                <td class="text-center">{{item.stateName}}</td>
+                                <td class="text-center">{{item.staffName}}</td>
+                                <td class="text-center" v-if="item.endTime">处理完成</td>
+                                <td class="text-center" v-else>正在处理</td>
                                 <td class="text-center">{{item.duration}}</td>
-                                <td class="text-center">{{item.message}}</td>
+                                <td class="text-center">{{item.context}}</td>
                             </tr>
                         </tbody>
                     </table>

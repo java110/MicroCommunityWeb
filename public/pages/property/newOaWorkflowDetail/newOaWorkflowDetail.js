@@ -15,7 +15,7 @@
                     staffName: '',
                     taskId: ''
                 },
-                nextAudit:{}
+                nextAudit: {}
             }
         },
         _initMethod: function () {
@@ -80,11 +80,15 @@
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        businessKey: $that.newOaWorkflowDetailInfo.id
+                        id: $that.newOaWorkflowDetailInfo.id,
+                        flowId: $that.newOaWorkflowDetailInfo.flowId,
+                        page:1,
+                        row:10
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('workflow.listWorkflowAuditInfo',
+                //vc.http.apiGet('workflow.listWorkflowAuditInfo',
+                vc.http.apiGet('/oaWorkflow/queryOaWorkflowUser',
                     param,
                     function (json, res) {
                         var _workflowManageInfo = JSON.parse(json);
