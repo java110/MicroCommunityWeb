@@ -75,6 +75,11 @@
                                             v-on:click="_openNewOaWorkflowPoolDetail(pool)">详情
                                         </button>
                                     </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openNewOaWorkflowPoolImg(pool)">流程图
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -92,4 +97,5 @@
             </div>
         </div>
     </div>
+    <vc:create path="common/viewImage"></vc:create>
 </div>

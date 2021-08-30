@@ -83,8 +83,8 @@
                     }
                 );
             },
-            _openNewOaWorkflowFinishDetail: function (_notice) {
-                vc.jumpToPage("/admin.html#/pages/common/noticeDetail?noticeId=" + _notice.noticeId);
+            _openNewOaWorkflowFinishDetail: function (_undo) {
+                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowFinishInfo.conditions.flowId);
             },
             _queryOaWorkflowFinishMethod: function () {
                 vc.component._listOaWorkflowFinishs(DEFAULT_PAGE, DEFAULT_ROWS);

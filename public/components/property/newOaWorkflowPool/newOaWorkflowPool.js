@@ -89,6 +89,30 @@
             _queryOaWorkflowPoolMethod: function () {
                 vc.component._listOaWorkflowPools(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            _openNewOaWorkflowPoolImg: function (_pool) { //展示流程图
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        businessKey: _pool.id
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('workflow.listRunWorkflowImage',
+                    param,
+                    function (json, res) {
+                        var _workflowManageInfo = JSON.parse(json);
+                        if (_workflowManageInfo.code != '0') {
+                            vc.toast(_workflowManageInfo.msg);
+                            return;
+                        }
+                        vc.emit('viewImage', 'showImage', {
+                            url: 'data:image/png;base64,' + _workflowManageInfo.data
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _getNewOaWorkflowPoolState: function (_pool) {
                 /**
                  * 1001 申请 1002 待审核 1003 退回 1004 委托 1005 办结

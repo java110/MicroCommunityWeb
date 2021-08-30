@@ -14,7 +14,8 @@
                     staffId: '',
                     staffName: '',
                     taskId: ''
-                }
+                },
+                nextAudit:{}
             }
         },
         _initMethod: function () {
@@ -29,6 +30,7 @@
             $that.newOaWorkflowDetailInfo.audit.taskId = vc.getParam('taskId');
             $that._listOaWorkflowDetails();
             $that._loadComments();
+            $that._loadNextAuditPerson();
         },
         _initEvent: function () {
         },
@@ -102,7 +104,6 @@
                 vc.emit('selectStaff', 'openStaff', $that.newOaWorkflowDetailInfo.audit);
             },
             _auditSubmit: function () {
-
                 let _audit = $that.newOaWorkflowDetailInfo.audit;
                 _audit.flowId = $that.newOaWorkflowDetailInfo.flowId;
                 _audit.id = $that.newOaWorkflowDetailInfo.id;
@@ -114,7 +115,7 @@
                     vc.toast('请填写说明');
                     return;
                 }
-                if (_audit.auditCode != '1200' && !_audit.staffId) {
+                if (_audit.auditCode != '1200' && _audit.auditCode != '1400' && !_audit.staffId) {
                     vc.toast('请选择下一节点处理人');
                     return;
                 }
@@ -130,7 +131,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             vc.toast('提交成功');
-                            vc.emit('newOaWorkflow', 'switch', 'newOaWorkflowPool')
+                            $that._goBack();
                             return;
                         }
                         vc.toast(_json.msg);
@@ -142,6 +143,27 @@
 
                     });
 
+            },
+            _loadNextAuditPerson: function () {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        taskId: $that.newOaWorkflowDetailInfo.audit.taskId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/oaWorkflow/getNextTask',
+                    param,
+                    function (json, res) {
+                        let _nextAudit = JSON.parse(json);
+                        if (_nextAudit.code != '0') {
+                            return;
+                        }
+                        $that.newOaWorkflowDetailInfo.nextAudit = _nextAudit.data[0];
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             _getNewOaWorkflowDetailState: function (_pool) {
                 /**
