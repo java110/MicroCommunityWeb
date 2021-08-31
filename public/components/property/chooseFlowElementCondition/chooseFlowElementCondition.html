@@ -1,0 +1,50 @@
+<div id="chooseFlowElementConditionModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">选择条件</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">条件类型</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="chooseFlowElementConditionInfo.flag">
+                    <option selected disabled value="">必填，请选择条件类型</option>
+                    <option value="Auto">通用</option>
+                    <option value="Custom">手工输入</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row" v-if="chooseFlowElementConditionInfo.flag == 'Auto'">
+                <label class="col-sm-2 col-form-label">表达式</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="chooseFlowElementConditionInfo.condition">
+                    <option selected disabled value="">必填，请选择表达式</option>
+                    <option value="${auditCode=='1100'}">同意</option>
+                    <option value="${auditCode=='1200'}">退回上一节点</option>
+                    <option value="${auditCode=='1400'}">退回至提交者</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row" v-else>
+                <label class="col-sm-2 col-form-label">表达式</label>
+                <div class="col-sm-10">
+                  <input placeholder="输入表达式" type="text" v-model="chooseFlowElementConditionInfo.condition"
+                    class="form-control form-control-sm">
+                </div>
+              </div>
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="chooseFlowCondition()"><i
+                    class="fa fa-check"></i>&nbsp;确定</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@
                         <div class=" staff padding padding-top-xs">
                             <div class=" padding overflow-hidden"
                                 :class="{'select':selectStaffInfo.curCompanyId == item.orgId}"
-                                v-for="(item,index) in selectStaffInfo.companys" @click="_changeCompany(item)">
+                                v-for="(item,index) in selectStaffInfo.companys" @click="_changeCompany(item)" style="cursor:pointer">
                                 <span>
                                     <i class="fa fa-building-o margin-right-xs" aria-hidden="true"></i>
                                     {{item.orgName}}
@@ -25,7 +25,7 @@
                         <div class="padding-left staff padding  padding-top-xs">
                             <div class=" padding overflow-hidden"
                                 :class="{'select':selectStaffInfo.curDepartmentId == item.orgId}"
-                                v-for="(item,index) in selectStaffInfo.departments" @click="_changeDepartment(item)">
+                                v-for="(item,index) in selectStaffInfo.departments" @click="_changeDepartment(item)" style="cursor:pointer">
                                 <span>
                                     <i class="fa fa-sitemap margin-right-xs" aria-hidden="true"></i>
                                     {{item.orgName}}
@@ -39,7 +39,7 @@
                             <div class=" padding overflow-hidden"
                                 :class="{'select':selectStaffInfo.curStaffId == item.staffId}"
                                 v-for="(item,index) in selectStaffInfo.staffs"
-                                @click="_changeStaff(item)"
+                                @click="_changeStaff(item)" style="cursor:pointer"
                                 >
                                 <span>
                                     <i class="fa fa-user margin-right-xs" aria-hidden="true"></i>

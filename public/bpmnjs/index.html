@@ -5,22 +5,32 @@
   <meta charset="utf-8">
   <title>bpmn-js流程图</title>
   <vc:create path="frame/commonTop" location="head"></vc:create>
+
   <link rel="stylesheet" href="vendor/bpmn-js/assets/diagram-js.css" />
   <link rel="stylesheet" href="vendor/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css" />
   <link rel="stylesheet" href="vendor/bpmn-js-properties-panel/assets/bpmn-js-properties-panel.css" />
+  <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/vc-ui.css" />
+  <script src="/js/bootstrap/jquery-3.3.1.min.js"></script>
   <script src="/js/vue/vue.min.js"></script>
   <script src="/js/vue/vue-resource.min.js"></script>
+  <script src="/js/bootstrap/bootstrap.min.js"></script>
   <link rel="stylesheet" href="app.css" />
+
+  <style>
+   
+    body {
+      background: #fff;
+    }
+
+
+  </style>
 </head>
 
 <body>
   <vc:create path="frame/bodyTop"></vc:create>
   <div class="content with-diagram" id="js-drop-zone">
-    <div id="component" class="message intro">
-      <div class="note">
 
-      </div>
-    </div>
     <div class="message error">
       <div class="note">
         <p>出错了.</p>
@@ -34,6 +44,10 @@
 
     <div class="canvas" id="js-canvas"></div>
     <div class="properties-panel-parent" id="js-properties-panel"></div>
+
+    <div id="component">
+      <vc:create path="property/bpmnjsInit"></vc:create>
+    </div>
   </div>
 
   <ul class="buttons">

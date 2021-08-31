@@ -8,7 +8,7 @@
         //发送get请求
         let _modelId = vc.getParam('modelId');
         let _param = {
-            'xml': _xml.replaceAll('Process_1',"java110_" + vc.getParam('flowId')),
+            'xml': _xml.replaceAll('Process_1', "java110_" + vc.getParam('flowId')),
             'svg': svg
         };
         vc.http.apiPost('/activiti/model/' + _modelId + '/save',
