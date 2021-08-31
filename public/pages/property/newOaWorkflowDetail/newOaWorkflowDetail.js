@@ -15,6 +15,7 @@
                     staffName: '',
                     taskId: ''
                 },
+                imgData: '',
                 nextAudit: {}
             }
         },
@@ -31,6 +32,7 @@
             $that._listOaWorkflowDetails();
             $that._loadComments();
             $that._loadNextAuditPerson();
+            $that._openNewOaWorkflowDetailImg();
         },
         _initEvent: function () {
         },
@@ -82,8 +84,8 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         id: $that.newOaWorkflowDetailInfo.id,
                         flowId: $that.newOaWorkflowDetailInfo.flowId,
-                        page:1,
-                        row:10
+                        page: 1,
+                        row: 10
                     }
                 };
                 //发送get请求
@@ -111,6 +113,9 @@
                 let _audit = $that.newOaWorkflowDetailInfo.audit;
                 _audit.flowId = $that.newOaWorkflowDetailInfo.flowId;
                 _audit.id = $that.newOaWorkflowDetailInfo.id;
+                if ($that.newOaWorkflowDetailInfo.nextAudit.assignee) {
+                    _audit.staffId = $that.newOaWorkflowDetailInfo.nextAudit.assignee;
+                }
                 if (!_audit.auditCode) {
                     vc.toast('请选择状态');
                     return;
@@ -142,11 +147,8 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
-
             },
             _loadNextAuditPerson: function () {
                 var param = {
@@ -190,7 +192,29 @@
                 }
 
                 return "未知"
-            }
+            },
+            _openNewOaWorkflowDetailImg: function () { //展示流程图
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        businessKey: $that.newOaWorkflowDetailInfo.id
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('workflow.listRunWorkflowImage',
+                    param,
+                    function (json, res) {
+                        var _workflowManageInfo = JSON.parse(json);
+                        if (_workflowManageInfo.code != '0') {
+                            //vc.toast(_workflowManageInfo.msg);
+                            return;
+                        }
+                        $that.newOaWorkflowDetailInfo.imgData = 'data:image/png;base64,' + _workflowManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);
