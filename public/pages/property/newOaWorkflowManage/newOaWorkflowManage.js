@@ -9,6 +9,7 @@
             newOaWorkflowManageInfo: {
                 newOaWorkflows: [],
                 conditions: {
+                    state: 'C'
                 }
             }
         },
