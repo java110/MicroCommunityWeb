@@ -86,17 +86,21 @@
                             vc.jumpToPage('/admin.html#/pages/property/listOwner')
                             return;
                         }
-                        vc.toast(json,10000);
+                        vc.toast(json, 10000);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast("数据提交导入，请到导入日志中查看导入是否成功");
+                        if (errInfo.indexOf("<html>") > 0) {
+                            vc.toast("数据提交导入，请到导入日志中查看导入是否成功");
+                        } else {
+                            vc.toast(errInfo);
+                        }
                     });
             },
             _exitCommunityData: function () {
-                vc.jumpToPage('/callComponent/assetImport/exitCommunityData?communityId='+vc.getCurrentCommunity().communityId);
+                vc.jumpToPage('/callComponent/assetImport/exitCommunityData?communityId=' + vc.getCurrentCommunity().communityId);
             },
-            _openAssetImportLog:function(){
+            _openAssetImportLog: function () {
                 vc.jumpToPage('/admin.html#/pages/property/assetImportLog')
             },
             checkFileType: function (fileType) {
