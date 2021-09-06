@@ -55,6 +55,7 @@
                     if (!_room.isMore && room.roomType == '2020602') {
                         $that.roomCreateFeeAddInfo.roomState.push('2006');
                         $that.roomCreateFeeAddInfo.roomState.push('2007');
+                        $that.roomCreateFeeAddInfo.roomState.push('2009');
                         $that.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum + '-' + room.roomNum + '(' + room.ownerName + ')';
                         $that.roomCreateFeeAddInfo.roomType = room.roomType;
                     }
