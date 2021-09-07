@@ -51,8 +51,12 @@
             });
         },
         _initEvent: function () {
-            vc.component.$on('pagination_page_event', function (_currentPage) {
-                vc.component.currentPage(_currentPage);
+            // vc.component.$on('pagination_page_event', function (_currentPage) {
+            //     console.log(_currentPage);
+            //     vc.component.currentPage(_currentPage);
+            // });
+            vc.on('pagination','page_event',function(_currentPage){
+                vc.component.loadData(_currentPage,DEFAULT_ROWS);
             });
             vc.component.$on('addStaff_reload_event', function () {
                 vc.component.loadData(1, 10);
@@ -95,7 +99,7 @@
                         vc.component.$emit('pagination_info_event', {
                             total: _staffInfo.records,
                             dataCount: _staffInfo.total,
-                            currentPage: _staffInfo.page
+                            currentPage: _page
                         });
                     }, function () {
                         console.log('请求失败处理');

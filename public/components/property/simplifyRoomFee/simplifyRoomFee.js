@@ -18,14 +18,13 @@
                 configId: '',
                 feeTypeCds: [],
                 feeTypeCd: '',
-                roomType:'',
+                roomType: '',
                 state: '2008001',
-                totalAmount:0.0,
+                totalAmount: 0.0,
                 roomType: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             //切换 至费用页面
@@ -36,24 +35,20 @@
                 $that.clearSimplifyRoomFeeInfo();
                 vc.copyObject(_param, $that.simplifyRoomFeeInfo)
                 $that._listSimplifyRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
-
                 vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                     $that.simplifyRoomFeeInfo.feeTypeCds = _data;
                 });
             });
-
             vc.on('simplifyRoomFee', 'notify', function () {
                 $that._listSimplifyRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-
-
             vc.on('simplifyRoomFee', 'paginationPlus', 'page_event',
                 function (_currentPage) {
                     vc.component._listSimplifyRoomFee(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
-            getOnePrice1:function(fee) {
+            getOnePrice1: function (fee) {
                 let _price = fee.mwPrice;
                 if (!_price) {
                     return fee.squarePrice;
@@ -75,7 +70,6 @@
                         feeTypeCd: $that.simplifyRoomFeeInfo.feeTypeCd
                     }
                 };
-
                 //发送get请求
                 vc.http.get('listRoomFee',
                     'list',
@@ -87,7 +81,6 @@
                         let _totalAmount = 0.0;
                         _feeConfigInfo.fees.forEach(item => {
                             _totalAmount += parseFloat(item.amountOwed);
-
                         })
                         $that.simplifyRoomFeeInfo.totalAmount = _totalAmount.toFixed(2);
                         vc.component.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees;
@@ -116,7 +109,6 @@
                     roomId: $that.simplifyRoomFeeInfo.roomId,
                     roomName: $that.simplifyRoomFeeInfo.roomName,
                     ownerName: $that.simplifyRoomFeeInfo.name
-
                 });
             },
             _getAttrValue: function (_attrs, _specCd) {
@@ -127,20 +119,17 @@
                         return;
                     }
                 });
-
                 return _value;
             },
             _getDeadlineTime: function (_fee) {
-
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
                     return "-";
                 }
-
                 if (_fee.state == '2009001') {
                     return "-";
                 }
                 //return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
-                return vc.dateSubOneDay(_fee.startTime,_fee.deadlineTime, _fee.feeFlag);
+                return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
             },
             _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {
@@ -158,7 +147,7 @@
             _payFee: function (_fee) {
                 _fee.roomName = $that.simplifyRoomFeeInfo.roomName;
                 _fee.builtUpArea = $that.simplifyRoomFeeInfo.builtUpArea;
-                //vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?'+vc.objToGetParam(_fee));
+                // vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
                 vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?feeId=' + _fee.feeId);
             },
             _editFee: function (_fee) {
@@ -169,20 +158,19 @@
                 vc.jumpToPage('/admin.html#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             },
             _deleteFee: function (_fee) {
-
                 vc.emit('deleteFee', 'openDeleteFeeModal', {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: _fee.feeId
                 });
             },
-            _finishFee:function(_fee){
+            _finishFee: function (_fee) {
                 vc.emit('finishFee', 'openFinishFeeModal', {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: _fee.feeId
                 });
             },
-            _openTempImportRoomFeeModal:function(){
-                vc.emit('tempImportRoomFee', 'openImportRoomFeeModal',{
+            _openTempImportRoomFeeModal: function () {
+                vc.emit('tempImportRoomFee', 'openImportRoomFeeModal', {
                     roomId: $that.simplifyRoomFeeInfo.roomId,
                     roomName: $that.simplifyRoomFeeInfo.roomName,
                     ownerName: $that.simplifyRoomFeeInfo.name
@@ -192,6 +180,7 @@
                 let _feeConfigs = $that.roomCreateFeeAddInfo.feeTypeCds;
                 $that.simplifyRoomFeeInfo = {
                     fees: [],
+                    accounts: [],
                     roomId: '',
                     roomName: '',
                     name: '',
@@ -199,13 +188,13 @@
                     floorNum: '',
                     unitNum: '',
                     roomNum: '',
-                    roomType:'',
+                    roomType: '',
                     feeConfigs: _feeConfigs,
                     feeTypeCd: '',
                     configId: '',
                     state: '2008001',
                     totalAmount: 0.0,
-                    roomType: '',
+                    roomType: ''
                 }
             },
             _changeSimplifyRoomFeeFeeTypeCd: function (_feeTypeCd) {
@@ -235,14 +224,10 @@
                 vc.emit('simplifyRoomFee', 'notify', {});
             },
             _simplifyRoomGetFeeOwnerInfo: function (attrs) {
-
                 let ownerName = $that._getAttrValue(attrs, '390008');
                 let ownerLink = $that._getAttrValue(attrs, '390009');
-
-                return '业主：'+ownerName + ',电话：' + ownerLink;
+                return '业主：' + ownerName + ',电话：' + ownerLink;
             }
-
-
         }
     });
 })(window.vc);

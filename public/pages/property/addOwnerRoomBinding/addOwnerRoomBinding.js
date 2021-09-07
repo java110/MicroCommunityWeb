@@ -1,102 +1,90 @@
 /**
-    入驻小区
-**/
-(function(vc){
+ 入驻小区
+ **/
+(function (vc) {
     vc.extends({
-        data:{
-            addOwnerRoomBindingInfo:{
-                $step:{},
-                index:0,
-                infos:[]
+        data: {
+            addOwnerRoomBindingInfo: {
+                $step: {},
+                index: 0,
+                infos: []
             }
         },
-        _initMethod:function(){
+        _initMethod: function () {
             vc.component._initStep();
         },
-        _initEvent:function(){
-            vc.on("addOwnerRoomBinding", "notify", function(_info){
+        _initEvent: function () {
+            vc.on("addOwnerRoomBinding", "notify", function (_info) {
                 vc.component.addOwnerRoomBindingInfo.infos[vc.component.addOwnerRoomBindingInfo.index] = _info;
-
-                if(vc.component.addOwnerRoomBindingInfo.index == 0){
-                    vc.emit('searchRoom','listenerFloorInfo',_info);
+                if (vc.component.addOwnerRoomBindingInfo.index == 0) {
+                    vc.emit('searchRoom', 'listenerFloorInfo', _info);
                 }
             });
-
         },
-        methods:{
-            _initStep:function(){
+        methods: {
+            _initStep: function () {
                 vc.component.addOwnerRoomBindingInfo.$step = $("#step");
                 vc.component.addOwnerRoomBindingInfo.$step.step({
                     index: 0,
                     time: 500,
-                    title: ["选择楼栋","选择房屋","业主信息"]
+                    title: ["选择楼栋", "选择房屋", "业主信息"]
                 });
                 vc.component.addOwnerRoomBindingInfo.index = vc.component.addOwnerRoomBindingInfo.$step.getIndex();
             },
-            _prevStep:function(){
+            _prevStep: function () {
                 vc.component.addOwnerRoomBindingInfo.$step.prevStep();
                 vc.component.addOwnerRoomBindingInfo.index = vc.component.addOwnerRoomBindingInfo.$step.getIndex();
-
                 vc.emit('viewFloorInfo', 'onIndex', vc.component.addOwnerRoomBindingInfo.index);
                 vc.emit('sellRoomSelectRoom', 'onIndex', vc.component.addOwnerRoomBindingInfo.index);
                 vc.emit('viewOwnerInfo', 'onIndex', vc.component.addOwnerRoomBindingInfo.index);
-                if(vc.component.addOwnerRoomBindingInfo.index == 2){
-                    vc.emit('viewOwnerInfo','callBackOwnerInfo',{});
+                if (vc.component.addOwnerRoomBindingInfo.index == 2) {
+                    vc.emit('viewOwnerInfo', 'callBackOwnerInfo', {});
                 }
-
             },
-            _nextStep:function(){
+            _nextStep: function () {
                 var _currentData = vc.component.addOwnerRoomBindingInfo.infos[vc.component.addOwnerRoomBindingInfo.index];
-                if( _currentData == null || _currentData == undefined){
+                if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
-                    return ;
+                    return;
                 }
                 vc.component.addOwnerRoomBindingInfo.$step.nextStep();
                 vc.component.addOwnerRoomBindingInfo.index = vc.component.addOwnerRoomBindingInfo.$step.getIndex();
-
-                 vc.emit('viewFloorInfo', 'onIndex', vc.component.addOwnerRoomBindingInfo.index);
+                vc.emit('viewFloorInfo', 'onIndex', vc.component.addOwnerRoomBindingInfo.index);
                 vc.emit('sellRoomSelectRoom', 'onIndex', vc.component.addOwnerRoomBindingInfo.index);
                 vc.emit('viewOwnerInfo', 'onIndex', vc.component.addOwnerRoomBindingInfo.index);
-                if(vc.component.addOwnerRoomBindingInfo.index == 2){
-                    vc.emit('viewOwnerInfo','callBackOwnerInfo',{});
+                if (vc.component.addOwnerRoomBindingInfo.index == 2) {
+                    vc.emit('viewOwnerInfo', 'callBackOwnerInfo', {});
                 }
-
             },
-            _finishStep:function(){
-
-
+            _finishStep: function () {
                 var _currentData = vc.component.addOwnerRoomBindingInfo.infos[vc.component.addOwnerRoomBindingInfo.index];
-                if( _currentData == null || _currentData == undefined){
+                if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
-                    return ;
+                    return;
                 }
-
                 var param = {
-                    communityId:vc.getCurrentCommunity().communityId,
-                    data:vc.component.addOwnerRoomBindingInfo.infos
+                    communityId: vc.getCurrentCommunity().communityId,
+                    data: vc.component.addOwnerRoomBindingInfo.infos
                 }
-
-               vc.http.post(
-                   'addOwnerRoomBinding',
-                   'binding',
-                   JSON.stringify(param),
-                   {
-                       emulateJSON:true
+                vc.http.post(
+                    'addOwnerRoomBinding',
+                    'binding',
+                    JSON.stringify(param),
+                    {
+                        emulateJSON: true
                     },
-                    function(json,res){
-                       if(res.status == 200){
-
+                    function (json, res) {
+                        if (res.status == 200) {
                             vc.toast('处理成功');
-                           //关闭model
-                           vc.jumpToPage("/admin.html#/pages/property/listOwner?" + vc.objToGetParam(JSON.parse(json)));
-                           return ;
-                       }
-                       vc.toast(json);
+                            //关闭model
+                            vc.jumpToPage("/admin.html#/pages/property/listOwner?" + vc.objToGetParam(JSON.parse(json)));
+                            return;
+                        }
+                        vc.toast(json);
                     },
-                    function(errInfo,error){
-                       console.log('请求失败处理');
-
-                       vc.toast(errInfo);
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
                     });
             }
         }

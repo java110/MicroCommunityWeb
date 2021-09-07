@@ -67,6 +67,8 @@
                             <th data-hide="phone" class="text-center">联系电话</th>
                             <th data-hide="phone" class="text-center">建筑面积</th>
                             <th data-hide="phone" class="text-center">室内面积</th>
+                            <th data-hide="phone" class="text-center">起租时间</th>
+                            <th data-hide="phone" class="text-center">截租时间</th>
                             <th data-hide="phone" class="text-center">租金</th>
                             <th data-hide="phone" class="text-center">算费系数</th>
                             <th data-hide="phone" class="text-center">商铺状态</th>
@@ -93,6 +95,16 @@
                             </td>
                             <td class="text-center">
                                 {{shops.roomArea}}平方米
+                            </td>
+                            <td class="text-center" v-if="shops.state == '2006'">
+                                {{shops.startTime}}
+                            </td>
+                            <td class="text-center" v-else>
+                            </td>
+                            <td class="text-center" v-if="shops.state == '2006'">
+                                {{shops.endTime}}
+                            </td>
+                            <td class="text-center" v-else>
                             </td>
                             <td class="text-center">
                                 {{shops.roomRent}}

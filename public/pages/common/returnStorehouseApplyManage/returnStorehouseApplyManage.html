@@ -32,14 +32,14 @@
                         </thead>
                         <tbody>
                             <tr v-for="resourceStore in returnStorehouseManageInfo.resourceStores">
-                                <td class="text-center">{{resourceStore.resId}}</td>
-                                <td class="text-center">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
-                                <td class="text-center">{{resourceStore.resName}}</td>
-                                <td class="text-center">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
-                                <!-- <td class="text-center">{{resourceStore.shaName}}</td> -->
-                                <td class="text-center">{{resourceStore.stock}}</td>
-                                <td class="text-center">{{resourceStore.miniStock}}</td>
-                                <td class="text-center">
+                                <td class="text-center"  style="vertical-align: inherit;">{{resourceStore.resId}}</td>
+                                <td class="text-center"  style="vertical-align: inherit;">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
+                                <td class="text-center"  style="vertical-align: inherit;">{{resourceStore.resName}}</td>
+                                <td class="text-center"  style="vertical-align: inherit;">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
+                                <!-- <td class="text-center style="vertical-align: inherit;"">{{resourceStore.shaName}}</td> -->
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.miniStock}}{{resourceStore.miniUnitCodeName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">
                                     <select class="custom-select" v-model="resourceStore.shzId">
                                         <option value="">必填，请选择源仓库</option>
                                         <option v-for="(item,index) in returnStorehouseManageInfo.storehouses"
@@ -49,13 +49,11 @@
                                         </option>
                                     </select>
                                 </td>
-                                <td class="text-center">
-                                    <div class="input-group">
-                                        <input v-model="resourceStore.curStock" type="number" placeholder="必填，请填写数量" class="form-control">
+                                <td class="text-center" style="vertical-align: inherit;">
+                                        <input v-model="resourceStore.curStock" type="number" placeholder="必填，请填写数量" class="form-control" style="width: 70%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.miniUnitCodeName}}
                                         <button type="button" class="btn btn-info" v-on:click="_itemReturnAll(resourceStore)">全部退还</button>
-                                    </div>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" style="vertical-align: inherit;">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteResourceStoreModel(resourceStore)">取消退还

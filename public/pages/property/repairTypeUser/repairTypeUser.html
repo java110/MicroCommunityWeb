@@ -9,56 +9,53 @@
                             返回
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddRepairTypeUserModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
+                            <i class="fa fa-plus"></i>
                             添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">师傅名称</th>
-                                <th class="text-center">报修类型</th>
-                                <!-- <th class="text-center">师傅ID</th> -->
-                                <th class="text-center">状态</th>
-                                <th class="text-center">说明</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-right">操作</th>
-
-
-                            </tr>
+                        <tr>
+                            <th class="text-center">师傅名称</th>
+                            <th class="text-center">报修类型</th>
+                            <!-- <th class="text-center">师傅ID</th> -->
+                            <th class="text-center">状态</th>
+                            <th class="text-center">说明</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-right">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="repairTypeUser in repairTypeUserManageInfo.repairTypeUsers">
-                                <!-- <td class="text-center">{{repairTypeUser.settingId}}</td> -->
-                                <td class="text-center">{{repairTypeUser.staffName}}</td>
-                                <td class="text-center">{{repairTypeUser.repairTypeName}}</td>
-                                <!-- <td class="text-center">{{repairTypeUser.staffId}}</td> -->
-                                <td class="text-center">{{repairTypeUser.stateName}}</td>
-                                <td class="text-center">{{repairTypeUser.remark}}</td>
-                                <td class="text-center">{{repairTypeUser.createTime}}</td>
-
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteTypeUserModel(repairTypeUser)">删除</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditrepairTypeUserModel(repairTypeUser)">变更</button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                        <tr v-for="repairTypeUser in repairTypeUserManageInfo.repairTypeUsers">
+                            <!-- <td class="text-center">{{repairTypeUser.settingId}}</td> -->
+                            <td class="text-center">{{repairTypeUser.staffName}}</td>
+                            <td class="text-center">{{repairTypeUser.repairTypeName}}</td>
+                            <!-- <td class="text-center">{{repairTypeUser.staffId}}</td> -->
+                            <td class="text-center">{{repairTypeUser.stateName}}</td>
+                            <td class="text-center">{{repairTypeUser.remark}}</td>
+                            <td class="text-center">{{repairTypeUser.createTime}}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteTypeUserModel(repairTypeUser)">删除
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditrepairTypeUserModel(repairTypeUser)">变更
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -67,9 +64,7 @@
             </div>
         </div>
     </div>
-
     <vc:create path="property/selectStaff"></vc:create>
     <vc:create path="property/deleteRepairTypeUser"></vc:create>
     <vc:create path="property/editRepairTypeUser"></vc:create>
-
 </div>

@@ -24,6 +24,7 @@
                             <th class="text-center">操作人员</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">状态</th>
+                            <th class="text-center">是否违规</th>
                             <th class="text-center">备注</th>
                             <th class="text-center">操作</th>
                         </tr>
@@ -34,7 +35,11 @@
                             <td class="text-center">{{roomRenovationRecord.roomName}}</td>
                             <td class="text-center">{{roomRenovationRecord.staffName}}</td>
                             <td class="text-center">{{roomRenovationRecord.createTime}}</td>
-                            <td class="text-center">{{roomRenovationRecord.stateName}}</td>
+                            <td class="text-center" v-if="roomRenovationRecord.state == '1000'">
+                                {{roomRenovationRecord.stateName}}(原始图片)
+                            </td>
+                            <td class="text-center" v-else>{{roomRenovationRecord.stateName}}</td>
+                            <td class="text-center">{{roomRenovationRecord.isTrueName}}</td>
                             <td class="text-center">{{roomRenovationRecord.remark}}</td>
                             <td class="text-center">
                                 <div class="btn-group">

@@ -14,7 +14,8 @@
                                         <option selected disabled value="">必填，请选择状态</option>
                                         <option value="9999">在线</option>
                                         <option value="8888">离线</option>
-                                    </select> </div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">说明</label>
@@ -23,12 +24,14 @@
                                         class="form-control">
                                 </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="editRepairTypeUser()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                    v-on:click="editRepairTypeUser()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                    data-dismiss="modal">取消
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -79,7 +79,7 @@
             //查看详情
             _openRoomRenovationRecordDetailsModel: function (_roomDecorationRecord) {
                 vc.jumpToPage('/admin.html#/pages/property/listRoomRenovationRecordDetails?recordId=' + _roomDecorationRecord.recordId
-                    + '&roomName=' + _roomDecorationRecord.roomName);
+                    + '&roomName=' + _roomDecorationRecord.roomName + '&state=' + _roomDecorationRecord.state);
             },
             _moreCondition: function () {
                 if (vc.component.roomDecorationRecordsInfo.moreCondition) {

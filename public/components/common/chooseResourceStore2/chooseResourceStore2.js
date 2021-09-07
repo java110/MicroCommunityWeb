@@ -131,11 +131,17 @@
                 $('#chooseResourceStoreModel2').modal('hide');
             },
             _listStorehouses: function (_page, _rows) {
+                let _resOrderType = vc.component.chooseResourceStoreInfo2.resOrderType;
+                let _shType = '2806';
+                if (_resOrderType == '20000') {
+                    _shType = '2807';
+                }
                 var param = {
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        shType: _shType
                     }
                 };
                 //发送get请求

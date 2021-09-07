@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -15,14 +15,12 @@
                 conditions: {
                     repairTypeName: '',
                     repairWay: '',
-                    repairType: '',
-
+                    repairType: ''
                 }
             }
         },
         _initMethod: function () {
             let _repairType = vc.getParam('repairType');
-
             if (!vc.notNull(_repairType)) {
                 vc.toast('未包含报修类型');
                 vc.goBack();
@@ -32,7 +30,6 @@
             vc.component._listRepairTypeUsers(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('repairTypeUserManage', 'listRepairTypeUser', function (_param) {
                 vc.component._listRepairTypeUsers(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -42,7 +39,6 @@
         },
         methods: {
             _listRepairTypeUsers: function (_page, _rows) {
-
                 vc.component.repairTypeUserManageInfo.conditions.page = _page;
                 vc.component.repairTypeUserManageInfo.conditions.row = _rows;
                 vc.component.repairTypeUserManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -50,7 +46,6 @@
                 var param = {
                     params: vc.component.repairTypeUserManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('repair.listRepairTypeUsers',
                     param,
@@ -81,18 +76,16 @@
             _openDeleteTypeUserModel: function (_repairTypeUser) {
                 vc.emit('deleteRepairTypeUser', 'openDeleteRepairTypeUserModal', _repairTypeUser);
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack()
             },
             saveRepairTypeUserInfo: function (_staff) {
-
                 let param = {
                     communityId: vc.getCurrentCommunity().communityId,
                     staffId: _staff.staffId,
                     staffName: _staff.staffName,
                     repairType: $that.repairTypeUserManageInfo.repairType
                 }
-
                 vc.http.apiPost(
                     'repair.saveRepairTypeUser',
                     JSON.stringify(param),
@@ -108,16 +101,12 @@
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             }
-
         }
     });
 })(window.vc);

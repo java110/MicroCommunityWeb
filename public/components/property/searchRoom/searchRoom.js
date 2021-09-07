@@ -37,7 +37,7 @@
                 vc.component.searchRoomInfo.rooms=_rooms;
             });
             vc.on('searchRoom','paginationPlus', 'page_event', function (_currentPage) {
-                vc.component._loadAllRoomInfo(_currentPage, 15,vc.component.searchRoomInfo._currentRoomNum);
+                vc.component._loadAllRoomInfo(_currentPage, 10);
             });
         },
         methods:{

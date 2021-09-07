@@ -60,6 +60,9 @@
             vc.on('viewResourceStoreInfo3', 'getSelectResourceStores', function () {
                 vc.emit($props.callBackListener, $props.callBackFunction, vc.component.viewResourceStoreInfo3);
             });
+            vc.on('viewResourceStoreInfo3', 'clearSelectResourceStores', function () {
+                vc.component.viewResourceStoreInfo3.resourceStores = [];
+            });
         },
         methods: {
             _loadResourceSuppliers() {
