@@ -207,6 +207,14 @@
                         <label class="col-sm-3 col-form-label">优惠金额：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalDiscountMoney}}</label>
                     </div>
+                    <div class="row" v-if="payFeeOrderInfo.deductionAmount> 0">
+                        <label class="col-sm-3 col-form-label">抵扣金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.deductionAmount}}元</label>
+                    </div>
+                    <div class="row" v-if="payFeeOrderInfo.redepositAmount> 0">
+                        <label class="col-sm-3 col-form-label">转存金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.redepositAmount}}元</label>
+                    </div>
                     <div class="row" v-show="payFeeOrderInfo.useUserAmount">
                         <label class="col-sm-3 col-form-label">支付方式：</label>
                         <label class="col-sm-8 col-form-label">
