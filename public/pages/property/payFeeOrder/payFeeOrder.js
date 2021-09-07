@@ -38,7 +38,19 @@
                 acctType: '',
                 acctId: '',
                 createTime: vc.dateTimeFormat(new Date().getTime()),
-                useUserAmount: false
+                accountAmount: 0.0, // 账户金额
+                viewAccountAmount: 0.0, // 账户金额
+                deductionAmount: 0.0, //抵扣金额
+                redepositAmount: 0.0, //转存金额
+            }
+        },
+        watch: {
+            'payFeeOrderInfo.receivedAmount': {
+                deep: true,
+                handler: function () {
+                    //计算折扣金额和转存金额
+                    $that._doComputeAccountRedepositDeduction();
+                }
             }
         },
         _initMethod: function () {
@@ -88,8 +100,6 @@
                 // 该处js做减法后，会出现小数点后取不尽的bug，再次处理
                 let receivedAmount = _totalFeePrice - _totalDiscountMoney;
                 $that.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.feeAfterDiscount = $that._getFixedNum(receivedAmount);
-                // 检查是否使用用户钱包金额
-                $that.useUserAmountOrNot();
             });
             vc.on('payFeeOrder', 'initData', function (_param) {
                 // 重新赋值下拉列表
@@ -230,7 +240,7 @@
                 if ('-102' == _cycles) {
                     vc.component.payFeeOrderInfo.totalFeePrice = 0.00;
                     vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.feeAfterDiscount = 0.00;
-                    if(vc.component.payFeeOrderInfo.cycles){
+                    if (vc.component.payFeeOrderInfo.cycles) {
                         $that.getComputedAmount(vc.component.payFeeOrderInfo.cycles);
                     }
                     return;
@@ -410,10 +420,9 @@
                         if (listAccountData.data.length < 1) {
                             return;
                         }
-                        console.log("look here")
-                        console.log(listAccountData)
-                        $that.payFeeOrderInfo.userAmount = listAccountData.data[0].amount;
-                        $that.payFeeOrderInfo.acctType = listAccountData.data[0].acctType;
+                        //账户余额
+                        $that.payFeeOrderInfo.accountAmount = listAccountData.data[0].amount;
+                        $that.payFeeOrderInfo.viewAccountAmount = listAccountData.data[0].amount;
                         $that.payFeeOrderInfo.acctId = listAccountData.data[0].acctId;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -421,44 +430,63 @@
                 );
             },
 
+
+
             /**
+             * 
+             * accountAmount: 0.0, // 账户金额
+                deductionAmount: 0.0, //抵扣金额
+                redepositAmount: 0.0, //转存金额
              * 使用用户钱包余额
              */
-            checkUserAmount: function(e){
-                if(e.target.checked){
-                    vc.component.payFeeOrderInfo.useUserAmount = true;
-                    vc.component.useUserAmountOrNot();
-                }else {
-                    vc.component.payFeeOrderInfo.useUserAmount = false;
-                    let tempCycles = vc.component.payFeeOrderInfo.tempCycles;
-                    let _cycle = tempCycles;
-                    // 缴费周期为“自定义金额”
-                    if (tempCycles == '-101') {
-                        vc.component.payFeeOrderInfo.feeAfterDiscount = vc.component.payFeeOrderInfo.receivedAmount;
-                        return;
-                    }
-                    // 没选择缴费周期默认为一个周期
-                    if(tempCycles == ''){
-                        _cycle = 1;
-                    }
-                    // 如果是自定义周期
-                    if (tempCycles == '-102') {
-                        _cycle = vc.component.payFeeOrderInfo.cycles;
-                    }
-
-                    vc.component.getComputedAmount(_cycle);
-                }
+            computeAccountRedepositDeduction: function () {
+                //计算折扣金额和转存金额
+                $that._doComputeAccountRedepositDeduction();
             },
 
             /**
              * 如果选择使用用户余额，则更新应缴金额
+             * 
+             *  accountAmount: 0.0, // 账户金额
+                viewAccountAmount: 0.0, // 账户金额
+                deductionAmount: 0.0, //抵扣金额
+                needDeductionAmount: false,
+                redepositAmount: 0.0, //转存金额
              */
-            useUserAmountOrNot: function(){
-                if(vc.component.payFeeOrderInfo.useUserAmount){
-                    let userAmount = vc.component.payFeeOrderInfo.userAmount;
-                    let receivedAmount = vc.component.payFeeOrderInfo.receivedAmount;
-                    let feeAfterDiscount = receivedAmount - userAmount < 0 ? '0' : receivedAmount - userAmount;
-                    vc.component.payFeeOrderInfo.feeAfterDiscount = $that._getFixedNum(feeAfterDiscount);
+            _doComputeAccountRedepositDeduction: function () {
+
+                let receivedAmount = $that.payFeeOrderInfo.receivedAmount; //实缴
+                //计算
+                let accountAmount = $that.payFeeOrderInfo.accountAmount;
+                let deductionAmount = 0.0; // 抵消金额
+                $that.payFeeOrderInfo.deductionAmount = deductionAmount;
+                let redepositAmount = 0.0; //转存金额
+                $that.payFeeOrderInfo.redepositAmount = redepositAmount;
+
+                let totalDiscountMoney = $that.payFeeOrderInfo.totalDiscountMoney; // 优惠金额
+
+                let totalFeePrice = $that.payFeeOrderInfo.totalFeePrice; //应缴
+                //将显示账户金额实际刷成 账户金额
+                $that.payFeeOrderInfo.viewAccountAmount = accountAmount;
+                //计算转存 ，转存 = 实缴 + 折扣优惠 - 应缴  
+                redepositAmount = parseFloat(receivedAmount) + parseFloat(totalDiscountMoney) - parseFloat(totalFeePrice);
+                //转存
+                if (parseFloat(redepositAmount) > 0) {
+                    $that.payFeeOrderInfo.redepositAmount = redepositAmount.toFixed(2);// 计算转存
+                    $that.payFeeOrderInfo.viewAccountAmount = parseFloat($that.payFeeOrderInfo.viewAccountAmount) + parseFloat($that.payFeeOrderInfo.redepositAmount);
+                    return;
+                }
+
+                // 计算抵消金额 应缴 - 折扣  - 实缴 = 抵消金额  
+                deductionAmount = parseFloat(totalFeePrice) - parseFloat(totalDiscountMoney) - parseFloat(receivedAmount);
+                if (parseFloat(deductionAmount) > 0 && parseFloat(accountAmount)>= parseFloat(deductionAmount)) {
+                    $that.payFeeOrderInfo.deductionAmount = deductionAmount.toFixed(2);
+                    let viewAccountAmount = $that.payFeeOrderInfo.viewAccountAmount;
+                    $that.payFeeOrderInfo.viewAccountAmount = parseFloat($that.payFeeOrderInfo.viewAccountAmount) - parseFloat($that.payFeeOrderInfo.redepositAmount);
+                    if (parseFloat($that.payFeeOrderInfo.viewAccountAmount) < 0) { //账户小于0
+                        $that.payFeeOrderInfo.viewAccountAmount = 0;
+                        $that.payFeeOrderInfo.deductionAmount = viewAccountAmount;
+                    }
                 }
             }
         }
