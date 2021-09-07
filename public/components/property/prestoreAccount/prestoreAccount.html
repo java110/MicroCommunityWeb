@@ -1,5 +1,5 @@
 <div id="prestoreAccountModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -9,34 +9,44 @@
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">业主手机</label>
-                                <div class="col-sm-10"><input v-model="prestoreAccountInfo.tel" type="text"
-                                        placeholder="必填，请填写业主手机号" class="form-control" @blur="_changeTel()"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="prestoreAccountInfo.tel" type="text" placeholder="必填，请填写业主手机号"
+                                           class="form-control" @blur="_changeTel()">
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">业主名称</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="prestoreAccountInfo.ownerId">
-                                        <option selected  disabled value="">必填，请选择业主</option>
-                                        <option v-for="(owner,index) in prestoreAccountInfo.owners" :key="index" v-bind:value="owner.ownerId">{{owner.name}}</option>
+                                        <option selected disabled value="">必填，请选择业主</option>
+                                        <option v-for="(owner,index) in prestoreAccountInfo.owners" :key="index"
+                                                v-bind:value="owner.ownerId">{{owner.name}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">预存金额</label>
-                                <div class="col-sm-10"><input v-model="prestoreAccountInfo.amount" type="text"
-                                        placeholder="必填，请填写预存金额" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="prestoreAccountInfo.amount" type="text" placeholder="必填，请填写预存金额"
+                                           class="form-control">
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">备注</label>
-                                <div class="col-sm-10"><textarea cols="5" v-model="prestoreAccountInfo.remark" type="tel"
-                                        placeholder="可填，请填写备注" class="form-control"></textarea></div>
+                                <div class="col-sm-10">
+                                    <textarea cols="5" v-model="prestoreAccountInfo.remark" type="tel"
+                                              placeholder="可填，请填写备注" class="form-control">
+                                    </textarea>
+                                </div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="savePrestoreAccountInfo()">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="savePrestoreAccountInfo()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消
+                                        data-dismiss="modal">取消
                                 </button>
                             </div>
                         </div>

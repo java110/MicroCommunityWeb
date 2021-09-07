@@ -40,9 +40,9 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">缴费时间</label>
                                 <div class="col-sm-6">
-                                    <input v-model="payFeeOrderInfo.createTime" type="text"
-                                           placeholder="必填，请填写缴费时间" readonly class=" payFeeOrderCreateTime" style="border: none; outline: none;">
-                                  
+                                    <input v-model="payFeeOrderInfo.createTime" type="text" placeholder="必填，请填写缴费时间"
+                                        readonly class=" payFeeOrderCreateTime" style="border: none; outline: none;">
+
                                 </div>
                             </div>
                             <div class="form-group row" v-if="payFeeOrderInfo.feeFlag != '2006012'">
@@ -121,6 +121,21 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">账户金额：</label>
+                                <label class="col-sm-8 col-form-label">
+                                    {{payFeeOrderInfo.viewAccountAmount}}元
+                                </label>
+                            </div>
+                            <div class="row" v-if="payFeeOrderInfo.deductionAmount> 0">
+                                <label class="col-sm-3 col-form-label">抵扣金额：</label>
+                                <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.deductionAmount}}元</label>
+                            </div>
+                            <div class="row" v-if="payFeeOrderInfo.redepositAmount> 0">
+                                <label class="col-sm-3 col-form-label">转存金额：</label>
+                                <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.redepositAmount}}元</label>
+                            </div>
+
                             <div class="form-group row">
                             </div>
                             <div class="form-group row">
@@ -152,9 +167,11 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="_back()">返回</button>
                     <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId"
-                        @click="_printSmallAndBack()">打印小票</button>
+                        @click="_printSmallAndBack()">打印小票
+                    </button>
                     <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId"
-                        @click="_printAndBack()">打印收据</button>
+                        @click="_printAndBack()">打印收据
+                    </button>
                 </div>
             </div>
         </div>
@@ -189,6 +206,22 @@
                     <div class="row">
                         <label class="col-sm-3 col-form-label">优惠金额：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalDiscountMoney}}</label>
+                    </div>
+                    <div class="row" v-if="payFeeOrderInfo.deductionAmount> 0">
+                        <label class="col-sm-3 col-form-label">抵扣金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.deductionAmount}}元</label>
+                    </div>
+                    <div class="row" v-if="payFeeOrderInfo.redepositAmount> 0">
+                        <label class="col-sm-3 col-form-label">转存金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.redepositAmount}}元</label>
+                    </div>
+                    <div class="row" v-show="payFeeOrderInfo.useUserAmount">
+                        <label class="col-sm-3 col-form-label">支付方式：</label>
+                        <label class="col-sm-8 col-form-label">
+                            {{payFeeOrderInfo.acctType == '2003' ? '现金账户' : (payFeeOrderInfo.acctType == '2004' ? '积分账户'
+                            : (payFeeOrderInfo.acctType == '2005' ? '优惠券账户' : '-'))}}({{payFeeOrderInfo.receivedAmount -
+                            payFeeOrderInfo.feeAfterDiscount}})
+                        </label>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label">备注：</label>

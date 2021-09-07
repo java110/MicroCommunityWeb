@@ -46,6 +46,7 @@
                 var param = {
                     params: vc.component.allocationStorehouseHistoryAuditOrdersInfo.conditions
                 };
+                param.params.communityId = vc.getCurrentCommunity().communityId;
 
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStoreHisAuditOrders',

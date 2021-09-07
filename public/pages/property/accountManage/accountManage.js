@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -24,7 +24,6 @@
             vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('accountManage', 'listshopAccount', function (_param) {
                 vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -39,7 +38,6 @@
                 var param = {
                     params: vc.component.accountManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/account/queryOwnerAccount',
                     param,
@@ -73,8 +71,6 @@
             _accountDetail: function (_account) {
                 vc.jumpToPage('/admin.html#/pages/property/accountDetailManage?acctId=' + _account.acctId);
             }
-
-
         }
     });
 })(window.vc);

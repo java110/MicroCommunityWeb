@@ -70,13 +70,24 @@
                 _applyRoomDiscount = JSON.stringify(_applyRoomDiscount);
                 vc.emit('editApplyRoomDiscount', 'openEditApplyRoomDiscountModal', _applyRoomDiscount);
             },
+            //跟踪记录
+            _openApplyRoomDiscountRecord: function (_applyRoomDiscount) {
+                vc.jumpToPage('/admin.html#/pages/property/listApplyRoomDiscountRecord?ardId=' + _applyRoomDiscount.ardId +
+                    '&roomId=' + _applyRoomDiscount.roomId + '&roomName=' + _applyRoomDiscount.roomName +
+                    '&state=' + _applyRoomDiscount.state + '&stateName=' + _applyRoomDiscount.stateName);
+            },
             //审核
             _openReviewApplyRoomDiscountModel: function (_applyRoomDiscount) {
                 _applyRoomDiscount = JSON.stringify(_applyRoomDiscount);
                 vc.emit('reviewApplyRoomDiscount', 'openReviewApplyRoomDiscountModal', _applyRoomDiscount);
             },
+            //删除
             _openDeleteApplyRoomDiscountModel: function (_applyRoomDiscount) {
                 vc.emit('deleteApplyRoomDiscount', 'openDeleteApplyRoomDiscountModal', _applyRoomDiscount);
+            },
+            //修改
+            _openEditApplyRoomDiscountRecordModel: function (_applyRoomDiscount) {
+                vc.emit('editApplyRoomDiscountRecord', 'openEditApplyRoomDiscountRecordModal', _applyRoomDiscount);
             },
             //查询
             _queryApplyRoomDiscountMethod: function () {

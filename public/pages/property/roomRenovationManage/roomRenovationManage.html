@@ -5,13 +5,16 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{roomRenovationManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入房屋名称"
+                                <input type="text" placeholder="请输入房屋编号 楼栋-单元-房屋 如1-1-101"
                                        v-model="roomRenovationManageInfo.conditions.roomName" class=" form-control">
                             </div>
                         </div>
@@ -36,6 +39,16 @@
                                     style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i> 重置
                             </button>
+                        </div>
+                    </div>
+                    <div class="row" v-if="roomRenovationManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="roomRenovationManageInfo.conditions.state">
+                                <option selected value="">请选择状态</option>
+                                <option v-for="(item,index) in roomRenovationManageInfo.states" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -124,7 +137,7 @@
                                             v-on:click="_openDeleteRoomRenovationModel(roomRenovation)">删除
                                     </button>
                                 </div>
-                                <div class="btn-group" v-if="roomRenovation.state == '3000'">
+                                <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openRoomDecorationRecord(roomRenovation)">跟踪记录
                                     </button>

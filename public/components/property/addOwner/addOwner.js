@@ -11,7 +11,7 @@
                 age: '',
                 link: '',
                 sex: '',
-                ownerTypeCd: '-1',
+                ownerTypeCd: '',
                 remark: '',
                 ownerId: '',
                 ownerPhoto: '',
@@ -88,13 +88,13 @@
                             errInfo: "身份证格式错误"
                         }
                     ],
-                    'addOwnerInfo.ownerTypeCd': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "人员类型不能为空"
-                        }
-                    ],
+                    // 'addOwnerInfo.ownerTypeCd': [
+                    //     {
+                    //         limit: "required",
+                    //         param: "",
+                    //         errInfo: "人员类型不能为空"
+                    //     }
+                    // ],
                     'addOwnerInfo.remark': [
                         {
                             limit: "maxLength",
@@ -108,6 +108,13 @@
                 if (!vc.component.addOwnerValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
+                }
+                if(vc.component.addOwnerInfo.componentTitle == '成员' && vc.component.addOwnerInfo.ownerTypeCd == ''){
+                    vc.toast("人员类型不能为空");
+                    return;
+                }
+                if(vc.component.addOwnerInfo.componentTitle == '业主'){
+                    vc.component.addOwnerInfo.ownerTypeCd = '1001';
                 }
                 vc.component.addOwnerInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
@@ -142,7 +149,7 @@
                     age: '',
                     link: '',
                     sex: '',
-                    ownerTypeCd: '-1',
+                    ownerTypeCd: '',
                     remark: '',
                     ownerId: '',
                     ownerPhoto: '',

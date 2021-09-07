@@ -143,20 +143,19 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        if (JSON.parse(json).code == 5010) {
+                            vc.toast(JSON.parse(json).msg);
+                        } else if (res.status == 200) {
                             //关闭model
                             $('#addOwnerRepairModel').modal('hide');
                             vc.component.clearAddOwnerRepairInfo();
                             vc.emit('ownerRepairManage', 'listOwnerRepair', {});
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddOwnerRepairInfo: function () {
@@ -220,6 +219,9 @@
                 if (_repairObjType == '004') {
                     _publicArea = "F";
                 }
+                vc.component.addOwnerRepairInfo.repairObjId = '';
+                vc.component.addOwnerRepairInfo.repairObjName = '';
+                vc.component.addOwnerRepairInfo.repairType = '';
                 //加载报修类型
                 $that._listRepairSettings(1, 50, _publicArea);
             }

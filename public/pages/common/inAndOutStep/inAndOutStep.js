@@ -68,6 +68,10 @@
                 vc.emit('chooseInAndOutType', 'getSelectOrderType', null);
                 vc.emit('viewResourceStoreInfo3', 'getSelectResourceStores', null);
                 let _resourceStores = vc.component.inAndOutStepInfo.purchaseApply.resourceStores;
+                // 第一步到第二步时，清空第二步的数据
+                if (vc.component.inAndOutStepInfo.index == 0) {
+                    vc.emit('viewResourceStoreInfo3', 'clearSelectResourceStores', null);
+                }
                 if (vc.component.inAndOutStepInfo.index > 0 && _resourceStores.length <= 0) {
                     vc.toast("请选择物品");
                     return;

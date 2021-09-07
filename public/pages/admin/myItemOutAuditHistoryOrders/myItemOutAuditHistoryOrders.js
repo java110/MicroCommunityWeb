@@ -36,6 +36,7 @@
                 var param = {
                     params: vc.component.auditOrderHistorysInfo.conditions
                 };
+                param.params.communityId = vc.getCurrentCommunity().communityId;
 
                 //发送get请求
                 vc.http.apiGet('auditUser.listItemOutAuditHistoryOrders',

@@ -26,7 +26,6 @@
             if (vc.notNull(vc.getParam("hireOwnerFee"))) {
                 $that.listRoomCreateFeeInfo.hireOwnerFee = vc.getParam("hireOwnerFee");
             }
-
             if (vc.notNull(vc.getParam('ownerId'))) {
                 $that.listRoomCreateFeeInfo.urlOwnerId = vc.getParam("ownerId");
             }
@@ -41,7 +40,7 @@
                 });
         },
         methods: {
-            getOnePrice1:function(fee) {
+            getOnePrice1: function (fee) {
                 let _price = fee.mwPrice;
                 if (!_price) {
                     return fee.squarePrice;
@@ -57,8 +56,8 @@
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        payerObjId: vc.component.listRoomCreateFeeInfo.roomId,
-                        ownerId: $that.listRoomCreateFeeInfo.urlOwnerId
+                        payerObjId: vc.component.listRoomCreateFeeInfo.roomId
+                        // ownerId: $that.listRoomCreateFeeInfo.urlOwnerId
                     }
                 };
                 //发送get请求

@@ -134,7 +134,8 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        shType: '2806'
                     }
                 };
                 //发送get请求

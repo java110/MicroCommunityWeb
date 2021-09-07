@@ -134,7 +134,8 @@
                         page: 1,
                         row: 1,
                         staffId: $that.auditOrdersInfo.currentUserId,
-                        staffRole: '2002'
+                        staffRole: '2002',
+                        requestType: 'purchaseHandle'
                     }
                 };
                 //发送get请求

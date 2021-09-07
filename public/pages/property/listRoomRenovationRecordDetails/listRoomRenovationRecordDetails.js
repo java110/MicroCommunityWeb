@@ -14,6 +14,7 @@
                 conditions: {
                     recordId: '',
                     roomName: '',
+                    state: '',
                     roomId: '',
                     communityId: vc.getCurrentCommunity().communityId
                 }
@@ -22,6 +23,7 @@
         _initMethod: function () {
             vc.component.roomRenovationRecordDetailsInfo.conditions.recordId = vc.getParam('recordId');
             vc.component.roomRenovationRecordDetailsInfo.conditions.roomName = vc.getParam('roomName');
+            vc.component.roomRenovationRecordDetailsInfo.conditions.state = vc.getParam('state');
             vc.component._listRoomRenovationRecordDetails(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {

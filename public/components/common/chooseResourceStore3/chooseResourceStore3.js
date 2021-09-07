@@ -31,7 +31,6 @@
             }
         },
         _initMethod: function () {
-            $that._listStorehouses();
             $that._listResourceStoreTypes();
         },
         _initEvent: function () {
@@ -42,6 +41,7 @@
                 $('#chooseResourceStoreModel3').modal('show');
                 vc.component.chooseResourceStoreInfo3._currentResourceStoreName = "";
                 vc.component._loadAllResourceStoreInfo(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listStorehouses();
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._loadAllResourceStoreInfo(_currentPage, DEFAULT_ROWS);
@@ -126,11 +126,17 @@
                 $('#chooseResourceStoreModel3').modal('hide');
             },
             _listStorehouses: function (_page, _rows) {
+                let _resOrderType = vc.component.chooseResourceStoreInfo3.resOrderType;
+                let _shType = '2806';
+                if (_resOrderType == '20000') {
+                    _shType = '2807';
+                }
                 var param = {
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        shType: _shType
                     }
                 };
                 //发送get请求

@@ -137,15 +137,15 @@
                             </td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
                             <td class="text-center">￥{{resourceStore.price}}</td>
-                            <td class="text-center">{{resourceStore.originalStock}}</td>
-                            <td class="text-center">{{resourceStore.stock}}</td>
-                            <td class="text-center">{{resourceStore.quantity}}</td>
+                            <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.quantity}}{{resourceStore.unitCodeName}}</td>
                             <td class="text-center">{{resourceStore.remark}}</td>
                             <td class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000">
                                 {{resourceStore.purchasePrice ? '￥' + resourceStore.purchasePrice : '-'}}
                             </td>
                             <td class="text-center">
-                                {{resourceStore.purchaseQuantity? resourceStore.purchaseQuantity : '-'}}
+                                {{resourceStore.purchaseQuantity? resourceStore.purchaseQuantity+resourceStore.unitCodeName: '-'}}
                             </td>
                             <td class="text-center">
                                 {{resourceStore.purchaseRemark? resourceStore.purchaseRemark :'-'}}
