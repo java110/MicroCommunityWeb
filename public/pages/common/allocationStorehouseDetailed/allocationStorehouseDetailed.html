@@ -141,10 +141,10 @@
                             <th class="text-center">物品类型</th>
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
-                            <th class="text-center">后仓库原有库存</th>
+                            <th class="text-center">被调仓库原库存</th>
                             <th class="text-center">调拨数量</th>
-                            <th class="text-center">前仓库名称</th>
-                            <th class="text-center">后仓库名称</th>
+                            <th class="text-center">被调仓库</th>
+                            <th class="text-center">目标仓库</th>
                             <th class="text-center">申请人ID</th>
                             <th class="text-center">申请人</th>
                             <th class="text-center">调拨说明</th>
@@ -159,8 +159,8 @@
                             <td class="text-center">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
-                            <td class="text-center">{{resourceStore.originalStock}}</td>
-                            <td class="text-center">{{resourceStore.stock}}</td>
+                            <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
                             <td class="text-center" v-if="resourceStore.applyType == '20000'">{{resourceStore.startUserName}}</td>
                             <td class="text-center" v-else>{{resourceStore.shaName}}</td>
                             <td class="text-center">{{resourceStore.shzName}}</td>

@@ -62,6 +62,27 @@
             })
         },
         methods: {
+            // 验证物品来自同一仓库
+            _resourcesFromSameHouse(resourcesList){
+                if(!resourcesList || resourcesList.length < 2){
+                    return true;
+                }
+                let lastHouse = '';
+                let sign = true;
+                for(let i = 0; i < resourcesList.length; i++){
+                    if(lastHouse == ''){
+                        lastHouse = resourcesList[i].shId;
+                        continue;
+                    }
+                    if(lastHouse == resourcesList[i].shId){
+                        continue;
+                    }else{
+                        sign = false;
+                        break;
+                    }
+                }
+                return sign;
+            },
             //取消调拨
             _openDeleteResourceStoreModel: function (_resourceStore) {
                 let _tmpResourceStore = [];
@@ -110,6 +131,10 @@
                 let _saveFlag = true;
                 if ($that.allocationStorehouseManageInfo.resourceStores.length < 1) {
                     vc.toast('请选择物品');
+                    return;
+                }
+                if(!vc.component._resourcesFromSameHouse($that.allocationStorehouseManageInfo.resourceStores)){
+                    vc.toast('调拨商品需来自同一仓库！');
                     return;
                 }
                 $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {

@@ -203,9 +203,9 @@
                             <td class="text-center">
                                 {{purchaseApplyDetail.warehousingWayName}}{{purchaseApplyDetail.resOrderTypeName}}
                             </td>
-                            <td class="text-center">{{purchaseApplyDetail.quantity}}</td>
+                            <td class="text-center">{{purchaseApplyDetail.quantity}}{{purchaseApplyDetail.unitCodeName}}</td>
                             <td class="text-center">
-                                {{purchaseApplyDetail.purchaseQuantity ? purchaseApplyDetail.purchaseQuantity : '-'}}
+                                {{purchaseApplyDetail.purchaseQuantity ? purchaseApplyDetail.purchaseQuantity+purchaseApplyDetail.unitCodeName : '-'}}
                             </td>
                             <td class="text-center">
                                 ￥{{purchaseApplyDetail.price ? purchaseApplyDetail.price : '0.00'}}

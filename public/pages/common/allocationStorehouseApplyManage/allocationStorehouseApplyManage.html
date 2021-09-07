@@ -31,15 +31,15 @@
                         </thead>
                         <tbody>
                             <tr v-for="resourceStore in allocationStorehouseManageInfo.resourceStores">
-                                <td class="text-center">{{resourceStore.resId}}</td>
-                                <td class="text-center">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
-                                <td class="text-center">{{resourceStore.resName}}</td>
-                                <td class="text-center">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
-                                <td class="text-center">{{resourceStore.shaName}}</td>
-                                <td class="text-center">{{resourceStore.stock}}</td>
-                                <td class="text-center">
-                                    <select class="custom-select" v-model="resourceStore.shzId">
-                                        <option value="">必填，请选择源仓库</option>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resId}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.shaName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    <select class="custom-select" v-model="resourceStore.shzId" style="width: 70%">
+                                        <option value="">必填，请选择目标仓库</option>
                                         <option v-for="(item,index) in allocationStorehouseManageInfo.storehouses"
                                             :key="index" v-bind:value="item.shId"
                                             v-if="item.shId != resourceStore.shId">
@@ -47,11 +47,11 @@
                                         </option>
                                     </select>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" style="vertical-align: inherit;">
                                     <input v-model="resourceStore.curStock" type="number" placeholder="必填，请填写调拨数量"
-                                        class="form-control">
+                                        class="form-control" style="width: 50%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" style="vertical-align: inherit;">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteResourceStoreModel(resourceStore)">取消调拨

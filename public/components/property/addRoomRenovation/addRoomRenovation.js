@@ -249,6 +249,10 @@
                         $that.addRoomRenovationInfo.personTel = _rooms[0].link;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
+                        vc.toast(errInfo)
+                        $that.addRoomRenovationInfo.roomId = "";
+                        $that.addRoomRenovationInfo.personName = "";
+                        $that.addRoomRenovationInfo.personTel = "";
                     }
                 );
             }

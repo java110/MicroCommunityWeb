@@ -15,9 +15,15 @@
                 choosedGoodsList: [],
                 beforeRepairPhotos: [],
                 afterRepairPhotos: [],
+                payTypes: [],
+                payType: ''
             }
         },
         _initMethod: function () {
+            //与字典表支付方式关联
+            vc.getDict('r_repair_pool', "pay_type", function (_data) {
+                vc.component.finishRepairInfo.payTypes = _data;
+            });
             $that.finishRepairInfo.repairType = vc.getParam('repairType');
             $that.finishRepairInfo.repairId = vc.getParam('repairId');
             $that.finishRepairInfo.repairObjType = vc.getParam('repairObjType');
@@ -120,6 +126,10 @@
                         vc.toast('请选择商品');
                         return;
                     }
+                }
+                if(vc.component.finishRepairInfo.maintenanceType == '1001' && vc.component.finishRepairInfo.payType == ''){
+                    vc.toast('请选择支付方式');
+                    return;
                 }
                 vc.component.finishRepairInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(

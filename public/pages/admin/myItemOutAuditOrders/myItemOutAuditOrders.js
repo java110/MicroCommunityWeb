@@ -44,6 +44,7 @@
                 var param = {
                     params: vc.component.auditOrdersInfo.conditions
                 };
+                param.params.communityId = vc.getCurrentCommunity().communityId;
                 //发送get请求
                 vc.http.apiGet('/collection/getCollectionAuditOrder',
                     param,
@@ -130,7 +131,8 @@
                         page: 1,
                         row: 1,
                         staffId: $that.auditOrdersInfo.currentUserId,
-                        staffRole: '3003'
+                        staffRole: '3003',
+                        requestType: 'grantHandle'
                     }
                 };
                 //发送get请求

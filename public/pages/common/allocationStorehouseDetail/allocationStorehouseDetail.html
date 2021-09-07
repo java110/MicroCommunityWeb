@@ -66,9 +66,9 @@
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
                             <th class="text-center">物品编码</th>
-                            <th class="text-center">源仓库</th>
+                            <th class="text-center">被调仓库</th>
                             <th class="text-center">目标仓库</th>
-                            <th class="text-center">原有库存(源仓库)</th>
+                            <th class="text-center">原库存(被调仓库)</th>
                             <th class="text-center">调拨数量</th>
                         </tr>
                         </thead>
@@ -81,8 +81,8 @@
                             <td class="text-center">{{resourceStore.resCode}}</td>
                             <td class="text-center">{{allocationStorehouseDetailInfo.applyType == '10000' ? resourceStore.shaName : allocationStorehouseDetailInfo.startUserName}}</td>
                             <td class="text-center">{{resourceStore.shzName}}</td>
-                            <td class="text-center">{{resourceStore.originalStock}}</td>
-                            <td class="text-center">{{resourceStore.stock}}</td>
+                            <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
                         </tr>
                         </tbody>
                         <tfoot>

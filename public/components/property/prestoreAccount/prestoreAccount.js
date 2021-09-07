@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             prestoreAccountInfo: {
@@ -11,13 +10,11 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('prestoreAccount', 'openAddModal', function () {
                 $('#prestoreAccountModel').modal('show');
             });
-
         },
         methods: {
             prestoreAccountValidate() {
@@ -44,24 +41,20 @@
                         },
                     ],
                     'prestoreAccountInfo.remark': [
-
                         {
                             limit: "maxLength",
                             param: "200",
                             errInfo: "备注长度不能超过200位"
                         }
                     ]
-
                 });
             },
             savePrestoreAccountInfo: function () {
                 if (!vc.component.prestoreAccountValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.prestoreAccountInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.apiPost(
                     '/account/ownerPrestoreAccount',
                     JSON.stringify(vc.component.prestoreAccountInfo),
@@ -76,17 +69,13 @@
                             vc.component.clearPrestoreAccountInfo();
                             vc.emit('accountManage', 'listshopAccount', {});
                             vc.toast('预存成功');
-
                             return;
                         }
                         vc.component.prestoreAccountInfo.errorInfo = json;
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.component.prestoreAccountInfo.errorInfo = errInfo;
-
                     });
             },
             clearPrestoreAccountInfo: function () {
@@ -105,10 +94,9 @@
                         row: 50,
                         page: 1,
                         link: $that.prestoreAccountInfo.tel,
-                        ownerTypeCd:'1001'
+                        ownerTypeCd: '1001'
                     }
                 }
-
                 //发送get请求
                 vc.http.get('listOwner',
                     'list',
@@ -124,5 +112,4 @@
             }
         }
     });
-
 })(window.vc);

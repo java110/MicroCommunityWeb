@@ -12,16 +12,21 @@
                 records: 1,
                 moreCondition: false,
                 rId: '',
+                states: [],
                 conditions: {
                     roomName: '',
                     roomId: '',
                     personName: '',
                     personTel: '',
+                    state: '',
                     communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
         _initMethod: function () {
+            vc.getDict('room_renovation', "state", function (_data) {
+                vc.component.roomRenovationManageInfo.states = _data;
+            });
             vc.component._listRoomRenovations(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -67,6 +72,7 @@
                 vc.component.roomRenovationManageInfo.conditions.roomName = '';
                 vc.component.roomRenovationManageInfo.conditions.personName = '';
                 vc.component.roomRenovationManageInfo.conditions.personTel = '';
+                vc.component.roomRenovationManageInfo.conditions.state = '';
                 $that._listRoomRenovations(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openAddRoomRenovationModal: function () {
@@ -116,6 +122,13 @@
             },
             _openRoomRenovationDetail: function (_room) {
                 vc.jumpToPage('/admin.html#/pages/property/roomRenovationDetailManage?rId=' + _room.rId + '&roomName=' + _room.roomName);
+            },
+            _moreCondition: function () {
+                if (vc.component.roomRenovationManageInfo.moreCondition) {
+                    vc.component.roomRenovationManageInfo.moreCondition = false;
+                } else {
+                    vc.component.roomRenovationManageInfo.moreCondition = true;
+                }
             }
         }
     });

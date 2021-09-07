@@ -16,7 +16,8 @@
                         <thead>
                         <tr>
                             <th class="text-center">房屋</th>
-                            <th class="text-center">图片/视频</th>
+                            <th class="text-center" v-if="roomRenovationRecordDetailsInfo.conditions.state == '1000'">原始图片/视频</th>
+                            <th class="text-center" v-else>图片/视频</th>
                             <th class="text-center">创建时间</th>
                         </tr>
                         </thead>
