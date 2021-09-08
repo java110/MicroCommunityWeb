@@ -111,6 +111,13 @@
                 let _audit = $that.newOaWorkflowDetailInfo.audit;
                 _audit.flowId = $that.newOaWorkflowDetailInfo.flowId;
                 _audit.id = $that.newOaWorkflowDetailInfo.id;
+                /**
+                 * assigness 
+                 *  -1 表示 下一个节点为 结束节点
+                 *  -2 表示 需要指定依稀处理人
+                 *  其他表示 下一指定人ID
+                 * 
+                 */
                 if ($that.newOaWorkflowDetailInfo.nextAudit.assignee != '-2') {
                     _audit.staffId = $that.newOaWorkflowDetailInfo.nextAudit.assignee;
                 }
