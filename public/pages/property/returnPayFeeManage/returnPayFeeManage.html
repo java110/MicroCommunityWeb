@@ -67,9 +67,9 @@
                             <td class="text-center">{{payFee.returnFeeId}}</td>
                             <td class="text-center">{{payFee.detailId}}</td>
                             <td class="text-center">{{payFee.feeTypeCdName}}</td>
-                            <td class="text-center">{{payFee.cycles}}个月</td>
-                            <td class="text-center">{{payFee.receivableAmount}}</td>
-                            <td class="text-center">{{payFee.receivedAmount}}</td>
+                            <td class="text-center">{{vc.unum(payFee.cycles)}}个月</td>
+                            <td class="text-center">{{vc.unum(payFee.receivableAmount)}}</td>
+                            <td class="text-center">{{vc.unum(payFee.receivedAmount)}}</td>
                             <td class="text-center">{{payFee.reason}}</td>
                             <td class="text-center">
                                     <span class="badge badge-success"

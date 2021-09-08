@@ -1755,6 +1755,10 @@
             return 30;
     }
 
+    vcFramework.unum = function(_money){
+       return  parseFloat(_money) * -1;
+    }
+
     vcFramework.addMonth = function (_date, _month) {
         let y = _date.getFullYear();
         let m = _date.getMonth();
