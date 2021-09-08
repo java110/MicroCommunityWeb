@@ -88,8 +88,6 @@
                         row: 10
                     }
                 };
-                //发送get请求
-                //vc.http.apiGet('workflow.listWorkflowAuditInfo',
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowUser',
                     param,
                     function (json, res) {
@@ -154,7 +152,9 @@
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        taskId: $that.newOaWorkflowDetailInfo.audit.taskId
+                        taskId: $that.newOaWorkflowDetailInfo.audit.taskId,
+                        flowId: $that.newOaWorkflowDetailInfo.flowId,
+                        id: $that.newOaWorkflowDetailInfo.id
                     }
                 };
                 //发送get请求

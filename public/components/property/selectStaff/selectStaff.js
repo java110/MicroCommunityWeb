@@ -24,6 +24,7 @@
                 //查询公司信息
                 $that._initOrg(2, '');
                 $('#selectStaffModel').modal('show');
+                $that.selectStaffInfo.staff = _staff;
                 $that.staff = _staff;
             });
 
@@ -44,11 +45,11 @@
                 $that.loadStaff();
             },
             _changeStaff: function (item) {
-                console.log('selectStaff',item);
+                console.log('selectStaff', item);
                 $that.staff.staffId = item.userId;
                 $that.staff.staffName = item.userName;
                 $('#selectStaffModel').modal('hide');
-                if($that.staff.hasOwnProperty('call')){
+                if ($that.staff.hasOwnProperty('call')) {
                     $that.staff.call($that.staff);
                 }
             },
@@ -119,10 +120,15 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
-
-
+            _firstUser: function () {
+                $that.staff.staffId = '${startUserId}';
+                $that.staff.staffName = '开始人';
+                $('#selectStaffModel').modal('hide');
+                if ($that.staff.hasOwnProperty('call')) {
+                    $that.staff.call($that.staff);
+                }
+            }
         }
     });
 

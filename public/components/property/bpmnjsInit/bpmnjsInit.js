@@ -4,7 +4,8 @@
         data: {
             bpmnjsInfo: {
                 condition: '',
-                staffId: ''
+                staffId: '',
+                from: 'bpmn'
             }
         },
         _initMethod: function () {
