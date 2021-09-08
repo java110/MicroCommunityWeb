@@ -111,7 +111,7 @@
                 let _audit = $that.newOaWorkflowDetailInfo.audit;
                 _audit.flowId = $that.newOaWorkflowDetailInfo.flowId;
                 _audit.id = $that.newOaWorkflowDetailInfo.id;
-                if ($that.newOaWorkflowDetailInfo.nextAudit.assignee) {
+                if ($that.newOaWorkflowDetailInfo.nextAudit.assignee != '-2') {
                     _audit.staffId = $that.newOaWorkflowDetailInfo.nextAudit.assignee;
                 }
                 if (!_audit.auditCode) {
