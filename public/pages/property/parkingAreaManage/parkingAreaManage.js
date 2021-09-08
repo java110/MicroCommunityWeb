@@ -88,6 +88,7 @@
             },
             _getColumnsValue: function (_parkingArea) {
                 _parkingArea.listValues = [];
+                console.log('attr',_parkingArea)
                 if (!_parkingArea.hasOwnProperty('attrs') || _parkingArea.attrs.length < 1) {
                     $that.parkingAreaManageInfo.listColumns.forEach(_value => {
                         _parkingArea.listValues.push('');
