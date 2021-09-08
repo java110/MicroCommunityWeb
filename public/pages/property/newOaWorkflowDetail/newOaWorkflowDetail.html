@@ -101,9 +101,11 @@
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="newOaWorkflowDetailInfo.audit.auditCode">
                                     <option selected disabled value="">请选择</option>
-                                    <option value="1100">办理</option>
+                                    <option value="1100" v-if="newOaWorkflowDetailInfo.nextAudit.next">办理</option>
                                     <option value="1200" v-if="newOaWorkflowDetailInfo.nextAudit.back">退回</option>
                                     <option value="1400" v-if="newOaWorkflowDetailInfo.nextAudit.backIndex">退回至提交者
+                                    </option>
+                                    <option value="1500" v-if="newOaWorkflowDetailInfo.nextAudit.exit">结束
                                     </option>
                                     <option value="1300">转单</option>
                                 </select>
@@ -118,7 +120,8 @@
                             </div>
                         </div>
                         <!-- 办理时 判断是否指定 委托人 如果指定了 则不显示 -->
-                        <div class="form-group row" v-if="newOaWorkflowDetailInfo.audit.auditCode == '1100' && !newOaWorkflowDetailInfo.nextAudit.assignee">
+                        <div class="form-group row"
+                            v-if="newOaWorkflowDetailInfo.audit.auditCode == '1100' && newOaWorkflowDetailInfo.nextAudit.assignee == '-2'">
                             <label class="col-sm-2 col-form-label text-right">下一处理人</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="必填，请选择下一处理人" disabled
