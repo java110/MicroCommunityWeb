@@ -11,13 +11,18 @@
             }
         },
         _initMethod: function () {
+            $that.newOaWorkflowInfo.switchValue = vc.getParam('switchValue');
+            if ($that.newOaWorkflowInfo.switchValue) {
+                $that.swatch($that.newOaWorkflowInfo.switchValue);
+                return;
+            }
             $that.swatch('newOaWorkflowPool');
         },
         _initEvent: function () {
             vc.on('newOaWorkflow', 'listNewOaWorkflow', function (_param) {
                 vc.component._listNewOaWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('newOaWorkflow','switch',function(_switchValue){
+            vc.on('newOaWorkflow', 'switch', function (_switchValue) {
                 $that.swatch(_switchValue);
             })
         },

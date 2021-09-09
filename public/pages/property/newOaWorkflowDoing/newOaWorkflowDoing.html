@@ -11,45 +11,51 @@
                         <div class="col-sm-2">
                             <div class="form-group text-center">
                                 <a class="col-form-label" style="text-decoration:underline;"
-                                    @click="_toGo('/admin.html#/pages/property/repairDispatchManage')">报修待办(0)</a>
+                                    @click="_toGo('/admin.html#/pages/property/repairDispatchManage')">报修待办({{newOaWorkflowDoingInfo.repair}})</a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
                                 <a class="col-form-label" style="text-decoration:underline;"
-                                    @click="_toGo('/admin.html#/pages/common/myAuditComplaints')">投诉待办(0)</a>
+                                    @click="_toGo('/admin.html#/pages/common/myAuditComplaints')">投诉待办({{newOaWorkflowDoingInfo.complaint}})</a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
                                 <a class="col-form-label" style="text-decoration:underline;"
-                                    @click="_toGo('/admin.html#/pages/admin/myAuditOrders')">采购待办(0)</a>
+                                    @click="_toGo('/admin.html#/pages/admin/myAuditOrders')">采购待办({{newOaWorkflowDoingInfo.purchase}})</a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
                                 <a class="col-form-label" style="text-decoration:underline;"
-                                    @click="_toGo('/admin.html#/pages/admin/myItemOutAuditOrders')">物品领用待办(0)</a>
+                                    @click="_toGo('/admin.html#/pages/admin/myItemOutAuditOrders')">物品领用待办({{newOaWorkflowDoingInfo.collection}})</a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
                                 <a class="col-form-label" style="text-decoration:underline;"
-                                    @click="_toGo('/admin.html#/pages/admin/contractApplyAuditOrders')">合同起草待办(0)</a>
+                                    @click="_toGo('/admin.html#/pages/admin/contractApplyAuditOrders')">合同起草待办({{newOaWorkflowDoingInfo.contractApply}})</a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
                                 <a class="col-form-label" style="text-decoration:underline;"
-                                    @click="_toGo('/admin.html#/pages/admin/contractChangeAuditOrders')">合同变更待办(0)</a>
+                                    @click="_toGo('/admin.html#/pages/admin/contractChangeAuditOrders')">合同变更待办({{newOaWorkflowDoingInfo.contractChange}})</a>
                             </div>
                         </div>
                     </div>
-                    <div class="row margin-top">
-                        <div class="col-sm-2">
+                    <div class="row ">
+                        <div class="col-sm-2 margin-top">
                             <div class="form-group text-center">
                                 <a class="col-form-label" style="text-decoration:underline;"
-                                    @click="_toGo('/admin.html#/pages/admin/allocationStorehouseAuditOrders')">调拨待办(0)</a>
+                                    @click="_toGo('/admin.html#/pages/admin/allocationStorehouseAuditOrders')">调拨待办({{newOaWorkflowDoingInfo.allocation}})</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 margin-top" v-for="(item,index) in newOaWorkflowDoingInfo.newOaWorkflows">
+                            <div class="form-group text-center">
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                    @click="_toGoA(item)">{{item.flowName}}待办(0)</a>
                             </div>
                         </div>
                     </div>
@@ -104,11 +110,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row margin-top">
-                        <div class="col-sm-2">
+                    <div class="row ">
+                        <div class="col-sm-2 margin-top">
                             <div class="form-group text-center">
                                 <a class="col-form-label" style="text-decoration:underline;"
                                     @click="_toGo('/admin.html#/pages/admin/allocationStorehouseHistoryAuditOrders')">物品调拨已办</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 margin-top" v-for="(item,index) in newOaWorkflowDoingInfo.newOaWorkflows">
+                            <div class="form-group text-center">
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                    @click="_toGoB(item)">{{item.flowName}}已办</a>
                             </div>
                         </div>
                     </div>
