@@ -2053,3 +2053,7 @@ a:hover {
    -webkit-backface-visibility: hidden; 
    -webkit-overflow-scrolling: touch;
 }
+
+.font-red{
+  color: red;
+}
