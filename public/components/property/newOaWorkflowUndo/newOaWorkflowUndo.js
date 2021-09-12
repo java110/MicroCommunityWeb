@@ -92,6 +92,9 @@
                 + "&action=Audit"
                 + "&taskId="+_undo.taskId);
             },
+            _openEditNewOaWorkflow:function(_undo){
+                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowFormEdit?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
+            },
             _queryOaWorkflowUndoMethod: function () {
                 vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
             },
