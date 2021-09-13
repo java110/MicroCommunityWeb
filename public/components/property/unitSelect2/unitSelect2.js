@@ -75,6 +75,12 @@
                         url: "/callComponent/unitSelect2/loadUnits",
                         dataType: 'json',
                         delay: 250,
+                        headers:{
+                            'APP-ID': '8000418004',
+                            'TRANSACTION-ID' : vc.uuid(),
+                            'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
+                            'SIGN' : ''
+                        },
                         data: function (params) {
                             console.log("param", params);
                             var _term = "";
