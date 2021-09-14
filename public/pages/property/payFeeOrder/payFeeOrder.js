@@ -64,6 +64,9 @@
                 $that.payFeeOrderInfo.feeFlag = vc.getParam('feeFlag');
                 $that.payFeeOrderInfo.payerObjName = vc.getParam('payerObjName');
                 $that.payFeeOrderInfo.builtUpArea = vc.getParam('builtUpArea');
+                if($that.payFeeOrderInfo.builtUpArea){
+                    $that.payFeeOrderInfo.builtUpArea = $that._mathToFixed2($that.payFeeOrderInfo.builtUpArea)
+                }
                 $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
                 $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
                 $that.payFeeOrderInfo.paymentCycles = [];
