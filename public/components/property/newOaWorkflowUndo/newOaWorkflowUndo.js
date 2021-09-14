@@ -11,6 +11,7 @@
                 total: 0,
                 records: 1,
                 formJson: [],
+                userId: vc.getData('/nav/getUserInfo').userId,
                 conditions: {
                     createUserName: '',
                     startTime: '',
@@ -34,7 +35,7 @@
                 $that._listOaWorkFlowUndoForm();
                 vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
             })
-            vc.on('newOaWorkflowUndo','paginationPlus', 'page_event', function (_currentPage) {
+            vc.on('newOaWorkflowUndo', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._listOaWorkflowUndos(_currentPage, DEFAULT_ROWS);
             });
         },
@@ -73,7 +74,7 @@
                         vc.component.newOaWorkflowUndoInfo.total = _newOaWorkflowUndoInfo.total;
                         vc.component.newOaWorkflowUndoInfo.records = _newOaWorkflowUndoInfo.records;
                         vc.component.newOaWorkflowUndoInfo.undos = _newOaWorkflowUndoInfo.data;
-                        vc.emit('newOaWorkflowUndo','paginationPlus', 'init', {
+                        vc.emit('newOaWorkflowUndo', 'paginationPlus', 'init', {
                             total: vc.component.newOaWorkflowUndoInfo.records,
                             dataCount: vc.component.newOaWorkflowUndoInfo.total,
                             currentPage: _page
@@ -86,14 +87,14 @@
             _openNewOaWorkflowUndoDetail: function (_undo) {
                 vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
             },
-            _openAuditNewOaWorkflowUndoDetail:function(_undo){
-                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _undo.id 
-                + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId
-                + "&action=Audit"
-                + "&taskId="+_undo.taskId);
+            _openAuditNewOaWorkflowUndoDetail: function (_undo) {
+                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _undo.id
+                    + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId
+                    + "&action=Audit"
+                    + "&taskId=" + _undo.taskId);
             },
-            _openEditNewOaWorkflow:function(_undo){
-                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowFormEdit?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
+            _openEditNewOaWorkflow: function (_undo) {
+                vc.jumpToPage("/form.html#/pages/property/newOaWorkflowFormEdit?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
             },
             _queryOaWorkflowUndoMethod: function () {
                 vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -120,6 +121,15 @@
                 }
 
                 return "未知"
+            },
+            _isMe:function(undo){
+
+                let userId = $that.newOaWorkflowUndoInfo.userId;
+                if(undo.create_user_id == userId){
+                    return true;
+                }
+
+                return false;
             }
         }
     });
