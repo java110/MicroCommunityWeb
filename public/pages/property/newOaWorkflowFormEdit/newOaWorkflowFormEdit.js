@@ -94,7 +94,7 @@
                 });
 
                 vc.http.apiPost(
-                    '/oaWorkflow/updateOaWorkflowFormData',
+                    '/oaWorkflow.updateOaWorkflowFormData',
                     JSON.stringify(_data),
                     {
                         emulateJSON: true
