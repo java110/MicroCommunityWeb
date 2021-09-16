@@ -177,7 +177,7 @@
             await findVcLabel(_tree, _vcElement);
             let _res = _tree.html;
         }
-        
+
         //渲染组件html
         reader(treeList, _componentScript);
         //执行组件js
@@ -1755,8 +1755,8 @@
             return 30;
     }
 
-    vcFramework.unum = function(_money){
-       return  parseFloat(_money) * -1;
+    vcFramework.unum = function (_money) {
+        return parseFloat(_money) * -1;
     }
 
     vcFramework.addMonth = function (_date, _month) {
@@ -1808,6 +1808,22 @@
                 document.body.removeChild(m)
             }, d * 1000);
         }, duration);
+    }
+})(window.vcFramework);
+
+/**
+ isNumber
+ **/
+(function (vcFramework) {
+    vcFramework.isNumber = function (val) {
+
+        var regPos = /^\d+(\.\d+)?$/; //非负浮点数
+        var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
+        if (regPos.test(val) || regNeg.test(val)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 })(window.vcFramework);
 

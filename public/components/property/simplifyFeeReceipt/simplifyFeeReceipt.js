@@ -21,7 +21,8 @@
                 selectReceipts: [],
                 ownerFlag: 'F',
                 contractId: '',
-                quan: false
+                quan: false,
+                printUrl:'/print.html#/pages/property/printPayFee',
             }
         },
         watch: { // 监视双向绑定的数据数组
@@ -46,6 +47,7 @@
                     return;
                 }
                 $that.clearSimplifyFeeReceiptInfo();
+                $that._listFeePrintPages();
                 vc.copyObject(_param, $that.simplifyFeeReceiptInfo);
                 $that.simplifyFeeReceiptInfo.objId = _param.roomId;
                 $that.simplifyFeeReceiptInfo.payObjId = _param.ownerId;
@@ -122,7 +124,7 @@
                 if (receiptids.endsWith(',')) {
                     receiptids = receiptids.substring(0, receiptids.length - 1);
                 }
-                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + receiptids + "&apply=N");
+                window.open($that.simplifyFeeReceiptInfo.printUrl+"?receiptIds=" + receiptids + "&apply=N");
             },
 
             _printApplyFeeReceipt: function (_receipt) {
@@ -169,7 +171,8 @@
                     selectReceipts: [],
                     ownerFlag: 'F',
                     contractId: '',
-                    quan: false
+                    quan: false,
+                    printUrl:'/print.html#/pages/property/printPayFee',
                 }
             },
             _changeSimplifyFeeReceiptFeeTypeCd: function (_feeTypeCd) {
@@ -276,7 +279,30 @@
                     return '合同';
                 }
 
-            }
+            },
+            _listFeePrintPages: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page:1,
+                        row:1,
+                        state:'T',
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('feePrintPage.listFeePrintPage',
+                    param,
+                    function (json, res) {
+                        var _feePrintPageManageInfo = JSON.parse(json);
+                        let feePrintPages = _feePrintPageManageInfo.data;
+                        if(feePrintPages && feePrintPages.length >0){
+                            $that.simplifyFeeReceiptInfo.printUrl = feePrintPages[0].url;
+                        }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);
