@@ -1,0 +1,58 @@
+<div>
+    <div>
+        <div>
+            <div style="color:#000;font-size:20px;margin-left:20px;margin-top:60px;height: 60px;">
+                <div class="float-left" style="width:600px;margin-left: 60px;">
+                    <span>{{printPayFeeInfo.payObjName}}</span>
+                </div>
+                <div class="float-left text-center"
+                    v-if="printPayFeeInfo.feeReceipt && printPayFeeInfo.feeReceipt.length>0">
+                    <span>{{printPayFeeInfo.feeReceipt[0].objName}}</span>
+                </div>
+            </div>
+            <table class="table vc-table-border" style="color:#000;font-size:20px ;border:0">
+                <tbody class="vc-table-border" style="color:#000;font-size:20px;border: 0px;">
+                    <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border" style="border: 0px;">
+                        <td class="text-center" style="border: 0px;">{{item.feeName}}</td>
+                        <td class="text-center" v-if="item.preDegrees" style="border: 0px;">
+                            {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</br>
+                            {{item.preDegrees}} 至 {{item.curDegrees}}
+                        </td>
+                        <!-- 根据山东 需求 如果为押金时 显示为无-->
+                        <td class="text-center" style="border: 0px;" v-else-if="item.feeTypeCd == '888800010006'">
+                            无
+                        </td>
+                        <td class="text-center" style="border: 0px;" v-else>
+                            {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
+                        </td>
+                        <td class="text-center" style="border: 0px;">{{item.squarePrice}}</td>
+                        <td class="text-center" style="border: 0px;">{{item.area}}</td>
+                        <td class="text-center" style="border: 0px;">{{item.amount}}</td>
+                    </tr>
+                    <tr style="border: 0px;">
+                        <td colspan="3" class="text-center" style="border: 0px;">
+                            ( ){{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                        </td>
+                        <td class="text-center" style="border: 0px;">: </td>
+                        <td colspan="3" class="text-center" style="border: 0px;">{{printPayFeeInfo.amount}}</td>
+                    </tr>
+                    <tr style="border: 0px;">
+                        <td colspan="4" class="text-center" style="border: 0px;"></td>
+                        <td colspan="3" class="text-center" style="border: 0px;">{{printPayFeeInfo.feeTime}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2" id="print-btn">
+                <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+                    <i class="fa fa-check"></i>&nbsp;打印
+                </button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                    v-on:click="_closePage()">取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
