@@ -11,7 +11,9 @@
                 cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
-                attrs: []
+                attrs: [],
+                payFeeMonth: 12,
+                feePrice: 0
             },
             areas: [],
             provs: [],
@@ -148,7 +150,9 @@
                     cityCode: '',
                     mapX: '101.33',
                     mapY: '101.33',
-                    attrs: []
+                    attrs: [],
+                    payFeeMonth: 12,
+                    feePrice: 0
                 };
                 $that.selectProv = '';
                 $that.selectCity = '';
