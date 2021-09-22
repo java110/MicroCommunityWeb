@@ -11,6 +11,14 @@
                 </div>
             </div>
             <table class="table vc-table-border" style="color:#000;font-size:20px ;border:0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">收费项目</th>
+                        <th scope="col" class="text-center">摘要</th>
+                        <th scope="col" class="text-center">滞纳金</th>
+                        <th scope="col" class="text-center">金额</th>
+                    </tr>
+                </thead>
                 <tbody class="vc-table-border" style="color:#000;font-size:20px;border: 0px;">
                     <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border" style="border: 0px;">
                         <td class="text-center" style="border: 0px;">{{item.feeName}}</td>
@@ -25,8 +33,7 @@
                         <td class="text-center" style="border: 0px;" v-else>
                             {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
                         </td>
-                        <td class="text-center" style="border: 0px;">{{item.squarePrice}}</td>
-                        <td class="text-center" style="border: 0px;">{{item.area}}</td>
+                        <td class="text-center" style="border: 0px;">0.00</td>
                         <td class="text-center" style="border: 0px;">{{item.amount}}</td>
                     </tr>
                     <tr style="border: 0px;">
