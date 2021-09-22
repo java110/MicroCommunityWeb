@@ -65,7 +65,7 @@
             },
             _auditPayFeeBatchState: function (_auditInfo) {
                 vc.component.payFeeBatchInfo.payFeeBatch.state = _auditInfo.state;
-                //vc.component.payFeeBatchInfo.payFeeBatch.remark = _auditInfo.remark;
+                vc.component.payFeeBatchInfo.payFeeBatch.msg = _auditInfo.remark;
                 let _payFeeBatch = vc.component.payFeeBatchInfo.payFeeBatch;
                 vc.http.apiPost(
                     'payFeeBatch.updatePayFeeBatch',
