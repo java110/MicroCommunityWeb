@@ -16,6 +16,7 @@
                     pageId: '',
                     pageName: '',
                     state: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -78,11 +79,11 @@
                 }
             },
             updateFeePrintPageState: function (_printPage) {
-               
+
                 let _data = {
-                    pageId:_printPage.pageId,
-                    communityId:_printPage.communityId,
-                    state:'T'
+                    pageId: _printPage.pageId,
+                    communityId: _printPage.communityId,
+                    state: 'T'
                 }
 
                 vc.http.apiPost(
