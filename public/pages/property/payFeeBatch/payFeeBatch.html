@@ -23,13 +23,13 @@
                             <td class="text-center">{{payFee.batchId}}</td>
                             <td class="text-center">{{payFee.createUserName}}</td>
                             <td class="text-center">{{payFee.createTime}}</td>
-                            <td class="text-center">{{payFee.remark}}</td>
+                            <td class="text-center">{{payFee.remark || '无'}}</td>
                             <td class="text-center">{{payFee.stateName}}</td>
                             <td class="text-center">{{payFee.msg}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-if="payFee.state == 2006001"
-                                            v-on:click="_openPayFeeBatchAuditModel(payFee)">申请取消
+                                            v-on:click="_openApply(payFee)">申请取消
                                     </button>
                                     <button class="btn-white btn btn-xs" v-if="payFee.state == 2007001"
                                             v-on:click="_openPayFeeBatchAuditModel(payFee)">审核
@@ -52,5 +52,6 @@
             </div>
         </div>
     </div>
+    <vc:create path="property/applyDeleteFeeBatch" callBackListener="payFeeBatch" callBackFunction="notifyAuditInfo"></vc:create>
     <vc:create path="common/audit" callBackListener="payFeeBatch" callBackFunction="notifyAuditInfo"></vc:create>
 </div>

@@ -60,6 +60,9 @@
             _queryPayFeeBatchMethod: function () {
                 vc.component._listPayFeeBatchs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            _openApply:function(_payFee){
+                vc.emit('applyDeleteFeeBatch', 'openApply',_payFee);
+            },
             _auditPayFeeBatchState: function (_auditInfo) {
                 vc.component.payFeeBatchInfo.payFeeBatch.state = _auditInfo.state;
                 //vc.component.payFeeBatchInfo.payFeeBatch.remark = _auditInfo.remark;
