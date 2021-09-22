@@ -15,7 +15,8 @@
                 qrImg: '',
                 payObjName: '',
                 feeReceipt: [],
-                apply: 'N'
+                apply: 'N',
+                userName:vc.getData('/nav/getUserInfo').name
             },
             printFlag: '0'
         },
