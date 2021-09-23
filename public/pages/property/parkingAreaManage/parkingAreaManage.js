@@ -121,6 +121,9 @@
                     });
                     _call();
                 });
+            },
+            _openParkingAreaText:function(_parkingArea){
+                vc.jumpToPage('/admin.html#/pages/property/parkingAreaText?paId='+_parkingArea.paId)
             }
         }
     });
