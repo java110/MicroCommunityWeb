@@ -42,6 +42,7 @@
                 deductionAmount: 0.0, //抵扣金额
                 redepositAmount: 0.0, //转存金额
                 selectUserAccount: [], // 选中的账户
+                printUrl: '/print.html#/pages/property/printPayFee',
             }
         },
         watch: {
@@ -64,6 +65,9 @@
                 $that.payFeeOrderInfo.feeFlag = vc.getParam('feeFlag');
                 $that.payFeeOrderInfo.payerObjName = vc.getParam('payerObjName');
                 $that.payFeeOrderInfo.builtUpArea = vc.getParam('builtUpArea');
+                if ($that.payFeeOrderInfo.builtUpArea) {
+                    $that.payFeeOrderInfo.builtUpArea = $that._mathToFixed2($that.payFeeOrderInfo.builtUpArea)
+                }
                 $that.payFeeOrderInfo.squarePrice = vc.getParam('squarePrice');
                 $that.payFeeOrderInfo.additionalAmount = vc.getParam('additionalAmount');
                 $that.payFeeOrderInfo.paymentCycles = [];
@@ -80,6 +84,8 @@
             vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
                 vc.component.payFeeOrderInfo.primeRates = _data;
             });
+
+            $that._listFeePrintPages();
         },
         _initEvent: function () {
             // 子组件折扣change事件
@@ -316,7 +322,7 @@
             },
             _printAndBack: function () {
                 //$('#payFeeResult').modal("hide");
-                window.open("/print.html#/pages/property/printPayFee?receiptId=" + $that.payFeeOrderInfo.receiptId)
+                window.open($that.payFeeOrderInfo.printUrl + "?receiptId=" + $that.payFeeOrderInfo.receiptId)
             },
             _printSmallAndBack: function () {
                 //$('#payFeeResult').modal("hide");
@@ -503,7 +509,7 @@
 
                 // 计算抵消金额 应缴 - 折扣  - 实缴 = 抵消金额  
                 deductionAmount = parseFloat(totalFeePrice) - parseFloat(totalDiscountMoney) - parseFloat(receivedAmount);
-                if (parseFloat(deductionAmount) > 0 && parseFloat(accountAmount)>= parseFloat(deductionAmount)) {
+                if (parseFloat(deductionAmount) > 0 && parseFloat(accountAmount) >= parseFloat(deductionAmount)) {
                     $that.payFeeOrderInfo.deductionAmount = deductionAmount.toFixed(2);
                     let viewAccountAmount = $that.payFeeOrderInfo.viewAccountAmount;
                     $that.payFeeOrderInfo.viewAccountAmount = parseFloat($that.payFeeOrderInfo.viewAccountAmount) - parseFloat($that.payFeeOrderInfo.deductionAmount);
@@ -512,7 +518,30 @@
                         $that.payFeeOrderInfo.deductionAmount = viewAccountAmount;
                     }
                 }
-            }
+            },
+            _listFeePrintPages: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        state: 'T',
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('feePrintPage.listFeePrintPage',
+                    param,
+                    function (json, res) {
+                        var _feePrintPageManageInfo = JSON.parse(json);
+                        let feePrintPages = _feePrintPageManageInfo.data;
+                        if (feePrintPages && feePrintPages.length > 0) {
+                            $that.payFeeOrderInfo.printUrl = feePrintPages[0].url;
+                        }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);

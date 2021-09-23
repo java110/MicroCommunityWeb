@@ -10,7 +10,8 @@
                 cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
-                
+                payFeeMonth: 12,
+                feePrice: 0,
                 attrs: []
             }
         },
@@ -140,7 +141,8 @@
                     cityCode: '',
                     mapX: '101.33',
                     mapY: '101.33',
-                    
+                    payFeeMonth: 12,
+                    feePrice: 0,
                     attrs: _attrs
                 }
             },

@@ -13,6 +13,7 @@
                 records: 1,
                 moreCondition: false,
                 feeReceiptId: '',
+                printUrl:'/print.html#/pages/property/printPayFee',
                 conditions: {
                     objType: '',
                     storeName: '',
@@ -39,6 +40,8 @@
             });
             vc.component._initDate();
             vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listFeePrintPages();
+
             // vc.initDateMonth('startTime', function (_startTime) {
             //     $that.feeReceiptManageInfo.conditions.month = _startTime;
             // });
@@ -151,7 +154,7 @@
                 vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _printFeeReceipt: function (_receipt) {
-                window.open("/print.html#/pages/property/printPayFee?receiptId=" + _receipt.receiptId);
+                window.open($that.feeReceiptManageInfo.printUrl+"?receiptId=" + _receipt.receiptId);
             },
             _printFeeReceipts: function (_conditions) {
                 // console.log(_conditions)
@@ -186,7 +189,30 @@
                 } else {
                     vc.component.feeReceiptManageInfo.moreCondition = true;
                 }
-            }
+            },
+            _listFeePrintPages: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page:1,
+                        row:1,
+                        state:'T',
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('feePrintPage.listFeePrintPage',
+                    param,
+                    function (json, res) {
+                        var _feePrintPageManageInfo = JSON.parse(json);
+                        let feePrintPages = _feePrintPageManageInfo.data;
+                        if(feePrintPages && feePrintPages.length >0){
+                            $that.feeReceiptManageInfo.printUrl = feePrintPages[0].url;
+                        }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);

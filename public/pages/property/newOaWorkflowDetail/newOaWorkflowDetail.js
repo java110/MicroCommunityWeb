@@ -31,7 +31,9 @@
             $that.newOaWorkflowDetailInfo.audit.taskId = vc.getParam('taskId');
             $that._listOaWorkflowDetails();
             $that._loadComments();
-            $that._loadNextAuditPerson();
+            if($that.newOaWorkflowDetailInfo.action){
+                $that._loadNextAuditPerson();
+            }
             $that._openNewOaWorkflowDetailImg();
         },
         _initEvent: function () {
