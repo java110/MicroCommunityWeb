@@ -18,7 +18,6 @@
                 paymentCycles: [],
                 totalFeePrice: 0.00,
                 receivedAmount: '',
-                feeAfterDiscount: 0.00,
                 communityId: vc.getCurrentCommunity().communityId,
                 payerObjName: '',
                 payerObjId: '',
@@ -34,14 +33,15 @@
                 totalDiscountMoney: 0.0,
                 toFixedSign: 1, // 编码映射-应收款取值标识
                 receivedAmountSwitch: '',
-                userAmount: '',
-                acctType: '',
-                acctId: '',
+                // userAmount: '',
+                // acctType: '',
+                // acctId: '',
                 createTime: vc.dateTimeFormat(new Date().getTime()),
                 accountAmount: 0.0, // 账户金额
                 viewAccountAmount: 0.0, // 账户金额
                 deductionAmount: 0.0, //抵扣金额
                 redepositAmount: 0.0, //转存金额
+                selectUserAccount: [], // 选中的账户
                 printUrl: '/print.html#/pages/property/printPayFee',
             }
         },
@@ -75,11 +75,11 @@
                     $that.payFeeOrderInfo.paymentCycles.push(_index * vc.getParam('paymentCycle'))
                 }
                 $that.listPayFeeOrderRoom();
-                $that._listAccount();
+                // $that._listAccount();
             }
             // 修改为按照单价面积等，重新计算，此时可能未获取到映射数值，所以默认保留两位小数
             vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(vc.getParam('feePrice'));
-            vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.feeAfterDiscount = vc.component.payFeeOrderInfo.totalFeePrice;
+            vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
             //与字典表支付方式关联
             vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
                 vc.component.payFeeOrderInfo.primeRates = _data;
@@ -105,7 +105,20 @@
                 $that.payFeeOrderInfo.totalDiscountMoney = _totalDiscountMoney;
                 // 该处js做减法后，会出现小数点后取不尽的bug，再次处理
                 let receivedAmount = _totalFeePrice - _totalDiscountMoney;
-                $that.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.feeAfterDiscount = $that._getFixedNum(receivedAmount);
+                $that.payFeeOrderInfo.receivedAmount = $that._getFixedNum(receivedAmount);
+            });
+            // 用户账户组件事件
+            vc.on('payFeeOrder', 'changeUserAmountPrice', function (_param) {
+                console.log('user Amount :', _param);
+                $that.payFeeOrderInfo.selectUserAccount = _param.selectAccount;
+                $that.payFeeOrderInfo.accountAmount = _param.totalUserAmount;
+                $that._doComputeAccountRedepositDeduction();
+            });
+            // 账户预缴弹窗
+            vc.on('payFeeOrder', 'openAddModalWithParams', function (_param) {
+                _param.redepositAmount = vc.component.payFeeOrderInfo.redepositAmount;
+                _param.receivedAmount = vc.component.payFeeOrderInfo.receivedAmount;
+                vc.emit('prestoreAccount2', 'openAddModalWithParams', _param)
             });
             vc.on('payFeeOrder', 'initData', function (_param) {
                 // 重新赋值下拉列表
@@ -115,10 +128,21 @@
                 }
                 // 更新金额（按照映射规则）
                 $that.payFeeOrderInfo.feePrice = parseFloat(vc.component.payFeeOrderInfo.feePrice).toFixed(2);
-                $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice = vc.component.payFeeOrderInfo.feeAfterDiscount = $that._getFixedNum(vc.component.payFeeOrderInfo.feePrice);
+                $that.payFeeOrderInfo.receivedAmount = $that.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(vc.component.payFeeOrderInfo.feePrice);
             })
         },
         methods: {
+            _useUserAccountChange: function(e){
+                if(e.target.checked){
+                    // 查询用户账户
+                    vc.emit('payFeeUserAccount', 'computeFeeUserAmount', {
+                        feeId: $that.payFeeOrderInfo.feeId,
+                    });
+                }else{
+                    // 隐藏用户账户
+                    vc.emit('payFeeUserAccount', 'clear', {});
+                }
+            },
             payFeeValidate: function () {
                 return vc.validate.validate({
                     payFeeOrderInfo: vc.component.payFeeOrderInfo
@@ -235,7 +259,8 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
-                    });
+                    }
+                );
             },
 
             /**
@@ -245,14 +270,13 @@
             _changeMonth: function (_cycles) {
                 if ('-102' == _cycles) {
                     vc.component.payFeeOrderInfo.totalFeePrice = 0.00;
-                    vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.feeAfterDiscount = 0.00;
+                    vc.component.payFeeOrderInfo.receivedAmount = 0.00;
                     if (vc.component.payFeeOrderInfo.cycles) {
                         $that.getComputedAmount(vc.component.payFeeOrderInfo.cycles);
                     }
                     return;
                 } else if ('-101' == _cycles) {
                     $that.payFeeOrderInfo.cycles = "101";
-                    $that.payFeeOrderInfo.feeAfterDiscount = $that.payFeeOrderInfo.receivedAmount;
                     return;
                 }
                 let _newCycles = _cycles;
@@ -395,7 +419,7 @@
                     function (json, res) {
                         let listRoomData = JSON.parse(json);
                         vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(listRoomData.data.feeTotalPrice);
-                        vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.feeAfterDiscount = vc.component.payFeeOrderInfo.totalFeePrice;
+                        vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
                         vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                             feeId: $that.payFeeOrderInfo.feeId,
                             cycles: _cycles,
@@ -409,32 +433,32 @@
                 );
             },
             //查询业主账号
-            _listAccount: function () {
-                let param = {
-                    params: {
-                        page: 1,
-                        row: 1,
-                        feeId: vc.component.payFeeOrderInfo.feeId,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
-                //发送get请求
-                vc.http.apiGet('/account/queryOwnerAccount',
-                    param,
-                    function (json, res) {
-                        let listAccountData = JSON.parse(json);
-                        if (listAccountData.data.length < 1) {
-                            return;
-                        }
-                        //账户余额
-                        $that.payFeeOrderInfo.accountAmount = listAccountData.data[0].amount;
-                        $that.payFeeOrderInfo.viewAccountAmount = listAccountData.data[0].amount;
-                        $that.payFeeOrderInfo.acctId = listAccountData.data[0].acctId;
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
+            // _listAccount: function () {
+            //     let param = {
+            //         params: {
+            //             page: 1,
+            //             row: 1,
+            //             feeId: vc.component.payFeeOrderInfo.feeId,
+            //             communityId: vc.getCurrentCommunity().communityId
+            //         }
+            //     };
+            //     //发送get请求
+            //     vc.http.apiGet('/account/queryOwnerAccount',
+            //         param,
+            //         function (json, res) {
+            //             let listAccountData = JSON.parse(json);
+            //             if (listAccountData.data.length < 1) {
+            //                 return;
+            //             }
+            //             //账户余额
+            //             $that.payFeeOrderInfo.accountAmount = listAccountData.data[0].amount;
+            //             $that.payFeeOrderInfo.viewAccountAmount = listAccountData.data[0].amount;
+            //             $that.payFeeOrderInfo.acctId = listAccountData.data[0].acctId;
+            //         }, function (errInfo, error) {
+            //             console.log('请求失败处理');
+            //         }
+            //     );
+            // },
 
 
 
@@ -488,7 +512,7 @@
                 if (parseFloat(deductionAmount) > 0 && parseFloat(accountAmount) >= parseFloat(deductionAmount)) {
                     $that.payFeeOrderInfo.deductionAmount = deductionAmount.toFixed(2);
                     let viewAccountAmount = $that.payFeeOrderInfo.viewAccountAmount;
-                    $that.payFeeOrderInfo.viewAccountAmount = parseFloat($that.payFeeOrderInfo.viewAccountAmount) - parseFloat($that.payFeeOrderInfo.redepositAmount);
+                    $that.payFeeOrderInfo.viewAccountAmount = parseFloat($that.payFeeOrderInfo.viewAccountAmount) - parseFloat($that.payFeeOrderInfo.deductionAmount);
                     if (parseFloat($that.payFeeOrderInfo.viewAccountAmount) < 0) { //账户小于0
                         $that.payFeeOrderInfo.viewAccountAmount = 0;
                         $that.payFeeOrderInfo.deductionAmount = viewAccountAmount;

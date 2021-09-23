@@ -122,6 +122,18 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <label class="col-sm-3 col-form-label" style="line-height: 50px;padding-right:0px;">应缴金额：</label>
+                                <label class="col-sm-8 col-form-label" style="font-size: 30px;color: red;padding-left:0px;">
+                                    ￥{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? '0.00' : (payFeeOrderInfo.receivedAmount - payFeeOrderInfo.accountAmount).toFixed(2)}}
+                                </label>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">业主账户：</label>
+                                <label class="col-sm-8 col-form-label">
+                                    <input type="checkbox" @change="_useUserAccountChange">
+                                </label>
+                            </div>
+                            <!-- <div class="row">
                                 <label class="col-sm-3 col-form-label">账户金额：</label>
                                 <label class="col-sm-8 col-form-label">
                                     {{payFeeOrderInfo.viewAccountAmount}}元
@@ -134,7 +146,7 @@
                             <div class="row" v-if="payFeeOrderInfo.redepositAmount> 0">
                                 <label class="col-sm-3 col-form-label">转存金额：</label>
                                 <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.redepositAmount}}元</label>
-                            </div>
+                            </div> -->
 
                             <div class="form-group row">
                             </div>
@@ -200,29 +212,29 @@
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalFeePrice}}</label>
                     </div>
                     <div class="row">
+                        <label class="col-sm-3 col-form-label">优惠金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalDiscountMoney.toFixed(2)}}</label>
+                    </div>
+                    <div class="row">
                         <label class="col-sm-3 col-form-label">实收金额：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.receivedAmount}}</label>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label">优惠金额：</label>
-                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalDiscountMoney}}</label>
+                        <label class="col-sm-3 col-form-label">抵扣金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? payFeeOrderInfo.receivedAmount : payFeeOrderInfo.accountAmount.toFixed(2)}}</label>
                     </div>
-                    <div class="row" v-if="payFeeOrderInfo.deductionAmount> 0">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label">应缴金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? '0.00' : (payFeeOrderInfo.receivedAmount - payFeeOrderInfo.accountAmount).toFixed(2)}}</label>
+                    </div>
+                    <!-- <div class="row" v-if="payFeeOrderInfo.deductionAmount> 0">
                         <label class="col-sm-3 col-form-label">抵扣金额：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.deductionAmount}}元</label>
                     </div>
                     <div class="row" v-if="payFeeOrderInfo.redepositAmount> 0">
                         <label class="col-sm-3 col-form-label">转存金额：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.redepositAmount}}元</label>
-                    </div>
-                    <div class="row" v-show="payFeeOrderInfo.useUserAmount">
-                        <label class="col-sm-3 col-form-label">支付方式：</label>
-                        <label class="col-sm-8 col-form-label">
-                            {{payFeeOrderInfo.acctType == '2003' ? '现金账户' : (payFeeOrderInfo.acctType == '2004' ? '积分账户'
-                            : (payFeeOrderInfo.acctType == '2005' ? '优惠券账户' : '-'))}}({{payFeeOrderInfo.receivedAmount -
-                            payFeeOrderInfo.feeAfterDiscount}})
-                        </label>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <label class="col-sm-3 col-form-label">备注：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.remark}}</label>
@@ -235,5 +247,7 @@
             </div>
         </div>
     </div>
+    <vc:create path="property/payFeeUserAccount"></vc:create>
     <vc:create path="property/payFeeDiscount"></vc:create>
+    <vc:create path="property/prestoreAccount2"></vc:create>
 </div>

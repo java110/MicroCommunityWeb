@@ -15,6 +15,12 @@
             vc.on('prestoreAccount', 'openAddModal', function () {
                 $('#prestoreAccountModel').modal('show');
             });
+
+            vc.on('prestoreAccount', 'openAddModalWithParams', function (_param) {
+                console.log('params here ', _param);
+                vc.component.prestoreAccountInfo.amount = _param.redepositAmount;
+                $('#prestoreAccountModel').modal('show');
+            });
         },
         methods: {
             prestoreAccountValidate() {

@@ -2053,7 +2053,14 @@ a:hover {
    -webkit-backface-visibility: hidden; 
    -webkit-overflow-scrolling: touch;
 }
-
+.checkbox-area{
+  height: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  padding: .375rem 1.75rem .375rem .75rem;
+}
 .font-red{
   color: red;
 }

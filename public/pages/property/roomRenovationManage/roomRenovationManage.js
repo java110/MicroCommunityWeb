@@ -19,7 +19,8 @@
                     personName: '',
                     personTel: '',
                     state: '',
-                    communityId: vc.getCurrentCommunity().communityId
+                    communityId: vc.getCurrentCommunity().communityId,
+                    isPostpone: ''
                 }
             }
         },
@@ -73,6 +74,7 @@
                 vc.component.roomRenovationManageInfo.conditions.personName = '';
                 vc.component.roomRenovationManageInfo.conditions.personTel = '';
                 vc.component.roomRenovationManageInfo.conditions.state = '';
+                vc.component.roomRenovationManageInfo.conditions.isPostpone = '';
                 $that._listRoomRenovations(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openAddRoomRenovationModal: function () {

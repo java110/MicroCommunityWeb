@@ -13,7 +13,7 @@
                 moreCondition: false,
                 scId: '',
                 conditions: {
-                    name: '',
+                    ownerName: '',
                     idCard: '',
                     link: '',
                     communityId: vc.getCurrentCommunity().communityId

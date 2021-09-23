@@ -43,6 +43,44 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">是否延期</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editRoomRenovationInfo.isPostpone">
+                                        <option selected disabled value="">必填，请选择是否延期</option>
+                                        <option value="Y">是</option>
+                                        <option value="N">否</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="editRoomRenovationInfo.isPostpone == 'Y'">
+                                <label class="col-sm-2 col-form-label">延期时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editRoomRenovationInfo.postponeTime" type="text"
+                                           placeholder="选填，请填写延期时间" class="form-control addPostponeTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">装修单位</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editRoomRenovationInfo.renovationCompany" type="text"
+                                           placeholder="必填，请填写装修单位" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">装修负责人</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editRoomRenovationInfo.personMain" type="text"
+                                           placeholder="必填，请填写装修负责人" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">装修负责人电话</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editRoomRenovationInfo.personMainTel" type="text"
+                                           placeholder="必填，请填写装修负责人电话" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">状态</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomRenovationInfo.state">
