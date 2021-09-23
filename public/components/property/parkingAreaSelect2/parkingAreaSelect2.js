@@ -73,7 +73,7 @@
                             return {
                                 num: _term,
                                 page: 1,
-                                row: 10,
+                                row: 50,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },
