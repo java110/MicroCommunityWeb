@@ -6,7 +6,9 @@
                 excelTemplate: '',
                 configId: '',
                 feeConfigs: [],
-                feeTypeCd: ''
+                feeTypeCd: '',
+                meterTypes: [],
+                meterType: ''
             }
         },
         _initMethod: function () {
@@ -17,14 +19,15 @@
         _initEvent: function () {
             vc.on('importMeterWaterFee', 'openImportMeterWaterFeeModal',
                 function (_room) {
+                    $that._listImportMeterTypes();
                     $('#importMeterWaterFeeModel').modal('show');
                 });
         },
         methods: {
             importMeterWaterFeeValidate() {
                 return vc.validate.validate({
-                        importMeterWaterFeeInfo: vc.component.importMeterWaterFeeInfo
-                    },
+                    importMeterWaterFeeInfo: vc.component.importMeterWaterFeeInfo
+                },
                     {
                         'importMeterWaterFeeInfo.communityId': [{
                             limit: "required",
@@ -66,6 +69,7 @@
                 param.append('communityId', vc.component.importMeterWaterFeeInfo.communityId);
                 param.append('feeTypeCd', vc.component.importMeterWaterFeeInfo.feeTypeCd);
                 param.append('configId', vc.component.importMeterWaterFeeInfo.configId);
+                param.append('meterType', vc.component.importMeterWaterFeeInfo.meterType);
                 vc.http.upload(
                     'importMeterWaterFee',
                     'importData',
@@ -94,18 +98,32 @@
                     });
             },
             _exportMeterWaterFeeTemplate: function () {
-                let _meterType = '1010';
-                let _feeTypeCd = $that.importMeterWaterFeeInfo.feeTypeCd;
-                if (!vc.notNull(_feeTypeCd)) {
-                    vc.toast('请选择费用类型');
+                let _meterType = $that.importMeterWaterFeeInfo.meterType;
+                if (!vc.notNull(_meterType)) {
+                    vc.toast('请选择抄表类型');
                     return;
                 }
-                if (_feeTypeCd == '888800010015') {
-                    _meterType = '2020';
-                } else if (_feeTypeCd == '888800010009') {
-                    _meterType = '3030';
-                }
                 vc.jumpToPage('/callComponent/importMeterWaterFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + '&meterType=' + _meterType);
+            },
+            _listImportMeterTypes: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('meterType.listMeterType',
+                    param,
+                    function (json, res) {
+                        var _meterTypeManageInfo = JSON.parse(json);
+                        $that.addMeterWaterInfo.meterTypes = _meterTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             clearAddFeeConfigInfo: function () {
                 vc.component.importMeterWaterFeeInfo = {
@@ -113,7 +131,9 @@
                     excelTemplate: '',
                     configId: '',
                     feeConfigs: [],
-                    feeTypeCd: ''
+                    feeTypeCd: '',
+                    meterTypes: [],
+                    meterType: ''
                 };
             },
             getExcelTemplate: function (e) {

@@ -6,7 +6,9 @@
                 excelTemplate: '',
                 configId: '',
                 feeConfigs: [],
-                feeTypeCd: ''
+                feeTypeCd: '',
+                meterTypes: [],
+                meterType: ''
             }
         },
         _initMethod: function () {
@@ -17,14 +19,15 @@
         _initEvent: function () {
             vc.on('importMeterWaterFee2', 'openImportMeterWaterFeeModal',
                 function (_room) {
+                    $that._listImport2MeterTypes();
                     $('#importMeterWaterFee2Model').modal('show');
                 });
         },
         methods: {
             importMeterWaterFee2Validate() {
                 return vc.validate.validate({
-                        importMeterWaterFee2Info: vc.component.importMeterWaterFee2Info
-                    },
+                    importMeterWaterFee2Info: vc.component.importMeterWaterFee2Info
+                },
                     {
                         'importMeterWaterFee2Info.communityId': [{
                             limit: "required",
@@ -66,6 +69,7 @@
                 param.append('communityId', vc.component.importMeterWaterFee2Info.communityId);
                 param.append('feeTypeCd', vc.component.importMeterWaterFee2Info.feeTypeCd);
                 param.append('configId', vc.component.importMeterWaterFee2Info.configId);
+                param.append('meterType', vc.component.importMeterWaterFee2Info.meterType);
                 vc.http.upload(
                     'importMeterWaterFee',
                     'importData2',
@@ -94,21 +98,39 @@
                     });
             },
             _exportMeterWaterFeeTemplate2: function () {
-                let _meterType = '1010';
-                let _feeName = "电费";
-                let _feeTypeCd = $that.importMeterWaterFee2Info.feeTypeCd;
-                if (!vc.notNull(_feeTypeCd)) {
-                    vc.toast('请选择费用类型');
+                let _feeName = "";
+                let _meterType = $that.importMeterWaterFeeInfo.meterType;
+                if (!vc.notNull(_meterType)) {
+                    vc.toast('请选择抄表类型');
                     return;
                 }
-                if (_feeTypeCd == '888800010015') {
-                    _meterType = '2020';
-                    _feeName = "水费";
-                } else if (_feeTypeCd == '888800010009') {
-                    _meterType = '3030';
-                    _feeName = "煤气费";
-                }
+                let _meterTypes = $that.importMeterWaterFeeInfo.meterTypes;
+                _meterTypes.forEach(item => {
+                    if (_meterType == item.typeId) {
+                        _feeName = item.typeName
+                    }
+                });
                 vc.jumpToPage('/callComponent/importMeterWaterFee/exportData2?communityId=' + vc.getCurrentCommunity().communityId + '&meterType=' + _meterType + "&feeName=" + _feeName);
+            },
+            _listImport2MeterTypes: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('meterType.listMeterType',
+                    param,
+                    function (json, res) {
+                        var _meterTypeManageInfo = JSON.parse(json);
+                        $that.addMeterWaterInfo.meterTypes = _meterTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             clearAddFeeConfigInfo2: function () {
                 vc.component.importMeterWaterFee2Info = {
@@ -116,7 +138,9 @@
                     excelTemplate: '',
                     configId: '',
                     feeConfigs: [],
-                    feeTypeCd: ''
+                    feeTypeCd: '',
+                    meterTypes: [],
+                    meterType: ''
                 };
             },
             getExcelTemplate2: function (e) {

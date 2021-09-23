@@ -22,7 +22,8 @@
                 objType: '1001',
                 hasRoom: false,
                 ownerName: '',
-                objType: '3333'
+                objType: '3333',
+                meterTypes: []
             }
         },
         _initMethod: function () {
@@ -46,6 +47,7 @@
                 $that.addMeterWaterInfo.preReadingTime = vcFramework.dateTimeFormat(new Date().getTime());
                 $that.addMeterWaterInfo.preDegrees = 0;
                 $('#addMeterWaterModel').modal('show');
+                $that._listAddMeterTypes();
             });
             vc.on("addMeterWater", "notify", function (_param) {
                 if (_param.hasOwnProperty("roomId") && _param.roomId != "") {
@@ -175,6 +177,13 @@
                             errInfo: "房屋必填"
                         }
                     ],
+                    'addMeterWaterInfo.meterType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "抄表类型必填"
+                        }
+                    ],
                     'addMeterWaterInfo.configId': [
                         {
                             limit: "required",
@@ -251,25 +260,21 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                     });
+            },
+            _changeAddMeterType:function(){
                 $that._queryPreMeterWater($that.addMeterWaterInfo.roomId);
             },
             _queryPreMeterWater: function (_roomId) {
-                if(!_roomId){
+                if (!_roomId) {
                     return;
                 }
-                let _meterType = '1010';
-                let _feeTypeCd = $that.addMeterWaterInfo.feeTypeCd;
-                if (_feeTypeCd == '888800010015') {
-                    _meterType = '2020';
-                } else if (_feeTypeCd == '888800010009') {
-                    _meterType = '3030';
-                }
+              
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         objId: _roomId,
                         objType: $that.addMeterWaterInfo.objType,
-                        meterType: _meterType
+                        meterType: $that.addMeterWaterInfo.meterType
                     }
                 };
                 //发送get请求
@@ -299,6 +304,26 @@
                     vc.component.addMeterWaterInfo.curDegrees = "";
                 }
             },
+            _listAddMeterTypes: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('meterType.listMeterType',
+                    param,
+                    function (json, res) {
+                        var _meterTypeManageInfo = JSON.parse(json);
+                        $that.addMeterWaterInfo.meterTypes = _meterTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             clearAddMeterWaterInfo: function () {
                 vc.component.addMeterWaterInfo = {
                     waterId: '',
@@ -317,7 +342,8 @@
                     objType: '1001',
                     hasRoom: false,
                     ownerName: '',
-                    objType: '3333'
+                    objType: '3333',
+                    meterTypes: []
                 };
             }
         }
