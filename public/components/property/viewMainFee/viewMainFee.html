@@ -74,10 +74,18 @@
                             <label class="">{{_getDeadlineTime(mainFeeInfo)}}</label>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group" v-if="mainFeeInfo.amount != '-1.00'">
                             <label class="col-form-label">费用金额：</label>
                             <label class="">{{mainFeeInfo.amount}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >批次：</label>
+                            <label class="">{{mainFeeInfo.batchId}}</label>
                         </div>
                     </div>
                 </div>
@@ -129,12 +137,6 @@
                         <div class="form-group">
                             <label class="col-form-label" >固定费：</label>
                             <label class="">{{mainFeeInfo.additionalAmount}}</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" >批次：</label>
-                            <label class="">{{mainFeeInfo.batchId}}</label>
                         </div>
                     </div>
                 </div>

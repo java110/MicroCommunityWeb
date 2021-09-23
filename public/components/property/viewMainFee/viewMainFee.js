@@ -35,7 +35,8 @@
                 payerObjId: '',
                 payerObjName: '',
                 feeAttrs: [],
-                carTypeCd: ''
+                carTypeCd: '',
+                batchId:''
             }
         },
         _initMethod: function () {
