@@ -289,7 +289,7 @@
                         console.log('请求失败处理');
                     });
             },
-            getChange: function () {
+            _getChange: function () {
                 //上期度数
                 var preDegrees = parseFloat(vc.component.addMeterWaterInfo.preDegrees);
                 //本期度数

@@ -10,9 +10,24 @@
                 endTime: '',
                 remark: '',
                 state: '',
-                isViolation: 'N',
+                isViolation: '',
                 violationDesc: '',
-                roomId: ''
+                roomId: '',
+                isPostpone: 'N',
+                postponeTime: '',
+                renovationCompany: '',
+                personMain: '',
+                personMainTel: '',
+            }
+        },
+        watch: {
+            editRoomRenovationInfo: {
+                handler(val, oldVal){
+                    if(val.isPostpone == 'N'){
+                        vc.component.editRoomRenovationInfo.postponeTime = '';
+                    }
+                },
+                deep:true
             }
         },
         _initMethod: function () {
@@ -79,6 +94,28 @@
                             vc.component.editRoomRenovationInfo.endTime = value;
                         }
                     });
+                $('.addPostponeTime').datetimepicker({
+                    minView: "month",
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.addPostponeTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addPostponeTime").val();
+                        var start = Date.parse(new Date(vc.component.editRoomRenovationInfo.endTime))
+                        var end = Date.parse(new Date(value))
+                        if (start - end >= 0) {
+                            vc.toast("延期时间必须大于结束时间")
+                            $(".addPostponeTime").val('')
+                        } else {
+                            vc.component.editRoomRenovationInfo.postponeTime = value;
+                        }
+                    });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByClassName('form-control editStartTime')[0].addEventListener('click', myfunc)
 
@@ -87,6 +124,12 @@
                 }
 
                 document.getElementsByClassName("form-control editEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control addPostponeTime")[0].addEventListener('click', myfunc)
 
                 function myfunc(e) {
                     e.currentTarget.blur();
@@ -127,7 +170,7 @@
                             errInfo: "联系电话不能为空"
                         },
                         {
-                            limit: "num",
+                            limit: "phone",
                             param: "",
                             errInfo: "联系电话错误"
                         },
@@ -154,6 +197,49 @@
                             limit: "date",
                             param: "",
                             errInfo: "结束时间错误"
+                        },
+                    ],
+                    'editRoomRenovationInfo.isPostpone': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "是否延期不能为空"
+                        }
+                    ],
+                    'editRoomRenovationInfo.renovationCompany': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "装修单位不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "装修单位格式错误"
+                        },
+                    ],
+                    'editRoomRenovationInfo.personMain': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "装修负责人不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "装修负责人格式错误"
+                        },
+                    ],
+                    'editRoomRenovationInfo.personMainTel': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "装修负责人电话不能为空"
+                        },
+                        {
+                            limit: "phone",
+                            param: "",
+                            errInfo: "装修负责人电话错误"
                         },
                     ],
                     'editRoomRenovationInfo.remark': [
@@ -212,9 +298,14 @@
                     endTime: '',
                     remark: '',
                     state: '',
-                    isViolation: 'N',
+                    isViolation: '',
                     violationDesc: '',
-                    roomId: ''
+                    roomId: '',
+                    isPostpone: 'N',
+                    postponeTime: '',
+                    renovationCompany: '',
+                    personMain: '',
+                    personMainTel: '',
                 }
             }
         }

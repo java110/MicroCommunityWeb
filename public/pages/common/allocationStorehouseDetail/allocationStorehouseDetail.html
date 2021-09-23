@@ -82,7 +82,7 @@
                             <td class="text-center">{{allocationStorehouseDetailInfo.applyType == '10000' ? resourceStore.shaName : allocationStorehouseDetailInfo.startUserName}}</td>
                             <td class="text-center">{{resourceStore.shzName}}</td>
                             <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
-                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.applyType==20000 ? resourceStore.miniUnitCodeName : resourceStore.unitCodeName}}</td>
                         </tr>
                         </tbody>
                         <tfoot>

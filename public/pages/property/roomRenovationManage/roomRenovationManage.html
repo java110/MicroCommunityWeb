@@ -50,6 +50,13 @@
                                 </option>
                             </select>
                         </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="roomRenovationManageInfo.conditions.isPostpone">
+                                <option selected value="">请选择是否延期</option>
+                                <option value="Y">是</option>
+                                <option value="N">否</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,14 +77,18 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">装修ID</th>
+<!--                            <th class="text-center">装修ID</th>-->
                             <th class="text-center">房屋</th>
                             <th class="text-center">联系人</th>
                             <th class="text-center">联系电话</th>
                             <th class="text-center">装修时间</th>
-                            <th class="text-center">结束时间</th>
-                            <th class="text-center">创建时间</th>
+                            <th class="text-center">申请时间</th>
+                            <th class="text-center">装修单位</th>
+                            <th class="text-center">装修负责人</th>
+                            <th class="text-center">负责人电话</th>
                             <th class="text-center">状态</th>
+                            <th class="text-center">是否延期</th>
+                            <th class="text-center">延期时间</th>
                             <th class="text-center">是否违规</th>
                             <th class="text-center">违规说明</th>
                             <th class="text-center">备注</th>
@@ -86,14 +97,18 @@
                         </thead>
                         <tbody>
                         <tr v-for="roomRenovation in roomRenovationManageInfo.roomRenovations">
-                            <td class="text-center">{{roomRenovation.rId}}</td>
+<!--                            <td class="text-center">{{roomRenovation.rId}}</td>-->
                             <td class="text-center">{{roomRenovation.roomName}}</td>
                             <td class="text-center">{{roomRenovation.personName}}</td>
                             <td class="text-center">{{roomRenovation.personTel}}</td>
-                            <td class="text-center">{{roomRenovation.startTime}}</td>
-                            <td class="text-center">{{roomRenovation.endTime}}</td>
+                            <td class="text-center">{{roomRenovation.startTime}}<br/>{{roomRenovation.endTime}}</td>
                             <td class="text-center">{{roomRenovation.createTime}}</td>
+                            <td class="text-center">{{roomRenovation.renovationCompany}}</td>
+                            <td class="text-center">{{roomRenovation.personMain}}</td>
+                            <td class="text-center">{{roomRenovation.personMainTel}}</td>
                             <td class="text-center">{{roomRenovation.stateName}}</td>
+                            <td class="text-center">{{roomRenovation.isPostpone == 'Y'?'是':'否'}}</td>
+                            <td class="text-center">{{roomRenovation.postponeTime}}</td>
                             <td class="text-center">{{roomRenovation.isViolation == 'Y'?'是':'否'}}</td>
                             <td class="text-center">{{roomRenovation.violationDesc}}</td>
                             <td class="text-center">{{roomRenovation.remark}}</td>
@@ -147,7 +162,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="12">
+                            <td colspan="15">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

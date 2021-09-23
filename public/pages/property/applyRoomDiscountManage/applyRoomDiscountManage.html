@@ -62,7 +62,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">申请ID</th>
+<!--                            <th class="text-center">申请ID</th>-->
                             <th class="text-center">房屋(楼栋-单元-房屋)</th>
                             <th class="text-center">折扣ID</th>
                             <th class="text-center">折扣名称</th>
@@ -74,12 +74,14 @@
                             <th class="text-center">状态</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">使用状态</th>
+                            <th class="text-center">返还类型</th>
+                            <th class="text-center">返还金额</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="applyRoomDiscount in applyRoomDiscountManageInfo.applyRoomDiscounts">
-                            <td class="text-center">{{applyRoomDiscount.ardId}}</td>
+<!--                            <td class="text-center">{{applyRoomDiscount.ardId}}</td>-->
                             <td class="text-center">{{applyRoomDiscount.roomName}}</td>
                             <td class="text-center">{{applyRoomDiscount.discountId}}</td>
                             <td class="text-center">{{applyRoomDiscount.discountName}}</td>
@@ -91,6 +93,9 @@
                             <td class="text-center">{{applyRoomDiscount.stateName}}</td>
                             <td class="text-center">{{applyRoomDiscount.createTime}}</td>
                             <td class="text-center">{{applyRoomDiscount.inUse == '0' ? '未使用' : '已使用'}}</td>
+                            <td class="text-center" v-if="applyRoomDiscount.discountId">{{applyRoomDiscount.returnWay == '1002'  ? '账户余额' : '折扣'}}</td>
+                            <td class="text-center" v-if="!applyRoomDiscount.discountId">-</td>
+                            <td class="text-center">{{applyRoomDiscount.returnAmount ? applyRoomDiscount.returnAmount : '-'}}</td>
                             <td class="text-center">
                                 <div class="btn-group"
                                      v-if="applyRoomDiscount.state == '1' && vc.hasPrivilege('502021010723590006')">

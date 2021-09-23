@@ -160,7 +160,7 @@
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
                             <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
-                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.applyType==20000 ? resourceStore.miniUnitCodeName : resourceStore.unitCodeName}}</td>
                             <td class="text-center" v-if="resourceStore.applyType == '20000'">{{resourceStore.startUserName}}</td>
                             <td class="text-center" v-else>{{resourceStore.shaName}}</td>
                             <td class="text-center">{{resourceStore.shzName}}</td>
