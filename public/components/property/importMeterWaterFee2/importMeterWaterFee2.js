@@ -99,12 +99,12 @@
             },
             _exportMeterWaterFeeTemplate2: function () {
                 let _feeName = "";
-                let _meterType = $that.importMeterWaterFeeInfo.meterType;
+                let _meterType = $that.importMeterWaterFee2Info.meterType;
                 if (!vc.notNull(_meterType)) {
                     vc.toast('请选择抄表类型');
                     return;
                 }
-                let _meterTypes = $that.importMeterWaterFeeInfo.meterTypes;
+                let _meterTypes = $that.importMeterWaterFee2Info.meterTypes;
                 _meterTypes.forEach(item => {
                     if (_meterType == item.typeId) {
                         _feeName = item.typeName
@@ -126,7 +126,7 @@
                     param,
                     function (json, res) {
                         var _meterTypeManageInfo = JSON.parse(json);
-                        $that.addMeterWaterInfo.meterTypes = _meterTypeManageInfo.data;
+                        $that.importMeterWaterFee2Info.meterTypes = _meterTypeManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

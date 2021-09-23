@@ -119,7 +119,7 @@
                     param,
                     function (json, res) {
                         var _meterTypeManageInfo = JSON.parse(json);
-                        $that.addMeterWaterInfo.meterTypes = _meterTypeManageInfo.data;
+                        $that.importMeterWaterFeeInfo.meterTypes = _meterTypeManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
