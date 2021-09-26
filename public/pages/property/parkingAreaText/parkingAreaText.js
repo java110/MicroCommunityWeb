@@ -77,16 +77,48 @@
                     function (json, res) {
                         var _parkingAreaTexts = JSON.parse(json);
                         _parkingAreaTexts = _parkingAreaTexts.data;
-                        if(_parkingAreaTexts.lenth < 1){
-                            return ;
+                        if (_parkingAreaTexts.lenth < 1) {
+                            return;
                         }
-
+                        _parkingAreaTexts.forEach(text => {
+                            $that.parkingAreaTextInfo.texts.forEach(item => {
+                                if (text.typeCd == item.typeCd) {
+                                    vc.copyObject(text, item);
+                                }
+                            })
+                        })
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            _saveParkingAreaText: function () {
+            _saveParkingAreaText: function (_item) {
+
+                if (!_item.voice) {
+                    vc.toast('语音不能为空');
+                    return;
+                }
+                _item.communityId = vc.getCurrentCommunity().communityId;
+                _item.paId = $that.parkingAreaTextInfo.paId;
+                vc.http.apiPost(
+                    '/parkingAreaText.saveParkingAreaText',
+                    JSON.stringify(_item),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        console.log(_json)
+                        vc.toast(_json.msg);
+
+
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+
+                        vc.toast(errInfo);
+
+                    });
 
             }
         }
