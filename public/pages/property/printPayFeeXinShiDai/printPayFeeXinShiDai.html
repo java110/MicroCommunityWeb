@@ -12,11 +12,11 @@
             </div>
             <table class="table vc-table-border" style="color:#000;font-size:20px ;border:0">
                 <thead>
-                    <tr>
-                        <th scope="col" class="text-center">收费项目</th>
-                        <th scope="col" class="text-left">摘要</th>
-                        <th scope="col" class="text-left">滞纳金</th>
-                        <th scope="col" class="text-left">金额</th>
+                    <tr  style="border: 0px;">
+                        <th scope="col" class="text-center"  style="border: 0px;">收费项目</th>
+                        <th scope="col" class="text-center"  style="border: 0px;">摘要</th>
+                        <th scope="col" class="text-center"  style="border: 0px;">滞纳金</th>
+                        <th scope="col" class="text-center"  style="border: 0px;">金额</th>
                     </tr>
                 </thead>
                 <tbody class="vc-table-border" style="color:#000;font-size:20px;border: 0px;">
@@ -37,23 +37,27 @@
                         <td class="text-left" style="border: 0px;">{{item.amount}}</td>
                     </tr>
                     <tr style="border: 0px;">
-                        <td colspan="3" class="text-center" style="border: 0px;">
-                            ( ){{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td  class="text-center" style="border: 0px;">
+                            (大写){{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
-                        <td class="text-left" style="border: 0px;">: </td>
-                        <td colspan="3" class="text-left" style="border: 0px;">{{printPayFeeInfo.amount}}</td>
+                        <td class="text-center" style="border: 0px;">: </td>
+                        <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.amount}}</td>
                     </tr>
                     <tr style="border: 0px;">
-                        <td colspan="4" class="text-left" style="border: 0px;"></td>
-                        <td colspan="3" class="text-left" style="border: 0px;">{{printPayFeeInfo.feeTime}}</td>
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.feeTime}}</td>
                     </tr>
                     <tr style="border: 0px;">
-                        <td colspan="4" class="text-left" style="border: 0px;">单号</td>
-                        <td colspan="3" class="text-left" style="border: 0px;">{{printPayFeeInfo.receiptNum}}</td>
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;">单号</td>
+                        <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.receiptNum}}</td>
                     </tr>
                     <tr style="border: 0px;">
-                        <td colspan="4" class="text-left" style="border: 0px;"></td>
-                        <td colspan="3" class="text-left" style="border: 0px;">{{printPayFeeInfo.userName}}</td>
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.userName}}</td>
                     </tr>
                 </tbody>
             </table>
