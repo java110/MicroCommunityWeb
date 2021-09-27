@@ -86,6 +86,7 @@
             },
             _computedAmount: function(){
                 let amount = vc.component.prestoreAccount2Info.receivedAmount - vc.component.prestoreAccount2Info.totalAmount;
+                amount = amount.toFixed(2);
                 vc.component.prestoreAccount2Info.amount = amount < 0 ? 0 : amount;
             },
             clearPrestoreAccount2Info: function () {
