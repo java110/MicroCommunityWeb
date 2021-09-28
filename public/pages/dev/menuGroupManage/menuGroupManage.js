@@ -100,9 +100,9 @@
                     return "商家";
                 } else if (_storeTypeCd == '800900000000') {
                     return "开发团队";
-                }else if (_storeTypeCd == '800900000006') {
+                } else if (_storeTypeCd == '800900000006') {
                     return "跑腿";
-                }  else {
+                } else {
                     return "未知";
                 }
             }
