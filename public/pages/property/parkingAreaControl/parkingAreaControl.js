@@ -126,7 +126,7 @@
                 vc.jumpToPage('/admin.html#/pages/property/parkingAreaText?paId='+_parkingArea.paId)
             },
             _openParkingAreaControl:function(_parkingArea){
-                vc.jumpToPage('/admin.html#/pages/property/parkingAreaControl?paId='+_parkingArea.paId)
+
             }
         }
     });
