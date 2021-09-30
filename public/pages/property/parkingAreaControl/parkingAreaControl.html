@@ -1,7 +1,70 @@
-<div>
+<div class="white-bg padding" style="margin-top:-20px">
     <div class="row">
-        <div class="col-md-9"></div>
-        <div class="col-md-3"></div>
-    </div>
+        <div class="col-md-9">
+            <vc:create path="property/parkingAreaControlVideo"></vc:create>
+            <div class="margin-top">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'}"
+                            v-on:click="changeTab('parkingAreaControlCarInout')">出入场信息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlInCar'}"
+                            v-on:click="changeTab('parkingAreaControlInCar')">在场车辆</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInouts'}"
+                            v-on:click="changeTab('parkingAreaControlCarInouts')">出入场明细</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'simplifyCarFee'}"
+                            v-on:click="changeTab('simplifyCarFee')">收费明细</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'simplifyCarFee'}"
+                            v-on:click="changeTab('simplifyCarFee')">月租车</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'simplifyCarFee'}"
+                            v-on:click="changeTab('simplifyCarFee')">临时车</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'simplifyCarFee'}"
+                            v-on:click="changeTab('simplifyCarFee')">白名单</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'simplifyCarFee'}"
+                            v-on:click="changeTab('simplifyCarFee')">黑名单</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'simplifyCarFee'}"
+                            v-on:click="changeTab('simplifyCarFee')">剩余车位</a>
+                    </li>
+                </ul>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'">
+                <vc:create path="property/parkingAreaControlCarInout"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlInCar'">
+                <vc:create path="property/parkingAreaControlInCar"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInouts'">
+                <vc:create path="property/parkingAreaControlCarInouts"></vc:create>
+            </div>
 
-</div>
+
+        </div>
+        <div class="col-md-3">
+            <vc:create path="property/parkingAreaControlFee"></vc:create>
+        </div>
+        <vc:create path="property/parkingAreaControlCustomCarInout"></vc:create>
+    </div>
