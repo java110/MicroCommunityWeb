@@ -1,55 +1,62 @@
-<div id="addCommunitySettingModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div id="addCommunitySettingModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加小区设置</h3>
+                <h3 class="m-t-none m-b ">添加</h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">配置类型</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="addCommunitySettingInfo.settingType">
+                                    <select class="custom-select" v-model="addCommunitySettingInfo.settingType" @change="_changeSettingType()">
                                         <option selected disabled value="">必填，请选择配置类型</option>
-                                        <option value="1001">装修</option>
-                                    </select></div>
+                                        <option :value="item.statusCd"
+                                            v-for="(item,index) in addCommunitySettingInfo.settingTypes">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">配置名称</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addCommunitySettingInfo.settingName" type="text"
-                                           placeholder="必填，请填写配置名称" class="form-control">
+                                    <select class="custom-select" v-model="addCommunitySettingInfo.settingName" @change="_changeSettingName()">
+                                        <option selected disabled value="">必填，请选择配置名称</option>
+                                        <option :value="item.settingName"
+                                            v-for="(item,index) in addCommunitySettingInfo.keys">{{item.settingName}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">配置KEY</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addCommunitySettingInfo.settingKey" type="text"
-                                           placeholder="必填，请填写配置KEY" class="form-control">
+                                    <input v-model="addCommunitySettingInfo.settingKey" type="text" disabled
+                                        placeholder="必填，请填写配置KEY" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">配置取值</label>
                                 <div class="col-sm-10">
                                     <input v-model="addCommunitySettingInfo.settingValue" type="text"
-                                           placeholder="必填，请填写配置取值" class="form-control">
+                                        placeholder="必填，请填写配置取值" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">备注</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addCommunitySettingInfo.remark" type="text" placeholder="选填，请填写备注"
-                                           class="form-control">
+                                    <textarea v-model="addCommunitySettingInfo.remark" placeholder="选填，请填写备注"
+                                        class="form-control"></textarea>
                                 </div>
                             </div>
 
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="saveCommunitySettingInfo()"><i class="fa fa-check"></i>&nbsp;保存
+                                    v-on:click="saveCommunitySettingInfo()"><i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                    data-dismiss="modal">取消
                                 </button>
                             </div>
                         </div>
