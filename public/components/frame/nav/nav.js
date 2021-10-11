@@ -215,11 +215,11 @@
     let url = '';
     if (_protocol.startsWith('https')) {
         url =
-            "wss://" + window.location.host + "/app/message/" +
+            "wss://" + window.location.host + "/ws/message/" +
             _userId;
     } else {
         url =
-            "ws://" + window.location.host + "/app/message/" +
+            "ws://" + window.location.host + "/ws/message/" +
             _userId;
     }
 
