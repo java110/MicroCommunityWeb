@@ -59,6 +59,9 @@
                 //创建一个socket实例
                 let wsUrl = "";
                 let _enterMachineId = $that.parkingAreaControlVideoInfo.inMachineId;
+                vc.emit('parkingAreaControl', 'notify', {
+                    inMachineId: _enterMachineId
+                });
                 $that.parkingAreaControlVideoInfo.inMachines.forEach((item) => {
                     if (item.machineId == _enterMachineId) {
                         wsUrl = item.machineIp;
@@ -109,6 +112,13 @@
                 //创建一个socket实例
                 let wsUrl = "";
                 let _outMachineId = $that.parkingAreaControlVideoInfo.outMachineId;
+                vc.emit('parkingAreaControl', 'notify', {
+                    outMachineId: _outMachineId
+                });
+                vc.emit('parkingAreaControlFee', 'changeMachine', {
+                    machineId: _outMachineId
+                });
+                
                 let paId = "";
                 $that.parkingAreaControlVideoInfo.outMachines.forEach((item) => {
                     if (item.machineId == _outMachineId) {
@@ -206,8 +216,17 @@
                     });
             },
             customCarIn: function (_type) {
+                let _machineId = $that.parkingAreaControlVideoInfo.inMachineId;
+                if (_type != '1101') {
+                    _machineId = $that.parkingAreaControlVideoInfo.outMachineId;
+                }
+                if (!_machineId) {
+                    vc.toast('请选择摄像头');
+                    return;
+                }
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
-                    type: _type
+                    type: _type,
+                    machineId: _machineId
                 })
             }
 

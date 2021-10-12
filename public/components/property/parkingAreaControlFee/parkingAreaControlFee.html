@@ -16,7 +16,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">停车时间</label>
             <div class="col-sm-8">
-                <input v-model="parkingAreaControlFeeInfo.time" disabled="disabled" type="text" placeholder="停车时间"
+                <input v-model="parkingAreaControlFeeInfo.inOutTime" disabled="disabled" type="text" placeholder="停车时间"
                     class="form-control">
             </div>
         </div>
@@ -37,7 +37,8 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">应收</label>
             <div class="col-sm-8">
-                <input v-model="parkingAreaControlFeeInfo.payCharge" type="text" disabled="disabled" placeholder="应收" class="form-control">
+                <input v-model="parkingAreaControlFeeInfo.payCharge" type="text" disabled="disabled" placeholder="应收"
+                    class="form-control">
             </div>
         </div>
         <div class="form-group row">
@@ -53,7 +54,8 @@
             </div>
         </div>
         <div class="form-group text-center">
-            <button class="btn btn-primary" type="button" v-on:click="saveTempFeeInfo()">临时车收费</button>
+            <button class="btn btn-primary" type="button" :disabled="parkingAreaControlFeeInfo.pay==0"
+                v-on:click="saveTempFeeInfo()">临时车收费</button>
         </div>
     </div>
 </div>

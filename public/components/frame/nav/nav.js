@@ -241,7 +241,12 @@
         }
 
         //建立websocket 消息连接
-        let _userId = vc.getData('/nav/getUserInfo').userId;
+        let user = vc.getData('/nav/getUserInfo');
+        if (!user.hasOwnProperty('userId')) {
+            return;
+        }
+
+        let _userId = user.userId;
 
         let _protocol = window.location.protocol;
         let url = '';

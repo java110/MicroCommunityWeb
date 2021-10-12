@@ -7,7 +7,8 @@
                 amount: '',
                 remark: '',
                 type: '1101',
-                payCharge: ''
+                payCharge: '',
+                machineId: ''
             }
         },
         _initMethod: function () {
@@ -50,10 +51,12 @@
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _data = JSON.parse(json);
+                        $('#parkingAreaControlCustomCarInoutModel').modal('hide');
                         if (_data.code != 0) {
                             vc.toast(_data.msg);
                         } else {
                             vc.toast(_data.msg);
+                            vc.emit('parkingAreaControlFee', 'clear', {})
                         }
                     },
                     function (errInfo, error) {
@@ -68,7 +71,8 @@
                     amount: '',
                     remark: '',
                     type: '1101',
-                    payCharge: ''
+                    payCharge: '',
+                    machineId: ''
                 }
             }
         }
