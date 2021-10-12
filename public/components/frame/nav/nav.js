@@ -209,6 +209,7 @@
     vm.getUserInfo();
 
     function newWebSocket() {
+        let clientId = vc.uuid();
         let heartCheck = {
             timeout: 30000,        // 9分钟发一次心跳，比server端设置的连接时间稍微小一点，在接近断开的情况下以通信的方式去重置连接时间。
             serverTimeoutObj: null,
@@ -222,7 +223,7 @@
                 this.serverTimeoutObj = setInterval(function () {
                     if (websocket.readyState == 1) {
                         console.log("连接状态，发送消息保持连接");
-                        websocket.send("{'cmd':'ping'}");
+                        websocket.send("{'cmd':'ping','clientId':'"+clientId+"'}");
                         heartCheck.reset().start();    // 如果获取到消息，说明连接是正常的，重置心跳检测
                     } else {
                         console.log("断开状态，尝试重连");
