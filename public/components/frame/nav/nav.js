@@ -228,7 +228,7 @@
                         if (_pingTime - self.pingTime < 15 * 1000) {
                             return;
                         }
-                        websocket.send("{'cmd':'ping','clientId':'" + clientId + "'}");
+                        websocket.send("{'cmd':'ping'}");
                         self.pingTime = _pingTime;
 
                         heartCheck.reset().start();    // 如果获取到消息，说明连接是正常的，重置心跳检测
@@ -248,11 +248,11 @@
         if (_protocol.startsWith('https')) {
             url =
                 "wss://" + window.location.host + "/ws/message/" +
-                _userId;
+                _userId + "/" + clientId;
         } else {
             url =
                 "ws://" + window.location.host + "/ws/message/" +
-                _userId;
+                _userId + "/" + clientId;
             // url =
             //     "ws://demo.homecommunity.cn/ws/message/" +
             //     _userId;
