@@ -176,7 +176,8 @@
                     function (json, res) {
                         let _json = JSON.parse(json);
                         let ownerCar = _json.data[0];
-                        $that.printPayFeeInfo.feeReceipt[0].objName = ownerCar.roomName;
+                        let _roomName = ownerCar.roomName.replace('栋','-').replace("单元",'-').replace('室','');
+                        $that.printPayFeeInfo.feeReceipt[0].objName = _roomName;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
