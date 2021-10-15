@@ -26,12 +26,16 @@
                 direction: '',
                 locationType: '',
                 locations: [],
-                attrs: []
+                attrs: [],
+                typeId: '',
+                isShow: 'true',
+                machineTypes: []
 
             }
         },
         _initMethod: function () {
             $that._loadEditMachineAttrSpec();
+            $that._listEditMachineTypes();
         },
         _initEvent: function () {
             vc.on('editMachine', 'openEditMachineModal', function (_params) {
@@ -40,6 +44,7 @@
                 $('#editMachineModel').modal('show');
                 vc.copyObject(_params, vc.component.editMachineInfo);
                 vc.component._initMachineUrl();
+                $that.setEditMachineTypeCd(vc.component.editMachineInfo.typeId);
                 //根据位置类型 传输数据
                 if (vc.component.editMachineInfo.locationTypeCd == '2000') {
                     vc.emit('editMachine', 'floorSelect2', 'setFloor', {
@@ -110,7 +115,7 @@
                     vc.component.editMachineInfo.roomId = _param.roomId;
                 }
             });
-            vc.on('editMachine', 'staffSelect2', 'setStaff',function(_param){
+            vc.on('editMachine', 'staffSelect2', 'setStaff', function (_param) {
                 if (_param.hasOwnProperty("orgId")) {
                     vc.component.addMachineInfo.orgId = _param.orgId;
                 }
@@ -271,9 +276,30 @@
                         vc.toast(errInfo);
                     });
             },
+            _listEditMachineTypes: function () {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        page: 1,
+                        row: 50
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('machineType.listMachineType',
+                    param,
+                    function (json, res) {
+                        var _machineTypeManageInfo = JSON.parse(json);
+                        vc.component.editMachineInfo.machineTypes = _machineTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             refreshEditMachineInfo: function () {
                 let _locations = $that.editMachineInfo.locations;
                 let _attrs = $that.editMachineInfo.attrs;
+                let _machineTypes = $that.editMachineInfo.machineTypes;
                 vc.component.editMachineInfo = {
                     machineId: '',
                     machineCode: '',
@@ -297,8 +323,10 @@
                     locationType: '',
                     locations: _locations,
                     attrs: _attrs,
-                    paId: ''
-
+                    paId: '',
+                    typeId: '',
+                    isShow: 'true',
+                    machineTypes: _machineTypes
                 }
             },
             _loadEditLocation: function () {
@@ -353,6 +381,22 @@
 
                 });
             },
+            setEditMachineTypeCd: function (_typeId) {
+                
+                vc.component.editMachineInfo.machineTypes.forEach(item => {
+                    if (item.typeId == _typeId) {
+                        vc.component.editMachineInfo.machineTypeCd = item.machineTypeCd;
+                        if(item.machineTypeCd == '9998' || item.machineTypeCd == '9994'){
+                            $that.editMachineInfo.direction= '3306';
+                            $that.editMachineInfo.isShow = 'false';
+                            
+                        }else{
+                            $that.editMachineInfo.isShow = 'true';
+                        }
+                    }
+                    
+                });
+            }
         }
     });
 

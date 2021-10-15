@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 machineName: '',
+                machineTypes:[],
                 conditions: {
                     machineCode: '',
                     machineTypeCd: '',
@@ -26,7 +27,9 @@
         },
         _initMethod: function () {
             //vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            vc.getDict('machine', "machine_type_cd", function (_data) {
+                vc.component.machineManageInfo.machineTypes = _data;
+            });
             $that._getColumns(function () {
                 vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -64,6 +67,27 @@
                             dataCount: vc.component.machineManageInfo.total,
                             currentPage: _page
                         });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listMachineTypes: function () {
+
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        page: 1,
+                        row: 50
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('machineType.listMachineType',
+                    param,
+                    function (json, res) {
+                        var _machineTypeManageInfo = JSON.parse(json);
+                        vc.component.machineManageInfo.machineTypes = _machineTypeManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

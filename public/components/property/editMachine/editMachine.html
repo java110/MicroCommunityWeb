@@ -30,24 +30,21 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">设备类型</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editMachineInfo.machineTypeCd">
+                                    <select class="custom-select" v-model="editMachineInfo.typeId" @change="setEditMachineTypeCd(editMachineInfo.typeId)">
                                         <option selected disabled value="">必填，请选择设备类型</option>
-                                        <option value="9999">门禁</option>
-                                        <option value="9996">车辆道闸</option>
-                                        <option value="9997">考勤机</option>
-                                        <option value="9995">第三方道闸平台</option>
-                                    </select>
-                                </div>
+                                        <option v-for="(item,index) in editMachineInfo.machineTypes" :key="index" :value="item.typeId">
+                                            {{item.machineTypeName}}</option>
+                                        </select>
+                                    </select></div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" v-if="editMachineInfo.isShow == 'true'">
                                 <label class="col-sm-2 col-form-label">设备方向</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editMachineInfo.direction">
                                         <option selected disabled value="">必填，请选择设备方向</option>
                                         <option value="3306">进场</option>
                                         <option value="3307">出场</option>
-                                    </select>
-                                </div>
+                                    </select></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">厂家</label>
