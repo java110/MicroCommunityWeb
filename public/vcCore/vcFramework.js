@@ -387,8 +387,9 @@
             //_vcElement.parentNode.replaceChild(textNode,_vcElement);
 
         }
-        for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
-            let _vcElement = _tmpI18N[_vcElementIndex];
+        let _i18nLength = _tmpI18N.length;
+        for (let _vcElementIndex = 0; _vcElementIndex < _i18nLength; _vcElementIndex++) {
+            let _vcElement = _tmpI18N[0];
             _vcElement.parentNode.removeChild(_vcElement);
         }
         _tmpI18N = document.head.getElementsByTagName("vc:i18n");

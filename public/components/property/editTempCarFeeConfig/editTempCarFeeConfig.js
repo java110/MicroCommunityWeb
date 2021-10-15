@@ -16,7 +16,18 @@
             }
         },
         _initMethod: function () {
-
+            vc.initDate('editTempCarFeeConfigStartTime', function (_startTime) {
+                $that.editTempCarFeeConfigInfo.startTime = _startTime;
+            });
+            vc.initDate('editTempCarFeeConfigEndTime', function (_endTime) {
+                $that.editTempCarFeeConfigInfo.endTime = _endTime;
+                let start = Date.parse(new Date($that.editTempCarFeeConfigInfo.startTime))
+                let end = Date.parse(new Date($that.editTempCarFeeConfigInfo.endTime))
+                if (start - end >= 0) {
+                    vc.toast("结束时间必须大于开始时间")
+                    $that.editTempCarFeeConfigInfo.endTime = '';
+                }
+            });
         },
         _initEvent: function () {
             vc.on('editTempCarFeeConfig', 'openEditTempCarFeeConfigModal', function (_params) {

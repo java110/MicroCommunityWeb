@@ -19,8 +19,8 @@
                             <select class="custom-select" v-model="meterWaterManageInfo.conditions.meterType">
                                 <option selected value="">请选择表类型</option>
                                 <option v-for="(item,index) in meterWaterManageInfo.meterTypes" :key="index"
-                                        v-bind:value="item.statusCd">
-                                    {{item.name}}
+                                        v-bind:value="item.typeId">
+                                    {{item.typeName}}
                                 </option>
                             </select>
                         </div>
@@ -80,7 +80,7 @@
                         <tbody>
                         <tr v-for="meterWater in meterWaterManageInfo.meterWaters">
                             <td class="text-center">{{meterWater.waterId}}</td>
-                            <td class="text-center">{{_getMeteTypeName(meterWater.meterType)}}</td>
+                            <td class="text-center">{{meterWater.meterTypeName}}</td>
                             <td class="text-center">{{meterWater.objName}}</td>
                             <td class="text-center">{{meterWater.preDegrees}}</td>
                             <td class="text-center">{{meterWater.curDegrees}}</td>

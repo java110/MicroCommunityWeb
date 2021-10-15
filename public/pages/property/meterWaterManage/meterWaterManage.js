@@ -21,9 +21,7 @@
             }
         },
         _initMethod: function () {
-            vc.getDict('meter_water', "meter_type", function (_data) {
-                vc.component.meterWaterManageInfo.meterTypes = _data;
-            });
+            $that.listMeterTypes();
             vc.component._listMeterWaters(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -102,7 +100,26 @@
                     return "水表";
                 }
                 return "煤气费";
-            }
+            },
+            listMeterTypes: function () {
+                let param = {
+                    params: {
+                        page:1,
+                        row:100,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('meterType.listMeterType',
+                    param,
+                    function (json, res) {
+                        let _meterTypeManageInfo = JSON.parse(json);
+                        $that.meterWaterManageInfo.meterTypes = _meterTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc);
