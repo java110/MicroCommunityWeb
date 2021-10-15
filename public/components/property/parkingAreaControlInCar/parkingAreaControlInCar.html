@@ -1,0 +1,32 @@
+<div class="margin-top">
+    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+        <thead>
+            <tr>
+                <th class="text-center">进出场ID</th>
+                <th class="text-center">车辆状态</th>
+                <th class="text-center">车牌号</th>
+                <th class="text-center">进场时间</th>
+                <th class="text-center">在场时间(小时)</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="carIn in parkingAreaControlInCarInfo.carIns">
+                <td class="text-center">{{carIn.inoutId}}</td>
+                <td class="text-center">{{carIn.stateName}}</td>
+                <td class="text-center">{{carIn.carNum}}</td>
+                <td class="text-center">{{carIn.inTime}}</td>
+                <td class="text-center">{{carIn.inHours}}小时{{carIn.inMin}}分</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- 分页 -->
+    <vc:create path="frame/paginationPlus" namespace="parkingAreaControlInCar"></vc:create>
+</div>

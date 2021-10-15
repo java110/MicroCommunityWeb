@@ -59,14 +59,24 @@
                         <td class="text-center" style="border: 0px;">单号</td>
                         <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.receiptNum}}</td>
                         <td class="text-center" style="border: 0px;"></td>
-
+                    </tr>
+                    <tr style="border: 0px;" v-if="printPayFeeInfo.carName">
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;">车辆</td>
+                        <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.carName}}</td>
+                        <td class="text-center" style="border: 0px;"></td>
+                    </tr>
+                    <tr style="border: 0px;">
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td  class="text-center" style="border: 0px;"></td>
+                        <td colspan="1" class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
                     </tr>
                     <tr style="border: 0px;">
                         <td  class="text-center" style="border: 0px;"></td>
                         <td  class="text-center" style="border: 0px;"></td>
                         <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.userName}}</td>
                         <td class="text-center" style="border: 0px;"></td>
-
                     </tr>
                 </tbody>
             </table>

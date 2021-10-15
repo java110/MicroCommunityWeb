@@ -16,7 +16,8 @@
                 payObjName: '',
                 feeReceipt: [],
                 apply: 'N',
-                userName:vc.getData('/nav/getUserInfo').name
+                userName: vc.getData('/nav/getUserInfo').name,
+                carName: ''
             },
             printFlag: '0'
         },
@@ -74,6 +75,12 @@
                         $that.printPayFeeInfo.feeReceipt = _feeReceipt;
 
                         $that._loadReceiptDetail();
+
+                        if (_feeReceipt[0].objType == '6666') {
+                            $that.printPayFeeInfo.carName = _feeReceipt[0].objName;
+                            //查询车位对应房屋
+                            $that._listOwnerCar(_feeReceipt[0].objId);
+                        }
 
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -153,7 +160,29 @@
             _closePage: function () {
                 window.opener = null;
                 window.close();
-            }
+            },
+            _listOwnerCar: function (_carId) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        carId: _carId
+                    }
+                }
+                //发送get请求
+                vc.http.apiGet('owner.queryOwnerCars',
+                    param,
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        let ownerCar = _json.data[0];
+                        let _roomName = ownerCar.roomName.replace('栋','-').replace("单元",'-').replace('室','');
+                        $that.printPayFeeInfo.feeReceipt[0].objName = _roomName;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 

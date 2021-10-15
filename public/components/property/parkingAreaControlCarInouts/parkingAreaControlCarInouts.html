@@ -1,0 +1,39 @@
+<div class="margin-top">
+    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+        <thead>
+            <tr>
+                <th class="text-center">进出场编号</th>
+                <th class="text-center">车辆状态</th>
+                <th class="text-center">车辆类型</th>
+                <th class="text-center">车牌号</th>
+                <th class="text-center">进场时间</th>
+                <th class="text-center">出场时间</th>
+                <th class="text-center">停车时间(小时)</th>
+                <th class="text-center">收费金额</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="carIn in parkingAreaControlCarInoutsInfo.carIns">
+                <td class="text-center">{{carIn.inoutId}}</td>
+                <td class="text-center">{{carIn.stateName}}</td>
+                <td class="text-center">{{carIn.carNum}}</td>
+                <td class="text-center">{{carIn.carNum}}</td>
+                <td class="text-center">{{carIn.inTime}}</td>
+                <td class="text-center">{{carIn.outTime}}</td>
+                <td class="text-center">{{carIn.inHours}}小时{{carIn.inMin}}分</td>
+                <td class="text-center">{{carIn.outTime}}</td>
+                <td class="text-center">{{carIn.amount}}</td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- 分页 -->
+    <vc:create path="frame/paginationPlus" namespace="parkingAreaControlInCar"></vc:create>
+</div>

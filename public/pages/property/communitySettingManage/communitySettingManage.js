@@ -23,7 +23,7 @@
         },
         _initMethod: function () {
             vc.component._listCommunitySettings(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('community_setting', "setting_type", function (_data) {
+            vc.getDict('community_setting_key', "setting_type", function (_data) {
                 vc.component.communitySettingManageInfo.settingTypes = _data;
             });
         },

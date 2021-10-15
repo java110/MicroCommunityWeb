@@ -13,14 +13,18 @@
                 settingKey: '',
                 settingValue: '',
                 remark: '',
-
+                keys: [],
+                settingTypes: [],
             }
         },
         _initMethod: function () {
-
+            vc.getDict('community_setting_key', "setting_type", function (_data) {
+                vc.component.addCommunitySettingInfo.settingTypes = _data;
+            });
         },
         _initEvent: function () {
             vc.on('addCommunitySetting', 'openAddCommunitySettingModal', function () {
+                $that.clearAddCommunitySettingInfo();
                 $('#addCommunitySettingModel').modal('show');
             });
         },
@@ -84,14 +88,11 @@
                             errInfo: "备注内容不能超过200"
                         },
                     ],
-
-
                 });
             },
             saveCommunitySettingInfo: function () {
                 if (!vc.component.addCommunitySettingValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
 
@@ -131,14 +132,46 @@
                     });
             },
             clearAddCommunitySettingInfo: function () {
+                let _settingTypes = $that.addCommunitySettingInfo.settingTypes;
                 vc.component.addCommunitySettingInfo = {
                     settingType: '',
                     settingName: '',
                     settingKey: '',
                     settingValue: '',
                     remark: '',
-
+                    keys: [],
+                    settingTypes: _settingTypes
                 };
+            },
+            _changeSettingType: function () {
+                $that._loadCommunitySettingKey();
+            },
+            _changeSettingName: function () {
+                $that.addCommunitySettingInfo.keys.forEach(item => {
+                    if (item.settingName == $that.addCommunitySettingInfo.settingName) {
+                        $that.addCommunitySettingInfo.settingKey = item.settingKey;
+                        $that.addCommunitySettingInfo.remark = item.remark;
+                    }
+                });
+
+            },
+            _loadCommunitySettingKey: function () {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        settingType: $that.addCommunitySettingInfo.settingType
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/communitySettingKey.listCommunitySettingKey',
+                    param,
+                    function (json, res) {
+                        let _communitySettingManageInfo = JSON.parse(json);
+                        $that.addCommunitySettingInfo.keys = _communitySettingManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });
