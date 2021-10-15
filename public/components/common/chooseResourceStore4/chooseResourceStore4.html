@@ -14,7 +14,7 @@
                         <div class="ibox ">
                             <div class="row">
 
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="input-group">
                                         <select class="custom-select custom-select-sm" v-model="chooseResourceStoreInfo4.shId">
                                             <option selected value="">请选择仓库</option>
@@ -24,9 +24,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="input-group">
-                                        <select class="custom-select custom-select-sm" v-model="chooseResourceStoreInfo4.rstId">
+                                        <select class="custom-select custom-select-sm" v-model="chooseResourceStoreInfo4.parentRstId" @change="_listResourceStoreSonTypes">
                                             <option selected value="">请选择物品类型</option>
                                             <option v-for="(item,index) in chooseResourceStoreInfo4.resourceStoreTypes" :key="index"
                                                 v-bind:value="item.rstId">
@@ -35,7 +35,18 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-3">
+                                    <div class="input-group">
+                                        <select class="custom-select custom-select-sm" v-model="chooseResourceStoreInfo4.rstId">
+                                            <option selected value="">请选择二级分类</option>
+                                            <option v-for="(item,index) in chooseResourceStoreInfo4.resourceStoreSonTypes" :key="index"
+                                                v-bind:value="item.rstId">
+                                                {{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <div class="input-group">
                                         <input placeholder="输入物品管理名称" type="text"
                                             v-model="chooseResourceStoreInfo4._currentResourceStoreName"

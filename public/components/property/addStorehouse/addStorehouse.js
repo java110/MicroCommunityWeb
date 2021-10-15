@@ -10,6 +10,7 @@
                 shName: '',
                 shType: '',
                 shDesc: '',
+                isShow: '',
                 shTypes: []
             }
         },
@@ -61,6 +62,13 @@
                             param: "",
                             errInfo: "仓库类型格式错误"
                         },
+                    ],
+                    'addStorehouseInfo.isShow': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "对外开放选框不能为空"
+                        }
                     ],
                     'addStorehouseInfo.shDesc': [
                         {

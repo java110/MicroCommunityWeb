@@ -16,16 +16,24 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">商品类型</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <select class="custom-select" v-model="editResourceStoreSpecificationInfo.rstId">
-                                            <option selected value="">请选择物品类型</option>
-                                            <option v-for="(item,index) in editResourceStoreSpecificationInfo.resourceStoreTypes" :key="index"
+                                <div class="col-sm-5">
+                                    <select class="custom-select" v-model="editResourceStoreSpecificationInfo.parentRstId" @change="resourceStoreTypesOnChangeEdit">
+                                        <option selected value="">请选择物品类型</option>
+                                        <option v-for="(item,index) in editResourceStoreSpecificationInfo.resourceStoreTypes" :key="index"
+                                            v-bind:value="item.rstId">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select class="custom-select" v-model="editResourceStoreSpecificationInfo.rstId">
+                                        <option selected value="">请选择二级分类</option>
+                                        <option v-for="(item,index) in editResourceStoreSpecificationInfo.sonResourceStoreTypes"
+                                                :key="index"
                                                 v-bind:value="item.rstId">
-                                                {{item.name}}
-                                            </option>
-                                        </select>
-                                    </div>
+                                            {{item.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -35,13 +43,14 @@
                                            placeholder="选填，请填写描述" class="form-control">
                                 </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="editResourceStoreSpecification()"><i class="fa fa-check"></i>&nbsp;保存
+                                        v-on:click="editResourceStoreSpecification()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>
                         </div>

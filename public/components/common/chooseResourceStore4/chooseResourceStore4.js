@@ -11,10 +11,12 @@
                 resourceStores: [],
                 selectResourceStores: [],
                 _currentResourceStoreName: '',
+                parentRstId: '',
                 rstId: '',
                 shId: '',
                 storehouses: [],
                 resourceStoreTypes: [],
+                resourceStoreSonTypes: [],
                 resOrderType: ''
             }
         },
@@ -68,10 +70,12 @@
                     params: {
                         page: _page,
                         row: _row,
+                        isShow: true,
                         communityId: vc.getCurrentCommunity().communityId,
                         resOrderType: _resOrderType,
                         shType: _shType,
                         resName: vc.component.chooseResourceStoreInfo4._currentResourceStoreName,
+                        parentRstId: vc.component.chooseResourceStoreInfo4.parentRstId,
                         rstId: vc.component.chooseResourceStoreInfo4.rstId,
                         shId: vc.component.chooseResourceStoreInfo4.shId
                     }
@@ -134,6 +138,7 @@
                     params: {
                         page: 1,
                         row: 100,
+                        isShow: true,
                         communityId: vc.getCurrentCommunity().communityId,
                         shType: '2806'
                     }
@@ -164,6 +169,32 @@
                     function (json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.chooseResourceStoreInfo4.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listResourceStoreSonTypes: function () {
+                vc.component.chooseResourceStoreInfo4.rstId = '';
+                vc.component.chooseResourceStoreInfo4.resourceStoreSonTypes = [];
+                if(vc.component.chooseResourceStoreInfo4.parentRstId == ''){
+                    return;
+                }
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        parentId: vc.component.chooseResourceStoreInfo4.parentRstId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeManageInfo = JSON.parse(json);
+                        vc.component.chooseResourceStoreInfo4.resourceStoreSonTypes = _resourceStoreTypeManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

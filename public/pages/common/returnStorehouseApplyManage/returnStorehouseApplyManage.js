@@ -73,6 +73,8 @@
                     params: {
                         page: 1,
                         row: 100,
+                        isShow: true,
+                        shType: '2807', //小区仓库
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };

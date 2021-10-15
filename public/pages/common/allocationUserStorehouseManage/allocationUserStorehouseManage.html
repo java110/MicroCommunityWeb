@@ -45,22 +45,24 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row" v-if="allocationUserStorehouseManageInfo.moreCondition == true">
+                    <div class="row" v-show="allocationUserStorehouseManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入接受人名称"
-                                       v-model="allocationUserStorehouseManageInfo.conditions.acceptUserName"
-                                       class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <select class="custom-select"
-                                        v-model="allocationUserStorehouseManageInfo.conditions.rstId"
-                                        @change="_listResourceStoreSpecifications">
+                                <select class="custom-select" v-model="allocationUserStorehouseManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
                                     <option selected value="">请选择物品类型</option>
                                     <option v-for="(item,index) in allocationUserStorehouseManageInfo.resourceStoreTypes"
                                             :key="index" v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="custom-select" v-model="allocationUserStorehouseManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">请选择二级分类</option>
+                                    <option v-for="(item,index) in allocationUserStorehouseManageInfo.resourceStoreSonTypes" :key="index"
+                                        v-bind:value="item.rstId">
                                         {{item.name}}
                                     </option>
                                 </select>
@@ -76,6 +78,15 @@
                                         {{item.specName}}
                                     </option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="allocationUserStorehouseManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入接受人名称"
+                                       v-model="allocationUserStorehouseManageInfo.conditions.acceptUserName"
+                                       class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -119,7 +130,7 @@
                             <td class="text-center">{{allocationUserStorehouse.ausId}}</td>
                             <td class="text-center">{{allocationUserStorehouse.resId}}</td>
                             <td class="text-center">
-                                {{allocationUserStorehouse.rstName ? allocationUserStorehouse.rstName : '-'}}
+                                {{allocationUserStorehouse.parentRstName}} > {{allocationUserStorehouse.rstName}}
                             </td>
                             <td class="text-center">{{allocationUserStorehouse.resName}}</td>
                             <td class="text-center">

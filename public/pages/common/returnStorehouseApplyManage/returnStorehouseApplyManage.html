@@ -41,7 +41,7 @@
                                 <td class="text-center" style="vertical-align: inherit;">{{resourceStore.miniStock}}{{resourceStore.miniUnitCodeName}}</td>
                                 <td class="text-center" style="vertical-align: inherit;">
                                     <select class="custom-select" v-model="resourceStore.shzId">
-                                        <option value="">必填，请选择源仓库</option>
+                                        <option value="">必填，请选择目标仓库</option>
                                         <option v-for="(item,index) in returnStorehouseManageInfo.storehouses"
                                             :key="index" v-bind:value="item.shId"
                                             v-if="item.shId != resourceStore.shId">

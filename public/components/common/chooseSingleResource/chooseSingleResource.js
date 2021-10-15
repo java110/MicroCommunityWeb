@@ -1,14 +1,16 @@
-(function(vc){
+(function (vc) {
     vc.extends({
         propTypes: {
-           emitChooseSingleResource:vc.propTypes.string,
-           emitLoadData:vc.propTypes.string
+            emitChooseSingleResource: vc.propTypes.string,
+            emitLoadData: vc.propTypes.string
         },
-        data:{
-            chooseSingleResourceInfo:{
+        data: {
+            chooseSingleResourceInfo: {
                 maintenanceType: '',
                 resourceStoreTypes: [],
+                sonResourceStoreTypes: [],
                 rstId: '',
+                rsId: '',
                 resId: '',
                 selectedGoodsInfo: {},
                 resourceStores: [],
@@ -20,9 +22,9 @@
                 useNumber: 1
             }
         },
-        _initMethod:function(){
+        _initMethod: function () {
         },
-        _initEvent:function(){
+        _initEvent: function () {
             vc.on('chooseSingleResource', 'openChooseSingleResourceModel', function (_param) {
                 // 清空数据
                 vc.component._refreshChooseSingleResourceInfo();
@@ -33,7 +35,7 @@
                 vc.component._listResourceStoreType();
             });
         },
-        methods:{
+        methods: {
             //查询物品类型
             _listResourceStoreType: function () {
                 var param = {
@@ -66,17 +68,40 @@
                 };
                 vc.component.chooseSingleResourceInfo.resourceStoreTypes.push(customeType);
             },
-            //选择商品类型
-            _choseGoods: function () {
-                vc.component.chooseSingleResourceInfo.resId = '';
-                var select = document.getElementById("goods");
-                vc.component.chooseSingleResourceInfo.rstId = select.value;
+            //查询二级分类
+            _listSonResourceStoreType: function () {
+                // 清空二级分类
+                vc.component.chooseSingleResourceInfo.rstId = '';
+                vc.component.chooseSingleResourceInfo.sonResourceStoreTypes = [];
                 // 处理自定义商品
                 vc.component.chooseSingleResourceInfo.isCustom = false;
-                if (select.value == 'custom'){
+                if (vc.component.chooseSingleResourceInfo.rsId == 'custom') {
                     vc.component.chooseSingleResourceInfo.isCustom = true;
                     return;
                 }
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        parentId: vc.component.chooseSingleResourceInfo.rsId,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _sonResourceStoreTypeManageInfo = JSON.parse(json);
+                        vc.component.chooseSingleResourceInfo.sonResourceStoreTypes = _sonResourceStoreTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            //选择商品类型
+            _choseGoods: function () {
+                vc.component.chooseSingleResourceInfo.resId = '';
                 if (vc.component.chooseSingleResourceInfo.rstId == null || vc.component.chooseSingleResourceInfo.rstId == '') {
                     return;
                 }
@@ -96,7 +121,7 @@
                     param,
                     function (json, res) {
                         var _goods = JSON.parse(json);
-                        if(_goods.total <= 0){
+                        if (_goods.total <= 0) {
                             vc.toast('暂无有效商品');
                         }
                         vc.component.chooseSingleResourceInfo.resourceStores = _goods.data;
@@ -203,10 +228,13 @@
                 });
             },
             // 提交保存
-            _chooseSingleResource:function(){
+            _chooseSingleResource: function () {
                 // 自定义商品
-                if (vc.component.chooseSingleResourceInfo.isCustom){
-
+                if (vc.component.chooseSingleResourceInfo.isCustom) {
+                    if(vc.component.chooseSingleResourceInfo.customGoodsName == '' || vc.component.chooseSingleResourceInfo.price == ''){
+                        vc.toast('请完善自定义信息');
+                        return;
+                    }
                 } else {
                     // 有偿
                     if (vc.component.chooseSingleResourceInfo.maintenanceType == '1001' && !vc.component.chooseResourceValidate()) {
@@ -225,7 +253,7 @@
                 chooseResource.useNumber = vc.component.chooseSingleResourceInfo.useNumber;
                 chooseResource.isCustom = vc.component.chooseSingleResourceInfo.isCustom;
                 chooseResource.customGoodsName = vc.component.chooseSingleResourceInfo.customGoodsName;
-                if(vc.component.chooseSingleResourceInfo.isCustom){
+                if (vc.component.chooseSingleResourceInfo.isCustom) {
                     chooseResource.rstName = '自定义';
                 }
                 vc.emit($props.emitChooseSingleResource, 'chooseSingleResource', chooseResource);
@@ -236,11 +264,13 @@
                 $('#chooseSingleResourceModel').modal('hide');
             },
             // 清空页面数据
-            _refreshChooseSingleResourceInfo:function(){
+            _refreshChooseSingleResourceInfo: function () {
                 vc.component.chooseSingleResourceInfo = {
                     maintenanceType: '',
                     resourceStoreTypes: [],
+                    sonResourceStoreTypes: [],
                     rstId: '',
+                    rsId: '',
                     resId: '',
                     selectedGoodsInfo: {},
                     resourceStores: [],

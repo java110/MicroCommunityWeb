@@ -148,43 +148,6 @@
                         vc.toast(errInfo);
                     });
             },
-            //重置操作
-            resetListRoom: function (_page, _row) {
-                vc.component.roomCreateFeeInfo.conditions.allNum = "";
-                vc.component.roomCreateFeeInfo.conditions.ownerName = "";
-                vc.component.roomCreateFeeInfo.conditions.idCard = "";
-                vc.component.roomCreateFeeInfo.conditions.floorName = "";
-                vc.component.roomCreateFeeInfo.conditions.unitId = "";
-                vc.component.roomCreateFeeInfo.conditions.roomNum = "";
-                vc.component.roomCreateFeeInfo.conditions.floorId = "";
-                vc.component.roomCreateFeeInfo.conditions.roomId = "";
-                vc.component.roomCreateFeeInfo.conditions.roomType = "";
-                let _conditions = JSON.parse(JSON.stringify(vc.component.roomCreateFeeInfo.conditions));
-                let param = {
-                    params: _conditions
-                };
-                //发送get请求
-                vc.http.get('roomCreateFee',
-                    'listRoom',
-                    param,
-                    function (json, res) {
-                        var listRoomData = JSON.parse(json);
-                        vc.component.roomCreateFeeInfo.total = listRoomData.total;
-                        vc.component.roomCreateFeeInfo.records = listRoomData.records;
-                        vc.component.roomCreateFeeInfo.rooms = listRoomData.rooms;
-                        // 缓存
-                        $that.updateCurrentPage(DEFAULT_PAGE);
-                        $that.saveTempSearchData();
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.roomCreateFeeInfo.records,
-                            dataCount: vc.component.roomCreateFeeInfo.total,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
             //查询
             _queryRoomMethod: function () {
                 // 搜索时重置缓存分页
@@ -193,7 +156,18 @@
             },
             //重置
             _resetRoomMethod: function () {
-                vc.component.resetListRoom();
+                vc.component.roomCreateFeeInfo.conditions.floorId = '';
+                vc.component.roomCreateFeeInfo.conditions.ownerName = '';
+                vc.component.roomCreateFeeInfo.conditions.floorName = '';
+                vc.component.roomCreateFeeInfo.conditions.unitId = '';
+                vc.component.roomCreateFeeInfo.conditions.roomNum = '';
+                vc.component.roomCreateFeeInfo.conditions.roomId = '';
+                vc.component.roomCreateFeeInfo.conditions.state = '';
+                vc.component.roomCreateFeeInfo.conditions.section = '';
+                vc.component.roomCreateFeeInfo.conditions.allNum = '';
+                vc.component.roomCreateFeeInfo.conditions.idCard = '';
+                vc.component.roomCreateFeeInfo.conditions.roomType = '';
+                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             },
             _loadDataByParam: function () {
                 vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");

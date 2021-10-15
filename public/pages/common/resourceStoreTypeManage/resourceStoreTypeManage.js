@@ -64,10 +64,14 @@
                 vc.component.resourceStoreTypeManageInfo.conditions.rstId = '';
                 vc.component.resourceStoreTypeManageInfo.conditions.name = '';
                 vc.component.resourceStoreTypeManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                $that._listResourceStoreTypes(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listResourceStoreTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddResourceStoreTypeModal: function () {
                 vc.emit('addResourceStoreType', 'openAddResourceStoreTypeModal', {});
+            },
+            //二级分类
+            _openAddResourceStoreType: function (_resourceStoreType) {
+                vc.jumpToPage('/admin.html#/pages/property/listSonResourceStoreType?rstId=' + _resourceStoreType.rstId + "&name=" + _resourceStoreType.name);
             },
             _openDeleteResourceStoreTypeModel: function (_resourceStoreType) {
                 vc.emit('deleteResourceStoreType', 'openDeleteResourceStoreTypeModal', _resourceStoreType);

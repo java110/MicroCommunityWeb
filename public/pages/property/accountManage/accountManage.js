@@ -38,6 +38,9 @@
                 var param = {
                     params: vc.component.accountManageInfo.conditions
                 };
+                param.params.ownerName = param.params.ownerName.trim();
+                param.params.idCard = param.params.idCard.trim();
+                param.params.link = param.params.link.trim();
                 //发送get请求
                 vc.http.apiGet('/account/queryOwnerAccount',
                     param,
@@ -55,7 +58,15 @@
                     }
                 );
             },
+            //查询
             _queryAccountMethod: function () {
+                vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetAccountMethod: function () {
+                vc.component.accountManageInfo.conditions.ownerName = "";
+                vc.component.accountManageInfo.conditions.idCard = "";
+                vc.component.accountManageInfo.conditions.link = "";
                 vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
