@@ -7,6 +7,8 @@
                 <th class="text-center">车牌号</th>
                 <th class="text-center">进场时间</th>
                 <th class="text-center">在场时间</th>
+                <th class="text-center">停车费用</th>
+               
 
             </tr>
         </thead>
@@ -16,7 +18,8 @@
                 <td class="text-center">{{carIn.stateName}}</td>
                 <td class="text-center">{{carIn.carNum}}</td>
                 <td class="text-center">{{carIn.inTime}}</td>
-                <td class="text-center">{{carIn.inHours}}小时{{carIn.inMin}}分</td>
+                <td class="text-center">{{carIn.hours}}小时{{carIn.min}}分</td>
+                <td class="text-center">{{carIn.payCharge}}元</td>
             </tr>
         </tbody>
         <tfoot>
