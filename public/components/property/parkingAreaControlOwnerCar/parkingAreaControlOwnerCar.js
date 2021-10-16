@@ -9,6 +9,7 @@
             parkingAreaControlOwnerCar: {
                 cars: [],
                 paId: '',
+                carNum: ''
             }
         },
         _initMethod: function () {
@@ -33,7 +34,8 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         paId: $that.parkingAreaControlOwnerCar.paId,
-                        carTypeCds:'1001,1002'
+                        carTypeCds: '1001,1002',
+                        carNum: $that.parkingAreaControlOwnerCar.carNum
                     }
                 };
                 //发送get请求
@@ -60,6 +62,9 @@
                     return "正常";
                 }
                 return "到期";
+            },
+            _qureyParkingAreaControlOwnerCar: function () {
+                $that._loadParkingAreaControlOwnerCars(DEFAULT_PAGE, DEFAULT_ROWS);
             }
 
         }

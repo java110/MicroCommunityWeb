@@ -9,6 +9,7 @@
             parkingAreaControlTempCar: {
                 cars: [],
                 paId: '',
+                carNum:''
             }
         },
         _initMethod: function () {
@@ -33,7 +34,8 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         paId: $that.parkingAreaControlTempCar.paId,
-                        carTypeCd:'1003'
+                        carTypeCd:'1003',
+                        carNum:$that.parkingAreaControlTempCar.carNum,
                     }
                 };
                 //发送get请求
@@ -53,6 +55,9 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _qureyParkingAreaControlTempCar: function () {
+                $that._loadParkingAreaControlTempCars(DEFAULT_PAGE, DEFAULT_ROWS);
             }
 
         }

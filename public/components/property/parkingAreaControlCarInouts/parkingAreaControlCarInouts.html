@@ -1,38 +1,68 @@
 <div class="margin-top">
-    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-        <thead>
-            <tr>
-                <th class="text-center">进出场编号</th>
-                <th class="text-center">车辆状态</th>
-                <th class="text-center">车牌号</th>
-                <th class="text-center">进场时间</th>
-                <th class="text-center">出场时间</th>
-                <th class="text-center">停车时间</th>
-                <th class="text-center">收费金额</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="carIn in parkingAreaControlCarInoutsInfo.carIns">
-                <td class="text-center">{{carIn.inoutId}}</td>
-                <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}</td>
-                <td class="text-center">{{carIn.carNum}}</td>
-                <td class="text-center">{{carIn.inTime}}</td>
-                <td class="text-center" v-if="carIn.carInout != '3307'">-</td>
-                <td class="text-center" v-else>{{carIn.outTime}}</td>
-                <td class="text-center">{{carIn.hours}}小时{{carIn.min}}分</td>
-                <td class="text-center" v-if="carIn.carInout != '3307'">{{carIn.payCharge}}</td>
-                <td class="text-center" v-else>{{carIn.realCharge}}</td>
+    <div class="row margin-top-lg">
+        <div class="col-lg-3 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlCarInoutsInfo.carNum" type="text" placeholder="必填，请填写车牌号"
+                class="form-control">
 
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="7">
-                    <ul class="pagination float-right"></ul>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-    <!-- 分页 -->
-    <vc:create path="frame/paginationPlus" namespace="parkingAreaControlCarInouts"></vc:create>
+        </div>
+        <div class="col-lg-3 padding-right-xs padding-left-xl">
+            <select class="custom-select" v-model="parkingAreaControlCarInoutsInfo.state">
+                <option disabled value="">请选择车辆状态</option>
+                <option value="100300">进场状态</option>
+                <option value="100400">进场状态</option>
+                <option value="100600">进场状态</option>
+            </select>
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
+            <button type=" button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_qureyParkingAreaControlCarInouts()">
+                查询
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">进出场编号</th>
+                    <th class="text-center">车辆状态</th>
+                    <th class="text-center">车牌号</th>
+                    <th class="text-center">进场时间</th>
+                    <th class="text-center">出场时间</th>
+                    <th class="text-center">停车时间</th>
+                    <th class="text-center">收费金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="carIn in parkingAreaControlCarInoutsInfo.carIns">
+                    <td class="text-center">{{carIn.inoutId}}</td>
+                    <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}</td>
+                    <td class="text-center">{{carIn.carNum}}</td>
+                    <td class="text-center">{{carIn.inTime}}</td>
+                    <td class="text-center" v-if="carIn.carInout != '3307'">-</td>
+                    <td class="text-center" v-else>{{carIn.outTime}}</td>
+                    <td class="text-center">{{carIn.hours}}小时{{carIn.min}}分</td>
+                    <td class="text-center" v-if="carIn.carInout != '3307'">{{carIn.payCharge}}</td>
+                    <td class="text-center" v-else>{{carIn.realCharge}}</td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <ul class="pagination float-right"></ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- 分页 -->
+        <vc:create path="frame/paginationPlus" namespace="parkingAreaControlCarInouts"></vc:create>
+    </div>
 </div>

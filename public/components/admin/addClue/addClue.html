@@ -1,78 +1,83 @@
-<div id = "addClueModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加线索管理</h3>
-                <div class="ibox-content">
-                    <div>
-                        <div>
-                            <div class="form-group row">
-         <label class="col-sm-2 col-form-label">项目名称</label>
-         <div class="col-sm-10">
-           <input v-model="addClueInfo.projectName"                   type="text" placeholder="必填，请填写项目名称" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">项目位置</label>
-         <div class="col-sm-10">
-           <input v-model="addClueInfo.projectSite"                   type="text" placeholder="必填，请填写项目位置" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">项目概述</label>
-         <div class="col-sm-10">
-           <textarea placeholder="选填，请填写项目概述" cols="15" class="form-control"
-                                              v-model="addClueInfo.projectSummary"></textarea>
-          </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">投资额</label>
-         <div class="col-sm-10">
-           <input v-model="addClueInfo.investmentAmount"                   type="text" placeholder="选填，请填写投资额" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">投资方名称</label>
-         <div class="col-sm-10">
-           <input v-model="addClueInfo.investmentName"                   type="text" placeholder="必填，请填写投资方名称" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">电话</label>
-         <div class="col-sm-10">
-           <input v-model="addClueInfo.tel"                   type="text" placeholder="必填，请填写电话" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">投资方简介</label>
-         <div class="col-sm-10">
-           <textarea placeholder="选填，请填写项目概述" cols="15" class="form-control"
-                                              v-model="addClueInfo.investmentSummary"></textarea>
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">目前进展情况</label>
-         <div class="col-sm-10">
-           <textarea placeholder="选填，请填写目前进展情况" cols="15" class="form-control"
-                                              v-model="addClueInfo.nowSituation"></textarea>
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">下一步推进计划</label>
-         <div class="col-sm-10">
-           <textarea placeholder="选填，请填写下一步推进计划" cols="15" class="form-control"
-                                              v-model="addClueInfo.nextSituation"></textarea>
-         </div>
-</div>
-
-                            <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveClueInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
-                            </div>
-                        </div>
-                    </div>
+<div id="addClueModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">添加线索管理</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">项目名称</label>
+                <div class="col-sm-10">
+                  <input v-model="addClueInfo.projectName" type="text" placeholder="必填，请填写项目名称" class="form-control">
                 </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">项目位置</label>
+                <div class="col-sm-10">
+                  <input v-model="addClueInfo.projectSite" type="text" placeholder="必填，请填写项目位置" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">项目概述</label>
+                <div class="col-sm-10">
+                  <textarea placeholder="选填，请填写项目概述" cols="15" class="form-control"
+                    v-model="addClueInfo.projectSummary"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">投资额</label>
+                <div class="col-sm-10">
+                  <input v-model="addClueInfo.investmentAmount" type="text" placeholder="选填，请填写投资额"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">投资方名称</label>
+                <div class="col-sm-10">
+                  <input v-model="addClueInfo.investmentName" type="text" placeholder="必填，请填写投资方名称"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">电话</label>
+                <div class="col-sm-10">
+                  <input v-model="addClueInfo.tel" type="text" placeholder="必填，请填写电话" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">投资方简介</label>
+                <div class="col-sm-10">
+                  <textarea placeholder="选填，请填写项目概述" cols="15" class="form-control"
+                    v-model="addClueInfo.investmentSummary"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">目前进展情况</label>
+                <div class="col-sm-10">
+                  <textarea placeholder="选填，请填写目前进展情况" cols="15" class="form-control"
+                    v-model="addClueInfo.nowSituation"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">下一步推进计划</label>
+                <div class="col-sm-10">
+                  <textarea placeholder="选填，请填写下一步推进计划" cols="15" class="form-control"
+                    v-model="addClueInfo.nextSituation"></textarea>
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveClueInfo()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -9,6 +9,7 @@
             parkingAreaControlWhiteCar: {
                 cars: [],
                 paId: '',
+                carNum: ''
             }
         },
         _initMethod: function () {
@@ -33,7 +34,8 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         paId: $that.parkingAreaControlWhiteCar.paId,
-                        blackWhite: '2222'
+                        blackWhite: '2222',
+                        carNum: $that.parkingAreaControlWhiteCar.carNum,
                     }
                 };
                 //发送get请求
@@ -55,6 +57,9 @@
                     }
                 );
             },
+            _qureyParkingAreaControlWhiteCar: function () {
+                $that._loadParkingAreaControlWhiteCars(DEFAULT_PAGE,DEFAULT_ROWS);
+            }
 
         }
     });

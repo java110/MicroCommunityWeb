@@ -8,8 +8,9 @@
         data: {
             parkingAreaControlInCarInfo: {
                 carIns: [],
-                paId: ''
-
+                paId: '',
+                state: '',
+                carNum: ''
             }
         },
         _initMethod: function () {
@@ -33,6 +34,8 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         paId: $that.parkingAreaControlInCarInfo.paId,
+                        carNum: $that.parkingAreaControlInCarInfo.carNum,
+                        state: $that.parkingAreaControlInCarInfo.carNum
                     }
                 };
                 //发送get请求
@@ -51,6 +54,9 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _qureyParkingAreaControlInCar:function(){
+                $that._loadParkingAreaControlInCarData(DEFAULT_PAGE, DEFAULT_ROWS);
             }
         }
     });
