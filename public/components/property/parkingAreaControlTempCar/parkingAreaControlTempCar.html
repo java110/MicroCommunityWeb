@@ -1,0 +1,41 @@
+<div class="margin-top">
+    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+        <thead>
+            <tr>
+                <th class="text-center">车牌号</th>
+                <th data-hide="phone" class="text-center">车辆品牌</th>
+                <th data-hide="phone" class="text-center">车辆类型</th>
+                <th data-hide="phone" class="text-center">颜色</th>
+                <th data-hide="phone" class="text-center">进场时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="car in parkingAreaControlTempCar.cars">
+                <td class="text-center">
+                    {{car.carNum}}
+                </td>
+                <td class="text-center">
+                    {{car.carBrand}}
+                </td>
+                <td class="text-center">
+                    {{car.carTypeName}}
+                </td>
+                <td class="text-center">
+                    {{car.carColor}}
+                </td>
+                <td class="text-center">
+                    {{car.startTime}}
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- 分页 -->
+    <vc:create path="frame/paginationPlus" namespace="parkingAreaControlTempCar"></vc:create>
+</div>
