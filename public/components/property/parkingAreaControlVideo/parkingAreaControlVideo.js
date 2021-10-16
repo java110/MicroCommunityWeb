@@ -116,9 +116,10 @@
                     outMachineId: _outMachineId
                 });
                 vc.emit('parkingAreaControlFee', 'changeMachine', {
-                    machineId: _outMachineId
+                    machineId: _outMachineId,
+                    paId: $that.parkingAreaControlVideoInfo.paId
                 });
-                
+
                 let paId = "";
                 $that.parkingAreaControlVideoInfo.outMachines.forEach((item) => {
                     if (item.machineId == _outMachineId) {

@@ -12,11 +12,14 @@
                 remark: "",
                 open: "",
                 openMsg: "",
-                machineId: ''
+                machineId: '-1',
+                showRefresh:'',
+                paId:''
             }
         },
         _initMethod: function () {
-
+            $that.parkingAreaControlFeeInfo.paId = vc.getParam('paId');
+            $that._loadQrCodeUrl();
         },
         _initEvent: function () {
             vc.on('parkingAreaControlFee', 'notify', function (_data) {
@@ -33,13 +36,32 @@
             vc.on('parkingAreaControlFee', 'changeMachine', function (_data) {
                 $that.parkingAreaControlFeeInfo.machineId = _data.machineId;
             })
-
             vc.on('parkingAreaControlFee', 'clear', function () {
                 $that.clearParkingAreaControlFeeInfo();
             });
 
         },
         methods: {
+            _loadQrCodeUrl:function(){
+                //判断是否支付
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        paId: $that.parkingAreaControlFeeInfo.paId,
+                        machineId: $that.parkingAreaControlFeeInfo.machineId,
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/machine.getCarMachineQrCodeUrl',
+                    param,
+                    function (json, res) {
+                        let _info = JSON.parse(json);
+                        $that._viewQr(_info.data)
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             saveTempFeeInfo: function () {
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: "1102", //1101 手动入场 1102 手动出场
@@ -62,7 +84,19 @@
                     openMsg: "",
                     machineId: _machineId
                 }
-            }
+            },
+            _viewQr: function (_data) {
+                document.getElementById("qrcode").innerHTML = "";
+                let qrcode = new QRCode(document.getElementById("qrcode"), {
+                    text: "临时车收费二维码",  //你想要填写的文本
+                    width: 200, //生成的二维码的宽度
+                    height: 200, //生成的二维码的高度
+                    colorDark: "#000000", // 生成的二维码的深色部分
+                    colorLight: "#ffffff", //生成二维码的浅色部分
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                qrcode.makeCode(_data.url);
+            },
         }
     });
 })(window.vc);
