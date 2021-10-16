@@ -105,6 +105,7 @@
                     params: {
                         page: 1,
                         row: 100,
+                        isShow: true,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };

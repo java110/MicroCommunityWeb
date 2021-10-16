@@ -23,13 +23,23 @@
                                         </select>
                                     </div>
                                 </div> -->
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="input-group">
-                                        <select class="custom-select custom-select-sm"
-                                                v-model="chooseResourceStaffInfo.rstId">
+                                        <select class="custom-select custom-select-sm" v-model="chooseResourceStaffInfo.parentRstId" @change="_listResourceStoreSonTypes">
                                             <option selected value="">请选择物品类型</option>
                                             <option v-for="(item,index) in chooseResourceStaffInfo.resourceStoreTypes"
                                                     :key="index" v-bind:value="item.rstId">{{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="input-group">
+                                        <select class="custom-select custom-select-sm" v-model="chooseResourceStaffInfo.rstId">
+                                            <option selected value="">请选择二级分类</option>
+                                            <option v-for="(item,index) in chooseResourceStaffInfo.resourceStoreSonTypes" :key="index"
+                                                v-bind:value="item.rstId">
+                                                {{item.name}}
                                             </option>
                                         </select>
                                     </div>

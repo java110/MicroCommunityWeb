@@ -7,6 +7,7 @@
         data: {
             addResourceStoreTypeInfo: {
                 rstId: '',
+                parentId: "0",
                 name: '',
                 description: ''
             }
@@ -14,7 +15,10 @@
         _initMethod: function () {
         },
         _initEvent: function () {
-            vc.on('addResourceStoreType', 'openAddResourceStoreTypeModal', function () {
+            vc.on('addResourceStoreType', 'openAddResourceStoreTypeModal', function (rstId) {
+                if (rstId != null && rstId != '' && rstId != 'undefined' && rstId.length > 0) {
+                    vc.component.addResourceStoreTypeInfo.parentId = rstId
+                }
                 $('#addResourceStoreTypeModel').modal('show');
             });
         },
@@ -62,8 +66,14 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#addResourceStoreTypeModel').modal('hide');
-                            vc.component.clearAddResourceStoreTypeInfo();
-                            vc.emit('resourceStoreTypeManage', 'listResourceStoreType', {});
+                            if (vc.component.addResourceStoreTypeInfo.parentId != null && vc.component.addResourceStoreTypeInfo.parentId != ''
+                                && vc.component.addResourceStoreTypeInfo.parentId != 'undefined' && vc.component.addResourceStoreTypeInfo.parentId != '0') {
+                                vc.component.clearAddResourceStoreTypeInfo();
+                                vc.emit('listSonResourceStoreType', 'listSonResourceStoreTypes', {});
+                            } else {
+                                vc.component.clearAddResourceStoreTypeInfo();
+                                vc.emit('resourceStoreTypeManage', 'listResourceStoreType', {});
+                            }
                             return;
                         }
                         vc.toast(json);
@@ -76,6 +86,7 @@
             clearAddResourceStoreTypeInfo: function () {
                 vc.component.addResourceStoreTypeInfo = {
                     rstId: '',
+                    parentId: "0",
                     name: '',
                     description: ''
                 };

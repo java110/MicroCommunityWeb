@@ -11,8 +11,10 @@
                 miniUnitStock: '',
                 unitCodes: [],
                 resId: '',
+                parentRstId: '',
                 rstId: '',
                 rssId: '',
+                flag: '',
                 resName: '',
                 resCode: '',
                 price: '',
@@ -26,6 +28,7 @@
                 storehouses: [],
                 resourceStoreTypes: [],
                 resourceStoreSpecifications: [],
+                sonResourceStoreTypes: [],
                 warningStock: ''
             }
         },
@@ -157,11 +160,18 @@
                             errInfo: "单位不能为空"
                         },
                     ],
-                    'addResourceStoreInfo.rstId': [
+                    'addResourceStoreInfo.parentRstId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "物品类型不能为空"
+                        },
+                    ],
+                    'addResourceStoreInfo.rstId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "二级分类不能为空"
                         },
                     ],
                     'addResourceStoreInfo.shId': [
@@ -237,15 +247,61 @@
             },
             // 分类改变事件
             resourceStoreTypesOnChangeAdd: function () {
-                console.log('111');
-                if (vc.component.addResourceStoreInfo.rstId == '') {
+                vc.component.addResourceStoreInfo.rstId = '';
+                vc.component.addResourceStoreInfo.sonResourceStoreTypes = [];
+                if (vc.component.addResourceStoreInfo.parentRstId == '') {
+                    return;
+                }
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        rstId: vc.component.addResourceStoreInfo.parentRstId,
+                        flag: "0"
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeInfo = JSON.parse(json);
+                        vc.component.addResourceStoreInfo.sonResourceStoreTypes = _resourceStoreTypeInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 分类改变事件
+            sonResourceStoreTypesOnChangeAdd: function () {
+                if (vc.component.addResourceStoreInfo.parentRstId == '') {
                     vc.component.resourceStoreSpecification = [];
                     return;
                 }
-                vc.component._loadResourceStoreSpecificationAdd();
+                vc.component._loadSonResourceStoreSpecificationAdd();
             },
-            // 根据分类查询规格
+            // 根据分类查询规格(一级分类)
             _loadResourceStoreSpecificationAdd: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        rstId: vc.component.addResourceStoreInfo.parentRstId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
+                    param,
+                    function (json, res) {
+                        var _addResourceStoreInfo = JSON.parse(json);
+                        vc.component.addResourceStoreInfo.resourceStoreSpecifications = _addResourceStoreInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 根据分类查询规格(二级分类)
+            _loadSonResourceStoreSpecificationAdd: function () {
                 var param = {
                     params: {
                         page: 1,
@@ -253,7 +309,6 @@
                         rstId: vc.component.addResourceStoreInfo.rstId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
@@ -269,6 +324,8 @@
                 vc.component.addResourceStoreInfo = {
                     resName: '',
                     resCode: '',
+                    resId: '',
+                    parentRstId: '',
                     rstId: '',
                     price: '',
                     description: '',

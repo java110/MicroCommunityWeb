@@ -5,6 +5,10 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{storehouseManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -38,6 +42,17 @@
                             </button>
                         </div>
                     </div>
+                    <div class="row" v-show="storehouseManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="storehouseManageInfo.conditions.isShow">
+                                    <option selected value="">请选择是否对外开放</option>
+                                    <option value="true">是</option>
+                                    <option value="false">否</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,32 +76,38 @@
                             <th class="text-center">仓库名称</th>
                             <th class="text-center">仓库类型</th>
                             <th class="text-center">描述</th>
+                            <th class="text-center">是否对外开放</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="storehouse in storehouseManageInfo.storehouses">
-                                <td class="text-center">{{storehouse.shId}}</td>
-                                <td class="text-center">{{storehouse.shName}}</td>
-                                <td class="text-center">{{storehouse.shType == '2806'?'集团仓库':'小区仓库'}}</td>
-                                <td class="text-center">{{storehouse.shDesc}}</td>
-                                <td class="text-center">{{storehouse.createTime}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditStorehouseModel(storehouse)">修改</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteStorehouseModel(storehouse)">删除</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDetailStorehouseModel(storehouse)">详情</button>
-                                    </div>
-                                </td>
+                        <tr v-for="storehouse in storehouseManageInfo.storehouses">
+                            <td class="text-center">{{storehouse.shId}}</td>
+                            <td class="text-center">{{storehouse.shName}}</td>
+                            <td class="text-center">{{storehouse.shType == '2806'?'集团仓库':'小区仓库'}}</td>
+                            <td class="text-center">{{storehouse.shDesc}}</td>
+                            <td class="text-center">{{storehouse.isShow == 'true'?'是':'否'}}</td>
+                            <td class="text-center">{{storehouse.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group" v-if="vc.hasPrivilege('502021101197710001')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditStorehouseModel(storehouse)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteStorehouseModel(storehouse)">删除
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDetailStorehouseModel(storehouse)">详情
+                                    </button>
+                                </div>
+                            </td>
 
-                            </tr>
+                        </tr>
                         </tbody>
                         <tfoot>
                         <tr>

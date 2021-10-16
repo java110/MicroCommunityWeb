@@ -6,10 +6,12 @@
                 resName: '',
                 resCode: '',
                 rstId: '',
+                parentRstId: '',
                 rssId: '',
                 price: '',
                 description: '',
                 rstIds: [],
+                parentRstIds: [],
                 unitCode: '',
                 miniUnitCode: '',
                 miniUnitStock: '',
@@ -29,9 +31,9 @@
         },
         _initEvent: function () {
             vc.on('editResourceStore', 'openEditResourceStoreModal', function (_params) {
+                console.log(_params);
                 $('#editResourceStoreModel').modal('show');
                 vc.component.refreshEditResourceStoreInfo();
-                $that._listEditResourceStoreType();
                 vc.copyObject(_params, vc.component.editResourceStoreInfo);
                 vc.component.editResourceStoreInfo.fileUrls = _params.fileUrls
                 if (_params.fileUrls) {
@@ -43,6 +45,8 @@
                 });
                 vc.component.editResourceStoreInfo.communityId = vc.getCurrentCommunity().communityId;
                 $that._loadResourceStoreSpecificationEdit();
+                $that._listEditResourceStoreType();
+                $that._listEditResourceStoreSonType();
             });
             vc.on("editResourceStore", "notifyUploadImage", function (_param) {
                 vc.component.editResourceStoreInfo.fileUrls = _param;
@@ -217,7 +221,28 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreType = JSON.parse(json);
+                        vc.component.editResourceStoreInfo.parentRstIds = _resourceStoreType.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 查询物品类型二级分类
+            _listEditResourceStoreSonType: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        rstId: vc.component.editResourceStoreInfo.parentRstId,
+                        flag: "0"
+                    }
+                };
                 vc.http.get('resourceStoreTypeManage',
                     'list',
                     param,
@@ -231,8 +256,22 @@
             },
             // 分类改变事件
             resourceStoreTypesOnChangeEdit: function () {
+                // 清空规格信息
+                vc.component.editResourceStoreInfo.resourceStoreSpecifications = [];
+                vc.component.editResourceStoreInfo.rssId = '';
+                // 二级分类处理
+                vc.component.editResourceStoreInfo.rstIds = [];
+                vc.component.editResourceStoreInfo.rstId = '';
+                if (vc.component.editResourceStoreInfo.parentRstId == '') {
+                    return;
+                }
+                vc.component._listEditResourceStoreSonType();
+            },
+            // 二级分类修改
+            resourceStoreSonTypesOnChangeEdit: function(){
+                vc.component.editResourceStoreInfo.resourceStoreSpecifications = [];
+                vc.component.editResourceStoreInfo.rssId = '';
                 if (vc.component.editResourceStoreInfo.rstId == '') {
-                    vc.component.resourceStoreSpecification = [];
                     return;
                 }
                 vc.component._loadResourceStoreSpecificationEdit();
@@ -253,7 +292,6 @@
                     param,
                     function (json, res) {
                         var _editResourceStoreInfo = JSON.parse(json);
-                        console.log('res', _editResourceStoreInfo.data);
                         vc.component.editResourceStoreInfo.resourceStoreSpecifications = _editResourceStoreInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -266,10 +304,12 @@
                     resName: '',
                     resCode: '',
                     rstId: '',
+                    parentRstId: '',
                     rssId: '',
                     price: '',
                     description: '',
                     rstIds: [],
+                    parentRstIds: [],
                     unitCode: '',
                     miniUnitCode: '',
                     miniUnitStock: '',

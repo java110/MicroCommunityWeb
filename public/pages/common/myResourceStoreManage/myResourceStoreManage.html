@@ -45,8 +45,7 @@
                     <div class="row" v-show="myResourceStoreManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rstId"
-                                        @change="_listResourceStoreSpecifications">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
                                     <option selected value="">请选择物品类型</option>
                                     <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreTypes"
                                             :key="index" v-bind:value="item.rstId">
@@ -56,6 +55,17 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">请选择二级分类</option>
+                                    <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreSonTypes" :key="index"
+                                        v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rssId">
                                     <option selected value="">请选择物品规格</option>
@@ -66,19 +76,19 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-3" v-if="vc.hasPrivilege('502021071018550002')">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入用户ID"
-                                       v-model="myResourceStoreManageInfo.conditions.searchUserId"
-                                       class=" form-control">
-                            </div>
-                        </div>
                     </div>
                     <div class="row" v-show="myResourceStoreManageInfo.moreCondition == true">
                         <div class="col-sm-3" v-if="vc.hasPrivilege('502021071018550002')">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入用户名称"
                                        v-model="myResourceStoreManageInfo.conditions.searchUserName"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4" v-if="vc.hasPrivilege('502021071018550002')">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入用户ID"
+                                       v-model="myResourceStoreManageInfo.conditions.searchUserId"
                                        class=" form-control">
                             </div>
                         </div>
@@ -127,7 +137,7 @@
                                 {{resourceStore.userName}}
                             </td>
                             <td class="text-center">{{resourceStore.resId}}</td>
-                            <td class="text-center">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
+                            <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>

@@ -97,24 +97,23 @@
                     </div>
                     <div class="row" v-show="purchaseApplyDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
-                            <div class="form-group input-group">
-                                <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rsId">
-                                    <option selected value="">请选择供应商</option>
-                                    <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceSuppliers"
+                            <div class="form-group">
+                                <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
+                                    <option selected value="">请选择物品类型</option>
+                                    <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceStoreTypes"
                                             :key="index"
-                                            :value="item.rsId">{{item.supplierName}}
+                                            v-bind:value="item.rstId">
+                                        {{item.name}}
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="form-group">
-                                <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rstId"
-                                        @change="_listResourceStoreSpecifications">
-                                    <option selected value="">请选择物品类型</option>
-                                    <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceStoreTypes"
-                                            :key="index"
-                                            v-bind:value="item.rstId">
+                            <div class="input-group">
+                                <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">请选择二级分类</option>
+                                    <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceStoreSonTypes" :key="index"
+                                        v-bind:value="item.rstId">
                                         {{item.name}}
                                     </option>
                                 </select>
@@ -135,6 +134,17 @@
                     </div>
                     <div class="row" v-show="purchaseApplyDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rsId">
+                                    <option selected value="">请选择供应商</option>
+                                    <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceSuppliers"
+                                            :key="index"
+                                            :value="item.rsId">{{item.supplierName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.shId">
                                     <option selected value="">请选择仓库</option>
@@ -190,7 +200,7 @@
                             <td class="text-center">{{purchaseApplyDetail.endUserName}}</td>
                             <td class="text-center">{{purchaseApplyDetail.resOrderTypeName}}</td>
                             <td class="text-center">
-                                {{purchaseApplyDetail.rstName ? purchaseApplyDetail.rstName : '-'}}
+                                {{purchaseApplyDetail.parentRstName}} > {{purchaseApplyDetail.rstName}}
                             </td>
                             <td class="text-center">{{purchaseApplyDetail.resName}}</td>
                             <td class="text-center">

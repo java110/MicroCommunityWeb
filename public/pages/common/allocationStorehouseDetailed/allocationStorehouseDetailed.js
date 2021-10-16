@@ -21,6 +21,7 @@
                     resName: '',
                     resCode: '',
                     rssId: '',
+                    parentRstId: '',
                     rstId: '',
                     shIda: '',
                     shIdz: '',
@@ -31,6 +32,7 @@
                     communityId: vc.getCurrentCommunity().communityId
                 },
                 resourceStoreTypes: [],
+                resourceStoreSonTypes: [],
                 resourceStoreSpecifications: []
             }
         },
@@ -99,10 +101,13 @@
                 vc.component.allocationStorehousesInfo.conditions.startUserId = "";
                 vc.component.allocationStorehousesInfo.conditions.resId = "";
                 vc.component.allocationStorehousesInfo.conditions.resName = "";
+                vc.component.allocationStorehousesInfo.conditions.parentRstId = "";
                 vc.component.allocationStorehousesInfo.conditions.rstId = "";
                 vc.component.allocationStorehousesInfo.conditions.rssId = "";
                 vc.component.allocationStorehousesInfo.conditions.state = "";
                 vc.component.allocationStorehousesInfo.conditions.applyType = "";
+                vc.component.allocationStorehousesInfo.resourceStoreSonTypes = [];
+                vc.component.allocationStorehousesInfo.resourceStoreSpecifications = [];
                 vc.component._listAllocationStores(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listStorehouses: function (_page, _rows) {
@@ -139,6 +144,32 @@
                     function (json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.allocationStorehousesInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listResourceStoreSonTypes: function () {
+                vc.component.allocationStorehousesInfo.conditions.rstId = '';
+                vc.component.allocationStorehousesInfo.resourceStoreSonTypes = [];
+                if(vc.component.allocationStorehousesInfo.conditions.parentRstId == ''){
+                    return;
+                }
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        parentId: vc.component.allocationStorehousesInfo.conditions.parentRstId
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeManageInfo = JSON.parse(json);
+                        vc.component.allocationStorehousesInfo.resourceStoreSonTypes = _resourceStoreTypeManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

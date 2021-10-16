@@ -45,26 +45,33 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-3" v-if="resourceStoreUseRecordManageInfo.moreCondition == true">
+                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入物品使用人Id"
                                        v-model="resourceStoreUseRecordManageInfo.conditions.createUserId"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4" v-if="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入物品使用人用户名"
                                        v-model="resourceStoreUseRecordManageInfo.conditions.createUserName"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3" v-if="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select"
-                                        v-model="resourceStoreUseRecordManageInfo.conditions.rstId"
-                                        @change="_listResourceStoreSpecifications">
+                                <input type="text" placeholder="请输入物品名称"
+                                       v-model="resourceStoreUseRecordManageInfo.conditions.resName"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
                                     <option selected value="">请选择物品类型</option>
                                     <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreTypes"
                                             :key="index"
@@ -74,8 +81,17 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">请选择二级分类</option>
+                                    <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreSonTypes" :key="index"
+                                        v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select"
@@ -89,27 +105,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                    </div>
+                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择开始时间"
                                        v-model="resourceStoreUseRecordManageInfo.conditions.startTime"
                                        class=" form-control startTime">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择结束时间"
                                        v-model="resourceStoreUseRecordManageInfo.conditions.endTime"
                                        class=" form-control endTime">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入物品名称"
-                                       v-model="resourceStoreUseRecordManageInfo.conditions.resName"
-                                       class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -153,7 +162,7 @@
                             <td class="text-center">{{resourceStoreUseRecord.repairId}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.resId}}</td>
                             <td class="text-center">
-                                {{resourceStoreUseRecord.rstName ? resourceStoreUseRecord.rstName : '-'}}
+                                {{resourceStoreUseRecord.parentRstName}} > {{resourceStoreUseRecord.rstName}}
                             </td>
                             <td class="text-center">
                                 {{resourceStoreUseRecord.resourceStoreName ? resourceStoreUseRecord.resourceStoreName : '-'}}

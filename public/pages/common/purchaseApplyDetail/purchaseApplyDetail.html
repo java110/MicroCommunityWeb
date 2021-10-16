@@ -128,7 +128,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="resourceStore in purchaseApplyDetailInfo.purchaseApplyDetailVo">
-                            <td class="text-center">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
+                            <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.shName}}</td>
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>

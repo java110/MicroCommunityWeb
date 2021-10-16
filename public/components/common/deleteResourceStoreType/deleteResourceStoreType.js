@@ -25,7 +25,12 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#deleteResourceStoreTypeModel').modal('hide');
-                            vc.emit('resourceStoreTypeManage', 'listResourceStoreType', {});
+                            if (vc.component.deleteResourceStoreTypeInfo.parentId != null && vc.component.deleteResourceStoreTypeInfo.parentId != ''
+                                && vc.component.deleteResourceStoreTypeInfo.parentId != 'undefined' && vc.component.deleteResourceStoreTypeInfo.parentId != '0') {
+                                vc.emit('listSonResourceStoreType', 'listSonResourceStoreTypes', {});
+                            } else {
+                                vc.emit('resourceStoreTypeManage', 'listResourceStoreType', {});
+                            }
                             return;
                         }
                         vc.toast(json);

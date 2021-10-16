@@ -14,10 +14,12 @@
                 rssId: '',
                 conditions: {
                     specName: '',
+                    parentRstId: '',
                     rstId: '',
                     rssId: '',
                 },
-                resourceStoreTypes: []
+                resourceStoreTypes: [],
+                resourceStoreSonTypes: []
             }
         },
         _initMethod: function () {
@@ -79,7 +81,9 @@
             _resetResourceStoreSpecificationMethod: function () {
                 vc.component.resourceStoreSpecificationManageInfo.conditions.rstId = '';
                 vc.component.resourceStoreSpecificationManageInfo.conditions.specName = '';
+                vc.component.resourceStoreSpecificationManageInfo.conditions.parentRstId = '';
                 vc.component.resourceStoreSpecificationManageInfo.conditions.rssId = '';
+                vc.component.resourceStoreSpecificationManageInfo.resourceStoreSonTypes = [];
                 $that._listResourceStoreSpecifications(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listResourceStoreTypes: function () {
@@ -97,6 +101,33 @@
                     function (json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.resourceStoreSpecificationManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 父级分类改变
+            resourceStoreParentTypesChange: function(){
+                vc.component.resourceStoreSpecificationManageInfo.conditions.rstId = '';
+                if (vc.component.resourceStoreSpecificationManageInfo.conditions.parentRstId == '') {
+                    vc.component.resourceStoreSpecificationManageInfo.resourceStoreSonTypes = [];
+                    return;
+                }
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        rstId: vc.component.resourceStoreSpecificationManageInfo.conditions.parentRstId,
+                        flag: "0"
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeInfo = JSON.parse(json);
+                        vc.component.resourceStoreSpecificationManageInfo.resourceStoreSonTypes = _resourceStoreTypeInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

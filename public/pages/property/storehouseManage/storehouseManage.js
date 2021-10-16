@@ -16,7 +16,9 @@
                 conditions: {
                     shName: '',
                     shType: '',
-                    shId: ''
+                    isShow: '',
+                    shId: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -68,7 +70,8 @@
                 vc.component.storehouseManageInfo.conditions.shId = "";
                 vc.component.storehouseManageInfo.conditions.shName = "";
                 vc.component.storehouseManageInfo.conditions.shType = "";
-                $that._listStorehouses(DEFAULT_PAGE,DEFAULT_ROWS);
+                vc.component.storehouseManageInfo.conditions.isShow = "";
+                $that._listStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddStorehouseModal: function () {
                 vc.emit('addStorehouse', 'openAddStorehouseModal', {});

@@ -7,11 +7,13 @@
         },
         data: {
             addResourceStoreSpecificationInfo: {
-                rss_id: '',
+                rssid: '',
                 specName: '',
+                parentRstId: '',
                 rstId: '',
                 description: '',
-                resourceStoreTypes: []
+                resourceStoreTypes: [],
+                sonResourceStoreTypes: []
             }
         },
         _initMethod: function () {
@@ -39,7 +41,7 @@
                             errInfo: "规格名称太长"
                         },
                     ],
-                    'addResourceStoreSpecificationInfo.rstId': [
+                    'addResourceStoreSpecificationInfo.parentRstId': [
                         {
                             limit: "required",
                             param: "",
@@ -50,6 +52,13 @@
                             param: "",
                             errInfo: "商品类型格式错误"
                         },
+                    ],
+                    'addResourceStoreSpecificationInfo.rstId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "请选择二级分类"
+                        }
                     ],
                     'addResourceStoreSpecificationInfo.description': [
                         {
@@ -65,10 +74,8 @@
             saveResourceStoreSpecificationInfo: function () {
                 if (!vc.component.addResourceStoreSpecificationValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addResourceStoreSpecificationInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -76,7 +83,6 @@
                     $('#addResourceStoreSpecificationModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'resourceStore.saveResourceStoreSpecification',
                     JSON.stringify(vc.component.addResourceStoreSpecificationInfo),
@@ -91,21 +97,43 @@
                             $('#addResourceStoreSpecificationModel').modal('hide');
                             vc.component.clearAddResourceStoreSpecificationInfo();
                             vc.emit('resourceStoreSpecificationManage', 'listResourceStoreSpecification', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
+            // 分类改变事件
+            resourceStoreSpecificationTypesOnChangeAdd: function () {
+                vc.component.addResourceStoreSpecificationInfo.rstId = '';
+                vc.component.addResourceStoreSpecificationInfo.sonResourceStoreTypes = [];
+                if (vc.component.addResourceStoreSpecificationInfo.parentRstId == '') {
+                    return;
+                }
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        rstId: vc.component.addResourceStoreSpecificationInfo.parentRstId,
+                        flag: "0"
+                    }
+                };
+                //发送get请求
+                vc.http.get('resourceStoreTypeManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _resourceStoreTypeInfo = JSON.parse(json);
+                        vc.component.addResourceStoreSpecificationInfo.sonResourceStoreTypes = _resourceStoreTypeInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _listResourceStoreTypesAdd: function () {
-                console.log('do it');
                 var param = {
                     params: {
                         page: 1,
@@ -127,10 +155,13 @@
             },
             clearAddResourceStoreSpecificationInfo: function () {
                 vc.component.addResourceStoreSpecificationInfo = {
+                    rssid: '',
                     specName: '',
+                    parentRstId: '',
                     rstId: '',
                     description: '',
-                    resourceStoreTypes: []
+                    resourceStoreTypes: [],
+                    sonResourceStoreTypes: []
                 };
             }
         }
