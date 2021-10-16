@@ -19,7 +19,7 @@
                     startTime: '',
                     endTime: '',
                     userCode: '',
-                    state: '',
+                    state: '1010',
                     payerObjId: ''
                 },
                 curPayFee: {}
