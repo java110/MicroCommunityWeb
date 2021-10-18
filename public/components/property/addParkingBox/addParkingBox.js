@@ -23,7 +23,8 @@
             $that._loadAddParkingBoxs();
         },
         _initEvent: function () {
-            vc.on('addParkingBox', 'openAddParkingBoxModal', function () {
+            vc.on('addParkingBox', 'openAddParkingBoxModal', function (param) {
+                $that.addParkingBoxInfo.boxId = param.boxId;
                 $('#addParkingBoxModel').modal('show');
             });
         },
