@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入岗亭ID" v-model="parkingBoxManageInfo.conditions.boxId"
+                                <input type="text" placeholder="请输入岗亭编号" v-model="parkingBoxManageInfo.conditions.boxId"
                                     class=" form-control">
                             </div>
                         </div>
@@ -60,20 +60,20 @@
                             <tr>
                                 <th class="text-center">岗亭编号</th>
                                 <th class="text-center">岗亭名称</th>
+                                <th class="text-center">停车场</th>
                                 <th class="text-center">临时车进场</th>
                                 <th class="text-center">是否收费</th>
                                 <th class="text-center">蓝牌车进场</th>
                                 <th class="text-center">黄牌车进场</th>
                                 <th class="text-center">备注</th>
                                 <th class="text-center">操作</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="parkingBox in parkingBoxManageInfo.parkingBoxs">
                                 <td class="text-center">{{parkingBox.boxId}}</td>
                                 <td class="text-center">{{parkingBox.boxName}}</td>
+                                <td class="text-center">{{parkingBox.num}}</td>
                                 <td class="text-center">{{parkingBox.tempCarIn== 'Y'?'是':'否'}}</td>
                                 <td class="text-center">{{parkingBox.fee == 'Y'?'是':'否'}}</td>
                                 <td class="text-center">{{parkingBox.blueCarIn== 'Y'?'是':'否'}}</td>
