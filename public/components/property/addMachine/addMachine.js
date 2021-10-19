@@ -21,7 +21,7 @@
                 unitId: '',
                 unitName: '',
                 roomId: '',
-                paId: '',
+                boxId: '',
                 orgId: '',
                 locationTypeCd: '',
                 locationObjId: '',
@@ -60,8 +60,8 @@
                     vc.component.addMachineInfo.roomId = _param.roomId;
                 }
 
-                if (_param.hasOwnProperty("paId")) {
-                    vc.component.addMachineInfo.paId = _param.paId;
+                if (_param.hasOwnProperty("boxId")) {
+                    vc.component.addMachineInfo.boxId = _param.boxId;
                 }
 
             });
@@ -188,7 +188,7 @@
                 } else if (vc.component.addMachineInfo.locationType == '3000') {
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.roomId;
                 } else if (vc.component.addMachineInfo.locationType == '4000') {
-                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.paId;
+                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.boxId;
                 } else if (vc.component.addMachineInfo.locationType == '5000') {
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.orgId;
                 } else if (vc.component.addMachineInfo.locationType == '6000') {
@@ -279,7 +279,7 @@
                     unitId: '',
                     unitName: '',
                     roomId: '',
-                    paId: '',
+                    boxId: '',
                     orgId: '',
                     typeId: '',
                     isShow: 'true',

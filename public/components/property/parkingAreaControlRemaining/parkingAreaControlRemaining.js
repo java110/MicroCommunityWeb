@@ -10,7 +10,7 @@
                 total: 0,
                 freeCount: 0,
                 createTime: '',
-                paId: '',
+                boxId: '',
             }
         },
         _initMethod: function () {
@@ -18,7 +18,7 @@
         },
         _initEvent: function () {
             vc.on('parkingAreaControlRemaining', 'switch', function (_data) {
-                $that.parkingAreaControlRemaining.paId = _data.paId;
+                $that.parkingAreaControlRemaining.boxId = _data.boxId;
                 $that._loadParkingAreaControlRemaining(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('parkingAreaControlRemaining', 'paginationPlus', 'page_event',
@@ -32,7 +32,7 @@
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        paId: $that.parkingAreaControlRemaining.paId,
+                        boxId: $that.parkingAreaControlRemaining.boxId,
                     }
                 };
                 //发送get请求

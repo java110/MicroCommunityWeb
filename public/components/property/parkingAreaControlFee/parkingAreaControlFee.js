@@ -14,11 +14,11 @@
                 openMsg: "",
                 machineId: '-1',
                 showRefresh:'',
-                paId:''
+                boxId:''
             }
         },
         _initMethod: function () {
-            $that.parkingAreaControlFeeInfo.paId = vc.getParam('paId');
+            $that.parkingAreaControlFeeInfo.boxId = vc.getParam('boxId');
             $that._loadQrCodeUrl();
         },
         _initEvent: function () {
@@ -47,7 +47,7 @@
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        paId: $that.parkingAreaControlFeeInfo.paId,
+                        boxId: $that.parkingAreaControlFeeInfo.boxId,
                         machineId: $that.parkingAreaControlFeeInfo.machineId,
                     }
                 };

@@ -8,7 +8,7 @@
         data: {
             parkingAreaControlBlackCar: {
                 cars: [],
-                paId: '',
+                boxId: '',
                 carNum:''
             }
         },
@@ -17,7 +17,7 @@
         },
         _initEvent: function () {
             vc.on('parkingAreaControlBlackCar', 'switch', function (_data) {
-                $that.parkingAreaControlBlackCar.paId = _data.paId;
+                $that.parkingAreaControlBlackCar.boxId = _data.boxId;
                 $that._loadParkingAreaControlBlackCars(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('parkingAreaControlBlackCar', 'paginationPlus', 'page_event',
@@ -33,7 +33,7 @@
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        paId: $that.parkingAreaControlBlackCar.paId,
+                        boxId: $that.parkingAreaControlBlackCar.boxId,
                         blackWhite: '1111',
                         carNum: $that.parkingAreaControlBlackCar.carNum,
 

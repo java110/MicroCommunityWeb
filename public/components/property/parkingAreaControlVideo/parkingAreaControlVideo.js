@@ -5,7 +5,7 @@
     vc.extends({
         data: {
             parkingAreaControlVideoInfo: {
-                paId: '',
+                boxId: '',
                 inMachineId: '',
                 outMachineId: '',
                 inMachines: [],
@@ -18,8 +18,8 @@
         },
         _initEvent: function () {
             vc.on('parkingAreaControlVideo', 'notify', function (param) {
-                if (param.hasOwnProperty('paId')) {
-                    $that.parkingAreaControlVideoInfo.paId = param.paId;
+                if (param.hasOwnProperty('boxId')) {
+                    $that.parkingAreaControlVideoInfo.boxId = param.boxId;
                     $that._listMachines();
                 }
             })
@@ -28,7 +28,7 @@
             _listMachines: function () {
                 let param = {
                     params: {
-                        locationObjId: $that.parkingAreaControlVideoInfo.paId,
+                        locationObjId: $that.parkingAreaControlVideoInfo.boxId,
                         page: 1,
                         row: 100,
                         machineTypeCd: '9996',
@@ -117,7 +117,7 @@
                 });
                 vc.emit('parkingAreaControlFee', 'changeMachine', {
                     machineId: _outMachineId,
-                    paId: $that.parkingAreaControlVideoInfo.paId
+                    boxId: $that.parkingAreaControlVideoInfo.boxId
                 });
 
                 let paId = "";

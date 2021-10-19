@@ -6,17 +6,17 @@
         data: {
             parkingAreaControlInfo: {
                 _currentTab: 'parkingAreaControlCarInout',
-                paId: '',
+                boxId: '',
                 inMachineId: '',
                 outMachineId: '',
 
             }
         },
         _initMethod: function () {
-            $that.parkingAreaControlInfo.paId = vc.getParam('paId');
+            $that.parkingAreaControlInfo.boxId = vc.getParam('boxId');
             $that._initParkingAreaWs();
             vc.emit('parkingAreaControlVideo', 'notify', {
-                paId: $that.parkingAreaControlInfo.paId
+                boxId: $that.parkingAreaControlInfo.boxId
             });
         },
         _initEvent: function () {
@@ -28,7 +28,7 @@
             changeTab: function (_tab) {
                 $that.parkingAreaControlInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
-                    paId: $that.parkingAreaControlInfo.paId
+                    boxId: $that.parkingAreaControlInfo.boxId
                 })
             },
             _initParkingAreaWs: function () {
@@ -68,14 +68,14 @@
                 if (_protocol.startsWith('https')) {
                     url =
                         "wss://" + window.location.host + "/ws/parkingArea/" +
-                        $that.parkingAreaControlInfo.paId + "/" + clientId;
+                        $that.parkingAreaControlInfo.boxId + "/" + clientId;
                 } else {
                     // url =
                     //     "ws://" + window.location.host + "/ws/parkingArea/" +
                     //     $that.parkingAreaControlInfo.paId + "/" + clientId;
                     url =
                         "ws://demo.homecommunity.cn:9011/ws/parkingArea/" +
-                        $that.parkingAreaControlInfo.paId + "/" + clientId;
+                        $that.parkingAreaControlInfo.boxId + "/" + clientId;
                 }
 
 
