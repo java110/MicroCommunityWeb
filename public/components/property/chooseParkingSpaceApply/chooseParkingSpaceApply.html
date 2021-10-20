@@ -1,0 +1,75 @@
+<div id = "chooseParkingSpaceApplyModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseParkingSpaceApplyModelLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseParkingSpaceApplyModelLabel">选择车位申请</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+
+                                <div class="col-sm-7 m-b-xs">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input placeholder="输入车位申请名称" type="text" v-model="chooseParkingSpaceApplyInfo._currentParkingSpaceApplyName" class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryParkingSpaceApplys()">查询</button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                            <th class="text-center">申请ID</th>
+                            <th class="text-center">车牌号</th>
+                            <th class="text-center">汽车品牌</th>
+                            <th class="text-center">车辆类型</th>
+                            <th class="text-center">颜色</th>
+                            <th class="text-center">起租时间</th>
+                            <th class="text-center">结租时间</th>
+                            <th class="text-center">申请人</th>
+                            <th class="text-center">申请人电话</th>
+                            <th class="text-center">申请人ID</th>
+                            <th class="text-center">审核结果</th>
+                            <th class="text-center">备注</th>
+                            <th class="text-center">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="parkingSpaceApply in chooseParkingSpaceApplyInfo.parkingSpaceApplys">
+                                                                        <td class="text-center">{{parkingSpaceApply.applyId}}</td>
+                            <td class="text-center">{{parkingSpaceApply.carNum}}</td>
+                            <td class="text-center">{{parkingSpaceApply.carBrand}}</td>
+                            <td class="text-center">{{parkingSpaceApply.carType}}</td>
+                            <td class="text-center">{{parkingSpaceApply.carColor}}</td>
+                            <td class="text-center">{{parkingSpaceApply.startTime}}</td>
+                            <td class="text-center">{{parkingSpaceApply.endTime}}</td>
+                            <td class="text-center">{{parkingSpaceApply.applyPersonName}}</td>
+                            <td class="text-center">{{parkingSpaceApply.applyPersonLink}}</td>
+                            <td class="text-center">{{parkingSpaceApply.applyPersonId}}</td>
+                            <td class="text-center">{{parkingSpaceApply.state}}</td>
+                            <td class="text-center">{{parkingSpaceApply.remark}}</td>
+
+                                            <td>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseParkingSpaceApply(parkingSpaceApply)">选择</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
