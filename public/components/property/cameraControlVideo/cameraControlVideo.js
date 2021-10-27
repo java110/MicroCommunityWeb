@@ -17,8 +17,7 @@
             }
         },
         _initMethod: function () {
-            $that._initShowType($that.cameraControlVideoInfo.showType);
-
+            $that._initMachineVideo();
         },
         _initEvent: function () {
             vc.on('cameraControlVideo', 'notify', function (param) {
@@ -60,96 +59,24 @@
                     }
                 );
             },
-            _swatchVedio: function () {
-                //创建一个socket实例
-                let wsUrl = "";
-                let _enterMachineId = $that.cameraControlVideoInfo.inMachineId;
-                vc.emit('parkingAreaControl', 'notify', {
-                    inMachineId: _enterMachineId
-                });
-                $that.cameraControlVideoInfo.inMachines.forEach((item) => {
-                    if (item.machineId == _enterMachineId) {
-                        wsUrl = item.machineIp;
-                        if (item.machineVersion.indexOf('300') > -1) {
-                            wsUrl += "/ws.flv"
-                        } else {
-                            wsUrl += "/ws"
-                        }
-                    }
-                });
-
-                wsUrl = wsUrl.replace(':8131', ':9080');
-                let _protocol = window.location.protocol;
-                if (_protocol.startsWith('https')) {
-                    wsUrl =
-                        "wss://" + wsUrl;
-                } else {
-                    wsUrl =
-                        "ws://" + wsUrl;
-                }
-                let image = document.getElementById("receiver1");
-                if (wsUrl.endsWith(".flv")) {
-                    image = document.getElementById("receiver1Div");
-                    let jessibuca = new Jessibuca({
-                        container: image,
-                        videoBuffer: 0.2,
-                        isResize: false,
-                    });
-                    jessibuca.onLoad = function () {
-                        this.play(wsUrl);
-                    };
-                    return;
-                }
-                let receiver_socket = new WebSocket(wsUrl);
-                // 监听消息
-                receiver_socket.onmessage = function (data) {
-                    let reader = new FileReader();
-                    reader.onload = function (evt) {
-                        if (evt.target.readyState == FileReader.DONE) {
-                            let url = evt.target.result;
-                            image.src = "data:image/png;" + url;
-                        }
-                    };
-                    reader.readAsDataURL(data.data);
-                };
+            _initMachineVideo:function(_machines){
+                $that._playVideo('rtc_media_player1','webrtc://112.124.21.207/live/34020000001320000001@34020000001320000010');
+                $that._playVideo('rtc_media_player2','webrtc://112.124.21.207/live/34020000001320000002@34020000001320000010');
+                $that._playVideo('rtc_media_player3','webrtc://112.124.21.207/live/34020000001320000001@34020000001320000010');
+                $that._playVideo('rtc_media_player4','webrtc://112.124.21.207/live/34020000001320000002@34020000001320000010');
             },
-            openFullscreen: function (e) {
-                var parents = $(e.target).parent().parent();
-     
-                // $('#' + parents[0].id).height(650);
-                // $('#' + parents[0].id).width(400);
-                // $('#'+ parents[0].id).toggle(function () {
-                //     $('#' + parents[0].id).height($('#' + parents[0].id).height() + 600);
-                // }, function () {
-                //     $('#' + parents[0].id).height($('#' + parents[0].id).height() - 100);
-                // })
-            },
-            _openCameraControlInfoVideo: function (_machine) {
-                vc.emit('cameraControlInfo', 'notify', {
-                    _machine
+            _playVideo:function(_videoId,url){
+                $('#'+_videoId).show();
+                let sdk = null; // Global handler to do cleanup when replaying.
+                sdk = new SrsRtcPlayerAsync();
+                $('#'+_videoId).prop('srcObject', sdk.stream);
+                sdk.play(url).then(function(session){
+                }).catch(function (reason) {
+                    sdk.close();
+                    $('#'+_videoId).hide();
+                    console.error(reason);
                 });
-            },
-            _initShowType: function(_typeCd){
-                if(_typeCd == '606'){
-                    DEFAULT_ROWS=1;
-                   $("div[name='showName']").attr('class','col-md-12');
-                }
-                if(_typeCd == '607'){
-                    DEFAULT_ROWS=4;
-                   $("div[name='showName']").attr('class','col-md-6');
-                }
-                if(_typeCd == '608'){
-                    DEFAULT_ROWS=9;
-                   $("div[name='showName']").attr('class','col-md-4');
-                }
-                if(_typeCd == '609'){
-                    DEFAULT_ROWS=16;
-                   $("div[name='showName']").attr('class','col-md-3');
-                }
-                $that._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
-                
             }
-
         }
     });
 })(window.vc);
