@@ -47,8 +47,8 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "50",
-                            errInfo: "服务名称不能超过50"
+                            param: "200",
+                            errInfo: "服务名称不能超过200"
                         },
                     ],
                     'addServiceInfo.serviceCode': [
