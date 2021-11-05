@@ -1,38 +1,45 @@
-<div >
+<div>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        
+
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-<div class="col-sm-4" >
-<div class="form-group">
-                                <input type="text" placeholder="请输入范围名称" v-model="shopRangeManageInfo.conditions.rangeName" class=" form-control">
-                            </div>                        </div><div class="col-sm-4" >
-                <div class="form-group">
-                <select class="custom-select" v-model="shopRangeManageInfo.conditions.isShow">
-                    <option selected value="">请选择是否展示</option>
-                    <option value="Y">是</option>
-                    <option value="N">否</option>
-                </select>
-                                        </div>                        </div>
-                                        <div class="col-sm-3" >
-            <div class="form-group">
-                <select class="custom-select" v-model="shopRangeManageInfo.conditions.isDefault">
-                    <option selected value="">请选择是否默认</option>
-                    <option value="F">自定义</option>
-                    <option value="T">默认</option>
-                </select>
-                            </div>                        </div><div class="col-sm-1">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入范围名称"
+                                    v-model="shopRangeManageInfo.conditions.rangeName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="shopRangeManageInfo.conditions.isShow">
+                                    <option selected value="">请选择是否展示</option>
+                                    <option value="Y">是</option>
+                                    <option value="N">否</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="shopRangeManageInfo.conditions.isDefault">
+                                    <option selected value="">请选择是否默认</option>
+                                    <option value="F">自定义</option>
+                                    <option value="T">默认</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryShopRangeMethod()">
-                                    <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="glyphicon glyphicon-search"></i> 查询
                             </button>
-                        </div></div>
+                        </div>
+                    </div>
 
 
                 </div>
@@ -53,43 +60,45 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">店铺类型</th>
-                            <th class="text-center">范围名称</th>
-                            <th class="text-center">是否展示</th>
-                            <th class="text-center">是否默认</th>
-                            <th class="text-center">显示序号</th>
-                            <th class="text-center">备注</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">店铺类型</th>
+                                <th class="text-center">范围名称</th>
+                                <th class="text-center">是否展示</th>
+                                <th class="text-center">是否默认</th>
+                                <th class="text-center">显示序号</th>
+                                <th class="text-center">备注</th>
+                                <th class="text-center">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="shopRange in shopRangeManageInfo.shopRanges">
-                            <td class="text-center">{{shopRange.typeName}}</td>
-                            <td class="text-center">{{shopRange.rangeName}}</td>
-                            <td class="text-center">{{shopRange.isShow =='Y'?'是':'否'}}</td>
-                            <td class="text-center">{{shopRange.isDefault =='F'?'自定义':'默认'}}</td>
-                            <td class="text-center">{{shopRange.seq}}</td>
-                            <td class="text-center">{{shopRange.remark}}</td>
-                            <td class="text-center"><div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditShopRangeModel(shopRange)">修改</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteShopRangeModel(shopRange)">删除</button>
-                                </div></td>
+                            <tr v-for="shopRange in shopRangeManageInfo.shopRanges">
+                                <td class="text-center">{{shopRange.typeName}}</td>
+                                <td class="text-center">{{shopRange.rangeName}}</td>
+                                <td class="text-center">{{shopRange.isShow =='Y'?'是':'否'}}</td>
+                                <td class="text-center">{{shopRange.isDefault =='F'?'自定义':'默认'}}</td>
+                                <td class="text-center">{{shopRange.seq}}</td>
+                                <td class="text-center">{{shopRange.remark}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditShopRangeModel(shopRange)">修改</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteShopRangeModel(shopRange)">删除</button>
+                                    </div>
+                                </td>
 
-                        </tr>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -99,12 +108,9 @@
         </div>
     </div>
 
-    
 
-    <vc:create path="admin/addShopRange"
-               callBackListener=""
-               callBackFunction=""
-    ></vc:create>
+
+    <vc:create path="admin/addShopRange" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="admin/editShopRange"></vc:create>
     <vc:create path="admin/deleteShopRange"></vc:create>
 

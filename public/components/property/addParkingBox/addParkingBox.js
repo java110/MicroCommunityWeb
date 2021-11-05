@@ -14,14 +14,17 @@
                 blueCarIn: '',
                 yelowCarIn: '',
                 remark: '',
+                paId: '',
+                parkingAreas: []
 
             }
         },
         _initMethod: function () {
-
+            $that._loadAddParkingBoxs();
         },
         _initEvent: function () {
-            vc.on('addParkingBox', 'openAddParkingBoxModal', function () {
+            vc.on('addParkingBox', 'openAddParkingBoxModal', function (param) {
+                $that.addParkingBoxInfo.boxId = param.boxId;
                 $('#addParkingBoxModel').modal('show');
             });
         },
@@ -102,10 +105,6 @@
                             errInfo: "备注不能超过300"
                         },
                     ],
-
-
-
-
                 });
             },
             saveParkingBoxInfo: function () {
@@ -150,7 +149,26 @@
 
                     });
             },
+            _loadAddParkingBoxs: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.get('parkingAreaManage', 'list', param,
+                    function (json, res) {
+                        let _parkingAreaManageInfo = JSON.parse(json);
+                        $that.addParkingBoxInfo.parkingAreas = _parkingAreaManageInfo.parkingAreas;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    });
+            },
             clearAddParkingBoxInfo: function () {
+                let _parkingAreas = $that.addParkingBoxInfo.parkingAreas;
                 vc.component.addParkingBoxInfo = {
                     boxName: '',
                     tempCarIn: '',
@@ -158,7 +176,8 @@
                     blueCarIn: '',
                     yelowCarIn: '',
                     remark: '',
-
+                    paId:'',
+                    parkingAreas: _parkingAreas
                 };
             }
         }

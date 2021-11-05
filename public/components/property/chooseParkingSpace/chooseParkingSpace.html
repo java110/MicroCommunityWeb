@@ -1,0 +1,89 @@
+<div id="chooseParkingSpaceModel" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="chooseParkingSpaceModelLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseParkingSpaceModelLabel">选择车位</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+
+                                <div class="col-sm-7 m-b-xs">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input placeholder="输入停车场编号" type="text"
+                                               v-model="chooseParkingSpaceInfo.areaNum"
+                                               class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                        v-on:click="queryParkingSpaces()">查询</button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th data-hide="phone" class="text-center">停车场</th>
+                                        <th data-hide="phone" class="text-center">车位</th>
+                                        <th data-hide="phone" class="text-center">车位状态</th>
+                                        <th data-hide="phone" class="text-center">车位类型</th>
+                                        <th data-hide="phone" class="text-center">面积</th>
+                                        <th class="text-center">车位ID</th>
+                                        <th class="text-center">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                   
+                                    <tr v-for="parkingSpace in chooseParkingSpaceInfo.parkingSpaces">
+                                        <td class="text-center">
+                                            {{parkingSpace.areaNum}}号停车场
+                                        </td>
+                                        <td class="text-center">
+                                            {{parkingSpace.num}}车位
+                                        </td>
+                                        <td class="text-center">
+                                            {{vc.component._viewParkingSpaceState(parkingSpace.state)}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{parkingSpace.parkingTypeName}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{parkingSpace.area}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{parkingSpace.psId}}
+                                        </td>
+                                        <td class="text-center">
+                                          
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                        v-on:click="chooseParkingSpace(parkingSpace)">选择
+                                                </button>
+                                            </div>
+                                          
+                                        </td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                                <vc:create namespace="chooseParkingSpace" path="frame/paginationPlus"></vc:create>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

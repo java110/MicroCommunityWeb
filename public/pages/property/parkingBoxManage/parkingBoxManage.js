@@ -77,6 +77,12 @@
                 } else {
                     vc.component.parkingBoxManageInfo.moreCondition = true;
                 }
+            },
+            _parkingBoxArea: function (_parkingBox) {
+                vc.jumpToPage('/admin.html#/pages/property/parkingBoxAreaManage?boxId=' + _parkingBox.boxId + "&boxName=" + _parkingBox.boxName);
+            },
+            _openParkingAreaControl:function(_parkingBox){
+                vc.jumpToPage('/admin.html#/pages/property/parkingAreaControl?boxId='+_parkingBox.boxId)
             }
 
 

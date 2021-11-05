@@ -1,30 +1,30 @@
 <div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">显示方式</label>
-        <div class="col-sm-10">
-            <select class="custom-select" v-model="cameraControlVideoInfo.showType"
-                @change="_initShowType(cameraControlVideoInfo.showType)">
-                <option value="606">1*1显示</option>
-                <option value="607">2*2显示</option>
-                <option value="608">3*3显示</option>
-                <option value="609">4*4显示</option>
-            </select>
-        </div>
-    </div>
     <div class="row">
         <!-- 2*2-->
         <div class="row col-md-12">
-            <div class="col-md-6" name="showName" v-for="(valueItem,valueIndex) in cameraControlVideoInfo.machines"
-                @click="_openCameraControlInfoVideo(valueItem)" @dblclick="openFullscreen($event)"
-                style="margin-top: 5px">
-                <div class="form-group" :id="valueIndex">
-                    <img width="100%" src="../../../img/init.jpg" :id="valueItem.machineId" height="450px" />
+            <div class="col-md-6"  >
+                <div class="form-group" >
+                    <video id="rtc_media_player1" controls autoplay="autoplay" muted width="100%" height="400px"></video>
                 </div>
-
+            </div>
+            <div class="col-md-6"  >
+                <div class="form-group" >
+                    <video id="rtc_media_player2" controls autoplay="autoplay" muted width="100%" height="400px"></video>
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-6"  >
+                <div class="form-group" >
+                    <video id="rtc_media_player3" controls autoplay="autoplay" muted width="100%" height="400px"></video>
+                </div>
+            </div>
+            <div class="col-md-6"  >
+                <div class="form-group" >
+                    <video id="rtc_media_player4" controls autoplay="autoplay" muted width="100%" height="400px"></video>
+                </div>
             </div>
         </div>
 
     </div>
-    <!-- 分页 -->
-    <vc:create path="frame/pagination"></vc:create>
 </div>
