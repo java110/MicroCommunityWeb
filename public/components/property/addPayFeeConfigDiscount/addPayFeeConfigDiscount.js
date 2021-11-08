@@ -108,12 +108,7 @@
                             limit: "required",
                             param: "",
                             errInfo: "费用项不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "费用项格式错误"
-                        },
+                        }
                     ],
                     'addPayFeeConfigDiscountInfo.discountId': [
                         {
