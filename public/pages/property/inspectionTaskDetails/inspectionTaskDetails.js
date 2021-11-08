@@ -122,7 +122,6 @@
                     param,
                     function (json, res) {
                         var _inspectionTaskDetailManageInfo = JSON.parse(json);
-                        console.log(_inspectionTaskDetailManageInfo);
                         vc.component.inspectionTaskDetailManageInfo.total = _inspectionTaskDetailManageInfo.total;
                         vc.component.inspectionTaskDetailManageInfo.records = _inspectionTaskDetailManageInfo.records;
                         vc.component.inspectionTaskDetailManageInfo.inspectionTasks = _inspectionTaskDetailManageInfo.inspectionTaskDetails;

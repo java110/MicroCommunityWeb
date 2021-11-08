@@ -203,7 +203,6 @@
                 } else {
                     vc.component.editAdvertInfo.photos = [];
                 }
-                vc.component.editAdvertInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'editAdvert',
                     'update',

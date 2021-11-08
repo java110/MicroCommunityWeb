@@ -235,7 +235,7 @@
                         <tbody>
                         <tr v-for="(item,index) in ownerRepairDetailInfo.resourceStoreInfo">
                             <td scope="row" class="text-center">{{item.resId}}</td>
-                            <td class="text-center">{{item.rstName? item.rstName : '-'}}</td>
+                            <td class="text-center">{{item.parentRstName}} > {{item.rstName}}</td>
                             <td class="text-center">{{item.resourceStoreName}}</td>
                             <td class="text-center">{{item.specName? item.specName : '-'}}</td>
                             <td class="text-center">{{item.quantity}}{{item.miniUnitCodeName}}</td>

@@ -31,7 +31,6 @@
         },
         _initEvent: function () {
             vc.on('editResourceStore', 'openEditResourceStoreModal', function (_params) {
-                console.log(_params);
                 $('#editResourceStoreModel').modal('show');
                 vc.component.refreshEditResourceStoreInfo();
                 vc.copyObject(_params, vc.component.editResourceStoreInfo);
