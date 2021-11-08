@@ -115,12 +115,7 @@
                             limit: "required",
                             param: "",
                             errInfo: "折扣名称不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "折扣格式错误"
-                        },
+                        }
                     ],
                     'addPayFeeConfigDiscountInfo.startTime': [
                         {
