@@ -264,6 +264,25 @@
                     ],
                 });
             },
+            _queryRoom: function () {
+                let param = {
+                    params: {
+                        contractId: vc.getParam("contractId"),
+                        page: 1,
+                        row: 100
+                    }
+                }
+                //发送get请求
+                vc.http.apiGet('/contract/queryContractRoom',
+                    param,
+                    function (json, res) {
+                        var _contractTFile = JSON.parse(json);
+                        vc.component.addContractInfo.rooms = _contractTFile.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             saveContractInfo: function () {
                 if (!vc.component.addContractValidate()) {
                     vc.toast(vc.validate.errInfo);
