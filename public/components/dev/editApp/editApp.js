@@ -19,7 +19,7 @@
             vc.on('editApp', 'openEditAppModal', function (_params) {
                 vc.component.refreshEditAppInfo();
                 $('#editAppModel').modal('show');
-                vc.component.editAppInfo = _params;
+                vc.copyObject(_params,vc.component.editAppInfo);
                 //vc.component.editAppInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
