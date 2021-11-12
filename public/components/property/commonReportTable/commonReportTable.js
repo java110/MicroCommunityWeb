@@ -3,7 +3,7 @@
 **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+    var DEFAULT_ROWS = 15;
     vc.extends({
         data: {
             commonReportTableInfo: {
@@ -22,12 +22,17 @@
                 $that._listReportCustomTableComponent();
             })
             vc.on('commonReportTable', 'paginationPlus', 'page_event', function (_currentPage) {
-                vc.component._listOaWorkflowPools(_currentPage, DEFAULT_ROWS);
+                vc.component._listReportCustomTableDatas(_currentPage, DEFAULT_ROWS,$that.commonReportTableInfo.components[0]);
             });
         },
         methods: {
-            _queryReportTableMethod: function (data) {
+            _queryReportTableMethod: function (item) {
+                let _condition = {};
+                item.conditions.forEach(_item => {
+                    _condition[_item.param] = _item.value;
+                })
 
+                $that._listReportCustomTableDatas(1, 15, item, _condition);
             },
             _listReportCustomTableComponent: function () {
                 var param = {
@@ -54,11 +59,17 @@
                 );
             },
             _listReportCustomTableConditions: function (_component) {
+                let _community = vc.getCurrentCommunity();
+                let _communityId = '';
+                if (_community) {
+                    _communityId = _community.communityId
+                }
                 let param = {
                     params: {
                         page: 1,
                         row: 50,
-                        componentId: _component.componentId
+                        componentId: _component.componentId,
+                        communityId: _communityId
                     }
                 };
                 //发送get请求
@@ -74,14 +85,22 @@
                 );
 
             },
-            _listReportCustomTableDatas: function (_page, _row, _component) {
-                let param = {
-                    params: {
+            _listReportCustomTableDatas: function (_page, _row, _component, _conditions) {
+                if (_conditions) {
+                    _conditions.page = _page;
+                    _conditions.row = _row;
+                    _conditions.componentId = _component.componentId;
+                } else {
+                    _conditions = {
                         page: _page,
                         row: _row,
                         componentId: _component.componentId
                     }
+                }
+                let param = {
+                    params: _conditions
                 };
+
                 //发送get请求
                 vc.http.apiGet('/reportCustomComponent.listReportCustomComponentData',
                     param,
@@ -94,7 +113,7 @@
                         let _data = _componentDataManageInfo.data;
                         _component.th = _data.th;
                         _component.data = _data.td;
-                        vc.emit('commonReportTable', 'pagination', 'init', {
+                        vc.emit('commonReportTable', 'paginationPlus', 'init', {
                             total: _componentDataManageInfo.records,
                             currentPage: _page
                         });

@@ -43,8 +43,8 @@
                         </thead>
                         <tbody>
                             <tr v-for="(itemData,indexData) in item.data" >
-                                <td class="text-center" v-for="(itemTd,key) of itemData">
-                                    {{itemData[key]}}</td>
+                                <td class="text-center" v-for="(tmpItemTh,key) in item.th">
+                                    {{itemData[tmpItemTh]}}</td>
                             </tr>
                         </tbody>
                         <tfoot>
