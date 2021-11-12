@@ -5,6 +5,10 @@
                 <div class="ibox-title">
                     <h5>{{reportCustomComponentRelManageInfo.title}}组件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm"
+                            v-on:click="_goBack()">
+                            返回
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_openAddReportCustomComponentRelModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -17,7 +21,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">关系编号</th>
-                                <th class="text-center">组件ID</th>
+                                <th class="text-center">组件</th>
                                 <th class="text-center">报表编号</th>
                                 <th class="text-center">组件序号</th>
                                 <th class="text-center">关联时间</th>

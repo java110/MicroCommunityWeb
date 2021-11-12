@@ -73,6 +73,9 @@
             _queryReportCustomComponentRelMethod: function () {
                 vc.component._listReportCustomComponentRels(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            _goBack: function () {
+                vc.goBack();
+            },
             _moreCondition: function () {
                 if (vc.component.reportCustomComponentRelManageInfo.moreCondition) {
                     vc.component.reportCustomComponentRelManageInfo.moreCondition = false;
