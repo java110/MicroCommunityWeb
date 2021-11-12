@@ -71,6 +71,9 @@
                 vc.component._listReportCustoms(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            _openCustomComponentRel:function(_reportCustom){
+                vc.jumpToPage('/admin.html#/pages/dev/reportCustomComponentRelManage?customId='+_reportCustom.customId+"&title="+_reportCustom.title)
+            },
             _moreCondition: function () {
                 if (vc.component.reportCustomManageInfo.moreCondition) {
                     vc.component.reportCustomManageInfo.moreCondition = false;
