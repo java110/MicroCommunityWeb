@@ -22,7 +22,7 @@
                 $that._listReportCustomTableComponent();
             })
             vc.on('commonReportTable', 'paginationPlus', 'page_event', function (_currentPage) {
-                vc.component._listReportCustomTableDatas(_currentPage, DEFAULT_ROWS,$that.commonReportTableInfo.components[0]);
+                vc.component._listReportCustomTableDatas(_currentPage, DEFAULT_ROWS, $that.commonReportTableInfo.components[0]);
             });
         },
         methods: {
@@ -59,17 +59,12 @@
                 );
             },
             _listReportCustomTableConditions: function (_component) {
-                let _community = vc.getCurrentCommunity();
-                let _communityId = '';
-                if (_community) {
-                    _communityId = _community.communityId
-                }
+
                 let param = {
                     params: {
                         page: 1,
                         row: 50,
-                        componentId: _component.componentId,
-                        communityId: _communityId
+                        componentId: _component.componentId
                     }
                 };
                 //发送get请求
@@ -86,15 +81,22 @@
 
             },
             _listReportCustomTableDatas: function (_page, _row, _component, _conditions) {
+                let _community = vc.getCurrentCommunity();
+                let _communityId = '';
+                if (_community) {
+                    _communityId = _community.communityId
+                }
                 if (_conditions) {
                     _conditions.page = _page;
                     _conditions.row = _row;
                     _conditions.componentId = _component.componentId;
+                    _conditions.communityId = _communityId
                 } else {
                     _conditions = {
                         page: _page,
                         row: _row,
-                        componentId: _component.componentId
+                        componentId: _component.componentId,
+                        communityId: _communityId
                     }
                 }
                 let param = {
