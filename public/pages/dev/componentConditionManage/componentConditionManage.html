@@ -26,6 +26,7 @@
                                 <th class="text-center">提示</th>
                                 <th class="text-center">参数</th>
                                 <th class="text-center">类型</th>
+                                <th class="text-center">序号</th>
                                 <th class="text-center">描述</th>
                                 <th class="text-center">操作</th>
                             </tr>
@@ -36,7 +37,8 @@
                                 <td class="text-center">{{componentCondition.name}}</td>
                                 <td class="text-center">{{componentCondition.holdpace}}</td>
                                 <td class="text-center">{{componentCondition.param}}</td>
-                                <td class="text-center">{{componentCondition.type == 'input'?'文本框':'未知'}}</td>
+                                <td class="text-center">{{componentCondition.type == 'text'?'文本框':'日期'}}</td>
+                                <td class="text-center">{{componentCondition.seq}}</td>
                                 <td class="text-center">{{componentCondition.remark}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">

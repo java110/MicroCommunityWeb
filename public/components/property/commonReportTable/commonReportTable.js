@@ -74,6 +74,8 @@
                         let _componentConditionManageInfo = JSON.parse(json);
                         _component.conditions = _componentConditionManageInfo.data;
                         $that.$forceUpdate();
+                        //处理日期类型
+                        
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

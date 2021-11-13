@@ -10,6 +10,7 @@
                 param: '',
                 type: '',
                 remark: '',
+                seq:''
             }
         },
         _initMethod: function () {
@@ -87,6 +88,18 @@
                             errInfo: "类型不能超过12"
                         },
                     ],
+                    'editComponentConditionInfo.seq': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "排序不能为空"
+                        },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "排序必须为数字"
+                        },
+                    ],
                     'editComponentConditionInfo.remark': [
                         {
                             limit: "maxLength",
@@ -141,7 +154,7 @@
                     param: '',
                     type: '',
                     remark: '',
-
+                    seq:''
                 }
             }
         }
