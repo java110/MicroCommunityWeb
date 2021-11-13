@@ -74,6 +74,9 @@
             _openComponentCondition: function (_reportCustomComponent) {
                 vc.jumpToPage('/admin.html#/pages/dev/componentConditionManage?componentId=' + _reportCustomComponent.componentId+"&componentName="+_reportCustomComponent.name);
             },
+            _openComponentFooter:function(_reportCustomComponent){
+                vc.jumpToPage('/admin.html#/pages/dev/reportCustomComponentFooterManage?componentId=' + _reportCustomComponent.componentId+"&componentName="+_reportCustomComponent.name);
+            },
             _moreCondition: function () {
                 if (vc.component.reportCustomComponentManageInfo.moreCondition) {
                     vc.component.reportCustomComponentManageInfo.moreCondition = false;

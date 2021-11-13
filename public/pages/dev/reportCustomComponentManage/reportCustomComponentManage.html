@@ -77,6 +77,10 @@
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openComponentCondition(reportCustomComponent)">设置条件</button>
                                     </div>
+                                    <div class="btn-group" v-if="reportCustomComponent.componentType == '1001'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openComponentFooter(reportCustomComponent)">底部统计</button>
+                                    </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditReportCustomComponentModel(reportCustomComponent)">修改</button>
