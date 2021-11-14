@@ -19,7 +19,6 @@
         },
         methods:{
             deleteAdvert:function(){
-                vc.component.deleteAdvertInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteAdvert',
                     'delete',
