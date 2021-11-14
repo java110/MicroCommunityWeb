@@ -33,6 +33,7 @@
                 })
 
                 $that._listReportCustomTableDatas(1, 15, item, _condition);
+                $that._listReportCustomTableFooter(1, 15, item, _condition);
             },
             _listReportCustomTableComponent: function () {
                 var param = {
@@ -52,6 +53,7 @@
                         $that.commonReportTableInfo.components.forEach(item => {
                             $that._listReportCustomTableConditions(item);
                             $that._listReportCustomTableDatas(1, 15, item);
+                            $that._listReportCustomTableFooter(1, 15, item);
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -75,7 +77,7 @@
                         _component.conditions = _componentConditionManageInfo.data;
                         $that.$forceUpdate();
                         //处理日期类型
-                        
+
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -121,6 +123,45 @@
                             total: _componentDataManageInfo.records,
                             currentPage: _page
                         });
+                        $that.$forceUpdate();
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listReportCustomTableFooter: function (_page, _row, _component, _conditions) {
+                let _community = vc.getCurrentCommunity();
+                let _communityId = '';
+                if (_community) {
+                    _communityId = _community.communityId
+                }
+                if (_conditions) {
+                    _conditions.page = _page;
+                    _conditions.row = _row;
+                    _conditions.componentId = _component.componentId;
+                    _conditions.communityId = _communityId
+                } else {
+                    _conditions = {
+                        page: _page,
+                        row: _row,
+                        componentId: _component.componentId,
+                        communityId: _communityId
+                    }
+                }
+                let param = {
+                    params: _conditions
+                };
+
+                //发送get请求
+                vc.http.apiGet('/reportCustomComponent.listReportCustomComponentDataFooter',
+                    param,
+                    function (json, res) {
+                        let _componentDataManageInfo = JSON.parse(json);
+                        if (_componentDataManageInfo.code != 0) {
+                            return;
+                        }
+                        let _data = _componentDataManageInfo.data;
+                        _component.footer = _data;
                         $that.$forceUpdate();
                     }, function (errInfo, error) {
                         console.log('请求失败处理');

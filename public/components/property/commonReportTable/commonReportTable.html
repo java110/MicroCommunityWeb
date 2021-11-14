@@ -42,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(itemData,indexData) in item.data" >
+                            <tr v-for="(itemData,indexData) in item.data">
                                 <td class="text-center" v-for="(tmpItemTh,key) in item.th">
                                     {{itemData[tmpItemTh]}}</td>
                             </tr>
@@ -55,8 +55,17 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <div class="row padding-left" v-if="item.footer">
+                        <span class="col-md-2" v-for="(tmpItemTh,key) of item.footer">
+                            <div class="row">{{key}}: {{tmpItemTh}}</div>
+                        </span>
+                    </div>
                     <!-- 分页 -->
-                    <vc:create path="frame/paginationPlus" namespace="commonReportTable"></vc:create>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <vc:create path="frame/paginationPlus" namespace="commonReportTable"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

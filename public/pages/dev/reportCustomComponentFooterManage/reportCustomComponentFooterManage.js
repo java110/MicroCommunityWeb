@@ -74,6 +74,9 @@
             _queryReportCustomComponentFooterMethod: function () {
                 vc.component._listReportCustomComponentFooters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            _goBack:function(){
+                vc.goBack();
+            },
             _moreCondition: function () {
                 if (vc.component.reportCustomComponentFooterManageInfo.moreCondition) {
                     vc.component.reportCustomComponentFooterManageInfo.moreCondition = false;
