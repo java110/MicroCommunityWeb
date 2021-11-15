@@ -8,6 +8,9 @@
         data: {
             contractTypeManageInfo: {
                 contractTypes: [],
+                contractTypeAttrs: [],
+                contractTypeSpec: '',
+                templatecontent: '',
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -38,7 +41,6 @@
         },
         methods: {
             _listContractTypes: function (_page, _rows) {
-
                 vc.component.contractTypeManageInfo.conditions.page = _page;
                 vc.component.contractTypeManageInfo.conditions.row = _rows;
                 var param = {
@@ -78,8 +80,54 @@
             _openContractTypeSpecModel: function (_contractType) {
                 vc.jumpToPage('/admin.html#/pages/admin/contractTypeSpecManage?contractTypeId=' + _contractType.contractTypeId);
             },
+            _loadContractAttrs: function (_contractTypeId) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        contractTypeId: _contractTypeId
+                    }
+                };
+                //发送模板get请求
+                vc.http.apiGet('/contract/printContractTemplate',
+                    param,
+                    function (json, res) {
+                        let _info = JSON.parse(json);
+                        let _data = _info.data;
+                        $that.contractTypeManageInfo.contractTypeAttrs = [];
+                        // 合同信息
+                        $that.contractdata = _data.contract[0];
+
+                        //合同属性
+                        $that.contractTypeManageInfo.contractTypeSpec = _data.contractTypeSpec;
+                        $that.contractTypeManageInfo.contractTypeSpec.forEach(function (e) {
+                            let rname = e.specName;
+                            let reg = '#' + rname + '#';
+                            $that.contractTypeManageInfo.contractTypeAttrs.push(reg);
+                        });
+                        //基本属性
+                        $that.baseRepalce = _data.baseRepalce;
+                        if ($that.baseRepalce) {
+                            $that.baseRepalce.forEach(function (e) {
+                                let rname = e.name;
+                                let rkey = e.key;
+                                var contractarr = Object.keys($that.contractdata);
+                                for (var a in contractarr) {
+                                    if (rkey == contractarr[a]) {
+                                        let reg = '#' + rname + '#';
+                                        $that.contractTypeManageInfo.contractTypeAttrs.push(reg);
+                                    }
+                                }
+                            });
+                        }
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _openContractTemplate: function (_contractType) {
                 $that.contractTypeManageInfo.componentShow = '';
+                vc.component._loadContractAttrs(_contractType.contractTypeId);
                 vc.emit('addTemplateView', 'openTemplate', _contractType);
             },
             _moreCondition: function () {
