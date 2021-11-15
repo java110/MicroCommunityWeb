@@ -28,7 +28,7 @@
                 vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component.listRoom(_currentPage, DEFAULT_ROW);
+                vc.component.listFeeDetail(_currentPage, DEFAULT_ROW);
             });
         },
         methods: {
