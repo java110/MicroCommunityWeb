@@ -71,6 +71,9 @@
 
                     });
             },
+            insertAttrs: function (_attr) {
+                $('.summernote').summernote('editor.insertText',_attr)
+            },
             clearaddTemplateViewInfo: function () {
                 vc.component.addTemplateViewInfo = {
                     contractTypeId: '',
