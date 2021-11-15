@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        
+
                         <div class="col-sm-4" v-if="listOweFeeInfo.conditions.payObjType == '3333'">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号,如1-1-1123" class="form-control"
@@ -178,6 +178,17 @@
                         </span>
                         <span class="col-md-2">
                             <div>合计: {{_getFeeOweAllAmounts()}}元</div>
+                        </span>
+                    </div>
+                    <div class="row" v-if="listOweFeeInfo.fees && listOweFeeInfo.fees.length>0">
+                        <span class="col-md-1 margin-left">
+                            <div class="row"><b>大计</b></div>
+                        </span>
+                        <span class="col-md-2" v-for="(item,index) in listOweFeeInfo.fees[0].itemTotalOweAmounts">
+                            <div>{{item.configName}}: {{item.totalOweAmount}}元</div>
+                        </span>
+                        <span class="col-md-2">
+                            <div>合计: {{listOweFeeInfo.fees[0].totalOweAmount}}元</div>
                         </span>
                     </div>
                     <div class="row">
