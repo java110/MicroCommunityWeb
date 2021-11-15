@@ -250,6 +250,22 @@
             _openChooseFloorMethod: function () {
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
+            _getFeeOweAllTotalAmount: function (_item) {
+                let _value = 0;
+                let _itemTotalOweAmounts = $that.listOweFeeInfo.fees[0].itemTotalOweAmounts;
+                if (!$that.listOweFeeInfo.fees[0] || !$that.listOweFeeInfo.fees[0].itemTotalOweAmounts) {
+                    return _value;
+                }
+
+                _itemTotalOweAmounts.forEach(item => {
+                    if (_item.configName == item.configName) {
+                        _value = item.totalOweAmount;
+                    }
+                })
+
+                return _value;
+            }
+
         }
     });
 })(window.vc);
