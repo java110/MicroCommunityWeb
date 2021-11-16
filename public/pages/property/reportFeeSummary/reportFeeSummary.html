@@ -5,9 +5,7 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{reportFeeSummaryInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button>
+                        
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -52,7 +50,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row" v-show="reportFeeSummaryInfo.moreCondition == true">
+                    <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择缴费开始时间"
@@ -63,6 +61,16 @@
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择缴费结束时间"
                                     v-model="reportFeeSummaryInfo.conditions.endTime" class=" form-control endTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="selectpicker" id="configIds" placeholder="请选择收费项" multiple>
+                                    <option v-for="(item,index) in reportFeeSummaryInfo.feeConfigs" :key="index"
+                                        :value="item.configId">
+                                        {{item.feeName}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -86,8 +94,16 @@
                         <thead>
                             <tr>
                                 <th class="text-center">日期</th>
-                                <th class="text-center">应收金额(单位:元)</th>
-                                <th class="text-center">实收金额(单位:元)</th>
+                                <th class="text-center" v-for="(item,index) in reportFeeSummaryInfo.feeConfigNames">
+                                    {{item.configName}}
+                                </th>
+                                <th class="text-center">历史欠费(单位:元)</th>
+                                <th class="text-center">当月应收(单位:元)</th>
+                                <th class="text-center">应收合计(单位:元)</th>
+                                <th class="text-center">当月实收(单位:元)</th>
+                                <th class="text-center">欠费追回(单位:元)</th>
+                                <th class="text-center">预交费用(单位:元)</th>
+                                <th class="text-center">实收合计(单位:元)</th>
                                 <th class="text-center">欠费金额(单位:元)</th>
                                 <th class="text-center">收费率</th>
                                 <th class="text-center">更新时间</th>
@@ -96,9 +112,17 @@
                         <tbody>
                             <tr v-for="fee in reportFeeSummaryInfo.fees">
                                 <td class="text-center">{{fee.feeYear+'年'+fee.feeMonth+'月'}}</td>
-                                <td class="text-center">{{fee.receivableAmount}}</td>
-                                <td class="text-center">{{fee.receivedAmount}}</td>
-                                <td class="text-center">{{fee.oweAmount}}</td>
+                                <td class="text-center" v-for="item in reportFeeSummaryInfo.feeConfigNames">
+                                    {{_getFeeReceivedAmountAmount(item,fee)}}
+                                </td>
+                                <td class="text-center">{{fee.hisOweAmount}}</td>
+                                <td class="text-center">{{fee.curReceivableAmount}}</td>
+                                <td class="text-center">{{_computeSum(fee.hisOweAmount,fee.curReceivableAmount)}}</td>
+                                <td class="text-center">{{fee.curReceivedAmount}}</td>
+                                <td class="text-center">{{fee.hisOweReceivedAmount}}</td>
+                                <td class="text-center">{{fee.preReceivedAmount}}</td>
+                                <td class="text-center">{{_computeSum(fee.hisOweReceivedAmount,fee.preReceivedAmount)}}</td>
+                                <td class="text-center">{{_computeOweFee(fee)}}</td>
                                 <td class="text-center">{{fee.chargeRate}}</td>
                                 <td class="text-center">{{fee.updateTime}}</td>
                             </tr>
@@ -132,7 +156,10 @@
                         </span>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 text-center">
+                        <div class="col-sm-5">
+                            <span> 欠费金额 = 历史欠费 + 当月应收 - 当月实收 - 欠费追回</span>
+                        </div>
+                        <div class="col-sm-5 float-right">
                             <vc:create path="frame/pagination"></vc:create>
                         </div>
                     </div>
