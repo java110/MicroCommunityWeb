@@ -12,7 +12,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="payFeeAuditManageInfo.conditions.payObjType">
                                 <option value="" selected>请选择付费对象</option>
                                 <option v-for="(item,index) in payFeeAuditManageInfo.payObjTypes" :key="index"
@@ -23,7 +23,6 @@
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="payFeeAuditManageInfo.conditions.state"
                                     placeholder="请选择状态">
-                                <option value="" selected>请选择状态</option>
                                 <option value="1010">待审核</option>
                                 <option value="2020">审核通过</option>
                                 <option value="3030">审核未通过</option>
@@ -35,9 +34,12 @@
                                        v-model="payFeeAuditManageInfo.conditions.payerObjId" class="form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPayFeeMethod()">
                                 <i class="fa fa-search"></i>查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetPayFeeMethod()">
+                                <i class="fa fa-repeat"></i>重置
                             </button>
                         </div>
                     </div>
@@ -111,7 +113,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="13">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

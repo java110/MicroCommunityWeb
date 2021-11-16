@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>线索明细信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                        v-on:click="_goback()">
+                        返回
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >项目名称：</label>
+                            <label class="">{{viewClueInfo.projectName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >项目位置：</label>
+                            <label class="">{{viewClueInfo.projectSite}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >项目概述：</label>
+                            <label class="">{{viewClueInfo.projectSummary}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >投资额：</label>
+                            <label class="">{{viewClueInfo.investmentAmount}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >投资方名称：</label>
+                            <label class="">{{viewClueInfo.investmentName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >电话：</label>
+                            <label class="">{{viewClueInfo.tel}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >投资方简介：</label>
+                            <label class="">{{viewClueInfo.investmentSummary}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >目前进展情况：</label>
+                            <label class="">{{viewClueInfo.nowSituation}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >下一步推进计划：</label>
+                            <label class="">{{viewClueInfo.nextSituation}}</label>
+                        </div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>跟进记录</h5>
+                <div class="ibox-tools" style="top:10px;">
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th scope="col">序号</th>
+                             <th class="text-center">跟进ID</th>
+                             <th class="text-center">跟进时间</th>
+                             <th class="text-center">目前进展情况</th>
+                             <th class="text-center">下一步推进计划</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(clueAttr,index) in clueAttrs">
+                            <td>{{index+1}}</td>
+                            <td class="text-center">{{clueAttr.attrId}}</td>
+                            <td class="text-center">{{clueAttr.nowTime}}</td>
+                            <td class="text-center">{{clueAttr.nowSituation}}</td>
+                            <td class="text-center">{{clueAttr.nextSituation}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

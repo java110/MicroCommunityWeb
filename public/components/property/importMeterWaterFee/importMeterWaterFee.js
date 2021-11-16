@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             importMeterWaterFeeInfo: {
@@ -7,24 +6,24 @@
                 excelTemplate: '',
                 configId: '',
                 feeConfigs: [],
-                feeTypeCd:''
+                feeTypeCd: '',
+                meterTypes: [],
+                meterType: ''
             }
         },
         _initMethod: function () {
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.importMeterWaterFeeInfo.feeTypeCds = _data;
             });
-
         },
         _initEvent: function () {
             vc.on('importMeterWaterFee', 'openImportMeterWaterFeeModal',
                 function (_room) {
+                    $that._listImportMeterTypes();
                     $('#importMeterWaterFeeModel').modal('show');
-
                 });
         },
         methods: {
-
             importMeterWaterFeeValidate() {
                 return vc.validate.validate({
                     importMeterWaterFeeInfo: vc.component.importMeterWaterFeeInfo
@@ -52,7 +51,6 @@
                     });
             },
             _importMeterWaterData: function () {
-
                 if (!vc.component.importMeterWaterFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -71,8 +69,7 @@
                 param.append('communityId', vc.component.importMeterWaterFeeInfo.communityId);
                 param.append('feeTypeCd', vc.component.importMeterWaterFeeInfo.feeTypeCd);
                 param.append('configId', vc.component.importMeterWaterFeeInfo.configId);
-
-
+                param.append('meterType', vc.component.importMeterWaterFeeInfo.meterType);
                 vc.http.upload(
                     'importMeterWaterFee',
                     'importData',
@@ -101,19 +98,32 @@
                     });
             },
             _exportMeterWaterFeeTemplate: function () {
-                let _meterType = '1010';
-
-                let _feeTypeCd = $that.importMeterWaterFeeInfo.feeTypeCd;
-
-                if(!vc.notNull(_feeTypeCd)){
-                    vc.toast('请选择费用类型');
-                    return ;
+                let _meterType = $that.importMeterWaterFeeInfo.meterType;
+                if (!vc.notNull(_meterType)) {
+                    vc.toast('请选择抄表类型');
+                    return;
                 }
+                vc.jumpToPage('/callComponent/importMeterWaterFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + '&meterType=' + _meterType);
+            },
+            _listImportMeterTypes: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
 
-                if(_feeTypeCd == '888800010015'){
-                    _meterType = '2020';
-                }
-                vc.jumpToPage('/callComponent/importMeterWaterFee/exportData?communityId=' + vc.getCurrentCommunity().communityId+'&meterType='+_meterType);
+                //发送get请求
+                vc.http.apiGet('meterType.listMeterType',
+                    param,
+                    function (json, res) {
+                        var _meterTypeManageInfo = JSON.parse(json);
+                        $that.importMeterWaterFeeInfo.meterTypes = _meterTypeManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             },
             clearAddFeeConfigInfo: function () {
                 vc.component.importMeterWaterFeeInfo = {
@@ -121,9 +131,10 @@
                     excelTemplate: '',
                     configId: '',
                     feeConfigs: [],
-                    feeTypeCd:''
+                    feeTypeCd: '',
+                    meterTypes: [],
+                    meterType: ''
                 };
-
             },
             getExcelTemplate: function (e) {
                 //console.log("getExcelTemplate 开始调用")
@@ -147,7 +158,6 @@
                 return true;
             },
             _changeImportMeterWaterFeeTypeCd: function (_feeTypeCd) {
-
                 var param = {
                     params: {
                         page: 1,
@@ -170,5 +180,4 @@
             },
         }
     });
-
 })(window.vc);

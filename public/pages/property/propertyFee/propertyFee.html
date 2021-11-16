@@ -73,7 +73,7 @@
                                 {{feeDetail.remark}}
                             </td>
                             <td class="text-center">
-                                <div class="btn-group" v-if="feeDetail.state=='1400' || feeDetail.state== 1200">
+                                <div class="btn-group" v-if="feeDetail.state=='1400' || feeDetail.state== 1200 || feeDetail.state== ''">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openRefundModel(feeDetail)">申请退费
                                     </button>
@@ -88,7 +88,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="10">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

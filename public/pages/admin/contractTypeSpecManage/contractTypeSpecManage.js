@@ -58,6 +58,7 @@
                         vc.component.contractTypeSpecManageInfo.contractTypeSpecs = _contractTypeSpecManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractTypeSpecManageInfo.records,
+                            dataCount: vc.component.contractTypeSpecManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

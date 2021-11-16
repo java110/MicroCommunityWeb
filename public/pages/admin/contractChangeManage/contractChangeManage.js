@@ -51,6 +51,7 @@
                         vc.component.contractChangeManageInfo.contracts = _contractChangeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractChangeManageInfo.records,
+                            dataCount: vc.component.contractChangeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -62,7 +63,7 @@
                 vc.jumpToPage('/admin.html#/pages/admin/contractChangeDetail?param=' + _param)
             },
             _openDeleteContractModel: function (_contract) {
-                vc.emit('deleteContract', 'openDeleteContractModal', _contract);
+                vc.emit('deleteContractChange', 'openDeleteContractPlanModal', _contract);
             },
             _toContractDetails:function(_contract){
                 vc.jumpToPage('/admin.html#/pages/admin/contractChangeDetails?planId=' + _contract.planId)
@@ -78,10 +79,10 @@
                     vc.component.contractChangeManageInfo.moreCondition = true;
                 }
             },
-            _printContract: function (_contract) {
-                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType);
-            }
 
+            _printContract: function (_contract) {
+                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType+"&contractId="+_contract.contractId);
+            }
 
         }
     });

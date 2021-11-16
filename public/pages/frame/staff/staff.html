@@ -12,7 +12,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group ">
                                 <select class="custom-select" v-model="staffInfo.conditions.branchOrgId">
                                     <option selected value="">必填，请选择分公司</option>
@@ -39,14 +39,17 @@
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryStaffMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetStaffMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4" v-if="staffInfo.moreCondition == true">
+                        <div class="col-sm-3" v-if="staffInfo.moreCondition == true">
                             <div class="form-group">
                                 <input type="number" placeholder="请输入手机号" v-model="staffInfo.conditions.tel"
                                        class=" form-control">
@@ -82,6 +85,7 @@
                             <th class="text-center">名称</th>
                             <th class="text-center">公司</th>
                             <th class="text-center">部门</th>
+                            <th class="text-center">岗位</th>
                             <th class="text-center">邮箱</th>
                             <th class="text-center">地址</th>
                             <th class="text-center">性别</th>
@@ -95,6 +99,7 @@
                             <td class="text-center">{{staff.name}}</td>
                             <td class="text-center">{{staff.parentOrgName}}</td>
                             <td class="text-center">{{staff.orgName}}</td>
+                            <td class="text-center">{{staff.relCdName}}</td>
                             <td class="text-center">{{staff.email}}</td>
                             <td class="text-center">{{staff.address}}</td>
                             <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
@@ -115,6 +120,13 @@
                             </td>
                         </tr>
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
                     </table>
                     <!-- 分页 -->
                     <vc:create path="frame/pagination"></vc:create>

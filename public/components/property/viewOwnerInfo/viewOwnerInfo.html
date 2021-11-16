@@ -37,7 +37,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="col-form-label">性别：</label>
-                                    <label class="">{{viewOwnerInfo.sex == 0 ? '男' : '女'}}</label>
+                                    <label class="">{{viewOwnerInfo.sex == '0' ? '男' : (viewOwnerInfo.sex == '1' ? '女' : '')}}</label>
                                 </div>
                             </div>
                         </div>

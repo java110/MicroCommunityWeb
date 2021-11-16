@@ -5,6 +5,9 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{feeReceiptManageInfo.moreCondition == true ? '隐藏' : '更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -16,41 +19,45 @@
                                 <option value="6666">车位费</option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="收费对象" v-model="feeReceiptManageInfo.conditions.roomId"
-                                    class=" form-control" placeholder="请输入房屋或车位信息">
+                                <input type="text" v-model="feeReceiptManageInfo.conditions.roomId"
+                                       class=" form-control" placeholder="请输入房屋或车位信息">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <input type="text" v-model="feeReceiptManageInfo.conditions.receiptId" class=" form-control"
-                                placeholder="请输入收据ID">
+                                   placeholder="请输入收据ID">
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeReceiptMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm"
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetFeeReceiptMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
+                            <!-- <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_printFeeReceipts(feeReceiptManageInfo.conditions)">
                                 <i class="fa fa-files-o"></i> 打印
-                            </button>
+                            </button> -->
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-show="feeReceiptManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择开始时间"
-                                    v-model="feeReceiptManageInfo.conditions.qstartTime" class="form-control startTime">
+                                       v-model="feeReceiptManageInfo.conditions.qstartTime"
+                                       class="form-control startTime">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择结束时间"
-                                    v-model="feeReceiptManageInfo.conditions.qendTime" class="form-control endTime">
+                                       v-model="feeReceiptManageInfo.conditions.qendTime" class="form-control endTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <select class="custom-select" v-model="feeReceiptManageInfo.conditions.type">
                                     <option selected value="">请选择打印类型</option>
                                     <option value="1">装修单据</option>
@@ -59,7 +66,7 @@
                                     <option value="4">车辆单据</option>
                                     <option value="5">公摊费票据</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
                         <!--<div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
@@ -83,45 +90,45 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">费用类型</th>
-                                <th class="text-center">费用项</th>
-                                <th class="text-center">房屋</th>
-                                <th class="text-center">车位</th>
-                                <th class="text-center">总金额</th>
-                                <th class="text-center">缴费时间</th>
-                                <th class="text-center">收据ID</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">费用类型</th>
+                            <th class="text-center">费用项</th>
+                            <th class="text-center">房屋</th>
+                            <th class="text-center">车位</th>
+                            <th class="text-center">总金额</th>
+                            <th class="text-center">缴费时间</th>
+                            <th class="text-center">收据ID</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="feeReceipt in feeReceiptManageInfo.feeReceipts">
-                                <td class="text-center">{{feeReceipt.objType == '3333'? '房屋费':'车位费'}}</td>
-                                <td class="text-center">{{feeReceipt.feeName}}</td>
-                                <td class="text-center">{{feeReceipt.roomName}}</td>
-                                <td class="text-center">{{feeReceipt.carNum}}</td>
-                                <td class="text-center">{{feeReceipt.amount}}</td>
-                                <td class="text-center">{{feeReceipt.createTime}}</td>
-                                <td class="text-center">{{feeReceipt.receiptId}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_printFeeReceipt(feeReceipt)">补打收据
-                                        </button>
-                                    </div>
-                                    <!-- <div v-if="feeReceipt.objType == '6666'" class="btn-group">
+                        <tr v-for="feeReceipt in feeReceiptManageInfo.feeReceipts">
+                            <td class="text-center">{{feeReceipt.objType == '3333'? '房屋费':'车位费'}}</td>
+                            <td class="text-center">{{feeReceipt.feeName}}</td>
+                            <td class="text-center">{{feeReceipt.roomName}}</td>
+                            <td class="text-center">{{feeReceipt.carNum}}</td>
+                            <td class="text-center">{{feeReceipt.amount}}</td>
+                            <td class="text-center">{{feeReceipt.createTime}}</td>
+                            <td class="text-center">{{feeReceipt.receiptId}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                        v-on:click="_printFeeReceipt(feeReceipt)">补打收据(车)</button>
-                                </div> -->
-                                </td>
-                            </tr>
+                                            v-on:click="_printFeeReceipt(feeReceipt)">补打收据
+                                    </button>
+                                </div>
+                                <!-- <div v-if="feeReceipt.objType == '6666'" class="btn-group">
+                                <button class="btn-white btn btn-xs"
+                                    v-on:click="_printFeeReceipt(feeReceipt)">补打收据(车)</button>
+                            </div> -->
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

@@ -10,7 +10,8 @@
                 context: '',
                 startTime: '',
                 endTime: '',
-                typeCds: []
+                typeCds: [],
+                isMoreCommunity:'N'
 
             }
         },
@@ -127,7 +128,7 @@
                             //关闭model
 
                             vc.component.clearaddActivitiesViewInfo();
-                            vc.emit('activitiesManage', 'listActivities', {});
+                            vc.emit('activitiesManage', 'pageReload', {});
 
                             return;
                         }
@@ -142,6 +143,7 @@
                     });
             },
             clearaddActivitiesViewInfo: function () {
+                let _typeCds = $that.addActivitiesViewInfo.typeCds;
                 vc.component.addActivitiesViewInfo = {
                     activitiesId: '',
                     title: '',
@@ -149,8 +151,9 @@
                     headerImg: '',
                     context: '',
                     startTime: '',
-                    endTime: ''
-
+                    endTime: '',
+                    typeCds:_typeCds,
+                    isMoreCommunity:'N'
                 };
             },
             _initActivitiesInfo: function () {

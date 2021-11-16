@@ -8,7 +8,7 @@
         data: {
             payFeeAuditManageInfo: {
                 payFees: [],
-                payObjTypes:[],
+                payObjTypes: [],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -18,16 +18,17 @@
                     payObjType: '',
                     startTime: '',
                     endTime: '',
-                    userCode:'',
-                    state:'1010'
+                    userCode: '',
+                    state: '1010',
+                    payerObjId: ''
                 },
-                curPayFee:{}
+                curPayFee: {}
             }
         },
         _initMethod: function () {
             vc.component._listPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._listFeeType();
-            vc.getDict('pay_fee',"payer_obj_type",function(_data){
+            vc.getDict('pay_fee', "payer_obj_type", function (_data) {
                 vc.component.payFeeAuditManageInfo.payObjTypes = _data;
             });
         },
@@ -36,7 +37,7 @@
                 vc.component._listPayFees(_currentPage, DEFAULT_ROWS);
             });
 
-            vc.on('payFeeAuditManage','audtiNotify',function(_param){
+            vc.on('payFeeAuditManage', 'audtiNotify', function (_param) {
 
                 $that._auditFee(_param);
 
@@ -55,10 +56,11 @@
                     function (json, res) {
                         var _payFeeAuditManageInfo = JSON.parse(json);
                         vc.component.payFeeAuditManageInfo.total = _payFeeAuditManageInfo.total;
-                        vc.component.payFeeAuditManageInfo.records = parseInt(_payFeeAuditManageInfo.total/_rows +1);
+                        vc.component.payFeeAuditManageInfo.records = parseInt(_payFeeAuditManageInfo.total / _rows + 1);
                         vc.component.payFeeAuditManageInfo.payFees = _payFeeAuditManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.payFeeAuditManageInfo.records,
+                            dataCount: vc.component.payFeeAuditManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -66,9 +68,16 @@
                     }
                 );
             },
+            //查询
             _queryPayFeeMethod: function () {
                 vc.component._listPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetPayFeeMethod: function () {
+                vc.component.payFeeAuditManageInfo.conditions.payObjType = "";
+                vc.component.payFeeAuditManageInfo.conditions.state = "";
+                vc.component.payFeeAuditManageInfo.conditions.payerObjId = "";
+                vc.component._listPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.payFeeAuditManageInfo.moreCondition) {
@@ -79,8 +88,8 @@
             },
             _listFeeType: function () {
                 var param = {
-                    params:{
-                        "hc":"cc@cc"
+                    params: {
+                        "hc": "cc@cc"
                     }
                 };
                 //发送get请求
@@ -96,24 +105,24 @@
                     }
                 );
             },
-            _detailFee:function(_fee){
-                vc.jumpToPage('/admin.html#/pages/property/propertyFee?'+vc.objToGetParam(_fee));
+            _detailFee: function (_fee) {
+                vc.jumpToPage('/admin.html#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             },
 
-            _openAuditFeeModal:function(_payFee){ // 打开 审核框
+            _openAuditFeeModal: function (_payFee) { // 打开 审核框
                 $that.payFeeAuditManageInfo.curPayFee = _payFee;
-                vc.emit('audit', 'openAuditModal',{});
+                vc.emit('audit', 'openAuditModal', {});
             },
-            _auditFee:function(_param){
+            _auditFee: function (_param) {
 
                 //2020 审核通过 3030 未审核
-                let _state = _param.state == '1100'?'2020':'3030';   
+                let _state = _param.state == '1100' ? '2020' : '3030';
                 let _data = {
-                    state:_state,
-                    message:_param.remark,
-                    feeDetailId:$that.payFeeAuditManageInfo.curPayFee.detailId,
-                    communityId:vc.getCurrentCommunity().communityId,
-                    feeId:$that.payFeeAuditManageInfo.curPayFee.feeId
+                    state: _state,
+                    message: _param.remark,
+                    feeDetailId: $that.payFeeAuditManageInfo.curPayFee.detailId,
+                    communityId: vc.getCurrentCommunity().communityId,
+                    feeId: $that.payFeeAuditManageInfo.curPayFee.feeId
                 };
 
                 vc.http.apiPost(
@@ -140,18 +149,18 @@
 
                     });
             },
-            _getState:function(_state){
-                if(_state == '2020'){
+            _getState: function (_state) {
+                if (_state == '2020') {
                     return '审核通过';
-                }else if(_state == '3030'){
+                } else if (_state == '3030') {
                     return '审核不通过';
                 }
 
                 return '待审核';
             },
-            _openRefundModel:function (_feeDetail) {
-                _feeDetail.mainFeeInfo={
-                    feeId:_feeDetail.feeId
+            _openRefundModel: function (_feeDetail) {
+                _feeDetail.mainFeeInfo = {
+                    feeId: _feeDetail.feeId
                 }
                 vc.emit('returnPayFee', 'openReturnPayFeeModel', _feeDetail);
             }

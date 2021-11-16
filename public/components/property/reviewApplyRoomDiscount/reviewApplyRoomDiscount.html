@@ -30,6 +30,59 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                <label class="col-sm-2 col-form-label">返还方式</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.returnWay">
+                                        <option selected value="">请选择返还方式</option>
+                                        <option :value="1001">享受缴纳折扣</option>
+                                        <option :value="1002">预缴金额返还至余额账户</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div v-show="reviewApplyRoomDiscountInfo.returnWay == '1002'">
+                                <!-- <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                    <label class="col-sm-2 col-form-label">费用类型</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.feeTypeCd" @change="_selectConfig()">
+                                            <option selected disabled value="">请选择费用类型</option>
+                                            <option v-for="(item,index) in reviewApplyRoomDiscountInfo.feeTypeCds"
+                                                    :value="item.statusCd">
+                                                {{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                    <label class="col-sm-2 col-form-label">收费项</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.configId" @change="_listFees()">
+                                            <option selected disabled value="">请选择收费项</option>
+                                            <option v-for="(item,index) in reviewApplyRoomDiscountInfo.feeConfigDtos"
+                                                    :value="item.configId">
+                                                {{item.feeName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                    <label class="col-sm-2 col-form-label">缴费记录</label>
+                                    <div class="col-sm-10">
+                                        <!-- <select class="custom-select" multiple v-model="reviewApplyRoomDiscountInfo.selectedFees">
+                                            <option selected disabled value="">必填，请选择缴费记录</option>
+                                            <option v-for="(item,index) in reviewApplyRoomDiscountInfo.fees"
+                                                    :value="item.oId">
+                                                【{{item.feeName}}】{{item.receivableAmount}}元 - {{item.createTime}}
+                                            </option>
+                                        </select> -->
+                                        <div class="checkbox-area">
+                                            <div class="checkbox" v-for="(item,index) in reviewApplyRoomDiscountInfo.fees">
+                                                <input type="checkbox":value="item.detailId" v-model="reviewApplyRoomDiscountInfo.selectedFees">【{{item.feeName}}】<span class="text-danger">{{item.receivedAmount}}元</span> - {{item.createTime}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">开始时间</label>
                                 <div class="col-sm-10">

@@ -1,5 +1,6 @@
 <div>
-    <vc:create path="property/memberSelectOwner"></vc:create>
+    <vc:create path="property/memberSelectOwner">
+    </vc:create>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -66,7 +67,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="14">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
@@ -76,11 +77,10 @@
             </div>
         </div>
     </div>
-
     <!-- 删除员工权限 -->
-    <vc:create path="property/editOwner"
-               notifyLoadDataComponentName="listOwnerMember"
-               componentTitle="成员"></vc:create>
-    <vc:create path="property/deleteOwner"
-               notifyLoadDataComponentName="listOwnerMember"></vc:create>
+    <vc:create path="property/editOwner" notifyLoadDataComponentName="listOwnerMember"
+               componentTitle="成员">
+    </vc:create>
+    <vc:create path="property/deleteOwner" notifyLoadDataComponentName="listOwnerMember">
+    </vc:create>
 </div>

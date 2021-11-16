@@ -15,6 +15,12 @@
                 roomUnits: [],
                 feeTypeCds: [],
                 feeConfigDtos: [],
+                totalReceivableAmount:0.0,
+                allReceivableAmount:0.0,
+                totalReceivedAmount:0.0,
+                allReceivedAmount:0.0,
+                totalPreferentialAmount:0.0,
+                allOweAmount:0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -23,7 +29,8 @@
                     configId: '',
                     feeTypeCd: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -120,8 +127,31 @@
                         if (_reportFeeBreakdownInfo.data.length > 0) {
                             vc.component.reportFeeBreakdownInfo.feeConfigDtos = _reportFeeBreakdownInfo.data[0].feeConfigDtos;
                         }
+
+                         //计算小计
+                         let _totalReceivableAmount=0.0;
+                         let _totalReceivedAmount=0.0;
+                         let _totalPreferentialAmount=0.0;
+                        
+                         _reportFeeBreakdownInfo.data.forEach(item => {
+                             _totalReceivableAmount += parseFloat(item.receivableAmount);
+                             _totalReceivedAmount += parseFloat(item.receivedAmount);
+                             _totalPreferentialAmount += parseFloat(item.oweAmount);
+                         });
+ 
+                         $that.reportFeeBreakdownInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
+                         $that.reportFeeBreakdownInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
+                         $that.reportFeeBreakdownInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+ 
+                         if(_reportFeeBreakdownInfo.data.length>0){
+                             $that.reportFeeBreakdownInfo.allReceivableAmount = _reportFeeBreakdownInfo.data[0].allReceivableAmount;
+                             $that.reportFeeBreakdownInfo.allReceivedAmount = _reportFeeBreakdownInfo.data[0].allReceivedAmount;
+                             $that.reportFeeBreakdownInfo.allOweAmount = _reportFeeBreakdownInfo.data[0].allOweAmount;
+                         }
+
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeBreakdownInfo.records,
+                            dataCount: vc.component.reportFeeBreakdownInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -143,30 +173,7 @@
                 vc.component.reportFeeBreakdownInfo.conditions.startTime = "";
                 vc.component.reportFeeBreakdownInfo.conditions.endTime = "";
                 vc.component.reportFeeBreakdownInfo.conditions.feeTypeCd = "";
-                // 清除下拉框选项
-                vc.component.reportFeeBreakdownInfo.roomUnits = [];
-                var param = {
-                    params: vc.component.reportFeeBreakdownInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('/reportFeeMonthStatistics/queryFeeBreakdown',
-                    param,
-                    function (json, res) {
-                        var _reportFeeBreakdownInfo = JSON.parse(json);
-                        vc.component.reportFeeBreakdownInfo.total = _reportFeeBreakdownInfo.total;
-                        vc.component.reportFeeBreakdownInfo.records = _reportFeeBreakdownInfo.records;
-                        vc.component.reportFeeBreakdownInfo.fees = _reportFeeBreakdownInfo.data;
-                        if (_reportFeeBreakdownInfo.data.length > 0) {
-                            vc.component.reportFeeBreakdownInfo.feeConfigDtos = _reportFeeBreakdownInfo.data[0].feeConfigDtos;
-                        }
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.reportFeeBreakdownInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {
@@ -203,8 +210,8 @@
                     vc.component.reportFeeBreakdownInfo.moreCondition = true;
                 }
             },
-            _exportFee: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportFeeBreakdown");
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeBreakdown&' + vc.objToGetParam($that.reportFeeBreakdownInfo.conditions));
             }
         }
     });

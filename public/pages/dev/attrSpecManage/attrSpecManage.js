@@ -51,6 +51,7 @@
                         vc.component.attrSpecManageInfo.attrSpecs = _attrSpecManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.attrSpecManageInfo.records,
+                            dataCount: vc.component.attrSpecManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

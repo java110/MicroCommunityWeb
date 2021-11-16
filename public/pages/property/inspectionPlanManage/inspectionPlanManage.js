@@ -12,28 +12,30 @@
                 records: 1,
                 moreCondition: false,
                 inspectionPlanName: '',
-                states:'',
-                inspectionPlanStaffModel:false,
+                states: '',
+                inspectionPlanStaffModel: false,
                 conditions: {
                     inspectionPlanName: '',
-                    staffName:'',
+                    staffName: '',
                     state: '',
-
+                    inspectionPlanId: ''
                 }
             }
         },
         _initMethod: function () {
             vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('inspection_plan',"state",function(_data){
+            vc.getDict('inspection_plan', "state", function (_data) {
                 vc.component.inspectionPlanManageInfo.states = _data;
             });
         },
         _initEvent: function () {
-
             vc.on('inspectionPlanManage', 'listInspectionPlan', function (_param) {
                 vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('inspectionPlanManage','goBack',function(_param){
+            vc.on('inspectionPlanManage', 'reload', function (_param) {
+                location.reload();
+            });
+            vc.on('inspectionPlanManage', 'goBack', function (_param) {
                 vc.component.inspectionPlanManageInfo.inspectionPlanStaffModel = false;
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -42,14 +44,15 @@
         },
         methods: {
             _listInspectionPlans: function (_page, _rows) {
-
                 vc.component.inspectionPlanManageInfo.conditions.page = _page;
                 vc.component.inspectionPlanManageInfo.conditions.row = _rows;
                 vc.component.inspectionPlanManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.inspectionPlanManageInfo.conditions
                 };
-
+                param.params.inspectionPlanId = param.params.inspectionPlanId.trim();
+                param.params.inspectionPlanName = param.params.inspectionPlanName.trim();
+                param.params.state = param.params.state.trim();
                 //发送get请求
                 vc.http.get('inspectionPlanManage',
                     'list',
@@ -61,6 +64,7 @@
                         vc.component.inspectionPlanManageInfo.inspectionPlans = _inspectionPlanManageInfo.inspectionPlans;
                         vc.emit('pagination', 'init', {
                             total: vc.component.inspectionPlanManageInfo.records,
+                            dataCount: vc.component.inspectionPlanManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -77,7 +81,15 @@
             _openDeleteInspectionPlanModel: function (_inspectionPlan) {
                 vc.emit('deleteInspectionPlan', 'openDeleteInspectionPlanModal', _inspectionPlan);
             },
+            //查询
             _queryInspectionPlanMethod: function () {
+                vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetInspectionPlanMethod: function () {
+                vc.component.inspectionPlanManageInfo.conditions.inspectionPlanName = "";
+                vc.component.inspectionPlanManageInfo.conditions.inspectionPlanId = "";
+                vc.component.inspectionPlanManageInfo.conditions.state = "";
                 vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //启用计划
@@ -103,12 +115,10 @@
                     vc.component.inspectionPlanManageInfo.moreCondition = true;
                 }
             },
-            _openPlanStaff:function(_inspectionPlan){
+            _openPlanStaff: function (_inspectionPlan) {
                 $that.inspectionPlanManageInfo.inspectionPlanStaffModel = true;
-                vc.emit('inspectionPlanStaffManage','listInspectionPlanStaff',_inspectionPlan);
+                vc.emit('inspectionPlanStaffManage', 'listInspectionPlanStaff', _inspectionPlan);
             }
-
-
         }
     });
 })(window.vc);

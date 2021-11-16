@@ -53,7 +53,8 @@ bwId:'',
                                 vc.component.carBlackWhiteManageInfo.records = _carBlackWhiteManageInfo.records;
                                 vc.component.carBlackWhiteManageInfo.carBlackWhites = _carBlackWhiteManageInfo.carBlackWhites;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.carBlackWhiteManageInfo.records,
+                                    total: vc.component.carBlackWhiteManageInfo.records,
+                                    dataCount: vc.component.carBlackWhiteManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

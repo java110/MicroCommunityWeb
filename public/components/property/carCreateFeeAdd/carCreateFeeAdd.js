@@ -46,6 +46,7 @@
             _initCarCreateFeeAddDateInfo: function () {
 
                 vc.initDate('carCreateFeeStartTime', function (_startTime) {
+                    console.log(_startTime)
                     $that.carCreateFeeAddInfo.startTime = _startTime;
                 });
                 vc.initDate('carCreateFeeEndTime', function (_endTime) {
@@ -133,7 +134,9 @@
                     return;
                 }
                 vc.component.carCreateFeeAddInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post('parkingSpaceCreateFeeAdd', 'save', JSON.stringify(vc.component.carCreateFeeAddInfo), {
+                vc.http.post('parkingSpaceCreateFeeAdd',
+                    'save',
+                    JSON.stringify(vc.component.carCreateFeeAddInfo), {
                     emulateJSON: true
                 },
                     function (json, res) {

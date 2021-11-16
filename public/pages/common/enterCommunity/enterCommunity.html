@@ -22,7 +22,8 @@
                             <th class="text-center">小区编码</th>
                             <th data-hide="phone" class="text-center">联系方式</th>
                             <th data-hide="phone" class="text-center">面积</th>
-                            <!-- <th data-hide="phone">地标</th> -->
+                            <th data-hide="phone" class="text-center">开始时间</th>
+                            <th data-hide="phone" class="text-center">结束时间</th>
                             <!-- <th data-hide="phone,tablet" >城市编码</th> -->
                             <th data-hide="phone" class="text-center">状态</th>
                             <th class="text-center">操作</th>
@@ -54,6 +55,12 @@
                             <td class="text-center">
                                 {{community.communityArea}}
                             </td>
+                            <td class="text-center">
+                                {{community.startTime}}
+                            </td>
+                            <td class="text-center">
+                                {{community.endTime}}
+                            </td>
                             <!-- <td>
                                 {{community.nearbyLandmarks}}
                             </td> -->
@@ -80,7 +87,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

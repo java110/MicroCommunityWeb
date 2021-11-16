@@ -57,7 +57,8 @@
                                 vc.component.serviceManageInfo.records = _serviceManageInfo.records;
                                 vc.component.serviceManageInfo.services = _serviceManageInfo.services;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.serviceManageInfo.records,
+                                    total: vc.component.serviceManageInfo.records,
+                                    dataCount: vc.component.serviceManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

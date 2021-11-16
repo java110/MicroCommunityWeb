@@ -9,9 +9,9 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入房屋名称"
+                                <input type="text" placeholder="请输入房屋名称(楼栋-单元-房屋)"
                                        v-model="applyRoomDiscountManageInfo.conditions.roomName" class=" form-control">
                             </div>
                         </div>
@@ -26,17 +26,19 @@
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="applyRoomDiscountManageInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
-                                <option value="1">申请验房</option>
-                                <option value="2">验房通过</option>
-                                <option value="3">验房不通过</option>
-                                <option value="4">审批通过</option>
-                                <option value="5">审批不通过</option>
+                                <option v-for="(item,index) in applyRoomDiscountManageInfo.states" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryApplyRoomDiscountMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetApplyRoomDiscountMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
@@ -60,29 +62,40 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">申请ID</th>
-                            <th class="text-center">房屋</th>
-                            <th class="text-center">优惠</th>
+<!--                            <th class="text-center">申请ID</th>-->
+                            <th class="text-center">房屋(楼栋-单元-房屋)</th>
+                            <th class="text-center">折扣ID</th>
+                            <th class="text-center">折扣名称</th>
                             <th class="text-center">申请类型</th>
                             <th class="text-center">申请人</th>
                             <th class="text-center">申请电话</th>
                             <th class="text-center">开始时间</th>
                             <th class="text-center">结束时间</th>
                             <th class="text-center">状态</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">使用状态</th>
+                            <th class="text-center">返还类型</th>
+                            <th class="text-center">返还金额</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="applyRoomDiscount in applyRoomDiscountManageInfo.applyRoomDiscounts">
-                            <td class="text-center">{{applyRoomDiscount.ardId}}</td>
+<!--                            <td class="text-center">{{applyRoomDiscount.ardId}}</td>-->
                             <td class="text-center">{{applyRoomDiscount.roomName}}</td>
                             <td class="text-center">{{applyRoomDiscount.discountId}}</td>
+                            <td class="text-center">{{applyRoomDiscount.discountName}}</td>
                             <td class="text-center">{{applyRoomDiscount.applyTypeName}}</td>
                             <td class="text-center">{{applyRoomDiscount.createUserName}}</td>
                             <td class="text-center">{{applyRoomDiscount.createUserTel}}</td>
                             <td class="text-center">{{applyRoomDiscount.startTime}}</td>
                             <td class="text-center">{{applyRoomDiscount.endTime}}</td>
                             <td class="text-center">{{applyRoomDiscount.stateName}}</td>
+                            <td class="text-center">{{applyRoomDiscount.createTime}}</td>
+                            <td class="text-center">{{applyRoomDiscount.inUse == '0' ? '未使用' : '已使用'}}</td>
+                            <td class="text-center" v-if="applyRoomDiscount.discountId">{{applyRoomDiscount.returnWay == '1002'  ? '账户余额' : '折扣'}}</td>
+                            <td class="text-center" v-if="!applyRoomDiscount.discountId">-</td>
+                            <td class="text-center">{{applyRoomDiscount.returnAmount ? applyRoomDiscount.returnAmount : '-'}}</td>
                             <td class="text-center">
                                 <div class="btn-group"
                                      v-if="applyRoomDiscount.state == '1' && vc.hasPrivilege('502021010723590006')">
@@ -90,10 +103,20 @@
                                             v-on:click="_openEditApplyRoomDiscountModel(applyRoomDiscount)">验房
                                     </button>
                                 </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openApplyRoomDiscountRecord(applyRoomDiscount)">跟踪记录
+                                    </button>
+                                </div>
                                 <div class="btn-group"
                                      v-if="applyRoomDiscount.state == '2' && vc.hasPrivilege('502021010761730007')">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openReviewApplyRoomDiscountModel(applyRoomDiscount)">审核
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditApplyRoomDiscountRecordModel(applyRoomDiscount)">修改
                                     </button>
                                 </div>
                                 <div class="btn-group">
@@ -106,7 +129,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="12">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
@@ -119,6 +142,7 @@
         </div>
     </div>
     <vc:create path="property/addApplyRoomDiscount" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editApplyRoomDiscountRecord"></vc:create>
     <vc:create path="property/editApplyRoomDiscount"></vc:create>
     <vc:create path="property/reviewApplyRoomDiscount"></vc:create>
     <vc:create path="property/deleteApplyRoomDiscount"></vc:create>

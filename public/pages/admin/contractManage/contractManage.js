@@ -13,7 +13,7 @@
                 moreCondition: false,
                 contractId: '',
                 conditions: {
-                    contractName: '',
+                    contractNameLike: '',
                     contractCode: '',
                     contractType: '',
 
@@ -51,6 +51,7 @@
                         vc.component.contractManageInfo.contracts = _contractManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractManageInfo.records,
+                            dataCount: vc.component.contractManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -79,10 +80,16 @@
                 }
             },
             _printContract: function (_contract) {
-                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType);
-            }
+                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType+"&contractId="+_contract.contractId);
+            },
+            _viewContract:function(_contract){
+               vc.jumpToPage("/admin.html#/pages/common/contractApplyDetail?contractId="+_contract.contractId);
 
-
+            },
+        
+            _openContractFee: function (_contract) {
+                vc.jumpToPage("/admin.html#/pages/property/listContractFee?contractId=" + _contract.contractId + "&contractCode=" + _contract.contractCode);
+            },
         }
     });
 })(window.vc);

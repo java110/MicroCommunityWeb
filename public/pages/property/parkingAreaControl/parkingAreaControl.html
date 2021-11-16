@@ -1,0 +1,87 @@
+<div class="white-bg padding" style="margin-top:-20px">
+    <div class="row">
+        <div class="col-md-9">
+            <vc:create path="property/parkingAreaControlVideo"></vc:create>
+            <div class="margin-top">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'}"
+                            v-on:click="changeTab('parkingAreaControlCarInout')">出入场信息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlInCar'}"
+                            v-on:click="changeTab('parkingAreaControlInCar')">在场车辆</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInouts'}"
+                            v-on:click="changeTab('parkingAreaControlCarInouts')">出入场明细</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlPayment'}"
+                            v-on:click="changeTab('parkingAreaControlPayment')">收费明细</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlOwnerCar'}"
+                            v-on:click="changeTab('parkingAreaControlOwnerCar')">月租车</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlTempCar'}"
+                            v-on:click="changeTab('parkingAreaControlTempCar')">临时车</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlWhiteCar'}"
+                            v-on:click="changeTab('parkingAreaControlWhiteCar')">白名单</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlBlackCar'}"
+                            v-on:click="changeTab('parkingAreaControlBlackCar')">黑名单</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlRemaining'}"
+                            v-on:click="changeTab('parkingAreaControlRemaining')">剩余车位</a>
+                    </li>
+                </ul>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'">
+                <vc:create path="property/parkingAreaControlCarInout"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlInCar'">
+                <vc:create path="property/parkingAreaControlInCar"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInouts'">
+                <vc:create path="property/parkingAreaControlCarInouts"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlPayment'">
+                <vc:create path="property/parkingAreaControlPayment"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlOwnerCar'">
+                <vc:create path="property/parkingAreaControlOwnerCar"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlTempCar'">
+                <vc:create path="property/parkingAreaControlTempCar"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlWhiteCar'">
+                <vc:create path="property/parkingAreaControlWhiteCar"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlBlackCar'">
+                <vc:create path="property/parkingAreaControlBlackCar"></vc:create>
+            </div>
+            <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlRemaining'">
+                <vc:create path="property/parkingAreaControlRemaining"></vc:create>
+            </div>
+            
+        </div>
+        <div class="col-md-3">
+            <vc:create path="property/parkingAreaControlFee"></vc:create>
+        </div>
+        <vc:create path="property/parkingAreaControlCustomCarInout"></vc:create>
+    </div>

@@ -5,14 +5,22 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                            {{resourceStoreManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入物品ID"
-                                       v-model="resourceStoreManageInfo.conditions.resId" class=" form-control">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.shId">
+                                    <option selected value="">请选择仓库</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.storehouses" :key="index"
+                                            v-bind:value="item.shId">
+                                        {{item.shName}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -27,11 +35,57 @@
                                        v-model="resourceStoreManageInfo.conditions.resCode" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryResourceStoreMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetResourceStoreMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="resourceStoreManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.parentRstId" @change="resourceStoreParentTypesChange">
+                                    <option selected value="">请选择物品类型</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreTypes" :key="index" v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">请选择二级分类</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreSonTypes" :key="index"
+                                        v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.rssId">
+                                    <option selected value="">请选择物品规格</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreSpecifications" :key="index"
+                                        v-bind:value="item.rssId">
+                                        {{item.specName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="resourceStoreManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入物品ID" v-model="resourceStoreManageInfo.conditions.resId"
+                                    class=" form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,32 +98,60 @@
                 <div class="ibox-title">
                     <h5>物品信息</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_jump2InAndOutPage()"
+                                v-if="vc.hasPrivilege('502021042137960001')">
+                            <i class="fa fa-plus"></i>入库与领用
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddResourceStoreModal()">
                             <i class="fa fa-plus"></i>添加
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i>导出
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
                             <th class="text-center">物品ID</th>
+                            <th class="text-center">仓库名称</th>
+                            <th class="text-center">物品类型</th>
                             <th class="text-center">物品名称</th>
+                            <th class="text-center">物品规格</th>
                             <th class="text-center">物品编码</th>
-                            <th class="text-center">物品价格</th>
+                            <th class="text-center">采购参考价格</th>
+                            <th class="text-center">收费标准</th>
                             <th class="text-center">物品库存</th>
+                            <th class="text-center">最小计量</th>
+                            <th class="text-center">最小计量总数</th>
+                            <th class="text-center">物品均价</th>
+                            <th class="text-center">物品总价</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="resourceStore in resourceStoreManageInfo.resourceStores">
+                        <tr v-for="resourceStore in resourceStoreManageInfo.resourceStores"
+                            :class="{ 'table-danger' : parseInt(resourceStore.stock) < parseInt(resourceStore.warningStock)}">
                             <td class="text-center">{{resourceStore.resId}}</td>
+                            <td class="text-center">{{resourceStore.shName}}</td>
+                            <td class="text-center">{{resourceStore.parentRstName}}{{resourceStore.rstName ? ' > ' + resourceStore.rstName : ''}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
+                            <td class="text-center">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
-                            <td class="text-center">{{resourceStore.price}}</td>
-                            <td class="text-center">{{resourceStore.stock}}</td>
+                            <td class="text-center">{{'￥' + resourceStore.price}}</td>
+                            <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' + resourceStore.outLowPrice : '￥' + resourceStore.outLowPrice + '-￥' + resourceStore.outHighPrice}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">1{{resourceStore.unitCodeName}}={{resourceStore.miniUnitStock}}{{resourceStore.miniUnitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.miniStock}}{{resourceStore.miniUnitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.averagePrice ? '￥' + resourceStore.averagePrice : '￥0'}}</td>
+                            <td class="text-center">{{'￥' + resourceStore.totalPrice}}</td>
                             <td class="text-center">
+                                <!-- <div class="btn-group" v-if="resourceStore.stock>0">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAllocationStorehouseModel(resourceStore)">调拨
+                                    </button>
+                                </div> -->
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditResourceStoreModel(resourceStore)">修改
@@ -85,14 +167,27 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="16">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row">
+                        <div class="col-md-6 text-left">
+                            <span class="margin-left"><span class="col-md-1"><b>小计</b></span>
+                                <span class="col-md-1 margin-left">物品总价：{{resourceStoreManageInfo.subTotalPrice}}元</span>
+                            </span>
+                            <br/>
+                            <span class="margin-left"><span class="col-md-1"><b>大计</b></span>
+                                <span class="col-md-1 margin-left">物品总价：{{resourceStoreManageInfo.highTotalPrice}}元</span>
+                            </span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

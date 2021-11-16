@@ -12,12 +12,11 @@
                 records: 1,
                 moreCondition: false,
                 name: '',
-                mId:'',
+                mId: '',
                 conditions: {
                     name: '',
                     pId: '',
                     domain: ''
-
                 }
             }
         },
@@ -26,7 +25,6 @@
             vc.component._listBasePrivileges(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('basePrivilegeManage', 'listBasePrivilege', function (_param) {
                 vc.component._listBasePrivileges(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -36,14 +34,12 @@
         },
         methods: {
             _listBasePrivileges: function (_page, _rows) {
-
                 vc.component.basePrivilegeManageInfo.conditions.page = _page;
                 vc.component.basePrivilegeManageInfo.conditions.row = _rows;
                 vc.component.basePrivilegeManageInfo.conditions.mId = $that.basePrivilegeManageInfo.mId;
                 var param = {
                     params: vc.component.basePrivilegeManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.get('basePrivilegeManage',
                     'list',
@@ -55,6 +51,7 @@
                         vc.component.basePrivilegeManageInfo.basePrivileges = _basePrivilegeManageInfo.basePrivileges;
                         vc.emit('pagination', 'init', {
                             total: vc.component.basePrivilegeManageInfo.records,
+                            dataCount: vc.component.basePrivilegeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -64,7 +61,7 @@
             },
             _openAddBasePrivilegeModal: function () {
                 vc.emit('addBasePrivilege', 'openAddBasePrivilegeModal', {
-                    mId:$that.basePrivilegeManageInfo.mId
+                    mId: $that.basePrivilegeManageInfo.mId
                 });
             },
             _openEditBasePrivilegeModel: function (_basePrivilege) {
@@ -75,7 +72,6 @@
             },
             _queryBasePrivilegeMethod: function () {
                 vc.component._listBasePrivileges(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.basePrivilegeManageInfo.moreCondition) {
@@ -84,8 +80,6 @@
                     vc.component.basePrivilegeManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

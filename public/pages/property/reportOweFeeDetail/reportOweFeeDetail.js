@@ -13,13 +13,16 @@
                 moreCondition: false,
                 title: '',
                 roomUnits: [],
+                totalPreferentialAmount:0.0,
+                allOweAmount:0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
                     roomNum: '',
                     unitId: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -129,8 +132,21 @@
                         vc.component.reportOweFeeDetailInfo.total = _reportOweFeeDetailInfo.total;
                         vc.component.reportOweFeeDetailInfo.records = _reportOweFeeDetailInfo.records;
                         vc.component.reportOweFeeDetailInfo.fees = _reportOweFeeDetailInfo.data;
+
+                         //计算小计
+                         let _totalPreferentialAmount=0.0;
+                        
+                         _reportOweFeeDetailInfo.data.forEach(item => {
+                             _totalPreferentialAmount += parseFloat(item.oweAmount);
+                         });
+ 
+                         $that.reportOweFeeDetailInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+                         if(_reportOweFeeDetailInfo.data.length>0){
+                             $that.reportOweFeeDetailInfo.allOweAmount = _reportOweFeeDetailInfo.data[0].allOweAmount;
+                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportOweFeeDetailInfo.records,
+                            dataCount: vc.component.reportOweFeeDetailInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -147,25 +163,7 @@
                 vc.component.reportOweFeeDetailInfo.conditions.startTime = "";
                 vc.component.reportOweFeeDetailInfo.conditions.endTime = "";
                 vc.component.reportOweFeeDetailInfo.roomUnits = [];
-                var param = {
-                    params: vc.component.reportOweFeeDetailInfo.conditions
-                };
-                //发送get请求
-                vc.http.apiGet('/reportFeeMonthStatistics/queryOweFeeDetail',
-                    param,
-                    function (json, res) {
-                        var _reportOweFeeDetailInfo = JSON.parse(json);
-                        vc.component.reportOweFeeDetailInfo.total = _reportOweFeeDetailInfo.total;
-                        vc.component.reportOweFeeDetailInfo.records = _reportOweFeeDetailInfo.records;
-                        vc.component.reportOweFeeDetailInfo.fees = _reportOweFeeDetailInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.reportOweFeeDetailInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {
@@ -202,8 +200,8 @@
                     vc.component.reportOweFeeDetailInfo.moreCondition = true;
                 }
             },
-            _exportFee: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportOweFeeDetail");
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportOweFeeDetail&' + vc.objToGetParam($that.reportOweFeeDetailInfo.conditions));
             }
         }
     });

@@ -1,0 +1,80 @@
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label text-right">入场视频</label>
+                        <div class="col-sm-8 padding-0">
+                            <select class="custom-select" v-model="parkingAreaControlVideoInfo.inMachineId"
+                                @change="_swatchVedio()">
+                                <option selected disabled value="">请选择入场摄像头</option>
+                                <option :value="item.machineId"
+                                    v-for="(item,index) in parkingAreaControlVideoInfo.inMachines">{{item.machineName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-right">
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="customCarIn('1101')">
+                                手动进场
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm margin-left"
+                                v-on:click="_openDoor('in')">
+                                开闸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label text-right">出场视频</label>
+                        <div class="col-sm-8 padding-0">
+                            <select class="custom-select" v-model="parkingAreaControlVideoInfo.outMachineId" @change="_swatchOutVedio()">
+                                <option selected disabled value="">请选择出场摄像头</option>
+                                <option :value="item.machineId"
+                                    v-for="(item,index) in parkingAreaControlVideoInfo.outMachines">{{item.machineName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-right">
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="customCarIn('1102')">
+                                手动出场
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm margin-left"
+                                v-on:click="_openDoor('out')">
+                                开闸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="receiver1Div" style="border: 1px solid #dee2e6;">
+                <img width="100%" src="../../../img/init.jpg" height="350px" id="receiver1" style="border: 1;"/>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="receiver2Div" style="border: 1px solid #dee2e6;">
+                <img width="100%" src="../../../img/init.jpg" height="350px" id="receiver2"/>
+            </div>
+        </div>
+    </div>
+
+
+</div>

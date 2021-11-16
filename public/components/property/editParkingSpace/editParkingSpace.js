@@ -110,14 +110,12 @@
                     });
             },
             clearEditParkingSpaceInfo: function () {
-                vc.component.editParkingSpaceInfo = {
-                    psId: '',
-                    num: '',
-                    paId: '',
-                    area: '',
-                    remark: '',
-                    areaNum: ''
-                };
+                vc.component.editParkingSpaceInfo.psId = '';
+                vc.component.editParkingSpaceInfo.num = '';
+                vc.component.editParkingSpaceInfo.paId = '';
+                vc.component.editParkingSpaceInfo.area = '';
+                vc.component.editParkingSpaceInfo.remark = '';
+                vc.component.editParkingSpaceInfo.areaNum = '';
                 vc.emit('editParkingSpace', 'parkingAreaSelect2', 'setParkingArea', {
                     paId: '',
                     num: ''

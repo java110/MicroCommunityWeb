@@ -37,7 +37,7 @@
             vc.on('departmentSelect2', 'clearDepartment', function (_param) {
                 this.departmentSelect2Info = {
                     orgs: [],
-                    orgId: '-1',
+                    // orgId: '-1',
                     orgName: '',
                     companyId:'',
                     staffId: '',
@@ -63,6 +63,12 @@
                         url: "/callComponent/orgManage/list",
                         dataType: 'json',
                         delay: 250,
+                        headers:{
+                            'APP-ID': '8000418004',
+                            'TRANSACTION-ID' : vc.uuid(),
+                            'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
+                            'SIGN' : ''
+                        },
                         data: function (params) {
                             console.log("param", params);
                             var _term = "";
@@ -91,7 +97,7 @@
                     //这里是选中触发的事件
                     //evt.params.data 是选中项的信息
                     console.log('select', evt);
-                    this.departmentSelect2Info.orgId = evt.params.data.id;
+                    // this.departmentSelect2Info.orgId = evt.params.data.id;
                     this.departmentSelect2Info.departmentId = evt.params.data.id;
                     this.departmentSelect2Info.orgName = evt.params.data.text;
                 });
@@ -100,7 +106,7 @@
                     //这里是取消选中触发的事件
                     //如配置allowClear: true后，触发
                     console.log('unselect', evt);
-                    this.departmentSelect2Info.orgId = '-1';
+                    // this.departmentSelect2Info.orgId = '-1';
                     this.departmentSelect2Info.orgName = '';
 
                 });

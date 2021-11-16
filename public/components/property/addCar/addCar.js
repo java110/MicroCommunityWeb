@@ -150,7 +150,7 @@
                 }
             },
             _initDateInfo: function () {
-                vc.component.addCarInfo.startTime = vc.dateFormat(new Date().getTime());
+                // vc.component.addCarInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.startTime').datetimepicker({
                     minView: "month",
                     language: 'zh-CN',

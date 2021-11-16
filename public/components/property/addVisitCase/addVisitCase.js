@@ -8,7 +8,7 @@
             addVisitCase:{
                 visitCase:"",
                 videoPlaying:false,
-                visitPhoto:""
+                visitPhoto:"/img/defaultAvatar.png"
             }
         },
         watch:{

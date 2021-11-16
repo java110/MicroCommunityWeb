@@ -42,6 +42,7 @@
                             $that.navCommunityInfo.communityInfo = _data.communitys;
                             vc.emit('chooseEnterCommunity','paginationPlus', 'init', {
                                 total: _data.records,
+                                dataCount: _data.total,
                                 currentPage: _page
                             });
                         }

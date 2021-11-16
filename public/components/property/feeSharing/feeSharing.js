@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             feeSharingInfo: {
@@ -16,9 +15,8 @@
                 formulas: [],
                 remark: '',
                 roomState: ['2001'],
-                roomType:'1010301',
-                feeLayer:'全部'
-
+                roomType: '1010301',
+                feeLayer: '全部'
             }
         },
         _initMethod: function () {
@@ -29,9 +27,7 @@
             vc.on('feeSharing', 'openFeeSharingModal', function (_param) {
                 $('#feeSharingModel').modal('show');
             });
-
             vc.on("feeSharing", "notify", function (_param) {
-
                 if (_param.hasOwnProperty("floorId")) {
                     vc.component.feeSharingInfo.floorId = _param.floorId;
                 }
@@ -50,7 +46,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.feeSharingStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -154,17 +149,13 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 let _objId = $that.feeSharingInfo.objId;
-
                 if (_objId == '' || _objId == '-1') {
                     vc.toast("请选择公摊楼栋或者单元");
                     return;
                 }
-
                 vc.component.feeSharingInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.component.feeSharingInfo.roomState =  vc.component.feeSharingInfo.roomState.join(',');
-
+                vc.component.feeSharingInfo.roomState = vc.component.feeSharingInfo.roomState.join(',');
                 vc.http.apiPost(
                     '/importFee/feeSharing',
                     JSON.stringify(vc.component.feeSharingInfo),
@@ -182,17 +173,13 @@
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             _loadFormula: function (_roomId) {
-
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -230,8 +217,8 @@
                     formulas: _formulas,
                     remark: '',
                     roomState: ['2001'],
-                    roomType:'1010301',
-                    feeLayer:'全部'
+                    roomType: '1010301',
+                    feeLayer: '全部'
                 };
             },
             feeSharingChangeRoomType: function () {
@@ -241,16 +228,15 @@
                     $that.feeSharingInfo.roomState = ['2006'];
                 }
             },
-            _changeShareFeeLayer:function(){
+            _changeShareFeeLayer: function () {
                 let _feeLayer = $that.feeSharingInfo.feeLayer;
 
-                if(_feeLayer == '全部'){
+                if (_feeLayer == '全部') {
                     $that.feeSharingInfo.feeLayer = ''
-                }else{
+                } else {
                     $that.feeSharingInfo.feeLayer = '全部'
                 }
             }
         }
     });
-
 })(window.vc);

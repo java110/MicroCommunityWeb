@@ -1,0 +1,75 @@
+<div id="addResourceSupplierModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">添加供应商</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">供应商名称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceSupplierInfo.supplierName" type="text"
+                                           placeholder="必填，请填写供应商名称" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">供应商地址</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceSupplierInfo.address" type="text"
+                                           placeholder="必填，请填写供应商地址" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">供应商联系方式</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceSupplierInfo.tel" type="text" placeholder="必填，请填写供应商联系方式"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">联系人姓名</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceSupplierInfo.contactName" type="text"
+                                           placeholder="必填，请填写联系人姓名" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">开户行</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceSupplierInfo.accountBank" type="text"
+                                           placeholder="选填，请填写开户行" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">开户行账号</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceSupplierInfo.bankAccountNumber" type="text"
+                                           placeholder="选填，请填写开户行账号" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">备注</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addResourceSupplierInfo.remark" type="text" placeholder="选填，请填写备注"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveResourceSupplierInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -63,6 +63,12 @@
                         url: "/callComponent/searchStaff/listStaff",
                         dataType: 'json',
                         delay: 250,
+                        headers:{
+                            'APP-ID': '8000418004',
+                            'TRANSACTION-ID' : vc.uuid(),
+                            'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
+                            'SIGN' : ''
+                        },
                         data: function (params) {
                             console.log("param", params);
                             var _term = "";
@@ -72,7 +78,7 @@
                             return {
                                 name: _term,
                                 page: 1,
-                                row: 10,
+                                row: 50,
                                 parentOrgId:this.staffSelect2Info.companyId,
                                 departmentOrgId:this.staffSelect2Info.departmentId,
                                 communityId: vc.getCurrentCommunity().communityId

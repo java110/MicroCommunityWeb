@@ -8,7 +8,8 @@
                 staffName: '',
                 context: '',
                 action: '',
-                repairTypeUsers: []
+                repairTypeUsers: [],
+                currentUserId: vc.getData('/nav/getUserInfo').userId,
             }
         },
         _initMethod: function () {
@@ -72,6 +73,10 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+                if (vc.component.dispatchRepairInfo.action == "TRANSFER" && vc.component.dispatchRepairInfo.currentUserId == vc.component.dispatchRepairInfo.staffId){
+                    vc.toast("不能转单给自己");
+                    return;
+                }
                 vc.component.dispatchRepairInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'ownerRepair.repairDispatch',
@@ -89,7 +94,7 @@
                             vc.emit('repairPoolManage', 'listRepairPool', {});
                             vc.emit('repairDispatchManage', 'listOwnerRepair', {});
                             vc.toast("操作成功");
-                        } else if(_json.code == 404){
+                        } else if(_json.code == 5010){
                             vc.toast(_json.msg);
                         }
                     },
@@ -106,7 +111,8 @@
                     staffName: '',
                     context: '',
                     action: '',
-                    repairTypeUsers: []
+                    repairTypeUsers: [],
+                    currentUserId: vc.getData('/nav/getUserInfo').userId,
                 };
             },
             _listRepairTypeUsers: function () {

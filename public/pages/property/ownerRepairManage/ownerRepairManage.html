@@ -44,9 +44,9 @@
                         <div class="col-sm-4" v-if="ownerRepairManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="ownerRepairManageInfo.conditions.repairType">
                                 <option selected value="">请选择报修类型</option>
-                                <option value="10001">卧室报修</option>
-                                <option value="10002">管道报修</option>
-                                <option value="10003">客厅报修</option>
+                                <option v-for="(item,index) in ownerRepairManageInfo.repairTypes" :key="index"
+                                        :value="item.repairType">{{item.repairTypeName}}
+                                </option>
                             </select>
                         </div>
                         <div class="col-sm-3" v-if="ownerRepairManageInfo.moreCondition == true">
@@ -69,7 +69,7 @@
                     <h5><span v-text="ownerRepairManageInfo.conditions.roomName"></span>报修信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddOwnerRepairModal()"
-                                v-if:click="ownerRepairManageInfo.conditions.roomId != ''">
+                                v-if="ownerRepairManageInfo.conditions.roomId != ''">
                             <i class="fa fa-plus"></i>登记
                         </button>
                     </div>
@@ -97,7 +97,13 @@
                             <td class="text-center">{{ownerRepair.repairName}}</td>
                             <td class="text-center">{{ownerRepair.tel}}</td>
                             <td class="text-center">{{ownerRepair.appointmentTime}}</td>
-                            <td class="text-center">{{ownerRepair.stateName}}</td>
+                            <td class="text-center"
+                                v-if="ownerRepair.state == '1800' && (ownerRepair.returnVisitFlag == '001' || ownerRepair.returnVisitFlag == '002')">
+                                {{ownerRepair.stateName}}(定时任务处理)
+                            </td>
+                            <td class="text-center" v-else>
+                                {{ownerRepair.stateName}}
+                            </td>
                             <td class="text-center">
                                 <div class="btn-group"
                                      v-if="vc.hasPrivilege('502021012067300023') && (ownerRepair.state == '1000' || ownerRepair.state == '1200')">
@@ -116,7 +122,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

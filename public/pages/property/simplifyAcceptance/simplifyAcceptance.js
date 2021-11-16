@@ -30,7 +30,11 @@
                 stateName: '',
                 roomName: '',
                 roomType: '',
-                sex: 0
+                roomSubTypeName: '',
+                roomSubType: '',
+                roomArea:'',
+                sex: '',
+                roomRent:''
             }
         },
         _initMethod: function () {
@@ -93,6 +97,9 @@
                     case '9':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入商铺编号 楼栋-商铺 如1-1';
                         break;
+                    case '10':
+                        $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入合同号';
+                        break;
                     default:
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入房屋编号 楼栋-单元-房屋 如1-1-1';
                         $that.simplifyAcceptanceInfo.searchValue = "";
@@ -134,7 +141,7 @@
                         }
                         vc.copyObject(_rooms[0], $that.simplifyAcceptanceInfo);
                         $that.simplifyAcceptanceInfo.roomRemark = _rooms[0].remark;
-                        $that.simplifyAcceptanceInfo.roomName = _rooms[0].floorNum + '栋' + _rooms[0].unitNum + '单元' + _rooms[0].roomNum;
+                        $that.simplifyAcceptanceInfo.roomName = _rooms[0].floorNum + '栋' + _rooms[0].unitNum + '单元' + _rooms[0].roomNum + '室';
                         vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo);
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -158,6 +165,9 @@
                     ownerId: $that.simplifyAcceptanceInfo.ownerId,
                     roomId: $that.simplifyAcceptanceInfo.roomId,
                     roomName: $that.simplifyAcceptanceInfo.roomName,
+                    floorNum: $that.simplifyAcceptanceInfo.floorNum,
+                    unitNum: $that.simplifyAcceptanceInfo.unitNum,
+                    roomNum: $that.simplifyAcceptanceInfo.roomNum
                 })
             },
             errorLoadImg: function () {
@@ -187,10 +197,14 @@
                     feeCoefficient: '',
                     stateName: '',
                     roomName: '',
-                    sex: 0,
+                    sex: '',
                     ownerRemark: '',
                     roomRemark: '',
-                    roomType:''
+                    roomType: '',
+                    roomSubTypeName: '',
+                    roomSubType: '',
+                    roomArea:'',
+                    roomRent:''
                 }
             }
         }

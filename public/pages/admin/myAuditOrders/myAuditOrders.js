@@ -12,14 +12,14 @@
                 records: 1,
                 moreCondition: false,
                 userName: '',
-                currentUserId:vc.getData('/nav/getUserInfo').userId,
+                currentUserId: vc.getData('/nav/getUserInfo').userId,
                 conditions: {
                     AuditOrdersId: '',
                     userName: '',
                     auditLink: '',
                 },
-                orderInfo:'',
-                procure:false
+                orderInfo: '',
+                procure: false
             }
         },
         _initMethod: function () {
@@ -35,19 +35,17 @@
                 vc.component._listAuditOrders(_currentPage, DEFAULT_ROWS);
             });
 
-            vc.on('myAuditOrders','notifyAudit',function(_auditInfo){
+            vc.on('myAuditOrders', 'notifyAudit', function (_auditInfo) {
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
         methods: {
             _listAuditOrders: function (_page, _rows) {
-
                 vc.component.auditOrdersInfo.conditions.page = _page;
                 vc.component.auditOrdersInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.auditOrdersInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.get('myAuditOrders',
                     'list',
@@ -59,6 +57,7 @@
                         vc.component.auditOrdersInfo.auditOrders = _auditOrdersInfo.resourceOrders;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditOrdersInfo.records,
+                            dataCount: vc.component.auditOrdersInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -68,19 +67,28 @@
             },
             _openAuditOrderModel: function (_auditOrder) {
                 vc.component.auditOrdersInfo.orderInfo = _auditOrder;
-                vc.emit('audit','openAuditModal',{});
+                vc.emit('audit', 'openAuditModal', {});
             },
             _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType);
+            _openDetailPurchaseApplyModel: function (_purchaseApply) {
+                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=" + _purchaseApply.resOrderType);
             },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
-                console.log("提交得参数："+_auditInfo);
                 _auditInfo.taskId = vc.component.auditOrdersInfo.orderInfo.taskId;
                 _auditInfo.applyOrderId = vc.component.auditOrdersInfo.orderInfo.applyOrderId;
+                _auditInfo.communityId = vc.getCurrentCommunity().communityId
+                // 新增通知状态字段，区别是否为仓管及对应状态
+                if(_auditInfo.state == '1200'){
+                    _auditInfo.noticeState = '1004';
+                } else if (vc.component.auditOrdersInfo.procure){
+                    _auditInfo.noticeState = '1002';
+                } else {
+                    _auditInfo.noticeState = '1001';
+                }
+                console.log("提交得参数：" , _auditInfo);
                 //发送get请求
                 vc.http.post('myAuditOrders',
                     'audit',
@@ -97,12 +105,12 @@
                     }
                 );
             },
-            _finishAuditOrder:function(_auditOrder){
+            _finishAuditOrder: function (_auditOrder) {
                 let _auditInfo = {
                     taskId: _auditOrder.taskId,
                     applyOrderId: _auditOrder.applyOrderId,
-                    state:'1200',
-                    remark:'处理结束'
+                    state: '1200',
+                    remark: '处理结束'
                 };
                 //发送get请求
                 vc.http.post('myAuditOrders',
@@ -121,22 +129,21 @@
                 );
             },
             _loadStepStaff: function () {
-
                 var param = {
                     params: {
-                        page:1,
-                        row:1,
+                        page: 1,
+                        row: 1,
                         staffId: $that.auditOrdersInfo.currentUserId,
-                        staffRole: '2002'
+                        staffRole: '2002',
+                        requestType: 'purchaseHandle'
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowStepStaffs',
                     param,
                     function (json, res) {
                         var _json = JSON.parse(json);
-                        if(_json.data.length > 0){
+                        if (_json.data.length > 0) {
                             $that.auditOrdersInfo.procure = true;
                         }
                     }, function (errInfo, error) {
@@ -144,12 +151,9 @@
                     }
                 );
             },
-
-            _procureEnterOrder:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/resourceEnterManage?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType+"&taskId="+_purchaseApply.taskId);
+            _procureEnterOrder: function (_purchaseApply) {
+                vc.jumpToPage("/admin.html#/pages/common/resourceEnterManage?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=" + _purchaseApply.resOrderType + "&taskId=" + _purchaseApply.taskId);
             }
-
-
         }
     });
 })(window.vc);

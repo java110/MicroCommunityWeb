@@ -19,7 +19,7 @@
                     typeCd: '',
                     staffName: '',
                     activitiesId: '',
-
+                    endTimeFlag:'1'
                 }
             }
         },
@@ -32,6 +32,9 @@
             vc.on('activitiesManage', 'listActivities', function (_param) {
                 vc.component.activitiesManageInfo.componentShow = 'activitiesList';
                 vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
+            vc.on('activitiesManage', 'pageReload', function () {
+                location.reload();
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listActivitiess(_currentPage, DEFAULT_ROWS);
@@ -58,6 +61,7 @@
                         vc.component.activitiesManageInfo.activitiess = _activitiesManageInfo.activitiess;
                         vc.emit('pagination', 'init', {
                             total: vc.component.activitiesManageInfo.records,
+                            dataCount: vc.component.activitiesManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

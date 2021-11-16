@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             bindOwnerShopsInfo: {
@@ -17,7 +16,6 @@
             }
         },
         _initMethod: function () {
-
             vc.initDate('hireStartTime', function (_startTime) {
                 $that.bindOwnerShopsInfo.startTime = _startTime;
             });
@@ -46,7 +44,6 @@
             });
         },
         methods: {
-
             bindOwnerShopsValidate: function () {
                 return vc.validate.validate({
                     bindOwnerShopsInfo: vc.component.bindOwnerShopsInfo
@@ -98,7 +95,6 @@
                             errInfo: "备注长度不能超过200位"
                         },
                     ]
-
                 });
             },
             bindOwnerShops: function () {
@@ -106,7 +102,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'room.saveOwnerShops',
                     JSON.stringify(vc.component.bindOwnerShopsInfo),
@@ -119,8 +114,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#bindOwnerShopsModel').modal('hide');
-                            vc.emit('shops', 'loadData', {
-                            });
+                            vc.emit('shops', 'loadData', {});
                             return;
                         }
                         vc.toast(_json.msg);
@@ -180,5 +174,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

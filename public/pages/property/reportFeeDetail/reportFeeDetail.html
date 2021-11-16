@@ -101,24 +101,34 @@
                         <tr>
                             <th class="text-center">费用编号</th>
                             <th class="text-center">房号</th>
+                            <th class="text-center">业主</th>
+                            <th class="text-center">面积</th>
                             <th class="text-center">费用项</th>
                             <th class="text-center">费用开始时间</th>
                             <th class="text-center">费用结束时间</th>
                             <th class="text-center">应收金额</th>
                             <th class="text-center">实收金额</th>
+                            <th class="text-center">更新时间</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="(fee,index) in reportFeeDetailInfo.fees">
                             <td class="text-center">{{index+1}}</td>
                             <td class="text-center">{{fee.objName}}</td>
+                            <td class="text-center">{{fee.ownerName}}</td>
+                            <td class="text-center">{{fee.builtUpArea}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
                             <td class="text-center">{{vc.dateFormat(fee.feeCreateTime)}}</td>
                             <!--<td class="text-center">{{fee.deadlineTime}}</td>-->
-                            <td class="text-center" v-if="fee.feeCreateTime >= fee.deadlineTime">{{vc.dateFormat(fee.deadlineTime)}}</td>
-                            <td class="text-center" v-else>{{vc.dateSubOneDay(vc.dateFormat(fee.feeCreateTime),vc.dateFormat(fee.deadlineTime),fee.feeFlag)}}</td>
+                            <td class="text-center" v-if="fee.feeCreateTime >= fee.deadlineTime">
+                                {{vc.dateFormat(fee.deadlineTime)}}
+                            </td>
+                            <td class="text-center" v-else>
+                                {{vc.dateSubOneDay(vc.dateFormat(fee.feeCreateTime),vc.dateFormat(fee.deadlineTime),fee.feeFlag)}}
+                            </td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
+                            <td class="text-center">{{fee.updateTime}}</td>
                         </tr>
                         </tbody>
                         <tfoot>

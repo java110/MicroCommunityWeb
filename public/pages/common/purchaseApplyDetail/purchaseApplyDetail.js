@@ -10,6 +10,7 @@
                 resourceNames: '',
                 state: '',
                 totalPrice: '',
+                purchaseTotalPrice: '',
                 applyOrderId: '',
                 description: '',
                 createTime: '',
@@ -19,17 +20,16 @@
                 stateName: '',
                 resOrderType: '',
                 purchaseApplyDetailVo: [],
-                auditUsers: []
+                auditUsers: [],
+                warehousingWay: ''
             }
         },
         _initMethod: function () {
             vc.component.purchaseApplyDetailInfo.applyOrderId = vc.getParam('applyOrderId');
             vc.component.purchaseApplyDetailInfo.resOrderType = vc.getParam('resOrderType');
             vc.component._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
-            $that._loadAuditUser();
         },
         _initEvent: function () {
-
         },
         methods: {
             _listPurchaseApply: function (_page, _rows) {
@@ -38,10 +38,9 @@
                         page: _page,
                         row: _rows,
                         applyOrderId: vc.component.purchaseApplyDetailInfo.applyOrderId,
-                        resOrderType: vc.component.purchaseApplyDetailInfo.resOrderType,
+                        resOrderType: vc.component.purchaseApplyDetailInfo.resOrderType
                     }
                 };
-
                 //发送get请求
                 vc.http.get('purchaseApplyManage',
                     'list',
@@ -50,6 +49,9 @@
                         var _purchaseApplyDetailInfo = JSON.parse(json);
                         var _purchaseApply = _purchaseApplyDetailInfo.purchaseApplys;
                         vc.copyObject(_purchaseApply[0], vc.component.purchaseApplyDetailInfo);
+                        if (vc.component.purchaseApplyDetailInfo.warehousingWay == 20000){
+                            $that._loadAuditUser();
+                        }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -62,7 +64,6 @@
                         communityId: vc.getCurrentCommunity().communityId,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowAuditInfo',
                     param,
@@ -77,8 +78,8 @@
             _callBackListPurchaseApply: function () {
                 vc.getBack();
             },
-            _printPurchaseApply:function(){
-                window.open("/print.html#/pages/property/printPurchaseApply?applyOrderId="+$that.purchaseApplyDetailInfo.applyOrderId+"&resOrderType="+$that.purchaseApplyDetailInfo.resOrderType)
+            _printPurchaseApply: function () {
+                window.open("/print.html#/pages/property/printPurchaseApply?applyOrderId=" + $that.purchaseApplyDetailInfo.applyOrderId + "&resOrderType=" + $that.purchaseApplyDetailInfo.resOrderType)
                 //vc.emit('printPurchaseApply', 'openPrintPurchaseApplyModal',vc.component.purchaseApplyDetailInfo);
             }
         }

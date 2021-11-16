@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editInspectionPlanInfo: {
@@ -10,32 +9,31 @@
                 startTime: '',
                 endTime: '',
                 signType: '',
-                signTypes:[],
+                signTypes: [],
                 inspectionPlanPeriods: [],
                 states: [],
-                isDefault:'',
+                isDefault: '',
                 state: '',
                 remark: '',
-                companyId:'',
-                companyName:'',
-                departmentId:'',
-                departmentName:'',
-                createUserId:'',
-                createUserName:'',
-                inspectionRouteName:''
+                companyId: '',
+                companyName: '',
+                departmentId: '',
+                departmentName: '',
+                createUserId: '',
+                createUserName: '',
+                inspectionRouteName: ''
             }
         },
         _initMethod: function () {
-            vc.getDict('inspection_plan',"sign_type",function(_data){
+            vc.getDict('inspection_plan', "sign_type", function (_data) {
                 vc.component.editInspectionPlanInfo.signTypes = _data;
             });
-            vc.getDict('inspection_plan',"inspection_plan_period",function(_data){
+            vc.getDict('inspection_plan', "inspection_plan_period", function (_data) {
                 vc.component.editInspectionPlanInfo.inspectionPlanPeriods = _data;
             });
-            vc.getDict('inspection_plan',"state",function(_data){
+            vc.getDict('inspection_plan', "state", function (_data) {
                 vc.component.editInspectionPlanInfo.states = _data;
             });
-
         },
         _initEvent: function () {
             vc.component._initEditInspectionPlanDateInfo();
@@ -52,32 +50,22 @@
                     staffId: vc.component.editInspectionPlanInfo.staffId,
                     staffName: vc.component.editInspectionPlanInfo.staffName,
                 });
-
                 //部门select2
                 // vc.emit('editInspectionPlan', 'departmentSelect2', 'setDepartment', {
                 //     departmentId: vc.component.editInspectionPlanInfo.departmentId,
                 //     departmentName: vc.component.editInspectionPlanInfo.departmentName,
                 // });
-
                 //员工select2
                 // vc.emit('editInspectionPlan', 'staffSelect2', 'setStaff', {
                 //     staffId: vc.component.editInspectionPlanInfo.staffId,
                 //     staffName: vc.component.editInspectionPlanInfo.staffName,
                 // });
-
                 // //传输数据到machineSelect2组件
                 vc.emit('editInspectionPlan', 'inspectionRouteSelect2', 'setInspectionRoute', {
                     inspectionRouteId: vc.component.editInspectionPlanInfo.inspectionRouteId,
                     routeName: vc.component.editInspectionPlanInfo.inspectionRouteName,
                 });
-
-
-
-
                 $('#editInspectionPlanModel').modal('show');
-
-
-
             });
         },
         methods: {
@@ -125,19 +113,19 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "开始时间不能为空"
+                            errInfo: "计划开始时间不能为空"
                         },
                         {
                             limit: "dateTime",
                             param: "",
-                            errInfo: "计计划开始时间不是有效的时间格式"
+                            errInfo: "计划开始时间不是有效的时间格式"
                         },
                     ],
                     'editInspectionPlanInfo.endTime': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "结束时间不能为空"
+                            errInfo: "计划结束时间不能为空"
                         },
                         {
                             limit: "dateTime",
@@ -182,7 +170,6 @@
                             param: "",
                             errInfo: "巡检计划名称不能为空"
                         }]
-
                 });
             },
             editInspectionPlan: function () {
@@ -190,7 +177,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.post(
                     'editInspectionPlan',
                     'update',
@@ -210,7 +196,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -230,19 +215,19 @@
                     signType: '',
                     state: '',
                     remark: '',
-                    companyId:'',
-                    companyName:'',
-                    departmentId:'',
-                    departmentName:'',
-                    createUserId:'',
-                    createUserName:'',
-                    inspectionRouteName:''
+                    companyId: '',
+                    companyName: '',
+                    departmentId: '',
+                    departmentName: '',
+                    createUserId: '',
+                    createUserName: '',
+                    inspectionRouteName: ''
                 };
                 vc.component.editInspectionPlanInfo.signTypes = signTypes;
                 vc.component.editInspectionPlanInfo.states = states;
                 vc.component.editInspectionPlanInfo.inspectionPlanPeriods = inspectionPlanPeriods;
             },
-            _initEditInspectionPlanDateInfo:function(){
+            _initEditInspectionPlanDateInfo: function () {
                 $('.editInspectionPlanStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -251,7 +236,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.editInspectionPlanStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -272,8 +256,19 @@
                         var value = $(".editInspectionPlanEndTime").val();
                         vc.component.editInspectionPlanInfo.endTime = value;
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editInspectionPlanStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editInspectionPlanEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             }
         }
     });
-
 })(window.vc, window.vc.component);

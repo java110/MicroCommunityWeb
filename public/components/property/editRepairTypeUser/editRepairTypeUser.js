@@ -1,17 +1,15 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editRepairTypeUserInfo: {
+                states: [],
                 typeUserId: '',
                 state: '',
                 remark: '',
                 repairType: ''
-
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editRepairTypeUser', 'openEditRepairTypeUserModal', function (_params) {
@@ -33,20 +31,12 @@
                             errInfo: "状态不能为空"
                         }
                     ],
-                    'editRepairTypeUserInfo.remark': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "说明不能为空"
-                        }
-                    ],
                     'editRepairTypeUserInfo.typeUserId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "数据异常"
                         }]
-
                 });
             },
             editRepairTypeUser: function () {
@@ -54,7 +44,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'repair.updateRepairTypeUser',
                     JSON.stringify(vc.component.editRepairTypeUserInfo),
@@ -73,7 +62,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -83,10 +71,8 @@
                     state: '',
                     remark: '',
                     repairType: ''
-
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

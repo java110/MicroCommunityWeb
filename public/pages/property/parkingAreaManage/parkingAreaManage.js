@@ -54,6 +54,7 @@
                         $that.dealParkingAreaAttr(_parkingAreaManageInfo.parkingAreas);
                         vc.emit('pagination', 'init', {
                             total: vc.component.parkingAreaManageInfo.records,
+                            dataCount: vc.component.parkingAreaManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -87,6 +88,7 @@
             },
             _getColumnsValue: function (_parkingArea) {
                 _parkingArea.listValues = [];
+                console.log('attr',_parkingArea)
                 if (!_parkingArea.hasOwnProperty('attrs') || _parkingArea.attrs.length < 1) {
                     $that.parkingAreaManageInfo.listColumns.forEach(_value => {
                         _parkingArea.listValues.push('');
@@ -119,7 +121,11 @@
                     });
                     _call();
                 });
-            }
+            },
+            _openParkingAreaText:function(_parkingArea){
+                vc.jumpToPage('/admin.html#/pages/property/parkingAreaText?paId='+_parkingArea.paId)
+            },
+            
         }
     });
 })(window.vc);

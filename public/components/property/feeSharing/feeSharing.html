@@ -1,155 +1,164 @@
 <div id="feeSharingModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3 class="m-t-none m-b ">费用公摊</h3>
-        <div class="ibox-content">
-          <div>
-            <div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">费用名称</label>
-                <div class="col-sm-10">
-                  <input v-model="feeSharingInfo.feeName" type="text" placeholder="必填，请填写费用名称" class="form-control ">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">费用类型</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="feeSharingInfo.feeTypeCd">
-                    <option selected disabled value="">必填，请选择费用类型</option>
-                    <option value="888800010017">公摊费</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">房屋类型</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="feeSharingInfo.roomType" @change="feeSharingChangeRoomType()">
-                    <option selected disabled value="">必填，请选择房屋类型</option>
-                    <option value="1010301">普通房屋</option>
-                    <option value="2020602">商铺</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">使用量</label>
-                <div class="col-sm-10">
-                  <input v-model="feeSharingInfo.totalDegrees" type="text" placeholder="必填，请填写当期使用量"
-                    class="form-control ">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">公摊范围</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="feeSharingInfo.scope">
-                    <option selected disabled value="">必填，请选择公摊范围</option>
-                    <option value="1001">当前小区</option>
-                    <option value="2002">楼栋</option>
-                    <option value="3003" v-if="feeSharingInfo.roomType == '1010301'">单元</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row" v-show="feeSharingInfo.scope != '1001'">
-                <label class="col-sm-2 col-form-label">楼栋</label>
-                <div class="col-sm-10">
-                  <vc:create path="property/floorSelect2" parentModal="feeSharingModel" namespace="feeSharing">
-                  </vc:create>
-                </div>
-              </div>
-              <div class="form-group row" v-show="feeSharingInfo.scope == '3003'">
-                <label class="col-sm-2 col-form-label">单元</label>
-                <div class="col-sm-10">
-                  <vc:create path="property/unitSelect2" parentModal="feeSharingModel" callBackListener="feeSharing"
-                    callBackFunction="notify" namespace="feeSharing">
-                  </vc:create>
-                </div>
-              </div>
-              <div class="form-group row" >
-                <label class="col-sm-2 col-form-label">楼层</label>
-                <div class="col-sm-8" v-if="feeSharingInfo.feeLayer != '全部'">
-                    <input type="text" v-model="feeSharingInfo.feeLayer"
-                        placeholder="请输入楼层 多个层时用#分隔，如1#2" class="form-control">
-                </div>
-                <div class="col-sm-8" v-else>
-                    <input type="text" v-model="feeSharingInfo.feeLayer" disabled="disabled"
-                        placeholder="请输入楼层 多个层时用#分隔，如1#2" class="form-control">
-                </div>
-                <div class="col-sm-2">
-                    <button class="btn btn-primary float-right" type="button"
-                        v-on:click="_changeShareFeeLayer()">
-                        {{feeSharingInfo.feeLayer==
-                        '全部'?'自定义':'全部'}}
-                    </button>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">费用公摊</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">费用名称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="feeSharingInfo.feeName" type="text" placeholder="必填，请填写费用名称"
+                                           class="form-control ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">费用类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="feeSharingInfo.feeTypeCd">
+                                        <option selected disabled value="">必填，请选择费用类型</option>
+                                        <option value="888800010017">公摊费</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">房屋类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="feeSharingInfo.roomType"
+                                            @change="feeSharingChangeRoomType()">
+                                        <option selected disabled value="">必填，请选择房屋类型</option>
+                                        <option value="1010301">普通房屋</option>
+                                        <option value="2020602">商铺</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">使用量</label>
+                                <div class="col-sm-10">
+                                    <input v-model="feeSharingInfo.totalDegrees" type="text" placeholder="必填，请填写当期使用量"
+                                           class="form-control ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">公摊范围</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="feeSharingInfo.scope">
+                                        <option selected disabled value="">必填，请选择公摊范围</option>
+                                        <option value="1001">当前小区</option>
+                                        <option value="2002">楼栋</option>
+                                        <option value="3003" v-if="feeSharingInfo.roomType == '1010301'">单元</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="feeSharingInfo.scope != '1001'">
+                                <label class="col-sm-2 col-form-label">楼栋</label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/floorSelect2" parentModal="feeSharingModel"
+                                               namespace="feeSharing">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="feeSharingInfo.scope == '3003'">
+                                <label class="col-sm-2 col-form-label">单元</label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/unitSelect2" parentModal="feeSharingModel"
+                                               callBackListener="feeSharing"
+                                               callBackFunction="notify" namespace="feeSharing">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">楼层</label>
+                                <div class="col-sm-8" v-if="feeSharingInfo.feeLayer != '全部'">
+                                    <input type="text" v-model="feeSharingInfo.feeLayer"
+                                           placeholder="请输入楼层 多个层时用#分隔，如1#2" class="form-control">
+                                </div>
+                                <div class="col-sm-8" v-else>
+                                    <input type="text" v-model="feeSharingInfo.feeLayer" disabled="disabled"
+                                           placeholder="请输入楼层 多个层时用#分隔，如1#2" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-primary float-right" type="button"
+                                            v-on:click="_changeShareFeeLayer()">
+                                        {{feeSharingInfo.feeLayer== '全部'?'自定义':'全部'}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">房屋状态</label>
+                                <div class="col-sm-10" v-if="feeSharingInfo.roomType == '1010301'">
+                                    <div class="checkbox custom-control-inline">
+                                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2001">已入住</label>
+                                    </div>
+                                    <div class="checkbox custom-control-inline">
+                                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2003">已交房</label>
+                                    </div>
+                                    <div class="checkbox custom-control-inline">
+                                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2005">已装修</label>
+                                    </div>
+                                    <div class="checkbox custom-control-inline">
+                                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2004">未入住</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10" v-else>
+                                    <div class="checkbox custom-control-inline">
+                                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2006">已出租</label>
+                                    </div>
+                                    <div class="checkbox custom-control-inline">
+                                        <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2007">已出售</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">公摊公式</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="feeSharingInfo.formulaId">
+                                        <option selected disabled value="">必填，请选择收费项目</option>
+                                        <option v-for="(item,index) in feeSharingInfo.formulas" :key="index"
+                                                v-bind:value="item.formulaId">
+                                            {{item.formulaValue}}({{item.formulaDesc}})
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">开始时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="feeSharingInfo.startTime" type="text" placeholder="必填，请填写费用开始时间"
+                                           class="form-control feeSharingStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">结束时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="feeSharingInfo.endTIme" type="text" placeholder="必填，请填写费用结束时间"
+                                           class="form-control feeSharingEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">备注</label>
+                                <div class="col-sm-10">
+                                    <input v-model="feeSharingInfo.remark" type="text" placeholder="选填，请填写备注"
+                                           class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveFeeSharingInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">房屋状态</label>
-                <div class="col-sm-10" v-if="feeSharingInfo.roomType == '1010301'">
-                  <div class="checkbox custom-control-inline">
-                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2001">已入住</label>
-                  </div>
-                  <div class="checkbox custom-control-inline">
-                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2003">已交房</label>
-                  </div>
-                  <div class="checkbox custom-control-inline">
-                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2005">已装修</label>
-                  </div>
-                  <div class="checkbox custom-control-inline">
-                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2004">未入住</label>
-                  </div>
-                </div>
-                <div class="col-sm-10" v-else>
-                  <div class="checkbox custom-control-inline">
-                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2006">已出租</label>
-                  </div>
-                  <div class="checkbox custom-control-inline">
-                    <label><input type="checkbox" v-model="feeSharingInfo.roomState" value="2007">已出售</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">公摊公式</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="feeSharingInfo.formulaId">
-                    <option selected disabled value="">必填，请选择收费项目</option>
-                    <option v-for="(item,index) in feeSharingInfo.formulas" :key="index" v-bind:value="item.formulaId">
-                      {{item.formulaValue}}({{item.formulaDesc}})
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">开始时间</label>
-                <div class="col-sm-10">
-                  <input v-model="feeSharingInfo.startTime" type="text" placeholder="必填，请填写费用开始时间"
-                    class="form-control feeSharingStartTime">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">结束时间</label>
-                <div class="col-sm-10">
-                  <input v-model="feeSharingInfo.endTIme" type="text" placeholder="必填，请填写费用结束时间"
-                    class="form-control feeSharingEndTime">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">备注</label>
-                <div class="col-sm-10">
-                  <input v-model="feeSharingInfo.remark" type="text" placeholder="选填，请填写备注" class="form-control">
-                </div>
-              </div>
-
-              <div class="ibox-content">
-                <button class="btn btn-primary float-right" type="button" v-on:click="saveFeeSharingInfo()"><i
-                    class="fa fa-check"></i>&nbsp;保存</button>
-                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

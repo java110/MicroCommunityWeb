@@ -58,32 +58,24 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">应用ID</th>
-                            <th class="text-center">订单ID</th>
-                            <th class="text-center">订单类型</th>
-                            <th class="text-center">extTransactionId</th>
-                            <th class="text-center">请求时间</th>
+                            <th class="text-center">应用名称</th>
+                            <th class="text-center">业务名称</th>
+                            <th class="text-center">订单编号</th>
+                            <th class="text-center">外部编号</th>
+                            <th class="text-center">受理时间</th>
                             <th class="text-center">操作人</th>
-                            <th class="text-center">创建时间</th>
+                            <th class="text-center">状态</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="order in orderManageInfo.orderDataVos">
-                            <td class="text-center">{{order.appId}}</td>
+                            <td class="text-center">{{order.appName}}</td>
+                            <td class="text-center">{{order.name}}</td>
                             <td class="text-center">{{order.oId}}</td>
-                            <td class="text-center">{{order.orderTypeCdName}}</td>
                             <td class="text-center">{{order.extTransactionId}}</td>
-                            <td class="text-center">{{order.requestTime}}</td>
-                            <td class="text-center">{{order.userName}}</td>
                             <td class="text-center">{{order.createTime}}</td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openOrderDetailModel(order)">订单明细
-                                    </button>
-                                </div>
-                            </td>
-
+                            <td class="text-center">{{order.userName}}</td>
+                            <td class="text-center">{{order.statusCd}}</td>
                         </tr>
                         </tbody>
                         <tfoot>

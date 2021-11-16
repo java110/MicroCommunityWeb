@@ -12,7 +12,7 @@
                 repairWay: '',
                 remark: '',
                 publicArea: '',
-                payFeeFlag: '',
+                payFeeFlag: 'F',
                 priceScope: '',
                 returnVisitFlag: ''
 
@@ -38,7 +38,7 @@
                             errInfo: "类型名称不能为空"
                         },
                         {
-                            limit: "max",
+                            limit: "maxIn",
                             param: "1,200",
                             errInfo: "类型名称不能超过200位"
                         },
@@ -141,7 +141,7 @@
                     repairWay: '',
                     remark: '',
                     publicArea: '',
-                    payFeeFlag: '',
+                    payFeeFlag: 'F',
                     priceScope: '',
                     returnVisitFlag: ''
                 };

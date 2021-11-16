@@ -58,6 +58,7 @@
                         vc.component.questionAnswerTitleManageInfo.questionAnswerTitles = _questionAnswerTitleManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.questionAnswerTitleManageInfo.records,
+                            dataCount: vc.component.questionAnswerTitleManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -100,6 +101,12 @@
                 }else{
                     return '简答';
                 }
+            },
+            _openQuestionValueModel:function(_questionAnswerTitle){
+                vc.emit('questionValue','openQuestionValueModel',_questionAnswerTitle);
+            },
+            _toQuestionValueModel:function(_questionAnswerTitle){
+                vc.jumpToPage('/admin.html#/pages/property/questionAnswerTitleValueManage?titleId='+_questionAnswerTitle.titleId)
             }
 
 

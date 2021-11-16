@@ -7,6 +7,7 @@
                 moreCondition: false,
                 branchOrgs: [],
                 departmentOrgs: [],
+                relCds: [],
                 conditions: {
                     branchOrgId: '',
                     departmentOrgId: '',
@@ -41,12 +42,21 @@
             }
         },
         _initMethod: function () {
-            vc.component.loadData(1, 10);
-            vc.component._getOrgsByOrgLevelStaff(DEFAULT_PAGE, DEFAULT_ROWS, 2, '');
+            // 查询岗位列表
+            vc.getDict('u_org_staff_rel', "rel_cd", function (_data) {
+                vc.component.staffInfo.relCds = _data;
+                // 岗位列表获取比较慢， 获取到岗位列表后再加载数据
+                vc.component.loadData(1, 10);
+                vc.component._getOrgsByOrgLevelStaff(DEFAULT_PAGE, DEFAULT_ROWS, 2, '');
+            });
         },
         _initEvent: function () {
-            vc.component.$on('pagination_page_event', function (_currentPage) {
-                vc.component.currentPage(_currentPage);
+            // vc.component.$on('pagination_page_event', function (_currentPage) {
+            //     console.log(_currentPage);
+            //     vc.component.currentPage(_currentPage);
+            // });
+            vc.on('pagination','page_event',function(_currentPage){
+                vc.component.loadData(_currentPage,DEFAULT_ROWS);
             });
             vc.component.$on('addStaff_reload_event', function () {
                 vc.component.loadData(1, 10);
@@ -66,16 +76,30 @@
                 var param = {
                     params: vc.component.staffInfo.conditions
                 };
+                param.params.name = param.params.name.trim();
+                param.params.tel = param.params.tel.trim();
+                param.params.staffId = param.params.staffId.trim();
                 //发送get请求
                 vc.http.get('staff',
                     'loadData',
                     param,
                     function (json) {
                         var _staffInfo = JSON.parse(json);
-                        vc.component.staffData = _staffInfo.staffs;
+                        // 员工列表 和 岗位列表匹配
+                        let staffList = _staffInfo.staffs;
+                        let relCdsList = vc.component.staffInfo.relCds;
+                        staffList.forEach((staff) => {
+                            relCdsList.forEach((rel) => {
+                                if (staff.relCd == rel.statusCd) {
+                                    staff.relCdName = rel.name;
+                                }
+                            })
+                        })
+                        vc.component.staffData = staffList;
                         vc.component.$emit('pagination_info_event', {
                             total: _staffInfo.records,
-                            currentPage: _staffInfo.page
+                            dataCount: _staffInfo.total,
+                            currentPage: _page
                         });
                     }, function () {
                         console.log('请求失败处理');
@@ -126,7 +150,18 @@
             _openAddStaffStepPage: function () {
                 vc.jumpToPage("/admin.html#/pages/frame/addStaffStep")
             },
+            //查询
             _queryStaffMethod: function () {
+                vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS)
+            },
+            //重置
+            _resetStaffMethod: function () {
+                vc.component.staffInfo.conditions.branchOrgId = "";
+                vc.component.staffInfo.conditions.orgId = "";
+                vc.component.staffInfo.conditions.departmentOrgId = "";
+                vc.component.staffInfo.conditions.name = "";
+                vc.component.staffInfo.conditions.tel = "";
+                vc.component.staffInfo.conditions.staffId = "";
                 vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS)
             },
             _resetStaffPwd: function (_staff) {

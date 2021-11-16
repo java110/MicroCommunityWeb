@@ -96,8 +96,7 @@
                     <h5>费用项信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddFeeConfigModal()">
-                            <i class="fa fa-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
@@ -105,8 +104,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <!-- <th class="text-center">费用项ID</th>
-                            <th class="text-center">费用项</th> -->
+                            <th class="text-center">费用项ID</th>
                             <th class="text-center">费用类型</th>
                             <th class="text-center">收费项目</th>
                             <th class="text-center">费用标识</th>
@@ -122,8 +120,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="feeConfig in feeConfigManageInfo.feeConfigs">
-                            <!-- <td class="text-center">{{feeConfig.configId}}</td>
-                            <td class="text-center">{{feeConfig.isDefault=='T'?'默认费用':'自定义费用'}}</td> -->
+                            <td class="text-center">{{feeConfig.configId}}</td>
                             <td class="text-center">{{feeConfig.feeTypeCdName}}</td>
                             <td class="text-center">{{feeConfig.feeName}}</td>
                             <td class="text-center">{{feeConfig.feeFlagName}}</td>
@@ -132,8 +129,7 @@
                             <td class="text-center">{{feeConfig.paymentCycle}}</td>
                             <td class="text-center">{{feeConfig.startTime}}</td>
                             <td class="text-center">{{feeConfig.endTime}}</td>
-                            <td class="text-center">{{feeConfig.computingFormula == '2002' ?
-                                '-':feeConfig.squarePrice}}
+                            <td class="text-center">{{feeConfig.computingFormula == '2002' ? '-':feeConfig.squarePrice}}
                             </td>
                             <td class="text-center">{{feeConfig.additionalAmount}}</td>
                             <td class="text-center">
@@ -157,7 +153,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="12">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

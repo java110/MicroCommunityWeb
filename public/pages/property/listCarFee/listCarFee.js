@@ -20,13 +20,13 @@
                 vc.component.listCarFeeInfo.carId = vc.getParam('carId');
                 vc.component.listCarFeeInfo.areaNum = vc.getParam('areaNum');
                 vc.component.listCarFeeInfo.num = vc.getParam('num');
-            };
+            }
+            ;
             let _parkingName = "无车位";
             if ($that.listCarFeeInfo.areaNum != 'undefined') {
                 _parkingName = $that.listCarFeeInfo.areaNum + "停车场" + $that.listCarFeeInfo.num + "车位";
             }
             $that.listCarFeeInfo.parkingName = _parkingName;
-
             vc.component._loadlistCarFeeInfo(1, 10);
         },
         _initEvent: function () {
@@ -48,7 +48,6 @@
                         payerObjId: vc.component.listCarFeeInfo.carId
                     }
                 };
-
                 //发送get请求
                 vc.http.get('listParkingSpaceFee',
                     'list',
@@ -60,6 +59,7 @@
                         vc.component.listCarFeeInfo.fees = _feeConfigInfo.fees;
                         vc.emit('pagination', 'init', {
                             total: _feeConfigInfo.records,
+                            dataCount: _feeConfigInfo.total,
                             currentPage: _page
                         });
                     }, function () {
@@ -78,14 +78,12 @@
                 vc.emit('editFee', 'openEditFeeModal', _fee);
             },
             _deleteFee: function (_fee) {
-
                 // var dateA = new Date(_fee.startTime);
                 // var dateB = new Date();
                 // if(dateA.setHours(0, 0, 0, 0) != dateB.setHours(0, 0, 0, 0)){
                 //     vc.toast("只能取消当天添加的费用");
                 //     return;
                 // }
-
                 vc.emit('deleteFee', 'openDeleteFeeModal', {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: _fee.feeId
@@ -101,7 +99,6 @@
                 });
             },
             _openAddMeterWaterModal: function () {
-
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId: $that.listCarFeeInfo.carId,
                     roomName: $that.listCarFeeInfo.carNum,
@@ -112,17 +109,13 @@
             _goBack: function () {
                 vc.goBack();
             },
-
             _getDeadlineTime: function (_fee) {
-
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
                     return "-";
                 }
-
                 if (_fee.state == '2009001') {
                     return "-";
                 }
-
                 return _fee.deadlineTime;
             },
             _getEndTime: function (_fee) {
@@ -132,6 +125,5 @@
                 return _fee.endTime;
             }
         }
-
     });
 })(window.vc);

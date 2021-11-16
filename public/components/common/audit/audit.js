@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -19,13 +18,11 @@
                     } else {
                         vc.component.auditInfo.remark = "";
                     }
-
                 },
                 deep: true
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('audit', 'openAuditModal', function () {
@@ -70,14 +67,18 @@
                 }
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
-                    vc.emit($props.callBackListener, $props.callBackFunction, vc.component.auditInfo);
+                    let _auditInfo = {
+                        state: vc.component.auditInfo.state,
+                        remark: vc.component.auditInfo.remark
+                    };
+                    if (_auditInfo.state == '1200') {
+                        _auditInfo.remark = '拒绝:' + _auditInfo.remark;
+                    }
+                    vc.emit($props.callBackListener, $props.callBackFunction, _auditInfo);
                     $('#auditModel').modal('hide');
-
                     vc.component.clearAddBasePrivilegeInfo();
                     return;
                 }
-
-
             },
             clearAddBasePrivilegeInfo: function () {
                 vc.component.auditInfo = {
@@ -87,5 +88,4 @@
             }
         }
     });
-
 })(window.vc);

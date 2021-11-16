@@ -23,6 +23,7 @@
                                 <option selected value="">请选择投诉类型</option>
                                 <option value="809001">投诉</option>
                                 <option value="809002">建议</option>
+                                <option value="809003">咨询</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
@@ -46,7 +47,7 @@
                         </div>
                         <div class="col-sm-4" v-if="complaintManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入房屋编号" v-model="complaintManageInfo.conditions.roomId"
+                                <input type="text" placeholder="请输入房屋编号 楼栋-单元-房屋 如1-1-1" v-model="complaintManageInfo.conditions.roomId"
                                        class=" form-control">
                             </div>
                         </div>
@@ -87,6 +88,7 @@
                             <th class="text-center">投诉状态</th>
                             <th class="text-center">处理人</th>
                             <th class="text-center">处理电话</th>
+                            <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
@@ -104,6 +106,7 @@
                                 '无':complaint.currentUserName}}
                             </td>
                             <td class="text-center">{{complaint.currentUserTel == ''?'无':complaint.currentUserTel}}</td>
+                            <td class="text-center">{{complaint.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
@@ -130,7 +133,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

@@ -12,7 +12,9 @@
                 records: 1,
                 moreCondition: false,
                 discountId: '',
+                discountTypes: '',
                 conditions: {
+                    discountId: '',
                     discountName: '',
                     discountType: '',
                     ruleName: '',
@@ -21,6 +23,9 @@
             }
         },
         _initMethod: function () {
+            vc.getDict('fee_discount', "discount_type", function (_data) {
+                vc.component.feeDiscountManageInfo.discountTypes = _data;
+            });
             vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -38,6 +43,9 @@
                 var param = {
                     params: vc.component.feeDiscountManageInfo.conditions
                 };
+                param.params.discountName = param.params.discountName.trim();
+                param.params.ruleName = param.params.ruleName.trim();
+                param.params.discountId = param.params.discountId.trim();
                 //发送get请求
                 vc.http.apiGet('/feeDiscount/queryFeeDiscount',
                     param,
@@ -48,6 +56,7 @@
                         vc.component.feeDiscountManageInfo.feeDiscounts = _feeDiscountManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeDiscountManageInfo.records,
+                            dataCount: vc.component.feeDiscountManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -64,7 +73,16 @@
             _openDeleteFeeDiscountModel: function (_feeDiscount) {
                 vc.emit('deleteFeeDiscount', 'openDeleteFeeDiscountModal', _feeDiscount);
             },
+            //查询
             _queryFeeDiscountMethod: function () {
+                vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetFeeDiscountMethod: function () {
+                vc.component.feeDiscountManageInfo.conditions.discountName = "";
+                vc.component.feeDiscountManageInfo.conditions.discountType = "";
+                vc.component.feeDiscountManageInfo.conditions.ruleName = "";
+                vc.component.feeDiscountManageInfo.conditions.discountId = "";
                 vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

@@ -16,7 +16,9 @@
                 photos: [],
                 videoName: '',
                 url: '',
-                detailType: '1001'
+                detailType: '1001',
+                isTrue: '',
+                isTrues: []
             }
         },
         _initMethod: function () {
@@ -54,6 +56,13 @@
                             param: "64",
                             errInfo: "状态格式错误"
                         },
+                    ],
+                    'roomDecorationRecordInfo.isTrue': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "是否违规不能为空"
+                        }
                     ],
                     'roomDecorationRecordInfo.remark': [
                         {
@@ -121,7 +130,9 @@
                     roomId: '',
                     photos: [],
                     videoName: '',
-                    detailType: '1001'
+                    detailType: '1001',
+                    isTrue: '',
+                    isTrues: []
                 };
             },
         }

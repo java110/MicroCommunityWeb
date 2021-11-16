@@ -52,6 +52,7 @@
                         vc.component.wechatSmsTemplateManageInfo.wechatSmsTemplates = _wechatSmsTemplateManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.wechatSmsTemplateManageInfo.records,
+                            dataCount: vc.component.wechatSmsTemplateManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

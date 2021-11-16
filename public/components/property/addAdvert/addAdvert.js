@@ -8,14 +8,16 @@
             addAdvertInfo: {
                 advertId: '',
                 adName: '',
-                adTypeCd: '',
+                adTypeCd: '20000',
                 classify: '',
                 locationTypeCd: '',
-                locationObjId: '',
+                locationObjId: '-1',
                 seq: '',
                 startTime: '',
                 endTime: '',
                 floorId: '',
+                advertType: '',
+                pageUrl: '',
                 floorNum: '',
                 floorName: '',
                 unitId: '',
@@ -23,7 +25,8 @@
                 roomId: '',
                 photos: [],
                 viewType: '',
-                vedioName: ''
+                vedioName: '',
+                communityId: ''
             }
         },
         _initMethod: function () {
@@ -135,17 +138,12 @@
                             errInfo: "投放位置格式错误"
                         },
                     ],
-                    'addAdvertInfo.locationObjId': [
+                    'addAdvertInfo.advertType': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "具体位置不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "具体位置不是有效数字"
-                        },
+                            errInfo: "发布类型不能为空"
+                        }
                     ],
                     'addAdvertInfo.seq': [
                         {
@@ -186,19 +184,6 @@
                 });
             },
             saveAdvertInfo: function () {
-                vc.component.addAdvertInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.addAdvertInfo.locationTypeCd == '1000') { //大门时直接写 小区ID
-                    vc.component.addAdvertInfo.locationObjId = vc.component.addAdvertInfo.communityId;
-                } else if (vc.component.addAdvertInfo.locationTypeCd == '2000') {
-                    vc.component.addAdvertInfo.locationObjId = vc.component.addAdvertInfo.unitId;
-                } else if (vc.component.addAdvertInfo.locationTypeCd == '3000') {
-                    vc.component.addAdvertInfo.locationObjId = vc.component.addAdvertInfo.roomId;
-                } else if (vc.component.addAdvertInfo.locationTypeCd == '4000') {
-                    vc.component.addAdvertInfo.locationObjId = vc.component.addAdvertInfo.floorId;
-                } else {
-                    vc.toast("设备位置值错误");
-                    return;
-                }
                 if (!vc.component.addAdvertValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -208,7 +193,14 @@
                 } else {
                     vc.component.addAdvertInfo.photos = [];
                 }
-                vc.component.addAdvertInfo.communityId = vc.getCurrentCommunity().communityId;
+                if (vc.component.addAdvertInfo.viewType == '8888' && vc.component.addAdvertInfo.photos.length < 1) {
+                    vc.toast('请上传图片');
+                    return;
+                } else if (vc.component.addAdvertInfo.viewType == '9999' && vc.component.addAdvertInfo.vedioName == '') {
+                    vc.toast('请上传视频');
+                    return;
+                }
+               
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addAdvertInfo);
@@ -239,22 +231,21 @@
                     });
             },
             clearAddAdvertInfo: function () {
-                vc.emit('addAdvert', 'floorSelect2', 'clearFloor', {});
-                vc.emit('addAdvert', 'unitSelect2', 'clearUnit', {});
-                vc.emit('addAdvert', 'roomSelect2', 'clearRoom', {});
                 vc.emit('addAdvert', 'uploadImage', 'clearImage', {});
                 vc.emit('addAdvert', 'uploadVedio', 'clearVedio', {});
                 vc.component._initAddAdvertDateInfo();
                 vc.component.addAdvertInfo = {
                     advertId: '',
                     adName: '',
-                    adTypeCd: '',
+                    adTypeCd: '20000',
                     classify: '',
                     locationTypeCd: '',
-                    locationObjId: '',
+                    locationObjId: '-1',
                     seq: '',
                     startTime: '',
                     endTime: '',
+                    advertType: '',
+                    pageUrl: '',
                     floorId: '',
                     floorNum: '',
                     floorName: '',

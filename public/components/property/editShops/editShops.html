@@ -1,5 +1,5 @@
 <div id="editShopsModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -9,36 +9,74 @@
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">商铺ID</label>
-                                <div class="col-sm-10"><input v-model="editShopsInfo.roomId" disabled="disabled"
-                                        type="text" placeholder="必填，请填写商铺ID" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.roomId" disabled="disabled"
+                                           type="text" placeholder="必填，请填写商铺ID" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">商铺编号</label>
-                                <div class="col-sm-10"><input v-model="editShopsInfo.roomNum" type="text"
-                                        placeholder="必填，请填写商铺编号" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.roomNum" type="text"
+                                           placeholder="必填，请填写商铺编号" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">商铺楼层</label>
-                                <div class="col-sm-10"><input v-model="editShopsInfo.layer" type="number"
-                                        placeholder="必填，请填写商铺楼层" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.layer" type="number"
+                                           placeholder="必填，请填写商铺楼层" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="editShopsInfo.state == '2006'">
+                                <label class="col-sm-2 col-form-label">起租时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.startTime" type="text" placeholder="必填，请填写起租时间"
+                                           class="form-control startTime">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="editShopsInfo.state == '2006'">
+                                <label class="col-sm-2 col-form-label">截租时间</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.endTime" type="text" placeholder="必填，请填写截租时间"
+                                           class="form-control endTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">租金</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.roomRent" type="text" placeholder="必填，请填写租金"
+                                           class="form-control">
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">建筑面积</label>
-                                <div class="col-sm-10"><input v-model="editShopsInfo.builtUpArea" type="number"
-                                        placeholder="必填，请填写商铺建筑面积! 平方" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.builtUpArea" type="number"
+                                           placeholder="必填，请填写商铺建筑面积! 平方" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">室内面积(平方)</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.roomArea" type="text" placeholder="必填，请填写室内面积! 平方"
+                                           class="form-control">
+                                </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">算费系数</label>
-                                <div class="col-sm-10"><input v-model="editShopsInfo.feeCoefficient" type="text"
-                                        placeholder="请填写算费系数" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.feeCoefficient" type="text" placeholder="请填写算费系数"
+                                           class="form-control">
+                                </div>
                             </div>
                             <div v-for="(item,index) in editShopsInfo.attrs">
                                 <div class="form-group row" v-if="item.specType == '2233'">
                                     <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                                     <div class="col-sm-10">
                                         <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
-                                            class="form-control">
+                                               class="form-control">
                                     </div>
                                 </div>
 
@@ -48,24 +86,28 @@
                                         <select class="custom-select" v-model="item.value">
                                             <option selected disabled value="">{{item.specHoldplace}}</option>
                                             <option v-for="value in item.values" :label="value.valueName"
-                                                :value="value.value">
+                                                    :value="value.value">
                                                 {{item.valueName}}
                                             </option>
-
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">备注</label>
-                                <div class="col-sm-10"><input v-model="editShopsInfo.remark" type="text"
-                                        placeholder="请填写备注信息" class="form-control"></div>
+                                <div class="col-sm-10">
+                                    <input v-model="editShopsInfo.remark" type="text"
+                                           placeholder="请填写备注信息" class="form-control">
+                                </div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editShops()"><i
-                                        class="fa fa-check"></i>&nbsp;保存</button>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editShops()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
                             </div>
                         </div>
                     </div>

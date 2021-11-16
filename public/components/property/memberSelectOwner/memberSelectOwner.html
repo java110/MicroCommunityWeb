@@ -8,8 +8,8 @@
                         <i class="fa fa-search"></i> 选择业主
                     </button>
                     <button type="button" class="btn btn-primary btn-sm"
-                        v-if="ownerInfo.ownerId != null && ownerInfo.ownerId != ''" style="margin-left:10px"
-                        v-on:click="openAddMemberModel()">
+                            v-if="ownerInfo.ownerId != null && ownerInfo.ownerId != ''" style="margin-left:10px"
+                            v-on:click="openAddMemberModel()">
                         <i class="fa fa-plus"></i> 添加成员
                     </button>
                 </div>
@@ -17,7 +17,7 @@
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-2">
-                        <image width="120px" height="140px" v-bind:src="ownerInfo.ownerPhoto" @error="errorLoadImg" />
+                        <image width="120px" height="120px" v-bind:src="ownerInfo.ownerPhoto" @error="errorLoadImg"/>
                     </div>
                     <div class="col-sm-9">
                         <div class="row">
@@ -39,9 +39,7 @@
                                     <label class="">{{ownerInfo.sexName}}</label>
                                 </div>
                             </div>
-
                         </div>
-
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -61,11 +59,8 @@
                                     <label class="">{{ownerInfo.link}}</label>
                                 </div>
                             </div>
-
                         </div>
-
                         <div class="row">
-
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="col-form-label">创建员工：</label>
@@ -78,7 +73,6 @@
                                     <label class="">{{ownerInfo.remark}}</label>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -86,6 +80,8 @@
         </div>
     </div>
     <vc:create path="property/searchOwner" emitChooseOwner="memberSelectOwner"
-        emitLoadData="listOwnerMember"></vc:create>
-    <vc:create path="property/addOwner" notifyLoadDataComponentName="listOwnerMember" componentTitle="成员"></vc:create>
+               emitLoadData="listOwnerMember">
+    </vc:create>
+    <vc:create path="property/addOwner" notifyLoadDataComponentName="listOwnerMember" componentTitle="成员">
+    </vc:create>
 </div>

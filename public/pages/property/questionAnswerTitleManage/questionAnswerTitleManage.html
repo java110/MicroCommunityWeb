@@ -79,6 +79,14 @@
                                 <td class="text-center">{{questionAnswerTitle.qaTitle}}</td>
                                 <td class="text-center">{{questionAnswerTitle.seq}}</td>
                                 <td class="text-center">
+                                    <div class="btn-group" v-if="questionAnswerTitle.titleType != '3003'">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openQuestionValueModel(questionAnswerTitle)">结果</button>
+                                    </div>
+                                    <div class="btn-group" v-else>
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_toQuestionValueModel(questionAnswerTitle)">结果</button>
+                                    </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditQuestionAnswerTitleModel(questionAnswerTitle)">修改</button>
@@ -111,5 +119,6 @@
     <vc:create path="property/addQuestionAnswerTitle" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editQuestionAnswerTitle"></vc:create>
     <vc:create path="property/deleteQuestionAnswerTitle"></vc:create>
+    <vc:create path="property/questionValue"></vc:create>
 
 </div>

@@ -11,7 +11,9 @@
                 cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
-                attrs: []
+                attrs: [],
+                payFeeMonth: 12,
+                feePrice: 0
             },
             areas: [],
             provs: [],
@@ -97,13 +99,13 @@
                             errInfo: "小区城市编码不能大于4个字符"
                         },
                     ],
-                    /*'addCommunityInfo.tel': [
+                    'addCommunityInfo.tel': [
                         {
-                            limit: "phone",
+                            limit: "required",
                             param: "",
-                            errInfo: "联系方式格式不正确"
-                        },
-                    ],*/
+                            errInfo: "联系方式不能为空"
+                        }
+                    ],
                 });
             },
             saveCommunityInfo: function () {
@@ -148,7 +150,9 @@
                     cityCode: '',
                     mapX: '101.33',
                     mapY: '101.33',
-                    attrs: []
+                    attrs: [],
+                    payFeeMonth: 12,
+                    feePrice: 0
                 };
                 $that.selectProv = '';
                 $that.selectCity = '';

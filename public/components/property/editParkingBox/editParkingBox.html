@@ -1,0 +1,84 @@
+<div id="editParkingBoxModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">修改岗亭</h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">岗亭名称</label>
+                <div class="col-sm-10">
+                  <input v-model="editParkingBoxInfo.boxName" type="text" placeholder="必填，请填写岗亭名称" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">停车场</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editParkingBoxInfo.paId">
+                    <option selected disabled value="">必填，请选择停车场</option>
+                    <option :value="item.paId" v-for="(item,index) in editParkingBoxInfo.parkingAreas">{{item.num}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">临时车是否进场</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editParkingBoxInfo.tempCarIn">
+                    <option selected disabled value="">必填，请选择临时车是否进场</option>
+                    <option value="Y">是</option>
+                    <option value="N">否</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">是否收费</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editParkingBoxInfo.fee">
+                    <option selected disabled value="">必填，请选择是否收费</option>
+                    <option value="Y">是</option>
+                    <option value="N">否</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">蓝牌车进场</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editParkingBoxInfo.blueCarIn">
+                    <option selected disabled value="">必填，请选择蓝牌车进场</option>
+                    <option value="Y">是</option>
+                    <option value="N">否</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">黄牌车进场</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editParkingBoxInfo.yelowCarIn">
+                    <option selected disabled value="">必填，请选择黄牌车进场</option>
+                    <option value="Y">是</option>
+                    <option value="N">否</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">备注</label>
+                <div class="col-sm-10">
+                  <input v-model="editParkingBoxInfo.remark" type="text" placeholder="必填，请填写备注" class="form-control">
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="editParkingBox()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -48,7 +48,8 @@
                                 vc.component.feePrintSpecManageInfo.records = _feePrintSpecManageInfo.records;
                                 vc.component.feePrintSpecManageInfo.feePrintSpecs = _feePrintSpecManageInfo.data;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.feePrintSpecManageInfo.records,
+                                    total: vc.component.feePrintSpecManageInfo.records,
+                                    dataCount: vc.component.feePrintSpecManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

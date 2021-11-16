@@ -21,7 +21,9 @@
                 roomType: '1010301',
                 feeLayer: '全部',
                 feeFlag: '',
-                endTime: ''
+                endTime: '',
+                computingFormula:'',
+                amount:''
             }
         },
         _initMethod: function () {
@@ -47,11 +49,13 @@
                         $that.roomCreateFeeAddInfo.roomState.push('2003');
                         $that.roomCreateFeeAddInfo.roomState.push('2004');
                         $that.roomCreateFeeAddInfo.roomState.push('2005');
+                        $that.roomCreateFeeAddInfo.roomState.push('2009');
                         $that.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum + '-' + room.unitNum + '-' + room.roomNum + '(' + room.ownerName + ')';
                     }
                     if (!_room.isMore && room.roomType == '2020602') {
                         $that.roomCreateFeeAddInfo.roomState.push('2006');
                         $that.roomCreateFeeAddInfo.roomState.push('2007');
+                        $that.roomCreateFeeAddInfo.roomState.push('2009');
                         $that.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum + '-' + room.roomNum + '(' + room.ownerName + ')';
                         $that.roomCreateFeeAddInfo.roomType = room.roomType;
                     }
@@ -210,6 +214,8 @@
                     feeLayer: '全部',
                     feeFlag: '',
                     endTime: '',
+                    computingFormula:'',
+                    amount:''
                 };
                 $that.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },
@@ -255,6 +261,7 @@
                 $that.roomCreateFeeAddInfo.feeConfigs.forEach(item => {
                     if (_configId == item.configId) {
                         $that.roomCreateFeeAddInfo.feeFlag = item.feeFlag;
+                        $that.roomCreateFeeAddInfo.computingFormula = item.computingFormula;
                         return;
                     }
                 });

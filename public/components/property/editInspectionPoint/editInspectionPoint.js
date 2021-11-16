@@ -1,23 +1,26 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editInspectionPointInfo: {
                 inspectionId: '',
                 pointObjId: '',
                 pointObjType: '',
+                pointObjTypes: [],
                 pointObjName: '',
                 inspectionName: '',
                 communityId: '',
-                remark: '',
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editInspectionPoint', 'openEditInspectionPointModal', function (_params) {
                 vc.component.refreshEditInspectionPointInfo();
+                //与字典表关联
+                vc.getDict('inspection_point', "point_obj_type", function (_data) {
+                    vc.component.editInspectionPointInfo.pointObjTypes = _data;
+                });
                 $('#editInspectionPointModel').modal('show');
                 vc.copyObject(_params, vc.component.editInspectionPointInfo);
                 //传输数据到machineSelect2组件
@@ -27,10 +30,8 @@
                         machineName: vc.component.editInspectionPointInfo.pointObjName,
                     });
                 }
-
                 vc.component.editInspectionPointInfo.communityId = vc.getCurrentCommunity().communityId;
             });
-
             vc.on("editInspectionPointInfo", "notify", function (_param) {
                 if (_param.hasOwnProperty("machineId") && $that.editInspectionPointInfo.pointObjType == '1001') {
                     vc.component.editInspectionPointInfo.pointObjId = _param.machineId;
@@ -89,7 +90,6 @@
                             param: "",
                             errInfo: "巡检点ID不能为空"
                         }]
-
                 });
             },
             editInspectionPoint: function () {
@@ -100,7 +100,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.post(
                     'editInspectionPoint',
                     'update',
@@ -120,7 +119,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -129,14 +127,13 @@
                     inspectionId: '',
                     pointObjId: '',
                     pointObjType: '',
+                    pointObjTypes: [],
                     pointObjName: '',
                     inspectionName: '',
                     communityId: '',
-                    remark: '',
-
+                    remark: ''
                 }
-            }
+            },
         }
     });
-
 })(window.vc, window.vc.component);

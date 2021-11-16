@@ -20,6 +20,7 @@
                 handler: function () {
                     vc.emit($namespace, 'unitSelect2', 'clearUnit', {});
                     vc.emit($namespace, 'unitSelect2', "transferFloor", this.floorSelect2Info);
+                    console.log(this.floorSelect2Info);
                     vc.emit($namespace, $props.callBackListener, $props.callBackFunction, this.floorSelect2Info);
 
                 }
@@ -70,6 +71,12 @@
                         url: "/callComponent/floorSelect2/list",
                         dataType: 'json',
                         delay: 250,
+                        headers:{
+                            'APP-ID': '8000418004',
+                            'TRANSACTION-ID' : vc.uuid(),
+                            'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
+                            'SIGN' : ''
+                        },
                         data: function (params) {
                             console.log("param", params);
                             var _term = "";
@@ -79,12 +86,12 @@
                             return {
                                 floorNum: _term,
                                 page: 1,
-                                row: 10,
+                                row: 30,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },
                         processResults: function (data) {
-                            console.log(data, this._filterFloorData(data.apiFloorDataVoList));
+                            // console.log(data, this._filterFloorData(data.apiFloorDataVoList));
                             return {
                                 results: this._filterFloorData(data.apiFloorDataVoList)
                             };
@@ -114,7 +121,7 @@
                 for (var i = 0; i < _floors.length; i++) {
                     var _tmpFloor = {
                         id: _floors[i].floorId,
-                        text: _floors[i].floorNum
+                        text: _floors[i].floorNum + '栋'
                     };
                     _tmpFloors.push(_tmpFloor);
                 }

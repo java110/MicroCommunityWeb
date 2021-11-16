@@ -16,7 +16,6 @@
                     rentingTitle: '',
                     paymentType: '',
                     ownerName: '',
-                    communityId: vc.getCurrentCommunity().communityId,
                     state: '1,2,3,4,5,7'
                 }
             }
@@ -52,6 +51,7 @@
                         vc.component.rentingPoolManageInfo.rentingPools = _rentingPoolManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.rentingPoolManageInfo.records,
+                            dataCount: vc.component.rentingPoolManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             reportProficientInfo: {
@@ -25,24 +24,21 @@
         },
         _initMethod: function () {
             vc.component._queryIndexContextData();
+            vc.component.changeTab($that.reportProficientInfo._currentTab);
             //关联字典表费用类型
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.reportProficientInfo.feeTypeCds = _data;
-                if (_data.length > 0) {
+                /*if (_data.length > 0) {
                     $that.reportProficientInfo.conditions.feeTypeCd = _data[0].statusCd;
                     $that._changeReporficientFeeTypeCd();
-                }
-
+                }*/
             });
-
             // $that._initDate();
-
         },
         _initEvent: function () {
             vc.on("indexContext", "_queryIndexContextData", function (_param) {
                 vc.component._queryIndexContextData();
             });
-
         },
         methods: {
             _initDate: function () {
@@ -109,48 +105,37 @@
                     param,
                     function (json, res) {
                         var indexData = JSON.parse(json).data;
-
                         let _receivableInformation = indexData.receivableInformation;
-
                         let _receivableAmount = _receivableInformation.receivableAmount;
-
                         $that.reportProficientInfo.receivableAmount = _receivableAmount;
-
                         let _dom = document.getElementById('ownerCount');
                         let _data = [
-                            { value: _receivableInformation.oweAmount, name: '欠费金额' },
-                            { value: _receivableInformation.receivedAmount, name: '已收金额' }
+                            {value: _receivableInformation.oweAmount, name: '欠费金额'},
+                            {value: _receivableInformation.receivedAmount, name: '已收金额'}
                         ];
                         $that._initCharts2(_dom, '应收总额', _data);
-
                         let _floorReceivableInformations = indexData.floorReceivableInformations;
-
                         _dom = document.getElementById('roomCount');
                         _data = [];
-
                         _floorReceivableInformations.forEach(item => {
                             _data.push({
                                 value: item.receivableAmount, name: item.name
                             })
                         });
                         $that._initCharts2(_dom, '楼栋费用占比', _data);
-
                         _data = [];
-
                         let _feeConfigReceivableInformations = indexData.feeConfigReceivableInformations;
                         _feeConfigReceivableInformations.forEach(item => {
                             _data.push({
                                 value: item.receivableAmount, name: item.feeName
                             })
                         });
-
                         _dom = document.getElementById('parkingSpaceCount');
                         $that._initCharts2(_dom, '分项费用占比', _data);
-
                         let _remindInfomation = indexData.remindInfomation;
                         _data = [
-                            { value: _remindInfomation.deadlineFeeCount, name: '费用到期提醒' },
-                            { value: _remindInfomation.prePaymentCount, name: '费用提醒' }
+                            {value: _remindInfomation.deadlineFeeCount, name: '费用到期提醒'},
+                            {value: _remindInfomation.prePaymentCount, name: '费用提醒'}
                         ];
                         _dom = document.getElementById('shopCount');
                         $that._initCharts2(_dom, '费用提醒', _data);
@@ -158,10 +143,8 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
             _initCharts2: function (dom, _title, _data) {
-
                 let myChart = echarts.init(dom);
                 let option = null;
                 option = {
@@ -221,10 +204,10 @@
                         var _feeConfigManageInfo = JSON.parse(json);
                         let _feeConfigs = _feeConfigManageInfo.feeConfigs
                         vc.component.reportProficientInfo.feeConfigDtos = _feeConfigs;
-                        if (_feeConfigs.length > 0) {
+                        /*if (_feeConfigs.length > 0) {
                             $that.reportProficientInfo.conditions.configId = _feeConfigs[0].configId;
                             //$that.changeTab($that.reportProficientInfo._currentTab)
-                        }
+                        }*/
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -235,8 +218,13 @@
             },
             _queryMethod: function () {
                 $that.changeTab($that.reportProficientInfo._currentTab)
-            }
-            ,
+            },
+            _resetMethod: function () {
+                vc.component.reportProficientInfo.conditions.feeTypeCd = "";
+                vc.component.reportProficientInfo.conditions.configId = "";
+                vc.component.reportProficientInfo.conditions.objName = "";
+                $that.changeTab($that.reportProficientInfo._currentTab)
+            },
             _getReportProficientRoomName: function () {
                 if (vc.component.reportProficientInfo == undefined) {
                     return '请填写房屋编号';
@@ -246,7 +234,6 @@
                 }
                 return '请填写车牌号';
             },
-
             _exportFee: function () {
                 let _objType = vc.component.reportProficientInfo._currentTab == 'reportProficientRoomFee' ? "3333" : "6666"
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId='

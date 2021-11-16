@@ -18,7 +18,7 @@
                     userName: '',
                     auditLink: '',
                 },
-                orderInfo:'',
+                orderInfo:{},
                 procure:false
             }
         },
@@ -28,14 +28,14 @@
         },
         _initEvent: function () {
 
-            vc.on('myAuditOrders', 'listAuditOrders', function (_param) {
+            vc.on('contractApplyAuditOrders', 'listAuditOrders', function (_param) {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAuditOrders(_currentPage, DEFAULT_ROWS);
             });
 
-            vc.on('myAuditOrders','notifyAudit',function(_auditInfo){
+            vc.on('contractApplyAuditOrders','notifyAudit',function(_auditInfo){
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
@@ -49,8 +49,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('myAuditOrders',
-                    'list',
+                vc.http.apiGet('/contract/queryContractTask',
                     param,
                     function (json, res) {
                         var _contractApplyAuditOrdersInfo = JSON.parse(json);
@@ -59,6 +58,7 @@
                         vc.component.contractApplyAuditOrdersInfo.contractApplyAuditOrders = _contractApplyAuditOrdersInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.contractApplyAuditOrdersInfo.records,
+                            dataCount: vc.component.contractApplyAuditOrdersInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -73,17 +73,16 @@
             _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType);
+            _openDetailContractApplyModel:function(_auditOrder){
+                vc.jumpToPage("/admin.html#/pages/common/contractApplyDetail?contractId="+_auditOrder.contractId);
             },
             //提交审核信息
             _auditOrderInfo: function (_auditInfo) {
                 console.log("提交得参数："+_auditInfo);
                 _auditInfo.taskId = vc.component.contractApplyAuditOrdersInfo.orderInfo.taskId;
-                _auditInfo.applyOrderId = vc.component.contractApplyAuditOrdersInfo.orderInfo.applyOrderId;
+                _auditInfo.contractId = vc.component.contractApplyAuditOrdersInfo.orderInfo.contractId;
                 //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
+                vc.http.apiPost('/contract/needAuditContract',
                     JSON.stringify(_auditInfo),
                     {
                         emulateJSON: true
@@ -100,13 +99,12 @@
             _finishAuditOrder:function(_auditOrder){
                 let _auditInfo = {
                     taskId: _auditOrder.taskId,
-                    applyOrderId: _auditOrder.applyOrderId,
+                    contractId: _auditOrder.contractId,
                     state:'1200',
                     remark:'处理结束'
                 };
                 //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
+                vc.http.apiPost('/contract/needAuditContract',
                     JSON.stringify(_auditInfo),
                     {
                         emulateJSON: true

@@ -44,12 +44,17 @@
                         vc.component.reportPrePaymentFeeInfo.fees = _reportPrePaymentFeeInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportPrePaymentFeeInfo.records,
+                            dataCount: vc.component.reportPrePaymentFeeInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
+            },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportPrePaymentFee");
             }
         }
     });

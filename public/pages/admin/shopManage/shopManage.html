@@ -66,7 +66,7 @@
                                 <th class="text-center">联系电话</th>
                                 <th class="text-center">店铺状态</th>
                                 <th class="text-center">创建时间</th>
-                                <!-- <th class="text-center">操作</th> -->
+                                <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,13 +83,13 @@
                                 <td class="text-center">{{shop.stateName}}</td>
                                 <td class="text-center">{{shop.createTime}}</td>
 
-                                <!--  <td class="text-center">
+                                <td class="text-center">
                                    <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDetailPurchaseApplyModel(auditOrder)">查看
+                                            v-on:click="_openShopWithdrawModel(shop)">撤回
                                         </button>
                                     </div>  
-                                </td>-->
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -106,5 +106,5 @@
             </div>
         </div>
     </div>
-
+    <vc:create path="common/shopWithdraw"></vc:create>
 </div>

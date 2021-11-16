@@ -13,7 +13,7 @@
                 moreCondition: false,
                 contractId: '',
                 conditions: {
-                    contractName: '',
+                    contractNameLike: '',
                     contractCode: '',
                     contractType: '',
                     expiration: '1'
@@ -51,6 +51,7 @@
                         vc.component.expirationContractInfo.contracts = _expirationContractInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.expirationContractInfo.records,
+                            dataCount: vc.component.expirationContractInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -59,7 +60,8 @@
                 );
             },
             _openAddContractModel: function (_contract) {
-                vc.emit('addContract', 'openAddContractModal', _contract);
+                //vc.emit('addContract', 'openAddContractModal', _contract);
+                vc.jumpToPage('/admin.html#/pages/admin/addContract?contractId='+_contract.contractId)
             },
 
             _stopContractModel: function (_contract) {
@@ -77,9 +79,8 @@
                 }
             },
             _printContract: function (_contract) {
-                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType);
+                window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType+"&contractId="+_contract.contractId);
             }
-
 
         }
     });

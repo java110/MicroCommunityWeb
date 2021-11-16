@@ -108,24 +108,14 @@
                             limit: "required",
                             param: "",
                             errInfo: "费用项不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "费用项格式错误"
-                        },
+                        }
                     ],
                     'addPayFeeConfigDiscountInfo.discountId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "折扣名称不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "折扣格式错误"
-                        },
+                        }
                     ],
                     'addPayFeeConfigDiscountInfo.startTime': [
                         {
@@ -181,11 +171,11 @@
                             vc.emit('payFeeConfigDiscountManage', 'listPayFeeConfigDiscount', {});
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             clearAddPayFeeConfigDiscountInfo: function () {

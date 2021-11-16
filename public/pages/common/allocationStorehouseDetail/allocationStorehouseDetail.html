@@ -1,0 +1,135 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>申请信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_callBackListPurchaseApply()">
+                            返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">申请人：</label>
+                                <label class="">{{allocationStorehouseDetailInfo.startUserName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">申请时间：</label>
+                                <label class="">{{allocationStorehouseDetailInfo.createTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">类型：</label>
+                                <label class="">{{allocationStorehouseDetailInfo.applyTypeName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">状态：</label>
+                                <label class="">{{allocationStorehouseDetailInfo.stateName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="col-form-label">申请说明：</label>
+                                <label class="">{{allocationStorehouseDetailInfo.remark}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>调拨物品</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">物品ID</th>
+                            <th class="text-center">物品类型</th>
+                            <th class="text-center">物品名称</th>
+                            <th class="text-center">物品规格</th>
+                            <th class="text-center">物品编码</th>
+                            <th class="text-center">被调仓库</th>
+                            <th class="text-center">目标仓库</th>
+                            <th class="text-center">原库存(被调仓库)</th>
+                            <th class="text-center">调拨数量</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="resourceStore in allocationStorehouseDetailInfo.resourceStores">
+                            <td class="text-center">{{resourceStore.resId}}</td>
+                            <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
+                            <td class="text-center">{{resourceStore.resName}}</td>
+                            <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
+                            <td class="text-center">{{resourceStore.resCode}}</td>
+                            <td class="text-center">{{allocationStorehouseDetailInfo.applyType == '10000' ? resourceStore.shaName : allocationStorehouseDetailInfo.startUserName}}</td>
+                            <td class="text-center">{{resourceStore.shzName}}</td>
+                            <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.applyType==20000 ? resourceStore.miniUnitCodeName : resourceStore.unitCodeName}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" v-if="allocationStorehouseDetailInfo.applyType == '10000'">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>工单流转</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                        <tr>
+                            <th scope="col">序号</th>
+                            <th scope="col">处理人</th>
+                            <th scope="col">状态</th>
+                            <th scope="col">处理时间</th>
+                            <th scope="col">耗时</th>
+                            <th scope="col">意见</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(tItem,index) in allocationStorehouseDetailInfo.auditUsers">
+                            <td>{{index+1}}</td>
+                            <td>{{tItem.auditName}}</td>
+                            <td>{{tItem.stateName}}</td>
+                            <td>{{tItem.auditTime}}</td>
+                            <td>{{tItem.duration}}</td>
+                            <td>{{tItem.message}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

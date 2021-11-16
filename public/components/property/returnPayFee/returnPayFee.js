@@ -2,19 +2,18 @@
 
     vc.extends({
         data: {
-            returnFeeDetailInfo:{
-                detailId:'',
-                cycles:'',
-                receivableAmount:'',
-                receivedAmount:'',
-                primeRate:'',
-                remark:'',
-                payTime:'',
-                reason:'',
-                communityId:'',
-                feeId:'',
-                feeTypeCd:''
-
+            returnFeeDetailInfo: {
+                detailId: '',
+                cycles: '',
+                receivableAmount: '',
+                receivedAmount: '',
+                primeRate: '',
+                remark: '',
+                payTime: '',
+                reason: '',
+                communityId: vc.getCurrentCommunity().communityId,
+                feeId: '',
+                feeTypeCd: ''
             }
         },
         _initMethod: function () {
@@ -32,21 +31,21 @@
         methods: {
             refreshFeeDetailInfo: function () {
                 vc.component.returnFeeDetailInfo = {
-                    detailId:'',
-                    cycles:'',
-                    receivableAmount:'',
-                    receivedAmount:'',
-                    primeRate:'',
-                    remark:'',
-                    payTime:'',
-                    reason:'',
-                    communityId:'',
-                    feeId:'',
-                    feeTypeCd:'',
-                    configId:''
+                    detailId: '',
+                    cycles: '',
+                    receivableAmount: '',
+                    receivedAmount: '',
+                    primeRate: '',
+                    remark: '',
+                    payTime: '',
+                    reason: '',
+                    communityId: '',
+                    feeId: '',
+                    feeTypeCd: '',
+                    configId: ''
                 }
             },
-            pushReturnFeeDetailInfo:function (_params) {
+            pushReturnFeeDetailInfo: function (_params) {
                 vc.component.returnFeeDetailInfo.communityId = _params.communityId;
                 vc.component.returnFeeDetailInfo.payTime = _params.createTime;
                 vc.component.returnFeeDetailInfo.detailId = _params.detailId;
@@ -77,7 +76,7 @@
                     ]
                 });
             },
-            submitReturnPayFee:function () {
+            submitReturnPayFee: function () {
                 if (!vc.component.returnPayFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;

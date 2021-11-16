@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="payFeeManageInfo.conditions.payObjType">
-                                <option selected value="">请选择费用类型</option>
+                                <option selected value="">请选择收费对象</option>
                                 <option v-for="(item,index) in payFeeManageInfo.payObjTypes" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -68,10 +68,9 @@
                 <div class="ibox-title">
                     <h5>缴费清单</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
-                            <i class="fa fa-plus"></i>
-                            导出
-                        </button> -->
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i> 导出
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -110,7 +109,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="11">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

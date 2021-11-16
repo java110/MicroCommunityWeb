@@ -83,11 +83,33 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.feeTypeCd" @change="_selectConfig()">
+                                    <option selected value="">请选择费用类型</option>
+                                    <option v-for="(item,index) in reportPayFeeDetailInfo.feeTypeCds" :key="index"
+                                            :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportPayFeeDetailInfo.conditions.configId">
                                     <option selected value="">请选择收费项</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
                                         {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.state">
+                                    <option selected value="">请选择费用状态</option>
+                                    <option v-for="(item,index) in reportPayFeeDetailInfo.states" :key="index"
+                                            :value="item.statusCd">{{item.name}}
                                     </option>
                                 </select>
                             </div>
@@ -112,9 +134,12 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">费用编号</th>
+                            <th class="text-center">订单号</th>
                             <th class="text-center">房号</th>
+                            <th class="text-center">业主</th>
                             <th class="text-center">费用项</th>
+                            <th class="text-center">费用类型</th>
+                            <th class="text-center">费用状态</th>
                             <th class="text-center">支付方式</th>
                             <th class="text-center">费用开始时间</th>
                             <th class="text-center">费用结束时间</th>
@@ -130,14 +155,19 @@
                         </thead>
                         <tbody>
                         <tr v-for="(fee,index) in reportPayFeeDetailInfo.fees">
-                            <td class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{fee.oId}}</td>
                             <td class="text-center">{{fee.objName}}</td>
+                            <td class="text-center">{{fee.ownerName}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
+                            <td class="text-center">{{fee.feeTypeCdName}}</td>
+                            <td class="text-center">{{fee.stateName}}</td>
                             <td class="text-center">{{fee.primeRate}}</td>
                             <td class="text-center">{{vc.dateFormat(fee.startTime)}}</td>
                             <td class="text-center" v-if="fee.startTime >= fee.endTime">{{vc.dateFormat(fee.endTime)}}
                             </td>
-                            <td class="text-center" v-else>{{vc.dateSubOneDay(vc.dateFormat(fee.startTime),vc.dateFormat(fee.endTime),fee.feeFlag)}}</td>
+                            <td class="text-center" v-else>
+                                {{vc.dateSubOneDay(vc.dateFormat(fee.startTime),vc.dateFormat(fee.endTime),fee.feeFlag)}}
+                            </td>
                             <td class="text-center">{{fee.createTime}}</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
@@ -150,7 +180,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="15">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
@@ -158,30 +188,38 @@
                     </table>
                     <!-- 分页 -->
                     <div class="row">
-                        <div class="col-md-12">
-                            <span class="margin-left"><span class="col-md-1"><b>小计</b></span>
-                                <span class="col-md-1 margin-left"> 应收: {{reportPayFeeDetailInfo.totalReceivableAmount}}元</span>
-                                <span class="col-md-1 margin-left">实收: {{reportPayFeeDetailInfo.totalReceivedAmount}}元</span>
-                                <span class="col-md-1 margin-left">优惠: {{reportPayFeeDetailInfo.totalPreferentialAmount}}元</span>
-                                <span class="col-md-1 margin-left">减免: {{reportPayFeeDetailInfo.totalDeductionAmount}}元</span>
-                                <span class="col-md-1 margin-left">滞纳金: {{reportPayFeeDetailInfo.totalLateFee}}元</span>
-                                <span class="col-md-1 margin-left">空置房打折: {{reportPayFeeDetailInfo.totalVacantHousingDiscount}}元</span>
-                                <span class="col-md-1 margin-left">空置房减免: {{reportPayFeeDetailInfo.allVacantHousingReduction}}元</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="margin-left"><span class="col-md-1"><b>大计</b></span>
-                                <span class="col-md-1 margin-left"> 应收: {{reportPayFeeDetailInfo.allReceivableAmount}}元</span>
-                                <span class="col-md-1 margin-left">实收: {{reportPayFeeDetailInfo.allReceivedAmount}}元</span>
-                                <span class="col-md-1 margin-left">优惠: {{reportPayFeeDetailInfo.allPreferentialAmount}}元</span>
-                                <span class="col-md-1 margin-left">减免: {{reportPayFeeDetailInfo.allDeductionAmount}}元</span>
-                                <span class="col-md-1 margin-left">滞纳金: {{reportPayFeeDetailInfo.allLateFee}}元</span>
-                                <span class="col-md-1 margin-left">空置房打折: {{reportPayFeeDetailInfo.allVacantHousingDiscount}}元</span>
-                                <span class="col-md-1 margin-left">空置房减免: {{reportPayFeeDetailInfo.allVacantHousingReduction}}元</span>
-                            </span>
-                        </div>
+                        <span class="col-md-1 margin-left">
+                            <div class="row"><b>小计</b></div>
+                            <div class="row"><b>大计</b></div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">应收: {{reportPayFeeDetailInfo.totalReceivableAmount}}元</div>
+                            <div class="row">应收: {{reportPayFeeDetailInfo.allReceivableAmount}}元</div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">实收: {{reportPayFeeDetailInfo.totalReceivedAmount}}元</div>
+                            <div class="row">实收: {{reportPayFeeDetailInfo.allReceivedAmount}}元</div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">优惠: {{reportPayFeeDetailInfo.totalPreferentialAmount}}元</div>
+                            <div class="row">优惠: {{reportPayFeeDetailInfo.allPreferentialAmount}}元</div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">减免: {{reportPayFeeDetailInfo.totalDeductionAmount}}元</div>
+                            <div class="row">减免: {{reportPayFeeDetailInfo.allDeductionAmount}}元</div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">滞纳金: {{reportPayFeeDetailInfo.totalLateFee}}元</div>
+                            <div class="row">滞纳金: {{reportPayFeeDetailInfo.allLateFee}}元</div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">空置房打折: {{reportPayFeeDetailInfo.totalVacantHousingDiscount}}元</div>
+                            <div class="row">空置房打折: {{reportPayFeeDetailInfo.allVacantHousingDiscount}}元</div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">空置房减免: {{reportPayFeeDetailInfo.totalVacantHousingReduction}}元</div>
+                            <div class="row">空置房减免: {{reportPayFeeDetailInfo.allVacantHousingReduction}}元</div>
+                        </span>
                     </div>
                     <div class="row">
                         <div class="col-md-12 text-center">

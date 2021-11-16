@@ -12,7 +12,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input size="16" type="text" placeholder="请填写车牌号"
                                        v-model="tempCarInoutFeeManageInfo.conditions.carNum" class="form-control">
@@ -21,18 +21,23 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input size="16" type="text" placeholder="请选择开始时间" readonly
-                                       class="form-control  start_time">
+                                       class="form-control  start_time"
+                                       v-model="tempCarInoutFeeManageInfo.conditions.startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input size="16" type="text" placeholder="请选择结束时间" readonly
-                                       class="form-control  end_time">
+                                       class="form-control  end_time"
+                                       v-model="tempCarInoutFeeManageInfo.conditions.endTime">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPayFeeMethod()">
                                 <i class="fa fa-search"></i>查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetPayFeeMethod()">
+                                <i class="fa fa-repeat"></i>重置
                             </button>
                         </div>
                     </div>
@@ -51,9 +56,9 @@
                 <div class="ibox-title">
                     <h5>临时车缴费清单</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                        <!--<button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>导出
-                        </button>
+                        </button>-->
                     </div>
                 </div>
                 <div class="ibox-content">

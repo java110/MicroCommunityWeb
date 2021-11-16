@@ -1,0 +1,68 @@
+<div id = "chooseShopRangeModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseShopRangeModelLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseShopRangeModelLabel">选择经营范围</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+
+                                <div class="col-sm-7 m-b-xs">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input placeholder="输入经营范围名称" type="text" v-model="chooseShopRangeInfo._currentShopRangeName" class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryShopRanges()">查询</button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                                                        <th class="text-center">店铺经营范围id</th>
+                            <th class="text-center">店铺经营范围id</th>
+                            <th class="text-center">店铺类型id</th>
+                            <th class="text-center">范围名称</th>
+                            <th class="text-center">是否展示</th>
+                            <th class="text-center">是否默认</th>
+                            <th class="text-center">显示序号</th>
+                            <th class="text-center">备注</th>
+                            <th class="text-center">操作</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="shopRange in chooseShopRangeInfo.shopRanges">
+                                                                        <td class="text-center">{{shopRange.shopRangeId}}</td>
+                            <td class="text-center">{{shopRange.shopRangeId}}</td>
+                            <td class="text-center">{{shopRange.shopTypeId}}</td>
+                            <td class="text-center">{{shopRange.rangeName}}</td>
+                            <td class="text-center">{{shopRange.isShow}}</td>
+                            <td class="text-center">{{shopRange.isDefault}}</td>
+                            <td class="text-center">{{shopRange.seq}}</td>
+                            <td class="text-center">{{shopRange.remark}}</td>
+
+                                            <td>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseShopRange(shopRange)">选择</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,8 @@
                 cityCode: '',
                 mapX: '101.33',
                 mapY: '101.33',
-                
+                payFeeMonth: 12,
+                feePrice: 0,
                 attrs: []
             }
         },
@@ -50,8 +51,8 @@
                         },
                         {
                             limit: "maxin",
-                            param: "4,20",
-                            errInfo: "小区名称必须在4至20字符之间"
+                            param: "1,20",
+                            errInfo: "小区名称必须在1至20字符之间"
                         },
                         ],
                         'editCommunityInfo.address': [{
@@ -140,7 +141,8 @@
                     cityCode: '',
                     mapX: '101.33',
                     mapY: '101.33',
-                    
+                    payFeeMonth: 12,
+                    feePrice: 0,
                     attrs: _attrs
                 }
             },

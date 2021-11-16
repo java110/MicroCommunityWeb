@@ -52,6 +52,7 @@
                         vc.component.menuGroupManageInfo.menuGroups = _menuGroupManageInfo.menuGroups;
                         vc.emit('pagination', 'init', {
                             total: vc.component.menuGroupManageInfo.records,
+                            dataCount: vc.component.menuGroupManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -99,6 +100,8 @@
                     return "商家";
                 } else if (_storeTypeCd == '800900000000') {
                     return "开发团队";
+                } else if (_storeTypeCd == '800900000006') {
+                    return "跑腿";
                 } else {
                     return "未知";
                 }

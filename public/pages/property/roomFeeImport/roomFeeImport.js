@@ -26,7 +26,6 @@
             $that._listImportFees(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('roomFeeImport', 'listFee', function (_param) {
                 vc.component._listImportFees(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -36,14 +35,13 @@
         },
         methods: {
             _listImportFees: function (_page, _rows) {
-
                 vc.component.roomFeeImport.conditions.page = _page;
                 vc.component.roomFeeImport.conditions.row = _rows;
                 vc.component.roomFeeImport.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.roomFeeImport.conditions
                 };
-
+                param.params.importFeeId = param.params.importFeeId.trim();
                 //发送get请求
                 vc.http.apiGet('/importFee/queryImportFee',
                     param,
@@ -53,7 +51,7 @@
                         vc.component.roomFeeImport.records = _roomFeeImport.records;
                         vc.component.roomFeeImport.improtFees = _roomFeeImport.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.roomFeeImport.records,
+                            total: vc.component.roomFeeImport.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -63,11 +61,16 @@
             },
             _openImportFeeDetail: function (_fee) {
                 vc.jumpToPage('/admin.html#/pages/property/roomFeeImportDetail?importFeeId=' + _fee.importFeeId);
-
             },
+            //查询
             _queryImportFeeMethod: function () {
                 vc.component._listImportFees(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetImportFeeMethod: function () {
+                vc.component.roomFeeImport.conditions.importFeeId = "";
+                vc.component.roomFeeImport.conditions.feeTypeCd = "";
+                vc.component._listImportFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openRoomFeeImport: function () {
                 vc.emit('importRoomFee', 'openImportRoomFeeModal', {});
@@ -79,8 +82,8 @@
                     vc.component.roomFeeImport.moreCondition = true;
                 }
             },
-            _openFeeSharing:function(){
-                vc.emit('feeSharing', 'openFeeSharingModal',{});
+            _openFeeSharing: function () {
+                vc.emit('feeSharing', 'openFeeSharingModal', {});
             }
         }
     });

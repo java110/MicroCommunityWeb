@@ -8,6 +8,7 @@
             historyFeeDetailImportInfo: {
                 communityId: vc.getCurrentCommunity().communityId,
                 excelTemplate: '',
+                objType: ''
             }
         },
 
@@ -43,6 +44,10 @@
                 //下载 模板
                 vc.jumpToPage('/import/importFeeDetail.xlsx')
             },
+            _openDownloadHcCarExcelTemplate: function () {
+                //下载 模板
+                vc.jumpToPage('/import/importCarFeeDetail.xlsx')
+            },
             getExcelTemplate: function (e) {
                 //console.log("getExcelTemplate 开始调用")
                 vc.component.historyFeeDetailImportInfo.excelTemplate = e.target.files[0];
@@ -65,7 +70,7 @@
                 var param = new FormData();
                 param.append("uploadFile", vc.component.historyFeeDetailImportInfo.excelTemplate);
                 param.append('communityId', vc.component.historyFeeDetailImportInfo.communityId);
-
+                param.append('objType', vc.component.historyFeeDetailImportInfo.objType);
 
                 vc.http.upload(
                     'importFeeDetail',
@@ -83,14 +88,14 @@
                         if (res.status == 200) {
                             //关闭model
                             vc.toast("处理成功");
-                            //vc.jumpToPage('/admin.html#/pages/property/roomCreateFee')
+                            vc.jumpToPage('/admin.html#/pages/property/assetImportLog')
                             return;
                         }
-                        vc.toast(json,10000);
+                        vc.toast(json, 10000);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(errInfo,10000);
+                        vc.toast(errInfo, 10000);
                     });
             },
             checkFileType: function (fileType) {

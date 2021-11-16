@@ -148,6 +148,7 @@
                             //关闭model
                             $('#editOwnerRepairModel').modal('hide');
                             vc.emit('ownerRepairManage', 'listOwnerRepair', {});
+                            vc.emit('repairPoolManage', 'listRepairPool', {});
                             vc.toast("修改成功");
                         }
                     },

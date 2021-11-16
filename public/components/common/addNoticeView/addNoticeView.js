@@ -200,6 +200,12 @@
                     .on('changeDate', function (ev) {
                         var value = $(".noticeStartTime").val();
                         vc.component.addNoticeViewInfo.startTime = value;
+                        let start = Date.parse(new Date(vc.component.addNoticeViewInfo.startTime))
+                        let end = Date.parse(new Date(vc.component.addNoticeViewInfo.endTime))
+                        if (end != 0 && start - end >= 0) {
+                            vc.toast("开始时间必须小于结束时间")
+                            vc.component.addNoticeViewInfo.startTime = '';
+                        }
                     });
                 $('.noticeEndTime').datetimepicker({
                     language: 'zh-CN',
@@ -214,6 +220,12 @@
                     .on('changeDate', function (ev) {
                         var value = $(".noticeEndTime").val();
                         vc.component.addNoticeViewInfo.endTime = value;
+                        let start = Date.parse(new Date(vc.component.addNoticeViewInfo.startTime))
+                        let end = Date.parse(new Date(vc.component.addNoticeViewInfo.endTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            vc.component.addNoticeViewInfo.endTime = '';
+                        }
                     });
                 var $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',

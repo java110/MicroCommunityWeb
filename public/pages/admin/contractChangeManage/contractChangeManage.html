@@ -58,10 +58,6 @@
                             <i class="glyphicon glyphicon-plus"></i>
                             资产变更
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddContractModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            费用调整
-                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -93,7 +89,7 @@
                                 <td class="text-center">{{contract.remark}}</td>
                                 <td class="text-center">{{contract.stateName}}</td>
                                 <td class="text-right">
-                                    <div class="btn-group">
+                                    <div class="btn-group" v-if="contract.state == '11'">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteContractModel(contract)">取消</button>
                                     </div>
@@ -119,6 +115,6 @@
         </div>
     </div>
 
-    <vc:create path="admin/deleteContract"></vc:create>
+    <vc:create path="admin/deleteContractChangePlan"></vc:create>
 
 </div>

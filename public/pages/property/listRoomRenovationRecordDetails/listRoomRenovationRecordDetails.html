@@ -16,7 +16,8 @@
                         <thead>
                         <tr>
                             <th class="text-center">房屋</th>
-                            <th class="text-center">图片/视频</th>
+                            <th class="text-center" v-if="roomRenovationRecordDetailsInfo.conditions.state == '1000'">原始图片/视频</th>
+                            <th class="text-center" v-else>图片/视频</th>
                             <th class="text-center">创建时间</th>
                         </tr>
                         </thead>
@@ -50,8 +51,6 @@
                 </div>
             </div>
         </div>
-        <div v-show="roomRenovationRecordDetailsInfo.imgBoxSwitch" style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
-            <img v-bind:src="roomRenovationRecordDetailsInfo.imgBoxUrl" width="600" height="500" alt="" v-on:click="hideImgBox()">
-        </div>
     </div>
+    <vc:create path="common/viewImage"></vc:create>
 </div>

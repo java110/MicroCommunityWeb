@@ -1,0 +1,54 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-3 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlBlackCar.carNum" type="text" placeholder="必填，请填写车牌号" class="form-control">
+
+        </div>
+        <div class="col-lg-3 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
+            <button type=" button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_qureyParkingAreaControlBlackCar()">
+                查询
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">名单ID</th>
+                    <th class="text-center">停车场</th>
+                    <th class="text-center">车牌号</th>
+                    <th class="text-center">开始时间</th>
+                    <th class="text-center">结束时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="car in parkingAreaControlBlackCar.cars">
+                    <td class="text-center">{{carBlackWhite.bwId}}</td>
+                    <td class="text-center">{{carBlackWhite.paNum}}</td>
+                    <td class="text-center">{{carBlackWhite.carNum}}</td>
+                    <td class="text-center">{{carBlackWhite.startTime}}</td>
+                    <td class="text-center">{{carBlackWhite.endTime}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <ul class="pagination float-right"></ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- 分页 -->
+        <vc:create path="frame/paginationPlus" namespace="parkingAreaControlBlackCar"></vc:create>
+    </div>
+</div>

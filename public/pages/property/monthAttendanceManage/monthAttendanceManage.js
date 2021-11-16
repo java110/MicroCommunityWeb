@@ -54,6 +54,7 @@
                         vc.component.monthAttendanceManageInfo.attendances = _monthAttendanceManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.monthAttendanceManageInfo.records,
+                            dataCount: vc.component.monthAttendanceManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

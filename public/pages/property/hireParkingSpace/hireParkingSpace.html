@@ -1,45 +1,34 @@
-<div >
-
+<div>
     <div class="java110_step">
         <div id="step"></div>
     </div>
-
     <!-- 选择 应用信息 -->
     <div v-if="hireParkingSpaceInfo.index == 0">
-
         <!-- 选择停车位 -->
-        <vc:create path="property/viewSelectParkingSpace"
-                   callBackComponent="hireParkingSpace"
-                   callBackFunction="notify"
-        ></vc:create>
-    </div>
-    <div v-if="hireParkingSpaceInfo.index == 1">
-        <vc:create path="property/viewOwnerInfo"
-                   callBackListener="hireParkingSpace"
-                   callBackFunction="notify"
-        ></vc:create>
-    </div>
-    <div v-show="hireParkingSpaceInfo.index == 2">
-        <vc:create path="property/addCar"
-                   callBackComponent="hireParkingSpace"
-                   callBackFunction="notify"
-        >
+        <vc:create path="property/viewSelectParkingSpace" callBackComponent="hireParkingSpace"
+                   callBackFunction="notify">
         </vc:create>
     </div>
-
+    <div v-if="hireParkingSpaceInfo.index == 1">
+        <vc:create path="property/viewOwnerInfo" callBackListener="hireParkingSpace"
+                   callBackFunction="notify">
+        </vc:create>
+    </div>
+    <div v-show="hireParkingSpaceInfo.index == 2">
+        <vc:create path="property/addCar" callBackComponent="hireParkingSpace"
+                   callBackFunction="notify">
+        </vc:create>
+    </div>
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
             <button type="button" class="btn btn-secondary" v-on:click="_prevStep()">上一步</button>
             <button v-if="hireParkingSpaceInfo.index != 2" type="button" class="btn btn-primary"
-                    style="margin-left:10px;"
-                    v-on:click="_nextStep()">下一步
+                    style="margin-left:10px;" v-on:click="_nextStep()">下一步
             </button>
             <button v-if="hireParkingSpaceInfo.index == 2" type="button" class="btn btn-primary"
-                    style="margin-left:10px;"
-                    v-on:click="_finishStep()">提交
+                    style="margin-left:10px;" v-on:click="_finishStep()">提交
             </button>
         </div>
     </div>
-
 </div>

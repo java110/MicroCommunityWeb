@@ -11,6 +11,8 @@
                 locationObjName: '',
                 state: '',
                 seq: '',
+                advertType: '',
+                pageUrl: '',
                 startTime: '',
                 endTime: '',
                 floorId: '',
@@ -22,7 +24,8 @@
                 roomNum: '',
                 photos: [],
                 viewType: '',
-                vedioName: ''
+                vedioName: '',
+                communityId: ''
             }
         },
         _initMethod: function () {
@@ -33,47 +36,7 @@
                 vc.component.refreshEditAdvertInfo();
                 $('#editAdvertModel').modal('show');
                 vc.copyObject(_params, vc.component.editAdvertInfo);
-                /*vc.component.editAdvertInfo.locationObjId = _params.locationObjId
-                vc.component.editAdvertInfo.locationObjName = _params.locationObjName*/
-                //根据位置类型 传输数据
-                if (vc.component.editAdvertInfo.locationTypeCd == '4000') {
-                    vc.emit('editAdvert', 'floorSelect2', 'setFloor', {
-                        floorId: vc.component.editAdvertInfo.floorId,
-                        floorNum: vc.component.editAdvertInfo.floorNum
-                    });
-                } else if (vc.component.editAdvertInfo.locationTypeCd == '2000') {
-                    vc.emit('editAdvert', 'floorSelect2', 'setFloor', {
-                        floorId: vc.component.editAdvertInfo.floorId,
-                        floorNum: vc.component.editAdvertInfo.floorNum
-                    });
-                    vc.emit('editAdvert', 'unitSelect2', 'setUnit', {
-                        floorId: vc.component.editAdvertInfo.floorId,
-                        floorNum: vc.component.editAdvertInfo.floorNum,
-                        unitId: vc.component.editAdvertInfo.unitId,
-                        unitNum: vc.component.editAdvertInfo.unitNum
-                    });
-                } else if (vc.component.editAdvertInfo.locationTypeCd == '3000') {
-                    vc.emit('editAdvert', 'floorSelect2', 'setFloor', {
-                        floorId: vc.component.editAdvertInfo.floorId,
-                        floorNum: vc.component.editAdvertInfo.floorNum
-                    });
-                    vc.emit('editAdvert', 'unitSelect2', 'setUnit', {
-                        floorId: vc.component.editAdvertInfo.floorId,
-                        floorNum: vc.component.editAdvertInfo.floorNum,
-                        unitId: vc.component.editAdvertInfo.unitId,
-                        unitNum: vc.component.editAdvertInfo.unitNum
-                    });
-                    vc.emit('editAdvert', 'roomSelect2', 'setRoom', {
-                        floorId: vc.component.editAdvertInfo.floorId,
-                        floorNum: vc.component.editAdvertInfo.floorNum,
-                        unitId: vc.component.editAdvertInfo.unitId,
-                        unitNum: vc.component.editAdvertInfo.unitNum,
-                        roomId: vc.component.editAdvertInfo.roomId,
-                        roomNum: vc.component.editAdvertInfo.roomNum
-                    });
-                }
                 vc.component._loadAdvertItem();
-                vc.component.editAdvertInfo.communityId = vc.getCurrentCommunity().communityId;
                 //查询 广告属性
             });
 
@@ -167,6 +130,13 @@
                             errInfo: "广告分类格式错误"
                         },
                     ],
+                    'editAdvertInfo.advertType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "发布类型不能为空"
+                        }
+                    ],
                     'editAdvertInfo.locationTypeCd': [
                         {
                             limit: "required",
@@ -177,18 +147,6 @@
                             limit: "num",
                             param: "",
                             errInfo: "投放位置格式错误"
-                        },
-                    ],
-                    'editAdvertInfo.locationObjId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "具体位置不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "具体位置不是有效数字"
                         },
                     ],
                     'editAdvertInfo.seq': [
@@ -236,19 +194,6 @@
                 });
             },
             editAdvert: function () {
-                vc.component.editAdvertInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.editAdvertInfo.locationTypeCd == '1000') { //大门时直接写 小区ID
-                    vc.component.editAdvertInfo.locationObjId = vc.component.editAdvertInfo.communityId;
-                } else if (vc.component.editAdvertInfo.locationTypeCd == '2000') {
-                    vc.component.editAdvertInfo.locationObjId = vc.component.editAdvertInfo.unitId;
-                } else if (vc.component.editAdvertInfo.locationTypeCd == '3000') {
-                    vc.component.editAdvertInfo.locationObjId = vc.component.editAdvertInfo.roomId;
-                } else if (vc.component.editAdvertInfo.locationTypeCd == '4000') {
-                    vc.component.editAdvertInfo.locationObjId = vc.component.editAdvertInfo.floorId;
-                } else {
-                    vc.toast("设备位置值错误");
-                    return;
-                }
                 if (!vc.component.editAdvertValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -258,9 +203,6 @@
                 } else {
                     vc.component.editAdvertInfo.photos = [];
                 }
-                console.log("看一下")
-                console.log(vc.component.editAdvertInfo.locationObjId)
-                console.log(vc.component.editAdvertInfo.locationObjName)
                 vc.http.post(
                     'editAdvert',
                     'update',
@@ -286,8 +228,7 @@
             _loadAdvertItem: function () {
                 var param = {
                     params: {
-                        advertId: vc.component.editAdvertInfo.advertId,
-                        communityId: vc.getCurrentCommunity().communityId
+                        advertId: vc.component.editAdvertInfo.advertId
                     }
                 };
                 //发送get请求
@@ -328,6 +269,8 @@
                     locationObjId: '',
                     state: '',
                     seq: '',
+                    advertType: '',
+                    pageUrl: '',
                     startTime: '',
                     endTime: '',
                     floorId: '',

@@ -1,0 +1,115 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入计划名称"
+                                    v-model="contractCollectionPlanManageInfo.conditions.planName"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入费用名称"
+                                    v-model="contractCollectionPlanManageInfo.conditions.feeName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入合同编号"
+                                    v-model="contractCollectionPlanManageInfo.conditions.contractCode"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryContractCollectionPlanMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>收款计划信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddContractCollectionPlanModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            添加计划
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">计划ID</th>
+                                <th class="text-center">计划名称</th>
+                                <th class="text-center">合同号</th>
+                                <th class="text-center">费用</th>
+                                <th class="text-center">备注</th>
+                                <th class="text-center">操作</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                v-for="contractCollectionPlan in contractCollectionPlanManageInfo.contractCollectionPlans">
+                                <td class="text-center">{{contractCollectionPlan.planId}}</td>
+                                <td class="text-center">{{contractCollectionPlan.planName}}</td>
+                                <td class="text-center">{{contractCollectionPlan.contractCode}}</td>
+                                <td class="text-center">{{contractCollectionPlan.feeName}}</td>
+                                <td class="text-center">{{contractCollectionPlan.remark}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openContractCollectionPlanFeeModel(contractCollectionPlan)">计划费用</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteContractCollectionPlanModel(contractCollectionPlan)">删除</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <vc:create path="admin/addContractCollectionPlan" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="admin/deleteContractCollectionPlan"></vc:create>
+
+</div>

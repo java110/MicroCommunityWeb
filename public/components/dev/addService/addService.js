@@ -47,8 +47,8 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "50",
-                            errInfo: "服务名称不能超过50"
+                            param: "200",
+                            errInfo: "服务名称不能超过200"
                         },
                     ],
                     'addServiceInfo.serviceCode': [
@@ -59,7 +59,7 @@
                         },
                         {
                             limit: "maxin",
-                            param: "2,50",
+                            param: "2,100",
                             errInfo: "服务编码必须在2至50字符之间"
                         },
                     ],

@@ -51,7 +51,8 @@
                                 vc.component.serviceImplManageInfo.records = _serviceImplManageInfo.records;
                                 vc.component.serviceImplManageInfo.serviceImpls = _serviceImplManageInfo.serviceImpls;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.serviceImplManageInfo.records,
+                                    total: vc.component.serviceImplManageInfo.records,
+                                    dataCount: vc.component.serviceImplManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

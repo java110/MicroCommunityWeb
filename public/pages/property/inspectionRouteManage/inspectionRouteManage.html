@@ -1,15 +1,21 @@
-<div  class="animated fadeInRight ecommerce">
+<div class="animated fadeInRight ecommerce">
     <div class="row" v-if="inspectionRouteManageInfo.inspectionPoint == false">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入路线ID"
+                                       v-model="inspectionRouteManageInfo.conditions.inspectionRouteId"
+                                       class=" form-control">
+                            </div>
+                        </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入路线名称"
@@ -23,21 +29,17 @@
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入路线ID"
-                                       v-model="inspectionRouteManageInfo.conditions.inspectionRouteId" class=" form-control">
-                            </div>
-                        </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryInspectionRouteMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetInspectionRouteMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -50,32 +52,31 @@
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_openAddInspectionRouteModal()">
-                            <i class="fa fa-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">路线名称</th>
                             <th class="text-center">线路ID</th>
-                            <!-- <th class="text-center">顺序</th> -->
+                            <th class="text-center">路线名称</th>
+                            <th class="text-center">顺序</th>
                             <th class="text-center">创建时间</th>
-                            <th class="text-right">操作</th>
+                            <th class="text-center">备注</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="inspectionRoute in inspectionRouteManageInfo.inspectionRoutes">
-                            <td class="text-center">{{inspectionRoute.routeName}}</td>
                             <td class="text-center">{{inspectionRoute.inspectionRouteId}}</td>
-                            <!-- <td class="text-center">{{inspectionRoute.seq}}</td> -->
+                            <td class="text-center">{{inspectionRoute.routeName}}</td>
+                            <td class="text-center">{{inspectionRoute.seq}}</td>
                             <td class="text-center">{{inspectionRoute.createTime}}</td>
-                            <td class="text-right">
+                            <td class="text-center">{{inspectionRoute.remark}}</td>
+                            <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openInspectionPointModel(inspectionRoute)">巡检点
@@ -92,7 +93,6 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
@@ -109,17 +109,10 @@
             </div>
         </div>
     </div>
-
     <div v-if="inspectionRouteManageInfo.inspectionPoint == true">
         <vc:create path="/pages/property/inspectionRoutePointManage"></vc:create>
     </div>
-
-
-    <vc:create path="property/addInspectionRoute"
-               callBackListener=""
-               callBackFunction=""
-    ></vc:create>
+    <vc:create path="property/addInspectionRoute" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editInspectionRoute"></vc:create>
     <vc:create path="property/deleteInspectionRoute"></vc:create>
-
 </div>

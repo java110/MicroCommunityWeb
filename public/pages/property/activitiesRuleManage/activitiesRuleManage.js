@@ -32,9 +32,36 @@
             });
         },
         methods: {
+            //查询方法
             _listActivitiesRules: function (_page, _rows) {
                 vc.component.activitiesRuleManageInfo.conditions.page = _page;
                 vc.component.activitiesRuleManageInfo.conditions.row = _rows;
+                var param = {
+                    params: vc.component.activitiesRuleManageInfo.conditions
+                };
+                //发送get请求
+                vc.http.apiGet('/activitiesRule/queryActivitiesRule',
+                    param,
+                    function (json, res) {
+                        var _activitiesRuleManageInfo = JSON.parse(json);
+                        vc.component.activitiesRuleManageInfo.total = _activitiesRuleManageInfo.total;
+                        vc.component.activitiesRuleManageInfo.records = _activitiesRuleManageInfo.records;
+                        vc.component.activitiesRuleManageInfo.activitiesRules = _activitiesRuleManageInfo.data;
+                        vc.emit('pagination', 'init', {
+                            total: vc.component.activitiesRuleManageInfo.records,
+                            dataCount: vc.component.activitiesRuleManageInfo.total,
+                            currentPage: _page
+                        });
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            //重置方法
+            _resetActivitiesRules: function (_page, _rows) {
+                vc.component.activitiesRuleManageInfo.conditions.ruleType = "";
+                vc.component.activitiesRuleManageInfo.conditions.ruleName = "";
+                vc.component.activitiesRuleManageInfo.conditions.activitiesObj = "";
                 var param = {
                     params: vc.component.activitiesRuleManageInfo.conditions
                 };
@@ -64,8 +91,13 @@
             _openDeleteActivitiesRuleModel: function (_activitiesRule) {
                 vc.emit('deleteActivitiesRule', 'openDeleteActivitiesRuleModal', _activitiesRule);
             },
+            //查询
             _queryActivitiesRuleMethod: function () {
                 vc.component._listActivitiesRules(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetActivitiesRuleMethod: function () {
+                vc.component._resetActivitiesRules(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.activitiesRuleManageInfo.moreCondition) {

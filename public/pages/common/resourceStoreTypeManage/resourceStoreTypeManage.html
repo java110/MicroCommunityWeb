@@ -1,0 +1,104 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入物品ID"
+                                       v-model="resourceStoreTypeManageInfo.conditions.rstId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入类型名称"
+                                       v-model="resourceStoreTypeManageInfo.conditions.name" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryResourceStoreTypeMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetResourceStoreTypeMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>物品类型信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddResourceStoreTypeModal()">
+                            <i class="fa fa-plus"></i>添加
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">物品类型ID</th>
+                            <th class="text-center">物品类型名称</th>
+                            <th class="text-center">物品描述</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="resourceStoreType in resourceStoreTypeManageInfo.resourceStoreTypes">
+                            <td class="text-center">{{resourceStoreType.rstId}}</td>
+                            <td class="text-center">{{resourceStoreType.name}}</td>
+                            <td class="text-center">{{resourceStoreType.description}}</td>
+                            <td class="text-center">{{resourceStoreType.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditResourceStoreTypeModel(resourceStoreType)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAddResourceStoreType(resourceStoreType)">二级分类
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteResourceStoreTypeModel(resourceStoreType)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/addResourceStoreType" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="common/deleteResourceStoreType"></vc:create>
+    <vc:create path="common/editResourceStoreType"></vc:create>
+</div>

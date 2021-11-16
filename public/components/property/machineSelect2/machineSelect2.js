@@ -59,7 +59,7 @@
                 };
                 $.fn.select2.defaults.set('width', '100%');
                 this.machineSelect2Info.machineSelector = $('#machineSelector').select2({
-                    placeholder: '必填，请选择楼栋',
+                    placeholder: '必填，请选择设备',
                     allowClear: true,//允许清空
                     escapeMarkup: function (markup) {
                         return markup;
@@ -68,6 +68,12 @@
                         url: "/callComponent/machineSelect2/list",
                         dataType: 'json',
                         delay: 250,
+                        headers:{
+                            'APP-ID': '8000418004',
+                            'TRANSACTION-ID' : vc.uuid(),
+                            'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
+                            'SIGN' : ''
+                        },
                         data: function (params) {
                             console.log("param", params);
                             var _term = "";

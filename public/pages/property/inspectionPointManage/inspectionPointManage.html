@@ -5,15 +5,19 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{inspectionPointManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入设备编码"
-                                       v-model="inspectionPointManageInfo.conditions.machineCode" class=" form-control">
+                                <input type="text" placeholder="请输入巡检点ID"
+                                       v-model="inspectionPointManageInfo.conditions.inspectionId"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -23,22 +27,33 @@
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入巡检点ID"
-                                       v-model="inspectionPointManageInfo.conditions.inspectionId"
-                                       class=" form-control">
-                            </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="inspectionPointManageInfo.conditions.pointObjType">
+                                <option selected value="" disabled>请选择巡检点类型</option>
+                                <option v-for="(item,index) in inspectionPointManageInfo.pointObjTypes" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryInspectionPointMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetInspectionPointMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
                         </div>
                     </div>
-
-
+                    <div class="row" v-show="inspectionPointManageInfo.moreCondition == true">
+                        <div class="col-sm-3" v-if="inspectionPointManageInfo.conditions.pointObjType == '1001'">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入设备编码"
+                                       v-model="inspectionPointManageInfo.conditions.machineCode" class=" form-control">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,33 +66,30 @@
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_openAddInspectionPointModal()">
-                            <i class="fa fa-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
+                            <th class="text-center">巡检点ID</th>
                             <th class="text-center">巡检点名称</th>
                             <th class="text-center">巡检点类型</th>
                             <th class="text-center">巡检位置</th>
-                            <th class="text-center">巡检点ID</th>
+                            <th class="text-center">备注</th>
                             <th class="text-center">操作</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="inspectionPoint in inspectionPointManageInfo.inspectionPoints">
-                            <td class="text-center">{{inspectionPoint.inspectionName}}</td>
-                            <td class="text-center">{{inspectionPoint.pointObjType=='1001'?'设备':'环境'}}</td>
-                            <td class="text-center">{{inspectionPoint.pointObjName}}</td>
                             <td class="text-center">{{inspectionPoint.inspectionId}}</td>
+                            <td class="text-center">{{inspectionPoint.inspectionName}}</td>
+                            <td class="text-center">{{inspectionPoint.pointTypeName}}</td>
+                            <td class="text-center">{{inspectionPoint.pointObjName}}</td>
+                            <td class="text-center">{{inspectionPoint.remark}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
@@ -90,12 +102,11 @@
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
@@ -107,13 +118,7 @@
             </div>
         </div>
     </div>
-
-
-    <vc:create path="property/addInspectionPoint"
-               callBackListener=""
-               callBackFunction=""
-    ></vc:create>
+    <vc:create path="property/addInspectionPoint" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editInspectionPoint"></vc:create>
     <vc:create path="property/deleteInspectionPoint"></vc:create>
-
 </div>

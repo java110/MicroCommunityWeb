@@ -13,6 +13,7 @@
                 <option value="7">成员手机号</option>
                 <option value="8">成员身份证</option>
                 <option value="9">商铺号</option>
+                <option value="10">合同号</option>
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
@@ -70,7 +71,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">性别：</label>
-                                <label class="">{{simplifyAcceptanceInfo.sex == 0 ? '男' : '女'}}</label>
+                                <label class="">{{simplifyAcceptanceInfo.sex == '0' ? '男' : (simplifyAcceptanceInfo.sex == '1' ? '女' : ' ')}}</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -101,8 +102,8 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label">算费系数：</label>
-                                <label class="">{{simplifyAcceptanceInfo.feeCoefficient}}</label>
+                                <label class="col-form-label">房屋类型：</label>
+                                <label class="">{{simplifyAcceptanceInfo.roomSubTypeName}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -121,11 +122,17 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label">房屋ID：</label>
-                                <label class="">{{simplifyAcceptanceInfo.roomId}}</label>
+                                <label class="col-form-label">室内面积：</label>
+                                <label class="">{{simplifyAcceptanceInfo.roomArea}}</label>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-3" v-if="simplifyAcceptanceInfo.roomSubType && simplifyAcceptanceInfo.roomSubType != '110'">
+                            <div class="form-group">
+                                <label class="col-form-label">租金：</label>
+                                <label class="">{{simplifyAcceptanceInfo.roomRent}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">房屋备注：</label>
                                 <label class="fix-width" :title="simplifyAcceptanceInfo.roomRemark">
@@ -146,6 +153,11 @@
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'}"
                        v-on:click="changeTab('simplifyCarFee')">停车费用</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyContract'}"
+                       v-on:click="changeTab('simplifyContract')">业主合同</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
@@ -181,10 +193,14 @@
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
                        v-on:click="changeTab('simplifyFeeReceipt')">补打收据</a>
                 </li>
-                <li class="nav-item" v-if="simplifyAcceptanceInfo.roomType == '2020602'">
+                <li class="nav-item">
                     <a class="nav-link"
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
-                       v-on:click="changeTab('simplifyShopsHireLog')">出租记录</a>
+                       v-on:click="changeTab('simplifyShopsHireLog')">房屋绑定记录</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyMeterWaterFee'}"
+                        v-on:click="changeTab('simplifyMeterWaterFee')">水电抄表记录</a>
                 </li>
             </ul>
         </div>
@@ -218,11 +234,18 @@
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'">
             <vc:create path="property/simplifyShopsHireLog"></vc:create>
         </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyContract'">
+            <vc:create path="property/simplifyContract"></vc:create>
+        </div>
+        <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyMeterWaterFee'">
+            <vc:create path="property/simplifyMeterWaterLog"></vc:create>
+        </div>
     </div>
     <vc:create path="property/deleteFee"></vc:create>
     <vc:create path="property/editFee"></vc:create>
     <vc:create path="property/finishFee"></vc:create>
     <vc:create path="property/roomCreateFeeAdd"></vc:create>
+    <vc:create path="property/carCreateFeeAdd"></vc:create>
     <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/addProxyFee" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/searchRoom" emitChooseRoom="simplifyAcceptance" emitLoadData="list" roomFlag="1"

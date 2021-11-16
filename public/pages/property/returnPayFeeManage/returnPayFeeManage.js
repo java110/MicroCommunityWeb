@@ -3,7 +3,7 @@
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 30;
+    var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             returnPayFeeManageInfo: {
@@ -11,35 +11,35 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                returnPayFeeStates:'',
+                returnPayFeeStates: '',
                 name: '',
-                auditReturnFeeId:'',
-                returnPayFee:'',
+                auditReturnFeeId: '',
+                returnPayFee: '',
                 conditions: {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: '',
                     detailId: '',
-                    userCode:'',
-                    state:'',
-                    feeTypeCd:''
+                    userCode: '',
+                    state: '',
+                    feeTypeCd: ''
                 }
             }
         },
         _initMethod: function () {
             vc.component._listReturnPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('return_pay_fee',"state",function(_data){
+            vc.getDict('return_pay_fee', "state", function (_data) {
                 vc.component.returnPayFeeManageInfo.returnPayFeeStates = _data;
             });
-            vc.getDict('pay_fee_config',"fee_type_cd",function(_data){
+            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.returnPayFeeManageInfo.feeTypes = _data;
             });
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listpayFees(_currentPage, DEFAULT_ROWS);
+                vc.component._listReturnPayFees(_currentPage, DEFAULT_ROWS);
             });
 
-            vc.on('returnPayFeeManage','notifyAuditInfo',function(_auditInfo){
+            vc.on('returnPayFeeManage', 'notifyAuditInfo', function (_auditInfo) {
                 vc.component._auditReturnPayFeeState(_auditInfo);
             });
         },
@@ -55,10 +55,12 @@
                     function (json) {
                         var _returnPayFeeManageInfo = JSON.parse(json);
                         vc.component.returnPayFeeManageInfo.total = _returnPayFeeManageInfo.total;
-                        vc.component.returnPayFeeManageInfo.records = parseInt(_returnPayFeeManageInfo.total/_rows +1);
+                        // vc.component.returnPayFeeManageInfo.records = parseInt(_returnPayFeeManageInfo.total/_rows +1);
+                        vc.component.returnPayFeeManageInfo.records = _returnPayFeeManageInfo.records;
                         vc.component.returnPayFeeManageInfo.returnPayFees = _returnPayFeeManageInfo.returnPayFees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.returnPayFeeManageInfo.records,
+                            dataCount: vc.component.returnPayFeeManageInfo.total,
                             currentPage: _page
                         });
                     }, function () {
@@ -69,7 +71,7 @@
             _queryReturnPayFeeMethod: function () {
                 vc.component._listReturnPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _auditReturnPayFeeState:function(_auditInfo){
+            _auditReturnPayFeeState: function (_auditInfo) {
                 vc.component.returnPayFeeManageInfo.returnPayFee.state = _auditInfo.state;
                 //vc.component.returnPayFeeManageInfo.returnPayFee.remark = _auditInfo.remark;
                 let _returnPayFee = vc.component.returnPayFeeManageInfo.returnPayFee;
@@ -77,25 +79,25 @@
                     'returnPayFee.updateReturnPayFee',
                     JSON.stringify(_returnPayFee),
                     {
-                        emulateJSON:true
+                        emulateJSON: true
                     },
-                    function(json,res){
-                        if(res.status == 200){
+                    function (json, res) {
+                        if (res.status == 200) {
                             vc.component._listReturnPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
-                            return ;
+                            return;
                         }
                         vc.toast(json);
                     },
-                    function(errInfo,error){
+                    function (errInfo, error) {
                         vc.toast(errInfo);
                     });
             },
-            _openReturnPayFeeAuditModel(_payFee){
+            _openReturnPayFeeAuditModel(_payFee) {
                 vc.component.returnPayFeeManageInfo.returnPayFee = _payFee;
-                vc.emit('audit','openAuditModal',{});
+                vc.emit('audit', 'openAuditModal', {});
             },
-            _toReturnFeeDetail:function(_payFee){
-                vc.jumpToPage('/admin.html#/pages/property/propertyFee?feeId='+_payFee.feeId);
+            _toReturnFeeDetail: function (_payFee) {
+                vc.jumpToPage('/admin.html#/pages/property/propertyFee?feeId=' + _payFee.feeId);
             }
 
 

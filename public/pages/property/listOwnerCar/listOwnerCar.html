@@ -14,23 +14,23 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请输入车牌号" v-model="listOwnerCarInfo.conditions.carNum"
+                                <input type="text" placeholder="请输入车牌号" v-model="listOwnerCarInfo.conditions.carNumLike"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写车位编号" class=" form-control"
-                                       v-model="listOwnerCarInfo.num">
+                                       v-model="listOwnerCarInfo.conditions.num">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.state">
+                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.valid">
                                     <option selected value="">必填，请选择车位状态</option>
-                                    <option value="1001">正常</option>
-                                    <option value="2002">欠费状态</option>
-                                    <option value="3003">车位释放</option>
+                                    <option value="1">正常</option>
+                                    <option value="3">到期</option>
+                                    <option value="2">无车位</option>
                                 </select>
                             </div>
                         </div>
@@ -79,7 +79,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="car in listOwnerCarInfo.ownerCars">
+                        <tr v-for="car in listOwnerCarInfo.ownerCars"
+                            :class="{ 'table-danger' : _getCarState(car) == '到期'}">
                             <td class="text-center">
                                 {{car.carNum}}
                             </td>
@@ -98,11 +99,11 @@
                             <td class="text-center">
                                 {{car.ownerName}}({{car.link}})
                             </td>
-                            <td v-if="car.areaNum" class="text-center">
+                            <td v-if="car.areaNum && car.state == '1001'" class="text-center">
                                 {{car.areaNum}}车场{{car.num}}车位
                             </td>
                             <td v-else class="text-center">
-                                无
+                                车位已释放
                             </td>
                             <td class="text-center">
                                 {{car.startTime}}
@@ -111,10 +112,10 @@
                                 {{car.endTime}}
                             </td>
                             <td class="text-center">
-                                {{car.stateName}}
+                                {{_getCarState(car)}}
                             </td>
                             <td class="text-center">
-                                <div class="btn-group" v-if="car.psId != '-1'">
+                                <div class="btn-group" v-if="car.state != '3003'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_deleteCarParkingSpace(car)">释放车位
                                     </button>
@@ -148,7 +149,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="11">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

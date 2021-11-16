@@ -51,6 +51,7 @@
                         vc.component.payFeeConfigDiscountManageInfo.payFeeConfigDiscounts = _payFeeConfigDiscountManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.payFeeConfigDiscountManageInfo.records,
+                            dataCount: vc.component.payFeeConfigDiscountManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

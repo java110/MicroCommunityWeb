@@ -42,7 +42,8 @@
                                 vc.component.appManageInfo.records = _appManageInfo.records;
                                 vc.component.appManageInfo.apps = _appManageInfo.apps;
                                 vc.emit('pagination','init',{
-                                     total:vc.component.appManageInfo.records,
+                                    total: vc.component.appManageInfo.records,
+                                    dataCount: vc.component.appManageInfo.total,
                                      currentPage:_page
                                  });
                              },function(errInfo,error){

@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editMeterWaterInfo: {
@@ -9,8 +8,7 @@
                 curDegrees: '',
                 preReadingTime: '',
                 curReadingTime: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
@@ -34,7 +32,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.editPreReadingTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -62,6 +59,18 @@
                             vc.component.editMeterWaterInfo.curReadingTime = value;
                         }
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editPreReadingTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editCurReadingTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
             editMeterWaterValidate: function () {
                 return vc.validate.validate({
@@ -140,7 +149,6 @@
                             param: "",
                             errInfo: "表ID不能为空"
                         }]
-
                 });
             },
             editMeterWater: function () {
@@ -148,7 +156,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'meterWater.updateMeterWater',
                     JSON.stringify(vc.component.editMeterWaterInfo),
@@ -168,9 +175,18 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
+            },
+            getChange: function () {
+                //上期度数
+                var preDegrees = parseFloat(vc.component.editMeterWaterInfo.preDegrees);
+                //本期度数
+                var curDegrees = parseFloat(vc.component.editMeterWaterInfo.curDegrees);
+                if (preDegrees > curDegrees) {
+                    vc.toast("本期度数不能小于上期度数！");
+                    vc.component.editMeterWaterInfo.curDegrees = "";
+                }
             },
             refreshEditMeterWaterInfo: function () {
                 vc.component.editMeterWaterInfo = {
@@ -180,11 +196,9 @@
                     curDegrees: '',
                     preReadingTime: '',
                     curReadingTime: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

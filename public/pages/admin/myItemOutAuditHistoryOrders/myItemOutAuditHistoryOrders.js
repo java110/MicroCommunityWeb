@@ -24,8 +24,9 @@
             vc.component._listAuditOrderHistorys(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
-        
+            vc.on('pagination', 'page_event', function (_currentPage) {
+                vc.component._listAuditOrderHistorys(_currentPage, DEFAULT_ROWS);
+            });
         },
         methods: {
             _listAuditOrderHistorys: function (_page, _rows) {
@@ -35,6 +36,7 @@
                 var param = {
                     params: vc.component.auditOrderHistorysInfo.conditions
                 };
+                param.params.communityId = vc.getCurrentCommunity().communityId;
 
                 //发送get请求
                 vc.http.apiGet('auditUser.listItemOutAuditHistoryOrders',
@@ -46,6 +48,7 @@
                         vc.component.auditOrderHistorysInfo.auditOrderHistorys = _auditOrderHistorysInfo.resourceOrders;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditOrderHistorysInfo.records,
+                            dataCount: vc.component.auditOrderHistorysInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

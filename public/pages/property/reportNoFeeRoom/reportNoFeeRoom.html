@@ -1,0 +1,49 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>未收费房屋</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i> 导出
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">序号</th>
+                            <th class="text-center">楼栋</th>
+                            <th class="text-center">单元</th>
+                            <th class="text-center">房屋</th>
+                            <th class="text-center">业主名称</th>
+                            <th class="text-center">业主电话</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(room,index) in reportNoFeeRoomInfo.rooms">
+                            <td class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{room.floorNum}}</td>
+                            <td class="text-center">{{room.unitNum}}</td>
+                            <td class="text-center">{{room.roomNum}}</td>
+                            <td class="text-center">{{room.ownerName}}</td>
+                            <td class="text-center">{{room.link}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="8">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

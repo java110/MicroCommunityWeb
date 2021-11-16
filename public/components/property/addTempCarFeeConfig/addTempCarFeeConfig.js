@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -15,12 +14,15 @@
                 startTime: '',
                 endTime: '',
                 rules: [],
-                attrs: []
-
+                attrs: [],
+                carTypes: []
             }
         },
         _initMethod: function () {
-
+            //与字典表关联
+            vc.getDict('temp_car_fee_config', "car_type", function (_data) {
+                vc.component.addTempCarFeeConfigInfo.carTypes = _data;
+            });
         },
         _initEvent: function () {
             vc.on('addTempCarFeeConfig', 'openAddTempCarFeeConfigModal', function () {
@@ -34,14 +36,12 @@
                     'max-width': modalWidth
                 });
             });
-
             vc.on('addTempCarFeeConfig', 'notify',
-            function (_param) {
-                if (_param.hasOwnProperty('paId')) {
-                    $that.addTempCarFeeConfigInfo.paId = _param.paId;
-                }
-            });
-
+                function (_param) {
+                    if (_param.hasOwnProperty('paId')) {
+                        $that.addTempCarFeeConfigInfo.paId = _param.paId;
+                    }
+                });
             vc.initDate('addTempCarFeeConfigStartTime', function (_startTime) {
                 $that.addTempCarFeeConfigInfo.startTime = _startTime;
             });
@@ -132,19 +132,13 @@
                             errInfo: "结束时间错误"
                         },
                     ],
-
-
-
-
                 });
             },
             saveTempCarFeeConfigInfo: function () {
                 if (!vc.component.addTempCarFeeConfigValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addTempCarFeeConfigInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -152,7 +146,6 @@
                     $('#addTempCarFeeConfigModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'fee.saveTempCarFeeConfig',
                     JSON.stringify(vc.component.addTempCarFeeConfigInfo),
@@ -167,17 +160,13 @@
                             $('#addTempCarFeeConfigModel').modal('hide');
                             vc.component.clearAddTempCarFeeConfigInfo();
                             vc.emit('tempCarFeeConfigManage', 'listTempCarFeeConfig', {});
-
                             return;
                         }
                         vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddTempCarFeeConfigInfo: function () {
@@ -193,7 +182,6 @@
                 };
             },
             _loadAddTempCarFeeRules: function () {
-
                 var param = {
                     params: {
                         page: 1,
@@ -217,7 +205,7 @@
                     if ($that.addTempCarFeeConfigInfo.ruleId == item.ruleId) {
                         item.tempCarFeeRuleSpecs.forEach(spec => {
                             spec.value = '';
-                            spec.specCd=spec.specId;
+                            spec.specCd = spec.specId;
                         })
                         $that.addTempCarFeeConfigInfo.attrs = item.tempCarFeeRuleSpecs;
                     }
@@ -225,5 +213,4 @@
             }
         }
     });
-
 })(window.vc);

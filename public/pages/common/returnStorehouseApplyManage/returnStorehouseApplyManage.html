@@ -1,0 +1,109 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>退还物品</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_goBack()">返回
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openReturnStorehouseModel()">
+                            <i class="fa fa-plus"></i>选择物品
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">物品ID</th>
+                                <th class="text-center">物品类型</th>
+                                <th class="text-center">物品名称</th>
+                                <th class="text-center">物品规格</th>
+                                <!-- <th class="text-center">源仓库</th> -->
+                                <th class="text-center">库存</th>
+                                <th class="text-center">最小计量总数</th>
+                                <th class="text-center">目标仓库</th>
+                                <th class="text-center">退还数量</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="resourceStore in returnStorehouseManageInfo.resourceStores">
+                                <td class="text-center"  style="vertical-align: inherit;">{{resourceStore.resId}}</td>
+                                <td class="text-center"  style="vertical-align: inherit;">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
+                                <td class="text-center"  style="vertical-align: inherit;">{{resourceStore.resName}}</td>
+                                <td class="text-center"  style="vertical-align: inherit;">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
+                                <!-- <td class="text-center style="vertical-align: inherit;"">{{resourceStore.shaName}}</td> -->
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.miniStock}}{{resourceStore.miniUnitCodeName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    <select class="custom-select" v-model="resourceStore.shzId">
+                                        <option value="">必填，请选择目标仓库</option>
+                                        <option v-for="(item,index) in returnStorehouseManageInfo.storehouses"
+                                            :key="index" v-bind:value="item.shId"
+                                            v-if="item.shId != resourceStore.shId">
+                                            {{item.shName}}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                        <input v-model="resourceStore.curStock" type="number" placeholder="必填，请填写数量" class="form-control" style="width: 70%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.miniUnitCodeName}}
+                                        <button type="button" class="btn btn-info" v-on:click="_itemReturnAll(resourceStore)">全部退还</button>
+                                </td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteResourceStoreModel(resourceStore)">取消退还
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="9">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>退还说明</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">退还说明</label>
+                        <div class="col-sm-10 ">
+                            <textarea v-model="returnStorehouseManageInfo.remark" placeholder="必填，请填写退还说明"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
+            <button type="button" class="btn btn-primary" style="margin-left:10px;"
+                v-on:click="_submitApply()">提交
+            </button>
+        </div>
+    </div>
+    <vc:create path="common/chooseResourceStaff" emitChooseResourceStore="returnStorehouseApply"
+        emitLoadData="returnStorehouseApply"></vc:create>
+
+</div>

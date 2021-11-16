@@ -15,7 +15,9 @@
                 startTime: '',
                 endTime: '',
                 createRemark: '',
-                applyTypes: []
+                applyTypes: [],
+                feeTypeCds: [],
+                feeId: ''
             }
         },
         _initMethod: function () {
@@ -32,7 +34,8 @@
                 $('.addStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
@@ -46,7 +49,8 @@
                 $('.addEndTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
@@ -104,6 +108,13 @@
                             param: "",
                             errInfo: "申请类型错误"
                         },
+                    ],
+                    'addApplyRoomDiscountInfo.feeId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "费用项不能为空"
+                        }
                     ],
                     'addApplyRoomDiscountInfo.createUserName': [
                         {
@@ -213,7 +224,9 @@
                     startTime: '',
                     endTime: '',
                     createRemark: '',
-                    applyTypes: _applyTypes
+                    applyTypes: _applyTypes,
+                    feeTypeCds: [],
+                    feeId: ''
                 };
             },
             _queryAddApplyRoomDiscountRoom: function () {
@@ -225,7 +238,8 @@
                     params: {
                         page: 1,
                         row: 1,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        flag: 0
                     }
                 };
                 if (_allNum.split('-').length == 3) {
@@ -252,7 +266,31 @@
                         $that.addApplyRoomDiscountInfo.roomId = _rooms[0].roomId;
                         $that.addApplyRoomDiscountInfo.createUserName = _rooms[0].ownerName;
                         $that.addApplyRoomDiscountInfo.createUserTel = _rooms[0].link;
+                        $that._queryRoomFees();
                     }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 查询该房屋的费用项
+            _queryRoomFees: function(){
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        payerObjId: $that.addApplyRoomDiscountInfo.roomId,
+                        state: '2008001'
+                    }
+                };
+                //发送get请求
+                vc.http.get('listRoomFee',
+                    'list',
+                    param,
+                    function (json) {
+                        let _feeConfigInfo = JSON.parse(json);
+                        vc.component.addApplyRoomDiscountInfo.feeTypeCds = _feeConfigInfo.fees;
+                    }, function () {
                         console.log('请求失败处理');
                     }
                 );

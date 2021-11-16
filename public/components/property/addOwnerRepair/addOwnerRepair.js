@@ -15,6 +15,7 @@
                 repairObjType: '',
                 repairObjId: '',
                 repairObjName: '',
+                repairChannel: 'T',
                 repairSettings: []
             }
         },
@@ -67,8 +68,8 @@
                         },
                         {
                             limit: "maxin",
-                            param: "2,50",
-                            errInfo: "报修人名称必须在2至50字符之间"
+                            param: "2,10",
+                            errInfo: "报修人名称必须在2至10字符之间"
                         },
                     ],
                     'addOwnerRepairInfo.tel': [
@@ -142,20 +143,19 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        if (JSON.parse(json).code == 5010) {
+                            vc.toast(JSON.parse(json).msg);
+                        } else if (res.status == 200) {
                             //关闭model
                             $('#addOwnerRepairModel').modal('hide');
                             vc.component.clearAddOwnerRepairInfo();
                             vc.emit('ownerRepairManage', 'listOwnerRepair', {});
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddOwnerRepairInfo: function () {
@@ -169,12 +169,12 @@
                     repairObjType: '',
                     repairObjId: '',
                     repairObjName: '',
+                    repairChannel: 'T',
                     repairSettings: _repairSettings
                 };
                 vc.emit('addOwnerRepair', 'roomSelect2', 'clearRoom', {});
                 vc.emit('addOwnerRepair', 'unitSelect2', 'clearUnit', {});
                 vc.emit('addOwnerRepair', 'floorSelect2', 'clearFloor', {});
-
             },
             _initAddOwnerRepairInfo: function () {
                 vc.component.addOwnerRepairInfo.appointmentTime = vc.dateTimeFormat(new Date().getTime());
@@ -219,6 +219,9 @@
                 if (_repairObjType == '004') {
                     _publicArea = "F";
                 }
+                vc.component.addOwnerRepairInfo.repairObjId = '';
+                vc.component.addOwnerRepairInfo.repairObjName = '';
+                vc.component.addOwnerRepairInfo.repairType = '';
                 //加载报修类型
                 $that._listRepairSettings(1, 50, _publicArea);
             }

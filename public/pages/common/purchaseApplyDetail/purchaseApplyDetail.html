@@ -5,19 +5,17 @@
                 <div class="ibox-title">
                     <h5>申请信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-if="purchaseApplyDetailInfo.resOrderType == '10000'"
-                            v-on:click="_printPurchaseApply()">
-                            打印
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-if="purchaseApplyDetailInfo.resOrderType == '10000'"
+                                v-on:click="_printPurchaseApply()">打印
                         </button>
                         <button type="button" class="btn btn-primary btn-sm"
-                            v-on:click="_callBackListPurchaseApply()">
-                            返回
+                                v-on:click="_callBackListPurchaseApply()">返回
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="col-form-label">申请单号：</label>
@@ -37,7 +35,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -51,15 +48,14 @@
                                 <label class="">{{purchaseApplyDetailInfo.createTime}}</label>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4"
+                             v-if="purchaseApplyDetailInfo.resOrderType==10000 && purchaseApplyDetailInfo.warehousingWay==20000">
                             <div class="form-group">
-                                <label class="col-form-label">参考价格：</label>
-                                <label class="">{{purchaseApplyDetailInfo.totalPrice}}</label>
+                                <label class="col-form-label">参考总价格：</label>
+                                <label class="">￥{{purchaseApplyDetailInfo.totalPrice}}</label>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -69,15 +65,36 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
+                                <label class="col-form-label">{{purchaseApplyDetailInfo.resOrderType==10000 ? '入库方式' :
+                                    '出库方式'}}：</label>
+                                <label class="">{{purchaseApplyDetailInfo.resOrderType==10000 ?
+                                    (purchaseApplyDetailInfo.warehousingWay==10000 ? '直接入库' :
+                                    purchaseApplyDetailInfo.warehousingWay==20000 ? '采购入库' : '紧急采购') :
+                                    (purchaseApplyDetailInfo.warehousingWay==10000 ? '直接出库' : '审核出库')}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
                                 <label class="col-form-label">说明：</label>
                                 <label class="">{{purchaseApplyDetailInfo.description}}</label>
                             </div>
                         </div>
-
-                        
+                        <div class="col-sm-4" v-if="purchaseApplyDetailInfo.resOrderType==10000">
+                            <div class="form-group">
+                                <label class="col-form-label">参考采购总价格：</label>
+                                <label class="">{{purchaseApplyDetailInfo.totalPrice > 0 ? '￥' +
+                                    purchaseApplyDetailInfo.totalPrice : '-'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" v-if="purchaseApplyDetailInfo.resOrderType==10000">
+                            <div class="form-group">
+                                <label class="col-form-label">实际采购总价格：</label>
+                                <label class="">{{purchaseApplyDetailInfo.purchaseTotalPrice > 0 ? '￥' +
+                                    purchaseApplyDetailInfo.purchaseTotalPrice : '-'}}</label>
+                            </div>
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
@@ -89,77 +106,97 @@
                     <h5>申请物资</h5>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">物资</th>
-                                <th class="text-center">物资编码</th>
-                                <th class="text-center">单价</th>
-                                <th class="text-center">库存</th>
-                                <th class="text-center">申请数量</th>
-                                <th class="text-center">备注</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">物品类型</th>
+                            <th class="text-center">物品名称</th>
+                            <th class="text-center">物品所属仓库</th>
+                            <th class="text-center">物品规格</th>
+                            <th class="text-center">供应商</th>
+                            <th class="text-center">物品编码</th>
+                            <th class="text-center">参考单价</th>
+                            <th class="text-center">原有库存</th>
+                            <th class="text-center">现有库存</th>
+                            <th class="text-center">申请数量</th>
+                            <th class="text-center">申请备注</th>
+                            <th class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000">采购单价</th>
+                            <th class="text-center">{{purchaseApplyDetailInfo.resOrderType==10000 ? '采购数量' : '领用数量'}}</th>
+                            <th class="text-center">{{purchaseApplyDetailInfo.resOrderType==10000 ? '采购备注' : '领用备注'}}
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="resourceStore in purchaseApplyDetailInfo.purchaseApplyDetailVo">
-                                <td class="text-center">{{resourceStore.resName}}</td>
-                                <td class="text-center">{{resourceStore.resCode}}</td>
-                                <td class="text-center">{{resourceStore.price}}</td>
-                                <td class="text-center">{{resourceStore.stock}}</td>
-                                <td class="text-center">{{resourceStore.quantity}}</td>
-                                <td class="text-center">{{resourceStore.remark}}</td>
-                            </tr>
+                        <tr v-for="resourceStore in purchaseApplyDetailInfo.purchaseApplyDetailVo">
+                            <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
+                            <td class="text-center">{{resourceStore.resName}}</td>
+                            <td class="text-center">{{resourceStore.shName}}</td>
+                            <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
+                            <td class="text-center">
+                                {{resourceStore.supplierName ? resourceStore.supplierName : '-'}}
+                            </td>
+                            <td class="text-center">{{resourceStore.resCode}}</td>
+                            <td class="text-center">￥{{resourceStore.price}}</td>
+                            <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.quantity}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.remark}}</td>
+                            <td class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000">
+                                {{resourceStore.purchasePrice ? '￥' + resourceStore.purchasePrice : '-'}}
+                            </td>
+                            <td class="text-center">
+                                {{resourceStore.purchaseQuantity? resourceStore.purchaseQuantity+resourceStore.unitCodeName: '-'}}
+                            </td>
+                            <td class="text-center">
+                                {{resourceStore.purchaseRemark? resourceStore.purchaseRemark :'-'}}
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="14">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="row">
+    <div class="row" v-if="purchaseApplyDetailInfo.warehousingWay == 20000">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>工单流转</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="table table-stripped">
                         <thead>
-                            <tr>
-                                <th scope="col">序号</th>
-                                <th scope="col">处理人</th>
-                                <th scope="col">状态</th>
-                                <th scope="col">处理时间</th>
-                                <th scope="col">耗时</th>
-                                <th scope="col">意见</th>
-                            </tr>
+                        <tr>
+                            <th scope="col">序号</th>
+                            <th scope="col">处理人</th>
+                            <th scope="col">状态</th>
+                            <th scope="col">处理时间</th>
+                            <th scope="col">耗时</th>
+                            <th scope="col">意见</th>
+                        </tr>
                         </thead>
                         <tbody>
-                
-                            <tr v-for="(tItem,index) in purchaseApplyDetailInfo.auditUsers">
-                                <td>{{index+1}}</td>
-                                <td>{{tItem.auditName}}</td>
-                                <td>{{tItem.stateName}}</td>
-                                <td>{{tItem.auditTime}}</td>
-                                <td>{{tItem.duration}}</td>
-                                <td>{{tItem.message}}</td>
-                            </tr>
+                        <tr v-for="(tItem,index) in purchaseApplyDetailInfo.auditUsers">
+                            <td>{{index+1}}</td>
+                            <td>{{tItem.auditName}}</td>
+                            <td>{{tItem.stateName}}</td>
+                            <td>{{tItem.auditTime}}</td>
+                            <td>{{tItem.duration}}</td>
+                            <td>{{tItem.message}}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

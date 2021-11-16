@@ -26,7 +26,6 @@
             if (vc.notNull(vc.getParam("hireOwnerFee"))) {
                 $that.listRoomCreateFeeInfo.hireOwnerFee = vc.getParam("hireOwnerFee");
             }
-
             if (vc.notNull(vc.getParam('ownerId'))) {
                 $that.listRoomCreateFeeInfo.urlOwnerId = vc.getParam("ownerId");
             }
@@ -41,14 +40,24 @@
                 });
         },
         methods: {
+            getOnePrice1: function (fee) {
+                let _price = fee.mwPrice;
+                if (!_price) {
+                    return fee.squarePrice;
+                }
+                if (parseFloat(_price) > 0) {
+                    return _price;
+                }
+                return fee.squarePrice;
+            },
             _loadListRoomCreateFeeInfo: function (_page, _row) {
                 var param = {
                     params: {
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        payerObjId: vc.component.listRoomCreateFeeInfo.roomId,
-                        ownerId: $that.listRoomCreateFeeInfo.urlOwnerId
+                        payerObjId: vc.component.listRoomCreateFeeInfo.roomId
+                        // ownerId: $that.listRoomCreateFeeInfo.urlOwnerId
                     }
                 };
                 //发送get请求
@@ -62,6 +71,7 @@
                         vc.component.listRoomCreateFeeInfo.fees = _feeConfigInfo.fees;
                         vc.emit('pagination', 'init', {
                             total: _feeConfigInfo.records,
+                            dataCount: _feeConfigInfo.total,
                             currentPage: _page
                         });
                     }, function () {
@@ -132,7 +142,7 @@
                 if (_fee.state == '2009001') {
                     return "-";
                 }
-                return vc.dateSubOneDay(_fee.startTime,_fee.deadlineTime, _fee.feeFlag);
+                return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
             },
             _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {
@@ -177,7 +187,7 @@
                         console.log('请求失败处理');
                     }
                 );
-            },
+            }
         }
     });
 })(window.vc);

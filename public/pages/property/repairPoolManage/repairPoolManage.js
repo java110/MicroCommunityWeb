@@ -69,6 +69,7 @@
                         vc.component.repairPoolManageInfo.repairPools = _repairPoolManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.repairPoolManageInfo.records,
+                            dataCount: vc.component.repairPoolManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -83,26 +84,7 @@
                 vc.component.repairPoolManageInfo.conditions.state = '';
                 vc.component.repairPoolManageInfo.conditions.repairId = '';
                 vc.component.repairPoolManageInfo.conditions.tel = '';
-                var param = {
-                    params: vc.component.repairPoolManageInfo.conditions
-                };
-                //发送get请求
-                vc.http.get('ownerRepairManage',
-                    'list',
-                    param,
-                    function (json, res) {
-                        var _repairPoolManageInfo = JSON.parse(json);
-                        vc.component.repairPoolManageInfo.total = _repairPoolManageInfo.total;
-                        vc.component.repairPoolManageInfo.records = _repairPoolManageInfo.records;
-                        vc.component.repairPoolManageInfo.repairPools = _repairPoolManageInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.repairPoolManageInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                $that._listRepairPools(DEFAULT_PAGE,DEFAULT_ROWS);
             },
             _openRepairDetail: function (_repairPool) {
                 vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
@@ -178,7 +160,7 @@
                             vc.emit('repairPoolManage', 'listRepairPool', {});
                             vc.toast("操作成功");
                             return;
-                        } else if (_json.code == 404) {
+                        } else {
                             vc.toast(_json.msg);
                         }
                     },

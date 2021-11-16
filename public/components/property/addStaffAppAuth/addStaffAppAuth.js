@@ -9,11 +9,11 @@
             addStaffAppAuthInfo: {
                 auId: '',
                 appType: 'WECHAT',
-
+                showRefresh: false,
             }
         },
         _initMethod: function () {
-           
+           $that._timer4Refresh();
         },
         _initEvent: function () {
             vc.on('addStaffAppAuth', 'openAddStaffAppAuthModal', function () {
@@ -22,7 +22,16 @@
             });
         },
         methods: {
+            // 两分钟后显示遮罩层
+            _timer4Refresh: function () {
+              setTimeout(() => {
+                  $that.addStaffAppAuthInfo.showRefresh = true;
+              }, 120000);
+            },
             _changeAppType: function () {
+                // 隐藏遮罩层
+                $that.addStaffAppAuthInfo.showRefresh = false;
+                $that._timer4Refresh();
                 //判断是否支付
                 var param = {
                     params: {

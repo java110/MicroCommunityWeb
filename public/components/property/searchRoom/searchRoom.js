@@ -24,7 +24,7 @@
                 console.log("打开业主成员界面")
                 $('#searchRoomModel').modal('show');
                 vc.component._refreshSearchRoomData();
-                //vc.component._loadAllRoomInfo(1,10);
+                vc.component._loadAllRoomInfo(1,10);
             });
 
             vc.on('searchRoom','listenerFloorInfo',function(_floorInfo){
@@ -37,16 +37,16 @@
                 vc.component.searchRoomInfo.rooms=_rooms;
             });
             vc.on('searchRoom','paginationPlus', 'page_event', function (_currentPage) {
-                vc.component._loadAllRoomInfo(_currentPage, 15,vc.component.searchRoomInfo._currentRoomNum);
+                vc.component._loadAllRoomInfo(_currentPage, 10);
             });
         },
         methods:{
             _loadAllRoomInfo:function(_page,_row,_roomNum){
 
-                if(vc.component.searchRoomInfo._currentFloorNum == ''){
-                    vc.toast("未填写小区楼编号");
-                    return ;
-                }
+                // if(vc.component.searchRoomInfo._currentFloorNum == ''){
+                //     vc.toast("未填写小区楼编号");
+                //     return ;
+                // }
 
                 var param = {
                     params:{

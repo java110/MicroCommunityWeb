@@ -27,7 +27,6 @@
                     }, (err) => {
 
                     })
-
             });
 
             vc.on('simplifyOwnerTransactionCar', 'listMachineTranslate', function (_param) {
@@ -119,7 +118,7 @@
                 if (_car == null) {
                     return;
                 }
-                $that._listSimplifyOwnerTransactionCar();
+                $that._listSimplifyOwnerTransactionCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             clearSimplifyOwnerTransactionCarInfo: function () {
                 $that.simplifyOwnerTransactionCarInfo = {

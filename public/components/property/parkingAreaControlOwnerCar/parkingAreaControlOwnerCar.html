@@ -1,0 +1,88 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-3 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlOwnerCar.carNum" type="text" placeholder="必填，请填写车牌号"
+                class="form-control">
+
+        </div>
+        <div class="col-lg-3 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
+            <button type=" button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_qureyParkingAreaControlOwnerCar()">
+                查询
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">车牌号</th>
+                    <th class="text-center">房屋号</th>
+                    <th data-hide="phone" class="text-center">车辆品牌</th>
+                    <th data-hide="phone" class="text-center">车辆类型</th>
+                    <th data-hide="phone" class="text-center">颜色</th>
+                    <th data-hide="phone" class="text-center">业主</th>
+                    <th data-hide="phone" class="text-center">车位</th>
+                    <th data-hide="phone" class="text-center">起租时间</th>
+                    <th data-hide="phone" class="text-center">截止时间</th>
+                    <th data-hide="phone" class="text-center">状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="car in parkingAreaControlOwnerCar.cars">
+                    <td class="text-center">
+                        {{car.carNum}}
+                    </td>
+                    <td class="text-center">
+                        {{car.roomName}}
+                    </td>
+                    <td class="text-center">
+                        {{car.carBrand}}
+                    </td>
+                    <td class="text-center">
+                        {{car.carTypeName}}
+                    </td>
+                    <td class="text-center">
+                        {{car.carColor}}
+                    </td>
+                    <td class="text-center">
+                        {{car.ownerName}}({{car.link}})
+                    </td>
+                    <td v-if="car.areaNum && car.state == '1001'" class="text-center">
+                        {{car.areaNum}}车场{{car.num}}车位
+                    </td>
+                    <td v-else class="text-center">
+                        车位已释放
+                    </td>
+                    <td class="text-center">
+                        {{car.startTime}}
+                    </td>
+                    <td class="text-center">
+                        {{car.endTime}}
+                    </td>
+                    <td class="text-center">
+                        {{_getCarState(car)}}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <ul class="pagination float-right"></ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- 分页 -->
+        <vc:create path="frame/paginationPlus" namespace="parkingAreaControlOwnerCar"></vc:create>
+    </div>
+</div>

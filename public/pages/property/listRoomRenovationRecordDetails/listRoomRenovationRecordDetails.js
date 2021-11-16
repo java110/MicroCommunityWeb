@@ -11,11 +11,10 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                imgBoxSwitch: false,
-                imgBoxUrl: '',
                 conditions: {
                     recordId: '',
                     roomName: '',
+                    state: '',
                     roomId: '',
                     communityId: vc.getCurrentCommunity().communityId
                 }
@@ -24,6 +23,7 @@
         _initMethod: function () {
             vc.component.roomRenovationRecordDetailsInfo.conditions.recordId = vc.getParam('recordId');
             vc.component.roomRenovationRecordDetailsInfo.conditions.roomName = vc.getParam('roomName');
+            vc.component.roomRenovationRecordDetailsInfo.conditions.state = vc.getParam('state');
             vc.component._listRoomRenovationRecordDetails(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -51,6 +51,7 @@
                         vc.component.roomRenovationRecordDetailsInfo.roomRenovationRecordDetails = _roomRenovationRecordDetailsInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.roomRenovationRecordDetailsInfo.records,
+                            dataCount: vc.component.roomRenovationRecordDetailsInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -69,11 +70,7 @@
                 vc.goBack();
             },
             showImg: function (e) {
-                vc.component.roomRenovationRecordDetailsInfo.imgBoxSwitch = true;
-                vc.component.roomRenovationRecordDetailsInfo.imgBoxUrl = e;
-            },
-            hideImgBox: function () {
-                vc.component.roomRenovationRecordDetailsInfo.imgBoxSwitch = false;
+                vc.emit('viewImage', 'showImage', {url: e});
             }
         }
     });

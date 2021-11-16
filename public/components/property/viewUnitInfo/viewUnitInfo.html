@@ -4,7 +4,8 @@
             <div class="ibox-title">
                 <h5>单元信息</h5>
                 <div class="ibox-tools" style="top:10px;">
-                    <button type="button" v-if="viewUnitInfo.index != 2 && viewUnitInfo.floorId !='' && viewUnitInfo.floorId !='-1'"
+                    <button type="button"
+                            v-if="viewUnitInfo.index != 2 && viewUnitInfo.floorId !='' && viewUnitInfo.floorId !='-1'"
                             class="btn btn-primary btn-sm" style="margin-right:10px;"
                             v-on:click="_openSelectUnitInfoModel()">
                         <i class="fa fa-search"></i> 选择单元
@@ -36,7 +37,6 @@
                             <label class="">{{viewUnitInfo.layerCount}}</label>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
@@ -47,24 +47,26 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
+                            <label class="col-form-label">面积：</label>
+                            <label class="">{{viewUnitInfo.unitArea}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
                             <label class="col-form-label">备注：</label>
                             <label class="">{{viewUnitInfo.remark}}</label>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
     <vc:create path="property/addUnit"
                callBackListener="viewUnitInfo"
-               callBackFunction="chooseUnit"
-    ></vc:create>
-
-
+               callBackFunction="chooseUnit">
+    </vc:create>
     <vc:create path="property/chooseUnit"
                emitChooseUnit="viewUnitInfo"
-               emitLoadData="viewUnitInfo"
-    ></vc:create>
+               emitLoadData="viewUnitInfo">
+    </vc:create>
 </div>

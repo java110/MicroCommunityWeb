@@ -14,7 +14,8 @@
                 records: 1,
                 areaNum: '',
                 num: '',
-                parkingName: ''
+                parkingName: '',
+                totalAmount: 0.0
             }
         },
         _initMethod: function () {
@@ -24,8 +25,8 @@
             //切换 至费用页面
             vc.on('simplifyCarFee', 'switch', function (_param) {
 
-                if(_param.ownerId == ''){
-                    return ;
+                if (_param.ownerId == '') {
+                    return;
                 }
                 $that.clearSimplifyCarFeeInfo();
                 vc.copyObject(_param, $that.simplifyCarFeeInfo)
@@ -56,6 +57,9 @@
                         payerObjId: vc.component.simplifyCarFeeInfo.carId
                     }
                 };
+                if(!vc.component.simplifyCarFeeInfo.carId){
+                    return;
+                }
                 //发送get请求
                 vc.http.get('listParkingSpaceFee',
                     'list',
@@ -65,6 +69,12 @@
                         vc.component.simplifyCarFeeInfo.total = _feeConfigInfo.total;
                         vc.component.simplifyCarFeeInfo.records = _feeConfigInfo.records;
                         vc.component.simplifyCarFeeInfo.fees = _feeConfigInfo.fees;
+                        let _totalAmount = 0.0;
+                        _feeConfigInfo.fees.forEach(item => {
+                            _totalAmount += parseFloat(item.amountOwed);
+
+                        })
+                        $that.simplifyCarFeeInfo.totalAmount = _totalAmount;
                         vc.emit('simplifyCarFee', 'paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
                             currentPage: _page
@@ -174,7 +184,7 @@
                 $that.simplifyCarFeeInfo.carNum = _car.carNum;
                 $that.simplifyCarFeeInfo.num = _car.num;
                 $that.simplifyCarFeeInfo.parkingName = _car.areaNum + '停车场' + _car.num + '停车位';
-                $that._listSimplifyCarFee(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listSimplifyCarFee(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             clearSimplifyCarFeeInfo: function () {
                 $that.simplifyCarFeeInfo = {
@@ -188,7 +198,8 @@
                     records: 1,
                     areaNum: '',
                     num: '',
-                    parkingName: ''
+                    parkingName: '',
+                    totalAmount: 0.0
                 }
             },
             _simplifyCarGetFeeOwnerInfo: function (attrs) {
@@ -196,7 +207,7 @@
                 let ownerName = $that._getAttrValue(attrs, '390008');
                 let ownerLink = $that._getAttrValue(attrs, '390009');
 
-                return '业主：'+ownerName + ',电话：' + ownerLink;
+                return '业主：' + ownerName + ',电话：' + ownerLink;
             }
 
 

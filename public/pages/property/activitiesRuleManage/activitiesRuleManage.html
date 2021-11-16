@@ -9,7 +9,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="activitiesRuleManageInfo.conditions.ruleType">
                                 <option selected value="">请选择活动类型</option>
                                 <option value="6666">最美员工</option>
@@ -29,10 +29,14 @@
                                 <option value="4444">员工</option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryActivitiesRuleMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetActivitiesRuleMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
@@ -90,7 +94,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

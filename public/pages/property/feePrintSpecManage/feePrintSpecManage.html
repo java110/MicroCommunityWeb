@@ -16,6 +16,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">图片</th>
+                            <th class="text-center">名称</th>
                             <th class="text-center">规格</th>
                             <th class="text-center">编码</th>
                             <th class="text-center">操作</th>
@@ -27,6 +28,7 @@
                                 <img :src="feePrintSpec.qrImg" style="border-radius: 5px;" width="100px"
                                      height="100px"/>
                             </td>
+                            <td class="text-center">{{feePrintSpec.printName}}</td>
                             <td class="text-center">{{feePrintSpec.specCd == '1010'?'催缴打印说明':'收据打印说明'}}</td>
                             <td class="text-center">{{feePrintSpec.printId}}</td>
                             <td class="text-center">

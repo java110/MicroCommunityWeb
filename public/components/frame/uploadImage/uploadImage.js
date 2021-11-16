@@ -35,7 +35,8 @@
             });
             vc.on('uploadImage', 'clearImage', function () {
                 this.uploadImageInfo = {
-                    photos: []
+                    photos: [],
+                    imageCount: 99
                 }
             });
 
@@ -51,11 +52,17 @@
                         this.uploadImageInfo.photos.push(_photo);
                         return;
                     }
+                    if (_photo.indexOf("https") > -1 || _photo.indexOf("http") > -1) {
+                        vc.urlToBase64(_photo, function (_base64Data) {
+                            this.uploadImageInfo.photos.push(_base64Data);
+                        });
+                        return;
+                    }
                     if (_photo.indexOf(photoUrl) > -1) {
                         vc.urlToBase64(_photo, function (_base64Data) {
                             this.uploadImageInfo.photos.push(_base64Data);
                         });
-                        return ;
+                        return;
                     }
                     vc.urlToBase64(photoUrl + "?fileId=" + _photo + "&communityId=" + vc.getCurrentCommunity().communityId + "&time=" + new Date(), function (_base64Data) {
                         this.uploadImageInfo.photos.push(_base64Data);

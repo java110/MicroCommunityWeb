@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -10,37 +9,34 @@
                 inspectionPlanId: '',
                 inspectionPlanName: '',
                 inspectionRouteId: '',
-                inspectionPlanPeriod:'',
-                inspectionPlanPeriods:[],
+                inspectionPlanPeriod: '',
+                inspectionPlanPeriods: [],
                 startTime: '',
                 endTime: '',
-                signType:'',
-                signTypes:[],
-                state:'',
-                states:[],
-                remark: '',
-
+                signType: '',
+                signTypes: [],
+                state: '',
+                states: [],
+                remark: ''
             }
         },
         _initMethod: function () {
             vc.component._initAddInspectionPlanDateInfo();
-            vc.getDict('inspection_plan',"inspection_plan_period",function(_data){
-                console.log("收到字典参数:"+_data);
+            vc.getDict('inspection_plan', "inspection_plan_period", function (_data) {
+                console.log("收到字典参数:" + _data);
                 vc.component.addInspectionPlanInfo.inspectionPlanPeriods = _data;
             });
-            vc.getDict('inspection_plan',"state",function(_data){
+            vc.getDict('inspection_plan', "state", function (_data) {
                 vc.component.addInspectionPlanInfo.states = _data;
             });
-            vc.getDict('inspection_plan',"sign_type",function(_data){
+            vc.getDict('inspection_plan', "sign_type", function (_data) {
                 vc.component.addInspectionPlanInfo.signTypes = _data;
             });
-
         },
         _initEvent: function () {
             vc.on('addInspectionPlan', 'openAddInspectionPlanModal', function () {
                 $('#addInspectionPlanModel').modal('show');
             });
-
             vc.on("addInspectionPlanInfo", "notify", function (_param) {
                 if (_param.hasOwnProperty("staffId")) {
                     vc.component.addInspectionPlanInfo.staffId = _param.staffId;
@@ -69,6 +65,13 @@
                             errInfo: "巡检计划名称不能超过100位"
                         },
                     ],
+                    'addInspectionPlanInfo.inspectionRouteId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "巡检路线不能为空"
+                        }
+                    ],
                     'addInspectionPlanInfo.inspectionPlanPeriod': [
                         {
                             limit: "required",
@@ -85,19 +88,19 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "开始时间不能为空"
+                            errInfo: "计划开始时间不能为空"
                         },
                         {
                             limit: "dateTime",
                             param: "",
-                            errInfo: "计计划开始时间不是有效的时间格式"
+                            errInfo: "计划开始时间不是有效的时间格式"
                         },
                     ],
                     'addInspectionPlanInfo.endTime': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "结束时间不能为空"
+                            errInfo: "计划结束时间不能为空"
                         },
                         {
                             limit: "dateTime",
@@ -136,12 +139,9 @@
                             errInfo: "备注信息不能超过200位"
                         },
                     ],
-
-
                 });
             },
             _initAddInspectionPlanDateInfo: function () {
-                vc.component.addInspectionPlanInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addInspectionPlanStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -150,7 +150,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.addInspectionPlanStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -171,14 +170,24 @@
                         var value = $(".addInspectionPlanEndTime").val();
                         vc.component.addInspectionPlanInfo.endTime = value;
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control addInspectionPlanStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control addInspectionPlanEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
             saveInspectionPlanInfo: function () {
                 if (!vc.component.addInspectionPlanValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addInspectionPlanInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -186,7 +195,6 @@
                     $('#addInspectionPlanModel').modal('hide');
                     return;
                 }
-
                 vc.http.post(
                     'addInspectionPlan',
                     'save',
@@ -200,45 +208,40 @@
                             //关闭model
                             $('#addInspectionPlanModel').modal('hide');
                             vc.component.clearAddInspectionPlanInfo();
-                            vc.emit('inspectionPlanManage', 'listInspectionPlan', {});
-
+                            vc.emit('inspectionPlanManage', 'reload', {});
                             return;
                         }
                         vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddInspectionPlanInfo: function () {
-                var states =  vc.component.addInspectionPlanInfo.states;
+                var states = vc.component.addInspectionPlanInfo.states;
                 var inspectionPlanPeriods = vc.component.addInspectionPlanInfo.inspectionPlanPeriods;
                 var signTypes = vc.component.addInspectionPlanInfo.signTypes;
                 vc.component.addInspectionPlanInfo = {
                     inspectionPlanName: '',
                     inspectionRouteId: '',
-                    inspectionPlanPeriod:'',
+                    inspectionPlanPeriod: '',
                     staffId: '',
                     startTime: '',
                     endTime: '',
-                    signType:'',
-                    state:'',
+                    signType: '',
+                    state: '',
                     remark: '',
-                    states:states,
-                    signTypes:signTypes,
-                    inspectionPlanPeriods:inspectionPlanPeriods
+                    states: states,
+                    signTypes: signTypes,
+                    inspectionPlanPeriods: inspectionPlanPeriods
                 };
             },
-            cleanInspectionPlanAddModel:function(){
+            cleanInspectionPlanAddModel: function () {
                 vc.component.clearAddInspectionPlanInfo();
                 //员工select2
                 vc.emit('addInspectionPlan', 'inspectionRouteSelect2', 'clearInspectionRoute', {});
             }
         }
     });
-
 })(window.vc);

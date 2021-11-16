@@ -67,7 +67,7 @@
                             <td class="text-center">{{parkingArea.paId}}</td>
                             <td class="text-center">{{parkingArea.num}}</td>
                             <td class="text-center" v-if="parkingArea.typeCd=='1001'">地上停车场</td>
-                            <td class="text-center" v-if="parkingArea.typeCd=='2001'">地下停车场</td>
+                            <td class="text-center" v-else>地下停车场</td>
                             <td v-for="item in parkingArea.listValues">
                                 {{item}}
                             </td>
@@ -83,6 +83,14 @@
                                             v-on:click="_openDeleteParkingAreaModel(parkingArea)">删除
                                     </button>
                                 </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openParkingAreaText(parkingArea)">问候语
+                                    </button>
+                                </div>
+                                
+
+                                
                             </td>
                         </tr>
                         </tbody>
