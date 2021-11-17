@@ -5,18 +5,16 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        
+
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择楼栋" v-model="reportFeeSummaryInfo.conditions.floorId"
-                                    class=" form-control">
+                                <input type="text" placeholder="请选择楼栋" v-model="reportFeeSummaryInfo.conditions.floorId" class=" form-control">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                        v-on:click="_openChooseFloorMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
                                         <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
@@ -24,8 +22,7 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportFeeSummaryInfo.conditions.unitId">
+                                <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeSummaryInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
                                     <option v-for="(unit,index) in reportFeeSummaryInfo.roomUnits" :key="index"
                                         v-bind:value="unit.unitId">
@@ -36,16 +33,14 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
-                                    v-model="reportFeeSummaryInfo.conditions.roomNum">
+                                <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md" v-model="reportFeeSummaryInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
                                 <i class="fa fa-search"></i>查询
                             </button>
-                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
-                                style="margin-left: 20px;">
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()" style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i>重置
                             </button>
                         </div>
@@ -53,14 +48,12 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择缴费开始时间"
-                                    v-model="reportFeeSummaryInfo.conditions.startTime" class=" form-control startTime">
+                                <input type="text" placeholder="请选择缴费开始时间" v-model="reportFeeSummaryInfo.conditions.startTime" class=" form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择缴费结束时间"
-                                    v-model="reportFeeSummaryInfo.conditions.endTime" class=" form-control endTime">
+                                <input type="text" placeholder="请选择缴费结束时间" v-model="reportFeeSummaryInfo.conditions.endTime" class=" form-control endTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -151,7 +144,7 @@
                             <div class="row">实收: {{reportFeeSummaryInfo.allReceivedAmount}}元</div>
                         </span>
                         <span class="col-md-2">
-                            <div class="row">欠费: {{reportFeeSummaryInfo.totalPreferentialAmount}}元</div>
+                            <div class="row">欠费: {{_computeTotalOweAmount()}}元</div>
                             <div class="row">欠费: {{reportFeeSummaryInfo.allOweAmount}}元</div>
                         </span>
                     </div>
