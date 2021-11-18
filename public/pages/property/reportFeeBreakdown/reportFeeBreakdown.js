@@ -15,12 +15,12 @@
                 roomUnits: [],
                 feeTypeCds: [],
                 feeConfigDtos: [],
-                totalReceivableAmount:0.0,
-                allReceivableAmount:0.0,
-                totalReceivedAmount:0.0,
-                allReceivedAmount:0.0,
-                totalPreferentialAmount:0.0,
-                allOweAmount:0.0,
+                totalReceivableAmount: 0.0,
+                allReceivableAmount: 0.0,
+                totalReceivedAmount: 0.0,
+                allReceivedAmount: 0.0,
+                totalPreferentialAmount: 0.0,
+                allOweAmount: 0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -30,13 +30,15 @@
                     feeTypeCd: '',
                     startTime: '',
                     endTime: '',
+                    yearMonth: '',
                     communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
         _initMethod: function () {
-            vc.component._initDate();
-            vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            //vc.component._initDate();
+            $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that.reportFeeBreakdownInfo.conditions.yearMonth = $that._getCurrentMonth();
             //关联字典表费用类型
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.reportFeeBreakdownInfo.feeTypeCds = _data;
@@ -128,26 +130,26 @@
                             vc.component.reportFeeBreakdownInfo.feeConfigDtos = _reportFeeBreakdownInfo.data[0].feeConfigDtos;
                         }
 
-                         //计算小计
-                         let _totalReceivableAmount=0.0;
-                         let _totalReceivedAmount=0.0;
-                         let _totalPreferentialAmount=0.0;
-                        
-                         _reportFeeBreakdownInfo.data.forEach(item => {
-                             _totalReceivableAmount += parseFloat(item.receivableAmount);
-                             _totalReceivedAmount += parseFloat(item.receivedAmount);
-                             _totalPreferentialAmount += parseFloat(item.oweAmount);
-                         });
- 
-                         $that.reportFeeBreakdownInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
-                         $that.reportFeeBreakdownInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
-                         $that.reportFeeBreakdownInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
- 
-                         if(_reportFeeBreakdownInfo.data.length>0){
-                             $that.reportFeeBreakdownInfo.allReceivableAmount = _reportFeeBreakdownInfo.data[0].allReceivableAmount;
-                             $that.reportFeeBreakdownInfo.allReceivedAmount = _reportFeeBreakdownInfo.data[0].allReceivedAmount;
-                             $that.reportFeeBreakdownInfo.allOweAmount = _reportFeeBreakdownInfo.data[0].allOweAmount;
-                         }
+                        //计算小计
+                        let _totalReceivableAmount = 0.0;
+                        let _totalReceivedAmount = 0.0;
+                        let _totalPreferentialAmount = 0.0;
+
+                        _reportFeeBreakdownInfo.data.forEach(item => {
+                            _totalReceivableAmount += parseFloat(item.receivableAmount);
+                            _totalReceivedAmount += parseFloat(item.receivedAmount);
+                            _totalPreferentialAmount += parseFloat(item.oweAmount);
+                        });
+
+                        $that.reportFeeBreakdownInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
+                        $that.reportFeeBreakdownInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
+                        $that.reportFeeBreakdownInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+
+                        if (_reportFeeBreakdownInfo.data.length > 0) {
+                            $that.reportFeeBreakdownInfo.allReceivableAmount = _reportFeeBreakdownInfo.data[0].allReceivableAmount;
+                            $that.reportFeeBreakdownInfo.allReceivedAmount = _reportFeeBreakdownInfo.data[0].allReceivedAmount;
+                            $that.reportFeeBreakdownInfo.allOweAmount = _reportFeeBreakdownInfo.data[0].allOweAmount;
+                        }
 
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeBreakdownInfo.records,
@@ -176,7 +178,7 @@
                 $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
-                var param = {
+                let param = {
                     params: {
                         floorId: _floorId,
                         communityId: vc.getCurrentCommunity().communityId
@@ -212,6 +214,41 @@
             },
             _exportExcel: function () {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeBreakdown&' + vc.objToGetParam($that.reportFeeBreakdownInfo.conditions));
+            },
+            _computeSum: function (a, b) {
+                return (parseFloat(a) + parseFloat(b)).toFixed(2)
+            },
+            _computeOweFee: function (fee) {
+                let _oweFee = (parseFloat(fee.hisOweAmount) + parseFloat(fee.curReceivableAmount) - parseFloat(fee.curReceivedAmount) - parseFloat(fee.hisOweReceivedAmount)).toFixed(2);
+                if (_oweFee < 0) {
+                    return 0;
+                }
+                return _oweFee;
+            },
+            _computeTotalOweAmount: function () {
+                if (!window.$that) {
+                    return 0;
+                }
+                if (!$that.reportFloorUnitFeeSummaryInfo) {
+                    return 0;
+                }
+                let _amount = 0;
+                $that.reportFloorUnitFeeSummaryInfo.fees.forEach(item => {
+                    _amount += parseFloat($that._computeOweFee(item));
+                })
+                console.log(_amount)
+                return _amount.toFixed(2);
+            },
+            _getCurrentMonth: function () {
+                let date = new Date();
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+
+                if (month < 10) {
+                    month = '0' + month;
+                }
+
+                return year + '' + month;
             }
         }
     });

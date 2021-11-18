@@ -88,7 +88,7 @@
                             <tr>
                                 <th class="text-center">日期</th>
                                 <th class="text-center" v-for="(item,index) in reportFeeSummaryInfo.feeConfigNames">
-                                    {{item.configName}}
+                                    {{item.configName}}(实收)
                                 </th>
                                 <th class="text-center">历史欠费(单位:元)</th>
                                 <th class="text-center">当月应收(单位:元)</th>
@@ -114,7 +114,7 @@
                                 <td class="text-center">{{fee.curReceivedAmount}}</td>
                                 <td class="text-center">{{fee.hisOweReceivedAmount}}</td>
                                 <td class="text-center">{{fee.preReceivedAmount}}</td>
-                                <td class="text-center">{{_computeSum(fee.hisOweReceivedAmount,fee.preReceivedAmount)}}</td>
+                                <td class="text-center">{{_computeSum(_computeSum(fee.hisOweReceivedAmount,fee.preReceivedAmount),fee.curReceivedAmount)}}</td>
                                 <td class="text-center">{{_computeOweFee(fee)}}</td>
                                 <td class="text-center">{{fee.chargeRate}}</td>
                                 <td class="text-center">{{fee.updateTime}}</td>
@@ -135,24 +135,26 @@
                             <div class="row"><b>小计</b></div>
                             <div class="row"><b>大计</b></div>
                         </span>
-                        <span class="col-md-2">
+                        <!-- <span class="col-md-2">
                             <div class="row">应收: {{reportFeeSummaryInfo.totalReceivableAmount}}元</div>
-                            <div class="row">应收: {{reportFeeSummaryInfo.allReceivableAmount}}元</div>
-                        </span>
+                            <div class="row">应收: {{reportFeeSummaryInfo.totalReceivableAmount}}元</div>
+                        </span> -->
                         <span class="col-md-2">
                             <div class="row">实收: {{reportFeeSummaryInfo.totalReceivedAmount}}元</div>
                             <div class="row">实收: {{reportFeeSummaryInfo.allReceivedAmount}}元</div>
                         </span>
                         <span class="col-md-2">
-                            <div class="row">欠费: {{_computeTotalOweAmount()}}元</div>
-                            <div class="row">欠费: {{reportFeeSummaryInfo.allOweAmount}}元</div>
+                            <div class="row">欠费追回: {{_computeTotalHisOweReceivedAmount()}}元</div>
+                            <div class="row">欠费追回: {{reportFeeSummaryInfo.allHisOweReceivedAmount}}元</div>
                         </span>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <span> 欠费金额 = 历史欠费 + 当月应收 - 当月实收 - 欠费追回</span>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div> 欠费金额 = 历史欠费 + 当月应收 - 当月实收 - 欠费追回</div>
+                            <div> 历史欠费：当月之前欠费；当月应收：当前月收费；当月实收：当月收到中属于当前月应收费用部分；</div>
+                            <div> 欠费追回：当月收到中属于历史欠费部分；预交费用：当月收到中属于预交费用部分</div>
                         </div>
-                        <div class="col-sm-5 float-right">
+                        <div class="col-sm-3 float-right">
                             <vc:create path="frame/pagination"></vc:create>
                         </div>
                     </div>
