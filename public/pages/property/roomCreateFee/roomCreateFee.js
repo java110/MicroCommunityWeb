@@ -20,6 +20,7 @@
                 conditions: {
                     floorId: '',
                     ownerName: '',
+                    ownerNameLike: '',
                     floorName: '',
                     unitId: '',
                     roomNum: '',
@@ -117,7 +118,7 @@
                 });
             },
             _openViewRoomCreateFee: function (_room) {
-                vc.jumpToPage("/admin.html#/pages/property/listRoomFee?roomId=" + _room.roomId+ '&ownerId=' + _room.ownerId);
+                vc.jumpToPage("/admin.html#/pages/property/listRoomFee?roomId=" + _room.roomId + '&ownerId=' + _room.ownerId);
             },
             /**
              根据楼ID加载房屋

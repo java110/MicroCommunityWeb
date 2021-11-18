@@ -104,7 +104,7 @@
                             return {
                                 roomNum: _term,
                                 page: 1,
-                                row: 10,
+                                row: 100,
                                 unitId: this.roomSelect2Info.unitId,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
