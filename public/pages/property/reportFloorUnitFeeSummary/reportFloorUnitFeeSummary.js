@@ -20,6 +20,7 @@
                 totalReceivedAmount:0.0,
                 allReceivedAmount:0.0,
                 totalPreferentialAmount:0.0,
+                allHisOweReceivedAmount: 0.0,
                 allOweAmount:0.0,
                 conditions: {
                     floorId: '',
@@ -173,11 +174,12 @@
                         $that.reportFloorUnitFeeSummaryInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
                         $that.reportFloorUnitFeeSummaryInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
                         $that.reportFloorUnitFeeSummaryInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+                        $that.reportFloorUnitFeeSummaryInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
 
                         if(_reportFloorUnitFeeSummaryInfo.data.length>0){
                             $that.reportFloorUnitFeeSummaryInfo.allReceivableAmount = _reportFloorUnitFeeSummaryInfo.data[0].allReceivableAmount;
                             $that.reportFloorUnitFeeSummaryInfo.allReceivedAmount = _reportFloorUnitFeeSummaryInfo.data[0].allReceivedAmount;
-                            $that.reportFloorUnitFeeSummaryInfo.allOweAmount = _reportFloorUnitFeeSummaryInfo.data[0].allOweAmount;
+                            $that.reportFloorUnitFeeSummaryInfo.allHisOweReceivedAmount = _reportFloorUnitFeeSummaryInfo.data[0].allHisOweReceivedAmount;
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFloorUnitFeeSummaryInfo.records,
@@ -291,6 +293,19 @@
                     _amount += parseFloat($that._computeOweFee(item));
                 })
                 console.log(_amount)
+                return _amount.toFixed(2);
+            },
+            _computeTotalHisOweReceivedAmount: function () {
+                if (!window.$that) {
+                    return 0;
+                }
+                if (!$that.reportFloorUnitFeeSummaryInfo) {
+                    return 0;
+                }
+                let _amount = 0;
+                $that.reportFloorUnitFeeSummaryInfo.fees.forEach(item => {
+                    _amount += parseFloat(item.hisOweReceivedAmount);
+                })
                 return _amount.toFixed(2);
             }
         }

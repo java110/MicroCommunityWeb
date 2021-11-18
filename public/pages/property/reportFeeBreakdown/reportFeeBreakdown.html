@@ -166,6 +166,10 @@
                             <div class="row">欠费: {{_computeTotalOweAmount()}}元</div>
                             <div class="row">欠费: {{reportFeeBreakdownInfo.allOweAmount}}元</div>
                         </span>
+                        <span class="col-md-2">
+                            <div class="row">欠费追回: {{_computeTotalHisOweReceivedAmount()}}元</div>
+                            <div class="row">欠费追回: {{reportFeeBreakdownInfo.allHisOweReceivedAmount}}元</div>
+                        </span>
                     </div>
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">

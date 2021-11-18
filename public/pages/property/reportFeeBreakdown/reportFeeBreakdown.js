@@ -20,6 +20,7 @@
                 totalReceivedAmount: 0.0,
                 allReceivedAmount: 0.0,
                 totalPreferentialAmount: 0.0,
+                allHisOweReceivedAmount: 0.0,
                 allOweAmount: 0.0,
                 conditions: {
                     floorId: '',
@@ -149,6 +150,7 @@
                             $that.reportFeeBreakdownInfo.allReceivableAmount = _reportFeeBreakdownInfo.data[0].allReceivableAmount;
                             $that.reportFeeBreakdownInfo.allReceivedAmount = _reportFeeBreakdownInfo.data[0].allReceivedAmount;
                             $that.reportFeeBreakdownInfo.allOweAmount = _reportFeeBreakdownInfo.data[0].allOweAmount;
+                            $that.reportFeeBreakdownInfo.allHisOweReceivedAmount = _reportFeeBreakdownInfo.data[0].allHisOweReceivedAmount;
                         }
 
                         vc.emit('pagination', 'init', {
@@ -249,6 +251,19 @@
                 }
 
                 return year + '' + month;
+            },
+            _computeTotalHisOweReceivedAmount: function () {
+                if (!window.$that) {
+                    return 0;
+                }
+                if (!$that.reportFloorUnitFeeSummaryInfo) {
+                    return 0;
+                }
+                let _amount = 0;
+                $that.reportFloorUnitFeeSummaryInfo.fees.forEach(item => {
+                    _amount += parseFloat(item.hisOweReceivedAmount);
+                })
+                return _amount.toFixed(2);
             }
         }
     });
