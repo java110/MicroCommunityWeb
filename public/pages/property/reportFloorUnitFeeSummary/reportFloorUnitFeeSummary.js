@@ -174,7 +174,6 @@
                         $that.reportFloorUnitFeeSummaryInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
                         $that.reportFloorUnitFeeSummaryInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
                         $that.reportFloorUnitFeeSummaryInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
-                        $that.reportFloorUnitFeeSummaryInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
 
                         if(_reportFloorUnitFeeSummaryInfo.data.length>0){
                             $that.reportFloorUnitFeeSummaryInfo.allReceivableAmount = _reportFloorUnitFeeSummaryInfo.data[0].allReceivableAmount;
