@@ -28,7 +28,8 @@
                     roomSubType: ''
                 },
                 currentPage: DEFAULT_PAGE,
-                listColumns: []
+                listColumns: [],
+                roomSubTypes: []
             }
         },
         _initMethod: function () {
@@ -38,6 +39,11 @@
             //与字典表关联
             vc.getDict('building_room', "state", function (_data) {
                 vc.component.roomInfo.states = _data;
+            });
+
+            //与字典表关联
+            vc.getDict('building_room', "room_sub_type", function (_data) {
+                vc.component.roomInfo.roomSubTypes = _data;
             });
             //根据 参数查询相应数据
             //vc.component._loadDataByParam();

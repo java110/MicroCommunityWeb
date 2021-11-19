@@ -71,9 +71,7 @@
                             <select class="form-control-sm form-control input-s-sm inline"
                                 v-model="roomInfo.conditions.roomSubType">
                                 <option selected disabled value="">必填，请选择房屋类型</option>
-                                <option value="110">住宅</option>
-                                <option value="120">办公</option>
-                                <option value="119">宿舍</option>
+                                <option :value="item.statusCd" v-for="(item,index) in roomInfo.roomSubTypes">{{item.name}}</option>
                             </select>
                         </div>
                     </div>
