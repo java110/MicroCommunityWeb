@@ -21,14 +21,20 @@
                 roomSubType: '110',
                 roomArea: '',
                 roomRent: '0',
+                roomSubTypes: []
             }
         },
         _initMethod: function () {
             $that._loadRoomAttrSpec();
+
         },
         _initEvent: function () {
             vc.on('editRoom', 'openEditRoomModal', function (_room) {
                 $that.refreshEditRoomInfo();
+                //与字典表关联
+                vc.getDict('building_room', "room_sub_type", function (_data) {
+                    vc.component.editRoomInfo.roomSubTypes = _data;
+                });
                 vc.copyObject(_room, vc.component.editRoomInfo);
                 vc.component.loadUnitsFromEditRoom(_room.floorId);
                 $('#editRoomModel').modal('show');
@@ -282,6 +288,7 @@
                     roomSubType: '110',
                     roomArea: '',
                     roomRent: '0',
+                    roomSubTypes: []
                 }
             }
         }

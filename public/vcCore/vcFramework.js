@@ -1675,7 +1675,6 @@
             initialDate: new Date(),
             autoClose: 1,
             todayBtn: true
-
         });
         $('.' + _dateStr).datetimepicker()
             .on('changeDate', function (ev) {
