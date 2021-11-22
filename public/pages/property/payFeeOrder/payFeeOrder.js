@@ -179,10 +179,6 @@
              * 点击 “提交缴费”
              */
             _openPayFee: function(_type) {
-                if (_type) {
-                    $that.payFeeOrderInfo.payType = _type;
-                }
-
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
                 }
@@ -207,6 +203,10 @@
                 }
                 //关闭model
                 $("#doPayFeeModal").modal('show');
+                if (_type) {
+                    $that.payFeeOrderInfo.payType = _type;
+                    setTimeout('document.getElementById("authCode").focus()', 1000);
+                }
             },
             _closeDoPayFeeModal: function() {
                 //关闭model

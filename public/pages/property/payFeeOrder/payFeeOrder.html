@@ -206,14 +206,9 @@
                         <label class="col-sm-3 col-form-label">备注：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.remark}}</label>
                     </div>
-                    <div class="row" v-if="payFeeOrderInfo.payType == 'qrCode'">
-                        <label class="col-sm-3 col-form-label">扫码:</label>
-                        <div class="col-sm-6">
-                            <input v-model="payFeeOrderInfo.authCode" type="text" @keyup.enter="_qrCodePayFee" placeholder="必填，请填写缴费时间">
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
+                    <input v-model="payFeeOrderInfo.authCode" id="authCode" class="form-control" style="width: 60%;" v-if="payFeeOrderInfo.payType == 'qrCode'" type="text" @keyup.enter="_qrCodePayFee" placeholder="请用扫码枪扫码">
                     <button type="button" class="btn btn-secondary" @click="_closeDoPayFeeModal()">关闭</button>
                     <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.payType == 'common'" @click="_payFee()">确定收费</button>
                 </div>
