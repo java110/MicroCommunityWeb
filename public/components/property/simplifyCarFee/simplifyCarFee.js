@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -18,12 +18,12 @@
                 totalAmount: 0.0
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
+        _initEvent: function() {
             //切换 至费用页面
-            vc.on('simplifyCarFee', 'switch', function (_param) {
+            vc.on('simplifyCarFee', 'switch', function(_param) {
 
                 if (_param.ownerId == '') {
                     return;
@@ -39,16 +39,16 @@
                     })
 
             });
-            vc.on('simplifyCarFee', 'notify', function () {
+            vc.on('simplifyCarFee', 'notify', function() {
                 $that._listSimplifyCarFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('simplifyCarFee', 'paginationPlus', 'page_event',
-                function (_currentPage) {
+                function(_currentPage) {
                     $that._listSimplifyCarFee(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
-            _listSimplifyCarFee: function (_page, _row) {
+            _listSimplifyCarFee: function(_page, _row) {
                 var param = {
                     params: {
                         page: _page,
@@ -57,14 +57,14 @@
                         payerObjId: vc.component.simplifyCarFeeInfo.carId
                     }
                 };
-                if(!vc.component.simplifyCarFeeInfo.carId){
+                if (!vc.component.simplifyCarFeeInfo.carId) {
                     return;
                 }
                 //发送get请求
                 vc.http.get('listParkingSpaceFee',
                     'list',
                     param,
-                    function (json) {
+                    function(json) {
                         let _feeConfigInfo = JSON.parse(json);
                         vc.component.simplifyCarFeeInfo.total = _feeConfigInfo.total;
                         vc.component.simplifyCarFeeInfo.records = _feeConfigInfo.records;
@@ -79,35 +79,42 @@
                             total: _feeConfigInfo.records,
                             currentPage: _page
                         });
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _simplifyCarPayFee: function (_fee) {
+            _simplifyCarPayFee: function(_fee) {
                 _fee.roomName = vc.component.simplifyCarFeeInfo.carNum;
                 //vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
                 vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?feeId=' + _fee.feeId);
             },
-            _simplifyCarPayFeeHis: function (_fee) {
+            _simplifyCarPayFeeHis: function(_fee) {
                 vc.jumpToPage('/admin.html#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             },
-            _simplifyCarEditFee: function (_fee) {
+            _simplifyCarEditFee: function(_fee) {
                 vc.emit('editFee', 'openEditFeeModal', _fee);
             },
-            _simplifyCarDeleteFee: function (_fee) {
+            _simplifyCarDeleteFee: function(_fee) {
                 vc.emit('deleteFee', 'openDeleteFeeModal', {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: _fee.feeId
                 });
             },
-            _openSimplifyCarCreateFeeAddModal: function () {
+            _openSimplifyCarCreateFeeAddModal: function() {
                 vc.emit('carCreateFeeAdd', 'openCarCreateFeeAddModal', {
                     isMore: false,
                     car: $that.simplifyCarFeeInfo
                 });
             },
-            _openSimplifyCarAddMeterWaterModal: function () {
+            _simplifyCarFinishFee: function(_fee) {
+                vc.emit('finishFee', 'openFinishFeeModal', {
+                    communityId: vc.getCurrentCommunity().communityId,
+                    feeId: _fee.feeId
+                });
+            },
+            _openSimplifyCarAddMeterWaterModal: function() {
 
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId: $that.simplifyCarFeeInfo.carId,
@@ -116,7 +123,7 @@
                     objType: '6666'
                 });
             },
-            _getSimplifyCarDeadlineTime: function (_fee) {
+            _getSimplifyCarDeadlineTime: function(_fee) {
 
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
                     return "-";
@@ -128,26 +135,26 @@
 
                 return _fee.deadlineTime;
             },
-            _getSimplifyCarEndTime: function (_fee) {
+            _getSimplifyCarEndTime: function(_fee) {
                 if (_fee.state == '2009001') {
                     return "-";
                 }
                 return _fee.endTime;
             },
-            _listOwnerCar: function () {
+            _listOwnerCar: function() {
                 return new Promise((resolve, reject) => {
                     let param = {
-                        params: {
-                            page: 1,
-                            row: 50,
-                            ownerId: $that.simplifyCarFeeInfo.ownerId,
-                            communityId: vc.getCurrentCommunity().communityId
+                            params: {
+                                page: 1,
+                                row: 50,
+                                ownerId: $that.simplifyCarFeeInfo.ownerId,
+                                communityId: vc.getCurrentCommunity().communityId
+                            }
                         }
-                    }
-                    //发送get请求
+                        //发送get请求
                     vc.http.apiGet('owner.queryOwnerCars',
                         param,
-                        function (json, res) {
+                        function(json, res) {
 
                             let _json = JSON.parse(json);
                             $that.simplifyCarFeeInfo.ownerCars = _json.data;
@@ -161,7 +168,8 @@
                                 return;
                             }
                             reject("没有车位");
-                        }, function (errInfo, error) {
+                        },
+                        function(errInfo, error) {
                             reject(errInfo);
                         }
                     );
@@ -170,7 +178,7 @@
 
             },
 
-            changeSimplifyCar: function () {
+            changeSimplifyCar: function() {
                 let _car = null;
                 $that.simplifyCarFeeInfo.ownerCars.forEach(item => {
                     if (item.carId == $that.simplifyCarFeeInfo.carId) {
@@ -186,7 +194,7 @@
                 $that.simplifyCarFeeInfo.parkingName = _car.areaNum + '停车场' + _car.num + '停车位';
                 $that._listSimplifyCarFee(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            clearSimplifyCarFeeInfo: function () {
+            clearSimplifyCarFeeInfo: function() {
                 $that.simplifyCarFeeInfo = {
                     fees: [],
                     ownerCars: [],
@@ -202,7 +210,7 @@
                     totalAmount: 0.0
                 }
             },
-            _simplifyCarGetFeeOwnerInfo: function (attrs) {
+            _simplifyCarGetFeeOwnerInfo: function(attrs) {
 
                 let ownerName = $that._getAttrValue(attrs, '390008');
                 let ownerLink = $that._getAttrValue(attrs, '390009');
