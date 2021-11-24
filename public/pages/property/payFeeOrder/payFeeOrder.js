@@ -212,6 +212,7 @@
                 //关闭model
                 $("#doPayFeeModal").modal('hide')
                 $that.payFeeOrderInfo.showEndTime = '';
+                $that.payFeeOrderInfo.authCode = ''
             },
             _qrCodePayFee: function() {
                 let _printFees = [];
