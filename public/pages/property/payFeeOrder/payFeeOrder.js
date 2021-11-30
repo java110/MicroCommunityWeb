@@ -233,12 +233,13 @@
                         let _data = JSON.parse(json);
                         if (_data.code == 404) {
                             vc.toast(_data.msg);
-                            $that.payFeeOrderInfo.orderId = _data.data.orderId;
-                            setTimeout('$that._qrCodeCheckPayFinish()', 5000);
+                            if (_data.data && _data.data.orderId) {
+                                $that.payFeeOrderInfo.orderId = _data.data.orderId;
+                                setTimeout('$that._qrCodeCheckPayFinish()', 5000);
+                            }
                             return;
                         }
                         $that._closeDoPayFeeModal();
-                        _data = _data.data;
                         $that.payFeeOrderInfo.receiptId = _data.receiptId;
                         //关闭model
                         $("#payFeeResult").modal({
