@@ -240,7 +240,7 @@
                             return;
                         }
                         $that._closeDoPayFeeModal();
-                        $that.payFeeOrderInfo.receiptId = _data.receiptId;
+                        $that.payFeeOrderInfo.receiptId = _data.data.receiptId;
                         //关闭model
                         $("#payFeeResult").modal({
                             backdrop: "static", //点击空白处不关闭对话框
