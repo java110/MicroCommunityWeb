@@ -1,57 +1,56 @@
-(function(vc,vm){
+(function(vc, vm) {
 
     vc.extends({
-        data:{
-            deleteFeeInfo:{
+        data: {
+            deleteFeeInfo: {
 
             }
         },
-         _initMethod:function(){
+        _initMethod: function() {
 
-         },
-         _initEvent:function(){
-             vc.on('deleteFee','openDeleteFeeModal',function(_params){
+        },
+        _initEvent: function() {
+            vc.on('deleteFee', 'openDeleteFeeModal', function(_params) {
 
                 vc.component.deleteFeeInfo = _params;
                 $('#deleteFeeModel').modal('show');
 
             });
         },
-        methods:{
-            deleteFee:function(){
-                vc.component.deleteFeeInfo.communityId=vc.getCurrentCommunity().communityId;
+        methods: {
+            deleteFee: function() {
+                vc.component.deleteFeeInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteFee',
                     'delete',
-                    JSON.stringify(vc.component.deleteFeeInfo),
-                    {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                    JSON.stringify(vc.component.deleteFeeInfo), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        if (res.status == 200) {
                             //关闭model
                             $('#deleteFeeModel').modal('hide');
-                            vc.emit('listRoomFee','notify',{});
-                            vc.emit('listParkingSpaceFee','notify',{});
+                            vc.emit('listRoomFee', 'notify', {});
+                            vc.emit('listParkingSpaceFee', 'notify', {});
                             vc.emit('listContractFee', 'notify', {});
-                            vc.emit('simplifyRoomFee', 'notify',{});
-                            vc.emit('simplifyCarFee', 'notify',{});
-                            vc.emit('simplifyContractFee', 'notify',{});
+                            vc.emit('simplifyRoomFee', 'notify', {});
+                            vc.emit('simplifyCarFee', 'notify', {});
+                            vc.emit('simplifyContractFee', 'notify', {});
                             vc.toast("删除费用成功");
-                            return ;
+                            return;
                         }
                         vc.toast(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(json);
-                     });
+                        vc.toast(errInfo);
+                    });
             },
-            closeDeleteFeeModel:function(){
+            closeDeleteFeeModel: function() {
                 $('#deleteFeeModel').modal('hide');
             }
         }
     });
 
-})(window.vc,window.vc.component);
+})(window.vc, window.vc.component);

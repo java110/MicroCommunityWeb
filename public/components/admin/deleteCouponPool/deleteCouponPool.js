@@ -2,7 +2,7 @@
 
     vc.extends({
         data: {
-            deleteShopRangeInfo: {
+            deleteCouponPoolInfo: {
 
             }
         },
@@ -10,18 +10,19 @@
 
         },
         _initEvent: function () {
-            vc.on('deleteShopRange', 'openDeleteShopRangeModal', function (_params) {
+            vc.on('deleteCouponPool', 'openDeleteCouponPoolModal', function (_params) {
 
-                vc.component.deleteShopRangeInfo = _params;
-                $('#deleteShopRangeModel').modal('show');
+                vc.component.deleteCouponPoolInfo = _params;
+                $('#deleteCouponPoolModel').modal('show');
 
             });
         },
         methods: {
-            deleteShopRange: function () {
+            deleteCouponPool: function () {
+                vc.component.deleteCouponPoolInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    '/shopRange/deleteShopRange',
-                    JSON.stringify(vc.component.deleteShopRangeInfo),
+                    'couponPool.deleteCouponPool',
+                    JSON.stringify(vc.component.deleteCouponPoolInfo),
                     {
                         emulateJSON: true
                     },
@@ -30,8 +31,8 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#deleteShopRangeModel').modal('hide');
-                            vc.emit('shopRangeManage', 'listShopRange', {});
+                            $('#deleteCouponPoolModel').modal('hide');
+                            vc.emit('couponPoolManage', 'listCouponPool', {});
                             return;
                         }
                         vc.message(_json.msg);
@@ -42,8 +43,8 @@
 
                     });
             },
-            closeDeleteShopRangeModel: function () {
-                $('#deleteShopRangeModel').modal('hide');
+            closeDeleteCouponPoolModel: function () {
+                $('#deleteCouponPoolModel').modal('hide');
             }
         }
     });

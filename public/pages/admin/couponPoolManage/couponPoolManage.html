@@ -1,0 +1,106 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入优惠券名称"
+                                    v-model="couponPoolManageInfo.conditions.couponName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入有效期"
+                                    v-model="couponPoolManageInfo.conditions.validityDay" class=" form-control">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>优惠券池信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddCouponPoolModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            制作
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">优惠券池ID</th>
+                                <th class="text-center">优惠券类型</th>
+                                <th class="text-center">优惠券名称</th>
+                                <th class="text-center">面值</th>
+                                <th class="text-center">购买价格</th>
+                                <th class="text-center">数量</th>
+                                <th class="text-center">有效期</th>
+                                <th class="text-center">排序</th>
+                                <th class="text-center">操作</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="couponPool in couponPoolManageInfo.couponPools">
+                                <td class="text-center">{{couponPool.poolId}}</td>
+                                <td class="text-center">{{couponPool.couponTypeName}}</td>
+                                <td class="text-center">{{couponPool.couponName}}</td>
+                                <td class="text-center">{{couponPool.actualPrice}}</td>
+                                <td class="text-center">{{couponPool.buyPrice}}</td>
+                                <td class="text-center">{{couponPool.couponStock}}</td>
+                                <td class="text-center">{{couponPool.validityDay}}</td>
+                                <td class="text-center">{{couponPool.seq}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditCouponPoolModel(couponPool)">修改</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteCouponPoolModel(couponPool)">删除</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <vc:create path="admin/addCouponPool" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="admin/editCouponPool"></vc:create>
+    <vc:create path="admin/deleteCouponPool"></vc:create>
+
+</div>
