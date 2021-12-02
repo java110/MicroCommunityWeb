@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -6,11 +6,11 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('deleteMainCategory', 'openDeleteMainCategoryModal', function (_params) {
+        _initEvent: function() {
+            vc.on('deleteMainCategory', 'openDeleteMainCategoryModal', function(_params) {
 
                 vc.component.deleteMainCategoryInfo = _params;
                 $('#deleteMainCategoryModel').modal('show');
@@ -18,15 +18,13 @@
             });
         },
         methods: {
-            deleteMainCategory: function () {
-                vc.component.deleteMainCategoryInfo.communityId = vc.getCurrentCommunity().communityId;
+            deleteMainCategory: function() {
                 vc.http.apiPost(
                     '/productCategory/deleteMainCategory',
-                    JSON.stringify(vc.component.deleteMainCategoryInfo),
-                    {
+                    JSON.stringify(vc.component.deleteMainCategoryInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -37,13 +35,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
 
                     });
             },
-            closeDeleteMainCategoryModel: function () {
+            closeDeleteMainCategoryModel: function() {
                 $('#deleteMainCategoryModel').modal('hide');
             }
         }
