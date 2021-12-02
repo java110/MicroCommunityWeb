@@ -13,8 +13,8 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label class="col-form-label">店铺名称：</label>
-                            <label class="" v-if="viewShopAuditInfo.shopName == preShopInfo.shopName">{{viewShopAuditInfo.shopName}}</label>
-                            <label class="" v-esle>
+                            <label v-if="viewShopAuditInfo.shopName == preShopInfo.shopName || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.shopName}}</label>
+                            <label v-else>
                                <span>{{preShopInfo.shopName}}</span> 变更为：
                                <span style="color: red;">{{viewShopAuditInfo.shopName}}</span> 
                             </label>
@@ -23,8 +23,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="col-form-label">店铺描述：</label>
-                            <label class="" v-if="viewShopAuditInfo.shopDesc == preShopInfo.shopDesc">{{viewShopAuditInfo.shopDesc}}</label>
-                            <label class="" v-esle>
+                            <label class="" v-if="viewShopAuditInfo.shopDesc == preShopInfo.shopDesc || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.shopDesc}}</label>
+                            <label class="" v-else>
                                <span>{{preShopInfo.shopDesc}}</span> 变更为：
                                <span style="color: red;">{{viewShopAuditInfo.shopDesc}}</span> 
                             </label>
@@ -35,8 +35,8 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label class="col-form-label">店铺类型：</label>
-                            <label class="" v-if="viewShopAuditInfo.shopType == preShopInfo.shopType">{{viewShopAuditInfo.shopTypeName}}</label>
-                            <label class="" v-esle>
+                            <label class="" v-if="viewShopAuditInfo.shopType == preShopInfo.shopType || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.shopTypeName}}</label>
+                            <label class="" v-else>
                                <span>{{preShopInfo.shopTypeName}}</span> 变更为：
                                <span style="color: red;">{{viewShopAuditInfo.shopTypeName}}</span> 
                             </label>
@@ -45,8 +45,8 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label class="col-form-label">开店类型：</label>
-                            <label class="" v-if="viewShopAuditInfo.openType == preShopInfo.openType">{{_openTypeName(viewShopAuditInfo.openType)}}</label>
-                            <label class="" v-esle>
+                            <label class="" v-if="viewShopAuditInfo.openType == preShopInfo.openType || viewShopAuditInfo.state == '002'">{{_openTypeName(viewShopAuditInfo.openType)}}</label>
+                            <label class="" v-else>
                                <span>{{_openTypeName(preShopInfo.openType)}}</span> 变更为：
                                <span style="color: red;">{{_openTypeName(viewShopAuditInfo.openType)}}</span> 
                             </label>
@@ -55,11 +55,11 @@
                     <div class="col-sm-2">
                         <div class="form-group">
                             <label class="col-form-label">店铺logo：</label>
-                            <label class="" v-if="viewShopAuditInfo.shopLogo == preShopInfo.shopLogo">
+                            <label class="" v-if="viewShopAuditInfo.shopLogo == preShopInfo.shopLogo || viewShopAuditInfo.state == '002'">
                                 <img style="width: 60px; height: 60px; border-radius: 5px;"
                                 v-bind:src="viewShopAuditInfo.shopLogo"></img>
                             </label>
-                            <label class="" v-esle>
+                            <label class="" v-else>
                                <span><img style="width: 60px; height: 60px; border-radius: 5px;"
                                 v-bind:src="preShopInfo.shopLogo"></img></span> 变更为：
                                <span><img style="width: 60px; height: 60px; border-radius: 5px;"
@@ -72,8 +72,8 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label class="col-form-label">发货地址：</label>
-                            <label class="" v-if="viewShopAuditInfo.sendAddress == preShopInfo.sendAddress">{{viewShopAuditInfo.sendAddress}}</label>
-                            <label class="" v-esle>
+                            <label class="" v-if="viewShopAuditInfo.sendAddress == preShopInfo.sendAddress || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.sendAddress}}</label>
+                            <label class="" v-else>
                                <span>{{viewShopAuditInfo.sendAddress}}</span> 变更为：
                                <span style="color: red;">{{preShopInfo.sendAddress}}</span> 
                             </label>
