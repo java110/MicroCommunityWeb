@@ -10,8 +10,8 @@
                 formJson: {},
                 conditions: {},
                 flowId: '',
-                file: '',
-                realFile: ''
+                fileName: '',
+                realFileName: ''
             }
         },
         _initMethod: function() {},
