@@ -21,7 +21,7 @@
                 vc.component._listOaWorkflowForm(DEFAULT_PAGE, DEFAULT_ROWS);
             });
 
-            vc.on('newOaWorkflowForm', 'newOaWorkflowForm', 'fileName', function(_param) {
+            vc.on('newOaWorkflowForm', 'fileName', function(_param) {
                 $that.newOaWorkflowFormInfo.fileName = _param.fileName;
                 $that.newOaWorkflowFormInfo.realFileName = _param.realFileName;
             })
