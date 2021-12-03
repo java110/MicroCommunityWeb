@@ -68,7 +68,6 @@
                     let node = document.querySelector('.form .uploadFile');
                     const submitBtn = document.querySelector('.form .fjs-form-field-button');
                     submitBtn.parentNode.insertBefore(node, submitBtn);
-                    let node = document.querySelector('.form .uploadFile');
                 });
             },
             _submitFormData(_data, _err) {
