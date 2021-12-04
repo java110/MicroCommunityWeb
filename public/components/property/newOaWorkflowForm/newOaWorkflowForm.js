@@ -10,8 +10,8 @@
                 formJson: {},
                 conditions: {},
                 flowId: '',
-                file: '',
-                realFile: ''
+                fileName: '',
+                realFileName: ''
             }
         },
         _initMethod: function() {},
@@ -21,7 +21,7 @@
                 vc.component._listOaWorkflowForm(DEFAULT_PAGE, DEFAULT_ROWS);
             });
 
-            vc.on('newOaWorkflowForm', 'newOaWorkflowForm', 'fileName', function(_param) {
+            vc.on('newOaWorkflowForm', 'fileName', function(_param) {
                 $that.newOaWorkflowFormInfo.fileName = _param.fileName;
                 $that.newOaWorkflowFormInfo.realFileName = _param.realFileName;
             })
@@ -68,7 +68,6 @@
                     let node = document.querySelector('.form .uploadFile');
                     const submitBtn = document.querySelector('.form .fjs-form-field-button');
                     submitBtn.parentNode.insertBefore(node, submitBtn);
-                    let node = document.querySelector('.form .uploadFile');
                 });
             },
             _submitFormData(_data, _err) {
