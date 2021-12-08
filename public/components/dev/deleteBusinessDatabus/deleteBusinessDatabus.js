@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -6,11 +6,11 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('deleteBusinessDatabus', 'openDeleteBusinessDatabusModal', function (_params) {
+        _initEvent: function() {
+            vc.on('deleteBusinessDatabus', 'openDeleteBusinessDatabusModal', function(_params) {
 
                 vc.component.deleteBusinessDatabusInfo = _params;
                 $('#deleteBusinessDatabusModel').modal('show');
@@ -18,15 +18,13 @@
             });
         },
         methods: {
-            deleteBusinessDatabus: function () {
-                vc.component.deleteBusinessDatabusInfo.communityId = vc.getCurrentCommunity().communityId;
+            deleteBusinessDatabus: function() {
                 vc.http.apiPost(
                     '/businessDatabus/deleteBusinessDatabus',
-                    JSON.stringify(vc.component.deleteBusinessDatabusInfo),
-                    {
+                    JSON.stringify(vc.component.deleteBusinessDatabusInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -37,13 +35,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
 
                     });
             },
-            closeDeleteBusinessDatabusModel: function () {
+            closeDeleteBusinessDatabusModel: function() {
                 $('#deleteBusinessDatabusModel').modal('hide');
             }
         }
