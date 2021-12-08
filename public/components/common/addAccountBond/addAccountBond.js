@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -16,11 +16,11 @@
                 remark: ''
             }
         },
-        _initMethod: function () {
-           
+        _initMethod: function() {
+
         },
-        _initEvent: function () {
-            vc.on('addAccountBond', 'openAddAccountBondModal', function () {
+        _initEvent: function() {
+            vc.on('addAccountBond', 'openAddAccountBondModal', function() {
                 $('#addAccountBondModel').modal('show');
             });
         },
@@ -29,8 +29,7 @@
                 return vc.validate.validate({
                     addAccountBondInfo: vc.component.addAccountBondInfo
                 }, {
-                    'addAccountBondInfo.bondName': [
-                        {
+                    'addAccountBondInfo.bondName': [{
                             limit: "required",
                             param: "",
                             errInfo: "保证金名称不能为空"
@@ -41,8 +40,7 @@
                             errInfo: "保证金名称超长了"
                         },
                     ],
-                    'addAccountBondInfo.amount': [
-                        {
+                    'addAccountBondInfo.amount': [{
                             limit: "required",
                             param: "",
                             errInfo: "保证金金额不能为空"
@@ -53,34 +51,29 @@
                             errInfo: "保证金金额格式有误"
                         },
                     ],
-                    'addAccountBondInfo.bondMonth': [
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "有效月份格式错误"
-                        },
-                    ],
-                    'addAccountBondInfo.objId': [
-                        {
-                            limit: "maxin",
-                            param: "1,30",
-                            errInfo: "类型ID超长了"
-                        },
-                    ],
+                    'addAccountBondInfo.bondMonth': [{
+                        limit: "num",
+                        param: "",
+                        errInfo: "有效月份格式错误"
+                    }, ],
+                    'addAccountBondInfo.objId': [{
+                        limit: "maxin",
+                        param: "1,30",
+                        errInfo: "类型ID超长了"
+                    }, ],
 
 
 
 
                 });
             },
-            saveAccountBondInfo: function () {
+            saveAccountBondInfo: function() {
                 if (!vc.component.addAccountBondValidate()) {
                     vc.toast(vc.validate.errInfo);
 
                     return;
                 }
 
-                vc.component.addAccountBondInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addAccountBondInfo);
@@ -90,11 +83,10 @@
 
                 vc.http.apiPost(
                     '/accountBond/saveAccountBond',
-                    JSON.stringify(vc.component.addAccountBondInfo),
-                    {
+                    JSON.stringify(vc.component.addAccountBondInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -108,21 +100,21 @@
                         vc.message(_json.msg);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
                     });
             },
-            setAddBondName:function(_objId){
+            setAddBondName: function(_objId) {
                 $that.accountBondManageInfo.shopTypes.forEach(item => {
                     if (item.shopTypeId == _objId) {
                         $that.addAccountBondInfo.bondName = item.typeName;
                     }
                 });
             },
-            clearAddAccountBondInfo: function () {
+            clearAddAccountBondInfo: function() {
                 vc.component.addAccountBondInfo = {
                     bondName: '',
                     amount: '',
