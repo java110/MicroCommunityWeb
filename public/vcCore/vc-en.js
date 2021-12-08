@@ -5,9 +5,9 @@
 (function(window){
     window.lang={
         "systemName":"CommunityManagement",
-        "systemSimpleName":"YZ",
+        "systemSimpleName":"SR",
         "subSystemName": "CommunityManagement",
-        "companyTeam":"team",
+        "companyTeam":"sky Round data team",
         "welcome":"welcome community management",
         "signOut":"sign out",
         "signIn":"sign in",

@@ -36,7 +36,7 @@
     vc = {
         version: "v0.0.1",
         name: "vue component",
-        author: 'java110',
+        author: 'skyround',
         vmOptions: _vmOptions,
         namespace: _namespace,
         initMethod: _initMethod,
