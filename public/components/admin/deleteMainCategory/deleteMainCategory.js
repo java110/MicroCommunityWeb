@@ -11,10 +11,8 @@
         },
         _initEvent: function() {
             vc.on('deleteMainCategory', 'openDeleteMainCategoryModal', function(_params) {
-
                 vc.component.deleteMainCategoryInfo = _params;
                 $('#deleteMainCategoryModel').modal('show');
-
             });
         },
         methods: {

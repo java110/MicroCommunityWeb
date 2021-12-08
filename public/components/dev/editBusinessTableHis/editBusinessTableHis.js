@@ -1,138 +1,129 @@
-(function(vc,vm){
+(function(vc, vm) {
 
     vc.extends({
-        data:{
-            editBusinessTableHisInfo:{
-                hisId:'',
-businessTypeCd:'',
-action:'',
-actionObj:'',
-actionObjHis:'',
-remark:'',
+        data: {
+            editBusinessTableHisInfo: {
+                hisId: '',
+                businessTypeCd: '',
+                action: '',
+                actionObj: '',
+                actionObjHis: '',
+                remark: '',
 
             }
         },
-         _initMethod:function(){
+        _initMethod: function() {
 
-         },
-         _initEvent:function(){
-             vc.on('editBusinessTableHis','openEditBusinessTableHisModal',function(_params){
+        },
+        _initEvent: function() {
+            vc.on('editBusinessTableHis', 'openEditBusinessTableHisModal', function(_params) {
                 vc.component.refreshEditBusinessTableHisInfo();
                 $('#editBusinessTableHisModel').modal('show');
-                vc.copyObject(_params, vc.component.editBusinessTableHisInfo );
-                vc.component.editBusinessTableHisInfo.communityId = vc.getCurrentCommunity().communityId;
+                vc.copyObject(_params, vc.component.editBusinessTableHisInfo);
             });
         },
-        methods:{
-            editBusinessTableHisValidate:function(){
-                        return vc.validate.validate({
-                            editBusinessTableHisInfo:vc.component.editBusinessTableHisInfo
-                        },{
-                            'editBusinessTableHisInfo.businessTypeCd':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"业务类型不能为空"
+        methods: {
+            editBusinessTableHisValidate: function() {
+                return vc.validate.validate({
+                    editBusinessTableHisInfo: vc.component.editBusinessTableHisInfo
+                }, {
+                    'editBusinessTableHisInfo.businessTypeCd': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "业务类型不能为空"
                         },
- {
-                            limit:"maxLength",
-                            param:"30",
-                            errInfo:"业务类型超过30位"
-                        },
-                    ],
-'editBusinessTableHisInfo.action':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"动作不能为空"
-                        },
- {
-                            limit:"maxLength",
-                            param:"12",
-                            errInfo:"动作不能为空"
+                        {
+                            limit: "maxLength",
+                            param: "30",
+                            errInfo: "业务类型超过30位"
                         },
                     ],
-'editBusinessTableHisInfo.actionObj':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"表名不能为空"
+                    'editBusinessTableHisInfo.action': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "动作不能为空"
                         },
- {
-                            limit:"maxLength",
-                            param:"64",
-                            errInfo:"表名超过64位"
-                        },
-                    ],
-'editBusinessTableHisInfo.actionObjHis':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"轨迹表名不能为空"
-                        },
- {
-                            limit:"maxLength",
-                            param:"64",
-                            errInfo:"轨迹表名超过64位"
+                        {
+                            limit: "maxLength",
+                            param: "12",
+                            errInfo: "动作不能为空"
                         },
                     ],
-'editBusinessTableHisInfo.remark':[
- {
-                            limit:"maxLength",
-                            param:"200",
-                            errInfo:"备注内容不能超过200"
+                    'editBusinessTableHisInfo.actionObj': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "表名不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "表名超过64位"
                         },
                     ],
-'editBusinessTableHisInfo.hisId':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"轨迹ID不能为空"
-                        }]
+                    'editBusinessTableHisInfo.actionObjHis': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "轨迹表名不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "轨迹表名超过64位"
+                        },
+                    ],
+                    'editBusinessTableHisInfo.remark': [{
+                        limit: "maxLength",
+                        param: "200",
+                        errInfo: "备注内容不能超过200"
+                    }, ],
+                    'editBusinessTableHisInfo.hisId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "轨迹ID不能为空"
+                    }]
 
-                        });
-             },
-            editBusinessTableHis:function(){
-                if(!vc.component.editBusinessTableHisValidate()){
+                });
+            },
+            editBusinessTableHis: function() {
+                if (!vc.component.editBusinessTableHisValidate()) {
                     vc.toast(vc.validate.errInfo);
-                    return ;
+                    return;
                 }
 
                 vc.http.apiPost(
                     'businessTableHis.updateBusinessTableHis',
-                    JSON.stringify(vc.component.editBusinessTableHisInfo),
-                    {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                    JSON.stringify(vc.component.editBusinessTableHisInfo), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#editBusinessTableHisModel').modal('hide');
-                             vc.emit('businessTableHisManage','listBusinessTableHis',{});
-                            return ;
+                            vc.emit('businessTableHisManage', 'listBusinessTableHis', {});
+                            return;
                         }
                         vc.message(_json.msg);
-                     },
-                     function(errInfo,error){
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
-                     });
+                    });
             },
-            refreshEditBusinessTableHisInfo:function(){
-                vc.component.editBusinessTableHisInfo= {
-                  hisId:'',
-businessTypeCd:'',
-action:'',
-actionObj:'',
-actionObjHis:'',
-remark:'',
+            refreshEditBusinessTableHisInfo: function() {
+                vc.component.editBusinessTableHisInfo = {
+                    hisId: '',
+                    businessTypeCd: '',
+                    action: '',
+                    actionObj: '',
+                    actionObjHis: '',
+                    remark: '',
 
                 }
             }
         }
     });
 
-})(window.vc,window.vc.component);
+})(window.vc, window.vc.component);
