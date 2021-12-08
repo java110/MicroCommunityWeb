@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -6,11 +6,11 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('deleteAccountBond', 'openDeleteAccountBondModal', function (_params) {
+        _initEvent: function() {
+            vc.on('deleteAccountBond', 'openDeleteAccountBondModal', function(_params) {
 
                 vc.component.deleteAccountBondInfo = _params;
                 $('#deleteAccountBondModel').modal('show');
@@ -18,15 +18,13 @@
             });
         },
         methods: {
-            deleteAccountBond: function () {
-                vc.component.deleteAccountBondInfo.communityId = vc.getCurrentCommunity().communityId;
+            deleteAccountBond: function() {
                 vc.http.apiPost(
                     '/accountBond/deleteAccountBond',
-                    JSON.stringify(vc.component.deleteAccountBondInfo),
-                    {
+                    JSON.stringify(vc.component.deleteAccountBondInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -37,13 +35,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
 
                     });
             },
-            closeDeleteAccountBondModel: function () {
+            closeDeleteAccountBondModel: function() {
                 $('#deleteAccountBondModel').modal('hide');
             }
         }
