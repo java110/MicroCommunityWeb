@@ -86,6 +86,10 @@
             });
 
             $that._listFeePrintPages();
+            // 查询用户账户
+            vc.emit('payFeeUserAccount', 'computeFeeUserAmount', {
+                feeId: $that.payFeeOrderInfo.feeId,
+            });
         },
         _initEvent: function() {
             // 子组件折扣change事件
