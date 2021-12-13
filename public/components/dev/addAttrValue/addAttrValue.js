@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -7,7 +7,7 @@
         },
         data: {
             addAttrValueInfo: {
-                specCd:'',
+                specCd: '',
                 valueId: '',
                 value: '',
                 valueName: '',
@@ -15,11 +15,11 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('addAttrValue', 'openAddAttrValueModal', function (item) {
+        _initEvent: function() {
+            vc.on('addAttrValue', 'openAddAttrValueModal', function(item) {
                 $that.addAttrValueInfo.specCd = item.specCd;
                 $('#addAttrValueModel').modal('show');
             });
@@ -29,8 +29,7 @@
                 return vc.validate.validate({
                     addAttrValueInfo: vc.component.addAttrValueInfo
                 }, {
-                    'addAttrValueInfo.value': [
-                        {
+                    'addAttrValueInfo.value': [{
                             limit: "required",
                             param: "",
                             errInfo: "值不能为空"
@@ -41,8 +40,7 @@
                             errInfo: "值超过200位"
                         },
                     ],
-                    'addAttrValueInfo.valueName': [
-                        {
+                    'addAttrValueInfo.valueName': [{
                             limit: "required",
                             param: "",
                             errInfo: "值名称不能为空"
@@ -53,8 +51,7 @@
                             errInfo: "值名称超过200位"
                         },
                     ],
-                    'addAttrValueInfo.valueShow': [
-                        {
+                    'addAttrValueInfo.valueShow': [{
                             limit: "required",
                             param: "",
                             errInfo: "显示不能为空"
@@ -71,14 +68,13 @@
 
                 });
             },
-            saveAttrValueInfo: function () {
+            saveAttrValueInfo: function() {
                 if (!vc.component.addAttrValueValidate()) {
                     vc.toast(vc.validate.errInfo);
 
                     return;
                 }
 
-                vc.component.addAttrValueInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addAttrValueInfo);
@@ -88,11 +84,10 @@
 
                 vc.http.apiPost(
                     '/attrValue/saveAttrValue',
-                    JSON.stringify(vc.component.addAttrValueInfo),
-                    {
+                    JSON.stringify(vc.component.addAttrValueInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -106,16 +101,16 @@
                         vc.message(_json.msg);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
                     });
             },
-            clearAddAttrValueInfo: function () {
+            clearAddAttrValueInfo: function() {
                 vc.component.addAttrValueInfo = {
-                    specCd:'',
+                    specCd: '',
                     value: '',
                     valueName: '',
                     valueShow: '',
