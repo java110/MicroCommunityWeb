@@ -19,7 +19,6 @@
         },
         methods: {
             deleteMainCategoryProduct: function () {
-                vc.component.deleteMainCategoryProductInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/productCategory/deleteMainCategoryProduct',
                     JSON.stringify(vc.component.deleteMainCategoryProductInfo),
