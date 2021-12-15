@@ -1,4 +1,4 @@
-<div id = "addConvenienceMenusModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div id="addConvenienceMenusModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -7,40 +7,39 @@
                     <div>
                         <div>
                             <div class="form-group row">
-         <label class="col-sm-2 col-form-label">菜单名称</label>
-         <div class="col-sm-10">
-           <input v-model="addConvenienceMenusInfo.name"                   type="text" placeholder="必填，请填写菜单名称" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">图片地址</label>
-         <div content-img  class="col-sm-10">
-           <vc:create path="frame/uploadImage" callBackListener="addIcon"
-           callBackFunction="notifyUploadCoverImage" namespace="addIconCover" imageCount="1"></vc:create>
-         </div>
+                                <label class="col-sm-2 col-form-label">菜单名称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addConvenienceMenusInfo.name" type="text" placeholder="必填，请填写菜单名称" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">图片地址</label>
+                                <div content-img class="col-sm-10">
+                                    <vc:create path="frame/uploadImage" callBackListener="addIcon" callBackFunction="notifyUploadCoverImage" namespace="addIconCover" imageCount="1"></vc:create>
+                                </div>
 
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">页面路径</label>
-         <div class="col-sm-10">
-           <input v-model="addConvenienceMenusInfo.url"                   type="text" placeholder="选填，请填写页面路径" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">显示序号</label>
-         <div class="col-sm-10">
-           <input v-model="addConvenienceMenusInfo.seq"                   type="text" placeholder="必填，请填写显示序号" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">备注</label>
-         <div class="col-sm-10">
-           <input v-model="addConvenienceMenusInfo.remark"                   type="text" placeholder="选填，请填写备注" class="form-control">
-         </div>
-</div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">页面路径</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addConvenienceMenusInfo.url" type="text" placeholder="选填，请填写页面路径" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">显示序号</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addConvenienceMenusInfo.seq" type="text" placeholder="必填，请填写显示序号" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">备注</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addConvenienceMenusInfo.remark" type="text" placeholder="选填，请填写备注" class="form-control">
+                                </div>
+                            </div>
 
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveConvenienceMenusInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveConvenienceMenusInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
                             </div>
                         </div>
