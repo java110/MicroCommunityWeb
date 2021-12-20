@@ -6,9 +6,9 @@
         el: '#copyright',
         data: {
             copyrightInfo: {
-                logo: 'HC',
-                company: 'java110官方团队',
-                date: '2017-2019',
+                logo: '',
+                company: 'GZCJ官方团队',
+                date: '2020-2023',
                 openSource: '代码 https://github.com/java110/MicroCommunity'
             },
             screenHeight: document.body.clientHeight
