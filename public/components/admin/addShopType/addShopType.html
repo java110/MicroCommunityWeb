@@ -1,4 +1,4 @@
-<div id = "addShopTypeModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div id="addShopTypeModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -7,45 +7,46 @@
                     <div>
                         <div>
 
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">店铺类型</label>
-         <div class="col-sm-10">
-           <input v-model="addShopTypeInfo.typeName"                   type="text" placeholder="必填，请填写店铺类型" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">是否展示</label>
-         <div class="col-sm-10">
-<select class="custom-select" v-model="addShopTypeInfo.isShow">
-         <option selected  disabled value="">必填，请选择是否展示</option>
-         <option  value="Y">是</option>
-<option  value="N">否</option>
-  </select>         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">是否默认</label>
-         <div class="col-sm-10">
-<select class="custom-select" v-model="addShopTypeInfo.isDefault">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">店铺类型</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopTypeInfo.typeName" type="text" placeholder="必填，请填写店铺类型" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">是否展示</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addShopTypeInfo.isShow">
+                                      <option selected  disabled value="">必填，请选择是否展示</option>
+                                      <option  value="Y">是</option>
+                              <option  value="N">否</option>
+                              </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">是否默认</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addShopTypeInfo.isDefault">
          <option selected  disabled value="">必填，请选择是否默认</option>
          <option  value="F">自定义</option>
 <option  value="T">默认</option>
-  </select>         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">显示序号</label>
-         <div class="col-sm-10">
-           <input v-model="addShopTypeInfo.seq"                   type="text" placeholder="必填，请填写显示序号" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">备注</label>
-         <div class="col-sm-10">
-           <input v-model="addShopTypeInfo.remark"                   type="text" placeholder="选填，请填写备注" class="form-control">
-         </div>
-</div>
+  </select> </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">显示序号</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopTypeInfo.seq" type="text" placeholder="必填，请填写显示序号" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">备注</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopTypeInfo.remark" type="text" placeholder="选填，请填写备注" class="form-control">
+                                </div>
+                            </div>
 
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveShopTypeInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveShopTypeInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
                             </div>
                         </div>
