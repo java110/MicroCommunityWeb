@@ -181,6 +181,7 @@
                             <th class="text-center">物品类型</th>
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
+                            <th class="text-center">是否是固定物品</th>
                             <th class="text-center">物品供应商</th>
                             <th class="text-center">物品仓库</th>
                             <th class="text-center">采购/出库方式</th>
@@ -206,6 +207,7 @@
                             <td class="text-center">
                                 {{purchaseApplyDetail.specName ? purchaseApplyDetail.specName : '-'}}
                             </td>
+                            <td class="text-center">{{purchaseApplyDetail.isFixedName}}</td>
                             <td class="text-center">
                                 {{purchaseApplyDetail.supplierName? purchaseApplyDetail.supplierName : '-'}}
                             </td>
@@ -231,7 +233,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="17">
+                            <td colspan="18">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

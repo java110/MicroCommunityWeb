@@ -8,11 +8,11 @@
                 orgs: [],
                 orgId: '-1',
                 orgName: '',
-                companyId:'',
-                departmentId:'',
-                departmentName:'',
+                companyId: '',
+                departmentId: '',
+                departmentName: '',
                 staffId: '',
-                staffName:'',
+                staffName: '',
                 orgSelector: {}
             }
         },
@@ -46,7 +46,8 @@
         methods: {
             _initOrgSelect2: function () {
                 console.log("调用_initOrgSelect2方法");
-                $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+                $.fn.modal.Constructor.prototype.enforceFocus = function () {
+                };
                 $.fn.select2.defaults.set('width', '100%');
                 this.orgSelect2Info.orgSelector = $('#orgSelector').select2({
                     placeholder: '必填，请选择公司',
@@ -58,28 +59,26 @@
                         url: "/callComponent/orgManage/list",
                         dataType: 'json',
                         delay: 250,
-                        headers:{
+                        headers: {
                             'APP-ID': '8000418004',
-                            'TRANSACTION-ID' : vc.uuid(),
+                            'TRANSACTION-ID': vc.uuid(),
                             'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
-                            'SIGN' : ''
+                            'SIGN': ''
                         },
                         data: function (params) {
-                            console.log("param", params);
                             var _term = "";
                             if (params.hasOwnProperty("term")) {
                                 _term = params.term;
                             }
                             return {
                                 orgName: _term,
-                                orgLevel:'2',
+                                orgLevel: '2',
                                 page: 1,
                                 row: 10,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },
                         processResults: function (data) {
-                            console.log(data, this._filterOrgData(data.orgs));
                             return {
                                 results: this._filterOrgData(data.orgs)
                             };

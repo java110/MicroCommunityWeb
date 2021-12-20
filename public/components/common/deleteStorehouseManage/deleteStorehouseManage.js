@@ -21,14 +21,17 @@
                         emulateJSON: true
                     },
                     function (json, res) {
+                        let _json = JSON.parse(json);
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        if (_json.status == 200) {
                             //关闭model
                             $('#deleteStorehouseManageModel').modal('hide');
                             vc.emit('allocationStorehouseManage', 'listAllocationStorehouse', {});
+                            vc.toast(_json.msg);
                             return;
+                        }else{
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

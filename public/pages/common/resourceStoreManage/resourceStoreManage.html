@@ -5,7 +5,8 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
                             {{resourceStoreManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
@@ -15,7 +16,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="resourceStoreManageInfo.conditions.shId">
-                                    <option selected value="">请选择仓库</option>
+                                    <option selected disabled value="">请选择仓库</option>
                                     <option v-for="(item,index) in resourceStoreManageInfo.storehouses" :key="index"
                                             v-bind:value="item.shId">
                                         {{item.shName}}
@@ -49,9 +50,11 @@
                     <div class="row" v-show="resourceStoreManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.parentRstId" @change="resourceStoreParentTypesChange">
-                                    <option selected value="">请选择物品类型</option>
-                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreTypes" :key="index" v-bind:value="item.rstId">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.parentRstId"
+                                        @change="resourceStoreParentTypesChange">
+                                    <option selected disabled value="">请选择物品类型</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreTypes"
+                                            :key="index" v-bind:value="item.rstId">
                                         {{item.name}}
                                     </option>
                                 </select>
@@ -59,10 +62,11 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
-                                    <option selected value="">请选择二级分类</option>
-                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreSonTypes" :key="index"
-                                        v-bind:value="item.rstId">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.rstId"
+                                        @change="_listResourceStoreSpecifications">
+                                    <option selected disabled value="">请选择二级分类</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreSonTypes"
+                                            :key="index" v-bind:value="item.rstId">
                                         {{item.name}}
                                     </option>
                                 </select>
@@ -71,9 +75,9 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="resourceStoreManageInfo.conditions.rssId">
-                                    <option selected value="">请选择物品规格</option>
-                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreSpecifications" :key="index"
-                                        v-bind:value="item.rssId">
+                                    <option selected disabled value="">请选择物品规格</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.resourceStoreSpecifications"
+                                            :key="index" v-bind:value="item.rssId">
                                         {{item.specName}}
                                     </option>
                                 </select>
@@ -83,8 +87,19 @@
                     <div class="row" v-show="resourceStoreManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入物品ID" v-model="resourceStoreManageInfo.conditions.resId"
-                                    class=" form-control">
+                                <input type="text" placeholder="请输入物品ID"
+                                       v-model="resourceStoreManageInfo.conditions.resId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreManageInfo.conditions.isFixed">
+                                    <option selected disabled value="">请选择物品是否固定</option>
+                                    <option v-for="(item,index) in resourceStoreManageInfo.isFixeds"
+                                            :value="item.statusCd">
+                                        {{item.name}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -120,6 +135,7 @@
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
                             <th class="text-center">物品编码</th>
+                            <th class="text-center">是否固定物品</th>
                             <th class="text-center">采购参考价格</th>
                             <th class="text-center">收费标准</th>
                             <th class="text-center">物品库存</th>
@@ -135,16 +151,26 @@
                             :class="{ 'table-danger' : parseInt(resourceStore.stock) < parseInt(resourceStore.warningStock)}">
                             <td class="text-center">{{resourceStore.resId}}</td>
                             <td class="text-center">{{resourceStore.shName}}</td>
-                            <td class="text-center">{{resourceStore.parentRstName}}{{resourceStore.rstName ? ' > ' + resourceStore.rstName : ''}}</td>
+                            <td class="text-center">{{resourceStore.parentRstName}}{{resourceStore.rstName ? ' > ' +
+                                resourceStore.rstName : ''}}
+                            </td>
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
+                            <td class="text-center">{{resourceStore.isFixedName}}</td>
                             <td class="text-center">{{'￥' + resourceStore.price}}</td>
-                            <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' + resourceStore.outLowPrice : '￥' + resourceStore.outLowPrice + '-￥' + resourceStore.outHighPrice}}</td>
+                            <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' +
+                                resourceStore.outLowPrice : '￥' + resourceStore.outLowPrice + '-￥' +
+                                resourceStore.outHighPrice}}
+                            </td>
                             <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
-                            <td class="text-center">1{{resourceStore.unitCodeName}}={{resourceStore.miniUnitStock}}{{resourceStore.miniUnitCodeName}}</td>
+                            <td class="text-center">
+                                1{{resourceStore.unitCodeName}}={{resourceStore.miniUnitStock}}{{resourceStore.miniUnitCodeName}}
+                            </td>
                             <td class="text-center">{{resourceStore.miniStock}}{{resourceStore.miniUnitCodeName}}</td>
-                            <td class="text-center">{{resourceStore.averagePrice ? '￥' + resourceStore.averagePrice : '￥0'}}</td>
+                            <td class="text-center">{{resourceStore.averagePrice ? '￥' + resourceStore.averagePrice :
+                                '￥0'}}
+                            </td>
                             <td class="text-center">{{'￥' + resourceStore.totalPrice}}</td>
                             <td class="text-center">
                                 <!-- <div class="btn-group" v-if="resourceStore.stock>0">

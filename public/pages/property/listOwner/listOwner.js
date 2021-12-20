@@ -236,7 +236,7 @@
                 }
             },
             dealOwnerAttr: function (owners) {
-                if(!owners){
+                if (!owners) {
                     return;
                 }
                 owners.forEach(item => {

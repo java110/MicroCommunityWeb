@@ -22,17 +22,20 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#deleteItemOutModel').modal('hide');
                             vc.emit('itemOutManage', 'listItemOut', {});
+                            vc.toast(_json.msg);
                             return;
+                        }else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(json);
+                        vc.toast(errInfo);
                     });
             },
             closeDeleteItemOutModel: function () {

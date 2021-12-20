@@ -1,142 +1,135 @@
-(function(vc,vm){
-
+(function (vc, vm) {
     vc.extends({
-        data:{
-            editStoreInfoInfo:{
-                storeInfoId:'',
-                name:'',
-                convenienceMenusId:'',
-                isShow:'',
-                icon:'',
-                tel:'',
-                site:'',
-                seq:'',
-                workTime:'',
-                remark:'',
-
+        data: {
+            editStoreInfoInfo: {
+                storeInfoId: '',
+                name: '',
+                convenienceMenusId: '',
+                isShow: '',
+                icon: '',
+                tel: '',
+                site: '',
+                seq: '',
+                workTime: '',
+                remark: ''
             }
         },
-         _initMethod:function(){
+        _initMethod: function () {
             $that._initEditProduct();
-         },
-         _initEvent:function(){
-             vc.on('editStoreInfo','openEditStoreInfoModal',function(_params){
+        },
+        _initEvent: function () {
+            vc.on('editStoreInfo', 'openEditStoreInfoModal', function (_params) {
                 vc.component.refreshEditStoreInfoInfo();
                 $('#editStoreInfoModel').modal('show');
-                vc.copyObject(_params, vc.component.editStoreInfoInfo );
-
+                vc.copyObject(_params, vc.component.editStoreInfoInfo);
                 let _photos = [];
                 _photos.push(vc.component.editStoreInfoInfo.icon);
-                vc.emit('editIconCover','uploadImage', 'notifyPhotos',_photos);
+                vc.emit('editIconCover', 'uploadImage', 'notifyPhotos', _photos);
                 vc.component.editStoreInfoInfo.communityId = vc.getCurrentCommunity().communityId;
                 $(".editSummernote").summernote('code', vc.component.editStoreInfoInfo.remark);
             });
-
             vc.on("editIcon", "notifyUploadCoverImage", function (_param) {
-                if(_param.length > 0){
+                if (_param.length > 0) {
                     vc.component.editStoreInfoInfo.icon = _param[0];
-                }else{
+                } else {
                     vc.component.editStoreInfoInfo.icon = '';
                 }
-                
             });
         },
-        methods:{
-            editStoreInfoValidate:function(){
-                        return vc.validate.validate({
-                            editStoreInfoInfo:vc.component.editStoreInfoInfo
-                        },{
-                            'editStoreInfoInfo.name':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"商户名称不能为空"
+        methods: {
+            editStoreInfoValidate: function () {
+                return vc.validate.validate({
+                    editStoreInfoInfo: vc.component.editStoreInfoInfo
+                }, {
+                    'editStoreInfoInfo.name': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "商户名称不能为空"
                         },
- {
-                            limit:"maxLength",
-                            param:"50",
-                            errInfo:"商户名称太长"
-                        },
-                    ],
-'editStoreInfoInfo.tel':[
- {
-                            limit:"maxLength",
-                            param:"13",
-                            errInfo:"电话太长"
+                        {
+                            limit: "maxLength",
+                            param: "50",
+                            errInfo: "商户名称太长"
                         },
                     ],
-'editStoreInfoInfo.site':[
- {
-                            limit:"maxLength",
-                            param:"100",
-                            errInfo:"商户位置太长"
+                    'editStoreInfoInfo.tel': [
+                        {
+                            limit: "maxLength",
+                            param: "13",
+                            errInfo: "电话太长"
                         },
                     ],
-'editStoreInfoInfo.seq':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"显示序号不能为空"
-                        },
- {
-                            limit:"num",
-                            param:"",
-                            errInfo:"显示序号不是有效数字"
+                    'editStoreInfoInfo.site': [
+                        {
+                            limit: "maxLength",
+                            param: "100",
+                            errInfo: "商户位置太长"
                         },
                     ],
-'editStoreInfoInfo.workTime':[
- {
-                            limit:"maxLength",
-                            param:"200",
-                            errInfo:"工作时间太长"
+                    'editStoreInfoInfo.seq': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "显示序号不能为空"
+                        },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "显示序号不是有效数字"
                         },
                     ],
-'editStoreInfoInfo.remark':[
- {
-                            limit:"maxLength",
-                            param:"5000",
-                            errInfo:"备注太长"
+                    'editStoreInfoInfo.workTime': [
+                        {
+                            limit: "maxLength",
+                            param: "200",
+                            errInfo: "工作时间太长"
                         },
                     ],
-'editStoreInfoInfo.storeInfoId':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"商户信息ID不能为空"
-                        }]
-
-                        });
-             },
-            editStoreInfo:function(){
-                if(!vc.component.editStoreInfoValidate()){
+                    'editStoreInfoInfo.remark': [
+                        {
+                            limit: "maxLength",
+                            param: "5000",
+                            errInfo: "备注太长"
+                        },
+                    ],
+                    'editStoreInfoInfo.storeInfoId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "商户信息ID不能为空"
+                        }
+                    ]
+                });
+            },
+            editStoreInfo: function () {
+                if (!vc.component.editStoreInfoValidate()) {
                     vc.toast(vc.validate.errInfo);
-                    return ;
+                    return;
                 }
-
                 vc.http.apiPost(
                     '/storeInfo/updateStoreInfo',
                     JSON.stringify(vc.component.editStoreInfoInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#editStoreInfoModel').modal('hide');
-                             vc.emit('storeInfoManage','listStoreInfo',{});
-                            return ;
+                            vc.emit('storeInfoManage', 'listStoreInfo', {});
+                            vc.toast(_json.msg);
+                            return;
                         }
-                        vc.message(_json.msg);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
-                     });
+                        vc.toast(errInfo);
+                    });
             },
-            _initEditProduct:function(){
+            _initEditProduct: function () {
                 let $summernote = $('.editSummernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
@@ -162,15 +155,12 @@
                         ['help', ['help']]
                     ],
                 });
-
             },
             sendEditFile: function ($summernote, files) {
                 console.log('上传图片', files);
-
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
-
                 vc.http.upload(
                     'addNoticeView',
                     'uploadImage',
@@ -196,28 +186,25 @@
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
-
             },
             _closeStoreInfo: function () {
                 $that.refreshEditStoreInfoInfo();
-                vc.emit('storeInfoManage','listStoreInfo',{});
+                vc.emit('storeInfoManage', 'listStoreInfo', {});
             },
-            refreshEditStoreInfoInfo:function(){
-                vc.component.editStoreInfoInfo= {
-                  storeInfoId:'',
-                    name:'',
-                    convenienceMenusId:'',
-                    isShow:'',
-                    icon:'',
-                    tel:'',
-                    site:'',
-                    seq:'',
-                    workTime:'',
-                    remark:'',
-
-                                    }
-                                }
-                            }
-                        });
-
-})(window.vc,window.vc.component);
+            refreshEditStoreInfoInfo: function () {
+                vc.component.editStoreInfoInfo = {
+                    storeInfoId: '',
+                    name: '',
+                    convenienceMenusId: '',
+                    isShow: '',
+                    icon: '',
+                    tel: '',
+                    site: '',
+                    seq: '',
+                    workTime: '',
+                    remark: ''
+                }
+            }
+        }
+    });
+})(window.vc, window.vc.component);

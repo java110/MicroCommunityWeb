@@ -176,7 +176,7 @@
             _listResourceStoreSonTypes: function () {
                 vc.component.resourceStoreUseRecordManageInfo.conditions.rstId = '';
                 vc.component.resourceStoreUseRecordManageInfo.resourceStoreSonTypes = [];
-                if(vc.component.resourceStoreUseRecordManageInfo.conditions.parentRstId == ''){
+                if (vc.component.resourceStoreUseRecordManageInfo.conditions.parentRstId == '') {
                     return;
                 }
                 var param = {

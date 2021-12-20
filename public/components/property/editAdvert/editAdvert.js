@@ -25,7 +25,7 @@
                 photos: [],
                 viewType: '',
                 vedioName: '',
-                communityId: ''
+                communityId: vc.getCurrentCommunity().communityId
             }
         },
         _initMethod: function () {
@@ -216,6 +216,7 @@
                             //关闭model
                             $('#editAdvertModel').modal('hide');
                             vc.emit('advertManage', 'listAdvert', {});
+                            vc.toast("修改成功");
                             return;
                         }
                         vc.toast(json);
@@ -282,7 +283,8 @@
                     roomNum: '',
                     photos: [],
                     viewType: '',
-                    vedioName: ''
+                    vedioName: '',
+                    communityId: ''
                 }
             }
         }

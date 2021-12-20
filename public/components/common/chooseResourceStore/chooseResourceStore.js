@@ -42,7 +42,6 @@
                 vc.component._refreshChooseResourceStoreInfo();
                 vc.component._loadAllResourceStoreInfo(1, 10, '');
             });
-
             vc.on('chooseResourceStore', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._loadAllResourceStoreInfo(_currentPage, 10, vc.component.chooseResourceStoreInfo.name);
             });
@@ -71,7 +70,6 @@
                         shId: vc.component.chooseResourceStoreInfo.shId
                     }
                 };
-
                 //发送get请求
                 vc.http.get('chooseResourceStore',
                     'list',
@@ -102,7 +100,7 @@
             chooseResourceStore: function () {
                 var selectResourceStores = vc.component.chooseResourceStoreInfo.selectResourceStores;
                 var resourceStores = vc.component.chooseResourceStoreInfo.resourceStores;
-                if(selectResourceStores < 1){
+                if (selectResourceStores < 1) {
                     vc.toast('请选择商品');
                     return;
                 }
@@ -170,7 +168,7 @@
             _listResourceStoreSonTypes: function () {
                 vc.component.chooseResourceStoreInfo.rstId = '';
                 vc.component.chooseResourceStoreInfo.resourceStoreSonTypes = [];
-                if(vc.component.chooseResourceStoreInfo.parentRstId == ''){
+                if (vc.component.chooseResourceStoreInfo.parentRstId == '') {
                     return;
                 }
                 var param = {
@@ -193,7 +191,6 @@
                     }
                 );
             },
-
             checkAll: function (e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
@@ -207,6 +204,5 @@
                 }
             }
         }
-
     });
 })(window.vc);

@@ -8,9 +8,9 @@
         data: {
             addTransferStoreInfo: {
                 flowComponent: 'addTransferStoreView',
-                description:'',
-                endUserName:'',
-                endUserTel:'',
+                description: '',
+                endUserName: '',
+                endUserTel: '',
                 staffId: '',
                 staffName: '',
                 resOrderType: '',
@@ -26,7 +26,7 @@
             }
         },
         _initMethod: function () {
-            
+
         },
         _initEvent: function () {
 
