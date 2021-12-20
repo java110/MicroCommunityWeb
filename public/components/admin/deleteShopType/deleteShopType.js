@@ -19,7 +19,6 @@
         },
         methods:{
             deleteShopType:function(){
-                vc.component.deleteShopTypeInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/shopType/deleteShopType',
                     JSON.stringify(vc.component.deleteShopTypeInfo),
