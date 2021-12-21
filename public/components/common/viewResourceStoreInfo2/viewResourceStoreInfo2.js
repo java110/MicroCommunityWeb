@@ -43,7 +43,7 @@
                 resourceStores.forEach((newItem, newIndex) => {
                     newItem.rsId = '';
                     oldList.forEach((oldItem) => {
-                        if(oldItem.resId == newItem.resId){
+                        if (oldItem.resId == newItem.resId) {
                             delete resourceStores[newIndex];
                         }
                     })
@@ -62,9 +62,9 @@
             });
         },
         methods: {
-            _loadResourceSuppliers(){
+            _loadResourceSuppliers() {
                 var param = {
-                    params: {page:1,row:50}
+                    params: {page: 1, row: 50}
                 };
                 //发送get请求
                 vc.http.apiGet('resourceSupplier.listResourceSuppliers',
@@ -88,7 +88,7 @@
             // 移除选中item
             _removeSelectResourceStoreItem: function (resId) {
                 vc.component.viewResourceStoreInfo2.resourceStores.forEach((item, index) => {
-                    if(item.resId == resId){
+                    if (item.resId == resId) {
                         vc.component.viewResourceStoreInfo2.resourceStores.splice(index, 1);
                     }
                 })

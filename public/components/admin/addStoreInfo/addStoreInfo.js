@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -20,14 +19,14 @@
 
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._initAddProduct();
         },
-        _initEvent: function() {
-            vc.on('addStoreInfo', 'openAddStoreInfoModal', function() {
+        _initEvent: function () {
+            vc.on('addStoreInfo', 'openAddStoreInfoModal', function () {
                 $('#addStoreInfoModel').modal('show');
             });
-            vc.on("addIcon", "notifyUploadCoverImage", function(_param) {
+            vc.on("addIcon", "notifyUploadCoverImage", function (_param) {
                 if (_param.length > 0) {
                     vc.component.addStoreInfoInfo.icon = _param[0];
                 } else {
@@ -41,10 +40,10 @@
                     addStoreInfoInfo: vc.component.addStoreInfoInfo
                 }, {
                     'addStoreInfoInfo.name': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "商户名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "商户名称不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "50",
@@ -55,17 +54,17 @@
                         limit: "maxLength",
                         param: "13",
                         errInfo: "电话太长"
-                    }, ],
+                    },],
                     'addStoreInfoInfo.site': [{
                         limit: "maxLength",
                         param: "100",
                         errInfo: "商户位置太长"
-                    }, ],
+                    },],
                     'addStoreInfoInfo.seq': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "显示序号不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "显示序号不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -76,38 +75,34 @@
                         limit: "maxLength",
                         param: "200",
                         errInfo: "工作时间太长"
-                    }, ],
+                    },],
                     'addStoreInfoInfo.remark': [{
                         limit: "maxLength",
                         param: "5000",
                         errInfo: "备注太长"
-                    }, ],
-
-
+                    },],
 
 
                 });
             },
-            saveStoreInfoInfo: function() {
+            saveStoreInfoInfo: function () {
                 if (!vc.component.addStoreInfoValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addStoreInfoInfo);
                     $('#addStoreInfoModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/storeInfo/saveStoreInfo',
+
                     JSON.stringify(vc.component.addStoreInfoInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -115,29 +110,25 @@
                             $('#addStoreInfoModel').modal('hide');
                             vc.component.clearAddStoreInfoInfo();
                             vc.emit('storeInfoManage', 'listStoreInfo', {});
-
+                            vc.toast(_json.msg);
                             return;
                         }
-                        vc.message(_json.msg);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
-
+                        vc.toast(errInfo);
                     });
             },
-            _initAddProduct: function() {
+            _initAddProduct: function () {
                 let $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入商家信息',
                     callbacks: {
-                        onImageUpload: function(files, editor, $editable) {
+                        onImageUpload: function (files, editor, $editable) {
                             $that.sendFile($summernote, files);
                         },
-                        onChange: function(contents, $editable) {
+                        onChange: function (contents, $editable) {
                             $that.addStoreInfoInfo.remark = contents;
                         }
                     },
@@ -155,12 +146,11 @@
                     ],
                 });
             },
-            sendFile: function($summernote, files) {
+            sendFile: function ($summernote, files) {
                 console.log('上传图片', files);
-
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
-                param.append('communityId', '-1');
+                param.append('communityId', vc.getCurrentCommunity().communityId);
 
                 vc.http.upload(
                     'addNoticeView',
@@ -172,7 +162,7 @@
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var data = JSON.parse(json);
@@ -182,17 +172,16 @@
                         }
                         vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
-
             },
-            _closeAddProductInfo: function() {
+            _closeAddProductInfo: function () {
                 $that.clearAddStoreInfoInfo();
                 vc.emit('storeInfoManage', 'listStoreInfo', {});
             },
-            clearAddStoreInfoInfo: function() {
+            clearAddStoreInfoInfo: function () {
                 vc.component.addStoreInfoInfo = {
                     name: '',
                     convenienceMenusId: '',
@@ -203,10 +192,8 @@
                     seq: '',
                     workTime: '',
                     remark: '',
-
                 };
             }
         }
     });
-
 })(window.vc);

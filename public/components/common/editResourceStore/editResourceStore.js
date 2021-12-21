@@ -24,7 +24,9 @@
                 remark: '',
                 warningStock: '',
                 resourceStoreSpecifications: [],
-                shType: ''
+                shType: '',
+                isFixeds: [],
+                isFixed: ''
             }
         },
         _initMethod: function () {
@@ -41,6 +43,10 @@
                 //与字典表单位关联
                 vc.getDict('resource_store', "unit_code", function (_data) {
                     vc.component.editResourceStoreInfo.unitCodes = _data;
+                });
+                //与字典表单位关联
+                vc.getDict('resource_store', "is_fixed", function (_data) {
+                    vc.component.editResourceStoreInfo.isFixeds = _data;
                 });
                 vc.component.editResourceStoreInfo.communityId = vc.getCurrentCommunity().communityId;
                 $that._loadResourceStoreSpecificationEdit();
@@ -267,7 +273,7 @@
                 vc.component._listEditResourceStoreSonType();
             },
             // 二级分类修改
-            resourceStoreSonTypesOnChangeEdit: function(){
+            resourceStoreSonTypesOnChangeEdit: function () {
                 vc.component.editResourceStoreInfo.resourceStoreSpecifications = [];
                 vc.component.editResourceStoreInfo.rssId = '';
                 if (vc.component.editResourceStoreInfo.rstId == '') {
@@ -319,7 +325,9 @@
                     remark: '',
                     warningStock: '',
                     resourceStoreSpecifications: [],
-                    shType: ''
+                    shType: '',
+                    isFixeds: [],
+                    isFixed: ''
                 }
             }
         }

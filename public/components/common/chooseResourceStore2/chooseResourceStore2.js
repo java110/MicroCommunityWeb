@@ -17,8 +17,7 @@
                 resOrderType: '',
                 storehouses: [],
                 resourceStoreTypes: [],
-                resourceStoreSonTypes: [],
-                resOrderType: ''
+                resourceStoreSonTypes: []
             }
         },
         watch: { // 监视双向绑定的数据数组
@@ -61,9 +60,7 @@
         methods: {
             _loadAllResourceStoreInfo: function (_page, _row) {
                 let _resOrderType = vc.component.chooseResourceStoreInfo2.resOrderType;
-
                 let _shType = '2806';
-
                 if (_resOrderType == '20000') {
                     _shType = '2807';
                 }
@@ -81,7 +78,6 @@
                         shId: vc.component.chooseResourceStoreInfo2.shId
                     }
                 };
-
                 //发送get请求
                 vc.http.get('chooseResourceStore',
                     'list',
@@ -183,7 +179,7 @@
             _listResourceStoreSonTypes: function () {
                 vc.component.chooseResourceStoreInfo2.rstId = '';
                 vc.component.chooseResourceStoreInfo2.resourceStoreSonTypes = [];
-                if(vc.component.chooseResourceStoreInfo2.parentRstId == ''){
+                if (vc.component.chooseResourceStoreInfo2.parentRstId == '') {
                     return;
                 }
                 var param = {
@@ -206,7 +202,6 @@
                     }
                 );
             },
-
             checkAll: function (e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
@@ -220,6 +215,5 @@
                 }
             }
         }
-
     });
 })(window.vc);

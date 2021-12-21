@@ -32,7 +32,7 @@
                     vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId = info.staffId;
                     vc.component.transferGoodsStepInfo.purchaseApply.acceptUserName = info.staffName;
                     vc.component.transferGoodsStepInfo.infos[1] = info;
-                }else{
+                } else {
                     delete vc.component.transferGoodsStepInfo.infos[1];
                 }
             });
@@ -82,7 +82,7 @@
             },
             _finishStep: function () {
                 let currentUserId = vc.getData("/nav/getUserInfo").userId;
-                if (currentUserId == vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId){
+                if (currentUserId == vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId) {
                     vc.toast("不能转赠给自己");
                     return;
                 }

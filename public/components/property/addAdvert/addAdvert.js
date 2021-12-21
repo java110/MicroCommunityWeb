@@ -26,7 +26,7 @@
                 photos: [],
                 viewType: '',
                 vedioName: '',
-                communityId: ''
+                communityId: vc.getCurrentCommunity().communityId,
             }
         },
         _initMethod: function () {

@@ -1,5 +1,4 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
             editStoreInfoInfo: {
@@ -12,39 +11,38 @@
                 site: '',
                 seq: '',
                 workTime: '',
-                remark: '',
-
+                remark: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._initEditProduct();
         },
-        _initEvent: function() {
-            vc.on('editStoreInfo', 'openEditStoreInfoModal', function(_params) {
+        _initEvent: function () {
+            vc.on('editStoreInfo', 'openEditStoreInfoModal', function (_params) {
                 vc.component.refreshEditStoreInfoInfo();
                 $('#editStoreInfoModel').modal('show');
                 vc.copyObject(_params, vc.component.editStoreInfoInfo);
                 let _photos = [];
                 _photos.push(vc.component.editStoreInfoInfo.icon);
                 vc.emit('editIconCover', 'uploadImage', 'notifyPhotos', _photos);
+                vc.component.editStoreInfoInfo.communityId = vc.getCurrentCommunity().communityId;
                 $(".editSummernote").summernote('code', vc.component.editStoreInfoInfo.remark);
             });
-
-            vc.on("editIcon", "notifyUploadCoverImage", function(_param) {
+            vc.on("editIcon", "notifyUploadCoverImage", function (_param) {
                 if (_param.length > 0) {
                     vc.component.editStoreInfoInfo.icon = _param[0];
                 } else {
                     vc.component.editStoreInfoInfo.icon = '';
                 }
-
             });
         },
         methods: {
-            editStoreInfoValidate: function() {
+            editStoreInfoValidate: function () {
                 return vc.validate.validate({
                     editStoreInfoInfo: vc.component.editStoreInfoInfo
                 }, {
-                    'editStoreInfoInfo.name': [{
+                    'editStoreInfoInfo.name': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "商户名称不能为空"
@@ -55,17 +53,22 @@
                             errInfo: "商户名称太长"
                         },
                     ],
-                    'editStoreInfoInfo.tel': [{
-                        limit: "maxLength",
-                        param: "13",
-                        errInfo: "电话太长"
-                    }, ],
-                    'editStoreInfoInfo.site': [{
-                        limit: "maxLength",
-                        param: "100",
-                        errInfo: "商户位置太长"
-                    }, ],
-                    'editStoreInfoInfo.seq': [{
+                    'editStoreInfoInfo.tel': [
+                        {
+                            limit: "maxLength",
+                            param: "13",
+                            errInfo: "电话太长"
+                        },
+                    ],
+                    'editStoreInfoInfo.site': [
+                        {
+                            limit: "maxLength",
+                            param: "100",
+                            errInfo: "商户位置太长"
+                        },
+                    ],
+                    'editStoreInfoInfo.seq': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "显示序号不能为空"
@@ -76,62 +79,66 @@
                             errInfo: "显示序号不是有效数字"
                         },
                     ],
-                    'editStoreInfoInfo.workTime': [{
-                        limit: "maxLength",
-                        param: "200",
-                        errInfo: "工作时间太长"
-                    }, ],
-                    'editStoreInfoInfo.remark': [{
-                        limit: "maxLength",
-                        param: "5000",
-                        errInfo: "备注太长"
-                    }, ],
-                    'editStoreInfoInfo.storeInfoId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "商户信息ID不能为空"
-                    }]
-
+                    'editStoreInfoInfo.workTime': [
+                        {
+                            limit: "maxLength",
+                            param: "200",
+                            errInfo: "工作时间太长"
+                        },
+                    ],
+                    'editStoreInfoInfo.remark': [
+                        {
+                            limit: "maxLength",
+                            param: "5000",
+                            errInfo: "备注太长"
+                        },
+                    ],
+                    'editStoreInfoInfo.storeInfoId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "商户信息ID不能为空"
+                        }
+                    ]
                 });
             },
-            editStoreInfo: function() {
+            editStoreInfo: function () {
                 if (!vc.component.editStoreInfoValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/storeInfo/updateStoreInfo',
-                    JSON.stringify(vc.component.editStoreInfoInfo), {
+                    JSON.stringify(vc.component.editStoreInfoInfo),
+                    {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#editStoreInfoModel').modal('hide');
                             vc.emit('storeInfoManage', 'listStoreInfo', {});
+                            vc.toast(_json.msg);
                             return;
                         }
-                        vc.message(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
-            _initEditProduct: function() {
+            _initEditProduct: function () {
                 let $summernote = $('.editSummernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入商家信息',
                     callbacks: {
-                        onImageUpload: function(files, editor, $editable) {
+                        onImageUpload: function (files, editor, $editable) {
                             $that.sendEditFile($summernote, files);
                         },
-                        onChange: function(contents, $editable) {
+                        onChange: function (contents, $editable) {
                             $that.editStoreInfoInfo.remark = contents;
                         }
                     },
@@ -148,15 +155,12 @@
                         ['help', ['help']]
                     ],
                 });
-
             },
-            sendEditFile: function($summernote, files) {
+            sendEditFile: function ($summernote, files) {
                 console.log('上传图片', files);
-
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
-                param.append('communityId', '-1');
-
+                param.append('communityId', vc.getCurrentCommunity().communityId);
                 vc.http.upload(
                     'addNoticeView',
                     'uploadImage',
@@ -167,7 +171,7 @@
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var data = JSON.parse(json);
@@ -177,17 +181,16 @@
                         }
                         vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
-
             },
-            _closeStoreInfo: function() {
+            _closeStoreInfo: function () {
                 $that.refreshEditStoreInfoInfo();
                 vc.emit('storeInfoManage', 'listStoreInfo', {});
             },
-            refreshEditStoreInfoInfo: function() {
+            refreshEditStoreInfoInfo: function () {
                 vc.component.editStoreInfoInfo = {
                     storeInfoId: '',
                     name: '',
@@ -199,10 +202,8 @@
                     seq: '',
                     workTime: '',
                     remark: '',
-
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

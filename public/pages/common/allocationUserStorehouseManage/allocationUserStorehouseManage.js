@@ -118,7 +118,7 @@
             _listResourceStoreSonTypes: function () {
                 vc.component.allocationUserStorehouseManageInfo.conditions.rstId = '';
                 vc.component.allocationUserStorehouseManageInfo.resourceStoreSonTypes = [];
-                if(vc.component.allocationUserStorehouseManageInfo.conditions.parentRstId == ''){
+                if (vc.component.allocationUserStorehouseManageInfo.conditions.parentRstId == '') {
                     return;
                 }
                 var param = {

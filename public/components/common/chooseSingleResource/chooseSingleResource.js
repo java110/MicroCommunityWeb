@@ -113,6 +113,7 @@
                         resId: vc.component.chooseSingleResourceInfo.resId,
                         communityId: vc.getCurrentCommunity().communityId,
                         chooseType: "repair",
+                        flag: 1,
                         giveType: 1
                     }
                 };

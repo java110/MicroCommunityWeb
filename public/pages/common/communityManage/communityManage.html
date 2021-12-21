@@ -51,28 +51,28 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>小区ID</th>
-                            <th>小区名称</th>
+                            <th class="text-center">小区ID</th>
+                            <th class="text-center">小区名称</th>
                             <!--<th>小区地址</th>-->
-                            <th width="25%">附近地标</th>
-                            <th>城市编码</th>
-                            <th v-for="(item,index) in communityManageInfo.listColumns">{{item.specName}}</th>
-                            <th>状态</th>
-                            <th class="text-right">操作</th>
+                            <th width="25%" class="text-center">附近地标</th>
+                            <th class="text-center">城市编码</th>
+                            <th v-for="(item,index) in communityManageInfo.listColumns" class="text-center">{{item.specName}}</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="community in communityManageInfo.communitys">
-                            <td>{{community.communityId}}</td>
-                            <td>{{community.name}}</td>
+                            <td class="text-center">{{community.communityId}}</td>
+                            <td class="text-center">{{community.name}}</td>
                             <!--<td>{{community.address}}</td>-->
-                            <td>{{community.nearbyLandmarks}}</td>
-                            <td>{{community.cityName}}</td>
-                            <td v-for="item in community.listValues">
+                            <td class="text-center">{{community.nearbyLandmarks}}</td>
+                            <td class="text-center">{{community.cityName}}</td>
+                            <td v-for="item in community.listValues" class="text-center">
                                 {{item}}
                             </td>
-                            <td>{{community.stateName}}</td>
-                            <td class="text-right">
+                            <td class="text-center">{{community.stateName}}</td>
+                            <td class="text-center">
                                 <div class="btn-group"
                                      v-if="community.state == '1200' && communityManageInfo.storeTypeCd == '800900000001'">
                                     <button class="btn-white btn btn-xs"

@@ -115,6 +115,7 @@
                             <th class="text-center">物品规格</th>
                             <th class="text-center">供应商</th>
                             <th class="text-center">物品编码</th>
+                            <th class="text-center">是否是固定物品</th>
                             <th class="text-center">参考单价</th>
                             <th class="text-center">原有库存</th>
                             <th class="text-center">现有库存</th>
@@ -136,6 +137,7 @@
                                 {{resourceStore.supplierName ? resourceStore.supplierName : '-'}}
                             </td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
+                            <td class="text-center">{{resourceStore.isFixedName}}</td>
                             <td class="text-center">￥{{resourceStore.price}}</td>
                             <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
                             <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>

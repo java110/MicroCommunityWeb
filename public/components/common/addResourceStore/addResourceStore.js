@@ -24,11 +24,13 @@
                 description: '',
                 remark: '',
                 shId: '',
+                isFixed: '',
                 photos: [],
                 storehouses: [],
                 resourceStoreTypes: [],
                 resourceStoreSpecifications: [],
                 sonResourceStoreTypes: [],
+                isFixeds: [],
                 warningStock: ''
             }
         },
@@ -36,6 +38,9 @@
             //与字典表单位关联
             vc.getDict('resource_store', "unit_code", function (_data) {
                 vc.component.addResourceStoreInfo.unitCodes = _data;
+            });
+            vc.getDict('resource_store', "is_fixed", function (_data) {
+                vc.component.addResourceStoreInfo.isFixeds = _data;
             });
         },
         _initEvent: function () {
@@ -335,9 +340,11 @@
                     remark: '',
                     unitCode: '',
                     shId: '',
+                    isFixed: '',
                     unitCodes: [],
                     photos: [],
                     storehouses: [],
+                    isFixeds: [],
                     warningStock: ''
                 };
             },

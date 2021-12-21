@@ -116,6 +116,12 @@
                                 resCode: resourceStores[j].resCode,
                                 price: resourceStores[j].price,
                                 stock: resourceStores[j].stock,
+                                parentRstName: resourceStores[j].parentRstName,
+                                rstName: resourceStores[j].rstName,
+                                parentRstId: resourceStores[j].parentRstId,
+                                rstId: resourceStores[j].rstId,
+                                isFixed: resourceStores[j].isFixed,
+                                isFixedName: resourceStores[j].isFixedName,
                                 description: resourceStores[j].description,
                                 unitCodeName: resourceStores[j].unitCodeName,
                                 miniStock: resourceStores[j].miniStock,
@@ -171,7 +177,7 @@
             _listResourceStoreSonTypes: function () {
                 vc.component.chooseResourceStaffInfo.rstId = '';
                 vc.component.chooseResourceStaffInfo.resourceStoreSonTypes = [];
-                if(vc.component.chooseResourceStaffInfo.parentRstId == ''){
+                if (vc.component.chooseResourceStaffInfo.parentRstId == '') {
                     return;
                 }
                 var param = {

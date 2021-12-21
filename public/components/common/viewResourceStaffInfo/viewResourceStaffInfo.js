@@ -40,7 +40,7 @@
                 resourceStores.forEach((newItem) => {
                     newItem.quantity = 0;
                     oldList.forEach((oldItem) => {
-                        if(oldItem.resId == newItem.resId){
+                        if (oldItem.resId == newItem.resId) {
                             newItem.giveQuantity = oldItem.giveQuantity;
                             newItem.price = oldItem.price;
                             newItem.purchaseRemark = oldItem.purchaseRemark;
@@ -48,8 +48,6 @@
                     })
                 })
                 vc.component.viewResourceStaffInfo.resourceStores = resourceStores;
-                console.log("这里呢")
-                console.log(resourceStores)
             });
             vc.on('viewResourceStaffInfo', 'getSelectResourceStores', function (resourceStores) {
                 //vc.component.viewResourceStaffInfo.resourceStores = resourceStores;
@@ -63,7 +61,7 @@
             // 移除选中item
             _removeSelectResourceStoreItem: function (resId) {
                 vc.component.viewResourceStaffInfo.resourceStores.forEach((item, index) => {
-                    if(item.resId == resId){
+                    if (item.resId == resId) {
                         vc.component.viewResourceStaffInfo.resourceStores.splice(index, 1);
                     }
                 })

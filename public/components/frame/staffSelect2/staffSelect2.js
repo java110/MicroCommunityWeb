@@ -9,11 +9,11 @@
             staffSelect2Info: {
                 staffs: [],
                 staffId: '-1',
-                staffName:'',
+                staffName: '',
                 name: '',
                 orgId: '',
-                companyId:'',
-                departmentId:'',
+                companyId: '',
+                departmentId: '',
                 staffSelector: {}
             }
         },
@@ -29,29 +29,28 @@
             this._initstaffSelect2();
         },
         _initEvent: function () {
-
             vc.on('staffSelect2', 'setStaff', function (_param) {
                 vc.copyObject(_param, this.staffSelect2Info);
                 var option = new Option(_param.staffName, _param.staffId, true, true);
                 this.staffSelect2Info.staffSelector.append(option);
             });
-
             vc.on('staffSelect2', 'clearStaff', function (_param) {
                 this.staffSelect2Info = {
                     staffs: [],
                     staffId: '-1',
-                    staffName:'',
+                    staffName: '',
                     name: '',
                     orgId,
-                    companyId:'',
-                    departmentId:'',
+                    companyId: '',
+                    departmentId: '',
                     staffSelector: {}
                 };
             });
         },
         methods: {
             _initstaffSelect2: function () {
-                $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+                $.fn.modal.Constructor.prototype.enforceFocus = function () {
+                };
                 $.fn.select2.defaults.set('width', '100%');
                 this.staffSelect2Info.staffSelector = $('#staffSelector').select2({
                     placeholder: '必填，请选择员工',
@@ -63,11 +62,11 @@
                         url: "/callComponent/searchStaff/listStaff",
                         dataType: 'json',
                         delay: 250,
-                        headers:{
+                        headers: {
                             'APP-ID': '8000418004',
-                            'TRANSACTION-ID' : vc.uuid(),
+                            'TRANSACTION-ID': vc.uuid(),
                             'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
-                            'SIGN' : ''
+                            'SIGN': ''
                         },
                         data: function (params) {
                             console.log("param", params);
@@ -75,12 +74,20 @@
                             if (params.hasOwnProperty("term")) {
                                 _term = params.term;
                             }
+                            if (!this.staffSelect2Info.companyId) {
+                                vc.toast("请先选择公司和部门");
+                                return;
+                            }
+                            if (!this.staffSelect2Info.departmentId) {
+                                vc.toast("请先选择公司和部门");
+                                return;
+                            }
                             return {
                                 name: _term,
                                 page: 1,
                                 row: 50,
-                                parentOrgId:this.staffSelect2Info.companyId,
-                                departmentOrgId:this.staffSelect2Info.departmentId,
+                                parentOrgId: this.staffSelect2Info.companyId,
+                                departmentOrgId: this.staffSelect2Info.departmentId,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },
@@ -100,14 +107,12 @@
                     this.staffSelect2Info.staffId = evt.params.data.id;
                     this.staffSelect2Info.staffName = evt.params.data.text;
                 });
-
                 $('#staffSelector').on("select2:unselect", function (evt) {
                     //这里是取消选中触发的事件
                     //如配置allowClear: true后，触发
                     console.log('unselect', evt);
                     this.staffSelect2Info.staffId = '-1';
                     this.staffSelect2Info.staffName = '';
-
                 });
             },
             _filterstaffData: function (_staffs) {

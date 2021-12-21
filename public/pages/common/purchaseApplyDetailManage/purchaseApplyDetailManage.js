@@ -226,7 +226,7 @@
             _listResourceStoreSonTypes: function () {
                 vc.component.purchaseApplyDetailManageInfo.conditions.rstId = '';
                 vc.component.purchaseApplyDetailManageInfo.resourceStoreSonTypes = [];
-                if(vc.component.purchaseApplyDetailManageInfo.conditions.parentRstId == ''){
+                if (vc.component.purchaseApplyDetailManageInfo.conditions.parentRstId == '') {
                     return;
                 }
                 var param = {

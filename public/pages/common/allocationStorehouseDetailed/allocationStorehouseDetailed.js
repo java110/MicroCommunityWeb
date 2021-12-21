@@ -152,7 +152,7 @@
             _listResourceStoreSonTypes: function () {
                 vc.component.allocationStorehousesInfo.conditions.rstId = '';
                 vc.component.allocationStorehousesInfo.resourceStoreSonTypes = [];
-                if(vc.component.allocationStorehousesInfo.conditions.parentRstId == ''){
+                if (vc.component.allocationStorehousesInfo.conditions.parentRstId == '') {
                     return;
                 }
                 var param = {

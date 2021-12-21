@@ -18,6 +18,7 @@
                         <th class="text-center">物品名称</th>
                         <th class="text-center">物品规格</th>
                         <th class="text-center">物品编码</th>
+                        <th class="text-center">是否是固定物品</th>
                         <th class="text-center">参考价格</th>
                         <th class="text-center">物品库存</th>
                         <th class="text-center">申请数量</th>
@@ -28,12 +29,20 @@
                     </thead>
                     <tbody>
                     <tr v-for="resourceStore in viewResourceStoreInfo4.resourceStores">
-                        <td class="text-center" style="vertical-align: inherit;">{{resourceStore.rstName ? resourceStore.rstName : '-'}}</td>
+                        <td class="text-center" style="vertical-align: inherit;">
+                            {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} >
+                            {{resourceStore.rstName ? resourceStore.rstName : '-'}}
+                        </td>
                         <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resName}}</td>
-                        <td class="text-center" style="vertical-align: inherit;">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
+                        <td class="text-center" style="vertical-align: inherit;">{{resourceStore.rssName ?
+                            resourceStore.rssName : '-'}}
+                        </td>
                         <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resCode}}</td>
+                        <td class="text-center" style="vertical-align: inherit;">{{resourceStore.isFixedName}}</td>
                         <td class="text-center" style="vertical-align: inherit;">{{resourceStore.price}}</td>
-                        <td class="text-center" style="vertical-align: inherit;">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                        <td class="text-center" style="vertical-align: inherit;">
+                            {{resourceStore.stock}}{{resourceStore.unitCodeName}}
+                        </td>
                         <td class="text-center" style="vertical-align: inherit;">
                             <input v-model="resourceStore.quantity" type="number" placeholder="必填，请填写申请数量"
                                    class="form-control" style="width: 80%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
@@ -43,7 +52,8 @@
                                    class="form-control" style="width: 80%;display:inline; margin: auto">
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
-                            <input v-model="resourceStore.remark" type="text" class="form-control" placeholder="选填，请填写备注">
+                            <input v-model="resourceStore.remark" type="text" class="form-control"
+                                   placeholder="选填，请填写备注">
                         </td>
                         <td class=" text-center" style="vertical-align: inherit;">
                             <button type="button" class="btn btn-danger btn-sm" style="margin-right:10px;"

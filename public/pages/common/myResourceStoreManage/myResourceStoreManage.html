@@ -45,7 +45,8 @@
                     <div class="row" v-show="myResourceStoreManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.parentRstId"
+                                        @change="_listResourceStoreSonTypes">
                                     <option selected value="">请选择物品类型</option>
                                     <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreTypes"
                                             :key="index" v-bind:value="item.rstId">
@@ -56,10 +57,12 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rstId"
+                                        @change="_listResourceStoreSpecifications">
                                     <option selected value="">请选择二级分类</option>
-                                    <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreSonTypes" :key="index"
-                                        v-bind:value="item.rstId">
+                                    <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreSonTypes"
+                                            :key="index"
+                                            v-bind:value="item.rstId">
                                         {{item.name}}
                                     </option>
                                 </select>
@@ -92,6 +95,17 @@
                                        class=" form-control">
                             </div>
                         </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.isFixed">
+                                    <option selected disabled value="">请选择物品是否固定</option>
+                                    <option v-for="(item,index) in myResourceStoreManageInfo.isFixeds"
+                                            :value="item.statusCd">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,6 +136,7 @@
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
                             <th class="text-center">物品编码</th>
+                            <th class="text-center">是否是固定物品</th>
                             <th class="text-center">物品库存</th>
                             <th class="text-center">最小计量总数</th>
                             <th class="text-center">最小计量</th>
@@ -141,9 +156,12 @@
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
+                            <td class="text-center">{{resourceStore.isFixedName}}</td>
                             <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
                             <td class="text-center">{{resourceStore.miniStock}}{{resourceStore.miniUnitCodeName}}</td>
-                            <td class="text-center">1{{resourceStore.unitCodeName}}={{resourceStore.miniUnitStock}}{{resourceStore.miniUnitCodeName}}</td>
+                            <td class="text-center">
+                                1{{resourceStore.unitCodeName}}={{resourceStore.miniUnitStock}}{{resourceStore.miniUnitCodeName}}
+                            </td>
                             <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' +
                                 resourceStore.outLowPrice : '￥' + resourceStore.outLowPrice + '-￥' +
                                 resourceStore.outHighPrice}}

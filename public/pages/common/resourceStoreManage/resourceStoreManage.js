@@ -14,6 +14,7 @@
                 resName: '',
                 subTotalPrice: 0.0,
                 highTotalPrice: 0.0,
+                isFixeds: [],
                 conditions: {
                     resId: '',
                     resName: '',
@@ -22,6 +23,7 @@
                     parentRstId: '',
                     rstId: '',
                     rssId: '',
+                    isFixed: '',
                     communityId: vc.getCurrentCommunity().communityId
                 },
                 storehouses: [],
@@ -39,6 +41,9 @@
             $that._listStorehouses();
             $that._listResourceStoreTypes();
             $that._listResourceStoreSpecifications();
+            vc.getDict('resource_store', "is_fixed", function (_data) {
+                vc.component.resourceStoreManageInfo.isFixeds = _data;
+            });
         },
         _initEvent: function () {
             vc.on('resourceStoreManage', 'listResourceStore', function (_param) {
@@ -122,6 +127,7 @@
                 vc.component.resourceStoreManageInfo.conditions.rstId = '';
                 vc.component.resourceStoreManageInfo.conditions.parentRstId = '';
                 vc.component.resourceStoreManageInfo.conditions.rssId = '';
+                vc.component.resourceStoreManageInfo.conditions.isFixed = '';
                 vc.component.resourceStoreManageInfo.resourceStoreSonTypes = [];
                 vc.component.resourceStoreManageInfo.resourceStoreSpecifications = [];
                 $that._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -173,7 +179,7 @@
                 );
             },
             // 父级分类改变
-            resourceStoreParentTypesChange: function(){
+            resourceStoreParentTypesChange: function () {
                 vc.component.resourceStoreManageInfo.conditions.rstId = '';
                 vc.component.resourceStoreManageInfo.conditions.rssId = '';
                 if (vc.component.resourceStoreManageInfo.conditions.parentRstId == '') {
@@ -212,7 +218,6 @@
                         rstId: vc.component.resourceStoreManageInfo.conditions.rstId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
