@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -12,31 +12,27 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('editBusinessDatabus', 'openEditBusinessDatabusModal', function (_params) {
+        _initEvent: function() {
+            vc.on('editBusinessDatabus', 'openEditBusinessDatabusModal', function(_params) {
                 vc.component.refreshEditBusinessDatabusInfo();
                 $('#editBusinessDatabusModel').modal('show');
                 vc.copyObject(_params, vc.component.editBusinessDatabusInfo);
-                vc.component.editBusinessDatabusInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
         methods: {
-            editBusinessDatabusValidate: function () {
+            editBusinessDatabusValidate: function() {
                 return vc.validate.validate({
                     editBusinessDatabusInfo: vc.component.editBusinessDatabusInfo
                 }, {
-                    'editBusinessDatabusInfo.businessTypeCd': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "业务类型不能为空"
-                        }
-                    ],
-                    'editBusinessDatabusInfo.beanName': [
-                        {
+                    'editBusinessDatabusInfo.businessTypeCd': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "业务类型不能为空"
+                    }],
+                    'editBusinessDatabusInfo.beanName': [{
                             limit: "required",
                             param: "",
                             errInfo: "适配器不能为空"
@@ -47,8 +43,7 @@
                             errInfo: "适配器名称太长"
                         },
                     ],
-                    'editBusinessDatabusInfo.databusName': [
-                        {
+                    'editBusinessDatabusInfo.databusName': [{
                             limit: "required",
                             param: "",
                             errInfo: "名称不能为空"
@@ -59,8 +54,7 @@
                             errInfo: "名称太长"
                         },
                     ],
-                    'editBusinessDatabusInfo.seq': [
-                        {
+                    'editBusinessDatabusInfo.seq': [{
                             limit: "required",
                             param: "",
                             errInfo: "顺序不能为空"
@@ -71,22 +65,20 @@
                             errInfo: "顺序格式错误"
                         },
                     ],
-                    'editBusinessDatabusInfo.databusId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "Databus ID不能为空"
-                        }],
-                    'editBusinessDatabusInfo.state': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "状态不能为空"
-                        }]
+                    'editBusinessDatabusInfo.databusId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "Databus ID不能为空"
+                    }],
+                    'editBusinessDatabusInfo.state': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "状态不能为空"
+                    }]
 
                 });
             },
-            editBusinessDatabus: function () {
+            editBusinessDatabus: function() {
                 if (!vc.component.editBusinessDatabusValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -94,11 +86,10 @@
 
                 vc.http.apiPost(
                     '/businessDatabus/updateBusinessDatabus',
-                    JSON.stringify(vc.component.editBusinessDatabusInfo),
-                    {
+                    JSON.stringify(vc.component.editBusinessDatabusInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -109,13 +100,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
                     });
             },
-            refreshEditBusinessDatabusInfo: function () {
+            refreshEditBusinessDatabusInfo: function() {
                 vc.component.editBusinessDatabusInfo = {
                     databusId: '',
                     businessTypeCd: '',

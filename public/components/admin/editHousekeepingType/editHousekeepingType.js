@@ -9,6 +9,8 @@
                 hktDesc: '',
                 label: '',
                 seq: '',
+                url: '',
+                skipType: '',
                 isShow: '',
                 typeCd: ''
 
@@ -151,6 +153,8 @@
                     hktDesc: '',
                     label: '',
                     seq: '',
+                    url: '',
+                    skipType: '',
                     isShow: '',
                     typeCd: ''
                 }

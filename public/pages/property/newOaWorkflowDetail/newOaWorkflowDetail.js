@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             newOaWorkflowDetailInfo: {
@@ -16,10 +16,11 @@
                     taskId: ''
                 },
                 imgData: '',
-                nextAudit: {}
+                nextAudit: {},
+                files: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             let id = vc.getParam('id');
             if (!vc.notNull(id)) {
                 vc.toast('非法操作');
@@ -31,15 +32,14 @@
             $that.newOaWorkflowDetailInfo.audit.taskId = vc.getParam('taskId');
             $that._listOaWorkflowDetails();
             $that._loadComments();
-            if($that.newOaWorkflowDetailInfo.action){
+            if ($that.newOaWorkflowDetailInfo.action) {
                 $that._loadNextAuditPerson();
             }
             $that._openNewOaWorkflowDetailImg();
         },
-        _initEvent: function () {
-        },
+        _initEvent: function() {},
         methods: {
-            _listOaWorkFlowDetailForm: function () {
+            _listOaWorkFlowDetailForm: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -50,15 +50,16 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowForm',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _newOaWorkflowFormInfo = JSON.parse(json);
                         $that.newOaWorkflowDetailInfo.formJson = JSON.parse(_newOaWorkflowFormInfo.data[0].formJson).components;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listOaWorkflowDetails: function (_page, _rows) {
+            _listOaWorkflowDetails: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -71,16 +72,18 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowFormData',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _newOaWorkflowDetailInfo = JSON.parse(json);
                         vc.component.newOaWorkflowDetailInfo.pools = _newOaWorkflowDetailInfo.data[0];
+                        $that.newOaWorkflowDetailInfo.files = _newOaWorkflowDetailInfo.data[0].files;
                         $that._listOaWorkFlowDetailForm();
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadComments: function () {
+            _loadComments: function() {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -92,24 +95,25 @@
                 };
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowUser',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _workflowManageInfo = JSON.parse(json);
                         if (_workflowManageInfo.code != '0') {
                             return;
                         }
                         $that.newOaWorkflowDetailInfo.comments = _workflowManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _goBack: function () {
+            _goBack: function() {
                 vc.goBack()
             },
-            chooseStaff: function () {
+            chooseStaff: function() {
                 vc.emit('selectStaff', 'openStaff', $that.newOaWorkflowDetailInfo.audit);
             },
-            _auditSubmit: function () {
+            _auditSubmit: function() {
                 let _audit = $that.newOaWorkflowDetailInfo.audit;
                 _audit.flowId = $that.newOaWorkflowDetailInfo.flowId;
                 _audit.id = $that.newOaWorkflowDetailInfo.id;
@@ -138,11 +142,10 @@
 
                 vc.http.apiPost(
                     '/oaWorkflow/auditOaWorkflow',
-                    JSON.stringify(_audit),
-                    {
+                    JSON.stringify(_audit), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
@@ -152,12 +155,12 @@
                         }
                         vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _loadNextAuditPerson: function () {
+            _loadNextAuditPerson: function() {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -169,18 +172,19 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/getNextTask',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _nextAudit = JSON.parse(json);
                         if (_nextAudit.code != '0') {
                             return;
                         }
                         $that.newOaWorkflowDetailInfo.nextAudit = _nextAudit.data[0];
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _getNewOaWorkflowDetailState: function (_pool) {
+            _getNewOaWorkflowDetailState: function(_pool) {
                 /**
                  * 1001 申请 1002 待审核 1003 退回 1004 委托 1005 办结
                  */
@@ -202,7 +206,7 @@
 
                 return "未知"
             },
-            _openNewOaWorkflowDetailImg: function () { //展示流程图
+            _openNewOaWorkflowDetailImg: function() { //展示流程图
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -212,14 +216,15 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listRunWorkflowImage',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _workflowManageInfo = JSON.parse(json);
                         if (_workflowManageInfo.code != '0') {
                             //vc.toast(_workflowManageInfo.msg);
                             return;
                         }
                         $that.newOaWorkflowDetailInfo.imgData = 'data:image/png;base64,' + _workflowManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

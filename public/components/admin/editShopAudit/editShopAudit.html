@@ -1,0 +1,134 @@
+<div id = "editShopAuditModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">修改店铺审核</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+         <label class="col-sm-2 col-form-label">审核ID</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.auditId"                   type="text" placeholder="必填，请填写审核ID" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">店铺ID</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.shopId"                   type="text" placeholder="必填，请填写店铺ID" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">店铺logo</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.shopLogo"                   type="text" placeholder="必填，请填写店铺logo" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">商户ID</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.storeId"                   type="text" placeholder="必填，请填写商户ID" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">店铺名称</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.shopName"                   type="text" placeholder="必填，请填写店铺名称" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">店铺描述</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.shopDesc"                   type="text" placeholder="必填，请填写店铺描述" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">地区</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.mapX"                   type="text" placeholder="必填，请填写地区" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">地区</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.mapY"                   type="text" placeholder="必填，请填写地区" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">发货地址</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.sendAddress"                   type="text" placeholder="必填，请填写发货地址" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">退货地址</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.returnAddress"                   type="text" placeholder="必填，请填写退货地址" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">退货联系人</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.returnPerson"                   type="text" placeholder="必填，请填写退货联系人" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">退货联系电话</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.returnLink"                   type="text" placeholder="必填，请填写退货联系电话" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">状态</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.state"                   type="text" placeholder="必填，请填写状态" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">店铺类型</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.shopType"                   type="text" placeholder="必填，请填写店铺类型" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">开店类型</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.openType"                   type="text" placeholder="必填，请填写开店类型" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">地域编码</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.areaCode"                   type="text" placeholder="必填，请填写地域编码" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">审核意见</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.auditOpinion"                   type="text" placeholder="必填，请填写审核意见" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">申请原因</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.applyOpinion"                   type="text" placeholder="必填，请填写申请原因" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label">数据状态</label>
+         <div class="col-sm-10">
+           <input v-model="editShopAuditInfo.statusCd"                   type="text" placeholder="必填，请填写数据状态" class="form-control">
+         </div>
+</div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editShopAudit()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

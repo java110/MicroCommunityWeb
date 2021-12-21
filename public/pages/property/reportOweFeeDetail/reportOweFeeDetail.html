@@ -89,6 +89,8 @@
                         <tr>
                             <th class="text-center">费用编号</th>
                             <th class="text-center">房号</th>
+                            <th class="text-center">业主</th>
+                            <th class="text-center">面积</th>
                             <th class="text-center">费用项</th>
                             <th class="text-center">费用开始时间</th>
                             <th class="text-center">更新时间</th>
@@ -100,6 +102,8 @@
                         <tr v-for="(fee,index) in reportOweFeeDetailInfo.fees">
                             <td class="text-center">{{index+1}}</td>
                             <td class="text-center">{{fee.objName}}</td>
+                            <td class="text-center">{{fee.ownerName}}</td>
+                            <td class="text-center">{{fee.builtUpArea}}</td>
                             <td class="text-center">{{fee.feeName}}</td>
                             <td class="text-center">{{fee.feeCreateTime}}</td>
                             <td class="text-center">{{fee.updateTime}}</td>

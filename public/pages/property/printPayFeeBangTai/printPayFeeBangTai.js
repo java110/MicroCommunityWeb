@@ -149,7 +149,7 @@
                         _sum += parseFloat(item.area);
                     }
                 })
-                return _sum;
+                return _sum.toFixed(2);
             },
 
             _printPurchaseApplyDiv: function () {

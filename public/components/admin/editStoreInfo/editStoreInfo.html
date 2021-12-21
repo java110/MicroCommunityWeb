@@ -15,16 +15,17 @@
                                 <div class="col-sm-10">
                                     <input v-model="editStoreInfoInfo.name" type="text" placeholder="必填，请填写商户名称"
                                            class="form-control">
+
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right">便民类型</label>
                                 <div class="col-sm-3">
                                     <select class="custom-select" v-model="editStoreInfoInfo.convenienceMenusId">
-                                        <option selected disabled value="">选填，请选择类型</option>
+
+                                        <option selected disabled value="">必填，请选择类型</option>
                                         <option v-for="(item,index) in storeInfoManageInfo.menuInfos"
-                                                :value="item.convenienceMenusId">
-                                            {{item.name}}
+                                                :value="item.convenienceMenusId">{{item.name}}
                                         </option>
                                     </select>
                                 </div>
@@ -33,11 +34,11 @@
                                 <label class="col-sm-2 col-form-label text-right">是否显示</label>
                                 <div class="col-sm-3">
                                     <select class="custom-select" v-model="editStoreInfoInfo.isShow">
-                                        <option selected disabled value="">选填，请选择是否显示</option>
+
+                                        <option selected disabled value="">必填，请选择是否显示</option>
                                         <option value="Y">是</option>
                                         <option value="N">否</option>
-                                    </select>
-                                </div>
+                                    </select></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right">图片地址</label>
@@ -46,6 +47,7 @@
                                                callBackFunction="notifyUploadCoverImage" namespace="editIconCover"
                                                imageCount="1">
                                     </vc:create>
+
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -53,6 +55,7 @@
                                 <div class="col-sm-10">
                                     <input v-model="editStoreInfoInfo.tel" type="text" placeholder="选填，请填写商户电话"
                                            class="form-control">
+
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -60,6 +63,7 @@
                                 <div class="col-sm-10">
                                     <input v-model="editStoreInfoInfo.site" type="text" placeholder="选填，请填写商户位置"
                                            class="form-control">
+
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -67,6 +71,7 @@
                                 <div class="col-sm-10">
                                     <input v-model="editStoreInfoInfo.seq" type="text" placeholder="必填，请填写显示序号"
                                            class="form-control">
+
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -74,6 +79,7 @@
                                 <div class="col-sm-10">
                                     <input v-model="editStoreInfoInfo.workTime" type="text" placeholder="选填，请填写工作时间"
                                            class="form-control">
+
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -93,6 +99,7 @@
                                         style="margin-right:20px;" data-dismiss="modal">
                                     <i class="fa fa-close"></i>&nbsp;取消
                                 </button>
+
                             </div>
                         </div>
                     </div>

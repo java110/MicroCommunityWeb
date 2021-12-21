@@ -60,7 +60,7 @@
                 );
             },
             _initMachineVideo:function(_machines){
-                $that._playVideo('rtc_media_player1','webrtc://112.124.21.207/live/34020000001320000001@34020000001320000010');
+                $that._playVideo('rtc_media_player1','webrtc://117.159.177.191/live/34020000002000000010@34020000001320000010');
                 $that._playVideo('rtc_media_player2','webrtc://112.124.21.207/live/34020000001320000002@34020000001320000010');
                 $that._playVideo('rtc_media_player3','webrtc://112.124.21.207/live/34020000001320000001@34020000001320000010');
                 $that._playVideo('rtc_media_player4','webrtc://112.124.21.207/live/34020000001320000002@34020000001320000010');

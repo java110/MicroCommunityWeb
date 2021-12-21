@@ -27,17 +27,22 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="col-form-label">状态：</label>
-                                        <label
-                                            class="">{{_getNewOaWorkflowDetailState(newOaWorkflowDetailInfo.pools)}}</label>
+                                        <label class="">{{_getNewOaWorkflowDetailState(newOaWorkflowDetailInfo.pools)}}</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-4" v-for="(item,index) in newOaWorkflowDetailInfo.formJson"
-                                    v-if="item.type != 'text' && item.type != 'button' ">
+                                <div class="col-sm-4" v-for="(item,index) in newOaWorkflowDetailInfo.formJson" v-if="item.type != 'text' && item.type != 'button' ">
                                     <div class="form-group">
                                         <label class="col-form-label">{{item.label}}：</label>
                                         <label class="">{{newOaWorkflowDetailInfo.pools[item.key]}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4" v-for="(item,index) in newOaWorkflowDetailInfo.files">
+                                    <div class="form-group">
+                                        <a class="col-form-label" :href="item.realFileName">{{item.fileName}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -114,18 +119,15 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right">工单说明</label>
                             <div class="col-sm-10">
-                                <textarea placeholder="必填，请填写工单说明" class="form-control"
-                                    v-model="newOaWorkflowDetailInfo.audit.auditMessage">
+                                <textarea placeholder="必填，请填写工单说明" class="form-control" v-model="newOaWorkflowDetailInfo.audit.auditMessage">
                                 </textarea>
                             </div>
                         </div>
                         <!-- 办理时 判断是否指定 委托人 如果指定了 则不显示 -->
-                        <div class="form-group row"
-                            v-if="newOaWorkflowDetailInfo.audit.auditCode == '1100' && newOaWorkflowDetailInfo.nextAudit.assignee == '-2'">
+                        <div class="form-group row" v-if="newOaWorkflowDetailInfo.audit.auditCode == '1100' && newOaWorkflowDetailInfo.nextAudit.assignee == '-2'">
                             <label class="col-sm-2 col-form-label text-right">下一处理人</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="必填，请选择下一处理人" disabled
-                                    v-model="newOaWorkflowDetailInfo.audit.staffName">
+                                <input type="text" class="form-control" placeholder="必填，请选择下一处理人" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
                             </div>
                             <div class="col-sm-2">
                                 <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
@@ -137,8 +139,7 @@
                         <div class="form-group row" v-if="newOaWorkflowDetailInfo.audit.auditCode == '1300'">
                             <label class="col-sm-2 col-form-label text-right">下一处理人</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="必填，请选择下一处理人" disabled
-                                    v-model="newOaWorkflowDetailInfo.audit.staffName">
+                                <input type="text" class="form-control" placeholder="必填，请选择下一处理人" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
                             </div>
                             <div class="col-sm-2">
                                 <button class="btn btn-white " type="button" v-on:click="chooseStaff()">

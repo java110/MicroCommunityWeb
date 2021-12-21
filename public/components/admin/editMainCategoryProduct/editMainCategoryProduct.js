@@ -23,7 +23,6 @@
                 vc.component.refreshEditMainCategoryProductInfo();
                 $('#editMainCategoryProductModel').modal('show');
                 vc.copyObject(_params, vc.component.editMainCategoryProductInfo);
-                vc.component.editMainCategoryProductInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
         methods: {

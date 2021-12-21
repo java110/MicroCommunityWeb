@@ -20,6 +20,7 @@
                 conditions: {
                     floorId: '',
                     ownerName: '',
+                    ownerNameLike: '',
                     floorName: '',
                     unitId: '',
                     roomNum: '',

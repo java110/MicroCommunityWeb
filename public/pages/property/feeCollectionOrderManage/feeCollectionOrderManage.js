@@ -100,6 +100,9 @@
                 } else {
                     vc.component.feeCollectionOrderManageInfo.moreCondition = true;
                 }
+            },
+            _goBack:function(){
+                vc.goBack();
             }
 
 

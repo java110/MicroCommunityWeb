@@ -164,8 +164,7 @@
                 vc.http.upload(
                     'addNoticeView',
                     'uploadImage',
-                    param,
-                    {
+                    param, {
                         emulateJSON: true,
                         //添加请求头
                         headers: {
@@ -177,7 +176,7 @@
                         if (res.status == 200) {
                             var data = JSON.parse(json);
                             //关闭model
-                            $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
+                            $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=-1");
                             return;
                         }
                         vc.toast(json);
@@ -202,7 +201,7 @@
                     site: '',
                     seq: '',
                     workTime: '',
-                    remark: ''
+                    remark: '',
                 }
             }
         }

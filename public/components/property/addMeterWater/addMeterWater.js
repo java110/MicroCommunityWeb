@@ -23,7 +23,8 @@
                 hasRoom: false,
                 ownerName: '',
                 objType: '3333',
-                meterTypes: []
+                meterTypes: [],
+                computingFormula:''
             }
         },
         _initMethod: function () {
@@ -289,6 +290,7 @@
                         }
                         $that.addMeterWaterInfo.preDegrees = _meterWaterInfo.data[0].curDegrees;
                         $that.addMeterWaterInfo.preReadingTime = _meterWaterInfo.data[0].curReadingTime;
+                        $that.addMeterWaterInfo.price = _meterWaterInfo.data[0].price;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -343,8 +345,17 @@
                     hasRoom: false,
                     ownerName: '',
                     objType: '3333',
-                    meterTypes: []
+                    meterTypes: [],
+                    computingFormula:''
                 };
+            },
+            changeFeeConfig:function(){
+                let _configId = $that.addMeterWaterInfo.configId;
+                $that.addMeterWaterInfo.feeConfigs.forEach(item => {
+                    if(_configId == item.configId){
+                        $that.addMeterWaterInfo.computingFormula = item.computingFormula;
+                    }
+                });
             }
         }
     });

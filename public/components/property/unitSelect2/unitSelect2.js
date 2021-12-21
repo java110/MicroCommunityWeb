@@ -90,7 +90,7 @@
                             return {
                                 unitNum: _term,
                                 page: 1,
-                                row: 10,
+                                row: 50,
                                 floorId: this.unitSelect2Info.floorId,
                                 communityId: vc.getCurrentCommunity().communityId
                             };

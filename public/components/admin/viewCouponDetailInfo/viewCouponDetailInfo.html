@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>商家购买记录表信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewCouponDetailInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectCouponDetailInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择商家购买记录表</button>
+
+                    <button type="button" v-if="viewCouponDetailInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddCouponDetailInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加商家购买记录表</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >记录ID：</label>
+                            <label class="">{{viewCouponDetailInfo.detailId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >优惠券：</label>
+                            <label class="">{{viewCouponDetailInfo.poolId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >店铺ID：</label>
+                            <label class="">{{viewCouponDetailInfo.shopId}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >优惠券名称：</label>
+                            <label class="">{{viewCouponDetailInfo.couponName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >面值：</label>
+                            <label class="">{{viewCouponDetailInfo.actualPrice}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >购买价格：</label>
+                            <label class="">{{viewCouponDetailInfo.buyPrice}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >付款金额：</label>
+                            <label class="">{{viewCouponDetailInfo.amount}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >购买数量：</label>
+                            <label class="">{{viewCouponDetailInfo.buyCount}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >有效期：</label>
+                            <label class="">{{viewCouponDetailInfo.validityDay}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >primary：</label>
+                            <label class="">{{viewCouponDetailInfo.primary}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="admin/addCouponDetail"
+               callBackListener="viewCouponDetailInfo"
+               callBackFunction="chooseCouponDetail"
+    ></vc:create>
+
+
+    <vc:create path="admin/chooseCouponDetail"
+               emitChooseCouponDetail="viewCouponDetailInfo"
+               emitLoadData="viewCouponDetailInfo"
+    ></vc:create>
+</div>

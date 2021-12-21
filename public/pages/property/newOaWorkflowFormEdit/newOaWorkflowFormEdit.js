@@ -1,7 +1,7 @@
 /**
     入驻小区
 **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 100;
     vc.extends({
@@ -9,22 +9,26 @@
             newOaWorkflowFormEditInfo: {
                 formJson: {},
                 components: [],
-                conditions: {
-                },
+                conditions: {},
                 flowId: '',
                 id: '',
+                fileName: '',
+                realFileName: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that.newOaWorkflowFormEditInfo.flowId = vc.getParam('flowId');
             $that.newOaWorkflowFormEditInfo.id = vc.getParam('id');
             vc.component._listOaWorkflowFormEdit(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-
+        _initEvent: function() {
+            vc.on('newOaWorkflowFormEdit', 'fileName', function(_param) {
+                $that.newOaWorkflowFormEditInfo.fileName = _param.fileName;
+                $that.newOaWorkflowFormEditInfo.realFileName = _param.realFileName;
+            })
         },
         methods: {
-            _listOaWorkflowFormEdit: function (_page, _rows) {
+            _listOaWorkflowFormEdit: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -36,18 +40,19 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowForm',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _newOaWorkflowFormEditInfo = JSON.parse(json);
                         $that.newOaWorkflowFormEditInfo.formJson = JSON.parse(_newOaWorkflowFormEditInfo.data[0].formJson);
                         $that.newOaWorkflowFormEditInfo.components = $that.newOaWorkflowFormEditInfo.formJson.components;
                         $that._listOaWorkflowDetails();
 
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listOaWorkflowDetails: function () {
+            _listOaWorkflowDetails: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -60,14 +65,20 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowFormData',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _newOaWorkflowDetailInfo = JSON.parse(json);
                         let _data = _newOaWorkflowDetailInfo.data[0];
                         $that.newOaWorkflowFormEditInfo.components.forEach(item => {
                             item.value = _data[item.key];
                         })
+                        if (_data.files) {
+                            $that.newOaWorkflowFormEditInfo.fileName = _data.files[0].fileName;
+                            $that.newOaWorkflowFormEditInfo.realFileName = _data.files[0].realFileName;
+                            vc.emit('newOaWorkflowFormEdit', 'uploadFile', 'notifyVedio', _data.files[0].fileName)
+                        }
                         $that.$forceUpdate();
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
@@ -77,7 +88,9 @@
                 let _components = $that.newOaWorkflowFormEditInfo.components;
                 let _data = {
                     id: $that.newOaWorkflowFormEditInfo.id,
-                    flowId: $that.newOaWorkflowFormEditInfo.flowId
+                    flowId: $that.newOaWorkflowFormEditInfo.flowId,
+                    fileName: $that.newOaWorkflowFormEditInfo.fileName,
+                    realFileName: $that.newOaWorkflowFormEditInfo.realFileName
                 };
 
                 _components.forEach(item => {
@@ -95,11 +108,10 @@
 
                 vc.http.apiPost(
                     '/oaWorkflow.updateOaWorkflowFormData',
-                    JSON.stringify(_data),
-                    {
+                    JSON.stringify(_data), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
@@ -109,14 +121,14 @@
                         }
                         vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
 
                     });
             },
-            closeEditInfo: function () {
+            closeEditInfo: function() {
                 vc.goBack();
             }
         }

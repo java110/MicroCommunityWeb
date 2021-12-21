@@ -12,12 +12,18 @@
                 moreCondition: false,
                 roomNum: '',
                 payObjTypes: [],
+                roomUnits: [],
                 conditions: {
-                    floorName: '',
                     configIds: '',
                     payObjType: '',
                     num: '',
-                    billType: '00123'
+                    billType: '00123',
+                    floorId: '',
+                    floorName: '',
+                    roomNum: '',
+                    unitId: '',
+                    roomSubType: '',
+                    ownerName: ''
                 },
                 feeConfigs: [],
                 feeConfigNames: [],
@@ -67,6 +73,11 @@
                 function (_currentPage) {
                     vc.component._loadListOweFeeInfo(_currentPage, DEFAULT_ROWS);
                 });
+            vc.on('listOweFee', 'chooseFloor', function (_param) {
+                vc.component.listOweFeeInfo.conditions.floorId = _param.floorId;
+                vc.component.listOweFeeInfo.conditions.floorName = _param.floorName;
+                vc.component.loadUnits(_param.floorId);
+            });
         },
         methods: {
             _loadListOweFeeInfo: function (_page, _row) {
@@ -154,6 +165,22 @@
                 })
                 return _value;
             },
+            _getFeeOweAllAmount: function (item) {
+                let _fees = $that.listOweFeeInfo.fees;
+                let _amountOwed = 0.0;
+                _fees.forEach(_feeItem => {
+                    let _items = _feeItem.items;
+                    if (!_items) {
+                        return 0;
+                    }
+                    _items.forEach(tmp => {
+                        if (tmp.configId == item.configId) {
+                            _amountOwed += parseFloat(tmp.amountOwed);
+                        }
+                    })
+                });
+                return _amountOwed.toFixed(2);
+            },
             _getAllFeeOweAmount: function (_fee) {
                 let _feeConfigNames = $that.listOweFeeInfo.feeConfigNames;
                 if (_feeConfigNames.length < 1) {
@@ -170,6 +197,18 @@
                 })
                 return _amountOwed.toFixed(2);
             },
+            _getFeeOweAllAmounts: function () {
+                if (!window.$that) {
+                    return;
+                }
+                let _fees = $that.listOweFeeInfo.fees;
+                let _amountOwed = 0.0;
+                _fees.forEach(_feeItem => {
+                    let _rowAmount = $that._getAllFeeOweAmount(_feeItem);
+                    _amountOwed += parseFloat(_rowAmount);
+                });
+                return _amountOwed.toFixed(2);
+            },
             _exportFee: function () {
                 let _configIds = "";
                 $that.listOweFeeInfo.feeConfigNames.forEach(item => {
@@ -180,9 +219,53 @@
                 }
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=listOweFee&configIds=" + _configIds);
             },
-            _toFeeCollectionOrderManage:function(){
+            _toFeeCollectionOrderManage: function () {
                 vc.jumpToPage('/admin.html#/pages/property/feeCollectionOrderManage');
+            },
+            loadUnits: function (_floorId) {
+                var param = {
+                    params: {
+                        floorId: _floorId,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                }
+                vc.http.get(
+                    'room',
+                    'loadUnits',
+                    param,
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            let tmpUnits = JSON.parse(json);
+                            vc.component.listOweFeeInfo.roomUnits = tmpUnits;
+                            return;
+                        }
+                        vc.toast(json);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
+            },
+            _openChooseFloorMethod: function () {
+                vc.emit('searchFloor', 'openSearchFloorModel', {});
+            },
+            _getFeeOweAllTotalAmount: function (_item) {
+                let _value = 0;
+                let _itemTotalOweAmounts = $that.listOweFeeInfo.fees[0].itemTotalOweAmounts;
+                if (!$that.listOweFeeInfo.fees[0] || !$that.listOweFeeInfo.fees[0].itemTotalOweAmounts) {
+                    return _value;
+                }
+
+                _itemTotalOweAmounts.forEach(item => {
+                    if (_item.configName == item.configName) {
+                        _value = item.totalOweAmount;
+                    }
+                })
+
+                return _value;
             }
+
         }
     });
 })(window.vc);
