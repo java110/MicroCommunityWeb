@@ -53,22 +53,21 @@
                 <div class="ibox-content">
 
                     <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15"
-                    >
+                           data-page-size="15">
                         <thead>
                         <tr>
+                            <th class="text-center">类型ID</th>
                             <th class="text-center">店铺类型</th>
                             <th class="text-center">是否展示</th>
                             <th class="text-center">是否默认</th>
                             <th class="text-center">显示序号</th>
                             <th class="text-center">备注</th>
                             <th class="text-center">操作</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="shopType in shopTypeManageInfo.shopTypes">
+                            <td class="text-center">{{shopType.shopTypeId}}</td>
                             <td class="text-center">{{shopType.typeName}}</td>
                             <td class="text-center">{{shopType.isShow =='Y'?'是':'否'}}</td>
                             <td class="text-center">{{shopType.isDefault =='F'?'自定义':'默认'}}</td>
