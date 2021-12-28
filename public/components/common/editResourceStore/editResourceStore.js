@@ -158,6 +158,13 @@
                             errInfo: "单位不能为空"
                         },
                     ],
+                    'editResourceStoreInfo.isFixed': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "是否是固定物品不能为空"
+                        },
+                    ],
                     'editResourceStoreInfo.miniUnitCode': [
                         {
                             limit: "required",

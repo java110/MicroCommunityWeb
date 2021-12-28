@@ -104,9 +104,9 @@
             listMeterTypes: function () {
                 let param = {
                     params: {
-                        page:1,
-                        row:100,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
                 //发送get请求

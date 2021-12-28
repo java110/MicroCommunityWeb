@@ -10,6 +10,7 @@
                 settingId: '',
                 repairTypeName: '',
                 repairWay: '',
+                repairSettingType: '',
                 remark: '',
                 publicArea: '',
                 payFeeFlag: 'F',
@@ -139,6 +140,7 @@
                 vc.component.addRepairSettingInfo = {
                     repairTypeName: '',
                     repairWay: '',
+                    saveRepairSetting: '',
                     remark: '',
                     publicArea: '',
                     payFeeFlag: 'F',

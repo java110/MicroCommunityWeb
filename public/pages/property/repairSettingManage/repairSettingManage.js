@@ -13,6 +13,7 @@
                 moreCondition: false,
                 settingId: '',
                 repairWays: [],
+                repairSettingType: [],
                 conditions: {
                     repairTypeName: '',
                     repairWay: '',
@@ -25,6 +26,10 @@
             //与字典表关联
             vc.getDict('r_repair_setting', "repair_way", function (_data) {
                 vc.component.repairSettingManageInfo.repairWays = _data;
+            });
+            //与字典表关联
+            vc.getDict('r_repair_setting', "repair_setting_type", function (_data) {
+                vc.component.repairSettingManageInfo.repairSettingType = _data;
             });
         },
         _initEvent: function () {

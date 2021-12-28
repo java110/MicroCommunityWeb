@@ -66,7 +66,6 @@
             },
             _queryFeeFormulaMethod: function () {
                 vc.component._listFeeFormulas(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.feeFormulaManageInfo.moreCondition) {

@@ -6,13 +6,14 @@
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{complaintManageInfo.moreCondition == true?'隐藏':'更多'}}
+                                v-on:click="_moreCondition()">
+                            {{complaintManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入投诉编码"
                                        v-model="complaintManageInfo.conditions.complaintId" class=" form-control">
@@ -32,32 +33,49 @@
                                        v-model="complaintManageInfo.conditions.complaintName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryComplaintMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetComplaintMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4" v-if="complaintManageInfo.moreCondition == true">
+                    <div class="row" v-show="complaintManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入投诉人电话" v-model="complaintManageInfo.conditions.tel"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4" v-if="complaintManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入房屋编号 楼栋-单元-房屋 如1-1-1" v-model="complaintManageInfo.conditions.roomId"
+                                <input type="text" placeholder="请输入房屋编号 楼栋-单元-房屋 如1-1-1"
+                                       v-model="complaintManageInfo.conditions.roomId"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3" v-if="complaintManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="complaintManageInfo.conditions.state">
                                 <option selected value="">请选择投诉状态</option>
                                 <option value="10001">处理中</option>
                                 <option value="10002">处理完成</option>
-                            </select></div>
-                        <div class="col-sm-1">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" v-show="complaintManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input v-model="complaintManageInfo.conditions.startTime" type="text"
+                                       placeholder="请选择开始时间" class="form-control start_time">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input v-model="complaintManageInfo.conditions.endTime" type="text"
+                                       placeholder="请选择结束时间" class="form-control end_time">
+                            </div>
                         </div>
                     </div>
                 </div>

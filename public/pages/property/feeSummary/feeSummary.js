@@ -8,11 +8,11 @@
         data: {
             feeSummaryInfo: {
                 fees: [],
-                feeSummaryType:'1001',
+                feeSummaryType: '1001',
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                name: '',
+                name: ''
             }
         },
         _initMethod: function () {
@@ -28,12 +28,11 @@
                 var param = {
                     params: {
                         page: _page,
-                        row:_rows,
-                        feeSummaryType:vc.component.feeSummaryInfo.feeSummaryType,
-                        communityId:vc.getCurrentCommunity().communityId
+                        row: _rows,
+                        feeSummaryType: vc.component.feeSummaryInfo.feeSummaryType,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.get('feeSummary',
                     'list',
@@ -41,7 +40,7 @@
                     function (json, res) {
                         var _feeSummaryInfo = JSON.parse(json);
                         vc.component.feeSummaryInfo.total = _feeSummaryInfo.total;
-                        vc.component.feeSummaryInfo.records = parseInt(_feeSummaryInfo.total/_rows +1);
+                        vc.component.feeSummaryInfo.records = parseInt(_feeSummaryInfo.total / _rows + 1);
                         vc.component.feeSummaryInfo.fees = _feeSummaryInfo.fees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeSummaryInfo.records,
@@ -53,12 +52,11 @@
                     }
                 );
             },
-            _exportExcel:function () {
-
+            _exportExcel: function () {
             },
-            _switchFeeSummaryType:function(_feeSummaryType){
+            _switchFeeSummaryType: function (_feeSummaryType) {
                 vc.component.feeSummaryInfo.feeSummaryType = _feeSummaryType;
-                vc.component._listFeeSummarys(DEFAULT_PAGE,DEFAULT_ROWS);
+                vc.component._listFeeSummarys(DEFAULT_PAGE, DEFAULT_ROWS);
             }
         }
     });

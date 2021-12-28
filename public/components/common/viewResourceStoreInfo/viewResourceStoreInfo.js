@@ -2,7 +2,6 @@
  物品管理 组件
  **/
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -16,8 +15,7 @@
                 resCode: '',
                 price: '',
                 stock: '',
-                description: '',
-
+                description: ''
             }
         },
         _initMethod: function () {
@@ -29,14 +27,11 @@
                 vc.copyObject(_app, vc.component.viewResourceStoreInfo);
                 vc.emit($props.callBackListener, $props.callBackFunction, vc.component.viewResourceStoreInfo);
             });
-
             vc.on('viewResourceStoreInfo', 'onIndex', function (_index) {
                 vc.component.viewResourceStoreInfo.index = _index;
             });
-
         },
         methods: {
-
             _openSelectResourceStoreInfoModel() {
                 vc.emit('chooseResourceStore', 'openChooseResourceStoreModel', {});
             },
@@ -44,9 +39,7 @@
                 vc.emit('addResourceStore', 'openAddResourceStoreModal', {});
             },
             _loadResourceStoreInfoData: function () {
-
             }
         }
     });
-
 })(window.vc);

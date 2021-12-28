@@ -36,11 +36,8 @@
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listPayFees(_currentPage, DEFAULT_ROWS);
             });
-
             vc.on('payFeeAuditManage', 'audtiNotify', function (_param) {
-
                 $that._auditFee(_param);
-
             });
         },
         methods: {
@@ -99,7 +96,6 @@
                     function (json, res) {
                         var _feeTypesInfo = JSON.parse(json);
                         vc.component.payFeeAuditManageInfo.payFeeTypes = _feeTypesInfo;
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -108,13 +104,11 @@
             _detailFee: function (_fee) {
                 vc.jumpToPage('/admin.html#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             },
-
             _openAuditFeeModal: function (_payFee) { // 打开 审核框
                 $that.payFeeAuditManageInfo.curPayFee = _payFee;
                 vc.emit('audit', 'openAuditModal', {});
             },
             _auditFee: function (_param) {
-
                 //2020 审核通过 3030 未审核
                 let _state = _param.state == '1100' ? '2020' : '3030';
                 let _data = {
@@ -124,7 +118,6 @@
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: $that.payFeeAuditManageInfo.curPayFee.feeId
                 };
-
                 vc.http.apiPost(
                     '/payFeeAudit/savePayFeeAudit',
                     JSON.stringify(_data),
@@ -140,13 +133,10 @@
                             return;
                         }
                         vc.toast(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             _getState: function (_state) {
@@ -155,7 +145,6 @@
                 } else if (_state == '3030') {
                     return '审核不通过';
                 }
-
                 return '待审核';
             },
             _openRefundModel: function (_feeDetail) {

@@ -14,11 +14,13 @@
                 repairName: '',
                 repairSettings: [],
                 states: [],
+                repairSettingTypes: [],
                 conditions: {
                     repairId: '',
                     repairName: '',
                     tel: '',
                     repairType: '',
+                    repairSettingType: '',
                     roomId: '',
                     roomName: '',
                     ownerId: '',
@@ -32,6 +34,9 @@
             $that._listRepairSettings(DEFAULT_PAGE, 50);
             vc.getDict('r_repair_pool', "state", function (_data) {
                 vc.component.repairPoolManageInfo.states = _data;
+            });
+            vc.getDict('r_repair_setting', "repair_setting_type", function (_data) {
+                vc.component.repairPoolManageInfo.repairSettingTypes = _data;
             });
             vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
         },

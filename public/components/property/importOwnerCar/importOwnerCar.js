@@ -1,45 +1,41 @@
 (function (vc) {
     vc.extends({
         data: {
-            importRoomFeeInfo: {
+            importOwnerCarInfo: {
                 communityId: vc.getCurrentCommunity().communityId,
-                excelTemplate: '',
-                feeTypeCd: '',
-                feeTypeCds: [],
-                objType: '3333'
+                excelTemplate: ''
+                // feeTypeCd: '',
+                // feeTypeCds: [],
+                // objType: '3333'
             }
         },
         _initMethod: function () {
-            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
-                vc.component.importRoomFeeInfo.feeTypeCds = _data;
-            });
-
         },
         _initEvent: function () {
-            vc.on('importRoomFee', 'openImportRoomFeeModal',
-                function (_room) {
-                    $('#importRoomFeeModel').modal('show');
-                });
+            vc.on('importOwnerCar', 'openImportOwnerCarModal', function (_param) {
+                $('#importOwnerCarModel').modal('show');
+            });
         },
         methods: {
-            importRoomFeeValidate() {
+            importOwnerCarValidate() {
                 return vc.validate.validate({
-                        importRoomFeeInfo: vc.component.importRoomFeeInfo
+                        importOwnerCarInfo: vc.component.importOwnerCarInfo
                     },
                     {
-                        'importRoomFeeInfo.communityId': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "数据异常还没有入驻小区"
-                        }
+                        'importOwnerCarInfo.communityId': [
+                            {
+                                limit: "required",
+                                param: "",
+                                errInfo: "数据异常还没有入驻小区"
+                            }
                         ],
-                        'importRoomFeeInfo.feeTypeCd': [{
+                        /*'importRoomFeeInfo.feeTypeCd': [{
                             limit: "required",
                             param: "",
                             errInfo: "费用类型不能为空"
                         }
-                        ],
-                        'importRoomFeeInfo.excelTemplate': [
+                        ],*/
+                        'importOwnerCarInfo.excelTemplate': [
                             {
                                 limit: "required",
                                 param: "",
@@ -49,26 +45,26 @@
                     });
             },
             _importData: function () {
-                if (!vc.component.importRoomFeeValidate()) {
+                if (!vc.component.importOwnerCarValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 // 导入数据
-                if (!vc.component.checkFileType(vc.component.importRoomFeeInfo.excelTemplate.name.split('.')[1])) {
+                if (!vc.component.checkOwnerFileType(vc.component.importOwnerCarInfo.excelTemplate.name.split('.')[1])) {
                     vc.toast('不是有效的Excel格式');
                     return;
                 }
-                if (!vc.component.checkFileSize(vc.component.importRoomFeeInfo.excelTemplate.size)) {
+                if (!vc.component.checkOwnerFileSize(vc.component.importOwnerCarInfo.excelTemplate.size)) {
                     vc.toast('Excel文件大小不能超过2M');
                     return;
                 }
                 var param = new FormData();
-                param.append("uploadFile", vc.component.importRoomFeeInfo.excelTemplate);
-                param.append('communityId', vc.component.importRoomFeeInfo.communityId);
-                param.append('feeTypeCd', vc.component.importRoomFeeInfo.feeTypeCd);
-                param.append('objType', $that.importRoomFeeInfo.objType);
+                param.append("uploadFile", vc.component.importOwnerCarInfo.excelTemplate);
+                param.append('communityId', vc.component.importOwnerCarInfo.communityId);
+                // param.append('feeTypeCd', vc.component.importRoomFeeInfo.feeTypeCd);
+                // param.append('objType', $that.importRoomFeeInfo.objType);
                 vc.http.upload(
-                    'importRoomFee',
+                    'importOwnerCar',
                     'importData',
                     param,
                     {
@@ -83,10 +79,9 @@
                         if (res.status == 200) {
                             //关闭model
                             vc.toast("处理成功");
-                            $('#importRoomFeeModel').modal('hide');
-                            vc.jumpToPage('/admin.html#/pages/property/listOwner')
-
-                            vc.emit('roomFeeImport', 'listFee', {});
+                            $('#importOwnerCarModel').modal('hide');
+                            // vc.jumpToPage('/admin.html#/pages/property/listOwner')
+                            vc.emit('listOwnerCar', 'listOwnerCarData', {});
                             return;
                         }
                         vc.toast(json, 10000);
@@ -97,27 +92,27 @@
                     });
             },
             _exportRoomFeeTemplate: function () {
-                vc.jumpToPage('/callComponent/importRoomFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&objType=" + $that.importRoomFeeInfo.objType);
+                vc.jumpToPage('/callComponent/importOwnerCar/exportData?communityId=' + vc.getCurrentCommunity().communityId);
             },
             clearAddFeeConfigInfo: function () {
-                var _feeTypeCds = vc.component.importRoomFeeInfo.feeTypeCds;
-                vc.component.importRoomFeeInfo = {
+                // var _feeTypeCds = vc.component.importRoomFeeInfo.feeTypeCds;
+                vc.component.importOwnerCarInfo = {
                     communityId: vc.getCurrentCommunity().communityId,
-                    excelTemplate: '',
-                    feeTypeCd: '',
-                    feeTypeCds: [],
-                    objType: '3333'
+                    excelTemplate: ''
+                    // feeTypeCd: '',
+                    // feeTypeCds: [],
+                    // objType: '3333'
                 };
-                vc.component.importRoomFeeInfo.feeTypeCds = _feeTypeCds;
+                // vc.component.importRoomFeeInfo.feeTypeCds = _feeTypeCds;
             },
             _changeFeeTypeCd: function (_feeTypeCd) {
             },
             getExcelTemplate: function (e) {
                 //console.log("getExcelTemplate 开始调用")
-                vc.component.importRoomFeeInfo.excelTemplate = e.target.files[0];
+                vc.component.importOwnerCarInfo.excelTemplate = e.target.files[0];
             },
-            checkFileType: function (fileType) {
-                const acceptTypes = ['xlsx'];
+            checkOwnerFileType: function (fileType) {
+                const acceptTypes = ['xlsx','xls'];
                 for (var i = 0; i < acceptTypes.length; i++) {
                     if (fileType === acceptTypes[i]) {
                         return true;
@@ -125,7 +120,7 @@
                 }
                 return false;
             },
-            checkFileSize: function (fileSize) {
+            checkOwnerFileSize: function (fileSize) {
                 //2M
                 const MAX_SIZE = 2 * 1024 * 1024;
                 if (fileSize > MAX_SIZE) {

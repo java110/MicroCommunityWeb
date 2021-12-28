@@ -54,7 +54,11 @@
                             <div class="form-row">
                                 <div class="col">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_addOwnerCar()">
-                                        <i class="fa fa-plus"></i>添加
+                                        <i class="fa fa-plus"></i> 添加
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_openOwnerCarImport(null,true)">
+                                        <i class="fa fa-plus"></i> 业主车辆导入
                                     </button>
                                 </div>
                             </div>
@@ -161,6 +165,7 @@
             </div>
         </div>
     </div>
+    <vc:create path="property/importOwnerCar"></vc:create>
     <vc:create path="property/editCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>
     <vc:create path="property/deleteOwnerCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>
 </div>

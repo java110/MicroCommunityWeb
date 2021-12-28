@@ -13,6 +13,8 @@
                 moreCondition: false,
                 prrId: '',
                 states: [],
+                floors: [],
+                units: [],
                 conditions: {
                     roomId: '',
                     roomNum: '',
@@ -28,11 +30,14 @@
                     repairUrl: '',
                     deedTaxUrl: '',
                     state: '',
+                    floorId: '',
+                    unitId: '',
                     communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
         _initMethod: function () {
+            vc.component.selectFloor();
             vc.component._listPropertyRightRegistrations(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表费用类型关联
             vc.getDict('property_right_registration', "state", function (_data) {
@@ -69,6 +74,10 @@
                     param.params.floorNum = _allNums[0].trim();
                     param.params.unitNum = _allNums[1].trim();
                     param.params.roomNum = _allNums[2].trim();
+                } else {
+                    param.params.floorNum = "";
+                    param.params.unitNum = "";
+                    param.params.roomNum = "";
                 }
                 //发送get请求
                 vc.http.apiGet('propertyRightRegistration.listPropertyRightRegistration',
@@ -113,7 +122,56 @@
                 vc.component.propertyRightRegistrationManageInfo.conditions.idCard = "";
                 vc.component.propertyRightRegistrationManageInfo.conditions.address = "";
                 vc.component.propertyRightRegistrationManageInfo.conditions.state = "";
+                vc.component.propertyRightRegistrationManageInfo.conditions.floorId = "";
+                vc.component.propertyRightRegistrationManageInfo.floors = [];
+                vc.component.propertyRightRegistrationManageInfo.conditions.unitId = "";
+                vc.component.propertyRightRegistrationManageInfo.units = [];
+                vc.component.selectFloor();
                 vc.component._listPropertyRightRegistrations(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //查询楼栋
+            selectFloor: function () {
+                var param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        page: 1,
+                        row: 50
+                    }
+                };
+                vc.http.get(
+                    'listFloor',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var listFloorData = JSON.parse(json);
+                        vc.component.propertyRightRegistrationManageInfo.floors = listFloorData.apiFloorDataVoList;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
+            },
+            //查询单元
+            selectUnit: function () {
+                var param = {
+                    params: {
+                        floorId: vc.component.propertyRightRegistrationManageInfo.conditions.floorId,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        page: 1,
+                        row: 50
+                    }
+                };
+                vc.http.get('unit',
+                    'loadUnits',
+                    param,
+                    function (json, res) {
+                        var listUnitData = JSON.parse(json);
+                        vc.component.propertyRightRegistrationManageInfo.units = listUnitData;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
             },
             //详情
             _openPropertyRightRegistrationDetail: function (_propertyRightRegistration) {

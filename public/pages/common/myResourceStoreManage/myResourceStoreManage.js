@@ -177,6 +177,10 @@
             _jump2TransferGoodsPage: function () {
                 vc.jumpToPage("/admin.html#/pages/common/transferGoodsStep");
             },
+            //损耗
+            _jump2ScrapGoodsPage: function () {
+                vc.jumpToPage("/admin.html#/pages/common/scrapGoodsStep");
+            },
             // 退还商品
             _jump2ReturnGoodsPage: function () {
                 vc.jumpToPage("/admin.html#/pages/common/returnStorehouseApplyManage");

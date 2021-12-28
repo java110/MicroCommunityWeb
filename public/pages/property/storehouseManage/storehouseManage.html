@@ -63,7 +63,8 @@
                 <div class="ibox-title">
                     <h5>仓库信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStorehouseModal()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStorehouseModal()"
+                                v-if="vc.hasPrivilege('502021101638940007')">
                             <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
@@ -96,7 +97,7 @@
                                     </button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                                    <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502021122129210001')"
                                             v-on:click="_openDeleteStorehouseModel(storehouse)">删除
                                     </button>
                                 </div>

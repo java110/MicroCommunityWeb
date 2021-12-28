@@ -153,6 +153,7 @@
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
                             <th class="text-center">是否是固定物品</th>
+                            <th class="text-center">物品使用类型</th>
                             <th class="text-center">物品使用数量</th>
                             <th class="text-center">物品价格</th>
                             <th class="text-center">使用人ID</th>
@@ -177,11 +178,12 @@
                                 {{resourceStoreUseRecord.specName ? resourceStoreUseRecord.specName : '-'}}
                             </td>
                             <td class="text-center">{{resourceStoreUseRecord.isFixedName}}</td>
+                            <td class="text-center">{{resourceStoreUseRecord.stateName}}</td>
                             <td class="text-center">
                                 {{resourceStoreUseRecord.quantity}}{{resourceStoreUseRecord.miniUnitCodeName}}
                             </td>
-                            <td class="text-center">{{resourceStoreUseRecord.unitPrice ?
-                                resourceStoreUseRecord.unitPrice : '-'}}
+                            <td class="text-center">
+                                {{resourceStoreUseRecord.unitPrice ? resourceStoreUseRecord.unitPrice : '-'}}
                             </td>
                             <td class="text-center">{{resourceStoreUseRecord.createUserId}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.createUserName}}</td>

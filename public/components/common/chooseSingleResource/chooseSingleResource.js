@@ -232,7 +232,8 @@
             _chooseSingleResource: function () {
                 // 自定义商品
                 if (vc.component.chooseSingleResourceInfo.isCustom) {
-                    if(vc.component.chooseSingleResourceInfo.customGoodsName == '' || vc.component.chooseSingleResourceInfo.price == ''){
+                    if ((vc.component.chooseSingleResourceInfo.customGoodsName == '' || vc.component.chooseSingleResourceInfo.price == '') &&
+                        vc.component.chooseSingleResourceInfo.maintenanceType == '1001') {
                         vc.toast('请完善自定义信息');
                         return;
                     }
