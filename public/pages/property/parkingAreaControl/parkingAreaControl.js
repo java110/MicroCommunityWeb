@@ -72,7 +72,7 @@
                 } else {
                     url =
                         "ws://" + window.location.host + "/ws/parkingArea/" +
-                        $that.parkingAreaControlInfo.paId + "/" + clientId;
+                        $that.parkingAreaControlInfo.boxId + "/" + clientId;
                     // url =
                     //     "ws://demo.homecommunity.cn:9011/ws/parkingArea/" +
                     //     $that.parkingAreaControlInfo.boxId + "/" + clientId;
