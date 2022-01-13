@@ -12,7 +12,7 @@
             }
         },
         _initMethod: function () {
-
+            
         },
         _initEvent: function () {
             vc.on('unlicensedCarMachineQrCode', 'open', function (_params) {
@@ -21,16 +21,17 @@
                 // = _params;
                 vc.copyObject(_params, vc.component.unlicensedCarMachineQrCodeInfo);
                 vc.component.unlicensedCarMachineQrCodeInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that._loadUnlicensedCodeUrl();
             });
         },
         methods: {
-            _loadQrCodeUrl:function(){
+            _loadUnlicensedCodeUrl:function(){
                 //判断是否支付
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        boxId: $that.parkingAreaControlFeeInfo.boxId,
-                        machineId: $that.parkingAreaControlFeeInfo.machineId,
+                        boxId: $that.unlicensedCarMachineQrCodeInfo.boxId,
+                        machineId: $that.unlicensedCarMachineQrCodeInfo.machineId,
                     }
                 };
                 //发送get请求
@@ -45,8 +46,8 @@
                 );
             },
             _viewQr: function (_data) {
-                document.getElementById("qrcode").innerHTML = "";
-                let qrcode = new QRCode(document.getElementById("qrcode"), {
+                document.getElementById("uncode").innerHTML = "";
+                let qrcode = new QRCode(document.getElementById("uncode"), {
                     text: "无牌车入场二维码",  //你想要填写的文本
                     width: 200, //生成的二维码的宽度
                     height: 200, //生成的二维码的高度
