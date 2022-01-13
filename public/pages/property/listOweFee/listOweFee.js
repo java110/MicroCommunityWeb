@@ -28,7 +28,7 @@
                 feeConfigs: [],
                 feeConfigNames: [],
                 floorId: '',
-                unitId: '',
+                unitId: ''
             }
         },
         watch: {

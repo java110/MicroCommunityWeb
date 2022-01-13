@@ -17,8 +17,13 @@
 
             });
         },
+<<<<<<< HEAD
         methods: {
             deleteShopType: function() {
+=======
+        methods:{
+            deleteShopType:function(){
+>>>>>>> c6f99a4136d2a6450c08d47bb328ee07cf4bdb68
                 vc.http.apiPost(
                     '/shopType/deleteShopType',
                     JSON.stringify(vc.component.deleteShopTypeInfo), {

@@ -106,13 +106,16 @@
             _toCarMember: function (car) {
                 vc.jumpToPage('/admin.html#/pages/property/listOwnerCarMember?carId=' + car.carId)
             },
-            _getCarState:function(car){
+            _getCarState: function (car) {
                 let _carEndTime = new Date(car.endTime);
-                if(_carEndTime.getTime()> new Date().getTime()){
+                if (_carEndTime.getTime() > new Date().getTime()) {
                     return "正常";
                 }
                 return "到期";
-            }
+            },
+            _openOwnerCarImport: function () {
+                vc.emit('importOwnerCar', 'openImportOwnerCarModal', {});
+            },
         }
     })
 })(window.vc);

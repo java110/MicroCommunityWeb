@@ -62,6 +62,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">是否是固定物品</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addResourceStoreInfo.isFixed">
+                                        <option selected disabled value="">必填，请选择是否是固定物品</option>
+                                        <option v-for="(item,index) in addResourceStoreInfo.isFixeds" :key="index"
+                                                v-bind:value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">物品编码</label>
                                 <div class="col-sm-10">
                                     <input v-model="addResourceStoreInfo.resCode" type="text" placeholder="必填，请填写物品编码"

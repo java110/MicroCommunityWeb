@@ -107,6 +107,7 @@
                         // 换存搜索条件
                         $that.saveTempSearchData();
                     }, function (errInfo, error) {
+                        vc.toast(errInfo);
                         console.log('请求失败处理');
                     }
                 );

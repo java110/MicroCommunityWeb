@@ -12,6 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 resName: '',
+                isFixeds: [],
                 conditions: {
                     resId: '',
                     resName: '',
@@ -21,7 +22,8 @@
                     rstId: '',
                     rssId: '',
                     searchUserName: '',
-                    searchUserId: ''
+                    searchUserId: '',
+                    isFixed: ''
                 },
                 storehouses: [],
                 resourceStoreTypes: [],
@@ -33,6 +35,9 @@
             vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listResourceStoreTypes();
             $that._listResourceStoreSpecifications();
+            vc.getDict('resource_store', "is_fixed", function (_data) {
+                vc.component.myResourceStoreManageInfo.isFixeds = _data;
+            });
         },
         _initEvent: function () {
             vc.on('myResourceStoreManage', 'listResourceStore', function (_param) {
@@ -88,6 +93,7 @@
                 vc.component.myResourceStoreManageInfo.conditions.rssId = "";
                 vc.component.myResourceStoreManageInfo.conditions.searchUserId = "";
                 vc.component.myResourceStoreManageInfo.conditions.searchUserName = "";
+                vc.component.myResourceStoreManageInfo.conditions.isFixed = "";
                 vc.component.myResourceStoreManageInfo.resourceStoreSonTypes = [];
                 vc.component.myResourceStoreManageInfo.resourceStoreSpecifications = [];
                 vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -122,7 +128,7 @@
             _listResourceStoreSonTypes: function () {
                 vc.component.myResourceStoreManageInfo.conditions.rstId = '';
                 vc.component.myResourceStoreManageInfo.resourceStoreSonTypes = [];
-                if(vc.component.myResourceStoreManageInfo.conditions.parentRstId == ''){
+                if (vc.component.myResourceStoreManageInfo.conditions.parentRstId == '') {
                     return;
                 }
                 var param = {
@@ -156,7 +162,6 @@
                         rstId: vc.component.myResourceStoreManageInfo.conditions.rstId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
@@ -168,12 +173,14 @@
                     }
                 );
             },
-
             // 跳转转赠商品页面
             _jump2TransferGoodsPage: function () {
                 vc.jumpToPage("/admin.html#/pages/common/transferGoodsStep");
             },
-
+            //损耗
+            _jump2ScrapGoodsPage: function () {
+                vc.jumpToPage("/admin.html#/pages/common/scrapGoodsStep");
+            },
             // 退还商品
             _jump2ReturnGoodsPage: function () {
                 vc.jumpToPage("/admin.html#/pages/common/returnStorehouseApplyManage");

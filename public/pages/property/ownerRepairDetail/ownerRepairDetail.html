@@ -264,7 +264,8 @@
                             <th scope="col" class="text-center">序号</th>
                             <th scope="col" class="text-center">处理人</th>
                             <th scope="col" class="text-center">状态</th>
-                            <th scope="col" class="text-center">处理时间</th>
+                            <th scope="col" class="text-center">处理开始时间</th>
+                            <th scope="col" class="text-center">处理结束时间</th>
                             <th scope="col" class="text-center">耗时</th>
                             <th scope="col" class="text-center">意见</th>
                         </tr>
@@ -277,6 +278,7 @@
                                 {{item.stateName}}({{item.payTypeName}})
                             </td>
                             <td class="text-center" v-else>{{item.stateName}}</td>
+                            <td class="text-center">{{item.startTime}}</td>
                             <td class="text-center">{{item.endTime}}</td>
                             <td class="text-center">{{item.duration}}</td>
                             <td class="text-center">{{item.context}}</td>

@@ -152,6 +152,7 @@
                             <th class="text-center">物品类型</th>
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
+                            <th class="text-center">是否是固定物品</th>
                             <th class="text-center">被调仓库原库存</th>
                             <th class="text-center">调拨数量</th>
                             <th class="text-center">被调仓库</th>
@@ -170,6 +171,7 @@
                             <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
                             <td class="text-center">{{resourceStore.resName}}</td>
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
+                            <td class="text-center">{{resourceStore.isFixedName}}</td>
                             <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
                             <td class="text-center">{{resourceStore.stock}}{{resourceStore.applyType==20000 ? resourceStore.miniUnitCodeName : resourceStore.unitCodeName}}</td>
                             <td class="text-center" v-if="resourceStore.applyType == '20000'">{{resourceStore.startUserName}}</td>
@@ -184,7 +186,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="14">
+                            <td colspan="15">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

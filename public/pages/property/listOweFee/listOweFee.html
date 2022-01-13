@@ -12,10 +12,10 @@
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" placeholder="请选择楼栋" v-model="listOweFeeInfo.conditions.floorName"
-                                    class=" form-control">
+                                       class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                        v-on:click="_openChooseFloorMethod()">
+                                            v-on:click="_openChooseFloorMethod()">
                                         <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
@@ -24,10 +24,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="listOweFeeInfo.conditions.unitId">
+                                        v-model="listOweFeeInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
                                     <option v-for="(unit,index) in listOweFeeInfo.roomUnits" :key="index"
-                                        v-bind:value="unit.unitId">
+                                            v-bind:value="unit.unitId">
                                         {{unit.unitNum}}单元
                                     </option>
                                 </select>
@@ -36,7 +36,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
-                                    v-model="listOweFeeInfo.conditions.roomNum">
+                                       v-model="listOweFeeInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -52,7 +52,7 @@
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="listOweFeeInfo.conditions.roomSubType">
+                                        v-model="listOweFeeInfo.conditions.roomSubType">
                                     <option selected value="">请选择房屋类型</option>
                                     <option value="110">
                                         住宅
@@ -69,7 +69,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写业主名称" class="form-control form-control-md"
-                                    v-model="listOweFeeInfo.conditions.ownerName">
+                                       v-model="listOweFeeInfo.conditions.ownerName">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -77,7 +77,7 @@
                                 <select class="custom-select" v-model="listOweFeeInfo.conditions.payObjType">
                                     <option selected value="">请选择付费对象类型</option>
                                     <option v-for="(item,index) in listOweFeeInfo.payObjTypes" :key="index"
-                                        :value="item.statusCd">
+                                            :value="item.statusCd">
                                         {{item.name}}
                                     </option>
                                 </select>
@@ -89,20 +89,20 @@
                         <div class="col-sm-4" v-if="listOweFeeInfo.conditions.payObjType == '3333'">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号,如1-1-1123" class="form-control"
-                                    v-model="listOweFeeInfo.conditions.num">
+                                       v-model="listOweFeeInfo.conditions.num">
                             </div>
                         </div>
                         <div class="col-sm-4" v-else-if="listOweFeeInfo.conditions.payObjType == '6666'">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写车位编号，如6-8" class="form-control "
-                                    v-model="listOweFeeInfo.conditions.num">
+                                       v-model="listOweFeeInfo.conditions.num">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="selectpicker" id="configIds" placeholder="请选择收费项" multiple>
                                     <option v-for="(item,index) in listOweFeeInfo.feeConfigs" :key="index"
-                                        :value="item.configId">
+                                            :value="item.configId">
                                         {{item.feeName}}
                                     </option>
                                 </select>
@@ -130,42 +130,42 @@
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                        data-page-size="10">
+                           data-page-size="10">
                         <thead>
-                            <tr>
-                                <th class="text-center">序号</th>
-                                <th class="text-center">收费对象</th>
-                                <th class="text-center">业主名称</th>
-                                <th class="text-center">开始时间</th>
-                                <th class="text-center">结束时间</th>
-                                <!-- <th class="text-center">面积</th> -->
-                                <th class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
-                                    {{item.configName}}
-                                </th>
-                                <th class="text-center">合计</th>
-                                <th class="text-center">更新时间</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">序号</th>
+                            <th class="text-center">收费对象</th>
+                            <th class="text-center">业主名称</th>
+                            <th class="text-center">开始时间</th>
+                            <th class="text-center">结束时间</th>
+                            <!-- <th class="text-center">面积</th> -->
+                            <th class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
+                                {{item.configName}}
+                            </th>
+                            <th class="text-center">合计(单位:元)</th>
+                            <th class="text-center">更新时间</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(fee,i) in listOweFeeInfo.fees">
-                                <td class="text-center">{{i+1}}</td>
-                                <td class="text-center">{{fee.payerObjName}}</td>
-                                <td class="text-center">{{fee.ownerName}}</td>
-                                <td class="text-center">{{fee.endTime}}</td>
-                                <td class="text-center">{{fee.deadlineTime}}</td>
-                                <td class="text-center" v-for="item in listOweFeeInfo.feeConfigNames">
-                                    {{_getFeeOweAmount(item,fee)}}
-                                </td>
-                                <td class="text-center">{{_getAllFeeOweAmount(fee)}}</td>
-                                <td class="text-center">{{fee.updateTime}}</td>
-                            </tr>
+                        <tr v-for="(fee,i) in listOweFeeInfo.fees">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-center">{{fee.payerObjName}}</td>
+                            <td class="text-center">{{fee.ownerName}}</td>
+                            <td class="text-center">{{fee.endTime}}</td>
+                            <td class="text-center">{{fee.deadlineTime}}</td>
+                            <td class="text-center" v-for="item in listOweFeeInfo.feeConfigNames">
+                                {{_getFeeOweAmount(item,fee)}}
+                            </td>
+                            <td class="text-center">{{_getAllFeeOweAmount(fee)}}</td>
+                            <td class="text-center">{{fee.updateTime}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

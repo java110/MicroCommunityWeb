@@ -39,8 +39,7 @@
         },
         _initEvent: function () {
             vc.on('repairDispatchManage', 'listOwnerRepair', function (_param) {
-                location.reload();
-                // vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listOwnerRepairs(_currentPage, DEFAULT_ROWS);
@@ -167,6 +166,14 @@
             //回访
             _openAppraiseRepair: function (_repair) {
                 vc.emit('appraiseRepair', 'openAppraiseRepairModal', _repair);
+            },
+            //暂停
+            _openStopRepair: function (_repair) {
+                vc.emit('stopRepair', 'openStopRepairModal', _repair);
+            },
+            //启动
+            _openStartRepair: function (_repair) {
+                vc.emit('startRepair', 'openStartRepairModal', _repair);
             }
         }
     });

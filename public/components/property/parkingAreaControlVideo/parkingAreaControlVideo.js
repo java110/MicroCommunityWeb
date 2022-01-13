@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             parkingAreaControlVideoInfo: {
@@ -13,11 +13,11 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('parkingAreaControlVideo', 'notify', function (param) {
+        _initEvent: function() {
+            vc.on('parkingAreaControlVideo', 'notify', function(param) {
                 if (param.hasOwnProperty('boxId')) {
                     $that.parkingAreaControlVideoInfo.boxId = param.boxId;
                     $that._listMachines();
@@ -25,21 +25,21 @@
             })
         },
         methods: {
-            _listMachines: function () {
+            _listMachines: function() {
                 let param = {
-                    params: {
-                        locationObjId: $that.parkingAreaControlVideoInfo.boxId,
-                        page: 1,
-                        row: 100,
-                        machineTypeCd: '9996',
-                        communityId: vc.getCurrentCommunity().communityId
+                        params: {
+                            locationObjId: $that.parkingAreaControlVideoInfo.boxId,
+                            page: 1,
+                            row: 100,
+                            machineTypeCd: '9996',
+                            communityId: vc.getCurrentCommunity().communityId
+                        }
                     }
-                }
-                //发送get请求
+                    //发送get请求
                 vc.http.get('machineManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _machineManageInfo = JSON.parse(json);
                         let _machines = _machineManageInfo.machines;
                         _machines.forEach(item => {
@@ -50,12 +50,13 @@
                             }
                         });
 
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _swatchVedio: function () {
+            _swatchVedio: function() {
                 //创建一个socket实例
                 let wsUrl = "";
                 let _enterMachineId = $that.parkingAreaControlVideoInfo.inMachineId;
@@ -75,13 +76,13 @@
 
                 wsUrl = wsUrl.replace(':8131', ':9080');
                 let _protocol = window.location.protocol;
-                if (_protocol.startsWith('https')) {
-                    wsUrl =
-                        "wss://" + wsUrl;
-                } else {
-                    wsUrl =
-                        "ws://" + wsUrl;
-                }
+                // if (_protocol.startsWith('https')) {
+                //     wsUrl =
+                //         "wss://" + wsUrl;
+                // } else {
+                wsUrl =
+                    "ws://" + wsUrl;
+                // }
                 let image = document.getElementById("receiver1");
                 if (wsUrl.endsWith(".flv")) {
                     image = document.getElementById("receiver1Div");
@@ -90,16 +91,16 @@
                         videoBuffer: 0.2,
                         isResize: false,
                     });
-                    jessibuca.onLoad = function () {
+                    jessibuca.onLoad = function() {
                         this.play(wsUrl);
                     };
                     return;
                 }
                 let receiver_socket = new WebSocket(wsUrl);
                 // 监听消息
-                receiver_socket.onmessage = function (data) {
+                receiver_socket.onmessage = function(data) {
                     let reader = new FileReader();
-                    reader.onload = function (evt) {
+                    reader.onload = function(evt) {
                         if (evt.target.readyState == FileReader.DONE) {
                             let url = evt.target.result;
                             image.src = "data:image/png;" + url;
@@ -108,7 +109,7 @@
                     reader.readAsDataURL(data.data);
                 };
             },
-            _swatchOutVedio: function () {
+            _swatchOutVedio: function() {
                 //创建一个socket实例
                 let wsUrl = "";
                 let _outMachineId = $that.parkingAreaControlVideoInfo.outMachineId;
@@ -150,17 +151,17 @@
                         videoBuffer: 0.2,
                         isResize: false,
                     });
-                    jessibuca.onLoad = function () {
+                    jessibuca.onLoad = function() {
                         this.play(wsUrl);
                     };
                     return;
                 }
                 let receiver_socket = new WebSocket(wsUrl);
                 // 监听消息
-                receiver_socket.onmessage = function (data) {
+                receiver_socket.onmessage = function(data) {
                     //image.src = 'data:image/png;' + data.data;
                     let reader = new FileReader();
-                    reader.onload = function (evt) {
+                    reader.onload = function(evt) {
                         if (evt.target.readyState == FileReader.DONE) {
                             let url = evt.target.result;
                             image.src = "data:image/png;" + url;
@@ -169,7 +170,7 @@
                     reader.readAsDataURL(data.data);
                 };
             },
-            _openDoor: function (_inOut) {
+            _openDoor: function(_inOut) {
                 let _machines = [];
                 let _machineId = "";
                 if (_inOut == 'in') {
@@ -199,11 +200,10 @@
                     "communityId": vc.getCurrentCommunity().communityId
                 };
                 vc.http.apiPost('/machine/openDoor',
-                    JSON.stringify(_data),
-                    {
+                    JSON.stringify(_data), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         let _data = JSON.parse(json);
                         if (_data.code != 0) {
                             vc.toast(_data.msg);
@@ -211,12 +211,12 @@
                             vc.toast('已请求设备');
                         }
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(json);
                     });
             },
-            customCarIn: function (_type) {
+            customCarIn: function(_type) {
                 let _machineId = $that.parkingAreaControlVideoInfo.inMachineId;
                 if (_type != '1101') {
                     _machineId = $that.parkingAreaControlVideoInfo.outMachineId;

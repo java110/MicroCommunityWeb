@@ -20,11 +20,15 @@
                     personTel: '',
                     state: '',
                     communityId: vc.getCurrentCommunity().communityId,
-                    isPostpone: ''
+                    isPostpone: '',
+                    renovationTime: '',
+                    renovationStartTime: '',
+                    renovationEndTime: ''
                 }
             }
         },
         _initMethod: function () {
+            vc.component._initAddRoomRenovationDate();
             vc.getDict('room_renovation', "state", function (_data) {
                 vc.component.roomRenovationManageInfo.states = _data;
             });
@@ -39,6 +43,76 @@
             });
         },
         methods: {
+            _initAddRoomRenovationDate: function () {
+                $('.renovationTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.renovationTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".renovationTime").val();
+                        vc.component.roomRenovationManageInfo.conditions.renovationTime = value;
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control renovationTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                $(".start_time").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.start_time').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".start_time").val();
+                        vc.component.roomRenovationManageInfo.conditions.renovationStartTime = value;
+                    });
+                $(".end_time").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.end_time').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".end_time").val();
+                        var start = Date.parse(new Date(vc.component.roomRenovationManageInfo.conditions.renovationStartTime));
+                        var end = Date.parse(new Date(value));
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            $(".end_time").val('')
+                        } else {
+                            vc.component.roomRenovationManageInfo.conditions.renovationEndTime = value;
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName("form-control start_time")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control end_time")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             _listRoomRenovations: function (_page, _rows) {
                 vc.component.roomRenovationManageInfo.conditions.page = _page;
                 vc.component.roomRenovationManageInfo.conditions.row = _rows;
@@ -75,7 +149,10 @@
                 vc.component.roomRenovationManageInfo.conditions.personTel = '';
                 vc.component.roomRenovationManageInfo.conditions.state = '';
                 vc.component.roomRenovationManageInfo.conditions.isPostpone = '';
-                $that._listRoomRenovations(DEFAULT_PAGE,DEFAULT_ROWS);
+                vc.component.roomRenovationManageInfo.conditions.renovationTime = '';
+                vc.component.roomRenovationManageInfo.conditions.renovationStartTime = '';
+                vc.component.roomRenovationManageInfo.conditions.renovationEndTime = '';
+                $that._listRoomRenovations(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddRoomRenovationModal: function () {
                 vc.emit('addRoomRenovation', 'openAddRoomRenovationModal', vc.component.roomRenovationManageInfo.roomRenovations);

@@ -16,12 +16,18 @@
                 url: '',
                 skipType: '',
                 isShow: '',
-                typeCd: ''
-
+                typeCd: '',
+                shopId: '',
+                storeId: '',
+                productId: ''
+            },
+            addHousekeepingType:{
+                shops:[],
+                products:[]
             }
         },
         _initMethod: function () {
-
+            vc.component._listShops();
         },
         _initEvent: function () {
             vc.on('addHousekeepingType', 'openAddHousekeepingTypeModal', function () {
@@ -29,7 +35,6 @@
             });
             vc.on("addHousekeepingType", "notifyUploadCoverImage", function (_param) {
                 if (_param.length > 0) {
-                    console.log(_param);
                     vc.component.addHousekeepingTypeInfo.hktIcon = _param[0];
                 } else {
                     vc.component.addHousekeepingTypeInfo.hktIcon = '';
@@ -113,6 +118,24 @@
 
                     return;
                 }
+                if($that.addHousekeepingTypeInfo.skipType == 'S'){
+                    if($that.addHousekeepingTypeInfo.shopId == ""){
+                        vc.toast("请选择店铺");
+                        return;
+                    }
+                    $that.addHousekeepingTypeInfo.url = '/pages/cate/cate?shopId='+$that.addHousekeepingTypeInfo.shopId;
+                }
+                if( $that.addHousekeepingTypeInfo.skipType == 'P'){
+                    if($that.addHousekeepingTypeInfo.shopId == ""){
+                        vc.toast("请选择店铺");
+                        return;
+                    }
+                    if($that.addHousekeepingTypeInfo.productId == ""){
+                        vc.toast("请选择商品");
+                        return;
+                    }
+                    $that.addHousekeepingTypeInfo.url = '/pages/goods/goods?productId=' + $that.addHousekeepingTypeInfo.productId + '&shopId='+$that.addHousekeepingTypeInfo.shopId;
+                }
                 $that.addHousekeepingTypeInfo.shopId = '9999';
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -120,7 +143,6 @@
                     $('#addHousekeepingTypeModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/housekeepingType/saveHousekeepingType',
                     JSON.stringify(vc.component.addHousekeepingTypeInfo),
@@ -148,6 +170,59 @@
 
                     });
             },
+            _listShops: function () {
+                var param = {
+                    params : {
+                        page : 1,
+                        row : 100
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/shop/queryShopsByAdmin',
+                    param,
+                    function (json, res) {
+                        var _shopManageInfo = JSON.parse(json);
+                        vc.component.addHousekeepingType.shops = _shopManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listProducts: function () {
+                var param = {
+                    params : {
+                        page : 1,
+                        row : 100,
+                        shopId:vc.component.addHousekeepingTypeInfo.shopId,
+                        storeId:vc.component.addHousekeepingTypeInfo.storeId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/product/queryProduct',
+                    param,
+                    function (json, res) {
+                        var _productManageInfo = JSON.parse(json);
+                        vc.component.addHousekeepingType.products = _productManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            // 分类改变事件
+            selProducts: function () {
+                if (vc.component.addHousekeepingTypeInfo.shopId == '') {
+                    vc.component.addHousekeepingType.products = [];
+                    return;
+                }
+                if(vc.component.addHousekeepingTypeInfo.skipType =="P"){
+                    vc.component.addHousekeepingType.shops.forEach((item, index) => {
+                        if (item.shopId == vc.component.addHousekeepingTypeInfo.shopId ) {
+                            vc.component.addHousekeepingTypeInfo.storeId = item.storeId;
+                        }
+                    });
+                    vc.component._listProducts();
+                }
+            },
             clearAddHousekeepingTypeInfo: function () {
                 vc.component.addHousekeepingTypeInfo = {
                     hktName: '',
@@ -158,9 +233,13 @@
                     url: '',
                     skipType: '',
                     isShow: '',
-                    typeCd: ''
-
+                    typeCd: '',
+                    shopId: '',
+                    productId: '',
+                    storeId: ''
                 };
+                vc.component.addHousekeepingType.shops=[];
+                vc.component.addHousekeepingType.products=[];
             }
         }
     });

@@ -2582,6 +2582,19 @@
                     }
                 }
                 s = a.join("").replace(new RegExp("(\\d+)(\\d{" + d + "})\\d$"), "$1.$2");
+<<<<<<< HEAD
+=======
+
+
+            }
+            if (b) s = s.substr(1);
+            return (pm + s).replace(/\.$/, "");
+        }
+        return this + "";
+    }
+})(window.vcFramework);
+
+>>>>>>> c6f99a4136d2a6450c08d47bb328ee07cf4bdb68
 
             }
             if (b) s = s.substr(1);

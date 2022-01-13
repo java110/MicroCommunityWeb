@@ -24,11 +24,13 @@
                 description: '',
                 remark: '',
                 shId: '',
+                isFixed: '',
                 photos: [],
                 storehouses: [],
                 resourceStoreTypes: [],
                 resourceStoreSpecifications: [],
                 sonResourceStoreTypes: [],
+                isFixeds: [],
                 warningStock: ''
             }
         },
@@ -36,6 +38,9 @@
             //与字典表单位关联
             vc.getDict('resource_store', "unit_code", function (_data) {
                 vc.component.addResourceStoreInfo.unitCodes = _data;
+            });
+            vc.getDict('resource_store', "is_fixed", function (_data) {
+                vc.component.addResourceStoreInfo.isFixeds = _data;
             });
         },
         _initEvent: function () {
@@ -65,6 +70,34 @@
                             errInfo: "物品名称长度为2至100"
                         },
                     ],
+                    'addResourceStoreInfo.parentRstId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "物品类型不能为空"
+                        },
+                    ],
+                    'addResourceStoreInfo.rstId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "二级分类不能为空"
+                        },
+                    ],
+                    'addResourceStoreInfo.unitCode': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "单位不能为空"
+                        },
+                    ],
+                    'addResourceStoreInfo.isFixed': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "是否是固定物品不能为空"
+                        },
+                    ],
                     'addResourceStoreInfo.resCode': [
                         {
                             limit: "maxLength",
@@ -76,6 +109,13 @@
                             param: "",
                             errInfo: "物品编码不能为空"
                         }
+                    ],
+                    'addResourceStoreInfo.shId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "仓库不能为空"
+                        },
                     ],
                     'addResourceStoreInfo.price': [
                         {
@@ -119,7 +159,7 @@
                         {
                             limit: "maxLength",
                             param: "200",
-                            errInfo: "描述不能为空"
+                            errInfo: "物品描述不能超过200位"
                         },
                     ],
                     'addResourceStoreInfo.showMobile': [
@@ -151,34 +191,6 @@
                             limit: "money",
                             param: "",
                             errInfo: "收费标准格式错误"
-                        },
-                    ],
-                    'addResourceStoreInfo.unitCode': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "单位不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.parentRstId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "物品类型不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.rstId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "二级分类不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.shId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "仓库不能为空"
                         },
                     ]
                 });
@@ -335,9 +347,11 @@
                     remark: '',
                     unitCode: '',
                     shId: '',
+                    isFixed: '',
                     unitCodes: [],
                     photos: [],
                     storehouses: [],
+                    isFixeds: [],
                     warningStock: ''
                 };
             },

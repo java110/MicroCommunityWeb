@@ -115,6 +115,7 @@
                             <th class="text-center">物品类型</th>
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
+                            <th class="text-center">是否是固定物品</th>
                             <th class="text-center">转赠人ID</th>
                             <th class="text-center">转赠人</th>
                             <th class="text-center">转赠对象ID</th>
@@ -136,6 +137,7 @@
                             <td class="text-center">
                                 {{allocationUserStorehouse.specName ? allocationUserStorehouse.specName : '-'}}
                             </td>
+                            <td class="text-center">{{allocationUserStorehouse.isFixedName}}</td>
                             <td class="text-center">{{allocationUserStorehouse.startUserId}}</td>
                             <td class="text-center">{{allocationUserStorehouse.startUserName}}</td>
                             <td class="text-center">{{allocationUserStorehouse.acceptUserId}}</td>
@@ -148,7 +150,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="13">
+                            <td colspan="14">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

@@ -55,9 +55,9 @@
                             <th class="text-center">缴费ID</th>
                             <th class="text-center">费用类型</th>
                             <th class="text-center">付费对象</th>
-                            <th class="text-center">付费周期</th>
-                            <th class="text-center">应付金额</th>
-                            <th class="text-center">实付金额</th>
+                            <th class="text-center">付费周期(单位:月)</th>
+                            <th class="text-center">应付金额(单位:元)</th>
+                            <th class="text-center">实付金额(单位:元)</th>
                             <th class="text-center">退费原因</th>
                             <th class="text-center">审核状态</th>
                             <th class="text-center">操作</th>
@@ -68,9 +68,13 @@
                             <td class="text-center">{{payFee.returnFeeId}}</td>
                             <td class="text-center">{{payFee.detailId}}</td>
                             <td class="text-center">{{payFee.feeTypeCdName}}</td>
-                            <td class="text-center" v-if="payFee.payerObjType == '3333'">{{payFee.floorNum}}-{{payFee.unitNum}}-{{payFee.roomNum}}</td>
-                            <td class="text-center" v-if="payFee.payerObjType == '6666'">{{payFee.paNum}}-{{payFee.psNum}}-{{payFee.carNum}}</td>
-                            <td class="text-center">{{vc.unum(payFee.cycles)}}个月</td>
+                            <td class="text-center" v-if="payFee.payerObjType == '3333'">
+                                {{payFee.floorNum}}-{{payFee.unitNum}}-{{payFee.roomNum}}
+                            </td>
+                            <td class="text-center" v-if="payFee.payerObjType == '6666'">
+                                {{payFee.paNum}}-{{payFee.psNum}}-{{payFee.carNum}}
+                            </td>
+                            <td class="text-center">{{vc.unum(payFee.cycles)}}</td>
                             <td class="text-center">{{vc.unum(payFee.receivableAmount)}}</td>
                             <td class="text-center">{{vc.unum(payFee.receivedAmount)}}</td>
                             <td class="text-center">{{payFee.reason}}</td>
@@ -95,7 +99,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="9">
+                            <td colspan="10">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

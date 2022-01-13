@@ -49,7 +49,7 @@
                         var _purchaseApplyDetailInfo = JSON.parse(json);
                         var _purchaseApply = _purchaseApplyDetailInfo.purchaseApplys;
                         vc.copyObject(_purchaseApply[0], vc.component.purchaseApplyDetailInfo);
-                        if (vc.component.purchaseApplyDetailInfo.warehousingWay == 20000){
+                        if (vc.component.purchaseApplyDetailInfo.warehousingWay == 20000) {
                             $that._loadAuditUser();
                         }
                     }, function (errInfo, error) {

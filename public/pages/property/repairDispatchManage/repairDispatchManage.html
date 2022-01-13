@@ -94,27 +94,38 @@
                             </td>
                             <td class="text-center">
                                 <div class="btn-group"
-                                     v-if="ownerRepair.state == '1100' || ownerRepair.state == '1200' ||ownerRepair.state == '1300'">
+                                     v-if="(ownerRepair.state == '1100' || ownerRepair.state == '1200' ||ownerRepair.state == '1300') && ownerRepair.state != '2001'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDispatchRepairModel(ownerRepair)">转单
                                     </button>
                                 </div>
                                 <div class="btn-group"
-                                     v-if="ownerRepair.preStaffId != '-1' && ownerRepair.ruId != ownerRepair.preRuId">
+                                     v-if="ownerRepair.preStaffId != '-1' && ownerRepair.ruId != ownerRepair.preRuId && ownerRepair.state != '2001'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openBackRepairModel(ownerRepair)">退单
                                     </button>
                                 </div>
                                 <div class="btn-group"
-                                     v-if="ownerRepair.state == '1100' || ownerRepair.state == '1200' ||ownerRepair.state == '1300'">
+                                     v-if="(ownerRepair.state == '1100' || ownerRepair.state == '1200' ||ownerRepair.state == '1300') && ownerRepair.state != '2001'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openFinishRepair(ownerRepair)">办结
                                     </button>
                                 </div>
                                 <div class="btn-group"
-                                     v-if="vc.hasPrivilege('502021040151320003') && ownerRepair.state == '1800' && ownerRepair.returnVisitFlag == '003'">
+                                     v-if="vc.hasPrivilege('502021040151320003') && ownerRepair.state == '1800' && ownerRepair.returnVisitFlag == '003' && ownerRepair.state != '2001'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openAppraiseRepair(ownerRepair)">回访
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="ownerRepair.state == '1100' || ownerRepair.state == '1200' ||ownerRepair.state == '1300'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openStopRepair(ownerRepair)">暂停
+                                    </button>
+                                </div>
+                                <div class="btn-group" v-if="ownerRepair.state == '2001'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openStartRepair(ownerRepair)">启动
                                     </button>
                                 </div>
                                 <div class="btn-group">
@@ -141,4 +152,6 @@
     </div>
     <vc:create path="property/dispatchRepair"></vc:create>
     <vc:create path="property/appraiseRepair"></vc:create>
+    <vc:create path="property/stopRepair"></vc:create>
+    <vc:create path="property/startRepair"></vc:create>
 </div>

@@ -13,7 +13,7 @@
                 records: 1,
                 moreCondition: false,
                 feeReceiptId: '',
-                printUrl:'/print.html#/pages/property/printPayFee',
+                printUrl: '/print.html#/pages/property/printPayFee',
                 conditions: {
                     objType: '',
                     storeName: '',
@@ -154,7 +154,7 @@
                 vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _printFeeReceipt: function (_receipt) {
-                window.open($that.feeReceiptManageInfo.printUrl+"?receiptId=" + _receipt.receiptId);
+                window.open($that.feeReceiptManageInfo.printUrl + "?receiptId=" + _receipt.receiptId);
             },
             _printFeeReceipts: function (_conditions) {
                 // console.log(_conditions)
@@ -193,10 +193,10 @@
             _listFeePrintPages: function (_page, _rows) {
                 var param = {
                     params: {
-                        page:1,
-                        row:1,
-                        state:'T',
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 1,
+                        state: 'T',
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
                 //发送get请求
@@ -205,7 +205,7 @@
                     function (json, res) {
                         var _feePrintPageManageInfo = JSON.parse(json);
                         let feePrintPages = _feePrintPageManageInfo.data;
-                        if(feePrintPages && feePrintPages.length >0){
+                        if (feePrintPages && feePrintPages.length > 0) {
                             $that.feeReceiptManageInfo.printUrl = feePrintPages[0].url;
                         }
                     }, function (errInfo, error) {

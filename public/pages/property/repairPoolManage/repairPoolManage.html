@@ -38,6 +38,7 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRepairPoolMethod()">
                                 <i class="fa fa-search"></i> 查询
@@ -49,7 +50,17 @@
                         </div>
                     </div>
                     <div class="row">
+
                         <div class="col-sm-4" v-if="repairPoolManageInfo.moreCondition == true">
+                            <select class="custom-select" v-model="repairPoolManageInfo.conditions.repairSettingType">
+                                <option selected value="">请选择报修设置类型</option>
+                                <option v-for="(item,index) in repairPoolManageInfo.repairSettingTypes" :value="item.statusCd">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-3" v-if="repairPoolManageInfo.moreCondition == true">
                             <input type="text" placeholder="请输入报修ID" v-model="repairPoolManageInfo.conditions.repairId"
                                    class=" form-control">
                         </div>

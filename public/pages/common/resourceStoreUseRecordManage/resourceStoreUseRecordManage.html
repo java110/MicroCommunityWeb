@@ -71,11 +71,12 @@
                     <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
+                                <select class="custom-select"
+                                        v-model="resourceStoreUseRecordManageInfo.conditions.parentRstId"
+                                        @change="_listResourceStoreSonTypes">
                                     <option selected value="">请选择物品类型</option>
                                     <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreTypes"
-                                            :key="index"
-                                            v-bind:value="item.rstId">
+                                            :key="index" v-bind:value="item.rstId">
                                         {{item.name}}
                                     </option>
                                 </select>
@@ -83,10 +84,13 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                <select class="custom-select"
+                                        v-model="resourceStoreUseRecordManageInfo.conditions.rstId"
+                                        @change="_listResourceStoreSpecifications">
                                     <option selected value="">请选择二级分类</option>
-                                    <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreSonTypes" :key="index"
-                                        v-bind:value="item.rstId">
+                                    <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreSonTypes"
+                                            :key="index"
+                                            v-bind:value="item.rstId">
                                         {{item.name}}
                                     </option>
                                 </select>
@@ -148,6 +152,8 @@
                             <th class="text-center">物品类型</th>
                             <th class="text-center">物品名称</th>
                             <th class="text-center">物品规格</th>
+                            <th class="text-center">是否是固定物品</th>
+                            <th class="text-center">物品使用类型</th>
                             <th class="text-center">物品使用数量</th>
                             <th class="text-center">物品价格</th>
                             <th class="text-center">使用人ID</th>
@@ -165,14 +171,19 @@
                                 {{resourceStoreUseRecord.parentRstName}} > {{resourceStoreUseRecord.rstName}}
                             </td>
                             <td class="text-center">
-                                {{resourceStoreUseRecord.resourceStoreName ? resourceStoreUseRecord.resourceStoreName : '-'}}
+                                {{resourceStoreUseRecord.resourceStoreName ? resourceStoreUseRecord.resourceStoreName :
+                                '-'}}
                             </td>
                             <td class="text-center">
                                 {{resourceStoreUseRecord.specName ? resourceStoreUseRecord.specName : '-'}}
                             </td>
-                            <td class="text-center">{{resourceStoreUseRecord.quantity}}{{resourceStoreUseRecord.miniUnitCodeName}}</td>
-                            <td class="text-center">{{resourceStoreUseRecord.unitPrice ?
-                                resourceStoreUseRecord.unitPrice : '-'}}
+                            <td class="text-center">{{resourceStoreUseRecord.isFixedName}}</td>
+                            <td class="text-center">{{resourceStoreUseRecord.stateName}}</td>
+                            <td class="text-center">
+                                {{resourceStoreUseRecord.quantity}}{{resourceStoreUseRecord.miniUnitCodeName}}
+                            </td>
+                            <td class="text-center">
+                                {{resourceStoreUseRecord.unitPrice ? resourceStoreUseRecord.unitPrice : '-'}}
                             </td>
                             <td class="text-center">{{resourceStoreUseRecord.createUserId}}</td>
                             <td class="text-center">{{resourceStoreUseRecord.createUserName}}</td>
@@ -182,7 +193,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="12">
+                            <td colspan="13">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

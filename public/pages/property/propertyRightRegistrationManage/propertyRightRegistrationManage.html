@@ -72,9 +72,32 @@
                             <div class="form-group">
                                 <select class="custom-select"
                                         v-model="propertyRightRegistrationManageInfo.conditions.state">
-                                    <option selected disabled value="">必填，请选择审核状态</option>
+                                    <option selected disabled value="">请选择审核状态</option>
                                     <option v-for="(item,index) in propertyRightRegistrationManageInfo.states"
                                             :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select"
+                                        v-model="propertyRightRegistrationManageInfo.conditions.floorId"
+                                        @change="selectUnit()">
+                                    <option selected disabled value="">请选择楼栋</option>
+                                    <option v-for="(item,index) in propertyRightRegistrationManageInfo.floors"
+                                            :value="item.floorId">{{item.floorName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select"
+                                        v-model="propertyRightRegistrationManageInfo.conditions.unitId">
+                                    <option selected disabled value="">请选择单元</option>
+                                    <option v-for="(item,index) in propertyRightRegistrationManageInfo.units"
+                                            :value="item.unitId">{{item.unitNum}}单元
                                     </option>
                                 </select>
                             </div>

@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             importRoomFeeInfo: {
@@ -7,7 +6,7 @@
                 excelTemplate: '',
                 feeTypeCd: '',
                 feeTypeCds: [],
-                objType:'3333'
+                objType: '3333'
             }
         },
         _initMethod: function () {
@@ -20,15 +19,13 @@
             vc.on('importRoomFee', 'openImportRoomFeeModal',
                 function (_room) {
                     $('#importRoomFeeModel').modal('show');
-
                 });
         },
         methods: {
-
             importRoomFeeValidate() {
                 return vc.validate.validate({
-                    importRoomFeeInfo: vc.component.importRoomFeeInfo
-                },
+                        importRoomFeeInfo: vc.component.importRoomFeeInfo
+                    },
                     {
                         'importRoomFeeInfo.communityId': [{
                             limit: "required",
@@ -52,7 +49,6 @@
                     });
             },
             _importData: function () {
-
                 if (!vc.component.importRoomFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -71,8 +67,6 @@
                 param.append('communityId', vc.component.importRoomFeeInfo.communityId);
                 param.append('feeTypeCd', vc.component.importRoomFeeInfo.feeTypeCd);
                 param.append('objType', $that.importRoomFeeInfo.objType);
-            
-
                 vc.http.upload(
                     'importRoomFee',
                     'importData',
@@ -92,7 +86,7 @@
                             $('#importRoomFeeModel').modal('hide');
                             vc.jumpToPage('/admin.html#/pages/property/listOwner')
 
-                            vc.emit('roomFeeImport', 'listFee',{});
+                            vc.emit('roomFeeImport', 'listFee', {});
                             return;
                         }
                         vc.toast(json, 10000);
@@ -102,8 +96,8 @@
                         vc.toast(errInfo, 10000);
                     });
             },
-            _exportRoomFeeTemplate:function(){
-                vc.jumpToPage('/callComponent/importRoomFee/exportData?communityId='+vc.getCurrentCommunity().communityId+"&objType="+$that.importRoomFeeInfo.objType);
+            _exportRoomFeeTemplate: function () {
+                vc.jumpToPage('/callComponent/importRoomFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&objType=" + $that.importRoomFeeInfo.objType);
             },
             clearAddFeeConfigInfo: function () {
                 var _feeTypeCds = vc.component.importRoomFeeInfo.feeTypeCds;
@@ -112,9 +106,8 @@
                     excelTemplate: '',
                     feeTypeCd: '',
                     feeTypeCds: [],
-                    objType:'3333'
+                    objType: '3333'
                 };
-
                 vc.component.importRoomFeeInfo.feeTypeCds = _feeTypeCds;
             },
             _changeFeeTypeCd: function (_feeTypeCd) {
@@ -142,5 +135,4 @@
             }
         }
     });
-
 })(window.vc);
