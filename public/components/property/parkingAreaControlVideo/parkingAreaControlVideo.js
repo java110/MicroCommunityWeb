@@ -229,7 +229,20 @@
                     type: _type,
                     machineId: _machineId
                 })
+            },
+            unlicensedCarIn: function (_type) {
+                let _machineId = $that.parkingAreaControlVideoInfo.inMachineId;
+              
+                if (!_machineId) {
+                    vc.toast('请选择入场摄像头');
+                    return;
+                }
+                vc.emit('unlicensedCarMachineQrCode', 'open', {
+                    type: '1101',
+                    machineId: _machineId
+                })
             }
+
 
         }
     });
