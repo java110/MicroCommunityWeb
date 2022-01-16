@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -18,11 +18,11 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('addCouponPool', 'openAddCouponPoolModal', function () {
+        _initEvent: function() {
+            vc.on('addCouponPool', 'openAddCouponPoolModal', function() {
                 $('#addCouponPoolModel').modal('show');
             });
         },
@@ -31,8 +31,7 @@
                 return vc.validate.validate({
                     addCouponPoolInfo: vc.component.addCouponPoolInfo
                 }, {
-                    'addCouponPoolInfo.couponType': [
-                        {
+                    'addCouponPoolInfo.couponType': [{
                             limit: "required",
                             param: "",
                             errInfo: "优惠券类型不能为空"
@@ -43,8 +42,7 @@
                             errInfo: "优惠券类型不能超过12"
                         },
                     ],
-                    'addCouponPoolInfo.couponName': [
-                        {
+                    'addCouponPoolInfo.couponName': [{
                             limit: "required",
                             param: "",
                             errInfo: "优惠券名称不能为空"
@@ -55,8 +53,7 @@
                             errInfo: "优惠券名称不能超过64"
                         },
                     ],
-                    'addCouponPoolInfo.actualPrice': [
-                        {
+                    'addCouponPoolInfo.actualPrice': [{
                             limit: "required",
                             param: "",
                             errInfo: "面值不能为空"
@@ -67,8 +64,7 @@
                             errInfo: "面值不能超过10"
                         },
                     ],
-                    'addCouponPoolInfo.buyPrice': [
-                        {
+                    'addCouponPoolInfo.buyPrice': [{
                             limit: "required",
                             param: "",
                             errInfo: "购买价格不能为空"
@@ -79,8 +75,7 @@
                             errInfo: "购买价格不能超过10"
                         },
                     ],
-                    'addCouponPoolInfo.couponStock': [
-                        {
+                    'addCouponPoolInfo.couponStock': [{
                             limit: "required",
                             param: "",
                             errInfo: "数量不能为空"
@@ -91,8 +86,7 @@
                             errInfo: "数量不能超过20"
                         },
                     ],
-                    'addCouponPoolInfo.validityDay': [
-                        {
+                    'addCouponPoolInfo.validityDay': [{
                             limit: "required",
                             param: "",
                             errInfo: "有效期不能为空"
@@ -103,8 +97,7 @@
                             errInfo: "有效期不能超过20"
                         },
                     ],
-                    'addCouponPoolInfo.seq': [
-                        {
+                    'addCouponPoolInfo.seq': [{
                             limit: "required",
                             param: "",
                             errInfo: "排序不能为空"
@@ -120,14 +113,13 @@
 
                 });
             },
-            saveCouponPoolInfo: function () {
+            saveCouponPoolInfo: function() {
                 if (!vc.component.addCouponPoolValidate()) {
                     vc.toast(vc.validate.errInfo);
 
                     return;
                 }
 
-                vc.component.addCouponPoolInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addCouponPoolInfo);
@@ -137,11 +129,10 @@
 
                 vc.http.apiPost(
                     'couponPool.saveCouponPool',
-                    JSON.stringify(vc.component.addCouponPoolInfo),
-                    {
+                    JSON.stringify(vc.component.addCouponPoolInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -155,14 +146,14 @@
                         vc.message(_json.msg);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
                     });
             },
-            clearAddCouponPoolInfo: function () {
+            clearAddCouponPoolInfo: function() {
                 vc.component.addCouponPoolInfo = {
                     couponType: '',
                     couponName: '',
