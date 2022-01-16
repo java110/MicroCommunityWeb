@@ -39,13 +39,13 @@
                     param,
                     function (json, res) {
                         let _info = JSON.parse(json);
-                        $that._viewQr(_info.data)
+                        $that._viewUn(_info.data)
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _viewQr: function (_data) {
+            _viewUn: function (_data) {
                 document.getElementById("uncode").innerHTML = "";
                 let qrcode = new QRCode(document.getElementById("uncode"), {
                     text: "无牌车入场二维码",  //你想要填写的文本

@@ -132,7 +132,7 @@
             },
             
             auditParkingSpaceApplyInfo: function () {
-                if (vc.component.addParkingSpaceApplyInfo.state != "2002" || vc.component.addParkingSpaceApplyInfo.state != "4004") {
+                if (vc.component.addParkingSpaceApplyInfo.state == "") {
                     vc.toast("请选择审核结果");
                     return;
                 }
