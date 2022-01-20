@@ -18,7 +18,7 @@
                     carBrand:'',
                     applyPersonName:'',
                     applyPersonLink:'',
-
+                    communityId : vc.getCurrentCommunity().communityId
                 }
             }
         },
