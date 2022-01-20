@@ -13,10 +13,19 @@
         _initEvent: function() {
             vc.on('chooseCamera', 'openChooseCameraModel', function(_param) {
                 $('#chooseCameraModel').modal('show');
+                $that._refreshchooseCameraInfo();
                 $that.chooseCameraInfo.viewMachines = _param.machines;
                 $that.chooseCameraInfo.cameraCount = _param.cameraCount;
-                $that._refreshchooseCameraInfo();
                 vc.component._loadAllMachineInfo(1, 500, '');
+
+                if (_param.machine && _param.machines.length < 1) {
+                    return;
+                }
+
+                _param.machines.forEach(item => {
+                    $that.chooseCameraInfo.machineIds.push(item.machineId);
+                });
+
             });
         },
         watch: { // 监视双向绑定的数据数组
@@ -69,9 +78,13 @@
                 };
             },
             freshViewMachine: function() {
+                let _machines = $that.chooseCameraInfo.machines;
+                if (_machines.length < 1) {
+                    return;
+                }
                 $that.chooseCameraInfo.viewMachines = [];
                 let _machineIds = $that.chooseCameraInfo.machineIds;
-                let _machines = $that.chooseCameraInfo.machines;
+
 
                 _machineIds.forEach(item => {
                     _machines.forEach(_machine => {

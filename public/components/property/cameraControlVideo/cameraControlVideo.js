@@ -19,6 +19,7 @@
         _initEvent: function() {
             vc.on('cameraControlVideo', 'notify', function(param) {
                 $that.cameraControlVideoInfo.machines = param.machines;
+                $that.applyViewCamera(_item);
             })
             vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listMachines(_currentPage, DEFAULT_ROWS);
@@ -94,6 +95,8 @@
                 });
             },
             applyViewCamera: function(_machine) {
+
+
 
             },
             _changeCount: function(_count) {
