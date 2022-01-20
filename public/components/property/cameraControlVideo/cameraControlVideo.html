@@ -1,30 +1,35 @@
 <div>
     <div class="row">
-        <!-- 2*2-->
-        <div class="row col-md-12">
-            <div class="col-md-6"  >
-                <div class="form-group" >
-                    <video id="rtc_media_player1" controls autoplay="autoplay" muted width="100%" height="400px"></video>
-                </div>
-            </div>
-            <div class="col-md-6"  >
-                <div class="form-group" >
-                    <video id="rtc_media_player2" controls autoplay="autoplay" muted width="100%" height="400px"></video>
-                </div>
+        <div class="col-md-6">
+            <h6>我的摄像头</h6>
+        </div>
+        <div class="col-md-6 text-right">
+            <button type="button" class="btn-white btn btn-sm margin-right-sm" v-on:click="_changeCameras()">摄像头
+            </button>
+            <div class="btn-group" role="group" aria-label="Basic example">
+
+                <button type="button" class="btn btn-light btn-sm" v-bind:class="{'btn-primary': cameraControlVideoInfo.cameraCount == 4}" v-on:click="_changeCount(4)">四路
+            </button>
+                <button type="button" class="btn btn-light btn-sm" v-bind:class="{'btn-primary': cameraControlVideoInfo.cameraCount == 6}" v-on:click="_changeCount(6)">六路
+            </button>
             </div>
         </div>
-        <div class="row col-md-12">
-            <div class="col-md-6"  >
-                <div class="form-group" >
-                    <video id="rtc_media_player3" controls autoplay="autoplay" muted width="100%" height="400px"></video>
-                </div>
+    </div>
+    <div class="row margin-top">
+        <!-- 2*2-->
+        <div class="col-md-6" v-if="cameraControlVideoInfo.cameraCount == 4" v-for="(item,index) in cameraControlVideoInfo.machines">
+            <div class="form-group">
+                <video :id="item.machineId" controls autoplay="autoplay" muted width="100%" height="400px"></video>
+                <span>摄像头：{{item.machineName}}</span>
             </div>
-            <div class="col-md-6"  >
-                <div class="form-group" >
-                    <video id="rtc_media_player4" controls autoplay="autoplay" muted width="100%" height="400px"></video>
-                </div>
+        </div>
+        <div class="col-md-4" v-if="cameraControlVideoInfo.cameraCount == 6" v-for="(item,index) in cameraControlVideoInfo.machines">
+            <div class="form-group">
+                <video :id="item.machineId" controls autoplay="autoplay" muted width="100%" height="400px"></video>
+                <span>摄像头：{{item.machineName}}</span>
             </div>
         </div>
 
     </div>
+    <vc:create path="property/chooseCamera"></vc:create>
 </div>

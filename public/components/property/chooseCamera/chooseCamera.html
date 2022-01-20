@@ -1,8 +1,8 @@
-<div id="chooseMachineModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseMachineModelLabel" aria-hidden="true">
+<div id="chooseCameraModel" class="modal fade" role="dialog" aria-labelledby="chooseMachineModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseMachineModelLabel">选择设备</h3>
+                <h3 class="modal-title" id="chooseMachineModelLabel">选择摄像头</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,12 +12,11 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
-
                                 <div class="col-sm-7 m-b-xs">
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入设备名称" type="text" v-model="chooseMachineInfo._currentMachineName" class="form-control form-control-sm">
+                                        <input placeholder="输入摄像头名称" type="text" v-model="chooseCameraInfo._currentMachineName" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMachines()">查询</button>
                                             </span>
@@ -28,32 +27,24 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">设备ID</th>
+                                            <th class="text-center">选择</th>
+                                            <th class="text-center">设备名称</th>
                                             <th class="text-center">设备编码</th>
                                             <th class="text-center">版本号</th>
-                                            <th class="text-center">设备名称</th>
-                                            <th class="text-center">设备类型</th>
-                                            <th class="text-center">鉴权编码</th>
                                             <th class="text-center">设备IP</th>
                                             <th class="text-center">设备MAC</th>
-                                            <th class="text-center">操作</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="machine in chooseMachineInfo.machines">
-                                            <td class="text-center">{{machine.machineId}}</td>
+                                        <tr v-for="machine in chooseCameraInfo.machines">
+                                            <td class="text-center">
+                                                <input type="checkbox" class="i-checks checkGroupItem" v-bind:value="machine.machineId" v-model="chooseCameraInfo.machineIds">
+                                            </td>
+                                            <td class="text-center">{{machine.machineName}}</td>
                                             <td class="text-center">{{machine.machineCode}}</td>
                                             <td class="text-center">{{machine.machineVersion}}</td>
-                                            <td class="text-center">{{machine.machineName}}</td>
-                                            <td class="text-center">{{machine.machineTypeCd}}</td>
-                                            <td class="text-center">{{machine.authCode}}</td>
                                             <td class="text-center">{{machine.machineIp}}</td>
                                             <td class="text-center">{{machine.machineMac}}</td>
-
-                                            <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMachine(machine)">选择</button>
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

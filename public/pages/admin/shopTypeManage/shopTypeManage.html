@@ -59,22 +59,21 @@
                 </div>
                 <div class="ibox-content">
 
-<<<<<<< HEAD
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
+                                <th class="text-center">类型ID</th>
                                 <th class="text-center">店铺类型</th>
                                 <th class="text-center">是否展示</th>
                                 <th class="text-center">是否默认</th>
                                 <th class="text-center">显示序号</th>
                                 <th class="text-center">备注</th>
                                 <th class="text-center">操作</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="shopType in shopTypeManageInfo.shopTypes">
+                                <td class="text-center">{{shopType.shopTypeId}}</td>
                                 <td class="text-center">{{shopType.typeName}}</td>
                                 <td class="text-center">{{shopType.isShow =='Y'?'是':'否'}}</td>
                                 <td class="text-center">{{shopType.isDefault =='F'?'自定义':'默认'}}</td>
@@ -88,35 +87,6 @@
                                         <button class="btn-white btn btn-xs" v-on:click="_openDeleteShopTypeModel(shopType)">删除</button>
                                     </div>
                                 </td>
-=======
-                    <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15">
-                        <thead>
-                        <tr>
-                            <th class="text-center">类型ID</th>
-                            <th class="text-center">店铺类型</th>
-                            <th class="text-center">是否展示</th>
-                            <th class="text-center">是否默认</th>
-                            <th class="text-center">显示序号</th>
-                            <th class="text-center">备注</th>
-                            <th class="text-center">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="shopType in shopTypeManageInfo.shopTypes">
-                            <td class="text-center">{{shopType.shopTypeId}}</td>
-                            <td class="text-center">{{shopType.typeName}}</td>
-                            <td class="text-center">{{shopType.isShow =='Y'?'是':'否'}}</td>
-                            <td class="text-center">{{shopType.isDefault =='F'?'自定义':'默认'}}</td>
-                            <td class="text-center">{{shopType.seq}}</td>
-                            <td class="text-center">{{shopType.remark}}</td>
-                            <td class="text-center"><div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditShopTypeModel(shopType)">修改</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteShopTypeModel(shopType)">删除</button>
-                                </div></td>
->>>>>>> c6f99a4136d2a6450c08d47bb328ee07cf4bdb68
 
                             </tr>
                         </tbody>
