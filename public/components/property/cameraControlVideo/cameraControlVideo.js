@@ -15,6 +15,7 @@
         },
         _initMethod: function() {
             $that._listMachines(1, 500);
+            $that._initMachineVideo();
         },
         _initEvent: function() {
             vc.on('cameraControlVideo', 'notify', function(param) {
@@ -53,10 +54,11 @@
                 );
             },
             _initMachineVideo: function(_machines) {
-                $that._playVideo('rtc_media_player1', 'webrtc://117.159.177.191/live/34020000002000000010@34020000001320000010');
-                $that._playVideo('rtc_media_player2', 'webrtc://112.124.21.207/live/34020000001320000002@34020000001320000010');
-                $that._playVideo('rtc_media_player3', 'webrtc://112.124.21.207/live/34020000001320000001@34020000001320000010');
-                $that._playVideo('rtc_media_player4', 'webrtc://112.124.21.207/live/34020000001320000002@34020000001320000010');
+
+                setInterval(function() {
+                    $that.heartbeatCamera();
+                }, 1000 * 30)
+
             },
             _playVideo: function(_videoId, url) {
                 $('#' + _videoId).show();
@@ -95,9 +97,60 @@
                 });
             },
             applyViewCamera: function(_machine) {
+                let data = {
+                    machineId: _machine.machineId,
+                    communityId: vc.getCurrentCommunity().communityId,
+                }
+                vc.http.apiPost(
+                    '/machine.playCameraCmd',
+                    JSON.stringify(vc.component.deleteShopTypeInfo), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            $that._playVideo(_machine.machineId, _json.data.address);
+                            _machine.callId = _json.data.callId
+                            return;
+                        }
+                        vc.toast(_json.msg);
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.message(json);
 
+                    });
+            },
+            heartbeatCamera: function(_machine) {
+                let _machines = $that.cameraControlVideoInfo.machines;
+                if (!_machines || _machines.length < 1) {
+                    return;
+                }
 
+                let _callIds = "";
+                _machines.forEach(item => {
+                    if (item.callId) {
+                        _callIds += (item.callId + ",")
+                    }
+                });
 
+                if (!_callIds) {
+                    return;
+                }
+                let data = {
+                    callIds: _callIds,
+                    communityId: vc.getCurrentCommunity().communityId,
+                }
+                vc.http.apiPost(
+                    '/machine.heartbeatCamera',
+                    JSON.stringify(vc.component.deleteShopTypeInfo), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                    },
+                    function(errInfo, error) {});
             },
             _changeCount: function(_count) {
                 $that.cameraControlVideoInfo.cameraCount = _count;

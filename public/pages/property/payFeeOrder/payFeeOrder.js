@@ -43,6 +43,7 @@
                 payType: 'common',
                 authCode: '',
                 orderId: '',
+                offlinePayFeeSwitch: '1'
             }
         },
         watch: {
