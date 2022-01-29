@@ -14,6 +14,10 @@
             }
         },
         _initMethod: function() {
+            let _cameraCount = vc.getParam('cameraCount');
+            if (_cameraCount) {
+                $that.cameraControlVideoInfo.cameraCount = _cameraCount;
+            }
             $that._listMachines(1, 500);
             $that._initMachineVideo();
         },
@@ -102,8 +106,8 @@
                     communityId: vc.getCurrentCommunity().communityId,
                 }
                 vc.http.apiPost(
-                    '/machine.playCameraCmd',
-                    JSON.stringify(vc.component.deleteShopTypeInfo), {
+                    '/machine.playCamera',
+                    JSON.stringify(data), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -141,10 +145,11 @@
                 let data = {
                     callIds: _callIds,
                     communityId: vc.getCurrentCommunity().communityId,
+                    machineId: _machines[0].machineId
                 }
                 vc.http.apiPost(
                     '/machine.heartbeatCamera',
-                    JSON.stringify(vc.component.deleteShopTypeInfo), {
+                    JSON.stringify(data), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -154,6 +159,7 @@
             },
             _changeCount: function(_count) {
                 $that.cameraControlVideoInfo.cameraCount = _count;
+                vc.jumpToPage('/video.html#/pages/property/videoControl?cameraCount=' + _count)
             }
         }
     });
