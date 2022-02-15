@@ -102,7 +102,8 @@
                     taskId: _auditOrder.taskId,
                     planId: _auditOrder.planId,
                     state: '1200',
-                    remark: '处理结束'
+                    remark: '处理结束',
+                    contractId: _auditOrder.contractId
                 };
                 //发送get请求
                 vc.http.apiPost('/contract/needAuditContractPlan',
