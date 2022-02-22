@@ -167,7 +167,7 @@
                     _roomCreateFeeAddInfo.locationTypeCd = '3000';
                 }
                 _roomCreateFeeAddInfo.roomState = _roomCreateFeeAddInfo.roomState.join(',');
-                vc.http.post('roomCreateFeeAdd', 'save',
+                vc.http.apiPost('/fee.saveRoomCreateFee',
                     JSON.stringify(_roomCreateFeeAddInfo), {
                         emulateJSON: true
                     },
@@ -178,9 +178,13 @@
                             var _json = JSON.parse(json);
                             $('#roomCreateFeeAddModel').modal('hide');
                             $that.clearAddFeeConfigInfo();
-                            vc.toast("创建收费成功，总共[" + _json.totalRoom + "]房屋，成功[" + _json.successRoom + "],失败[" + _json.errorRoom + "]", 8000);
                             vc.emit('listRoomFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});
+                            if (_json.hasOwnProperty('code') && _json.code != 0) {
+                                vc.toast(_json.msg);
+                                return;
+                            }
+                            vc.toast("创建收费成功，总共[" + _json.totalRoom + "]房屋，成功[" + _json.successRoom + "],失败[" + _json.errorRoom + "]", 8000);
                             return;
                         }
                         vc.toast(json);
