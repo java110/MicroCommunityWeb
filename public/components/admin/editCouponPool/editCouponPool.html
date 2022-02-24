@@ -10,7 +10,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">优惠券类型</label>
                 <div class="col-sm-10">
-                  <select class="custom-select" v-model="editCouponPoolInfo.couponType">
+                  <select class="custom-select" disabled v-model="editCouponPoolInfo.couponType">
                     <option selected value="">请选择优惠券类型</option>
                     <option value="1001">普通劵</option>
                 </select>
@@ -19,7 +19,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">优惠券名称</label>
                 <div class="col-sm-10">
-                  <input v-model="editCouponPoolInfo.couponName" type="text" placeholder="必填，请填写优惠券名称"
+                  <input v-model="editCouponPoolInfo.couponName" disabled type="text" placeholder="必填，请填写优惠券名称"
                     class="form-control">
                 </div>
               </div>
@@ -36,7 +36,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">面值</label>
                 <div class="col-sm-10">
-                  <input v-model="editCouponPoolInfo.actualPrice" type="number" placeholder="必填，请填写面值"
+                  <input v-model="editCouponPoolInfo.actualPrice" disabled type="number" placeholder="必填，请填写面值"
                     class="form-control">
                 </div>
               </div>
@@ -57,14 +57,14 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">有效期</label>
                 <div class="col-sm-10">
-                  <input v-model="editCouponPoolInfo.validityDay" type="number" placeholder="必填，请填写有效期"
+                  <input v-model="editCouponPoolInfo.validityDay" disabled type="number" placeholder="必填，请填写有效期"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">排序</label>
                 <div class="col-sm-10">
-                  <input v-model="editCouponPoolInfo.seq" type="number" placeholder="必填，请填写排序" class="form-control">
+                  <input v-model="editCouponPoolInfo.seq" disabled type="number" placeholder="必填，请填写排序" class="form-control">
                 </div>
               </div>
 

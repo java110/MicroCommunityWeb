@@ -7,7 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-const proxy  = require('express-http-proxy');
+const proxy = require('express-http-proxy');
 
 var app = express();
 
@@ -18,30 +18,30 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 // 反向代理（这里把需要进行反代的路径配置到这里即可）
 let opts = {
-  preserveHostHdr: true,
-  reqAsBuffer: true,
-//转发之前触发该方法
-  proxyReqPathResolver: function(req, res) {
-    //这个代理会把匹配到的url（下面的 ‘/api’等）去掉，转发过去直接404，这里手动加回来，
-    req.url = req.baseUrl+req.url;
-    //console.log(1,req,res)
-    return require('url').parse(req.url).path;
-  },
+    preserveHostHdr: true,
+    reqAsBuffer: true,
+    //转发之前触发该方法
+    proxyReqPathResolver: function(req, res) {
+        //这个代理会把匹配到的url（下面的 ‘/api’等）去掉，转发过去直接404，这里手动加回来，
+        req.url = req.baseUrl + req.url;
+        //console.log(1,req,res)
+        return require('url').parse(req.url).path;
+    },
 
 }
 
 
-//app.use('/callComponent',proxy('https://app.demo.winqi.cn/',opts));
-//app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012',opts));
-//app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012',opts));
+// app.use('/callComponent',proxy('https://app.demo.winqi.cn/',opts));
+// app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012',opts));
+// app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012',opts));
 
 
- //app.use('/callComponent',proxy('http://api.demo.winqi.cn:8012',opts));
- //app.use('/app',proxy('http://api.demo.winqi.cn:8012',opts));
+app.use('/callComponent', proxy('http://proxy.homecommunity.cn:9011', opts));
+app.use('/app', proxy('http://proxy.homecommunity.cn:9011', opts));
 
-app.use('/callComponent',proxy('http://proxy.homecommunity.cn:9011',opts));
-app.use('/app',proxy('http://proxy.homecommunity.cn:9011',opts));
-app.use('/ws',proxy('http://proxy.homecommunity.cn:9011',opts));
+// app.use('/callComponent', proxy('http://127.0.0.1:8008', opts));
+// app.use('/app', proxy('http://127.0.0.1:8008', opts));
+// app.use('/ws',proxy('http://127.0.0.1:8008',opts));
 // app.use('/callComponent',proxy('http://192.168.1.106:8012',opts));
 // app.use('/app',proxy('http://192.168.1.106:8012',opts));
 
@@ -63,18 +63,18 @@ app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

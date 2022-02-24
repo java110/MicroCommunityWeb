@@ -130,7 +130,7 @@
                                     </button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-warning btn-lg btn-block" @click="_openPayFee('common')">提交收费
+                                    <button type="button" class="btn btn-warning btn-lg btn-block" v-if="payFeeOrderInfo.offlinePayFeeSwitch !='2'" @click="_openPayFee('common')">提交收费
                                     </button>
                                 </div>
                             </div>

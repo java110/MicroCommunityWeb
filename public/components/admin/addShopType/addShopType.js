@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -17,11 +17,11 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('addShopType', 'openAddShopTypeModal', function () {
+        _initEvent: function() {
+            vc.on('addShopType', 'openAddShopTypeModal', function() {
                 $('#addShopTypeModel').modal('show');
             });
         },
@@ -31,8 +31,7 @@
                     addShopTypeInfo: vc.component.addShopTypeInfo
                 }, {
 
-                    'addShopTypeInfo.typeName': [
-                        {
+                    'addShopTypeInfo.typeName': [{
                             limit: "required",
                             param: "",
                             errInfo: "店铺类型不能为空"
@@ -43,20 +42,17 @@
                             errInfo: "店铺类型太长"
                         },
                     ],
-                    'addShopTypeInfo.isShow': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "是否展示不能为空"
-                        },],
-                    'addShopTypeInfo.isDefault': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "是否默认不能为空"
-                        },],
-                    'addShopTypeInfo.seq': [
-                        {
+                    'addShopTypeInfo.isShow': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "是否展示不能为空"
+                    }, ],
+                    'addShopTypeInfo.isDefault': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "是否默认不能为空"
+                    }, ],
+                    'addShopTypeInfo.seq': [{
                             limit: "required",
                             param: "",
                             errInfo: "显示序号不能为空"
@@ -67,20 +63,23 @@
                             errInfo: "显示序号不是有效数字"
                         },
                     ],
-                    'addShopTypeInfo.remark': [
-                        {
-                            limit: "maxLength",
-                            param: "120",
-                            errInfo: "描述太长"
-                        },
-                    ],
+                    'addShopTypeInfo.remark': [{
+                        limit: "maxLength",
+                        param: "120",
+                        errInfo: "描述太长"
+                    }, ],
+                    'addShopTypeInfo.remark': [{
+                        limit: "maxLength",
+                        param: "120",
+                        errInfo: "描述太长"
+                    }, ],
 
 
 
 
                 });
             },
-            saveShopTypeInfo: function () {
+            saveShopTypeInfo: function() {
                 if (!vc.component.addShopTypeValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -96,11 +95,10 @@
 
                 vc.http.apiPost(
                     '/shopType/saveShopType',
-                    JSON.stringify(vc.component.addShopTypeInfo),
-                    {
+                    JSON.stringify(vc.component.addShopTypeInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -114,14 +112,14 @@
                         vc.message(_json.msg);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
                     });
             },
-            clearAddShopTypeInfo: function () {
+            clearAddShopTypeInfo: function() {
                 vc.component.addShopTypeInfo = {
                     shopTypeId: '',
                     typeName: '',

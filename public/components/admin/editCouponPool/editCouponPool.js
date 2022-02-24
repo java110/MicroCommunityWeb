@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -15,24 +15,22 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('editCouponPool', 'openEditCouponPoolModal', function (_params) {
+        _initEvent: function() {
+            vc.on('editCouponPool', 'openEditCouponPoolModal', function(_params) {
                 vc.component.refreshEditCouponPoolInfo();
                 $('#editCouponPoolModel').modal('show');
                 vc.copyObject(_params, vc.component.editCouponPoolInfo);
-                vc.component.editCouponPoolInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
         methods: {
-            editCouponPoolValidate: function () {
+            editCouponPoolValidate: function() {
                 return vc.validate.validate({
                     editCouponPoolInfo: vc.component.editCouponPoolInfo
                 }, {
-                    'editCouponPoolInfo.poolId': [
-                        {
+                    'editCouponPoolInfo.poolId': [{
                             limit: "required",
                             param: "",
                             errInfo: "池ID不能为空"
@@ -43,8 +41,7 @@
                             errInfo: "池ID不能超过30"
                         },
                     ],
-                    'editCouponPoolInfo.couponType': [
-                        {
+                    'editCouponPoolInfo.couponType': [{
                             limit: "required",
                             param: "",
                             errInfo: "优惠券类型不能为空"
@@ -55,8 +52,7 @@
                             errInfo: "优惠券类型不能超过12"
                         },
                     ],
-                    'editCouponPoolInfo.couponName': [
-                        {
+                    'editCouponPoolInfo.couponName': [{
                             limit: "required",
                             param: "",
                             errInfo: "优惠券名称不能为空"
@@ -67,8 +63,7 @@
                             errInfo: "优惠券名称不能超过64"
                         },
                     ],
-                    'editCouponPoolInfo.actualPrice': [
-                        {
+                    'editCouponPoolInfo.actualPrice': [{
                             limit: "required",
                             param: "",
                             errInfo: "面值不能为空"
@@ -79,8 +74,7 @@
                             errInfo: "面值不能超过10"
                         },
                     ],
-                    'editCouponPoolInfo.buyPrice': [
-                        {
+                    'editCouponPoolInfo.buyPrice': [{
                             limit: "required",
                             param: "",
                             errInfo: "购买价格不能为空"
@@ -91,8 +85,7 @@
                             errInfo: "购买价格不能超过10"
                         },
                     ],
-                    'editCouponPoolInfo.couponStock': [
-                        {
+                    'editCouponPoolInfo.couponStock': [{
                             limit: "required",
                             param: "",
                             errInfo: "数量不能为空"
@@ -103,8 +96,7 @@
                             errInfo: "数量不能超过20"
                         },
                     ],
-                    'editCouponPoolInfo.validityDay': [
-                        {
+                    'editCouponPoolInfo.validityDay': [{
                             limit: "required",
                             param: "",
                             errInfo: "有效期不能为空"
@@ -115,8 +107,7 @@
                             errInfo: "有效期不能超过20"
                         },
                     ],
-                    'editCouponPoolInfo.seq': [
-                        {
+                    'editCouponPoolInfo.seq': [{
                             limit: "required",
                             param: "",
                             errInfo: "排序不能为空"
@@ -130,7 +121,7 @@
 
                 });
             },
-            editCouponPool: function () {
+            editCouponPool: function() {
                 if (!vc.component.editCouponPoolValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -138,11 +129,10 @@
 
                 vc.http.apiPost(
                     'couponPool.updateCouponPool',
-                    JSON.stringify(vc.component.editCouponPoolInfo),
-                    {
+                    JSON.stringify(vc.component.editCouponPoolInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -153,13 +143,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
                     });
             },
-            refreshEditCouponPoolInfo: function () {
+            refreshEditCouponPoolInfo: function() {
                 vc.component.editCouponPoolInfo = {
                     poolId: '',
                     couponType: '',

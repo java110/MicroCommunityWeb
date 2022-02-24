@@ -200,10 +200,10 @@ vc 校验 工具类 -method
      * eg:
      * dataObj:
      * {
-     *      name:"wuxw",
+     *      name:"Kevin",
      *      age:"19",
      *      emailInfo:{
-     *          email:"928255095@qq.com"
+     *          email:"58957118@qq.com"
      *      }
      * }
      *

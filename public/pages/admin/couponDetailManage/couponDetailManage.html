@@ -46,8 +46,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">商家购买记录表ID</th>
-                                <th class="text-center">优惠券</th>
-                                <th class="text-center">店铺ID</th>
+                                <th class="text-center">店铺</th>
                                 <th class="text-center">优惠券名称</th>
                                 <th class="text-center">面值</th>
                                 <th class="text-center">购买价格</th>
@@ -62,8 +61,7 @@
                         <tbody>
                             <tr v-for="couponDetail in couponDetailManageInfo.couponDetails">
                                 <td class="text-center">{{couponDetail.detailId}}</td>
-                                <td class="text-center">{{couponDetail.poolId}}</td>
-                                <td class="text-center">{{couponDetail.shopId}}</td>
+                                <td class="text-center">{{couponDetail.shopName}}</td>
                                 <td class="text-center">{{couponDetail.couponName}}</td>
                                 <td class="text-center">{{couponDetail.actualPrice}}</td>
                                 <td class="text-center">{{couponDetail.buyPrice}}</td>

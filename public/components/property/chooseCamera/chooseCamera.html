@@ -1,0 +1,47 @@
+<div id="chooseCameraModel" class="modal fade" role="dialog" aria-labelledby="chooseMachineModelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseMachineModelLabel">选择摄像头</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">选择</th>
+                                            <th class="text-center">设备名称</th>
+                                            <th class="text-center">设备编码</th>
+                                            <th class="text-center">版本号</th>
+                                            <th class="text-center">设备IP</th>
+                                            <th class="text-center">设备MAC</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="machine in chooseCameraInfo.machines">
+                                            <td class="text-center">
+                                                <input type="checkbox" class="i-checks checkGroupItem" v-bind:value="machine.machineId" v-model="chooseCameraInfo.machineIds">
+                                            </td>
+                                            <td class="text-center">{{machine.machineName}}</td>
+                                            <td class="text-center">{{machine.machineCode}}</td>
+                                            <td class="text-center">{{machine.machineVersion}}</td>
+                                            <td class="text-center">{{machine.machineIp}}</td>
+                                            <td class="text-center">{{machine.machineMac}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

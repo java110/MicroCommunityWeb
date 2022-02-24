@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
     vc.extends({
         data: {
             editMappingInfo: {
@@ -10,10 +10,9 @@
                 remark: '',
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('editMapping', 'openEditMappingModal', function (_params) {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('editMapping', 'openEditMappingModal', function(_params) {
                 vc.component.refreshEditMappingInfo();
                 $('#editMappingModel').modal('show');
                 vc.copyObject(_params, vc.component.editMappingInfo);
@@ -21,12 +20,11 @@
             });
         },
         methods: {
-            editMappingValidate: function () {
+            editMappingValidate: function() {
                 return vc.validate.validate({
                     editMappingInfo: vc.component.editMappingInfo
                 }, {
-                    'editMappingInfo.domain': [
-                        {
+                    'editMappingInfo.domain': [{
                             limit: "required",
                             param: "",
                             errInfo: "域不能为空"
@@ -37,8 +35,7 @@
                             errInfo: "域长度不能超过50"
                         },
                     ],
-                    'editMappingInfo.name': [
-                        {
+                    'editMappingInfo.name': [{
                             limit: "required",
                             param: "",
                             errInfo: "名称不能为空"
@@ -49,8 +46,7 @@
                             errInfo: "名称必须在2至50字符之间"
                         },
                     ],
-                    'editMappingInfo.key': [
-                        {
+                    'editMappingInfo.key': [{
                             limit: "required",
                             param: "",
                             errInfo: "键不能为空"
@@ -61,8 +57,7 @@
                             errInfo: "键必须在1至100之间"
                         },
                     ],
-                    'editMappingInfo.value': [
-                        {
+                    'editMappingInfo.value': [{
                             limit: "required",
                             param: "",
                             errInfo: "值不能为空"
@@ -73,23 +68,15 @@
                             errInfo: "值必须在1至100之间"
                         },
                     ],
-                    'editMappingInfo.remark': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "备注内容不能超过200"
-                        },
-                    ],
-                    'editMappingInfo.id': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "编码ID不能为空"
-                        }]
+                    'editMappingInfo.id': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "编码ID不能为空"
+                    }]
 
                 });
             },
-            editMapping: function () {
+            editMapping: function() {
                 if (!vc.component.editMappingValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -97,11 +84,10 @@
                 vc.http.post(
                     'editMapping',
                     'update',
-                    JSON.stringify(vc.component.editMappingInfo),
-                    {
+                    JSON.stringify(vc.component.editMappingInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -111,13 +97,13 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
                     });
             },
-            refreshEditMappingInfo: function () {
+            refreshEditMappingInfo: function() {
                 vc.component.editMappingInfo = {
                     id: '',
                     domain: 'DOMAIN.COMMON',

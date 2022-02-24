@@ -36,7 +36,7 @@
     vc = {
         version: "v0.0.1",
         name: "vue component",
-        author: 'java110',
+        author: 'skyround',
         vmOptions: _vmOptions,
         namespace: _namespace,
         initMethod: _initMethod,
@@ -53,7 +53,7 @@
 
 /**
  vc 函数初始化
- add by wuxw
+ add by Kevin
  **/
 (function (vc) {
     var DEFAULT_NAMESPACE = "default";

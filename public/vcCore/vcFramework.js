@@ -1,7 +1,7 @@
 /**
  * vcFramework
  *
- * @author 吴学文
+ * @author Kevin Law
  *
  * @version 0.3
  *
@@ -9,9 +9,9 @@
  *
  * @time 2020-03-04
  *
- * @qq 928255095
+ * @qq 58957118
  *
- * @mail 928255095@qq.com
+ * @mail 58957118@qq.com
  *
  */
 /**
@@ -28,8 +28,8 @@
     let _initEvent = [];
     let _component = {};
     let _destroyedMethod = [];
-    let _timers = [];//定时器
-    let _map = [];// 共享数据存储
+    let _timers = []; //定时器
+    let _map = []; // 共享数据存储
     let _namespace = [];
     let _vueCache = {};
 
@@ -57,9 +57,9 @@
     vcFramework = {
         version: "v0.0.3",
         name: "vcFramework",
-        author: '吴学文',
-        email: '928255095@qq.com',
-        qq: '928255095',
+        author: 'Kevin Law',
+        email: '58957118@qq.com',
+        qq: '58957118',
         description: 'vcFramework 是自研的一套组件开发套件',
         vueCache: _vueCache,
         vmOptions: _vmOptions,
@@ -540,9 +540,9 @@
 
         tmpProTypes = tmpProTypes.indexOf("\r") > 0 ? tmpProTypes.replace("\r/g", "") : tmpProTypes;
 
-        let tmpType = tmpProTypes.indexOf("\n") > 0
-            ? tmpProTypes.split("\n")
-            : tmpProTypes.split(",");
+        let tmpType = tmpProTypes.indexOf("\n") > 0 ?
+            tmpProTypes.split("\n") :
+            tmpProTypes.split(",");
         let propsJs = "\nlet $props = {};\n";
         for (let typeIndex = 0; typeIndex < tmpType.length; typeIndex++) {
             let type = tmpType[typeIndex];
@@ -615,8 +615,8 @@
         let extPos = _js.indexOf("vc.extends");
         let tmpProTypes = _js.substring(extPos, _js.length);
         let pos = tmpProTypes.indexOf("{") + 1;
-        _js = _js.substring(0, extPos) + tmpProTypes.substring(0, pos).trim()
-            + "\nnamespace:'" + namespace.trim() + "',\n" + tmpProTypes.substring(pos, tmpProTypes.length);
+        _js = _js.substring(0, extPos) + tmpProTypes.substring(0, pos).trim() +
+            "\nnamespace:'" + namespace.trim() + "',\n" + tmpProTypes.substring(pos, tmpProTypes.length);
         let position = _js.indexOf("{");
         let propsJs = "\nlet $namespace='" + namespace.trim() + "';\n";
 
@@ -723,8 +723,8 @@
         for (let i = 0; i < 36; i++) {
             s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
         }
-        s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
-        s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+        s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+        s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
         s[8] = s[13] = s[18] = s[23] = "-";
 
         let uuid = s.join("");
@@ -750,7 +750,7 @@
         let DecimalNum; //金额小数部分
         let ChineseStr = ""; //输出的中文金额字符串
         let parts; //分离金额后用的数组，预定义    
-        let Symbol = "";//正负值标记
+        let Symbol = ""; //正负值标记
         if (money == "") {
             return "";
         }
@@ -908,7 +908,7 @@
 
 /**
  vc 函数初始化
- add by wuxw
+ add by Kevin
  **/
 (function (vcFramework) {
     let DEFAULT_NAMESPACE = "default";
@@ -927,8 +927,7 @@
                         if (vcFramework.notNull(_header['location'])) {
                             window.location.href = _header['location'];
                             return;
-                        }
-                        ;
+                        };
                         successCallback(res.bodyText, res);
                     } catch (e) {
                         console.error(e);
@@ -1025,8 +1024,7 @@
                         if (vcFramework.notNull(_header['location'])) {
                             window.location.href = _header['location'];
                             return;
-                        }
-                        ;
+                        };
                         successCallback(res.bodyText, res);
                     } catch (e) {
                         console.error(e);
@@ -1783,7 +1781,7 @@
 
 (function (vcFramework) {
     vcFramework.propTypes = {
-        string: "string",//字符串类型
+        string: "string", //字符串类型
         array: "array",
         object: "object",
         number: "number"
@@ -2176,10 +2174,10 @@
      * eg:
      * dataObj:
      * {
-     *      name:"wuxw",
+     *      name:"Kevin",
      *      age:"19",
      *      emailInfo:{
-     *          email:"928255095@qq.com"
+     *          email:"58957118@qq.com"
      *      }
      * }
      *
@@ -2329,7 +2327,7 @@
             this.contentDocument.defaultView.addEventListener('resize', vcFramework.eleResize._handleResize);
         }
     };
-    if (document.attachEvent) {//ie9-10
+    if (document.attachEvent) { //ie9-10
         vcFramework.eleResize.on = function (ele, handler, context) {
             let handlers = ele.__z_resizeListeners;
             if (!handlers) {
@@ -2471,19 +2469,19 @@
         //默认设置
         var defaultSettings = {
             watermark_txt: "text",
-            watermark_x: 20,//水印起始位置x轴坐标
-            watermark_y: 20,//水印起始位置Y轴坐标
-            watermark_rows: 100,//水印行数
-            watermark_cols: 20,//水印列数
-            watermark_x_space: 10,//水印x轴间隔
-            watermark_y_space: 10,//水印y轴间隔
-            watermark_color: '#aaa',//水印字体颜色
-            watermark_alpha: 0.3,//水印透明度
-            watermark_fontsize: '15px',//水印字体大小
-            watermark_font: '微软雅黑',//水印字体
-            watermark_width: 150,//水印宽度
-            watermark_height: 80,//水印长度
-            watermark_angle: 15//水印倾斜度数
+            watermark_x: 20, //水印起始位置x轴坐标
+            watermark_y: 20, //水印起始位置Y轴坐标
+            watermark_rows: 100, //水印行数
+            watermark_cols: 20, //水印列数
+            watermark_x_space: 10, //水印x轴间隔
+            watermark_y_space: 10, //水印y轴间隔
+            watermark_color: '#aaa', //水印字体颜色
+            watermark_alpha: 0.3, //水印透明度
+            watermark_fontsize: '15px', //水印字体大小
+            watermark_font: '微软雅黑', //水印字体
+            watermark_width: 150, //水印宽度
+            watermark_height: 80, //水印长度
+            watermark_angle: 15 //水印倾斜度数
         };
         //采用配置项替换默认值，作用类似jquery.extend
         if (arguments.length === 1 && typeof arguments[0] === "object") {
@@ -2537,7 +2535,7 @@
                 mask_div.style.top = y + 'px';
                 mask_div.style.overflow = "hidden";
                 mask_div.style.zIndex = "9999";
-                mask_div.style.pointerEvents = 'none';//pointer-events:none  让水印不遮挡页面的点击事件
+                mask_div.style.pointerEvents = 'none'; //pointer-events:none  让水印不遮挡页面的点击事件
                 //mask_div.style.border="solid #eee 1px";
                 mask_div.style.opacity = defaultSettings.watermark_alpha;
                 mask_div.style.fontSize = defaultSettings.watermark_fontsize;
@@ -2561,8 +2559,8 @@
 })(window.vcFramework);
 
 //解决 toFixed bug 问题
-(function(vcFramework) {
-    Number.prototype.toFixed = function(d) {
+(function (vcFramework) {
+    Number.prototype.toFixed = function (d) {
         var s = this + "";
         if (!d) d = 0;
         if (s.indexOf(".") == -1) s += ".";
@@ -2593,5 +2591,3 @@
         return this + "";
     }
 })(window.vcFramework);
-
-

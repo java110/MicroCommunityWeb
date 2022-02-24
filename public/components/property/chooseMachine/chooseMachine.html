@@ -1,4 +1,4 @@
-<div id = "chooseMachineModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseMachineModelLabel" aria-hidden="true" >
+<div id="chooseMachineModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseMachineModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -28,28 +28,28 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">设备ID</th>
-                            <th class="text-center">设备编码</th>
-                            <th class="text-center">版本号</th>
-                            <th class="text-center">设备名称</th>
-                            <th class="text-center">设备类型</th>
-                            <th class="text-center">鉴权编码</th>
-                            <th class="text-center">设备IP</th>
-                            <th class="text-center">设备MAC</th>
-                            <th class="text-center">操作</th>
+                                            <th class="text-center">设备ID</th>
+                                            <th class="text-center">设备编码</th>
+                                            <th class="text-center">版本号</th>
+                                            <th class="text-center">设备名称</th>
+                                            <th class="text-center">设备类型</th>
+                                            <th class="text-center">鉴权编码</th>
+                                            <th class="text-center">设备IP</th>
+                                            <th class="text-center">设备MAC</th>
+                                            <th class="text-center">操作</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="machine in chooseMachineInfo.machines">
-                                                                        <td class="text-center">{{machine.machineId}}</td>
-                            <td class="text-center">{{machine.machineCode}}</td>
-                            <td class="text-center">{{machine.machineVersion}}</td>
-                            <td class="text-center">{{machine.machineName}}</td>
-                            <td class="text-center">{{machine.machineTypeCd}}</td>
-                            <td class="text-center">{{machine.authCode}}</td>
-                            <td class="text-center">{{machine.machineIp}}</td>
-                            <td class="text-center">{{machine.machineMac}}</td>
+                                            <td class="text-center">{{machine.machineId}}</td>
+                                            <td class="text-center">{{machine.machineCode}}</td>
+                                            <td class="text-center">{{machine.machineVersion}}</td>
+                                            <td class="text-center">{{machine.machineName}}</td>
+                                            <td class="text-center">{{machine.machineTypeCd}}</td>
+                                            <td class="text-center">{{machine.authCode}}</td>
+                                            <td class="text-center">{{machine.machineIp}}</td>
+                                            <td class="text-center">{{machine.machineMac}}</td>
 
                                             <td>
                                                 <button class="btn btn-primary btn-xs" v-on:click="chooseMachine(machine)">选择</button>
