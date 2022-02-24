@@ -13,84 +13,101 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th data-hide="phone" class="text-center">省份</th>
-                            <th data-hide="phone" class="text-center">市/州</th>
-                            <th data-hide="phone" width="150px" class="text-center">县/区</th>
-                            <th data-hide="phone" width="200px" class="text-center">小区名称</th>
-                            <!-- <th data-hide="phone">小区地址</th> -->
-                            <th class="text-center">小区编码</th>
-                            <th data-hide="phone" class="text-center">联系方式</th>
-                            <th data-hide="phone" class="text-center">面积</th>
-                            <th data-hide="phone" class="text-center">开始时间</th>
-                            <th data-hide="phone" class="text-center">结束时间</th>
-                            <!-- <th data-hide="phone,tablet" >城市编码</th> -->
-                            <th data-hide="phone" class="text-center">状态</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <th data-hide="phone" class="text-center">省份</th>
+                                <th data-hide="phone" class="text-center">市/州</th>
+                                <th data-hide="phone" width="150px" class="text-center">县/区</th>
+                                <th data-hide="phone" width="200px" class="text-center">小区名称</th>
+                                <!-- <th data-hide="phone">小区地址</th> -->
+                                <th class="text-center">小区编码</th>
+                                <th data-hide="phone" class="text-center">联系方式</th>
+                                <th data-hide="phone" class="text-center">面积</th>
+                                <th data-hide="phone" class="text-center">开始时间</th>
+                                <th data-hide="phone" class="text-center">结束时间</th>
+                                <!-- <th data-hide="phone,tablet" >城市编码</th> -->
+                                <th data-hide="phone" class="text-center">状态</th>
+                                <th class="text-center">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="community in communityInfo.enterCommunityInfo">
-                            <td class="text-center">
-                                {{community.provName}}
-                            </td>
-                            <td class="text-center">
-                                {{community.cityName}}
-                            </td>
-                            <td class="text-center">
-                                {{community.areaName}}
-                            </td>
-                            <td class="text-center">
-                                {{community.name}}
-                            </td>
-                            <!-- <td>
+                            <tr v-for="community in communityInfo.enterCommunityInfo">
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.provName}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.cityName}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.areaName}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.name}}
+                                    </div>
+                                </td>
+                                <!-- <td>
                                 {{community.address}}
                             </td> -->
-                            <td class="text-center">
-                                {{community.communityId}}
-                            </td>
-                            <td class="text-center">
-                                {{community.tel}}
-                            </td>
-                            <td class="text-center">
-                                {{community.communityArea}}
-                            </td>
-                            <td class="text-center">
-                                {{community.startTime}}
-                            </td>
-                            <td class="text-center">
-                                {{community.endTime}}
-                            </td>
-                            <!-- <td>
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.communityId}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.tel}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.communityArea}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.startTime}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{community.endTime}}
+                                    </div>
+                                </td>
+                                <!-- <td>
                                 {{community.nearbyLandmarks}}
                             </td> -->
-                            <!-- <td>
+                                <!-- <td>
                                 {{community.cityCode}}
                             </td> -->
-                            <td class="text-center">
-                                {{_showCommunityStatus(community.auditStatusCd)}}
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group"
-                                     v-if="community.auditStatusCd == '1100' && community.communityId != '7020181217000001'">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openExitCommunityModel(community)">申请退出
+                                <td class="text-center">
+                                    <div class="vc-tr-td">
+                                        {{_showCommunityStatus(community.auditStatusCd)}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" v-if="community.auditStatusCd == '1100' && community.communityId != '7020181217000001'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openExitCommunityModel(community)">申请退出
                                     </button>
-                                </div>
-                                <div class="btn-group" v-if="community.auditStatusCd == '1100' ">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openUpdateCommunityModel(community)">修改
+                                    </div>
+                                    <div class="btn-group" v-if="community.auditStatusCd == '1100' ">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateCommunityModel(community)">修改
                                     </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="9">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="9">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>

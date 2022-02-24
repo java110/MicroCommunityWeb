@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:vc="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:vc="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
     <title>HC智慧物业管理系统</title>
-    <vc:create path="frame/commonTop"  location="head"></vc:create>
+    <vc:create path="frame/commonTop" location="head"></vc:create>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/toastr.css" /> 
+    <link rel="stylesheet" href="/css/toastr.css" />
     <link rel="stylesheet" href="/css/vc-ui.css" />
     <script src="/js/bootstrap/jquery-3.3.1.min.js"></script>
     <script src="/js/vue/vue.min.js"></script>
@@ -22,11 +21,9 @@
     <vc:create path="frame/bodyTop"></vc:create>
     <div class="vc">
         <vc:create path="frame/menu"></vc:create>
-
-
         <div id="vc-page" class="gray-bg dashbard-1 vc-page-height">
             <div class="border-bottom">
-                <vc:create path="frame/nav" ></vc:create>
+                <vc:create path="frame/nav"></vc:create>
             </div>
             <div id="component" class="vc-wrapper vc-content" vc-path="/common/chooseEnterCommunity">
                 <vc:create path="/pages/property/indexContext"></vc:create>
@@ -43,7 +40,7 @@
     <link rel="stylesheet" href="/css/bootstrap/bootstrap-datetimepicker.min.css" />
     <!-- SUMMERNOTE 富文本组件-->
     <link href="/css/plugins/summernote/summernote-bs4.min.css" rel="stylesheet">
-    
+
     <vc:create path="frame/commonBottom" location="body"></vc:create>
 
     <script src="/js/plugins/summernote/summernote-bs4.min.js"></script>
@@ -60,7 +57,7 @@
     <script src="/js/plugins/echart/china.js"></script>
     <script src="/vcCore/vc-zh.js"></script>
     <script src="/vcCore/vcFramework.js"></script>
-   
+
 </body>
 
 </html>

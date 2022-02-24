@@ -1,7 +1,7 @@
 /**
  导航栏
  **/
-(function (vc) {
+(function(vc) {
     let DEFAULT_PAGE = 1;
     let DEFAULT_ROW = 10;
     var vm = new Vue({
@@ -18,14 +18,14 @@
             userName: "",
 
         },
-        mounted: function () {
+        mounted: function() {
             this._initSysInfo();
             this.getNavCommunity(1, 3);
             this.getNavData();
             //this.getUserInfo();
         },
         methods: {
-            _initSysInfo: function () {
+            _initSysInfo: function() {
                 var sysInfo = vc.getData("_sysInfo");
                 if (sysInfo == null) {
                     this.logo = "HC";
@@ -33,7 +33,7 @@
                 }
                 this.logo = sysInfo.logo;
             },
-            getNavData: function () {
+            getNavData: function() {
 
                 var param = {
                     params: {
@@ -48,38 +48,39 @@
                 vc.http.get('nav',
                     'getNavData',
                     param,
-                    function (json) {
+                    function(json) {
                         var _noticeObj = JSON.parse(json);
                         vm.nav.notices = _noticeObj.msgs;
                         vm.nav.total = _noticeObj.total;
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
 
             },
-            logout: function () {
+            logout: function() {
                 var param = {
                     msg: 123
                 };
                 //发送get请求
                 vc.http.post('nav',
                     'logout',
-                    JSON.stringify(param),
-                    {
+                    JSON.stringify(param), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status == 200) {
                             vc.jumpToPage("/user.html#/pages/frame/login");
                             return;
                         }
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            getUserInfo: function () {
+            getUserInfo: function() {
                 //                var _userInfo = vc.getData("_userInfo");
                 //                //浏览器缓存中能获取到
                 //                if(_userInfo != null && _userInfo != undefined){
@@ -95,7 +96,7 @@
                 vc.http.get('nav',
                     'getUserInfo',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status == 200) {
                             var tmpUserInfo = JSON.parse(json);
                             console.log(vm, tmpUserInfo);
@@ -105,12 +106,13 @@
                                 vc.watermark({ watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name });
                             }
                         }
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            getNavCommunity: function (_page, _row) {
+            getNavCommunity: function(_page, _row) {
                 var _tmpCurrentCommunity = vc.getCurrentCommunity();
                 //浏览器缓存中能获取到
                 if (_tmpCurrentCommunity != null && _tmpCurrentCommunity != undefined) {
@@ -135,7 +137,7 @@
                 vc.http.get('nav',
                     'getCommunitys',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status == 200) {
                             vm.nav.communityInfos = JSON.parse(json).communitys;
 
@@ -157,19 +159,20 @@
                             }
 
                         }
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
 
             },
-            changeCommunity: function (_community) {
+            changeCommunity: function(_community) {
                 vc.setCurrentCommunity(_community);
                 vm.nav._currentCommunity = _community;
                 //中心加载当前页
                 location.reload();
             },
-            _noticeDetail: function (_msg) {
+            _noticeDetail: function(_msg) {
                 //console.log(_notice.noticeId);
                 //vc.jumpToPage("/admin.html#/noticeDetail?noticeId="+_notice.noticeId);
 
@@ -177,16 +180,17 @@
                 vc.http.post('nav',
                     'readMsg',
                     JSON.stringify(_msg),
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status == 200) {
                             vc.jumpToPage(_msg.url);
                         }
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _doMenu: function () {
+            _doMenu: function() {
                 let body = document.getElementsByTagName("body")[0];
 
                 let className = body.className;
@@ -197,10 +201,10 @@
                 }
                 body.className = className + " mini-navbar";
             },
-            _chooseMoreCommunity: function () {
+            _chooseMoreCommunity: function() {
                 vc.emit('chooseEnterCommunity', 'openChooseEnterCommunityModel', {});
             },
-            _viewDocument: function () {
+            _viewDocument: function() {
                 vc.emit('document', 'openDocument', {});
             }
         }
@@ -211,16 +215,16 @@
     function newWebSocket() {
         let clientId = vc.uuid();
         let heartCheck = {
-            timeout: 30000,        // 9分钟发一次心跳，比server端设置的连接时间稍微小一点，在接近断开的情况下以通信的方式去重置连接时间。
+            timeout: 30000, // 9分钟发一次心跳，比server端设置的连接时间稍微小一点，在接近断开的情况下以通信的方式去重置连接时间。
             serverTimeoutObj: null,
             pingTime: new Date().getTime(),
-            reset: function () {
+            reset: function() {
                 clearTimeout(this.serverTimeoutObj);
                 return this;
             },
-            start: function () {
+            start: function() {
                 let self = this;
-                this.serverTimeoutObj = setInterval(function () {
+                this.serverTimeoutObj = setInterval(function() {
                     if (websocket.readyState == 1) {
                         console.log("连接状态，发送消息保持连接");
                         let _pingTime = new Date().getTime();
@@ -231,7 +235,7 @@
                         websocket.send("{'cmd':'ping'}");
                         self.pingTime = _pingTime;
 
-                        heartCheck.reset().start();    // 如果获取到消息，说明连接是正常的，重置心跳检测
+                        heartCheck.reset().start(); // 如果获取到消息，说明连接是正常的，重置心跳检测
                     } else {
                         console.log("断开状态，尝试重连");
                         newWebSocket();
@@ -273,22 +277,22 @@
         }
 
         //连接发生错误的回调方法
-        websocket.onerror = function (_err) {
+        websocket.onerror = function(_err) {
             console.log("初始化失败", _err);
-            this.$notify.error({
-                title: "错误",
-                message: "连接失败，请检查网络"
-            });
+            // this.$notify.error({
+            //     title: "错误",
+            //     message: "连接失败，请检查网络"
+            // });
         };
 
         //连接成功建立的回调方法
-        websocket.onopen = function () {
+        websocket.onopen = function() {
             heartCheck.reset().start();
             console.log("ws初始化成功");
         };
 
         //接收到消息的回调方法
-        websocket.onmessage = function (event) {
+        websocket.onmessage = function(event) {
             heartCheck.reset().start();
             console.log("event", event);
             let _data = event.data;
@@ -306,17 +310,17 @@
         };
 
         //连接关闭的回调方法
-        websocket.onclose = function () {
+        websocket.onclose = function() {
             console.log("初始化失败");
             //newWebSocket();
-            this.$notify.error({
-                title: "错误",
-                message: "连接关闭，请刷新浏览器"
-            });
+            // this.$notify.error({
+            //     title: "错误",
+            //     message: "连接关闭，请刷新浏览器"
+            // });
         };
 
         //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-        window.onbeforeunload = function () {
+        window.onbeforeunload = function() {
             websocket.close();
         };
     }

@@ -1,22 +1,22 @@
 /**
  菜单 处理
  **/
-(function (vc) {
+(function(vc) {
     var vm = new Vue({
         el: '#menu-nav',
         data: {
             menus: [],
             logo: '',
         },
-        mounted: function () {
+        mounted: function() {
             this._initSysInfo();
             this.getMenus();
             let _menuDiv = document.getElementById('menu-nav');
-            vcFramework.eleResize.on(_menuDiv, function () {
+            vcFramework.eleResize.on(_menuDiv, function() {
                 //console.log('resize', '大小修改了');
                 vcFramework._fix_height(_menuDiv);
             });
-            window.onscroll = function () {
+            window.onscroll = function() {
                 //为了保证兼容性，这里取两个值，哪个有值取哪一个
                 //scrollTop就是触发滚轮事件时滚轮的高度
                 let _menuDivb = document.getElementById('menu-nav');
@@ -24,20 +24,20 @@
             }
         },
         methods: {
-            _initSysInfo: function () {
-                var sysInfo = vc.getData("_sysInfo");
+            _initSysInfo: function() {
+                let sysInfo = vc.getData("_sysInfo");
                 if (sysInfo == null) {
                     this.logo = "HC";
                     return;
                 }
                 this.logo = sysInfo.logo;
             },
-            _gotoIndex: function () {
+            _gotoIndex: function() {
                 vc.jumpToPage("/")
             },
-            getMenus: function () {
+            getMenus: function() {
 
-                var _tmpMenus = vc.getMenus();
+                let _tmpMenus = vc.getMenus();
                 //浏览器缓存中能获取到
                 if (_tmpMenus != null && _tmpMenus != undefined) {
                     this.miniMenu();
@@ -48,40 +48,41 @@
                     return;
                 }
 
-                var param = {
-                    params: {
-                        msg: this.message
-                    }
+                let param = {
+                        params: {
+                            msg: this.message
+                        }
 
-                }
-                //发送get请求
+                    }
+                    //发送get请求
                 vc.http.get('menu',
                     'getMenus',
                     param,
-                    function (json, res) {
-                        var _menus = JSON.parse(json);
+                    function(json, res) {
+                        let _menus = JSON.parse(json);
                         if (_menus == null || _menus.length == 0) {
                             return;
                         }
-                        _menus.sort(function (a, b) {
+                        _menus.sort(function(a, b) {
                             return a.seq - b.seq
                         });
                         var _currentMenusId = vc.getCurrentMenu() == null ? _menus[0].id : vc.getCurrentMenu();
                         vm.menus = vm.refreshMenuActive(_menus, _currentMenusId);
                         vc.setMenus(vm.menus);
                         vm.miniMenu();
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            refreshMenuActive: function (jsonArray, _id) {
+            refreshMenuActive: function(jsonArray, _id) {
                 console.log(jsonArray);
                 for (var menuIndex = 0; menuIndex < jsonArray.length; menuIndex++) {
 
                     if (jsonArray[menuIndex].hasOwnProperty('childs')) {
                         var _childs = jsonArray[menuIndex].childs;
-                        _childs.sort(function (_child, _newChild) {
+                        _childs.sort(function(_child, _newChild) {
                             return _child.seq - _newChild.seq
                         });
                         jsonArray[menuIndex].childs = _childs;
@@ -102,14 +103,14 @@
 
                 return jsonArray;
             },
-            switchMenu: function (_id) {
+            switchMenu: function(_id) {
                 //设置菜单ID
                 vc.setCurrentMenu(_id);
                 vm.menus = vm.refreshMenuActive(vm.menus, _id);
                 vc.setMenus(vm.menus);
                 //vc._fix_height()
             },
-            miniMenu: function () {
+            miniMenu: function() {
 
                 //菜单默认为打开方式
                 if (!vc.notNull(vc.getMenuState())) {
@@ -123,12 +124,12 @@
                 $("body").toggleClass("mini-navbar");
                 vc.setMenuState('OFF');
             },
-            _gotoPage: function (_href) {
+            _gotoPage: function(_href) {
                 // 子菜单默认选中
                 this._setSelectedMenusChild(_href);
                 vc.jumpToPage(_href);
             },
- 
+
             // 子菜单默认选中
             _setSelectedMenusChild(_href) {
                 for (var menuIndex = 0; menuIndex < this.menus.length; menuIndex++) {
