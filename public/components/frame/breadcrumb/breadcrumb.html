@@ -1,19 +1,9 @@
-<div id="breadcrumb" class="border-bottom white-bg page-heading" v-if="breadCrumbs.length > 0">
-    <div class="row">
-        <div class="col-lg-12" style="margin-left: 5px;">
-            <h2>{{breadCrumbs.length > 0 ? breadCrumbs[breadCrumbs.length-1].pageName : ''}}</h2>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="/">首页</a>
-                </li>
-                <li class="breadcrumb-item" v-for="breadCrumb in breadCrumbs">
-                    <span v-if="breadCrumb.parentPageName == ''">
-                        {{breadCrumb.pageName}}
-                    </span>
-                    <strong v-if="breadCrumb.parentPageName != ''">{{breadCrumb.pageName}}</strong>
-                </li>
-
-            </ol>
-        </div>
-    </div>
+<div id="breadcrumb" class="border-bottom white-bg" v-if="breadCrumbs.length > 0">
+    <ul class="nav nav-tabs">
+        <li class="nav-item" v-for="(item,index) in breadCrumbs">
+            <span class="nav-link active" aria-current="page" @click="_changeSmallTab(item)">{{item.pageName}}
+                <i class="fa fa-remove margin-left-sm"></i>
+            </span>
+        </li>
+    </ul>
 </div>

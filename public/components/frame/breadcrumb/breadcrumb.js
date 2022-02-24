@@ -19,49 +19,36 @@
        methods:{
            _freshBreadCrumbByUrl:function(){
 
-                var _tmpMenus = vc.getMenus();
-                var _path = location.hash;
-                if(location.hash.indexOf('?') != -1){
-                    _path = location.hash.substring(0,location.hash.indexOf('?'));
-                }
-                var _url = vc.getUrl()+_path;
-                /**
-                    正常情况下是走不到这里的，
-                    因为系统登录时，就已经加载菜单信息缓存到本地了
+                let tabs = vc.getTabFromLocal();
 
-                **/
+                let _tmpMenus = vc.getMenus();
+
                 if(_tmpMenus == null || _tmpMenus == undefined){
                     return ;
                 }
-                for(var menuIndex =0 ; menuIndex < _tmpMenus.length;menuIndex ++){
-                    //两层结构的情况
-                    if(_tmpMenus[menuIndex].hasOwnProperty('childs')){
-                        var _childs = _tmpMenus[menuIndex].childs;
-                        for(var _childIndex = 0; _childIndex < _childs.length; _childIndex ++){
-                            if(this._getRealUrl(_childs[_childIndex].href) == _url){
-                                var _tmpBreadCrumbInf = {
-                                    parentPageName: "",
-                                    pageName: _tmpMenus[menuIndex].name
-                                };
-                                this.breadCrumbs.push(_tmpBreadCrumbInf);
+
+                tabs.forEach(item => {
+                    let _path = item;
+                    if(_path.indexOf('?') != -1){
+                        _path = _path.substring(0,_path.indexOf('?'));
+                    }
+                    let _url = vc.getUrl()+_path;
+                   
+                    _tmpMenus.forEach(_menu =>{
+                        _menu.childs.forEach(child=>{
+                            console.log(_url,child.href)
+                            if(_url == child.href){
                                 _tmpBreadCrumbInf = {
-                                    parentPageName: _tmpMenus[menuIndex].name,
-                                    pageName: _childs[_childIndex].name
+                                    href: child.href,
+                                    pageName: child.name,
+                                    active:'0'
                                 };
                                this.breadCrumbs.push(_tmpBreadCrumbInf);
-                                break;
                             }
-                        }
-                    }else{
-                        if(this._getRealUrl(_tmpMenus[menuIndex].href) == url){
-                            var _tmpBreadCrumbInf = {
-                                parentPageName: "首页",
-                                pageName: _tmpMenus[menuIndex].name
-                            };
-                            this.breadCrumbs.push(_tmpBreadCrumbInf);
-                        }
-                    }
-                }
+                        })
+                    })
+
+                });
            },
 
             _getRealUrl:function(_url){
@@ -69,6 +56,9 @@
                     return _url.substring(0, _url.indexOf('?'));
                 }
                 return _url;
+            },
+            _changeSmallTab:function(){
+
             }
        },
 

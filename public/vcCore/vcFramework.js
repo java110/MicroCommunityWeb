@@ -1998,6 +1998,12 @@
         if (!vcFramework.notNull(_componentUrl)) {
             return;
         }
+        //获取参数
+        let _tab = vc.getParam('tab')
+
+        if(_tab){
+            vcFramework.setTabToLocal(_componentUrl);
+        }
         refreshVcFramework();
         vcFramework.reBuilderVcTree();
     }, false);
@@ -2619,6 +2625,22 @@
 
     vcFramework.setPageRouteToLocal = function(_obj) {
         let routes = vcFramework.getPageRouteFromLocal();
+
+        //判断是否已经有 如果有则删除
+        let loction = 0;
+        for (let routeIndex = 0; routeIndex < routes.length; routeIndex++) {
+            _tmpRoute = routes[routeIndex];
+            if (!_tmpRoute.pagePath || _tmpRoute.pagePath != _obj.pagePath) {
+                continue;
+            }
+            loction = routeIndex;
+            routes.splice(loction, 1);
+        }
+
+        if(routes.length > 20){
+            routes.shift();
+        }
+
         routes.push(_obj);
         window.localStorage.setItem('vcPageRoute', JSON.stringify(routes));
     }
@@ -2678,10 +2700,10 @@
         }
 
         for (_key in _component) {
-            if (_key.startsWith('$') || typeof key == 'function') {
+            if (_key.startsWith('$') || _key.startsWith('_') || typeof _key == 'function') {
                 continue;
             }
-            _pageData.pageData[key] = _component[key];
+            _pageData.pageData[_key] = _component[_key];
         }
         vcFramework.setPageRouteToLocal(_pageData);
     }
@@ -2690,4 +2712,47 @@
         //寻找当前页面是否在路由中 如果有恢复下数据，并做弹出
         vcFramework.recoverComponentByPageRoute();
     }, false);
+
+
+    vcFramework.getTabFromLocal = function() {
+        let tabStr = window.localStorage.getItem('vcTab');
+
+        let tabs = [];
+
+        if (!tabStr) {
+            window.localStorage.setItem('vcTab', JSON.stringify(tabs))
+        } else {
+            tabs = JSON.parse(tabStr);
+        }
+
+        return tabs;
+    }
+
+    vcFramework.setTabToLocal = function(_obj) {
+        let tabs = vcFramework.getTabFromLocal();
+
+        //判断是否已经有 如果有则删除
+        for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
+            _tmpTab = tabs[tabIndex];
+            if (_tmpTab[tabIndex] == _obj) {
+                return ;
+            }
+        }
+        if(tabs.length > 20){
+            tabs.shift();
+        }
+        tabs.push(_obj);
+        window.localStorage.setItem('vcTab', JSON.stringify(tabs));
+    }
+
+    vcFramework.deleteTabToLocal = function(_obj) {
+        let routes = vcFramework.getPageRouteFromLocal();
+        for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
+            _tmpTab = tabs[tabIndex];
+            if (_tmpTab[tabIndex] == _obj) {
+                tabs.splice(tabIndex,1);
+            }
+        }
+        window.localStorage.setItem('vcPageRoute', JSON.stringify(routes));
+    }
 })(window.vcFramework);
