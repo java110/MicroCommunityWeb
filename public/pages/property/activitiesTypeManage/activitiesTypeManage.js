@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -16,8 +16,7 @@
                     typeCd: '',
                     typeName: '',
                     defaultShow: '',
-                    communityId:vc.getCurrentCommunity().communityId
-
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -25,7 +24,6 @@
             vc.component._listActivitiesTypes(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('activitiesTypeManage', 'listActivitiesType', function (_param) {
                 vc.component._listActivitiesTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -35,13 +33,13 @@
         },
         methods: {
             _listActivitiesTypes: function (_page, _rows) {
-
                 vc.component.activitiesTypeManageInfo.conditions.page = _page;
                 vc.component.activitiesTypeManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.activitiesTypeManageInfo.conditions
                 };
-
+                param.params.typeCd = param.params.typeCd.trim();
+                param.params.typeName = param.params.typeName.trim();
                 //发送get请求
                 vc.http.apiGet('/activitiesType/queryActivitiesType',
                     param,
@@ -69,9 +67,16 @@
             _openDeleteActivitiesTypeModel: function (_activitiesType) {
                 vc.emit('deleteActivitiesType', 'openDeleteActivitiesTypeModal', _activitiesType);
             },
+            //查询
             _queryActivitiesTypeMethod: function () {
                 vc.component._listActivitiesTypes(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetActivitiesTypeMethod: function () {
+                vc.component.activitiesTypeManageInfo.conditions.typeCd = "";
+                vc.component.activitiesTypeManageInfo.conditions.typeName = "";
+                vc.component.activitiesTypeManageInfo.conditions.defaultShow = "";
+                vc.component._listActivitiesTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.activitiesTypeManageInfo.moreCondition) {
@@ -80,8 +85,6 @@
                     vc.component.activitiesTypeManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

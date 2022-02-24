@@ -12,11 +12,11 @@
                 notices: [],
                 total: 0,
                 _currentCommunity: '',
-                communityInfos: []
+                communityInfos: [],
+                storeTypeCd: ''
             },
             logo: '',
-            userName: "",
-
+            userName: ""
         },
         mounted: function () {
             this._initSysInfo();
@@ -34,16 +34,13 @@
                 this.logo = sysInfo.logo;
             },
             getNavData: function () {
-
                 var param = {
                     params: {
                         page: 1,
                         row: 3,
                         communityId: vc.getCurrentCommunity().communityId
                     }
-
                 };
-
                 //发送get请求
                 vc.http.get('nav',
                     'getNavData',
@@ -56,7 +53,6 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
             logout: function () {
                 var param = {
@@ -90,7 +86,6 @@
                 var param = {
                     msg: '123',
                 };
-
                 //发送get请求
                 vc.http.get('nav',
                     'getUserInfo',
@@ -98,11 +93,11 @@
                     function (json, res) {
                         if (res.status == 200) {
                             var tmpUserInfo = JSON.parse(json);
-                            console.log(vm, tmpUserInfo);
                             vm.userName = tmpUserInfo.name;
+                            vm.nav.storeTypeCd = tmpUserInfo.storeTypeCd;
                             //加个水印
                             if (tmpUserInfo.watermark == 'true') {
-                                vc.watermark({ watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name });
+                                vc.watermark({watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name});
                             }
                         }
                     }, function () {
@@ -116,10 +111,8 @@
                 if (_tmpCurrentCommunity != null && _tmpCurrentCommunity != undefined) {
                     this.nav._currentCommunity = _tmpCurrentCommunity;
                     this.nav.communityInfos = vc.getCommunitys();
-
                     return;
                 }
-
                 //说明缓存中没有数据
                 //发送get请求
                 /**
@@ -138,30 +131,25 @@
                     function (json, res) {
                         if (res.status == 200) {
                             vm.nav.communityInfos = JSON.parse(json).communitys;
-
                             if (vm.nav.communityInfos == null || vm.nav.communityInfos.length == 0) {
                                 vm.nav._currentCommunity = {
                                     name: "还没有入驻小区"
                                 };
                                 return;
                             }
-
                             vm.nav._currentCommunity = vm.nav.communityInfos[0];
                             vc.setCurrentCommunity(vm.nav._currentCommunity);
                             vc.setCommunitys(vm.nav.communityInfos);
-
                             //对首页做特殊处理，因为首页在加载数据时还没有小区信息 会报错
                             if (vm.nav.communityInfos != null && vm.nav.communityInfos.length > 0) {
                                 vc.emit("indexContext", "_queryIndexContextData", {});
                                 vc.emit("indexArrears", "_listArrearsData", {});
                             }
-
                         }
                     }, function () {
                         console.log('请求失败处理');
                     }
                 );
-
             },
             changeCommunity: function (_community) {
                 vc.setCurrentCommunity(_community);
@@ -172,7 +160,6 @@
             _noticeDetail: function (_msg) {
                 //console.log(_notice.noticeId);
                 //vc.jumpToPage("/admin.html#/noticeDetail?noticeId="+_notice.noticeId);
-
                 //标记为消息已读
                 vc.http.post('nav',
                     'readMsg',
@@ -188,9 +175,7 @@
             },
             _doMenu: function () {
                 let body = document.getElementsByTagName("body")[0];
-
                 let className = body.className;
-
                 if (className.indexOf("mini-navbar") != -1) {
                     body.className = className.replace(/mini-navbar/g, "");
                     return;
@@ -205,7 +190,6 @@
             }
         }
     });
-
     vm.getUserInfo();
 
     function newWebSocket() {
@@ -230,7 +214,6 @@
                         }
                         websocket.send("{'cmd':'ping'}");
                         self.pingTime = _pingTime;
-
                         heartCheck.reset().start();    // 如果获取到消息，说明连接是正常的，重置心跳检测
                     } else {
                         console.log("断开状态，尝试重连");
@@ -239,15 +222,12 @@
                 }, this.timeout)
             }
         }
-
         //建立websocket 消息连接
         let user = vc.getData('/nav/getUserInfo');
-        if (!user.hasOwnProperty('userId')) {
+        if (!user) {
             return;
         }
-
         let _userId = user.userId;
-
         let _protocol = window.location.protocol;
         let url = '';
         if (_protocol.startsWith('https')) {
@@ -262,8 +242,6 @@
             //     "ws://demo.homecommunity.cn/ws/message/" +
             //     _userId;
         }
-
-
         if ("WebSocket" in window) {
             websocket = new WebSocket(url);
         } else if ("MozWebSocket" in window) {
@@ -271,7 +249,6 @@
         } else {
             websocket = new SockJS(url);
         }
-
         //连接发生错误的回调方法
         websocket.onerror = function (_err) {
             console.log("初始化失败", _err);
@@ -280,13 +257,11 @@
                 message: "连接失败，请检查网络"
             });
         };
-
         //连接成功建立的回调方法
         websocket.onopen = function () {
             heartCheck.reset().start();
             console.log("ws初始化成功");
         };
-
         //接收到消息的回调方法
         websocket.onmessage = function (event) {
             heartCheck.reset().start();
@@ -297,14 +272,12 @@
             } catch (err) {
                 return;
             }
-
             if (_data.code == 200) {
                 toastr.info(_data.msg);
             } else {
                 toastr.error(_data.msg);
             }
         };
-
         //连接关闭的回调方法
         websocket.onclose = function () {
             console.log("初始化失败");
@@ -314,7 +287,6 @@
                 message: "连接关闭，请刷新浏览器"
             });
         };
-
         //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
         window.onbeforeunload = function () {
             websocket.close();
@@ -322,5 +294,4 @@
     }
 
     newWebSocket();
-
 })(window.vc);

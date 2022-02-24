@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editNoticeViewInfo: {
@@ -8,8 +7,7 @@
                 noticeTypeCd: '',
                 context: '',
                 startTime: '',
-                endTime: '',
-
+                endTime: ''
             }
         },
         _initMethod: function () {
@@ -21,13 +19,12 @@
                 _params.context = filterXSS(_params.context);
                 vc.component.editNoticeInfo = _params;
             });
-            vc.on('editNoticeViewInfo', 'noticeEditNoticeInfo', function (_params) {
+            vc.on('editNoticeView', 'noticeEditNoticeInfo', function (_params) {
                 vc.component.refreshEditNoticeInfo();
                 _params.context = filterXSS(_params.context);
                 vc.copyObject(_params, vc.component.editNoticeViewInfo);
                 $(".eidtSummernote").summernote('code', vc.component.editNoticeViewInfo.context);
             });
-
         },
         methods: {
             editNoticeValidate: function () {
@@ -99,8 +96,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "公告ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editNotice: function () {
@@ -109,7 +106,6 @@
                     return;
                 }
                 vc.component.editNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.post(
                     'editNotice',
                     'update',
@@ -122,26 +118,23 @@
                         if (res.status == 200) {
                             //关闭model
                             vc.emit('noticeManage', 'listNotice', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
             refreshEditNoticeInfo: function () {
                 vc.component.editNoticeViewInfo = {
-
                     noticeId: '',
                     title: '',
                     noticeTypeCd: '',
                     context: '',
                     startTime: '',
-                    endTime: '',
-
+                    endTime: ''
                 }
             },
             _initEditNoticeInfo: function () {
@@ -153,7 +146,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.editNoticeStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -174,7 +166,7 @@
                         var value = $(".editNoticeEndTime").val();
                         vc.component.editNoticeViewInfo.endTime = value;
                     });
-                    let $summernote = $('.eidtSummernote').summernote({
+                let $summernote = $('.eidtSummernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入公告内容',
@@ -187,15 +179,24 @@
                         }
                     }
                 });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editNoticeStartTime')[0].addEventListener('click', myfunc)
 
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editNoticeEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
-            sendEditFile: function ($summernote,files) {
+            sendEditFile: function ($summernote, files) {
                 console.log('上传图片', files);
-
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
-
                 vc.http.upload(
                     'addNoticeView',
                     'uploadImage',
@@ -224,9 +225,7 @@
             },
             closeEditNoticeInfo: function () {
                 vc.emit('noticeManage', 'listNotice', {});
-
             },
         }
     });
-
 })(window.vc, window.vc.component);

@@ -65,6 +65,11 @@
             _openAddModal: function (rstId) {
                 vc.emit('addResourceStoreType', 'openAddResourceStoreTypeModal', rstId);
             },
+            //修改
+            _openEditResourceStoreTypeModel: function (_sonResourceStoreType) {
+                _sonResourceStoreType.flag = 1;
+                vc.emit('editResourceStoreType', 'openEditResourceStoreTypeModal', _sonResourceStoreType);
+            },
             //删除
             _openDeleteResourceStoreTypeModel: function (_sonResourceStoreType) {
                 vc.emit('deleteResourceStoreType', 'openDeleteResourceStoreTypeModal', _sonResourceStoreType);

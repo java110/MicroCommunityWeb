@@ -5,41 +5,42 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入问卷ID"
+                                       v-model="questionAnswerManageInfo.conditions.qaId" class=" form-control">
+                            </div>
+                        </div>
                         <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入问卷名称"
+                                       v-model="questionAnswerManageInfo.conditions.qaName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="questionAnswerManageInfo.conditions.qaType">
-                                <option selected value="">请选择问卷类型</option>
+                                <option selected disabled value="">请选择问卷类型</option>
                                 <option value="1001">业主问卷</option>
                                 <!-- <option value="2002">员工自评</option> -->
                                 <option value="3003">业主投票</option>
                                 <option value="4004">员工投票</option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入问卷名称"
-                                    v-model="questionAnswerManageInfo.conditions.qaName" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入问卷ID"
-                                    v-model="questionAnswerManageInfo.conditions.qaId" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryQuestionAnswerMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                    v-on:click="_queryQuestionAnswerMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetQuestionAnswerMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -51,54 +52,54 @@
                     <h5>问卷信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddQuestionAnswerModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">问卷ID</th>
-                                <th class="text-center">问卷类型</th>
-                                <th class="text-center">问卷名称</th>
-                                <th class="text-center">开始时间</th>
-                                <th class="text-center">结束时间</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">问卷ID</th>
+                            <th class="text-center">问卷类型</th>
+                            <th class="text-center">问卷名称</th>
+                            <th class="text-center">开始时间</th>
+                            <th class="text-center">结束时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="questionAnswer in questionAnswerManageInfo.questionAnswers">
-                                <td class="text-center">{{questionAnswer.qaId}}</td>
-                                <td class="text-center">{{questionAnswer.qaTypeName}}</td>
-                                <td class="text-center">{{questionAnswer.qaName}}</td>
-                                <td class="text-center">{{questionAnswer.startTime}}</td>
-                                <td class="text-center">{{questionAnswer.endTime}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_toQuestionAnswerTitle(questionAnswer)">题目</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditQuestionAnswerModel(questionAnswer)">修改</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteQuestionAnswerModel(questionAnswer)">删除</button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                        <tr v-for="questionAnswer in questionAnswerManageInfo.questionAnswers">
+                            <td class="text-center">{{questionAnswer.qaId}}</td>
+                            <td class="text-center">{{questionAnswer.qaTypeName}}</td>
+                            <td class="text-center">{{questionAnswer.qaName}}</td>
+                            <td class="text-center">{{questionAnswer.startTime}}</td>
+                            <td class="text-center">{{questionAnswer.endTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_toQuestionAnswerTitle(questionAnswer)">题目
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditQuestionAnswerModel(questionAnswer)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteQuestionAnswerModel(questionAnswer)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -107,11 +108,7 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="property/addQuestionAnswer" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editQuestionAnswer"></vc:create>
     <vc:create path="property/deleteQuestionAnswer"></vc:create>
-
 </div>

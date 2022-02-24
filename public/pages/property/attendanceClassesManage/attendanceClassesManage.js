@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -12,19 +12,21 @@
                 records: 1,
                 moreCondition: false,
                 classesId: '',
+                clockTypes: [],
                 conditions: {
                     classesName: '',
                     classesId: '',
-                    clockType: '',
-
+                    clockType: ''
                 }
             }
         },
         _initMethod: function () {
+            vc.getDict('attendance_classes', "clock_type", function (_data) {
+                vc.component.attendanceClassesManageInfo.clockTypes = _data;
+            });
             vc.component._listAttendanceClassess(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('attendanceClassesManage', 'listAttendanceClasses', function (_param) {
                 vc.component._listAttendanceClassess(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,13 +36,13 @@
         },
         methods: {
             _listAttendanceClassess: function (_page, _rows) {
-
                 vc.component.attendanceClassesManageInfo.conditions.page = _page;
                 vc.component.attendanceClassesManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.attendanceClassesManageInfo.conditions
                 };
-
+                param.params.classesId = param.params.classesId.trim();
+                param.params.classesName = param.params.classesName.trim();
                 //发送get请求
                 vc.http.apiGet('attendanceClasses.listAttendanceClassess',
                     param,
@@ -68,9 +70,16 @@
             _openDeleteAttendanceClassesModel: function (_attendanceClasses) {
                 vc.emit('deleteAttendanceClasses', 'openDeleteAttendanceClassesModal', _attendanceClasses);
             },
+            //查询
             _queryAttendanceClassesMethod: function () {
                 vc.component._listAttendanceClassess(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetAttendanceClassesMethod: function () {
+                vc.component.attendanceClassesManageInfo.conditions.classesId = "";
+                vc.component.attendanceClassesManageInfo.conditions.classesName = "";
+                vc.component.attendanceClassesManageInfo.conditions.clockType = "";
+                vc.component._listAttendanceClassess(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.attendanceClassesManageInfo.moreCondition) {
@@ -79,8 +88,6 @@
                     vc.component.attendanceClassesManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

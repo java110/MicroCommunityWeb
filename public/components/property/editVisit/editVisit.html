@@ -10,16 +10,16 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">访客姓名</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editVisitInfo.name" type="text" placeholder="必填，请填写访客姓名"
+                                    <input v-model="editVisitInfo.vName" type="text" placeholder="必填，请填写访客姓名"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">访客性别</label>
                                 <div class="col-sm-10">
-<!--                                    <input v-model="editAppInfo.securityCode" type="text" placeholder="选填，请填访客性别"-->
-<!--                                           class="form-control">-->
-                                    <select v-model="editVisitInfo.visitGender" class="form-control" :value="editVisitInfo.visitGender">
+                                    <select v-model="editVisitInfo.visitGender" class="form-control"
+                                            :value="editVisitInfo.visitGender">
+                                        <option value="" selected disabled>请选择访客性别</option>
                                         <option value="1">男</option>
                                         <option value="0">女</option>
                                     </select>
@@ -35,30 +35,32 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">访客来访时间</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editVisitInfo.visitTime" type="date" placeholder="选填，请填写来访时间"
-                                           class="form-control">
+                                    <input v-model="editVisitInfo.visitTime" type="text" placeholder="选填，请填写来访时间"
+                                           class="form-control editVisitTime">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">访客离开时间</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editVisitInfo.departureTime" type="date" placeholder="选填，请填写离开时间"
-                                           class="form-control">
+                                    <input v-model="editVisitInfo.departureTime" type="text" placeholder="选填，请填写离开时间"
+                                           class="form-control editDepartureTime">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">访客来访事由</label>
                                 <div class="col-sm-10">
                                     <textarea placeholder="选填，请填写访客来访事由" class="form-control"
-                                              v-model="editVisitInfo.visitCase"></textarea></div>
+                                              v-model="editVisitInfo.visitCase">
+                                    </textarea>
+                                </div>
                             </div>
-
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editVisit()"><i
-                                        class="fa fa-check"></i>&nbsp;保存
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editVisit()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
                                 </button>
                             </div>
                         </div>

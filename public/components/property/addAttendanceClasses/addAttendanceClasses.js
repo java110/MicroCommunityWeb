@@ -1,7 +1,4 @@
-
-
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -13,6 +10,7 @@
                 classesName: '',
                 timeOffset: '',
                 clockCount: '',
+                clockTypes: [],
                 clockType: '',
                 clockTypeValues: [],
                 clockTypeValue: '',
@@ -21,13 +19,13 @@
                 classesObjType: '',
                 classesObjId: '',
                 classesObjName: '',
-                attrs: [
-
-                ]
+                attrs: []
             }
         },
         _initMethod: function () {
-
+            vc.getDict('attendance_classes', "clock_type", function (_data) {
+                vc.component.addAttendanceClassesInfo.clockTypes = _data;
+            });
         },
         _initEvent: function () {
             vc.on('addAttendanceClasses', 'openAddAttendanceClassesModal', function () {
@@ -39,7 +37,6 @@
                 $that.addAttendanceClassesInfo.classesObjName = _param.orgName;
             });
         },
-
         methods: {
             addAttendanceClassesValidate() {
                 return vc.validate.validate({
@@ -152,11 +149,7 @@
                             param: "",
                             errInfo: "班次对象错误"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveAttendanceClassesInfo: function () {
@@ -170,7 +163,6 @@
                     $that.addAttendanceClassesInfo.clockTypeValues.forEach(item => {
                         _clockTypeValue += (item + ',');
                     })
-
                     if (_clockTypeValue.endsWith(',')) {
                         _clockTypeValue = _clockTypeValue.substring(0, _clockTypeValue.length - 1)
                     }
@@ -178,10 +170,18 @@
                 }
                 if (!vc.component.addAttendanceClassesValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
+                var flag = "0";
+                $that.addAttendanceClassesInfo.attrs.forEach(function (item) {
+                    if (item.value == null || item.value == '' || item.value == 'undefined') {
+                        vc.toast("上下班时间不能为空");
+                        flag = "1";
+                    }
+                });
+                if (flag == "1") {
+                    return;
+                }
                 vc.component.addAttendanceClassesInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -189,7 +189,6 @@
                     $('#addAttendanceClassesModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'attendanceClasses.saveAttendanceClasses',
                     JSON.stringify(vc.component.addAttendanceClassesInfo),
@@ -204,17 +203,13 @@
                             $('#addAttendanceClassesModel').modal('hide');
                             vc.component.clearAddAttendanceClassesInfo();
                             vc.emit('attendanceClassesManage', 'listAttendanceClasses', {});
-
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
-
+                        vc.toast(errInfo);
                     });
             },
             clearAddAttendanceClassesInfo: function () {
@@ -231,7 +226,6 @@
                     classesObjId: '',
                     classesObjName: '',
                     attrs: []
-
                 };
             },
             _addAttendanceChangeClockCount: function () {
@@ -273,7 +267,6 @@
                         }
                     );
                 }
-
                 if (_clockCount > 5) {
                     _attrs.push(
                         {
@@ -292,15 +285,10 @@
                         }
                     );
                 }
-
-
                 let _newAttrs = _attrs.sort(function (a, b) {
                     return a.seq - b.seq;
                 });
-
                 $that.addAttendanceClassesInfo.attrs = _newAttrs;
-
-
                 $that.$nextTick(function () {
                     //方法
                     $that.addAttendanceClassesInfo.attrs.forEach(item => {
@@ -310,10 +298,7 @@
                         });
                     });
                 });
-
             }
         }
     });
-
-
 })(window.vc);

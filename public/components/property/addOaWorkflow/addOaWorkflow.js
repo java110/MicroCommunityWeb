@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -10,11 +9,14 @@
                 flowId: '',
                 flowName: '',
                 flowType: '',
-                describle: '',
+                flowTypes: [],
+                describle: ''
             }
         },
         _initMethod: function () {
-
+            vc.getDict('oa_workflow', "flow_type", function (_data) {
+                vc.component.addOaWorkflowInfo.flowTypes = _data;
+            });
         },
         _initEvent: function () {
             vc.on('addOaWorkflow', 'openAddOaWorkflowModal', function () {
@@ -55,28 +57,21 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "备注内容不能超过200"
-                        },
-                    ],
-
-
-
-
+                        }
+                    ]
                 });
             },
             saveOaWorkflowInfo: function () {
                 if (!vc.component.addOaWorkflowValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addOaWorkflowInfo);
                     $('#addOaWorkflowModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/oaWorkflow/saveOaWorkflow',
                     JSON.stringify(vc.component.addOaWorkflowInfo),
@@ -91,28 +86,28 @@
                             $('#addOaWorkflowModel').modal('hide');
                             vc.component.clearAddOaWorkflowInfo();
                             vc.emit('oaWorkflowManage', 'listOaWorkflow', {});
-
+                            vc.toast("添加成功")
+                            vc.getDict('oa_workflow', "flow_type", function (_data) {
+                                vc.component.addOaWorkflowInfo.flowTypes = _data;
+                            });
                             return;
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
-                    });
+                    }
+                );
             },
             clearAddOaWorkflowInfo: function () {
                 vc.component.addOaWorkflowInfo = {
+                    flowId: '',
                     flowName: '',
                     flowType: '',
-                    describle: '',
-
+                    flowTypes: [],
+                    describle: ''
                 };
             }
         }
     });
-
 })(window.vc);

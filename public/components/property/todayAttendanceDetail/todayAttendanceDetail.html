@@ -1,6 +1,5 @@
 <div id="todayAttendanceDetailModel" class="modal fade" tabindex="-1" role="dialog"
-     aria-labelledby="todayAttendanceDetailModelLabel"
-     aria-hidden="true">
+     aria-labelledby="todayAttendanceDetailModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -32,20 +31,19 @@
                                         <td class="text-center">{{detail.checkTime}}</td>
                                         <td class="text-right ">
                                             <span v-for="_photo in detail.photos">
-                                                <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"  v-on:click="openFile(_photo)"></img>
+                                                <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"
+                                                     v-on:click="openFile(_photo)">
                                             </span>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <vc:create path="common/viewImage"></vc:create>
 </div>

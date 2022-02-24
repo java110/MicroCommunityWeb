@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -16,7 +16,7 @@
                     qaType: '',
                     qaName: '',
                     qaId: '',
-                    communityId:vc.getCurrentCommunity().communityId
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -24,7 +24,6 @@
             vc.component._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('questionAnswerManage', 'listQuestionAnswer', function (_param) {
                 vc.component._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,13 +33,13 @@
         },
         methods: {
             _listQuestionAnswers: function (_page, _rows) {
-
                 vc.component.questionAnswerManageInfo.conditions.page = _page;
                 vc.component.questionAnswerManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.questionAnswerManageInfo.conditions
                 };
-
+                param.params.qaId = param.params.qaId.trim();
+                param.params.qaName = param.params.qaName.trim();
                 //发送get请求
                 vc.http.apiGet('/questionAnswer/queryQuestionAnswer',
                     param,
@@ -68,12 +67,19 @@
             _openDeleteQuestionAnswerModel: function (_questionAnswer) {
                 vc.emit('deleteQuestionAnswer', 'openDeleteQuestionAnswerModal', _questionAnswer);
             },
+            //查询
             _queryQuestionAnswerMethod: function () {
                 vc.component._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _toQuestionAnswerTitle:function(_questionAnswer){
-                vc.jumpToPage('/admin.html#/pages/property/questionAnswerTitleManage?qaId='+_questionAnswer.qaId+"&objType="+_questionAnswer.objType+"&objId="+_questionAnswer.objId)
+            //重置
+            _resetQuestionAnswerMethod: function () {
+                vc.component.questionAnswerManageInfo.conditions.qaId = "";
+                vc.component.questionAnswerManageInfo.conditions.qaName = "";
+                vc.component.questionAnswerManageInfo.conditions.qaType = "";
+                vc.component._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _toQuestionAnswerTitle: function (_questionAnswer) {
+                vc.jumpToPage('/admin.html#/pages/property/questionAnswerTitleManage?qaId=' + _questionAnswer.qaId + "&objType=" + _questionAnswer.objType + "&objId=" + _questionAnswer.objId)
             },
             _moreCondition: function () {
                 if (vc.component.questionAnswerManageInfo.moreCondition) {
@@ -82,8 +88,6 @@
                     vc.component.questionAnswerManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

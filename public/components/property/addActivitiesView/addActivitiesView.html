@@ -4,16 +4,14 @@
             <div class="ibox-title">
                 <h5>信息发布</h5>
                 <div class="ibox-tools" style="top:10px;">
-
                 </div>
             </div>
             <div class="ibox-content">
-
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">标题</label>
                     <div class="col-sm-10">
                         <input v-model="addActivitiesViewInfo.title" type="text" placeholder="必填，请填写标题"
-                            class="form-control">
+                               class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -22,7 +20,7 @@
                         <select class="custom-select" v-model="addActivitiesViewInfo.typeCd">
                             <option selected disabled value="">必填，请选择信息类型</option>
                             <option v-for="(item,index) in addActivitiesViewInfo.typeCds" :key="index"
-                                v-bind:value="item.typeCd">{{item.typeName}}
+                                    v-bind:value="item.typeCd">{{item.typeName}}
                             </option>
                         </select>
                     </div>
@@ -31,6 +29,7 @@
                     <label class="col-sm-2 col-form-label">多小区</label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addActivitiesViewInfo.isMoreCommunity">
+                            <option value="" selected disabled>请选择是否多小区</option>
                             <option value="Y">是</option>
                             <option value="N">否</option>
                         </select>
@@ -40,7 +39,7 @@
                     <label class="col-sm-2 col-form-label">头部照片(800 * 595)</label>
                     <div class="col-sm-10">
                         <vc:create path="frame/uploadImage" callBackListener="addActivitiesView"
-                            callBackFunction="notifyUploadImage" imageCount="1" namespace="addActivitiesView">
+                                   callBackFunction="notifyUploadImage" imageCount="1" namespace="addActivitiesView">
                         </vc:create>
                     </div>
                 </div>
@@ -48,14 +47,14 @@
                     <label class="col-sm-2 col-form-label">开始时间</label>
                     <div class="col-sm-10">
                         <input v-model="addActivitiesViewInfo.startTime" readonly type="text" placeholder="必填，请填写开始时间"
-                            class="form-control activitiesStartTime">
+                               class="form-control activitiesStartTime">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">结束时间</label>
                     <div class="col-sm-10">
                         <input v-model="addActivitiesViewInfo.endTime" readonly type="text" placeholder="必填，请填写结束时间"
-                            class="form-control activitiesEndTime">
+                               class="form-control activitiesEndTime">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -68,17 +67,15 @@
                                class="form-control">-->
                     </div>
                 </div>
-
-
                 <div class="ibox-content">
-                    <button class="btn btn-primary float-right" type="button" v-on:click="saveActivitiesInfo()"><i
-                            class="fa fa-check"></i>&nbsp;提交
+                    <button class="btn btn-primary float-right" type="button" v-on:click="saveActivitiesInfo()">
+                        <i class="fa fa-check"></i>&nbsp;提交
                     </button>
                     <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                        v-on:click="closeActivitiesInfo()">取消
+                            v-on:click="closeActivitiesInfo()">
+                        <i class="fa fa-close"></i>&nbsp;取消
                     </button>
                 </div>
-
             </div>
         </div>
     </div>

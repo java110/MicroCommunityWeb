@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editComplaintInfo: {
@@ -7,12 +6,10 @@
                 typeCd: '',
                 complaintName: '',
                 tel: '',
-                context: '',
-
+                context: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editComplaint', 'openEditComplaintModal', function (_params) {
@@ -27,7 +24,6 @@
                 return vc.validate.validate({
                     editComplaintInfo: vc.component.editComplaintInfo
                 }, {
-
                     'editComplaintInfo.typeCd': [
                         {
                             limit: "required",
@@ -40,7 +36,6 @@
                             errInfo: "投诉类型格式错误"
                         },
                     ],
-
                     'editComplaintInfo.complaintName': [
                         {
                             limit: "required",
@@ -82,8 +77,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "投诉ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editComplaint: function () {
@@ -91,7 +86,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.post(
                     'editComplaint',
                     'update',
@@ -105,13 +99,12 @@
                             //关闭model
                             $('#editComplaintModel').modal('hide');
                             vc.emit('complaintManage', 'listComplaint', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -121,11 +114,9 @@
                     typeCd: '',
                     complaintName: '',
                     tel: '',
-                    context: '',
-
+                    context: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

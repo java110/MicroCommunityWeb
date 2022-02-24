@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -11,12 +10,10 @@
                 typeName: '',
                 typeDesc: '',
                 seq: '',
-                defaultShow: '',
-
+                defaultShow: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addActivitiesType', 'openAddActivitiesTypeModal', function () {
@@ -70,20 +67,14 @@
                             param: "2",
                             errInfo: "是否显示格式错误"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveActivitiesTypeInfo: function () {
                 if (!vc.component.addActivitiesTypeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addActivitiesTypeInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -91,7 +82,6 @@
                     $('#addActivitiesTypeModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/activitiesType/saveActivitiesType',
                     JSON.stringify(vc.component.addActivitiesTypeInfo),
@@ -106,17 +96,13 @@
                             $('#addActivitiesTypeModel').modal('hide');
                             vc.component.clearAddActivitiesTypeInfo();
                             vc.emit('activitiesTypeManage', 'listActivitiesType', {});
-
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
-
+                        vc.toast(errInfo);
                     });
             },
             clearAddActivitiesTypeInfo: function () {
@@ -124,11 +110,9 @@
                     typeName: '',
                     typeDesc: '',
                     seq: '',
-                    defaultShow: '',
-
+                    defaultShow: ''
                 };
             }
         }
     });
-
 })(window.vc);

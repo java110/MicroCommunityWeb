@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="complaintManageInfo.conditions.typeCd">
-                                <option selected value="">请选择投诉类型</option>
+                                <option selected disabled value="">请选择投诉类型</option>
                                 <option value="809001">投诉</option>
                                 <option value="809002">建议</option>
                                 <option value="809003">咨询</option>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="complaintManageInfo.conditions.state">
-                                <option selected value="">请选择投诉状态</option>
+                                <option selected disabled value="">请选择投诉状态</option>
                                 <option value="10001">处理中</option>
                                 <option value="10002">处理完成</option>
                             </select>
@@ -98,21 +98,21 @@
                            data-page-size="15">
                         <thead>
                         <tr>
-                            <!-- <th class="text-center">投诉ID</th> -->
+                            <th class="text-center">投诉ID</th>
                             <th class="text-center">投诉类型</th>
                             <th class="text-center">房屋</th>
                             <th class="text-center">投诉人</th>
                             <th class="text-center">投诉人电话</th>
                             <th class="text-center">投诉状态</th>
                             <th class="text-center">处理人</th>
-                            <th class="text-center">处理电话</th>
+                            <th class="text-center">处理人电话</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="complaint in complaintManageInfo.complaints">
-                            <!-- <td class="text-center">{{complaint.complaintId}}</td> -->
+                            <td class="text-center">{{complaint.complaintId}}</td>
                             <td class="text-center">{{complaint.typeCdName}}</td>
                             <td class="text-center">
                                 {{complaint.floorNum}}号楼{{complaint.unitNum}}单元{{complaint.roomNum}}室
@@ -151,7 +151,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="9">
+                            <td colspan="10">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             addNoticeViewInfo: {
@@ -14,8 +13,7 @@
                 unitId: '',
                 roomId: '',
                 state: '3000',
-                isAll:'N'
-
+                isAll: 'N'
             }
         },
         _initMethod: function () {
@@ -27,11 +25,9 @@
                 if (_param.hasOwnProperty('floorId')) {
                     $that.addNoticeViewInfo.floorId = _param.floorId;
                 }
-
                 if (_param.hasOwnProperty('unitId')) {
                     $that.addNoticeViewInfo.unitId = _param.unitId;
                 }
-
                 if (_param.hasOwnProperty('roomId')) {
                     $that.addNoticeViewInfo.roomId = _param.roomId;
                 }
@@ -47,12 +43,7 @@
                             limit: "required",
                             param: "",
                             errInfo: "标题不能为空"
-                        },
-                        {
-                            limit: "maxin",
-                            param: "4,100",
-                            errInfo: "标题必须在4至100字符之间"
-                        },
+                        }
                     ],
                     'addNoticeViewInfo.noticeTypeCd': [
                         {
@@ -94,16 +85,14 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "开始时间不能为空"
+                            errInfo: "结束时间不能为空"
                         },
                         {
                             limit: "dateTime",
                             param: "",
                             errInfo: "开始时间不是有效的日期"
                         },
-                    ],
-
-
+                    ]
                 });
             },
             saveNoticeInfo: function () {
@@ -120,24 +109,18 @@
                 } else {
                     $that.addNoticeViewInfo.objId = $that.addNoticeViewInfo.roomId;
                 }
-
                 if ($that.addNoticeViewInfo.noticeTypeCd == '1003') {
                     $that.addNoticeViewInfo.state = '1000';
                 }
-
                 if (!vc.component.addNoticeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 if ($that.addNoticeViewInfo.objId == "") {
                     vc.toast("未选择发布范围");
                     return;
                 }
-
                 vc.component.addNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.post(
                     'addNoticeView',
                     'save',
@@ -149,20 +132,15 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
-
                             vc.component.clearaddNoticeViewInfo();
                             vc.emit('noticeManage', 'listNotice', {});
-
+                            vc.toast("添加成功")
                             return;
                         }
-                        vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearaddNoticeViewInfo: function () {
@@ -181,12 +159,12 @@
                     unitId: '',
                     roomId: '',
                     state: '3000',
-                    isAll:'N'
+                    isAll: 'N'
                 };
             },
             _initNoticeInfo: function () {
                 vc.component.addNoticeViewInfo.startTime = vc.dateTimeFormat(new Date().getTime());
-                $('.noticeStartTime').datetimepicker({
+                $('.addNoticeStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -194,11 +172,10 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
-                $('.noticeStartTime').datetimepicker()
+                $('.addNoticeStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
-                        var value = $(".noticeStartTime").val();
+                        var value = $(".addNoticeStartTime").val();
                         vc.component.addNoticeViewInfo.startTime = value;
                         let start = Date.parse(new Date(vc.component.addNoticeViewInfo.startTime))
                         let end = Date.parse(new Date(vc.component.addNoticeViewInfo.endTime))
@@ -207,7 +184,7 @@
                             vc.component.addNoticeViewInfo.startTime = '';
                         }
                     });
-                $('.noticeEndTime').datetimepicker({
+                $('.addNoticeEndTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -216,9 +193,9 @@
                     autoClose: 1,
                     todayBtn: true
                 });
-                $('.noticeEndTime').datetimepicker()
+                $('.addNoticeEndTime').datetimepicker()
                     .on('changeDate', function (ev) {
-                        var value = $(".noticeEndTime").val();
+                        var value = $(".addNoticeEndTime").val();
                         vc.component.addNoticeViewInfo.endTime = value;
                         let start = Date.parse(new Date(vc.component.addNoticeViewInfo.startTime))
                         let end = Date.parse(new Date(vc.component.addNoticeViewInfo.endTime))
@@ -227,6 +204,18 @@
                             vc.component.addNoticeViewInfo.endTime = '';
                         }
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control addNoticeStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control addNoticeEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
                 var $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
@@ -255,15 +244,12 @@
             },
             closeNoticeInfo: function () {
                 vc.emit('noticeManage', 'listNotice', {});
-
             },
             sendFile: function ($summernote, files) {
                 console.log('上传图片', files);
-
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
-
                 vc.http.upload(
                     'addNoticeView',
                     'uploadImage',
@@ -289,13 +275,9 @@
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
-
             },
             _changeObjType: function () {
-
             }
-
         }
     });
-
 })(window.vc);

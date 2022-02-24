@@ -69,7 +69,7 @@
                             <th class="text-center">来访事由</th>
                             <th class="text-center">来访时间</th>
                             <th class="text-center">离开时间</th>
-                            <!--<th class="text-right">操作</th>-->
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -81,20 +81,20 @@
                             <td class="text-center">{{visit.visitCase}}</td>
                             <td class="text-center">{{visit.visitTime}}</td>
                             <td class="text-center">{{visit.departureTime}}</td>
-                            <!--<td>
-                                &lt;!&ndash;<div class="btn-group">
+                            <td class="text-center">
+                                <div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-on:click="_openEditVisitModel(visit)">修改</button>
-                                </div>&ndash;&gt;
+                                </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-on:click="_openDeleteAppModel(visit)">删除
                                     </button>
                                 </div>
-                            </td>-->
+                            </td>
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
@@ -107,4 +107,5 @@
         </div>
     </div>
     <vc:create path="property/editVisit"></vc:create>
+    <vc:create path="dev/deleteApp"></vc:create>
 </div>

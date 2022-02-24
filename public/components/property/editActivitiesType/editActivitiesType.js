@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editActivitiesTypeInfo: {
@@ -7,12 +6,10 @@
                 typeName: '',
                 typeDesc: '',
                 seq: '',
-                defaultShow: '',
-
+                defaultShow: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editActivitiesType', 'openEditActivitiesTypeModal', function (_params) {
@@ -75,8 +72,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "大类编码不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editActivitiesType: function () {
@@ -84,7 +81,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/activitiesType/updateActivitiesType',
                     JSON.stringify(vc.component.editActivitiesTypeInfo),
@@ -98,14 +94,13 @@
                             //关闭model
                             $('#editActivitiesTypeModel').modal('hide');
                             vc.emit('activitiesTypeManage', 'listActivitiesType', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             refreshEditActivitiesTypeInfo: function () {
@@ -114,11 +109,9 @@
                     typeName: '',
                     typeDesc: '',
                     seq: '',
-                    defaultShow: '',
-
+                    defaultShow: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

@@ -67,9 +67,9 @@
                             <th class="text-center">物品规格</th>
                             <th class="text-center">物品编码</th>
                             <th class="text-center">是否是固定物品</th>
-                            <th class="text-center">被调仓库</th>
+                            <th class="text-center">{{allocationStorehouseDetailInfo.applyType == '10000' || allocationStorehouseDetailInfo.applyType == '30000' ? '被调仓库' : '退还人'}}</th>
                             <th class="text-center">目标仓库</th>
-                            <th class="text-center">原库存(被调仓库)</th>
+                            <th class="text-center">原库存({{allocationStorehouseDetailInfo.applyType == '30000' ? '目标仓库' : '被调仓库'}})</th>
                             <th class="text-center">调拨数量</th>
                         </tr>
                         </thead>
@@ -81,7 +81,7 @@
                             <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
                             <td class="text-center">{{resourceStore.resCode}}</td>
                             <td class="text-center">{{resourceStore.isFixedName}}</td>
-                            <td class="text-center">{{allocationStorehouseDetailInfo.applyType == '10000' ? resourceStore.shaName : allocationStorehouseDetailInfo.startUserName}}</td>
+                            <td class="text-center">{{allocationStorehouseDetailInfo.applyType == '10000' || allocationStorehouseDetailInfo.applyType == '30000' ? resourceStore.shaName : allocationStorehouseDetailInfo.startUserName}}</td>
                             <td class="text-center">{{resourceStore.shzName}}</td>
                             <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
                             <td class="text-center">{{resourceStore.stock}}{{resourceStore.applyType==20000 ? resourceStore.miniUnitCodeName : resourceStore.unitCodeName}}</td>

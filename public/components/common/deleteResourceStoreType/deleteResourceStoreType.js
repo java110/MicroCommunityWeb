@@ -31,13 +31,14 @@
                             } else {
                                 vc.emit('resourceStoreTypeManage', 'listResourceStoreType', {});
                             }
+                            vc.toast("删除成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(errInfo);
+                        errInfo = JSON.parse(errInfo)
+                        vc.toast(errInfo.msg);
                     });
             },
             closeDeleteResourceStoreTypeModel: function () {

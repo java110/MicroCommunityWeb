@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 100;
@@ -25,7 +25,6 @@
             $that._loadUndoInfo();
         },
         _initEvent: function () {
-
         },
         methods: {
             _toGo: function (_url) {
@@ -71,13 +70,13 @@
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json).data;
-                        vc.copyObject(_json,$that.newOaWorkflowDoingInfo);
+                        vc.copyObject(_json, $that.newOaWorkflowDoingInfo);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                    });
+                    }
+                );
             },
         }
-
     });
 })(window.vc);

@@ -1,37 +1,34 @@
 /**
  权限组
  **/
-(function(vc){
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
             callBackFunction: vc.propTypes.string //父组件监听方法
         },
-        data:{
-            addVisitInfo:{
-                vName:'',
-                visitGender:'',
-                phoneNumber:'',
-                visitTime:'',
-                departureTime:''
+        data: {
+            addVisitInfo: {
+                vName: '',
+                visitGender: '',
+                phoneNumber: '',
+                visitTime: '',
+                departureTime: ''
             }
         },
-        _initMethod:function(){
-                vc.component._initAddVisitInfo();
+        _initMethod: function () {
+            vc.component._initAddVisitInfo();
         },
-        _initEvent:function(){
-            vc.on('addVisit','openAddVisitAppModal',function(_app){
+        _initEvent: function () {
+            vc.on('addVisit', 'openAddVisitAppModal', function (_app) {
                 $("#addNewVisitModel").modal("show");
             });
-
-            vc.on('addVisit', 'onIndex', function(_index){
+            vc.on('addVisit', 'onIndex', function (_index) {
                 // vc.component.newVisitInfo.index = _index;
                 vc.emit('addVisitSpace', 'notify', _index);
             });
-
         },
-        methods:{
+        methods: {
             addAppValidate() {
                 return vc.validate.validate({
                     addVisitInfo: vc.component.addVisitInfo
@@ -88,26 +85,23 @@
                     ]
                 });
             },
-
-            _addNewVisitInfo(){
+            _addNewVisitInfo() {
                 if (!vc.component.addAppValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addVisitInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.emit("viewVisitInfo", "addNewVisit", vc.component.addVisitInfo);
                 $('#addNewVisitModel').modal('hide');
             },
-            _openAddAppInfoModel(){
-                vc.emit('addApp','openAddAppModal',{});
+            _openAddAppInfoModel() {
+                vc.emit('addApp', 'openAddAppModal', {});
             },
-            _loadAppInfoData:function(){
-
+            _loadAppInfoData: function () {
             },
-            _initAddVisitInfo:function(){
+            _initAddVisitInfo: function () {
                 vc.component.addVisitInfo.visitTime = vc.dateTimeFormat(new Date().getTime());
-                 $('.addVisitTime').datetimepicker({
+                $('.addVisitTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -115,7 +109,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.addVisitTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -148,9 +141,19 @@
                             vc.component.addVisitInfo.departureTime = '';
                         }
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control addVisitTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control addDepartureTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             }
         }
-
     });
-
 })(window.vc);

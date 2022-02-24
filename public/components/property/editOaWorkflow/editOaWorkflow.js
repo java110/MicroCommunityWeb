@@ -1,17 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editOaWorkflowInfo: {
                 flowId: '',
                 flowName: '',
                 flowType: '',
-                describle: '',
-
+                describle: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editOaWorkflow', 'openEditOaWorkflowModal', function (_params) {
@@ -24,54 +21,54 @@
         methods: {
             editOaWorkflowValidate: function () {
                 return vc.validate.validate({
-                    editOaWorkflowInfo: vc.component.editOaWorkflowInfo
-                }, {
-                    'editOaWorkflowInfo.flowName': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "流程名称不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "64",
-                            errInfo: "流程名称超过64位"
-                        },
-                    ],
-                    'editOaWorkflowInfo.flowType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "流程类型不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "12",
-                            errInfo: "流程类型不能为空"
-                        },
-                    ],
-                    'editOaWorkflowInfo.describle': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "备注内容不能超过200"
-                        },
-                    ],
-                    'editOaWorkflowInfo.flowId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "工作流ID不能为空"
-                        }]
-
-                });
+                        editOaWorkflowInfo: vc.component.editOaWorkflowInfo
+                    }, {
+                        'editOaWorkflowInfo.flowName': [
+                            {
+                                limit: "required",
+                                param: "",
+                                errInfo: "流程名称不能为空"
+                            },
+                            {
+                                limit: "maxLength",
+                                param: "64",
+                                errInfo: "流程名称超过64位"
+                            },
+                        ],
+                        'editOaWorkflowInfo.flowType': [
+                            {
+                                limit: "required",
+                                param: "",
+                                errInfo: "流程类型不能为空"
+                            },
+                            {
+                                limit: "maxLength",
+                                param: "12",
+                                errInfo: "流程类型不能为空"
+                            },
+                        ],
+                        'editOaWorkflowInfo.describle': [
+                            {
+                                limit: "maxLength",
+                                param: "200",
+                                errInfo: "备注内容不能超过200"
+                            },
+                        ],
+                        'editOaWorkflowInfo.flowId': [
+                            {
+                                limit: "required",
+                                param: "",
+                                errInfo: "工作流ID不能为空"
+                            }
+                        ]
+                    }
+                );
             },
             editOaWorkflow: function () {
                 if (!vc.component.editOaWorkflowValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/oaWorkflow/updateOaWorkflow',
                     JSON.stringify(vc.component.editOaWorkflowInfo),
@@ -85,13 +82,12 @@
                             //关闭model
                             $('#editOaWorkflowModel').modal('hide');
                             vc.emit('oaWorkflowManage', 'listOaWorkflow', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -100,11 +96,9 @@
                     flowId: '',
                     flowName: '',
                     flowType: '',
-                    describle: '',
-
+                    describle: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

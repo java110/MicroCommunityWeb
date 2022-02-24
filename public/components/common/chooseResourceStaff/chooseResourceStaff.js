@@ -100,7 +100,6 @@
             },
             getSelectResourceStores: function () {
                 var selectResourceStores = vc.component.chooseResourceStaffInfo.selectResourceStores;
-                console.log(selectResourceStores);
                 var resourceStores = vc.component.chooseResourceStaffInfo.resourceStores;
                 if (selectResourceStores.length < 1) {
                     vc.toast("请选择需要转赠的物品");

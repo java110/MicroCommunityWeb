@@ -22,13 +22,14 @@
                         <th class="text-center">参考价格</th>
                         <th class="text-center">物品库存</th>
                         <th class="text-center">申请数量</th>
-                        <th class="text-center">采购价格</th>
+                        <th class="text-center">采购单价</th>
+                        <th class="text-center">目标仓库</th>
                         <th class="text-center">备注</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="resourceStore in viewResourceStoreInfo4.resourceStores">
+                    <tr v-for="(resourceStore, i) in viewResourceStoreInfo4.resourceStores">
                         <td class="text-center" style="vertical-align: inherit;">
                             {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} >
                             {{resourceStore.rstName ? resourceStore.rstName : '-'}}
@@ -48,8 +49,18 @@
                                    class="form-control" style="width: 80%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
-                            <input v-model="resourceStore.urgentPrice" type="number" placeholder="必填，请填写采购价格"
-                                   class="form-control" style="width: 80%;display:inline; margin: auto">
+                            <input v-model="resourceStore.urgentPrice" type="number" placeholder="必填，请填写采购单价"
+                                   class="form-control" style="width: 100%;display:inline; margin: auto">
+                        </td>
+                        <td class="text-center" style="vertical-align: inherit;">
+                            <select class="custom-select" v-model="resourceStore.shzId" style="width: 100%" @change="storeHousesChange($event,i)">
+                                <option value="">必填，请选择目标仓库</option>
+                                <option v-for="(item,index) in viewResourceStoreInfo4.storehouses"
+                                        :key="index" v-bind:value="item.shId"
+                                        v-if="item.shId != resourceStore.shId">
+                                    {{item.shName}}
+                                </option>
+                            </select>
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
                             <input v-model="resourceStore.remark" type="text" class="form-control"

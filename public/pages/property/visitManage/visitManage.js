@@ -15,7 +15,7 @@
                     vName: '',
                     visitStartTime: '',
                     visitEndTime: '',
-                    phoneNumber: '',
+                    phoneNumber: ''
                 },
             }
         },
@@ -87,14 +87,14 @@
                 var param = {
                     params: vc.component.appManageInfo.conditions
                 };
-
+                param.params.vName = param.params.vName.trim();
+                param.params.phoneNumber = param.params.phoneNumber.trim();
                 //发送get请求
                 vc.http.get('visitManage',
                     'list',
                     param,
                     function (json, res) {
                         var _visitManageInfo = JSON.parse(json);
-                        console.log(_visitManageInfo);
                         vc.component.appManageInfo.total = _visitManageInfo.total;
                         vc.component.appManageInfo.records = _visitManageInfo.records;
                         vc.component.appManageInfo.visits = _visitManageInfo.visits;
@@ -134,10 +134,9 @@
             _openEditVisitModel: function (_app) {
                 vc.emit('editVisit', 'openEditVisitModel', _app);
                 // vc.emit('deleteApp','openDeleteAppModal',_app);
-
             },
             _openDeleteAppModel: function (_app) {
-                vc.emit('deleteApp', 'openDeleteAppModal', _app);
+                vc.emit('deleteApp', 'openDeleteAppModel', _app);
             }
         }
     });
