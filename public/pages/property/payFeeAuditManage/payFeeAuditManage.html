@@ -21,24 +21,27 @@
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <select class="custom-select" v-model="payFeeAuditManageInfo.conditions.state"
-                                    placeholder="请选择状态">
+                            <select class="custom-select" v-model="payFeeAuditManageInfo.conditions.state" placeholder="请选择状态">
                                 <option value="1010">待审核</option>
                                 <option value="2020">审核通过</option>
                                 <option value="3030">审核未通过</option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3" v-if="payFeeAuditManageInfo.conditions.payObjType =='666'">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写房屋 楼栋-单元-室"
-                                       v-model="payFeeAuditManageInfo.conditions.payerObjId" class="form-control">
+                                <input type="text" placeholder="请填写车牌号" v-model="payFeeAuditManageInfo.conditions.payerObjId" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" v-else>
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写房屋 楼栋-单元-室" v-model="payFeeAuditManageInfo.conditions.payerObjId" class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPayFeeMethod()">
                                 <i class="fa fa-search"></i>查询
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetPayFeeMethod()">
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="_resetPayFeeMethod()">
                                 <i class="fa fa-repeat"></i>重置
                             </button>
                         </div>
@@ -60,63 +63,58 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">房屋</th>
-                            <th class="text-center">费用项目</th>
-                            <th class="text-center">付费周期</th>
-                            <th class="text-center">缴费起始时间</th>
-                            <th class="text-center">缴费结束时间</th>
-                            <th class="text-center">应付金额(单位:元)</th>
-                            <th class="text-center">实付金额(单位:元)</th>
-                            <th class="text-center">操作员工</th>
-                            <th class="text-center">缴费时间</th>
-                            <th class="text-center">审核状态</th>
-                            <th class="text-center">审核说明</th>
-                            <th class="text-center">缴费备注</th>
-                            <th class="text-center">详情</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">房屋</th>
+                                <th class="text-center">费用项目</th>
+                                <th class="text-center">付费周期</th>
+                                <th class="text-center">缴费起始时间</th>
+                                <th class="text-center">缴费结束时间</th>
+                                <th class="text-center">应付金额(单位:元)</th>
+                                <th class="text-center">实付金额(单位:元)</th>
+                                <th class="text-center">操作员工</th>
+                                <th class="text-center">缴费时间</th>
+                                <th class="text-center">审核状态</th>
+                                <th class="text-center">审核说明</th>
+                                <th class="text-center">缴费备注</th>
+                                <th class="text-center">详情</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="payFee in payFeeAuditManageInfo.payFees">
-                            <td class="text-center">{{payFee.payerObjName}}</td>
-                            <td class="text-center">{{payFee.feeName}}</td>
-                            <td class="text-center">{{payFee.cycles}}个月</td>
-                            <td class="text-center">{{payFee.startTime}}</td>
-                            <td class="text-center">{{payFee.endTime}}</td>
-                            <td class="text-center">{{payFee.receivableAmount}}</td>
-                            <td class="text-center">{{payFee.receivedAmount}}</td>
-                            <td class="text-center">{{payFee.userName}}</td>
-                            <td class="text-center">{{payFee.createTime}}</td>
-                            <td class="text-center">
-                                <span class="badge badge-success" v-if="payFee.state == '2020'">{{_getState(payFee.state)}}</span>
-                                <span class="badge badge-danger" v-else-if="payFee.state == '3030'">{{_getState(payFee.state)}}</span>
-                                <span class="badge badge-info" v-else>{{_getState(payFee.state)}}</span>
-                            </td>
-                            <td class="text-center">{{payFee.message}}</td>
-                            <td class="text-center">{{payFee.remark}}</td>
-                            <td class="text-center">
-                                <button class="btn btn-link btn-xs"
-                                        v-on:click="_detailFee(payFee)">详情
+                            <tr v-for="payFee in payFeeAuditManageInfo.payFees">
+                                <td class="text-center">{{payFee.payerObjName}}</td>
+                                <td class="text-center">{{payFee.feeName}}</td>
+                                <td class="text-center">{{payFee.cycles}}个月</td>
+                                <td class="text-center">{{payFee.startTime}}</td>
+                                <td class="text-center">{{payFee.endTime}}</td>
+                                <td class="text-center">{{payFee.receivableAmount}}</td>
+                                <td class="text-center">{{payFee.receivedAmount}}</td>
+                                <td class="text-center">{{payFee.userName}}</td>
+                                <td class="text-center">{{payFee.createTime}}</td>
+                                <td class="text-center">
+                                    <span class="badge badge-success" v-if="payFee.state == '2020'">{{_getState(payFee.state)}}</span>
+                                    <span class="badge badge-danger" v-else-if="payFee.state == '3030'">{{_getState(payFee.state)}}</span>
+                                    <span class="badge badge-info" v-else>{{_getState(payFee.state)}}</span>
+                                </td>
+                                <td class="text-center">{{payFee.message}}</td>
+                                <td class="text-center">{{payFee.remark}}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-link btn-xs" v-on:click="_detailFee(payFee)">详情
                                 </button>
-                                <button class="btn btn-link btn-xs"
-                                        v-if="payFee.state != '2020' && payFee.state != '3030' "
-                                        v-on:click="_openAuditFeeModal(payFee)">审核费用
+                                    <button class="btn btn-link btn-xs" v-if="payFee.state != '2020' && payFee.state != '3030' " v-on:click="_openAuditFeeModal(payFee)">审核费用
                                 </button>
-                                <button class="btn btn-link btn-xs" v-if=" payFee.state == '3030' "
-                                        v-on:click="_openRefundModel(payFee)">退费
+                                    <button class="btn btn-link btn-xs" v-if=" payFee.state == '3030' " v-on:click="_openRefundModel(payFee)">退费
                                 </button>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="13">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="13">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

@@ -1350,6 +1350,15 @@
             }
         }
     };
+
+    vcFramework.resetObject = function(org) {
+        //for(key in Object.getOwnPropertyNames(dst)){
+        for (let key in org) {
+            if (typeof(key) == "string") {
+                org[key] = ''
+            }
+        }
+    };
     //扩展 现有的对象 没有的属性扩充上去
     vcFramework.extendObject = function(org, dst) {
         for (let key in dst) {
@@ -2001,7 +2010,7 @@
         //获取参数
         let _tab = vc.getParam('tab')
 
-        if(_tab){
+        if (_tab) {
             vcFramework.setTabToLocal(_componentUrl);
         }
         refreshVcFramework();
@@ -2637,7 +2646,7 @@
             routes.splice(loction, 1);
         }
 
-        if(routes.length > 20){
+        if (routes.length > 20) {
             routes.shift();
         }
 
@@ -2734,11 +2743,11 @@
         //判断是否已经有 如果有则删除
         for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
             _tmpTab = tabs[tabIndex];
-            if (_tmpTab[tabIndex] == _obj) {
-                return ;
+            if (_tmpTab == _obj) {
+                return;
             }
         }
-        if(tabs.length > 20){
+        if (tabs.length > 10) {
             tabs.shift();
         }
         tabs.push(_obj);
@@ -2746,13 +2755,14 @@
     }
 
     vcFramework.deleteTabToLocal = function(_obj) {
-        let routes = vcFramework.getPageRouteFromLocal();
+        let tabs = vcFramework.getTabFromLocal();
         for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
             _tmpTab = tabs[tabIndex];
-            if (_tmpTab[tabIndex] == _obj) {
-                tabs.splice(tabIndex,1);
+            console.log(_tmpTab[tabIndex], _obj)
+            if (_tmpTab == _obj) {
+                tabs.splice(tabIndex, 1);
             }
         }
-        window.localStorage.setItem('vcPageRoute', JSON.stringify(routes));
+        window.localStorage.setItem('vcTab', JSON.stringify(tabs));
     }
 })(window.vcFramework);

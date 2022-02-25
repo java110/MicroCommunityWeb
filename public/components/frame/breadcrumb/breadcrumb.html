@@ -1,8 +1,8 @@
 <div id="breadcrumb" class="border-bottom white-bg" v-if="breadCrumbs.length > 0">
     <ul class="nav nav-tabs">
         <li class="nav-item" v-for="(item,index) in breadCrumbs">
-            <span class="nav-link active" aria-current="page" @click="_changeSmallTab(item)">{{item.pageName}}
-                <i class="fa fa-remove margin-left-sm"></i>
+            <span class="nav-link " v-bind:class="{'active':item.active=='1'}" aria-current="page" @click="_changeSmallTab(item)">{{item.pageName}}
+                <i class="fa fa-remove margin-left-sm" @click.stop="_deleteSmallTab(item)"></i>
             </span>
         </li>
     </ul>

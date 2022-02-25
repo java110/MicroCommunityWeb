@@ -127,6 +127,11 @@
             _gotoPage: function(_href) {
                 // 子菜单默认选中
                 this._setSelectedMenusChild(_href);
+                if (_href.indexOf('?') > -1) {
+                    _href += "&tab=on"
+                } else {
+                    _href += "?tab=on"
+                }
                 vc.jumpToPage(_href);
             },
 

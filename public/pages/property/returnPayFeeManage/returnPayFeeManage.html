@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="缴费ID" v-model="returnPayFeeManageInfo.conditions.detailId" class=" form-control">
+                                <input type="text" placeholder="缴费单号" v-model="returnPayFeeManageInfo.conditions.detailId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -34,6 +34,13 @@
                             </button>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写房屋编号 车辆编号等" v-model="returnPayFeeManageInfo.conditions.payerObjName" class=" form-control">
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -50,7 +57,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">退款单号</th>
-                                <th class="text-center">缴费ID</th>
+                                <th class="text-center">缴费单号</th>
                                 <th class="text-center">费用类型</th>
                                 <th class="text-center">付费对象</th>
                                 <th class="text-center">付费周期(单位:月)</th>

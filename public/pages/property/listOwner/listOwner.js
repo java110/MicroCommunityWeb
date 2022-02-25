@@ -34,7 +34,7 @@
                 //vc.component.listOwnerInfo.conditions.ownerId = _ownerId;
             }
             $that._getColumns(function() {
-                vc.component._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listOwnerData($that.listOwnerInfo.currentPage, DEFAULT_ROWS);
             });
         },
         _initEvent: function() {
