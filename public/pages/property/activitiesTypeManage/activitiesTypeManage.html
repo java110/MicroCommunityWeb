@@ -9,7 +9,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入大类编码"
                                        v-model="activitiesTypeManageInfo.conditions.typeCd" class=" form-control">
@@ -23,15 +23,19 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="activitiesTypeManageInfo.conditions.defaultShow">
-                                <option selected value="">请选择是否显示</option>
+                                <option selected disabled value="">请选择是否显示</option>
                                 <option value="Y">是</option>
                                 <option value="N">否</option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryActivitiesTypeMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetActivitiesTypeMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>

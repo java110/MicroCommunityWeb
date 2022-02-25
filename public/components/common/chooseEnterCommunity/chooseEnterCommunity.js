@@ -1,8 +1,8 @@
-(function(vc){
+(function (vc) {
     let DEFAULT_PAGE = 1;
     let DEFAULT_ROW = 10;
     vc.extends({
-        data:{
+        data: {
             navCommunityInfo: {
                 _currentCommunity: {},
                 communityInfos: [],
@@ -11,19 +11,19 @@
                 searchCommunityName: '',
             }
         },
-        _initMethod:function(){
+        _initMethod: function () {
         },
-        _initEvent:function(){
-            vc.on('chooseEnterCommunity','openChooseEnterCommunityModel',function(_param){
+        _initEvent: function () {
+            vc.on('chooseEnterCommunity', 'openChooseEnterCommunityModel', function (_param) {
                 $('#chooseEnterCommunityModel').modal('show');
                 $that.navCommunityInfo.searchCommunityName = '';
                 $that.listEnterCommunity(DEFAULT_PAGE, DEFAULT_ROW);
             });
-            vc.on('chooseEnterCommunity','paginationPlus', 'page_event', function (_currentPage) {
+            vc.on('chooseEnterCommunity', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component.listEnterCommunity(_currentPage, DEFAULT_ROW);
             });
         },
-        methods:{
+        methods: {
             listEnterCommunity: function (_page, _row) {
                 var param = {
                     params: {
@@ -40,7 +40,7 @@
                         if (res.status == 200) {
                             let _data = JSON.parse(json);
                             $that.navCommunityInfo.communityInfo = _data.communitys;
-                            vc.emit('chooseEnterCommunity','paginationPlus', 'init', {
+                            vc.emit('chooseEnterCommunity', 'paginationPlus', 'init', {
                                 total: _data.records,
                                 dataCount: _data.total,
                                 currentPage: _page
@@ -61,6 +61,5 @@
                 $that.listEnterCommunity(DEFAULT_PAGE, DEFAULT_ROW)
             }
         }
-
     });
 })(window.vc);

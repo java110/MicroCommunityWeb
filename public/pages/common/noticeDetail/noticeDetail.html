@@ -1,36 +1,61 @@
-<div >
+<div>
     <div class="row">
         <div class="col-lg-12 col-lg-offset-1">
             <div class="ibox">
-                <div class="ibox-content">
-                    <div class="text-center article-title">
-                        <h1>
-                            {{noticeDetailInfo.title}}
-                        </h1>
-                        <span class="text-muted"><i class="fa fa-clock-o"></i> {{noticeDetailInfo.createTime}}</span>
+                <div class="ibox-title">
+                    <h5>公告详情</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_goBack()">
+                            <i class="fa fa-times"></i>返回
+                        </button>
                     </div>
-
-
-                    <div v-html="noticeDetailInfo.context"></div>
-
-
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5>开始时间:</h5>
-                            <i class="fa fa-clock-o"></i> {{noticeDetailInfo.startTime}}</span>
+                </div>
+                <div class="ibox-content">
+                    <div class="ibox">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">标题</label>
+                            <div class="col-sm-10">
+                                <input v-model="noticeDetailInfo.title" readonly type="text" class="form-control">
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="small text-right">
-                                <h5>结束时间:</h5>
-                                <i class="fa fa-clock-o"></i> {{noticeDetailInfo.endTime}}</span>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">公告类型</label>
+                            <div class="col-sm-10">
+                                <input v-model="noticeDetailInfo.noticeTypeCdName" readonly type="text"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">开始时间</label>
+                            <div class="col-sm-10">
+                                <input v-model="noticeDetailInfo.startTime" readonly type="text"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">结束时间</label>
+                            <div class="col-sm-10">
+                                <input v-model="noticeDetailInfo.endTime" readonly type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">创建时间</label>
+                            <div class="col-sm-10">
+                                <input v-model="noticeDetailInfo.createTime" readonly type="text"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">公告内容</label>
+                            <div class="col-sm-10 ">
+                                    <textarea v-model="noticeDetailInfo.context" cols="3" type="text" readonly
+                                              class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
 </div>

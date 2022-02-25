@@ -16,11 +16,10 @@
         _initEvent: function () {
             vc.on("addComplaintStep", "notify", function (_info) {
                 vc.component.addComplaintStepInfo.infos[vc.component.addComplaintStepInfo.index] = _info;
-                if(vc.component.addComplaintStepInfo.index == 0){
-                    vc.emit('searchRoom','listenerFloorInfo',_info);
+                if (vc.component.addComplaintStepInfo.index == 0) {
+                    vc.emit('searchRoom', 'listenerFloorInfo', _info);
                 }
             });
-
         },
         methods: {
             _initStep: function () {
@@ -35,11 +34,9 @@
             _prevStep: function () {
                 vc.component.addComplaintStepInfo.$step.prevStep();
                 vc.component.addComplaintStepInfo.index = vc.component.addComplaintStepInfo.$step.getIndex();
-
                 vc.emit('viewFloorInfo', 'onIndex', vc.component.addComplaintStepInfo.index);
                 vc.emit('sellRoomSelectRoom', 'onIndex', vc.component.addComplaintStepInfo.index);
                 vc.emit('addComplainView', 'onIndex', vc.component.addComplaintStepInfo.index);
-
             },
             _nextStep: function () {
                 var _currentData = vc.component.addComplaintStepInfo.infos[vc.component.addComplaintStepInfo.index];
@@ -49,26 +46,20 @@
                 }
                 vc.component.addComplaintStepInfo.$step.nextStep();
                 vc.component.addComplaintStepInfo.index = vc.component.addComplaintStepInfo.$step.getIndex();
-
                 vc.emit('viewFloorInfo', 'onIndex', vc.component.addComplaintStepInfo.index);
                 vc.emit('sellRoomSelectRoom', 'onIndex', vc.component.addComplaintStepInfo.index);
                 vc.emit('addComplainView', 'onIndex', vc.component.addComplaintStepInfo.index);
-
             },
             _finishStep: function () {
-
-
                 var _currentData = vc.component.addComplaintStepInfo.infos[vc.component.addComplaintStepInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
-
                 /*var param = {
                     data: vc.component.addComplaintStepInfo.infos
                 }*/
                 vc.component.addComplaintStepInfo.infos[2].roomId = vc.component.addComplaintStepInfo.infos[1].roomId;
-
                 vc.http.post(
                     'addComplaintStepBinding',
                     'binding',
@@ -78,18 +69,15 @@
                     },
                     function (json, res) {
                         if (res.status == 200) {
-
-                            vc.toast('处理成功');
+                            vc.toast('投诉成功');
                             //关闭model
                             //vc.jumpToPage("/admin.html#/pages/common/complaintManage?" + vc.objToGetParam(JSON.parse(json)));
                             vc.goBack();
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             }

@@ -233,7 +233,7 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(errInfo);
+                        vc.toast(JSON.parse(errInfo).msg);
                     });
             },
             //查询物品类型

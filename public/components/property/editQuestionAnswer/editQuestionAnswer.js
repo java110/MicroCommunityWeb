@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editQuestionAnswerInfo: {
@@ -8,26 +7,16 @@
                 qaName: '',
                 startTime: '',
                 endTime: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-            vc.initDateTime('editStartTime', function (_startTime) {
-                $that.editQuestionAnswerInfo.startTime = _startTime;
-            });
-            vc.initDateTime('editEndTime', function (_endTime) {
-                $that.editQuestionAnswerInfo.endTime = _endTime;
-                let start = Date.parse(new Date($that.editQuestionAnswerInfo.startTime))
-                let end = Date.parse(new Date($that.editQuestionAnswerInfo.endTime))
-                if (start - end >= 0) {
-                    vc.toast("结束时间必须大于开始时间")
-                    $that.editQuestionAnswerInfo.endTime = '';
-                }
-            });
+            vc.component._initQuestionDate();
         },
         _initEvent: function () {
             vc.on('editQuestionAnswer', 'openEditQuestionAnswerModal', function (_params) {
+                console.log("look here")
+                console.log(_params)
                 vc.component.refreshEditQuestionAnswerInfo();
                 $('#editQuestionAnswerModel').modal('show');
                 vc.copyObject(_params, vc.component.editQuestionAnswerInfo);
@@ -35,6 +24,60 @@
             });
         },
         methods: {
+            _initQuestionDate: function () {
+                $('.editStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editStartTime").val();
+                        vc.component.editQuestionAnswerInfo.startTime = value;
+                        let start = Date.parse(new Date(vc.component.editQuestionAnswerInfo.startTime))
+                        let end = Date.parse(new Date(vc.component.editQuestionAnswerInfo.endTime))
+                        if (end != 0 && start - end >= 0) {
+                            vc.toast("开始时间必须小于结束时间")
+                            vc.component.editQuestionAnswerInfo.startTime = '';
+                        }
+                    });
+                $('.editEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editEndTime").val();
+                        vc.component.editQuestionAnswerInfo.endTime = value;
+                        let start = Date.parse(new Date(vc.component.editQuestionAnswerInfo.startTime))
+                        let end = Date.parse(new Date(vc.component.editQuestionAnswerInfo.endTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            vc.component.editQuestionAnswerInfo.endTime = '';
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             editQuestionAnswerValidate: function () {
                 return vc.validate.validate({
                     editQuestionAnswerInfo: vc.component.editQuestionAnswerInfo
@@ -99,8 +142,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "问卷ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editQuestionAnswer: function () {
@@ -108,7 +151,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/questionAnswer/updateQuestionAnswer',
                     JSON.stringify(vc.component.editQuestionAnswerInfo),
@@ -122,14 +164,13 @@
                             //关闭model
                             $('#editQuestionAnswerModel').modal('hide');
                             vc.emit('questionAnswerManage', 'listQuestionAnswer', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             refreshEditQuestionAnswerInfo: function () {
@@ -139,11 +180,9 @@
                     qaName: '',
                     startTime: '',
                     endTime: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

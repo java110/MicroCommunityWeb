@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editActivitiesViewInfo: {
@@ -15,19 +14,17 @@
         },
         _initMethod: function () {
             vc.component._initEditActivitiesInfo();
-
             $that._loadEditActivitiesType();
-           
         },
         _initEvent: function () {
             vc.on('editActivitiesView', 'openEditActivitiesModal', function (_params) {
                 vc.component.refreshEditActivitiesInfo();
                 _params.context = filterXSS(_params.context);
                 vc.component.editActivitiesViewInfo = _params;
-
-
             });
             vc.on('editActivitiesView', 'activitiesEditActivitiesInfo', function (_params) {
+                console.log("here")
+                console.log(_params)
                 vc.component.refreshEditActivitiesInfo();
                 _params.context = filterXSS(_params.context);
                 vc.copyObject(_params, vc.component.editActivitiesViewInfo);
@@ -36,15 +33,15 @@
                 photos.push(vc.component.editActivitiesViewInfo.headerImg);
                 vc.emit('editActivitiesView', 'uploadImage', 'notifyPhotos', photos);
             });
-
             vc.on("editActivitiesView", "notifyUploadImage", function (_param) {
+                console.log("123")
+                console.log(_param)
                 if (!vc.isEmpty(_param) && _param.length > 0) {
                     vc.component.editActivitiesViewInfo.headerImg = _param[0];
                 } else {
                     vc.component.editActivitiesViewInfo.headerImg = '';
                 }
             });
-
         },
         methods: {
             editActivitiesValidate: function () {
@@ -118,8 +115,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "活动ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editActivities: function () {
@@ -128,7 +125,6 @@
                     return;
                 }
                 vc.component.editActivitiesViewInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.post(
                     'editActivitiesView',
                     'update',
@@ -141,13 +137,12 @@
                         if (res.status == 200) {
                             //关闭model
                             vc.emit('activitiesManage', 'listActivities', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -173,7 +168,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.editActivitiesStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -194,6 +188,19 @@
                         var value = $(".editActivitiesEndTime").val();
                         vc.component.editActivitiesViewInfo.endTime = value;
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editActivitiesStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editActivitiesEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
                 $('.eidtSummernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
@@ -207,26 +214,21 @@
                         }
                     }
                 });
-
             },
             sendEditFile: function (files) {
                 console.log('上传图片');
             },
             closeEditActivitiesInfo: function () {
                 vc.emit('activitiesManage', 'listActivities', {});
-
             },
-
-            _loadEditActivitiesType:function(){
-
+            _loadEditActivitiesType: function () {
                 var param = {
                     params: {
-                        page:1,
-                        row:50,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/activitiesType/queryActivitiesType',
                     param,
@@ -241,5 +243,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

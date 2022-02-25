@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 100;
@@ -17,7 +17,6 @@
             vc.component._listNewOaWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('newOaWorkflowManage', 'listNewOaWorkflow', function (_param) {
                 vc.component._listNewOaWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -27,13 +26,11 @@
         },
         methods: {
             _listNewOaWorkflows: function (_page, _rows) {
-
                 vc.component.newOaWorkflowManageInfo.conditions.page = _page;
                 vc.component.newOaWorkflowManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.newOaWorkflowManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflow',
                     param,

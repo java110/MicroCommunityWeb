@@ -1,12 +1,11 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editMainCategoryProductInfo: {
                 mcProductId: '',
                 startTime: '',
                 endTime: '',
-                seq: '',
+                seq: ''
             }
         },
         _initMethod: function () {
@@ -30,7 +29,7 @@
                 return vc.validate.validate({
                     editMainCategoryProductInfo: vc.component.editMainCategoryProductInfo
                 }, {
-                    
+
                     'editMainCategoryProductInfo.startTime': [
                         {
                             limit: "required",
@@ -72,8 +71,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "主键不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editMainCategoryProduct: function () {
@@ -81,7 +80,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/productCategory/updateMainCategoryProduct',
                     JSON.stringify(vc.component.editMainCategoryProductInfo),
@@ -101,7 +99,6 @@
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -112,11 +109,9 @@
                     productId: '',
                     startTime: '',
                     endTime: '',
-                    seq: '',
-
+                    seq: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

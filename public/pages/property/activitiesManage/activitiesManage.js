@@ -19,7 +19,7 @@
                     typeCd: '',
                     staffName: '',
                     activitiesId: '',
-                    endTimeFlag:'1'
+                    endTimeFlag: '1'
                 }
             }
         },
@@ -28,7 +28,6 @@
             $that._loadActivitiesType();
         },
         _initEvent: function () {
-
             vc.on('activitiesManage', 'listActivities', function (_param) {
                 vc.component.activitiesManageInfo.componentShow = 'activitiesList';
                 vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -42,14 +41,15 @@
         },
         methods: {
             _listActivitiess: function (_page, _rows) {
-
                 vc.component.activitiesManageInfo.conditions.page = _page;
                 vc.component.activitiesManageInfo.conditions.row = _rows;
                 vc.component.activitiesManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.activitiesManageInfo.conditions
                 };
-
+                param.params.activitiesId = param.params.activitiesId.trim();
+                param.params.title = param.params.title.trim();
+                param.params.staffName = param.params.staffName.trim();
                 //发送get请求
                 vc.http.get('activitiesManage',
                     'list',
@@ -71,22 +71,26 @@
             },
             _openAddActivitiesModal: function () {
                 vc.component.activitiesManageInfo.componentShow = 'addActivitiesView';
-                vc.emit('addActivitiesView', 'openAddActivitiesView', {
-          
-                });
-
+                vc.emit('addActivitiesView', 'openAddActivitiesView', {});
             },
             _openEditActivitiesModel: function (_activities) {
-
                 vc.emit('editActivitiesView', 'activitiesEditActivitiesInfo', _activities);
                 vc.component.activitiesManageInfo.componentShow = 'editActivitiesView';
             },
             _openDeleteActivitiesModel: function (_activities) {
                 vc.emit('deleteActivities', 'openDeleteActivitiesModal', _activities);
             },
+            //查询
             _queryActivitiesMethod: function () {
                 vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetActivitiesMethod: function () {
+                vc.component.activitiesManageInfo.conditions.activitiesId = "";
+                vc.component.activitiesManageInfo.conditions.title = "";
+                vc.component.activitiesManageInfo.conditions.typeCd = "";
+                vc.component.activitiesManageInfo.conditions.staffName = "";
+                vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.activitiesManageInfo.moreCondition) {
@@ -95,16 +99,14 @@
                     vc.component.activitiesManageInfo.moreCondition = true;
                 }
             },
-            _loadActivitiesType:function(){
-
+            _loadActivitiesType: function () {
                 var param = {
                     params: {
-                        page:1,
-                        row:50,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/activitiesType/queryActivitiesType',
                     param,
@@ -117,8 +119,6 @@
                     }
                 );
             }
-
-
         }
     });
 })(window.vc);

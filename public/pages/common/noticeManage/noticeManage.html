@@ -5,39 +5,67 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                 v-on:click="_moreCondition()">更多
-                         </button>-->
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{noticeManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入公告标题"
-                                       v-model="noticeManageInfo.conditions.title" class=" form-control">
-                            </div>
-                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
+                                <input type="text" placeholder="请输入公告ID"
+                                       v-model="noticeManageInfo.conditions.noticeId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
                                 <select class="custom-select" v-model="noticeManageInfo.conditions.noticeTypeCd">
-                                    <option selected value="">请选择公告类型</option>
+                                    <option selected disabled value="">请选择公告类型</option>
                                     <option value="1000">业主通知</option>
                                     <option value="1001">员工通知</option>
                                     <option value="1003">业主微信通知</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入公告ID"
-                                       v-model="noticeManageInfo.conditions.noticeId" class=" form-control">
+                                <select class="custom-select" v-model="noticeManageInfo.conditions.state">
+                                    <option selected value="">请选择状态</option>
+                                    <option value="1000">待通知</option>
+                                    <option value="2000">通知中</option>
+                                    <option value="3000">通知完成</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryNoticeMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetNoticeMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="noticeManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入公告标题"
+                                       v-model="noticeManageInfo.conditions.title" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input v-model="noticeManageInfo.conditions.startTime" readonly type="text"
+                                       placeholder="必填，请填写开始时间" class="form-control noticeStartTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input v-model="noticeManageInfo.conditions.endTime" readonly type="text"
+                                       placeholder="必填，请填写结束时间" class="form-control noticeEndTime">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,7 +87,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <!-- <th>公告ID</th> -->
+                            <th class="text-center">公告ID</th>
                             <th class="text-center">标题</th>
                             <th class="text-center">公告类型</th>
                             <th class="text-center">开始时间</th>
@@ -71,7 +99,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="notice in noticeManageInfo.notices">
-                            <!-- <td>{{notice.noticeId}}</td> -->
+                            <td class="text-center">{{notice.noticeId}}</td>
                             <td class="text-center">{{notice.title}}</td>
                             <td class="text-center">{{notice.noticeTypeCdName}}</td>
                             <td class="text-center">{{notice.startTime}}</td>
@@ -96,7 +124,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

@@ -8,9 +8,7 @@
                 searchCommunityName: '',
             }
         },
-        _initMethod: function() {
-
-        },
+        _initMethod: function() {},
         _initEvent: function() {
             vc.on('storeEnterCommunity', 'openStoreEnterCommunity', function(_params) {
                 $('#storeEnterCommunityModel').modal('show');
@@ -75,22 +73,21 @@
                         emulateJSON: true
                     },
                     function(json, res) {
-                        let _json = JSON.parse(json);
-                        if (_json.code == 0) {
+                        if (res.status == 200) {
                             vc.emit('enterCommunity', 'listMyCommunity', {});
                             $('#storeEnterCommunityModel').modal('hide');
+
                             return;
                         }
-                        vc.toast(_json.msg);
+                        vc.component.storeEnterCommunityInfo.errorInfo = json;
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(errInfo);
+                        vc.component.storeEnterCommunityInfo.errorInfo = json;
+
                     }
                 );
             }
-
         }
     });
-
 })(window.vc);

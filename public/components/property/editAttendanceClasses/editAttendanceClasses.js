@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editAttendanceClassesInfo: {
@@ -7,6 +6,7 @@
                 classesName: '',
                 timeOffset: '',
                 clockCount: '',
+                clockTypes: [],
                 clockType: '',
                 clockTypeValue: '',
                 leaveOffset: '',
@@ -16,18 +16,18 @@
                 classesObjName: '',
                 attrs: [],
                 clockTypeValues: []
-
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editAttendanceClasses', 'openEditAttendanceClassesModal', function (_params) {
                 vc.component.refreshEditAttendanceClassesInfo();
                 $('#editAttendanceClassesModel').modal('show');
+                vc.getDict('attendance_classes', "clock_type", function (_data) {
+                    vc.component.editAttendanceClassesInfo.clockTypes = _data;
+                });
                 vc.copyObject(_params, vc.component.editAttendanceClassesInfo);
-               
                 vc.component.editAttendanceClassesInfo.communityId = vc.getCurrentCommunity().communityId;
                 $that._initEditAttendanceClasses(_params.attrs);
             });
@@ -150,8 +150,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "班组ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editAttendanceClasses: function () {
@@ -165,7 +165,6 @@
                     $that.editAttendanceClassesInfo.clockTypeValues.forEach(item => {
                         _clockTypeValue += (item + ',');
                     })
-
                     if (_clockTypeValue.endsWith(',')) {
                         _clockTypeValue = _clockTypeValue.substring(0, _clockTypeValue.length - 1)
                     }
@@ -175,7 +174,16 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
+                var flag = "0";
+                $that.editAttendanceClassesInfo.attrs.forEach(function (item) {
+                    if (item.value == null || item.value == '' || item.value == 'undefined') {
+                        vc.toast("上下班时间不能为空");
+                        flag = "1";
+                    }
+                });
+                if (flag == "1") {
+                    return;
+                }
                 vc.http.apiPost(
                     'attendanceClasses.updateAttendanceClasses',
                     JSON.stringify(vc.component.editAttendanceClassesInfo),
@@ -189,14 +197,13 @@
                             //关闭model
                             $('#editAttendanceClassesModel').modal('hide');
                             vc.emit('attendanceClassesManage', 'listAttendanceClasses', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             refreshEditAttendanceClassesInfo: function () {
@@ -205,6 +212,7 @@
                     classesName: '',
                     timeOffset: '',
                     clockCount: '',
+                    clockTypes: [],
                     clockType: '',
                     clockTypeValue: '',
                     leaveOffset: '',
@@ -255,7 +263,6 @@
                         }
                     );
                 }
-
                 if (_clockCount > 5) {
                     _attrs.push(
                         {
@@ -274,15 +281,10 @@
                         }
                     );
                 }
-
-
                 let _newAttrs = _attrs.sort(function (a, b) {
                     return a.seq - b.seq;
                 });
-
                 $that.editAttendanceClassesInfo.attrs = _newAttrs;
-
-
                 $that.$nextTick(function () {
                     //方法
                     $that.editAttendanceClassesInfo.attrs.forEach(item => {
@@ -292,33 +294,28 @@
                         });
                     });
                 });
-
             },
             _initEditAttendanceClasses: function (_attrs) {
                 let _clockTypeValue = $that.editAttendanceClassesInfo.clockTypeValue;
                 let _clockTypeValues = $that.editAttendanceClassesInfo.clockTypeValues;
                 if (_clockTypeValue.indexOf(',') > -1) {
                     _clockTypeValues = [];
-                    _clockTypeValue.split(',').forEach(item =>{
+                    _clockTypeValue.split(',').forEach(item => {
                         _clockTypeValues.push(item);
                     })
                     $that.editAttendanceClassesInfo.clockTypeValues = _clockTypeValues;
                 }
-
                 $that._editAttendanceChangeClockCount();
-
                 let _newAttrs = $that.editAttendanceClassesInfo.attrs;
-                _newAttrs.forEach(newItem =>{
-                    _attrs.forEach(item =>{
-                        if(newItem.specCd == item.specCd){
+                _newAttrs.forEach(newItem => {
+                    _attrs.forEach(item => {
+                        if (newItem.specCd == item.specCd) {
                             newItem.value = item.value;
                             newItem.attrId = item.attrId;
                         }
                     })
                 });
-
                 $that.editAttendanceClassesInfo.attrs = _newAttrs;
-
                 // $that.$nextTick(function () {
                 //     //方法
                 //     $that.editAttendanceClassesInfo.attrs.forEach(item => {
@@ -331,5 +328,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

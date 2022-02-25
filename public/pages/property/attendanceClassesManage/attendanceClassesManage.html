@@ -9,6 +9,12 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入班组ID"
+                                       v-model="attendanceClassesManageInfo.conditions.classesId" class=" form-control">
+                            </div>
+                        </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入班组名称"
@@ -16,24 +22,23 @@
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入班组ID"
-                                       v-model="attendanceClassesManageInfo.conditions.classesId" class=" form-control">
-                            </div>
-                        </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="attendanceClassesManageInfo.conditions.clockType">
-                                <option selected value="">请选择打卡类型</option>
-                                <option value="1001">每天打卡</option>
-                                <option value="1002">隔天打卡</option>
-                                <option value="1003">自定义</option>
+                                <option selected disabled value="">请选择打卡类型</option>
+                                <option v-for="(item,index) in attendanceClassesManageInfo.clockTypes" :key="index"
+                                        v-bind:value="item.statusCd">
+                                    {{item.name}}
+                                </option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryAttendanceClassesMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetAttendanceClassesMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
@@ -58,7 +63,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">班组ID</th>
-                            <th class="text-center">班次名称</th>
+                            <th class="text-center">班组名称</th>
                             <th class="text-center">打卡范围</th>
                             <th class="text-center">打卡次数</th>
                             <th class="text-center">打卡类型</th>
@@ -75,7 +80,7 @@
                             <td class="text-center">{{attendanceClasses.classesName}}</td>
                             <td class="text-center">{{attendanceClasses.timeOffset}}分钟</td>
                             <td class="text-center">{{attendanceClasses.clockCount}}</td>
-                            <td class="text-center">{{attendanceClasses.clockType}}</td>
+                            <td class="text-center">{{attendanceClasses.clockTypeName}}</td>
                             <td class="text-center">{{attendanceClasses.clockTypeValue}}</td>
                             <td class="text-center">{{attendanceClasses.leaveOffset}}分钟</td>
                             <td class="text-center">{{attendanceClasses.lateOffset}}分钟</td>
@@ -96,7 +101,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="10">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

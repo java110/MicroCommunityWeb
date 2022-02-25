@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -18,18 +17,7 @@
             }
         },
         _initMethod: function () {
-            vc.initDateTime('addStartTime', function (_startTime) {
-                $that.addQuestionAnswerInfo.startTime = _startTime;
-            });
-            vc.initDateTime('addEndTime', function (_endTime) {
-                $that.addQuestionAnswerInfo.endTime = _endTime;
-                let start = Date.parse(new Date($that.addQuestionAnswerInfo.startTime))
-                let end = Date.parse(new Date($that.addQuestionAnswerInfo.endTime))
-                if (start - end >= 0) {
-                    vc.toast("结束时间必须大于开始时间")
-                    $that.addQuestionAnswerInfo.endTime = '';
-                }
-            });
+            vc.component._initAnswerDate();
         },
         _initEvent: function () {
             vc.on('addQuestionAnswer', 'openAddQuestionAnswerModal', function () {
@@ -37,6 +25,60 @@
             });
         },
         methods: {
+            _initAnswerDate: function () {
+                $('.addStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.addStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addStartTime").val();
+                        vc.component.addQuestionAnswerInfo.startTime = value;
+                        let start = Date.parse(new Date(vc.component.addQuestionAnswerInfo.startTime))
+                        let end = Date.parse(new Date(vc.component.addQuestionAnswerInfo.endTime))
+                        if (end != 0 && start - end >= 0) {
+                            vc.toast("开始时间必须小于结束时间")
+                            vc.component.addQuestionAnswerInfo.startTime = '';
+                        }
+                    });
+                $('.addEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.addEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addEndTime").val();
+                        vc.component.addQuestionAnswerInfo.endTime = value;
+                        let start = Date.parse(new Date(vc.component.addQuestionAnswerInfo.startTime))
+                        let end = Date.parse(new Date(vc.component.addQuestionAnswerInfo.endTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            vc.component.addQuestionAnswerInfo.endTime = '';
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control addStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control addEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             addQuestionAnswerValidate() {
                 return vc.validate.validate({
                     addQuestionAnswerInfo: vc.component.addQuestionAnswerInfo
@@ -95,38 +137,28 @@
                             param: "512",
                             errInfo: "备注太长"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveQuestionAnswerInfo: function () {
                 if (!vc.component.addQuestionAnswerValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addQuestionAnswerInfo.communityId = vc.getCurrentCommunity().communityId;
-
-                if ($that.addQuestionAnswerInfo.qaType == '1001'
-                    || $that.addQuestionAnswerInfo.qaType == '3003'
-                ) {
+                if ($that.addQuestionAnswerInfo.qaType == '1001' || $that.addQuestionAnswerInfo.qaType == '3003') {
                     $that.addQuestionAnswerInfo.objType = '3306';
                     $that.addQuestionAnswerInfo.objId = vc.getCurrentCommunity().communityId;
                 } else {
                     $that.addQuestionAnswerInfo.objType = '3307';
                     $that.addQuestionAnswerInfo.objId = '-1';
                 }
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addQuestionAnswerInfo);
                     $('#addQuestionAnswerModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/questionAnswer/saveQuestionAnswer',
                     JSON.stringify(vc.component.addQuestionAnswerInfo),
@@ -141,17 +173,13 @@
                             $('#addQuestionAnswerModel').modal('hide');
                             vc.component.clearAddQuestionAnswerInfo();
                             vc.emit('questionAnswerManage', 'listQuestionAnswer', {});
-
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
-
+                        vc.toast(errInfo);
                     });
             },
             clearAddQuestionAnswerInfo: function () {
@@ -167,5 +195,4 @@
             }
         }
     });
-
 })(window.vc);

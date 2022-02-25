@@ -1,20 +1,20 @@
-<div  id="nav">
+<div id="nav">
     <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:void(0)"
-                @click="_doMenu()"><i class="fa fa-bars"></i> </a>
+               @click="_doMenu()"><i class="fa fa-bars"></i> </a>
         </div>
         <ul class="nav navbar-top-links navbar-right">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown"
+                v-if="nav.storeTypeCd != '800900000001' && nav.storeTypeCd != '800900000002' && nav.storeTypeCd != '800900000000'">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                    aria-expanded="false">
+                   aria-expanded="false">
                     {{nav._currentCommunity.name}}
                     <span class="caret"></span>
                 </a>
-
                 <div class="dropdown-menu">
                     <a class="dropdown-item" v-for="currentCommunity in nav.communityInfos"
-                        v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}}</a>
+                       v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}} </a>
                     <a href="javascript:void(0)" class="dropdown-item text-center" v-on:click="_chooseMoreCommunity()">
                         <strong>{{vc.i18n('moreCommunity')}}</strong>
                         <i class="fa fa-angle-right"></i>
@@ -38,8 +38,6 @@
                         </a>
                         <div class="dropdown-divider"></div>
                     </li>
-
-
                     <li>
                         <div class="text-center link-block">
                             <a v-bind:href="nav.moreNoticeUrl" class="dropdown-item">
@@ -50,7 +48,6 @@
                     </li>
                 </ul>
             </li>
-
             <li>
                 <a v-on:click="_viewDocument()">
                     <i class="fa fa-question-circle-o"></i>

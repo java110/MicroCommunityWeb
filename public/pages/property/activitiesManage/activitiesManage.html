@@ -12,37 +12,40 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入信息ID"
+                                       v-model="activitiesManageInfo.conditions.activitiesId" class=" form-control">
+                            </div>
+                        </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入标题" v-model="activitiesManageInfo.conditions.title"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="activitiesManageInfo.conditions.typeCd">
-                                <option selected value="">请选择信息类型</option>
+                                <option selected disabled value="">请选择信息类型</option>
                                 <option v-for="(item,index) in activitiesManageInfo.typeCds" :key="index"
                                         v-bind:value="item.typeCd">{{item.typeName}}
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入员工名称"
-                                       v-model="activitiesManageInfo.conditions.staffName" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryActivitiesMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetActivitiesMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4" v-if="activitiesManageInfo.moreCondition == true">
+                        <div class="col-sm-3" v-if="activitiesManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入信息ID"
-                                       v-model="activitiesManageInfo.conditions.activitiesId" class=" form-control">
+                                <input type="text" placeholder="请输入发布人名称"
+                                       v-model="activitiesManageInfo.conditions.staffName" class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -65,7 +68,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <!-- <th class="text-center">信息ID</th> -->
+                            <th class="text-center">信息ID</th>
                             <th class="text-center">标题</th>
                             <th class="text-center">信息类型</th>
                             <th class="text-center">开始时间</th>
@@ -76,6 +79,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="activities in activitiesManageInfo.activitiess">
+                            <td class="text-center">{{activities.activitiesId}}</td>
                             <td class="text-center">{{activities.title}}</td>
                             <td class="text-center">{{activities.typeCdName}}</td>
                             <td class="text-center">{{activities.startTime}}</td>

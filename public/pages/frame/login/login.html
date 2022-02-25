@@ -1,17 +1,16 @@
 <div>
     <div class="layui-form-item">
         <input type="text" v-model="loginInfo.username" lay-verify="required|account" maxlength="20"
-            placeholder="请输入用户名" autocomplete="off" autofocus="autofocus" class="layui-input" @keyup.enter="doLogin">
+               placeholder="请输入用户名" autocomplete="off" autofocus="autofocus" class="layui-input" @keyup.enter="doLogin">
     </div>
     <div class="layui-form-item">
         <input type="password" v-model="loginInfo.passwd" lay-verify="required" maxlength="20" placeholder="请输入密码"
-            autocomplete="off" class="layui-input" @keyup.enter="doLogin">
+               autocomplete="off" class="layui-input" @keyup.enter="doLogin">
     </div>
     <vc:create path="frame/validateCode"></vc:create>
-
     <div class="layui-form-item">
         <button class="login_btn layui-btn layui-btn-radius layui-btn-normal" lay-submit v-on:click="doLogin()"
-            lay-filter="login">
+                lay-filter="login">
             <vc:i18n name="signIn"></vc:i18n>
         </button>
     </div>
@@ -23,9 +22,6 @@
             <vc:i18n name="register"></vc:i18n>
             &raquo;
         </a>
-        
     </strong>
-
     <vc:create path="frame/initData"></vc:create>
-
 </div>

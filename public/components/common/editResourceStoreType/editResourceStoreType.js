@@ -4,7 +4,9 @@
             editResourceStoreTypeInfo: {
                 rstId: '',
                 name: '',
-                description: ''
+                description: '',
+                parentId: '',
+                flag: ''
             }
         },
         _initMethod: function () {
@@ -55,10 +57,15 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#editResourceStoreTypeModel').modal('hide');
-                            vc.emit('resourceStoreTypeManage', 'listResourceStoreType', {});
+                            if (vc.component.editResourceStoreTypeInfo.flag != null && vc.component.editResourceStoreTypeInfo.flag != '' &&
+                                vc.component.editResourceStoreTypeInfo.flag != 'undefined' && vc.component.editResourceStoreTypeInfo.flag == '1') {
+                                vc.emit('listSonResourceStoreType', 'listSonResourceStoreTypes', {});
+                            } else {
+                                vc.emit('resourceStoreTypeManage', 'listResourceStoreType', {});
+                            }
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -69,7 +76,9 @@
                 vc.component.editResourceStoreTypeInfo = {
                     rstId: '',
                     name: '',
-                    description: ''
+                    description: '',
+                    parentId: '',
+                    flag: ''
                 }
             }
         }

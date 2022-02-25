@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             addActivitiesViewInfo: {
@@ -11,22 +10,17 @@
                 startTime: '',
                 endTime: '',
                 typeCds: [],
-                isMoreCommunity:'N'
-
+                isMoreCommunity: ''
             }
         },
         _initMethod: function () {
             vc.component._initActivitiesInfo();
-
             $that._loadAddActivitiesType();
-            
         },
         _initEvent: function () {
             vc.on('addActivitiesView', 'openAddActivitiesView', function () {
                 //vc.component._initActivitiesInfo();
-
             });
-
             vc.on("addActivitiesView", "notifyUploadImage", function (_param) {
                 if (!vc.isEmpty(_param) && _param.length > 0) {
                     vc.component.addActivitiesViewInfo.headerImg = _param[0];
@@ -101,20 +95,15 @@
                             param: "",
                             errInfo: "结束时间格式错误"
                         },
-                    ],
-
-
+                    ]
                 });
             },
             saveActivitiesInfo: function () {
                 if (!vc.component.addActivitiesValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addActivitiesViewInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.post(
                     'addActivitiesView',
                     'save',
@@ -126,20 +115,15 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
-
                             vc.component.clearaddActivitiesViewInfo();
                             vc.emit('activitiesManage', 'pageReload', {});
-
+                            vc.toast("发布成功");
                             return;
                         }
-                        vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearaddActivitiesViewInfo: function () {
@@ -152,8 +136,8 @@
                     context: '',
                     startTime: '',
                     endTime: '',
-                    typeCds:_typeCds,
-                    isMoreCommunity:'N'
+                    typeCds: _typeCds,
+                    isMoreCommunity: ''
                 };
             },
             _initActivitiesInfo: function () {
@@ -166,7 +150,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.activitiesStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -187,6 +170,19 @@
                         var value = $(".activitiesEndTime").val();
                         vc.component.addActivitiesViewInfo.endTime = value;
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control activitiesStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control activitiesEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
                 var $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
@@ -215,15 +211,12 @@
             },
             closeActivitiesInfo: function () {
                 vc.emit('activitiesManage', 'listActivities', {});
-
             },
             sendFile: function ($summernote, files) {
                 console.log('上传图片', files);
-
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
-
                 vc.http.upload(
                     'addActivitiesView',
                     'uploadImage',
@@ -249,18 +242,15 @@
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
-
             },
-            _loadAddActivitiesType:function(){
-
+            _loadAddActivitiesType: function () {
                 var param = {
                     params: {
-                        page:1,
-                        row:50,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/activitiesType/queryActivitiesType',
                     param,
@@ -273,8 +263,6 @@
                     }
                 );
             }
-
         }
     });
-
 })(window.vc);

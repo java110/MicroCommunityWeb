@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             indexContextInfo: {
@@ -20,7 +19,6 @@
             vc.on("indexContext", "_queryIndexContextData", function (_param) {
                 vc.component._queryIndexContextData();
             });
-
         },
         methods: {
             _queryIndexContextData: function () {
@@ -41,20 +39,16 @@
                         vc.copyObject(indexData, vc.component.indexContextInfo);
                         let _dom = document.getElementById('ownerCount');
                         $that._initCharts2(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, '业主信息', '已入住', '未入住');
-
                         _dom = document.getElementById('roomCount');
                         $that._initCharts2(indexData.roomCount - indexData.freeRoomCount, indexData.freeRoomCount, _dom, '房屋信息', '已入住', '空闲');
-
                         _dom = document.getElementById('parkingSpaceCount');
                         $that._initEcharts(indexData.parkingSpaceCount - indexData.freeParkingSpaceCount, indexData.freeParkingSpaceCount, _dom, '车位信息', '已使用', '空闲');
-
                         _dom = document.getElementById('shopCount');
                         $that._initCharts2(indexData.shopCount - indexData.freeShopCount, indexData.freeShopCount, _dom, '商铺信息', '已出售', '空闲');
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-
             },
             _initEcharts: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName) {
                 //let dom = document.getElementById("box2");
@@ -87,17 +81,15 @@
                                 show: true
                             },
                             data: [
-                                { value: userCount, name: _userCountName },
-                                { value: freeCount, name: _freeCountName }
+                                {value: userCount, name: _userCountName},
+                                {value: freeCount, name: _freeCountName}
                             ],
                         }
                     ]
                 };
-
                 if (option && typeof option === "object") {
                     myChart.setOption(option, true);
                 }
-
             },
             _initCharts2: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName) {
                 //var dom = document.getElementById("box1");
@@ -119,8 +111,8 @@
                             radius: '75%',
                             center: ['50%', '50%'],
                             data: [
-                                { value: userCount, name: _userCountName },
-                                { value: freeCount, name: _freeCountName }
+                                {value: userCount, name: _userCountName},
+                                {value: freeCount, name: _freeCountName}
                             ],
                             emphasis: {
                                 itemStyle: {
@@ -132,7 +124,6 @@
                         }
                     ]
                 };
-
                 if (option && typeof option === "object") {
                     myChart.setOption(option, true);
                 }
@@ -163,11 +154,9 @@
                                 {value: userCount, name: _userCountName},
                                 {value: freeCount, name: _freeCountName}
                             ]
-                        
                         }
                     ]
                 };
-
                 if (option && typeof option === "object") {
                     myChart.setOption(option, true);
                 }

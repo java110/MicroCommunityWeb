@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -21,13 +21,9 @@
         },
         _initMethod: function () {
             vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
-
-            vc.initDate('queryDate',function(value){
-                $that.todayAttendanceManageInfo.conditions.date = value;
-            });
+            vc.component._initDate();
         },
         _initEvent: function () {
-
             vc.on('todayAttendanceManage', 'listTodayAttendance', function (_param) {
                 vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -36,14 +32,36 @@
             });
         },
         methods: {
-            _listTodayAttendances: function (_page, _rows) {
+            _initDate: function () {
+                $(".queryDate").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.queryDate').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".queryDate").val();
+                        vc.component.todayAttendanceManageInfo.conditions.date = value;
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control queryDate')[0].addEventListener('click', myfunc)
 
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
+            _listTodayAttendances: function (_page, _rows) {
                 vc.component.todayAttendanceManageInfo.conditions.page = _page;
                 vc.component.todayAttendanceManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.todayAttendanceManageInfo.conditions
                 };
-
+                param.params.classesName = param.params.classesName.trim();
+                param.params.departmentName = param.params.departmentName.trim();
                 //发送get请求
                 vc.http.apiGet('/attendanceClass/queryAttendanceClassesTask',
                     param,
@@ -65,7 +83,15 @@
             _openAttendanceDetailModel: function (_attendance) {
                 vc.emit('todayAttendanceDetail', 'openTodayAttendanceDetail', _attendance);
             },
+            //查询
             _queryTodayAttendanceMethod: function () {
+                vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetTodayAttendanceMethod: function () {
+                vc.component.todayAttendanceManageInfo.conditions.classesName = "";
+                vc.component.todayAttendanceManageInfo.conditions.departmentName = "";
+                vc.component.todayAttendanceManageInfo.conditions.date = vc.dateFormat(new Date());
                 vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
@@ -75,8 +101,6 @@
                     vc.component.todayAttendanceManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

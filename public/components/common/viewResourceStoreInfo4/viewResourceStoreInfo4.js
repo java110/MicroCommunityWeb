@@ -19,12 +19,14 @@
                 resourceStores: [],
                 resourceSuppliers: [],
                 resOrderType: '',
-                urgentPrice: ''
+                urgentPrice: '',
+                storehouses: [],
             }
         },
         _initMethod: function () {
             //根据请求参数查询 查询 业主信息
             vc.component._loadResourceStoreInfoData();
+            $that._listAllocationStorehouse();
             // vc.component._loadResourceSuppliers();
         },
         _initEvent: function () {
@@ -43,6 +45,7 @@
                 // 过滤重复选择的商品
                 resourceStores.forEach((newItem, newIndex) => {
                     newItem.rsId = '';
+                    newItem.shzId = '';
                     oldList.forEach((oldItem) => {
                         if (oldItem.resId == newItem.resId) {
                             delete resourceStores[newIndex];
@@ -88,6 +91,34 @@
                 vc.emit('addResourceStore', 'openAddResourceStoreModal', {});
             },
             _loadResourceStoreInfoData: function () {
+            },
+            _listAllocationStorehouse: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        isShow: true,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('resourceStore.listStorehouses',
+                    param,
+                    function (json, res) {
+                        let _storehouseManageInfo = JSON.parse(json);
+                        vc.component.viewResourceStoreInfo4.storehouses = _storehouseManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            storeHousesChange: function(e, i){
+                let shId = e.target.value;
+                vc.component.viewResourceStoreInfo4.storehouses.forEach((item) => {
+                    if(item.shId == shId){
+                        vc.component.viewResourceStoreInfo4.resourceStores[i].shzName = item.shName;
+                    }
+                })
             },
             // 移除选中item
             _removeSelectResourceStoreItem: function (resId) {

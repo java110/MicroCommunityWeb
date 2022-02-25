@@ -1,52 +1,46 @@
-(function(vc,vm){
-
+(function (vc, vm) {
     vc.extends({
-        data:{
-            deleteAppInfo:{
-
-            }
+        data: {
+            deleteAppInfo: {}
         },
-         _initMethod:function(){
-
-         },
-         _initEvent:function(){
-             vc.on('deleteApp','openDeleteAppModal',function(_params){
-
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('deleteApp', 'openDeleteAppModel', function (_params) {
+                console.log("如下")
+                console.log(_params)
                 vc.component.deleteAppInfo = _params;
                 $('#deleteAppModel').modal('show');
-
             });
         },
-        methods:{
-            deleteApp:function(){
-                vc.component.deleteAppInfo.communityId=vc.getCurrentCommunity().communityId;
+        methods: {
+            deleteApp: function () {
+                vc.component.deleteAppInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
-                    'deleteApp',
+                    'deleteVisit',
                     'delete',
                     JSON.stringify(vc.component.deleteAppInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        if (res.status == 200) {
                             //关闭model
                             $('#deleteAppModel').modal('hide');
-                            vc.emit('appManage','listApp',{});
-                            return ;
+                            vc.emit('appManage', 'listApp', {});
+                            vc.toast("删除成功");
+                            return;
                         }
-                        vc.toast(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(json);
-
-                     });
+                        vc.toast(errInfo);
+                    });
             },
-            closeDeleteAppModel:function(){
+            closeDeleteAppModel: function () {
                 $('#deleteAppModel').modal('hide');
             }
         }
     });
-
-})(window.vc,window.vc.component);
+})(window.vc, window.vc.component);

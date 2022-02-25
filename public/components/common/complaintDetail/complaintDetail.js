@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             complaintDetailInfo: {
@@ -16,11 +15,10 @@
                 currentUserId: '',
                 showCurrentUser: true,
                 photos: [],
-                comments:[]
+                comments: []
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('complaintDetail', 'openComplaintDetailModal', function (_params) {
@@ -64,7 +62,6 @@
                 });
             },
             _loadComments: function () {
-
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -87,5 +84,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);
