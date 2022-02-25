@@ -1,28 +1,62 @@
 <div id="nav">
     <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:void(0)"
-               @click="_doMenu()"><i class="fa fa-bars"></i> </a>
+            <span class="navbar-minimalize minimalize-styl-2  " @click="_doMenu()"><i class="fa fa-list-ul"></i> </span>
+            <ul class="nav navbar-top-links ">
+                <li class="nav-item dropdown tab-active">
+                    <span class="dropdown-toggle count-info vc-tab-text" data-toggle="dropdown" href="/">
+                        <i class="fa fa-home"></i>首页
+                    </span>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle count-info vc-tab-text" data-toggle="dropdown" href="/">
+                        <i class="fa fa-calculator"></i>业务受理
+                    </span>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle count-info vc-tab-text" data-toggle="dropdown" href="/">
+                        <i class="fa fa-bar-chart-o"></i> 费用报表
+                    </span>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle count-info vc-tab-text" data-toggle="dropdown" href="/">
+                        <i class="fa fa-users"></i>物业服务
+                    </span>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle count-info vc-tab-text" data-toggle="dropdown" href="/">
+                        <i class="fa fa-automobile"></i> 停车
+                    </span>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle count-info vc-tab-text" data-toggle="dropdown" href="/">
+                        <i class="fa fa-desktop"></i>设备
+                    </span>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle count-info vc-tab-text" data-toggle="dropdown" href="/">
+                        <i class="fa fa-gear"></i>设置
+                    </span>
+                </li>
+            </ul>
         </div>
         <ul class="nav navbar-top-links navbar-right">
-            <li class="nav-item dropdown"
-                v-if="nav.storeTypeCd != '800900000001' && nav.storeTypeCd != '800900000002' && nav.storeTypeCd != '800900000000'">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                   aria-expanded="false">
+            <li class="nav-item dropdown" v-if="nav.storeTypeCd != '800900000001' && nav.storeTypeCd != '800900000002' && nav.storeTypeCd != '800900000000'">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     {{nav._currentCommunity.name}}
                     <span class="caret"></span>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" v-for="currentCommunity in nav.communityInfos"
-                       v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}} </a>
+                    <a class="dropdown-item" v-for="currentCommunity in nav.communityInfos" v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}} </a>
                     <a href="javascript:void(0)" class="dropdown-item text-center" v-on:click="_chooseMoreCommunity()">
                         <strong>{{vc.i18n('moreCommunity')}}</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </div>
             </li>
-            <li style="padding: 20px">
-                <span class="m-r-sm text-muted welcome-message">{{vc.i18n('welcome')}}，{{userName}}！</span>
+            <li style="padding: 5px">
+                <span class="m-r-sm text-muted welcome-message">
+                    <i class="fa fa-user"></i>{{userName}}</span>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">

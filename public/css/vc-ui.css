@@ -556,8 +556,10 @@ body.rtls.mini-navbar.top-navigation #vc-page {
     color: #ffffff;
 }
 
-.nav>li .active {
-    font-weight: bold;
+.nav-link-breadcrumb {
+    color: #888888;
+    font-size: 12px;
+    cursor: pointer;
 }
 
 .navbar-default .nav>li>a:hover,
@@ -584,8 +586,30 @@ body.rtls.mini-navbar.top-navigation #vc-page {
     display: block;
 }
 
+.nav>li.tab-active {
+    border-bottom: 2px solid #1ab394 !important;
+    color: #1ab394;
+}
+
+.nav>li>span.vc-tab-text {
+    padding: 16px 15px;
+    font-size: 14px;
+    display: block;
+    color: #888888;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.nav>li.tab-active>span.vc-tab-text {
+    color: #1ab394;
+}
+
+.nav>li>span.vc-tab-text i {
+    margin-right: 5px;
+}
+
 .nav>li>a i {
-    margin-right: 6px;
+    margin-right: 5px;
 }
 
 .label {
@@ -714,10 +738,12 @@ ul.nav-second-level {
 /*************************************btn****************************************/
 
 .minimalize-styl-2 {
-    padding: 4px 12px;
-    margin: 14px 5px 5px 20px;
-    font-size: 14px;
+    padding: 4px 5px;
+    margin: 10px 20px 5px 10px;
+    font-size: 18px;
     float: left;
+    color: #888888;
+    cursor: pointer;
 }
 
 .btn {
@@ -776,7 +802,7 @@ ul.nav-second-level {
 }
 
 .navbar-top-links li a {
-    padding: 20px 10px;
+    padding: 16px 10px;
     min-height: 50px;
 }
 
