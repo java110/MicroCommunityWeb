@@ -69,9 +69,18 @@
                 vc.jumpToPage(vc.getUrl() + _item.href)
             },
             _deleteSmallTab: function(_item) {
+                let _tabs = vc.getTabFromLocal();
                 vc.deleteTabToLocal(_item.href);
                 vm.breadCrumbs = [];
-                vm._freshBreadCrumbByUrl();
+                if (_item.active == '0') {
+                    vm._freshBreadCrumbByUrl();
+                    return;
+                }
+                if (_tabs.length == 1) {
+                    vc.jumpToPage("/");
+                    return;
+                }
+                vc.jumpToPage(vc.getUrl() + _tabs[_tabs.length - 2]);
             }
         },
 

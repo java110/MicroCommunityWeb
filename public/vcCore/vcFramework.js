@@ -1221,9 +1221,9 @@
             window.location.href = url;
             return;
         }
-
+        //保存路由信息
+        vcFramework.saveComponentToPageRoute();
         let _targetUrl = url.substring(0, url.indexOf('#'));
-
         if (location.pathname != _targetUrl) {
             window.location.href = url;
             return;
@@ -1231,11 +1231,6 @@
         //刷新框架参数
         //refreshVcFramework();
         //修改锚点
-
-        //保存路由信息
-        vcFramework.saveComponentToPageRoute();
-
-
         location.hash = url.substring(url.indexOf("#") + 1, url.length);
         //vcFramework.reBuilderVcTree();
     };
@@ -1343,6 +1338,10 @@
 
     //将org 对象的属性值赋值给dst 属性名为一直的属性
     vcFramework.copyObject = function(org, dst) {
+
+        if (!org || !dst) {
+            return;
+        }
         //for(key in Object.getOwnPropertyNames(dst)){
         for (let key in dst) {
             if (org.hasOwnProperty(key)) {
@@ -1352,6 +1351,9 @@
     };
 
     vcFramework.resetObject = function(org) {
+        if (!org) {
+            return;
+        }
         //for(key in Object.getOwnPropertyNames(dst)){
         for (let key in org) {
             if (typeof(key) == "string") {
