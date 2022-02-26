@@ -12,7 +12,7 @@
                 </div>
             </li>
 
-            <li v-for="menu in menus" v-bind:class="{ active: menu.active }"  :key="menu.id">
+            <li v-for="menu in menus" v-bind:class="{ active: menu.active }" :key="menu.id">
                 <a v-if="menu.childs != undefined && menu.childs.length >0" href="#" v-on:click="switchMenu(menu.id)">
                     <i class="fa " v-bind:class="menu.icon"></i>
                     <span class="nav-label">{{vc.i18n(menu.name)}}</span>
@@ -21,10 +21,10 @@
                 </a>
                 <ul v-if="menu.childs != undefined && menu.childs.length >0" class="nav nav-second-level collapse" v-bind:class="{in: menu.active}">
                     <li v-for="subMenu in menu.childs" v-if="subMenu.isShow == 'Y'" v-bind:class="{ active: subMenu.active }">
-                        <a v-on:click="_gotoPage(subMenu.href)" href="javascript:void(0)" >{{vc.i18n(subMenu.name)}}</a>
+                        <a v-on:click="_gotoPage(subMenu.href,subMenu.name)" href="javascript:void(0)">{{vc.i18n(subMenu.name)}}</a>
                     </li>
                 </ul>
-                <a v-if="menu.childs == undefined || menu.childs.length ==0"  href="javascript:void(0)" v-on:click="_gotoPage(menu.href)">
+                <a v-if="menu.childs == undefined || menu.childs.length ==0" href="javascript:void(0)" v-on:click="_gotoPage(menu.href,subMenu.name)">
                     <i class="fa " v-bind:class="menu.icon"></i>
                     <span class="nav-label">{{vc.i18n(menu.name)}}</span>
                 </a>

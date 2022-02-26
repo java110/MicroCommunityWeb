@@ -20,42 +20,24 @@
             _freshBreadCrumbByUrl: function() {
 
                 let tabs = vc.getTabFromLocal();
-
-                let _tmpMenus = vc.getMenus();
-
-                if (_tmpMenus == null || _tmpMenus == undefined) {
-                    return;
-                }
                 let _curPath = location.hash;
                 if (_curPath.indexOf('?') != -1) {
                     _curPath = _curPath.substring(0, _curPath.indexOf('?'));
                 }
-
                 tabs.forEach(item => {
-                    let _path = item;
+                    let _path = item.url;
                     if (_path.indexOf('?') != -1) {
                         _path = _path.substring(0, _path.indexOf('?'));
                     }
-                    let _url = vc.getUrl() + _path;
-
-                    _tmpMenus.forEach(_menu => {
-                        _menu.childs.forEach(child => {
-                            //console.log(_url, child.href)
-                            if (_url != child.href) {
-                                return;
-                            }
-                            _tmpBreadCrumbInf = {
-                                href: item,
-                                pageName: child.name,
-                                active: '0'
-                            };
-                            if (_path == _curPath) {
-                                _tmpBreadCrumbInf.active = '1'
-                            }
-                            this.breadCrumbs.push(_tmpBreadCrumbInf);
-                        })
-                    })
-
+                    _tmpBreadCrumbInf = {
+                        href: item.url,
+                        pageName: item.name,
+                        active: '0'
+                    };
+                    if (_path == _curPath) {
+                        _tmpBreadCrumbInf.active = '1'
+                    }
+                    this.breadCrumbs.push(_tmpBreadCrumbInf);
                 });
             },
 
@@ -70,7 +52,8 @@
             },
             _deleteSmallTab: function(_item) {
                 let _tabs = vc.getTabFromLocal();
-                vc.deleteTabToLocal(_item.href);
+                _item.url = _item.href;
+                vc.deleteTabToLocal(_item);
                 vm.breadCrumbs = [];
                 if (_item.active == '0') {
                     vm._freshBreadCrumbByUrl();
@@ -80,7 +63,7 @@
                     vc.jumpToPage("/");
                     return;
                 }
-                vc.jumpToPage(vc.getUrl() + _tabs[_tabs.length - 2]);
+                vc.jumpToPage(vc.getUrl() + _tabs[_tabs.length - 2].url);
             }
         },
 

@@ -13,7 +13,8 @@
                 total: 0,
                 _currentCommunity: '',
                 communityInfos: [],
-                storeTypeCd: ''
+                storeTypeCd: '',
+                catalogs: [],
             },
             logo: '',
             userName: ""
@@ -22,7 +23,8 @@
             this._initSysInfo();
             this.getNavCommunity(1, 3);
             this.getNavData();
-            //this.getUserInfo();
+            this._getMenuCatalog();
+            // 定义事件名为'build'.
         },
         methods: {
             _initSysInfo: function() {
@@ -34,8 +36,7 @@
                 this.logo = sysInfo.logo;
             },
             getNavData: function() {
-
-                var param = {
+                let param = {
                     params: {
                         page: 1,
                         row: 3,
@@ -78,14 +79,8 @@
                 );
             },
             getUserInfo: function() {
-                //                var _userInfo = vc.getData("_userInfo");
-                //                //浏览器缓存中能获取到
-                //                if(_userInfo != null && _userInfo != undefined){
-                //                    vm.userName = _userInfo.name;
-                //                    return ;
-                //                }
                 //获取用户名
-                var param = {
+                let param = {
                     msg: '123',
                 };
                 //发送get请求
@@ -178,6 +173,37 @@
                     }
                 );
             },
+
+            _getMenuCatalog: function() {
+                let _param = {
+                    params: {
+                        page: 1,
+                        row: 10,
+                        isShow: 'Y',
+                    }
+                }
+                vc.http.apiGet('/menu.listCatalog',
+                    _param,
+                    function(json, res) {
+                        let _listCatalogs = JSON.parse(json);
+                        if (_listCatalogs.code != 0) {
+                            return;
+                        }
+                        vm.nav.catalogs = _listCatalogs.data;
+                        vm._emitMsg(_listCatalogs.data[0])
+                    },
+                    function(e) {
+                        console.log('请求失败处理', e);
+                    }
+                );
+            },
+            _emitMsg: function(_param) {
+                vm._settingActiveCatalog(_param);
+                let event = new CustomEvent('loadMenu', {
+                    "detail": _param
+                });
+                document.body.dispatchEvent(event);
+            },
             _doMenu: function() {
                 let body = document.getElementsByTagName("body")[0];
                 let className = body.className;
@@ -192,7 +218,26 @@
             },
             _viewDocument: function() {
                 vc.emit('document', 'openDocument', {});
-            }
+            },
+            _settingActiveCatalog: function(_catalog) {
+                let _catalogs = this.nav.catalogs;
+                _catalogs.forEach(item => {
+                    item.active = '0'
+                    if (item.caId == _catalog.caId) {
+                        item.active = '1';
+                    }
+                });
+                //this.nav.catalogs = _catalogs;
+                this.$forceUpdate();
+            },
+            _changeMenuCatalog: function(_catalog) {
+                if (_catalog.url != '#') {
+                    vm._settingActiveCatalog(_catalog);
+                    vc.jumpToPage(_catalog.url);
+                    return;
+                }
+                vm._emitMsg(_catalog);
+            },
         }
     });
     vm.getUserInfo();

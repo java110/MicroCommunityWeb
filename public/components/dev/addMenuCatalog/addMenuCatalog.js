@@ -12,7 +12,7 @@
                 icon: '',
                 seq: '',
                 storeType: '',
-                url: '',
+                url: '#',
                 isShow: '',
 
             }

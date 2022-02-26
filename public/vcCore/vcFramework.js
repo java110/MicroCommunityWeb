@@ -2016,7 +2016,10 @@
         let _tab = vc.getParam('tab')
 
         if (_tab) {
-            vcFramework.setTabToLocal(_componentUrl);
+            vcFramework.setTabToLocal({
+                url: _componentUrl,
+                name: _tab
+            });
         }
         refreshVcFramework();
         vcFramework.reBuilderVcTree();
@@ -2688,7 +2691,6 @@
             routes.splice(loction, 1);
         }
 
-
         window.localStorage.setItem('vcPageRoute', JSON.stringify(routes));
     }
 
@@ -2748,7 +2750,7 @@
         //判断是否已经有 如果有则删除
         for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
             _tmpTab = tabs[tabIndex];
-            if (_tmpTab == _obj) {
+            if (_tmpTab.url == _obj.url) {
                 return;
             }
         }
@@ -2764,7 +2766,7 @@
         for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
             _tmpTab = tabs[tabIndex];
             console.log(_tmpTab[tabIndex], _obj)
-            if (_tmpTab == _obj) {
+            if (_tmpTab.url == _obj.url) {
                 tabs.splice(tabIndex, 1);
             }
         }

@@ -10,7 +10,11 @@
         },
         mounted: function() {
             this._initSysInfo();
-            this.getMenus();
+
+            //监听 菜单目录改变
+            document.body.addEventListener('loadMenu', function(_param) {
+                vm.getMenus(_param.detail);
+            }, false);
             let _menuDiv = document.getElementById('menu-nav');
             vcFramework.eleResize.on(_menuDiv, function() {
                 //console.log('resize', '大小修改了');
@@ -35,31 +39,21 @@
             _gotoIndex: function() {
                 vc.jumpToPage("/")
             },
-            getMenus: function() {
-
-                let _tmpMenus = vc.getMenus();
-                //浏览器缓存中能获取到
-                if (_tmpMenus != null && _tmpMenus != undefined) {
-                    this.miniMenu();
-                    this.menus = _tmpMenus;
-                    // 子菜单默认选中
-                    var _currentHref = window.location.pathname + window.location.hash;
-                    this._setSelectedMenusChild(_currentHref);
-                    return;
-                }
-
-                let param = {
+            getMenus: function(_catalog) {
+                let _param = {
                         params: {
-                            msg: this.message
+                            caId: _catalog.caId
                         }
-
                     }
                     //发送get请求
-                vc.http.get('menu',
-                    'getMenus',
-                    param,
+                vc.http.apiGet('/menu.listCatalogMenus',
+                    _param,
                     function(json, res) {
-                        let _menus = JSON.parse(json);
+                        let _menuData = JSON.parse(json);
+                        if (_menuData.code != 0) {
+                            return;
+                        }
+                        let _menus = _menuData.data;
                         if (_menus == null || _menus.length == 0) {
                             return;
                         }
@@ -77,7 +71,6 @@
                 );
             },
             refreshMenuActive: function(jsonArray, _id) {
-                console.log(jsonArray);
                 for (var menuIndex = 0; menuIndex < jsonArray.length; menuIndex++) {
 
                     if (jsonArray[menuIndex].hasOwnProperty('childs')) {
@@ -124,13 +117,13 @@
                 $("body").toggleClass("mini-navbar");
                 vc.setMenuState('OFF');
             },
-            _gotoPage: function(_href) {
+            _gotoPage: function(_href, _tabName) {
                 // 子菜单默认选中
                 this._setSelectedMenusChild(_href);
                 if (_href.indexOf('?') > -1) {
-                    _href += "&tab=on"
+                    _href += ("&tab=" + _tabName)
                 } else {
-                    _href += "?tab=on"
+                    _href += ("?tab=" + _tabName)
                 }
                 vc.jumpToPage(_href);
             },
