@@ -1313,9 +1313,12 @@
     vcFramework.getCurrentCommunity = function() {
         let _community = JSON.parse(window.localStorage.getItem('hc_currentCommunityInfo'));
 
-        // if(_community == null || _community == undefined){
-        //     vcFramework.toast('您还没有入驻小区请先入住小区');
-        // }
+        if (!_community) {
+            return {
+                communityId: '-1',
+                communityName: '未知'
+            };
+        }
 
         return _community;
     };
