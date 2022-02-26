@@ -13,7 +13,7 @@
             </li>
 
             <li v-for="menu in menus" v-bind:class="{ active: menu.active }" :key="menu.id">
-                <a v-if="menu.childs != undefined && menu.childs.length >0" href="#" v-on:click="switchMenu(menu.id)">
+                <a v-if="menu.childs != undefined && menu.childs.length >0" href="javascript:void(0)" v-on:click="switchMenu(menu.id)">
                     <i class="fa " v-bind:class="menu.icon"></i>
                     <span class="nav-label">{{vc.i18n(menu.name)}}</span>
                     <span v-if="menu.label != undefined && menu.label != ''" class="float-right label label-primary">{{menu.label}}</span>

@@ -1,4 +1,4 @@
-<div id="breadcrumb" class="border-bottom white-bg" v-if="breadCrumbs.length > 0">
+<div id="breadcrumb" class="border-bottom white-bg" v-if="breadCrumbs.length > 0 && indexPage == '1'">
     <ul class="nav nav-tabs">
         <li class="nav-item" v-for="(item,index) in breadCrumbs">
             <span class="nav-link nav-link-breadcrumb" v-bind:class="{'active':item.active=='1'}" aria-current="page" @click="_changeSmallTab(item)">{{item.pageName}}

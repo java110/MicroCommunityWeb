@@ -60,7 +60,8 @@
                         _menus.sort(function(a, b) {
                             return a.seq - b.seq
                         });
-                        var _currentMenusId = vc.getCurrentMenu() == null ? _menus[0].id : vc.getCurrentMenu();
+                        //var _currentMenusId = vc.getCurrentMenu() == null ? _menus[0].id : vc.getCurrentMenu();
+                        let _currentMenusId = _menus[0].id;
                         vm.menus = vm.refreshMenuActive(_menus, _currentMenusId);
                         vc.setMenus(vm.menus);
                         vm.miniMenu();

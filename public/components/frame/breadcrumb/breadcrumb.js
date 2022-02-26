@@ -5,7 +5,8 @@
     var vm = new Vue({
         el: '#breadcrumb',
         data: {
-            breadCrumbs: []
+            breadCrumbs: [],
+            indexPage: 1,
         },
         mounted: function() {
             //this._freshBreadCrumbByUrl();
@@ -14,7 +15,25 @@
                 // e.target matches elem
                 vm.breadCrumbs = [];
                 vm._freshBreadCrumbByUrl();
+
+                let _hash = location.hash
+
+                if (!_hash) {
+                    vm.indexPage = '0';
+                    return;
+                }
+                if (_hash.indexOf('?') != -1) {
+                    _hash = _hash.substring(0, _hash.indexOf('?'));
+                }
+
+                if (!_hash) {
+                    vm.indexPage = '0';
+                    return;
+                }
+                vm.indexPage = '1';
+
             }, false);
+
         },
         methods: {
             _freshBreadCrumbByUrl: function() {
