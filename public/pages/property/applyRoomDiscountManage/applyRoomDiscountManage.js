@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,23 +22,23 @@
                 }
             }
         },
-        _initMethod: function () {
-            vc.getDict('apply_room_discount', "state", function (_data) {
+        _initMethod: function() {
+            vc.getDict('apply_room_discount', "state", function(_data) {
                 vc.component.applyRoomDiscountManageInfo.states = _data;
             });
             vc.component._listApplyRoomDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listApplyRoomDiscountTypes();
         },
-        _initEvent: function () {
-            vc.on('applyRoomDiscountManage', 'listApplyRoomDiscount', function (_param) {
+        _initEvent: function() {
+            vc.on('applyRoomDiscountManage', 'listApplyRoomDiscount', function(_param) {
                 vc.component._listApplyRoomDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listApplyRoomDiscounts(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listApplyRoomDiscounts: function (_page, _rows) {
+            _listApplyRoomDiscounts: function(_page, _rows) {
                 vc.component.applyRoomDiscountManageInfo.conditions.page = _page;
                 vc.component.applyRoomDiscountManageInfo.conditions.row = _rows;
                 var param = {
@@ -47,7 +47,7 @@
                 //发送get请求
                 vc.http.apiGet('/applyRoomDiscount/queryApplyRoomDiscount',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _applyRoomDiscountManageInfo = JSON.parse(json);
                         vc.component.applyRoomDiscountManageInfo.total = _applyRoomDiscountManageInfo.total;
                         vc.component.applyRoomDiscountManageInfo.records = _applyRoomDiscountManageInfo.records;
@@ -57,50 +57,51 @@
                             dataCount: vc.component.applyRoomDiscountManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddApplyRoomDiscountModal: function () {
+            _openAddApplyRoomDiscountModal: function() {
                 vc.emit('addApplyRoomDiscount', 'openAddApplyRoomDiscountModal', {});
             },
             //验房
-            _openEditApplyRoomDiscountModel: function (_applyRoomDiscount) {
+            _openEditApplyRoomDiscountModel: function(_applyRoomDiscount) {
                 _applyRoomDiscount = JSON.stringify(_applyRoomDiscount);
                 vc.emit('editApplyRoomDiscount', 'openEditApplyRoomDiscountModal', _applyRoomDiscount);
             },
             //跟踪记录
-            _openApplyRoomDiscountRecord: function (_applyRoomDiscount) {
-                vc.jumpToPage('/admin.html#/pages/property/listApplyRoomDiscountRecord?ardId=' + _applyRoomDiscount.ardId +
+            _openApplyRoomDiscountRecord: function(_applyRoomDiscount) {
+                vc.jumpToPage('/#/pages/property/listApplyRoomDiscountRecord?ardId=' + _applyRoomDiscount.ardId +
                     '&roomId=' + _applyRoomDiscount.roomId + '&roomName=' + _applyRoomDiscount.roomName +
                     '&state=' + _applyRoomDiscount.state + '&stateName=' + _applyRoomDiscount.stateName);
             },
             //审核
-            _openReviewApplyRoomDiscountModel: function (_applyRoomDiscount) {
+            _openReviewApplyRoomDiscountModel: function(_applyRoomDiscount) {
                 _applyRoomDiscount = JSON.stringify(_applyRoomDiscount);
                 vc.emit('reviewApplyRoomDiscount', 'openReviewApplyRoomDiscountModal', _applyRoomDiscount);
             },
             //删除
-            _openDeleteApplyRoomDiscountModel: function (_applyRoomDiscount) {
+            _openDeleteApplyRoomDiscountModel: function(_applyRoomDiscount) {
                 vc.emit('deleteApplyRoomDiscount', 'openDeleteApplyRoomDiscountModal', _applyRoomDiscount);
             },
             //修改
-            _openEditApplyRoomDiscountRecordModel: function (_applyRoomDiscount) {
+            _openEditApplyRoomDiscountRecordModel: function(_applyRoomDiscount) {
                 vc.emit('editApplyRoomDiscountRecord', 'openEditApplyRoomDiscountRecordModal', _applyRoomDiscount);
             },
             //查询
-            _queryApplyRoomDiscountMethod: function () {
+            _queryApplyRoomDiscountMethod: function() {
                 vc.component._listApplyRoomDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetApplyRoomDiscountMethod: function () {
+            _resetApplyRoomDiscountMethod: function() {
                 vc.component.applyRoomDiscountManageInfo.conditions.roomName = "";
                 vc.component.applyRoomDiscountManageInfo.conditions.applyType = "";
                 vc.component.applyRoomDiscountManageInfo.conditions.state = "";
                 vc.component._listApplyRoomDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _listApplyRoomDiscountTypes: function (_page, _rows) {
+            _listApplyRoomDiscountTypes: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -111,15 +112,16 @@
                 //发送get请求
                 vc.http.apiGet('/applyRoomDiscount/queryApplyRoomDiscountType',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _applyRoomDiscountTypeManageInfo = JSON.parse(json);
                         vc.component.applyRoomDiscountManageInfo.applyTypes = _applyRoomDiscountTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.applyRoomDiscountManageInfo.moreCondition) {
                     vc.component.applyRoomDiscountManageInfo.moreCondition = false;
                 } else {

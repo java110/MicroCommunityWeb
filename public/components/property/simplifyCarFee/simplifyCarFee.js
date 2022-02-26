@@ -87,11 +87,11 @@
             },
             _simplifyCarPayFee: function(_fee) {
                 _fee.roomName = vc.component.simplifyCarFeeInfo.carNum;
-                //vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
-                vc.jumpToPage('/admin.html#/pages/property/payFeeOrder?feeId=' + _fee.feeId);
+                //vc.jumpToPage('/#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
+                vc.jumpToPage('/#/pages/property/payFeeOrder?feeId=' + _fee.feeId);
             },
             _simplifyCarPayFeeHis: function(_fee) {
-                vc.jumpToPage('/admin.html#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
+                vc.jumpToPage('/#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             },
             _simplifyCarEditFee: function(_fee) {
                 vc.emit('editFee', 'openEditFeeModal', _fee);

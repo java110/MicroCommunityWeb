@@ -81,7 +81,7 @@
                 }
             },
             _openMenuCatalogGroup: function(_menuCatalog) {
-                vc.jumpToPage('/admin.html#/pages/dev/menuGroupCatalogManage?caId=' + _menuCatalog.caId + "&storeType=" + _menuCatalog.storeType + "&catalogName=" + _menuCatalog.name);
+                vc.jumpToPage('/#/pages/dev/menuGroupCatalogManage?caId=' + _menuCatalog.caId + "&storeType=" + _menuCatalog.storeType + "&catalogName=" + _menuCatalog.name);
             },
             _getStoreTypeName: function(_storeTypeCd) {
                 // <option value="800900000001">运营团队</option>

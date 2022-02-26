@@ -74,7 +74,7 @@
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openDetailPurchaseApplyModel: function(_purchaseApply) {
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=" + _purchaseApply.resOrderType);
+                vc.jumpToPage("/#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=" + _purchaseApply.resOrderType);
             },
             //提交审核信息
             _auditOrderInfo: function(_auditInfo) {
@@ -121,7 +121,7 @@
                 );
             },
             _viewChangeDetail: function(_plan) {
-                vc.jumpToPage("/admin.html#/pages/admin/contractChangeDetails?planId=" + _plan.planId);
+                vc.jumpToPage("/#/pages/admin/contractChangeDetails?planId=" + _plan.planId);
             }
 
 

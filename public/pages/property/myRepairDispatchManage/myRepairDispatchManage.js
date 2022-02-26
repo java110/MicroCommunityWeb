@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -28,30 +28,30 @@
                 }
             }
         },
-        _initMethod: function () {
-            vc.getDict('r_repair_pool', "state", function (_data) {
+        _initMethod: function() {
+            vc.getDict('r_repair_pool', "state", function(_data) {
                 vc.component.myRepairDispatchInfo.states = _data;
             });
             vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.component._listRepairTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表关联
-            vc.getDict('r_repair_pool', "state", function (_data) {
+            vc.getDict('r_repair_pool', "state", function(_data) {
                 vc.component.myRepairDispatchInfo.states = _data;
             });
         },
-        _initEvent: function () {
-            vc.on('myRepairDispatch', 'listOwnerRepair', function (_param) {
+        _initEvent: function() {
+            vc.on('myRepairDispatch', 'listOwnerRepair', function(_param) {
                 vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listOwnerRepairs(_currentPage, DEFAULT_ROWS);
             });
-            vc.on('myRepairDispatch', 'notifyData', function (_param) {
+            vc.on('myRepairDispatch', 'notifyData', function(_param) {
                 vc.component._closeRepairDispatchOrder(_param);
             });
         },
         methods: {
-            _listOwnerRepairs: function (_page, _rows) {
+            _listOwnerRepairs: function(_page, _rows) {
                 vc.component.myRepairDispatchInfo.conditions.page = _page;
                 vc.component.myRepairDispatchInfo.conditions.row = _rows;
                 vc.component.myRepairDispatchInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -61,7 +61,7 @@
                 //发送get请求
                 vc.http.apiGet('ownerRepair.listStaffFinishRepairs',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _myRepairDispatchInfo = JSON.parse(json);
                         vc.component.myRepairDispatchInfo.total = _myRepairDispatchInfo.total;
                         vc.component.myRepairDispatchInfo.records = _myRepairDispatchInfo.records;
@@ -71,17 +71,18 @@
                             dataCount: vc.component.myRepairDispatchInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openDealRepair: function (_ownerRepair) {
+            _openDealRepair: function(_ownerRepair) {
                 vc.component.myRepairDispatchInfo.currentRepairId = _ownerRepair.repairId;
                 vc.emit('closeOrder', 'openCloseOrderModal', {});
             },
             //查询报修类型
-            _listRepairTypes: function (_page, _rows) {
+            _listRepairTypes: function(_page, _rows) {
                 var param = {
                     params: {
                         page: _page,
@@ -92,25 +93,26 @@
                 //发送get请求
                 vc.http.apiGet('repair.listRepairSettings',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _repairTypesInfo = JSON.parse(json);
                         vc.component.myRepairDispatchInfo.repairTypes = _repairTypesInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.myRepairDispatchInfo.moreCondition) {
                     vc.component.myRepairDispatchInfo.moreCondition = false;
                 } else {
                     vc.component.myRepairDispatchInfo.moreCondition = true;
                 }
             },
-            _openRepairDetail: function (_repairPool) {
-                vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
+            _openRepairDetail: function(_repairPool) {
+                vc.jumpToPage('/#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
             },
-            _closeRepairDispatchOrder: function (_orderInfo) {
+            _closeRepairDispatchOrder: function(_orderInfo) {
                 var _repairDispatchParam = {
                     repairId: vc.component.myRepairDispatchInfo.currentRepairId,
                     context: _orderInfo.remark,
@@ -124,11 +126,10 @@
                 vc.http.post(
                     'myRepairDispatch',
                     'closeOrder',
-                    JSON.stringify(_repairDispatchParam),
-                    {
+                    JSON.stringify(_repairDispatchParam), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -137,15 +138,15 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _openDispatchRepairDetail: function (_ownerRepair) {
+            _openDispatchRepairDetail: function(_ownerRepair) {
                 vc.emit('ownerRepairDetail', 'openOwnerRepairDetailModal', _ownerRepair);
             },
-            _queryMyRepairDispatchMethod: function () {
+            _queryMyRepairDispatchMethod: function() {
                 vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             }
         }

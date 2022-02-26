@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -21,23 +21,23 @@
                 }
             }
         },
-        _initMethod: function () {
-            vc.getDict('bill', "cur_bill", function (_data) {
+        _initMethod: function() {
+            vc.getDict('bill', "cur_bill", function(_data) {
                 vc.component.billManageInfo.curBills = _data;
             });
             $that._listbills(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('billManage', 'listbill', function (_param) {
+        _initEvent: function() {
+            vc.on('billManage', 'listbill', function(_param) {
                 vc.component.billManageInfo.componentShow = 'billList';
                 vc.component._listbills(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listbills(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listbills: function (_page, _rows) {
+            _listbills: function(_page, _rows) {
                 vc.component.billManageInfo.conditions.page = _page;
                 vc.component.billManageInfo.conditions.row = _rows;
                 vc.component.billManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -49,7 +49,7 @@
                 //发送get请求
                 vc.http.apiGet('fee.listBill',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _billManageInfo = JSON.parse(json);
                         vc.component.billManageInfo.total = _billManageInfo.total;
                         vc.component.billManageInfo.records = _billManageInfo.records;
@@ -59,27 +59,28 @@
                             dataCount: vc.component.billManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openBillDetail: function (_bill) {
-                vc.jumpToPage('/admin.html#/pages/property/billOweManage?' + vc.objToGetParam(_bill));
+            _openBillDetail: function(_bill) {
+                vc.jumpToPage('/#/pages/property/billOweManage?' + vc.objToGetParam(_bill));
             },
             //查询
-            _querybillMethod: function () {
+            _querybillMethod: function() {
                 vc.component._listbills(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetbillMethod: function () {
+            _resetbillMethod: function() {
                 vc.component.billManageInfo.conditions.billId = "";
                 vc.component.billManageInfo.conditions.curBill = "";
                 vc.component.billManageInfo.conditions.billName = "";
                 // vc.component.billManageInfo.conditions.activitiesId = "";
                 vc.component._listbills(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.billManageInfo.moreCondition) {
                     vc.component.billManageInfo.moreCondition = false;
                 } else {

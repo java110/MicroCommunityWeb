@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -35,35 +35,35 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             // vc.component.initFeeConfig();
             vc.component._initDate();
             //与字典表收费状态关联
-            vc.getDict('pay_fee', "state", function (_data) {
+            vc.getDict('pay_fee', "state", function(_data) {
                 vc.component.reportPayFeeDepositInfo.states = _data;
             });
             //与字典表付费对象类型关联
-            vc.getDict('pay_fee', "payer_obj_type", function (_data) {
+            vc.getDict('pay_fee', "payer_obj_type", function(_data) {
                 vc.component.reportPayFeeDepositInfo.payerObjTypes = _data;
             });
             //与字典表退费状态关联
-            vc.getDict('pay_fee_detail', "state", function (_data) {
+            vc.getDict('pay_fee_detail', "state", function(_data) {
                 vc.component.reportPayFeeDepositInfo.detailStates = _data;
             });
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('reportPayFeeDeposit', 'chooseFloor', function (_param) {
+        _initEvent: function() {
+            vc.on('reportPayFeeDeposit', 'chooseFloor', function(_param) {
                 vc.component.reportPayFeeDepositInfo.conditions.floorId = _param.floorId;
                 vc.component.reportPayFeeDepositInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listFees(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function () {
+            _initDate: function() {
                 $(".startTime").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -83,12 +83,12 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".startTime").val();
                         vc.component.reportPayFeeDepositInfo.conditions.startTime = value;
                     });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".endTime").val();
                         vc.component.reportPayFeeDepositInfo.conditions.endTime = value;
                         let start = Date.parse(new Date($that.reportPayFeeDepositInfo.conditions.startTime))
@@ -112,11 +112,11 @@
                 }
             },
             //查询
-            _queryMethod: function () {
+            _queryMethod: function() {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //查询方法
-            _listFees: function (_page, _rows) {
+            _listFees: function(_page, _rows) {
                 vc.component.reportPayFeeDepositInfo.conditions.page = _page;
                 vc.component.reportPayFeeDepositInfo.conditions.row = _rows;
                 var param = {
@@ -126,7 +126,7 @@
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryPayFeeDeposit',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _reportPayFeeDepositInfo = JSON.parse(json);
                         vc.component.reportPayFeeDepositInfo.total = _reportPayFeeDepositInfo.total;
                         vc.component.reportPayFeeDepositInfo.records = _reportPayFeeDepositInfo.records;
@@ -140,13 +140,14 @@
                             currentPage: _page,
                             dataCount: vc.component.reportPayFeeDepositInfo.total
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //重置
-            _resetMethod: function (_page, _rows) {
+            _resetMethod: function(_page, _rows) {
                 vc.component.reportPayFeeDepositInfo.conditions.configId = '';
                 vc.component.reportPayFeeDepositInfo.conditions.feeId = '';
                 vc.component.reportPayFeeDepositInfo.conditions.payerObjType = '';
@@ -160,17 +161,17 @@
                 vc.component.reportPayFeeDepositInfo.conditions.unitId = '';
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.reportPayFeeDepositInfo.moreCondition) {
                     vc.component.reportPayFeeDepositInfo.moreCondition = false;
                 } else {
                     vc.component.reportPayFeeDepositInfo.moreCondition = true;
                 }
             },
-            _openChooseFloorMethod: function () {
+            _openChooseFloorMethod: function() {
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            loadUnits: function (_floorId) {
+            loadUnits: function(_floorId) {
                 var param = {
                     params: {
                         floorId: _floorId,
@@ -181,7 +182,7 @@
                     'room',
                     'loadUnits',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             let tmpUnits = JSON.parse(json);
@@ -190,16 +191,16 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _exportFee: function () {
+            _exportFee: function() {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeDeposit&' + vc.objToGetParam($that.reportPayFeeDepositInfo.conditions));
             },
-            _openPayFeeDetail: function(_param){
-                vc.jumpToPage('/admin.html#/pages/property/propertyFee?feeId=' + _param.feeId);
+            _openPayFeeDetail: function(_param) {
+                vc.jumpToPage('/#/pages/property/propertyFee?feeId=' + _param.feeId);
             }
         }
     });

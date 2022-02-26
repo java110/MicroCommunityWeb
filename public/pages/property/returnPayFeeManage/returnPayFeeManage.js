@@ -98,7 +98,7 @@
                 vc.emit('audit', 'openAuditModal', {});
             },
             _toReturnFeeDetail: function(_payFee) {
-                vc.jumpToPage('/admin.html#/pages/property/propertyFee?feeId=' + _payFee.feeId);
+                vc.jumpToPage('/#/pages/property/propertyFee?feeId=' + _payFee.feeId);
             }
         }
     });

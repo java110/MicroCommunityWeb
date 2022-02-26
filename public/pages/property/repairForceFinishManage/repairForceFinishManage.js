@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -26,26 +26,26 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._validateParam();
             $that._listRepairSettings(DEFAULT_PAGE, 50);
-            vc.getDict('r_repair_pool', "state", function (_data) {
+            vc.getDict('r_repair_pool', "state", function(_data) {
                 vc.component.repairForceFinishManageInfo.states = _data;
             });
             vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('repairForceFinishManage', 'listRepairPool', function (_param) {
+        _initEvent: function() {
+            vc.on('repairForceFinishManage', 'listRepairPool', function(_param) {
                 vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listRepairPools(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             //查询方法
-            _listRepairPools: function (_page, _rows) {
+            _listRepairPools: function(_page, _rows) {
                 vc.component.repairForceFinishManageInfo.conditions.page = _page;
                 vc.component.repairForceFinishManageInfo.conditions.row = _rows;
                 vc.component.repairForceFinishManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -62,7 +62,7 @@
                 vc.http.get('ownerRepairManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _repairForceFinishManageInfo = JSON.parse(json);
                         vc.component.repairForceFinishManageInfo.total = _repairForceFinishManageInfo.total;
                         vc.component.repairForceFinishManageInfo.records = _repairForceFinishManageInfo.records;
@@ -72,43 +72,44 @@
                             dataCount: vc.component.repairForceFinishManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //重置方法
-            _resetRepairPools: function (_page, _rows) {
+            _resetRepairPools: function(_page, _rows) {
                 vc.component.repairForceFinishManageInfo.conditions.repairType = '';
                 vc.component.repairForceFinishManageInfo.conditions.repairName = '';
                 vc.component.repairForceFinishManageInfo.conditions.state = '';
                 vc.component.repairForceFinishManageInfo.conditions.repairId = '';
                 vc.component.repairForceFinishManageInfo.conditions.tel = '';
-                $that._listRepairPools(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openRepairDetail: function (_repairPool) {
-                vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
+            _openRepairDetail: function(_repairPool) {
+                vc.jumpToPage('/#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
             },
             //查询
-            _queryRepairPoolMethod: function () {
+            _queryRepairPoolMethod: function() {
                 vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetRepairPoolMethod: function () {
+            _resetRepairPoolMethod: function() {
                 vc.component._resetRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.repairForceFinishManageInfo.moreCondition) {
                     vc.component.repairForceFinishManageInfo.moreCondition = false;
                 } else {
                     vc.component.repairForceFinishManageInfo.moreCondition = true;
                 }
             },
-            _openForceFinishRepairModel: function (_repair) {
+            _openForceFinishRepairModel: function(_repair) {
                 vc.emit('forceFinishRepair', 'openDispatchRepairModal', _repair);
             },
 
-            _listRepairSettings: function (_page, _rows) {
+            _listRepairSettings: function(_page, _rows) {
                 var param = {
                     params: {
                         page: _page,
@@ -119,10 +120,11 @@
                 //发送get请求
                 vc.http.apiGet('repair.listRepairSettings',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _repairSettingManageInfo = JSON.parse(json);
                         vc.component.repairForceFinishManageInfo.repairSettings = _repairSettingManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

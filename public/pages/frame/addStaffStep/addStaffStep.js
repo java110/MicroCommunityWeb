@@ -105,7 +105,7 @@
 
                             vc.toast('处理成功');
                             //关闭model
-                            vc.jumpToPage("/admin.html#/pages/frame/staff");
+                            vc.jumpToPage("/#/pages/frame/staff");
                             return;
                         }
                         vc.toast(json);

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,20 +20,20 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listAuditUsers(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
-            vc.on('auditUserManage', 'listAuditUser', function (_param) {
+            vc.on('auditUserManage', 'listAuditUser', function(_param) {
                 vc.component._listAuditUsers(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listAuditUsers(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listAuditUsers: function (_page, _rows) {
+            _listAuditUsers: function(_page, _rows) {
 
                 vc.component.auditUserManageInfo.conditions.page = _page;
                 vc.component.auditUserManageInfo.conditions.row = _rows;
@@ -45,7 +45,7 @@
                 vc.http.get('auditUserManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _auditUserManageInfo = JSON.parse(json);
                         vc.component.auditUserManageInfo.total = _auditUserManageInfo.total;
                         vc.component.auditUserManageInfo.records = _auditUserManageInfo.records;
@@ -55,22 +55,23 @@
                             dataCount: vc.component.auditUserManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddAuditUserModal: function () {
-                vc.jumpToPage("/admin.html#/pages/common/addAuditUserStep")
+            _openAddAuditUserModal: function() {
+                vc.jumpToPage("/#/pages/common/addAuditUserStep")
             },
-            _openDeleteAuditUserModel: function (_auditUser) {
+            _openDeleteAuditUserModel: function(_auditUser) {
                 vc.emit('deleteAuditUser', 'openDeleteAuditUserModal', _auditUser);
             },
-            _queryAuditUserMethod: function () {
+            _queryAuditUserMethod: function() {
                 vc.component._listAuditUsers(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.auditUserManageInfo.moreCondition) {
                     vc.component.auditUserManageInfo.moreCondition = false;
                 } else {

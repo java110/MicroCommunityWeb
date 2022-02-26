@@ -1,7 +1,7 @@
 /**
     入驻小区
 **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,27 +20,27 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('newOaWorkflowUndo', 'witch', function (_value) {
+        _initEvent: function() {
+            vc.on('newOaWorkflowUndo', 'witch', function(_value) {
                 $that.newOaWorkflowUndoInfo.conditions.flowId = _value.flowId;
-                vc.initDateTime('undoStartTime', function (_value) {
+                vc.initDateTime('undoStartTime', function(_value) {
                     $that.newOaWorkflowUndoInfo.conditions.startTime = _value;
                 });
-                vc.initDateTime('undoEndTime', function (_value) {
+                vc.initDateTime('undoEndTime', function(_value) {
                     $that.newOaWorkflowUndoInfo.conditions.endTime = _value;
                 });
                 $that._listOaWorkFlowUndoForm();
                 vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
             })
-            vc.on('newOaWorkflowUndo', 'paginationPlus', 'page_event', function (_currentPage) {
+            vc.on('newOaWorkflowUndo', 'paginationPlus', 'page_event', function(_currentPage) {
                 vc.component._listOaWorkflowUndos(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listOaWorkFlowUndoForm: function () {
+            _listOaWorkFlowUndoForm: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -51,15 +51,16 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowForm',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _newOaWorkflowFormInfo = JSON.parse(json);
                         $that.newOaWorkflowUndoInfo.formJson = JSON.parse(_newOaWorkflowFormInfo.data[0].formJson).components;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listOaWorkflowUndos: function (_page, _rows) {
+            _listOaWorkflowUndos: function(_page, _rows) {
                 vc.component.newOaWorkflowUndoInfo.conditions.page = _page;
                 vc.component.newOaWorkflowUndoInfo.conditions.row = _rows;
                 var param = {
@@ -69,7 +70,7 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowUserTaskFormData',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _newOaWorkflowUndoInfo = JSON.parse(json);
                         vc.component.newOaWorkflowUndoInfo.total = _newOaWorkflowUndoInfo.total;
                         vc.component.newOaWorkflowUndoInfo.records = _newOaWorkflowUndoInfo.records;
@@ -79,27 +80,28 @@
                             dataCount: vc.component.newOaWorkflowUndoInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openNewOaWorkflowUndoDetail: function (_undo) {
-                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
+            _openNewOaWorkflowUndoDetail: function(_undo) {
+                vc.jumpToPage("/#/pages/property/newOaWorkflowDetail?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
             },
-            _openAuditNewOaWorkflowUndoDetail: function (_undo) {
-                vc.jumpToPage("/admin.html#/pages/property/newOaWorkflowDetail?id=" + _undo.id
-                    + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId
-                    + "&action=Audit"
-                    + "&taskId=" + _undo.taskId);
+            _openAuditNewOaWorkflowUndoDetail: function(_undo) {
+                vc.jumpToPage("/#/pages/property/newOaWorkflowDetail?id=" + _undo.id +
+                    "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId +
+                    "&action=Audit" +
+                    "&taskId=" + _undo.taskId);
             },
-            _openEditNewOaWorkflow: function (_undo) {
+            _openEditNewOaWorkflow: function(_undo) {
                 vc.jumpToPage("/form.html#/pages/property/newOaWorkflowFormEdit?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
             },
-            _queryOaWorkflowUndoMethod: function () {
+            _queryOaWorkflowUndoMethod: function() {
                 vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _getNewOaWorkflowUndoState: function (_undo) {
+            _getNewOaWorkflowUndoState: function(_undo) {
                 /**
                  * 1001 申请 1002 待审核 1003 退回 1004 委托 1005 办结
                  */
@@ -122,10 +124,10 @@
 
                 return "未知"
             },
-            _isMe:function(undo){
+            _isMe: function(undo) {
 
                 let userId = $that.newOaWorkflowUndoInfo.userId;
-                if(undo.create_user_id == userId){
+                if (undo.create_user_id == userId) {
                     return true;
                 }
 

@@ -105,7 +105,7 @@
                 );
             },
             _detailFee: function(_fee) {
-                vc.jumpToPage('/admin.html#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
+                vc.jumpToPage('/#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             },
             _openAuditFeeModal: function(_payFee) { // 打开 审核框
                 $that.payFeeAuditManageInfo.curPayFee = _payFee;

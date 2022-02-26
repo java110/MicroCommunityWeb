@@ -1,7 +1,7 @@
 /**
  采购组件
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -39,33 +39,33 @@
                 resourceStoreSpecifications: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initDate();
             vc.component._queryStorehouses();
             vc.component._listPurchaseApplyDetails(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('purchase_apply', "state", function (_data) {
+            vc.getDict('purchase_apply', "state", function(_data) {
                 vc.component.purchaseApplyDetailManageInfo.states = _data;
             });
-            vc.getDict('purchase_apply', "warehousing_way", function (_data) {
+            vc.getDict('purchase_apply', "warehousing_way", function(_data) {
                 vc.component.purchaseApplyDetailManageInfo.warehousingWays = _data;
             });
-            vc.getDict('purchase_apply', "res_order_type", function (_data) {
+            vc.getDict('purchase_apply', "res_order_type", function(_data) {
                 vc.component.purchaseApplyDetailManageInfo.resOrderTypes = _data;
             });
             $that._listResourceStoreTypes();
             $that._listResourceStoreSpecifications();
         },
-        _initEvent: function () {
+        _initEvent: function() {
             $that._listResourceSupplier();
-            vc.on('purchaseApplyDetailManage', 'listPurchaseApplyDetail', function (_param) {
+            vc.on('purchaseApplyDetailManage', 'listPurchaseApplyDetail', function(_param) {
                 vc.component._listPurchaseApplyDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listPurchaseApplyDetails(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function () {
+            _initDate: function() {
                 $(".startTime").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -85,12 +85,12 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".startTime").val();
                         vc.component.purchaseApplyDetailManageInfo.conditions.startTime = value;
                     });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".endTime").val();
                         vc.component.purchaseApplyDetailManageInfo.conditions.endTime = value;
                         let start = Date.parse(new Date($that.purchaseApplyDetailManageInfo.conditions.startTime))
@@ -114,7 +114,7 @@
                 }
             },
             //查询
-            _listPurchaseApplyDetails: function (_page, _rows) {
+            _listPurchaseApplyDetails: function(_page, _rows) {
                 vc.component.purchaseApplyDetailManageInfo.conditions.page = _page;
                 vc.component.purchaseApplyDetailManageInfo.conditions.row = _rows;
                 var param = {
@@ -128,7 +128,7 @@
                 vc.http.get('purchaseApplyDetailManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _purchaseApplyDetailManageInfo = JSON.parse(json);
                         vc.component.purchaseApplyDetailManageInfo.total = _purchaseApplyDetailManageInfo.total;
                         vc.component.purchaseApplyDetailManageInfo.records = _purchaseApplyDetailManageInfo.records;
@@ -143,13 +143,14 @@
                             dataCount: vc.component.purchaseApplyDetailManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询供应商
-            _listResourceSupplier: function () {
+            _listResourceSupplier: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -160,23 +161,24 @@
                 //发送get请求
                 vc.http.apiGet('resourceSupplier.listResourceSuppliers',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceSupplierManageInfo = JSON.parse(json);
                         vc.component.purchaseApplyDetailManageInfo.resourceSuppliers = _resourceSupplierManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openDetailPurchaseApplyDetailModel: function (_purchaseApplyDetail) {
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApplyDetail.applyOrderId + "&resOrderType=10000");
+            _openDetailPurchaseApplyDetailModel: function(_purchaseApplyDetail) {
+                vc.jumpToPage("/#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApplyDetail.applyOrderId + "&resOrderType=10000");
             },
             //查询
-            _queryPurchaseApplyDetailMethod: function () {
+            _queryPurchaseApplyDetailMethod: function() {
                 vc.component._listPurchaseApplyDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetInspectionPlanMethod: function () {
+            _resetInspectionPlanMethod: function() {
                 vc.component.purchaseApplyDetailManageInfo.conditions.applyOrderId = "";
                 vc.component.purchaseApplyDetailManageInfo.conditions.state = "";
                 vc.component.purchaseApplyDetailManageInfo.conditions.userName = "";
@@ -196,14 +198,14 @@
                 vc.component.purchaseApplyDetailManageInfo.resourceStoreSpecifications = [];
                 vc.component._listPurchaseApplyDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.purchaseApplyDetailManageInfo.moreCondition) {
                     vc.component.purchaseApplyDetailManageInfo.moreCondition = false;
                 } else {
                     vc.component.purchaseApplyDetailManageInfo.moreCondition = true;
                 }
             },
-            _listResourceStoreTypes: function () {
+            _listResourceStoreTypes: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -215,15 +217,16 @@
                 vc.http.get('resourceStoreTypeManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.purchaseApplyDetailManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSonTypes: function () {
+            _listResourceStoreSonTypes: function() {
                 vc.component.purchaseApplyDetailManageInfo.conditions.rstId = '';
                 vc.component.purchaseApplyDetailManageInfo.resourceStoreSonTypes = [];
                 if (vc.component.purchaseApplyDetailManageInfo.conditions.parentRstId == '') {
@@ -241,15 +244,16 @@
                 vc.http.get('resourceStoreTypeManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.purchaseApplyDetailManageInfo.resourceStoreSonTypes = _resourceStoreTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSpecifications: function () {
+            _listResourceStoreSpecifications: function() {
                 vc.component.purchaseApplyDetailManageInfo.resourceStoreSpecifications = [];
                 vc.component.purchaseApplyDetailManageInfo.conditions.rssId = '';
                 var param = {
@@ -263,16 +267,17 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _purchaseApplyDetailManageInfo = JSON.parse(json);
                         vc.component.purchaseApplyDetailManageInfo.resourceStoreSpecifications = _purchaseApplyDetailManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询仓库
-            _queryStorehouses: function () {
+            _queryStorehouses: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -283,18 +288,19 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _storehouseManageInfo = JSON.parse(json);
                         $that.purchaseApplyDetailManageInfo.storehouses = _storehouseManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _queryInspectionPlanMethod: function () {
+            _queryInspectionPlanMethod: function() {
                 vc.component._listPurchaseApplyDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _exportExcel: function () {
+            _exportExcel: function() {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=purchaseApplyDetail&' + vc.objToGetParam($that.purchaseApplyDetailManageInfo.conditions));
             }
         }

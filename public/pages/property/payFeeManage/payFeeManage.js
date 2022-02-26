@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -29,24 +29,24 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initDate();
             vc.component._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._listFeeType();
-            vc.getDict('pay_fee', "payer_obj_type", function (_data) {
+            vc.getDict('pay_fee', "payer_obj_type", function(_data) {
                 vc.component.payFeeManageInfo.payObjTypes = _data;
             });
-            vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
+            vc.getDict('pay_fee_detail', "prime_rate", function(_data) {
                 vc.component.payFeeManageInfo.primeRates = _data;
             })
         },
-        _initEvent: function () {
-            vc.on('pagination', 'page_event', function (_currentPage) {
+        _initEvent: function() {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listpayFees(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function () {
+            _initDate: function() {
                 $(".start_time").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -66,12 +66,12 @@
                     todayBtn: true
                 });
                 $('.start_time').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".start_time").val();
                         vc.component.payFeeManageInfo.conditions.startTime = value;
                     });
                 $('.end_time').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".end_time").val();
                         vc.component.payFeeManageInfo.conditions.endTime = value;
                     });
@@ -88,7 +88,7 @@
                     e.currentTarget.blur();
                 }
             },
-            _listpayFees: function (_page, _rows) {
+            _listpayFees: function(_page, _rows) {
                 vc.component.payFeeManageInfo.conditions.page = _page;
                 vc.component.payFeeManageInfo.conditions.row = _rows;
                 var param = {
@@ -98,7 +98,7 @@
                 vc.http.get('payFeeManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _payFeeManageInfo = JSON.parse(json);
                         vc.component.payFeeManageInfo.total = _payFeeManageInfo.total;
                         vc.component.payFeeManageInfo.records = parseInt(_payFeeManageInfo.total / _rows + 1);
@@ -145,13 +145,14 @@
                             currentPage: _page,
                             // dataCount: vc.component.payFeeManageInfo.total
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //重置方法
-            _resetListPayFees: function (_page, _rows) {
+            _resetListPayFees: function(_page, _rows) {
                 vc.component.payFeeManageInfo.conditions.payObjType = "";
                 vc.component.payFeeManageInfo.conditions.startTime = "";
                 vc.component.payFeeManageInfo.conditions.endTime = "";
@@ -164,7 +165,7 @@
                 vc.http.get('payFeeManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _payFeeManageInfo = JSON.parse(json);
                         vc.component.payFeeManageInfo.total = _payFeeManageInfo.total;
                         vc.component.payFeeManageInfo.records = parseInt(_payFeeManageInfo.total / _rows + 1);
@@ -210,20 +211,21 @@
                             currentPage: _page,
                             // dataCount: vc.component.payFeeManageInfo.total
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _queryPayFeeMethod: function () {
+            _queryPayFeeMethod: function() {
                 vc.component._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetPayFeeMethod: function () {
+            _resetPayFeeMethod: function() {
                 vc.component._resetListPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.payFeeManageInfo.moreCondition) {
                     vc.component.payFeeManageInfo.moreCondition = false;
                 } else {
@@ -231,10 +233,10 @@
                 }
             },
             //导出
-            _exportExcel: function () {
+            _exportExcel: function() {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeManage&' + vc.objToGetParam($that.payFeeManageInfo.conditions));
             },
-            _listFeeType: function () {
+            _listFeeType: function() {
                 var param = {
                     params: {
                         "hc": "cc@cc"
@@ -244,16 +246,17 @@
                 vc.http.get('payFeeManage',
                     'listFeeType',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _feeTypesInfo = JSON.parse(json);
                         vc.component.payFeeManageInfo.payFeeTypes = _feeTypesInfo;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _detailFee: function (_fee) {
-                vc.jumpToPage('/admin.html#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
+            _detailFee: function(_fee) {
+                vc.jumpToPage('/#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             }
         }
     });

@@ -1,7 +1,7 @@
 /**
  审核订单
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -17,19 +17,19 @@
                     userName: '',
                     auditLink: '',
                 },
-                orderInfo:'',
+                orderInfo: '',
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listAuditOrderHistorys(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('pagination', 'page_event', function (_currentPage) {
+        _initEvent: function() {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listAuditOrderHistorys(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listAuditOrderHistorys: function (_page, _rows) {
+            _listAuditOrderHistorys: function(_page, _rows) {
 
                 vc.component.auditOrderHistorysInfo.conditions.page = _page;
                 vc.component.auditOrderHistorysInfo.conditions.row = _rows;
@@ -40,7 +40,7 @@
                 //发送get请求
                 vc.http.apiGet('auditUser.listAuditHistoryOrders',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _auditOrderHistorysInfo = JSON.parse(json);
                         vc.component.auditOrderHistorysInfo.total = _auditOrderHistorysInfo.total;
                         vc.component.auditOrderHistorysInfo.records = _auditOrderHistorysInfo.records;
@@ -50,13 +50,14 @@
                             dataCount: vc.component.auditOrderHistorysInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openDetailPurchaseApplyModel:function(_purchaseApply){
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId="+_purchaseApply.applyOrderId+"&resOrderType="+_purchaseApply.resOrderType);
+            _openDetailPurchaseApplyModel: function(_purchaseApply) {
+                vc.jumpToPage("/#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=" + _purchaseApply.resOrderType);
             }
         }
     });

@@ -8,7 +8,7 @@
         el: '#nav',
         data: {
             nav: {
-                moreNoticeUrl: '/admin.html#/pages/common/noticeManage',
+                moreNoticeUrl: '/#/pages/common/noticeManage',
                 notices: [],
                 total: 0,
                 _currentCommunity: '',
@@ -158,7 +158,7 @@
             },
             _noticeDetail: function(_msg) {
                 //console.log(_notice.noticeId);
-                //vc.jumpToPage("/admin.html#/noticeDetail?noticeId="+_notice.noticeId);
+                //vc.jumpToPage("/#/noticeDetail?noticeId="+_notice.noticeId);
                 //标记为消息已读
                 vc.http.post('nav',
                     'readMsg',

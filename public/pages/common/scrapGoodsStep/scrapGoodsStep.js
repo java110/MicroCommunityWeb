@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             scrapGoodsStepInfo: {
@@ -19,17 +19,17 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initStep();
         },
-        _initEvent: function () {
-            vc.on("scrapGoodsStep", "notify", function (goodsInfo) {
+        _initEvent: function() {
+            vc.on("scrapGoodsStep", "notify", function(goodsInfo) {
                 vc.component.scrapGoodsStepInfo.conditions.resourceStores = goodsInfo;
                 vc.component.scrapGoodsStepInfo.infos[0] = goodsInfo;
             });
         },
         methods: {
-            _initStep: function () {
+            _initStep: function() {
                 vc.component.scrapGoodsStepInfo.$step = $("#step");
                 vc.component.scrapGoodsStepInfo.$step.step({
                     index: 0,
@@ -38,12 +38,12 @@
                 });
                 vc.component.scrapGoodsStepInfo.index = vc.component.scrapGoodsStepInfo.$step.getIndex();
             },
-            _prevStep: function () {
+            _prevStep: function() {
                 vc.component.scrapGoodsStepInfo.$step.prevStep();
                 vc.component.scrapGoodsStepInfo.index = vc.component.scrapGoodsStepInfo.$step.getIndex();
                 vc.emit('viewResourceMyGoodsInfo', 'onIndex', vc.component.scrapGoodsStepInfo.index);
             },
-            _finishStep: function () {
+            _finishStep: function() {
                 vc.emit('viewResourceMyGoodsInfo', 'getResourceStore', null);
                 let _resourceStores = vc.component.scrapGoodsStepInfo.conditions.resourceStores;
                 if (_resourceStores.length <= 0) {
@@ -82,20 +82,19 @@
                 }
                 vc.http.post('addAllocationUserStorehouse',
                     'save',
-                    JSON.stringify(vc.component.scrapGoodsStepInfo.conditions),
-                    {
+                    JSON.stringify(vc.component.scrapGoodsStepInfo.conditions), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            vc.jumpToPage("/admin.html#/pages/common/myResourceStoreManage");
+                            vc.jumpToPage("/#/pages/common/myResourceStoreManage");
                             return;
                         }
                         vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }

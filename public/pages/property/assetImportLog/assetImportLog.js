@@ -1,7 +1,7 @@
 /**
     入驻小区
 **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -14,20 +14,20 @@
                 carNum: '',
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listAssetImportLogs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
-            vc.on('assetImportLog', 'listAssetImportLog', function (_param) {
+            vc.on('assetImportLog', 'listAssetImportLog', function(_param) {
                 vc.component._listAssetImportLogs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listAssetImportLogs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listAssetImportLogs: function (_page, _rows) {
+            _listAssetImportLogs: function(_page, _rows) {
                 var param = {
                     params: {
                         page: _page,
@@ -38,7 +38,7 @@
                 //发送get请求
                 vc.http.apiGet('/assetImportLog/queryAssetImportLog',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _assetImportLogInfo = JSON.parse(json);
                         vc.component.assetImportLogInfo.total = _assetImportLogInfo.total;
                         vc.component.assetImportLogInfo.records = _assetImportLogInfo.records;
@@ -48,16 +48,17 @@
                             dataCount: vc.component.assetImportLogInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _goBack:function(){
+            _goBack: function() {
                 vc.goBack();
             },
-            _openDetail:function(_log){
-                vc.jumpToPage('/admin.html#/pages/property/assetImportLogDetail?logId='+_log.logId);
+            _openDetail: function(_log) {
+                vc.jumpToPage('/#/pages/property/assetImportLogDetail?logId=' + _log.logId);
             }
         }
     });

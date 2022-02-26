@@ -1,7 +1,7 @@
 /**
  采购组件
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,22 +22,22 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('purchase_apply', "state", function (_data) {
+            vc.getDict('purchase_apply', "state", function(_data) {
                 vc.component.purchaseApplyManageInfo.states = _data;
             });
         },
-        _initEvent: function () {
-            vc.on('purchaseApplyManage', 'listPurchaseApply', function (_param) {
+        _initEvent: function() {
+            vc.on('purchaseApplyManage', 'listPurchaseApply', function(_param) {
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listPurchaseApplys(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listPurchaseApplys: function (_page, _rows) {
+            _listPurchaseApplys: function(_page, _rows) {
                 vc.component.purchaseApplyManageInfo.conditions.page = _page;
                 vc.component.purchaseApplyManageInfo.conditions.row = _rows;
                 var param = {
@@ -50,7 +50,7 @@
                 vc.http.get('purchaseApplyManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _purchaseApplyManageInfo = JSON.parse(json);
                         vc.component.purchaseApplyManageInfo.total = _purchaseApplyManageInfo.total;
                         vc.component.purchaseApplyManageInfo.records = _purchaseApplyManageInfo.records;
@@ -60,46 +60,47 @@
                             dataCount: vc.component.purchaseApplyManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //采购申请
-            _openAddPurchaseApplyModal: function () {
+            _openAddPurchaseApplyModal: function() {
                 vc.emit('viewResourceStoreInfo2', 'setResourcesOut', "10000");
-                vc.jumpToPage("/admin.html#/pages/common/addPurchaseApplyStep?resOrderType=" + this.purchaseApplyManageInfo.conditions.resOrderType);
+                vc.jumpToPage("/#/pages/common/addPurchaseApplyStep?resOrderType=" + this.purchaseApplyManageInfo.conditions.resOrderType);
             },
             //紧急采购
-            _openUrgentPurchaseApplyModal: function () {
+            _openUrgentPurchaseApplyModal: function() {
                 vc.emit('viewResourceStoreInfo4', 'setResourcesOut', "10000");
-                vc.jumpToPage("/admin.html#/pages/common/urgentPurchaseApplyStep?resOrderType=" + this.purchaseApplyManageInfo.conditions.resOrderType);
+                vc.jumpToPage("/#/pages/common/urgentPurchaseApplyStep?resOrderType=" + this.purchaseApplyManageInfo.conditions.resOrderType);
             },
-            _openDetailPurchaseApplyModel: function (_purchaseApply) {
-                vc.jumpToPage("/admin.html#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=10000");
+            _openDetailPurchaseApplyModel: function(_purchaseApply) {
+                vc.jumpToPage("/#/pages/common/purchaseApplyDetail?applyOrderId=" + _purchaseApply.applyOrderId + "&resOrderType=10000");
             },
-            _openDeletePurchaseApplyModel: function (_purchaseApply) {
+            _openDeletePurchaseApplyModel: function(_purchaseApply) {
                 vc.emit('deletePurchaseApply', 'openDeletePurchaseApplyModal', _purchaseApply);
             },
             //查询
-            _queryPurchaseApplyMethod: function () {
+            _queryPurchaseApplyMethod: function() {
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetInspectionPlanMethod: function () {
+            _resetInspectionPlanMethod: function() {
                 vc.component.purchaseApplyManageInfo.conditions.applyOrderId = "";
                 vc.component.purchaseApplyManageInfo.conditions.state = "";
                 vc.component.purchaseApplyManageInfo.conditions.userName = "";
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.purchaseApplyManageInfo.moreCondition) {
                     vc.component.purchaseApplyManageInfo.moreCondition = false;
                 } else {
                     vc.component.purchaseApplyManageInfo.moreCondition = true;
                 }
             },
-            _openRunWorkflowImage: function (_purchaseApply) {
+            _openRunWorkflowImage: function(_purchaseApply) {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -109,7 +110,7 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listRunWorkflowImage',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _workflowManageInfo = JSON.parse(json);
                         if (_workflowManageInfo.code != '0') {
                             vc.toast(_workflowManageInfo.msg);
@@ -118,16 +119,17 @@
                         vc.emit('viewImage', 'showImage', {
                             url: 'data:image/png;base64,' + _workflowManageInfo.data
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _queryInspectionPlanMethod: function () {
+            _queryInspectionPlanMethod: function() {
                 vc.component._listPurchaseApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //导出
-            _exportExcel: function () {
+            _exportExcel: function() {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=purchaseApplyManage&' + vc.objToGetParam($that.purchaseApplyManageInfo.conditions));
             }
         }

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             addRoomBindingInfo: {
@@ -10,18 +10,18 @@
                 infos: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initStep();
         },
-        _initEvent: function () {
-            vc.on("addRoomBinding", "notify", function (_info) {
+        _initEvent: function() {
+            vc.on("addRoomBinding", "notify", function(_info) {
                 _info.communityId = vc.getCurrentCommunity().communityId;
                 vc.component.addRoomBindingInfo.infos[vc.component.addRoomBindingInfo.index] = _info;
             });
 
         },
         methods: {
-            _initStep: function () {
+            _initStep: function() {
                 vc.component.addRoomBindingInfo.$step = $("#step");
                 vc.component.addRoomBindingInfo.$step.step({
                     index: 0,
@@ -30,7 +30,7 @@
                 });
                 vc.component.addRoomBindingInfo.index = vc.component.addRoomBindingInfo.$step.getIndex();
             },
-            _prevStep: function () {
+            _prevStep: function() {
                 vc.component.addRoomBindingInfo.$step.prevStep();
                 vc.component.addRoomBindingInfo.index = vc.component.addRoomBindingInfo.$step.getIndex();
 
@@ -39,7 +39,7 @@
                 vc.emit('addRoomView', 'onIndex', vc.component.addRoomBindingInfo.index);
 
             },
-            _nextStep: function () {
+            _nextStep: function() {
                 var _currentData = vc.component.addRoomBindingInfo.infos[vc.component.addRoomBindingInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -53,7 +53,7 @@
                 vc.emit('addRoomView', 'onIndex', vc.component.addRoomBindingInfo.index);
 
             },
-            _finishStep: function () {
+            _finishStep: function() {
                 var _currentData = vc.component.addRoomBindingInfo.infos[vc.component.addRoomBindingInfo.index];
                 if ('' == vc.component.addRoomViewInfo.unitPrice || null == vc.component.addRoomViewInfo.unitPrice) {
                     vc.component.addRoomViewInfo.unitPrice = '0';
@@ -62,7 +62,7 @@
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
-                if (parseInt(vc.component.viewUnitInfo.layerCount) < parseInt(vc.component.addRoomViewInfo.layer)){
+                if (parseInt(vc.component.viewUnitInfo.layerCount) < parseInt(vc.component.addRoomViewInfo.layer)) {
                     vc.toast('楼层不可超过' + vc.component.viewUnitInfo.layerCount);
                     return;
                 }
@@ -74,30 +74,29 @@
                 vc.http.post(
                     'addRoomBindingBinding',
                     'binding',
-                    JSON.stringify(param),
-                    {
+                    JSON.stringify(param), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status == 200) {
 
                             vc.toast('处理成功');
                             //关闭model
                             var _tmpResJson = JSON.parse(json);
                             /* _tmpResJson[floorName] = vc.component._getFloorName();*/
-                            vc.jumpToPage("/admin.html#/pages/property/room");
+                            vc.jumpToPage("/#/pages/property/room");
                             return;
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
                     });
             },
 
-            _getFloorName: function () {
+            _getFloorName: function() {
                 var _tmpInfos = vc.component.addRoomBindingInfo.infos;
 
                 for (var _tmpIndex = 0; _tmpIndex < _tmpInfos.length; _tmpIndex++) {

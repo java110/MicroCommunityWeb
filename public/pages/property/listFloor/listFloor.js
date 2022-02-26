@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -13,23 +13,23 @@
                     floorNum: '',
                     floorName: ''
                 },
-                currentPage:DEFAULT_PAGE
+                currentPage: DEFAULT_PAGE
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listFloorData(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('listFloor', 'listFloorData', function () {
+        _initEvent: function() {
+            vc.on('listFloor', 'listFloorData', function() {
                 vc.component._listFloorData($that.listFloorInfo.currentPage, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 $that.listFloorInfo.currentPage = _currentPage;
                 vc.component._listFloorData(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listFloorData: function (_page, _rows) {
+            _listFloorData: function(_page, _rows) {
 
                 vc.component.listFloorInfo.conditions.page = _page;
                 vc.component.listFloorInfo.conditions.row = _rows;
@@ -42,7 +42,7 @@
                 vc.http.get('listFloor',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listFloorData = JSON.parse(json);
 
                         vc.component.listFloorInfo.total = listFloorData.total;
@@ -54,29 +54,30 @@
                             dataCount: vc.component.listFloorInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
 
             },
-            _openAddFloorModal: function () { //打开添加框
+            _openAddFloorModal: function() { //打开添加框
                 vc.emit('addFloor', 'openAddFloorModal', {});
             },
             /*_openBatchAddFloorModal:function(){ //打开批量添加框
                vc.emit('batchAddFloor','openBatchAddFloorModal',{});
             },*/
-            _openDelFloorModel: function (_floor) { // 打开删除对话框
+            _openDelFloorModel: function(_floor) { // 打开删除对话框
                 vc.emit('deleteFloor', 'openFloorModel', _floor);
             },
-            _openEditFloorModel: function (_floor) {
+            _openEditFloorModel: function(_floor) {
                 vc.emit('editFloor', 'openEditFloorModal', _floor);
             },
-            _queryFloorMethod: function () {
+            _queryFloorMethod: function() {
                 vc.component._listFloorData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openAddUnit: function (_floor) {
-                vc.jumpToPage("/admin.html#/pages/property/unit?floorId=" + _floor.floorId + "&floorName=" + _floor.floorName);
+            _openAddUnit: function(_floor) {
+                vc.jumpToPage("/#/pages/property/unit?floorId=" + _floor.floorId + "&floorName=" + _floor.floorName);
             }
         }
     })

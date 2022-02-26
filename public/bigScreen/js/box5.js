@@ -1,4 +1,4 @@
-(function () {
+(function() {
 
     function _loadAssetInspection() {
 
@@ -10,7 +10,7 @@
         vc.http.apiGet(
             '/bigScreen/getAssetInspection',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -19,7 +19,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -41,7 +41,7 @@
     }
 
     function initPrePayment(_dataArr) {
-        
+
         let _li = "<li onclick='_toPrePayment()' style='cursor:pointer;'>预交费提醒:</li>";
         for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
             _li += "<li>" + (_inIndex + 1) + "、" + _dataArr[_inIndex].feeName + "  " + _dataArr[_inIndex].objCount + "户</li>";
@@ -50,7 +50,7 @@
                 break;
             }
         }
-        _loadOwePaymentCount( _li);
+        _loadOwePaymentCount(_li);
     }
 
 
@@ -64,7 +64,7 @@
         vc.http.apiGet(
             '/reportFeeMonthStatistics/queryPrePaymentCount',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -73,7 +73,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -81,7 +81,7 @@
             });
     }
 
-    function initOwePayment(_dataArr,  _li) {    
+    function initOwePayment(_dataArr, _li) {
         _li += "<li onclick='_toOwePayment()' style='cursor:pointer;'>欠费提醒:</li>";
         for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
             _li += "<li>" + (_inIndex + 1) + "、" + _dataArr[_inIndex].feeName + "  " + _dataArr[_inIndex].objCount + "户</li>";
@@ -103,7 +103,7 @@
         vc.http.apiGet(
             '/reportFeeMonthStatistics/queryOwePaymentCount',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -112,7 +112,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -120,7 +120,7 @@
             });
     }
 
-    function initDeadlinePayment(_dataArr,  _li) {
+    function initDeadlinePayment(_dataArr, _li) {
         let _todayInpection = document.getElementById("todayPreFee");
         _li += "<li onclick='_toDeadlinePayment()' style='cursor:pointer;'>到期提醒:</li>";
         for (let _inIndex = 0; _inIndex < _dataArr.length; _inIndex++) {
@@ -143,7 +143,7 @@
         vc.http.apiGet(
             '/reportFeeMonthStatistics/queryDeadlineCount',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -152,7 +152,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -163,20 +163,19 @@
 
 
 
-    window._toPrePayment = function () {
-        vc.jumpToPage('/admin.html#/pages/property/reportPrePaymentFee');
+    window._toPrePayment = function() {
+        vc.jumpToPage('/#/pages/property/reportPrePaymentFee');
     }
 
-    window._toOwePayment = function () {
-        vc.jumpToPage('/admin.html#/pages/property/reportOweFeeDetail');
+    window._toOwePayment = function() {
+        vc.jumpToPage('/#/pages/property/reportOweFeeDetail');
     }
-    window._toDeadlinePayment = function () {
-        vc.jumpToPage('/admin.html#/pages/property/reportDeadlineFee');
+    window._toDeadlinePayment = function() {
+        vc.jumpToPage('/#/pages/property/reportDeadlineFee');
     }
-    
+
 
     _loadAssetInspection();
 
     _loadPrePaymentCount();
 })()
-

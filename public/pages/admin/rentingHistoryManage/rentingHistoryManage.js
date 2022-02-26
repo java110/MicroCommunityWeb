@@ -1,7 +1,7 @@
 /**
     入驻小区
 **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,21 +20,21 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
-            vc.on('rentingPoolManage', 'listRentingPool', function (_param) {
+            vc.on('rentingPoolManage', 'listRentingPool', function(_param) {
                 vc.component._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-        
-            vc.on('pagination', 'page_event', function (_currentPage) {
+
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listRentingPools(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listRentingPools: function (_page, _rows) {
+            _listRentingPools: function(_page, _rows) {
 
                 vc.component.rentingPoolManageInfo.conditions.page = _page;
                 vc.component.rentingPoolManageInfo.conditions.row = _rows;
@@ -46,7 +46,7 @@
                 //发送get请求
                 vc.http.apiGet('/renting/queryRentingPool',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _rentingPoolManageInfo = JSON.parse(json);
                         vc.component.rentingPoolManageInfo.total = _rentingPoolManageInfo.total;
                         vc.component.rentingPoolManageInfo.records = _rentingPoolManageInfo.records;
@@ -56,24 +56,25 @@
                             dataCount: vc.component.rentingPoolManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _queryRentingPoolMethod: function () {
+            _queryRentingPoolMethod: function() {
                 vc.component._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.rentingPoolManageInfo.moreCondition) {
                     vc.component.rentingPoolManageInfo.moreCondition = false;
                 } else {
                     vc.component.rentingPoolManageInfo.moreCondition = true;
                 }
             },
-            _toRentingHistory:function(rentingPool){
-                vc.jumpToPage('/admin.html#/pages/admin/rentingDetail?rentingId='+rentingPool.rentingId);
+            _toRentingHistory: function(rentingPool) {
+                vc.jumpToPage('/#/pages/admin/rentingDetail?rentingId=' + rentingPool.rentingId);
             }
         }
     });

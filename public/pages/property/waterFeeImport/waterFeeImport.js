@@ -1,7 +1,7 @@
 /**
  权限组
  **/
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         data: {
@@ -12,43 +12,39 @@
             }
         },
 
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
         },
         methods: {
-            assetImportValidate: function () {
+            assetImportValidate: function() {
                 return vc.validate.validate({
                     assetImportInfo: vc.component.assetImportInfo
                 }, {
 
-                    'assetImportInfo.excelTemplate': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "文件不能为空"
-                        }
-                    ],
-                    'assetImportInfo.communityId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "还未入驻小区，请先入驻小区"
-                        }
-                    ]
+                    'assetImportInfo.excelTemplate': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "文件不能为空"
+                    }],
+                    'assetImportInfo.communityId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "还未入驻小区，请先入驻小区"
+                    }]
                 });
             },
-            _openDownloadHcExcelTemplate: function () {
+            _openDownloadHcExcelTemplate: function() {
                 //下载 模板
                 vc.jumpToPage('/import/hc.xlsx')
             },
-            getExcelTemplate: function (e) {
+            getExcelTemplate: function(e) {
                 //console.log("getExcelTemplate 开始调用")
                 vc.component.assetImportInfo.excelTemplate = e.target.files[0];
             },
-            _importData: function () {
+            _importData: function() {
 
                 if (!vc.component.assetImportValidate()) {
                     vc.toast(vc.validate.errInfo);
@@ -72,33 +68,32 @@
                 vc.http.upload(
                     'feeImport',
                     'importData',
-                    param,
-                    {
+                    param, {
                         emulateJSON: true,
                         //添加请求头
                         headers: {
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
                             vc.toast("处理成功");
-                            vc.jumpToPage('/admin.html#/pages/property/listOwner')
+                            vc.jumpToPage('/#/pages/property/listOwner')
                             return;
                         }
-                        vc.toast(json,10000);
+                        vc.toast(json, 10000);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
-                        vc.toast(errInfo,10000);
+                        vc.toast(errInfo, 10000);
                     });
             },
-            _exitCommunityData: function () {
-                vc.jumpToPage('/callComponent/assetImport/exitCommunityData?communityId='+vc.getCurrentCommunity().communityId);
+            _exitCommunityData: function() {
+                vc.jumpToPage('/callComponent/assetImport/exitCommunityData?communityId=' + vc.getCurrentCommunity().communityId);
             },
-            checkFileType: function (fileType) {
+            checkFileType: function(fileType) {
                 const acceptTypes = ['xls', 'xlsx'];
                 for (var i = 0; i < acceptTypes.length; i++) {
                     if (fileType === acceptTypes[i]) {
@@ -107,7 +102,7 @@
                 }
                 return false;
             },
-            checkFileSize: function (fileSize) {
+            checkFileSize: function(fileSize) {
                 //2M
                 const MAX_SIZE = 2 * 1024 * 1024;
                 if (fileSize > MAX_SIZE) {

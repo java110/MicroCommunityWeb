@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -36,24 +36,24 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component.selectFloor();
             vc.component._listPropertyRightRegistrations(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表费用类型关联
-            vc.getDict('property_right_registration', "state", function (_data) {
+            vc.getDict('property_right_registration', "state", function(_data) {
                 vc.component.propertyRightRegistrationManageInfo.states = _data;
             });
         },
-        _initEvent: function () {
-            vc.on('propertyRightRegistrationManage', 'listPropertyRightRegistration', function (_param) {
+        _initEvent: function() {
+            vc.on('propertyRightRegistrationManage', 'listPropertyRightRegistration', function(_param) {
                 vc.component._listPropertyRightRegistrations(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listPropertyRightRegistrations(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listPropertyRightRegistrations: function (_page, _rows) {
+            _listPropertyRightRegistrations: function(_page, _rows) {
                 vc.component.propertyRightRegistrationManageInfo.conditions.page = _page;
                 vc.component.propertyRightRegistrationManageInfo.conditions.row = _rows;
                 var param = {
@@ -82,7 +82,7 @@
                 //发送get请求
                 vc.http.apiGet('propertyRightRegistration.listPropertyRightRegistration',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _propertyRightRegistrationManageInfo = JSON.parse(json);
                         vc.component.propertyRightRegistrationManageInfo.total = _propertyRightRegistrationManageInfo.total;
                         vc.component.propertyRightRegistrationManageInfo.records = _propertyRightRegistrationManageInfo.records;
@@ -92,26 +92,27 @@
                             dataCount: vc.component.propertyRightRegistrationManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddPropertyRightRegistrationModal: function () {
+            _openAddPropertyRightRegistrationModal: function() {
                 vc.emit('addPropertyRightRegistration', 'openAddPropertyRightRegistrationModal', {});
             },
-            _openEditPropertyRightRegistrationModel: function (_propertyRightRegistration) {
+            _openEditPropertyRightRegistrationModel: function(_propertyRightRegistration) {
                 vc.emit('editPropertyRightRegistration', 'openEditPropertyRightRegistrationModal', _propertyRightRegistration);
             },
-            _openDeletePropertyRightRegistrationModel: function (_propertyRightRegistration) {
+            _openDeletePropertyRightRegistrationModel: function(_propertyRightRegistration) {
                 vc.emit('deletePropertyRightRegistration', 'openDeletePropertyRightRegistrationModal', _propertyRightRegistration);
             },
             //查询
-            _queryPropertyRightRegistrationMethod: function () {
+            _queryPropertyRightRegistrationMethod: function() {
                 vc.component._listPropertyRightRegistrations(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetPropertyRightRegistrationMethod: function () {
+            _resetPropertyRightRegistrationMethod: function() {
                 vc.component.propertyRightRegistrationManageInfo.conditions.roomId = "";
                 vc.component.propertyRightRegistrationManageInfo.conditions.roomNum = "";
                 vc.component.propertyRightRegistrationManageInfo.conditions.unitNum = "";
@@ -130,7 +131,7 @@
                 vc.component._listPropertyRightRegistrations(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //查询楼栋
-            selectFloor: function () {
+            selectFloor: function() {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -142,17 +143,17 @@
                     'listFloor',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listFloorData = JSON.parse(json);
                         vc.component.propertyRightRegistrationManageInfo.floors = listFloorData.apiFloorDataVoList;
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
             //查询单元
-            selectUnit: function () {
+            selectUnit: function() {
                 var param = {
                     params: {
                         floorId: vc.component.propertyRightRegistrationManageInfo.conditions.floorId,
@@ -164,25 +165,25 @@
                 vc.http.get('unit',
                     'loadUnits',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listUnitData = JSON.parse(json);
                         vc.component.propertyRightRegistrationManageInfo.units = listUnitData;
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
             //详情
-            _openPropertyRightRegistrationDetail: function (_propertyRightRegistration) {
-                vc.jumpToPage('/admin.html#/pages/property/listPropertyRightRegistrationDetail?prrId=' + _propertyRightRegistration.prrId +
+            _openPropertyRightRegistrationDetail: function(_propertyRightRegistration) {
+                vc.jumpToPage('/#/pages/property/listPropertyRightRegistrationDetail?prrId=' + _propertyRightRegistration.prrId +
                     "&floorNum=" + _propertyRightRegistration.floorNum + "&unitNum=" + _propertyRightRegistration.unitNum + "&roomNum=" + _propertyRightRegistration.roomNum);
             },
             //审核
-            _openExaminePropertyRightRegistration: function (_propertyRightRegistration) {
+            _openExaminePropertyRightRegistration: function(_propertyRightRegistration) {
                 vc.emit('examinePropertyRightRegistration', 'openExaminePropertyRightRegistrationModal', _propertyRightRegistration);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.propertyRightRegistrationManageInfo.moreCondition) {
                     vc.component.propertyRightRegistrationManageInfo.moreCondition = false;
                 } else {

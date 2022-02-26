@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROW = 10;
     vc.extends({
@@ -23,23 +23,23 @@
                     carNum: '',
                     allNum: '',
                     state: '',
-                    carTypeCd:'1001'
+                    carTypeCd: '1001'
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component.listCars(DEFAULT_PAGE, DEFAULT_ROW);
-            vc.getDict('owner_car', 'state', function (_data) {
+            vc.getDict('owner_car', 'state', function(_data) {
                 vc.component.carCreateFeeInfo.states = _data;
             });
         },
-        _initEvent: function () {
-            vc.on('pagination', 'page_event', function (_currentPage) {
+        _initEvent: function() {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component.listCars(_currentPage, DEFAULT_ROW);
             });
         },
         methods: {
-            listCars: function (_page, _row) {
+            listCars: function(_page, _row) {
                 vc.component.carCreateFeeInfo.conditions.page = _page;
                 vc.component.carCreateFeeInfo.conditions.row = _row;
                 vc.component.carCreateFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -60,7 +60,7 @@
                 //发送get请求
                 vc.http.apiGet('owner.queryOwnerCars',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listCarData = JSON.parse(json);
                         vc.component.carCreateFeeInfo.total = listCarData.total;
                         vc.component.carCreateFeeInfo.records = listCarData.records;
@@ -70,19 +70,20 @@
                             dataCount: vc.component.carCreateFeeInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openCarCreateFeeAddModal: function (_car, _isMore) {
+            _openCarCreateFeeAddModal: function(_car, _isMore) {
                 vc.emit('carCreateFeeAdd', 'openCarCreateFeeAddModal', {
                     isMore: _isMore,
                     car: _car
                 });
             },
             //重置操作
-            resetListCars: function (_page, _row) {
+            resetListCars: function(_page, _row) {
                 vc.component.carCreateFeeInfo.conditions.psId = "";
                 vc.component.carCreateFeeInfo.conditions.ownerName = "";
                 vc.component.carCreateFeeInfo.conditions.carNum = "";
@@ -95,7 +96,7 @@
                 //发送get请求
                 vc.http.apiGet('owner.queryOwnerCars',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listCarData = JSON.parse(json);
                         vc.component.carCreateFeeInfo.total = listCarData.total;
                         vc.component.carCreateFeeInfo.records = listCarData.records;
@@ -105,23 +106,24 @@
                             dataCount: vc.component.carCreateFeeInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openViewParkingSpaceCreateFee: function (_car) {
-                vc.jumpToPage("/admin.html#/pages/property/listCarFee?carId=" + _car.carId + "&carNum=" + _car.carNum + "&areaNum=" + _car.areaNum + "&num=" + _car.num);
+            _openViewParkingSpaceCreateFee: function(_car) {
+                vc.jumpToPage("/#/pages/property/listCarFee?carId=" + _car.carId + "&carNum=" + _car.carNum + "&areaNum=" + _car.areaNum + "&num=" + _car.num);
             },
             //查询
-            _queryParkingSpaceMethod: function () {
+            _queryParkingSpaceMethod: function() {
                 vc.component.listCars(DEFAULT_PAGE, DEFAULT_ROW);
             },
             //重置
-            _resetParkingSpaceMethod: function () {
+            _resetParkingSpaceMethod: function() {
                 vc.component.resetListCars(DEFAULT_PAGE, DEFAULT_ROW);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.carCreateFeeInfo.moreCondition) {
                     vc.component.carCreateFeeInfo.moreCondition = false;
                 } else {

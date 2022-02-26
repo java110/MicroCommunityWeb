@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,7 +22,7 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component.listApplyRoomDiscountRecordsInfo.conditions.ardId = vc.getParam('ardId');
             vc.component.listApplyRoomDiscountRecordsInfo.conditions.state = vc.getParam('state')
             vc.component.listApplyRoomDiscountRecordsInfo.conditions.stateName = vc.getParam('stateName')
@@ -30,16 +30,16 @@
             vc.component.listApplyRoomDiscountRecordsInfo.conditions.roomName = vc.getParam('roomName')
             vc.component._listApplyRoomDiscountRecords(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('listApplyRoomDiscountRecord', 'listApplyRoomDiscountRecords', function (_param) {
+        _initEvent: function() {
+            vc.on('listApplyRoomDiscountRecord', 'listApplyRoomDiscountRecords', function(_param) {
                 vc.component._listApplyRoomDiscountRecords(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listApplyRoomDiscountRecords(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listApplyRoomDiscountRecords: function (_page, _rows) {
+            _listApplyRoomDiscountRecords: function(_page, _rows) {
                 vc.component.listApplyRoomDiscountRecordsInfo.conditions.page = _page;
                 vc.component.listApplyRoomDiscountRecordsInfo.conditions.row = _rows;
                 var param = {
@@ -48,7 +48,7 @@
                 //发送get请求
                 vc.http.apiGet('/applyRoomDiscountRecord/queryApplyRoomDiscountRecord',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _ApplyRoomDiscountRecordsInfo = JSON.parse(json);
                         vc.component.listApplyRoomDiscountRecordsInfo.total = _ApplyRoomDiscountRecordsInfo.total;
                         vc.component.listApplyRoomDiscountRecordsInfo.records = _ApplyRoomDiscountRecordsInfo.records;
@@ -58,13 +58,14 @@
                             dataCount: vc.component.listApplyRoomDiscountRecordsInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //添加
-            _openAddModal: function (applyRoomDiscount) {
+            _openAddModal: function(applyRoomDiscount) {
                 applyRoomDiscount.push(vc.component.listApplyRoomDiscountRecordsInfo.conditions.ardId)
                 applyRoomDiscount.push(vc.component.listApplyRoomDiscountRecordsInfo.conditions.state)
                 applyRoomDiscount.push(vc.component.listApplyRoomDiscountRecordsInfo.conditions.stateName)
@@ -73,22 +74,22 @@
                 vc.emit('applyRoomDiscountRecord', 'openApplyRoomDiscountRecordModal', applyRoomDiscount);
             },
             //删除
-            _openDeleteApplyRoomDiscountRecordModel: function (_applyRoomDiscountRecord) {
+            _openDeleteApplyRoomDiscountRecordModel: function(_applyRoomDiscountRecord) {
                 vc.emit('deleteApplyRoomDiscountRecord', 'openDeleteApplyRoomDiscountRecordModal', _applyRoomDiscountRecord);
             },
             //查看详情
-            _openApplyRoomDiscountRecordDetailsModel: function (_applyRoomDiscountRecord) {
-                vc.jumpToPage('/admin.html#/pages/property/listApplyRoomDiscountRecordDetails?ardrId=' + _applyRoomDiscountRecord.ardrId
-                    + '&roomName=' + _applyRoomDiscountRecord.roomName  + '&state=' + _applyRoomDiscountRecord.state);
+            _openApplyRoomDiscountRecordDetailsModel: function(_applyRoomDiscountRecord) {
+                vc.jumpToPage('/#/pages/property/listApplyRoomDiscountRecordDetails?ardrId=' + _applyRoomDiscountRecord.ardrId +
+                    '&roomName=' + _applyRoomDiscountRecord.roomName + '&state=' + _applyRoomDiscountRecord.state);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.listApplyRoomDiscountRecordsInfo.moreCondition) {
                     vc.component.listApplyRoomDiscountRecordsInfo.moreCondition = false;
                 } else {
                     vc.component.listApplyRoomDiscountRecordsInfo.moreCondition = true;
                 }
             },
-            _goBack: function () {
+            _goBack: function() {
                 vc.goBack();
             }
         }

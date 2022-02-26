@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROW = 10;
     var TEMP_SEARCH = 'contractCreateFeeSearch';
@@ -25,7 +25,7 @@
             },
             currentPage: 1,
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //检查是否有缓存数据
             let _tempData = vc.getData(TEMP_SEARCH);
             if (_tempData == null) {
@@ -39,19 +39,19 @@
                 vc.component.listContract(_tempData.currentPage, DEFAULT_ROW);
             }
         },
-        _initEvent: function () {
-            vc.on('room', 'chooseFloor', function (_param) {
+        _initEvent: function() {
+            vc.on('room', 'chooseFloor', function(_param) {
                 vc.component.contractCreateFeeInfo.conditions.floorId = _param.floorId;
                 vc.component.contractCreateFeeInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 $that.updateCurrentPage(_currentPage);
                 vc.component.listContract(_currentPage, DEFAULT_ROW);
             });
         },
         methods: {
-            listContract: function (_page, _row) {
+            listContract: function(_page, _row) {
 
                 vc.component.contractCreateFeeInfo.conditions.page = _page;
                 vc.component.contractCreateFeeInfo.conditions.row = _row;
@@ -63,7 +63,7 @@
                 //发送get请求
                 vc.http.apiGet('/contract/queryContract',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listContractData = JSON.parse(json);
                         vc.component.contractCreateFeeInfo.total = listContractData.total;
                         vc.component.contractCreateFeeInfo.records = listContractData.records;
@@ -75,59 +75,59 @@
                         });
                         // 换存搜索条件
                         $that.saveTempSearchData();
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openViewRoomCreateFee: function (_contract) {
-                vc.jumpToPage("/admin.html#/pages/property/listContractFee?contractId=" + _contract.contractId + "&contractCode=" + _contract.contractCode);
+            _openViewRoomCreateFee: function(_contract) {
+                vc.jumpToPage("/#/pages/property/listContractFee?contractId=" + _contract.contractId + "&contractCode=" + _contract.contractCode);
             },
             //查询
-            _queryRoomMethod: function () {
+            _queryRoomMethod: function() {
                 // 搜索时重置缓存分页
                 $that.updateCurrentPage(DEFAULT_PAGE);
                 vc.component.listContract(DEFAULT_PAGE, DEFAULT_ROW);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.contractCreateFeeInfo.moreCondition) {
                     vc.component.contractCreateFeeInfo.moreCondition = false;
                 } else {
                     vc.component.contractCreateFeeInfo.moreCondition = true;
                 }
             },
-            _toOwnerPayFee: function (_room) {
+            _toOwnerPayFee: function(_room) {
                 let roomName = _room.floorNum + "栋" + _room.unitNum + "单元" + _room.roomNum + "室"
-                vc.jumpToPage('/admin.html#/pages/property/owePayFeeOrder?payObjId=' + _room.roomId + "&payObjType=9999&roomName=" + roomName);
+                vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + _room.roomId + "&payObjType=9999&roomName=" + roomName);
             },
-            _printOwnOrder: function (_room) {
+            _printOwnOrder: function(_room) {
                 //打印催交单
                 vc.jumpToPage('print.html#/pages/property/printOweFee?roomId=' + _room.roomId)
             },
-            _openTranslateFeeManualCollectionDetailModel: function (_room) {
+            _openTranslateFeeManualCollectionDetailModel: function(_room) {
                 let _data = {
-                    roomId: _room.roomId,
-                    communityId: vc.getCurrentCommunity().communityId
-                }
-                //重新同步房屋欠费
+                        roomId: _room.roomId,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                    //重新同步房屋欠费
                 vc.http.apiPost(
                     '/feeManualCollection/saveFeeManualCollection',
-                    JSON.stringify(_data),
-                    {
+                    JSON.stringify(_data), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             vc.toast(_json.msg);
-                            vc.jumpToPage('/admin.html#/pages/property/feeManualCollectionManage');
+                            vc.jumpToPage('/#/pages/property/feeManualCollectionManage');
                             return;
                         }
                         vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(errInfo);
                     });
@@ -136,14 +136,14 @@
             /**
              * 更新当前页码
              */
-            updateCurrentPage: function (page) {
+            updateCurrentPage: function(page) {
                 $that.currentPage = page;
             },
 
             /**
              * 保存搜索条件、页码
              */
-            saveTempSearchData: function () {
+            saveTempSearchData: function() {
                 let conditions = $that.contractCreateFeeInfo.conditions;
                 //缓存起来=
                 vc.saveData(TEMP_SEARCH, {
@@ -151,17 +151,17 @@
                     currentPage: $that.currentPage
                 });
             },
-            _downloadCollectionLetterOrder: function () {
+            _downloadCollectionLetterOrder: function() {
                 vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId);
             },
-            _downloadRoomCollectionLetterOrder: function (_room) {
+            _downloadRoomCollectionLetterOrder: function(_room) {
                 vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId + "&roomId=" + _room.roomId);
             },
-            _viewContract: function (_contract) {
-                vc.jumpToPage("/admin.html#/pages/common/contractApplyDetail?contractId=" + _contract.contractId);
+            _viewContract: function(_contract) {
+                vc.jumpToPage("/#/pages/common/contractApplyDetail?contractId=" + _contract.contractId);
 
             },
-            _openContractCreateFeeAddModal: function (_room, _isMore) {
+            _openContractCreateFeeAddModal: function(_room, _isMore) {
                 vc.emit('contractCreateFeeAdd', 'openContractCreateFeeAddModal', {
                     isMore: _isMore,
                     contract: _room

@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -10,12 +10,12 @@
                 roomName: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
+        _initEvent: function() {
             //切换 至费用页面
-            vc.on('simplifyOwnerRepair', 'switch', function (_param) {
+            vc.on('simplifyOwnerRepair', 'switch', function(_param) {
                 if (_param.roomId == '') {
                     return;
                 }
@@ -25,12 +25,12 @@
             });
 
             vc.on('simplifyOwnerRepair', 'paginationPlus', 'page_event',
-                function (_currentPage) {
+                function(_currentPage) {
                     $that._listSimplifyOwnerRepair(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
-            _listSimplifyOwnerRepair: function (_page, _row) {
+            _listSimplifyOwnerRepair: function(_page, _row) {
 
                 let param = {
                     params: {
@@ -45,7 +45,7 @@
                 vc.http.get('ownerRepairManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _repairPoolManageInfo = JSON.parse(json);
                         vc.component.simplifyOwnerRepairInfo.total = _repairPoolManageInfo.total;
                         vc.component.simplifyOwnerRepairInfo.records = _repairPoolManageInfo.records;
@@ -54,16 +54,17 @@
                             total: vc.component.simplifyOwnerRepairInfo.records,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
 
             },
-            _openRepairDetail: function (_repairPool) {
-                vc.jumpToPage('/admin.html#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
+            _openRepairDetail: function(_repairPool) {
+                vc.jumpToPage('/#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
             },
-            clearSimplifyOwnerRepairInfo: function () {
+            clearSimplifyOwnerRepairInfo: function() {
                 $that.simplifyOwnerRepairInfo = {
                     repairs: [],
                     ownerId: '',
@@ -71,8 +72,8 @@
                     roomName: ''
                 }
             },
-            _openAddOwnerRepairModal: function () {
-                vc.jumpToPage("/admin.html#/pages/common/addRoomRepair?roomId=" + $that.simplifyOwnerRepairInfo.roomId + "&roomName=" + $that.simplifyOwnerRepairInfo.roomName)
+            _openAddOwnerRepairModal: function() {
+                vc.jumpToPage("/#/pages/common/addRoomRepair?roomId=" + $that.simplifyOwnerRepairInfo.roomId + "&roomName=" + $that.simplifyOwnerRepairInfo.roomName)
             }
 
         }

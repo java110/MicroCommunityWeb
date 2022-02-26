@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             addOwnerRoomBindingInfo: {
@@ -10,11 +10,11 @@
                 infos: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initStep();
         },
-        _initEvent: function () {
-            vc.on("addOwnerRoomBinding", "notify", function (_info) {
+        _initEvent: function() {
+            vc.on("addOwnerRoomBinding", "notify", function(_info) {
                 vc.component.addOwnerRoomBindingInfo.infos[vc.component.addOwnerRoomBindingInfo.index] = _info;
                 if (vc.component.addOwnerRoomBindingInfo.index == 0) {
                     vc.emit('searchRoom', 'listenerFloorInfo', _info);
@@ -22,7 +22,7 @@
             });
         },
         methods: {
-            _initStep: function () {
+            _initStep: function() {
                 vc.component.addOwnerRoomBindingInfo.$step = $("#step");
                 vc.component.addOwnerRoomBindingInfo.$step.step({
                     index: 0,
@@ -31,7 +31,7 @@
                 });
                 vc.component.addOwnerRoomBindingInfo.index = vc.component.addOwnerRoomBindingInfo.$step.getIndex();
             },
-            _prevStep: function () {
+            _prevStep: function() {
                 vc.component.addOwnerRoomBindingInfo.$step.prevStep();
                 vc.component.addOwnerRoomBindingInfo.index = vc.component.addOwnerRoomBindingInfo.$step.getIndex();
                 vc.emit('viewFloorInfo', 'onIndex', vc.component.addOwnerRoomBindingInfo.index);
@@ -41,7 +41,7 @@
                     vc.emit('viewOwnerInfo', 'callBackOwnerInfo', {});
                 }
             },
-            _nextStep: function () {
+            _nextStep: function() {
                 var _currentData = vc.component.addOwnerRoomBindingInfo.infos[vc.component.addOwnerRoomBindingInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -56,7 +56,7 @@
                     vc.emit('viewOwnerInfo', 'callBackOwnerInfo', {});
                 }
             },
-            _finishStep: function () {
+            _finishStep: function() {
                 var _currentData = vc.component.addOwnerRoomBindingInfo.infos[vc.component.addOwnerRoomBindingInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -69,20 +69,19 @@
                 vc.http.post(
                     'addOwnerRoomBinding',
                     'binding',
-                    JSON.stringify(param),
-                    {
+                    JSON.stringify(param), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status == 200) {
                             vc.toast('处理成功');
                             //关闭model
-                            vc.jumpToPage("/admin.html#/pages/property/listOwner?" + vc.objToGetParam(JSON.parse(json)));
+                            vc.jumpToPage("/#/pages/property/listOwner?" + vc.objToGetParam(JSON.parse(json)));
                             return;
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });

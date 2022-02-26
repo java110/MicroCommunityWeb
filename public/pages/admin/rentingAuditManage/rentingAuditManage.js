@@ -1,7 +1,7 @@
 /**
     入驻小区
 **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,23 +20,23 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
-            vc.on('rentingPoolManage', 'listRentingPool', function (_param) {
+            vc.on('rentingPoolManage', 'listRentingPool', function(_param) {
                 vc.component._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('rentingAuditManage', 'audit', function (_auditInfo) {
+            vc.on('rentingAuditManage', 'audit', function(_auditInfo) {
                 $that._auditRenting(_auditInfo);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listRentingPools(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listRentingPools: function (_page, _rows) {
+            _listRentingPools: function(_page, _rows) {
 
                 vc.component.rentingPoolManageInfo.conditions.page = _page;
                 vc.component.rentingPoolManageInfo.conditions.row = _rows;
@@ -48,7 +48,7 @@
                 //发送get请求
                 vc.http.apiGet('/renting/queryRentingPool',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _rentingPoolManageInfo = JSON.parse(json);
                         vc.component.rentingPoolManageInfo.total = _rentingPoolManageInfo.total;
                         vc.component.rentingPoolManageInfo.records = _rentingPoolManageInfo.records;
@@ -58,33 +58,34 @@
                             dataCount: vc.component.rentingPoolManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAuditModal: function (_renting) {
+            _openAuditModal: function(_renting) {
                 $that.rentingPoolManageInfo.rentingId = _renting.rentingId;
                 vc.emit('audit', 'openAuditModal', {});
             },
-            _openEditRentingPoolModel: function (_rentingPool) {
+            _openEditRentingPoolModel: function(_rentingPool) {
                 vc.emit('editRentingPool', 'openEditRentingPoolModal', _rentingPool);
             },
-            _openDeleteRentingPoolModel: function (_rentingPool) {
+            _openDeleteRentingPoolModel: function(_rentingPool) {
                 vc.emit('deleteRentingPool', 'openDeleteRentingPoolModal', _rentingPool);
             },
-            _queryRentingPoolMethod: function () {
+            _queryRentingPoolMethod: function() {
                 vc.component._listRentingPools(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.rentingPoolManageInfo.moreCondition) {
                     vc.component.rentingPoolManageInfo.moreCondition = false;
                 } else {
                     vc.component.rentingPoolManageInfo.moreCondition = true;
                 }
             },
-            _auditRenting: function (_auditInfo) {
+            _auditRenting: function(_auditInfo) {
                 let _user = vc.getData('/nav/getUserInfo');
 
                 let _userRole = 4; // 运营团队
@@ -96,7 +97,7 @@
                 let _state = "2002";
 
                 if (_auditInfo.state == '1200') {
-                    _state = "3003";//代理商审核失败
+                    _state = "3003"; //代理商审核失败
                 }
 
                 let _audtiInfo = {
@@ -109,11 +110,10 @@
                 //发送get请求
                 vc.http.apiPost(
                     '/renting/auditRenting',
-                    JSON.stringify(_audtiInfo),
-                    {
+                    JSON.stringify(_audtiInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -125,15 +125,15 @@
                         vc.message(_json.msg);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
                     });
             },
-            _toRentingHistory:function(rentingPool){
-                vc.jumpToPage('/admin.html#/pages/admin/rentingDetail?rentingId='+rentingPool.rentingId);
+            _toRentingHistory: function(rentingPool) {
+                vc.jumpToPage('/#/pages/admin/rentingDetail?rentingId=' + rentingPool.rentingId);
             }
 
 

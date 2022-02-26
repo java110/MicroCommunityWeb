@@ -62,7 +62,7 @@
             },
             _openAddContractModel: function(_contract) {
                 //vc.emit('addContract', 'openAddContractModal', _contract);
-                vc.jumpToPage('/admin.html#/pages/admin/addContract?contractId=' + _contract.contractId +
+                vc.jumpToPage('/#/pages/admin/addContract?contractId=' + _contract.contractId +
                     "&contractCode=" + _contract.contractCode + "&contractName=" + _contract.contractName + "&stateName=" + _contract.stateName)
             },
 

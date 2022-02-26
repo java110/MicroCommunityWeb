@@ -1,7 +1,7 @@
 /**
     入驻小区
 **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,20 +20,20 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listAttrSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
-            vc.on('attrSpecManage', 'listAttrSpec', function (_param) {
+            vc.on('attrSpecManage', 'listAttrSpec', function(_param) {
                 vc.component._listAttrSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listAttrSpecs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listAttrSpecs: function (_page, _rows) {
+            _listAttrSpecs: function(_page, _rows) {
 
                 vc.component.attrSpecManageInfo.conditions.page = _page;
                 vc.component.attrSpecManageInfo.conditions.row = _rows;
@@ -44,7 +44,7 @@
                 //发送get请求
                 vc.http.apiGet('/attrSpec/queryAttrSpec',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _attrSpecManageInfo = JSON.parse(json);
                         vc.component.attrSpecManageInfo.total = _attrSpecManageInfo.total;
                         vc.component.attrSpecManageInfo.records = _attrSpecManageInfo.records;
@@ -54,32 +54,33 @@
                             dataCount: vc.component.attrSpecManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddAttrSpecModal: function () {
+            _openAddAttrSpecModal: function() {
                 vc.emit('addAttrSpec', 'openAddAttrSpecModal', {});
             },
-            _openEditAttrSpecModel: function (_attrSpec) {
+            _openEditAttrSpecModel: function(_attrSpec) {
                 vc.emit('editAttrSpec', 'openEditAttrSpecModal', _attrSpec);
             },
-            _openDeleteAttrSpecModel: function (_attrSpec) {
+            _openDeleteAttrSpecModel: function(_attrSpec) {
                 vc.emit('deleteAttrSpec', 'openDeleteAttrSpecModal', _attrSpec);
             },
-            _queryAttrSpecMethod: function () {
+            _queryAttrSpecMethod: function() {
                 vc.component._listAttrSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.attrSpecManageInfo.moreCondition) {
                     vc.component.attrSpecManageInfo.moreCondition = false;
                 } else {
                     vc.component.attrSpecManageInfo.moreCondition = true;
                 }
             },
-            _getSpecValueTypeName: function (_specValueType) {
+            _getSpecValueTypeName: function(_specValueType) {
                 if (_specValueType == '1001') {
                     return "字符串";
 
@@ -94,10 +95,10 @@
                 }
 
                 return "未知"
-            }, 
-            _getSpecTypeName: function (_specValue) {
+            },
+            _getSpecTypeName: function(_specValue) {
                 if (_specValue == '2233') {
-                    return "input";           
+                    return "input";
                 } else if (_specValue == '3344') {
                     return "select";
                 } else if (_specValue == '4455') {
@@ -106,8 +107,8 @@
 
                 return "未知"
             },
-            _openAttrSpecValue:function(_attrSpec){
-                vc.jumpToPage('/admin.html#/pages/dev/attrValueManage?specCd='+_attrSpec.specCd+'&specName='+_attrSpec.specName);
+            _openAttrSpecValue: function(_attrSpec) {
+                vc.jumpToPage('/#/pages/dev/attrValueManage?specCd=' + _attrSpec.specCd + '&specName=' + _attrSpec.specName);
             }
 
 

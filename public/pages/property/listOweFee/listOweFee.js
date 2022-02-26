@@ -222,7 +222,7 @@
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=listOweFee&configIds=" + _configIds);
             },
             _toFeeCollectionOrderManage: function() {
-                vc.jumpToPage('/admin.html#/pages/property/feeCollectionOrderManage');
+                vc.jumpToPage('/#/pages/property/feeCollectionOrderManage');
             },
             loadUnits: function(_floorId) {
                 var param = {
