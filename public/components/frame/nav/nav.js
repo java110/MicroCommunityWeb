@@ -231,6 +231,10 @@
                 this.$forceUpdate();
             },
             _changeMenuCatalog: function(_catalog) {
+                //_showModelDiv(item)
+                if (vm._showModelDiv(_catalog)) {
+                    return;
+                }
                 if (_catalog.url != '#') {
                     vm._settingActiveCatalog(_catalog);
                     vc.jumpToPage(_catalog.url);
@@ -242,7 +246,10 @@
                 if (_catalog.url.startsWith('?')) {
                     let _modelName = _catalog.url.substring(1, _catalog.url.length);
                     $('#' + _modelName).modal('show');
+                    return true;
                 }
+
+                return false;
             }
         }
     });
