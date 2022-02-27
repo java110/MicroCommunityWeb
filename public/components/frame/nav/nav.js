@@ -234,7 +234,7 @@
                 if (_catalog.url != '#') {
                     vm._settingActiveCatalog(_catalog);
                     vc.jumpToPage(_catalog.url);
-                    return;
+                    //return;
                 }
                 vm._emitMsg(_catalog);
             },
