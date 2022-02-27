@@ -76,7 +76,9 @@
 
                             vc.toast('处理成功');
                             //关闭model
-                            vc.jumpToPage("/#/pages/dev/serviceRegisterManage?" + vc.objToGetParam(JSON.parse(json)));
+                            //vc.jumpToPage("/#/pages/dev/serviceRegisterManage?" + vc.objToGetParam(JSON.parse(json)));
+
+                            vc.goBack();
                             return;
                         }
                         vc.toast(json);

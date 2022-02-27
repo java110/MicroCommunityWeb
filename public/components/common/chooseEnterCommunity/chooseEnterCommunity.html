@@ -1,6 +1,5 @@
 <div>
-    <div id="chooseEnterCommunityModel" class="modal fade" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div id="chooseEnterCommunityModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -19,8 +18,7 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="input-group">
-                                            <input placeholder="输入小区名称" v-model="navCommunityInfo.searchCommunityName"
-                                                   type="text" class="form-control form-control-sm">
+                                            <input placeholder="输入小区名称" v-model="navCommunityInfo.searchCommunityName" type="text" class="form-control form-control-sm">
                                             <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
                                                         v-on:click="_queryEnterCommunity()">查询</button>
@@ -31,32 +29,31 @@
                                 <div class="table-responsive" style="margin-top:15px">
                                     <table class="table table-striped">
                                         <thead>
-                                        <tr>
-                                            <th class="text-center">小区ID</th>
-                                            <th data-hide="phone" class="text-center">名称</th>
-                                            <th data-hide="phone" class="text-center">地址</th>
-                                            <th class="text-center">操作</th>
-                                        </tr>
+                                            <tr>
+                                                <th class="text-center">小区ID</th>
+                                                <th data-hide="phone" class="text-center">名称</th>
+                                                <th data-hide="phone" class="text-center">地址</th>
+                                                <th class="text-center">操作</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <tr v-for="community in navCommunityInfo.communityInfo">
-                                            <td class="text-center">
-                                                {{community.communityId}}
-                                            </td>
-                                            <td class="text-center">
-                                                {{community.name}}
-                                            </td>
-                                            <td class="text-center">
-                                                {{community.address}}
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <button class="btn-white btn btn-xs"
-                                                            v-on:click="_chooseCurrentCommunity(community)">选择
+                                            <tr v-for="community in navCommunityInfo.communityInfo">
+                                                <td class="text-center">
+                                                    {{community.communityId}}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{community.name}}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{community.address}}
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <button class="btn-white btn btn-xs" v-on:click="_chooseCurrentCommunity(community)">选择
                                                     </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -69,4 +66,5 @@
         </div>
     </div>
     <vc:create path="common/document"></vc:create>
+    <vc:create path="frame/viewMenuUser"></vc:create>
 </div>

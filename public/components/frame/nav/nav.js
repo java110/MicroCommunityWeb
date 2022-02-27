@@ -238,6 +238,12 @@
                 }
                 vm._emitMsg(_catalog);
             },
+            _showModelDiv: function(_catalog) {
+                if (_catalog.url.startsWith('?')) {
+                    let _modelName = _catalog.url.substring(1, _catalog.url.length);
+                    $('#' + _modelName).modal('show');
+                }
+            }
         }
     });
     vm.getUserInfo();
