@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>物业公司信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewPropertyCompanyInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectPropertyCompanyInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> 选择物业公司</button>
+
+                    <button type="button" v-if="viewPropertyCompanyInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddPropertyCompanyInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> 添加物业公司</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >名称：</label>
+                            <label class="">{{viewPropertyCompanyInfo.name}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >地址：</label>
+                            <label class="">{{viewPropertyCompanyInfo.address}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >电话：</label>
+                            <label class="">{{viewPropertyCompanyInfo.tel}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >公司法人：</label>
+                            <label class="">{{viewPropertyCompanyInfo.corporation}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >成立日期：</label>
+                            <label class="">{{viewPropertyCompanyInfo.foundingTime}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >地标：</label>
+                            <label class="">{{viewPropertyCompanyInfo.nearbyLandmarks}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="admin/addPropertyCompany"
+               callBackListener="viewPropertyCompanyInfo"
+               callBackFunction="choosePropertyCompany"
+    ></vc:create>
+
+
+    <vc:create path="admin/choosePropertyCompany"
+               emitChoosePropertyCompany="viewPropertyCompanyInfo"
+               emitLoadData="viewPropertyCompanyInfo"
+    ></vc:create>
+</div>
