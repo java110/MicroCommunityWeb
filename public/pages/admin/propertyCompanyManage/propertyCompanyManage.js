@@ -78,6 +78,9 @@
                     vc.component.propertyCompanyManageInfo.moreCondition = true;
                 }
             },
+            _openManageCommunity: function(_propertyCompany) {
+                vc.jumpToPage('/#/pages/common/propertyCommunity?storeId=' + _propertyCompany.storeId);
+            }
 
         }
     });

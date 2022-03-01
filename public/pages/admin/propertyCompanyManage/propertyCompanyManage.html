@@ -82,6 +82,9 @@
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openDeletePropertyCompanyModel(propertyCompany)">删除</button>
                                     </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openManageCommunity(propertyCompany)">管理小区</button>
+                                    </div>
                                 </td>
 
                             </tr>
@@ -95,7 +98,16 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>温馨提示：默认管理员账号为手机号；密码为手机号</span>
+                        </div>
+                        <div class="col-md-6">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
