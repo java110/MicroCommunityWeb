@@ -39,6 +39,8 @@ let opts = {
 app.use('/callComponent', proxy('http://proxy.homecommunity.cn:9034', opts));
 app.use('/app', proxy('http://proxy.homecommunity.cn:9034', opts));
 
+
+
 // app.use('/callComponent', proxy('http://127.0.0.1:8008', opts));
 // app.use('/app', proxy('http://127.0.0.1:8008', opts));
 // app.use('/ws',proxy('http://127.0.0.1:8008',opts));

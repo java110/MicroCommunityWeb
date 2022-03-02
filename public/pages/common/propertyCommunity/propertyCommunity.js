@@ -60,14 +60,18 @@
                     }
                 );
             },
-            _openAddCommunityModal: function() {
-                vc.emit('addCommunity', 'openAddCommunityModal', {});
+            _openAddPropertyCommunityModal: function() {
+                vc.emit('addPropertyCommunity', 'openAddPropertyCommunityModal', {
+                    storeId: vc.getParam('storeId')
+                });
             },
-            _openEditCommunityModel: function(_community) {
-                vc.emit('editCommunity', 'openEditCommunityModal', _community);
+            _openEditPropertyCommunityModel: function(_community) {
+                _community.storeId = vc.getParam('storeId');
+                vc.emit('editPropertyCommunity', 'openEditPropertyCommunityModal', _community);
             },
-            _openDeleteCommunityModel: function(_community) {
-                vc.emit('deleteCommunity', 'openDeleteCommunityModal', _community);
+            _openDeletePropertyCommunityModel: function(_community) {
+                _community.memberId = vc.getParam('storeId');
+                vc.emit('deletePropertyCommunity', 'openDeletePropertyCommunityModal', _community);
             },
             _openRecallCommunityModel: function(_community) {
                 vc.emit('recallAuditFinishCommunity', 'openRecallAuditFinishCommunityModal', _community);

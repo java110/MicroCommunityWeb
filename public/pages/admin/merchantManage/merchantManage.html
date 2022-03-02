@@ -12,21 +12,21 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入物业编号" v-model="propertyCompanyManageInfo.conditions.storeId" class=" form-control">
+                                <input type="text" placeholder="请输入商家编号" v-model="merchantManageInfo.conditions.storeId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入名称" v-model="propertyCompanyManageInfo.conditions.name" class=" form-control">
+                                <input type="text" placeholder="请输入名称" v-model="merchantManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入电话" v-model="propertyCompanyManageInfo.conditions.tel" class=" form-control">
+                                <input type="text" placeholder="请输入电话" v-model="merchantManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPropertyCompanyMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMerchantMethod()">
                                     查询
                             </button>
                         </div>
@@ -41,12 +41,12 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>物业公司</h5>
+                    <h5>商家公司</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPropertyCompanyModal()">
+                        <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMerchantModal()">
                             <i class="glyphicon glyphicon-plus"></i>
                             添加
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -67,7 +67,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="propertyCompany in propertyCompanyManageInfo.propertyCompanys">
+                            <tr v-for="propertyCompany in merchantManageInfo.propertyCompanys">
                                 <td class="text-center">{{propertyCompany.storeId}}</td>
                                 <td class="text-center">{{propertyCompany.name}}</td>
                                 <td class="text-center">{{propertyCompany.address}}</td>
@@ -78,15 +78,16 @@
                                 <td class="text-center">{{propertyCompany.nearbyLandmarks}}</td>
                                 <td class="text-center">{{propertyCompany.createTime}}</td>
                                 <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditPropertyCompanyModel(propertyCompany)">修改</button>
+                                    <!--<div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditMerchantModel(propertyCompany)">修改</button>
                                     </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePropertyCompanyModel(propertyCompany)">删除</button>
-                                    </div>
+                                     <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMerchantModel(propertyCompany)">删除</button>
+                                    </div> 
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openManageCommunity(propertyCompany)">管理小区</button>
                                     </div>
+                                    -->
                                 </td>
 
                             </tr>
@@ -102,7 +103,7 @@
                     <!-- 分页 -->
                     <div class="row">
                         <div class="col-md-6">
-                            <span>温馨提示：默认管理员账号为手机号；密码为手机号</span>
+
                         </div>
                         <div class="col-md-6">
                             <vc:create path="frame/pagination"></vc:create>
@@ -115,10 +116,10 @@
         </div>
     </div>
 
+    <!-- 
 
-
-    <vc:create path="admin/addPropertyCompany" callBackListener="" callBackFunction=""></vc:create>
-    <vc:create path="admin/editPropertyCompany"></vc:create>
-    <vc:create path="admin/deletePropertyCompany"></vc:create>
+    <vc:create path="admin/addMerchant" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="admin/editMerchant"></vc:create>
+    <vc:create path="admin/deleteMerchant"></vc:create> -->
 
 </div>
