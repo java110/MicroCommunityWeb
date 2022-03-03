@@ -78,16 +78,18 @@
                                 <td class="text-center">{{propertyCompany.nearbyLandmarks}}</td>
                                 <td class="text-center">{{propertyCompany.createTime}}</td>
                                 <td class="text-center">
-                                    <!--<div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditMerchantModel(propertyCompany)">修改</button>
-                                    </div>
-                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMerchantModel(propertyCompany)">删除</button>
-                                    </div> 
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openManageCommunity(propertyCompany)">管理小区</button>
+                                        <button class="btn-white btn btn-xs" v-if="propertyCompany.state != '48002'" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')">限制登录
+                                        </button>
                                     </div>
-                                    -->
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-else v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')">恢复登录
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(propertyCompany)">重置密码
+                                        </button>
+                                    </div>
                                 </td>
 
                             </tr>
@@ -115,6 +117,7 @@
             </div>
         </div>
     </div>
-
+    <vc:create path="admin/updateStoreState"></vc:create>
+    <vc:create path="frame/resetStaffPwd"></vc:create>
 
 </div>

@@ -19,6 +19,8 @@
                         styleBase: 'form-control',
                         width: 'auto'
                     });
+
+                    $('#communityCommunityIds').selectpicker('refresh');
                 })
             }
         },

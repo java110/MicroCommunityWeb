@@ -42,7 +42,8 @@
             getMenus: function(_catalog) {
                 let _param = {
                         params: {
-                            caId: _catalog.caId
+                            caId: _catalog.caId,
+                            communityId: vc.getCurrentCommunity().communityId
                         }
                     }
                     //发送get请求

@@ -23,12 +23,15 @@
         },
         watch: {
             'addPropertyCompanyInfo.communitys': function() { //'goodList'是我要渲染的对象，也就是我要等到它渲染完才能调用函数
+                console.log('addPropertyCompanyInfo.communitys')
                 this.$nextTick(function() {
                     $('#communityIds').selectpicker({
                         title: '选填，请选择开通小区',
                         styleBase: 'form-control',
                         width: 'auto'
                     });
+
+                    $('#communityIds').selectpicker('refresh');
                 })
             }
         },

@@ -87,6 +87,22 @@
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openManageCommunity(propertyCompany)">管理小区</button>
                                     </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAdminLoginPropertyModel(propertyCompany)">登录
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-if="propertyCompany.state != '48002'" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')">限制登录
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-else v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')">恢复登录
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(propertyCompany)">重置密码
+                                        </button>
+                                    </div>
                                 </td>
 
                             </tr>
@@ -120,5 +136,9 @@
     <vc:create path="admin/addPropertyCompany" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="admin/editPropertyCompany"></vc:create>
     <vc:create path="admin/deletePropertyCompany"></vc:create>
+
+    <vc:create path="admin/adminLoginProperty"></vc:create>
+    <vc:create path="admin/updateStoreState"></vc:create>
+    <vc:create path="frame/resetStaffPwd"></vc:create>
 
 </div>

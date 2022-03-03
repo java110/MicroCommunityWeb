@@ -80,6 +80,71 @@
             },
             _openManageCommunity: function(_propertyCompany) {
                 vc.jumpToPage('/#/pages/common/propertyCommunity?storeId=' + _propertyCompany.storeId);
+            },
+            _openAdminLoginPropertyModel: function(_listProperty) {
+                $that._listPropertyCompanyManager(_listProperty)
+
+            },
+            _openUpdateStoreStateModel: function(_listProperty, state) {
+                vc.emit('updateStoreState', 'open', {
+                    storeId: _listProperty.storeId,
+                    state: state,
+                    stateName: state == '48002' ? '限制登录' : '恢复登录'
+                })
+            },
+
+            _listPropertyCompanyManager: function(_listProperty) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        relCd: '600311000001',
+                        storeId: _listProperty.storeId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/storeStaff/getPropertyStaffs',
+                    param,
+                    function(json, res) {
+                        var _listPropertyManageInfo = JSON.parse(json);;
+                        vc.emit('adminLoginProperty', 'login', {
+                            username: _listPropertyManageInfo.data[0].staffName,
+                            userId: _listPropertyManageInfo.data[0].staffId,
+                            curUserName: vc.getData('/nav/getUserInfo').name
+                        })
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _resetStaffPwd: function(_listProperty) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        relCd: '600311000001',
+                        storeId: _listProperty.storeId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/storeStaff/getPropertyStaffs',
+                    param,
+                    function(json, res) {
+                        var _listPropertyManageInfo = JSON.parse(json);;
+                        vc.emit('resetStaffPwd', 'openResetStaffPwd', {
+                            username: _listPropertyManageInfo.data[0].staffName,
+                            userId: _listPropertyManageInfo.data[0].staffId,
+                            curUserName: vc.getData('/nav/getUserInfo').name
+                        });
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+
             }
 
         }

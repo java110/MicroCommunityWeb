@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         data: {
@@ -11,26 +11,26 @@
                 privilegeGroups: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that.loadPrivilegeGroup();
         },
-        _initEvent: function () {
-            vc.component.$on('privilege_group_event', function (_pgObj) {
+        _initEvent: function() {
+            vc.component.$on('privilege_group_event', function(_pgObj) {
                 vc.component.privilegeInfo._currentPgId = _pgObj._pgId;
                 vc.component.privilegeInfo._currentPgName = _pgObj._pgName;
                 vc.component.privilegeInfo._currentStoreId = _pgObj._storeId;
                 //调用接口查询权限
                 vc.component._loadPrivilege(_pgObj._pgId);
             });
-            vc.component.$on('privilege_loadPrivilege', function (_pgId) {
+            vc.component.$on('privilege_loadPrivilege', function(_pgId) {
                 vc.component._loadPrivilege(_pgId);
             });
-            vc.component.$on('privilegeGroup_loadPrivilegeGroup', function (_params) {
+            vc.component.$on('privilegeGroup_loadPrivilegeGroup', function(_params) {
                 vc.component.loadPrivilegeGroup();
             });
         },
         methods: {
-            loadPrivilegeGroup: function () {
+            loadPrivilegeGroup: function() {
                 var param = {
                     msg: 234
                 };
@@ -39,7 +39,7 @@
                 vc.http.get('privilegeGroup',
                     'listPrivilegeGroup',
                     param,
-                    function (json) {
+                    function(json) {
                         var _groupsInfo = JSON.parse(json);
                         vc.component.privilegeInfo.privilegeGroups = _groupsInfo;
 
@@ -50,18 +50,19 @@
                                 _storeId: _groupsInfo[0].storeId
                             });
                         }
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadPrivilege: function (_pgId) {
+            _loadPrivilege: function(_pgId) {
                 vc.component.privilegeInfo._privileges = [];
                 var param = {
                     params: {
                         pgId: _pgId,
-                        name: vc.component.privilegeInfo._pName
-
+                        name: vc.component.privilegeInfo._pName,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
 
@@ -69,32 +70,33 @@
                 vc.http.get('addPrivilege',
                     'listNoAddPrivilege',
                     param,
-                    function (json) {
+                    function(json) {
                         var _privileges = JSON.parse(json);
                         vc.component.privilegeInfo._privileges = _privileges;
                         $that._initJsTreePrivilege(_privileges);
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            notifyQueryPrivilege: function (_pGroup) {
+            notifyQueryPrivilege: function(_pGroup) {
                 vc.component.$emit('privilege_group_event', {
                     _pgId: _pGroup.pgId,
                     _pgName: _pGroup.name,
                     _storeId: _pGroup.storeId
                 });
             },
-            openAddPrivilegeModel: function () {
+            openAddPrivilegeModel: function() {
                 vc.component.$emit('addPrivilege_openPrivilegeModel', {
                     pgId: vc.component.privilegeInfo._currentPgId
                 });
             },
-            openDeletePrivilegeModel: function (_p) {
+            openDeletePrivilegeModel: function(_p) {
                 _p.pgId = vc.component.privilegeInfo._currentPgId;
                 vc.emit('deletePrivilege', 'openDeletePrivilegeModel', _p);
             },
-            _initJsTreePrivilege: function (_privileges) {
+            _initJsTreePrivilege: function(_privileges) {
 
                 let _data = $that._doJsTreeData(_privileges);
                 $.jstree.destroy()
@@ -103,14 +105,14 @@
                         "keep_selected_style": false
                     },
                     "plugins": ["checkbox"],
-                    'state': {                  //一些初始化状态
+                    'state': { //一些初始化状态
                         "opened": false,
                     },
                     'core': {
                         'data': _data
                     }
                 });
-                $('#jstree_privilege').on("changed.jstree", function (e, data) {
+                $('#jstree_privilege').on("changed.jstree", function(e, data) {
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
                         $("#jstree_privilege").jstree("close_all");
@@ -142,7 +144,7 @@
 
             },
 
-            _doJsTreeData: function (_privileges) {
+            _doJsTreeData: function(_privileges) {
                 let _mGroupTree = [];
 
                 //构建 第一层菜单组
@@ -170,7 +172,7 @@
                 });
                 return _mGroupTree;
             },
-            _doJsTreeMenuData: function (_groupItem) {
+            _doJsTreeMenuData: function(_groupItem) {
                 let _privileges = $that.privilegeInfo._privileges;
                 //构建菜单
                 let _children = _groupItem.children;
@@ -199,7 +201,7 @@
                     }
                 }
             },
-            _doJsTreePrivilegeData: function (_menuItem) {
+            _doJsTreePrivilegeData: function(_menuItem) {
                 let _privileges = $that.privilegeInfo._privileges;
                 //构建菜单
                 let _children = _menuItem.children;
@@ -231,16 +233,16 @@
                     }
                 }
             },
-            openPrivilegeGroupModel: function () {
+            openPrivilegeGroupModel: function() {
                 vc.component.$emit('addPrivilegeGroup_openPrivilegeGroupModel', {});
             },
-            openEditPrivilegeGroupModel: function (_pGroup) {
+            openEditPrivilegeGroupModel: function(_pGroup) {
                 vc.emit('editPrivilegeGroup', 'openPrivilegeGroupModel', _pGroup);
             },
-            openDeletePrivilegeGroupModel: function (_pGroup) {
+            openDeletePrivilegeGroupModel: function(_pGroup) {
                 vc.component.$emit('deletePrivilegeGroup_openDeletePrivilegeGroupModel', _pGroup);
             },
-            addPrivilegeToPrivilegeGroup: function (_selectPrivileges) {
+            addPrivilegeToPrivilegeGroup: function(_selectPrivileges) {
                 if (_selectPrivileges.length < 1) {
                     vc.toast("请先选择权限");
                     return;
@@ -259,23 +261,22 @@
                 vc.http.post(
                     'addPrivilege',
                     'addPrivilegeToPrivilegeGroup',
-                    JSON.stringify(_objData),
-                    {
+                    JSON.stringify(_objData), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             return;
                         }
                         vc.toast('失败')
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast('失败')
                     });
             },
-            deletePrivilege: function (_selectPrivileges) {
+            deletePrivilege: function(_selectPrivileges) {
                 if (_selectPrivileges.length < 1) {
                     vc.toast("请先选择权限");
                     return;
@@ -294,11 +295,10 @@
                 vc.http.post(
                     'deletePrivilege',
                     'delete',
-                    JSON.stringify(_objData),
-                    {
+                    JSON.stringify(_objData), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -306,7 +306,7 @@
                         }
                         vc.toast('删除失败');
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         vc.toast('删除失败');
                     });
             }
