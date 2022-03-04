@@ -9,8 +9,8 @@
                         <span class="fa fa-close " @click.stop="_closeViewMenuUser()" style="font-size: 18px;cursor: pointer;"></span>
                     </div>
                 </div>
-                <div class="row" style="margin-top: 40px;cursor: pointer;">
-                    <div class="col-md-2 text-center" @click="_jumpToUserPage(item)" v-for="(item,index) in viewMenuUserInfo.menus">
+                <div class="row" style="cursor: pointer;">
+                    <div class="col-md-2 text-center" style="margin-top: 40px;" @click="_jumpToUserPage(item)" v-for="(item,index) in viewMenuUserInfo.menus">
                         <div>
                             <i :class="item.icon" style="font-size: 48px;"></i>
                         </div>
