@@ -62,16 +62,10 @@
                         },
                     ],
                     'editStaffInfo.tel': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "手机号不能为空"
-                        },
-                        {
-                            limit: "phone",
-                            param: "",
-                            errInfo: "不是有效的手机号"
-                        }
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "手机号不能为空"
+                    }],
                     'editStaffInfo.sex': [{
                         limit: "required",
                         param: "",
