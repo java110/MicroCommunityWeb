@@ -3,6 +3,9 @@
  **/
 (function(vc) {
     vc.extends({
+        propTypes: {
+            callBackListener: vc.propTypes.string, //父组件名称
+        },
         data: {
             floorUnitTreeInfo: {
                 units: []
@@ -51,33 +54,30 @@
                         'data': _data
                     }
                 });
-                $('#jstree_privilege').on("changed.jstree", function(e, data) {
+                $("#jstree_floorUnit").on("ready.jstree", function(e, data) {
+                    //data.instance.open_all();//打开所有节点
+                    $('#jstree_floorUnit').jstree('select_node', _data[0].children[0].id /* , true */ );
+
+                });
+
+                $('#jstree_floorUnit').on("changed.jstree", function(e, data) {
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
-                        $("#jstree_floorUnit").jstree("close_all");
+                        //$("#jstree_floorUnit").jstree("close_all");
+
                         return;
                     }
-                    // let _selected = data.node.state.selected;
-                    // let _d = data.node.children_d;
-                    // if (_d.length < 1) {
-                    //     _d.push(data.node.id);
-                    // }
-                    // let _selectPrivileges = [];
-                    // _d.forEach(_dItem => {
-                    //     if (_dItem.indexOf('p_') > -1) {
-                    //         _selectPrivileges.push(_dItem.substring(2));
-                    //     }
-                    // });
+                    let _selected = data.selected[0];
 
-                    // if (_selectPrivileges.length < 1) {
-                    //     return;
-                    // }
+                    if (_selected.startsWith('f_')) {
+                        return;
+                    }
 
-                    // if (_selected) {
-                    //     $that.addPrivilegeToPrivilegeFloor(_selectPrivileges);
-                    // } else {
-                    //     $that.deletePrivilege(_selectPrivileges);
-                    // }
+                    //console.log(_selected, data.node.original.unitId)
+
+                    vc.emit($props.callBackListener, 'switchUnit', {
+                        unitId: data.node.original.unitId
+                    })
                 });
 
 
@@ -98,7 +98,7 @@
 
                     if (!_includeFloor) {
                         let _floorItem = {
-                            id: 'g_' + pItem.floorId,
+                            id: 'f_' + pItem.floorId,
                             floorId: pItem.floorId,
                             icon: "/img/floor.png",
                             text: pItem.floorNum + "栋",
@@ -127,13 +127,10 @@
                         }
                         if (!_includeMenu) {
                             let _menuItem = {
-                                id: 'm_' + _units[_pIndex].unitId,
+                                id: 'u_' + _units[_pIndex].unitId,
                                 unitId: _units[_pIndex].unitId,
                                 text: _units[_pIndex].unitNum + "单元",
-                                icon: "/img/unit.png",
-                                state: {
-                                    opened: true
-                                }
+                                icon: "/img/unit.png"
                             };
                             _children.push(_menuItem);
                         }
