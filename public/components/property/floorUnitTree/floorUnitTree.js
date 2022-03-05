@@ -42,6 +42,10 @@
             _initJsTreeFloorUnit: function() {
 
                 let _data = $that._doJsTreeData();
+
+                _data = _data.sort(function(a, b) {
+                    return a.floorNum - b.floorNum
+                })
                 $.jstree.destroy()
                 $("#jstree_floorUnit").jstree({
                     "checkbox": {
@@ -100,6 +104,7 @@
                         let _floorItem = {
                             id: 'f_' + pItem.floorId,
                             floorId: pItem.floorId,
+                            floorNum: pItem.floorNum,
                             icon: "/img/floor.png",
                             text: pItem.floorNum + "栋",
                             state: {
@@ -121,7 +126,7 @@
                     if (_floorItem.floorId == _units[_pIndex].floorId) {
                         let _includeMenu = false;
                         for (let _mgIndex = 0; _mgIndex < _children.length; _mgIndex++) {
-                            if (_units[_pIndex].mId == _children[_mgIndex].mId) {
+                            if (_units[_pIndex].unitId == _children[_mgIndex].unitId) {
                                 _includeMenu = true;
                             }
                         }
