@@ -237,28 +237,11 @@
                     });
                     _call();
                 });
-                // 循环所有房屋信息
-                // for (let _roomIndex = 0; _roomIndex < _rooms.length; _roomIndex++) {
-                //     let _room = _rooms[_roomIndex];
-                //     if (!_room.hasOwnProperty('roomAttrDto')) {
-                //         break;
-                //     }
-                //     let _roomAttrDtos = _room.roomAttrDto;
-                //     if (_roomAttrDtos.length < 1) {
-                //         break;
-                //     }
-                //     //获取房屋信息中 任意属性作为 列
-                //     for (let _roomAttrIndex = 0; _roomAttrIndex < _roomAttrDtos.length; _roomAttrIndex++) {
-                //         let attrItem = _roomAttrDtos[_roomAttrIndex];
-                //         if (attrItem.listShow == 'Y') {
-                //             $that.roomInfo.listColumns.push(attrItem.specName);
-                //         }
-                //     }
-                //     if ($that.roomInfo.listColumns.length > 0) {
-                //         break;
-                //     }
-                // }
+            },
+            _openImportRoomInfo: function() {
+                vc.emit('importOwnerRoom', 'openImportOwnerRoomModal', {})
             }
+
         }
     });
 })(window.vc);

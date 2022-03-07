@@ -1,8 +1,8 @@
-<div id="importOwnerCarModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="importOwnerRoomModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">车辆导入</h3>
+                <h3 class="m-t-none m-b ">房产导入</h3>
                 <div class="ibox-content">
                     <div>
                         <div>
@@ -11,7 +11,7 @@
                                 <div class="col-sm-10">
                                     <div class="custom-file">
                                         <input id="excelTemplate" ref="excelTemplate" type="file" class="custom-file-input form-control" name="excelTemplate" v-on:change="getExcelTemplate($event)" accept=".xls,.xlsx">
-                                        <label for="excelTemplate" class="custom-file-label">{{importOwnerCarInfo.excelTemplate==''?'必填，请选择数据文件':importOwnerCarInfo.excelTemplate.name}}</label>
+                                        <label for="excelTemplate" class="custom-file-label">{{importOwnerRoomInfo.excelTemplate==''?'必填，请选择数据文件':importOwnerRoomInfo.excelTemplate.name}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -19,7 +19,7 @@
                                 <label class="col-sm-2 col-form-label">下载模板</label>
                                 <div class="col-sm-10">
                                     请先下载
-                                    <a :href="'/callComponent/importOwnerCar/exportData?communityId='+importOwnerCarInfo.communityId" target="_blank">导入模板
+                                    <a href="/import/importRoom.xlsx" target="_blank">房产模板
                                     </a> 准备数据后，上传导入
                                 </div>
                             </div>

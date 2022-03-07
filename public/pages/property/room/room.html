@@ -17,11 +17,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择楼栋" v-model="roomInfo.conditions.floorName"
-                                    class=" form-control">
+                                <input type="text" placeholder="请选择楼栋" v-model="roomInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                        v-on:click="_openChooseFloorMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
                                         <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
@@ -29,8 +27,7 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="form-control-sm form-control input-s-sm inline"
-                                    v-model="roomInfo.conditions.unitId">
+                                <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
                                     <option v-for="(unit,index) in roomUnits" :key="index" v-bind:value="unit.unitId">
                                         {{unit.unitNum}}单元
@@ -40,8 +37,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写房屋编号" class="form-control form-control-sm"
-                                    v-model="roomInfo.conditions.roomNum">
+                                <input type="text" placeholder="请填写房屋编号" class="form-control form-control-sm" v-model="roomInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -54,13 +50,11 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写房屋编号 格式 楼栋-单元-房屋"
-                                    class="form-control form-control-sm" v-model="roomInfo.conditions.roomId">
+                                <input type="text" placeholder="请填写房屋编号 格式 楼栋-单元-房屋" class="form-control form-control-sm" v-model="roomInfo.conditions.roomId">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <select class="form-control-sm form-control input-s-sm inline"
-                                v-model="roomInfo.conditions.state">
+                            <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.state">
                                 <option selected value="">请选择状态</option>
                                 <option v-for="(item,index) in roomInfo.states" :key="index" :value="item.statusCd">
                                     {{item.name}}
@@ -68,8 +62,7 @@
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <select class="form-control-sm form-control input-s-sm inline"
-                                v-model="roomInfo.conditions.roomSubType">
+                            <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.roomSubType">
                                 <option selected disabled value="">必填，请选择房屋类型</option>
                                 <option :value="item.statusCd" v-for="(item,index) in roomInfo.roomSubTypes">{{item.name}}</option>
                             </select>
@@ -85,15 +78,16 @@
                 <div class="ibox-title">
                     <h5>房屋信息</h5>
                     <div class="ibox-tools" style="top:10px;" v-if="vc.hasPrivilege('502020082453087940')">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_openAddRoom()">
-                            <i class="fa fa-plus"></i> 添加房屋
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddRoom()">
+                            <i class="fa fa-plus"></i> 添加
+                        </button>
+                        <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openImportRoomInfo()">
+                            房产导入
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                        data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
                         <thead>
                             <tr>
                                 <!-- <th>房屋ID</th> -->
@@ -175,4 +169,5 @@
     <!-- 删除员工权限 -->
     <vc:create path="property/editRoom"></vc:create>
     <vc:create path="property/deleteRoom"></vc:create>
+    <vc:create path="property/importOwnerRoom"></vc:create>
 </div>
