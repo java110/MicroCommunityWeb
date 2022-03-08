@@ -84,7 +84,8 @@
                             //关闭model
                             var _tmpResJson = JSON.parse(json);
                             /* _tmpResJson[floorName] = vc.component._getFloorName();*/
-                            vc.jumpToPage("/#/pages/property/room");
+                            // vc.jumpToPage("/#/pages/property/room");
+                            vc.goBack();
                             return;
                         }
                         vc.toast(json);
