@@ -65,7 +65,7 @@
                             vc.toast("处理成功");
                             $('#importOwnerRoomModel').modal('hide');
                             // vc.jumpToPage('/#/pages/property/listOwner')
-                            vc.emit('listOwnerRoom', 'listOwnerRoomData', {});
+                            vc.emit('room', 'listRoom', {});
                             return;
                         }
                         vc.toast(json, 10000);
@@ -74,9 +74,6 @@
                         console.log('请求失败处理');
                         vc.toast(errInfo, 10000);
                     });
-            },
-            _exportRoomFeeTemplate: function() {
-                vc.jumpToPage('/callComponent/importOwnerRoom/exportData?communityId=' + vc.getCurrentCommunity().communityId);
             },
             clearAddFeeConfigInfo: function() {
                 // var _feeTypeCds = vc.component.importRoomFeeInfo.feeTypeCds;
