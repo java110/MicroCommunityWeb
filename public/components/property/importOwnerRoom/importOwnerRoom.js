@@ -60,15 +60,16 @@
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
-                            vc.toast("处理成功");
+                            vc.toast(_json.data);
                             $('#importOwnerRoomModel').modal('hide');
                             // vc.jumpToPage('/#/pages/property/listOwner')
                             vc.emit('room', 'listRoom', {});
                             return;
                         }
-                        vc.toast(json, 10000);
+                        vc.toast(_json.msg, 10000);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
