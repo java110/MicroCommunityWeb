@@ -160,27 +160,13 @@
             //重置
             _resetRoomMethod: function() {
                 vc.resetObject(vc.component.roomCreateFeeInfo.conditions);
-                // vc.component.roomCreateFeeInfo.conditions.floorId = '';
-                // vc.component.roomCreateFeeInfo.conditions.ownerName = '';
-                // vc.component.roomCreateFeeInfo.conditions.floorName = '';
-                // vc.component.roomCreateFeeInfo.conditions.unitId = '';
-                // vc.component.roomCreateFeeInfo.conditions.roomNum = '';
-                // vc.component.roomCreateFeeInfo.conditions.roomId = '';
-                // vc.component.roomCreateFeeInfo.conditions.state = '';
-                // vc.component.roomCreateFeeInfo.conditions.section = '';
-                // vc.component.roomCreateFeeInfo.conditions.allNum = '';
-                // vc.component.roomCreateFeeInfo.conditions.idCard = '';
-                // vc.component.roomCreateFeeInfo.conditions.roomType = '';
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             },
             _loadDataByParam: function() {
                 vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
                 vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorName");
-                //如果 floodId 没有传 则，直接结束
-                /* if(!vc.notNull(vc.component.roomCreateFeeInfo.conditions.floorId)){
-                     return ;
-                 }*/
-                var param = {
+
+                let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         floorId: vc.component.roomCreateFeeInfo.conditions.floorId
@@ -273,6 +259,9 @@
             },
             _downloadRoomCollectionLetterOrder: function(_room) {
                 vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId + "&roomId=" + _room.roomId);
+            },
+            _openFeeImportExcel: function() {
+                vc.emit('exportFeeImportExcel', 'openExportFeeImportExcelModal', {})
             }
         }
     });
