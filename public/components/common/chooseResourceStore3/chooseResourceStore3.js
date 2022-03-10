@@ -61,8 +61,11 @@
             _loadAllResourceStoreInfo: function (_page, _row) {
                 let _resOrderType = vc.component.chooseResourceStoreInfo3.resOrderType;
                 let _shType = '2806';
+                // 2022-3-7新增请求标识
+                let operationType = '';
                 if (_resOrderType == '20000') {
                     _shType = '2807';
+                    operationType = '1000';
                 }
                 var param = {
                     params: {
@@ -75,7 +78,8 @@
                         resName: vc.component.chooseResourceStoreInfo3._currentResourceStoreName,
                         parentRstId: vc.component.chooseResourceStoreInfo3.parentRstId,
                         rstId: vc.component.chooseResourceStoreInfo3.rstId,
-                        shId: vc.component.chooseResourceStoreInfo3.shId
+                        shId: vc.component.chooseResourceStoreInfo3.shId,
+                        operationType: operationType
                     }
                 };
                 //发送get请求
@@ -132,8 +136,11 @@
             _listStorehouses: function (_page, _rows) {
                 let _resOrderType = vc.component.chooseResourceStoreInfo3.resOrderType;
                 let _shType = '2806';
+                // 2022-3-7新增请求标识
+                let operationType = '';
                 if (_resOrderType == '20000') {
                     _shType = '2807';
+                    operationType = '1000';
                 }
                 var param = {
                     params: {
@@ -141,7 +148,8 @@
                         row: 100,
                         communityId: vc.getCurrentCommunity().communityId,
                         shType: _shType,
-                        isShow: true
+                        isShow: true,
+                        operationType: operationType
                     }
                 };
                 //发送get请求
