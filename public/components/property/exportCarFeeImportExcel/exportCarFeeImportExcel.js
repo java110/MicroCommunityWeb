@@ -1,43 +1,43 @@
 (function(vc) {
     vc.extends({
         data: {
-            exportFeeImportExcelInfo: {
+            exportCarFeeImportExcelInfo: {
                 communityId: vc.getCurrentCommunity().communityId,
-                isFloorAll: true,
+                isParkingAreaAll: true,
                 isConfigAll: true,
                 configIds: [],
                 configs: [],
-                floorIds: [],
-                floors: [],
+                paIds: [],
+                parkingAreas: [],
             }
         },
         _initMethod: function() {},
         _initEvent: function() {
-            vc.on('exportFeeImportExcel', 'openExportFeeImportExcelModal', function(_param) {
-                $that._loadExportFloors();
+            vc.on('exportCarFeeImportExcel', 'openExportCarFeeImportExcelModal', function(_param) {
+                $that._loadExportParkingAreas();
                 $that._listExportFeeConfigs();
-                $('#exportFeeImportExcelModel').modal('show');
+                $('#exportCarFeeImportExcelModel').modal('show');
             });
         },
         methods: {
             _importData: function() {
 
                 // 导入数据
-                if (!vc.component.checkOwnerFileType(vc.component.exportFeeImportExcelInfo.excelTemplate.name.split('.')[1])) {
+                if (!vc.component.checkOwnerFileType(vc.component.exportCarFeeImportExcelInfo.excelTemplate.name.split('.')[1])) {
                     vc.toast('不是有效的Excel格式');
                     return;
                 }
-                if (!vc.component.checkOwnerFileSize(vc.component.exportFeeImportExcelInfo.excelTemplate.size)) {
+                if (!vc.component.checkOwnerFileSize(vc.component.exportCarFeeImportExcelInfo.excelTemplate.size)) {
                     vc.toast('Excel文件大小不能超过2M');
                     return;
                 }
                 var param = new FormData();
-                param.append("uploadFile", vc.component.exportFeeImportExcelInfo.excelTemplate);
-                param.append('communityId', vc.component.exportFeeImportExcelInfo.communityId);
+                param.append("uploadFile", vc.component.exportCarFeeImportExcelInfo.excelTemplate);
+                param.append('communityId', vc.component.exportCarFeeImportExcelInfo.communityId);
                 // param.append('feeTypeCd', vc.component.importRoomFeeInfo.feeTypeCd);
                 // param.append('objType', $that.importRoomFeeInfo.objType);
                 vc.http.upload(
-                    'exportFeeImportExcel',
+                    'exportCarFeeImportExcel',
                     'importData',
                     param, {
                         emulateJSON: true,
@@ -52,7 +52,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             vc.toast(_json.data);
-                            $('#exportFeeImportExcelModel').modal('hide');
+                            $('#exportCarFeeImportExcelModel').modal('hide');
                             // vc.jumpToPage('/#/pages/property/listOwner')
                             vc.emit('room', 'listRoom', {});
                             return;
@@ -66,34 +66,34 @@
             },
             clearAddFeeConfigInfo: function() {
                 // var _feeTypeCds = vc.component.importRoomFeeInfo.feeTypeCds;
-                vc.component.exportFeeImportExcelInfo = {
+                vc.component.exportCarFeeImportExcelInfo = {
                     communityId: vc.getCurrentCommunity().communityId,
-                    isFloorAll: true,
+                    isParkingAreaAll: true,
                     isConfigAll: true,
                     configIds: [],
                     configs: [],
-                    floorIds: [],
-                    floors: [],
+                    paIds: [],
+                    parkingAreas: [],
                 };
             },
 
             changeItemConfig: function() {
-                if ($that.exportFeeImportExcelInfo.configIds.length < $that.exportFeeImportExcelInfo.configs.length) {
-                    $that.exportFeeImportExcelInfo.isConfigAll = false;
+                if ($that.exportCarFeeImportExcelInfo.configIds.length < $that.exportCarFeeImportExcelInfo.configs.length) {
+                    $that.exportCarFeeImportExcelInfo.isConfigAll = false;
                     return;
                 }
-                $that.exportFeeImportExcelInfo.isConfigAll = true;
+                $that.exportCarFeeImportExcelInfo.isConfigAll = true;
             },
 
-            changeItemFloor: function() {
-                if ($that.exportFeeImportExcelInfo.floorIds.length < $that.exportFeeImportExcelInfo.floors.length) {
-                    $that.exportFeeImportExcelInfo.isFloorAll = false;
+            changeItemParkingArea: function() {
+                if ($that.exportCarFeeImportExcelInfo.paIds.length < $that.exportCarFeeImportExcelInfo.parkingAreas.length) {
+                    $that.exportCarFeeImportExcelInfo.isParkingAreaAll = false;
                     return;
                 }
-                $that.exportFeeImportExcelInfo.isFloorAll = true;
+                $that.exportCarFeeImportExcelInfo.isParkingAreaAll = true;
             },
 
-            _loadExportFloors: function() {
+            _loadExportParkingAreas: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -103,14 +103,14 @@
                 };
 
                 //发送get请求
-                vc.http.get('listFloor',
+                vc.http.get('parkingAreaManage',
                     'list',
                     param,
                     function(json, res) {
-                        let listFloorData = JSON.parse(json);
-                        $that.exportFeeImportExcelInfo.floors = listFloorData.apiFloorDataVoList;
-                        listFloorData.apiFloorDataVoList.forEach(item => {
-                            $that.exportFeeImportExcelInfo.floorIds.push(item.floorId);
+                        let listParkingAreaData = JSON.parse(json);
+                        $that.exportCarFeeImportExcelInfo.parkingAreas = listParkingAreaData.parkingAreas;
+                        listParkingAreaData.parkingAreas.forEach(item => {
+                            $that.exportCarFeeImportExcelInfo.paIds.push(item.paId);
                         });
                     },
                     function(errInfo, error) {
@@ -131,10 +131,10 @@
                 vc.http.get('feeConfigManage', 'list', param,
                     function(json, res) {
                         let _feeConfigManageInfo = JSON.parse(json);
-                        $that.exportFeeImportExcelInfo.configs = _feeConfigManageInfo.feeConfigs;
+                        $that.exportCarFeeImportExcelInfo.configs = _feeConfigManageInfo.feeConfigs;
 
                         _feeConfigManageInfo.feeConfigs.forEach(item => {
-                            $that.exportFeeImportExcelInfo.configIds.push(item.configId);
+                            $that.exportCarFeeImportExcelInfo.configIds.push(item.configId);
                         });
 
                     },
@@ -144,31 +144,30 @@
             },
 
             changeAllConfig: function() {
-                $that.exportFeeImportExcelInfo.configIds = [];
-                if (!$that.exportFeeImportExcelInfo.isConfigAll) {
+                $that.exportCarFeeImportExcelInfo.configIds = [];
+                if (!$that.exportCarFeeImportExcelInfo.isConfigAll) {
                     return;
                 }
 
-                $that.exportFeeImportExcelInfo.configs.forEach(item => {
-                    $that.exportFeeImportExcelInfo.configIds.push(item.configId);
+                $that.exportCarFeeImportExcelInfo.configs.forEach(item => {
+                    $that.exportCarFeeImportExcelInfo.configIds.push(item.configId);
                 });
             },
-            changeAllFloors: function() {
-                $that.exportFeeImportExcelInfo.floorIds = [];
-                if (!$that.exportFeeImportExcelInfo.isFloorAll) {
+            changeAllParkingAreas: function() {
+                $that.exportCarFeeImportExcelInfo.paIds = [];
+                if (!$that.exportCarFeeImportExcelInfo.isParkingAreaAll) {
                     return;
                 }
 
-                $that.exportFeeImportExcelInfo.floors.forEach(item => {
-                    $that.exportFeeImportExcelInfo.floorIds.push(item.floorId);
+                $that.exportCarFeeImportExcelInfo.parkingAreas.forEach(item => {
+                    $that.exportCarFeeImportExcelInfo.paIds.push(item.paId);
                 });
             },
             _exportExcel: function() {
-                let _floorIds = $that.exportFeeImportExcelInfo.floorIds.join(',');
-                let _configIds = $that.exportFeeImportExcelInfo.configIds.join(',');
-                vc.jumpToPage('/callComponent/importAndExportFee/exportData?floorIds=' + _floorIds + "&configIds=" + _configIds + "&communityId=" + vc.getCurrentCommunity().communityId + "&type=1001");
-                $('#exportFeeImportExcelModel').modal('hide');
-
+                let _paIds = $that.exportCarFeeImportExcelInfo.paIds.join(',');
+                let _configIds = $that.exportCarFeeImportExcelInfo.configIds.join(',');
+                vc.jumpToPage('/callComponent/importAndExportFee/exportData?paIds=' + _paIds + "&configIds=" + _configIds + "&communityId=" + vc.getCurrentCommunity().communityId + "&type=2002");
+                $('#exportCarFeeImportExcelModel').modal('hide');
             }
         }
     });
