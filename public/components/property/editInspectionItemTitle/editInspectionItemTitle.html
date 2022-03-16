@@ -1,4 +1,4 @@
-<div id="editReportInfoSettingTitleModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="editInspectionItemTitleModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -9,7 +9,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">题目类型</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editReportInfoSettingTitleInfo.titleType">
+                                    <select class="custom-select" v-model="editInspectionItemTitleInfo.titleType">
                                         <option selected disabled value="">必填，请选择题目类型</option>
                                         <option value="1001">单选</option>
                                         <option value="2002">多选</option>
@@ -20,15 +20,15 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">题目</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editReportInfoSettingTitleInfo.title" type="text" placeholder="必填，请填写问卷题目" class="form-control">
+                                    <input v-model="editInspectionItemTitleInfo.itemTitle" type="text" placeholder="必填，请填写问卷题目" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group row" v-for="(item,index) in editReportInfoSettingTitleInfo.titleValues">
+                            <div class="form-group row" v-for="(item,index) in editInspectionItemTitleInfo.titleValues">
                                 <label class="col-sm-2 col-form-label">选项{{item.seq}}</label>
                                 <div class="col-sm-8">
-                                    <input v-model="item.qaValue" type="text" placeholder="必填，请填写选项内容" class="form-control">
+                                    <input v-model="item.itemValue" type="text" placeholder="必填，请填写选项内容" class="form-control">
                                 </div>
-                                <div class="col-sm-2" v-if="index == editReportInfoSettingTitleInfo.titleValues.length-1">
+                                <div class="col-sm-2" v-if="index == editInspectionItemTitleInfo.titleValues.length-1">
                                     <button class="btn btn-link float-right" type="button" v-on:click="_addEditTitleValue()">增加选项</button>
                                 </div>
                                 <div class="col-sm-2" v-else>
@@ -38,12 +38,12 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">顺序</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editReportInfoSettingTitleInfo.seq" type="text" placeholder="必填，请填写顺序" class="form-control">
+                                    <input v-model="editInspectionItemTitleInfo.seq" type="text" placeholder="必填，请填写顺序" class="form-control">
                                 </div>
                             </div>
 
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editReportInfoSettingTitle()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editInspectionItemTitle()"><i class="fa fa-check"></i>&nbsp;保存</button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
                             </div>
                         </div>

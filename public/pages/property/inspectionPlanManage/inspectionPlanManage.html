@@ -11,15 +11,12 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入计划ID"
-                                       v-model="inspectionPlanManageInfo.conditions.inspectionPlanId" class=" form-control">
+                                <input type="text" placeholder="请输入计划ID" v-model="inspectionPlanManageInfo.conditions.inspectionPlanId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入计划名称"
-                                       v-model="inspectionPlanManageInfo.conditions.inspectionPlanName"
-                                       class=" form-control">
+                                <input type="text" placeholder="请输入计划名称" v-model="inspectionPlanManageInfo.conditions.inspectionPlanName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -31,12 +28,10 @@
                             </select>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_queryInspectionPlanMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionPlanMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_resetInspectionPlanMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetInspectionPlanMethod()">
                                 <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
@@ -57,73 +52,74 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny"
-                           data-page-size="15">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">计划ID</th>
-                            <th class="text-center">计划名称</th>
-                            <th class="text-center">计划路线</th>
-                            <th class="text-center">计划周期</th>
-                            <th class="text-center">签到方式</th>
-                            <th class="text-center">计划开始时间</th>
-                            <th class="text-center">计划结束时间</th>
-                            <th class="text-center">制定人</th>
-                            <th class="text-center">制定时间</th>
-                            <th class="text-center">状态</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">计划ID</th>
+                                <th class="text-center">计划名称</th>
+                                <th class="text-center">计划路线</th>
+                                <th class="text-center">计划周期</th>
+                                <th class="text-center">签到方式</th>
+                                <th class="text-center">计划开始时间</th>
+                                <th class="text-center">计划结束时间</th>
+                                <th class="text-center">制定人</th>
+                                <th class="text-center">制定时间</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="inspectionPlan in inspectionPlanManageInfo.inspectionPlans">
-                            <td class="text-center">{{inspectionPlan.inspectionPlanId}}</td>
-                            <td class="text-center">{{inspectionPlan.inspectionPlanName}}</td>
-                            <td class="text-center">{{inspectionPlan.inspectionRouteName}}</td>
-                            <td class="text-center">{{inspectionPlan.inspectionPlanPeriodName}}</td>
-                            <td class="text-center">{{inspectionPlan.signTypeName}}</td>
-                            <td class="text-center">{{inspectionPlan.startTime}}</td>
-                            <td class="text-center">{{inspectionPlan.endTime}}</td>
-                            <td class="text-center">{{inspectionPlan.createUserName}}</td>
-                            <td class="text-center">{{inspectionPlan.createTime}}</td>
-                            <td class="text-center">{{inspectionPlan.stateName}}</td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openPlanStaff(inspectionPlan)">
+                            <tr v-for="inspectionPlan in inspectionPlanManageInfo.inspectionPlans">
+                                <td class="text-center">{{inspectionPlan.inspectionPlanId}}</td>
+                                <td class="text-center">{{inspectionPlan.inspectionPlanName}}</td>
+                                <td class="text-center">{{inspectionPlan.inspectionRouteName}}</td>
+                                <td class="text-center">{{inspectionPlan.inspectionPlanPeriodName}}</td>
+                                <td class="text-center">{{inspectionPlan.signTypeName}}</td>
+                                <td class="text-center">{{inspectionPlan.startTime}}</td>
+                                <td class="text-center">{{inspectionPlan.endTime}}</td>
+                                <td class="text-center">{{inspectionPlan.createUserName}}</td>
+                                <td class="text-center">{{inspectionPlan.createTime}}</td>
+                                <td class="text-center">{{inspectionPlan.stateName}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openPlanStaff(inspectionPlan)">
                                         设置巡检人
                                     </button>
-                                    <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">变更
+                                        <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">变更
                                     </button>
-                                    <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
-                                        <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)"
-                                               v-on:click="_openEditInspectionPlanModel(inspectionPlan)">修改计划</a>
-                                            <span>|</span>
-                                            <a href="javascript:void(0)"
-                                               v-on:click="_openDeleteInspectionPlanModel(inspectionPlan)">删除计划</a>
-                                        </p>
-                                        <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)"
-                                               v-on:click="_openEnabledInspectionPlanModel(inspectionPlan)">启用计划</a>
-                                            <span>|</span>
-                                            <a href="javascript:void(0)"
-                                               v-on:click="_openDisabledInspectionPlanModel(inspectionPlan)">停用计划</a>
-                                        </p>
+                                        <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
+                                            <p style="margin:10px 0;">
+                                                <a href="javascript:void(0)" v-on:click="_openEditInspectionPlanModel(inspectionPlan)">修改计划</a>
+                                                <span>|</span>
+                                                <a href="javascript:void(0)" v-on:click="_openDeleteInspectionPlanModel(inspectionPlan)">删除计划</a>
+                                            </p>
+                                            <p style="margin:10px 0;">
+                                                <a href="javascript:void(0)" v-on:click="_openEnabledInspectionPlanModel(inspectionPlan)">启用计划</a>
+                                                <span>|</span>
+                                                <a href="javascript:void(0)" v-on:click="_openDisabledInspectionPlanModel(inspectionPlan)">停用计划</a>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="11">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="11">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>请确保计划开始时间和计划结束时间是有效时间范围，并且设置了巡检人，不然无法生成巡检任务</div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

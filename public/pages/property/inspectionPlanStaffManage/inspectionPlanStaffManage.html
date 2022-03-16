@@ -4,12 +4,10 @@
             <div class="ibox-title">
                 <h5>设置-{{inspectionPlanStaffManageInfo.inspectionPlanName}}-巡检人</h5>
                 <div class="ibox-tools" style="top:10px;">
-                    <button type="button" class="btn btn-primary btn-sm " v-on:click="_goBack()"
-                        style="margin-right:10px">
+                    <button type="button" class="btn btn-white btn-sm " v-on:click="_goBack()" style="margin-right:10px">
                         返回
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm"
-                        v-on:click="_openAddInspectionPlanStaffModal()">
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionPlanStaffModal()">
                         <i class="fa fa-plus"></i>
                         添加
                     </button>
@@ -35,8 +33,7 @@
                             <td class="text-center">{{inspectionPlanStaff.endTime}}</td>
                             <td class="text-right">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                        v-on:click="_openDeleteInspectionPlanStaffModel(inspectionPlanStaff)">删除
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionPlanStaffModel(inspectionPlanStaff)">删除
                                     </button>
                                 </div>
                             </td>
@@ -57,8 +54,7 @@
         </div>
     </div>
 
-    <vc:create path="property/addInspectionPlanStaff" emitListener="inspectionRoutePointManage"
-        emitFunction="listInspectionPoint"></vc:create>
+    <vc:create path="property/addInspectionPlanStaff" emitListener="inspectionRoutePointManage" emitFunction="listInspectionPoint"></vc:create>
 
     <vc:create path="property/deleteInspectionPlanStaff"></vc:create>
 </div>

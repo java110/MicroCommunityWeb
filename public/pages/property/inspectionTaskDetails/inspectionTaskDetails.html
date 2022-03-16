@@ -5,8 +5,7 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
                             {{inspectionTaskDetailManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
@@ -15,31 +14,24 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入巡检人"
-                                       v-model="inspectionTaskDetailManageInfo.conditions.planUserName" class=" form-control">
+                                <input type="text" placeholder="请输入巡检人" v-model="inspectionTaskDetailManageInfo.conditions.planUserName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入实际巡检开始时间"
-                                       v-model="inspectionTaskDetailManageInfo.conditions.inspectionStartTime"
-                                       class=" form-control startTime">
+                                <input type="text" placeholder="请输入实际巡检开始时间" v-model="inspectionTaskDetailManageInfo.conditions.inspectionStartTime" class=" form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入实际巡检结束时间"
-                                       v-model="inspectionTaskDetailManageInfo.conditions.inspectionEndTime"
-                                       class=" form-control endTime">
+                                <input type="text" placeholder="请输入实际巡检结束时间" v-model="inspectionTaskDetailManageInfo.conditions.inspectionEndTime" class=" form-control endTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_queryInspectionTaskMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionTaskMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_resetInspectionTaskMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetInspectionTaskMethod()">
                                 <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
@@ -76,8 +68,7 @@
                     <div class="row margin-top" v-show="inspectionTaskDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入任务详情ID" v-model="inspectionTaskDetailManageInfo.conditions.taskDetailId"
-                                    class=" form-control">
+                                <input type="text" placeholder="请输入任务详情ID" v-model="inspectionTaskDetailManageInfo.conditions.taskDetailId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -132,63 +123,62 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">任务详情ID</th>
-                            <th class="text-center">巡检点名称</th>
-                            <th class="text-center">巡检计划名称</th>
-                            <th class="text-center">巡检路线名称</th>
-                            <th class="text-center">巡检人<br/>开始/结束时间</th>
-                            <th class="text-center">巡检点<br/>开始/结束时间</th>
-                            <th class="text-center">实际巡检时间</th>
-                            <th class="text-center">实际签到状态</th>
-                            <th class="text-center">计划巡检人</th>
-                            <th class="text-center">实际巡检人</th>
-                            <th class="text-center">巡检方式</th>
-                            <th class="text-center">任务状态</th>
-                            <th class="text-center">巡检点状态</th>
-                            <th class="text-center">巡检情况</th>
-                            <th class="text-center">巡检说明</th>
-                            <th class="text-center">巡检照片</th>
-                            <th class="text-center" style="width: 70px;">位置信息</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">任务详情ID</th>
+                                <th class="text-center">巡检点名称</th>
+                                <th class="text-center">巡检计划名称</th>
+                                <th class="text-center">巡检路线名称</th>
+                                <th class="text-center">巡检人<br/>开始/结束时间</th>
+                                <th class="text-center">巡检点<br/>开始/结束时间</th>
+                                <th class="text-center">实际巡检时间</th>
+                                <th class="text-center">实际签到状态</th>
+                                <th class="text-center">计划巡检人</th>
+                                <th class="text-center">实际巡检人</th>
+                                <th class="text-center">巡检方式</th>
+                                <th class="text-center">任务状态</th>
+                                <th class="text-center">巡检点状态</th>
+                                <th class="text-center">巡检情况</th>
+                                <th class="text-center">巡检照片</th>
+                                <th class="text-center" style="width: 70px;">位置信息</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="inspectionTask in inspectionTaskDetailManageInfo.inspectionTasks">
-                            <td class="text-center">{{inspectionTask.taskDetailId}}</td>
-                            <td class="text-center">{{inspectionTask.inspectionName}}</td>
-                            <td class="text-center">{{inspectionTask.inspectionPlanName}}</td>
-                            <td class="text-center">{{inspectionTask.routeName}}</td>
-                            <td class="text-center">{{inspectionTask.planInsTime}}<br/>{{inspectionTask.planEndTime}}</td>
-                            <td class="text-center">{{inspectionTask.pointStartTime}}<br/>{{inspectionTask.pointEndTime}}</td>
-                            <td class="text-center">{{inspectionTask.inspectionTime ? inspectionTask.inspectionTime : '-'}}</td>
-                            <td class="text-center text-primary" v-if="inspectionTask.inspectionState == '60000'">{{inspectionTask.inspectionStateName ? inspectionTask.inspectionStateName : '-'}}</td>
-                            <td class="text-center text-danger font-bold" v-else>{{inspectionTask.inspectionStateName ? inspectionTask.inspectionStateName : '-'}}</td>
-                            <td class="text-center">{{inspectionTask.planUserName}}</td>
-                            <td class="text-center">{{inspectionTask.actUserName ? inspectionTask.actUserName : '-'}}</td>
-                            <td class="text-center">{{inspectionTask.signTypeName}}</td>
-                            <td class="text-center">{{inspectionTask.taskStateName}}</td>
-                            <td class="text-center text-danger font-bold" v-if="inspectionTask.state == '20200408'">{{inspectionTask.stateName}}</td>
-                            <td class="text-center" v-else>{{inspectionTask.stateName}}</td>
-                            <td class="text-center text-danger font-bold" v-if="inspectionTask.patrolType == '20002'">{{inspectionTask.patrolTypeName ? inspectionTask.patrolTypeName : '-'}}</td>
-                            <td class="text-center text-primary" v-else>{{inspectionTask.patrolTypeName ? inspectionTask.patrolTypeName : '-'}}</td>
+                            <tr v-for="inspectionTask in inspectionTaskDetailManageInfo.inspectionTasks">
+                                <td class="text-center">{{inspectionTask.taskDetailId}}</td>
+                                <td class="text-center">{{inspectionTask.inspectionName}}</td>
+                                <td class="text-center">{{inspectionTask.inspectionPlanName}}</td>
+                                <td class="text-center">{{inspectionTask.routeName}}</td>
+                                <td class="text-center">{{inspectionTask.planInsTime}}<br/>{{inspectionTask.planEndTime}}</td>
+                                <td class="text-center">{{inspectionTask.pointStartTime}}<br/>{{inspectionTask.pointEndTime}}</td>
+                                <td class="text-center">{{inspectionTask.inspectionTime ? inspectionTask.inspectionTime : '-'}}</td>
+                                <td class="text-center text-primary" v-if="inspectionTask.inspectionState == '60000'">{{inspectionTask.inspectionStateName ? inspectionTask.inspectionStateName : '-'}}</td>
+                                <td class="text-center text-danger font-bold" v-else>{{inspectionTask.inspectionStateName ? inspectionTask.inspectionStateName : '-'}}</td>
+                                <td class="text-center">{{inspectionTask.planUserName}}</td>
+                                <td class="text-center">{{inspectionTask.actUserName ? inspectionTask.actUserName : '-'}}</td>
+                                <td class="text-center">{{inspectionTask.signTypeName}}</td>
+                                <td class="text-center">{{inspectionTask.taskStateName}}</td>
+                                <td class="text-center text-danger font-bold" v-if="inspectionTask.state == '20200408'">{{inspectionTask.stateName}}</td>
+                                <td class="text-center" v-else>{{inspectionTask.stateName}}</td>
+                                <!-- <td class="text-center text-danger font-bold" v-if="inspectionTask.patrolType == '20002'">{{inspectionTask.patrolTypeName ? inspectionTask.patrolTypeName : '-'}}</td>
+                            <td class="text-center text-primary" v-else>{{inspectionTask.patrolTypeName ? inspectionTask.patrolTypeName : '-'}}</td> -->
 
-                            <td class="text-center">{{inspectionTask.description ? inspectionTask.description : '-'}}</td>
-                            <td class="text-center" style="white-space: nowrap;">
-                                <span v-for="_photo in inspectionTask.photos">
+                                <td class="text-center text-primary">{{inspectionTask.description ? inspectionTask.description : '-'}}</td>
+                                <td class="text-center" style="white-space: nowrap;">
+                                    <span v-for="_photo in inspectionTask.photos">
                                     <img style="width: 60px; height: 60px;" v-bind:src="_photo.url" v-on:click="openFile(_photo)" />
                                 </span>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-info" v-on:click="openMap(inspectionTask.latitude, inspectionTask.longitude)">查看</button>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-info" v-on:click="openMap(inspectionTask.latitude, inspectionTask.longitude)">查看</button>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="17">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="17">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

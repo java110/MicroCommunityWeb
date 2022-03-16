@@ -1,5 +1,4 @@
-<div id="inspectionTaskDetailModel" class="modal fade" tabindex="-1" role="dialog"
-     aria-labelledby="inspectionTaskDetailModelLabel" aria-hidden="true">
+<div id="inspectionTaskDetailModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="inspectionTaskDetailModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,44 +14,43 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                    <tr>
-                                         <th class="text-center">任务详情ID</th>
-                                        <!-- <th class="text-center">巡检点ID</th> -->
-                                        <th class="text-center">巡检点</th>
-                                        <th class="text-center">巡检状态</th>
-                                        <th class="text-center">签到状态</th>
-                                        <th class="text-center">巡检人<br/>开始/结束时间</th>
-                                        <th class="text-center">巡检点<br/>开始/结束时间</th>
-                                        <th class="text-center">实际巡检时间</th>
-                                        <th class="text-center">巡检情况</th>
-                                        <th class="text-center">巡检说明</th>
-                                        <th class="text-center">巡检照片</th>
-                                        <th class="text-center" style="width: 70px;">位置信息</th>
-                                    </tr>
+                                        <tr>
+                                            <th class="text-center">任务详情ID</th>
+                                            <!-- <th class="text-center">巡检点ID</th> -->
+                                            <th class="text-center">巡检点</th>
+                                            <th class="text-center">巡检状态</th>
+                                            <th class="text-center">签到状态</th>
+                                            <th class="text-center">巡检人<br/>开始/结束时间</th>
+                                            <th class="text-center">巡检点<br/>开始/结束时间</th>
+                                            <th class="text-center">实际巡检时间</th>
+                                            <th class="text-center">巡检情况</th>
+                                            <th class="text-center">巡检照片</th>
+                                            <th class="text-center" style="width: 70px;">位置信息</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="taskDetail in inspectionTaskDetailInfo.taskDetails">
-                                         <td class="text-center">{{taskDetail.taskDetailId}}</td>
-                                        <!-- <td class="text-center">{{taskDetail.inspectionId}}</td> -->
-                                        <td class="text-center">{{taskDetail.inspectionName}}</td>
-                                        <td class="text-center">{{taskDetail.stateName}}</td>
-                                        <td class="text-center text-primary" v-if="taskDetail.inspectionState == '60000'">{{taskDetail.inspectionStateName ? taskDetail.inspectionStateName : '-'}}</td>
-                                        <td class="text-center text-danger font-bold" v-else>{{taskDetail.inspectionStateName ? taskDetail.inspectionStateName : '-'}}</td>
-                                        <td class="text-center">{{taskDetail.planInsTime}}<br/>{{taskDetail.planEndTime}}</td>
-                                        <td class="text-center">{{taskDetail.pointStartTime}}<br/>{{taskDetail.pointEndTime}}</td>
-                                        <td class="text-center">{{taskDetail.inspectionTime ? taskDetail.inspectionTime : '-'}}</td>
-                                        <td class="text-center">{{taskDetail.patrolTypeName ? taskDetail.patrolTypeName : '-'}}</td>
-                                        <td class="text-center">{{taskDetail.description ? taskDetail.description : '-'}}</td>
-                                        <td class="text-center" style="white-space: nowrap;">
-                                            <span v-for="_photo in taskDetail.photos">
+                                        <tr v-for="taskDetail in inspectionTaskDetailInfo.taskDetails">
+                                            <td class="text-center">{{taskDetail.taskDetailId}}</td>
+                                            <!-- <td class="text-center">{{taskDetail.inspectionId}}</td> -->
+                                            <td class="text-center">{{taskDetail.inspectionName}}</td>
+                                            <td class="text-center">{{taskDetail.stateName}}</td>
+                                            <td class="text-center text-primary" v-if="taskDetail.inspectionState == '60000'">{{taskDetail.inspectionStateName ? taskDetail.inspectionStateName : '-'}}</td>
+                                            <td class="text-center text-danger font-bold" v-else>{{taskDetail.inspectionStateName ? taskDetail.inspectionStateName : '-'}}</td>
+                                            <td class="text-center">{{taskDetail.planInsTime}}<br/>{{taskDetail.planEndTime}}</td>
+                                            <td class="text-center">{{taskDetail.pointStartTime}}<br/>{{taskDetail.pointEndTime}}</td>
+                                            <td class="text-center">{{taskDetail.inspectionTime ? taskDetail.inspectionTime : '-'}}</td>
+                                            <!-- <td class="text-center">{{taskDetail.patrolTypeName ? taskDetail.patrolTypeName : '-'}}</td> -->
+                                            <td class="text-center">{{taskDetail.description ? taskDetail.description : '-'}}</td>
+                                            <td class="text-center" style="white-space: nowrap;">
+                                                <span v-for="_photo in taskDetail.photos">
                                                 <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"
                                                      v-on:click="openFile(_photo)"/>
                                             </span>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-info" v-on:click="openMap(taskDetail.latitude, taskDetail.longitude)">查看</button>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-info" v-on:click="openMap(taskDetail.latitude, taskDetail.longitude)">查看</button>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <!-- 分页 -->
