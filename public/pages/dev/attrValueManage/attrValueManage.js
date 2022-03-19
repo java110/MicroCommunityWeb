@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -12,12 +12,12 @@
                 records: 1,
                 moreCondition: false,
                 valueId: '',
-                specName:'',
+                specName: '',
                 conditions: {
                     value: '',
                     valueShow: '',
                     valueName: '',
-                    specCd:''
+                    specCd: ''
                 }
             }
         },
@@ -42,7 +42,8 @@
                 var param = {
                     params: vc.component.attrValueManageInfo.conditions
                 };
-
+                param.params.value = param.params.value.trim();
+                param.params.valueName = param.params.valueName.trim();
                 //发送get请求
                 vc.http.apiGet('/attrValue/queryAttrValue',
                     param,
@@ -72,9 +73,16 @@
             _openDeleteAttrValueModel: function (_attrValue) {
                 vc.emit('deleteAttrValue', 'openDeleteAttrValueModal', _attrValue);
             },
+            //查询
             _queryAttrValueMethod: function () {
                 vc.component._listAttrValues(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetAttrValueMethod: function () {
+                vc.component.attrValueManageInfo.conditions.value = "";
+                vc.component.attrValueManageInfo.conditions.valueShow = "";
+                vc.component.attrValueManageInfo.conditions.valueName = "";
+                vc.component._listAttrValues(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.attrValueManageInfo.moreCondition) {
@@ -83,8 +91,6 @@
                     vc.component.attrValueManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

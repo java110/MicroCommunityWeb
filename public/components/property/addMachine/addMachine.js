@@ -64,6 +64,10 @@
                     vc.component.addMachineInfo.boxId = _param.boxId;
                 }
 
+                if (_param.hasOwnProperty("paId")) {
+                    vc.component.addMachineInfo.paId = _param.paId;
+                }
+
             });
             vc.on('addMachine', 'staffSelect2', 'setStaff', function (_param) {
                 if (_param.hasOwnProperty("orgId")) {
@@ -181,6 +185,7 @@
                     && vc.component.addMachineInfo.locationType != '4000'
                     && vc.component.addMachineInfo.locationType != '5000'
                     && vc.component.addMachineInfo.locationType != '6000'
+                    && vc.component.addMachineInfo.locationType != '7000'
                 ) { //大门时直接写 小区ID
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.communityId;
                 } else if (vc.component.addMachineInfo.locationType == '2000') {
@@ -193,6 +198,8 @@
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.orgId;
                 } else if (vc.component.addMachineInfo.locationType == '6000') {
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.floorId;
+                } else if (vc.component.addMachineInfo.locationType == '7000') {
+                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.paId;
                 } else {
                     vc.toast("设备位置值错误");
                     return;
