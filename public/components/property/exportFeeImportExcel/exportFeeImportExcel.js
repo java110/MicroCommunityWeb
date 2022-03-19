@@ -163,6 +163,13 @@
                     $that.exportFeeImportExcelInfo.floorIds.push(item.floorId);
                 });
             },
+            _exportExcel: function() {
+                let _floorIds = $that.exportFeeImportExcelInfo.floorIds.join(',');
+                let _configIds = $that.exportFeeImportExcelInfo.configIds.join(',');
+                vc.jumpToPage('/callComponent/importAndExportFee/exportData?floorIds=' + _floorIds + "&configIds=" + _configIds + "&communityId=" + vc.getCurrentCommunity().communityId + "&type=1001");
+                $('#exportFeeImportExcelModel').modal('hide');
+
+            }
         }
     });
 })(window.vc);

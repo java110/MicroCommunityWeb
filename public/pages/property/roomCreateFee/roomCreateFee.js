@@ -262,6 +262,9 @@
             },
             _openFeeImportExcel: function() {
                 vc.emit('exportFeeImportExcel', 'openExportFeeImportExcelModal', {})
+            },
+            _openDoCreateRoomFee: function() {
+                vc.emit('doImportCreateFee', 'openDoImportCreateFeeModal', {})
             }
         }
     });

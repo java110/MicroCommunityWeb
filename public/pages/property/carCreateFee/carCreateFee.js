@@ -129,6 +129,12 @@
                 } else {
                     vc.component.carCreateFeeInfo.moreCondition = true;
                 }
+            },
+            _openFeeImportExcel: function() {
+                vc.emit('exportCarFeeImportExcel', 'openExportCarFeeImportExcelModal', {})
+            },
+            _openDoCreateRoomFee: function() {
+                vc.emit('doImportCreateFee', 'openDoImportCreateFeeModal', {})
             }
         }
     });
