@@ -10,7 +10,7 @@
 
          },
          _initEvent:function(){
-             vc.on('deleteReportInfoSetting','opendeleteReportInfoSettingModal',function(_params){
+             vc.on('deleteReportInfoSetting','openDeleteReportInfoSettingModal',function(_params){
 
                 vc.component.deleteReportInfoSettingInfo = _params;
                 $('#deleteReportInfoSettingModel').modal('show');
