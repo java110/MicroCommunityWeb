@@ -66,6 +66,8 @@
             },
             _openDeleteReportInfoSettingModel: function(_reportInfoSetting) {
                 vc.emit('deleteReportInfoSetting', 'openDeleteReportInfoSettingModal', _reportInfoSetting);
+
+                console.log(_reportInfoSetting);
             },
             _queryReportInfoSettingMethod: function() {
                 vc.component._listReportInfoSettings(DEFAULT_PAGE, DEFAULT_ROWS);
