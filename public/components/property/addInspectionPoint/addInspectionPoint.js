@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -12,20 +12,23 @@
                 pointObjTypes: [],
                 pointObjName: '',
                 inspectionName: '',
-                remark: ''
+                remark: '',
+                items: [],
+                itemId: '',
+                nfcCode: ''
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
+        _initMethod: function() {},
+        _initEvent: function() {
             //与字典表关联
-            vc.getDict('inspection_point', "point_obj_type", function (_data) {
+            vc.getDict('inspection_point', "point_obj_type", function(_data) {
                 vc.component.addInspectionPointInfo.pointObjTypes = _data;
             });
-            vc.on('addInspectionPoint', 'openAddInspectionPointModal', function () {
+            vc.on('addInspectionPoint', 'openAddInspectionPointModal', function() {
+                $that._listAddInspectionItems();
                 $('#addInspectionPointModel').modal('show');
             });
-            vc.on("addInspectionPointInfo", "notify", function (_param) {
+            vc.on("addInspectionPointInfo", "notify", function(_param) {
                 if (_param.hasOwnProperty("machineId") && $that.addInspectionPointInfo.pointObjType == '1001') {
                     vc.component.addInspectionPointInfo.pointObjId = _param.machineId;
                     vc.component.addInspectionPointInfo.pointObjName = _param.machineName;
@@ -37,8 +40,7 @@
                 return vc.validate.validate({
                     addInspectionPointInfo: vc.component.addInspectionPointInfo
                 }, {
-                    'addInspectionPointInfo.inspectionName': [
-                        {
+                    'addInspectionPointInfo.inspectionName': [{
                             limit: "required",
                             param: "",
                             errInfo: "巡检点名称不能为空"
@@ -49,49 +51,41 @@
                             errInfo: "巡检点名称不能超过100位"
                         },
                     ],
-                    'addInspectionPointInfo.pointObjType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "巡检类型不能为空"
-                        },
-                    ],
-                    'addInspectionPointInfo.remark': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "备注信息不能超过200位"
-                        },
-                    ],
+                    'addInspectionPointInfo.pointObjType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "巡检类型不能为空"
+                    }, ],
+                    'addInspectionPointInfo.remark': [{
+                        limit: "maxLength",
+                        param: "200",
+                        errInfo: "备注信息不能超过200位"
+                    }, ],
                 });
             },
             addInspectionPointValidate1() {
                 return vc.validate.validate({
                     addInspectionPointInfo: vc.component.addInspectionPointInfo
                 }, {
-                    'addInspectionPointInfo.pointObjName': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "巡检位置不能为空"
-                        },
-                    ]
+                    'addInspectionPointInfo.pointObjName': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "巡检位置不能为空"
+                    }, ]
                 });
             },
             addInspectionPointValidate2() {
                 return vc.validate.validate({
                     addInspectionPointInfo: vc.component.addInspectionPointInfo
                 }, {
-                    'addInspectionPointInfo.pointObjId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "巡检设备不能为空"
-                        },
-                    ]
+                    'addInspectionPointInfo.pointObjId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "巡检设备不能为空"
+                    }, ]
                 });
             },
-            saveInspectionPointInfo: function () {
+            saveInspectionPointInfo: function() {
                 if ($that.addInspectionPointInfo.pointObjType == '2002') {
                     $that.addInspectionPointInfo.pointObjId = '-1';
                 }
@@ -117,11 +111,10 @@
                 vc.http.post(
                     'addInspectionPoint',
                     'save',
-                    JSON.stringify(vc.component.addInspectionPointInfo),
-                    {
+                    JSON.stringify(vc.component.addInspectionPointInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -132,14 +125,36 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddInspectionPointInfo: function () {
+            _listAddInspectionItems: function(_page, _rows) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/inspectionItem.listInspectionItem',
+                    param,
+                    function(json, res) {
+                        let _inspectionItemManageInfo = JSON.parse(json);
+
+                        vc.component.addInspectionPointInfo.items = _inspectionItemManageInfo.data;
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            clearAddInspectionPointInfo: function() {
                 //与字典表关联
-                vc.getDict('inspection_point', "point_obj_type", function (_data) {
+                vc.getDict('inspection_point', "point_obj_type", function(_data) {
                     vc.component.addInspectionPointInfo.pointObjTypes = _data;
                 });
                 vc.component.addInspectionPointInfo = {
@@ -148,7 +163,10 @@
                     pointObjType: '',
                     pointObjName: '',
                     inspectionName: '',
-                    remark: ''
+                    remark: '',
+                    items: [],
+                    itemId: '',
+                    nfcCode: ''
                 };
             }
         }

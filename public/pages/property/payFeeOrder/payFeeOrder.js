@@ -91,6 +91,10 @@
             vc.emit('payFeeUserAccount', 'computeFeeUserAmount', {
                 feeId: $that.payFeeOrderInfo.feeId,
             });
+
+            vc.initDateTime('payFeeOrderCreateTime', function(_value) {
+                $that.payFeeOrderInfo.createTime = _value;
+            });
         },
         _initEvent: function() {
             // 子组件折扣change事件

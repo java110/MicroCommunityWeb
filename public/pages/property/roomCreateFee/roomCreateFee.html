@@ -74,7 +74,7 @@
                         <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openFeeImportExcel()">
                             自定义模板
                         </button>
-                        <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal(null,true)">
+                        <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openDoCreateRoomFee()">
                             自定义创建
                         </button>
                         <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal(null,true)">
@@ -167,4 +167,6 @@
     <vc:create path="property/roomCreateFeeAdd"></vc:create>
 
     <vc:create path="property/exportFeeImportExcel"></vc:create>
+
+    <vc:create path="property/doImportCreateFee"></vc:create>
 </div>
