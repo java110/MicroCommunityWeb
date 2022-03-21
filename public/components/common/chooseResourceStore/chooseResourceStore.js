@@ -62,7 +62,7 @@
                         row: _row,
                         isShow: true,
                         communityId: vc.getCurrentCommunity().communityId,
-                        name: _name,
+                        // name: _name,
                         resOrderType: $that.chooseResourceStoreInfo.resOrderType,
                         resName: vc.component.chooseResourceStoreInfo._currentResourceStoreName,
                         parentRstId: vc.component.chooseResourceStoreInfo.parentRstId,

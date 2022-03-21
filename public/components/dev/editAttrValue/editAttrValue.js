@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editAttrValueInfo: {
@@ -7,12 +6,10 @@
                 valueId: '',
                 value: '',
                 valueName: '',
-                valueShow: '',
-
+                valueShow: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editAttrValue', 'openEditAttrValueModal', function (_params) {
@@ -68,8 +65,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "值ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editAttrValue: function () {
@@ -77,7 +74,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/attrValue/updateAttrValue',
                     JSON.stringify(vc.component.editAttrValueInfo),
@@ -91,14 +87,13 @@
                             //关闭model
                             $('#editAttrValueModel').modal('hide');
                             vc.emit('attrValueManage', 'listAttrValue', {});
+                            vc.toast(_json.msg);
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             refreshEditAttrValueInfo: function () {
@@ -107,11 +102,9 @@
                     valueId: '',
                     value: '',
                     valueName: '',
-                    valueShow: '',
-
+                    valueShow: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

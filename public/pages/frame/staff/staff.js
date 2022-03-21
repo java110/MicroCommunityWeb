@@ -13,7 +13,7 @@
                     departmentOrgId: '',
                     orgId: '',
                     orgName: '',
-                    orgLevel: '',
+                    orgLevel: '2',
                     parentOrgId: '',
                     name: '',
                     tel: '',
