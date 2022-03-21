@@ -8,8 +8,7 @@
             </select>
         </div>
         <div class="col-lg-10 text-right" v-if="simplifyMeterWaterFeeInfo.roomId">
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_openAddMeterWaterModal()">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddMeterWaterModal()">
                 水电抄表
             </button>
         </div>
@@ -17,37 +16,38 @@
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
-            <tr>
-                <th class="text-center">表类型</th>
-                <th class="text-center">对象名称</th>
-                <th class="text-center">上期度数</th>
-                <th class="text-center">本期度数</th>
-                <th class="text-center">上期读表时间</th>
-                <th class="text-center">本期读表时间</th>
-                <th class="text-center">创建时间</th>
-                <th class="text-center">操作</th>
-            </tr>
+                <tr>
+                    <th class="text-center">表类型</th>
+                    <th class="text-center">对象名称</th>
+                    <th class="text-center">上期度数</th>
+                    <th class="text-center">本期度数</th>
+                    <th class="text-center">上期读表时间</th>
+                    <th class="text-center">本期读表时间</th>
+                    <th class="text-center">创建时间</th>
+                    <th class="text-center">操作</th>
+                </tr>
             </thead>
             <tbody>
-            <tr v-for="meterWater in simplifyMeterWaterFeeInfo.meterWaters">
-                <td class="text-center">{{_getMeteTypeName(meterWater.meterType)}}</td>
-                <td class="text-center">{{meterWater.objName}}</td>
-                <td class="text-center">{{meterWater.preDegrees}}</td>
-                <td class="text-center">{{meterWater.curDegrees}}</td>
-                <td class="text-center">{{meterWater.preReadingTime}}</td>
-                <td class="text-center">{{meterWater.curReadingTime}}</td>
-                <td class="text-center">{{meterWater.createTime}}</td>
-                <td class="text-center">
-                    <div class="btn-group">
-                        <button class="btn-white btn btn-xs" v-on:click="_openEditMeterWaterModel(meterWater)">修改
+                <tr v-for="meterWater in simplifyMeterWaterFeeInfo.meterWaters">
+                    <!-- <td class="text-center">{{_getMeteTypeName(meterWater.meterType)}}</td> -->
+                    <td class="text-center">{{meterWater.meterTypeName}}</td>
+                    <td class="text-center">{{meterWater.objName}}</td>
+                    <td class="text-center">{{meterWater.preDegrees}}</td>
+                    <td class="text-center">{{meterWater.curDegrees}}</td>
+                    <td class="text-center">{{meterWater.preReadingTime}}</td>
+                    <td class="text-center">{{meterWater.curReadingTime}}</td>
+                    <td class="text-center">{{meterWater.createTime}}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openEditMeterWaterModel(meterWater)">修改
                         </button>
-                    </div>
-                    <div class="btn-group">
-                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMeterWaterModel(meterWater)">删除
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openDeleteMeterWaterModel(meterWater)">删除
                         </button>
-                    </div>
-                </td>
-            </tr>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div class="row">
