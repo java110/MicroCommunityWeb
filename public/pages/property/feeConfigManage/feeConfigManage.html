@@ -153,7 +153,19 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div> 出账类型：出账类型只是表示欠费催收功能，每月1日表示每月1日推送业主微信进行催收；</div>
+                            <div> 计费起始时间：只是表示这个费用项开始时间，和房屋上费用开始时间没有关系；</div>
+                            <div> 计费结束时间：只是表示这个费用项结束时间，和房屋上费用结束时间没有关系；</div>
+                            <div> 费用标识：分为周期费用和一次性费用，周期费是连续收费的费用比如物业费每年都会收取，所以物业费建议用周期费；</div>
+                            <div> 一次性费用表示费用只收取一次比如押金，下次收费时还需要手工创建到房屋上；</div>
+                            <div> 付费类型：分为预付费和后付费，预付费表示费用提前收费 后付费表示之后收取；</div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,9 +1,8 @@
-<div id="addFeeConfigModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div id="addFeeConfigModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加费用项</h3>
+                <h3 class="m-t-none m-b ">添加</h3>
                 <div class="ibox-content">
                     <div>
                         <div>
@@ -22,8 +21,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">收费项目</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addFeeConfigInfo.feeName" type="text" placeholder="必填，请填写收费项目"
-                                           class="form-control">
+                                    <input v-model="addFeeConfigInfo.feeName" type="text" placeholder="必填，请填写收费项目" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -51,8 +49,7 @@
                             <div class="form-group row" v-if="addFeeConfigInfo.feeFlag=='1003006'">
                                 <label class="col-sm-2 col-form-label">缴费周期</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addFeeConfigInfo.paymentCycle" type="text"
-                                           placeholder="必填，请填写缴费周期 单位为月" class="form-control">
+                                    <input v-model="addFeeConfigInfo.paymentCycle" type="text" placeholder="必填，请填写缴费周期 单位为月" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -69,15 +66,13 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">计费起始时间</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addFeeConfigInfo.startTime" type="text" placeholder="必填，请填写计费起始时间"
-                                           class="form-control addFeeConfigStartTime" name="startTime">
+                                    <input v-model="addFeeConfigInfo.startTime" type="text" placeholder="必填，请填写计费起始时间" class="form-control addFeeConfigStartTime" name="startTime">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">计费终止时间</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addFeeConfigInfo.endTime" type="text" placeholder="必填，请填写计费终止时间"
-                                           class="form-control addFeeConfigEndTime" name="endTime">
+                                    <input v-model="addFeeConfigInfo.endTime" type="text" placeholder="必填，请填写计费终止时间" class="form-control addFeeConfigEndTime" name="endTime">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -92,8 +87,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row"
-                                 v-show="addFeeConfigInfo.computingFormula != '2002' 
+                            <div class="form-group row" v-show="addFeeConfigInfo.computingFormula != '2002' 
                                  && addFeeConfigInfo.computingFormula != '7007' 
                                  && addFeeConfigInfo.computingFormula != '8008'
                                  && addFeeConfigInfo.computingFormula != '1101'
@@ -101,12 +95,10 @@
                                  && addFeeConfigInfo.computingFormula != '9009'">
                                 <label class="col-sm-2 col-form-label">计费单价</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addFeeConfigInfo.squarePrice" type="text" placeholder="必填，请填写计费单价"
-                                           class="form-control">
+                                    <input v-model="addFeeConfigInfo.squarePrice" type="text" placeholder="必填，请填写计费单价" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group row"
-                                 v-show="addFeeConfigInfo.computingFormula != '7007' 
+                            <div class="form-group row" v-show="addFeeConfigInfo.computingFormula != '7007' 
                                  && addFeeConfigInfo.computingFormula != '8008'
                                  && addFeeConfigInfo.computingFormula != '1101'
                                  && addFeeConfigInfo.computingFormula != '4004'
@@ -115,16 +107,14 @@
                                     {{addFeeConfigInfo.computingFormula == '1001' ?'附加费用':'固定费用'}}
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addFeeConfigInfo.additionalAmount" type="text"
-                                           placeholder="必填，请填写附加费用" class="form-control">
+                                    <input v-model="addFeeConfigInfo.additionalAmount" type="text" placeholder="必填，请填写附加费用" class="form-control">
                                 </div>
                             </div>
                             <div v-show="addFeeConfigInfo.computingFormula == '7007'">
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">公式</label>
                                     <div class="col-sm-10">
-                                        <textarea v-model="addFeeConfigInfo.computingFormulaText" placeholder="必填，请填写公式"
-                                                  class="form-control"></textarea>
+                                        <textarea v-model="addFeeConfigInfo.computingFormulaText" placeholder="必填，请填写公式" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -142,12 +132,10 @@
                                 </div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="saveFeeConfigInfo()">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveFeeConfigInfo()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
                                     <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>

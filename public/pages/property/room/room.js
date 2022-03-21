@@ -240,6 +240,11 @@
             },
             _openImportRoomInfo: function() {
                 vc.emit('importOwnerRoom', 'openImportOwnerRoomModal', {})
+            },
+            _resetRoomInfo: function() {
+                vc.resetObject($that.roomInfo.conditions);
+                $that.roomInfo.conditions.roomType = '1010301';
+                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             }
 
         }
