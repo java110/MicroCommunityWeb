@@ -49,15 +49,7 @@
                             <div class="form-group input-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="listOweFeeInfo.conditions.roomSubType">
                                     <option selected value="">请选择房屋类型</option>
-                                    <option value="110">
-                                        住宅
-                                    </option>
-                                    <option value="120">
-                                        办公室
-                                    </option>
-                                    <option value="119">
-                                        宿舍
-                                    </option>
+                                    <option :value="item.statusCd" v-for="(item,index) in listOweFeeInfo.roomSubTypes">{{item.name}}</option>
                                 </select>
                             </div>
                         </div>
