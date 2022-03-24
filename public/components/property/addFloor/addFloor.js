@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -16,7 +16,7 @@
             }
         },
         watch: {
-            "addFloorInfo.floorNum": {//深度监听，可监听到对象、数组的变化
+            "addFloorInfo.floorNum": { //深度监听，可监听到对象、数组的变化
                 handler(val, oldVal) {
                     if (vc.notNull(val)) {
                         vc.component.addFloorInfo.name = vc.component.addFloorInfo.floorNum + "号楼";
@@ -27,10 +27,9 @@
                 deep: true
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('addFloor', 'openAddFloorModal', function () {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('addFloor', 'openAddFloorModal', function() {
                 $('#addFloorModel').modal('show');
             });
         },
@@ -39,8 +38,7 @@
                 return vc.validate.validate({
                     addFloorInfo: vc.component.addFloorInfo
                 }, {
-                    'addFloorInfo.name': [
-                        {
+                    'addFloorInfo.name': [{
                             limit: "required",
                             param: "",
                             errInfo: "楼名称不能为空"
@@ -51,8 +49,7 @@
                             errInfo: "楼名称长度必须在2位至10位"
                         },
                     ],
-                    'addFloorInfo.floorNum': [
-                        {
+                    'addFloorInfo.floorNum': [{
                             limit: "required",
                             param: "",
                             errInfo: "楼编号不能为空"
@@ -63,8 +60,7 @@
                             errInfo: "楼编号长度必须在1位至12位"
                         },
                     ],
-                    'addFloorInfo.floorArea': [
-                        {
+                    'addFloorInfo.floorArea': [{
                             limit: "required",
                             param: "",
                             errInfo: "建筑面积不能为空"
@@ -85,7 +81,7 @@
                     ]
                 });
             },
-            saveFloorInfo: function () {
+            saveFloorInfo: function() {
                 if (!vc.component.addFloorValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -98,14 +94,12 @@
                     $('#addFloorModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addFloor',
-                    'saveFloor',
-                    JSON.stringify(vc.component.addFloorInfo),
-                    {
+                vc.http.apiPost(
+                    '/floor.saveFloor',
+                    JSON.stringify(vc.component.addFloorInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -116,13 +110,13 @@
                         }
                         vc.component.addFloorInfo.errorInfo = json;
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.component.addFloorInfo.errorInfo = errInfo;
                         vc.toast(errInfo)
                     });
             },
-            clearAddFloorInfo: function () {
+            clearAddFloorInfo: function() {
                 vc.component.addFloorInfo = {
                     name: '',
                     floorNum: '',

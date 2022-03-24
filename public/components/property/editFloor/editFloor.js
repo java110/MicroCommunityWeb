@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         data: {
@@ -12,7 +12,7 @@
             }
         },
         watch: {
-            "editFloorInfo.floorNum": {//深度监听，可监听到对象、数组的变化
+            "editFloorInfo.floorNum": { //深度监听，可监听到对象、数组的变化
                 handler(val, oldVal) {
                     if (vc.notNull(val)) {
                         vc.component.editFloorInfo.floorName = vc.component.editFloorInfo.floorNum + "号楼";
@@ -24,11 +24,11 @@
                 deep: true
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('editFloor', 'openEditFloorModal', function (_floor) {
+        _initEvent: function() {
+            vc.on('editFloor', 'openEditFloorModal', function(_floor) {
                 vc.component.editFloorInfo.errorInfo = "";
                 vc.copyObject(_floor, vc.component.editFloorInfo);
                 $('#editFloorModel').modal('show');
@@ -39,32 +39,29 @@
                 return vc.validate.validate({
                     editFloorInfo: vc.component.editFloorInfo
                 }, {
-                    'editFloorInfo.floorName': [
-                        {
+                    'editFloorInfo.floorName': [{
                             limit: "required",
                             param: "",
                             errInfo: "楼名称不能为空"
                         },
                         {
                             limit: "maxin",
-                            param: "2,10",
+                            param: "1,10",
                             errInfo: "楼名称长度必须在2位至10位"
                         },
                     ],
-                    'editFloorInfo.floorNum': [
-                        {
+                    'editFloorInfo.floorNum': [{
                             limit: "required",
                             param: "",
                             errInfo: "楼编号不能为空"
                         },
                         {
-                            limit:"maxin",
-                            param:"1,12",
-                            errInfo:"楼编号长度必须在1位至12位"
+                            limit: "maxin",
+                            param: "1,12",
+                            errInfo: "楼编号长度必须在1位至12位"
                         },
                     ],
-                    'editFloorInfo.floorArea': [
-                        {
+                    'editFloorInfo.floorArea': [{
                             limit: "required",
                             param: "",
                             errInfo: "建筑面积不能为空"
@@ -86,7 +83,7 @@
 
                 });
             },
-            editFloorMethod: function () {
+            editFloorMethod: function() {
 
                 if (!vc.component.editFloorValidate()) {
                     vc.component.editFloorInfo.errorInfo = vc.validate.errInfo;
@@ -99,11 +96,10 @@
                 vc.http.post(
                     'editFloor',
                     'changeFloor',
-                    JSON.stringify(vc.component.editFloorInfo),
-                    {
+                    JSON.stringify(vc.component.editFloorInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -116,14 +112,14 @@
                         vc.component.editFloorInfo.errorInfo = json;
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.component.editFloorInfo.errorInfo = errInfo;
 
                     });
             },
-            clearEditFloorInfo: function () {
+            clearEditFloorInfo: function() {
                 vc.component.editFloorInfo = {
                     floorId: '',
                     floorName: '',

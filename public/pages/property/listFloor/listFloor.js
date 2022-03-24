@@ -39,8 +39,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('listFloor',
-                    'list',
+                vc.http.apiGet('/floor.queryFloors',
                     param,
                     function(json, res) {
                         var listFloorData = JSON.parse(json);
