@@ -32,6 +32,7 @@
         _initEvent: function() {
             vc.on('flowAudit', 'openAuditModal', function(_param) {
                 vc.copyObject(_param, $that.flowAuditInfo);
+                $that.flowAuditInfo.state = '';
             });
         },
         methods: {
@@ -110,7 +111,10 @@
                     param,
                     function(json, res) {
                         let _auditOrdersInfo = JSON.parse(json);
-                        $that.flowAuditInfo.auditOrders = _auditOrdersInfo.data;
+                        if (_auditOrdersInfo.data.length < 1) {
+                            return;
+                        }
+                        $that.flowAuditInfo.assignee = _auditOrdersInfo.data[0].assignee;
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
