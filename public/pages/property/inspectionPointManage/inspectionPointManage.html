@@ -93,6 +93,10 @@
                                         <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionPointModel(inspectionPoint)">删除
                                     </button>
                                     </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_pointQrCode(inspectionPoint)">二维码
+                                    </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -113,4 +117,5 @@
     <vc:create path="property/addInspectionPoint" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editInspectionPoint"></vc:create>
     <vc:create path="property/deleteInspectionPoint"></vc:create>
+    <vc:create path="property/inspectionPointQrCode"></vc:create>
 </div>

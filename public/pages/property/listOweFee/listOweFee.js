@@ -28,7 +28,8 @@
                 feeConfigs: [],
                 feeConfigNames: [],
                 floorId: '',
-                unitId: ''
+                unitId: '',
+                roomSubTypes: []
             }
         },
         watch: {
@@ -45,6 +46,10 @@
         _initMethod: function() {
             vc.getDict('report_owe_fee', "payer_obj_type", function(_data) {
                 vc.component.listOweFeeInfo.payObjTypes = _data;
+            });
+            //与字典表关联
+            vc.getDict('building_room', "room_sub_type", function(_data) {
+                vc.component.listOweFeeInfo.roomSubTypes = _data;
             });
             vc.component._loadListOweFeeInfo(1, 10);
             $that._listFeeConfigs();

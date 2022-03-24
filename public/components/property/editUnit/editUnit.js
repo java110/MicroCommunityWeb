@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -13,11 +13,11 @@
                 unitArea: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('editUnit', 'openUnitModel', function (_params) {
+        _initEvent: function() {
+            vc.on('editUnit', 'openUnitModel', function(_params) {
                 vc.component.refreshEditUnitInfo();
                 $('#editUnitModel').modal('show');
                 // = _params;
@@ -26,26 +26,21 @@
             });
         },
         methods: {
-            editUnitValidate: function () {
+            editUnitValidate: function() {
                 return vc.validate.validate({
                     editUnitInfo: vc.component.editUnitInfo
                 }, {
-                    'editUnitInfo.floorId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "小区楼不能为空"
-                        }
-                    ],
-                    'editUnitInfo.unitNum': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "单元编号不能为空"
-                        }
-                    ],
-                    'editUnitInfo.layerCount': [
-                        {
+                    'editUnitInfo.floorId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "小区楼不能为空"
+                    }],
+                    'editUnitInfo.unitNum': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "单元编号不能为空"
+                    }],
+                    'editUnitInfo.layerCount': [{
                             limit: "required",
                             param: "",
                             errInfo: "单元楼层高度不能为空"
@@ -56,8 +51,7 @@
                             errInfo: "单元楼层高度必须为数字"
                         }
                     ],
-                    'editUnitInfo.unitArea': [
-                        {
+                    'editUnitInfo.unitArea': [{
                             limit: "required",
                             param: "",
                             errInfo: "建筑面积不能为空"
@@ -68,24 +62,20 @@
                             errInfo: "建筑面积错误 如300.00"
                         }
                     ],
-                    'editUnitInfo.lift': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "必须选择单元是否电梯"
-                        }
-                    ],
-                    'editUnitInfo.remark': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "备注长度不能超过200位"
-                        },
-                    ]
+                    'editUnitInfo.lift': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "必须选择单元是否电梯"
+                    }],
+                    'editUnitInfo.remark': [{
+                        limit: "maxLength",
+                        param: "200",
+                        errInfo: "备注长度不能超过200位"
+                    }, ]
 
                 });
             },
-            editUnit: function () {
+            editUnit: function() {
                 if (!vc.component.editUnitValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -95,14 +85,12 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editUnit',
-                    'update',
-                    JSON.stringify(vc.component.editUnitInfo),
-                    {
+                vc.http.apiPost(
+                    '/unit.updateUnit',
+                    JSON.stringify(vc.component.editUnitInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -114,13 +102,13 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
                     });
             },
-            refreshEditUnitInfo: function () {
+            refreshEditUnitInfo: function() {
                 vc.component.editUnitInfo = {
                     floorId: '',
                     unitId: '',

@@ -35,14 +35,17 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请填写房屋编号" class="form-control form-control-sm" v-model="roomInfo.conditions.roomNum">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRoomMethod()">
                                 <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="_resetRoomInfo()">
+                                重置
                             </button>
                         </div>
                     </div>
@@ -61,9 +64,9 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.roomSubType">
-                                <option selected disabled value="">必填，请选择房屋类型</option>
+                                <option selected  value="">必填，请选择房屋类型</option>
                                 <option :value="item.statusCd" v-for="(item,index) in roomInfo.roomSubTypes">{{item.name}}</option>
                             </select>
                         </div>
@@ -98,7 +101,7 @@
                                 <th data-hide="phone" class="text-center">类型</th>
                                 <th data-hide="phone" class="text-center">建筑面积</th>
                                 <th data-hide="phone" class="text-center">室内面积</th>
-                                <th data-hide="phone" class="text-center">算费系数</th>
+                                <th data-hide="phone" class="text-center">租金</th>
                                 <th data-hide="phone" class="text-center">房屋状态</th>
                                 <th v-for="(item,index) in roomInfo.listColumns" class="text-center">{{item}}</th>
                                 <th class="text-center">操作</th>
@@ -131,7 +134,7 @@
                                     {{room.roomArea}}平方米
                                 </td>
                                 <td class="text-center">
-                                    {{room.feeCoefficient}}
+                                    {{room.roomRent}}
                                 </td>
                                 <td class="text-center">
                                     {{room.stateName}}
@@ -160,7 +163,17 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div> 房屋状态 分为：未销售，未入住，已交房，已装修，已入住 等状态 </div>
+                            <div>1、未销售表示 房屋和业主之间还没有任何关系，所以修改时状态不能手工修改 需要业主入住房屋的方式 将未销售改为已入住</div>
+                            <div>2、未入住 已交房 已装修 已入住 状态表示业主和房屋之间已经有关系 可以相互修改，主要作用为在房屋创建费用时根据不同的状态去创建不同的费用</div>
+                            <div> 租金：主要用于园区类或者房屋出租比较多的物业使用，小区物业忽略</div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

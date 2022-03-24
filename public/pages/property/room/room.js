@@ -161,11 +161,8 @@
             _loadDataByParam: function() {
                 vc.component.roomInfo.conditions.floorId = vc.getParam("floorId");
                 vc.component.roomInfo.conditions.floorId = vc.getParam("floorName");
-                //如果 floodId 没有传 则，直接结束
-                /* if(!vc.notNull(vc.component.roomInfo.conditions.floorId)){
-                     return ;
-                 }*/
-                var param = {
+
+                let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         floorId: vc.component.roomInfo.conditions.floorId
@@ -240,6 +237,11 @@
             },
             _openImportRoomInfo: function() {
                 vc.emit('importOwnerRoom', 'openImportOwnerRoomModal', {})
+            },
+            _resetRoomInfo: function() {
+                vc.resetObject($that.roomInfo.conditions);
+                $that.roomInfo.conditions.roomType = '1010301';
+                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             }
 
         }
