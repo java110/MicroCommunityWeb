@@ -9,7 +9,9 @@
                 visitGender: '',
                 phoneNumber: '',
                 visitTime: '',
-                departureTime: ''
+                departureTime: '',
+                carNum: '',
+                entourage: ''
             }
         },
         _initMethod: function () {
@@ -43,6 +45,8 @@
                 vc.component.viewVisitInfo.phoneNumber = '';
                 vc.component.viewVisitInfo.visitTime = '';
                 vc.component.viewVisitInfo.departureTime = '';
+                vc.component.viewVisitInfo.carNum = '';
+                vc.component.viewVisitInfo.entourage = '';
             }
         }
     });

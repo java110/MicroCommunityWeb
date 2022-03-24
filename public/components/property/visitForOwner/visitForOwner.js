@@ -27,7 +27,7 @@
         },
         _initEvent:function(){
             vc.on('visitForOwner','onIndex',function(_index){
-                vc.emit('addVisitSpace', 'notify', _index);
+                // vc.emit('addVisitSpace', 'notify', _index);
                 /*if(_index == 2){
                    vc.emit($props.callBackListener,$props.callBackFunction,vc.component.viewOwnerInfo);
                 }*/

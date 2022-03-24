@@ -13,7 +13,9 @@
                 visitGender: '',
                 phoneNumber: '',
                 visitTime: '',
-                departureTime: ''
+                departureTime: '',
+                carNum: '',
+                entourage: ''
             }
         },
         _initMethod: function () {
@@ -25,7 +27,7 @@
             });
             vc.on('addVisit', 'onIndex', function (_index) {
                 // vc.component.newVisitInfo.index = _index;
-                vc.emit('addVisitSpace', 'notify', _index);
+                // vc.emit('addVisitSpace', 'notify', _index);
             });
         },
         methods: {

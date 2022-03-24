@@ -7,6 +7,7 @@
         data:{
             addVisitCase:{
                 visitCase:"",
+                reasonType:"",
                 videoPlaying:false,
                 visitPhoto:"/img/defaultAvatar.png"
             }
@@ -24,13 +25,13 @@
         },
         _initEvent:function(){
             vc.on('addVisitCase', 'onIndex', function(_index){
-                console.log("侦听到addVisitCase的index为  "+_index);
+                // console.log("侦听到addVisitCase的index为  "+_index);
                 // vc.component.addCarInfo.index = _index;
                 if(_index != 2){
                     return;
                 }
                 $that._initAddVisitMedia();
-                vc.emit('addVisitSpace', 'notify', _index);
+                // vc.emit('addVisitSpace', 'notify', _index);
             });
 
         },
