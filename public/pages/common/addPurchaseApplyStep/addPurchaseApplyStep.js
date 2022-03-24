@@ -111,11 +111,13 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            if (vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "10000") {
-                                vc.jumpToPage("/#/pages/common/purchaseApplyManage");
-                            } else {
-                                vc.jumpToPage("/#/pages/common/itemOutManage");
-                            }
+                            // if (vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType == "10000") {
+                            //     vc.jumpToPage("/#/pages/common/purchaseApplyManage");
+                            // } else {
+                            //     vc.jumpToPage("/#/pages/common/itemOutManage");
+                            // }
+
+                            vc.goBack();
                             return;
                         }
                         vc.toast(_json.msg);

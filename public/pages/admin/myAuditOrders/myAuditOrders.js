@@ -19,7 +19,8 @@
                     auditLink: '',
                 },
                 orderInfo: '',
-                procure: false
+                procure: false,
+                audit: '1'
             }
         },
         _initMethod: function() {
@@ -27,8 +28,11 @@
             $that._loadStepStaff();
         },
         _initEvent: function() {
-
+            vc.on('myAuditOrders', 'list', function(_param) {
+                $that.auditOrdersInfo.audit = '1';
+            });
             vc.on('myAuditOrders', 'listAuditOrders', function(_param) {
+                $that.auditOrdersInfo.audit = '1';
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
@@ -36,6 +40,7 @@
             });
 
             vc.on('myAuditOrders', 'notifyAudit', function(_auditInfo) {
+                $that.auditOrdersInfo.audit = '1';
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
@@ -68,7 +73,9 @@
             },
             _openAuditOrderModel: function(_auditOrder) {
                 vc.component.auditOrdersInfo.orderInfo = _auditOrder;
-                vc.emit('audit', 'openAuditModal', {});
+                _auditOrder.startUserId = _auditOrder.userId;
+                $that.auditOrdersInfo.audit = '2';
+                vc.emit('flowAudit', 'openAuditModal', _auditOrder);
             },
             _queryAuditOrdersMethod: function() {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);

@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var default_row = 50;
     vc.extends({
         data: {
@@ -16,11 +16,11 @@
                 staff: {}
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._initSelectStaffInfo();
         },
-        _initEvent: function () {
-            vc.on('selectStaff', 'openStaff', function (_staff) {
+        _initEvent: function() {
+            vc.on('selectStaff', 'openStaff', function(_staff) {
                 //查询公司信息
                 $that._initOrg(2, '');
                 $('#selectStaffModel').modal('show');
@@ -30,21 +30,21 @@
 
         },
         methods: {
-            _initSelectStaffInfo: function () {
+            _initSelectStaffInfo: function() {
 
             },
 
-            _changeCompany: function (item) {
+            _changeCompany: function(item) {
                 $that.selectStaffInfo.curCompanyId = item.orgId;
                 //查询部门
                 $that._initOrg(3, $that.selectStaffInfo.curCompanyId);
             },
-            _changeDepartment: function (item) {
+            _changeDepartment: function(item) {
                 $that.selectStaffInfo.curDepartmentId = item.orgId;
                 //查询部门
                 $that.loadStaff();
             },
-            _changeStaff: function (item) {
+            _changeStaff: function(item) {
                 console.log('selectStaff', item);
                 $that.staff.staffId = item.userId;
                 $that.staff.staffName = item.userName;
@@ -53,7 +53,7 @@
                     $that.staff.call($that.staff);
                 }
             },
-            _initOrg: function (_orgLevel, _parentOrgId) {
+            _initOrg: function(_orgLevel, _parentOrgId) {
                 var param = {
                     params: {
                         page: 1,
@@ -67,7 +67,7 @@
                 vc.http.get('orgManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _orgManageInfo = JSON.parse(json);
                         if (_orgLevel == 2) {
                             $that.selectStaffInfo.companys = _orgManageInfo.orgs;
@@ -75,7 +75,7 @@
                                 return;
                             }
                             $that.selectStaffInfo.curCompanyId = _orgManageInfo.orgs[0].orgId
-                            //查询部门
+                                //查询部门
                             $that._initOrg(3, $that.selectStaffInfo.curCompanyId);
                         } else if (_orgLevel == 3) {
                             $that.selectStaffInfo.departments = _orgManageInfo.orgs;
@@ -83,18 +83,19 @@
                                 return;
                             }
                             $that.selectStaffInfo.curDepartmentId = _orgManageInfo.orgs[0].orgId
-                            //查询部门
+                                //查询部门
                             $that.loadStaff();
                         } else {
                             $that.selectStaffInfo.staffs = _orgManageInfo.orgs;
                         }
 
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            loadStaff: function () {
+            loadStaff: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -108,7 +109,7 @@
                 vc.http.get('staff',
                     'loadData',
                     param,
-                    function (json) {
+                    function(json) {
                         var _staffInfo = JSON.parse(json);
                         $that.selectStaffInfo.staffs = _staffInfo.staffs;
 
@@ -116,14 +117,23 @@
                             return;
                         }
                         $that.selectStaffInfo.curStaffId = _staffInfo.staffs[0].orgId
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _firstUser: function () {
+            _firstUser: function() {
                 $that.staff.staffId = '${startUserId}';
-                $that.staff.staffName = '开始人';
+                $that.staff.staffName = '提交者';
+                $('#selectStaffModel').modal('hide');
+                if ($that.staff.hasOwnProperty('call')) {
+                    $that.staff.call($that.staff);
+                }
+            },
+            _customUser: function() {
+                $that.staff.staffId = '${nextUserId}';
+                $that.staff.staffName = '动态指定';
                 $('#selectStaffModel').modal('hide');
                 if ($that.staff.hasOwnProperty('call')) {
                     $that.staff.call($that.staff);
