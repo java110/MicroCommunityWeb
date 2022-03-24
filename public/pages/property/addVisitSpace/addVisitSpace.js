@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             newVisitInfo: {
@@ -10,23 +10,33 @@
                 infos: [],
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initStep();
         },
-        _initEvent: function() {
-            vc.on("addVisitSpace", "notify", function(_info) {
+        _initEvent: function () {
+            vc.on("addVisitSpace", "notify", function (_info) {
                 vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = _info;
             });
-            vc.on("addVisitSpace", "ownerId", function(_ownerId) {
-                vc.component.newVisitInfo.infos[0]["ownerId"] = _ownerId;
+            vc.on("addVisitSpace", "ownerId", function (_ownerId) {
+                vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = [];
+                vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index]["ownerId"] = _ownerId;
             });
-            vc.on("addVisitSpace", "visitCase", function(_visitCase) {
-                vc.component.newVisitInfo.infos[0]["visitCase"] = _visitCase.visitCase;
-                vc.component.newVisitInfo.infos[0]["photo"] = _visitCase.visitPhoto;
+            vc.on("addVisitSpace", "visitCase", function (_visitCase) {
+                console.log('step3', _visitCase);
+                if(!_visitCase.visitCase || _visitCase.reasonType == ''){
+                    vc.toast("请选择或填写必选信息");
+                    vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = null;
+                    return;
+                }
+                vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = [];
+                vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index]["visitCase"] = _visitCase.visitCase;
+                vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index]["reasonType"] = _visitCase.reasonType;
+                vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index]["visitPhoto"] = _visitCase.visitPhoto;
+                vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index]["videoPlaying"] = _visitCase.videoPlaying;
             });
         },
         methods: {
-            _initStep: function() {
+            _initStep: function () {
                 vc.component.newVisitInfo.$step = $("#step");
                 vc.component.newVisitInfo.$step.step({
                     index: 0,
@@ -35,7 +45,7 @@
                 });
                 vc.component.newVisitInfo.index = vc.component.newVisitInfo.$step.getIndex();
             },
-            _prevStep: function() {
+            _prevStep: function () {
                 vc.component.newVisitInfo.$step.prevStep();
                 vc.component.newVisitInfo.index = vc.component.newVisitInfo.$step.getIndex();
                 vc.emit('addVisit', 'onIndex', vc.component.newVisitInfo.index);
@@ -45,8 +55,8 @@
                 //     vc.emit('viewOwnerInfo','callBackOwnerInfo',{});
                 // }
             },
-            _nextStep: function() {
-                var _currentData = vc.component.newVisitInfo.infos[vc.component.viewVisitInfo.index];
+            _nextStep: function () {
+                var _currentData = vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
                     return;
@@ -60,7 +70,7 @@
                 //     vc.emit('viewOwnerInfo','callBackOwnerInfo',{});
                 // }
             },
-            _addVisitFinish: function() {
+            _addVisitFinish: function () {
                 var _currentData = vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -72,11 +82,15 @@
                     visitGender: vc.component.newVisitInfo.infos[0]['visitGender'],
                     phoneNumber: vc.component.newVisitInfo.infos[0]['phoneNumber'],
                     communityId: vc.component.newVisitInfo.infos[0]['communityId'],
-                    ownerId: vc.component.newVisitInfo.infos[0]['ownerId'],
-                    visitCase: vc.component.newVisitInfo.infos[0]['visitCase'],
                     visitTime: vc.component.newVisitInfo.infos[0]['visitTime'],
                     departureTime: vc.component.newVisitInfo.infos[0]['departureTime'],
-                    photo: vc.component.newVisitInfo.infos[0]['photo']
+                    carNum: vc.component.newVisitInfo.infos[0]['carNum'],
+                    entourage: vc.component.newVisitInfo.infos[0]['entourage'],
+                    ownerId: vc.component.newVisitInfo.infos[1]['ownerId'],
+                    visitCase: vc.component.newVisitInfo.infos[2]['visitCase'],
+                    photo: vc.component.newVisitInfo.infos[2]['visitPhoto'],
+                    videoPlaying: vc.component.newVisitInfo.infos[2]['videoPlaying'],
+                    reasonType: vc.component.newVisitInfo.infos[2]['reasonType'],
                 }
                 vc.http.post(
                     'addVisit',
@@ -84,7 +98,7 @@
                     JSON.stringify(param), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -93,7 +107,7 @@
                             return;
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
