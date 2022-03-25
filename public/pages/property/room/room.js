@@ -82,8 +82,7 @@
                     param.params.roomId = '';
                 }
                 //发送get请求
-                vc.http.get('room',
-                    'listRoom',
+                vc.http.apiGet('/room.queryRooms',
                     param,
                     function(json, res) {
                         var listRoomData = JSON.parse(json);
@@ -160,7 +159,7 @@
             },
             _loadDataByParam: function() {
                 vc.component.roomInfo.conditions.floorId = vc.getParam("floorId");
-                vc.component.roomInfo.conditions.floorId = vc.getParam("floorName");
+                vc.component.roomInfo.conditions.floorName = vc.getParam("floorName");
 
                 let param = {
                     params: {
