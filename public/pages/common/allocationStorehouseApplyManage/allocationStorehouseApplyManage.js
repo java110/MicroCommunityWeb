@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -15,14 +15,16 @@
                 storehouses: [],
                 remark: '',
                 communityId: vc.getCurrentCommunity().communityId,
-                apply_type: 10000
+                apply_type: 10000,
+                staffName: '',
+                staffId: '',
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._listAllocationStorehouse();
         },
-        _initEvent: function () {
-            vc.on('allocationStorehouseApply', 'chooseResourceStore_BACK', function (_param) {
+        _initEvent: function() {
+            vc.on('allocationStorehouseApply', 'chooseResourceStore_BACK', function(_param) {
                 let _addFlag = true;
                 $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
                     if (item.resId == _param.resId) {
@@ -36,47 +38,51 @@
                 }
                 _param.shaName = _param.shName;
                 _param.shzId = '';
-                _param.curStock = '0'
+                _param.curStock = '0';
                 $that.allocationStorehouseManageInfo.resourceStores.push(_param);
             })
-            vc.on('allocationStorehouseApply', 'chooseResourceStore', function (resourceStores) {
+            vc.on('allocationStorehouseApply', 'chooseResourceStore', function(resourceStores) {
                 let oldList = vc.component.allocationStorehouseManageInfo.resourceStores;
                 // 过滤重复选择的商品
                 resourceStores.forEach((newItem, newIndex) => {
-                    newItem.shaName = newItem.shName;
-                    newItem.shzId = '';
-                    newItem.curStock = '0'
-                    oldList.forEach((oldItem) => {
-                        if (oldItem.resId == newItem.resId) {
-                            delete resourceStores[newIndex];
-                        }
+                        newItem.shaName = newItem.shName;
+                        newItem.shzId = '';
+                        newItem.curStock = '0'
+                        oldList.forEach((oldItem) => {
+                            if (oldItem.resId == newItem.resId) {
+                                delete resourceStores[newIndex];
+                            }
+                        })
                     })
-                })
-                // 合并已有商品和新添加商品
+                    // 合并已有商品和新添加商品
                 resourceStores.push.apply(resourceStores, oldList);
                 // 过滤空元素
                 resourceStores = resourceStores.filter((s) => {
                     return s.hasOwnProperty('resId');
                 });
                 vc.component.allocationStorehouseManageInfo.resourceStores = resourceStores;
+
+                if (resourceStores.length > 0) {
+                    $that._loadStaffOrg(resourceStores[0])
+                }
             })
         },
         methods: {
             // 验证物品来自同一仓库
-            _resourcesFromSameHouse(resourcesList){
-                if(!resourcesList || resourcesList.length < 2){
+            _resourcesFromSameHouse(resourcesList) {
+                if (!resourcesList || resourcesList.length < 2) {
                     return true;
                 }
                 let lastHouse = '';
                 let sign = true;
-                for(let i = 0; i < resourcesList.length; i++){
-                    if(lastHouse == ''){
+                for (let i = 0; i < resourcesList.length; i++) {
+                    if (lastHouse == '') {
                         lastHouse = resourcesList[i].shId;
                         continue;
                     }
-                    if(lastHouse == resourcesList[i].shId){
+                    if (lastHouse == resourcesList[i].shId) {
                         continue;
-                    }else{
+                    } else {
                         sign = false;
                         break;
                     }
@@ -84,7 +90,7 @@
                 return sign;
             },
             //取消调拨
-            _openDeleteResourceStoreModel: function (_resourceStore) {
+            _openDeleteResourceStoreModel: function(_resourceStore) {
                 let _tmpResourceStore = [];
                 $that.allocationStorehouseManageInfo.resourceStores.forEach(item => {
                     if (item.resId != _resourceStore.resId) {
@@ -95,12 +101,12 @@
                 // 同时移除子页面复选框选项
                 vc.emit('chooseResourceStore', 'removeSelectResourceStoreItem', _resourceStore.resId);
             },
-            _openAllocationStorehouseModel: function () {
+            _openAllocationStorehouseModel: function() {
                 vc.emit('chooseResourceStore', 'openChooseResourceStoreModel', {
                     resOrderType: '20000'
                 });
             },
-            _listAllocationStorehouse: function (_page, _rows) {
+            _listAllocationStorehouse: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -112,18 +118,19 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _storehouseManageInfo = JSON.parse(json);
                         vc.component.allocationStorehouseManageInfo.storehouses = _storehouseManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _goBack: function () {
+            _goBack: function() {
                 vc.goBack();
             },
-            _submitApply: function () {
+            _submitApply: function() {
                 //校验数据
                 if ($that.allocationStorehouseManageInfo.remark == '') {
                     vc.toast('申请说明不能为空');
@@ -134,7 +141,7 @@
                     vc.toast('请选择物品');
                     return;
                 }
-                if(!vc.component._resourcesFromSameHouse($that.allocationStorehouseManageInfo.resourceStores)){
+                if (!vc.component._resourcesFromSameHouse($that.allocationStorehouseManageInfo.resourceStores)) {
                     vc.toast('调拨商品需来自同一仓库！');
                     return;
                 }
@@ -160,24 +167,57 @@
                     return;
                 }
                 vc.http.apiPost(
-                    'resourceStore.saveAllocationStorehouse',
-                    JSON.stringify($that.allocationStorehouseManageInfo),
-                    {
+                    '/resourceStore.saveAllocationStorehouse',
+                    JSON.stringify($that.allocationStorehouseManageInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
-                        if (res.status == 200) {
+                    function(json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             vc.goBack();
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
-            }
+            },
+            _loadStaffOrg: function(_resourceStore) {
+                let flowType = '70007';
+                if (_resourceStore.shType != "2806") {
+                    flowType = '80008';
+                }
+                let param = {
+                    params: {
+                        communityId: vc.getCurrentCommunity().communityId,
+                        flowType: flowType
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/workflow/getFirstStaff',
+                    param,
+                    function(json, res) {
+                        var _staffInfo = JSON.parse(json);
+                        if (_staffInfo.code != 0) {
+                            vc.toast(_staffInfo.msg);
+                            return;
+                        }
+                        let _data = _staffInfo.data;
+                        vc.copyObject(_data, $that.allocationStorehouseManageInfo);
+                        $that.allocationStorehouseManageInfo.companyName = _data.parentOrgName;
+                        $that.allocationStorehouseManageInfo.departmentName = _data.orgName;
+                    },
+                    function() {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            chooseStaff: function() {
+                vc.emit('selectStaff', 'openStaff', $that.allocationStorehouseManageInfo);
+            },
         }
     });
 })(window.vc);
