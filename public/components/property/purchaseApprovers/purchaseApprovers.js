@@ -55,7 +55,7 @@
                     function(json, res) {
                         var _staffInfo = JSON.parse(json);
                         if (_staffInfo.code != 0) {
-                            vc.toast(_staffInfo.msg);
+                            //vc.toast(_staffInfo.msg);
                             return;
                         }
                         let _data = _staffInfo.data;

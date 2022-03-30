@@ -1,5 +1,5 @@
 <div class=" animated fadeInRight ecommerce">
-    <div class="row">
+    <div class="row" v-if="contractApplyAuditOrdersInfo.audit == '1'">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
@@ -28,20 +28,17 @@
                                 <td class="text-center">{{auditOrder.signingTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDetailContractApplyModel(auditOrder)">查看
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDetailContractApplyModel(auditOrder)">查看
                                         </button>
                                     </div>
                                     <div>
-                                        <div class="btn-group"
-                                            v-if="contractApplyAuditOrdersInfo.currentUserId != auditOrder.startUserId">
-                                            <button class="btn-white btn btn-xs"
-                                                v-on:click="_openAuditOrderModel(auditOrder)">审批
+                                        <!--v-if="contractApplyAuditOrdersInfo.currentUserId != auditOrder.startUserId"-->
+                                        <div class="btn-group" v-if="auditOrder.state == '11' || auditOrder.state == '55'">
+                                            <button class="btn-white btn btn-xs" v-on:click="_openAuditOrderModel(auditOrder)">审批
                                             </button>
                                         </div>
                                         <div class="btn-group" v-else>
-                                            <button class="btn-white btn btn-xs"
-                                                v-on:click="_finishAuditOrder(auditOrder)">结束
+                                            <button class="btn-white btn btn-xs" v-on:click="_finishAuditOrder(auditOrder)">结束
                                             </button>
                                         </div>
                                     </div>
@@ -62,5 +59,7 @@
             </div>
         </div>
     </div>
-    <vc:create path="common/audit" callBackListener="contractApplyAuditOrders" callBackFunction="notifyAudit"></vc:create>
+    <div v-else>
+        <vc:create path="common/flowAudit" callBackListener="contractApplyAuditOrders" callBackFunction="notifyAudit"></vc:create>
+    </div>
 </div>
