@@ -111,7 +111,7 @@
                     param,
                     function(json, res) {
                         let _auditOrdersInfo = JSON.parse(json);
-                        if (_auditOrdersInfo.data.length < 1) {
+                        if (_auditOrdersInfo.code != 0 || _auditOrdersInfo.data.length < 1) {
                             return;
                         }
                         $that.flowAuditInfo.assignee = _auditOrdersInfo.data[0].assignee;

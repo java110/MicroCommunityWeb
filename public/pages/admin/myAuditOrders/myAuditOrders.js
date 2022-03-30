@@ -46,6 +46,7 @@
         },
         methods: {
             _listAuditOrders: function(_page, _rows) {
+                $that.auditOrdersInfo.audit = '1';
                 vc.component.auditOrdersInfo.conditions.page = _page;
                 vc.component.auditOrdersInfo.conditions.row = _rows;
                 var param = {
