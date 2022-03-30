@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right" v-if="selectStaffInfo.staff.from == 'bpmn' || selectStaffInfo.staff.from == 'purchase'">
+                <div class="text-right" v-if="selectStaffInfo.staff.from == 'bpmn' || selectStaffInfo.staff.from == 'purchase' || selectStaffInfo.staff.from == 'contract'">
                     <button type="button" class="btn btn-white btn-sm" @click="_firstUser()">提交者</button>
                     <button type="button" class="btn btn-white btn-sm" @click="_customUser()">动态指定</button>
                 </div>

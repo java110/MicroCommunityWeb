@@ -5,27 +5,22 @@
                 <div class="ibox-title">
                     <h5>{{listContractFeeInfo.contractName}}费用</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_openTempImportContractFeeModal()">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openTempImportContractFeeModal()">
                             临时收费
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_openRoomCreateFeeAddModal()" v-if="listContractFeeInfo.hireOwnerFee == '0'">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal()" v-if="listContractFeeInfo.hireOwnerFee == '0'">
                             创建费用
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_toOwnerPayFee()" v-if="listContractFeeInfo.hireOwnerFee == '0'">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_toOwnerPayFee()" v-if="listContractFeeInfo.hireOwnerFee == '0'">
                             欠费缴费
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_goBack()">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_goBack()">
                             返回
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                        data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
                         <thead>
                             <tr>
                                 <th class="text-center">费用项目</th>
@@ -75,17 +70,12 @@
                                 </td>
                                 <td class="text-center">{{fee.stateName}}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-link btn-xs"
-                                        v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')"
-                                        v-on:click="_payFee(fee)">缴费
+                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')" v-on:click="_payFee(fee)">缴费
                                     </button>
                                     <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史</button>
-                                    <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')"
-                                        v-on:click="_deleteFee(fee)">取消费用
+                                    <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')" v-on:click="_deleteFee(fee)">取消费用
                                     </button>
-                                    <button class="btn btn-link btn-xs"
-                                        v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
-                                        v-on:click="_editFee(fee)">费用变更
+                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_editFee(fee)">费用变更
                                     </button>
                                 </td>
                             </tr>
@@ -94,7 +84,8 @@
                     <!-- 分页 -->
                     <div class="row">
                         <div class="col-sm-5">
-                            <span> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</span>
+                            <div> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</div>
+                            <div> 应收金额 为-1 一般为费用项公式设置出错请检查</div>
                         </div>
                         <div class="col-sm-7 float-right">
                             <vc:create path="frame/pagination"></vc:create>

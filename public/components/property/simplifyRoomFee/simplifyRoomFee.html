@@ -1,8 +1,7 @@
 <div>
     <div class="row margin-top-lg">
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyRoomFeeInfo.roomId">
-            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.feeTypeCd"
-                    @change="_changeSimplifyRoomFeeFeeTypeCd(simplifyRoomFeeInfo.feeTypeCd)">
+            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.feeTypeCd" @change="_changeSimplifyRoomFeeFeeTypeCd(simplifyRoomFeeInfo.feeTypeCd)">
                 <option selected value="">请选择费用类型</option>
                 <option v-for="(item,index) in simplifyRoomFeeInfo.feeTypeCds" :key="index" v-bind:value="item.statusCd"
                         v-if="item.statusCd !='888800010008'">
@@ -12,8 +11,7 @@
 
         </div>
         <div class="col-lg-2 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
-            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.configId"
-                    @change="_changeSimplifyRoomConfigId()">
+            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.configId" @change="_changeSimplifyRoomConfigId()">
                 <option selected value="">请选择收费项目</option>
                 <option v-for="(item,index) in simplifyRoomFeeInfo.feeConfigs" :key="index"
                         v-bind:value="item.configId">{{item.feeName}}
@@ -21,28 +19,23 @@
             </select>
         </div>
         <div class="col-lg-2 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
-            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.state"
-                    @change="_changeSimplifyRoomConfigId()">
+            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.state" @change="_changeSimplifyRoomConfigId()">
                 <option selected value="">请选择状态</option>
                 <option value="2008001">收费中</option>
                 <option value="2009001">收费结束</option>
             </select>
         </div>
         <div class="col-lg-6 text-right" v-if="simplifyRoomFeeInfo.roomId">
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_openTempImportRoomFeeModal()">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openTempImportRoomFeeModal()">
                 临时收费
             </button>
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_openProxyFeeModal()">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openProxyFeeModal()">
                 代收费用
             </button>
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_openAddMeterWaterSimplifyModal()">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddMeterWaterSimplifyModal()">
                 水电抄表
             </button>
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_openRoomCreateFeeAddModal()">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal()">
                 创建费用
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_toOwnerPayFee()">
@@ -53,89 +46,80 @@
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
-            <tr>
-                <th class="text-center">费用项目</th>
-                <th class="text-center">费用标识</th>
-                <th class="text-center">费用类型</th>
-                <th class="text-center">应收金额</th>
-                <th class="text-center">建账时间</th>
-                <th class="text-center">计费起始时间</th>
-                <th class="text-center">计费结束时间</th>
-                <th class="text-center">说明</th>
-                <th class="text-center">状态</th>
-                <th class="text-center">操作</th>
-            </tr>
+                <tr>
+                    <th class="text-center">费用项目</th>
+                    <th class="text-center">费用标识</th>
+                    <th class="text-center">费用类型</th>
+                    <th class="text-center">应收金额</th>
+                    <th class="text-center">建账时间</th>
+                    <th class="text-center">计费起始时间</th>
+                    <th class="text-center">计费结束时间</th>
+                    <th class="text-center">说明</th>
+                    <th class="text-center">状态</th>
+                    <th class="text-center">操作</th>
+                </tr>
             </thead>
             <tbody>
-            <tr v-for="fee in simplifyRoomFeeInfo.fees">
-                <!-- <td class="text-center">{{fee.feeId}}</td> -->
-                <td class="text-center">{{fee.feeName}}</td>
-                <td class="text-center">{{fee.feeFlagName}}</td>
-                <td class="text-center">{{fee.feeTypeCdName}}</td>
-                <td class="text-center">{{fee.amountOwed}}</td>
-                <td class="text-center">{{fee.startTime}}</td>
-                <td class="text-center">{{_getEndTime(fee)}}</td>
-                <td class="text-center">{{_getDeadlineTime(fee)}}</td>
-                <td class="text-center" v-if="fee.computingFormula == '5005' || fee.computingFormula == '9009'"
-                    :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
-                    <div>上期度数：{{fee.preDegrees}}</div>
-                    <div>本期度数：{{fee.curDegrees}}</div>
-                    <div>单价：{{getOnePrice1(fee)}}</div>
-                    <div>附加费：{{fee.additionalAmount}}</div>
-                </td>
-                <td class="text-center" v-else-if="fee.computingFormula == '6006'"
-                    :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
-                    <div>用量：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
-                    <div>单价：{{fee.squarePrice}}</div>
-                    <div>附加费：{{fee.additionalAmount}}</div>
-                </td>
-                <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'"
-                    :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
-                    <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
-                    <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
-                </td>
-                <td class="text-center" v-else :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
-                    <div>单价：{{fee.squarePrice}}</div>
-                    <div v-if="fee.feeFlag == '1003006'">附加费：{{fee.additionalAmount}}</div>
-                    <div v-else>固定费：{{fee.additionalAmount}}</div>
-                </td>
-                <td class="text-center">{{fee.stateName}}</td>
-                <td class="text-center">
-                    <button class="btn btn-link btn-xs"
-                            v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')"
-                            v-on:click="_payFee(fee)">缴费
+                <tr v-for="fee in simplifyRoomFeeInfo.fees">
+                    <!-- <td class="text-center">{{fee.feeId}}</td> -->
+                    <td class="text-center">{{fee.feeName}}</td>
+                    <td class="text-center">{{fee.feeFlagName}}</td>
+                    <td class="text-center">{{fee.feeTypeCdName}}</td>
+                    <td class="text-center">{{fee.amountOwed}}</td>
+                    <td class="text-center">{{fee.startTime}}</td>
+                    <td class="text-center">{{_getEndTime(fee)}}</td>
+                    <td class="text-center">{{_getDeadlineTime(fee)}}</td>
+                    <td class="text-center" v-if="fee.computingFormula == '5005' || fee.computingFormula == '9009'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
+                        <div>上期度数：{{fee.preDegrees}}</div>
+                        <div>本期度数：{{fee.curDegrees}}</div>
+                        <div>单价：{{getOnePrice1(fee)}}</div>
+                        <div>附加费：{{fee.additionalAmount}}</div>
+                    </td>
+                    <td class="text-center" v-else-if="fee.computingFormula == '6006'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
+                        <div>用量：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
+                        <div>单价：{{fee.squarePrice}}</div>
+                        <div>附加费：{{fee.additionalAmount}}</div>
+                    </td>
+                    <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
+                        <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
+                        <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
+                    </td>
+                    <td class="text-center" v-else :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
+                        <div>单价：{{fee.squarePrice}}</div>
+                        <div v-if="fee.feeFlag == '1003006'">附加费：{{fee.additionalAmount}}</div>
+                        <div v-else>固定费：{{fee.additionalAmount}}</div>
+                    </td>
+                    <td class="text-center">{{fee.stateName}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')" v-on:click="_payFee(fee)">缴费
                     </button>
-                    <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史
+                        <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">缴费历史
                     </button>
-                    <div class="btn-group btn-link btn-xs"
-                        v-if="vc.hasPrivilege('502020090604200029') 
+                        <div class="btn-group btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029') 
                         || vc.hasPrivilege('502021070488970005')
                         || vc.hasPrivilege('502020090427190001')">
-                        <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">更多操作
+                            <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更多操作
                         </button>
-                        <div class="dropdown-menu p-4 text-muted" style="max-width: 500px;">
-                            <p  v-if="vc.hasPrivilege('502020090604200029')">
-                                <a href="javascript:void(0)"
-                                   v-on:click="_deleteFee(fee)">取消费用</a>
-                            </p>
-                            <p  v-if="vc.hasPrivilege('502021070488970005')">
-                                <a href="javascript:void(0)" 
-                                   v-on:click="_finishFee(fee)">手工结束</a>
-                            </p>
-                            <p  v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')">
-                                <a href="javascript:void(0)"  
-                                   v-on:click="_editFee(fee)">费用变更</a>
-                            </p>
+                            <div class="dropdown-menu p-4 text-muted" style="max-width: 500px;">
+                                <p v-if="vc.hasPrivilege('502020090604200029')">
+                                    <a href="javascript:void(0)" v-on:click="_deleteFee(fee)">取消费用</a>
+                                </p>
+                                <p v-if="vc.hasPrivilege('502021070488970005')">
+                                    <a href="javascript:void(0)" v-on:click="_finishFee(fee)">手工结束</a>
+                                </p>
+                                <p v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')">
+                                    <a href="javascript:void(0)" v-on:click="_editFee(fee)">费用变更</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div class="row">
             <div class="col-sm-5">
-                <span> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</span>
+                <div> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</div>
+                <div> 应收金额 为-1 一般为费用项公式设置出错请检查</div>
             </div>
             <div class="col-sm-2">
                 <span> 欠费小计：{{simplifyRoomFeeInfo.totalAmount}}</span>

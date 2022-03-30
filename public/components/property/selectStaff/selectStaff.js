@@ -45,7 +45,6 @@
                 $that.loadStaff();
             },
             _changeStaff: function(item) {
-                console.log('selectStaff', item);
                 $that.staff.staffId = item.userId;
                 $that.staff.staffName = item.userName;
                 $('#selectStaffModel').modal('hide');
