@@ -144,7 +144,7 @@
                     item.from = 'purchase';
                 } else if ($that.workflowSettingInfo.flowType == '80008') {
                     item.from = 'purchase';
-                } else if ($that.workflowSettingInfo.flowType == '') {
+                } else if ($that.workflowSettingInfo.flowType == '50005') {
                     item.from = 'contract';
                 }
                 vc.emit('selectStaff', 'openStaff', item);
