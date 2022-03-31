@@ -93,7 +93,12 @@
             clearAddBasePrivilegeInfo: function() {
                 vc.component.flowAuditInfo = {
                     state: '',
-                    remark: ''
+                    remark: '',
+                    taskId: '',
+                    startUserId: '',
+                    assignee: '',
+                    staffId: '',
+                    staffName: ''
                 }
             },
             _listWorkflow: function() {
