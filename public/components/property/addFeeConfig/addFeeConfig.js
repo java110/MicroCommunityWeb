@@ -241,12 +241,13 @@
                     $('#addFeeConfigModel').modal('hide');
                     return;
                 }
-                vc.http.post('addFeeConfig', 'save', JSON.stringify(vc.component.addFeeConfigInfo), {
+                vc.http.apiPost('/feeConfig.saveFeeConfig', JSON.stringify(vc.component.addFeeConfigInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json)
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addFeeConfigModel').modal('hide');
                             vc.component.clearAddFeeConfigInfo();
@@ -254,6 +255,7 @@
                             vc.toast("添加成功");
                             return;
                         }
+                        vc.toast(_json.msg)
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

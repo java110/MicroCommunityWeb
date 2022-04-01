@@ -75,7 +75,7 @@
                 //费用项ID选框去空
                 param.params.configId = param.params.configId.trim();
                 //发送get请求
-                vc.http.get('feeConfigManage', 'list', param,
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
                     function(json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.feeConfigManageInfo.total = _feeConfigManageInfo.total;
