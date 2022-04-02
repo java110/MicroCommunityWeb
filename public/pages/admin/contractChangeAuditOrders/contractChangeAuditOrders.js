@@ -19,14 +19,17 @@
                     auditLink: '',
                 },
                 orderInfo: '',
-                procure: false
+                procure: false,
+                audit: '1'
             }
         },
         _initMethod: function() {
             vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function() {
-
+            vc.on('contractChangeAuditOrders', 'list', function(_param) {
+                $that.contractChangeAuditOrdersInfo.audit = '1';
+            });
             vc.on('contractChangeAuditOrders', 'listAuditOrders', function(_param) {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -40,7 +43,7 @@
         },
         methods: {
             _listAuditOrders: function(_page, _rows) {
-
+                $that.contractChangeAuditOrdersInfo.audit = '1';
                 vc.component.contractChangeAuditOrdersInfo.conditions.page = _page;
                 vc.component.contractChangeAuditOrdersInfo.conditions.row = _rows;
                 var param = {
@@ -68,7 +71,9 @@
             },
             _openAuditOrderModel: function(_auditOrder) {
                 vc.component.contractChangeAuditOrdersInfo.orderInfo = _auditOrder;
-                vc.emit('audit', 'openAuditModal', {});
+                $that.contractChangeAuditOrdersInfo.audit = '2';
+                _auditOrder.startUserId = _auditOrder.changePerson;
+                vc.emit('flowAudit', 'openAuditModal', _auditOrder);
             },
             _queryAuditOrdersMethod: function() {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);

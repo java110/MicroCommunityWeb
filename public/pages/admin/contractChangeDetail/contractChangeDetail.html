@@ -5,11 +5,9 @@
                 <div class="ibox-title">
                     <h5>合同信息</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;"
-                            v-on:click="_openSelectContractInfoModel()">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;" v-on:click="_openSelectContractInfoModel()">
                             <i class="glyphicon glyphicon-search"></i> 选择合同</button>
-                        <button type="button" class="btn btn-white btn-sm" style="margin-right:10px;"
-                            v-on:click="_goBack()">
+                        <button type="button" class="btn btn-white btn-sm" style="margin-right:10px;" v-on:click="_goBack()">
                             返回</button>
                     </div>
                 </div>
@@ -30,7 +28,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="col-form-label">合同类型：</label>
-                                <label class="">{{contractChangeDetailInfo.contractType}}</label>
+                                <label class="">{{contractChangeDetailInfo.contractTypeName}}</label>
                             </div>
                         </div>
                     </div>
@@ -125,8 +123,7 @@
 
     <!-- 主体变更 -->
     <div v-if="contractChangeDetailInfo.param == 'contractChangeMainBody'">
-        <vc:create path="admin/contractChangeMainBody" emitChooseContract="contractChangeDetailInfo"
-            emitLoadData="notice"></vc:create>
+        <vc:create path="admin/contractChangeMainBody" emitChooseContract="contractChangeDetailInfo" emitLoadData="notice"></vc:create>
     </div>
 
     <!-- 租期调整 -->
@@ -136,8 +133,7 @@
     </div>
     <!--资产调整-->
     <div v-show="contractChangeDetailInfo.param == 'contractChangeAssets'">
-        <vc:create path="admin/contractChangeAssets" emitChooseContract="contractChangeDetailInfo"
-            emitLoadData="notice"></vc:create>
+        <vc:create path="admin/contractChangeAssets" emitChooseContract="contractChangeDetailInfo" emitLoadData="notice"></vc:create>
     </div>
 
     <div class="row">
@@ -153,8 +149,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">变更说明</label>
                         <div class="col-sm-10 ">
-                            <textarea v-model="newContract.changeRemark" rows="5" placeholder="必填，请填写变更说明"
-                                class="form-control"></textarea>
+                            <textarea v-model="newContract.changeRemark" rows="5" placeholder="必填，请填写变更说明" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
@@ -162,18 +157,20 @@
         </div>
     </div>
 
+    <div v-if="contractChangeDetailInfo.audit == '1001'">
+        <vc:create path="property/purchaseApprovers" callBackListener="contractChangeDetail" callBackFunction="notify3" flowType="60006">
+        </vc:create>
+    </div>
 
 
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-primary" style="margin-left:10px;"
-                v-on:click="_submitChangeContract()">提交
+            <button type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_submitChangeContract()">提交
             </button>
         </div>
     </div>
 
-    <vc:create path="admin/chooseContract" emitChooseContract="contractChangeDetailInfo"
-        emitLoadData="contractChangeDetailInfo">
+    <vc:create path="admin/chooseContract" emitChooseContract="contractChangeDetailInfo" emitLoadData="contractChangeDetailInfo">
     </vc:create>
 </div>
