@@ -78,7 +78,8 @@
                         if (res.status == 200) {
                             vc.toast("请记得收费哦！");
                             //关闭model
-                            vc.jumpToPage("/#/pages/property/listOwnerCar");
+                            //vc.jumpToPage("/#/pages/property/listOwnerCar");
+                            vc.goBack();
                             return;
                         }
                         vc.toast(json);
