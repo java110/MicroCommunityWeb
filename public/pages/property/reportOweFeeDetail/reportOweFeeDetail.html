@@ -5,8 +5,7 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{reportOweFeeDetailInfo.moreCondition == true?'隐藏':'更多'}}
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{reportOweFeeDetailInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -14,11 +13,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择楼栋"
-                                       v-model="reportOweFeeDetailInfo.conditions.floorName" class=" form-control">
+                                <input type="text" placeholder="请选择楼栋" v-model="reportOweFeeDetailInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
                                         <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
@@ -26,8 +23,7 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline"
-                                        v-model="reportOweFeeDetailInfo.conditions.unitId">
+                                <select class="form-control-md form-control input-s-sm inline" v-model="reportOweFeeDetailInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
                                     <option v-for="(unit,index) in reportOweFeeDetailInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
@@ -38,16 +34,14 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md"
-                                       v-model="reportOweFeeDetailInfo.conditions.roomNum">
+                                <input type="text" placeholder="请填写房屋编号" class="form-control form-control-md" v-model="reportOweFeeDetailInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
-                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
-                                    style="margin-left: 20px;">
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()" style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i>重置
                             </button>
                         </div>
@@ -55,16 +49,12 @@
                     <div class="row" v-show="reportOweFeeDetailInfo.moreCondition == true">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择创建开始时间"
-                                       v-model="reportOweFeeDetailInfo.conditions.startTime"
-                                       class=" form-control startTime">
+                                <input type="text" placeholder="请选择创建开始时间" v-model="reportOweFeeDetailInfo.conditions.startTime" class=" form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择创建结束时间"
-                                       v-model="reportOweFeeDetailInfo.conditions.endTime"
-                                       class=" form-control endTime">
+                                <input type="text" placeholder="请选择创建结束时间" v-model="reportOweFeeDetailInfo.conditions.endTime" class=" form-control endTime">
                             </div>
                         </div>
                     </div>
@@ -77,6 +67,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>欠费明细表</h5>
+                    <span style="font-size: 10px;">(按天更新)</span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>导出
@@ -86,41 +77,41 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">费用编号</th>
-                            <th class="text-center">房号</th>
-                            <th class="text-center">业主</th>
-                            <th class="text-center">面积</th>
-                            <th class="text-center">费用项</th>
-                            <th class="text-center">费用开始时间</th>
-                            <th class="text-center">更新时间</th>
-                            <th class="text-center">欠费时长（天）</th>
-                            <th class="text-center">欠费金额</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">费用编号</th>
+                                <th class="text-center">房号</th>
+                                <th class="text-center">业主</th>
+                                <th class="text-center">面积</th>
+                                <th class="text-center">费用项</th>
+                                <th class="text-center">费用开始时间</th>
+                                <th class="text-center">更新时间</th>
+                                <th class="text-center">欠费时长（天）</th>
+                                <th class="text-center">欠费金额</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(fee,index) in reportOweFeeDetailInfo.fees">
-                            <td class="text-center">{{index+1}}</td>
-                            <td class="text-center">{{fee.objName}}</td>
-                            <td class="text-center">{{fee.ownerName}}</td>
-                            <td class="text-center">{{fee.builtUpArea}}</td>
-                            <td class="text-center">{{fee.feeName}}</td>
-                            <td class="text-center">{{fee.feeCreateTime}}</td>
-                            <td class="text-center">{{fee.updateTime}}</td>
-                            <td class="text-center">{{fee.oweDay}}</td>
-                            <td class="text-center">{{fee.oweAmount}}</td>
-                        </tr>
+                            <tr v-for="(fee,index) in reportOweFeeDetailInfo.fees">
+                                <td class="text-center">{{index+1}}</td>
+                                <td class="text-center">{{fee.objName}}</td>
+                                <td class="text-center">{{fee.ownerName}}</td>
+                                <td class="text-center">{{fee.builtUpArea}}</td>
+                                <td class="text-center">{{fee.feeName}}</td>
+                                <td class="text-center">{{fee.feeCreateTime}}</td>
+                                <td class="text-center">{{fee.updateTime}}</td>
+                                <td class="text-center">{{fee.oweDay}}</td>
+                                <td class="text-center">{{fee.oweAmount}}</td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
-                     <!-- 分页 -->
-                     <div class="row">
+                    <!-- 分页 -->
+                    <div class="row">
                         <span class="col-md-1 margin-left">
                             <div class="row"><b>小计</b></div>
                             <div class="row"><b>大计</b></div>

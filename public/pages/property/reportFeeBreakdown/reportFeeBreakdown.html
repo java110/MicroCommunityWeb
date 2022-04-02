@@ -14,11 +14,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择楼栋"
-                                       v-model="reportFeeBreakdownInfo.conditions.floorName" class=" form-control">
+                                <input type="text" placeholder="请选择楼栋" v-model="reportFeeBreakdownInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
                                         <i class="fa fa-search"></i> 选择
                                     </button>
                                 </div>
@@ -26,8 +24,7 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline"
-                                        v-model="reportFeeBreakdownInfo.conditions.unitId">
+                                <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeBreakdownInfo.conditions.unitId">
                                     <option selected value="">请选择单元</option>
                                     <option v-for="(unit,index) in reportFeeBreakdownInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
@@ -38,16 +35,14 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写年份月份，如202109" class="form-control form-control-md"
-                                       v-model="reportFeeBreakdownInfo.conditions.yearMonth">
+                                <input type="text" placeholder="请填写年份月份，如202109" class="form-control form-control-md" v-model="reportFeeBreakdownInfo.conditions.yearMonth">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
-                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
-                                    style="margin-left: 20px;">
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()" style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
@@ -100,6 +95,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>费用分项表</h5>
+                    <span style="font-size: 10px;">(按天更新)</span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>导出
@@ -109,43 +105,43 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">费用编号</th>
-                            <th class="text-center">费用类型</th>
-                            <th class="text-center">费用项</th>
-                            <th class="text-center">历史欠费(单位:元)</th>
-                            <th class="text-center">当月应收(单位:元)</th>
-                            <th class="text-center">应收合计(单位:元)</th>
-                            <th class="text-center">当月实收(单位:元)</th>
-                            <th class="text-center">欠费追回(单位:元)</th>
-                            <th class="text-center">预交费用(单位:元)</th>
-                            <th class="text-center">实收合计(单位:元)</th>
-                            <th class="text-center">欠费金额(单位:元)</th>
-                            <th class="text-center">更新时间</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">费用编号</th>
+                                <th class="text-center">费用类型</th>
+                                <th class="text-center">费用项</th>
+                                <th class="text-center">历史欠费(单位:元)</th>
+                                <th class="text-center">当月应收(单位:元)</th>
+                                <th class="text-center">应收合计(单位:元)</th>
+                                <th class="text-center">当月实收(单位:元)</th>
+                                <th class="text-center">欠费追回(单位:元)</th>
+                                <th class="text-center">预交费用(单位:元)</th>
+                                <th class="text-center">实收合计(单位:元)</th>
+                                <th class="text-center">欠费金额(单位:元)</th>
+                                <th class="text-center">更新时间</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(fee,index) in reportFeeBreakdownInfo.fees">
-                            <td class="text-center">{{index+1}}</td>
-                            <td class="text-center">{{fee.feeTypeCd}}</td>
-                            <td class="text-center">{{fee.feeName}}</td>
-                            <td class="text-center">{{fee.hisOweAmount}}</td>
-                            <td class="text-center">{{fee.curReceivableAmount}}</td>
-                            <td class="text-center">{{_computeSum(fee.hisOweAmount,fee.curReceivableAmount)}}</td>
-                            <td class="text-center">{{fee.curReceivedAmount}}</td>
-                            <td class="text-center">{{fee.hisOweReceivedAmount}}</td>
-                            <td class="text-center">{{fee.preReceivedAmount}}</td>
-                            <td class="text-center">{{_computeSum(_computeSum(fee.hisOweReceivedAmount,fee.preReceivedAmount),fee.curReceivedAmount)}}</td>
-                            <td class="text-center">{{_computeOweFee(fee)}}</td>
-                            <td class="text-center">{{fee.updateTime}}</td>
-                        </tr>
+                            <tr v-for="(fee,index) in reportFeeBreakdownInfo.fees">
+                                <td class="text-center">{{index+1}}</td>
+                                <td class="text-center">{{fee.feeTypeCd}}</td>
+                                <td class="text-center">{{fee.feeName}}</td>
+                                <td class="text-center">{{fee.hisOweAmount}}</td>
+                                <td class="text-center">{{fee.curReceivableAmount}}</td>
+                                <td class="text-center">{{_computeSum(fee.hisOweAmount,fee.curReceivableAmount)}}</td>
+                                <td class="text-center">{{fee.curReceivedAmount}}</td>
+                                <td class="text-center">{{fee.hisOweReceivedAmount}}</td>
+                                <td class="text-center">{{fee.preReceivedAmount}}</td>
+                                <td class="text-center">{{_computeSum(_computeSum(fee.hisOweReceivedAmount,fee.preReceivedAmount),fee.curReceivedAmount)}}</td>
+                                <td class="text-center">{{_computeOweFee(fee)}}</td>
+                                <td class="text-center">{{fee.updateTime}}</td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
