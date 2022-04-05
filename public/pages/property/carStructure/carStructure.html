@@ -2,16 +2,17 @@
 
     <div class="row">
         <div class="col-md-2">
-            <vc:create path="property/floorUnitTree" callBackListener="roomStructure"></vc:create>
+            <vc:create path="property/floorUnitTree" callBackListener="carStructure"></vc:create>
         </div>
         <div class="col-md-10 margin-bottom">
             <div class="row margin-top-xs bg-white">
 
-                <div class="col-md-1 text-center margin-sm padding-xs" title="双击查看详情" @dblclick="_toSimplifyAcceptance(room)" v-for="(room,index) in roomStructureInfo.rooms" :style="{'background-color': _getBgColor(room)}" style="color: #fff;border-radius: 5px;cursor:pointer">
-                    <div>{{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}</div>
-                    <div>{{room.stateName}}</div>
-                    <div>{{room.ownerName?room.ownerName:'无'}}</div>
-                    <div>欠费：{{room.oweAmount}}元</div>
+                <div class="col-md-1 text-center margin-sm padding-xs" title="双击查看详情" @dblclick="_toSimplifyAcceptance(car)" v-for="(car,index) in carStructureInfo.cars" :style="{'background-color': _getBgColor(car)}" style="color: #fff;border-radius: 5px;cursor:pointer">
+                    <div>{{car.areaNum}}-{{car.num}}</div>
+                    <div>{{car.carNum}}</div>
+                    <div>{{car.floorNum}}-{{car.unitNum}}-{{car.roomNum}}</div>
+                    <div>{{car.ownerName?car.ownerName:'无'}}</div>
+                    <div>欠费：{{car.oweAmount}}元</div>
                 </div>
             </div>
         </div>
