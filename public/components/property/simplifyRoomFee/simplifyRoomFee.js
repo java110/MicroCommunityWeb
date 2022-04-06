@@ -21,7 +21,9 @@
                 roomType: '',
                 state: '2008001',
                 totalAmount: 0.0,
-                roomType: ''
+                roomType: '',
+                ownerFee: 'N',
+                ownerId: ''
             }
         },
         _initMethod: function() {},
@@ -64,14 +66,19 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         payerObjId: $that.simplifyRoomFeeInfo.roomId,
+                        payerObjType: '3333',
                         configId: $that.simplifyRoomFeeInfo.configId,
                         state: $that.simplifyRoomFeeInfo.state,
-                        feeTypeCd: $that.simplifyRoomFeeInfo.feeTypeCd
+                        feeTypeCd: $that.simplifyRoomFeeInfo.feeTypeCd,
                     }
                 };
+                //按业主查询
+                if ($that.simplifyRoomFeeInfo.ownerFee == 'Y') {
+                    param.params.payerObjId = '';
+                    param.params.ownerId = $that.simplifyRoomFeeInfo.ownerId;
+                }
                 //发送get请求
-                vc.http.get('listRoomFee',
-                    'list',
+                vc.http.apiGet('/fee.listFee',
                     param,
                     function(json) {
                         let _feeConfigInfo = JSON.parse(json);
@@ -194,7 +201,9 @@
                     configId: '',
                     state: '2008001',
                     totalAmount: 0.0,
-                    roomType: ''
+                    roomType: '',
+                    ownerFee: 'N',
+                    ownerId: ''
                 }
             },
             _changeSimplifyRoomFeeFeeTypeCd: function(_feeTypeCd) {
@@ -227,6 +236,22 @@
                 let ownerName = $that._getAttrValue(attrs, '390008');
                 let ownerLink = $that._getAttrValue(attrs, '390009');
                 return '业主：' + ownerName + ',电话：' + ownerLink;
+            },
+            _getSimplifyRoomFeeRoomName: function(fee) {
+                if ($that.simplifyRoomFeeInfo.ownerFee != 'Y') {
+                    return '';
+                }
+                let _feeName = ''
+                fee.feeAttrs.forEach(item => {
+                    if (item.specCd == '390012') {
+                        _feeName = '(' + item.value + ')';
+                    }
+                })
+
+                return _feeName;
+            },
+            _openBatchPayRoomFeeModal: function() {
+                vc.jumpToPage('/#/pages/property/batchPayFeeOrder?ownerId=' + $that.simplifyRoomFeeInfo.ownerId + "&payerObjType=3333")
             }
         }
     });

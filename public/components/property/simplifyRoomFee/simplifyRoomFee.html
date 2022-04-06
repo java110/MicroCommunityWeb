@@ -18,14 +18,23 @@
                 </option>
             </select>
         </div>
-        <div class="col-lg-2 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
+        <div class="col-lg-1 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
             <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.state" @change="_changeSimplifyRoomConfigId()">
                 <option selected value="">请选择状态</option>
                 <option value="2008001">收费中</option>
                 <option value="2009001">收费结束</option>
             </select>
         </div>
+        <div class="col-lg-1 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
+            <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.ownerFee" @change="_changeSimplifyRoomConfigId()">
+                <option selected value="N">当前房屋</option>
+                <option value="Y">当前业主</option>
+            </select>
+        </div>
         <div class="col-lg-6 text-right" v-if="simplifyRoomFeeInfo.roomId">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openBatchPayRoomFeeModal()">
+                批量缴费
+            </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openTempImportRoomFeeModal()">
                 临时收费
             </button>
@@ -62,7 +71,7 @@
             <tbody>
                 <tr v-for="fee in simplifyRoomFeeInfo.fees">
                     <!-- <td class="text-center">{{fee.feeId}}</td> -->
-                    <td class="text-center">{{fee.feeName}}</td>
+                    <td class="text-center">{{fee.feeName}}{{_getSimplifyRoomFeeRoomName(fee)}}</td>
                     <td class="text-center">{{fee.feeFlagName}}</td>
                     <td class="text-center">{{fee.feeTypeCdName}}</td>
                     <td class="text-center">{{fee.amountOwed}}</td>

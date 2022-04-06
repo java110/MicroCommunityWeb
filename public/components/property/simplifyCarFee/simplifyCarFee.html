@@ -9,6 +9,9 @@
         <div class="col-lg-4 text-right">
         </div>
         <div class="col-lg-6 text-right" v-if="simplifyCarFeeInfo.carId">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openBatchPayCarFeeModal()">
+                批量缴费
+            </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openSimplifyCarAddMeterWaterModal()">
                 水电抄表
             </button>
