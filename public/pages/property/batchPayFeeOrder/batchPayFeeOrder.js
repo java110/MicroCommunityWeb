@@ -5,6 +5,7 @@
         data: {
             batchPayFeeOrderInfo: {
                 batchFees: [],
+                allBatchFees: [],
                 selectPayFeeIds: [],
                 feePrices: 0.00,
                 communityId: vc.getCurrentCommunity().communityId,
@@ -16,7 +17,9 @@
                 primeRates: [],
                 toFixedSign: 1, // 编码映射-应收款取值标识
                 receivedAmountSwitch: '',
-                offlinePayFeeSwitch: '1'
+                offlinePayFeeSwitch: '1',
+                payerObjNames: [],
+                payObjs: []
             }
         },
         watch: {
@@ -74,16 +77,77 @@
                             item.receivedAmount = item.receivableAmount;
                         });
                         let toFixedSign = _fees[0].val;
+
+                        $that.batchPayFeeOrderInfo.allBatchFees = $that.batchPayFeeOrderInfo.batchFees;
                         // 防止后台设置有误
                         if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3 || toFixedSign == 4 || toFixedSign == 5) {
                             $that.batchPayFeeOrderInfo.toFixedSign = toFixedSign;
                         }
+
+                        $that._pushPayObjs();
                         $that._doComputeTotalFee();
                     },
                     function() {
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _pushPayObjs: function() {
+                let _allBatchFees = $that.batchPayFeeOrderInfo.allBatchFees;
+                let _payObjs = $that.batchPayFeeOrderInfo.payObjs;
+                let _payerObjNames = $that.batchPayFeeOrderInfo.payerObjNames;
+                let _payerObjName = '';
+                _allBatchFees.forEach(_fee => {
+                    _payerObjName = '';
+                    _fee.feeAttrs.forEach(item => {
+                        if (item.specCd == '390012') {
+                            _payerObjName = item.value;
+                        }
+                    })
+                    if (_payerObjName && !$that._hasPayObjsIn(_payerObjName)) {
+                        _payObjs.push(_payerObjName);
+                        _payerObjNames.push(_payerObjName);
+                    }
+                });
+            },
+            _chanagePayerObjName: function() {
+                let _allBatchFees = $that.batchPayFeeOrderInfo.allBatchFees;
+                $that.batchPayFeeOrderInfo.batchFees = [];
+                _allBatchFees.forEach(_fee => {
+                    _payerObjName = '';
+                    _fee.feeAttrs.forEach(item => {
+                        if (item.specCd == '390012') {
+                            _payerObjName = item.value;
+                        }
+                    })
+                    if (_payerObjName && $that._hasPayObjNamesIn(_payerObjName)) {
+                        $that.batchPayFeeOrderInfo.batchFees.push(_fee)
+                    }
+                });
+
+                $that._doComputeTotalFee();
+            },
+            _hasPayObjsIn: function(_payerObjName) {
+                let _payObjs = $that.batchPayFeeOrderInfo.payObjs;
+                let _hasIn = false;
+                _payObjs.forEach(item => {
+                    if (item == _payerObjName) {
+                        _hasIn = true;
+                    }
+                });
+
+                return _hasIn;
+            },
+            _hasPayObjNamesIn: function(_payerObjName) {
+                let _payObjs = $that.batchPayFeeOrderInfo.payerObjNames;
+                let _hasIn = false;
+                _payObjs.forEach(item => {
+                    if (item == _payerObjName) {
+                        _hasIn = true;
+                    }
+                });
+                console.log(_payerObjName, _hasIn)
+                return _hasIn;
             },
             _payFee: function() {
                 if (vc.component.batchPayFeeOrderInfo.selectPayFeeIds.length <= 0) {

@@ -1,6 +1,31 @@
 <div>
     <div class="row">
         <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-1 text-right">
+                            <div class="form-group">
+                                收费对象
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <span class="margin-right" v-for="(item,index) in batchPayFeeOrderInfo.payObjs">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="item" v-model="batchPayFeeOrderInfo.payerObjNames" @change="_chanagePayerObjName()"> {{item}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>批量缴费</h5>
