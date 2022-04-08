@@ -61,11 +61,10 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('listRoomFee',
-                    'list',
+                vc.http.apiGet('/fee.listFee',
                     param,
                     function(json) {
-                        var _feeConfigInfo = JSON.parse(json);
+                        let _feeConfigInfo = JSON.parse(json);
                         vc.component.listRoomCreateFeeInfo.total = _feeConfigInfo.total;
                         vc.component.listRoomCreateFeeInfo.records = _feeConfigInfo.records;
                         vc.component.listRoomCreateFeeInfo.fees = _feeConfigInfo.fees;

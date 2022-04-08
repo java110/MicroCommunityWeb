@@ -20,46 +20,43 @@
         },
         _initEvent: function() {
             vc.on('addParkingArea', 'openAddParkingAreaModal',
-            function() {
-                $that._loadParkingAreaAttrSpec();
-                $('#addParkingAreaModel').modal('show');
-            });
+                function() {
+                    $that._loadParkingAreaAttrSpec();
+                    $('#addParkingAreaModel').modal('show');
+                });
         },
         methods: {
             addParkingAreaValidate() {
                 return vc.validate.validate({
                     addParkingAreaInfo: vc.component.addParkingAreaInfo
-                },
-                {
+                }, {
                     'addParkingAreaInfo.num': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "停车场编号不能为空"
-                    },
-                    {
-                        limit: "maxin",
-                        param: "1,12",
-                        errInfo: "停车场编号不能超过12位"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "停车场编号不能为空"
+                        },
+                        {
+                            limit: "maxin",
+                            param: "1,12",
+                            errInfo: "停车场编号不能超过12位"
+                        },
                     ],
                     'addParkingAreaInfo.typeCd': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "停车场类型不能为空"
-                    },
-                    {
-                        limit: "num",
-                        param: "",
-                        errInfo: "停车场类型格式错误"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "停车场类型不能为空"
+                        },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "停车场类型格式错误"
+                        },
                     ],
-                    'addParkingAreaInfo.remark': [
-                    {
+                    'addParkingAreaInfo.remark': [{
                         limit: "maxLength",
                         param: "4000",
                         errInfo: "备注太长"
-                    },
-                    ],
+                    }, ],
 
                 });
             },
@@ -78,26 +75,27 @@
                     return;
                 }
 
-                vc.http.post('addParkingArea', 'save', JSON.stringify(vc.component.addParkingAreaInfo), {
-                    emulateJSON: true
-                },
-                function(json, res) {
-                    //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                    if (res.status == 200) {
-                        //关闭model
-                        $('#addParkingAreaModel').modal('hide');
-                        vc.component.clearAddParkingAreaInfo();
-                        vc.emit('parkingAreaManage', 'listParkingArea', {});
+                vc.http.apiPost('/parkingArea.saveParkingArea', JSON.stringify(vc.component.addParkingAreaInfo), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model
+                            $('#addParkingAreaModel').modal('hide');
+                            vc.component.clearAddParkingAreaInfo();
+                            vc.emit('parkingAreaManage', 'listParkingArea', {});
 
-                        return;
-                    }
-                    vc.toast(json);
-                },
-                function(errInfo, error) {
-                    console.log('请求失败处理');
-                    vc.toast(errInfo);
+                            return;
+                        }
+                        vc.toast(_json.msg);
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
 
-                });
+                    });
             },
             clearAddParkingAreaInfo: function() {
                 vc.component.addParkingAreaInfo = {
@@ -107,9 +105,9 @@
                     attrs: []
                 };
             },
-            _loadParkingAreaAttrSpec: function () {
+            _loadParkingAreaAttrSpec: function() {
                 $that.addParkingAreaInfo.attrs = [];
-                vc.getAttrSpec('parking_area_attr', function (data) {
+                vc.getAttrSpec('parking_area_attr', function(data) {
                     data.forEach(item => {
                         item.value = '';
                         if (item.specShow == 'Y') {
@@ -120,8 +118,8 @@
                     });
                 });
             },
-            _loadAttrValue: function (_specCd, _values) {
-                vc.getAttrValue(_specCd, function (data) {
+            _loadAttrValue: function(_specCd, _values) {
+                vc.getAttrValue(_specCd, function(data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
