@@ -57,8 +57,7 @@
                         }
                     }
                     //发送get请求
-                vc.http.get('listParkingSpace',
-                    'list',
+                vc.http.apiGet('/parkingSpace.queryParkingSpaces',
                     param,
                     function(json, res) {
                         var listParkingSpaceData = JSON.parse(json);

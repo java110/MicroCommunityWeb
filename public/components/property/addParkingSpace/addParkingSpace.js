@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROW = 10;
     vc.extends({
@@ -17,20 +17,20 @@
                 parkingAreas: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //与字典表关联
-            vc.getDict('parking_space', "parking_type", function (_data) {
+            vc.getDict('parking_space', "parking_type", function(_data) {
                 vc.component.addParkingSpaceInfo.parkingTypes = _data;
             });
         },
-        _initEvent: function () {
-            vc.on('addParkingSpace', 'openAddParkingSpaceModal', function (_parkingSpaceId) {
+        _initEvent: function() {
+            vc.on('addParkingSpace', 'openAddParkingSpaceModal', function(_parkingSpaceId) {
                 if (_parkingSpaceId != null || _parkingSpaceId != -1) {
                     vc.component.addParkingSpaceInfo.parkingSpaceId = _parkingSpaceId;
                 }
                 $('#addParkingSpaceModel').modal('show');
             });
-            vc.on("addParkingSpace", "notify", function (_param) {
+            vc.on("addParkingSpace", "notify", function(_param) {
                 vc.component.addParkingSpaceInfo.paId = _param.paId;
             });
         },
@@ -39,8 +39,7 @@
                 return vc.validate.validate({
                     addParkingSpaceInfo: vc.component.addParkingSpaceInfo
                 }, {
-                    'addParkingSpaceInfo.num': [
-                        {
+                    'addParkingSpaceInfo.num': [{
                             limit: "required",
                             param: "",
                             errInfo: "车位编号不能为空"
@@ -51,15 +50,12 @@
                             errInfo: "车位编号长度不能超过12位"
                         },
                     ],
-                    'addParkingSpaceInfo.paId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "停车场不能为空"
-                        }
-                    ],
-                    'addParkingSpaceInfo.area': [
-                        {
+                    'addParkingSpaceInfo.paId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "停车场不能为空"
+                    }],
+                    'addParkingSpaceInfo.area': [{
                             limit: "required",
                             param: "",
                             errInfo: "车位面积不能为空"
@@ -81,36 +77,35 @@
 
                 });
             },
-            saveParkingSpaceInfo: function () {
+            saveParkingSpaceInfo: function() {
                 if (!vc.component.addParkingSpaceValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 vc.component.addParkingSpaceInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'addParkingSpace',
-                    'saveParkingSpace',
-                    JSON.stringify(vc.component.addParkingSpaceInfo),
-                    {
+                vc.http.apiPost(
+                    '/parkingSpace.saveParkingSpace',
+                    JSON.stringify(vc.component.addParkingSpaceInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addParkingSpaceModel').modal('hide');
                             vc.component.clearAddParkingSpaceInfo();
                             vc.emit($props.notifyLoadDataComponentName, 'listParkingSpaceData', {});
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddParkingSpaceInfo: function () {
+            clearAddParkingSpaceInfo: function() {
                 vc.component.addParkingSpaceInfo.num = '';
                 vc.component.addParkingSpaceInfo.paId = '';
                 vc.component.addParkingSpaceInfo.area = '';

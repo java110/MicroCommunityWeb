@@ -1,7 +1,7 @@
 /**
  * vcFramework
  *
- * @author Kevin Law
+ * @author 吴学文
  *
  * @version 0.3
  *
@@ -9,9 +9,9 @@
  *
  * @time 2020-03-04
  *
- * @qq 58957118
+ * @qq 928255095
  *
- * @mail 58957118@qq.com
+ * @mail 928255095@qq.com
  *
  */
 /**
@@ -58,9 +58,9 @@
     vcFramework = {
         version: "v0.0.3",
         name: "vcFramework",
-        author: 'Kevin Law',
-        email: '58957118@qq.com',
-        qq: '58957118',
+        author: '吴学文',
+        email: '928255095@qq.com',
+        qq: '928255095',
         description: 'vcFramework 是自研的一套组件开发套件',
         vueCache: _vueCache,
         vmOptions: _vmOptions,
@@ -2209,7 +2209,7 @@
      *      name:"Kevin",
      *      age:"19",
      *      emailInfo:{
-     *          email:"58957118@qq.com"
+     *          email:"928255095@qq.com"
      *      }
      * }
      *
@@ -2731,12 +2731,12 @@
 
 
     vcFramework.getTabFromLocal = function() {
-        let tabStr = window.localStorage.getItem('vcTab');
+        let tabStr = window.sessionStorage.getItem('vcTab');
 
         let tabs = [];
 
         if (!tabStr) {
-            window.localStorage.setItem('vcTab', JSON.stringify(tabs))
+            window.sessionStorage.setItem('vcTab', JSON.stringify(tabs))
         } else {
             tabs = JSON.parse(tabStr);
         }
@@ -2758,7 +2758,7 @@
             tabs.shift();
         }
         tabs.push(_obj);
-        window.localStorage.setItem('vcTab', JSON.stringify(tabs));
+        window.sessionStorage.setItem('vcTab', JSON.stringify(tabs));
     }
 
     vcFramework.deleteTabToLocal = function(_obj) {
@@ -2770,6 +2770,6 @@
                 tabs.splice(tabIndex, 1);
             }
         }
-        window.localStorage.setItem('vcTab', JSON.stringify(tabs));
+        window.sessionStorage.setItem('vcTab', JSON.stringify(tabs));
     }
 })(window.vcFramework);
