@@ -236,8 +236,9 @@
                         emulateJSON: true
                     },
                     function (json, res) {
+                        let _json = JSON.parse(json);
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        if (res.status == 200 && _json.code == 0) {
                             //关闭model
                             //$('#addApplicationKeyModel').modal('hide');
                             vc.component.clearAddApplicationKeyInfo();
@@ -245,7 +246,7 @@
 
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
 
                     },
                     function (errInfo, error) {

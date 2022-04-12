@@ -67,7 +67,11 @@
             },
             _openAuditOpenShopModel: function(_auditOrder) {
                 vc.component.auditOpenShopInfo.orderInfo = _auditOrder;
-                vc.emit('audit', 'openAuditModal', {});
+                if (confirm("该店铺尚未缴纳保证金，请确认是否继续该操作")==true){
+                    vc.emit('audit', 'openAuditModal', {});
+                }else{ 
+                    return false; 
+                }
             },
             _queryAuditOpenShopsMethod: function() {
                 vc.component._listAuditOpenShops(DEFAULT_PAGE, DEFAULT_ROWS);

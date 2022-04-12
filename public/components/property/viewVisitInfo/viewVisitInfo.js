@@ -27,6 +27,9 @@
             vc.on('viewVisitInfo', 'onIndex', function (_index) {
                 vc.component.viewAppInfo.index = _index;
             });
+            vc.on('viewVisitInfo', 'clearInfo', function () {
+                vc.component._clearVisitInfo();
+            });
         },
         methods: {
             _openSelectAppInfoModel() {

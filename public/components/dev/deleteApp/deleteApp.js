@@ -7,8 +7,6 @@
         },
         _initEvent: function () {
             vc.on('deleteApp', 'openDeleteAppModel', function (_params) {
-                console.log("如下")
-                console.log(_params)
                 vc.component.deleteAppInfo = _params;
                 $('#deleteAppModel').modal('show');
             });

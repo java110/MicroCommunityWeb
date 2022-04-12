@@ -23,7 +23,7 @@
             });
             vc.on("addVisitSpace", "visitCase", function (_visitCase) {
                 console.log('step3', _visitCase);
-                if(!_visitCase.visitCase || _visitCase.reasonType == ''){
+                if (!vc.validate.required(_visitCase.visitCase) || _visitCase.reasonType == '') {
                     vc.toast("请选择或填写必选信息");
                     vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = null;
                     return;
@@ -100,10 +100,22 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        // 清除已填写信息
+                        vc.component.newVisitInfo.infos = [];
+                        vc.emit('viewVisitInfo', 'clearInfo', '');
+                        vc.emit('addVisit', 'clearInfo', '');
+                        vc.emit('visitForOwner', 'clearInfo', '');
+                        vc.emit('addVisitCase', 'clearInfo', '');
+                        if (res.status == 200 && _json.code == '0') {
                             //关闭model
                             vc.jumpToPage("/#/pages/property/visitManage?" + vc.objToGetParam(JSON.parse(json)));
                             vc.toast("登记成功");
+                            return;
+                        } else {
+                            //关闭model
+                            vc.jumpToPage("/#/pages/property/visitManage?" + vc.objToGetParam(JSON.parse(json)));
+                            vc.toast(_json.msg);
                             return;
                         }
                     },

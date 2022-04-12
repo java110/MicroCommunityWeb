@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -12,28 +12,25 @@
                 records: 1,
                 moreCondition: false,
                 junkRequirementId: '',
-                pageName:'旧货',
+                pageName: '旧货',
                 conditions: {
                     classification: '',
                     publishUserName: '',
                     publishUserLink: '',
-                    publishUserLink: '',
-                    typeCd:'222222',
+                    typeCd: '222222',
                 }
             }
         },
         _initMethod: function () {
             vc.component._listJunkRequirements(DEFAULT_PAGE, DEFAULT_ROWS);
             $that.junkRequirementManageInfo.conditions.typeCd = vc.getParam('typeCd');
-            if(vc.getParam('typeCd') == 333333){
+            if (vc.getParam('typeCd') == 333333) {
                 $that.junkRequirementManageInfo.pageName = '需求';
-            }else{
+            } else {
                 $that.junkRequirementManageInfo.pageName = '旧货';
-
             }
         },
         _initEvent: function () {
-
             vc.on('junkRequirementManage', 'listJunkRequirement', function (_param) {
                 vc.component._listJunkRequirements(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -43,14 +40,12 @@
         },
         methods: {
             _listJunkRequirements: function (_page, _rows) {
-
                 vc.component.junkRequirementManageInfo.conditions.page = _page;
                 vc.component.junkRequirementManageInfo.conditions.row = _rows;
                 vc.component.junkRequirementManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.junkRequirementManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('junkRequirement.listJunkRequirements',
                     param,
@@ -79,7 +74,6 @@
             },
             _queryJunkRequirementMethod: function () {
                 vc.component._listJunkRequirements(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.junkRequirementManageInfo.moreCondition) {
@@ -88,8 +82,6 @@
                     vc.component.junkRequirementManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

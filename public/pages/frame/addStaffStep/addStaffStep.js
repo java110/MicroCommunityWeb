@@ -101,14 +101,15 @@
                         emulateJSON: true
                     },
                     function(json, res) {
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (res.status == 200 && _json.code == 0) {
 
                             vc.toast('处理成功');
                             //关闭model
                             vc.goBack();
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

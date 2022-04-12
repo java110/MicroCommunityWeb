@@ -1,0 +1,58 @@
+<div id="examineAppModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">访客审核</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">访客ID</label>
+                                <div class="col-sm-10">
+                                    <input v-model="examineVisitInfo.vId" type="text" placeholder="必填，请填写访客ID"
+                                           class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">访客姓名</label>
+                                <div class="col-sm-10">
+                                    <input v-model="examineVisitInfo.vName" type="text" placeholder="必填，请填写访客姓名"
+                                           class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">审核状态</label>
+                                <div class="col-sm-10">
+                                    <select v-model="examineVisitInfo.state" class="form-control"
+                                            :value="examineVisitInfo.state">
+                                        <option value="" selected disabled>请选择审核状态</option>
+                                        <option value="0">未审核</option>
+                                        <option value="1" selected>审核通过</option>
+                                        <option value="2">审核拒绝</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">审核备注</label>
+                                <div class="col-sm-10">
+                                    <input v-model="examineVisitInfo.stateRemark" type="text" placeholder="选填，请填写审核备注"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="examineVisit()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

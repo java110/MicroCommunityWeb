@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editJunkRequirementInfo: {
@@ -10,12 +9,10 @@
                 referencePrice: '',
                 publishUserName: '',
                 publishUserLink: '',
-                state: '',
-
+                state: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editJunkRequirement', 'openEditJunkRequirementModal', function (_params) {
@@ -47,8 +44,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "编码不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editJunkRequirement: function () {
@@ -56,8 +53,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.editJunkRequirementInfo.communityId = vc.getCurrentCommunity().communityId;
-
+                // vc.component.editJunkRequirementInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'junkRequirement.updateJunkRequirement',
                     JSON.stringify(vc.component.editJunkRequirementInfo),
@@ -66,18 +62,18 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        if (res.body.code == 0) {
                             //关闭model
                             $('#editJunkRequirementModel').modal('hide');
                             vc.emit('junkRequirementManage', 'listJunkRequirement', {});
+                            vc.toast("审核成功")
                             return;
                         }
-                        vc.message(json);
+                        vc.message(res.body.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             refreshEditJunkRequirementInfo: function () {
@@ -89,11 +85,9 @@
                     referencePrice: '',
                     publishUserName: '',
                     publishUserLink: '',
-                    state: '',
-
+                    state: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

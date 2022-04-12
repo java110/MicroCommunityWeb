@@ -2077,6 +2077,10 @@
          * @param {参数} text
          */
         required: function(text) {
+             // 去除两侧空格
+             if(typeof text == 'string'){
+                text = text.replace(/(^\s*)|(\s*$)/g, "");
+            }
             if (text == undefined || text == null || text == "") {
                 return false;
             }

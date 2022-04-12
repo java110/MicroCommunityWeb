@@ -74,8 +74,8 @@
                             <label class="col-form-label">发货地址：</label>
                             <label class="" v-if="viewShopAuditInfo.sendAddress == preShopInfo.sendAddress || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.sendAddress}}</label>
                             <label class="" v-else>
-                               <span>{{viewShopAuditInfo.sendAddress}}</span> 变更为：
-                               <span style="color: red;">{{preShopInfo.sendAddress}}</span> 
+                               <span>{{preShopInfo.sendAddress}}</span> 变更为：
+                               <span style="color: red;">{{viewShopAuditInfo.sendAddress}}</span>
                             </label>
                         </div>
                     </div>
