@@ -8,8 +8,7 @@
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
                             返回
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_openAddPayFeeConfigDiscountModal()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPayFeeConfigDiscountModal()">
                             <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
@@ -17,51 +16,59 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">费用折扣ID</th>
-                            <th class="text-center">费用项名称</th>
-                            <th class="text-center">折扣名称</th>
-                            <th class="text-center">规则</th>
-                            <th class="text-center">折扣类型</th>
-                            <th class="text-center">缴费起始时间</th>
-                            <th class="text-center">缴费结束时间</th>
-                            <th class="text-center">折扣终止时间</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">费用折扣ID</th>
+                                <th class="text-center">费用项名称</th>
+                                <th class="text-center">折扣名称</th>
+                                <th class="text-center">规则</th>
+                                <th class="text-center">折扣类型</th>
+                                <th class="text-center">缴费起始时间</th>
+                                <th class="text-center">缴费结束时间</th>
+                                <th class="text-center">折扣终止时间</th>
+                                <th class="text-center">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="payFeeConfigDiscount in payFeeConfigDiscountManageInfo.payFeeConfigDiscounts">
-                            <td class="text-center">{{payFeeConfigDiscount.configDiscountId}}</td>
-                            <td class="text-center">{{payFeeConfigDiscountManageInfo.feeName}}</td>
-                            <td class="text-center">{{payFeeConfigDiscount.discountName}}</td>
-                            <td class="text-center">
-                                <div v-for="(item,index) in payFeeConfigDiscount.feeDiscountSpecs">
-                                    {{item.specName}}：{{item.specValue}}
-                                </div>
-                            </td>
-                            <td class="text-center">{{payFeeConfigDiscount.discountType == '1001'?'优惠':'违约'}}</td>
-                            <td class="text-center">{{payFeeConfigDiscount.startTime}}</td>
-                            <td class="text-center">{{payFeeConfigDiscount.endTime}}</td>
-                            <td class="text-center">{{payFeeConfigDiscount.payMaxEndTime}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeletePayFeeConfigDiscountModel(payFeeConfigDiscount)">删除
+                            <tr v-for="payFeeConfigDiscount in payFeeConfigDiscountManageInfo.payFeeConfigDiscounts">
+                                <td class="text-center">{{payFeeConfigDiscount.configDiscountId}}</td>
+                                <td class="text-center">{{payFeeConfigDiscountManageInfo.feeName}}</td>
+                                <td class="text-center">{{payFeeConfigDiscount.discountName}}</td>
+                                <td class="text-center">
+                                    <div v-for="(item,index) in payFeeConfigDiscount.feeDiscountSpecs">
+                                        {{item.specName}}：{{item.specValue}}
+                                    </div>
+                                </td>
+                                <td class="text-center">{{payFeeConfigDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                                <td class="text-center">{{payFeeConfigDiscount.startTime}}</td>
+                                <td class="text-center">{{payFeeConfigDiscount.endTime}}</td>
+                                <td class="text-center">{{payFeeConfigDiscount.payMaxEndTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePayFeeConfigDiscountModel(payFeeConfigDiscount)">删除
                                     </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="9">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="9">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div> 缴费起始时间：缴费时间必须大于缴费起始时间才会享受折扣</div>
+                            <div> 缴费结束时间：缴费时间必须小于缴费结束时间才会享受折扣</div>
+                            <div> 折扣终止时间：交完费后的时间不能大于折扣终止时间</div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
