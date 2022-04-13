@@ -61,9 +61,11 @@
                     <!-- 分页 -->
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
-                            <div> 缴费起始时间：缴费时间必须大于缴费起始时间才会享受折扣</div>
-                            <div> 缴费结束时间：缴费时间必须小于缴费结束时间才会享受折扣</div>
-                            <div> 折扣终止时间：交完费后的时间不能大于折扣终止时间</div>
+                            <div> 缴费起始时间和缴费结束时间：这个约束缴费的时间，也就是前台收银员操作缴费的时间</div>
+                            <div> 折扣终止时间：这个表示最大缴费到什么时候</div>
+                            <div> 如果本年度费用不能享受优惠 那么在折扣设置中规则选择打折无欠费规则，并且欠费时长为0</div>
+                            <div> 这样所有欠费的费用则不享受优惠，本年度的费用属于欠费所以不享受优惠</div>
+
                         </div>
                         <div class="col-sm-3 float-right">
                             <vc:create path="frame/pagination"></vc:create>
