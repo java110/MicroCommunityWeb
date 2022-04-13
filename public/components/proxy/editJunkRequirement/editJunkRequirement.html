@@ -1,71 +1,77 @@
 <div id="editJunkRequirementModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3 class="m-t-none m-b ">修改旧货</h3>
-        <div class="ibox-content">
-          <div>
-            <div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">类别</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="editJunkRequirementInfo.classification" readonly="readonly">
-                    <option selected disabled value="">必填，请选择类别</option>
-                    <option value="10001">家具</option>
-                    <option value="10002">电器</option>
-                  </select> </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">内容</label>
-                <div class="col-sm-10">
-                  <input v-model="editJunkRequirementInfo.context" readonly="readonly" type="text" placeholder="必填，请填写内容"
-                    class="form-control">
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">修改旧货</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">类别</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editJunkRequirementInfo.classification"
+                                            readonly="readonly">
+                                        <option selected disabled value="">必填，请选择类别</option>
+                                        <option value="10001">家具</option>
+                                        <option value="10002">电器</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">内容</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editJunkRequirementInfo.context" readonly="readonly" type="text"
+                                           placeholder="必填，请填写内容" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">参考价格</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editJunkRequirementInfo.referencePrice" readonly="readonly"
+                                           type="text" placeholder="必填，请填写参考价格" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">发布人</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editJunkRequirementInfo.publishUserName" readonly="readonly"
+                                           type="text" placeholder="必填，请填写发布人" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">联系方式</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editJunkRequirementInfo.publishUserLink" readonly="readonly"
+                                           type="text" placeholder="必填，请填写联系方式" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">状态</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editJunkRequirementInfo.state">
+                                        <option selected disabled value="">必填，请选择状态</option>
+                                        <option value="12001">未审核</option>
+                                        <option value="13001">审核通过</option>
+                                        <option value="14001">审核失败</option>
+                                        <option value="15001">处理完成</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editJunkRequirement()">
+                                    <i class="fa fa-check"></i>&nbsp;审核
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">参考价格</label>
-                <div class="col-sm-10">
-                  <input v-model="editJunkRequirementInfo.referencePrice" readonly="readonly" type="text" placeholder="必填，请填写参考价格"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">发布人</label>
-                <div class="col-sm-10">
-                  <input v-model="editJunkRequirementInfo.publishUserName" readonly="readonly" type="text" placeholder="必填，请填写发布人"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">联系方式</label>
-                <div class="col-sm-10">
-                  <input v-model="editJunkRequirementInfo.publishUserLink" readonly="readonly" type="text" placeholder="必填，请填写联系方式"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">状态</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="editJunkRequirementInfo.state">
-                    <option selected disabled value="">必填，请选择状态</option>
-                    <option value="12001">未审核</option>
-                    <option value="13001">审核通过</option>
-                    <option value="14001">审核失败</option>
-                    <option value="15001">处理完成</option>
-                  </select> </div>
-              </div>
-
-              <div class="ibox-content">
-                <button class="btn btn-primary float-right" type="button" v-on:click="editJunkRequirement()"><i
-                    class="fa fa-check"></i>&nbsp;审核</button>
-                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

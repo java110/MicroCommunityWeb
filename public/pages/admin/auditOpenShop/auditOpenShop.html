@@ -41,7 +41,7 @@
                                     </div> -->
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAuditOpenShopModel(shop)">审核
+                                            v-on:click="_openAuditOpenShopModel(shop)" v-if="shop.state != '002'">审核
                                         </button>
                                     </div>
                                 </td>

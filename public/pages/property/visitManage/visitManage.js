@@ -20,6 +20,7 @@
             }
         },
         _initMethod: function () {
+            // location.reload();
             vc.component._initDate();
             vc.component._listApps(DEFAULT_PAGE, DEFAULT_ROWS);
         },
@@ -132,7 +133,13 @@
                 vc.jumpToPage("/#/pages/property/addVisitSpace")
                 // vc.emit('addApp','openAddAppModal',{});
             },
+            //审核
+            _openExamineVisitModel: function (_app) {
+                vc.emit('examineVisit', 'openExamineVisitModel', _app);
+            },
             _openEditVisitModel: function (_app) {
+                console.log("look here")
+                console.log(_app)
                 vc.emit('editVisit', 'openEditVisitModel', _app);
                 // vc.emit('deleteApp','openDeleteAppModal',_app);
             },

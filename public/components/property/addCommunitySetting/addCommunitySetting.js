@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -14,16 +13,16 @@
                 settingValue: '',
                 remark: '',
                 keys: [],
-                settingTypes: [],
+                settingTypes: []
             }
         },
-        _initMethod: function() {
-            vc.getDict('community_setting_key', "setting_type", function(_data) {
+        _initMethod: function () {
+            vc.getDict('community_setting_key', "setting_type", function (_data) {
                 vc.component.addCommunitySettingInfo.settingTypes = _data;
             });
         },
-        _initEvent: function() {
-            vc.on('addCommunitySetting', 'openAddCommunitySettingModal', function() {
+        _initEvent: function () {
+            vc.on('addCommunitySetting', 'openAddCommunitySettingModal', function () {
                 $that.clearAddCommunitySettingInfo();
                 $('#addCommunitySettingModel').modal('show');
             });
@@ -34,10 +33,10 @@
                     addCommunitySettingInfo: vc.component.addCommunitySettingInfo
                 }, {
                     'addCommunitySettingInfo.settingType': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "配置类型不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "配置类型不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "12",
@@ -45,10 +44,10 @@
                         },
                     ],
                     'addCommunitySettingInfo.settingName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "配置名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "配置名称不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "64",
@@ -56,10 +55,10 @@
                         },
                     ],
                     'addCommunitySettingInfo.settingKey': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "配置KEY不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "配置KEY不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "200",
@@ -67,10 +66,10 @@
                         },
                     ],
                     'addCommunitySettingInfo.settingValue': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "配置取值不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "配置取值不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "200",
@@ -81,15 +80,14 @@
                         limit: "maxLength",
                         param: "4000",
                         errInfo: "备注内容不能超过4000"
-                    }, ],
+                    },],
                 });
             },
-            saveCommunitySettingInfo: function() {
+            saveCommunitySettingInfo: function () {
                 if (!vc.component.addCommunitySettingValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.component.addCommunitySettingInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -97,13 +95,12 @@
                     $('#addCommunitySettingModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/communitySetting/saveCommunitySetting',
                     JSON.stringify(vc.component.addCommunitySettingInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -111,20 +108,16 @@
                             $('#addCommunitySettingModel').modal('hide');
                             vc.component.clearAddCommunitySettingInfo();
                             vc.emit('communitySettingManage', 'listCommunitySetting', {});
-
+                            vc.message(_json.msg);
                             return;
                         }
-                        vc.message(_json.msg);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
-            clearAddCommunitySettingInfo: function() {
+            clearAddCommunitySettingInfo: function () {
                 let _settingTypes = $that.addCommunitySettingInfo.settingTypes;
                 vc.component.addCommunitySettingInfo = {
                     settingType: '',
@@ -136,19 +129,18 @@
                     settingTypes: _settingTypes
                 };
             },
-            _changeSettingType: function() {
+            _changeSettingType: function () {
                 $that._loadCommunitySettingKey();
             },
-            _changeSettingName: function() {
+            _changeSettingName: function () {
                 $that.addCommunitySettingInfo.keys.forEach(item => {
                     if (item.settingName == $that.addCommunitySettingInfo.settingName) {
                         $that.addCommunitySettingInfo.settingKey = item.settingKey;
                         $that.addCommunitySettingInfo.remark = item.remark;
                     }
                 });
-
             },
-            _loadCommunitySettingKey: function() {
+            _loadCommunitySettingKey: function () {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -158,16 +150,15 @@
                 //发送get请求
                 vc.http.apiGet('/communitySettingKey.listCommunitySettingKey',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _communitySettingManageInfo = JSON.parse(json);
                         $that.addCommunitySettingInfo.keys = _communitySettingManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             }
         }
     });
-
 })(window.vc);
