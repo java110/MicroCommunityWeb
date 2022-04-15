@@ -23,7 +23,10 @@
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <button type="button" class="form-control btn btn-primary" @click="_doSearch()">查询</button>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-1 padding-lr-0 margin-left-sm" v-if="simplifyAcceptanceInfo.searchType == '1'">
+            <button type="button" class="form-control btn btn-white" @click="_simplifyAcceptanceChooseRoom()">选择房屋</button>
+        </div>
+        <div class="col-lg-2">
         </div>
     </div>
     <div class="vc-line"></div>

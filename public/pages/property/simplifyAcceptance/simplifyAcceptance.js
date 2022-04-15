@@ -58,6 +58,12 @@
                 $that.simplifyAcceptanceInfo.roomName = _room.floorNum + '栋' + _room.unitNum + '单元' + _room.roomNum;
                 vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo)
             });
+            vc.on('simplifyAcceptance','selectRoom',function(_param){
+                $that.simplifyAcceptanceInfo.searchType ='1';
+                $that.simplifyAcceptanceInfo.searchValue = _param.roomName;
+                $that.simplifyAcceptanceInfo.searchPlaceholder = "请输入房屋编号 楼栋-单元-房屋 如1-1-1";
+                $that._doSearch();
+            })
         },
         methods: {
             _changeSearchType: function () {
@@ -206,6 +212,11 @@
                     roomArea:'',
                     roomRent:''
                 }
+            },
+            _simplifyAcceptanceChooseRoom:function(){
+                vc.emit('roomTree','openRoomTree',{
+                    callName:'simplifyAcceptance'
+                })
             }
         }
     });
