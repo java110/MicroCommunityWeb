@@ -116,16 +116,18 @@
                             return ;
                         }
                         listRoomData.rooms.forEach(_room =>{
+                            let _text = _room.roomNum;
+                            if(_room.ownerName){
+                                _text +=('('+_room.ownerName+")") 
+                            }
                             let _data = {
                                 id: 'r_' + _room.roomId,
                                 roomId: _room.roomId,
                                 roomName:_room.floorNum+"-"+_room.unitNum+"-"+_room.roomNum,
-                                text: _room.roomNum,
-                                icon: "/img/unit.png",
+                                text: _text,
+                                icon: "/img/room.png",
                             };
-
                             $('#jstree_floorUnitRoom').jstree('create_node', $('#u_'+_unitId), _data, "last", false, false);	
-
                         })
                         $('#jstree_floorUnitRoom').jstree('open_node', $('#u_'+_unitId));
                     },
