@@ -217,6 +217,12 @@
                 vc.emit('roomTree','openRoomTree',{
                     callName:'simplifyAcceptance'
                 })
+            },
+            _handover:function(){
+                vc.jumpToPage('/#/pages/property/handover')
+            },
+            _simplifyOwnerExitRoom:function(){
+                vc.jumpToPage('/#/pages/property/ownerExitRoom')
             }
         }
     });

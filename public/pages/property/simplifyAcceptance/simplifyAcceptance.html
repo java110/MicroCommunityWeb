@@ -1,6 +1,6 @@
 <div class="white-bg padding-top-lg ">
     <div class="row margin-top padding-bottom-lg text-center ">
-        <div class="col-lg-3">
+        <div class="col-lg-2">
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-xs">
             <select v-model="simplifyAcceptanceInfo.searchType" class=" form-control" @change="_changeSearchType()">
@@ -26,7 +26,23 @@
         <div class="col-lg-1 padding-lr-0 margin-left-sm" v-if="simplifyAcceptanceInfo.searchType == '1'">
             <button type="button" class="form-control btn btn-white" @click="_simplifyAcceptanceChooseRoom()">选择房屋</button>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-1 padding-lr-0 margin-left-sm">
+            <div class="">
+                <button class="form-control btn-white btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更多操作
+            </button>
+                <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
+                    <p style="margin:10px 0;">
+                        <a href="javascript:void(0)" v-on:click="_handover()">交房</a>
+                        <span>|</span>
+                        <a href="javascript:void(0)" v-on:click="_simplifyOwnerExitRoom()">退房</a>
+                    </p>
+                    <!-- <p style="margin:10px 0;">
+                        <a href="javascript:void(0)" v-on:click="_openAddOwnerRoom(owner)">修改房屋</a>
+                        <span>|</span>
+                        <a href="javascript:void(0)" v-on:click="_openDeleteOwnerRoom(owner)">修改业主</a>
+                    </p> -->
+                </div>
+            </div>
         </div>
     </div>
     <div class="vc-line"></div>
@@ -199,11 +215,11 @@
                 <li class="nav-item">
                     <a class="nav-link"
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
-                       v-on:click="changeTab('simplifyShopsHireLog')">房屋绑定记录</a>
+                       v-on:click="changeTab('simplifyShopsHireLog')">绑定记录</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyMeterWaterFee'}"
-                        v-on:click="changeTab('simplifyMeterWaterFee')">水电抄表记录</a>
+                        v-on:click="changeTab('simplifyMeterWaterFee')">抄表记录</a>
                 </li>
             </ul>
         </div>

@@ -1,7 +1,7 @@
 /**
  * vcFramework
  *
- * @author 吴学文
+ * @author Kevin Law
  *
  * @version 0.3
  *
@@ -9,15 +9,15 @@
  *
  * @time 2020-03-04
  *
- * @qq 928255095
+ * @qq 58957118
  *
- * @mail 928255095@qq.com
+ * @mail 58957118@qq.com
  *
  */
 /**
  构建vcFramework对象
  **/
-(function(window) {
+ (function(window) {
     "use strict";
     let vcFramework = window.vcFramework || {};
     window.vcFramework = vcFramework;
@@ -58,9 +58,9 @@
     vcFramework = {
         version: "v0.0.3",
         name: "vcFramework",
-        author: '吴学文',
-        email: '928255095@qq.com',
-        qq: '928255095',
+        author: 'Kevin Law',
+        email: '58957118@qq.com',
+        qq: '58957118',
         description: 'vcFramework 是自研的一套组件开发套件',
         vueCache: _vueCache,
         vmOptions: _vmOptions,
@@ -1337,6 +1337,7 @@
     //删除缓存数据
     vcFramework.clearCacheData = function() {
         window.localStorage.clear();
+        window.sessionStorage.clear();
     };
 
     //将org 对象的属性值赋值给dst 属性名为一直的属性
@@ -2077,10 +2078,6 @@
          * @param {参数} text
          */
         required: function(text) {
-             // 去除两侧空格
-             if(typeof text == 'string'){
-                text = text.replace(/(^\s*)|(\s*$)/g, "");
-            }
             if (text == undefined || text == null || text == "") {
                 return false;
             }
@@ -2213,7 +2210,7 @@
      *      name:"Kevin",
      *      age:"19",
      *      emailInfo:{
-     *          email:"928255095@qq.com"
+     *          email:"58957118@qq.com"
      *      }
      * }
      *
