@@ -12,7 +12,7 @@
                                 收费对象
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-11">
                             <div class="form-group">
                                 <span class="margin-right" v-for="(item,index) in batchPayFeeOrderInfo.payObjs">
                                     <input type="checkbox" class="i-checks checkItem" v-bind:value="item" v-model="batchPayFeeOrderInfo.payerObjNames" @change="_chanagePayerObjName()"> {{item}}
