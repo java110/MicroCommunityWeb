@@ -15,6 +15,12 @@
         "moreMsg": "查看全部消息",
         "title": "HC小区管理系统",
         "noAccount": "还没有账号？ ",
-        "areyouhasaccount": "已经有账户了？"
+        "areyouhasaccount": "已经有账户了？",
+        "indexContextInfo":{
+            "业主":"业主",
+            "房屋":"房屋",
+            "停车位":"停车位",
+            "商铺":"商铺",
+        }
     }
 })(window)

@@ -3,7 +3,7 @@
  */
 (function(window) {
     window.lang = {
-        "systemName": "CommunityManagement",
+        "systemName": "HC Community System",
         "systemSimpleName": "HC",
         "subSystemName": "CommunityManagement",
         "companyTeam": "java110 Round data team",
