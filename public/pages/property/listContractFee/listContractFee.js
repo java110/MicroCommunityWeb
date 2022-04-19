@@ -109,7 +109,7 @@
                 vc.goBack();
             },
             _toOwnerPayFee: function() {
-                vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.listContractFeeInfo.contractId + "&payObjType=3333&contractName=" + $that.listContractFeeInfo.contractName);
+                vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.listContractFeeInfo.contractId + "&payObjType=7777&contractName=" + $that.listContractFeeInfo.contractName);
             },
             _openRoomCreateFeeAddModal: function() {
                 vc.emit('contractCreateFeeAdd', 'openContractCreateFeeAddModal', {

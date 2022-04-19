@@ -91,12 +91,12 @@
                                         <button class="btn-white btn btn-xs" v-on:click="_openAdminLoginPropertyModel(propertyCompany)">登录
                                         </button>
                                     </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-if="propertyCompany.state != '48002'" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')">限制登录
+                                    <div class="btn-group" v-if="propertyCompany.state != '48002'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')">限制登录
                                         </button>
                                     </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-else v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')">恢复登录
+                                    <div class="btn-group" v-else>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')">恢复登录
                                         </button>
                                     </div>
                                     <div class="btn-group">

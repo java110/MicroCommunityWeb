@@ -3,11 +3,10 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>合同{{contractChangeDetailInfo.operate == 'ADD'?'变更后':'变更前'}}{{contractChangeDetailInfo.operate ==
-                        'ADD'?'('+contractChangeDetailInfo.planTypeName+')':''}}</h5>
+                    <h5>合同{{contractChangeDetailInfo.operate == 'ADD'?'变更后':'变更前'}}{{contractChangeDetailInfo.operate == 'ADD'?'('+contractChangeDetailInfo.planTypeName+')':''}}
+                    </h5>
                     <div class="ibox-tools" style="top:10px;" v-if="index == 0">
-                        <button type="button" class="btn btn-white btn-sm" style="margin-right:10px;"
-                            v-on:click="_goBack()">
+                        <button type="button" class="btn btn-white btn-sm" style="margin-right:10px;" v-on:click="_goBack()">
                             返回</button>
                     </div>
                 </div>
@@ -144,7 +143,7 @@
 
                             <tr v-for="(tItem,index) in contractChangeDetailsInfo.auditUsers">
                                 <td>{{index+1}}</td>
-                                <td>{{tItem.auditName}}</td>
+                                <td>{{tItem.userName?tItem.userName:tItem.auditName}}</td>
                                 <td>{{tItem.stateName}}</td>
                                 <td>{{tItem.auditTime}}</td>
                                 <td>{{tItem.duration}}</td>

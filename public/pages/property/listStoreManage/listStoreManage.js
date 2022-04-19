@@ -46,7 +46,7 @@
                         var _listStoreManageInfo = JSON.parse(json);
                         vc.component.listStoreManageInfo.total = _listStoreManageInfo.total;
                         vc.component.listStoreManageInfo.records = _listStoreManageInfo.records;
-                        vc.component.listStoreManageInfo.listStores = _listStoreManageInfo.stores;
+                        vc.component.listStoreManageInfo.listStores = _listStoreManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.listStoreManageInfo.records,
                             dataCount: vc.component.listStoreManageInfo.total,

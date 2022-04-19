@@ -58,7 +58,7 @@
                 //业主名称选框去空
                 param.params.ownerName = param.params.ownerName.trim();
                 //发送get请求
-                vc.http.apiGet('owner.queryOwnerCars',
+                vc.http.apiGet('/owner.queryOwnerCars',
                     param,
                     function(json, res) {
                         var listCarData = JSON.parse(json);

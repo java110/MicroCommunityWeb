@@ -87,13 +87,17 @@
                             item.totalPrice = (item.averagePrice * item.stock).toFixed(2);
                         });
                         vc.component.resourceStoreManageInfo.resourceStores = _resourceStoreManageInfo.resourceStores;
-                        if (_resourceStoreManageInfo.resourceStores.length > 0) {
-                            vc.component.resourceStoreManageInfo.subTotalPrice = _resourceStoreManageInfo.resourceStores[0].subTotalPrice;
-                            vc.component.resourceStoreManageInfo.highTotalPrice = _resourceStoreManageInfo.resourceStores[0].highTotalPrice;
-                        } else {
-                            vc.component.resourceStoreManageInfo.subTotalPrice = 0.0;
-                            vc.component.resourceStoreManageInfo.highTotalPrice = 0.0;
-                        }
+                        // if (_resourceStoreManageInfo.resourceStores.length > 0) {
+                        //     vc.component.resourceStoreManageInfo.subTotalPrice = _resourceStoreManageInfo.resourceStores[0].subTotalPrice;
+                        //     vc.component.resourceStoreManageInfo.highTotalPrice = _resourceStoreManageInfo.resourceStores[0].highTotalPrice;
+                        // } else {
+                        //     vc.component.resourceStoreManageInfo.subTotalPrice = 0.0;
+                        //     vc.component.resourceStoreManageInfo.highTotalPrice = 0.0;
+                        // }
+
+                        // 大计小计
+                        vc.component.resourceStoreManageInfo.subTotalPrice = _resourceStoreManageInfo.subTotal;
+                        vc.component.resourceStoreManageInfo.highTotalPrice = _resourceStoreManageInfo.totalPrice;
                         vc.emit('pagination', 'init', {
                             total: vc.component.resourceStoreManageInfo.records,
                             dataCount: vc.component.resourceStoreManageInfo.total,

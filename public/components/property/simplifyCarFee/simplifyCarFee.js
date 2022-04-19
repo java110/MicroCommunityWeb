@@ -216,6 +216,9 @@
                 let ownerLink = $that._getAttrValue(attrs, '390009');
 
                 return '业主：' + ownerName + ',电话：' + ownerLink;
+            },
+            _openBatchPayCarFeeModal: function() {
+                vc.jumpToPage('/#/pages/property/batchPayFeeOrder?ownerId=' + $that.simplifyCarFeeInfo.ownerId + "&payerObjType=6666")
             }
 
 

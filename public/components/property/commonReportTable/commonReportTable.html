@@ -11,13 +11,11 @@
                     <div class="row">
                         <div class="col-sm-3" v-for="(conditionItem,conditionIndex) in item.conditions">
                             <div class="form-group">
-                                <input :type="conditionItem.type" :placeholder="conditionItem.holdpace"
-                                    v-model="conditionItem.value" class=" form-control" :class="">
+                                <input :type="conditionItem.type" :placeholder="conditionItem.holdpace" v-model="conditionItem.value" class=" form-control" :class="">
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryReportTableMethod(item)">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryReportTableMethod(item)">
                                 <i class="fa fa-search"></i> 查询
                             </button>
                         </div>
@@ -32,6 +30,9 @@
                 <div class="ibox-title">
                     <h5>{{item.componentName}}</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_exportReportTableMethod(item)">
+                               导出
+                            </button>
                     </div>
                 </div>
                 <div class="ibox-content">

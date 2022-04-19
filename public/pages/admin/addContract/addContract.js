@@ -37,7 +37,10 @@
                 rooms: [],
                 contractFilePo: [],
                 tempfile: '',
-                contractPartyAs: []
+                contractPartyAs: [],
+                audit: '',
+                staffName: '',
+                nextUserId: ''
             }
         },
         _initMethod: function() {
@@ -82,6 +85,11 @@
                 $that.addContractInfo.bLink = param.link;
                 $that.addContractInfo.objId = param.ownerId;
             })
+
+            vc.on("addContract", "notify3", function(info) {
+                vc.component.addContractInfo.nextUserId = info.staffId;
+                vc.component.addContractInfo.staffName = info.staffName;
+            });
         },
         methods: {
             addContractValidate() {
@@ -317,8 +325,10 @@
                     objPersonId: '',
                     rooms: [],
                     contractPartyAs: [],
-
-                    objType: '1111'
+                    objType: '1111',
+                    audit: '',
+                    staffName: '',
+                    nextUserId: ''
                 };
             },
             _loadAddContractType: function() {
@@ -360,6 +370,14 @@
                 );
             },
             _changeContractType: function() {
+
+                $that.addContractInfo.contractTypes.forEach(item => {
+                    if ($that.addContractInfo.contractType == item.contractTypeId) {
+                        $that.addContractInfo.audit = item.audit;
+                    }
+                })
+
+
                 let param = {
                     params: {
                         page: 1,

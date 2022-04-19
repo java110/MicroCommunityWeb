@@ -1,5 +1,5 @@
 <div id="addAttrValueModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -11,14 +11,14 @@
                                 <label class="col-sm-2 col-form-label">值</label>
                                 <div class="col-sm-10">
                                     <input v-model="addAttrValueInfo.value" type="text" placeholder="必填，请填写值"
-                                        class="form-control">
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">值名称</label>
                                 <div class="col-sm-10">
                                     <input v-model="addAttrValueInfo.valueName" type="text" placeholder="必填，请填写值名称"
-                                        class="form-control">
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -28,14 +28,18 @@
                                         <option selected disabled value="">必填，请选择显示</option>
                                         <option value="Y">是</option>
                                         <option value="N">否</option>
-                                    </select> </div>
+                                    </select>
+                                </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="saveAttrValueInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                        v-on:click="saveAttrValueInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
                             </div>
                         </div>
                     </div>

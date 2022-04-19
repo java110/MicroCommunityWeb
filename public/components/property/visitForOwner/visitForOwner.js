@@ -27,7 +27,7 @@
         },
         _initEvent:function(){
             vc.on('visitForOwner','onIndex',function(_index){
-                vc.emit('addVisitSpace', 'notify', _index);
+                // vc.emit('addVisitSpace', 'notify', _index);
                 /*if(_index == 2){
                    vc.emit($props.callBackListener,$props.callBackFunction,vc.component.viewOwnerInfo);
                 }*/
@@ -36,6 +36,10 @@
             vc.on('visitForOwner','ownerInfo',function(_info){
                 vc.component.viewOwnerInfo=_info;
                 vc.emit('addVisitSpace','ownerId',vc.component.viewOwnerInfo.ownerId);
+            });
+
+            vc.on('visitForOwner', 'clearInfo', function () {
+                vc.component._clearViewOwnerInfo();
             });
 
         },
@@ -74,6 +78,17 @@
             },
             _openSearchOwnerModel:function(_ownerId){
                 vc.emit('searchOwner','openSearchOwnerModel',{});
+            },
+
+            _clearViewOwnerInfo: function(){
+                vc.component.viewOwnerInfo.flowComponent = 'viewOwnerInfo';
+                vc.component.viewOwnerInfo.ownerId = '';
+                vc.component.viewOwnerInfo.name = '';
+                vc.component.viewOwnerInfo.age = '';
+                vc.component.viewOwnerInfo.sex = '';
+                vc.component.viewOwnerInfo.userName = '';
+                vc.component.viewOwnerInfo.remark = '';
+                vc.component.viewOwnerInfo.link = '';
             }
 
         }

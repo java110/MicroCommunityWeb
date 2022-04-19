@@ -9,7 +9,9 @@
                 visitGender: '',
                 phoneNumber: '',
                 visitTime: '',
-                departureTime: ''
+                departureTime: '',
+                carNum: '',
+                entourage: ''
             }
         },
         _initMethod: function () {
@@ -24,6 +26,9 @@
             });
             vc.on('viewVisitInfo', 'onIndex', function (_index) {
                 vc.component.viewAppInfo.index = _index;
+            });
+            vc.on('viewVisitInfo', 'clearInfo', function () {
+                vc.component._clearVisitInfo();
             });
         },
         methods: {
@@ -43,6 +48,8 @@
                 vc.component.viewVisitInfo.phoneNumber = '';
                 vc.component.viewVisitInfo.visitTime = '';
                 vc.component.viewVisitInfo.departureTime = '';
+                vc.component.viewVisitInfo.carNum = '';
+                vc.component.viewVisitInfo.entourage = '';
             }
         }
     });

@@ -24,27 +24,24 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入报修人"
-                                    v-model="repairForceFinishManageInfo.conditions.repairName" class=" form-control">
+                                <input type="text" placeholder="请输入报修人" v-model="repairForceFinishManageInfo.conditions.repairName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入报修电话" v-model="repairForceFinishManageInfo.conditions.tel"
-                                class=" form-control">
+                                <input type="text" placeholder="请输入报修电话" v-model="repairForceFinishManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRepairPoolMethod()">
                                 <i class="fa fa-search"></i> 查询
                             </button>
-                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRepairPoolMethod()"
-                                style="margin-left: 20px;">
+                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRepairPoolMethod()" style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -84,13 +81,11 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openForceFinishRepairModel(repairPool)">强制回单
+                                        <button class="btn-white btn btn-xs" v-on:click="_openForceFinishRepairModel(repairPool)">强制回单
                                         </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openRepairDetail(repairPool)">详情
+                                        <button class="btn-white btn btn-xs" v-on:click="_openRepairDetail(repairPool)">详情
                                         </button>
                                     </div>
                                 </td>
@@ -105,7 +100,14 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div> 说明：此功能主要为了解决维修师傅年龄大不会使用手机操作，需要客服人员确认维修完后强制回单场景</div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

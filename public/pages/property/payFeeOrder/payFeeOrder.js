@@ -315,9 +315,8 @@
                     feeName: $that.payFeeOrderInfo.feeName,
                     amount: $that.payFeeOrderInfo.receivedAmount
                 });
-                vc.http.post(
-                    'propertyPay',
-                    'payFee',
+                vc.http.apiPost(
+                    '/fee.payFee',
                     JSON.stringify(vc.component.payFeeOrderInfo), {
                         emulateJSON: true
                     },

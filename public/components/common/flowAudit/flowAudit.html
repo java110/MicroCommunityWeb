@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>审核信息</h5>
+                <div class="ibox-tools" style="top:10px;">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">审核状态</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" v-model="flowAuditInfo.state">
+                            <option selected disabled value="">请审核</option>
+                            <option value="1100">同意</option>
+                            <option value="1200">拒绝</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">原因</label>
+                    <div class="col-sm-10">
+                        <textarea placeholder="必填，请填写原因" class="form-control" v-model="flowAuditInfo.remark">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row" v-if="flowAuditInfo.state == '1100' && flowAuditInfo.assignee == '-2'">
+                    <label class="col-sm-2 col-form-label">员工</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" placeholder="必填，请选择下一处理人" disabled v-model="flowAuditInfo.staffName">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
+                            选择
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="_flowAuditSubmit()">
+                        <i class="fa fa-check"></i>&nbsp;提交
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" @click="_goBack()">
+                        <i class="fa fa-times"></i>&nbsp;取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/selectStaff"></vc:create>
+</div>

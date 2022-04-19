@@ -1,48 +1,54 @@
 /**
-    权限组
-**/
-(function(vc){
-
+ 权限组
+ **/
+(function (vc) {
     vc.extends({
-        data:{
-            addVisitCase:{
-                visitCase:"",
-                videoPlaying:false,
-                visitPhoto:"/img/defaultAvatar.png"
+        data: {
+            addVisitCase: {
+                visitCase: "",
+                reasonType: "",
+                reasonTypes: [],
+                videoPlaying: false,
+                visitPhoto: "/img/defaultAvatar.png"
             }
         },
-        watch:{
-            addVisitCase:{
+        watch: {
+            addVisitCase: {
                 deep: true,
-                handler:function(){
-                     vc.emit('addVisitSpace', 'visitCase', vc.component.addVisitCase);
+                handler: function () {
+                    vc.emit('addVisitSpace', 'visitCase', vc.component.addVisitCase);
                 }
             }
         },
-        _initMethod:function(){
-
+        _initMethod: function () {
+            //与字典表关联
+            vc.getDict('s_visit_info', "reason_type", function (_data) {
+                vc.component.addVisitCase.reasonTypes = _data;
+            });
         },
-        _initEvent:function(){
-            vc.on('addVisitCase', 'onIndex', function(_index){
-                console.log("侦听到addVisitCase的index为  "+_index);
+        _initEvent: function () {
+            vc.on('addVisitCase', 'onIndex', function (_index) {
+                // console.log("侦听到addVisitCase的index为  "+_index);
                 // vc.component.addCarInfo.index = _index;
-                if(_index != 2){
+                if (_index != 2) {
                     return;
                 }
                 $that._initAddVisitMedia();
-                vc.emit('addVisitSpace', 'notify', _index);
+                // vc.emit('addVisitSpace', 'notify', _index);
             });
 
+            vc.on('addVisitCase', 'clearInfo', function () {
+                vc.component._clearAddVisitCaseInfo();
+            });
         },
-        methods:{
-            addCarValidate:function(){
-
+        methods: {
+            addCarValidate: function () {
             },
-            saveAddCarInfo:function(){
-                if(vc.component.addCarValidate()){
+            saveAddCarInfo: function () {
+                if (vc.component.addCarValidate()) {
                     //侦听回传
-                    vc.emit($props.callBackComponent,$props.callBackFunction, vc.component.addCarInfo);
-                    return ;
+                    vc.emit($props.callBackComponent, $props.callBackFunction, vc.component.addCarInfo);
+                    return;
                 }
             },
             _addUserMedia: function () {
@@ -84,7 +90,7 @@
                     canvas.width = video.videoWidth;
                     canvas.height = video.videoHeight;
                     canvas.getContext('2d').drawImage(video, 0, 0);
-                    var data = canvas.toDataURL('image/jpeg',1.0);
+                    var data = canvas.toDataURL('image/jpeg', 1.0);
                     vc.component.addVisitCase.visitPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }
@@ -107,9 +113,15 @@
                         vc.component.addVisitCase.visitPhoto = reader.result;
                     }
                 }
-            }
+            },
 
+            _clearAddVisitCaseInfo: function(){
+                vc.component.addVisitCase.visitCase = '';
+                vc.component.addVisitCase.reasonType = '';
+                // vc.component.addVisitCase.reasonTypes = [];
+                vc.component.addVisitCase.videoPlaying = false;
+                vc.component.addVisitCase.visitPhoto = '/img/defaultAvatar.png';
+            }
         }
     });
-
 })(window.vc);

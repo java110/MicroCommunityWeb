@@ -110,9 +110,9 @@
                         if (_json.code == 0) {
                             //关闭model
                             if (vc.component.addItemOutStepInfo.purchaseApply.resOrderType == "10000") {
-                                vc.jumpToPage("/#/pages/common/purchaseApplyManage");
+                                vc.goBack();
                             } else {
-                                vc.jumpToPage("/#/pages/common/itemOutManage");
+                                vc.goBack();
                             }
                             return;
                         }

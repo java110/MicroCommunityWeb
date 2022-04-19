@@ -71,24 +71,21 @@
                     data: vc.component.addRoomBindingInfo.infos
                 }
 
-                vc.http.post(
-                    'addRoomBindingBinding',
-                    'binding',
+                vc.http.apiPost(
+                    '/room.addRoomBinding',
                     JSON.stringify(param), {
                         emulateJSON: true
                     },
                     function(json, res) {
-                        if (res.status == 200) {
-
+                        let _tmpResJson = JSON.parse(json);
+                        if (_tmpResJson.code == 0) {
                             vc.toast('处理成功');
                             //关闭model
-                            var _tmpResJson = JSON.parse(json);
-                            /* _tmpResJson[floorName] = vc.component._getFloorName();*/
-                            // vc.jumpToPage("/#/pages/property/room");
+                            console.log(_tmpResJson);
                             vc.goBack();
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_tmpResJson.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

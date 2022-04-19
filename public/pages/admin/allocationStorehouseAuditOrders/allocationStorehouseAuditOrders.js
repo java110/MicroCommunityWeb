@@ -19,7 +19,8 @@
                     auditLink: '',
                 },
                 orderInfo: '',
-                procure: false
+                procure: false,
+                audit: '1'
             }
         },
         _initMethod: function() {
@@ -27,8 +28,11 @@
             vc.component._loadStepStaff();
         },
         _initEvent: function() {
-
+            vc.on('allocationStorehouseAuditOrders', 'list', function(_param) {
+                $that.allocationStorehouseAuditOrdersInfo.audit = '1';
+            });
             vc.on('allocationStorehouseAuditOrders', 'listAuditOrders', function(_param) {
+                $that.allocationStorehouseAuditOrdersInfo.audit = '1';
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
@@ -36,12 +40,13 @@
             });
 
             vc.on('allocationStorehouseAuditOrders', 'notifyAudit', function(_auditInfo) {
+                $that.allocationStorehouseAuditOrdersInfo.audit = '1';
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
         methods: {
             _listAuditOrders: function(_page, _rows) {
-
+                $that.allocationStorehouseAuditOrdersInfo.audit = '1';
                 vc.component.allocationStorehouseAuditOrdersInfo.conditions.page = _page;
                 vc.component.allocationStorehouseAuditOrdersInfo.conditions.row = _rows;
                 var param = {
@@ -70,7 +75,9 @@
             },
             _openAuditOrderModel: function(_auditOrder) {
                 vc.component.allocationStorehouseAuditOrdersInfo.orderInfo = _auditOrder;
-                vc.emit('audit', 'openAuditModal', {});
+                //_auditOrder.startUserId = _auditOrder.userId;
+                $that.allocationStorehouseAuditOrdersInfo.audit = '2';
+                vc.emit('flowAudit', 'openAuditModal', _auditOrder);
             },
             _queryAuditOrdersMethod: function() {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);

@@ -47,7 +47,7 @@
                 param.params.billId = param.params.billId.trim();
                 param.params.billName = param.params.billName.trim();
                 //发送get请求
-                vc.http.apiGet('fee.listBill',
+                vc.http.apiGet('/fee.listBill',
                     param,
                     function(json, res) {
                         var _billManageInfo = JSON.parse(json);

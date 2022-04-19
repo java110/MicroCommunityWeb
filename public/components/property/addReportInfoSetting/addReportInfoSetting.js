@@ -43,24 +43,24 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "问卷类型不能为空"
+                            errInfo: "项目类型不能为空"
                         },
                         {
                             limit: "num",
                             param: "",
-                            errInfo: "问卷类型格式错误"
+                            errInfo: "项目类型格式错误"
                         },
                     ],
                     'addReportInfoSettingInfo.name': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "问卷名称不能为空"
+                            errInfo: "项目名称不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "256",
-                            errInfo: "问卷名称太长"
+                            errInfo: "项目名称太长"
                         },
                     ],
                     'addReportInfoSettingInfo.startTime': [

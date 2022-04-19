@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -13,12 +13,15 @@
                 moreCondition: false,
                 title: '',
                 totalReceivableAmount: 0.0,
-                totalReceivedAmount: 0.0,
                 allReceivableAmount: 0.0,
+                totalReceivedAmount: 0.0,
                 allReceivedAmount: 0.0,
+                totalPreferentialAmount: 0.0,
+                allHisOweReceivedAmount: 0.0,
                 primeRates: [],
                 roomUnits: [],
                 feeConfigDtos: [],
+
                 conditions: {
                     floorId: '',
                     floorName: '',
@@ -32,7 +35,7 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initDate();
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             // vc.initDateMonth('startTime', function (_startTime) {
@@ -48,18 +51,18 @@
             //     }
             // });
         },
-        _initEvent: function () {
-            vc.on('reportFeeDetail', 'chooseFloor', function (_param) {
+        _initEvent: function() {
+            vc.on('reportFeeDetail', 'chooseFloor', function(_param) {
                 vc.component.reportFeeDetailInfo.conditions.floorId = _param.floorId;
                 vc.component.reportFeeDetailInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listFees(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function () {
+            _initDate: function() {
                 $(".startTime").datetimepicker({
                     minView: "month",
                     language: 'zh-CN',
@@ -81,12 +84,12 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".startTime").val();
                         vc.component.reportFeeDetailInfo.conditions.startTime = value;
                     });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".endTime").val();
                         vc.component.reportFeeDetailInfo.conditions.endTime = value;
                         let start = Date.parse(new Date($that.reportFeeDetailInfo.conditions.startTime))
@@ -97,11 +100,11 @@
                         }
                     });
             },
-            _queryMethod: function () {
+            _queryMethod: function() {
                 vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //查询方法
-            _listFees: function (_page, _rows) {
+            _listFees: function(_page, _rows) {
                 vc.component.reportFeeDetailInfo.conditions.page = _page;
                 vc.component.reportFeeDetailInfo.conditions.row = _rows;
                 vc.component.reportFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -111,39 +114,49 @@
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryFeeDetail',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _reportFeeDetailInfo = JSON.parse(json);
                         vc.component.reportFeeDetailInfo.total = _reportFeeDetailInfo.total;
                         vc.component.reportFeeDetailInfo.records = _reportFeeDetailInfo.records;
                         vc.component.reportFeeDetailInfo.fees = _reportFeeDetailInfo.data;
+                        //计算小计
+                        let _totalReceivableAmount = 0.0;
+                        let _totalReceivedAmount = 0.0;
+                        let _totalPreferentialAmount = 0.0;
+
+                        _reportFeeDetailInfo.data.forEach(item => {
+                            _totalReceivableAmount += parseFloat(item.receivableAmount);
+                            _totalReceivedAmount += parseFloat(item.receivedAmount);
+                            _totalPreferentialAmount += parseFloat(item.oweAmount);
+                        });
+
+                        $that.reportFeeDetailInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
+                        $that.reportFeeDetailInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
+                        $that.reportFeeDetailInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+
                         if (_reportFeeDetailInfo.data.length > 0) {
-                            vc.component.reportFeeDetailInfo.totalReceivableAmount = _reportFeeDetailInfo.data[0].totalReceivableAmount;
-                            vc.component.reportFeeDetailInfo.allReceivableAmount = _reportFeeDetailInfo.data[0].allReceivableAmount;
-                            vc.component.reportFeeDetailInfo.totalReceivedAmount = _reportFeeDetailInfo.data[0].totalReceivedAmount;
-                            vc.component.reportFeeDetailInfo.allReceivedAmount = _reportFeeDetailInfo.data[0].allReceivedAmount;
-                            vc.component.reportFeeDetailInfo.feeConfigDtos = _reportFeeDetailInfo.data[0].feeConfigDtos;
-                        } else {
-                            vc.component.reportFeeDetailInfo.totalReceivableAmount = 0.0;
-                            vc.component.reportFeeDetailInfo.totalReceivedAmount = 0.0;
-                            vc.component.reportFeeDetailInfo.allReceivableAmount = 0.0;
-                            vc.component.reportFeeDetailInfo.allReceivedAmount = 0.0;
+                            $that.reportFeeDetailInfo.allReceivableAmount = _reportFeeDetailInfo.data[0].allReceivableAmount;
+                            $that.reportFeeDetailInfo.allReceivedAmount = _reportFeeDetailInfo.data[0].allReceivedAmount;
+                            $that.reportFeeDetailInfo.allOweAmount = _reportFeeDetailInfo.data[0].allOweAmount;
+                            $that.reportFeeDetailInfo.allHisOweReceivedAmount = _reportFeeDetailInfo.data[0].allHisOweReceivedAmount;
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeDetailInfo.records,
                             dataCount: vc.component.reportFeeDetailInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //重置
-            _resetMethod: function () {
+            _resetMethod: function() {
                 vc.component._resetListFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置方法
-            _resetListFees: function (_page, _rows) {
+            _resetListFees: function(_page, _rows) {
                 vc.component.reportFeeDetailInfo.conditions.floorName = '';
                 vc.component.reportFeeDetailInfo.conditions.floorId = '';
                 vc.component.reportFeeDetailInfo.conditions.unitId = '';
@@ -153,7 +166,7 @@
                 vc.component.reportFeeDetailInfo.conditions.configId = '';
                 $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            loadUnits: function (_floorId) {
+            loadUnits: function(_floorId) {
                 var param = {
                     params: {
                         floorId: _floorId,
@@ -164,7 +177,7 @@
                     'room',
                     'loadUnits',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             let tmpUnits = JSON.parse(json);
@@ -173,23 +186,60 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _openChooseFloorMethod: function () {
+            _openChooseFloorMethod: function() {
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.reportFeeDetailInfo.moreCondition) {
                     vc.component.reportFeeDetailInfo.moreCondition = false;
                 } else {
                     vc.component.reportFeeDetailInfo.moreCondition = true;
                 }
             },
-            _exportFee: function () {
+            _exportFee: function() {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeDetail&' + vc.objToGetParam($that.reportFeeDetailInfo.conditions));
+            },
+            _computeSum: function(a, b) {
+                return (parseFloat(a) + parseFloat(b)).toFixed(2)
+            },
+            _computeOweFee: function(fee) {
+                let _oweFee = (parseFloat(fee.hisOweAmount) + parseFloat(fee.curReceivableAmount) - parseFloat(fee.curReceivedAmount) - parseFloat(fee.hisOweReceivedAmount)).toFixed(2);
+                if (_oweFee < 0) {
+                    return 0;
+                }
+                return _oweFee;
+            },
+            _computeTotalOweAmount: function() {
+                if (!window.$that) {
+                    return 0;
+                }
+                if (!$that.reportFeeDetailInfo) {
+                    return 0;
+                }
+                let _amount = 0;
+                $that.reportFeeDetailInfo.fees.forEach(item => {
+                    _amount += parseFloat($that._computeOweFee(item));
+                })
+                console.log(_amount)
+                return _amount.toFixed(2);
+            },
+            _computeTotalHisOweReceivedAmount: function() {
+                if (!window.$that) {
+                    return 0;
+                }
+                if (!$that.reportFeeDetailInfo) {
+                    return 0;
+                }
+                let _amount = 0;
+                $that.reportFeeDetailInfo.fees.forEach(item => {
+                    _amount += parseFloat(item.hisOweReceivedAmount);
+                })
+                return _amount.toFixed(2);
             }
         }
     });

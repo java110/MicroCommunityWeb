@@ -45,7 +45,7 @@
                     params: vc.component.parkingAreaManageInfo.conditions
                 };
                 //发送get请求
-                vc.http.get('parkingAreaManage', 'list', param,
+                vc.http.apiGet('/parkingArea.listParkingAreas', param,
                     function(json, res) {
                         var _parkingAreaManageInfo = JSON.parse(json);
                         vc.component.parkingAreaManageInfo.total = _parkingAreaManageInfo.total;

@@ -5,41 +5,42 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入规格名称"
-                                    v-model="attrSpecManageInfo.conditions.specName" class=" form-control">
+                                       v-model="attrSpecManageInfo.conditions.specName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="attrSpecManageInfo.conditions.tableName">
-                                <option selected value="">请选择表名</option>
+                                <option selected disabled value="">请选择表名</option>
                                 <option value="building_room_attr">房屋属性</option>
                                 <option value="building_owner_attr">业主属性</option>
                                 <option value="building_community_attr">小区属性</option>
                                 <option value="machine_attr">设备属性</option>
                                 <option value="parking_area_attr">停车场属性</option>
+                                <option value="owner_car_attr">车辆属性</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入规格" v-model="attrSpecManageInfo.conditions.specCd"
-                                    class=" form-control">
+                                       class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAttrSpecMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAttrSpecMethod()">
+                                <i class="fa fa-repeat"></i> 重置
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -51,62 +52,60 @@
                     <h5>属性配置</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddAttrSpecModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">规格名称</th>
-                                <th class="text-center">规格</th>
-                                <th class="text-center">属性表</th>
-                                <th class="text-center">必填</th>
-                                <th class="text-center">展示</th>
-                                <th class="text-center">值类型</th>
-                                <th class="text-center">规格类型</th>
-                                <th class="text-center">查询显示</th>
-                                <th class="text-right">操作</th>
-
-
-                            </tr>
+                        <tr>
+                            <th class="text-center">规格名称</th>
+                            <th class="text-center">规格</th>
+                            <th class="text-center">属性表</th>
+                            <th class="text-center">必填</th>
+                            <th class="text-center">展示</th>
+                            <th class="text-center">值类型</th>
+                            <th class="text-center">规格类型</th>
+                            <th class="text-center">查询显示</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="attrSpec in attrSpecManageInfo.attrSpecs">
-                                <td class="text-center">{{attrSpec.specName}}</td>
-                                <td class="text-center">{{attrSpec.specCd}}</td>
-                                <td class="text-center">{{attrSpec.tableName}}</td>
-                                <td class="text-center">{{attrSpec.required == 'Y'?'是':'否'}}</td>
-                                <td class="text-center">{{attrSpec.specShow == 'Y'?'是':'否'}}</td>
-                                <td class="text-center">{{_getSpecValueTypeName(attrSpec.specValueType)}}</td>
-                                <td class="text-center">{{_getSpecTypeName(attrSpec.specType)}}</td>
-                                <td class="text-center">{{attrSpec.listShow == 'Y'?'是':'否'}}</td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAttrSpecValue(attrSpec)">离散值</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditAttrSpecModel(attrSpec)">修改</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteAttrSpecModel(attrSpec)">删除</button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                        <tr v-for="attrSpec in attrSpecManageInfo.attrSpecs">
+                            <td class="text-center">{{attrSpec.specName}}</td>
+                            <td class="text-center">{{attrSpec.specCd}}</td>
+                            <td class="text-center">{{attrSpec.tableName}}</td>
+                            <td class="text-center">{{attrSpec.required == 'Y'?'是':'否'}}</td>
+                            <td class="text-center">{{attrSpec.specShow == 'Y'?'是':'否'}}</td>
+                            <td class="text-center">{{_getSpecValueTypeName(attrSpec.specValueType)}}</td>
+                            <td class="text-center">{{_getSpecTypeName(attrSpec.specType)}}</td>
+                            <td class="text-center">{{attrSpec.listShow == 'Y'?'是':'否'}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAttrSpecValue(attrSpec)">离散值
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditAttrSpecModel(attrSpec)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteAttrSpecModel(attrSpec)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="9">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="9">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -115,11 +114,7 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="dev/addAttrSpec" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="dev/editAttrSpec"></vc:create>
     <vc:create path="dev/deleteAttrSpec"></vc:create>
-
 </div>

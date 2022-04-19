@@ -18,7 +18,8 @@
                 conditions: {
                     communityId: vc.getCurrentCommunity().communityId,
                     state: '',
-                    batchId: ''
+                    batchId: '',
+                    createUserName: ''
                 }
             }
         },
@@ -40,6 +41,8 @@
                 var param = {
                     params: vc.component.payFeeBatchInfo.conditions
                 };
+                param.params.batchId = param.params.batchId.trim();
+                param.params.createUserName = param.params.createUserName.trim();
                 vc.http.apiGet('payFeeBatch.listPayFeeBatch',
                     param,
                     function (json) {
@@ -57,11 +60,19 @@
                     }
                 );
             },
+            //查询
             _queryPayFeeBatchMethod: function () {
                 vc.component._listPayFeeBatchs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openApply:function(_payFee){
-                vc.emit('applyDeleteFeeBatch', 'openApply',_payFee);
+            //重置
+            _resetPayFeeBatchMethod: function () {
+                vc.component.payFeeBatchInfo.conditions.batchId = "";
+                vc.component.payFeeBatchInfo.conditions.state = "";
+                vc.component.payFeeBatchInfo.conditions.createUserName = "";
+                vc.component._listPayFeeBatchs(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _openApply: function (_payFee) {
+                vc.emit('applyDeleteFeeBatch', 'openApply', _payFee);
             },
             _auditPayFeeBatchState: function (_auditInfo) {
                 vc.component.payFeeBatchInfo.payFeeBatch.state = _auditInfo.state;

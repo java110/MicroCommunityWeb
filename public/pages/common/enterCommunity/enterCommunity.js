@@ -1,47 +1,49 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             communityInfo: {
                 enterCommunityInfo: [],
+                showPage: 'myCommunity'
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component.listMyCommunity();
         },
-        _initEvent: function () {
-            vc.on('enterCommunity', 'listMyCommunity', function (_param) {
+        _initEvent: function() {
+            vc.on('enterCommunity', 'listMyCommunity', function(_param) {
                 vc.component.listMyCommunity();
             });
         },
         methods: {
-            listMyCommunity: function () {
+            listMyCommunity: function() {
                 var param = {
-                    params: {
-                        msg: this.message,
-                        _sb: '123',
+                        params: {
+                            msg: this.message,
+                            _sb: '123',
+                        }
                     }
-                }
-                //发送get请求
+                    //发送get请求
                 vc.http.get('enterCommunity',
                     'listMyCommunity',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         vc.component.communityInfo.enterCommunityInfo = JSON.parse(json);
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openEnterCommunityModal: function () {
+            _openEnterCommunityModal: function() {
                 vc.emit('storeEnterCommunity', 'openStoreEnterCommunity', {});
             },
-            _openExitCommunityModel: function (_community) {
+            _openExitCommunityModel: function(_community) {
                 vc.emit('storeExitCommunity', 'openStoreExitCommunityModal', _community);
             },
-            _openUpdateCommunityModel: function (_community) {
+            _openUpdateCommunityModel: function(_community) {
                 vc.emit('editCommunityArea', 'openEditCommunityModal', _community);
             },
             _showCommunityStatus(_statusCd) {
@@ -53,6 +55,12 @@
                     return "入驻成功";
                 }
                 return "未知";
+            },
+            _showHcUse: function() {
+                $that.communityInfo.showPage = "hcUse"
+            },
+            _goBack: function() {
+                $that.communityInfo.showPage = 'myCommunity';
             }
         }
     });

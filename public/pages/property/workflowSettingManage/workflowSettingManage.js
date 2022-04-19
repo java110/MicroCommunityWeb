@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         data: {
@@ -10,24 +10,23 @@
                 steps: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._initWorkflowSettingInfo();
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
         },
         methods: {
-            saveWorkflowSettingInfo: function () {
+            saveWorkflowSettingInfo: function() {
 
                 vc.component.workflowSettingInfo.communityId = vc.getCurrentCommunity().communityId;
 
                 vc.http.apiPost(
                     'workflow.updateWorkflow',
-                    JSON.stringify(vc.component.workflowSettingInfo),
-                    {
+                    JSON.stringify(vc.component.workflowSettingInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         let data = JSON.parse(json);
                         if (data.code == 0) {
                             vc.toast(data.msg);
@@ -36,12 +35,12 @@
                         }
                         vc.toast(data.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _initWorkflowSettingInfo: function () {
+            _initWorkflowSettingInfo: function() {
                 let flowId = vc.getParam('flowId');
 
                 if (!vc.notNull(flowId)) {
@@ -64,7 +63,7 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowSteps',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _workflowInfo = JSON.parse(json);
                         if (_workflowInfo.code != '0') {
                             vc.toast(_workflowInfo.msg);
@@ -72,12 +71,13 @@
                         }
                         $that._freshResStep(_workflowInfo.data);
 
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _freshResStep: function (_data) {
+            _freshResStep: function(_data) {
                 $that.workflowSettingInfo.describle = _data.describle;
                 let _steps = [];
                 if (!_data.hasOwnProperty("workflowSteps")) {
@@ -123,7 +123,7 @@
                 }
                 $that.workflowSettingInfo.steps = _steps;
             },
-            addWorkflowStep: function () {
+            addWorkflowStep: function() {
                 let _step = {
                     seq: $that.workflowSettingInfo.steps.length,
                     staffId: '',
@@ -133,21 +133,35 @@
                 }
                 $that.workflowSettingInfo.steps.push(_step);
             },
-            chooseStaff: function (item) {
-                console.log(item);
+            chooseStaff: function(item) {
+                if ($that.workflowSettingInfo.flowType == '80008') {
+                    item.from = 'purchase';
+                } else if ($that.workflowSettingInfo.flowType == '30003') {
+                    item.from = 'purchase';
+                } else if ($that.workflowSettingInfo.flowType == '40004') {
+                    item.from = 'purchase';
+                } else if ($that.workflowSettingInfo.flowType == '70007') {
+                    item.from = 'purchase';
+                } else if ($that.workflowSettingInfo.flowType == '80008') {
+                    item.from = 'purchase';
+                } else if ($that.workflowSettingInfo.flowType == '50005') {
+                    item.from = 'contract';
+                } else if ($that.workflowSettingInfo.flowType == '60006') {
+                    item.from = 'contract';
+                }
                 vc.emit('selectStaff', 'openStaff', item);
             },
-            _goBack: function () {
+            _goBack: function() {
                 vc.getBack();
             },
-            deleteStep: function (_step) {
+            deleteStep: function(_step) {
                 for (var i = 0; i < $that.workflowSettingInfo.steps.length; i++) {
                     if ($that.workflowSettingInfo.steps[i].seq == _step.seq) {
                         $that.workflowSettingInfo.steps.splice(i, 1);
                     }
                 }
             },
-            addStaff: function (_step) {
+            addStaff: function(_step) {
                 _step.subStaff.push({
                     id: vc.uuid(),
                     staffId: '',
@@ -155,20 +169,20 @@
                     staffRole: '1001'
                 });
             },
-            deleteStaff: function (_step, _subStaff) {
+            deleteStaff: function(_step, _subStaff) {
                 for (var i = 0; i < _step.subStaff.length; i++) {
                     if (_step.subStaff[i].id == _subStaff.id) {
                         _step.subStaff.splice(i, 1);
                     }
                 }
             },
-            chooseType: function (_item) {
+            chooseType: function(_item) {
                 if (_item.type == '1') {
                     _item.subStaff = [];
                 }
             },
 
-            chooseStaffRole: function () {
+            chooseStaffRole: function() {
 
             }
         }

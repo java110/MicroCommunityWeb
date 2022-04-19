@@ -19,7 +19,8 @@
                     auditLink: '',
                 },
                 orderInfo: {},
-                procure: false
+                procure: false,
+                audit: '1'
             }
         },
         _initMethod: function() {
@@ -27,7 +28,9 @@
             $that._loadStepStaff();
         },
         _initEvent: function() {
-
+            vc.on('contractApplyAuditOrders', 'list', function(_param) {
+                $that.contractApplyAuditOrdersInfo.audit = '1';
+            });
             vc.on('contractApplyAuditOrders', 'listAuditOrders', function(_param) {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -41,7 +44,7 @@
         },
         methods: {
             _listAuditOrders: function(_page, _rows) {
-
+                $that.contractApplyAuditOrdersInfo.audit = '1';
                 vc.component.contractApplyAuditOrdersInfo.conditions.page = _page;
                 vc.component.contractApplyAuditOrdersInfo.conditions.row = _rows;
                 var param = {
@@ -69,7 +72,8 @@
             },
             _openAuditOrderModel: function(_auditOrder) {
                 vc.component.contractApplyAuditOrdersInfo.orderInfo = _auditOrder;
-                vc.emit('audit', 'openAuditModal', {});
+                $that.contractApplyAuditOrdersInfo.audit = '2';
+                vc.emit('flowAudit', 'openAuditModal', _auditOrder);
             },
             _queryAuditOrdersMethod: function() {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -79,7 +83,8 @@
             },
             //提交审核信息
             _auditOrderInfo: function(_auditInfo) {
-                console.log("提交得参数：" + _auditInfo);
+                console.log("提交得参数：",
+                    _auditInfo);
                 _auditInfo.taskId = vc.component.contractApplyAuditOrdersInfo.orderInfo.taskId;
                 _auditInfo.contractId = vc.component.contractApplyAuditOrdersInfo.orderInfo.contractId;
                 //发送get请求

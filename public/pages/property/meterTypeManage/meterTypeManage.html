@@ -30,12 +30,10 @@
                                 <td class="text-center">{{meterType.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditMeterTypeModel(meterType)">修改</button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditMeterTypeModel(meterType)">修改</button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteMeterTypeModel(meterType)">删除</button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMeterTypeModel(meterType)">删除</button>
                                     </div>
                                 </td>
 
@@ -50,7 +48,14 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div> 如果一个房屋有多个电表水表 可以 这里新建多个 比如电表1 电表2</div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

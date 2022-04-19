@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editAttrSpecInfo: {
@@ -11,12 +10,10 @@
                 specShow: '',
                 specValueType: '',
                 specType: '',
-                listShow: '',
-
+                listShow: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editAttrSpec', 'openEditAttrSpecModal', function (_params) {
@@ -103,7 +100,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "规格不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             editAttrSpec: function () {
@@ -111,7 +109,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/attrSpec/updateAttrSpec',
                     JSON.stringify(vc.component.editAttrSpecInfo),
@@ -125,14 +122,13 @@
                             //关闭model
                             $('#editAttrSpecModel').modal('hide');
                             vc.emit('attrSpecManage', 'listAttrSpec', {});
+                            vc.toast(_json.msg);
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             refreshEditAttrSpecInfo: function () {
@@ -145,11 +141,9 @@
                     specShow: '',
                     specValueType: '',
                     specType: '',
-                    listShow: '',
-
+                    listShow: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

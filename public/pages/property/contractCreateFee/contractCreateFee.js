@@ -97,9 +97,8 @@
                     vc.component.contractCreateFeeInfo.moreCondition = true;
                 }
             },
-            _toOwnerPayFee: function(_room) {
-                let roomName = _room.floorNum + "栋" + _room.unitNum + "单元" + _room.roomNum + "室"
-                vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + _room.roomId + "&payObjType=9999&roomName=" + roomName);
+            _toOwnerPayFee: function(_ContractFeeInfo) {
+                vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + _ContractFeeInfo.contractId + '&payObjType=7777&contractName=' + _ContractFeeInfo.contractName);
             },
             _printOwnOrder: function(_room) {
                 //打印催交单

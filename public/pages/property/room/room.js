@@ -82,8 +82,7 @@
                     param.params.roomId = '';
                 }
                 //发送get请求
-                vc.http.get('room',
-                    'listRoom',
+                vc.http.apiGet('/room.queryRooms',
                     param,
                     function(json, res) {
                         var listRoomData = JSON.parse(json);
@@ -160,12 +159,9 @@
             },
             _loadDataByParam: function() {
                 vc.component.roomInfo.conditions.floorId = vc.getParam("floorId");
-                vc.component.roomInfo.conditions.floorId = vc.getParam("floorName");
-                //如果 floodId 没有传 则，直接结束
-                /* if(!vc.notNull(vc.component.roomInfo.conditions.floorId)){
-                     return ;
-                 }*/
-                var param = {
+                vc.component.roomInfo.conditions.floorName = vc.getParam("floorName");
+
+                let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         floorId: vc.component.roomInfo.conditions.floorId
@@ -240,6 +236,11 @@
             },
             _openImportRoomInfo: function() {
                 vc.emit('importOwnerRoom', 'openImportOwnerRoomModal', {})
+            },
+            _resetRoomInfo: function() {
+                vc.resetObject($that.roomInfo.conditions);
+                $that.roomInfo.conditions.roomType = '1010301';
+                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             }
 
         }

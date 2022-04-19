@@ -28,7 +28,8 @@
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#deleteFeeModel').modal('hide');
                             vc.emit('listRoomFee', 'notify', {});
@@ -40,7 +41,7 @@
                             vc.toast("删除费用成功");
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

@@ -1,0 +1,185 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-1 text-right">
+                            <div class="form-group">
+                                收费对象
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <span class="margin-right" v-for="(item,index) in batchPayFeeOrderInfo.payObjs">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="item" v-model="batchPayFeeOrderInfo.payerObjNames" @change="_chanagePayerObjName()"> {{item}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>批量缴费</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
+                            返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><input type="checkbox" class="i-checks" @click="checkAll($event)"></th>
+                                <th class="text-center">费用类型</th>
+                                <th class="text-center">费用项目</th>
+                                <th class="text-center">费用标识</th>
+                                <th class="text-center">收费对象</th>
+                                <th class="text-center">计费起始时间</th>
+                                <th class="text-center">计费结束时间</th>
+                                <th class="text-center">欠费金额</th>
+                                <th class="text-center">
+                                    <div style="width: 100px; margin:0 auto">缴费周期</div>
+                                </th>
+                                <th class="text-center">
+                                    应收
+                                </th>
+                                <th class="text-center">
+                                    <div style="width: 150px; margin:0 auto">实收</div>
+                                </th>
+                                <th class="text-center">
+                                    <div style="width: 100px; margin:0 auto">备注</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="batchFee in batchPayFeeOrderInfo.batchFees">
+                                <td class="text-center">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="batchFee.feeId" v-model="batchPayFeeOrderInfo.selectPayFeeIds">
+                                </td>
+                                <td class="text-center">{{batchFee.feeTypeCdName}}</td>
+                                <td class="text-center">{{batchFee.feeName}}</td>
+                                <td class="text-center">{{batchFee.feeFlagName}}</td>
+                                <td class="text-center">{{_getBatchPayFeeRoomName(batchFee)}}</td>
+                                <td class="text-center">{{_getEndTime(batchFee)}}</td>
+                                <td class="text-center"> {{_getDeadlineTime(batchFee)}}</td>
+                                <td class="text-center">{{batchFee.amountOwed}}</td>
+                                <td class="text-center">
+                                    <div style="width: 100px; margin:0 auto" v-if="batchFee.feeFlag == '1003006'">
+                                        <select class="custom-select" v-model="batchFee.cycles" @change="_changeMonth(batchFee.cycles,batchFee)">
+                                            <option selected disabled value="">请选择缴费周期</option>
+                                            <option v-for="item in _getBatchPaymentCycles(batchFee)" :value="item">{{item}}个月</option>
+                                        </select>
+                                    </div>
+                                    <div v-else>
+                                        -
+                                    </div>
+                                </td>
+                                <td class="text-center">{{batchFee.receivableAmount}}</td>
+                                <td class="text-center">
+                                    <div style="width: 150px; margin:0 auto" v-if="batchFee.receivedAmountSwitch=='1'" @change="_doComputeTotalFee()">
+                                        <input type="text" placeholder="请输入实际金额" v-model="batchFee.receivedAmount" class="form-control">
+                                    </div>
+                                    <div v-else>
+                                        {{batchFee.receivedAmount}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div style="width: 200px; margin:0 auto">
+                                        <input type="text" placeholder="请输入备注" v-model="batchFee.remark" class="form-control">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div>
+                        温馨提示：批量缴费不支持优惠折扣，账户扣款和优惠券抵扣功能，如需要请到缴费页面缴费
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-2">
+            缴费金额：<span style="font-size: 30px; color: red; padding-left: 0px;">{{batchPayFeeOrderInfo.feePrices}}元</span>
+        </div>
+        <div class="col-md-1 " style="margin-bottom:10px; text-align:right">
+            <button type="button" class="btn  btn-warning  btn-lg btn-block" style="margin-left:10px;" v-on:click="_payFee()">缴费
+            </button>
+        </div>
+    </div>
+
+    <div id="doBatchPayFeeModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">收费确认</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label">金额：</label>
+                        <label class="col-sm-9 col-form-label">{{batchPayFeeOrderInfo.feePrices}}元</label>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-3 col-form-label">支付方式:</label>
+                        <div class="col-sm-9">
+                            <select class="custom-select" v-model="batchPayFeeOrderInfo.primeRate">
+                                <option selected disabled value="">必填，请选择支付方式</option>
+                                <option v-for="(item,index) in batchPayFeeOrderInfo.primeRates" :key="index" v-if="item.statusCd != '5' && item.statusCd != '6'"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="_closeDoBatchPayFeeModal()">关闭</button>
+                    <button type="button" class="btn btn-primary" @click="_doPayFee()">确定收费</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="payFeeResult" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">缴费提示</h5>
+                    <button type="button " class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>缴费成功</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="_back()">返回</button>
+                    <button type="button" class="btn btn-primary" @click="_printAndBack()">打印收据</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,7 +13,9 @@
                 visitGender: '',
                 phoneNumber: '',
                 visitTime: '',
-                departureTime: ''
+                departureTime: '',
+                carNum: '',
+                entourage: ''
             }
         },
         _initMethod: function () {
@@ -25,7 +27,10 @@
             });
             vc.on('addVisit', 'onIndex', function (_index) {
                 // vc.component.newVisitInfo.index = _index;
-                vc.emit('addVisitSpace', 'notify', _index);
+                // vc.emit('addVisitSpace', 'notify', _index);
+            });
+            vc.on('addVisit', 'clearInfo', function () {
+                vc.component._clearAddVisitInfo();
             });
         },
         methods: {
@@ -47,6 +52,18 @@
                             errInfo: "访客性别不能为空"
                         }
                     ],
+                    // 'addVisitInfo.entourage': [
+                    //     {
+                    //         limit: "required",
+                    //         param: "",
+                    //         errInfo: "随行人数不能为空"
+                    //     },
+                    //     {
+                    //         limit: "num",
+                    //         param: "",
+                    //         errInfo: "随行人数有误"
+                    //     }
+                    // ],
                     'addVisitInfo.phoneNumber': [
                         {
                             limit: "required",
@@ -153,6 +170,15 @@
                 function myfunc(e) {
                     e.currentTarget.blur();
                 }
+            },
+            _clearAddVisitInfo: function () {
+                vc.component.addVisitInfo.vName = '';
+                vc.component.addVisitInfo.visitGender = '';
+                vc.component.addVisitInfo.phoneNumber = '';
+                vc.component.addVisitInfo.visitTime = '';
+                vc.component.addVisitInfo.departureTime = '';
+                vc.component.addVisitInfo.carNum = '';
+                vc.component.addVisitInfo.entourage = '';
             }
         }
     });

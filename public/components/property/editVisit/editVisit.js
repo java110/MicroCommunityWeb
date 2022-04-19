@@ -8,6 +8,8 @@
         },
         _initEvent: function () {
             vc.on('editVisit', 'openEditVisitModel', function (_params) {
+                console.log("这里")
+                console.log(_params)
                 vc.component.refreshEditAppInfo();
                 $('#editAppModel').modal('show');
                 vc.component.editVisitInfo = _params;

@@ -84,8 +84,7 @@
                 param.params.ownerId = param.params.ownerId.trim();
                 param.params.idCard = param.params.idCard.trim();
                 //发送get请求
-                vc.http.get('listOwner',
-                    'list',
+                vc.http.apiGet('/owner.queryOwners',
                     param,
                     function(json, res) {
                         var listOwnerData = JSON.parse(json);
