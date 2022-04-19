@@ -1,22 +1,20 @@
-
 /**
  * 英文包
  */
-(function(window){
-    window.lang={
-        "systemName":"CommunityManagement",
-        "systemSimpleName":"SR",
+(function(window) {
+    window.lang = {
+        "systemName": "CommunityManagement",
+        "systemSimpleName": "HC",
         "subSystemName": "CommunityManagement",
-        "companyTeam":"sky Round data team",
-        "welcome":"welcome community management",
-        "signOut":"sign out",
-        "signIn":"sign in",
-        "register":"register",
-        "moreCommunity":"more community",
-        "moreMsg":"more message",
-        "title":"CommunityManagement",
-        "noAccount":"no account?",
-        "areyouhasaccount":"are you has account?",
-        "我的小区":"my community"
+        "companyTeam": "java110 Round data team",
+        "welcome": "welcome community management",
+        "signOut": "sign out",
+        "signIn": "sign in",
+        "register": "register",
+        "moreCommunity": "more community",
+        "moreMsg": "more message",
+        "title": "CommunityManagement",
+        "noAccount": "no account?",
+        "areyouhasaccount": "are you has account?"
     }
 })(window)
