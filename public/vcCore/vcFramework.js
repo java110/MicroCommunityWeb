@@ -17,7 +17,7 @@
 /**
  构建vcFramework对象
  **/
- (function(window) {
+(function (window) {
     "use strict";
     let vcFramework = window.vcFramework || {};
     window.vcFramework = vcFramework;
@@ -40,13 +40,13 @@
         data: {},
         watch: {},
         methods: {},
-        destroyed: function() {
-            window.vcFramework.destroyedMethod.forEach(function(eventMethod) {
+        destroyed: function () {
+            window.vcFramework.destroyedMethod.forEach(function (eventMethod) {
                 eventMethod();
             });
             //清理所有定时器
 
-            window.vcFramework.timers.forEach(function(timer) {
+            window.vcFramework.timers.forEach(function (timer) {
                 clearInterval(timer);
             });
 
@@ -80,7 +80,7 @@
 
 })(window);
 
-(function(vcFramework) {
+(function (vcFramework) {
 
     let componentCache = {};
     /**
@@ -89,7 +89,7 @@
      * @param {*} _html 组件内容
      * @param {*} _nodeLocation  组件位置 1 开始节点 -1 结束节点
      */
-    let VcTree = function(_vcCreate, _html, _nodeLocation) {
+    let VcTree = function (_vcCreate, _html, _nodeLocation) {
         let o = new Object();
         o.treeId = vcFramework.uuid();
         o.vcCreate = _vcCreate;
@@ -98,19 +98,19 @@
         o.css = "";
         o.vcSubTree = [];
         o.nodeLocation = _nodeLocation;
-        o.putSubTree = function(_vcSubTree) {
+        o.putSubTree = function (_vcSubTree) {
             o.vcSubTree.push(_vcSubTree);
         };
-        o.setHtml = function(_html) {
+        o.setHtml = function (_html) {
             o.html = _html;
         };
-        o.setJs = function(_js) {
+        o.setJs = function (_js) {
             o.js = _js;
         };
-        o.setCss = function(_css) {
+        o.setCss = function (_css) {
             o.css = _css;
         };
-        o.setLocation = function(_location) {
+        o.setLocation = function (_location) {
             o.nodeLocation = _location;
         };
         return o;
@@ -119,7 +119,7 @@
     /**
      * 构建 树
      */
-    vcFramework.builderVcTree = async function() {
+    vcFramework.builderVcTree = async function () {
         let _componentUrl = location.hash;
 
         //判断是否为组件页面
@@ -189,7 +189,7 @@
     /**
      * 页面内 组件跳转
      */
-    vcFramework.reBuilderVcTree = async function() {
+    vcFramework.reBuilderVcTree = async function () {
         let _componentUrl = location.hash;
 
         //判断是否为组件页面
@@ -257,7 +257,7 @@
     /**
      * 从当前 HTML中找是否存在 <vc:create path="xxxx"></vc:create> 标签
      */
-    findVcLabel = async function(_tree) {
+    findVcLabel = async function (_tree) {
         //查看是否存在子 vc:create 
         let _componentName = _tree.vcCreate.getAttribute('path');
         //console.log('_componentName', _componentName, _tree);
@@ -292,7 +292,7 @@
     /**
      * 渲染组件 html 页面
      */
-    reader = function(_treeList, _componentScript) {
+    reader = function (_treeList, _componentScript) {
         //console.log('_treeList', _treeList);
         let _header = document.getElementsByTagName('head');
         for (let _treeIndex = 0; _treeIndex < _treeList.length; _treeIndex++) {
@@ -363,7 +363,7 @@
         }
     };
 
-    vcFramework.i18n = function(_key) {
+    vcFramework.i18n = function (_key) {
         if (!window.hasOwnProperty('lang')) {
             return _key;
         }
@@ -379,7 +379,7 @@
     /**
      * 解析 i18n 标签
      */
-    parseVcI18N = function() {
+    parseVcI18N = function () {
         let _tmpI18N = document.getElementsByTagName("vc:i18n");
         for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
             let _vcElement = _tmpI18N[_vcElementIndex];
@@ -412,7 +412,7 @@
     /**
      * 手工执行js 脚本
      */
-    execScript = function(_tree, _componentScript) {
+    execScript = function (_tree, _componentScript) {
 
         //console.log('_componentScript', _componentScript);
 
@@ -438,7 +438,7 @@
      * 加载组件
      * 异步去服务端 拉去HTML 和 js
      */
-    loadComponent = async function(_componentName, _tree) {
+    loadComponent = async function (_componentName, _tree) {
         if (vcFramework.isNotEmpty(_componentName) && _componentName.lastIndexOf('/') > 0) {
             _componentName = _componentName + '/' + _componentName.substring(_componentName.lastIndexOf('/') + 1, _componentName.length);
         }
@@ -506,7 +506,7 @@
     /**
      * 处理 命名空间html
      */
-    dealHtmlNamespace = function(_tree, _html) {
+    dealHtmlNamespace = function (_tree, _html) {
 
         let _componentVcCreate = _tree.vcCreate;
         if (!_componentVcCreate.hasAttribute('namespace')) {
@@ -524,7 +524,7 @@
     /**
      * 处理js
      */
-    dealJs = function(_tree, _js) {
+    dealJs = function (_tree, _js) {
         //在js 中检测propTypes 属性
         if (_js.indexOf("propTypes") < 0) {
             return _js;
@@ -584,7 +584,7 @@
         return newJs;
     };
 
-    dealJsPropTypesDefault = function(typeValue) {
+    dealJsPropTypesDefault = function (typeValue) {
         let startPos = typeValue.indexOf("=") + 1;
         let endPos = typeValue.length;
         if (typeValue.indexOf(",") > 0) {
@@ -598,7 +598,7 @@
     /**
      * js 处理命名
      */
-    dealJsNamespace = function(_tree, _js) {
+    dealJsNamespace = function (_tree, _js) {
 
         //在js 中检测propTypes 属性
         let _componentVcCreate = _tree.vcCreate;
@@ -635,7 +635,7 @@
      * @param js  js文件内容
      * @return js 文件内容
      */
-    dealJsAddComponentCode = function(_tree, _js) {
+    dealJsAddComponentCode = function (_tree, _js) {
         let _componentVcCreate = _tree.vcCreate;
 
         if (!_componentVcCreate.hasAttribute("code")) {
@@ -650,7 +650,7 @@
     /**
      * 处理命名空间js
      */
-    dealHtmlJs = function(_tree, _js) {
+    dealHtmlJs = function (_tree, _js) {
         let _componentVcCreate = _tree.vcCreate;
         if (!_componentVcCreate.hasAttribute('namespace')) {
             return _js;
@@ -675,9 +675,9 @@
  *
  */
 
-(function(vcFramework) {
+(function (vcFramework) {
 
-    _initVcFrameworkEvent = function() {
+    _initVcFrameworkEvent = function () {
         let vcFrameworkEvent = document.createEvent('Event');
         // 定义事件名为'build'.
         vcFrameworkEvent.initEvent('initVcFrameworkFinish', true, true);
@@ -687,7 +687,7 @@
     /**
      * 初始化 vue 事件
      */
-    _initVueEvent = function() {
+    _initVueEvent = function () {
         vcFramework.$event = new Vue();
     }
 
@@ -701,10 +701,10 @@
 /**
  * vc-util
  */
-(function(vcFramework) {
+(function (vcFramework) {
 
     //空判断 true 为非空 false 为空
-    vcFramework.isNotNull = function(_paramObj) {
+    vcFramework.isNotNull = function (_paramObj) {
         if (_paramObj == null || _paramObj == undefined) {
             return false;
         }
@@ -712,14 +712,14 @@
     };
 
     //空判断 true 为非空 false 为空
-    vcFramework.isNotEmpty = function(_paramObj) {
+    vcFramework.isNotEmpty = function (_paramObj) {
         if (_paramObj == null || _paramObj == undefined || _paramObj.trim() == '') {
             return false;
         }
         return true;
     };
 
-    vcFramework.uuid = function() {
+    vcFramework.uuid = function () {
         let s = [];
         let hexDigits = "0123456789abcdef";
         for (let i = 0; i < 36; i++) {
@@ -736,11 +736,11 @@
     /**
      * 深度拷贝对象
      */
-    vcFramework.deepClone = function(obj) {
+    vcFramework.deepClone = function (obj) {
         return JSON.parse(JSON.stringify(obj));
     }
 
-    vcFramework.changeNumMoneyToChinese = function(money) {
+    vcFramework.changeNumMoneyToChinese = function (money) {
         let cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"); //汉字的数字
         let cnIntRadice = new Array("", "拾", "佰", "仟"); //基本单位
         let cnIntUnits = new Array("", "万", "亿", "兆"); //对应整数部分扩展单位
@@ -828,14 +828,14 @@
 /**
  * 封装 后端请求 代码
  */
-(function(vcFramework) {
+(function (vcFramework) {
 
-    vcFramework.httpGet = function(url) {
+    vcFramework.httpGet = function (url) {
         // XMLHttpRequest对象用于在后台与服务器交换数据 
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
             xhr.open('GET', url, true);
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 // readyState == 4说明请求已完成
                 if (xhr.readyState == 4 && xhr.status == 200 || xhr.status == 304) {
                     // 从服务器获得数据 
@@ -846,12 +846,12 @@
             xhr.send();
         });
     };
-    vcFramework.httpPost = function(url, data, fn) {
+    vcFramework.httpPost = function (url, data, fn) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
         // 添加http头，发送信息至服务器时内容编码类型
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
                 fn.call(xhr.responseText);
             }
@@ -865,19 +865,19 @@
  *
  * 组件缓存
  */
-(function(vcFramework) {
+(function (vcFramework) {
 
     /**
      * 组件缓存
      */
-    vcFramework.putComponent = function(_componentName, _component) {
+    vcFramework.putComponent = function (_componentName, _component) {
         let _componentCache = vcFramework.vueCache;
         _componentCache[_componentName] = _component;
     };
     /**
      * 组件提取
      */
-    vcFramework.getComponent = function(_componentName) {
+    vcFramework.getComponent = function (_componentName) {
         let _componentCache = vcFramework.vueCache;
         return _componentCache[_componentName];
     }
@@ -892,7 +892,7 @@
 /**
  常量
  **/
-(function(vcFramework) {
+(function (vcFramework) {
 
     let constant = {
         REQUIRED_MSG: "不能为空",
@@ -912,17 +912,24 @@
  vc 函数初始化
  add by Kevin
  **/
-(function(vcFramework) {
+(function (vcFramework) {
     let DEFAULT_NAMESPACE = "default";
     vcFramework.http = {
-        post: function(componentCode, componentMethod, param, options, successCallback, errorCallback) {
-            vcFramework.loading('open');
+        post: function (componentCode, componentMethod, param, options, successCallback, errorCallback) {
+            let _lang = vcFramework.getData('JAVA110-LANG');
+            if (!_lang) {
+                _lang = {
+                    name: '简体中文',
+                    lang: 'zh-cn'
+                }
+            }
+            Vue.http.headers.common['JAVA110-LANG'] = _lang.lang;
             Vue.http.headers.common['APP-ID'] = '8000418004';
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
             Vue.http.headers.common['SIGN'] = '';
             Vue.http.post('/callComponent/' + componentCode + "/" + componentMethod, param, options)
-                .then(function(res) {
+                .then(function (res) {
                     try {
                         let _header = res.headers.map;
                         //console.log('res', res);
@@ -936,7 +943,7 @@
                     } finally {
                         vcFramework.loading('close');
                     }
-                }, function(res) {
+                }, function (res) {
                     try {
                         if (res.status == 401 && res.headers.map["location"]) {
                             let _header = res.headers.map;
@@ -956,7 +963,7 @@
                     }
                 });
         },
-        get: function(componentCode, componentMethod, param, successCallback, errorCallback) {
+        get: function (componentCode, componentMethod, param, successCallback, errorCallback) {
             //加入缓存机制
             let _getPath = '/' + componentCode + '/' + componentMethod;
             if (vcFramework.constant.GET_CACHE_URL.includes(_getPath)) {
@@ -967,13 +974,21 @@
                     return;
                 }
             }
+            let _lang = vcFramework.getData('JAVA110-LANG');
+            if (!_lang) {
+                _lang = {
+                    name: '简体中文',
+                    lang: 'zh-cn'
+                }
+            }
             vcFramework.loading('open');
+            Vue.http.headers.common['JAVA110-LANG'] = _lang.lang;
             Vue.http.headers.common['APP-ID'] = '8000418004';
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
             Vue.http.headers.common['SIGN'] = '';
             Vue.http.get('/callComponent/' + componentCode + "/" + componentMethod, param)
-                .then(function(res) {
+                .then(function (res) {
                     try {
 
                         successCallback(res.bodyText, res);
@@ -985,7 +1000,7 @@
                     } finally {
                         vcFramework.loading('close');
                     }
-                }, function(res) {
+                }, function (res) {
                     try {
                         if (res.status == 401 && res.headers.map["location"]) {
                             let _header = res.headers.map;
@@ -1006,8 +1021,16 @@
                     }
                 });
         },
-        apiPost: function(api, param, options, successCallback, errorCallback) {
+        apiPost: function (api, param, options, successCallback, errorCallback) {
             let _api = '';
+            let _lang = vcFramework.getData('JAVA110-LANG');
+            if (!_lang) {
+                _lang = {
+                    name: '简体中文',
+                    lang: 'zh-cn'
+                }
+            }
+            Vue.http.headers.common['JAVA110-LANG'] = _lang.lang;
             Vue.http.headers.common['APP-ID'] = '8000418004';
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
@@ -1019,7 +1042,7 @@
             }
             vcFramework.loading('open');
             Vue.http.post(_api, param, options)
-                .then(function(res) {
+                .then(function (res) {
                     try {
                         let _header = res.headers.map;
                         //console.log('res', res);
@@ -1033,7 +1056,7 @@
                     } finally {
                         vcFramework.loading('close');
                     }
-                }, function(res) {
+                }, function (res) {
                     try {
                         if (res.status == 401 && res.headers.map["location"]) {
                             let _header = res.headers.map;
@@ -1053,7 +1076,7 @@
                     }
                 });
         },
-        apiGet: function(api, param, successCallback, errorCallback) {
+        apiGet: function (api, param, successCallback, errorCallback) {
             //加入缓存机制
             let _getPath = '';
             if (api.indexOf('/') != 0) {
@@ -1069,7 +1092,14 @@
             }
 
             let _api = '';
-
+            let _lang = vcFramework.getData('JAVA110-LANG');
+            if (!_lang) {
+                _lang = {
+                    name: '简体中文',
+                    lang: 'zh-cn'
+                }
+            }
+            Vue.http.headers.common['JAVA110-LANG'] = _lang.lang;
             Vue.http.headers.common['APP-ID'] = '8000418004';
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
@@ -1086,7 +1116,7 @@
             }
 
             Vue.http.get(_api, param)
-                .then(function(res) {
+                .then(function (res) {
                     try {
 
                         successCallback(res.bodyText, res);
@@ -1100,7 +1130,7 @@
                             vcFramework.loading('close');
                         }
                     }
-                }, function(res) {
+                }, function (res) {
                     try {
                         if (res.status == 401 && res.headers.map["location"]) {
                             let _header = res.headers.map;
@@ -1121,10 +1151,10 @@
                     }
                 });
         },
-        upload: function(componentCode, componentMethod, param, options, successCallback, errorCallback) {
+        upload: function (componentCode, componentMethod, param, options, successCallback, errorCallback) {
             vcFramework.loading('open');
             Vue.http.post('/callComponent/upload/' + componentCode + "/" + componentMethod, param, options)
-                .then(function(res) {
+                .then(function (res) {
                     try {
                         successCallback(res.bodyText, res);
                     } catch (e) {
@@ -1132,7 +1162,7 @@
                     } finally {
                         vcFramework.loading('close');
                     }
-                }, function(error) {
+                }, function (error) {
                     try {
                         errorCallback(error.bodyText, error);
                     } catch (e) {
@@ -1148,7 +1178,7 @@
 
     //let vmOptions = vcFramework.vmOptions;
     //继承方法,合并 _vmOptions 的数据到 vmOptions中
-    vcFramework.extends = function(_vmOptions) {
+    vcFramework.extends = function (_vmOptions) {
         let vmOptions = vcFramework.vmOptions;
         if (typeof _vmOptions !== "object") {
             throw "_vmOptions is not Object";
@@ -1214,7 +1244,7 @@
 
     };
     //绑定跳转函数
-    vcFramework.jumpToPage = function(url) {
+    vcFramework.jumpToPage = function (url) {
         //判断 url 的模板是否 和当前url 模板一个
         console.log('jumpToPage', url);
         if (url.indexOf('#') < 0) {
@@ -1235,20 +1265,20 @@
         //vcFramework.reBuilderVcTree();
     };
 
-    refreshVcFramework = function() {
+    refreshVcFramework = function () {
         $that.$destroy();
         let _vmOptions = {
             el: '#component',
             data: {},
             watch: {},
             methods: {},
-            destroyed: function() {
-                window.vcFramework.destroyedMethod.forEach(function(eventMethod) {
+            destroyed: function () {
+                window.vcFramework.destroyedMethod.forEach(function (eventMethod) {
                     eventMethod();
                 });
                 //清理所有定时器
 
-                window.vcFramework.timers.forEach(function(timer) {
+                window.vcFramework.timers.forEach(function (timer) {
                     clearInterval(timer);
                 });
 
@@ -1264,53 +1294,53 @@
         vcFramework.namespace = [];
     };
     //保存菜单
-    vcFramework.setCurrentMenu = function(_menuId) {
+    vcFramework.setCurrentMenu = function (_menuId) {
         window.localStorage.setItem('hc_menuId', _menuId);
     };
     //获取菜单
-    vcFramework.getCurrentMenu = function() {
+    vcFramework.getCurrentMenu = function () {
         return window.localStorage.getItem('hc_menuId');
     };
 
     //保存用户菜单
-    vcFramework.setMenus = function(_menus) {
+    vcFramework.setMenus = function (_menus) {
         window.localStorage.setItem('hc_menus', JSON.stringify(_menus));
     };
     //获取用户菜单
-    vcFramework.getMenus = function() {
+    vcFramework.getMenus = function () {
         return JSON.parse(window.localStorage.getItem('hc_menus'));
     };
 
     //保存菜单状态
-    vcFramework.setMenuState = function(_menuState) {
+    vcFramework.setMenuState = function (_menuState) {
         window.localStorage.setItem('hc_menu_state', _menuState);
     };
     //获取菜单状态
-    vcFramework.getMenuState = function() {
+    vcFramework.getMenuState = function () {
         return window.localStorage.getItem('hc_menu_state');
     };
 
     //保存用户菜单
-    vcFramework.saveData = function(_key, _value) {
+    vcFramework.saveData = function (_key, _value) {
         window.localStorage.setItem(_key, JSON.stringify(_value));
     };
     //保存用户菜单
-    vcFramework.removeData = function(_key) {
+    vcFramework.removeData = function (_key) {
         Object.keys(localStorage).forEach(item => item.indexOf(_key) !== -1 ? localStorage.removeItem(item) : '');
     };
     //获取用户菜单
-    vcFramework.getData = function(_key) {
+    vcFramework.getData = function (_key) {
         return JSON.parse(window.localStorage.getItem(_key));
     };
 
     //保存当前小区信息 _communityInfo : {"communityId":"123213","name":"测试小区"}
-    vcFramework.setCurrentCommunity = function(_currentCommunityInfo) {
+    vcFramework.setCurrentCommunity = function (_currentCommunityInfo) {
         window.localStorage.setItem('hc_currentCommunityInfo', JSON.stringify(_currentCommunityInfo));
     };
 
     //获取当前小区信息
     // @return   {"communityId":"123213","name":"测试小区"}
-    vcFramework.getCurrentCommunity = function() {
+    vcFramework.getCurrentCommunity = function () {
         let _community = JSON.parse(window.localStorage.getItem('hc_currentCommunityInfo'));
 
         if (!_community) {
@@ -1324,24 +1354,24 @@
     };
 
     //保存当前小区信息 _communityInfos : [{"communityId":"123213","name":"测试小区"}]
-    vcFramework.setCommunitys = function(_communityInfos) {
+    vcFramework.setCommunitys = function (_communityInfos) {
         window.localStorage.setItem('hc_communityInfos', JSON.stringify(_communityInfos));
     };
 
     //获取当前小区信息
     // @return   {"communityId":"123213","name":"测试小区"}
-    vcFramework.getCommunitys = function() {
+    vcFramework.getCommunitys = function () {
         return JSON.parse(window.localStorage.getItem('hc_communityInfos'));
     };
 
     //删除缓存数据
-    vcFramework.clearCacheData = function() {
+    vcFramework.clearCacheData = function () {
         window.localStorage.clear();
         window.sessionStorage.clear();
     };
 
     //将org 对象的属性值赋值给dst 属性名为一直的属性
-    vcFramework.copyObject = function(org, dst) {
+    vcFramework.copyObject = function (org, dst) {
 
         if (!org || !dst) {
             return;
@@ -1354,47 +1384,47 @@
         }
     };
 
-    vcFramework.resetObject = function(org) {
+    vcFramework.resetObject = function (org) {
         if (!org) {
             return;
         }
         //for(key in Object.getOwnPropertyNames(dst)){
         for (let key in org) {
-            if (typeof(key) == "string") {
+            if (typeof (key) == "string") {
                 org[key] = ''
             }
         }
     };
     //扩展 现有的对象 没有的属性扩充上去
-    vcFramework.extendObject = function(org, dst) {
+    vcFramework.extendObject = function (org, dst) {
         for (let key in dst) {
             if (!org.hasOwnProperty(key)) {
                 dst[key] = org[key]
             }
         }
     };
-    vcFramework.getComponentCode = function() {
-            let _componentUrl = location.hash;
+    vcFramework.getComponentCode = function () {
+        let _componentUrl = location.hash;
 
-            //判断是否为组件页面
-            if (!vcFramework.notNull(_componentUrl)) {
-                return "/";
-            }
-
-            if (_componentUrl.lastIndexOf('#') < 0) {
-                return "/";
-            }
-
-            let endPos = _componentUrl.length;
-            if (_componentUrl.indexOf('?') > -1) {
-                endPos = _componentUrl.indexOf('?');
-            }
-
-            _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('#') + 1, endPos);
-            return _componentUrl;
+        //判断是否为组件页面
+        if (!vcFramework.notNull(_componentUrl)) {
+            return "/";
         }
-        //获取url参数
-    vcFramework.getParam = function(_key) {
+
+        if (_componentUrl.lastIndexOf('#') < 0) {
+            return "/";
+        }
+
+        let endPos = _componentUrl.length;
+        if (_componentUrl.indexOf('?') > -1) {
+            endPos = _componentUrl.indexOf('?');
+        }
+
+        _componentUrl = _componentUrl.substring(_componentUrl.lastIndexOf('#') + 1, endPos);
+        return _componentUrl;
+    }
+    //获取url参数
+    vcFramework.getParam = function (_key) {
         //返回当前 URL 的查询部分（问号 ? 之后的部分）。
         let urlParameters = location.search;
         if (!vcFramework.notNull(urlParameters)) {
@@ -1420,12 +1450,12 @@
         return "";
     };
     //查询url
-    vcFramework.getUrl = function() {
+    vcFramework.getUrl = function () {
         //返回当前 URL 的查询部分（问号 ? 之后的部分）。
         let urlParameters = location.pathname;
         return urlParameters;
     };
-    vcFramework.isBack = function() {
+    vcFramework.isBack = function () {
         let _back = vc.getData("JAVA110_IS_BACK");
 
         if (_back == null) {
@@ -1440,20 +1470,20 @@
         }
         return false;
     };
-    vcFramework.getBack = function() {
+    vcFramework.getBack = function () {
         //window.location.href = document.referrer;
         let _date = new Date();
         vc.saveData("JAVA110_IS_BACK", _date.getTime());
         window.history.back(-1);
     }
-    vcFramework.goBack = function() {
-            //window.location.href = document.referrer;
-            let _date = new Date();
-            vc.saveData("JAVA110_IS_BACK", _date.getTime());
-            window.history.back(-1);
-        }
-        //对象转get参数
-    vcFramework.objToGetParam = function(obj) {
+    vcFramework.goBack = function () {
+        //window.location.href = document.referrer;
+        let _date = new Date();
+        vc.saveData("JAVA110_IS_BACK", _date.getTime());
+        window.history.back(-1);
+    }
+    //对象转get参数
+    vcFramework.objToGetParam = function (obj) {
         let str = [];
         for (let p in obj)
             if (obj.hasOwnProperty(p)) {
@@ -1462,32 +1492,32 @@
         return str.join("&");
     };
     //空判断 true 为非空 false 为空
-    vcFramework.notNull = function(_paramObj) {
+    vcFramework.notNull = function (_paramObj) {
         if (_paramObj == null || _paramObj == undefined || _paramObj.trim() == '') {
             return false;
         }
         return true;
     };
-    vcFramework.isEmpty = function(_paramObj) {
+    vcFramework.isEmpty = function (_paramObj) {
         if (_paramObj == null || _paramObj == undefined) {
             return true;
         }
         return false;
     };
     //设置debug 模式
-    vcFramework.setDebug = function(_param) {
+    vcFramework.setDebug = function (_param) {
         vcFramework.debug = _param;
     };
     //数据共享存放 主要为了组件间传递数据
-    vcFramework.put = function(_key, _value) {
+    vcFramework.put = function (_key, _value) {
         vcFramework.map[_key] = _value;
     };
     //数据共享 获取 主要为了组件间传递数据
-    vcFramework.get = function(_key) {
+    vcFramework.get = function (_key) {
         return vcFramework.map[_key];
     };
 
-    vcFramework.getDict = function(_name, _type, _callFun) {
+    vcFramework.getDict = function (_name, _type, _callFun) {
         let param = {
             params: {
                 name: _name,
@@ -1497,19 +1527,19 @@
 
         //发送get请求
         vcFramework.http.get('core', 'list', param,
-            function(json, res) {
+            function (json, res) {
                 if (res.status == 200) {
                     let _dictInfo = JSON.parse(json);
                     _callFun(_dictInfo);
                     return;
                 }
             },
-            function(errInfo, error) {
+            function (errInfo, error) {
                 console.log('请求失败处理');
             });
     }
 
-    vcFramework.getAttrSpec = function(_tableName, _callFun) {
+    vcFramework.getAttrSpec = function (_tableName, _callFun) {
         let param = {
             params: {
                 tableName: _tableName,
@@ -1520,7 +1550,7 @@
 
         //发送get请求
         vcFramework.http.apiGet('/attrSpec/queryAttrSpec', param,
-            function(json, res) {
+            function (json, res) {
                 let _attrSpecInfo = JSON.parse(json);
 
                 if (_attrSpecInfo.code == 0) {
@@ -1528,13 +1558,13 @@
                     return;
                 }
             },
-            function(errInfo, error) {
+            function (errInfo, error) {
                 console.log('请求失败处理');
             });
     }
 
 
-    vcFramework.getAttrValue = function(_specCd, _callFun) {
+    vcFramework.getAttrValue = function (_specCd, _callFun) {
         let param = {
             params: {
                 specCd: _specCd,
@@ -1545,7 +1575,7 @@
 
         //发送get请求
         vcFramework.http.apiGet('/attrValue/queryAttrValue', param,
-            function(json, res) {
+            function (json, res) {
                 let _attrSpecInfo = JSON.parse(json);
 
                 if (_attrSpecInfo.code == 0) {
@@ -1553,7 +1583,7 @@
                     return;
                 }
             },
-            function(errInfo, error) {
+            function (errInfo, error) {
                 console.log('请求失败处理');
             });
     }
@@ -1564,19 +1594,19 @@
 /**
  vc 定时器处理
  **/
-(function(w, vcFramework) {
+(function (w, vcFramework) {
 
     /**
      创建定时器
      **/
-    vcFramework.createTimer = function(func, sec) {
+    vcFramework.createTimer = function (func, sec) {
         let _timer = w.setInterval(func, sec);
         vcFramework.timers.push(_timer); //这里将所有的定时器保存起来，页面退出时清理
 
         return _timer;
     };
     //清理定时器
-    vcFramework.clearTimer = function(timer) {
+    vcFramework.clearTimer = function (timer) {
         clearInterval(timer);
     }
 
@@ -1587,14 +1617,14 @@
  * vcFramework.toast("");
  时间处理工具类
  **/
-(function(vcFramework) {
+(function (vcFramework) {
     function add0(m) {
         return m < 10 ? '0' + m : m
     }
 
 
 
-    vcFramework.dateTimeFormat = function(shijianchuo) {
+    vcFramework.dateTimeFormat = function (shijianchuo) {
         //shijianchuo是整数，否则要parseInt转换
         let time = new Date(parseInt(shijianchuo));
         let y = time.getFullYear();
@@ -1606,7 +1636,7 @@
         return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
     }
 
-    vcFramework.dateFormat = function(_time) {
+    vcFramework.dateFormat = function (_time) {
         let _date = new Date(_time);
         let y = _date.getFullYear();
         let m = _date.getMonth() + 1;
@@ -1614,7 +1644,7 @@
         return y + '-' + add0(m) + '-' + add0(d);
     }
 
-    vcFramework.dateSubOneDay = function(_startTime, _endTime, feeFlag) {
+    vcFramework.dateSubOneDay = function (_startTime, _endTime, feeFlag) {
         if (!_endTime || _endTime == '-') {
             return _endTime
         }
@@ -1640,7 +1670,7 @@
         return dateTime;
     }
 
-    vcFramework.dateSub = function(dateTime, feeFlag) {
+    vcFramework.dateSub = function (dateTime, feeFlag) {
         if (!dateTime || dateTime == '-') {
             return dateTime
         }
@@ -1653,7 +1683,7 @@
         return dateTime;
     }
 
-    vcFramework.getDateYYYYMMDDHHMISS = function() {
+    vcFramework.getDateYYYYMMDDHHMISS = function () {
         let date = new Date();
         let year = date.getFullYear();
         let month = date.getMonth() + 1;
@@ -1685,7 +1715,7 @@
         return year + "" + month + "" + day + "" + hour + "" + minute + "" + second;
     };
 
-    vcFramework.initDateTime = function(_dateStr, _callBack) {
+    vcFramework.initDateTime = function (_dateStr, _callBack) {
         $('.' + _dateStr).datetimepicker({
             language: 'zh-CN',
             fontAwesome: 'fa',
@@ -1696,14 +1726,14 @@
             todayBtn: true
         });
         $('.' + _dateStr).datetimepicker()
-            .on('changeDate', function(ev) {
+            .on('changeDate', function (ev) {
                 var value = $('.' + _dateStr).val();
                 //vc.component.addFeeConfigInfo.startTime = value;
                 _callBack(value);
             });
     }
 
-    vcFramework.initDate = function(_dateStr, _callBack) {
+    vcFramework.initDate = function (_dateStr, _callBack) {
         $('.' + _dateStr).datetimepicker({
             language: 'zh-CN',
             minView: 'month',
@@ -1716,14 +1746,14 @@
 
         });
         $('.' + _dateStr).datetimepicker()
-            .on('changeDate', function(ev) {
+            .on('changeDate', function (ev) {
                 var value = $('.' + _dateStr).val();
                 //vc.component.addFeeConfigInfo.startTime = value;
                 _callBack(value);
             });
     }
 
-    vcFramework.initHourMinute = function(_dateStr, _callBack) {
+    vcFramework.initHourMinute = function (_dateStr, _callBack) {
         $('.' + _dateStr).datetimepicker({
             language: 'zh-CN',
             fontAwesome: 'fa',
@@ -1735,14 +1765,14 @@
 
         });
         $('.' + _dateStr).datetimepicker()
-            .on('changeDate', function(ev) {
+            .on('changeDate', function (ev) {
                 var value = $('.' + _dateStr).val();
                 //vc.component.addFeeConfigInfo.startTime = value;
                 _callBack(value);
             });
     }
 
-    vcFramework.initDateMonth = function(_dateStr, _callBack) {
+    vcFramework.initDateMonth = function (_dateStr, _callBack) {
         $('.' + _dateStr).datetimepicker({
             language: 'zh-CN',
             fontAwesome: 'fa',
@@ -1755,14 +1785,14 @@
             todayBtn: true
         });
         $('.' + _dateStr).datetimepicker()
-            .on('changeDate', function(ev) {
+            .on('changeDate', function (ev) {
                 let value = $('.' + _dateStr).val();
                 //vc.component.addFeeConfigInfo.startTime = value;
                 _callBack(value);
             });
     }
 
-    daysInMonth = function(year, month) {
+    daysInMonth = function (year, month) {
         if (month == 1) {
             if (year % 4 == 0 && year % 100 != 0)
                 return 29;
@@ -1774,11 +1804,11 @@
             return 30;
     }
 
-    vcFramework.unum = function(_money) {
+    vcFramework.unum = function (_money) {
         return parseFloat(_money) * -1;
     }
 
-    vcFramework.addMonth = function(_date, _month) {
+    vcFramework.addMonth = function (_date, _month) {
         let y = _date.getFullYear();
         let m = _date.getMonth();
         let nextY = y;
@@ -1800,7 +1830,7 @@
     };
 })(window.vcFramework);
 
-(function(vcFramework) {
+(function (vcFramework) {
     vcFramework.propTypes = {
         string: "string", //字符串类型
         array: "array",
@@ -1812,18 +1842,18 @@
 /**
  toast
  **/
-(function(vcFramework) {
+(function (vcFramework) {
     vcFramework.toast = function Toast(msg, duration) {
         duration = isNaN(duration) ? 3000 : duration;
         let m = document.createElement('div');
         m.innerHTML = msg;
         m.style.cssText = "max-width:60%;min-width: 150px;padding:0 14px;height: 40px;color: rgb(255, 255, 255);line-height: 40px;text-align: center;border-radius: 4px;position: fixed;top: 30%;left: 50%;transform: translate(-50%, -50%);z-index: 999999;background: rgba(0, 0, 0,.7);font-size: 16px;";
         document.body.appendChild(m);
-        setTimeout(function() {
+        setTimeout(function () {
             let d = 0.5;
             m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
             m.style.opacity = '0';
-            setTimeout(function() {
+            setTimeout(function () {
                 document.body.removeChild(m)
             }, d * 1000);
         }, duration);
@@ -1833,8 +1863,8 @@
 /**
  isNumber
  **/
-(function(vcFramework) {
-    vcFramework.isNumber = function(val) {
+(function (vcFramework) {
+    vcFramework.isNumber = function (val) {
 
         var regPos = /^\d+(\.\d+)?$/; //非负浮点数
         var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
@@ -1849,14 +1879,14 @@
 /**
  toast
  **/
-(function(vcFramework) {
+(function (vcFramework) {
     vcFramework.urlToBase64 = function urlToBase64(_url, _callFun) {
         let imgData;
         let reader = new FileReader();
-        getImageBlob(_url, function(blob) {
+        getImageBlob(_url, function (blob) {
             reader.readAsDataURL(blob);
         });
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             imgData = e.target.result;
             _callFun(imgData);
         };
@@ -1865,7 +1895,7 @@
             let xhr = new XMLHttpRequest();
             xhr.open("get", _url, true);
             xhr.responseType = "blob";
-            xhr.onload = function() {
+            xhr.onload = function () {
                 if (this.status == 200) {
                     if (cb) cb(this.response);
                 }
@@ -1883,8 +1913,8 @@
  @param vc vue component对象
  @param vmOptions Vue参数
  **/
-(function(vcFramework) {
-    vcFramework.initVue = function() {
+(function (vcFramework) {
+    vcFramework.initVue = function () {
         let vmOptions = vcFramework.vmOptions;
         //console.log("vmOptions:", vmOptions);
         vcFramework.vue = new Vue(vmOptions);
@@ -1901,7 +1931,7 @@
  * vcFramwork init
  * 框架开始初始化
  */
-(function(vcFramework) {
+(function (vcFramework) {
     //启动 框架
     vcFramework.builderVcTree();
 
@@ -1912,11 +1942,11 @@
 /**
  vc监听事件
  **/
-(function(vcFramework) {
+(function (vcFramework) {
     /**
      事件监听
      **/
-    vcFramework.on = function() {
+    vcFramework.on = function () {
         let _namespace = "";
         let _componentName = "";
         let _value = "";
@@ -1936,7 +1966,7 @@
         }
         if (vcFramework.notNull(_namespace)) {
             vcFramework.vue.$on(_namespace + "_" + _componentName + '_' + _value,
-                function(param) {
+                function (param) {
                     if (vcFramework.debug) {
                         console.log("监听ON事件", _namespace, _componentName, _value, param);
                     }
@@ -1946,7 +1976,7 @@
             return;
         }
         vcFramework.vue.$on(_componentName + '_' + _value,
-            function(param) {
+            function (param) {
                 if (vcFramework.debug) {
                     console.log("监听ON事件", _componentName, _value, param);
                 }
@@ -1958,7 +1988,7 @@
     /**
      事件触发
      **/
-    vcFramework.emit = function() {
+    vcFramework.emit = function () {
         let _namespace = "";
         let _componentName = "";
         let _value = "";
@@ -1990,15 +2020,15 @@
 /**
  * vue对象 执行初始化方法
  */
-(function(vcFramework) {
-    vcFramework.initVcComponent = function() {
-        vcFramework.initEvent.forEach(function(eventMethod) {
+(function (vcFramework) {
+    vcFramework.initVcComponent = function () {
+        vcFramework.initEvent.forEach(function (eventMethod) {
             eventMethod();
         });
-        vcFramework.initMethod.forEach(function(callback) {
+        vcFramework.initMethod.forEach(function (callback) {
             callback();
         });
-        vcFramework.namespace.forEach(function(_param) {
+        vcFramework.namespace.forEach(function (_param) {
             vcFramework[_param.namespace] = vcFramework.vue[_param.namespace];
         });
     }
@@ -2006,8 +2036,8 @@
 /**
  * 锚点变化监听
  */
-(function(vcFramework) {
-    window.addEventListener("hashchange", function(e) {
+(function (vcFramework) {
+    window.addEventListener("hashchange", function (e) {
         let _componentUrl = location.hash;
         //判断是否为组件页面
         if (!vcFramework.notNull(_componentUrl)) {
@@ -2047,11 +2077,11 @@
  (16)、max:5                      输入值不能大于5
  (17)、min:10                     输入值不能小于10
  **/
-(function(vcFramework) {
+(function (vcFramework) {
     let validate = {
         state: true,
         errInfo: '',
-        setState: function(_state, _errInfo) {
+        setState: function (_state, _errInfo) {
             this.state = _state;
             if (!this.state) {
                 this.errInfo = _errInfo
@@ -2062,14 +2092,14 @@
         /**
          校验手机号
          **/
-        phone: function(text) {
+        phone: function (text) {
             let regPhone = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
             return regPhone.test(text);
         },
         /**
          校验邮箱
          **/
-        email: function(text) {
+        email: function (text) {
             let regEmail = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
             return regEmail.test(text);
         },
@@ -2077,7 +2107,7 @@
          * 必填
          * @param {参数} text
          */
-        required: function(text) {
+        required: function (text) {
             if (text == undefined || text == null || text == "") {
                 return false;
             }
@@ -2089,7 +2119,7 @@
          * @param {最小长度} minLength
          * @param {最大长度} maxLength
          */
-        maxin: function(text, minLength, maxLength) {
+        maxin: function (text, minLength, maxLength) {
             if (text.length < minLength || text.length > maxLength) {
                 return false;
             }
@@ -2100,7 +2130,7 @@
          * @param {校验文本} text
          * @param {最大长度} maxLength
          */
-        maxLength: function(text, maxLength) {
+        maxLength: function (text, maxLength) {
             if (text.length > maxLength) {
                 return false;
             }
@@ -2111,7 +2141,7 @@
          * @param {校验文本} text
          * @param {最小长度} minLength
          */
-        minLength: function(text, minLength) {
+        minLength: function (text, minLength) {
             if (text.length < minLength) {
                 return false;
             }
@@ -2121,21 +2151,21 @@
          * 全是数字
          * @param {校验文本} text
          */
-        num: function(text) {
+        num: function (text) {
             if (text == null || text == undefined) {
                 return true;
             }
             let regNum = /^[0-9][0-9]*$/;
             return regNum.test(text);
         },
-        date: function(str) {
+        date: function (str) {
             if (str == null || str == undefined) {
                 return true;
             }
             let regDate = /^(\d{4})-(\d{2})-(\d{2})$/;
             return regDate.test(str);
         },
-        dateTime: function(str) {
+        dateTime: function (str) {
             if (str == null || str == undefined) {
                 return true;
             }
@@ -2145,7 +2175,7 @@
         /**
          金额校验
          **/
-        money: function(text) {
+        money: function (text) {
             if (text == null || text == undefined) {
                 return true;
             }
@@ -2155,14 +2185,14 @@
         /**
          系数校验
          **/
-        moneyModulus: function(text) {
+        moneyModulus: function (text) {
             if (text == null || text == undefined) {
                 return true;
             }
             let regMoney = /^\d+\.?\d{0,4}$/;
             return regMoney.test(text);
         },
-        idCard: function(num) {
+        idCard: function (num) {
             if (num == null || num == undefined || num == '') {
                 return true;
             }
@@ -2176,7 +2206,7 @@
         /**
             校验最小值
         **/
-        min: function(text, minVal) {
+        min: function (text, minVal) {
             if (parseFloat(text) >= parseFloat(minVal)) {
                 return true;
             }
@@ -2185,7 +2215,7 @@
         /**
             校验最大值
         **/
-        max: function(text, maxVal) {
+        max: function (text, maxVal) {
             if (parseFloat(text) <= parseFloat(maxVal)) {
                 return true;
             }
@@ -2199,7 +2229,7 @@
 /**
  * 校验 -core
  */
-(function(validate) {
+(function (validate) {
 
     /**
      * 根据配置校验
@@ -2230,7 +2260,7 @@
      * }
      *
      */
-    validate.validate = function(dataObj, dataConfig) {
+    validate.validate = function (dataObj, dataConfig) {
         try {
             // 循环配置（每个字段）
             for (let key in dataConfig) {
@@ -2241,7 +2271,7 @@
                 console.log("keys :", keys);
                 let tmpDataObj = dataObj;
                 //根据配置获取 数据值
-                keys.forEach(function(tmpKey) {
+                keys.forEach(function (tmpKey) {
                     console.log('tmpDataObj:', tmpDataObj);
                     tmpDataObj = tmpDataObj[tmpKey]
                 });
@@ -2250,7 +2280,7 @@
                 //                    tmpDataObj = tmpDataObj[tmpKey]
                 //                }
 
-                tmpDataConfigValue.forEach(function(configObj) {
+                tmpDataConfigValue.forEach(function (configObj) {
                     if (configObj.limit == "required") {
                         validate.setState(validate.required(tmpDataObj), configObj.errInfo);
                     }
@@ -2305,8 +2335,8 @@
 /**
  对 validate 进行二次封装
  **/
-(function(vcFramework) {
-    vcFramework.check = function(dataObj, dataConfig) {
+(function (vcFramework) {
+    vcFramework.check = function (dataObj, dataConfig) {
         return vcFramework.validate.validate(dataObj, dataConfig);
     }
 })(window.vcFramework);
@@ -2314,9 +2344,9 @@
 /**
  * 监听div 大小
  */
-(function(vcFramework) {
+(function (vcFramework) {
     vcFramework.eleResize = {
-        _handleResize: function(e) {
+        _handleResize: function (e) {
             let ele = e.target || e.srcElement;
             let trigger = ele.__resizeTrigger__;
             if (trigger) {
@@ -2332,7 +2362,7 @@
                 }
             }
         },
-        _removeHandler: function(ele, handler, context) {
+        _removeHandler: function (ele, handler, context) {
             let handlers = ele.__z_resizeListeners;
             if (handlers) {
                 let size = handlers.length;
@@ -2345,7 +2375,7 @@
                 }
             }
         },
-        _createResizeTrigger: function(ele) {
+        _createResizeTrigger: function (ele) {
             let obj = document.createElement('object');
             obj.setAttribute('style',
                 'display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;opacity: 0; pointer-events: none; z-index: -1;');
@@ -2355,13 +2385,13 @@
             obj.data = 'about:blank';
             return obj;
         },
-        _handleObjectLoad: function(evt) {
+        _handleObjectLoad: function (evt) {
             this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
             this.contentDocument.defaultView.addEventListener('resize', vcFramework.eleResize._handleResize);
         }
     };
     if (document.attachEvent) { //ie9-10
-        vcFramework.eleResize.on = function(ele, handler, context) {
+        vcFramework.eleResize.on = function (ele, handler, context) {
             let handlers = ele.__z_resizeListeners;
             if (!handlers) {
                 handlers = [];
@@ -2374,7 +2404,7 @@
                 context: context
             });
         };
-        vcFramework.eleResize.off = function(ele, handler, context) {
+        vcFramework.eleResize.off = function (ele, handler, context) {
             let handlers = ele.__z_resizeListeners;
             if (handlers) {
                 EleResize._removeHandler(ele, handler, context);
@@ -2385,7 +2415,7 @@
             }
         }
     } else {
-        vcFramework.eleResize.on = function(ele, handler, context) {
+        vcFramework.eleResize.on = function (ele, handler, context) {
             let handlers = ele.__z_resizeListeners;
             if (!handlers) {
                 handlers = [];
@@ -2402,7 +2432,7 @@
                 context: context
             });
         };
-        vcFramework.eleResize.off = function(ele, handler, context) {
+        vcFramework.eleResize.off = function (ele, handler, context) {
             let handlers = ele.__z_resizeListeners;
             if (handlers) {
                 vcFramework.eleResize._removeHandler(ele, handler, context);
@@ -2421,7 +2451,7 @@
 })(window.vcFramework);
 
 //全屏处理 这个后面可以关掉
-(function(vcFramework) {
+(function (vcFramework) {
     vcFramework._fix_height = (_targetDiv) => {
         //只要窗口高度发生变化，就会进入这里面，在这里就可以写，回到聊天最底部的逻辑
         let _vcPageHeight = document.getElementsByClassName('vc-page-height')[0];
@@ -2439,7 +2469,7 @@
 /**
  * 权限处理
  */
-(function(vcFramework) {
+(function (vcFramework) {
     let _staffPrivilege = vc.getData('hc_staff_privilege');
     if (_staffPrivilege == null) {
         _staffPrivilege = [];
@@ -2453,11 +2483,11 @@
 
 //图片压缩处理
 
-(function(vcFramework) {
-    vcFramework.translate = function(imgSrc, callback) {
+(function (vcFramework) {
+    vcFramework.translate = function (imgSrc, callback) {
         var img = new Image();
         img.src = imgSrc;
-        img.onload = function() {
+        img.onload = function () {
             var that = this;
             var h = that.height;
             // 默认按比例压缩
@@ -2497,8 +2527,8 @@
  * 水印处理
  */
 
-(function(vcFramework) {
-    vcFramework.watermark = function(settings) {
+(function (vcFramework) {
+    vcFramework.watermark = function (settings) {
         //默认设置
         var defaultSettings = {
             watermark_txt: "text",
@@ -2592,8 +2622,8 @@
 })(window.vcFramework);
 
 //解决 toFixed bug 问题
-(function(vcFramework) {
-    Number.prototype.toFixed = function(d) {
+(function (vcFramework) {
+    Number.prototype.toFixed = function (d) {
         var s = this + "";
         if (!d) d = 0;
         if (s.indexOf(".") == -1) s += ".";
@@ -2625,9 +2655,9 @@
     }
 })(window.vcFramework);
 
-(function(vcFramework) {
+(function (vcFramework) {
 
-    vcFramework.getPageRouteFromLocal = function() {
+    vcFramework.getPageRouteFromLocal = function () {
         let routesStr = window.localStorage.getItem('vcPageRoute');
 
         let routes = [];
@@ -2641,7 +2671,7 @@
         return routes;
     }
 
-    vcFramework.setPageRouteToLocal = function(_obj) {
+    vcFramework.setPageRouteToLocal = function (_obj) {
         let routes = vcFramework.getPageRouteFromLocal();
 
         //判断是否已经有 如果有则删除
@@ -2663,13 +2693,13 @@
         window.localStorage.setItem('vcPageRoute', JSON.stringify(routes));
     }
 
-    vcFramework.deletePageRouteToLocal = function() {
+    vcFramework.deletePageRouteToLocal = function () {
         let routes = vcFramework.getPageRouteFromLocal();
         routes.pop();
         window.localStorage.setItem('vcPageRoute', JSON.stringify(routes));
     }
 
-    vcFramework.recoverComponentByPageRoute = function() {
+    vcFramework.recoverComponentByPageRoute = function () {
         let _hash = location.hash;
 
         let routes = vcFramework.getPageRouteFromLocal();
@@ -2703,7 +2733,7 @@
      * }
      * }
      */
-    vcFramework.saveComponentToPageRoute = function() {
+    vcFramework.saveComponentToPageRoute = function () {
         let _component = vcFramework.component;
         let _hash = location.hash;
 
@@ -2725,13 +2755,13 @@
         vcFramework.setPageRouteToLocal(_pageData);
     }
 
-    document.addEventListener('initVcFrameworkFinish', function(e) {
+    document.addEventListener('initVcFrameworkFinish', function (e) {
         //寻找当前页面是否在路由中 如果有恢复下数据，并做弹出
         vcFramework.recoverComponentByPageRoute();
     }, false);
 
 
-    vcFramework.getTabFromLocal = function() {
+    vcFramework.getTabFromLocal = function () {
         let tabStr = window.sessionStorage.getItem('vcTab');
 
         let tabs = [];
@@ -2745,7 +2775,7 @@
         return tabs;
     }
 
-    vcFramework.setTabToLocal = function(_obj) {
+    vcFramework.setTabToLocal = function (_obj) {
         let tabs = vcFramework.getTabFromLocal();
 
         //判断是否已经有 如果有则删除
@@ -2762,7 +2792,7 @@
         window.sessionStorage.setItem('vcTab', JSON.stringify(tabs));
     }
 
-    vcFramework.deleteTabToLocal = function(_obj) {
+    vcFramework.deleteTabToLocal = function (_obj) {
         let tabs = vcFramework.getTabFromLocal();
         for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
             _tmpTab = tabs[tabIndex];
