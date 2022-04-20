@@ -1,5 +1,4 @@
-<div id="editRoomModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div id="editRoomModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -9,19 +8,16 @@
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">房屋ID</label>
-                                <div class="col-sm-10"><input v-model="editRoomInfo.roomId" disabled="disabled"
-                                        type="text" placeholder="必填，请填写房屋编号" class="form-control">
+                                <div class="col-sm-10"><input v-model="editRoomInfo.roomId" disabled="disabled" type="text" placeholder="必填，请填写房屋编号" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">房屋编号</label>
-                                <div class="col-sm-10"><input v-model="editRoomInfo.roomNum" type="text"
-                                        placeholder="必填，请填写房屋编号" class="form-control"></div>
+                                <div class="col-sm-10"><input v-model="editRoomInfo.roomNum" type="text" placeholder="必填，请填写房屋编号" class="form-control"></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">房屋楼层</label>
-                                <div class="col-sm-10"><input v-model="editRoomInfo.layer" type="number"
-                                        placeholder="必填，请填写房屋楼层" class="form-control"></div>
+                                <div class="col-sm-10"><input v-model="editRoomInfo.layer" type="number" placeholder="必填，请填写房屋楼层" class="form-control"></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">房屋单元</label>
@@ -77,27 +73,23 @@
                             <div class="form-group row" v-if="editRoomInfo.roomSubType != '110'">
                                 <label class="col-sm-2 col-form-label">租金</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editRoomInfo.roomRent" type="text" placeholder="必填，请填写租金"
-                                        class="form-control">
+                                    <input v-model="editRoomInfo.roomRent" type="text" placeholder="必填，请填写租金" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">建筑面积</label>
-                                <div class="col-sm-10"><input v-model="editRoomInfo.builtUpArea" type="number"
-                                        placeholder="必填，请填写房屋建筑面积! 平方" class="form-control"></div>
+                                <div class="col-sm-10"><input v-model="editRoomInfo.builtUpArea" type="number" placeholder="必填，请填写房屋建筑面积! 平方" class="form-control"></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">室内面积(平方)</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editRoomInfo.roomArea" type="text" placeholder="必填，请填写室内面积! 平方"
-                                        class="form-control">
+                                    <input v-model="editRoomInfo.roomArea" type="text" placeholder="必填，请填写室内面积! 平方" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">算费系数</label>
-                                <div class="col-sm-10"><input v-model="editRoomInfo.feeCoefficient" type="text"
-                                        placeholder="请填写算费系数" class="form-control"></div>
+                                <div class="col-sm-10"><input v-model="editRoomInfo.feeCoefficient" type="text" placeholder="请填写算费系数" class="form-control"></div>
                             </div>
                             <div class="form-group row" v-if="editRoomInfo.state != '2002'">
                                 <label class="col-sm-2 col-form-label">房屋状态</label>
@@ -108,7 +100,8 @@
                                         <option value="2003">已交房</option>
                                         <option value="2005">已装修</option>
                                         <option value="2004">未入住</option>
-                                        <option value="2006">已出租</option>
+                                        <!--wuxw 关闭  这里和后端对不上 后端要求提供开始时间和结束时间 前段 没有这个选项，不清楚什么场景下的需求，后面的兄弟记得补充-->
+                                        <!-- <option value="2006">已出租</option> -->
                                         <option value="2008">空闲</option>
                                         <option value="2009">装修中</option>
                                     </select>
@@ -118,8 +111,7 @@
                                 <div class="form-group row" v-if="item.specType == '2233'">
                                     <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                                     <div class="col-sm-10">
-                                        <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
-                                            class="form-control">
+                                        <input v-model="item.value" type="text" :placeholder="item.specHoldplace" class="form-control">
                                     </div>
                                 </div>
 
@@ -139,15 +131,13 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">备注</label>
-                                <div class="col-sm-10"><input v-model="editRoomInfo.remark" type="text"
-                                        placeholder="请填写备注信息" class="form-control"></div>
+                                <div class="col-sm-10"><input v-model="editRoomInfo.remark" type="text" placeholder="请填写备注信息" class="form-control"></div>
                             </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="editRoom()"><i
                                         class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消
                                 </button>
                             </div>
                         </div>
