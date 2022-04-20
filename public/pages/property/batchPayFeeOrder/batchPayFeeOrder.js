@@ -68,7 +68,7 @@
                         if (!_fees || _fees.length < 1) {
                             return;
                         }
-                        $that.batchPayFeeOrderInfo.batchFees = _fees;
+                        $that.batchPayFeeOrderInfo.batchFees = _fees.sort($that._batchRoomFeeCompare);
                         $that.batchPayFeeOrderInfo.selectPayFeeIds = [];
                         $that.batchPayFeeOrderInfo.batchFees.forEach(item => {
                             $that.batchPayFeeOrderInfo.selectPayFeeIds.push(item.feeId);
@@ -91,6 +91,17 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _batchRoomFeeCompare:function(a,b){
+                var val1 = a.payerObjName;
+                var val2 = b.payerObjName;
+                if (val1 < val2) {
+                    return -1;
+                } else if (val1 > val2) {
+                    return 1;
+                } else {
+                    return 0;
+                }      
             },
             _pushPayObjs: function() {
                 let _allBatchFees = $that.batchPayFeeOrderInfo.allBatchFees;
