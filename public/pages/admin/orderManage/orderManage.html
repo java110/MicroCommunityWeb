@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="orderManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,16 +12,16 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="订单编号"
+                                <input type="text" :placeholder="vc.i18n('订单编号','orderManage')"
                                        v-model="orderManageInfo.conditions.oId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="orderManageInfo.conditions.orderTypeCd">
-                                    <option value="">请选择订单类型</option>
-                                    <option value="Q">查询单</option>
-                                    <option value="D">受理单</option>
+                                    <option value=""><vc:i18n name="请选择订单类型" namespace="orderManage"></vc:i18n></option>
+                                    <option value="Q"><vc:i18n name="查询单" namespace="orderManage"></vc:i18n></option>
+                                    <option value="D"><vc:i18n name="受理单" namespace="orderManage"></vc:i18n></option>
                                 </select>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryOrdersMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="orderManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>受理单信息</h5>
+                    <h5><vc:i18n name="受理单信息" namespace="orderManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
@@ -58,13 +58,13 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">应用名称</th>
-                            <th class="text-center">业务名称</th>
-                            <th class="text-center">订单编号</th>
-                            <th class="text-center">外部编号</th>
-                            <th class="text-center">受理时间</th>
-                            <th class="text-center">操作人</th>
-                            <th class="text-center">状态</th>
+                            <th class="text-center"><vc:i18n name="应用名称" namespace="orderManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="业务名称" namespace="orderManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="订单编号" namespace="orderManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="外部编号" namespace="orderManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="受理时间" namespace="orderManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作人" namespace="orderManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="状态" namespace="orderManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>

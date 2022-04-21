@@ -2,17 +2,17 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">入库数量</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="入库数量" namespace="addResourceQuantity"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">数量</label>
-                                <div class="col-sm-10"><input v-model="addResourceEnterQuantityInfo.enterQuantity" type="text" placeholder="必填，请填写入库数量" class="form-control"></div>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="数量" namespace="addResourceQuantity"></vc:i18n></label>
+                                <div class="col-sm-10"><input v-model="addResourceEnterQuantityInfo.enterQuantity" type="text" :placeholder="vc.i18n('必填，请填写入库数量','addResourceQuantity')" class="form-control"></div>
                             </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="saveResourceEnterQuantityInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="addResourceQuantity"></vc:i18n></button>
                             </div>
                         </div>
                     </div>

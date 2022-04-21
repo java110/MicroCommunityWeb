@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="attrValueManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,29 +11,29 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入值" v-model="attrValueManageInfo.conditions.value"
+                                <input type="text" :placeholder="vc.i18n('请输入值','attrValueManage')" v-model="attrValueManageInfo.conditions.value"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="attrValueManageInfo.conditions.valueShow">
-                                <option selected disabled value="">请选择显示</option>
-                                <option value="Y">是</option>
-                                <option value="N">否</option>
+                                <option selected disabled value=""><vc:i18n name="请选择显示" namespace="attrValueManage"></vc:i18n></option>
+                                <option value="Y"><vc:i18n name="是" namespace="attrValueManage"></vc:i18n></option>
+                                <option value="N"><vc:i18n name="否" namespace="attrValueManage"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入值名称"
+                                <input type="text" :placeholder="vc.i18n('请输入值名称','attrValueManage')"
                                        v-model="attrValueManageInfo.conditions.valueName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAttrValueMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="attrValueManage"></vc:i18n>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAttrValueMethod()">
-                                <i class="fa fa-repeat"></i> 重置
+                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="attrValueManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -45,10 +45,10 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>属性值</h5>
+                    <h5><vc:i18n name="属性值" namespace="attrValueManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddAttrValueModal()">
-                            <i class="fa fa-plus"></i>添加
+                            <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="attrValueManage"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -56,11 +56,11 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">值名称</th>
-                            <th class="text-center">值</th>
-                            <th class="text-center">值ID</th>
-                            <th class="text-center">显示</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="值名称" namespace="attrValueManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="值" namespace="attrValueManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="值" namespace="attrValueManage"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="显示" namespace="attrValueManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="attrValueManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,12 +72,12 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditAttrValueModel(attrValue)">修改
+                                            v-on:click="_openEditAttrValueModel(attrValue)"><vc:i18n name="修改" namespace="attrValueManage"></vc:i18n>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteAttrValueModel(attrValue)">删除
+                                            v-on:click="_openDeleteAttrValueModel(attrValue)"><vc:i18n name="删除" namespace="attrValueManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="reportOwnerPayFee"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         
                     </div>
@@ -14,7 +14,7 @@
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportOwnerPayFeeInfo.conditions.feeTypeCd"
                                 @click="_changeReporficientFeeTypeCd()">
-                                <option selected value="">请选择收费大类</option>
+                                <option selected value=""><vc:i18n name="请选择收费大类" namespace="reportOwnerPayFee"></vc:i18n></option>
                                 <option v-for="(item,index) in reportOwnerPayFeeInfo.feeTypeCds" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -25,7 +25,7 @@
                                 <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
                                     v-model="reportOwnerPayFeeInfo.conditions.configId">
-                                    <option selected value="">请选择收费项</option>
+                                    <option selected value=""><vc:i18n name="请选择收费项" namespace="reportOwnerPayFee"></vc:i18n></option>
                                     <option v-for="(item,index) in reportOwnerPayFeeInfo.feeConfigDtos" :key="index"
                                         :value="item.configId">
                                         {{item.feeName}}
@@ -37,13 +37,13 @@
                             <div class="form-group">
                                 <input type="text"
                                     class="form-control form-control-md"
-                                    placeholder="请填写房屋编号"
+                                    :placeholder="vc.i18n('请填写房屋编号','reportOwnerPayFee')"
                                     v-model="reportOwnerPayFeeInfo.conditions.roomName">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()"><i
-                                    class="fa fa-search"></i>查询
+                                    class="fa fa-search"></i><vc:i18n name="查询" namespace="reportOwnerPayFee"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -52,14 +52,14 @@
                         <div class="col-sm-3">
                             <input type="text"
                                     class="form-control form-control-md"
-                                    placeholder="请填写年份"
+                                    :placeholder="vc.i18n('请填写年份','reportOwnerPayFee')"
                                     v-model="reportOwnerPayFeeInfo.conditions.pfYear">
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text"
                                     class="form-control form-control-md"
-                                    placeholder="请填写业主名称"
+                                    :placeholder="vc.i18n('请填写业主名称','reportOwnerPayFee')"
                                     v-model="reportOwnerPayFeeInfo.conditions.ownerName">
                             </div>
                         </div>
@@ -72,10 +72,10 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>业主缴费明细</h5>
+                    <h5><vc:i18n name="业主缴费明细" namespace="reportOwnerPayFee"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
-                            <i class="fa fa-plus"></i> 导出
+                            <i class="fa fa-plus"></i> <vc:i18n name="导出" namespace="reportOwnerPayFee"></vc:i18n>
                         </button> -->
                     </div>
                 </div>
@@ -83,9 +83,9 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">业主</th>
-                            <th class="text-center">房屋</th>
-                            <th class="text-center">费用项目</th>
+                            <th class="text-center"><vc:i18n name="业主" namespace="reportOwnerPayFee"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="房屋" namespace="reportOwnerPayFee"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="费用项目" namespace="reportOwnerPayFee"></vc:i18n></th>
                             <th class="text-center">1月</th>
                             <th class="text-center">2月</th>
                             <th class="text-center">3月</th>
@@ -98,9 +98,9 @@
                             <th class="text-center">10月</th>
                             <th class="text-center">11月</th>
                             <th class="text-center">12月</th>
-                            <th class="text-center">合计</th>
-                            <th class="text-center">应收</th>
-                            <th class="text-center">预收</th>
+                            <th class="text-center"><vc:i18n name="合计" namespace="reportOwnerPayFee"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="应收" namespace="reportOwnerPayFee"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="预收" namespace="reportOwnerPayFee"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>

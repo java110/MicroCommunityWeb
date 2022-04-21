@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="serviceProvideManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">{{serviceProvideManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -14,36 +14,36 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入提供ID"
+                                <input type="text" :placeholder="vc.i18n('请输入提供','serviceProvideManage')ID"
                                        v-model="serviceProvideManageInfo.conditions.id" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入服务编码"
+                                <input type="text" :placeholder="vc.i18n('请输入服务编码','serviceProvideManage')"
                                        v-model="serviceProvideManageInfo.conditions.serviceCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入服务名称"
+                                <input type="text" :placeholder="vc.i18n('请输入服务名称','serviceProvideManage')"
                                        v-model="serviceProvideManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryServiceProvideMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="serviceProvideManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4" v-if="serviceProvideManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="serviceProvideManageInfo.conditions.queryModel">
-                                <option selected value="">请选择实现方式</option>
+                                <option selected value=""><vc:i18n name="请选择实现方式" namespace="serviceProvideManage"></vc:i18n></option>
                                 <option value="1">sql方式</option>
                                 <option value="3">java方式</option>
-                                <option value="2">存储过程方式</option>
+                                <option value="2"><vc:i18n name="存储过程方式" namespace="serviceProvideManage"></vc:i18n></option>
                             </select></div>
                     </div>
 
@@ -56,7 +56,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>服务提供信息</h5>
+                    <h5><vc:i18n name="服务提供信息" namespace="serviceProvideManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddServiceProvideModal()">
                             <i class="fa fa-plus"></i>
@@ -71,12 +71,12 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">提供ID</th>
-                            <th class="text-center">服务名称</th>
-                            <th class="text-center">服务编码</th>
-                            <th class="text-center">参数</th>
-                            <th class="text-center">实现方式</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="提供" namespace="serviceProvideManage"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="服务名称" namespace="serviceProvideManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="服务编码" namespace="serviceProvideManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="参数" namespace="serviceProvideManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="实现方式" namespace="serviceProvideManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="serviceProvideManage"></vc:i18n></th>
 
 
                         </tr>
@@ -91,12 +91,12 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditServiceProvideModel(serviceProvide)">修改
+                                            v-on:click="_openEditServiceProvideModel(serviceProvide)"><vc:i18n name="修改" namespace="serviceProvideManage"></vc:i18n>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteServiceProvideModel(serviceProvide)">删除
+                                            v-on:click="_openDeleteServiceProvideModel(serviceProvide)"><vc:i18n name="删除" namespace="serviceProvideManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

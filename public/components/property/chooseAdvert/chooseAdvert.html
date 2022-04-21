@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseAdvertModelLabel">选择发布广告</h3>
+                <h3 class="modal-title" id="chooseAdvertModelLabel"><vc:i18n name="选择发布广告" namespace="chooseAdvert"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')vc.i18n(' ','chooseAdvert')<divvc.i18n(' ','chooseAdvert')class="vc.i18n(' ','chooseAdvert')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入发布广告名称" type="text" v-model="chooseAdvertInfo._currentAdvertName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入发布广告名称','chooseAdvert')" type="text" v-model="chooseAdvertInfo._currentAdvertName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryAdverts()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryAdverts()"><vc:i18n name="查询" namespace="chooseAdvert"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,17 +28,17 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">广告ID</th>
-                            <th class="text-center">广告名称</th>
-                            <th class="text-center">广告类型</th>
-                            <th class="text-center">广告分类</th>
-                            <th class="text-center">投放位置</th>
-                            <th class="text-center">具体位置</th>
-                            <th class="text-center">广告状态</th>
-                            <th class="text-center">播放顺序</th>
-                            <th class="text-center">投放时间</th>
-                            <th class="text-center">结束时间</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><vc:i18n name="广告" namespace="chooseAdvert"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="广告名称" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="广告类型" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="广告分类" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投放位置" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="具体位置" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="广告状态" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="播放顺序" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投放时间" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="结束时间" namespace="chooseAdvert"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="chooseAdvert"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -56,7 +56,7 @@
                             <td class="text-center">{{advert.endTime}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseAdvert(advert)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseAdvert(advert)"><vc:i18n name="选择" namespace="chooseAdvert"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -7,11 +7,14 @@
         <div class="col-md-10 margin-bottom">
             <div class="row margin-top-xs bg-white">
 
-                <div class="col-md-1 text-center margin-sm padding-xs" title="双击查看详情" @dblclick="_toSimplifyAcceptance(room)" v-for="(room,index) in roomStructureInfo.rooms" :style="{'background-color': _getBgColor(room)}" style="color: #fff;border-radius: 5px;cursor:pointer">
+                <div class="col-md-1 text-center margin-sm padding-xs" :title="vc.i18n('双击查看详情','roomStructure')" @dblclick="_toSimplifyAcceptance(room)" v-for="(room,index) in roomStructureInfo.rooms" :style="{'background-color': _getBgColor(room)}" style="color: #fff;border-radius: 5px;cursor:pointer">
                     <div>{{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}</div>
                     <div>{{room.stateName}}</div>
                     <div>{{room.ownerName?room.ownerName:'无'}}</div>
-                    <div>欠费：{{room.oweAmount}}元</div>
+                    <div>
+                        <vc:i18n name="欠费" namespace="roomStructure"></vc:i18n>：{{room.oweAmount}}
+                        <vc:i18n name="元" namespace="roomStructure"></vc:i18n>
+                    </div>
                 </div>
             </div>
         </div>

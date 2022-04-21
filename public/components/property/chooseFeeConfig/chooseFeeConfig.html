@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseFeeConfigModelLabel">选择费用项</h3>
+                <h3 class="modal-title" id="chooseFeeConfigModelLabel"><vc:i18n name="选择费用项" namespace="chooseFeeConfig"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')vc.i18n(' ','chooseFeeConfig')<divvc.i18n(' ','chooseFeeConfig')class="vc.i18n(' ','chooseFeeConfig')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入费用项名称" type="text" v-model="chooseFeeConfigInfo._currentFeeConfigName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入费用项名称','chooseFeeConfig')" type="text" v-model="chooseFeeConfigInfo._currentFeeConfigName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryFeeConfigs()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryFeeConfigs()"><vc:i18n name="查询" namespace="chooseFeeConfig"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,16 +28,16 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">费用项ID</th>
-                            <th class="text-center">费用类型</th>
-                            <th class="text-center">收费项目</th>
-                            <th class="text-center">费用标识</th>
-                            <th class="text-center">计费起始时间</th>
-                            <th class="text-center">计费终止时间</th>
-                            <th class="text-center">计算公式</th>
-                            <th class="text-center">计费单价</th>
-                            <th class="text-center">附加费用</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><vc:i18n name="费用项" namespace="chooseFeeConfig"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="费用类型" namespace="chooseFeeConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="收费项目" namespace="chooseFeeConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="费用标识" namespace="chooseFeeConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="计费起始时间" namespace="chooseFeeConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="计费终止时间" namespace="chooseFeeConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="计算公式" namespace="chooseFeeConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="计费单价" namespace="chooseFeeConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="附加费用" namespace="chooseFeeConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="chooseFeeConfig"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -54,7 +54,7 @@
                             <td class="text-center">{{feeConfig.additionalAmount}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseFeeConfig(feeConfig)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseFeeConfig(feeConfig)"><vc:i18n name="选择" namespace="chooseFeeConfig"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

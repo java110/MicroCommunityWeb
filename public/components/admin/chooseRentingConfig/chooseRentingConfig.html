@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseRentingConfigModelLabel">选择租聘设置</h3>
+                <h3 class="modal-title" id="chooseRentingConfigModelLabel"><vc:i18n name="选择租聘设置" namespace="chooseRentingConfig"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')vc.i18n(' ','chooseRentingConfig')<divvc.i18n(' ','chooseRentingConfig')class="vc.i18n(' ','chooseRentingConfig')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入租聘设置名称" type="text" v-model="chooseRentingConfigInfo._currentRentingConfigName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入租聘设置名称','chooseRentingConfig')" type="text" v-model="chooseRentingConfigInfo._currentRentingConfigName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryRentingConfigs()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryRentingConfigs()"><vc:i18n name="查询" namespace="chooseRentingConfig"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,16 +28,16 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">配置ID</th>
-                            <th class="text-center">租聘类型</th>
-                            <th class="text-center">收费公式</th>
-                            <th class="text-center">服务费</th>
-                            <th class="text-center">业主收费比率</th>
-                            <th class="text-center">租客收费比率</th>
-                            <th class="text-center">运营分账比率</th>
-                            <th class="text-center">代理商分账比率</th>
-                            <th class="text-center">物业分账比率</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><vc:i18n name="配置" namespace="chooseRentingConfig"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="租聘类型" namespace="chooseRentingConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="收费公式" namespace="chooseRentingConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="服务费" namespace="chooseRentingConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="业主收费比率" namespace="chooseRentingConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="租客收费比率" namespace="chooseRentingConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="运营分账比率" namespace="chooseRentingConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="代理商分账比率" namespace="chooseRentingConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="物业分账比率" namespace="chooseRentingConfig"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="chooseRentingConfig"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -54,7 +54,7 @@
                             <td class="text-center">{{rentingConfig.propertySeparateRate}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseRentingConfig(rentingConfig)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseRentingConfig(rentingConfig)"><vc:i18n name="选择" namespace="chooseRentingConfig"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

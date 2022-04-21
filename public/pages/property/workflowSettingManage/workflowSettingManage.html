@@ -2,34 +2,34 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>流程设置</h5>
+                <h5><vc:i18n name="流程设置" namespace="workflowSettingManage"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">流程名称</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="流程名称" namespace="workflowSettingManage"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <input v-model="workflowSettingInfo.flowName" type="text" disabled="disabled" placeholder="必填，请填写标题" class="form-control">
+                        <input v-model="workflowSettingInfo.flowName" type="text" disabled="disabled" :placeholder="vc.i18n('必填','workflowSettingManage')，请填写标题" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">流程说明</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="流程说明" namespace="workflowSettingManage"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <textarea v-model="workflowSettingInfo.describle" class="form-control" placeholder="选填，请填写流程说明"></textarea>
+                        <textarea v-model="workflowSettingInfo.describle" class="form-control" :placeholder="vc.i18n('选填','workflowSettingManage')，请填写流程说明"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">流程步骤</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="流程步骤" namespace="workflowSettingManage"></vc:i18n></label>
                     <div class="col-sm-10">
                         <div class="row " style="margin-left: 0px;">
-                            <button type="button" class="btn btn-primary" @click="addWorkflowStep()">添加步骤</button>
+                            <button type="button" class="btn btn-primary" @click="addWorkflowStep()"><vc:i18n name="添加步骤" namespace="workflowSettingManage"></vc:i18n></button>
                         </div>
                         <div v-for="(item,index) in workflowSettingInfo.steps">
                             <div class="row margin-0 margin-top">
                                 <div class="col-sm-1 text-center">
-                                    <label class="col-form-label">第{{index+1}}步</label>
+                                    <label class="col-form-label"><vc:i18n name="第" namespace="workflowSettingManage"></vc:i18n>{{index+1}}<vc:i18n name="步" namespace="workflowSettingManage"></vc:i18n></label>
                                 </div>
                                 <div>
                                     <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;" @click="chooseStaff(item)">
@@ -80,10 +80,10 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-link" @click="deleteStep(item)">删除步骤</button>
+                                    <button type="button" class="btn btn-link" @click="deleteStep(item)"><vc:i18n name="删除步骤" namespace="workflowSettingManage"></vc:i18n></button>
                                 </div>
                                 <div v-if="item.type == '1'">
-                                    <button type="button" class="btn btn-link" @click="addStaff(item)">添加员工</button>
+                                    <button type="button" class="btn btn-link" @click="addStaff(item)"><vc:i18n name="添加员工" namespace="workflowSettingManage"></vc:i18n></button>
                                 </div>
                             </div>
                             <div class="row margin-0 margin-top" v-for="(subItem,index) in item.subStaff">
@@ -96,7 +96,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-link" @click="deleteStaff(item,subItem)">删除员工</button>
+                                    <button type="button" class="btn btn-link" @click="deleteStaff(item,subItem)"><vc:i18n name="删除员工" namespace="workflowSettingManage"></vc:i18n></button>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                     <button class="btn btn-primary float-right" type="button" v-on:click="saveWorkflowSettingInfo()"><i
                             class="fa fa-check"></i>&nbsp;提交
                     </button>
-                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_goBack()">返回
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_goBack()"><vc:i18n name="返回" namespace="workflowSettingManage"></vc:i18n>
                     </button>
                 </div>
 
@@ -121,7 +121,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>说明</h5>
+                <h5><vc:i18n name="说明" namespace="workflowSettingManage"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>

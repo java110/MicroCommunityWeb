@@ -8,12 +8,12 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>权限ID</th>
-                            <th data-hide="phone">权限名称</th>
-                            <th data-hide="phone">隶属权限组ID</th>
-                            <th data-hide="phone,tablet" >隶属权限组名称</th>
-                            <th data-hide="phone">状态</th>
-                            <th class="text-right">操作</th>
+                            <th><vc:i18n name="权限" namespace="staffPrivilege"></vc:i18n>ID</th>
+                            <th data-hide="phone"><vc:i18n name="权限名称" namespace="staffPrivilege"></vc:i18n></th>
+                            <th data-hide="phone"><vc:i18n name="隶属权限组" namespace="staffPrivilege"></vc:i18n>ID</th>
+                            <th data-hide="phone,tablet" ><vc:i18n name="隶属权限组名称" namespace="staffPrivilege"></vc:i18n></th>
+                            <th data-hide="phone"><vc:i18n name="状态" namespace="staffPrivilege"></vc:i18n></th>
+                            <th class="text-right"><vc:i18n name="操作" namespace="staffPrivilege"></vc:i18n></th>
 
                         </tr>
                         </thead>
@@ -32,11 +32,11 @@
                                     {{privilege.pgName}}
                                 </td>
                                 <td>
-                                    <span class="label label-primary">在用</span>
+                                    <span class="label label-primary"><vc:i18n name="在用" namespace="staffPrivilege"></vc:i18n></span>
                                 </td>
                                 <td      class="text-right">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteStaffPrivilegeModel(privilege)">删除</button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteStaffPrivilegeModel(privilege)"><vc:i18n name="删除" namespace="staffPrivilege"></vc:i18n></button>
                                     </div>
                                 </td>
                             </tr>

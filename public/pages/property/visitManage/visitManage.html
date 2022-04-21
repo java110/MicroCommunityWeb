@@ -3,10 +3,10 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>访客信息</h5>
+                    <h5><vc:i18n name="访客信息" namespace="visitManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddVisitModal()">
-                            <i class="fa fa-plus"></i>登记
+                            <i class="fa fa-plus"></i><vc:i18n name="登记" namespace="visitManage"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -14,20 +14,20 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写来访人姓名" class="form-control"
+                                <input type="text" :placeholder="vc.i18n('请填写来访人姓名','visitManage')" class="form-control"
                                        v-model="appManageInfo.conditions.vName">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择来访开始时间"
+                                <input type="text" :placeholder="vc.i18n('请选择来访开始时间','visitManage')"
                                        v-model="appManageInfo.conditions.visitStartTime"
                                        class=" form-control visitStartTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" placeholder="请选择来访结束时间"
+                                <input type="text" :placeholder="vc.i18n('请选择来访结束时间','visitManage')"
                                        v-model="appManageInfo.conditions.visitEndTime"
                                        class=" form-control visitEndTime">
                             </div>
@@ -35,11 +35,11 @@
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryAppManageInfoMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="visitManage"></vc:i18n>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_resetAppManageInfoMethod()">
-                                <i class="fa fa-repeat"></i> 重置
+                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="visitManage"></vc:i18n>
                             </button>
                             <div class="ibox-tools" style="top:0px;">
                                 <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
@@ -52,7 +52,7 @@
                     <div class="row" v-show="appManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写访客联系方式" class="form-control"
+                                <input type="text" :placeholder="vc.i18n('请填写访客联系方式','visitManage')" class="form-control"
                                        v-model="appManageInfo.conditions.phoneNumber">
                             </div>
                         </div>
@@ -62,18 +62,18 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">访客ID</th>
-                            <th class="text-center">访客姓名</th>
-                            <th class="text-center">访客联系方式</th>
-                            <th class="text-center">访客性别</th>
-                            <th class="text-center">来访事由</th>
-                            <th class="text-center">事由类型</th>
-                            <th class="text-center">车牌号</th>
-                            <th class="text-center">随行人数</th>
-                            <th class="text-center">来访时间</th>
-                            <th class="text-center">离开时间</th>
-                            <th class="text-center">状态</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="访客" namespace="visitManage"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="访客姓名" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="访客联系方式" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="访客性别" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="来访事由" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="事由类型" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="车牌号" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="随行人数" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="来访时间" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="离开时间" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="状态" namespace="visitManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="visitManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -93,15 +93,15 @@
                             <td class="text-center">{{visit.stateName}}</td>
                             <td class="text-center">
                                 <div class="btn-group" v-if="visit.state == '0'">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openExamineVisitModel(visit)">车辆审核
+                                    <button class="btn-white btn btn-xs" v-on:click="_openExamineVisitModel(visit)"><vc:i18n name="车辆审核" namespace="visitManage"></vc:i18n>
                                     </button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditVisitModel(visit)">修改
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditVisitModel(visit)"><vc:i18n name="修改" namespace="visitManage"></vc:i18n>
                                     </button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteAppModel(visit)">删除
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteAppModel(visit)"><vc:i18n name="删除" namespace="visitManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

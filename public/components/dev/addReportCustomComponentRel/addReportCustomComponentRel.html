@@ -3,28 +3,28 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>关联</h5>
+                <h5><vc:i18n name="关联" namespace="addReportCustomComponentRel"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">组件</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="组件" namespace="addReportCustomComponentRel"></vc:i18n></label>
                     <div class="col-sm-8">
                         <input v-model="addReportCustomComponentRelInfo.name" disabled type="text"
-                            placeholder="必填，请填写组件ID" class="form-control">
+                            :placeholder="vc.i18n('必填，请填写组件','addReportCustomComponentRel')ID" class="form-control">
                     </div>
                     <div class="col-sm-2">
                         <button class="btn btn-primary float-right" type="button"
-                        v-on:click="chooseReportComponent()">选择组件</button>
+                        v-on:click="chooseReportComponent()"><vc:i18n name="选择组件" namespace="addReportCustomComponentRel"></vc:i18n></button>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">组件序号</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="组件序号" namespace="addReportCustomComponentRel"></vc:i18n></label>
                     <div class="col-sm-10">
                         <input v-model="addReportCustomComponentRelInfo.seq" type="text"
-                            placeholder="必填，请填写组件序号" class="form-control">
+                            :placeholder="vc.i18n('必填，请填写组件序号','addReportCustomComponentRel')" class="form-control">
                     </div>
                    
                 </div>
@@ -34,7 +34,7 @@
                         v-on:click="saveReportCustomComponentRelInfo()"><i
                             class="fa fa-check"></i>&nbsp;保存</button>
                     <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                    v-on:click="_closeAddReportCustomComponentRelInfo()">取消</button>
+                    v-on:click="_closeAddReportCustomComponentRelInfo()"><vc:i18n name="取消" namespace="addReportCustomComponentRel"></vc:i18n></button>
                 </div>
             </div>
         </div>

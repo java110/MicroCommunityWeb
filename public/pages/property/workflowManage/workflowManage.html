@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="workflowManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                             v-on:click="_moreCondition()">{{workflowManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -14,33 +14,33 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入流程名称" v-model="workflowManageInfo.conditions.flowName"
+                                <input type="text" :placeholder="vc.i18n('请输入流程名称','workflowManage')" v-model="workflowManageInfo.conditions.flowName"
                                     class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="workflowManageInfo.conditions.flowType">
-                                <option selected value="">请选择流程</option>
+                                <option selected value=""><vc:i18n name="请选择流程" namespace="workflowManage"></vc:i18n></option>
                                 <option v-for="(item,index) in workflowManageInfo.flowTypes" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
                                 </option>
                             </select></div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入流程编码"
+                                <input type="text" :placeholder="vc.i18n('请输入流程编码','workflowManage')"
                                     v-model="workflowManageInfo.conditions.flowId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryWorkflowMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="workflowManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4" v-if="workflowManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入信息ID"
+                                <input type="text" :placeholder="vc.i18n('请输入信息','workflowManage')ID"
                                     v-model="workflowManageInfo.conditions.workflowId" class=" form-control">
                             </div>
                         </div>
@@ -55,19 +55,19 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>流程信息</h5>
+                    <h5><vc:i18n name="流程信息" namespace="workflowManage"></vc:i18n></h5>
                 </div>
                 <div class="ibox-content">
 
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <!-- <th class="text-center">信息ID</th> -->
-                                <th class="text-center">流程名称</th>
-                                <th class="text-center">流程类型</th>
-                                <th class="text-center">流程编码</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-right">操作</th>
+                                <!-- <th class="text-center"><vc:i18n name="信息" namespace="workflowManage"></vc:i18n>ID</th> -->
+                                <th class="text-center"><vc:i18n name="流程名称" namespace="workflowManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="流程类型" namespace="workflowManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="流程编码" namespace="workflowManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="创建时间" namespace="workflowManage"></vc:i18n></th>
+                                <th class="text-right"><vc:i18n name="操作" namespace="workflowManage"></vc:i18n></th>
 
 
                             </tr>
@@ -81,10 +81,10 @@
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditWorkflowModel(workflow)">设置流程
+                                            v-on:click="_openEditWorkflowModel(workflow)"><vc:i18n name="设置流程" namespace="workflowManage"></vc:i18n>
                                         </button>
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openWorkflowImage(workflow)">流程图
+                                            v-on:click="_openWorkflowImage(workflow)"><vc:i18n name="流程图" namespace="workflowManage"></vc:i18n>
                                         </button>
                                     </div>
                                 </td>

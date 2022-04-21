@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="housekeepingTypeManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,28 +12,28 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入类别名称"
+                                <input type="text" :placeholder="vc.i18n('请输入类别名称','housekeepingTypeManage')"
                                     v-model="housekeepingTypeManageInfo.conditions.hktName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="housekeepingTypeManageInfo.conditions.typeCd">
-                                <option selected value="">请选择类型</option>
-                                <option value="1001">服务</option>
-                                <option value="2002">商城</option>
+                                <option selected value=""><vc:i18n name="请选择类型" namespace="housekeepingTypeManage"></vc:i18n></option>
+                                <option value="1001"><vc:i18n name="服务" namespace="housekeepingTypeManage"></vc:i18n></option>
+                                <option value="2002"><vc:i18n name="商城" namespace="housekeepingTypeManage"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="housekeepingTypeManageInfo.conditions.isShow">
-                                <option selected value="">请选择是否展示</option>
-                                <option value="Y">是</option>
-                                <option value="N">否</option>
+                                <option selected value=""><vc:i18n name="请选择是否展示" namespace="housekeepingTypeManage"></vc:i18n></option>
+                                <option value="Y"><vc:i18n name="是" namespace="housekeepingTypeManage"></vc:i18n></option>
+                                <option value="N"><vc:i18n name="否" namespace="housekeepingTypeManage"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_queryHousekeepingTypeMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="housekeepingTypeManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>商城菜单</h5>
+                    <h5><vc:i18n name="商城菜单" namespace="housekeepingTypeManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_openAddHousekeepingTypeModal()">
@@ -59,15 +59,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">菜单id</th>
-                                <th class="text-center">菜单名称</th>
-                                <th class="text-center">小图标</th>
-                                <th class="text-center">菜单描述</th>
-                                <th class="text-center">菜单类别</th>
-                                <th class="text-center">标签</th>
-                                <th class="text-center">排序</th>
-                                <th class="text-center">是否显示</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><vc:i18n name="菜单" namespace="housekeepingTypeManage"></vc:i18n>id</th>
+                                <th class="text-center"><vc:i18n name="菜单名称" namespace="housekeepingTypeManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="小图标" namespace="housekeepingTypeManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="菜单描述" namespace="housekeepingTypeManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="菜单类别" namespace="housekeepingTypeManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="标签" namespace="housekeepingTypeManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="排序" namespace="housekeepingTypeManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="是否显示" namespace="housekeepingTypeManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="操作" namespace="housekeepingTypeManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,11 +86,11 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditHousekeepingTypeModel(housekeepingType)">修改</button>
+                                            v-on:click="_openEditHousekeepingTypeModel(housekeepingType)"><vc:i18n name="修改" namespace="housekeepingTypeManage"></vc:i18n></button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteHousekeepingTypeModel(housekeepingType)">删除</button>
+                                            v-on:click="_openDeleteHousekeepingTypeModel(housekeepingType)"><vc:i18n name="删除" namespace="housekeepingTypeManage"></vc:i18n></button>
                                     </div>
                                 </td>
 

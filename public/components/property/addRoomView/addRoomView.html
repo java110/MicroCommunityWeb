@@ -2,89 +2,89 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>添加房屋</h5>
+                <h5><vc:i18n name="添加房屋" namespace="addRoomView"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">房屋编号</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="房屋编号" namespace="addRoomView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <input v-model="addRoomViewInfo.roomNum" type="text" placeholder="必填，请填写房屋编号"
+                        <input v-model="addRoomViewInfo.roomNum" type="text" :placeholder="vc.i18n('必填，请填写房屋编号','addRoomView')"
                                class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">房屋楼层</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="房屋楼层" namespace="addRoomView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <input v-model="addRoomViewInfo.layer" type="text" placeholder="必填，请填写房屋楼层"
+                        <input v-model="addRoomViewInfo.layer" type="text" :placeholder="vc.i18n('必填，请填写房屋楼层','addRoomView')"
                                class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">房屋户型</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="房屋户型" namespace="addRoomView"></vc:i18n></label>
                     <div class="col-sm-5" style="display: inline">
                         <select class="custom-select" v-model="addRoomViewInfo.apartment1">
-                            <option selected disabled value="">必填，请选择房屋户型</option>
-                            <option value="10">一室</option>
-                            <option value="20">两室</option>
-                            <option value="30">三室</option>
-                            <option value="40">四室</option>
-                            <option value="50">五室</option>
-                            <option value="60">六室</option>
-                            <option value="70">七室</option>
-                            <option value="80">八室</option>
+                            <option selected disabled value=""><vc:i18n name="必填" namespace="addRoomView"></vc:i18n>，请选择房屋户型</option>
+                            <option value="10"><vc:i18n name="一室" namespace="addRoomView"></vc:i18n></option>
+                            <option value="20"><vc:i18n name="两室" namespace="addRoomView"></vc:i18n></option>
+                            <option value="30"><vc:i18n name="三室" namespace="addRoomView"></vc:i18n></option>
+                            <option value="40"><vc:i18n name="四室" namespace="addRoomView"></vc:i18n></option>
+                            <option value="50"><vc:i18n name="五室" namespace="addRoomView"></vc:i18n></option>
+                            <option value="60"><vc:i18n name="六室" namespace="addRoomView"></vc:i18n></option>
+                            <option value="70"><vc:i18n name="七室" namespace="addRoomView"></vc:i18n></option>
+                            <option value="80"><vc:i18n name="八室" namespace="addRoomView"></vc:i18n></option>
                         </select>
                     </div>
                     <div class="col-sm-5" style="display: inline">
                         <select class="custom-select" v-model="addRoomViewInfo.apartment2">
-                            <option selected disabled value="">必填，请选择房屋户型</option>
-                            <option value="101">一厅</option>
-                            <option value="102">两厅</option>
-                            <option value="103">三厅</option>
-                            <option value="104">四厅</option>
-                            <option value="105">五厅</option>
-                            <option value="106">六厅</option>
-                            <option value="107">七厅</option>
-                            <option value="108">八厅</option>
+                            <option selected disabled value=""><vc:i18n name="必填" namespace="addRoomView"></vc:i18n>，请选择房屋户型</option>
+                            <option value="101"><vc:i18n name="一厅" namespace="addRoomView"></vc:i18n></option>
+                            <option value="102"><vc:i18n name="两厅" namespace="addRoomView"></vc:i18n></option>
+                            <option value="103"><vc:i18n name="三厅" namespace="addRoomView"></vc:i18n></option>
+                            <option value="104"><vc:i18n name="四厅" namespace="addRoomView"></vc:i18n></option>
+                            <option value="105"><vc:i18n name="五厅" namespace="addRoomView"></vc:i18n></option>
+                            <option value="106"><vc:i18n name="六厅" namespace="addRoomView"></vc:i18n></option>
+                            <option value="107"><vc:i18n name="七厅" namespace="addRoomView"></vc:i18n></option>
+                            <option value="108"><vc:i18n name="八厅" namespace="addRoomView"></vc:i18n></option>
 
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">房屋类型</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="房屋类型" namespace="addRoomView"></vc:i18n></label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addRoomViewInfo.roomSubType">
-                            <option selected disabled value="">必填，请选择房屋类型</option>
+                            <option selected disabled value=""><vc:i18n name="必填" namespace="addRoomView"></vc:i18n>，请选择房屋类型</option>
                             <option :value="item.statusCd" v-for="(item,index) in addRoomViewInfo.roomSubTypes">{{item.name}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row" v-if="addRoomViewInfo.roomSubType != '110'">
-                    <label class="col-sm-2 col-form-label">租金</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="租金" namespace="addRoomView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <input v-model="addRoomViewInfo.roomRent" type="text" placeholder="必填，请填写租金"
+                        <input v-model="addRoomViewInfo.roomRent" type="text" :placeholder="vc.i18n('必填，请填写租金','addRoomView')"
                             class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">建筑面积(平方)</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="建筑面积" namespace="addRoomView"></vc:i18n>(平方)</label>
                     <div class="col-sm-10">
-                        <input v-model="addRoomViewInfo.builtUpArea" type="text" placeholder="必填，请填写建筑面积! 平方"
+                        <input v-model="addRoomViewInfo.builtUpArea" type="text" :placeholder="vc.i18n('必填，请填写建筑面积','addRoomView')! 平方"
                                class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">室内面积(平方)</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="室内面积" namespace="addRoomView"></vc:i18n>(平方)</label>
                     <div class="col-sm-10">
-                        <input v-model="addRoomViewInfo.roomArea" type="text" placeholder="必填，请填写室内面积! 平方"
+                        <input v-model="addRoomViewInfo.roomArea" type="text" :placeholder="vc.i18n('必填，请填写室内面积','addRoomView')! 平方"
                             class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">算费系数</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="算费系数" namespace="addRoomView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <input v-model="addRoomViewInfo.feeCoefficient" type="text" placeholder="请填写算费系数"
+                        <input v-model="addRoomViewInfo.feeCoefficient" type="text" :placeholder="vc.i18n('请填写算费系数','addRoomView')"
                                class="form-control">
                     </div>
                 </div>
@@ -110,9 +110,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">备注</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="addRoomView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <textarea placeholder="选填，请填写备注" class="form-control"
+                        <textarea :placeholder="vc.i18n('选填，请填写备注','addRoomView')" class="form-control"
                                   v-model="addRoomViewInfo.remark">
                         </textarea>
                     </div>

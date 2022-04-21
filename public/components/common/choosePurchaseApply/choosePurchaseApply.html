@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="choosePurchaseApplyModelLabel">选择采购申请</h3>
+                <h3 class="modal-title" id="choosePurchaseApplyModelLabel"><vc:i18n name="选择采购申请" namespace="choosePurchaseApply"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')vc.i18n(' ','choosePurchaseApply')<divvc.i18n(' ','choosePurchaseApply')class="vc.i18n(' ','choosePurchaseApply')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入采购申请名称" type="text" v-model="choosePurchaseApplyInfo._currentPurchaseApplyName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入采购申请名称','choosePurchaseApply')" type="text" v-model="choosePurchaseApplyInfo._currentPurchaseApplyName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryPurchaseApplys()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryPurchaseApplys()"><vc:i18n name="查询" namespace="choosePurchaseApply"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,9 +28,9 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">订单号</th>
-                            <th class="text-center">订单状态</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><vc:i18n name="订单号" namespace="choosePurchaseApply"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="订单状态" namespace="choosePurchaseApply"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="choosePurchaseApply"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -40,7 +40,7 @@
                             <td class="text-center">{{purchaseApply.state}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="choosePurchaseApply(purchaseApply)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="choosePurchaseApply(purchaseApply)"><vc:i18n name="选择" namespace="choosePurchaseApply"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

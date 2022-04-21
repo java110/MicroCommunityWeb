@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseStorehouseModelLabel">选择仓库</h3>
+                <h3 class="modal-title" id="chooseStorehouseModelLabel"><vc:i18n name="选择仓库" namespace="chooseStorehouse"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')vc.i18n(' ','chooseStorehouse')<divvc.i18n(' ','chooseStorehouse')class="vc.i18n(' ','chooseStorehouse')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入仓库名称" type="text" v-model="chooseStorehouseInfo._currentStorehouseName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入仓库名称','chooseStorehouse')" type="text" v-model="chooseStorehouseInfo._currentStorehouseName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryStorehouses()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryStorehouses()"><vc:i18n name="查询" namespace="chooseStorehouse"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,11 +28,11 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">仓库编号</th>
-                            <th class="text-center">仓库名称</th>
-                            <th class="text-center">仓库类型</th>
-                            <th class="text-center">描述</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><vc:i18n name="仓库编号" namespace="chooseStorehouse"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="仓库名称" namespace="chooseStorehouse"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="仓库类型" namespace="chooseStorehouse"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="描述" namespace="chooseStorehouse"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="chooseStorehouse"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -44,7 +44,7 @@
                             <td class="text-center">{{storehouse.shDesc}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseStorehouse(storehouse)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseStorehouse(storehouse)"><vc:i18n name="选择" namespace="chooseStorehouse"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

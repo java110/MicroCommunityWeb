@@ -3,24 +3,24 @@
         <div>
             <div class="row">
                 <div class="col-sm-4">
-                    <span>申请单号：{{printPurchaseApplyInfo.applyOrderId}}</span>
+                    <span><vc:i18n name="申请单号" namespace="printPurchaseApply"></vc:i18n>：{{printPurchaseApplyInfo.applyOrderId}}</span>
                 </div>
                 <div class="col-sm-4">
-                    <span>使用人：{{printPurchaseApplyInfo.endUserName}}</span>
+                    <span><vc:i18n name="使用人" namespace="printPurchaseApply"></vc:i18n>：{{printPurchaseApplyInfo.endUserName}}</span>
                 </div>
                 <div class="col-sm-4">
-                    <span>联系电话：{{printPurchaseApplyInfo.endUserTel}}</span>
+                    <span><vc:i18n name="联系电话" namespace="printPurchaseApply"></vc:i18n>：{{printPurchaseApplyInfo.endUserTel}}</span>
                 </div>
             </div>
             <table class="table table-bordered margin-top">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">编号</th>
-                        <th scope="col" class="text-center">名称</th>
-                        <th scope="col" class="text-center">编码规格</th>
-                        <th scope="col" class="text-center">申请数量</th>
-                        <th scope="col" class="text-center">采购数量</th>
-                        <th scope="col" class="text-center">备注</th>
+                        <th scope="col" class="text-center"><vc:i18n name="编号" namespace="printPurchaseApply"></vc:i18n></th>
+                        <th scope="col" class="text-center"><vc:i18n name="名称" namespace="printPurchaseApply"></vc:i18n></th>
+                        <th scope="col" class="text-center"><vc:i18n name="编码规格" namespace="printPurchaseApply"></vc:i18n></th>
+                        <th scope="col" class="text-center"><vc:i18n name="申请数量" namespace="printPurchaseApply"></vc:i18n></th>
+                        <th scope="col" class="text-center"><vc:i18n name="采购数量" namespace="printPurchaseApply"></vc:i18n></th>
+                        <th scope="col" class="text-center"><vc:i18n name="备注" namespace="printPurchaseApply"></vc:i18n></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,20 +33,20 @@
                         <td class="text-center">{{item.remark}}</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="text-center">备注</th>
+                        <th scope="row" class="text-center"><vc:i18n name="备注" namespace="printPurchaseApply"></vc:i18n></th>
                         <td colspan="5">{{printPurchaseApplyInfo.description}}</td>
                     </tr>
                     <tr height="60px">
-                        <td colspan="2" class="text-center " style="vertical-align:middle;">厂家签字</td>
+                        <td colspan="2" class="text-center " style="vertical-align:middle;"><vc:i18n name="厂家签字" namespace="printPurchaseApply"></vc:i18n></td>
                         <td colspan="2"></td>
-                        <td class="text-center " style="vertical-align:middle;">时间</td>
+                        <td class="text-center " style="vertical-align:middle;"><vc:i18n name="时间" namespace="printPurchaseApply"></vc:i18n></td>
                         <td></td>
 
                     </tr>
                     <tr height="60px">
-                        <td colspan="2" class="text-center" style="vertical-align:middle;">采购人员签字</td>
+                        <td colspan="2" class="text-center" style="vertical-align:middle;"><vc:i18n name="采购人员签字" namespace="printPurchaseApply"></vc:i18n></td>
                         <td colspan="2"></td>
-                        <td class="text-center " style="vertical-align:middle;">时间</td>
+                        <td class="text-center " style="vertical-align:middle;"><vc:i18n name="时间" namespace="printPurchaseApply"></vc:i18n></td>
                         <td></td>
                     </tr>
                 </tbody>
@@ -56,7 +56,7 @@
             <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
                 <i class="fa fa-check"></i>&nbsp;打印
             </button>
-            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><vc:i18n name="取消" namespace="printPurchaseApply"></vc:i18n>
             </button>
         </div>
     </div>

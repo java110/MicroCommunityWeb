@@ -2,34 +2,34 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>停车场信息</h5>
+                <h5><vc:i18n name="停车场信息" namespace="viewParkingAreaInfo"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewParkingAreaInfo.index != 2" class="btn btn-primary btn-sm"
                         style="margin-right:10px;" v-on:click="_openSelectParkingAreaInfoModel()">
-                        <i class="fa fa-search"></i> 选择停车场</button>
+                        <i class="fa fa-search"></i> <vc:i18n name="选择停车场" namespace="viewParkingAreaInfo"></vc:i18n></button>
 
                     <button type="button" v-if="viewParkingAreaInfo.index != 2" class="btn btn-primary btn-sm"
                         v-on:click="_openAddParkingAreaInfoModel()">
-                        <i class="fa fa-plus"></i> 添加停车场</button>
+                        <i class="fa fa-plus"></i> <vc:i18n name="添加停车场" namespace="viewParkingAreaInfo"></vc:i18n></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">停车场编号：</label>
+                            <label class="col-form-label"><vc:i18n name="停车场编号" namespace="viewParkingAreaInfo"></vc:i18n>：</label>
                             <label class="">{{viewParkingAreaInfo.num}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">停车场类型：</label>
+                            <label class="col-form-label"><vc:i18n name="停车场类型" namespace="viewParkingAreaInfo"></vc:i18n>：</label>
                             <label class="">{{viewParkingAreaInfo.typeCd}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">备注：</label>
+                            <label class="col-form-label"><vc:i18n name="备注" namespace="viewParkingAreaInfo"></vc:i18n>：</label>
                             <label class="">{{viewParkingAreaInfo.remark}}</label>
                         </div>
                     </div>

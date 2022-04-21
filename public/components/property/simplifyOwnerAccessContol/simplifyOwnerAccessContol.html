@@ -3,15 +3,15 @@
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
             <tr>
-                <th class="text-center">设备编码</th>
-                <th class="text-center">设备名称</th>
-                <th class="text-center">对象类型</th>
-                <th class="text-center">对象名称</th>
-                <th class="text-center">指令</th>
-                <th class="text-center">状态</th>
-                <th class="text-center">说明</th>
-                <th class="text-center">同步时间</th>
-                <th class="text-center">操作</th>
+                <th class="text-center"><vc:i18n name="设备编码" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
+                <th class="text-center"><vc:i18n name="设备名称" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
+                <th class="text-center"><vc:i18n name="对象类型" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
+                <th class="text-center"><vc:i18n name="对象名称" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
+                <th class="text-center"><vc:i18n name="指令" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
+                <th class="text-center"><vc:i18n name="状态" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
+                <th class="text-center"><vc:i18n name="说明" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
+                <th class="text-center"><vc:i18n name="同步时间" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
+                <th class="text-center"><vc:i18n name="操作" namespace="simplifyOwnerAccessContol"></vc:i18n></th>
             </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                 <td class="text-center">
                     <div class="btn-group" v-if="machineTranslate.state != '20000'">
                         <button class="btn-white btn btn-xs"
-                                v-on:click="_openEditMachineTranslateModel(machineTranslate)">重新同步
+                                v-on:click="_openEditMachineTranslateModel(machineTranslate)"><vc:i18n name="重新同步" namespace="simplifyOwnerAccessContol"></vc:i18n>
                         </button>
                     </div>
                 </td>

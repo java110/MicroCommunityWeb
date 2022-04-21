@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseComplaintModelLabel">选择投诉建议</h3>
+                <h3 class="modal-title" id="chooseComplaintModelLabel"><vc:i18n name="选择投诉建议" namespace="chooseComplaint"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')vc.i18n(' ','chooseComplaint')<divvc.i18n(' ','chooseComplaint')class="vc.i18n(' ','chooseComplaint')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入投诉建议名称" type="text" v-model="chooseComplaintInfo._currentComplaintName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入投诉建议名称','chooseComplaint')" type="text" v-model="chooseComplaintInfo._currentComplaintName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryComplaints()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryComplaints()"><vc:i18n name="查询" namespace="chooseComplaint"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,15 +28,15 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">投诉ID</th>
-                            <th class="text-center">商户ID</th>
-                            <th class="text-center">投诉类型</th>
-                            <th class="text-center">房屋编号</th>
-                            <th class="text-center">投诉人</th>
-                            <th class="text-center">投诉电话</th>
-                            <th class="text-center">投诉状态</th>
-                            <th class="text-center">投诉内容</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><vc:i18n name="投诉" namespace="chooseComplaint"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="商户" namespace="chooseComplaint"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="投诉类型" namespace="chooseComplaint"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="房屋编号" namespace="chooseComplaint"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投诉人" namespace="chooseComplaint"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投诉电话" namespace="chooseComplaint"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投诉状态" namespace="chooseComplaint"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投诉内容" namespace="chooseComplaint"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="chooseComplaint"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -52,7 +52,7 @@
                             <td class="text-center">{{complaint.context}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseComplaint(complaint)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseComplaint(complaint)"><vc:i18n name="选择" namespace="chooseComplaint"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

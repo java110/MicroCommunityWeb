@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>开发服务</h5>
+                <h5><vc:i18n name="开发服务" namespace="devServiceProvideView"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>
@@ -10,44 +10,44 @@
             <div class="ibox-content">
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">实现方式</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="实现方式" namespace="devServiceProvideView"></vc:i18n></label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="devServiceProvideViewInfo.queryModel">
-                            <option selected disabled value="">必填，请选择实现方式</option>
+                            <option selected disabled value=""><vc:i18n name="必填" namespace="devServiceProvideView"></vc:i18n>，请选择实现方式</option>
                             <option value="1">sql方式</option>
                             <option value="3">java方式</option>
-                            <option value="2">存储过程方式</option>
+                            <option value="2"><vc:i18n name="存储过程方式" namespace="devServiceProvideView"></vc:i18n></option>
                         </select></div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">参数</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="参数" namespace="devServiceProvideView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <input v-model="devServiceProvideViewInfo.params" type="text" placeholder="必填，请填写参数"
+                        <input v-model="devServiceProvideViewInfo.params" type="text" :placeholder="vc.i18n('必填，请填写参数','devServiceProvideView')"
                                class="form-control">
                     </div>
                 </div>
                 <div class="form-group row" v-if="devServiceProvideViewInfo.queryModel==1">
                     <label class="col-sm-2 col-form-label">sql</label>
                     <div class="col-sm-10">
-                        <textarea rows="15" placeholder="选填，请填写sql" class="form-control"
+                        <textarea rows="15" :placeholder="vc.i18n('选填，请填写','devServiceProvideView')sql" class="form-control"
                                   v-model="devServiceProvideViewInfo.sql"></textarea></div>
                 </div>
                 <div class="form-group row" v-if="devServiceProvideViewInfo.queryModel==1">
-                    <label class="col-sm-2 col-form-label">输出模板</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="输出模板" namespace="devServiceProvideView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <textarea cols="10" placeholder="选填，请填写输出模板" class="form-control"
+                        <textarea cols="10" :placeholder="vc.i18n('选填，请填写输出模板','devServiceProvideView')" class="form-control"
                                   v-model="devServiceProvideViewInfo.template"></textarea></div>
                 </div>
                 <div class="form-group row" v-if="devServiceProvideViewInfo.queryModel==2">
-                    <label class="col-sm-2 col-form-label">存储过程</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="存储过程" namespace="devServiceProvideView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <textarea cols="5" placeholder="选填，请填写存储过程" class="form-control"
+                        <textarea cols="5" :placeholder="vc.i18n('选填，请填写存储过程','devServiceProvideView')" class="form-control"
                                   v-model="devServiceProvideViewInfo.proc"></textarea></div>
                 </div>
                 <div class="form-group row" v-if="devServiceProvideViewInfo.queryModel==3">
                     <label class="col-sm-2 col-form-label">java</label>
                     <div class="col-sm-10">
-                        <textarea rows="20" placeholder="选填，请填写java" class="form-control"
+                        <textarea rows="20" :placeholder="vc.i18n('选填，请填写','devServiceProvideView')java" class="form-control"
                                   v-model="devServiceProvideViewInfo.javaScript"></textarea></div>
                 </div>
 

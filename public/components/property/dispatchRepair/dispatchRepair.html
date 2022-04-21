@@ -2,22 +2,22 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">报修派单</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="报修派单" namespace="dispatchRepair"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row" v-if="dispatchRepairInfo.action=='BACK'">
-                                <label class="col-sm-2 col-form-label">上级处理人</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="上级处理人" namespace="dispatchRepair"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="dispatchRepairInfo.staffName" type="text"
-                                           placeholder="必填，请填写上级处理人" disabled="disabled" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写上级处理人','dispatchRepair')" disabled="disabled" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row" v-else>
-                                <label class="col-sm-2 col-form-label">报修师傅</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="报修师傅" namespace="dispatchRepair"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="dispatchRepairInfo.staffId">
-                                        <option selected disabled value="">必填，请选择报修师傅</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="dispatchRepair"></vc:i18n>，请选择报修师傅</option>
                                         <option v-for="(item,index) in dispatchRepairInfo.repairTypeUsers"
                                                 :value="item.staffId">{{item.staffName}}
                                         </option>
@@ -25,9 +25,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">处理意见</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="处理意见" namespace="dispatchRepair"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="必填，请填写处理意见" cols="15" class="form-control"
+                                    <textarea :placeholder="vc.i18n('必填，请填写处理意见','dispatchRepair')" cols="15" class="form-control"
                                               v-model="dispatchRepairInfo.context"></textarea>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>受理单明细</h5>
+                <h5><vc:i18n name="受理单明细" namespace="orderDetailManage"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm "
                             v-on:click="_goBack()"  style="margin-right:10px">
@@ -15,10 +15,10 @@
                 <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                     <thead>
                     <tr>
-                        <th class="text-center">订单ID</th>
-                        <th class="text-center">业务ID</th>
-                        <th class="text-center">业务类型</th>
-                        <th class="text-center">创建时间</th>
+                        <th class="text-center"><vc:i18n name="订单" namespace="orderDetailManage"></vc:i18n>ID</th>
+                        <th class="text-center"><vc:i18n name="业务" namespace="orderDetailManage"></vc:i18n>ID</th>
+                        <th class="text-center"><vc:i18n name="业务类型" namespace="orderDetailManage"></vc:i18n></th>
+                        <th class="text-center"><vc:i18n name="创建时间" namespace="orderDetailManage"></vc:i18n></th>
                     </tr>
                     </thead>
                     <tbody>

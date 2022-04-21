@@ -3,13 +3,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseParkingAreaModelLabel">选择停车场</h3>
+                <h3 class="modal-title" id="chooseParkingAreaModelLabel"><vc:i18n name="选择停车场" namespace="chooseParkingArea"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')vc.i18n(' ','chooseParkingArea')<divvc.i18n(' ','chooseParkingArea')class="vc.i18n(' ','chooseParkingArea')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,12 +18,12 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入停车场编号" type="text"
+                                        <input :placeholder="vc.i18n('输入停车场编号','chooseParkingArea')" type="text"
                                                v-model="chooseParkingAreaInfo._currentParkingAreaName"
                                                class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryParkingAreas()">查询</button>
+                                                        v-on:click="queryParkingAreas()"><vc:i18n name="查询" namespace="chooseParkingArea"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -32,10 +32,10 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">停车场ID</th>
-                                        <th class="text-center">停车场编号</th>
-                                        <th class="text-center">停车场类型</th>
-                                        <th class="text-center">操作</th>
+                                        <th class="text-center"><vc:i18n name="停车场" namespace="chooseParkingArea"></vc:i18n>ID</th>
+                                        <th class="text-center"><vc:i18n name="停车场编号" namespace="chooseParkingArea"></vc:i18n></th>
+                                        <th class="text-center"><vc:i18n name="停车场类型" namespace="chooseParkingArea"></vc:i18n></th>
+                                        <th class="text-center"><vc:i18n name="操作" namespace="chooseParkingArea"></vc:i18n></th>
 
                                     </tr>
                                     </thead>
@@ -47,7 +47,7 @@
 
                                         <td>
                                             <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseParkingArea(parkingArea)">选择
+                                                    v-on:click="chooseParkingArea(parkingArea)"><vc:i18n name="选择" namespace="chooseParkingArea"></vc:i18n>
                                             </button>
                                         </td>
                                     </tr>

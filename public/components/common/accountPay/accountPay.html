@@ -3,26 +3,26 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                    <h3 class="m-t-none m-b ">银行信息</h3>
+                    <h3 class="m-t-none m-b "><vc:i18n name="银行信息" namespace="accountPay"></vc:i18n></h3>
                     <div class="ibox-content">
                         <div>
                             <div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">持卡人</label>
+                                    <label class="col-sm-2 col-form-label"><vc:i18n name="持卡人" namespace="accountPay"></vc:i18n></label>
                                     <div class="col-sm-10">
                                         <input v-model="accountPayInfo.accountBank.personName" disabled="disabled" readonly type="text"
                                                class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">开户行</label>
+                                    <label class="col-sm-2 col-form-label"><vc:i18n name="开户行" namespace="accountPay"></vc:i18n></label>
                                     <div class="col-sm-10">
                                         <input v-model="accountPayInfo.accountBank.bankName" disabled="disabled" readonly type="text"
                                                class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">账号</label>
+                                    <label class="col-sm-2 col-form-label"><vc:i18n name="账号" namespace="accountPay"></vc:i18n></label>
                                     <div class="col-sm-10">
                                         <input v-model="accountPayInfo.accountBank.bankCode" disabled="disabled" readonly type="text"
                                                class="form-control">
@@ -32,24 +32,24 @@
                         </div>
                     </div>
 
-                <h3 class="m-t-none m-b ">付款信息</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="付款信息" namespace="accountPay"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">付款信息</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="付款信息" namespace="accountPay"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="accountPayInfo.state">
-                                        <option selected disabled value="">付款状态</option>
-                                        <option value="1100">同意付款</option>
-                                        <option value="1200">拒绝付款</option>
+                                        <option selected disabled value=""><vc:i18n name="付款状态" namespace="accountPay"></vc:i18n></option>
+                                        <option value="1100"><vc:i18n name="同意付款" namespace="accountPay"></vc:i18n></option>
+                                        <option value="1200"><vc:i18n name="拒绝付款" namespace="accountPay"></vc:i18n></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">原因</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="原因" namespace="accountPay"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="必填，请填写原因" class="form-control"
+                                    <textarea :placeholder="vc.i18n('必填，请填写原因','accountPay')" class="form-control"
                                               v-model="accountPayInfo.remark"></textarea></div>
                             </div>
                             <div class="ibox-content">

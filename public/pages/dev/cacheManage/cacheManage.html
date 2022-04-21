@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="cacheManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -13,25 +13,25 @@
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入缓存ID"
+                                <input type="text" :placeholder="vc.i18n('请输入缓存','cacheManage')ID"
                                        v-model="cacheManageInfo.conditions.id" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入缓存编码"
+                                <input type="text" :placeholder="vc.i18n('请输入缓存编码','cacheManage')"
                                        v-model="cacheManageInfo.conditions.cacheCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入缓存名称"
+                                <input type="text" :placeholder="vc.i18n('请输入缓存名称','cacheManage')"
                                        v-model="cacheManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryCacheMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="cacheManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>缓存信息</h5>
+                    <h5><vc:i18n name="缓存信息" namespace="cacheManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -53,10 +53,10 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">缓存ID</th>
-                            <th class="text-center">缓存编码</th>
-                            <th class="text-center">名称</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="缓存" namespace="cacheManage"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="缓存编码" namespace="cacheManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="名称" namespace="cacheManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="cacheManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -67,7 +67,7 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_flushCache(cache)">刷新缓存
+                                            v-on:click="_flushCache(cache)"><vc:i18n name="刷新缓存" namespace="cacheManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

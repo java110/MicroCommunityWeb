@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="junkRequirementManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">
@@ -15,14 +15,14 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="junkRequirementManageInfo.conditions.classification">
-                                <option selected value="">请选择类别</option>
-                                <option value="10001">家具</option>
-                                <option value="10002">电器</option>
+                                <option selected value=""><vc:i18n name="请选择类别" namespace="junkRequirementManage"></vc:i18n></option>
+                                <option value="10001"><vc:i18n name="家具" namespace="junkRequirementManage"></vc:i18n></option>
+                                <option value="10002"><vc:i18n name="电器" namespace="junkRequirementManage"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入发布人"
+                                <input type="text" :placeholder="vc.i18n('请输入发布人','junkRequirementManage')"
                                        v-model="junkRequirementManageInfo.conditions.publishUserName"
                                        class=" form-control">
                             </div>
@@ -30,24 +30,24 @@
                         <div class="col-sm-3">
                             <select class="custom-select"
                                     v-model="junkRequirementManageInfo.conditions.publishUserLink">
-                                <option selected value="">请选择状态</option>
-                                <option value="12001">未审核</option>
-                                <option value="13001">审核通过</option>
-                                <option value="14001">审核失败</option>
-                                <option value="15001">处理完成</option>
+                                <option selected value=""><vc:i18n name="请选择状态" namespace="junkRequirementManage"></vc:i18n></option>
+                                <option value="12001"><vc:i18n name="未审核" namespace="junkRequirementManage"></vc:i18n></option>
+                                <option value="13001"><vc:i18n name="审核通过" namespace="junkRequirementManage"></vc:i18n></option>
+                                <option value="14001"><vc:i18n name="审核失败" namespace="junkRequirementManage"></vc:i18n></option>
+                                <option value="15001"><vc:i18n name="处理完成" namespace="junkRequirementManage"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryJunkRequirementMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="junkRequirementManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4" v-if="junkRequirementManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入发布电话"
+                                <input type="text" :placeholder="vc.i18n('请输入发布电话','junkRequirementManage')"
                                        v-model="junkRequirementManageInfo.conditions.publishUserLink"
                                        class=" form-control">
                             </div>
@@ -61,19 +61,19 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>{{junkRequirementManageInfo.pageName}}信息</h5>
+                    <h5>{{junkRequirementManageInfo.pageName}}<vc:i18n name="信息" namespace="junkRequirementManage"></vc:i18n></h5>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">{{junkRequirementManageInfo.pageName}}编码</th>
-                            <th class="text-center">类别</th>
-                            <th class="text-center">参考价格</th>
-                            <th class="text-center">发布人</th>
-                            <th class="text-center">联系方式</th>
-                            <th class="text-center">状态</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center">{{junkRequirementManageInfo.pageName}}<vc:i18n name="编码" namespace="junkRequirementManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="类别" namespace="junkRequirementManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="参考价格" namespace="junkRequirementManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="发布人" namespace="junkRequirementManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="联系方式" namespace="junkRequirementManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="状态" namespace="junkRequirementManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="junkRequirementManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -87,12 +87,12 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditJunkRequirementModel(junkRequirement)">审核
+                                            v-on:click="_openEditJunkRequirementModel(junkRequirement)"><vc:i18n name="审核" namespace="junkRequirementManage"></vc:i18n>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteJunkRequirementModel(junkRequirement)">删除
+                                            v-on:click="_openDeleteJunkRequirementModel(junkRequirement)"><vc:i18n name="删除" namespace="junkRequirementManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

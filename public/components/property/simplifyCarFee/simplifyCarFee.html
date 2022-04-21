@@ -24,16 +24,16 @@
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
                 <tr>
-                    <th class="text-center">费用项目</th>
-                    <th class="text-center">费用标识</th>
-                    <th class="text-center">费用类型</th>
-                    <th class="text-center">应收金额</th>
-                    <th class="text-center">建账时间</th>
-                    <th class="text-center">计费起始时间</th>
-                    <th class="text-center">计费结束时间</th>
-                    <th class="text-center">说明</th>
-                    <th class="text-center">状态</th>
-                    <th class="text-center">操作</th>
+                    <th class="text-center"><vc:i18n name="费用项目" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="费用标识" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="费用类型" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="应收金额" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="建账时间" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="计费起始时间" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="计费结束时间" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="说明" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="状态" namespace="simplifyCarFee"></vc:i18n></th>
+                    <th class="text-center"><vc:i18n name="操作" namespace="simplifyCarFee"></vc:i18n></th>
                 </tr>
             </thead>
             <tbody>
@@ -46,30 +46,30 @@
                     <td class="text-center">{{_getEndTime(fee)}}</td>
                     <td class="text-center">{{_getDeadlineTime(fee)}}</td>
                     <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' " :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div>上期度数：{{fee.preDegrees}}</div>
-                        <div>本期度数：{{fee.curDegrees}}</div>
-                        <div>单价：{{fee.squarePrice}}</div>
-                        <div>附加费：{{fee.additionalAmount}}</div>
+                        <div><vc:i18n name="上期度数" namespace="simplifyCarFee"></vc:i18n>：{{fee.preDegrees}}</div>
+                        <div><vc:i18n name="本期度数" namespace="simplifyCarFee"></vc:i18n>：{{fee.curDegrees}}</div>
+                        <div><vc:i18n name="单价" namespace="simplifyCarFee"></vc:i18n>：{{fee.squarePrice}}</div>
+                        <div><vc:i18n name="附加费" namespace="simplifyCarFee"></vc:i18n>：{{fee.additionalAmount}}</div>
                     </td>
                     <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'" :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div>算法：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
-                        <div>用量：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
+                        <div><vc:i18n name="算法" namespace="simplifyCarFee"></vc:i18n>：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
+                        <div><vc:i18n name="用量" namespace="simplifyCarFee"></vc:i18n>：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
                     </td>
                     <td class="text-center" v-else :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div>单价：{{fee.squarePrice}}</div>
-                        <div>固定费：{{fee.additionalAmount}}</div>
+                        <div><vc:i18n name="单价" namespace="simplifyCarFee"></vc:i18n>：{{fee.squarePrice}}</div>
+                        <div><vc:i18n name="固定费" namespace="simplifyCarFee"></vc:i18n>：{{fee.additionalAmount}}</div>
                     </td>
                     <td class="text-center">{{fee.stateName}}</td>
                     <td class="text-right">
-                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001'  && vc.hasPrivilege('502020082314267912')" v-on:click="_simplifyCarPayFee(fee)">缴费
+                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001'  && vc.hasPrivilege('502020082314267912')" v-on:click="_simplifyCarPayFee(fee)"><vc:i18n name="缴费" namespace="simplifyCarFee"></vc:i18n>
                     </button>
-                        <button class="btn btn-link btn-xs" v-on:click="_simplifyCarPayFeeHis(fee)">缴费历史
+                        <button class="btn btn-link btn-xs" v-on:click="_simplifyCarPayFeeHis(fee)"><vc:i18n name="缴费历史" namespace="simplifyCarFee"></vc:i18n>
                     </button>
-                        <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')" v-on:click="_simplifyCarDeleteFee(fee)">取消费用
+                        <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')" v-on:click="_simplifyCarDeleteFee(fee)"><vc:i18n name="取消费用" namespace="simplifyCarFee"></vc:i18n>
                     </button>
-                        <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502021070488970005')" v-on:click="_simplifyCarFinishFee(fee)">手工结束
+                        <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502021070488970005')" v-on:click="_simplifyCarFinishFee(fee)"><vc:i18n name="手工结束" namespace="simplifyCarFee"></vc:i18n>
                     </button>
-                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_simplifyCarEditFee(fee)">费用变更
+                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_simplifyCarEditFee(fee)"><vc:i18n name="费用变更" namespace="simplifyCarFee"></vc:i18n>
                     </button>
                     </td>
                 </tr>
@@ -77,11 +77,11 @@
         </table>
         <div class="row">
             <div class="col-sm-5">
-                <div> 注意： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</div>
-                <div> 应收金额 为-1 一般为费用项公式设置出错请检查</div>
+                <div> <vc:i18n name="注意" namespace="simplifyCarFee"></vc:i18n>： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</div>
+                <div> <vc:i18n name="应收金额" namespace="simplifyCarFee"></vc:i18n> 为-1 一般为费用项公式设置出错请检查</div>
             </div>
             <div class="col-sm-2">
-                <span> 欠费小计：{{simplifyCarFeeInfo.totalAmount}}</span>
+                <span> <vc:i18n name="欠费小计" namespace="simplifyCarFee"></vc:i18n>：{{simplifyCarFeeInfo.totalAmount}}</span>
             </div>
             <div class="col-sm-5 float-right">
                 <vc:create namespace="simplifyCarFee" path="frame/paginationPlus"></vc:create>

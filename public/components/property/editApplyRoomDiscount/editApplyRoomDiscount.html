@@ -3,36 +3,36 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">验房</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="验房" namespace="editApplyRoomDiscount"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">开始时间</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="开始时间" namespace="editApplyRoomDiscount"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="editApplyRoomDiscountInfo.startTime" type="text"
-                                           placeholder="必填，请填写开始时间" class="form-control editStartTime">
+                                           :placeholder="vc.i18n('必填，请填写开始时间','editApplyRoomDiscount')" class="form-control editStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">结束时间</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="结束时间" namespace="editApplyRoomDiscount"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="editApplyRoomDiscountInfo.endTime" type="text"
-                                           placeholder="必填，请填写结束时间" class="form-control editEndTime">
+                                           :placeholder="vc.i18n('必填，请填写结束时间','editApplyRoomDiscount')" class="form-control editEndTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">验房状态</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="验房状态" namespace="editApplyRoomDiscount"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editApplyRoomDiscountInfo.state">
-                                        <option selected disabled value="">必填，请选择状态</option>
-                                        <option value="2">验房通过</option>
-                                        <option value="3">验房不通过</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editApplyRoomDiscount"></vc:i18n>，请选择状态</option>
+                                        <option value="2"><vc:i18n name="验房通过" namespace="editApplyRoomDiscount"></vc:i18n></option>
+                                        <option value="3"><vc:i18n name="验房不通过" namespace="editApplyRoomDiscount"></vc:i18n></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">申请说明</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="申请说明" namespace="editApplyRoomDiscount"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <textarea v-model="editApplyRoomDiscountInfo.createRemark" readonly="readonly"
                                               class="form-control">
@@ -40,9 +40,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">验房说明</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="验房说明" namespace="editApplyRoomDiscount"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="editApplyRoomDiscountInfo.checkRemark" placeholder="必填，请填写验房说明"
+                                    <textarea v-model="editApplyRoomDiscountInfo.checkRemark" :placeholder="vc.i18n('必填，请填写验房说明','editApplyRoomDiscount')"
                                               class="form-control">
                                     </textarea>
                                 </div>

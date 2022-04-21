@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="listStoreManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">{{listStoreManageInfo.moreCondition ==
@@ -15,26 +15,26 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入商户名称"
+                                <input type="text" :placeholder="vc.i18n('请输入商户名称','listStoreManage')"
                                        v-model="listStoreManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="listStoreManageInfo.conditions.storeTypeCd">
-                                <option selected value="">请选择商户类型</option>
-                                <option value="800900000003">物业公司</option>
-                                <option value="800900000005">商家</option>
+                                <option selected value=""><vc:i18n name="请选择商户类型" namespace="listStoreManage"></vc:i18n></option>
+                                <option value="800900000003"><vc:i18n name="物业公司" namespace="listStoreManage"></vc:i18n></option>
+                                <option value="800900000005"><vc:i18n name="商家" namespace="listStoreManage"></vc:i18n></option>
                             </select></div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入联系电话"
+                                <input type="text" :placeholder="vc.i18n('请输入联系电话','listStoreManage')"
                                        v-model="listStoreManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryListStoreMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="listStoreManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>商户信息</h5>
+                    <h5><vc:i18n name="商户信息" namespace="listStoreManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -58,13 +58,13 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">商户名称</th>
-                            <th class="text-center">商户地址</th>
-                            <th class="text-center">联系电话</th>
-                            <th class="text-center">商户类型</th>
-                            <th class="text-center">企业法人</th>
-                            <th class="text-center">成立日期</th>
-                            <th class="text-right">操作</th>
+                            <th class="text-center"><vc:i18n name="商户名称" namespace="listStoreManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="商户地址" namespace="listStoreManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="联系电话" namespace="listStoreManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="商户类型" namespace="listStoreManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="企业法人" namespace="listStoreManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="成立日期" namespace="listStoreManage"></vc:i18n></th>
+                            <th class="text-right"><vc:i18n name="操作" namespace="listStoreManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -78,7 +78,7 @@
                             <td class="text-right">
                                 <div class="btn-group">
 <!--                                    <button class="btn-white btn btn-xs"-->
-<!--                                            v-on:click="_openStoresCommunityModel(listStore)">隶属小区-->
+<!--                                            v-on:click="_openStoresCommunityModel(listStore)"><vc:i18n name="隶属小区" namespace="listStoreManage"></vc:i18n>-->
 <!--                                    </button>-->
                                 </div>
                             </td>

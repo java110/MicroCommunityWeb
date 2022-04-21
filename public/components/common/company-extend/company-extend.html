@@ -1,26 +1,26 @@
 <fieldset role="tabpanel" aria-labelledby="component-h-0" class="body current" style="overflow: scroll;" v-bind:class="{no_display:step!=2}" aria-hidden="false">
-    <h2>公司扩展信息</h2>
+    <h2><vc:i18n name="公司扩展信息" namespace="company-extend"></vc:i18n></h2>
     <div class="row">
         <div class="col-lg-8">
             <div class="form-group">
-                <label>公司法人 </label> <span class="required">*</span>
+                <label><vc:i18n name="公司法人" namespace="company-extend"></vc:i18n> </label> <span class="required">*</span>
                 <input  v-model="companyExtendInfo.corporation" type="text" class="form-control required" aria-required="true" />
             </div>
             <div class="form-group">
-                <label>注册资本(万元) </label> <span class="required">*</span>
+                <label><vc:i18n name="注册资本" namespace="company-extend"></vc:i18n>(万元) </label> <span class="required">*</span>
                 <input  v-model="companyExtendInfo.registeredCapital" type="text" class="form-control required" aria-required="true" />
             </div>
             <div class="form-group">
-                <label>成立日期</label> <span class="required">*</span>
-                <input v-model="companyExtendInfo.foundingTime" size="16" type="text" placeholder="请选择时间(yyyy-mm-dd) "  readonly class="form-control form-control-sm extend_time">
+                <label><vc:i18n name="成立日期" namespace="company-extend"></vc:i18n></label> <span class="required">*</span>
+                <input v-model="companyExtendInfo.foundingTime" size="16" type="text" :placeholder="vc.i18n('请选择时间','company-extend')(yyyy-mm-dd) "  readonly class="form-control form-control-sm extend_time">
             </div>
             <div class="form-group">
-                <label>登记机关 </label> <span class="required">*</span>
-                <input  v-model="companyExtendInfo.registrationAuthority" type="text" placeholder="填写营业执照上的登记机关" class="form-control required" aria-required="true" />
+                <label><vc:i18n name="登记机关" namespace="company-extend"></vc:i18n> </label> <span class="required">*</span>
+                <input  v-model="companyExtendInfo.registrationAuthority" type="text" :placeholder="vc.i18n('填写营业执照上的登记机关','company-extend')" class="form-control required" aria-required="true" />
 
             </div>
             <div class="form-group">
-                <label>经营范围 </label> <span class="required">*</span>
+                <label><vc:i18n name="经营范围" namespace="company-extend"></vc:i18n> </label> <span class="required">*</span>
                 <textarea  v-model="companyExtendInfo.scope" rows="20" cols="180" class="form-control required" aria-required="true" />
             </div>
         </div>

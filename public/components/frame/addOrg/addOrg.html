@@ -3,51 +3,51 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加组织</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="添加组织" namespace="addOrg"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">组织名称</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="组织名称" namespace="addOrg"></vc:i18n></label>
                                 <div class="col-sm-10">
 								<!--@blur="textOrgName()"-->
-                                    <input v-model="addOrgInfo.orgName" type="text" placeholder="必填，请填写组织名称"
+                                    <input v-model="addOrgInfo.orgName" type="text" :placeholder="vc.i18n('必填，请填写组织名称','addOrg')"
                                            class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">组织级别</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="组织级别" namespace="addOrg"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addOrgInfo.orgLevel" disabled>
-                                        <option selected disabled value="">必填，请选择组织级别</option>
-                                        <option value="2">分公司级</option>
-                                        <option value="3">部门级</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addOrg"></vc:i18n>，请选择组织级别</option>
+                                        <option value="2"><vc:i18n name="分公司级" namespace="addOrg"></vc:i18n></option>
+                                        <option value="3"><vc:i18n name="部门级" namespace="addOrg"></vc:i18n></option>
                                     </select></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">上级组织</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="上级组织" namespace="addOrg"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addOrgInfo.parentOrgId" disabled>
-                                        <option selected disabled value="">必填，请选择上级组织</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addOrg"></vc:i18n>，请选择上级组织</option>
                                         <option v-for="parentOrg in addOrgInfo.parentOrg" :value="parentOrg.orgId">{{parentOrg.orgName}}</option>
                                     </select></div>
                             </div>
                             <!--<div class="form-group row">
-                                <label class="col-sm-2 col-form-label">隶属小区</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="隶属小区" namespace="addOrg"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addOrgInfo.belongCommunityId" v-bind:disabled="addOrgInfo.orgLevel == 3">
-                                        <option selected disabled value="">必填，请选择隶属小区</option>
-                                        <option  value="9999">入驻所有小区</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addOrg"></vc:i18n>，请选择隶属小区</option>
+                                        <option  value="9999"><vc:i18n name="入驻所有小区" namespace="addOrg"></vc:i18n></option>
                                         <option v-for="belongCommunity in addOrgInfo.belongCommunitys" :value="belongCommunity.communityId">
                                             {{belongCommunity.name}}
                                         </option>
                                     </select></div>
                             </div>-->
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">描述</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="描述" namespace="addOrg"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="必填，请填写描述" class="form-control"
+                                    <textarea :placeholder="vc.i18n('必填，请填写描述','addOrg')" class="form-control"
                                               v-model="addOrgInfo.description"></textarea></div>
                             </div>
 
@@ -56,7 +56,7 @@
                                         class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal"><vc:i18n name="取消" namespace="addOrg"></vc:i18n>
                                 </button>
                             </div>
                         </div>

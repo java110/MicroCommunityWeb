@@ -2,28 +2,28 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">代收费用</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="代收费用" namespace="addProxyFee"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">费用类型</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="费用类型" namespace="addProxyFee"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addProxyFeeInfo.feeTypeCd"
                                             @change="_changeProxyFeeTypeCd(addProxyFeeInfo.feeTypeCd)">
-                                        <option selected disabled value="">必填，请选择费用类型</option>
-                                        <option value="888800010015">水费</option>
-                                        <option value="888800010016">电费</option>
-                                        <option value="888800010014">其他</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addProxyFee"></vc:i18n>，请选择费用类型</option>
+                                        <option value="888800010015"><vc:i18n name="水费" namespace="addProxyFee"></vc:i18n></option>
+                                        <option value="888800010016"><vc:i18n name="电费" namespace="addProxyFee"></vc:i18n></option>
+                                        <option value="888800010014"><vc:i18n name="其他" namespace="addProxyFee"></vc:i18n></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">收费项目</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="收费项目" namespace="addProxyFee"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addProxyFeeInfo.configId"
                                             @change="_changeProxyFeeConfig()">
-                                        <option selected disabled value="">必填，请选择收费项目</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addProxyFee"></vc:i18n>，请选择收费项目</option>
                                         <option v-for="(item,index) in addProxyFeeInfo.feeConfigs" :key="index"
                                                 v-bind:value="item.configId">{{item.feeName}}
                                         </option>
@@ -31,57 +31,57 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">收费对象</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="收费对象" namespace="addProxyFee"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addProxyFeeInfo.ownerName" type="text" disabled="disabled"
-                                           placeholder="必填，请填写房屋" class="form-control ">
+                                           :placeholder="vc.i18n('必填，请填写房屋','addProxyFee')" class="form-control ">
                                 </div>
                             </div>
                             <div v-if="addProxyFeeInfo.feeTypeCd != '888800010014'">
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">金额</label>
+                                    <label class="col-sm-2 col-form-label"><vc:i18n name="金额" namespace="addProxyFee"></vc:i18n></label>
                                     <div class="col-sm-10">
-                                        <input v-model="addProxyFeeInfo.amount" type="text" placeholder="必填，请填写金额"
+                                        <input v-model="addProxyFeeInfo.amount" type="text" :placeholder="vc.i18n('必填，请填写金额','addProxyFee')"
                                                class="form-control " @blur="_changeAmount()">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">用量</label>
+                                    <label class="col-sm-2 col-form-label"><vc:i18n name="用量" namespace="addProxyFee"></vc:i18n></label>
                                     <div class="col-sm-10">
                                         <input v-model="addProxyFeeInfo.consumption" @blur="_changeConsumption()"
-                                               type="text" placeholder="必填，请填写用量" class="form-control">
+                                               type="text" :placeholder="vc.i18n('必填，请填写用量','addProxyFee')" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div v-else>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">个数</label>
+                                    <label class="col-sm-2 col-form-label"><vc:i18n name="个数" namespace="addProxyFee"></vc:i18n></label>
                                     <div class="col-sm-10">
                                         <input v-model="addProxyFeeInfo.consumption" @blur="_changeConsumption()"
-                                               type="text" placeholder="必填，请填写用量" class="form-control">
+                                               type="text" :placeholder="vc.i18n('必填，请填写用量','addProxyFee')" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">金额</label>
+                                    <label class="col-sm-2 col-form-label"><vc:i18n name="金额" namespace="addProxyFee"></vc:i18n></label>
                                     <div class="col-sm-10">
                                         <input v-model="addProxyFeeInfo.amount" disabled="disabled" type="text"
-                                               placeholder="必填，请填写金额" class="form-control " @blur="_changeAmount()">
+                                               :placeholder="vc.i18n('必填，请填写金额','addProxyFee')" class="form-control " @blur="_changeAmount()">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">开始时间</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="开始时间" namespace="addProxyFee"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addProxyFeeInfo.startTime" type="text"
-                                           placeholder="必填，请填写开始时间" class="form-control proxyFeeStartTime">
+                                           :placeholder="vc.i18n('必填，请填写开始时间','addProxyFee')" class="form-control proxyFeeStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">结束时间</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="结束时间" namespace="addProxyFee"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addProxyFeeInfo.endTime" type="text"
-                                           placeholder="必填，请填写结束时间" class="form-control proxyFeeEndTime">
+                                           :placeholder="vc.i18n('必填，请填写结束时间','addProxyFee')" class="form-control proxyFeeEndTime">
                                 </div>
                             </div>
                             <div class="ibox-content">

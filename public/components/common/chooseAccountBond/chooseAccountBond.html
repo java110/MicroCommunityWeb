@@ -3,13 +3,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseAccountBondModelLabel">选择保证金</h3>
+                <h3 class="modal-title" id="chooseAccountBondModelLabel"><vc:i18n name="选择保证金" namespace="chooseAccountBond"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')vc.i18n(' ','chooseAccountBond')<divvc.i18n(' ','chooseAccountBond')class="vc.i18n(' ','chooseAccountBond')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,12 +18,12 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入保证金名称" type="text"
+                                        <input :placeholder="vc.i18n('输入保证金名称','chooseAccountBond')" type="text"
                                             v-model="chooseAccountBondInfo._currentAccountBondName"
                                             class="form-control form-control-sm">
                                         <span class="input-group-append">
                                             <button type="button" class="btn btn-sm btn-primary"
-                                                v-on:click="queryAccountBonds()">查询</button>
+                                                v-on:click="queryAccountBonds()"><vc:i18n name="查询" namespace="chooseAccountBond"></vc:i18n></button>
                                         </span>
                                     </div>
                                 </div>
@@ -32,12 +32,12 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">保证金ID</th>
-                                            <th class="text-center">保证金名称</th>
-                                            <th class="text-center">保证金金额</th>
-                                            <th class="text-center">有效月份</th>
-                                            <th class="text-center">类型ID</th>
-                                            <th class="text-center">操作</th>
+                                            <th class="text-center"><vc:i18n name="保证金" namespace="chooseAccountBond"></vc:i18n>ID</th>
+                                            <th class="text-center"><vc:i18n name="保证金名称" namespace="chooseAccountBond"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="保证金金额" namespace="chooseAccountBond"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="有效月份" namespace="chooseAccountBond"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="类型" namespace="chooseAccountBond"></vc:i18n>ID</th>
+                                            <th class="text-center"><vc:i18n name="操作" namespace="chooseAccountBond"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -51,7 +51,7 @@
 
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseAccountBond(accountBond)">选择</button>
+                                                    v-on:click="chooseAccountBond(accountBond)"><vc:i18n name="选择" namespace="chooseAccountBond"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

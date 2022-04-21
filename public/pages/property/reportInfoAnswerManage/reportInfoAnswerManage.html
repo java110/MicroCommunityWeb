@@ -5,7 +5,7 @@
                 <div class="ibox-title">
                     <select class="custom-select"
                             v-model="userQuestionAnswerManageInfo.settingId" @change="_listQuestionAnswerTitles()">
-                        <option selected value="">请选择登记项目</option>
+                        <option selected value=""><vc:i18n name="请选择登记项目" namespace="reportInfoAnswerManage"></vc:i18n></option>
                         <option v-for="(item,index) in userQuestionAnswerManageInfo.reportInfoSettings" :key="index"
                                 :value="item.settingId">{{item.name}}
                         </option>
@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12" v-if="item.titleType == '3003'">
-                                <textarea v-model="item.valueContent" placeholder="必填，请填写"
+                                <textarea v-model="item.valueContent" :placeholder="vc.i18n('必填','reportInfoAnswerManage')，请填写"
                                     class="form-control"></textarea>
                             </div>
                             <div class="col-sm-12" v-else-if="item.titleType == '1001'">
@@ -50,7 +50,7 @@
                     <div class="row" v-if="userQuestionAnswerManageInfo.moreCondition">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" placeholder="请输入被登记人名称"
+                            <input type="text" :placeholder="vc.i18n('请输入被登记人名称','reportInfoAnswerManage')"
                                 v-model="userQuestionAnswerManageInfo.personName" class=" form-control">
                         </div>
                     </div>
@@ -63,7 +63,7 @@
         <button class="btn btn-primary float-right" type="button" v-on:click="_saveUserQuestionAnswer()"><i
                 class="fa fa-check"></i>&nbsp;提交
         </button>
-        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_goBack()">返回
+        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_goBack()"><vc:i18n name="返回" namespace="reportInfoAnswerManage"></vc:i18n>
         </button>
     </div>
 </div>

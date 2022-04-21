@@ -2,17 +2,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">请确认您的操作!</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><vc:i18n name="请确认您的操作" namespace="deleteRentingPool"></vc:i18n>!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <tr align="center"><th>确定删除房源</th></tr>
+                <tr align="center"><th><vc:i18n name="确定删除房源" namespace="deleteRentingPool"></vc:i18n></th></tr>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeDeleteRentingPoolModel()">点错了</button>
-                <button type="button" class="btn btn-primary" v-on:click="deleteRentingPool()">确认删除</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeDeleteRentingPoolModel()"><vc:i18n name="点错了" namespace="deleteRentingPool"></vc:i18n></button>
+                <button type="button" class="btn btn-primary" v-on:click="deleteRentingPool()"><vc:i18n name="确认删除" namespace="deleteRentingPool"></vc:i18n></button>
             </div>
         </div>
     </div>

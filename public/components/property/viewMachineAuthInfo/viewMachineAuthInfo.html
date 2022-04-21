@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>员工门禁授权信息</h5>
+                <h5><vc:i18n name="员工门禁授权信息" namespace="viewMachineAuthInfo"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewMachineAuthInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectMachineAuthInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择员工门禁授权</button>
+                        <i class="glyphicon glyphicon-search"></i> <vc:i18n name="选择员工门禁授权" namespace="viewMachineAuthInfo"></vc:i18n></button>
 
                     <button type="button" v-if="viewMachineAuthInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddMachineAuthInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加员工门禁授权</button>
+                        <i class="glyphicon glyphicon-plus"></i> <vc:i18n name="添加员工门禁授权" namespace="viewMachineAuthInfo"></vc:i18n></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >设备：</label>
+                            <label class="col-form-label" ><vc:i18n name="设备" namespace="viewMachineAuthInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineAuthInfo.machineId}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >员工：</label>
+                            <label class="col-form-label" ><vc:i18n name="员工" namespace="viewMachineAuthInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineAuthInfo.personId}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >开始时间：</label>
+                            <label class="col-form-label" ><vc:i18n name="开始时间" namespace="viewMachineAuthInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineAuthInfo.startTime}}</label>
                         </div>
 </div>
@@ -35,7 +35,7 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >结束时间：</label>
+                            <label class="col-form-label" ><vc:i18n name="结束时间" namespace="viewMachineAuthInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineAuthInfo.endTime}}</label>
                         </div>
 </div>

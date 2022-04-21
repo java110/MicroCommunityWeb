@@ -3,13 +3,13 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>费用折扣</h5>
+                    <h5><vc:i18n name="费用折扣" namespace="payFeeConfigDiscountManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
                             返回
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPayFeeConfigDiscountModal()">
-                            <i class="fa fa-plus"></i>添加
+                            <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="payFeeConfigDiscountManage"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -17,15 +17,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">费用折扣ID</th>
-                                <th class="text-center">费用项名称</th>
-                                <th class="text-center">折扣名称</th>
-                                <th class="text-center">规则</th>
-                                <th class="text-center">折扣类型</th>
-                                <th class="text-center">缴费起始时间</th>
-                                <th class="text-center">缴费结束时间</th>
-                                <th class="text-center">折扣终止时间</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><vc:i18n name="费用折扣" namespace="payFeeConfigDiscountManage"></vc:i18n>ID</th>
+                                <th class="text-center"><vc:i18n name="费用项名称" namespace="payFeeConfigDiscountManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="折扣名称" namespace="payFeeConfigDiscountManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="规则" namespace="payFeeConfigDiscountManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="折扣类型" namespace="payFeeConfigDiscountManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="缴费起始时间" namespace="payFeeConfigDiscountManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="缴费结束时间" namespace="payFeeConfigDiscountManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="折扣终止时间" namespace="payFeeConfigDiscountManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="操作" namespace="payFeeConfigDiscountManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,7 +44,7 @@
                                 <td class="text-center">{{payFeeConfigDiscount.payMaxEndTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePayFeeConfigDiscountModel(payFeeConfigDiscount)">删除
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePayFeeConfigDiscountModel(payFeeConfigDiscount)"><vc:i18n name="删除" namespace="payFeeConfigDiscountManage"></vc:i18n>
                                     </button>
                                     </div>
                                 </td>
@@ -61,10 +61,10 @@
                     <!-- 分页 -->
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
-                            <div> 缴费起始时间和缴费结束时间：这个约束缴费的时间，也就是前台收银员操作缴费的时间</div>
-                            <div> 折扣终止时间：这个表示最大缴费到什么时候</div>
-                            <div> 如果本年度费用不能享受优惠 那么在折扣设置中规则选择打折无欠费规则，并且欠费时长为0</div>
-                            <div> 这样所有欠费的费用则不享受优惠，本年度的费用属于欠费所以不享受优惠</div>
+                            <div> <vc:i18n name="缴费起始时间和缴费结束时间" namespace="payFeeConfigDiscountManage"></vc:i18n>：这个约束缴费的时间，也就是前台收银员操作缴费的时间</div>
+                            <div> <vc:i18n name="折扣终止时间" namespace="payFeeConfigDiscountManage"></vc:i18n>：这个表示最大缴费到什么时候</div>
+                            <div> <vc:i18n name="如果本年度费用不能享受优惠" namespace="payFeeConfigDiscountManage"></vc:i18n> 那么在折扣设置中规则选择打折无欠费规则，并且欠费时长为0</div>
+                            <div> <vc:i18n name="这样所有欠费的费用则不享受优惠" namespace="payFeeConfigDiscountManage"></vc:i18n>，本年度的费用属于欠费所以不享受优惠</div>
 
                         </div>
                         <div class="col-sm-3 float-right">

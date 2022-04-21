@@ -182,6 +182,8 @@
 
         //渲染组件html
         reader(treeList, _componentScript);
+
+        parseVcI18N();
         //执行组件js
         execScript(treeList, _componentScript);
     };
@@ -250,6 +252,7 @@
 
         //渲染组件html
         reader(treeList, _componentScript);
+        parseVcI18N();
         //执行组件js
         execScript(treeList, _componentScript);
     };
@@ -440,8 +443,8 @@
 
         //初始化vue 对象
         vcFramework.initVue();
+
         vcFramework.initVcComponent();
-        parseVcI18N();
     }
 
     /**

@@ -5,13 +5,13 @@
                 <table class="footable table table-stripped " style="margin-top:10px" data-page-size="10">
                     <thead>
                         <tr>
-                            <th class="text-center " style="border-bottom: none;">楼栋号</th>
-                            <th class="text-center" style="border-bottom: none;">每月应收</th>
-                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}月实收</th>
-                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}月实收中属于{{reportHuaningPayFeeInfo.conditions.year}}年1-{{reportHuaningPayFeeInfo.conditions.month-1}}月部分</th>
-                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}月实收中属于{{reportHuaningPayFeeInfo.conditions.year}}年{{reportHuaningPayFeeInfo.conditions.month}}月部分</th>
-                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}月实收中属于{{_getNextMonth()}}起预收部分</th>
-                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}月实收中属于收{{reportHuaningPayFeeInfo.conditions.year}}年前部分</th>
+                            <th class="text-center " style="border-bottom: none;"><vc:i18n name="楼栋号" namespace="reportHuaningPayFee"></vc:i18n></th>
+                            <th class="text-center" style="border-bottom: none;"><vc:i18n name="每月应收" namespace="reportHuaningPayFee"></vc:i18n></th>
+                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}<vc:i18n name="月实收" namespace="reportHuaningPayFee"></vc:i18n></th>
+                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}<vc:i18n name="月实收中属于" namespace="reportHuaningPayFee"></vc:i18n>{{reportHuaningPayFeeInfo.conditions.year}}<vc:i18n name="年" namespace="reportHuaningPayFee"></vc:i18n>1-{{reportHuaningPayFeeInfo.conditions.month-1}}<vc:i18n name="月部分" namespace="reportHuaningPayFee"></vc:i18n></th>
+                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}<vc:i18n name="月实收中属于" namespace="reportHuaningPayFee"></vc:i18n>{{reportHuaningPayFeeInfo.conditions.year}}<vc:i18n name="年" namespace="reportHuaningPayFee"></vc:i18n>{{reportHuaningPayFeeInfo.conditions.month}}<vc:i18n name="月部分" namespace="reportHuaningPayFee"></vc:i18n></th>
+                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}<vc:i18n name="月实收中属于" namespace="reportHuaningPayFee"></vc:i18n>{{_getNextMonth()}}<vc:i18n name="起预收部分" namespace="reportHuaningPayFee"></vc:i18n></th>
+                            <th class="text-center " style="border-bottom: none;">{{reportHuaningPayFeeInfo.conditions.month}}<vc:i18n name="月实收中属于收" namespace="reportHuaningPayFee"></vc:i18n>{{reportHuaningPayFeeInfo.conditions.year}}<vc:i18n name="年前部分" namespace="reportHuaningPayFee"></vc:i18n></th>
                         </tr>
                     </thead>
                     <tbody>

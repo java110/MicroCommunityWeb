@@ -3,15 +3,15 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>{{listApplyRoomDiscountRecordsInfo.conditions.roomName}}装修跟踪记录</h5>
+                    <h5>{{listApplyRoomDiscountRecordsInfo.conditions.roomName}}<vc:i18n name="装修跟踪记录" namespace="listApplyRoomDiscountRecord"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_openAddModal(listApplyRoomDiscountRecordsInfo.applyRoomDiscount)">
-                            <i class="fa fa-plus"></i>添加
+                            <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="listApplyRoomDiscountRecord"></vc:i18n>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                                 v-on:click="_goBack()">
-                            <i class="fa fa-times"></i>返回
+                            <i class="fa fa-times"></i><vc:i18n name="返回" namespace="listApplyRoomDiscountRecord"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -19,14 +19,14 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">验房跟踪记录ID</th>
-                            <th class="text-center">房屋</th>
-                            <th class="text-center">操作人员</th>
-                            <th class="text-center">创建时间</th>
-                            <th class="text-center">状态</th>
-                            <th class="text-center">是否违规</th>
-                            <th class="text-center">备注</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="验房跟踪记录" namespace="listApplyRoomDiscountRecord"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="房屋" namespace="listApplyRoomDiscountRecord"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作人员" namespace="listApplyRoomDiscountRecord"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="创建时间" namespace="listApplyRoomDiscountRecord"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="状态" namespace="listApplyRoomDiscountRecord"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="是否违规" namespace="listApplyRoomDiscountRecord"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="备注" namespace="listApplyRoomDiscountRecord"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="listApplyRoomDiscountRecord"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteApplyRoomDiscountRecordModel(applyRoomDiscountRecord)">删除
+                                            v-on:click="_openDeleteApplyRoomDiscountRecordModel(applyRoomDiscountRecord)"><vc:i18n name="删除" namespace="listApplyRoomDiscountRecord"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

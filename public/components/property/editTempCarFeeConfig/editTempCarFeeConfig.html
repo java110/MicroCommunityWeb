@@ -3,25 +3,25 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">修改标准</h3>
+        <h3 class="m-t-none m-b "><vc:i18n name="修改标准" namespace="editTempCarFeeConfig"></vc:i18n></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">标准名称</label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="标准名称" namespace="editTempCarFeeConfig"></vc:i18n></label>
                     <div class="col-sm-9">
-                      <input v-model="editTempCarFeeConfigInfo.feeName" type="text" placeholder="必填，请填写标准名称"
+                      <input v-model="editTempCarFeeConfigInfo.feeName" type="text" :placeholder="vc.i18n('必填，请填写标准名称','editTempCarFeeConfig')"
                         class="form-control">
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">停车场</label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="停车场" namespace="editTempCarFeeConfig"></vc:i18n></label>
                     <div class="col-sm-9">
-                      <input v-model="editTempCarFeeConfigInfo.areaNum" disabled type="text" placeholder="必填，请填写停车场"
+                      <input v-model="editTempCarFeeConfigInfo.areaNum" disabled type="text" :placeholder="vc.i18n('必填，请填写停车场','editTempCarFeeConfig')"
                         class="form-control">
                     </div>
                   </div>
@@ -30,23 +30,23 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">车辆类型</label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="车辆类型" namespace="editTempCarFeeConfig"></vc:i18n></label>
                     <div class="col-sm-9">
                       <select class="custom-select" v-model="editTempCarFeeConfigInfo.carType">
-                        <option selected disabled value="">必填，请选择车辆类型</option>
-                        <option value="9901">家用小汽车</option>
-                        <option value="9904">电动车</option>
-                        <option value="9905">三轮车</option>
+                        <option selected disabled value=""><vc:i18n name="必填" namespace="editTempCarFeeConfig"></vc:i18n>，请选择车辆类型</option>
+                        <option value="9901"><vc:i18n name="家用小汽车" namespace="editTempCarFeeConfig"></vc:i18n></option>
+                        <option value="9904"><vc:i18n name="电动车" namespace="editTempCarFeeConfig"></vc:i18n></option>
+                        <option value="9905"><vc:i18n name="三轮车" namespace="editTempCarFeeConfig"></vc:i18n></option>
                       </select>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">收费规则</label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="收费规则" namespace="editTempCarFeeConfig"></vc:i18n></label>
                     <div class="col-sm-9">
                       <select class="custom-select" v-model="editTempCarFeeConfigInfo.ruleId" disabled="disabled">
-                        <option selected disabled value="">必填，请选择收费规则</option>
+                        <option selected disabled value=""><vc:i18n name="必填" namespace="editTempCarFeeConfig"></vc:i18n>，请选择收费规则</option>
                         <option :value="rule.ruleId" v-for="(rule,index) in editTempCarFeeConfigInfo.rules"
                           :key="index">
                           {{rule.ruleName}}</option>
@@ -59,18 +59,18 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">开始时间</label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="开始时间" namespace="editTempCarFeeConfig"></vc:i18n></label>
                     <div class="col-sm-9">
-                      <input v-model="editTempCarFeeConfigInfo.startTime" type="text" placeholder="必填，请填写开始时间"
+                      <input v-model="editTempCarFeeConfigInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写开始时间','editTempCarFeeConfig')"
                         class="form-control editTempCarFeeConfigStartTime">
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right">结束时间</label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="结束时间" namespace="editTempCarFeeConfig"></vc:i18n></label>
                     <div class="col-sm-9">
-                      <input v-model="editTempCarFeeConfigInfo.endTime" type="text" placeholder="必填，请填写结束时间"
+                      <input v-model="editTempCarFeeConfigInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','editTempCarFeeConfig')"
                         class="form-control editTempCarFeeConfigEndTime">
                     </div>
                   </div>
@@ -104,7 +104,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="editTempCarFeeConfig()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><vc:i18n name="取消" namespace="editTempCarFeeConfig"></vc:i18n></button>
               </div>
             </div>
           </div>

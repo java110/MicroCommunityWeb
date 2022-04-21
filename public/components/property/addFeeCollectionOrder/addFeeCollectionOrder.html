@@ -3,25 +3,25 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">申请催缴</h3>
+        <h3 class="m-t-none m-b "><vc:i18n name="申请催缴" namespace="addFeeCollectionOrder"></vc:i18n></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">催缴方式</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="催缴方式" namespace="addFeeCollectionOrder"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addFeeCollectionOrderInfo.collectionWay">
-                    <option selected disabled value="">必填，请选择催缴方式</option>
-                    <option value="001">仅短信方式</option>
-                    <option value="002">短信微信方式</option>
-                    <option value="003">仅微信方式</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="addFeeCollectionOrder"></vc:i18n>，请选择催缴方式</option>
+                    <option value="001"><vc:i18n name="仅短信方式" namespace="addFeeCollectionOrder"></vc:i18n></option>
+                    <option value="002"><vc:i18n name="短信微信方式" namespace="addFeeCollectionOrder"></vc:i18n></option>
+                    <option value="003"><vc:i18n name="仅微信方式" namespace="addFeeCollectionOrder"></vc:i18n></option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">备注</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="addFeeCollectionOrder"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <textarea v-model="addFeeCollectionOrderInfo.remark" placeholder="选填，请填写备注"
+                  <textarea v-model="addFeeCollectionOrderInfo.remark" :placeholder="vc.i18n('选填，请填写备注','addFeeCollectionOrder')"
                     class="form-control"></textarea>
                 </div>
               </div>
@@ -30,7 +30,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="saveFeeCollectionOrderInfo()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><vc:i18n name="取消" namespace="addFeeCollectionOrder"></vc:i18n></button>
               </div>
             </div>
           </div>

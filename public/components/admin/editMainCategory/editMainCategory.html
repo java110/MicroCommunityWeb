@@ -3,52 +3,52 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">修改商品目录</h3>
+        <h3 class="m-t-none m-b "><vc:i18n name="修改商品目录" namespace="editMainCategory"></vc:i18n></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">目录名称</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="目录名称" namespace="editMainCategory"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editMainCategoryInfo.categoryName" type="text" placeholder="必填，请填写目录名称"
+                  <input v-model="editMainCategoryInfo.categoryName" type="text" :placeholder="vc.i18n('必填，请填写目录名称','editMainCategory')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">目录类别</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="目录类别" namespace="editMainCategory"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="editMainCategoryInfo.categoryType">
-                    <option selected disabled value="">必填，请选择目录类别</option>
-                    <option value="1">服务</option>
-                    <option value="2">商圈</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="editMainCategory"></vc:i18n>，请选择目录类别</option>
+                    <option value="1"><vc:i18n name="服务" namespace="editMainCategory"></vc:i18n></option>
+                    <option value="2"><vc:i18n name="商圈" namespace="editMainCategory"></vc:i18n></option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">开始时间</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="开始时间" namespace="editMainCategory"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editMainCategoryInfo.startTime" type="text" placeholder="必填，请填写开始时间"
+                  <input v-model="editMainCategoryInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写开始时间','editMainCategory')"
                     class="form-control editStartTime">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">结束时间</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="结束时间" namespace="editMainCategory"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editMainCategoryInfo.endTime" type="text" placeholder="必填，请填写结束时间"
+                  <input v-model="editMainCategoryInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','editMainCategory')"
                     class="form-control editEndTime">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">排序</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="排序" namespace="editMainCategory"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editMainCategoryInfo.seq" type="text" placeholder="必填，请填写排序"
+                  <input v-model="editMainCategoryInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写排序','editMainCategory')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">描述</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="描述" namespace="editMainCategory"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <textarea v-model="editMainCategoryInfo.categoryDesc" placeholder="必填，请填写描述"
+                  <textarea v-model="editMainCategoryInfo.categoryDesc" :placeholder="vc.i18n('必填，请填写描述','editMainCategory')"
                     class="form-control"></textarea>
                 </div>
               </div>
@@ -57,7 +57,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="editMainCategory()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><vc:i18n name="取消" namespace="editMainCategory"></vc:i18n></button>
               </div>
             </div>
           </div>

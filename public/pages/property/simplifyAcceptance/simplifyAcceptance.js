@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     var TEMP_SEARCH = "simplifyAcceptanceSearch";
@@ -32,12 +32,12 @@
                 roomType: '',
                 roomSubTypeName: '',
                 roomSubType: '',
-                roomArea:'',
+                roomArea: '',
                 sex: '',
-                roomRent:''
+                roomRent: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             if (!vc.isBack()) {
                 return;
             }
@@ -51,22 +51,22 @@
             $that.simplifyAcceptanceInfo.searchPlaceholder = _tempData.searchPlaceholder;
             $that._doSearch();
         },
-        _initEvent: function () {
-            vc.on('simplifyAcceptance', 'chooseRoom', function (_room) {
+        _initEvent: function() {
+            vc.on('simplifyAcceptance', 'chooseRoom', function(_room) {
                 vc.copyObject(_room, $that.simplifyAcceptanceInfo);
                 $that.simplifyAcceptanceInfo.roomRemark = _room.remark;
                 $that.simplifyAcceptanceInfo.roomName = _room.floorNum + '栋' + _room.unitNum + '单元' + _room.roomNum;
                 vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo)
             });
-            vc.on('simplifyAcceptance','selectRoom',function(_param){
-                $that.simplifyAcceptanceInfo.searchType ='1';
+            vc.on('simplifyAcceptance', 'selectRoom', function(_param) {
+                $that.simplifyAcceptanceInfo.searchType = '1';
                 $that.simplifyAcceptanceInfo.searchValue = _param.roomName;
                 $that.simplifyAcceptanceInfo.searchPlaceholder = "请输入房屋编号 楼栋-单元-房屋 如1-1-1";
                 $that._doSearch();
             })
         },
         methods: {
-            _changeSearchType: function () {
+            _changeSearchType: function() {
                 switch ($that.simplifyAcceptanceInfo.searchType) {
                     case '1':
                         $that.simplifyAcceptanceInfo.searchPlaceholder = '请输入房屋编号 楼栋-单元-房屋 如1-1-1';
@@ -111,7 +111,7 @@
                         $that.simplifyAcceptanceInfo.searchValue = "";
                 }
             },
-            _doSearch: function () {
+            _doSearch: function() {
                 if (!vc.isNotEmpty($that.simplifyAcceptanceInfo.searchValue)) {
                     vc.toast('请输入查询条件');
                     return;
@@ -127,7 +127,7 @@
                 }
                 vc.http.apiGet('/ownerApi/comprehensiveQuery',
                     _param,
-                    function (json, res) {
+                    function(json, res) {
                         let _ownerJson = JSON.parse(json);
                         if (_ownerJson.code != 0) {
                             vc.toast(_ownerJson.msg);
@@ -149,12 +149,13 @@
                         $that.simplifyAcceptanceInfo.roomRemark = _rooms[0].remark;
                         $that.simplifyAcceptanceInfo.roomName = _rooms[0].floorNum + '栋' + _rooms[0].unitNum + '单元' + _rooms[0].roomNum + '室';
                         vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo);
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            saveTempSearchData: function () {
+            saveTempSearchData: function() {
                 let _searchType = $that.simplifyAcceptanceInfo.searchType;
                 let _searchValue = $that.simplifyAcceptanceInfo.searchValue;
                 let _searchPlaceholder = $that.simplifyAcceptanceInfo.searchPlaceholder;
@@ -165,7 +166,7 @@
                     searchPlaceholder: _searchPlaceholder
                 });
             },
-            changeTab: function (_tab) {
+            changeTab: function(_tab) {
                 $that.simplifyAcceptanceInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
                     ownerId: $that.simplifyAcceptanceInfo.ownerId,
@@ -176,10 +177,10 @@
                     roomNum: $that.simplifyAcceptanceInfo.roomNum
                 })
             },
-            errorLoadImg: function () {
+            errorLoadImg: function() {
                 vc.component.simplifyAcceptanceInfo.ownerPhoto = "/img/noPhoto.jpg";
             },
-            _clearData: function () {
+            _clearData: function() {
                 let _searchType = $that.simplifyAcceptanceInfo.searchType;
                 let _searchValue = $that.simplifyAcceptanceInfo.searchValue;
                 let _searchPlaceholder = $that.simplifyAcceptanceInfo.searchPlaceholder;
@@ -209,19 +210,19 @@
                     roomType: '',
                     roomSubTypeName: '',
                     roomSubType: '',
-                    roomArea:'',
-                    roomRent:''
+                    roomArea: '',
+                    roomRent: ''
                 }
             },
-            _simplifyAcceptanceChooseRoom:function(){
-                vc.emit('roomTree','openRoomTree',{
-                    callName:'simplifyAcceptance'
+            _simplifyAcceptanceChooseRoom: function() {
+                vc.emit('roomTree', 'openRoomTree', {
+                    callName: 'simplifyAcceptance'
                 })
             },
-            _handover:function(){
+            _handover: function() {
                 vc.jumpToPage('/#/pages/property/handover')
             },
-            _simplifyOwnerExitRoom:function(){
+            _simplifyOwnerExitRoom: function() {
                 vc.jumpToPage('/#/pages/property/ownerExitRoom')
             }
         }

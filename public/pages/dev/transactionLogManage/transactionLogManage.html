@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="transactionLogManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                             v-on:click="_moreCondition()">{{transactionLogManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -14,25 +14,25 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入服务编码"
+                                <input type="text" :placeholder="vc.i18n('请输入服务编码','transactionLogManage')"
                                     v-model="transactionLogManageInfo.conditions.serviceCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入应用编码"
+                                <input type="text" :placeholder="vc.i18n('请输入应用编码','transactionLogManage')"
                                     v-model="transactionLogManageInfo.conditions.appId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入流水"
+                                <input type="text" :placeholder="vc.i18n('请输入流水','transactionLogManage')"
                                     v-model="transactionLogManageInfo.conditions.transactionId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryLogMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="transactionLogManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>交互日志</h5>
+                    <h5><vc:i18n name="交互日志" namespace="transactionLogManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -54,15 +54,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <!-- <th class="text-center">信息ID</th> -->
-                                <th class="text-center">流水</th>
-                                <th class="text-center">源IP</th>
-                                <th class="text-center">应用编码</th>
-                                <th class="text-center">服务编码</th>
-                                <th class="text-center">耗时</th>
-                                <th class="text-center">状态</th>
-                                <th class="text-center">请求时间</th>
-                                <th class="text-right">操作</th>
+                                <!-- <th class="text-center"><vc:i18n name="信息" namespace="transactionLogManage"></vc:i18n>ID</th> -->
+                                <th class="text-center"><vc:i18n name="流水" namespace="transactionLogManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="源" namespace="transactionLogManage"></vc:i18n>IP</th>
+                                <th class="text-center"><vc:i18n name="应用编码" namespace="transactionLogManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="服务编码" namespace="transactionLogManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="耗时" namespace="transactionLogManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="状态" namespace="transactionLogManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="请求时间" namespace="transactionLogManage"></vc:i18n></th>
+                                <th class="text-right"><vc:i18n name="操作" namespace="transactionLogManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,7 +76,7 @@
                                 <td class="text-center">{{log.createTime}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="viewLogMessage(log)">查看报文
+                                        <button class="btn-white btn btn-xs" v-on:click="viewLogMessage(log)"><vc:i18n name="查看报文" namespace="transactionLogManage"></vc:i18n>
                                         </button>
                                     </div>
                                 </td>

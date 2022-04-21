@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseContractTypeSpecModelLabel">选择合同类型属性</h3>
+                <h3 class="modal-title" id="chooseContractTypeSpecModelLabel"><vc:i18n name="选择合同类型属性" namespace="chooseContractTypeSpec"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')vc.i18n(' ','chooseContractTypeSpec')<divvc.i18n(' ','chooseContractTypeSpec')class="vc.i18n(' ','chooseContractTypeSpec')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入合同类型属性名称" type="text" v-model="chooseContractTypeSpecInfo._currentContractTypeSpecName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入合同类型属性名称','chooseContractTypeSpec')" type="text" v-model="chooseContractTypeSpecInfo._currentContractTypeSpecName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryContractTypeSpecs()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryContractTypeSpecs()"><vc:i18n name="查询" namespace="chooseContractTypeSpec"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,15 +28,15 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">规格</th>
-                            <th class="text-center">规格名称</th>
-                            <th class="text-center">说明</th>
-                            <th class="text-center">必填</th>
-                            <th class="text-center">展示</th>
-                            <th class="text-center">值类型</th>
-                            <th class="text-center">规格类型</th>
-                            <th class="text-center">查询显示</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><vc:i18n name="规格" namespace="chooseContractTypeSpec"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="规格名称" namespace="chooseContractTypeSpec"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="说明" namespace="chooseContractTypeSpec"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="必填" namespace="chooseContractTypeSpec"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="展示" namespace="chooseContractTypeSpec"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="值类型" namespace="chooseContractTypeSpec"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="规格类型" namespace="chooseContractTypeSpec"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="查询显示" namespace="chooseContractTypeSpec"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="chooseContractTypeSpec"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -52,7 +52,7 @@
                             <td class="text-center">{{contractTypeSpec.listShow}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseContractTypeSpec(contractTypeSpec)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseContractTypeSpec(contractTypeSpec)"><vc:i18n name="选择" namespace="chooseContractTypeSpec"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -3,13 +3,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseCouponPoolModelLabel">选择优惠券池</h3>
+                <h3 class="modal-title" id="chooseCouponPoolModelLabel"><vc:i18n name="选择优惠券池" namespace="chooseCouponPool"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')vc.i18n(' ','chooseCouponPool')<divvc.i18n(' ','chooseCouponPool')class="vc.i18n(' ','chooseCouponPool')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,12 +18,12 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入优惠券池名称" type="text"
+                                        <input :placeholder="vc.i18n('输入优惠券池名称','chooseCouponPool')" type="text"
                                             v-model="chooseCouponPoolInfo._currentCouponPoolName"
                                             class="form-control form-control-sm">
                                         <span class="input-group-append">
                                             <button type="button" class="btn btn-sm btn-primary"
-                                                v-on:click="queryCouponPools()">查询</button>
+                                                v-on:click="queryCouponPools()"><vc:i18n name="查询" namespace="chooseCouponPool"></vc:i18n></button>
                                         </span>
                                     </div>
                                 </div>
@@ -32,18 +32,18 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">优惠券池ID</th>
-                                            <th class="text-center">池ID</th>
-                                            <th class="text-center">优惠券类型</th>
-                                            <th class="text-center">优惠券名称</th>
-                                            <th class="text-center">面值</th>
-                                            <th class="text-center">购买价格</th>
-                                            <th class="text-center">数量</th>
-                                            <th class="text-center">有效期</th>
-                                            <th class="text-center">排序</th>
-                                            <th class="text-center">状态</th>
+                                            <th class="text-center"><vc:i18n name="优惠券池" namespace="chooseCouponPool"></vc:i18n>ID</th>
+                                            <th class="text-center"><vc:i18n name="池" namespace="chooseCouponPool"></vc:i18n>ID</th>
+                                            <th class="text-center"><vc:i18n name="优惠券类型" namespace="chooseCouponPool"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="优惠券名称" namespace="chooseCouponPool"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="面值" namespace="chooseCouponPool"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="购买价格" namespace="chooseCouponPool"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="数量" namespace="chooseCouponPool"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="有效期" namespace="chooseCouponPool"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="排序" namespace="chooseCouponPool"></vc:i18n></th>
+                                            <th class="text-center"><vc:i18n name="状态" namespace="chooseCouponPool"></vc:i18n></th>
                                             <th class="text-center">primary</th>
-                                            <th class="text-center">操作</th>
+                                            <th class="text-center"><vc:i18n name="操作" namespace="chooseCouponPool"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -63,7 +63,7 @@
 
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseCouponPool(couponPool)">选择</button>
+                                                    v-on:click="chooseCouponPool(couponPool)"><vc:i18n name="选择" namespace="chooseCouponPool"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

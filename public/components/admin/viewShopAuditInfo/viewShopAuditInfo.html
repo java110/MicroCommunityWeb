@@ -2,30 +2,30 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>店铺审核信息</h5>
+                <h5><vc:i18n name="店铺审核信息" namespace="viewShopAuditInfo"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                        v-on:click="_refreshShopAuditManageInfo()">取消</button>
+                        v-on:click="_refreshShopAuditManageInfo()"><vc:i18n name="取消" namespace="viewShopAuditInfo"></vc:i18n></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">店铺名称：</label>
+                            <label class="col-form-label"><vc:i18n name="店铺名称" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label v-if="viewShopAuditInfo.shopName == preShopInfo.shopName || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.shopName}}</label>
                             <label v-else>
-                               <span>{{preShopInfo.shopName}}</span> 变更为：
+                               <span>{{preShopInfo.shopName}}</span> <vc:i18n name="变更为" namespace="viewShopAuditInfo"></vc:i18n>：
                                <span style="color: red;">{{viewShopAuditInfo.shopName}}</span> 
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="col-form-label">店铺描述：</label>
+                            <label class="col-form-label"><vc:i18n name="店铺描述" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="" v-if="viewShopAuditInfo.shopDesc == preShopInfo.shopDesc || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.shopDesc}}</label>
                             <label class="" v-else>
-                               <span>{{preShopInfo.shopDesc}}</span> 变更为：
+                               <span>{{preShopInfo.shopDesc}}</span> <vc:i18n name="变更为" namespace="viewShopAuditInfo"></vc:i18n>：
                                <span style="color: red;">{{viewShopAuditInfo.shopDesc}}</span> 
                             </label>
                         </div>
@@ -34,34 +34,34 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">店铺类型：</label>
+                            <label class="col-form-label"><vc:i18n name="店铺类型" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="" v-if="viewShopAuditInfo.shopType == preShopInfo.shopType || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.shopTypeName}}</label>
                             <label class="" v-else>
-                               <span>{{preShopInfo.shopTypeName}}</span> 变更为：
+                               <span>{{preShopInfo.shopTypeName}}</span> <vc:i18n name="变更为" namespace="viewShopAuditInfo"></vc:i18n>：
                                <span style="color: red;">{{viewShopAuditInfo.shopTypeName}}</span> 
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">开店类型：</label>
+                            <label class="col-form-label"><vc:i18n name="开店类型" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="" v-if="viewShopAuditInfo.openType == preShopInfo.openType || viewShopAuditInfo.state == '002'">{{_openTypeName(viewShopAuditInfo.openType)}}</label>
                             <label class="" v-else>
-                               <span>{{_openTypeName(preShopInfo.openType)}}</span> 变更为：
+                               <span>{{_openTypeName(preShopInfo.openType)}}</span> <vc:i18n name="变更为" namespace="viewShopAuditInfo"></vc:i18n>：
                                <span style="color: red;">{{_openTypeName(viewShopAuditInfo.openType)}}</span> 
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="form-group">
-                            <label class="col-form-label">店铺logo：</label>
+                            <label class="col-form-label"><vc:i18n name="店铺" namespace="viewShopAuditInfo"></vc:i18n>logo：</label>
                             <label class="" v-if="viewShopAuditInfo.shopLogo == preShopInfo.shopLogo || viewShopAuditInfo.state == '002'">
                                 <img style="width: 60px; height: 60px; border-radius: 5px;"
                                 v-bind:src="viewShopAuditInfo.shopLogo"></img>
                             </label>
                             <label class="" v-else>
                                <span><img style="width: 60px; height: 60px; border-radius: 5px;"
-                                v-bind:src="preShopInfo.shopLogo"></img></span> 变更为：
+                                v-bind:src="preShopInfo.shopLogo"></img></span> <vc:i18n name="变更为" namespace="viewShopAuditInfo"></vc:i18n>：
                                <span><img style="width: 60px; height: 60px; border-radius: 5px;"
                                 v-bind:src="viewShopAuditInfo.shopLogo"></img></span> 
                             </label>
@@ -71,17 +71,17 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">发货地址：</label>
+                            <label class="col-form-label"><vc:i18n name="发货地址" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="" v-if="viewShopAuditInfo.sendAddress == preShopInfo.sendAddress || viewShopAuditInfo.state == '002'">{{viewShopAuditInfo.sendAddress}}</label>
                             <label class="" v-else>
-                               <span>{{preShopInfo.sendAddress}}</span> 变更为：
+                               <span>{{preShopInfo.sendAddress}}</span> <vc:i18n name="变更为" namespace="viewShopAuditInfo"></vc:i18n>：
                                <span style="color: red;">{{viewShopAuditInfo.sendAddress}}</span>
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">地域编码：</label>
+                            <label class="col-form-label"><vc:i18n name="地域编码" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="">{{viewShopAuditInfo.areaName}}</label>
                         </div>
                     </div>
@@ -89,19 +89,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">退货地址：</label>
+                            <label class="col-form-label"><vc:i18n name="退货地址" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="">{{viewShopAuditInfo.returnAddress}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">退货联系人：</label>
+                            <label class="col-form-label"><vc:i18n name="退货联系人" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="">{{viewShopAuditInfo.returnPerson}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">退货联系电话：</label>
+                            <label class="col-form-label"><vc:i18n name="退货联系电话" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="">{{viewShopAuditInfo.returnLink}}</label>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                 <div class="row">
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label class="col-form-label">申请原因：</label>
+                            <label class="col-form-label"><vc:i18n name="申请原因" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="">{{viewShopAuditInfo.applyOpinion}}</label>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                 <div class="row" v-if="viewShopAuditInfo.state == '003'">
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label class="col-form-label">不通过意见：</label>
+                            <label class="col-form-label"><vc:i18n name="不通过意见" namespace="viewShopAuditInfo"></vc:i18n>：</label>
                             <label class="">{{viewShopAuditInfo.auditOpinion}}</label>
                         </div>
                     </div>
@@ -131,25 +131,25 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>审核结果</h5>
+                <h5><vc:i18n name="审核结果" namespace="viewShopAuditInfo"></vc:i18n></h5>
             </div>
             <div class="ibox-content">
                 <div>
                     <div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">审核状态</label>
+                            <label class="col-sm-2 col-form-label"><vc:i18n name="审核状态" namespace="viewShopAuditInfo"></vc:i18n></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="auditInfo.state">
-                                    <option selected disabled value="">请审核</option>
-                                    <option value="1100">同意</option>
-                                    <option value="1200">拒绝</option>
+                                    <option selected disabled value=""><vc:i18n name="请审核" namespace="viewShopAuditInfo"></vc:i18n></option>
+                                    <option value="1100"><vc:i18n name="同意" namespace="viewShopAuditInfo"></vc:i18n></option>
+                                    <option value="1200"><vc:i18n name="拒绝" namespace="viewShopAuditInfo"></vc:i18n></option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">审核意见</label>
+                            <label class="col-sm-2 col-form-label"><vc:i18n name="审核意见" namespace="viewShopAuditInfo"></vc:i18n></label>
                             <div class="col-sm-10">
-                                <textarea placeholder="必填，请填写审核意见" class="form-control"
+                                <textarea :placeholder="vc.i18n('必填，请填写审核意见','viewShopAuditInfo')" class="form-control"
                                     v-model="auditInfo.auditOpinion">
                                     </textarea>
                             </div>
@@ -159,7 +159,7 @@
                                 <i class="fa fa-check"></i>&nbsp;提交
                             </button>
                             <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                            v-on:click="_refreshShopAuditManageInfo()">取消</button>
+                            v-on:click="_refreshShopAuditManageInfo()"><vc:i18n name="取消" namespace="viewShopAuditInfo"></vc:i18n></button>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="accountManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,28 +11,28 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入业主名称" v-model="accountManageInfo.conditions.ownerName"
+                                <input type="text" :placeholder="vc.i18n('请输入业主名称','accountManage')" v-model="accountManageInfo.conditions.ownerName"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入业主身份证号" v-model="accountManageInfo.conditions.idCard"
+                                <input type="text" :placeholder="vc.i18n('请输入业主身份证号','accountManage')" v-model="accountManageInfo.conditions.idCard"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="number" placeholder="请输入联系方式" v-model="accountManageInfo.conditions.link"
+                                <input type="number" :placeholder="vc.i18n('请输入联系方式','accountManage')" v-model="accountManageInfo.conditions.link"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAccountMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="accountManage"></vc:i18n>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAccountMethod()">
-                                <i class="fa fa-repeat"></i> 重置
+                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="accountManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>业主账户</h5>
+                    <h5><vc:i18n name="业主账户" namespace="accountManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_prestoreAccount()">
                             预存
@@ -55,12 +55,12 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">账户编号</th>
-                            <th class="text-center">账户名称</th>
-                            <th class="text-center">账户类型</th>
-                            <th class="text-center">账户金额</th>
-                            <th class="text-center">创建时间</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="账户编号" namespace="accountManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="账户名称" namespace="accountManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="账户类型" namespace="accountManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="账户金额" namespace="accountManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="创建时间" namespace="accountManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="accountManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,7 +72,7 @@
                             <td class="text-center">{{account.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_accountDetail(account)">账户明细
+                                    <button class="btn-white btn btn-xs" v-on:click="_accountDetail(account)"><vc:i18n name="账户明细" namespace="accountManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

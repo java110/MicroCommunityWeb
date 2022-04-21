@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="ibox">
         <div class="ibox-title">
-          <h5>申请信息</h5>
+          <h5><vc:i18n name="申请信息" namespace="auditParkingSpaceApply"></vc:i18n></h5>
           <div class="ibox-tools" style="top:10px;">
           </div>
         </div>
@@ -11,19 +11,19 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">车牌号：</label>
+                <label class="col-form-label"><vc:i18n name="车牌号" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.carNum}}</label>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">汽车品牌：</label>
+                <label class="col-form-label"><vc:i18n name="汽车品牌" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.carBrand}}</label>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">车辆类型：</label>
+                <label class="col-form-label"><vc:i18n name="车辆类型" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.carType}}</label>
               </div>
             </div>
@@ -31,19 +31,19 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">颜色：</label>
+                <label class="col-form-label"><vc:i18n name="颜色" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.carColor}}</label>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">起租时间：</label>
+                <label class="col-form-label"><vc:i18n name="起租时间" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.startTime}}</label>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">结租时间：</label>
+                <label class="col-form-label"><vc:i18n name="结租时间" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.endTime}}</label>
               </div>
             </div>
@@ -51,19 +51,19 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">申请人：</label>
+                <label class="col-form-label"><vc:i18n name="申请人" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.applyPersonName}}</label>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">申请人电话：</label>
+                <label class="col-form-label"><vc:i18n name="申请人电话" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.applyPersonLink}}</label>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">申请人ID：</label>
+                <label class="col-form-label"><vc:i18n name="申请人" namespace="auditParkingSpaceApply"></vc:i18n>ID：</label>
                 <label class="">{{addParkingSpaceApplyInfo.applyPersonId}}</label>
               </div>
             </div>
@@ -71,7 +71,7 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="col-form-label">备注：</label>
+                <label class="col-form-label"><vc:i18n name="备注" namespace="auditParkingSpaceApply"></vc:i18n>：</label>
                 <label class="">{{addParkingSpaceApplyInfo.remark}}</label>
               </div>
             </div>
@@ -85,7 +85,7 @@
     <div class="col-lg-12">
       <div class="ibox">
         <div class="ibox-title">
-          <h5>审核信息</h5>
+          <h5><vc:i18n name="审核信息" namespace="auditParkingSpaceApply"></vc:i18n></h5>
           <div class="ibox-tools" style="top:10px;">
           </div>
         </div>
@@ -93,44 +93,44 @@
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">起租时间</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="起租时间" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
-                  <input v-model="addParkingSpaceApplyInfo.startTime" type="text" placeholder="必填，请填写起租时间"
+                  <input v-model="addParkingSpaceApplyInfo.startTime" type="text" :placeholder="vc.i18n('必填','auditParkingSpaceApply')，请填写起租时间"
                     class="form-control editStartTime">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">结租时间</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="结租时间" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
-                  <input v-model="addParkingSpaceApplyInfo.endTime" type="text" placeholder="必填，请填写结租时间"
+                  <input v-model="addParkingSpaceApplyInfo.endTime" type="text" :placeholder="vc.i18n('必填','auditParkingSpaceApply')，请填写结租时间"
                     class="form-control editEndTime">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">选择车库</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="选择车库" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
-                  <input v-model="addParkingSpaceApplyInfo.paName" type="text" placeholder="请选择车库" class="form-control">
+                  <input v-model="addParkingSpaceApplyInfo.paName" type="text" :placeholder="vc.i18n('请选择车库','auditParkingSpaceApply')" class="form-control">
                 </div>
                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseParkingArea()">
-                  <i class="fa fa-search"></i> 选择
+                  <i class="fa fa-search"></i> <vc:i18n name="选择" namespace="auditParkingSpaceApply"></vc:i18n>
                 </button>
               </div>
 
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">选择车位</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="选择车位" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
-                  <input v-model="addParkingSpaceApplyInfo.psName" type="text" placeholder="请选择车位" class="form-control">
+                  <input v-model="addParkingSpaceApplyInfo.psName" type="text" :placeholder="vc.i18n('请选择车位','auditParkingSpaceApply')" class="form-control">
                 </div>
                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseParkingSpace()">
-                  <i class="fa fa-search"></i> 选择
+                  <i class="fa fa-search"></i> <vc:i18n name="选择" namespace="auditParkingSpaceApply"></vc:i18n>
                 </button>
               </div>
 
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">选择费用项</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="选择费用项" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
                   <select class="custom-select" v-model="addParkingSpaceApplyInfo.configId">
-                    <option selected disabled value="">请选择费用项</option>
+                    <option selected disabled value=""><vc:i18n name="请选择费用项" namespace="auditParkingSpaceApply"></vc:i18n></option>
                     <option v-for="(item,index) in addParkingSpaceApplyInfo.feeConfigs" :key="index"
                             v-bind:value="item.configId">{{item.feeName}} —— {{item.feeFlagName}} —— {{item.billTypeName}}
                     </option>
@@ -138,19 +138,19 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">审核结果</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="审核结果" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
                   <select class="custom-select" v-model="addParkingSpaceApplyInfo.state">
-                    <option selected disabled value="">请选择审核结果</option>
-                    <option value="2002">通过</option>
-                    <option value="4004">不通过</option>
+                    <option selected disabled value=""><vc:i18n name="请选择审核结果" namespace="auditParkingSpaceApply"></vc:i18n></option>
+                    <option value="2002"><vc:i18n name="通过" namespace="auditParkingSpaceApply"></vc:i18n></option>
+                    <option value="4004"><vc:i18n name="不通过" namespace="auditParkingSpaceApply"></vc:i18n></option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">审核意见</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="审核意见" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
-                    <textarea v-model="addParkingSpaceApplyInfo.remark2" placeholder="选填，请填写审核意见"
+                    <textarea v-model="addParkingSpaceApplyInfo.remark2" :placeholder="vc.i18n('选填','auditParkingSpaceApply')，请填写审核意见"
                     class="form-control"></textarea>
                 </div>
               </div>
@@ -161,7 +161,7 @@
       <div class="row">
         <div class="col-md-12 text-right">
 
-          <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()">返回</button>
+          <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()"><vc:i18n name="返回" namespace="auditParkingSpaceApply"></vc:i18n></button>
           <button class="btn btn-primary" type="button" v-on:click="auditParkingSpaceApplyInfo()"><i
               class="fa fa-check"></i>&nbsp;保存结果</button>
         </div>

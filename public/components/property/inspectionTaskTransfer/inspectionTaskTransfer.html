@@ -3,12 +3,12 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="添加" namespace="inspectionTaskTransfer"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">流转对象</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="流转对象" namespace="inspectionTaskTransfer"></vc:i18n></label>
                                 <div class="col-sm-3">
                                     <vc:create path="frame/orgSelect2" parentModal="inspectionTaskManageModel"
                                         callBackListener="inspectionTaskTransfer" callBackFunction="notify" namespace="inspectionTaskTransfer">
@@ -26,9 +26,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">流转说明</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="流转说明" namespace="inspectionTaskTransfer"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="必填，请填写转赠说明" class="form-control" v-model="inspectionTaskTransferInfo.transferDesc"></textarea>
+                                    <textarea :placeholder="vc.i18n('必填，请填写转赠说明','inspectionTaskTransfer')" class="form-control" v-model="inspectionTaskTransferInfo.transferDesc"></textarea>
                                 </div>
                             </div>
                             <div class="ibox-content">

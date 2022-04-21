@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="machineVistorPhotoManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">{{machineVistorPhotoManageInfo.moreCondition ==
@@ -15,48 +15,48 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入用户名称"
+                                <input type="text" :placeholder="vc.i18n('请输入用户名称','machineVistorPhotoManage')"
                                        v-model="machineVistorPhotoManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="machineVistorPhotoManageInfo.conditions.openTypeCd">
-                                <option selected value="">请选择开门方式</option>
-                                <option value="1000">人脸开门</option>
-                                <option value="2000">钥匙开门</option>
+                                <option selected value=""><vc:i18n name="请选择开门方式" namespace="machineVistorPhotoManage"></vc:i18n></option>
+                                <option value="1000"><vc:i18n name="人脸开门" namespace="machineVistorPhotoManage"></vc:i18n></option>
+                                <option value="2000"><vc:i18n name="钥匙开门" namespace="machineVistorPhotoManage"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入用户手机"
+                                <input type="text" :placeholder="vc.i18n('请输入用户手机','machineVistorPhotoManage')"
                                        v-model="machineVistorPhotoManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryMachineRecordMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="machineVistorPhotoManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4" v-if="machineVistorPhotoManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="machineVistorPhotoManageInfo.conditions.ownerTypeCd">
-                                <option selected value="">请选择用户类型</option>
-                                <option value="1001">业主</option>
-                                <option value="1002">业主成员</option>
+                                <option selected value=""><vc:i18n name="请选择用户类型" namespace="machineVistorPhotoManage"></vc:i18n></option>
+                                <option value="1001"><vc:i18n name="业主" namespace="machineVistorPhotoManage"></vc:i18n></option>
+                                <option value="1002"><vc:i18n name="业主成员" namespace="machineVistorPhotoManage"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-4" v-if="machineVistorPhotoManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入设备名称"
+                                <input type="text" :placeholder="vc.i18n('请输入设备名称','machineVistorPhotoManage')"
                                        v-model="machineVistorPhotoManageInfo.conditions.machineName"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3" v-if="machineVistorPhotoManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入设备编码"
+                                <input type="text" :placeholder="vc.i18n('请输入设备编码','machineVistorPhotoManage')"
                                        v-model="machineVistorPhotoManageInfo.conditions.machineCode"
                                        class=" form-control">
                             </div>
@@ -72,7 +72,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>开门记录</h5>
+                    <h5><vc:i18n name="开门记录" namespace="machineVistorPhotoManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!--<button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMachineRecordModal()">
                             <i class="fa fa-plus"></i>
@@ -85,12 +85,12 @@
                            data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">设备编码</th>
-                            <th class="text-center">被呼叫用户名称</th>
-                            <th class="text-center">被呼叫方式</th>
-                            <th class="text-center">被呼叫用户手机号</th>
-                            <th class="text-center">身份证</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="设备编码" namespace="machineVistorPhotoManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="被呼叫用户名称" namespace="machineVistorPhotoManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="被呼叫方式" namespace="machineVistorPhotoManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="被呼叫用户手机号" namespace="machineVistorPhotoManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="身份证" namespace="machineVistorPhotoManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="machineVistorPhotoManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,7 +103,7 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openMachineRecordDetailModel(machineRecord)">详情
+                                            v-on:click="_openMachineRecordDetailModel(machineRecord)"><vc:i18n name="详情" namespace="machineVistorPhotoManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="roomFeeImportDetail"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                             v-on:click="_moreCondition()">{{roomFeeImportDetailInfo.moreCondition == true?'隐藏':'更多'}}
@@ -14,32 +14,32 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入楼栋编号"
+                                <input type="text" :placeholder="vc.i18n('请输入楼栋编号','roomFeeImportDetail')"
                                     v-model="roomFeeImportDetailInfo.conditions.floorNum" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入单元编号"
+                                <input type="text" :placeholder="vc.i18n('请输入单元编号','roomFeeImportDetail')"
                                     v-model="roomFeeImportDetailInfo.conditions.unitNum" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入房屋编号"
+                                <input type="text" :placeholder="vc.i18n('请输入房屋编号','roomFeeImportDetail')"
                                     v-model="roomFeeImportDetailInfo.conditions.roomNum" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeDetailMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="roomFeeImportDetail"></vc:i18n>
                             </button>
                         </div>
                     </div>
                     <div class="row">
                         <!-- <div class="col-sm-4" v-if="roomFeeImportDetailInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入信息ID"
+                                <input type="text" :placeholder="vc.i18n('请输入信息','roomFeeImportDetail')ID"
                                     v-model="roomFeeImportDetailInfo.conditions.activitiesId" class=" form-control">
                             </div>
                         </div> -->
@@ -54,7 +54,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>导入费用详情</h5>
+                    <h5><vc:i18n name="导入费用详情" namespace="roomFeeImportDetail"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
                             返回
@@ -67,15 +67,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">楼栋编号</th>
-                                <th class="text-center">单元编号</th>
-                                <th class="text-center">房屋编号</th>
-                                <th class="text-center">费用名称</th>
-                                <th class="text-center">开始时间</th>
-                                <th class="text-center">结束时间</th>
-                                <th class="text-center">总金额</th>
-                                <th class="text-center">备注</th>
-                                <th class="text-center">状态</th>
+                                <th class="text-center"><vc:i18n name="楼栋编号" namespace="roomFeeImportDetail"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="单元编号" namespace="roomFeeImportDetail"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="房屋编号" namespace="roomFeeImportDetail"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="费用名称" namespace="roomFeeImportDetail"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="开始时间" namespace="roomFeeImportDetail"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="结束时间" namespace="roomFeeImportDetail"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="总金额" namespace="roomFeeImportDetail"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="备注" namespace="roomFeeImportDetail"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="状态" namespace="roomFeeImportDetail"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,8 +89,8 @@
                                 <td class="text-center">{{detail.amount}}</td>
                                 <td class="text-center">{{detail.remark}}</td>
                                 <td class="text-center">
-                                    <span class="badge badge-success" v-if="detail.state == '1000'">导入成功</span>
-                                    <span class="badge badge-danger" v-else>导入失败</span>
+                                    <span class="badge badge-success" v-if="detail.state == '1000'"><vc:i18n name="导入成功" namespace="roomFeeImportDetail"></vc:i18n></span>
+                                    <span class="badge badge-danger" v-else><vc:i18n name="导入失败" namespace="roomFeeImportDetail"></vc:i18n></span>
                                 </td>
                             </tr>
                         </tbody>

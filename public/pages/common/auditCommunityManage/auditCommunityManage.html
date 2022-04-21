@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>未审核小区</h5>
+                    <h5><vc:i18n name="未审核小区" namespace="auditCommunityManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -14,15 +14,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>小区ID</th>
-                            <th>小区名称</th>
-                            <th>小区地址</th>
-                            <th>附近地标</th>
-                            <th>城市编码</th>
-                            <th>小区维度</th>
-                            <th>小区经度</th>
-                            <th>状态</th>
-                            <th class="text-right">操作</th>
+                            <th><vc:i18n name="小区" namespace="auditCommunityManage"></vc:i18n>ID</th>
+                            <th><vc:i18n name="小区名称" namespace="auditCommunityManage"></vc:i18n></th>
+                            <th><vc:i18n name="小区地址" namespace="auditCommunityManage"></vc:i18n></th>
+                            <th><vc:i18n name="附近地标" namespace="auditCommunityManage"></vc:i18n></th>
+                            <th><vc:i18n name="城市编码" namespace="auditCommunityManage"></vc:i18n></th>
+                            <th><vc:i18n name="小区维度" namespace="auditCommunityManage"></vc:i18n></th>
+                            <th><vc:i18n name="小区经度" namespace="auditCommunityManage"></vc:i18n></th>
+                            <th><vc:i18n name="状态" namespace="auditCommunityManage"></vc:i18n></th>
+                            <th class="text-right"><vc:i18n name="操作" namespace="auditCommunityManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,12 +38,12 @@
                             <td class="text-right">
                                 <div class="btn-group">
                                 <button class="btn-white btn btn-xs"
-                                        v-on:click="_openAuditCommunityModal(community)">审核
+                                        v-on:click="_openAuditCommunityModal(community)"><vc:i18n name="审核" namespace="auditCommunityManage"></vc:i18n>
                                 </button>
                             </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteCommunityModal(community)">删除
+                                            v-on:click="_openDeleteCommunityModal(community)"><vc:i18n name="删除" namespace="auditCommunityManage"></vc:i18n>
                                     </button>
                                 </div>
 

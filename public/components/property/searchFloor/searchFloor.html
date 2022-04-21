@@ -1,15 +1,16 @@
-<div id="searchFloorModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchFloorModelLabel"
-     aria-hidden="true">
+<div id="searchFloorModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchFloorModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="searchFloorModelLabel">小区楼</h3>
+                <h3 class="modal-title" id="searchFloorModelLabel">
+                    <vc:i18n name="小区楼" namespace="searchFloor"></vc:i18n>
+                </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,12 +18,10 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入小区楼编号" type="text"
-                                               v-model="searchFloorInfo._currentFloorNum"
-                                               class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入小区楼编号','searchFloor')" type="text" v-model="searchFloorInfo._currentFloorNum" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="searchFloors()">查询</button>
+                                                        v-on:click="searchFloors()"><vc:i18n name="查询" namespace="searchFloor"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -30,25 +29,35 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th class="text-center">楼ID</th>
-                                        <th class="text-center">名称</th>
-                                        <th class="text-center">编号</th>
-                                        <th class="text-center">创建人</th>
-                                        <th class="text-center">操作</th>
-                                    </tr>
+                                        <tr>
+                                            <th class="text-center">
+                                                <vc:i18n name="楼" namespace="searchFloor"></vc:i18n>ID</th>
+                                            <th class="text-center">
+                                                <vc:i18n name="名称" namespace="searchFloor"></vc:i18n>
+                                            </th>
+                                            <th class="text-center">
+                                                <vc:i18n name="编号" namespace="searchFloor"></vc:i18n>
+                                            </th>
+                                            <th class="text-center">
+                                                <vc:i18n name="创建人" namespace="searchFloor"></vc:i18n>
+                                            </th>
+                                            <th class="text-center">
+                                                <vc:i18n name="操作" namespace="searchFloor"></vc:i18n>
+                                            </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="floor in searchFloorInfo.floors">
-                                        <td class="text-center">{{floor.floorId}}</td>
-                                        <td class="text-center">{{floor.floorName}}</td>
-                                        <td class="text-center">{{floor.floorNum}}</td>
-                                        <td class="text-center">{{floor.userName}}</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary btn-xs" v-on:click="chooseFloor(floor)">选择
+                                        <tr v-for="floor in searchFloorInfo.floors">
+                                            <td class="text-center">{{floor.floorId}}</td>
+                                            <td class="text-center">{{floor.floorName}}</td>
+                                            <td class="text-center">{{floor.floorNum}}</td>
+                                            <td class="text-center">{{floor.userName}}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseFloor(floor)">
+                                                <vc:i18n name="选择" namespace="searchFloor"></vc:i18n>
                                             </button>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <vc:create namespace="searchFloor" path="frame/paginationPlus"></vc:create>

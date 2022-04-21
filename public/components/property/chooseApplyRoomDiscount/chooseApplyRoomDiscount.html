@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseApplyRoomDiscountModelLabel">选择房屋折扣申请</h3>
+                <h3 class="modal-title" id="chooseApplyRoomDiscountModelLabel"><vc:i18n name="选择房屋折扣申请" namespace="chooseApplyRoomDiscount"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')vc.i18n(' ','chooseApplyRoomDiscount')<divvc.i18n(' ','chooseApplyRoomDiscount')class="vc.i18n(' ','chooseApplyRoomDiscount')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入房屋折扣申请名称" type="text" v-model="chooseApplyRoomDiscountInfo._currentApplyRoomDiscountName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入房屋折扣申请名称','chooseApplyRoomDiscount')" type="text" v-model="chooseApplyRoomDiscountInfo._currentApplyRoomDiscountName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryApplyRoomDiscounts()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryApplyRoomDiscounts()"><vc:i18n name="查询" namespace="chooseApplyRoomDiscount"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,16 +28,16 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">申请ID</th>
-                            <th class="text-center">房屋</th>
-                            <th class="text-center">折扣</th>
-                            <th class="text-center">申请类型</th>
-                            <th class="text-center">申请人</th>
-                            <th class="text-center">申请电话</th>
-                            <th class="text-center">开始时间</th>
-                            <th class="text-center">结束时间</th>
-                            <th class="text-center">申请说明</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><vc:i18n name="申请" namespace="chooseApplyRoomDiscount"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="房屋" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="折扣" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="申请类型" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="申请人" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="申请电话" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="开始时间" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="结束时间" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="申请说明" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="chooseApplyRoomDiscount"></vc:i18n></th>
 
                                         </tr>
                                     </thead>
@@ -54,7 +54,7 @@
                             <td class="text-center">{{applyRoomDiscount.createRemark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseApplyRoomDiscount(applyRoomDiscount)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseApplyRoomDiscount(applyRoomDiscount)"><vc:i18n name="选择" namespace="chooseApplyRoomDiscount"></vc:i18n></button>
                                             </td>
                                         </tr>
                                     </tbody>

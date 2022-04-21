@@ -3,52 +3,52 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="添加" namespace="addSmallWeChat"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">名称</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="名称" namespace="addSmallWeChat"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addSmallWeChatInfo.name" type="text" placeholder="必填，请填写名称"
+                                    <input v-model="addSmallWeChatInfo.name" type="text" :placeholder="vc.i18n('必填，请填写名称','addSmallWeChat')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">APPID</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addSmallWeChatInfo.appId" type="text" placeholder="必填，请填写APPID"
+                                    <input v-model="addSmallWeChatInfo.appId" type="text" :placeholder="vc.i18n('必填，请填写','addSmallWeChat')APPID"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">应用密钥</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="应用密钥" namespace="addSmallWeChat"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addSmallWeChatInfo.appSecret" type="text" placeholder="必填，请填写应用密钥"
+                                    <input v-model="addSmallWeChatInfo.appSecret" type="text" :placeholder="vc.i18n('必填，请填写应用密钥','addSmallWeChat')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">支付密码</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="支付密码" namespace="addSmallWeChat"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addSmallWeChatInfo.payPassword" type="text" placeholder="必填，请填写支付密码"
+                                    <input v-model="addSmallWeChatInfo.payPassword" type="text" :placeholder="vc.i18n('必填，请填写支付密码','addSmallWeChat')"
                                            class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">商户ID</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="商户" namespace="addSmallWeChat"></vc:i18n>ID</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addSmallWeChatInfo.mchId" type="text" placeholder="必填，请填写商户ID"
+                                    <input v-model="addSmallWeChatInfo.mchId" type="text" :placeholder="vc.i18n('必填，请填写商户','addSmallWeChat')ID"
                                            class="form-control">
                                 </div>
                             </div>
 
 <!--                            <div class="form-group row">-->
-<!--                                <label class="col-sm-2 col-form-label">作用范围</label>-->
+<!--                                <label class="col-sm-2 col-form-label"><vc:i18n name="作用范围" namespace="addSmallWeChat"></vc:i18n></label>-->
 <!--                                <div class="col-sm-10">-->
 <!--                                    <select class="custom-select" v-model="addSmallWeChatInfo.objType">-->
-<!--                                        <option selected disabled value="">请选择状态</option>-->
+<!--                                        <option selected disabled value=""><vc:i18n name="请选择状态" namespace="addSmallWeChat"></vc:i18n></option>-->
 <!--                                        <option v-for="(item,index) in addSmallWeChatInfo.objTypes" :key="index"-->
 <!--                                                v-bind:value="item.statusCd">{{item.name}}-->
 <!--                                        </option>-->
@@ -57,9 +57,9 @@
 <!--                            </div>-->
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">描述</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="描述" namespace="addSmallWeChat"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                     <textarea v-model="addSmallWeChatInfo.remarks" type="text" placeholder="选填，请填写描述信息"
+                                     <textarea v-model="addSmallWeChatInfo.remarks" type="text" :placeholder="vc.i18n('选填，请填写描述信息','addSmallWeChat')"
                                                class="form-control">
                                     </textarea>
                                 </div>
@@ -70,7 +70,7 @@
                                         v-on:click="saveSmallWeChatInfo()"><i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal"><vc:i18n name="取消" namespace="addSmallWeChat"></vc:i18n>
                                 </button>
                             </div>
                         </div>

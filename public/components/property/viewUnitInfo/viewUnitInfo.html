@@ -2,18 +2,18 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>单元信息</h5>
+                <h5><vc:i18n name="单元信息" namespace="viewUnitInfo"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button"
                             v-if="viewUnitInfo.index != 2 && viewUnitInfo.floorId !='' && viewUnitInfo.floorId !='-1'"
                             class="btn btn-primary btn-sm" style="margin-right:10px;"
                             v-on:click="_openSelectUnitInfoModel()">
-                        <i class="fa fa-search"></i> 选择单元
+                        <i class="fa fa-search"></i> <vc:i18n name="选择单元" namespace="viewUnitInfo"></vc:i18n>
                     </button>
 
                     <button type="button" v-if="viewUnitInfo.index != 2" class="btn btn-primary btn-sm"
                             v-on:click="_openAddUnitInfoModel()">
-                        <i class="fa fa-plus"></i> 添加单元
+                        <i class="fa fa-plus"></i> <vc:i18n name="添加单元" namespace="viewUnitInfo"></vc:i18n>
                     </button>
                 </div>
             </div>
@@ -21,19 +21,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">单元ID：</label>
+                            <label class="col-form-label"><vc:i18n name="单元" namespace="viewUnitInfo"></vc:i18n>ID：</label>
                             <label class="">{{viewUnitInfo.unitId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">单元编号：</label>
+                            <label class="col-form-label"><vc:i18n name="单元编号" namespace="viewUnitInfo"></vc:i18n>：</label>
                             <label class="">{{viewUnitInfo.unitNum}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">总层数：</label>
+                            <label class="col-form-label"><vc:i18n name="总层数" namespace="viewUnitInfo"></vc:i18n>：</label>
                             <label class="">{{viewUnitInfo.layerCount}}</label>
                         </div>
                     </div>
@@ -41,19 +41,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">电梯：</label>
+                            <label class="col-form-label"><vc:i18n name="电梯" namespace="viewUnitInfo"></vc:i18n>：</label>
                             <label class="">{{viewUnitInfo.lift == '1010'?'有':'无'}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">面积：</label>
+                            <label class="col-form-label"><vc:i18n name="面积" namespace="viewUnitInfo"></vc:i18n>：</label>
                             <label class="">{{viewUnitInfo.unitArea}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">备注：</label>
+                            <label class="col-form-label"><vc:i18n name="备注" namespace="viewUnitInfo"></vc:i18n>：</label>
                             <label class="">{{viewUnitInfo.remark}}</label>
                         </div>
                     </div>

@@ -2,33 +2,33 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>小区楼信息</h5>
+                <h5><vc:i18n name="小区楼信息" namespace="unitSelectFloor"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm" v-on:click="openSearchFloorModel()">
-                        <i class="fa fa-search"></i> 选择小区楼</button>
+                        <i class="fa fa-search"></i> <vc:i18n name="选择小区楼" namespace="unitSelectFloor"></vc:i18n></button>
                     <button type="button" class="btn btn-primary btn-sm"
                             v-if="floorInfo.floorId != null && floorInfo.floorId != ''"
                             style="margin-left:10px" v-on:click="openAddUnitModel()">
-                        <i class="fa fa-plus" ></i> 添加单元</button>
+                        <i class="fa fa-plus" ></i> <vc:i18n name="添加单元" namespace="unitSelectFloor"></vc:i18n></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label" >小区楼ID：</label>
+                            <label class="col-form-label" ><vc:i18n name="小区楼" namespace="unitSelectFloor"></vc:i18n>ID：</label>
                             <label class="">{{floorInfo.floorId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label">名称：</label>
+                            <label class="col-form-label"><vc:i18n name="名称" namespace="unitSelectFloor"></vc:i18n>：</label>
                             <label class="">{{floorInfo.floorName}}</label>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label" >编号：</label>
+                            <label class="col-form-label" ><vc:i18n name="编号" namespace="unitSelectFloor"></vc:i18n>：</label>
                             <label class="">{{floorInfo.floorNum}}</label>
                         </div>
                     </div>

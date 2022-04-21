@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>登记投诉建议</h5>
+                <h5><vc:i18n name="登记投诉建议" namespace="addComplainView"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>
@@ -10,33 +10,33 @@
             <div class="ibox-content">
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">投诉类型</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="投诉类型" namespace="addComplainView"></vc:i18n></label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addComplainViewInfo.typeCd">
-                            <option selected disabled value="">必填，请选择投诉类型</option>
-                            <option value="809001">投诉</option>
-                            <option value="809002">建议</option>
-                            <option value="809003">咨询</option>
+                            <option selected disabled value=""><vc:i18n name="必填" namespace="addComplainView"></vc:i18n>，请选择投诉类型</option>
+                            <option value="809001"><vc:i18n name="投诉" namespace="addComplainView"></vc:i18n></option>
+                            <option value="809002"><vc:i18n name="建议" namespace="addComplainView"></vc:i18n></option>
+                            <option value="809003"><vc:i18n name="咨询" namespace="addComplainView"></vc:i18n></option>
                         </select></div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">投诉人</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="投诉人" namespace="addComplainView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <input v-model="addComplainViewInfo.complaintName" type="text" placeholder="必填，请填写投诉人"
+                        <input v-model="addComplainViewInfo.complaintName" type="text" :placeholder="vc.i18n('必填，请填写投诉人','addComplainView')"
                                class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">投诉电话</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="投诉电话" namespace="addComplainView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <input v-model="addComplainViewInfo.tel" type="text" placeholder="必填，请填写投诉电话"
+                        <input v-model="addComplainViewInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写投诉电话','addComplainView')"
                                class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">投诉内容</label>
+                    <label class="col-sm-2 col-form-label"><vc:i18n name="投诉内容" namespace="addComplainView"></vc:i18n></label>
                     <div class="col-sm-10">
-                        <textarea placeholder="必填，请填写投诉内容" class="form-control"
+                        <textarea :placeholder="vc.i18n('必填，请填写投诉内容','addComplainView')" class="form-control"
                                   v-model="addComplainViewInfo.context"></textarea></div>
                 </div>
 

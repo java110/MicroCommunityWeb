@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>添加员工</h5>
+                <h5><vc:i18n name="添加员工" namespace="addStaffView"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                 </div>
             </div>
@@ -10,53 +10,53 @@
                 <div class="row">
                     <div class="col-sm-7">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label text-center">员工名称(2-10位)</label>
+                            <label class="col-sm-3 col-form-label text-center"><vc:i18n name="员工名称" namespace="addStaffView"></vc:i18n>(2-10位)</label>
                             <div class="col-sm-9">
-                                <input v-model="addStaffViewInfo.username" type="text" placeholder="必填，请填写员工名称（2-10位）" class="form-control">
+                                <input v-model="addStaffViewInfo.username" type="text" :placeholder="vc.i18n('必填，请填写员工名称','addStaffView')（2-10位）" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label  text-center">员工性别</label>
+                            <label class="col-sm-3 col-form-label  text-center"><vc:i18n name="员工性别" namespace="addStaffView"></vc:i18n></label>
                             <div class="col-sm-9">
                                 <select class="custom-select" v-model="addStaffViewInfo.sex">
-                                    <option selected disabled value="">必填，请选择员工性别</option>
-                                    <option value="0">男</option>
-                                    <option value="1">女</option>
+                                    <option selected disabled value=""><vc:i18n name="必填" namespace="addStaffView"></vc:i18n>，请选择员工性别</option>
+                                    <option value="0"><vc:i18n name="男" namespace="addStaffView"></vc:i18n></option>
+                                    <option value="1"><vc:i18n name="女" namespace="addStaffView"></vc:i18n></option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label  text-center">员工岗位</label>
+                            <label class="col-sm-3 col-form-label  text-center"><vc:i18n name="员工岗位" namespace="addStaffView"></vc:i18n></label>
                             <div class="col-sm-9">
                                 <select class="custom-select" v-model="addStaffViewInfo.relCd">
-                                    <option selected disabled value="">必填，请选择岗位</option>
+                                    <option selected disabled value=""><vc:i18n name="必填" namespace="addStaffView"></vc:i18n>，请选择岗位</option>
                                     <option v-for="(item,index) in addStaffViewInfo.relCds" :key="index"
                                             v-bind:value="item.statusCd">{{item.name}}
                                     </option>
                                 </select></div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label  text-center">员工邮箱</label>
+                            <label class="col-sm-3 col-form-label  text-center"><vc:i18n name="员工邮箱" namespace="addStaffView"></vc:i18n></label>
                             <div class="col-sm-9">
-                                <input v-model="addStaffViewInfo.email" type="text" placeholder="可选，请填写员工邮箱" class="form-control">
+                                <input v-model="addStaffViewInfo.email" type="text" :placeholder="vc.i18n('可选，请填写员工邮箱','addStaffView')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label  text-center">手机</label>
+                            <label class="col-sm-3 col-form-label  text-center"><vc:i18n name="手机" namespace="addStaffView"></vc:i18n></label>
                             <div class="col-sm-9">
-                                <input v-model="addStaffViewInfo.tel" type="text" placeholder="必填，请填写手机" class="form-control" maxlength="11">
+                                <input v-model="addStaffViewInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写手机','addStaffView')" class="form-control" maxlength="11">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label  text-center">家庭住址</label>
+                            <label class="col-sm-3 col-form-label  text-center"><vc:i18n name="家庭住址" namespace="addStaffView"></vc:i18n></label>
                             <div class="col-sm-9">
-                                <input v-model="addStaffViewInfo.address" type="text" placeholder="必填，请填写家庭住址" class="form-control">
+                                <input v-model="addStaffViewInfo.address" type="text" :placeholder="vc.i18n('必填，请填写家庭住址','addStaffView')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label  text-center">照片</label>
+                            <label class="col-sm-3 col-form-label  text-center"><vc:i18n name="照片" namespace="addStaffView"></vc:i18n></label>
                             <div class="col-sm-9">
-                                <img width="150" height="150" v-bind:src="addStaffViewInfo.photo" alt="员工照片">
+                                <img width="150" height="150" v-bind:src="addStaffViewInfo.photo" alt="vc.i18n('员工照片','addStaffView')">
                             </div>
                         </div>
                     </div>
@@ -65,10 +65,10 @@
                         <canvas id="canvas" style="display:none;"></canvas>
                         <div style="margin-top:20px">
                             <button class="btn btn-primary" type="button" v-on:click="_takePhoto()"><span
-                                    class="glyphicon glyphicon-camera"></span> 拍照
+                                    class="glyphicon glyphicon-camera"></span> <vc:i18n name="拍照" namespace="addStaffView"></vc:i18n>
                             </button>
                             <span class="btn btn-default btn-file" v-on:click="_uploadPhoto($event)">
-                                <span class="fileinput-new">上传照片</span>
+                                <span class="fileinput-new"><vc:i18n name="上传照片" namespace="addStaffView"></vc:i18n></span>
                             </span>
                             <input type="file" class="file" accept="images/*" id="uploadStaffPhoto" hidden v-on:change="_choosePhoto($event)">
                         </div>

@@ -28,12 +28,12 @@
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-secondary" v-on:click="_prevStep()">上一步</button>
+            <button type="button" class="btn btn-secondary" v-on:click="_prevStep()"><vc:i18n name="上一步" namespace="itemOut"></vc:i18n></button>
             <button v-if="itemOutInfo.index != 2" type="button" class="btn btn-primary" style="margin-left:10px;"
-                    v-on:click="_nextStep()">下一步
+                    v-on:click="_nextStep()"><vc:i18n name="下一步" namespace="itemOut"></vc:i18n>
             </button>
             <button v-if="itemOutInfo.index == 2" type="button" class="btn btn-primary" style="margin-left:10px;"
-                    v-on:click="_finishStep()">完成
+                    v-on:click="_finishStep()"><vc:i18n name="完成" namespace="itemOut"></vc:i18n>
             </button>
         </div>
     </div>

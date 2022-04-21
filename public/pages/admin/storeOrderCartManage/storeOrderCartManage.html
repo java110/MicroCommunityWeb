@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="storeOrderCartManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,34 +11,34 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="订单编号"
+                                <input type="text" :placeholder="vc.i18n('订单编号','storeOrderCartManage')"
                                        v-model="storeOrderCartManageInfo.conditions.cartId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="storeOrderCartManageInfo.conditions.state">
-                                    <option value="">请选择状态</option>
-                                    <option value="1001">未购买</option>
-                                    <option value="2002">待发货</option>
-                                    <option value="3003">待收货</option>
-                                    <option value="4004">待评价</option>
-                                    <option value="5005">申请退款</option>
-                                    <option value="6006">退货成功</option>
-                                    <option value="7007">已退款</option>       	
+                                    <option value=""><vc:i18n name="请选择状态" namespace="storeOrderCartManage"></vc:i18n></option>
+                                    <option value="1001"><vc:i18n name="未购买" namespace="storeOrderCartManage"></vc:i18n></option>
+                                    <option value="2002"><vc:i18n name="待发货" namespace="storeOrderCartManage"></vc:i18n></option>
+                                    <option value="3003"><vc:i18n name="待收货" namespace="storeOrderCartManage"></vc:i18n></option>
+                                    <option value="4004"><vc:i18n name="待评价" namespace="storeOrderCartManage"></vc:i18n></option>
+                                    <option value="5005"><vc:i18n name="申请退款" namespace="storeOrderCartManage"></vc:i18n></option>
+                                    <option value="6006"><vc:i18n name="退货成功" namespace="storeOrderCartManage"></vc:i18n></option>
+                                    <option value="7007"><vc:i18n name="已退款" namespace="storeOrderCartManage"></vc:i18n></option>       	
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入商品名称"
+                                <input type="text" :placeholder="vc.i18n('请输入商品名称','storeOrderCartManage')"
                                        v-model="storeOrderCartManageInfo.conditions.prodName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="storeOrderCartManageInfo.conditions.shopId">
-                                    <option selected disabled value="">请选择商铺</option>
+                                    <option selected disabled value=""><vc:i18n name="请选择商铺" namespace="storeOrderCartManage"></vc:i18n></option>
                                     <option :value="item.shopId" v-for="(item,index) in storeOrderCartManageInfo.shops">
                                         {{item.shopName}}
                                     </option>
@@ -49,7 +49,7 @@
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryOrdersMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="storeOrderCartManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>订单信息</h5>
+                    <h5><vc:i18n name="订单信息" namespace="storeOrderCartManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
@@ -71,16 +71,16 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">订单号</th>
-                            <th class="text-center">平台</th>
-                            <th class="text-center">商铺</th>
-                            <th class="text-center">类型</th>
-                            <th class="text-center">名称</th>
-                            <th class="text-center">数量</th>
-                            <th class="text-center">用户名称</th>
-                            <th class="text-center">支付金额</th>
-                            <th class="text-center">订单状态</th>
-                            <th class="text-center">创建时间</th>
+                            <th class="text-center"><vc:i18n name="订单号" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="平台" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="商铺" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="类型" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="名称" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="数量" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="用户名称" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="支付金额" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="订单状态" namespace="storeOrderCartManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="创建时间" namespace="storeOrderCartManage"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -116,28 +116,28 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">发货确认</h5>
+                    <h5 class="modal-title"><vc:i18n name="发货确认" namespace="storeOrderCartManage"></vc:i18n></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row" >
-                        <label class="col-sm-3 col-form-label">收货人：</label>
+                        <label class="col-sm-3 col-form-label"><vc:i18n name="收货人" namespace="storeOrderCartManage"></vc:i18n>：</label>
                         <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.username}}</label>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label" >收货时间：</label>
+                        <label class="col-sm-3 col-form-label" ><vc:i18n name="收货时间" namespace="storeOrderCartManage"></vc:i18n>：</label>
                         <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.tel}}</label>
                     </div>
                     <div class="row" >
-                        <label class="col-sm-3 col-form-label">收货地点：</label>
+                        <label class="col-sm-3 col-form-label"><vc:i18n name="收货地点" namespace="storeOrderCartManage"></vc:i18n>：</label>
                         <label class="col-sm-8 col-form-label">{{storeOrderCartManageInfo.address.address}}</label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_closeStoreOrderCartModal()">关闭</button>
-                    <button type="button" class="btn btn-primary" @click="_sendOrderCart()">确定发货</button>
+                    <button type="button" class="btn btn-secondary" @click="_closeStoreOrderCartModal()"><vc:i18n name="关闭" namespace="storeOrderCartManage"></vc:i18n></button>
+                    <button type="button" class="btn btn-primary" @click="_sendOrderCart()"><vc:i18n name="确定发货" namespace="storeOrderCartManage"></vc:i18n></button>
                 </div>
             </div>
         </div>

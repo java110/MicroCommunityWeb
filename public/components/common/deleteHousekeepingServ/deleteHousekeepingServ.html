@@ -3,20 +3,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">请确认您的操作!</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><vc:i18n name="请确认您的操作" namespace="deleteHousekeepingServ"></vc:i18n>!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <tr align="center">
-                    <th>确定删除该服务</th>
+                    <th><vc:i18n name="确定删除该服务" namespace="deleteHousekeepingServ"></vc:i18n></th>
                 </tr>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                    v-on:click="closeDeleteHousekeepingServModel()">点错了</button>
-                <button type="button" class="btn btn-primary" v-on:click="deleteHousekeepingServ()">确认删除</button>
+                    v-on:click="closeDeleteHousekeepingServModel()"><vc:i18n name="点错了" namespace="deleteHousekeepingServ"></vc:i18n></button>
+                <button type="button" class="btn btn-primary" v-on:click="deleteHousekeepingServ()"><vc:i18n name="确认删除" namespace="deleteHousekeepingServ"></vc:i18n></button>
             </div>
         </div>
     </div>

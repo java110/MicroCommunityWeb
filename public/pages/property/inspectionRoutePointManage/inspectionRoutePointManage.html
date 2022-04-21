@@ -2,13 +2,13 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>巡检点信息</h5>
+                <h5><vc:i18n name="巡检点信息" namespace="inspectionRoutePointManage"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm " v-on:click="_goBack()" style="margin-right:10px">
-                        <i class="fa fa-close"></i>返回
+                        <i class="fa fa-close"></i><vc:i18n name="返回" namespace="inspectionRoutePointManage"></vc:i18n>
                     </button>
                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionRoutePointModal()">
-                        <i class="fa fa-plus"></i>添加
+                        <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="inspectionRoutePointManage"></vc:i18n>
                     </button>
                 </div>
             </div>
@@ -16,14 +16,14 @@
                 <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                     <thead>
                         <tr>
-                            <th class="text-center">巡检点ID</th>
-                            <th class="text-center">巡检点名称</th>
-                            <th class="text-center">巡检点类型</th>
-                            <th class="text-center">巡检位置</th>
-                            <th class="text-center">开始时间</th>
-                            <th class="text-center">结束时间</th>
-                            <th class="text-center">排序</th>
-                            <th class="text-right">操作</th>
+                            <th class="text-center"><vc:i18n name="巡检点" namespace="inspectionRoutePointManage"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="巡检点名称" namespace="inspectionRoutePointManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="巡检点类型" namespace="inspectionRoutePointManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="巡检位置" namespace="inspectionRoutePointManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="开始时间" namespace="inspectionRoutePointManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="结束时间" namespace="inspectionRoutePointManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="排序" namespace="inspectionRoutePointManage"></vc:i18n></th>
+                            <th class="text-right"><vc:i18n name="操作" namespace="inspectionRoutePointManage"></vc:i18n></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,9 +37,9 @@
                             <td class="text-center">{{inspectionPoint.sortNumber ? inspectionPoint.sortNumber : '-'}}</td>
                             <td class="text-right">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditInspectionRoutePointModel(inspectionPoint)">修改
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditInspectionRoutePointModel(inspectionPoint)"><vc:i18n name="修改" namespace="inspectionRoutePointManage"></vc:i18n>
                                 </button>
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionRoutePointModel(inspectionPoint)">删除
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionRoutePointModel(inspectionPoint)"><vc:i18n name="删除" namespace="inspectionRoutePointManage"></vc:i18n>
                                 </button>
                                 </div>
                             </td>

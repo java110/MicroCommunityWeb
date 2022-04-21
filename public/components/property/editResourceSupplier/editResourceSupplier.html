@@ -3,56 +3,56 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改供应商</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="修改供应商" namespace="editResourceSupplier"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">供应商名称</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="供应商名称" namespace="editResourceSupplier"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceSupplierInfo.supplierName" type="text"
-                                           placeholder="必填，请填写供应商名称" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写供应商名称','editResourceSupplier')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">供应商地址</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="供应商地址" namespace="editResourceSupplier"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceSupplierInfo.address" type="text"
-                                           placeholder="必填，请填写供应商地址" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写供应商地址','editResourceSupplier')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">供应商联系方式</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="供应商联系方式" namespace="editResourceSupplier"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceSupplierInfo.tel" type="text"
-                                           placeholder="必填，请填写供应商联系方式" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写供应商联系方式','editResourceSupplier')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">联系人姓名</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="联系人姓名" namespace="editResourceSupplier"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceSupplierInfo.contactName" type="text"
-                                           placeholder="必填，请填写联系人姓名" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写联系人姓名','editResourceSupplier')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">开户行</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="开户行" namespace="editResourceSupplier"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceSupplierInfo.accountBank" type="text"
-                                           placeholder="选填，请填写开户行" class="form-control">
+                                           :placeholder="vc.i18n('选填，请填写开户行','editResourceSupplier')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">开户行账号</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="开户行账号" namespace="editResourceSupplier"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceSupplierInfo.bankAccountNumber" type="text"
-                                           placeholder="选填，请填写开户行账号" class="form-control">
+                                           :placeholder="vc.i18n('选填，请填写开户行账号','editResourceSupplier')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="editResourceSupplier"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editResourceSupplierInfo.remark" type="text" placeholder="选填，请填写备注"
+                                    <input v-model="editResourceSupplierInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写备注','editResourceSupplier')"
                                            class="form-control">
                                 </div>
                             </div>

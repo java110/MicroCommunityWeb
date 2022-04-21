@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>投诉单信息</h5>
+                    <h5><vc:i18n name="投诉单信息" namespace="myAuditComplaints"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,14 +11,14 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">投诉ID</th>
-                            <th class="text-center">投诉类型</th>
-                            <th class="text-center">房屋</th>
-                            <th class="text-center">投诉人</th>
-                            <th class="text-center">投诉电话</th>
-                            <th class="text-center">投诉状态</th>
-                            <th class="text-center">创建时间</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="投诉" namespace="myAuditComplaints"></vc:i18n>ID</th>
+                            <th class="text-center"><vc:i18n name="投诉类型" namespace="myAuditComplaints"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="房屋" namespace="myAuditComplaints"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投诉人" namespace="myAuditComplaints"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投诉电话" namespace="myAuditComplaints"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="投诉状态" namespace="myAuditComplaints"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="创建时间" namespace="myAuditComplaints"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="操作" namespace="myAuditComplaints"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,7 +26,7 @@
                             <td class="text-center">{{complaint.complaintId}}</td>
                             <td class="text-center">{{complaint.typeCdName}}</td>
                             <td class="text-center">
-                                {{complaint.floorNum}}号楼{{complaint.unitNum}}单元{{complaint.roomNum}}室
+                                {{complaint.floorNum}}<vc:i18n name="号楼" namespace="myAuditComplaints"></vc:i18n>{{complaint.unitNum}}<vc:i18n name="单元" namespace="myAuditComplaints"></vc:i18n>{{complaint.roomNum}}<vc:i18n name="室" namespace="myAuditComplaints"></vc:i18n>
                             </td>
                             <td class="text-center">{{complaint.complaintName}}</td>
                             <td class="text-center">{{complaint.tel}}</td>
@@ -36,29 +36,29 @@
                                 <div class="btn-group"
                                      v-if="myAuditComplaintsInfo.curUserId != complaint.startUserId">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAuditComplaintModel(complaint)">审核
+                                            v-on:click="_openAuditComplaintModel(complaint)"><vc:i18n name="审核" namespace="myAuditComplaints"></vc:i18n>
                                     </button>
                                 </div>
                                 <div v-else>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                                v-on:click="_openEditComplaintModel(complaint)">修改
+                                                v-on:click="_openEditComplaintModel(complaint)"><vc:i18n name="修改" namespace="myAuditComplaints"></vc:i18n>
                                         </button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                                v-on:click="_reSubmitComplaint(complaint)">重新提交
+                                                v-on:click="_reSubmitComplaint(complaint)"><vc:i18n name="重新提交" namespace="myAuditComplaints"></vc:i18n>
                                         </button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                                v-on:click="_overComplaint(complaint)">结束
+                                                v-on:click="_overComplaint(complaint)"><vc:i18n name="结束" namespace="myAuditComplaints"></vc:i18n>
                                         </button>
                                     </div>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openComplaintDetailModel(complaint)">详情
+                                            v-on:click="_openComplaintDetailModel(complaint)"><vc:i18n name="详情" namespace="myAuditComplaints"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

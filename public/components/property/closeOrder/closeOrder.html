@@ -3,24 +3,24 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">结单信息</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="结单信息" namespace="closeOrder"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">结单状态</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="结单状态" namespace="closeOrder"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="closeOrderInfo.state">
-                                        <option selected disabled value="">请选择</option>
-                                        <option value="1100">结单</option>
-                                        <option value="1200">退单</option>
+                                        <option selected disabled value=""><vc:i18n name="请选择" namespace="closeOrder"></vc:i18n></option>
+                                        <option value="1100"><vc:i18n name="结单" namespace="closeOrder"></vc:i18n></option>
+                                        <option value="1200"><vc:i18n name="退单" namespace="closeOrder"></vc:i18n></option>
                                     </select></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">原因</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="原因" namespace="closeOrder"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="选填，请填写原因" class="form-control"
+                                    <textarea :placeholder="vc.i18n('选填，请填写原因','closeOrder')" class="form-control"
                                               v-model="closeOrderInfo.remark"></textarea></div>
                             </div>
 
@@ -29,7 +29,7 @@
                                         v-on:click="_closeOrderSubmit()"><i class="fa fa-check"></i>&nbsp;提交
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal"><vc:i18n name="取消" namespace="closeOrder"></vc:i18n>
                                 </button>
                             </div>
                         </div>

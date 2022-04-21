@@ -2,34 +2,34 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>巡检路线信息</h5>
+                <h5><vc:i18n name="巡检路线信息" namespace="viewInspectionRouteInfo"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewInspectionRouteInfo.index != 2" class="btn btn-primary btn-sm"
                         style="margin-right:10px;" v-on:click="_openSelectInspectionRouteInfoModel()">
-                        <i class="fa fa-search"></i> 选择巡检路线</button>
+                        <i class="fa fa-search"></i> <vc:i18n name="选择巡检路线" namespace="viewInspectionRouteInfo"></vc:i18n></button>
 
                     <button type="button" v-if="viewInspectionRouteInfo.index != 2" class="btn btn-primary btn-sm"
                         v-on:click="_openAddInspectionRouteInfoModel()">
-                        <i class="fa fa-plus"></i> 添加巡检路线</button>
+                        <i class="fa fa-plus"></i> <vc:i18n name="添加巡检路线" namespace="viewInspectionRouteInfo"></vc:i18n></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">路线名称：</label>
+                            <label class="col-form-label"><vc:i18n name="路线名称" namespace="viewInspectionRouteInfo"></vc:i18n>：</label>
                             <label class="">{{viewInspectionRouteInfo.routeName}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">巡检点：</label>
+                            <label class="col-form-label"><vc:i18n name="巡检点" namespace="viewInspectionRouteInfo"></vc:i18n>：</label>
                             <label class="">{{viewInspectionRouteInfo.inspectionName}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">设备数量：</label>
+                            <label class="col-form-label"><vc:i18n name="设备数量" namespace="viewInspectionRouteInfo"></vc:i18n>：</label>
                             <label class="">{{viewInspectionRouteInfo.machineQuantity}}</label>
                         </div>
                     </div>
@@ -37,13 +37,13 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">检查项数量：</label>
+                            <label class="col-form-label"><vc:i18n name="检查项数量" namespace="viewInspectionRouteInfo"></vc:i18n>：</label>
                             <label class="">{{viewInspectionRouteInfo.checkQuantity}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">备注：</label>
+                            <label class="col-form-label"><vc:i18n name="备注" namespace="viewInspectionRouteInfo"></vc:i18n>：</label>
                             <label class="">{{viewInspectionRouteInfo.remark}}</label>
                         </div>
                     </div>

@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>设置-{{inspectionPlanStaffManageInfo.inspectionPlanName}}-巡检人</h5>
+                <h5><vc:i18n name="设置" namespace="inspectionPlanStaffManage"></vc:i18n>-{{inspectionPlanStaffManageInfo.inspectionPlanName}}-巡检人</h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-white btn-sm " v-on:click="_goBack()" style="margin-right:10px">
                         返回
@@ -18,11 +18,11 @@
                 <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                     <thead>
                         <tr>
-                            <th class="text-center">巡检人</th>
-                            <th class="text-center">巡检周期</th>
-                            <th class="text-center">开始时间</th>
-                            <th class="text-center">结束时间</th>
-                            <th class="text-right">操作</th>
+                            <th class="text-center"><vc:i18n name="巡检人" namespace="inspectionPlanStaffManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="巡检周期" namespace="inspectionPlanStaffManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="开始时间" namespace="inspectionPlanStaffManage"></vc:i18n></th>
+                            <th class="text-center"><vc:i18n name="结束时间" namespace="inspectionPlanStaffManage"></vc:i18n></th>
+                            <th class="text-right"><vc:i18n name="操作" namespace="inspectionPlanStaffManage"></vc:i18n></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,7 @@
                             <td class="text-center">{{inspectionPlanStaff.endTime}}</td>
                             <td class="text-right">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionPlanStaffModel(inspectionPlanStaff)">删除
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionPlanStaffModel(inspectionPlanStaff)"><vc:i18n name="删除" namespace="inspectionPlanStaffManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

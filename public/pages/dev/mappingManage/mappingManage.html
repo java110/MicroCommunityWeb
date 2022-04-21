@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="mappingManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,22 +12,22 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入域" v-model="mappingManageInfo.conditions.domain" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入域','mappingManage')" v-model="mappingManageInfo.conditions.domain" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入名称" v-model="mappingManageInfo.conditions.nameLike" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入名称','mappingManage')" v-model="mappingManageInfo.conditions.nameLike" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入键" v-model="mappingManageInfo.conditions.key" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入键','mappingManage')" v-model="mappingManageInfo.conditions.key" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMappingMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="mappingManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>映射信息</h5>
+                    <h5><vc:i18n name="映射信息" namespace="mappingManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMappingModal()">
                             <i class="fa fa-plus"></i>
@@ -54,12 +54,12 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">编码ID</th>
-                                <th class="text-center">域</th>
-                                <th class="text-center">名称</th>
-                                <th class="text-center">键</th>
-                                <th class="text-center">值</th>
-                                <th class="text-right">操作</th>
+                                <th class="text-center"><vc:i18n name="编码" namespace="mappingManage"></vc:i18n>ID</th>
+                                <th class="text-center"><vc:i18n name="域" namespace="mappingManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="名称" namespace="mappingManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="键" namespace="mappingManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="值" namespace="mappingManage"></vc:i18n></th>
+                                <th class="text-right"><vc:i18n name="操作" namespace="mappingManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>

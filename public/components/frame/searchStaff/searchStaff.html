@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="searchStaffModelLabel">定位员工</h3>
+                <h3 class="modal-title" id="searchStaffModelLabel"><vc:i18n name="定位员工" namespace="searchStaff"></vc:i18n></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')<divvc.i18n(' ','searchStaff')class="vc.i18n(' ','searchStaff')row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,9 +18,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入员工名称" type="text" v-model="searchStaffInfo._currentStaffName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入员工名称','searchStaff')" type="text" v-model="searchStaffInfo._currentStaffName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="searchStaffs()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="searchStaffs()"><vc:i18n name="查询" namespace="searchStaff"></vc:i18n></button>
                                             </span>
                                     </div>
                                 </div>
@@ -29,11 +29,11 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>员工编码</th>
-                                        <th>员工名称</th>
-                                        <th>手机号</th>
-                                        <th>性别</th>
-                                        <th>操作</th>
+                                        <th><vc:i18n name="员工编码" namespace="searchStaff"></vc:i18n></th>
+                                        <th><vc:i18n name="员工名称" namespace="searchStaff"></vc:i18n></th>
+                                        <th><vc:i18n name="手机号" namespace="searchStaff"></vc:i18n></th>
+                                        <th><vc:i18n name="性别" namespace="searchStaff"></vc:i18n></th>
+                                        <th><vc:i18n name="操作" namespace="searchStaff"></vc:i18n></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -43,7 +43,7 @@
                                         <td>{{staff.tel}}</td>
                                         <td>{{staff.sex == 0 ? '男' : (staff.sex == 1 ?'女':'')}}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-xs" v-on:click="chooseStaff(staff)">选择</button>
+                                            <button class="btn btn-primary btn-xs" v-on:click="chooseStaff(staff)"><vc:i18n name="选择" namespace="searchStaff"></vc:i18n></button>
                                         </td>
                                     </tr>
                                     </tbody>

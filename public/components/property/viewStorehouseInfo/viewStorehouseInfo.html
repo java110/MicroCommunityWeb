@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>仓库信息</h5>
+                <h5><vc:i18n name="仓库信息" namespace="viewStorehouseInfo"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewStorehouseInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectStorehouseInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择仓库</button>
+                        <i class="glyphicon glyphicon-search"></i> <vc:i18n name="选择仓库" namespace="viewStorehouseInfo"></vc:i18n></button>
 
                     <button type="button" v-if="viewStorehouseInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddStorehouseInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加仓库</button>
+                        <i class="glyphicon glyphicon-plus"></i> <vc:i18n name="添加仓库" namespace="viewStorehouseInfo"></vc:i18n></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >仓库名称：</label>
+                            <label class="col-form-label" ><vc:i18n name="仓库名称" namespace="viewStorehouseInfo"></vc:i18n>：</label>
                             <label class="">{{viewStorehouseInfo.shName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >仓库类型：</label>
+                            <label class="col-form-label" ><vc:i18n name="仓库类型" namespace="viewStorehouseInfo"></vc:i18n>：</label>
                             <label class="">{{viewStorehouseInfo.shType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >描述：</label>
+                            <label class="col-form-label" ><vc:i18n name="描述" namespace="viewStorehouseInfo"></vc:i18n>：</label>
                             <label class="">{{viewStorehouseInfo.shDesc}}</label>
                         </div>
 </div>

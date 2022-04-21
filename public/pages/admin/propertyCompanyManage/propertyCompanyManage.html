@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="propertyCompanyManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,17 +12,17 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入物业编号" v-model="propertyCompanyManageInfo.conditions.storeId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入物业编号','propertyCompanyManage')" v-model="propertyCompanyManageInfo.conditions.storeId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入名称" v-model="propertyCompanyManageInfo.conditions.name" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入名称','propertyCompanyManage')" v-model="propertyCompanyManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入电话" v-model="propertyCompanyManageInfo.conditions.tel" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入电话','propertyCompanyManage')" v-model="propertyCompanyManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -41,7 +41,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>物业公司</h5>
+                    <h5><vc:i18n name="物业公司" namespace="propertyCompanyManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPropertyCompanyModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -54,16 +54,16 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">编号</th>
-                                <th class="text-center">名称</th>
-                                <th class="text-center">地址</th>
-                                <th class="text-center">管理员</th>
-                                <th class="text-center">电话</th>
-                                <th class="text-center">公司法人</th>
-                                <th class="text-center">成立日期</th>
-                                <th class="text-center">地标</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><vc:i18n name="编号" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="名称" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="地址" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="管理员" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="电话" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="公司法人" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="成立日期" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="地标" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="创建时间" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="操作" namespace="propertyCompanyManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,28 +79,28 @@
                                 <td class="text-center">{{propertyCompany.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditPropertyCompanyModel(propertyCompany)">修改</button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditPropertyCompanyModel(propertyCompany)"><vc:i18n name="修改" namespace="propertyCompanyManage"></vc:i18n></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePropertyCompanyModel(propertyCompany)">删除</button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePropertyCompanyModel(propertyCompany)"><vc:i18n name="删除" namespace="propertyCompanyManage"></vc:i18n></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openManageCommunity(propertyCompany)">管理小区</button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openManageCommunity(propertyCompany)"><vc:i18n name="管理小区" namespace="propertyCompanyManage"></vc:i18n></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openAdminLoginPropertyModel(propertyCompany)">登录
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAdminLoginPropertyModel(propertyCompany)"><vc:i18n name="登录" namespace="propertyCompanyManage"></vc:i18n>
                                         </button>
                                     </div>
                                     <div class="btn-group" v-if="propertyCompany.state != '48002'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')">限制登录
+                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')"><vc:i18n name="限制登录" namespace="propertyCompanyManage"></vc:i18n>
                                         </button>
                                     </div>
                                     <div class="btn-group" v-else>
-                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')">恢复登录
+                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')"><vc:i18n name="恢复登录" namespace="propertyCompanyManage"></vc:i18n>
                                         </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(propertyCompany)">重置密码
+                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(propertyCompany)"><vc:i18n name="重置密码" namespace="propertyCompanyManage"></vc:i18n>
                                         </button>
                                     </div>
                                 </td>
@@ -118,7 +118,7 @@
                     <!-- 分页 -->
                     <div class="row">
                         <div class="col-md-6">
-                            <span>温馨提示：默认管理员账号为手机号；密码为手机号</span>
+                            <span><vc:i18n name="温馨提示" namespace="propertyCompanyManage"></vc:i18n>：默认管理员账号为手机号；密码为手机号</span>
                         </div>
                         <div class="col-md-6">
                             <vc:create path="frame/pagination"></vc:create>

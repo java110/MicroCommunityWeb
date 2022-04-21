@@ -2,40 +2,40 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改收款计划</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="修改收款计划" namespace="editContractCollectionPlan"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-         <label class="col-sm-2 col-form-label">计划名称</label>
+         <label class="col-sm-2 col-form-label"><vc:i18n name="计划名称" namespace="editContractCollectionPlan"></vc:i18n></label>
          <div class="col-sm-10">
-           <input v-model="editContractCollectionPlanInfo.planName"                   type="text" placeholder="必填，请填写计划名称" class="form-control">
+           <input v-model="editContractCollectionPlanInfo.planName"                   type="text" :placeholder="vc.i18n('必填，请填写计划名称','editContractCollectionPlan')" class="form-control">
          </div>
 </div>
 <div class="form-group row">
-         <label class="col-sm-2 col-form-label">合同号</label>
+         <label class="col-sm-2 col-form-label"><vc:i18n name="合同号" namespace="editContractCollectionPlan"></vc:i18n></label>
          <div class="col-sm-10">
-           <input v-model="editContractCollectionPlanInfo.contractCode"                   type="text" placeholder="必填，请填写合同号" class="form-control">
+           <input v-model="editContractCollectionPlanInfo.contractCode"                   type="text" :placeholder="vc.i18n('必填，请填写合同号','editContractCollectionPlan')" class="form-control">
          </div>
 </div>
 <div class="form-group row">
-         <label class="col-sm-2 col-form-label">费用</label>
+         <label class="col-sm-2 col-form-label"><vc:i18n name="费用" namespace="editContractCollectionPlan"></vc:i18n></label>
          <div class="col-sm-10">
 <select class="custom-select" v-model="editContractCollectionPlanInfo.feeName">
-         <option selected  disabled value="">必填，请选择费用</option>
-         <option  value="111">计划费用</option>
+         <option selected  disabled value=""><vc:i18n name="必填" namespace="editContractCollectionPlan"></vc:i18n>，请选择费用</option>
+         <option  value="111"><vc:i18n name="计划费用" namespace="editContractCollectionPlan"></vc:i18n></option>
   </select>         </div>
 </div>
 <div class="form-group row">
-         <label class="col-sm-2 col-form-label">备注</label>
+         <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="editContractCollectionPlan"></vc:i18n></label>
          <div class="col-sm-10">
-           <input v-model="editContractCollectionPlanInfo.remark"                   type="text" placeholder="选填，请填写备注" class="form-control">
+           <input v-model="editContractCollectionPlanInfo.remark"                   type="text" :placeholder="vc.i18n('选填，请填写备注','editContractCollectionPlan')" class="form-control">
          </div>
 </div>
 
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="editContractCollectionPlan()" ><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="editContractCollectionPlan"></vc:i18n></button>
                             </div>
                         </div>
                     </div>

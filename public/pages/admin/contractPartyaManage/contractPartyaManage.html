@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="contractPartyaManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,26 +12,26 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入甲方"
+                                <input type="text" :placeholder="vc.i18n('请输入甲方','contractPartyaManage')"
                                     v-model="contractPartyaManageInfo.conditions.partyA" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入甲方联系人"
+                                <input type="text" :placeholder="vc.i18n('请输入甲方联系人','contractPartyaManage')"
                                     v-model="contractPartyaManageInfo.conditions.aContacts" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入联系电话"
+                                <input type="text" :placeholder="vc.i18n('请输入联系电话','contractPartyaManage')"
                                     v-model="contractPartyaManageInfo.conditions.aLink" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_queryContractPartyaMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="contractPartyaManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>合同甲方信息</h5>
+                    <h5><vc:i18n name="合同甲方信息" namespace="contractPartyaManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddContractPartyaModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -58,11 +58,11 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">甲方编号</th>
-                                <th class="text-center">甲方</th>
-                                <th class="text-center">甲方联系人</th>
-                                <th class="text-center">联系电话</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><vc:i18n name="甲方编号" namespace="contractPartyaManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="甲方" namespace="contractPartyaManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="甲方联系人" namespace="contractPartyaManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="联系电话" namespace="contractPartyaManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="操作" namespace="contractPartyaManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,11 +74,11 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditContractPartyaModel(contractPartya)">修改</button>
+                                            v-on:click="_openEditContractPartyaModel(contractPartya)"><vc:i18n name="修改" namespace="contractPartyaManage"></vc:i18n></button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteContractPartyaModel(contractPartya)">删除</button>
+                                            v-on:click="_openDeleteContractPartyaModel(contractPartya)"><vc:i18n name="删除" namespace="contractPartyaManage"></vc:i18n></button>
                                     </div>
                                 </td>
 

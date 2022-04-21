@@ -3,29 +3,29 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加车辆</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="添加车辆" namespace="addCarModal"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">车牌号</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="车牌号" namespace="addCarModal"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addCarModelInfo.carNum" type="text" placeholder="必填，请填写车牌号"
+                                    <input v-model="addCarModelInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','addCarModal')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">车品牌</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="车品牌" namespace="addCarModal"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addCarModelInfo.carBrand" type="text" placeholder="必填，请填写车品牌，如 宝马X6"
+                                    <input v-model="addCarModelInfo.carBrand" type="text" :placeholder="vc.i18n('必填，请填写车品牌，如 宝马','addCarModal')X6"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">车类型</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="车类型" namespace="addCarModal"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addCarModelInfo.carType">
-                                        <option selected disabled value="">必填，请选择类型</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addCarModal"></vc:i18n>，请选择类型</option>
                                         <option v-for="carType in carTypes" :key="carType.statusCd"
                                                 v-bind:value="carType.statusCd">{{carType.name}}
                                         </option>
@@ -33,16 +33,16 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">颜色</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="颜色" namespace="addCarModal"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addCarModelInfo.carColor" type="text" placeholder="必填，请填写车颜色，如白色"
+                                    <input v-model="addCarModelInfo.carColor" type="text" :placeholder="vc.i18n('必填，请填写车颜色，如白色','addCarModal')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="addCarModal"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="addCarModelInfo.remark" type="text" placeholder="请填写备注信息"
+                                    <textarea v-model="addCarModelInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','addCarModal')"
                                               rows="3" class="form-control">
                                     </textarea>
                                 </div>

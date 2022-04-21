@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="reportInfoSettingTitleManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,25 +12,25 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="reportInfoSettingTitleManageInfo.conditions.titleType">
-                                <option selected value="">请选择题目类型</option>
-                                <option value="1001">单选</option>
-                                <option value="2002">多选</option>
-                                <option value="3003">简答题</option>
+                                <option selected value=""><vc:i18n name="请选择题目类型" namespace="reportInfoSettingTitleManage"></vc:i18n></option>
+                                <option value="1001"><vc:i18n name="单选" namespace="reportInfoSettingTitleManage"></vc:i18n></option>
+                                <option value="2002"><vc:i18n name="多选" namespace="reportInfoSettingTitleManage"></vc:i18n></option>
+                                <option value="3003"><vc:i18n name="简答题" namespace="reportInfoSettingTitleManage"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入问题名称" v-model="reportInfoSettingTitleManageInfo.conditions.title" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入问题名称','reportInfoSettingTitleManage')" v-model="reportInfoSettingTitleManageInfo.conditions.title" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入题目ID" v-model="reportInfoSettingTitleManageInfo.conditions.titleId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入题目','reportInfoSettingTitleManage')ID" v-model="reportInfoSettingTitleManageInfo.conditions.titleId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryReportInfoSettingTitleMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="reportInfoSettingTitleManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>问卷题目</h5>
+                    <h5><vc:i18n name="问卷题目" namespace="reportInfoSettingTitleManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
                             返回
@@ -60,11 +60,11 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">题目ID</th>
-                                <th class="text-center">题目类型</th>
-                                <th class="text-center">问卷题目</th>
-                                <th class="text-center">顺序</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><vc:i18n name="题目" namespace="reportInfoSettingTitleManage"></vc:i18n>ID</th>
+                                <th class="text-center"><vc:i18n name="题目类型" namespace="reportInfoSettingTitleManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="问卷题目" namespace="reportInfoSettingTitleManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="顺序" namespace="reportInfoSettingTitleManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="操作" namespace="reportInfoSettingTitleManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,17 +76,17 @@
                                 <td class="text-center">
                                     <!--<div class="btn-group" v-if="reportInfoSettingTitle.titleType != '3003'">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openQuestionValueModel(reportInfoSettingTitle)">结果</button>
+                                            v-on:click="_openQuestionValueModel(reportInfoSettingTitle)"><vc:i18n name="结果" namespace="reportInfoSettingTitleManage"></vc:i18n></button>
                                     </div>
                                     <div class="btn-group" v-else>
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_toQuestionValueModel(reportInfoSettingTitle)">结果</button>
+                                            v-on:click="_toQuestionValueModel(reportInfoSettingTitle)"><vc:i18n name="结果" namespace="reportInfoSettingTitleManage"></vc:i18n></button>
                                     </div>-->
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditReportInfoSettingTitleModel(reportInfoSettingTitle)">修改</button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditReportInfoSettingTitleModel(reportInfoSettingTitle)"><vc:i18n name="修改" namespace="reportInfoSettingTitleManage"></vc:i18n></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteReportInfoSettingTitleModel(reportInfoSettingTitle)">删除</button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteReportInfoSettingTitleModel(reportInfoSettingTitle)"><vc:i18n name="删除" namespace="reportInfoSettingTitleManage"></vc:i18n></button>
                                     </div>
                                 </td>
 

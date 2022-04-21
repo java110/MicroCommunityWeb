@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="payFeeBatch"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,31 +13,29 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入批次编号" v-model="payFeeBatchInfo.conditions.batchId"
-                                       class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入批次编号','payFeeBatch')" v-model="payFeeBatchInfo.conditions.batchId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="payFeeBatchInfo.conditions.state">
-                                <option selected disabled value="">请选择状态</option>
-                                <option value="2006001">正常</option>
-                                <option value="2007001">申请取消</option>
-                                <option value="2008001">审核通过</option>
-                                <option value="2009001">审核失败</option>
+                                <option selected disabled value=""><vc:i18n name="请选择状态" namespace="payFeeBatch"></vc:i18n></option>
+                                <option value="2006001"><div><vc:i18n name="正常" namespace="payFeeBatch"></vc:i18n></div></option>
+                                <option value="2007001"><vc:i18n name="申请取消" namespace="payFeeBatch"></vc:i18n></option>
+                                <option value="2008001"><vc:i18n name="审核通过" namespace="payFeeBatch"></vc:i18n></option>
+                                <option value="2009001"><vc:i18n name="审核失败" namespace="payFeeBatch"></vc:i18n></option>
                             </select>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写创建员工"
-                                       v-model="payFeeBatchInfo.conditions.createUserName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请填写创建员工','payFeeBatch')" v-model="payFeeBatchInfo.conditions.createUserName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPayFeeBatchMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="payFeeBatch"></vc:i18n>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetPayFeeBatchMethod()">
-                                <i class="fa fa-repeat"></i> 重置
+                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="payFeeBatch"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -47,47 +47,61 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>取消费用</h5>
+                    <h5>
+                        <vc:i18n name="取消费用" namespace="payFeeBatch"></vc:i18n>
+                    </h5>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">批次号</th>
-                            <th class="text-center">员工</th>
-                            <th class="text-center">时间</th>
-                            <th class="text-center">取消原因</th>
-                            <th class="text-center">审核状态</th>
-                            <th class="text-center">审核意见</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <vc:i18n name="批次号" namespace="payFeeBatch"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="员工" namespace="payFeeBatch"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="时间" namespace="payFeeBatch"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="取消原因" namespace="payFeeBatch"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="审核状态" namespace="payFeeBatch"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="审核意见" namespace="payFeeBatch"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="payFeeBatch"></vc:i18n>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="payFee in payFeeBatchInfo.payFeeBatchs">
-                            <td class="text-center">{{payFee.batchId}}</td>
-                            <td class="text-center">{{payFee.createUserName}}</td>
-                            <td class="text-center">{{payFee.createTime}}</td>
-                            <td class="text-center">{{payFee.remark || '无'}}</td>
-                            <td class="text-center">{{payFee.stateName}}</td>
-                            <td class="text-center">{{payFee.msg}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-if="payFee.state == 2006001"
-                                            v-on:click="_openApply(payFee)">申请取消
+                            <tr v-for="payFee in payFeeBatchInfo.payFeeBatchs">
+                                <td class="text-center">{{payFee.batchId}}</td>
+                                <td class="text-center">{{payFee.createUserName}}</td>
+                                <td class="text-center">{{payFee.createTime}}</td>
+                                <td class="text-center">{{payFee.remark || '无'}}</td>
+                                <td class="text-center">{{payFee.stateName}}</td>
+                                <td class="text-center">{{payFee.msg}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 2006001" v-on:click="_openApply(payFee)"><vc:i18n name="申请取消" namespace="payFeeBatch"></vc:i18n>
                                     </button>
-                                    <button class="btn-white btn btn-xs" v-if="payFee.state == 2007001"
-                                            v-on:click="_openPayFeeBatchAuditModel(payFee)">审核
+                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 2007001" v-on:click="_openPayFeeBatchAuditModel(payFee)"><vc:i18n name="审核" namespace="payFeeBatch"></vc:i18n>
                                     </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="9">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="9">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

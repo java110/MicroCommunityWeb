@@ -1,9 +1,9 @@
 <div>
     <div class="layui-form-item">
-        <input type="text" v-model="loginInfo.username" lay-verify="required|account" maxlength="20" placeholder="请输入用户名" autocomplete="off" autofocus="autofocus" class="layui-input" @keyup.enter="doLogin">
+        <input type="text" v-model="loginInfo.username" lay-verify="required|account" maxlength="20" :placeholder="vc.i18n('请输入用户名','login')" autocomplete="off" autofocus="autofocus" class="layui-input" @keyup.enter="doLogin">
     </div>
     <div class="layui-form-item">
-        <input type="password" v-model="loginInfo.passwd" lay-verify="required" maxlength="20" placeholder="请输入密码" autocomplete="off" class="layui-input" @keyup.enter="doLogin">
+        <input type="password" v-model="loginInfo.passwd" lay-verify="required" maxlength="20" :placeholder="vc.i18n('请输入密码','login')" autocomplete="off" class="layui-input" @keyup.enter="doLogin">
     </div>
     <vc:create path="frame/validateCode"></vc:create>
     <div class="layui-form-item">

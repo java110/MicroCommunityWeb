@@ -3,74 +3,74 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">添加</h3>
+        <h3 class="m-t-none m-b "><vc:i18n name="添加" namespace="addHousekeepingType"></vc:i18n></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">菜单名称</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="菜单名称" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="addHousekeepingTypeInfo.hktName" type="text" placeholder="必填，请填写菜单名称"
+                  <input v-model="addHousekeepingTypeInfo.hktName" type="text" :placeholder="vc.i18n('必填，请填写菜单名称','addHousekeepingType')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">小图标logo</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="小图标" namespace="addHousekeepingType"></vc:i18n>logo</label>
                 <div class="col-sm-10">
                   <vc:create path="frame/uploadImage" callBackListener="addHousekeepingType"
                     callBackFunction="notifyUploadCoverImage" namespace="addHousekeepingType" imageCount="1"></vc:create>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">服务描述</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="服务描述" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="addHousekeepingTypeInfo.hktDesc" type="text" placeholder="选填，请填写服务描述"
+                  <input v-model="addHousekeepingTypeInfo.hktDesc" type="text" :placeholder="vc.i18n('选填，请填写服务描述','addHousekeepingType')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">类型</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="类型" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addHousekeepingTypeInfo.typeCd">
-                    <option selected disabled value="">必填，请选择类型</option>
-                    <option value="1001">服务</option>
-                    <option value="2002">商城</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="addHousekeepingType"></vc:i18n>，请选择类型</option>
+                    <option value="1001"><vc:i18n name="服务" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option value="2002"><vc:i18n name="商城" namespace="addHousekeepingType"></vc:i18n></option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">标签</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="标签" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="addHousekeepingTypeInfo.label" type="text" placeholder="选填，请填写标签"
+                  <input v-model="addHousekeepingTypeInfo.label" type="text" :placeholder="vc.i18n('选填，请填写标签','addHousekeepingType')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row" v-if="addHousekeepingTypeInfo.typeCd == '2002'">
-                <label class="col-sm-2 col-form-label">跳转类型</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="跳转类型" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addHousekeepingTypeInfo.skipType">
-                    <option selected disabled value="">必填，请选择跳转类型</option>
-                    <option value="1">站内</option>
-                    <option value="2">站外</option>
-                    <option value="S">店铺</option>
-                    <option value="P">商品</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="addHousekeepingType"></vc:i18n>，请选择跳转类型</option>
+                    <option value="1"><vc:i18n name="站内" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option value="2"><vc:i18n name="站外" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option value="S"><vc:i18n name="店铺" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option value="P"><vc:i18n name="商品" namespace="addHousekeepingType"></vc:i18n></option>
                   </select>
                 </div>
               </div>
               <div class="form-group row" v-if="addHousekeepingTypeInfo.typeCd == '2002' && (addHousekeepingTypeInfo.skipType == '1' || addHousekeepingTypeInfo.skipType == '2')">
                 <label class="col-sm-2 col-form-label">URL</label>
                 <div class="col-sm-10">
-                  <input v-model="addHousekeepingTypeInfo.url" type="text" placeholder="选填，请填写URL"
+                  <input v-model="addHousekeepingTypeInfo.url" type="text" :placeholder="vc.i18n('选填，请填写','addHousekeepingType')URL"
                     class="form-control">
-                    <label v-if="addHousekeepingTypeInfo.skipType == '1'">请使用浏览器打开手机商城，复制#号已后的全部地址。如：/pages/market/market...直至结束</label>
-                    <label v-if="addHousekeepingTypeInfo.skipType == '2'">输入外部完整地址，需加上http或者https。</label>
+                    <label v-if="addHousekeepingTypeInfo.skipType == '1'"><vc:i18n name="请使用浏览器打开手机商城" namespace="addHousekeepingType"></vc:i18n>，复制#号已后的全部地址。如：/pages/market/market...直至结束</label>
+                    <label v-if="addHousekeepingTypeInfo.skipType == '2'"><vc:i18n name="输入外部完整地址" namespace="addHousekeepingType"></vc:i18n>，需加上http或者https。</label>
                 </div>
               </div>
               <div class="form-group row" v-if="addHousekeepingTypeInfo.skipType == 'S' || addHousekeepingTypeInfo.skipType == 'P'">
-                <label class="col-sm-2 col-form-label">选择店铺</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="选择店铺" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addHousekeepingTypeInfo.shopId" @change="selProducts">
-                    <option selected value="">请选择店铺</option>
+                    <option selected value=""><vc:i18n name="请选择店铺" namespace="addHousekeepingType"></vc:i18n></option>
                       <option v-for="(item,index) in addHousekeepingType.shops" :value="item.shopId">
                         {{item.shopName}}
                       </option>
@@ -78,10 +78,10 @@
                 </div>
               </div>
               <div class="form-group row" v-if="addHousekeepingTypeInfo.skipType == 'P'">
-                <label class="col-sm-2 col-form-label">选择商品</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="选择商品" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
                     <select class="custom-select" v-model="addHousekeepingTypeInfo.productId">
-                      <option selected value="">请选择商品</option>
+                      <option selected value=""><vc:i18n name="请选择商品" namespace="addHousekeepingType"></vc:i18n></option>
                         <option v-for="(item,index) in addHousekeepingType.products" :value="item.productId">
                           {{item.prodName}}
                         </option>
@@ -89,18 +89,18 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">排序</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="排序" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="addHousekeepingTypeInfo.seq" type="text" placeholder="必填，请填写排序" class="form-control">
+                  <input v-model="addHousekeepingTypeInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写排序','addHousekeepingType')" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">显示</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="显示" namespace="addHousekeepingType"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addHousekeepingTypeInfo.isShow">
-                    <option selected disabled value="">必填，请选择显示</option>
-                    <option value="Y">是</option>
-                    <option value="N">否</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="addHousekeepingType"></vc:i18n>，请选择显示</option>
+                    <option value="Y"><vc:i18n name="是" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option value="N"><vc:i18n name="否" namespace="addHousekeepingType"></vc:i18n></option>
                   </select>
                 </div>
               </div>
@@ -109,7 +109,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="saveHousekeepingTypeInfo()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><vc:i18n name="取消" namespace="addHousekeepingType"></vc:i18n></button>
               </div>
             </div>
           </div>

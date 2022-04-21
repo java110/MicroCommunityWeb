@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><vc:i18n name="查询条件" namespace="listPropertyManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                             v-on:click="_moreCondition()">{{listPropertyManageInfo.moreCondition ==
@@ -15,24 +15,24 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入物业名称"
+                                <input type="text" :placeholder="vc.i18n('请输入物业名称','listPropertyManage')"
                                     v-model="listPropertyManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" placeholder="请输入管理员"
+                            <input type="text" :placeholder="vc.i18n('请输入管理员','listPropertyManage')"
                                 v-model="listPropertyManageInfo.conditions.staffName" class=" form-control">
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入联系电话" v-model="listPropertyManageInfo.conditions.tel"
+                                <input type="text" :placeholder="vc.i18n('请输入联系电话','listPropertyManage')" v-model="listPropertyManageInfo.conditions.tel"
                                     class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_queryListPropertyMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="listPropertyManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>物业信息</h5>
+                    <h5><vc:i18n name="物业信息" namespace="listPropertyManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -54,13 +54,13 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">物业名称</th>
-                                <th class="text-center">管理员</th>
-                                <th class="text-center">管理员电话</th>
-                                <th class="text-center">管理员ID</th>
-                                <th class="text-center">状态</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-right">操作</th>
+                                <th class="text-center"><vc:i18n name="物业名称" namespace="listPropertyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="管理员" namespace="listPropertyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="管理员电话" namespace="listPropertyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="管理员" namespace="listPropertyManage"></vc:i18n>ID</th>
+                                <th class="text-center"><vc:i18n name="状态" namespace="listPropertyManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="创建时间" namespace="listPropertyManage"></vc:i18n></th>
+                                <th class="text-right"><vc:i18n name="操作" namespace="listPropertyManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,16 +74,16 @@
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openPropertysCommunityModel(listProperty)">隶属小区
+                                            v-on:click="_openPropertysCommunityModel(listProperty)"><vc:i18n name="隶属小区" namespace="listPropertyManage"></vc:i18n>
                                         </button>
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAdminLoginPropertyModel(listProperty)">登录
+                                            v-on:click="_openAdminLoginPropertyModel(listProperty)"><vc:i18n name="登录" namespace="listPropertyManage"></vc:i18n>
                                         </button>
                                         <button class="btn-white btn btn-xs" v-if="listProperty.state != '48002'"
-                                            v-on:click="_openUpdateStoreStateModel(listProperty,'48002')">限制登录
+                                            v-on:click="_openUpdateStoreStateModel(listProperty,'48002')"><vc:i18n name="限制登录" namespace="listPropertyManage"></vc:i18n>
                                         </button>
                                         <button class="btn-white btn btn-xs" v-else
-                                            v-on:click="_openUpdateStoreStateModel(listProperty,'48001')">恢复登录
+                                            v-on:click="_openUpdateStoreStateModel(listProperty,'48001')"><vc:i18n name="恢复登录" namespace="listPropertyManage"></vc:i18n>
                                         </button>
                                     </div>
                                 </td>

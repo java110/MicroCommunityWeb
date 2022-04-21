@@ -1,9 +1,9 @@
 <div>
 <div class="layui-form-item">
-    <input class="layui-input" v-model="validateParam.tel" placeholder="请输入手机号" type="text" maxlength="20" lay-verify="required|regexit" autofocus="autofocus" autocomplete="off">
+    <input class="layui-input" v-model="validateParam.tel" :placeholder="vc.i18n('请输入手机号','validateTel')" type="text" maxlength="20" lay-verify="required|regexit" autofocus="autofocus" autocomplete="off">
 </div>
 <div class="layui-form-item form_code">
-    <input v-model="validateParam.messageCode" class="layui-input" placeholder="请输入短信验证码" type="text" maxlength="6" lay-verify="required|number|msgcode">
+    <input v-model="validateParam.messageCode" class="layui-input" :placeholder="vc.i18n('请输入短信验证码','validateTel')" type="text" maxlength="6" lay-verify="required|number|msgcode">
     <div class="code">
         <a v-bind:disabled="buttonInfo !='验证码'" class="layui-btn layui-btn-normal tel-btn" v-on:click="sendTelMessageCode()" style="width: 120px;">{{buttonInfo}}</a>
     </div>

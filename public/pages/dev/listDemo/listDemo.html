@@ -17,11 +17,11 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>用例ID</th>
-                            <th data-hide="phone">名称</th>
-                            <th data-hide="phone">用例值</th>
-                            <th data-hide="phone">备注</th>
-                            <th class="text-right">操作</th>
+                            <th><vc:i18n name="用例" namespace="listDemo"></vc:i18n>ID</th>
+                            <th data-hide="phone"><vc:i18n name="名称" namespace="listDemo"></vc:i18n></th>
+                            <th data-hide="phone"><vc:i18n name="用例值" namespace="listDemo"></vc:i18n></th>
+                            <th data-hide="phone"><vc:i18n name="备注" namespace="listDemo"></vc:i18n></th>
+                            <th class="text-right"><vc:i18n name="操作" namespace="listDemo"></vc:i18n></th>
 
                         </tr>
                         </thead>
@@ -43,10 +43,10 @@
                             </td>
                             <td class="text-right">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerModel(owner)">修改</button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerModel(owner)"><vc:i18n name="修改" namespace="listDemo"></vc:i18n></button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDelOwnerModel(owner)">删除</button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDelOwnerModel(owner)"><vc:i18n name="删除" namespace="listDemo"></vc:i18n></button>
                                 </div>
                             </td>
                         </tr>

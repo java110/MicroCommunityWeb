@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>折扣信息</h5>
+                    <h5><vc:i18n name="折扣信息" namespace="payFeeDiscount"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddFeeDiscountModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -20,10 +20,10 @@
                                         v-bind:checked="payFeeDiscountInfo.quanDiscount == true"
                                         @click="checkAllDiscount($event)">
                                 </th>
-                                <th class="text-center">折扣类型</th>
-                                <th class="text-center">折扣名称</th>
-                                <th class="text-center">规则</th>
-                                <th class="text-center">折扣金额</th>
+                                <th class="text-center"><vc:i18n name="折扣类型" namespace="payFeeDiscount"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="折扣名称" namespace="payFeeDiscount"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="规则" namespace="payFeeDiscount"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="折扣金额" namespace="payFeeDiscount"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,10 +39,10 @@
                                     <div v-for="(item,index) in feeDiscount.feeDiscountSpecs">
                                         {{item.specName}}：{{item.specValue}}</div>
                                 </td>
-                                <!-- <td class="text-center">{{feeDiscount.discountPrice}}元</td> -->
-                                <td class="text-center" v-if="feeDiscount.discountType == '1001'">{{feeDiscount.discountPrice < 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}元</td>
-                                <td class="text-center" v-if="feeDiscount.discountType == '2002'">{{feeDiscount.discountPrice > 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}元</td>
-                                <td class="text-center" v-if="feeDiscount.discountType == '3003'">{{feeDiscount.discountPrice < 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}元</td>
+                                <!-- <td class="text-center">{{feeDiscount.discountPrice}}<vc:i18n name="元" namespace="payFeeDiscount"></vc:i18n></td> -->
+                                <td class="text-center" v-if="feeDiscount.discountType == '1001'">{{feeDiscount.discountPrice < 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}<vc:i18n name="元" namespace="payFeeDiscount"></vc:i18n></td>
+                                <td class="text-center" v-if="feeDiscount.discountType == '2002'">{{feeDiscount.discountPrice > 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}<vc:i18n name="元" namespace="payFeeDiscount"></vc:i18n></td>
+                                <td class="text-center" v-if="feeDiscount.discountType == '3003'">{{feeDiscount.discountPrice < 0 ? feeDiscount.discountPrice : feeDiscount.discountPrice * -1}}<vc:i18n name="元" namespace="payFeeDiscount"></vc:i18n></td>
                             </tr>
                         </tbody>
                         <tfoot>

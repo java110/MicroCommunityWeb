@@ -10,36 +10,36 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>车辆信息</h5>
+                    <h5><vc:i18n name="车辆信息" namespace="carAddParkingSpace"></vc:i18n></h5>
                 </div>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">车牌号</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="车牌号" namespace="carAddParkingSpace"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="carAddParkingSpaceInfo.carNum" type="text" disabled="disabled"
-                                           placeholder="必填，请填写车牌号" class="form-control">
+                                           :placeholder="vc.i18n('必填','carAddParkingSpace')，请填写车牌号" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">起租时间</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="起租时间" namespace="carAddParkingSpace"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="carAddParkingSpaceInfo.startTime" type="text"
-                                           placeholder="必填，请填写起租时间" class="form-control startTime">
+                                           :placeholder="vc.i18n('必填','carAddParkingSpace')，请填写起租时间" class="form-control startTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">结租时间</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="结租时间" namespace="carAddParkingSpace"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="carAddParkingSpaceInfo.endTime" type="text" placeholder="必填，请填写结租时间"
+                                    <input v-model="carAddParkingSpaceInfo.endTime" type="text" :placeholder="vc.i18n('必填','carAddParkingSpace')，请填写结租时间"
                                            class="form-control endTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="carAddParkingSpace"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="carAddParkingSpaceInfo.remark" type="text" placeholder="请填写备注信息"
+                                    <textarea v-model="carAddParkingSpaceInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','carAddParkingSpace')"
                                               rows="3" class="form-control"></textarea>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_submit()">提交
+            <button type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_submit()"><vc:i18n name="提交" namespace="carAddParkingSpace"></vc:i18n>
             </button>
         </div>
     </div>

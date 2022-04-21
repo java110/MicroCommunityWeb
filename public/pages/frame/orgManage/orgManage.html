@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>查询条件</h5>
+                            <h5><vc:i18n name="查询条件" namespace="orgManage"></vc:i18n></h5>
                             <div class="ibox-tools" style="top:10px;">
                                 <!--<button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                         v-on:click="_moreCondition()">{{orgManageInfo.moreCondition == true ? '隐藏' : '更多'}}
@@ -19,25 +19,25 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" placeholder="请输入组织ID"
+                                        <input type="text" :placeholder="vc.i18n('请输入组织','orgManage')ID"
                                                v-model="orgManageInfo.conditions.orgId" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" placeholder="请输入组织名称"
+                                        <input type="text" :placeholder="vc.i18n('请输入组织名称','orgManage')"
                                                v-model="orgManageInfo.conditions.orgName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <input type="text" placeholder="请选择小区"
+                                        <input type="text" :placeholder="vc.i18n('请选择小区','orgManage')"
                                                v-model="orgManageInfo.conditions.communityId" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOrgMethod()">
-                                        <i class="fa fa-search"></i>查询
+                                        <i class="fa fa-search"></i><vc:i18n name="查询" namespace="orgManage"></vc:i18n>
                                     </button>
                                 </div>
                             </div>
@@ -49,10 +49,10 @@
                 <div class="col-lg-12">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <h5>组织信息</h5>
+                            <h5><vc:i18n name="组织信息" namespace="orgManage"></vc:i18n></h5>
                             <div class="ibox-tools" style="top:10px;">
                                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddOrgModal()">
-                                    <i class="fa fa-plus"></i>添加
+                                    <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="orgManage"></vc:i18n>
                                 </button>
                             </div>
                         </div>
@@ -61,11 +61,11 @@
                                    data-page-size="15">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">组织ID</th>
-                                    <th class="text-center">组织名称</th>
-                                    <th class="text-center">组织级别</th>
-                                    <th class="text-center">上级组织</th>
-                                    <th class="text-center">操作</th>
+                                    <th class="text-center"><vc:i18n name="组织" namespace="orgManage"></vc:i18n>ID</th>
+                                    <th class="text-center"><vc:i18n name="组织名称" namespace="orgManage"></vc:i18n></th>
+                                    <th class="text-center"><vc:i18n name="组织级别" namespace="orgManage"></vc:i18n></th>
+                                    <th class="text-center"><vc:i18n name="上级组织" namespace="orgManage"></vc:i18n></th>
+                                    <th class="text-center"><vc:i18n name="操作" namespace="orgManage"></vc:i18n></th>
                                 </tr>
                                 </thead>
                                 <tbody>

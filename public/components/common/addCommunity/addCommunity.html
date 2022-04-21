@@ -2,24 +2,24 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加小区</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="添加小区" namespace="addCommunity"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">小区名称</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="小区名称" namespace="addCommunity"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addCommunityInfo.name" type="text" placeholder="必填，请填写小区名称"
+                                    <input v-model="addCommunityInfo.name" type="text" :placeholder="vc.i18n('必填，请填写小区名称','addCommunity')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">小区地区</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="小区地区" namespace="addCommunity"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select id="pro" class="form-control form-control-sm"
                                             style="width: 30%;display: inline;" v-model="selectProv"
                                             @change="getProv(selectProv)">
-                                        <option value='' disabled selected style='display:none;'>请选择省</option>
+                                        <option value='' disabled selected style='display:none;'><vc:i18n name="请选择省" namespace="addCommunity"></vc:i18n></option>
                                         <option v-for="item in provs" :label="item.areaName" :value="item.areaCode">
                                             {{item.areaName}}
                                         </option>
@@ -28,7 +28,7 @@
                                             style="width: 30%;display: inline;" v-if="selectProv!=''"
                                             v-model="selectCity"
                                             @change="getCity(selectCity)">
-                                        <option value='' disabled selected style='display:none;'>请选择城市</option>
+                                        <option value='' disabled selected style='display:none;'><vc:i18n name="请选择城市" namespace="addCommunity"></vc:i18n></option>
                                         <option v-for="item in citys" :label="item.areaName" :value="item.areaCode">
                                             {{item.areaName}}
                                         </option>
@@ -37,7 +37,7 @@
                                             style="width: 30%;display: inline;" v-if="selectCity!=''"
                                             v-model="selectArea"
                                             @change="getArea(selectArea)">
-                                        <option value='' disabled selected style='display:none;'>请选择区县</option>
+                                        <option value='' disabled selected style='display:none;'><vc:i18n name="请选择区县" namespace="addCommunity"></vc:i18n></option>
                                         <option v-for="item in areas" :label="item.areaName" :value="item.areaCode">
                                             {{item.areaName}}
                                         </option>
@@ -45,38 +45,38 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">小区地址</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="小区地址" namespace="addCommunity"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addCommunityInfo.tmpAddress" type="text" placeholder="必填，请填写小区地址"
+                                    <input v-model="addCommunityInfo.tmpAddress" type="text" :placeholder="vc.i18n('必填，请填写小区地址','addCommunity')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">附近地标</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="附近地标" namespace="addCommunity"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addCommunityInfo.nearbyLandmarks" type="text"
-                                           placeholder="必填，请填写附近地标" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写附近地标','addCommunity')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">联系方式</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="联系方式" namespace="addCommunity"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addCommunityInfo.tel" type="text"
-                                           placeholder="必填，请填写联系方式" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写联系方式','addCommunity')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">缴费周期</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="缴费周期" namespace="addCommunity"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addCommunityInfo.payFeeMonth" type="text"
-                                           placeholder="必填，请填写缴费周期（月）" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写缴费周期','addCommunity')（月）" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">每月单价</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="每月单价" namespace="addCommunity"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addCommunityInfo.feePrice" type="text"
-                                           placeholder="必填，请填写每月单价（元）" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写每月单价','addCommunity')（元）" class="form-control">
                                 </div>
                             </div>
                             <div v-for="(item,index) in addCommunityInfo.attrs">

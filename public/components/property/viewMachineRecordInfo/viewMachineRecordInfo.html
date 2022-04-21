@@ -2,34 +2,34 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>开门记录信息</h5>
+                <h5><vc:i18n name="开门记录信息" namespace="viewMachineRecordInfo"></vc:i18n></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewMachineRecordInfo.index != 2" class="btn btn-primary btn-sm"
                         style="margin-right:10px;" v-on:click="_openSelectMachineRecordInfoModel()">
-                        <i class="fa fa-search"></i> 选择开门记录</button>
+                        <i class="fa fa-search"></i> <vc:i18n name="选择开门记录" namespace="viewMachineRecordInfo"></vc:i18n></button>
 
                     <button type="button" v-if="viewMachineRecordInfo.index != 2" class="btn btn-primary btn-sm"
                         v-on:click="_openAddMachineRecordInfoModel()">
-                        <i class="fa fa-plus"></i> 添加开门记录</button>
+                        <i class="fa fa-plus"></i> <vc:i18n name="添加开门记录" namespace="viewMachineRecordInfo"></vc:i18n></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">设备编码：</label>
+                            <label class="col-form-label"><vc:i18n name="设备编码" namespace="viewMachineRecordInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineRecordInfo.machineCode}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">设备ID：</label>
+                            <label class="col-form-label"><vc:i18n name="设备" namespace="viewMachineRecordInfo"></vc:i18n>ID：</label>
                             <label class="">{{viewMachineRecordInfo.machineId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">用户名称：</label>
+                            <label class="col-form-label"><vc:i18n name="用户名称" namespace="viewMachineRecordInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineRecordInfo.name}}</label>
                         </div>
                     </div>
@@ -37,19 +37,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">开门方式：</label>
+                            <label class="col-form-label"><vc:i18n name="开门方式" namespace="viewMachineRecordInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineRecordInfo.openTypeCd}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">用户手机号：</label>
+                            <label class="col-form-label"><vc:i18n name="用户手机号" namespace="viewMachineRecordInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineRecordInfo.tel}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">身份证：</label>
+                            <label class="col-form-label"><vc:i18n name="身份证" namespace="viewMachineRecordInfo"></vc:i18n>：</label>
                             <label class="">{{viewMachineRecordInfo.idCard}}</label>
                         </div>
                     </div>

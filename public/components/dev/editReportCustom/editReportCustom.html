@@ -3,36 +3,36 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">修改报表</h3>
+        <h3 class="m-t-none m-b "><vc:i18n name="修改报表" namespace="editReportCustom"></vc:i18n></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">组编号</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="组编号" namespace="editReportCustom"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="editReportCustomInfo.groupId">
-                    <option selected disabled value="">必填，请选择报表组</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="editReportCustom"></vc:i18n>，请选择报表组</option>
                     <option v-for="(item,index) in editReportCustomInfo.reportCustomGroups" :key="index"
                       :value="item.groupId">{{item.name}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">选项标题</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="选项标题" namespace="editReportCustom"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editReportCustomInfo.title" type="text" placeholder="必填，请填写选项标题" class="form-control">
+                  <input v-model="editReportCustomInfo.title" type="text" :placeholder="vc.i18n('必填，请填写选项标题','editReportCustom')" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">排序</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="排序" namespace="editReportCustom"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editReportCustomInfo.seq" type="text" placeholder="必填，请填写排序" class="form-control">
+                  <input v-model="editReportCustomInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写排序','editReportCustom')" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">描述</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="描述" namespace="editReportCustom"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <textarea v-model="editReportCustomInfo.remark" placeholder="选填，请填写描述"
+                  <textarea v-model="editReportCustomInfo.remark" :placeholder="vc.i18n('选填，请填写描述','editReportCustom')"
                     class="form-control"></textarea>
                 </div>
               </div>
@@ -41,7 +41,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="editReportCustom()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><vc:i18n name="取消" namespace="editReportCustom"></vc:i18n></button>
               </div>
             </div>
           </div>

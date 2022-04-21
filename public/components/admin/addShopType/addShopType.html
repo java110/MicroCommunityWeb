@@ -2,52 +2,52 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加店铺类型</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="添加店铺类型" namespace="addShopType"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">店铺类型</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="店铺类型" namespace="addShopType"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addShopTypeInfo.typeName" type="text" placeholder="必填，请填写店铺类型" class="form-control">
+                                    <input v-model="addShopTypeInfo.typeName" type="text" :placeholder="vc.i18n('必填，请填写店铺类型','addShopType')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">是否展示</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="是否展示" namespace="addShopType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addShopTypeInfo.isShow">
-                                      <option selected  disabled value="">必填，请选择是否展示</option>
-                                      <option  value="Y">是</option>
-                              <option  value="N">否</option>
+                                      <option selected  disabled value=""><vc:i18n name="必填" namespace="addShopType"></vc:i18n>，请选择是否展示</option>
+                                      <option  value="Y"><vc:i18n name="是" namespace="addShopType"></vc:i18n></option>
+                              <option  value="N"><vc:i18n name="否" namespace="addShopType"></vc:i18n></option>
                               </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">是否默认</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="是否默认" namespace="addShopType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addShopTypeInfo.isDefault">
-         <option selected  disabled value="">必填，请选择是否默认</option>
-         <option  value="F">自定义</option>
-<option  value="T">默认</option>
+         <option selected  disabled value=""><vc:i18n name="必填" namespace="addShopType"></vc:i18n>，请选择是否默认</option>
+         <option  value="F"><vc:i18n name="自定义" namespace="addShopType"></vc:i18n></option>
+<option  value="T"><vc:i18n name="默认" namespace="addShopType"></vc:i18n></option>
   </select> </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">显示序号</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="显示序号" namespace="addShopType"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addShopTypeInfo.seq" type="text" placeholder="必填，请填写显示序号" class="form-control">
+                                    <input v-model="addShopTypeInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写显示序号','addShopType')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="addShopType"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addShopTypeInfo.remark" type="text" placeholder="选填，请填写备注" class="form-control">
+                                    <input v-model="addShopTypeInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写备注','addShopType')" class="form-control">
                                 </div>
                             </div>
 
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="saveShopTypeInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="addShopType"></vc:i18n></button>
                             </div>
                         </div>
                     </div>

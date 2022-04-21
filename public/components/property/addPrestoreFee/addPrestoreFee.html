@@ -3,54 +3,54 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">添加预付费用</h3>
+        <h3 class="m-t-none m-b "><vc:i18n name="添加预付费用" namespace="addPrestoreFee"></vc:i18n></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">房屋ID</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋" namespace="addPrestoreFee"></vc:i18n>ID</label>
                 <div class="col-sm-10">
-                  <input v-model="addPrestoreFeeInfo.roomId" type="text" placeholder="必填，请填写房屋ID" class="form-control">
+                  <input v-model="addPrestoreFeeInfo.roomId" type="text" :placeholder="vc.i18n('必填，请填写房屋','addPrestoreFee')ID" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">预付类型</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="预付类型" namespace="addPrestoreFee"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addPrestoreFeeInfo.prestoreFeeType">
-                    <option selected disabled value="">必填，请选择预付类型</option>
-                    <option value="8003">水费</option>
-                    <option value="8004">电费</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="addPrestoreFee"></vc:i18n>，请选择预付类型</option>
+                    <option value="8003"><vc:i18n name="水费" namespace="addPrestoreFee"></vc:i18n></option>
+                    <option value="8004"><vc:i18n name="电费" namespace="addPrestoreFee"></vc:i18n></option>
                   </select> </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">预存对象类型</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="预存对象类型" namespace="addPrestoreFee"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addPrestoreFeeInfo.prestoreFeeObjType">
-                    <option selected disabled value="">必填，请选择预存对象类型</option>
-                    <option value="3333">房屋</option>
-                    <option value="6666">车位</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="addPrestoreFee"></vc:i18n>，请选择预存对象类型</option>
+                    <option value="3333"><vc:i18n name="房屋" namespace="addPrestoreFee"></vc:i18n></option>
+                    <option value="6666"><vc:i18n name="车位" namespace="addPrestoreFee"></vc:i18n></option>
                   </select> </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">预付金额</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="预付金额" namespace="addPrestoreFee"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="addPrestoreFeeInfo.prestoreFeeAmount" type="text" placeholder="必填，请填写预付金额"
+                  <input v-model="addPrestoreFeeInfo.prestoreFeeAmount" type="text" :placeholder="vc.i18n('必填，请填写预付金额','addPrestoreFee')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">状态</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="状态" namespace="addPrestoreFee"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addPrestoreFeeInfo.state">
-                    <option selected disabled value="">必填，请选择状态</option>
-                    <option value="1001">未使用</option>
-                    <option value="2002">已使用</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="addPrestoreFee"></vc:i18n>，请选择状态</option>
+                    <option value="1001"><vc:i18n name="未使用" namespace="addPrestoreFee"></vc:i18n></option>
+                    <option value="2002"><vc:i18n name="已使用" namespace="addPrestoreFee"></vc:i18n></option>
                   </select> </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">备注</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="addPrestoreFee"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="addPrestoreFeeInfo.remark" type="text" placeholder="必填，请填写备注" class="form-control">
+                  <input v-model="addPrestoreFeeInfo.remark" type="text" :placeholder="vc.i18n('必填，请填写备注','addPrestoreFee')" class="form-control">
                 </div>
               </div>
 
@@ -58,7 +58,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="savePrestoreFeeInfo()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><vc:i18n name="取消" namespace="addPrestoreFee"></vc:i18n></button>
               </div>
             </div>
           </div>

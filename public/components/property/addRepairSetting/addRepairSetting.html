@@ -3,78 +3,78 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加</h3>
+                <h3 class="m-t-none m-b "><vc:i18n name="添加" namespace="addRepairSetting"></vc:i18n></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">类型名称</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="类型名称" namespace="addRepairSetting"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addRepairSettingInfo.repairTypeName" type="text"
-                                        placeholder="必填，请填写类型名称" class="form-control">
+                                        :placeholder="vc.i18n('必填，请填写类型名称','addRepairSetting')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">报修设置类型</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="报修设置类型" namespace="addRepairSetting"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addRepairSettingInfo.repairSettingType">
-                                        <option selected disabled value="">必填，请选择报修设置类型</option>
-                                        <option value="100">保洁单</option>
-                                        <option value="200">维修单</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addRepairSetting"></vc:i18n>，请选择报修设置类型</option>
+                                        <option value="100"><vc:i18n name="保洁单" namespace="addRepairSetting"></vc:i18n></option>
+                                        <option value="200"><vc:i18n name="维修单" namespace="addRepairSetting"></vc:i18n></option>
                                     </select> </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">派单方式</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="派单方式" namespace="addRepairSetting"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addRepairSettingInfo.repairWay">
-                                        <option selected disabled value="">必填，请选择派单方式</option>
-                                        <option value="100">抢单</option>
-                                        <option value="200">指派</option>
-                                        <option value="300">轮训</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addRepairSetting"></vc:i18n>，请选择派单方式</option>
+                                        <option value="100"><vc:i18n name="抢单" namespace="addRepairSetting"></vc:i18n></option>
+                                        <option value="200"><vc:i18n name="指派" namespace="addRepairSetting"></vc:i18n></option>
+                                        <option value="300"><vc:i18n name="轮训" namespace="addRepairSetting"></vc:i18n></option>
                                     </select> </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">公共区域</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="公共区域" namespace="addRepairSetting"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addRepairSettingInfo.publicArea">
-                                        <option selected disabled value="">必填，请选择公共区域</option>
-                                        <option value="T">是</option>
-                                        <option value="F">否</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addRepairSetting"></vc:i18n>，请选择公共区域</option>
+                                        <option value="T"><vc:i18n name="是" namespace="addRepairSetting"></vc:i18n></option>
+                                        <option value="F"><vc:i18n name="否" namespace="addRepairSetting"></vc:i18n></option>
                                     </select>
                                 </div>
                             </div>
                             <!-- <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">收费情况</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="收费情况" namespace="addRepairSetting"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addRepairSettingInfo.payFeeFlag">
-                                        <option selected disabled value="">必填，请选择收费情况</option>
-                                        <option value="F">不收费</option>
-                                        <option value="T">收费</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addRepairSetting"></vc:i18n>，请选择收费情况</option>
+                                        <option value="F"><vc:i18n name="不收费" namespace="addRepairSetting"></vc:i18n></option>
+                                        <option value="T"><vc:i18n name="收费" namespace="addRepairSetting"></vc:i18n></option>
                                     </select>
                                 </div>
                             </div> -->
                             <div class="form-group row" v-if="addRepairSettingInfo.payFeeFlag == 'T'">
-                                <label class="col-sm-2 col-form-label">收费金额</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="收费金额" namespace="addRepairSetting"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addRepairSettingInfo.priceScope" type="text"
-                                        placeholder="必填，请填写收费金额" class="form-control">
+                                        :placeholder="vc.i18n('必填，请填写收费金额','addRepairSetting')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">回访设置</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="回访设置" namespace="addRepairSetting"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addRepairSettingInfo.returnVisitFlag">
-                                        <option selected disabled value="">必填，请选择是否回访</option>
-                                        <option value="001">不回访</option>
-                                        <option value="002">已评价不回访</option>
-                                        <option value="003">回访</option>
+                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addRepairSetting"></vc:i18n>，请选择是否回访</option>
+                                        <option value="001"><vc:i18n name="不回访" namespace="addRepairSetting"></vc:i18n></option>
+                                        <option value="002"><vc:i18n name="已评价不回访" namespace="addRepairSetting"></vc:i18n></option>
+                                        <option value="003"><vc:i18n name="回访" namespace="addRepairSetting"></vc:i18n></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">说明</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="说明" namespace="addRepairSetting"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addRepairSettingInfo.remark" type="text" placeholder="选填，请填写说明"
+                                    <input v-model="addRepairSettingInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写说明','addRepairSetting')"
                                         class="form-control">
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                 <button class="btn btn-primary float-right" type="button"
                                     v-on:click="saveRepairSettingInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                    data-dismiss="modal"><vc:i18n name="取消" namespace="addRepairSetting"></vc:i18n></button>
                             </div>
                         </div>
                     </div>

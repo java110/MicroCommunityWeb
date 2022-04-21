@@ -1,30 +1,30 @@
 <div>
-    <vc:create path="property/viewMainFee" feeName="物业费" feeTypeCd="888800010001" payName="propertyPay"></vc:create>
+    <vc:create path="property/viewMainFee" feeName="vc.i18n('物业费','propertyFee')" feeTypeCd="888800010001" payName="propertyPay"></vc:create>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>缴费历史</h5>
+                    <h5><vc:i18n name="缴费历史" namespace="propertyFee"></vc:i18n></h5>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3 input-group">
-                            <input size="16" type="text" placeholder="请选择开始时间" readonly
+                            <input size="16" type="text" :placeholder="vc.i18n('请选择开始时间','propertyFee')" readonly
                                    v-model="feeDetailInfo.startTime"
                                    class="form-control form-control-sm start_time">
                         </div>
                         <div class="col-sm-3 input-group">
-                            <input size="16" type="text" placeholder="请选择结束时间" readonly
+                            <input size="16" type="text" :placeholder="vc.i18n('请选择结束时间','propertyFee')" readonly
                                    v-model="feeDetailInfo.endTime"
                                    class="form-control form-control-sm end_time">
                         </div>
                         <div class="col-sm-6">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="queryFeeDetailMethod()">
-                                <i class="fa fa-search"></i> 马上查询
+                                <i class="fa fa-search"></i> <vc:i18n name="马上查询" namespace="propertyFee"></vc:i18n>
                             </button>
                             <button type="button" class="btn btn-info btn-sm" v-on:click="resetFeeDetailMethod()"
                                     style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i> 重置
+                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="propertyFee"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -32,16 +32,16 @@
                            data-page-size="10">
                         <thead>
                         <tr>
-                            <th class="text-center">缴费ID</th>
-                            <th data-hide="phone" class="text-center">周期(单位:月)</th>
-                            <th data-hide="phone" class="text-center">应收金额(单位:元)</th>
-                            <th data-hide="phone" class="text-center">实收金额(单位:元)</th>
-                            <th data-hide="phone" class="text-center">缴费时间</th>
-                            <th data-hide="phone" class="text-center">缴费起始时间</th>
-                            <th data-hide="phone" class="text-center">缴费结束时间</th>
-                            <th data-hide="phone" class="text-center">状态</th>
-                            <th data-hide="phone" class="text-center">备注</th>
-                            <th data-hide="phone" class="text-center">操作</th>
+                            <th class="text-center"><vc:i18n name="缴费" namespace="propertyFee"></vc:i18n>ID</th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="周期" namespace="propertyFee"></vc:i18n>(单位:月)</th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="应收金额" namespace="propertyFee"></vc:i18n>(单位:元)</th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="实收金额" namespace="propertyFee"></vc:i18n>(单位:元)</th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="缴费时间" namespace="propertyFee"></vc:i18n></th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="缴费起始时间" namespace="propertyFee"></vc:i18n></th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="缴费结束时间" namespace="propertyFee"></vc:i18n></th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="状态" namespace="propertyFee"></vc:i18n></th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="备注" namespace="propertyFee"></vc:i18n></th>
+                            <th data-hide="phone" class="text-center"><vc:i18n name="操作" namespace="propertyFee"></vc:i18n></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -75,12 +75,12 @@
                             <td class="text-center">
                                 <div class="btn-group" v-if="feeDetail.state=='1400' || feeDetail.state== 1200 || feeDetail.state== ''">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openRefundModel(feeDetail)">申请退费
+                                            v-on:click="_openRefundModel(feeDetail)"><vc:i18n name="申请退费" namespace="propertyFee"></vc:i18n>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openFeeDetailDiscountModal(feeDetail)">折扣
+                                            v-on:click="_openFeeDetailDiscountModal(feeDetail)"><vc:i18n name="折扣" namespace="propertyFee"></vc:i18n>
                                     </button>
                                 </div>
                             </td>

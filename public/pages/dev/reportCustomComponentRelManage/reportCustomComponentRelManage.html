@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>{{reportCustomComponentRelManageInfo.title}}组件</h5>
+                    <h5>{{reportCustomComponentRelManageInfo.title}}<vc:i18n name="组件" namespace="reportCustomComponentRelManage"></vc:i18n></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-white btn-sm"
                             v-on:click="_goBack()">
@@ -20,12 +20,12 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">关系编号</th>
-                                <th class="text-center">组件</th>
-                                <th class="text-center">报表编号</th>
-                                <th class="text-center">组件序号</th>
-                                <th class="text-center">关联时间</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><vc:i18n name="关系编号" namespace="reportCustomComponentRelManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="组件" namespace="reportCustomComponentRelManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="报表编号" namespace="reportCustomComponentRelManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="组件序号" namespace="reportCustomComponentRelManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="关联时间" namespace="reportCustomComponentRelManage"></vc:i18n></th>
+                                <th class="text-center"><vc:i18n name="操作" namespace="reportCustomComponentRelManage"></vc:i18n></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,7 +39,7 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteReportCustomComponentRelModel(reportCustomComponentRel)">删除</button>
+                                            v-on:click="_openDeleteReportCustomComponentRelModel(reportCustomComponentRel)"><vc:i18n name="删除" namespace="reportCustomComponentRelManage"></vc:i18n></button>
                                     </div>
                                 </td>
                             </tr>

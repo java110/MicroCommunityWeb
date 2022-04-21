@@ -3,54 +3,54 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">金币设置</h3>
+        <h3 class="m-t-none m-b "><vc:i18n name="金币设置" namespace="editSystemGoldSetting"></vc:i18n></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">名称</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="名称" namespace="editSystemGoldSetting"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editSystemGoldSettingInfo.goldName" type="text" placeholder="必填，请填写名称"
+                  <input v-model="editSystemGoldSettingInfo.goldName" type="text" :placeholder="vc.i18n('必填，请填写名称','editSystemGoldSetting')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">类型</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="类型" namespace="editSystemGoldSetting"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="editSystemGoldSettingInfo.goldType">
-                    <option selected disabled value="">必填，请选择类型</option>
-                    <option value="1001">普通金币</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="editSystemGoldSetting"></vc:i18n>，请选择类型</option>
+                    <option value="1001"><vc:i18n name="普通金币" namespace="editSystemGoldSetting"></vc:i18n></option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">购买价格</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="购买价格" namespace="editSystemGoldSetting"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editSystemGoldSettingInfo.buyPrice" type="text" placeholder="必填，请填写购买价格"
+                  <input v-model="editSystemGoldSettingInfo.buyPrice" type="text" :placeholder="vc.i18n('必填，请填写购买价格','editSystemGoldSetting')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">使用价格</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="使用价格" namespace="editSystemGoldSetting"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editSystemGoldSettingInfo.usePrice" type="text" placeholder="必填，请填写使用价格"
+                  <input v-model="editSystemGoldSettingInfo.usePrice" type="text" :placeholder="vc.i18n('必填，请填写使用价格','editSystemGoldSetting')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">有效期</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="有效期" namespace="editSystemGoldSetting"></vc:i18n></label>
                 <div class="col-sm-10">
-                  <input v-model="editSystemGoldSettingInfo.validity" type="text" placeholder="必填，请填写有效期"
+                  <input v-model="editSystemGoldSettingInfo.validity" type="text" :placeholder="vc.i18n('必填，请填写有效期','editSystemGoldSetting')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">状态</label>
+                <label class="col-sm-2 col-form-label"><vc:i18n name="状态" namespace="editSystemGoldSetting"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="editSystemGoldSettingInfo.state">
-                    <option selected disabled value="">必填，请选择状态</option>
-                    <option value="001">启用</option>
-                    <option value="002">停用</option>
+                    <option selected disabled value=""><vc:i18n name="必填" namespace="editSystemGoldSetting"></vc:i18n>，请选择状态</option>
+                    <option value="001"><vc:i18n name="启用" namespace="editSystemGoldSetting"></vc:i18n></option>
+                    <option value="002"><vc:i18n name="停用" namespace="editSystemGoldSetting"></vc:i18n></option>
                   </select>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="editSystemGoldSetting()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><vc:i18n name="取消" namespace="editSystemGoldSetting"></vc:i18n></button>
               </div>
             </div>
           </div>
