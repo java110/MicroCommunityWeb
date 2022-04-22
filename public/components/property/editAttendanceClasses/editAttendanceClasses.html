@@ -1,32 +1,30 @@
-<div id="editAttendanceClassesModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div id="editAttendanceClassesModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="修改" namespace="editAttendanceClasses"></vc:i18n></h3>
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="修改" namespace="editAttendanceClasses"></vc:i18n>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="班次名称" namespace="editAttendanceClasses"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttendanceClassesInfo.classesName" type="text"
-                                           :placeholder="vc.i18n('必填，请填写班次名称','editAttendanceClasses')" class="form-control">
+                                    <input v-model="editAttendanceClassesInfo.classesName" type="text" :placeholder="vc.i18n('必填，请填写班次名称','editAttendanceClasses')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="打卡范围" namespace="editAttendanceClasses"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttendanceClassesInfo.timeOffset" type="text"
-                                           :placeholder="vc.i18n('必填，请填写打卡范围','editAttendanceClasses')(分钟)" class="form-control">
+                                    <input v-model="editAttendanceClassesInfo.timeOffset" type="text" :placeholder="vc.i18n('必填，请填写打卡范围(分钟)','editAttendanceClasses')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="打卡次数" namespace="editAttendanceClasses"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editAttendanceClassesInfo.clockCount"
-                                            @change="_editAttendanceChangeClockCount()">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editAttendanceClasses"></vc:i18n>，请选择打卡次数</option>
+                                    <select class="custom-select" v-model="editAttendanceClassesInfo.clockCount" @change="_editAttendanceChangeClockCount()">
+                                        <option selected disabled value=""><vc:i18n name="必填，请选择打卡次数" namespace="editAttendanceClasses"></vc:i18n></option>
                                         <option value="2">2次</option>
                                         <option value="4">4次</option>
                                         <option value="6">6次</option>
@@ -39,9 +37,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label padding-lr-sm">{{item.name}}</label>
                                             <div class="col-sm-8">
-                                                <input v-model="item.value" type="text"
-                                                       :placeholder="'必填，请填写'+item.name" class="form-control"
-                                                       :class="item.specCd">
+                                                <input v-model="item.value" type="text" :placeholder="'必填，请填写'+item.name" class="form-control" :class="item.specCd">
                                             </div>
                                         </div>
                                     </div>
@@ -49,11 +45,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label padding-lr-sm">{{editAttendanceClassesInfo.attrs[index+1].name}}</label>
                                             <div class="col-sm-9">
-                                                <input v-model="editAttendanceClassesInfo.attrs[index+1].value"
-                                                       type="text"
-                                                       :placeholder="'必填，请填写'+editAttendanceClassesInfo.attrs[index+1].name"
-                                                       class="form-control "
-                                                       :class="editAttendanceClassesInfo.attrs[index+1].specCd">
+                                                <input v-model="editAttendanceClassesInfo.attrs[index+1].value" type="text" :placeholder="'必填，请填写'+editAttendanceClassesInfo.attrs[index+1].name" class="form-control " :class="editAttendanceClassesInfo.attrs[index+1].specCd">
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +55,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="打卡类型" namespace="editAttendanceClasses"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttendanceClassesInfo.clockType">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editAttendanceClasses"></vc:i18n>，请选择打卡类型</option>
+                                        <option selected disabled value=""><vc:i18n name="必填，请选择打卡类型" namespace="editAttendanceClasses"></vc:i18n></option>
                                         <option v-for="(item,index) in editAttendanceClassesInfo.clockTypes"
                                                 :key="index"
                                                 v-bind:value="item.statusCd">
@@ -122,24 +114,20 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="迟到范围" namespace="editAttendanceClasses"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttendanceClassesInfo.leaveOffset" type="text"
-                                           :placeholder="vc.i18n('必填，请填写迟到范围','editAttendanceClasses')" class="form-control">
+                                    <input v-model="editAttendanceClassesInfo.leaveOffset" type="text" :placeholder="vc.i18n('必填，请填写迟到范围','editAttendanceClasses')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="早退范围" namespace="editAttendanceClasses"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttendanceClassesInfo.lateOffset" type="text"
-                                           :placeholder="vc.i18n('必填，请填写早退范围','editAttendanceClasses')" class="form-control">
+                                    <input v-model="editAttendanceClassesInfo.lateOffset" type="text" :placeholder="vc.i18n('必填，请填写早退范围','editAttendanceClasses')" class="form-control">
                                 </div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="editAttendanceClasses()">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editAttendanceClasses()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
                                     <i class="fa fa-close"></i>&nbsp;取消
                                 </button>
                             </div>

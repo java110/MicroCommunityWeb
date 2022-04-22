@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="inspectionPlanManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="inspectionPlanManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,7 +13,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入计划','inspectionPlanManage')ID" v-model="inspectionPlanManageInfo.conditions.inspectionPlanId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入计划ID','inspectionPlanManage')" v-model="inspectionPlanManageInfo.conditions.inspectionPlanId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -44,7 +46,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="巡检计划信息" namespace="inspectionPlanManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="巡检计划信息" namespace="inspectionPlanManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionPlanModal()">
                             <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="inspectionPlanManage"></vc:i18n>
@@ -55,17 +59,39 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="计划" namespace="inspectionPlanManage"></vc:i18n>ID</th>
-                                <th class="text-center"><vc:i18n name="计划名称" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="计划路线" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="计划周期" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="签到方式" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="计划开始时间" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="计划结束时间" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="制定人" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="制定时间" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="状态" namespace="inspectionPlanManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="inspectionPlanManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="计划ID" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="计划名称" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="计划路线" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="计划周期" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="签到方式" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="计划开始时间" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="计划结束时间" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="制定人" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="制定时间" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="状态" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="inspectionPlanManage"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,14 +115,22 @@
                                     </button>
                                         <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
                                             <p style="margin:10px 0;">
-                                                <a href="javascript:void(0)" v-on:click="_openEditInspectionPlanModel(inspectionPlan)"><vc:i18n name="修改计划" namespace="inspectionPlanManage"></vc:i18n></a>
+                                                <a href="javascript:void(0)" v-on:click="_openEditInspectionPlanModel(inspectionPlan)">
+                                                    <vc:i18n name="修改计划" namespace="inspectionPlanManage"></vc:i18n>
+                                                </a>
                                                 <span>|</span>
-                                                <a href="javascript:void(0)" v-on:click="_openDeleteInspectionPlanModel(inspectionPlan)"><vc:i18n name="删除计划" namespace="inspectionPlanManage"></vc:i18n></a>
+                                                <a href="javascript:void(0)" v-on:click="_openDeleteInspectionPlanModel(inspectionPlan)">
+                                                    <vc:i18n name="删除计划" namespace="inspectionPlanManage"></vc:i18n>
+                                                </a>
                                             </p>
                                             <p style="margin:10px 0;">
-                                                <a href="javascript:void(0)" v-on:click="_openEnabledInspectionPlanModel(inspectionPlan)"><vc:i18n name="启用计划" namespace="inspectionPlanManage"></vc:i18n></a>
+                                                <a href="javascript:void(0)" v-on:click="_openEnabledInspectionPlanModel(inspectionPlan)">
+                                                    <vc:i18n name="启用计划" namespace="inspectionPlanManage"></vc:i18n>
+                                                </a>
                                                 <span>|</span>
-                                                <a href="javascript:void(0)" v-on:click="_openDisabledInspectionPlanModel(inspectionPlan)"><vc:i18n name="停用计划" namespace="inspectionPlanManage"></vc:i18n></a>
+                                                <a href="javascript:void(0)" v-on:click="_openDisabledInspectionPlanModel(inspectionPlan)">
+                                                    <vc:i18n name="停用计划" namespace="inspectionPlanManage"></vc:i18n>
+                                                </a>
                                             </p>
                                         </div>
                                     </div>
@@ -114,7 +148,8 @@
                     <!-- 分页 -->
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
-                            <div><vc:i18n name="请确保计划开始时间和计划结束时间是有效时间范围" namespace="inspectionPlanManage"></vc:i18n>，并且设置了巡检人，不然无法生成巡检任务</div>
+                            <div>
+                                请确保计划开始时间和计划结束时间是有效时间范围，并且设置了巡检人，不然无法生成巡检任务</div>
                         </div>
                         <div class="col-sm-3 float-right">
                             <vc:create path="frame/pagination"></vc:create>

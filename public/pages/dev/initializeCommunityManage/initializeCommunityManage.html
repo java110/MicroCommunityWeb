@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="initializeCommunityManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="initializeCommunityManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,14 +13,12 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入小区','initializeCommunityManage')ID"
-                                       v-model="initializeCommunityManageInfo.conditions.communityId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入小区ID','initializeCommunityManage')" v-model="initializeCommunityManageInfo.conditions.communityId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入小区名称','initializeCommunityManage')"
-                                       v-model="initializeCommunityManageInfo.conditions.name" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入小区名称','initializeCommunityManage')" v-model="initializeCommunityManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -35,43 +35,56 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="初始化小区数据" namespace="initializeCommunityManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="初始化小区数据" namespace="initializeCommunityManage"></vc:i18n>
+                    </h5>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th><vc:i18n name="小区" namespace="initializeCommunityManage"></vc:i18n>ID</th>
-                            <th><vc:i18n name="小区名称" namespace="initializeCommunityManage"></vc:i18n></th>
-                            <th width="25%"><vc:i18n name="附近地标" namespace="initializeCommunityManage"></vc:i18n></th>
-                            <th><vc:i18n name="城市编码" namespace="initializeCommunityManage"></vc:i18n></th>
-                            <th><vc:i18n name="状态" namespace="initializeCommunityManage"></vc:i18n></th>
-                            <th class="text-right"><vc:i18n name="操作" namespace="initializeCommunityManage"></vc:i18n></th>
-                        </tr>
+                            <tr>
+                                <th>
+                                    <vc:i18n name="小区ID" namespace="initializeCommunityManage"></vc:i18n>
+                                </th>
+                                <th>
+                                    <vc:i18n name="小区名称" namespace="initializeCommunityManage"></vc:i18n>
+                                </th>
+                                <th width="25%">
+                                    <vc:i18n name="附近地标" namespace="initializeCommunityManage"></vc:i18n>
+                                </th>
+                                <th>
+                                    <vc:i18n name="城市编码" namespace="initializeCommunityManage"></vc:i18n>
+                                </th>
+                                <th>
+                                    <vc:i18n name="状态" namespace="initializeCommunityManage"></vc:i18n>
+                                </th>
+                                <th class="text-right">
+                                    <vc:i18n name="操作" namespace="initializeCommunityManage"></vc:i18n>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="initializeCommunity in initializeCommunityManageInfo.initializeCommunitys">
-                            <td>{{initializeCommunity.communityId}}</td>
-                            <td>{{initializeCommunity.name}}</td>
-                            <!--<td>{{community.address}}</td>-->
-                            <td>{{initializeCommunity.nearbyLandmarks}}</td>
-                            <td>{{initializeCommunity.cityName}}</td>
-                            <td>{{initializeCommunity.stateName}}</td>
-                            <td class="text-right">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openChooseinInitializeCommunity(initializeCommunity)"><vc:i18n name="格式化" namespace="initializeCommunityManage"></vc:i18n>
+                            <tr v-for="initializeCommunity in initializeCommunityManageInfo.initializeCommunitys">
+                                <td>{{initializeCommunity.communityId}}</td>
+                                <td>{{initializeCommunity.name}}</td>
+                                <!--<td>{{community.address}}</td>-->
+                                <td>{{initializeCommunity.nearbyLandmarks}}</td>
+                                <td>{{initializeCommunity.cityName}}</td>
+                                <td>{{initializeCommunity.stateName}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openChooseinInitializeCommunity(initializeCommunity)"><vc:i18n name="格式化" namespace="initializeCommunityManage"></vc:i18n>
                                     </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -83,8 +96,5 @@
             </div>
         </div>
     </div>
-        <vc:create path="dev/chooseinitializeCommunity"
-        emitChooseinitializeCommunity="chooseinitializeCommunity"
-        emitLoadData="chooseinitializeCommunity"
-    ></vc:create>
+    <vc:create path="dev/chooseinitializeCommunity" emitChooseinitializeCommunity="chooseinitializeCommunity" emitLoadData="chooseinitializeCommunity"></vc:create>
 </div>

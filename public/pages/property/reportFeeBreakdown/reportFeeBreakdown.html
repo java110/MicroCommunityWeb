@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="reportFeeBreakdown"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="reportFeeBreakdown"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">{{reportFeeBreakdownInfo.moreCondition == true?'隐藏':'更多'}}
@@ -35,7 +37,7 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写年份月份','reportFeeBreakdown')，如202109" class="form-control form-control-md" v-model="reportFeeBreakdownInfo.conditions.yearMonth">
+                                <input type="text" :placeholder="vc.i18n('请填写年份月份，如202109','reportFeeBreakdown')" class="form-control form-control-md" v-model="reportFeeBreakdownInfo.conditions.yearMonth">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -94,7 +96,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="费用分项表" namespace="reportFeeBreakdown"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="费用分项表" namespace="reportFeeBreakdown"></vc:i18n>
+                    </h5>
                     <span style="font-size: 10px;">(按天更新)</span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
@@ -106,18 +110,34 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="费用编号" namespace="reportFeeBreakdown"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="费用类型" namespace="reportFeeBreakdown"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="费用项" namespace="reportFeeBreakdown"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="历史欠费" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
-                                <th class="text-center"><vc:i18n name="当月应收" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
-                                <th class="text-center"><vc:i18n name="应收合计" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
-                                <th class="text-center"><vc:i18n name="当月实收" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
-                                <th class="text-center"><vc:i18n name="欠费追回" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
-                                <th class="text-center"><vc:i18n name="预交费用" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
-                                <th class="text-center"><vc:i18n name="实收合计" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
-                                <th class="text-center"><vc:i18n name="欠费金额" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
-                                <th class="text-center"><vc:i18n name="更新时间" namespace="reportFeeBreakdown"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用编号" namespace="reportFeeBreakdown"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用类型" namespace="reportFeeBreakdown"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用项" namespace="reportFeeBreakdown"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="历史欠费" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
+                                <th class="text-center">
+                                    <vc:i18n name="当月应收" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
+                                <th class="text-center">
+                                    <vc:i18n name="应收合计" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
+                                <th class="text-center">
+                                    <vc:i18n name="当月实收" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
+                                <th class="text-center">
+                                    <vc:i18n name="欠费追回" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
+                                <th class="text-center">
+                                    <vc:i18n name="预交费用" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
+                                <th class="text-center">
+                                    <vc:i18n name="实收合计" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
+                                <th class="text-center">
+                                    <vc:i18n name="欠费金额" namespace="reportFeeBreakdown"></vc:i18n>(单位:元)</th>
+                                <th class="text-center">
+                                    <vc:i18n name="更新时间" namespace="reportFeeBreakdown"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -169,9 +189,12 @@
                     </div>
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
-                            <div> <vc:i18n name="欠费金额" namespace="reportFeeBreakdown"></vc:i18n> = 历史欠费 + 当月应收 - 当月实收 - 欠费追回</div>
-                            <div> <vc:i18n name="历史欠费" namespace="reportFeeBreakdown"></vc:i18n>：当月之前欠费；当月应收：当前月收费；当月实收：当月收到中属于当前月应收费用部分；</div>
-                            <div> <vc:i18n name="欠费追回" namespace="reportFeeBreakdown"></vc:i18n>：当月收到中属于历史欠费部分；预交费用：当月收到中属于预交费用部分</div>
+                            <div>
+                                <vc:i18n name="欠费金额" namespace="reportFeeBreakdown"></vc:i18n> = 历史欠费 + 当月应收 - 当月实收 - 欠费追回</div>
+                            <div>
+                                <vc:i18n name="历史欠费" namespace="reportFeeBreakdown"></vc:i18n>：当月之前欠费；当月应收：当前月收费；当月实收：当月收到中属于当前月应收费用部分；</div>
+                            <div>
+                                <vc:i18n name="欠费追回" namespace="reportFeeBreakdown"></vc:i18n>：当月收到中属于历史欠费部分；预交费用：当月收到中属于预交费用部分</div>
                         </div>
                         <div class="col-sm-3 float-right">
                             <vc:create path="frame/pagination"></vc:create>

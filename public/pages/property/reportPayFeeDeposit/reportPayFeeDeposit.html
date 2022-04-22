@@ -3,10 +3,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="reportPayFeeDeposit"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="reportPayFeeDeposit"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
                             {{reportPayFeeDepositInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
@@ -15,11 +16,9 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择楼栋','reportPayFeeDeposit')"
-                                       v-model="reportPayFeeDepositInfo.conditions.floorName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择楼栋','reportPayFeeDeposit')" v-model="reportPayFeeDepositInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseFloorMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
                                         <i class="fa fa-search"></i> <vc:i18n name="选择" namespace="reportPayFeeDeposit"></vc:i18n>
                                     </button>
                                 </div>
@@ -27,8 +26,7 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline"
-                                        v-model="reportPayFeeDepositInfo.conditions.unitId">
+                                <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDepositInfo.conditions.unitId">
                                     <option selected value=""><vc:i18n name="请选择单元" namespace="reportPayFeeDeposit"></vc:i18n></option>
                                     <option v-for="(unit,index) in reportPayFeeDepositInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
@@ -39,16 +37,14 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号','reportPayFeeDeposit')" class="form-control form-control-md"
-                                       v-model="reportPayFeeDepositInfo.conditions.roomNum">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号','reportPayFeeDeposit')" class="form-control form-control-md" v-model="reportPayFeeDepositInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
                                 <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="reportPayFeeDeposit"></vc:i18n>
                             </button>
-                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
-                                    style="margin-left: 20px;">
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()" style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="reportPayFeeDeposit"></vc:i18n>
                             </button>
                         </div>
@@ -57,8 +53,7 @@
                         <!--费用ID-->
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入费用','reportPayFeeDeposit')ID"
-                                       v-model="reportPayFeeDepositInfo.conditions.feeId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入费用ID','reportPayFeeDeposit')" v-model="reportPayFeeDepositInfo.conditions.feeId" class=" form-control">
                             </div>
                         </div>
                         <!--费用项名称-->
@@ -92,16 +87,12 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择费用创建开始时间','reportPayFeeDeposit')" name="startTime"
-                                       v-model="reportPayFeeDepositInfo.conditions.startTime"
-                                       class=" form-control startTime">
+                                <input type="text" :placeholder="vc.i18n('请选择费用创建开始时间','reportPayFeeDeposit')" name="startTime" v-model="reportPayFeeDepositInfo.conditions.startTime" class=" form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择费用创建结束时间','reportPayFeeDeposit')" name="endTime"
-                                       v-model="reportPayFeeDepositInfo.conditions.endTime"
-                                       class=" form-control endTime">
+                                <input type="text" :placeholder="vc.i18n('请选择费用创建结束时间','reportPayFeeDeposit')" name="endTime" v-model="reportPayFeeDepositInfo.conditions.endTime" class=" form-control endTime">
                             </div>
                         </div>
                     </div>
@@ -123,7 +114,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="押金报表" namespace="reportPayFeeDeposit"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="押金报表" namespace="reportPayFeeDeposit"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
                             <i class="fa fa-plus"></i> <vc:i18n name="导出" namespace="reportPayFeeDeposit"></vc:i18n>
@@ -133,53 +126,80 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center"><vc:i18n name="费用" namespace="reportPayFeeDeposit"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="房号" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="业主" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="费用类型" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="费用项" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="费用开始时间" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="费用结束时间" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="创建时间" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="付费对象类型" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="付款方" namespace="reportPayFeeDeposit"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="应收金额" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="状态" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="退费状态" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="reportPayFeeDeposit"></vc:i18n></th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <vc:i18n name="费用" namespace="reportPayFeeDeposit"></vc:i18n>ID</th>
+                                <th class="text-center">
+                                    <vc:i18n name="房号" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="业主" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用类型" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用项" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用开始时间" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用结束时间" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="创建时间" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="付费对象类型" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="付款方" namespace="reportPayFeeDeposit"></vc:i18n>ID</th>
+                                <th class="text-center">
+                                    <vc:i18n name="应收金额" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="状态" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="退费状态" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(fee,index) in reportPayFeeDepositInfo.depositFees">
-                            <td class="text-center">{{fee.feeId}}</td>
-                            <td class="text-center">{{fee.objName}}</td>
-                            <td class="text-center">{{fee.ownerName}}</td>
-                            <td class="text-center">{{fee.feeTypeCdName}}</td>
-                            <td class="text-center">{{fee.feeName}}</td>
-                            <td class="text-center">{{fee.startTime}}</td>
-                            <td class="text-center">{{fee.deadlineTime}}</td>
-                            <td class="text-center">{{fee.createTime}}</td>
-                            <td class="text-center">{{fee.payerObjTypeName}}</td>
-                            <td class="text-center">{{fee.payerObjId}}</td>
-                            <td class="text-center">{{fee.additionalAmount}}</td>
-                            <td class="text-center">{{fee.stateName}}</td>
-                            <td class="text-center" v-if="fee.state=='2009001'">{{fee.detailStateName}}</td>
-                            <td class="text-center" v-else><vc:i18n name="未缴费" namespace="reportPayFeeDeposit"></vc:i18n></td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                        v-on:click="_openPayFeeDetail(fee)"><vc:i18n name="详情" namespace="reportPayFeeDeposit"></vc:i18n></button>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr v-for="(fee,index) in reportPayFeeDepositInfo.depositFees">
+                                <td class="text-center">{{fee.feeId}}</td>
+                                <td class="text-center">{{fee.objName}}</td>
+                                <td class="text-center">{{fee.ownerName}}</td>
+                                <td class="text-center">{{fee.feeTypeCdName}}</td>
+                                <td class="text-center">{{fee.feeName}}</td>
+                                <td class="text-center">{{fee.startTime}}</td>
+                                <td class="text-center">{{fee.deadlineTime}}</td>
+                                <td class="text-center">{{fee.createTime}}</td>
+                                <td class="text-center">{{fee.payerObjTypeName}}</td>
+                                <td class="text-center">{{fee.payerObjId}}</td>
+                                <td class="text-center">{{fee.additionalAmount}}</td>
+                                <td class="text-center">{{fee.stateName}}</td>
+                                <td class="text-center" v-if="fee.state=='2009001'">{{fee.detailStateName}}</td>
+                                <td class="text-center" v-else>
+                                    <vc:i18n name="未缴费" namespace="reportPayFeeDeposit"></vc:i18n>
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openPayFeeDetail(fee)"><vc:i18n name="详情" namespace="reportPayFeeDeposit"></vc:i18n></button>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="15">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="15">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <div class="row">

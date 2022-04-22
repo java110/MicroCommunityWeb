@@ -2,7 +2,9 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="修改服务实现" namespace="editServiceImpl"></vc:i18n></h3>
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="修改服务实现" namespace="editServiceImpl"></vc:i18n>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
@@ -17,8 +19,8 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="调用类型" namespace="editServiceImpl"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editServiceImplInfo.invokeType">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editServiceImpl"></vc:i18n>，请选择调用类型</option>
-                                        <option value="1"><vc:i18n name="微服务" namespace="editServiceImpl"></vc:i18n>POST方式</option>
+                                        <option selected disabled value=""><vc:i18n name="必填，请选择调用类型" namespace="editServiceImpl"></vc:i18n></option>
+                                        <option value="1"><vc:i18n name="微服务POST方式" namespace="editServiceImpl"></vc:i18n></option>
                                         <option value="2">webservice方式</option>
                                         <option value="3">http post方式</option>
                                     </select></div>
@@ -32,7 +34,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">kafka主题</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editServiceImplInfo.messageTopic" type="text" :placeholder="vc.i18n('选填，请填写','editServiceImpl')kafka主题" class="form-control">
+                                    <input v-model="editServiceImplInfo.messageTopic" type="text" :placeholder="vc.i18n('选填，请填写kafka主题','editServiceImpl')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">

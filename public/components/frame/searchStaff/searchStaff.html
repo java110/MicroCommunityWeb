@@ -1,14 +1,16 @@
-<div id = "searchStaffModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchStaffModelLabel" aria-hidden="true" >
+<div id="searchStaffModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchStaffModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="searchStaffModelLabel"><vc:i18n name="定位员工" namespace="searchStaff"></vc:i18n></h3>
+                <h3 class="modal-title" id="searchStaffModelLabel">
+                    <vc:i18n name="定位员工" namespace="searchStaff"></vc:i18n>
+                </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')<divvc.i18n(' ','searchStaff')class="vc.i18n(' ','searchStaff')row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -28,24 +30,34 @@ vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc.i18n(' ','searchStaff')vc
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th><vc:i18n name="员工编码" namespace="searchStaff"></vc:i18n></th>
-                                        <th><vc:i18n name="员工名称" namespace="searchStaff"></vc:i18n></th>
-                                        <th><vc:i18n name="手机号" namespace="searchStaff"></vc:i18n></th>
-                                        <th><vc:i18n name="性别" namespace="searchStaff"></vc:i18n></th>
-                                        <th><vc:i18n name="操作" namespace="searchStaff"></vc:i18n></th>
-                                    </tr>
+                                        <tr>
+                                            <th>
+                                                <vc:i18n name="员工编码" namespace="searchStaff"></vc:i18n>
+                                            </th>
+                                            <th>
+                                                <vc:i18n name="员工名称" namespace="searchStaff"></vc:i18n>
+                                            </th>
+                                            <th>
+                                                <vc:i18n name="手机号" namespace="searchStaff"></vc:i18n>
+                                            </th>
+                                            <th>
+                                                <vc:i18n name="性别" namespace="searchStaff"></vc:i18n>
+                                            </th>
+                                            <th>
+                                                <vc:i18n name="操作" namespace="searchStaff"></vc:i18n>
+                                            </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="staff in searchStaffInfo.staffs">
-                                        <td>{{staff.userId}}</td>
-                                        <td>{{staff.name}}</td>
-                                        <td>{{staff.tel}}</td>
-                                        <td>{{staff.sex == 0 ? '男' : (staff.sex == 1 ?'女':'')}}</td>
-                                        <td>
-                                            <button class="btn btn-primary btn-xs" v-on:click="chooseStaff(staff)"><vc:i18n name="选择" namespace="searchStaff"></vc:i18n></button>
-                                        </td>
-                                    </tr>
+                                        <tr v-for="staff in searchStaffInfo.staffs">
+                                            <td>{{staff.userId}}</td>
+                                            <td>{{staff.name}}</td>
+                                            <td>{{staff.tel}}</td>
+                                            <td>{{staff.sex == 0 ? '男' : (staff.sex == 1 ?'女':'')}}</td>
+                                            <td>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseStaff(staff)"><vc:i18n name="选择" namespace="searchStaff"></vc:i18n></button>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <!-- 分页 -->

@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="repairSettingManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="repairSettingManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -44,7 +46,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="报修设置" namespace="repairSettingManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="报修设置" namespace="repairSettingManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddRepairSettingModal()">
                             <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="repairSettingManage"></vc:i18n>
@@ -55,15 +59,31 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="类型名称" namespace="repairSettingManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="报修设置类型" namespace="repairSettingManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="派单方式" namespace="repairSettingManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="派单类型" namespace="repairSettingManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="公共区域" namespace="repairSettingManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="类型名称" namespace="repairSettingManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="报修设置类型" namespace="repairSettingManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="派单方式" namespace="repairSettingManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="派单类型" namespace="repairSettingManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="公共区域" namespace="repairSettingManage"></vc:i18n>
+                                </th>
                                 <!-- <th class="text-center"><vc:i18n name="收费范围" namespace="repairSettingManage"></vc:i18n></th> -->
-                                <th class="text-center"><vc:i18n name="是否回访" namespace="repairSettingManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="创建时间" namespace="repairSettingManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="repairSettingManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="是否回访" namespace="repairSettingManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="创建时间" namespace="repairSettingManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="repairSettingManage"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,13 +123,13 @@
                     <!-- 分页 -->
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
-                            <div> <vc:i18n name="派单方式" namespace="repairSettingManage"></vc:i18n>：</div>
+                            <div> 派单方式：</div>
                             <div> 1、抢单 是员工（报修类型下的师傅）自主抢单 维修处理，比较实用于物业每单给维修是否提成的场景</div>
                             <div> 2、指派 专门由客服派单员工（报修类型下的师傅）维修处理，一般物业的选择</div>
                             <div> 3、轮训 由系统定时派单员工（报修类型下的师傅）维修处理</div>
-                            <div> <vc:i18n name="公共区域" namespace="repairSettingManage"></vc:i18n>：</div>
-                            <div> <vc:i18n name="小区" namespace="repairSettingManage"></vc:i18n>、楼栋、单元 为公共区域 房屋为非公共区域</div>
-                            <div> <vc:i18n name="注意" namespace="repairSettingManage"></vc:i18n>：一般业主房屋报修 我们必须要添加一个非公共区域的类型才能正常报修</div>
+                            <div>公共区域：</div>
+                            <div> 小区、楼栋、单元 为公共区域 房屋为非公共区域</div>
+                            <div> 注意：一般业主房屋报修 我们必须要添加一个非公共区域的类型才能正常报修</div>
 
                         </div>
                         <div class="col-sm-3 float-right">

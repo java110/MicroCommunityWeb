@@ -3,10 +3,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="staff"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="staff"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{staffInfo.moreCondition == true?'隐藏':'更多'}}
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{staffInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -15,7 +16,7 @@
                         <div class="col-sm-3">
                             <div class="form-group ">
                                 <select class="custom-select" v-model="staffInfo.conditions.branchOrgId">
-                                    <option selected value=""><vc:i18n name="必填" namespace="staff"></vc:i18n>，请选择分公司</option>
+                                    <option selected value=""><vc:i18n name="必填，请选择分公司" namespace="staff"></vc:i18n></option>
                                     <option v-for="branchOrg in staffInfo.branchOrgs" :value="branchOrg.orgId">
                                         {{branchOrg.orgName}}
                                     </option>
@@ -25,7 +26,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="staffInfo.conditions.departmentOrgId">
-                                    <option selected value=""><vc:i18n name="必填" namespace="staff"></vc:i18n>，请选择部门</option>
+                                    <option selected value=""><vc:i18n name="必填，请选择部门" namespace="staff"></vc:i18n></option>
                                     <option v-for="departmentOrg in staffInfo.departmentOrgs"
                                             :value="departmentOrg.orgId">
                                         {{departmentOrg.orgName}}
@@ -35,8 +36,7 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入员工名称','staff')" v-model="staffInfo.conditions.name"
-                                       class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入员工名称','staff')" v-model="staffInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -51,14 +51,12 @@
                     <div class="row">
                         <div class="col-sm-3" v-if="staffInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="number" :placeholder="vc.i18n('请输入手机号','staff')" v-model="staffInfo.conditions.tel"
-                                       class=" form-control">
+                                <input type="number" :placeholder="vc.i18n('请输入手机号','staff')" v-model="staffInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="staffInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="number" :placeholder="vc.i18n('请输入员工','staff')ID" v-model="staffInfo.conditions.staffId"
-                                       class=" form-control">
+                                <input type="number" :placeholder="vc.i18n('请输入员工ID','staff')" v-model="staffInfo.conditions.staffId" class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -70,7 +68,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="员工管理" namespace="staff"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="员工管理" namespace="staff"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStaffStepPage()">
                             <i class="fa fa-plus"></i><vc:i18n name="添加员工" namespace="staff"></vc:i18n>
@@ -80,52 +80,71 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center"><vc:i18n name="员工" namespace="staff"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="名称" namespace="staff"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="公司" namespace="staff"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="部门" namespace="staff"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="岗位" namespace="staff"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="邮箱" namespace="staff"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="地址" namespace="staff"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="性别" namespace="staff"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="手机号" namespace="staff"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="staff"></vc:i18n></th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <vc:i18n name="员工" namespace="staff"></vc:i18n>ID</th>
+                                <th class="text-center">
+                                    <vc:i18n name="名称" namespace="staff"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="公司" namespace="staff"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="部门" namespace="staff"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="岗位" namespace="staff"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="邮箱" namespace="staff"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="地址" namespace="staff"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="性别" namespace="staff"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="手机号" namespace="staff"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="staff"></vc:i18n>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX" v-for="staff in staffData">
-                            <td class="text-center">{{staff.userId}}</td>
-                            <td class="text-center">{{staff.name}}</td>
-                            <td class="text-center">{{staff.parentOrgName}}</td>
-                            <td class="text-center">{{staff.orgName}}</td>
-                            <td class="text-center">{{staff.relCdName}}</td>
-                            <td class="text-center">{{staff.email}}</td>
-                            <td class="text-center">{{staff.address}}</td>
-                            <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
-                            <td class="text-center">{{staff.tel}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="openEditStaff(staff)"><vc:i18n name="修改" namespace="staff"></vc:i18n>
+                            <tr class="gradeX" v-for="staff in staffData">
+                                <td class="text-center">{{staff.userId}}</td>
+                                <td class="text-center">{{staff.name}}</td>
+                                <td class="text-center">{{staff.parentOrgName}}</td>
+                                <td class="text-center">{{staff.orgName}}</td>
+                                <td class="text-center">{{staff.relCdName}}</td>
+                                <td class="text-center">{{staff.email}}</td>
+                                <td class="text-center">{{staff.address}}</td>
+                                <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
+                                <td class="text-center">{{staff.tel}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="openEditStaff(staff)"><vc:i18n name="修改" namespace="staff"></vc:i18n>
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(staff)"><vc:i18n name="重置密码" namespace="staff"></vc:i18n>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(staff)"><vc:i18n name="重置密码" namespace="staff"></vc:i18n>
                                     </button>
-                                </div>
-                                <div v-if="staff.relCd != 600311000001" class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)"><vc:i18n name="删除" namespace="staff"></vc:i18n>
+                                    </div>
+                                    <div v-if="staff.relCd != 600311000001" class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)"><vc:i18n name="删除" namespace="staff"></vc:i18n>
                                     </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="10">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="10">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="commonReportTable"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="commonReportTable"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,7 +13,7 @@
                     <div class="row">
                         <div class="col-sm-3" v-for="(conditionItem,conditionIndex) in item.conditions">
                             <div class="form-group">
-vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')vc.i18n(' ','commonReportTable')<inputvc.i18n(' ','commonReportTable'):type="conditionItem.type"vc.i18n(' ','commonReportTable')::placeholder="conditionItem.holdpace"vc.i18n(' ','commonReportTable')v-model="conditionItem.value"vc.i18n(' ','commonReportTable')class="vc.i18n(' ','commonReportTable')form-control"vc.i18n(' ','commonReportTable'):class="">
+                                <input :type="conditionItem.type" :placeholder="conditionItem.holdpace" v-model="conditionItem.value" class="form-control" :class="">
                             </div>
                         </div>
                         <div class="col-sm-1">

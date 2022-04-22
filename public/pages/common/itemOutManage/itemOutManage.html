@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="itemOutManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="itemOutManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -44,7 +46,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="物品领用" namespace="itemOutManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="物品领用" namespace="itemOutManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddItemOutModal()">
                             <i class="fa fa-plus"></i><vc:i18n name="领用申请" namespace="itemOutManage"></vc:i18n>
@@ -58,14 +62,30 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="单号" namespace="itemOutManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="物品" namespace="itemOutManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="申请人" namespace="itemOutManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作人" namespace="itemOutManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="申请时间" namespace="itemOutManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="状态" namespace="itemOutManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="领用方式" namespace="itemOutManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="itemOutManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="单号" namespace="itemOutManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="物品" namespace="itemOutManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="申请人" namespace="itemOutManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作人" namespace="itemOutManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="申请时间" namespace="itemOutManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="状态" namespace="itemOutManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="领用方式" namespace="itemOutManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="itemOutManage"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,7 +124,7 @@
                     <!-- 分页 -->
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
-                            <div> <vc:i18n name="注意" namespace="itemOutManage"></vc:i18n>：此功能使用前 请先到 系统管理><vc:i18n name="流程管理中设置物品领用流程" namespace="itemOutManage"></vc:i18n></div>
+                            <div> 注意：此功能使用前 请先到 系统管理>流程管理中设置物品领用流程</div>
                         </div>
                         <div class="col-sm-3 float-right">
                             <vc:create path="frame/pagination"></vc:create>

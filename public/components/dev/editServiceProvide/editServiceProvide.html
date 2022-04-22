@@ -1,38 +1,36 @@
-<div id="editServiceProvideModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div id="editServiceProvideModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="修改服务提供" namespace="editServiceProvide"></vc:i18n></h3>
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="修改服务提供" namespace="editServiceProvide"></vc:i18n>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="服务名称" namespace="editServiceProvide"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editServiceProvideInfo.name" type="text" :placeholder="vc.i18n('必填，请填写服务名称','editServiceProvide')"
-                                           class="form-control">
+                                    <input v-model="editServiceProvideInfo.name" type="text" :placeholder="vc.i18n('必填，请填写服务名称','editServiceProvide')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="服务编码" namespace="editServiceProvide"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editServiceProvideInfo.serviceCode" type="text"
-                                           :placeholder="vc.i18n('必填，请填写服务编码','editServiceProvide')" class="form-control">
+                                    <input v-model="editServiceProvideInfo.serviceCode" type="text" :placeholder="vc.i18n('必填，请填写服务编码','editServiceProvide')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="参数" namespace="editServiceProvide"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editServiceProvideInfo.params" type="text" :placeholder="vc.i18n('必填，请填写参数','editServiceProvide')"
-                                           class="form-control">
+                                    <input v-model="editServiceProvideInfo.params" type="text" :placeholder="vc.i18n('必填，请填写参数','editServiceProvide')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="实现方式" namespace="editServiceProvide"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editServiceProvideInfo.queryModel">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editServiceProvide"></vc:i18n>，请选择实现方式</option>
+                                        <option selected disabled value=""><vc:i18n name="必填，请选择实现方式" namespace="editServiceProvide"></vc:i18n></option>
                                         <option value="1">sql方式</option>
                                         <option value="3">java方式</option>
                                         <option value="2"><vc:i18n name="存储过程方式" namespace="editServiceProvide"></vc:i18n></option>
@@ -41,40 +39,33 @@
                             <div class="form-group row" v-if="editServiceProvideInfo.queryModel==1">
                                 <label class="col-sm-2 col-form-label">sql</label>
                                 <div class="col-sm-10">
-                                    <textarea rows="10" :placeholder="vc.i18n('选填，请填写','editServiceProvide')sql" class="form-control"
-                                              v-model="editServiceProvideInfo.sql"></textarea></div>
+                                    <textarea rows="10" :placeholder="vc.i18n('选填，请填写sql','editServiceProvide')" class="form-control" v-model="editServiceProvideInfo.sql"></textarea></div>
                             </div>
                             <div class="form-group row" v-if="editServiceProvideInfo.queryModel==1">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="输出模板" namespace="editServiceProvide"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea rows="10" :placeholder="vc.i18n('选填，请填写输出模板','editServiceProvide')" class="form-control"
-                                              v-model="editServiceProvideInfo.template"></textarea></div>
+                                    <textarea rows="10" :placeholder="vc.i18n('选填，请填写输出模板','editServiceProvide')" class="form-control" v-model="editServiceProvideInfo.template"></textarea></div>
                             </div>
                             <div class="form-group row" v-if="editServiceProvideInfo.queryModel==2">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="存储过程" namespace="editServiceProvide"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea rows="10" :placeholder="vc.i18n('选填，请填写存储过程','editServiceProvide')" class="form-control"
-                                              v-model="editServiceProvideInfo.proc"></textarea></div>
+                                    <textarea rows="10" :placeholder="vc.i18n('选填，请填写存储过程','editServiceProvide')" class="form-control" v-model="editServiceProvideInfo.proc"></textarea></div>
                             </div>
                             <div class="form-group row" v-if="editServiceProvideInfo.queryModel==3">
                                 <label class="col-sm-2 col-form-label">java</label>
                                 <div class="col-sm-10">
-                                    <textarea rows="10" :placeholder="vc.i18n('选填，请填写','editServiceProvide')java" class="form-control"
-                                              v-model="editServiceProvideInfo.javaScript"></textarea></div>
+                                    <textarea rows="10" :placeholder="vc.i18n('选填，请填写java','editServiceProvide')" class="form-control" v-model="editServiceProvideInfo.javaScript"></textarea></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="描述" namespace="editServiceProvide"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <textarea :placeholder="vc.i18n('选填，请填写描述','editServiceProvide')" class="form-control"
-                                              v-model="editServiceProvideInfo.remark"></textarea></div>
+                                    <textarea :placeholder="vc.i18n('选填，请填写描述','editServiceProvide')" class="form-control" v-model="editServiceProvideInfo.remark"></textarea></div>
                             </div>
 
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="editServiceProvide()"><i class="fa fa-check"></i>&nbsp;保存
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editServiceProvide()"><i class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal"><vc:i18n name="取消" namespace="editServiceProvide"></vc:i18n>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="editServiceProvide"></vc:i18n>
                                 </button>
                             </div>
                         </div>

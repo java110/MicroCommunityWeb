@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="inspectionTaskDetails"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="inspectionTaskDetails"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
                             {{inspectionTaskDetailManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -68,7 +70,7 @@
                     <div class="row margin-top" v-show="inspectionTaskDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入任务详情','inspectionTaskDetails')ID" v-model="inspectionTaskDetailManageInfo.conditions.taskDetailId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入任务详情ID','inspectionTaskDetails')" v-model="inspectionTaskDetailManageInfo.conditions.taskDetailId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -116,7 +118,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="巡检明细信息" namespace="inspectionTaskDetails"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="巡检明细信息" namespace="inspectionTaskDetails"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -124,22 +128,56 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="任务详情" namespace="inspectionTaskDetails"></vc:i18n>ID</th>
-                                <th class="text-center"><vc:i18n name="巡检点名称" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="巡检计划名称" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="巡检路线名称" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="巡检人" namespace="inspectionTaskDetails"></vc:i18n><br/><vc:i18n name="开始" namespace="inspectionTaskDetails"></vc:i18n>/结束时间</th>
-                                <th class="text-center"><vc:i18n name="巡检点" namespace="inspectionTaskDetails"></vc:i18n><br/><vc:i18n name="开始" namespace="inspectionTaskDetails"></vc:i18n>/结束时间</th>
-                                <th class="text-center"><vc:i18n name="实际巡检时间" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="实际签到状态" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="计划巡检人" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="实际巡检人" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="巡检方式" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="任务状态" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="巡检点状态" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="巡检情况" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="巡检照片" namespace="inspectionTaskDetails"></vc:i18n></th>
-                                <th class="text-center" style="width: 70px;"><vc:i18n name="位置信息" namespace="inspectionTaskDetails"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="任务详情ID" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检点名称" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检计划名称" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检路线名称" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检人" namespace="inspectionTaskDetails"></vc:i18n><br/>
+                                    <vc:i18n name="开始/结束时间" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检点" namespace="inspectionTaskDetails"></vc:i18n><br/>
+                                    <vc:i18n name="开始/结束时间" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="实际巡检时间" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="实际签到状态" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="计划巡检人" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="实际巡检人" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检方式" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="任务状态" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检点状态" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检情况" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="巡检照片" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
+                                <th class="text-center" style="width: 70px;">
+                                    <vc:i18n name="位置信息" namespace="inspectionTaskDetails"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>

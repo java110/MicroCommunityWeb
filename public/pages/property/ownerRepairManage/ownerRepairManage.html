@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="ownerRepairManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="ownerRepairManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{ownerRepairManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
@@ -13,7 +15,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入报修','ownerRepairManage')ID" v-model="ownerRepairManageInfo.conditions.repairId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入报修ID','ownerRepairManage')" v-model="ownerRepairManageInfo.conditions.repairId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -61,7 +63,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span v-text="ownerRepairManageInfo.conditions.roomName"></span><vc:i18n name="报修信息" namespace="ownerRepairManage"></vc:i18n></h5>
+                    <h5><span v-text="ownerRepairManageInfo.conditions.roomName"></span>
+                        <vc:i18n name="报修信息" namespace="ownerRepairManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddOwnerRepairModal()" v-if="ownerRepairManageInfo.conditions.roomId != ''">
                             <i class="fa fa-plus"></i><vc:i18n name="登记" namespace="ownerRepairManage"></vc:i18n>
@@ -72,14 +76,29 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="报修" namespace="ownerRepairManage"></vc:i18n>ID</th>
-                                <th class="text-center"><vc:i18n name="位置" namespace="ownerRepairManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="报修类型" namespace="ownerRepairManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="报修人" namespace="ownerRepairManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="联系方式" namespace="ownerRepairManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="预约时间" namespace="ownerRepairManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="状态" namespace="ownerRepairManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="ownerRepairManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="报修" namespace="ownerRepairManage"></vc:i18n>ID</th>
+                                <th class="text-center">
+                                    <vc:i18n name="位置" namespace="ownerRepairManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="报修类型" namespace="ownerRepairManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="报修人" namespace="ownerRepairManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="联系方式" namespace="ownerRepairManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="预约时间" namespace="ownerRepairManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="状态" namespace="ownerRepairManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="ownerRepairManage"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,9 +138,10 @@
                     <!-- 分页 -->
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
-                            <div> <vc:i18n name="注意" namespace="ownerRepairManage"></vc:i18n>：此功能使用前 请先到 报修管理><vc:i18n name="报修设置中设置相关信息" namespace="ownerRepairManage"></vc:i18n>；</div>
-                            <div> <vc:i18n name="一般业主房屋报修" namespace="ownerRepairManage"></vc:i18n> 我们必须要添加一个非公共区域的类型才能正常报修</div>
-
+                            <div>
+                                注意：此功能使用前 请先到 报修管理；</div>
+                            <div>
+                                一般业主房屋报修 我们必须要添加一个非公共区域的类型才能正常报修</div>
                         </div>
                         <div class="col-sm-3 float-right">
                             <vc:create path="frame/pagination"></vc:create>

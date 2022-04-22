@@ -3,10 +3,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="machineManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="machineManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{machineManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{machineManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -14,8 +15,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入设备编码','machineManage')"
-                                    v-model="machineManageInfo.conditions.machineCode" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入设备编码','machineManage')" v-model="machineManageInfo.conditions.machineCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -27,8 +27,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入设备名称','machineManage')"
-                                    v-model="machineManageInfo.conditions.machineName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入设备名称','machineManage')" v-model="machineManageInfo.conditions.machineName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -40,14 +39,12 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="machineManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入设备','machineManage')IP"
-                                    v-model="machineManageInfo.conditions.machineIp" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入设备IP','machineManage')" v-model="machineManageInfo.conditions.machineIp" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="machineManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入设备','machineManage')MAC"
-                                    v-model="machineManageInfo.conditions.machineMac" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入设备MAC','machineManage')" v-model="machineManageInfo.conditions.machineMac" class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -59,7 +56,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="设备信息" namespace="machineManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="设备信息" namespace="machineManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMachineModal()">
                             <i class="fa fa-plus"></i><vc:i18n name="添加设备" namespace="machineManage"></vc:i18n>
@@ -70,17 +69,35 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="设备编码" namespace="machineManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="设备名称" namespace="machineManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="设备类型" namespace="machineManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="设备位置" namespace="machineManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="方向" namespace="machineManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="状态" namespace="machineManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="心跳时间" namespace="machineManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="设备编码" namespace="machineManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="设备名称" namespace="machineManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="设备类型" namespace="machineManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="设备位置" namespace="machineManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="方向" namespace="machineManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="状态" namespace="machineManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="心跳时间" namespace="machineManage"></vc:i18n>
+                                </th>
                                 <th v-for="(item,index) in machineManageInfo.listColumns" class="text-center">{{item}}
                                 </th>
-                                <th class="text-center"><vc:i18n name="时间" namespace="machineManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="machineManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="时间" namespace="machineManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="machineManage"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,20 +116,22 @@
                                 <td class="text-center">
                                     <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)"><vc:i18n name="开门" namespace="machineManage"></vc:i18n>
                                     </button>
-                                    <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"><vc:i18n name="变更" namespace="machineManage"></vc:i18n>
+                                    <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><vc:i18n name="变更" namespace="machineManage"></vc:i18n>
                                     </button>
                                     <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
                                         <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)"
-                                                v-on:click="_openEditMachineModel(machine)"><vc:i18n name="修改设备" namespace="machineManage"></vc:i18n></a>
+                                            <a href="javascript:void(0)" v-on:click="_openEditMachineModel(machine)">
+                                                <vc:i18n name="修改设备" namespace="machineManage"></vc:i18n>
+                                            </a>
                                             <span>|</span>
-                                            <a href="javascript:void(0)"
-                                                v-on:click="_openDeleteMachineModel(machine)"><vc:i18n name="删除设备" namespace="machineManage"></vc:i18n></a>
+                                            <a href="javascript:void(0)" v-on:click="_openDeleteMachineModel(machine)">
+                                                <vc:i18n name="删除设备" namespace="machineManage"></vc:i18n>
+                                            </a>
                                         </p>
                                         <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)"
-                                                v-on:click="_openRestartMachineModel(machine)"><vc:i18n name="重启设备" namespace="machineManage"></vc:i18n></a>
+                                            <a href="javascript:void(0)" v-on:click="_openRestartMachineModel(machine)">
+                                                <vc:i18n name="重启设备" namespace="machineManage"></vc:i18n>
+                                            </a>
                                         </p>
                                     </div>
                                 </td>

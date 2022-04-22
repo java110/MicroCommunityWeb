@@ -1,72 +1,65 @@
-<div id="editMachineRecordModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div id="editMachineRecordModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="开门详情" namespace="machineRecordDetail"></vc:i18n></h3>
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="开门详情" namespace="machineRecordDetail"></vc:i18n>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="开门记录" namespace="machineRecordDetail"></vc:i18n>ID</label>
                                 <div class="col-sm-10">
-                                    <input v-model="machineRecordDetailInfo.machineRecordId" type="text"
-                                           :placeholder="vc.i18n('必填，请填写开门记录','machineRecordDetail')ID" readonly class="form-control">
+                                    <input v-model="machineRecordDetailInfo.machineRecordId" type="text" :placeholder="vc.i18n('必填，请填写开门记录ID','machineRecordDetail')" readonly class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="设备编码" namespace="machineRecordDetail"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="machineRecordDetailInfo.machineCode" type="text"
-                                           :placeholder="vc.i18n('必填，请填写设备编码','machineRecordDetail')" readonly class="form-control">
+                                    <input v-model="machineRecordDetailInfo.machineCode" type="text" :placeholder="vc.i18n('必填，请填写设备编码','machineRecordDetail')" readonly class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="设备" namespace="machineRecordDetail"></vc:i18n>ID</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="设备ID" namespace="machineRecordDetail"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="machineRecordDetailInfo.machineId" type="text"
-                                           :placeholder="vc.i18n('必填，请填写设备','machineRecordDetail')ID" readonly class="form-control">
+                                    <input v-model="machineRecordDetailInfo.machineId" type="text" :placeholder="vc.i18n('必填，请填写设备ID','machineRecordDetail')" readonly class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="用户名称" namespace="machineRecordDetail"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="machineRecordDetailInfo.name" readonly type="text" :placeholder="vc.i18n('必填，请填写用户名称','machineRecordDetail')"
-                                           class="form-control">
+                                    <input v-model="machineRecordDetailInfo.name" readonly type="text" :placeholder="vc.i18n('必填，请填写用户名称','machineRecordDetail')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="开门方式" namespace="machineRecordDetail"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="machineRecordDetailInfo.openTypeCd" type="text"
-                                           :placeholder="vc.i18n('必填，请填写开门方式','machineRecordDetail')" readonly class="form-control">
+                                    <input v-model="machineRecordDetailInfo.openTypeCd" type="text" :placeholder="vc.i18n('必填，请填写开门方式','machineRecordDetail')" readonly class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="用户手机号" namespace="machineRecordDetail"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="machineRecordDetailInfo.tel" readonly type="text" :placeholder="vc.i18n('必填，请填写用户手机号','machineRecordDetail')"
-                                           class="form-control">
+                                    <input v-model="machineRecordDetailInfo.tel" readonly type="text" :placeholder="vc.i18n('必填，请填写用户手机号','machineRecordDetail')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="身份证" namespace="machineRecordDetail"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="machineRecordDetailInfo.idCard" readonly type="text" :placeholder="vc.i18n('必填，请填写身份证','machineRecordDetail')"
-                                           class="form-control">
+                                    <input v-model="machineRecordDetailInfo.idCard" readonly type="text" :placeholder="vc.i18n('必填，请填写身份证','machineRecordDetail')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row" v-if="machineRecordDetailInfo.openTypeCd == '1000'">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="人脸照片" namespace="machineRecordDetail"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <image width="120px" height="140px" v-bind:src="machineRecordDetailInfo.photo" @error="errorLoadImg"/>
+                                    <image width="120px" height="140px" v-bind:src="machineRecordDetailInfo.photo" @error="errorLoadImg" />
                                 </div>
                             </div>
 
 
                             <div class="ibox-content">
-                                <button type="button" class="btn btn-warning float-right"
-                                        data-dismiss="modal"><vc:i18n name="关闭" namespace="machineRecordDetail"></vc:i18n>
+                                <button type="button" class="btn btn-warning float-right" data-dismiss="modal"><vc:i18n name="关闭" namespace="machineRecordDetail"></vc:i18n>
                                 </button>
                             </div>
                         </div>

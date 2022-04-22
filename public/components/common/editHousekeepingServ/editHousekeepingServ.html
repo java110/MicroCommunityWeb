@@ -1,147 +1,150 @@
 <div>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox">
-        <div class="ibox-title">
-          <h5><vc:i18n name="服务信息" namespace="editHousekeepingServ"></vc:i18n></h5>
-          <div class="ibox-tools" style="top:10px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="服务信息" namespace="editHousekeepingServ"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
 
-          </div>
-        </div>
-        <div class="ibox-content">
+                    </div>
+                </div>
+                <div class="ibox-content">
 
-          <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务名称" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <input v-model="editHousekeepingServInfo.servName" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写服务名称','editHousekeepingServ')" class="form-control">
-            </div>
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务描述" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <input v-model="editHousekeepingServInfo.servDesc" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写服务名称','editHousekeepingServ')" class="form-control">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="关键词" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <input v-model="editHousekeepingServInfo.keyword" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写关键词,多个关键词用','editHousekeepingServ');分隔"
-                class="form-control">
-            </div>
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务类型" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.hktId">
-                <option selected disabled value=""><vc:i18n name="必填" namespace="editHousekeepingServ"></vc:i18n>，请选择服务类型</option>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务名称" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <input v-model="editHousekeepingServInfo.servName" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写服务名称','editHousekeepingServ')" class="form-control">
+                        </div>
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务描述" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <input v-model="editHousekeepingServInfo.servDesc" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写服务名称','editHousekeepingServ')" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="关键词" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <input v-model="editHousekeepingServInfo.keyword" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写关键词,多个关键词用;分隔','editHousekeepingServ')" class="form-control">
+                        </div>
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务类型" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.hktId">
+                <option selected disabled value=""><vc:i18n name="必填，请选择服务类型" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option v-for="(item,index) in editHousekeepingServInfo.housekeepingTypes" :value="item.hktId">
                   {{item.hktName}}</option>
               </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="销量" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <input v-model="editHousekeepingServInfo.sales" type="text" disabled="disabled" :placeholder="vc.i18n('选填，请填写销量','editHousekeepingServ')" class="form-control">
-            </div>
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="排序" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <input v-model="editHousekeepingServInfo.sort" type="text" disabled="disabled" :placeholder="vc.i18n('选填，请填写排序','editHousekeepingServ')" class="form-control">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="上架状态" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.state">
-                <option selected disabled value=""><vc:i18n name="必填" namespace="editHousekeepingServ"></vc:i18n>，请选择上架状态</option>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="销量" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <input v-model="editHousekeepingServInfo.sales" type="text" disabled="disabled" :placeholder="vc.i18n('选填，请填写销量','editHousekeepingServ')" class="form-control">
+                        </div>
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="排序" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <input v-model="editHousekeepingServInfo.sort" type="text" disabled="disabled" :placeholder="vc.i18n('选填，请填写排序','editHousekeepingServ')" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="上架状态" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.state">
+                <option selected disabled value=""><vc:i18n name="必填，请选择上架状态" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option value="1001"><vc:i18n name="未上架" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option value="2002"><vc:i18n name="上架" namespace="editHousekeepingServ"></vc:i18n></option>
               </select>
-            </div>
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="派单方式" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.repairWay">
-                <option selected disabled value=""><vc:i18n name="必填" namespace="editHousekeepingServ"></vc:i18n>，请选择派单方式</option>
+                        </div>
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="派单方式" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.repairWay">
+                <option selected disabled value=""><vc:i18n name="必填，请选择派单方式" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option value="100"><vc:i18n name="抢单" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option value="200"><vc:i18n name="指派" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option value="300"><vc:i18n name="轮训" namespace="editHousekeepingServ"></vc:i18n></option>
               </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="回访方式" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-5">
-              <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.returnVisitFlag">
-                <option selected disabled value=""><vc:i18n name="必填" namespace="editHousekeepingServ"></vc:i18n>，请选择回访方式</option>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="回访方式" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-5">
+                            <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.returnVisitFlag">
+                <option selected disabled value=""><vc:i18n name="必填，请选择回访方式" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option value="001"><vc:i18n name="都不回访" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option value="002"><vc:i18n name="已评价不回访" namespace="editHousekeepingServ"></vc:i18n></option>
                 <option value="003"><vc:i18n name="都回访" namespace="editHousekeepingServ"></vc:i18n></option>
               </select>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-          </div>
-
-
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox">
-        <div class="ibox-title">
-          <h5><vc:i18n name="服务图片" namespace="editHousekeepingServ"></vc:i18n></h5>
-          <div class="ibox-tools" style="top:10px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="服务图片" namespace="editHousekeepingServ"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
 
-          </div>
-        </div>
-        <div class="ibox-content">
-          <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务封面" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="content-img col-sm-11">
-                <img style="width: 60px; height: 60px; border-radius: 5px;"
-                v-bind:src="editHousekeepingServInfo.coverPhoto"></img>
-              </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务轮播" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="content-img col-sm-11">
-              
-                <img style="width: 60px; height: 60px; border-radius: 5px;" v-for="(item) in editHousekeepingServInfo.carouselFigurePhoto"
-                v-bind:src="item"></img>
-              </vc:create>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务封面" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="content-img col-sm-11">
+                            <img style="width: 60px; height: 60px; border-radius: 5px;" v-bind:src="editHousekeepingServInfo.coverPhoto"></img>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务轮播" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="content-img col-sm-11">
+
+                            <img style="width: 60px; height: 60px; border-radius: 5px;" v-for="(item) in editHousekeepingServInfo.carouselFigurePhoto" v-bind:src="item"></img>
+                            </vc:create>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox">
-        <div class="ibox-title">
-          <h5><vc:i18n name="服务扩展" namespace="editHousekeepingServ"></vc:i18n></h5>
-          <div class="ibox-tools" style="top:10px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="服务扩展" namespace="editHousekeepingServ"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
 
-          </div>
-        </div>
-        <div class="ibox-content">
-          <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务详情" namespace="editHousekeepingServ"></vc:i18n></label>
-            <div class="col-sm-11 ">
-vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')vc.i18n(' ','editHousekeepingServ')<divvc.i18n(' ','editHousekeepingServ')class="vc.i18n(' ','editHousekeepingServ')no-padding">
-                <div class="editServSummernote"></div>
-              </div>
-              <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" :placeholder="vc.i18n('必填，请填写公告内容','editHousekeepingServ')" class="form-control"></textarea>-->
-            </div>
-          </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务详情" namespace="editHousekeepingServ"></vc:i18n></label>
+                        <div class="col-sm-11 ">
 
-          <div class="ibox-content">
-            <!--<button class="btn btn-primary float-right" type="button" v-on:click="editHousekeepingServ()"><i
+                            <div class="no-padding">
+                                <div class="editServSummernote"></div>
+                            </div>
+                            <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" :placeholder="vc.i18n('必填，请填写公告内容','editHousekeepingServ')" class="form-control"></textarea>-->
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <!--<button class="btn btn-primary float-right" type="button" v-on:click="editHousekeepingServ()"><i
                 class="fa fa-check"></i>&nbsp;保存</button>-->
-            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-              v-on:click="_refreshEditHousekeepingServInfo()"><vc:i18n name="取消" namespace="editHousekeepingServ"></vc:i18n></button>
-          </div>
+                        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_refreshEditHousekeepingServInfo()"><vc:i18n name="取消" namespace="editHousekeepingServ"></vc:i18n></button>
+                    </div>
 
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

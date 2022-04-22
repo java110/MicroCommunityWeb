@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="communityManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="communityManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,7 +13,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入小区','communityManage')ID" v-model="communityManageInfo.conditions.communityId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入小区ID','communityManage')" v-model="communityManageInfo.conditions.communityId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -37,7 +39,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="小区信息" namespace="communityManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="小区信息" namespace="communityManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddCommunityModal()">
                             <i class="fa fa-plus"></i><vc:i18n name="添加小区" namespace="communityManage"></vc:i18n>
@@ -48,14 +52,26 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="小区" namespace="communityManage"></vc:i18n>ID</th>
-                                <th class="text-center"><vc:i18n name="小区名称" namespace="communityManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="小区ID" namespace="communityManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="小区名称" namespace="communityManage"></vc:i18n>
+                                </th>
                                 <!--<th><vc:i18n name="小区地址" namespace="communityManage"></vc:i18n></th>-->
-                                <th width="25%" class="text-center"><vc:i18n name="附近地标" namespace="communityManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="城市编码" namespace="communityManage"></vc:i18n></th>
+                                <th width="25%" class="text-center">
+                                    <vc:i18n name="附近地标" namespace="communityManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="城市编码" namespace="communityManage"></vc:i18n>
+                                </th>
                                 <th v-for="(item,index) in communityManageInfo.listColumns" class="text-center">{{item.specName}}</th>
-                                <th class="text-center"><vc:i18n name="状态" namespace="communityManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="communityManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="状态" namespace="communityManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="communityManage"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
