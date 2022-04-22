@@ -26,9 +26,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="是否违规" namespace="applyRoomDiscountRecord"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="applyRoomDiscountRecordInfo.isTrue">
-                                        <option selected value="" disabled><vc:i18n name="请选择是否违规" namespace="applyRoomDiscountRecord"></vc:i18n></option>
-                                        <option value="true"><vc:i18n name="是" namespace="applyRoomDiscountRecord"></vc:i18n></option>
-                                        <option value="false"><vc:i18n name="否" namespace="applyRoomDiscountRecord"></vc:i18n></option>
+                                        <option selected value="" disabled>{{vc.i18n('请选择是否违规','applyRoomDiscountRecord')}}</option>
+                                        <option value="true">{{vc.i18n('是','applyRoomDiscountRecord')}}</option>
+                                        <option value="false">{{vc.i18n('否','applyRoomDiscountRecord')}}</option>
                                     </select>
                                 </div>
                             </div>

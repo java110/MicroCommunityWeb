@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="attendanceClassesManageInfo.conditions.clockType">
-                                <option selected disabled value=""><vc:i18n name="请选择打卡类型" namespace="attendanceClassesManage"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择打卡类型','attendanceClassesManage')}}</option>
                                 <option v-for="(item,index) in attendanceClassesManageInfo.clockTypes" :key="index"
                                         v-bind:value="item.statusCd">
                                     {{item.name}}

@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="allocationStorehouseManageInfo.conditions.applyType">
-                                <option selected value=""><vc:i18n name="请选择类型" namespace="allocationStorehouseManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择类型','allocationStorehouseManage')}}</option>
                                 <option v-for="(item,index) in allocationStorehouseManageInfo.applyTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -61,7 +61,7 @@
                     <div class="row" v-show="allocationStorehouseManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="allocationStorehouseManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择调拨状态" namespace="allocationStorehouseManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择调拨状态','allocationStorehouseManage')}}</option>
                                 <option v-for="(item,index) in allocationStorehouseManageInfo.states" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

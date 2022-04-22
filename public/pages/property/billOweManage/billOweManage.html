@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="billOweManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择交费状态" namespace="billOweManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择交费状态','billOweManage')}}</option>
                                 <option v-for="(item,index) in billOweManageInfo.states" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

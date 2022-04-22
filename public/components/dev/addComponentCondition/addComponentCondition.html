@@ -32,9 +32,9 @@
                 <label class="col-sm-2 col-form-label"><vc:i18n name="类型" namespace="addComponentCondition"></vc:i18n></label>
                 <div class="col-sm-10">
                     <select class="custom-select" v-model="addComponentConditionInfo.type">
-                      <option selected disabled value=""><vc:i18n name="必填" namespace="addComponentCondition"></vc:i18n>，请选择类型</option>
-                      <option value="text"><vc:i18n name="文本框" namespace="addComponentCondition"></vc:i18n></option>
-                      <option value="date"><vc:i18n name="日期" namespace="addComponentCondition"></vc:i18n></option>
+                      <option selected disabled value="">{{vc.i18n('必填','addComponentCondition')}}，请选择类型</option>
+                      <option value="text">{{vc.i18n('文本框','addComponentCondition')}}</option>
+                      <option value="date">{{vc.i18n('日期','addComponentCondition')}}</option>
                     </select>
                 </div>
               </div>

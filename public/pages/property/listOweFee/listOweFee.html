@@ -24,10 +24,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="listOweFeeInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="listOweFee"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','listOweFee')}}</option>
                                     <option v-for="(unit,index) in listOweFeeInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="listOweFee"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','listOweFee')}}
                                     </option>
                                 </select>
                             </div>
@@ -50,7 +50,7 @@
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="listOweFeeInfo.conditions.roomSubType">
-                                    <option selected value=""><vc:i18n name="请选择房屋类型" namespace="listOweFee"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择房屋类型','listOweFee')}}</option>
                                     <option :value="item.statusCd" v-for="(item,index) in listOweFeeInfo.roomSubTypes">{{item.name}}</option>
                                 </select>
                             </div>
@@ -63,7 +63,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="listOweFeeInfo.conditions.payObjType">
-                                    <option selected value=""><vc:i18n name="请选择付费对象类型" namespace="listOweFee"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择付费对象类型','listOweFee')}}</option>
                                     <option v-for="(item,index) in listOweFeeInfo.payObjTypes" :key="index"
                                             :value="item.statusCd">
                                         {{item.name}}

@@ -2,7 +2,7 @@
     <div class="row margin-top-lg">
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyRoomFeeInfo.roomId">
             <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.feeTypeCd" @change="_changeSimplifyRoomFeeFeeTypeCd(simplifyRoomFeeInfo.feeTypeCd)">
-                <option selected value=""><vc:i18n name="请选择费用类型" namespace="simplifyRoomFee"></vc:i18n></option>
+                <option selected value="">{{vc.i18n('请选择费用类型','simplifyRoomFee')}}</option>
                 <option v-for="(item,index) in simplifyRoomFeeInfo.feeTypeCds" :key="index" v-bind:value="item.statusCd"
                         v-if="item.statusCd !='888800010008'">
                     {{item.name}}
@@ -12,7 +12,7 @@
         </div>
         <div class="col-lg-2 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
             <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.configId" @change="_changeSimplifyRoomConfigId()">
-                <option selected value=""><vc:i18n name="请选择收费项目" namespace="simplifyRoomFee"></vc:i18n></option>
+                <option selected value="">{{vc.i18n('请选择收费项目','simplifyRoomFee')}}</option>
                 <option v-for="(item,index) in simplifyRoomFeeInfo.feeConfigs" :key="index"
                         v-bind:value="item.configId">{{item.feeName}}
                 </option>
@@ -20,15 +20,15 @@
         </div>
         <div class="col-lg-1 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
             <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.state" @change="_changeSimplifyRoomConfigId()">
-                <option selected value=""><vc:i18n name="请选择状态" namespace="simplifyRoomFee"></vc:i18n></option>
-                <option value="2008001"><vc:i18n name="收费中" namespace="simplifyRoomFee"></vc:i18n></option>
-                <option value="2009001"><vc:i18n name="收费结束" namespace="simplifyRoomFee"></vc:i18n></option>
+                <option selected value="">{{vc.i18n('请选择状态','simplifyRoomFee')}}</option>
+                <option value="2008001">{{vc.i18n('收费中','simplifyRoomFee')}}</option>
+                <option value="2009001">{{vc.i18n('收费结束','simplifyRoomFee')}}</option>
             </select>
         </div>
         <div class="col-lg-1 padding-lr-xs" v-if="simplifyRoomFeeInfo.roomId">
             <select class="custom-select custom-select-sm" v-model="simplifyRoomFeeInfo.ownerFee" @change="_changeSimplifyRoomConfigId()">
-                <option selected value="N"><vc:i18n name="当前房屋" namespace="simplifyRoomFee"></vc:i18n></option>
-                <option value="Y"><vc:i18n name="当前业主" namespace="simplifyRoomFee"></vc:i18n></option>
+                <option selected value="N">{{vc.i18n('当前房屋','simplifyRoomFee')}}</option>
+                <option value="Y">{{vc.i18n('当前业主','simplifyRoomFee')}}</option>
             </select>
         </div>
         <div class="col-lg-6 text-right" v-if="simplifyRoomFeeInfo.roomId">

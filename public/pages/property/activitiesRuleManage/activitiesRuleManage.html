@@ -11,8 +11,8 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="activitiesRuleManageInfo.conditions.ruleType">
-                                <option selected value=""><vc:i18n name="请选择活动类型" namespace="activitiesRuleManage"></vc:i18n></option>
-                                <option value="6666"><vc:i18n name="最美员工" namespace="activitiesRuleManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择活动类型','activitiesRuleManage')}}</option>
+                                <option value="6666">{{vc.i18n('最美员工','activitiesRuleManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
@@ -23,10 +23,10 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="activitiesRuleManageInfo.conditions.activitiesObj">
-                                <option selected value=""><vc:i18n name="请选择活动对象" namespace="activitiesRuleManage"></vc:i18n></option>
-                                <option value="2222"><vc:i18n name="大众" namespace="activitiesRuleManage"></vc:i18n></option>
-                                <option value="3333"><vc:i18n name="业主" namespace="activitiesRuleManage"></vc:i18n></option>
-                                <option value="4444"><vc:i18n name="员工" namespace="activitiesRuleManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择活动对象','activitiesRuleManage')}}</option>
+                                <option value="2222">{{vc.i18n('大众','activitiesRuleManage')}}</option>
+                                <option value="3333">{{vc.i18n('业主','activitiesRuleManage')}}</option>
+                                <option value="4444">{{vc.i18n('员工','activitiesRuleManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-2">

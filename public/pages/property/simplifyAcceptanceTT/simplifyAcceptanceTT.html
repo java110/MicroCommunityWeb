@@ -4,14 +4,14 @@
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-xs">
             <select v-model="simplifyAcceptanceInfo.searchType" class=" form-control" @change="_changeSearchType()">
-                <option value="1"><vc:i18n name="房屋号" namespace="simplifyAcceptanceTT"></vc:i18n></option>
-                <option value="2"><vc:i18n name="业主姓名" namespace="simplifyAcceptanceTT"></vc:i18n></option>
-                <option value="3"><vc:i18n name="业主电话" namespace="simplifyAcceptanceTT"></vc:i18n></option>
-                <option value="4"><vc:i18n name="业主身份证" namespace="simplifyAcceptanceTT"></vc:i18n></option>
-                <option value="5"><vc:i18n name="车牌号" namespace="simplifyAcceptanceTT"></vc:i18n></option>
-                <option value="6"><vc:i18n name="成员姓名" namespace="simplifyAcceptanceTT"></vc:i18n></option>
-                <option value="7"><vc:i18n name="成员手机号" namespace="simplifyAcceptanceTT"></vc:i18n></option>
-                <option value="8"><vc:i18n name="成员身份证" namespace="simplifyAcceptanceTT"></vc:i18n></option>
+                <option value="1">{{vc.i18n('房屋号','simplifyAcceptanceTT')}}</option>
+                <option value="2">{{vc.i18n('业主姓名','simplifyAcceptanceTT')}}</option>
+                <option value="3">{{vc.i18n('业主电话','simplifyAcceptanceTT')}}</option>
+                <option value="4">{{vc.i18n('业主身份证','simplifyAcceptanceTT')}}</option>
+                <option value="5">{{vc.i18n('车牌号','simplifyAcceptanceTT')}}</option>
+                <option value="6">{{vc.i18n('成员姓名','simplifyAcceptanceTT')}}</option>
+                <option value="7">{{vc.i18n('成员手机号','simplifyAcceptanceTT')}}</option>
+                <option value="8">{{vc.i18n('成员身份证','simplifyAcceptanceTT')}}</option>
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">

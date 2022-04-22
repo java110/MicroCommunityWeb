@@ -18,18 +18,18 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="menuCatalogManageInfo.conditions.storeType">
-                                    <option selected   value=""><vc:i18n name="请选择商户类型" namespace="menuCatalogManage"></vc:i18n></option>
-                                    <option  value="800900000001"><vc:i18n name="运营团队" namespace="menuCatalogManage"></vc:i18n></option>
-                                    <option  value="800900000003"><vc:i18n name="物业" namespace="menuCatalogManage"></vc:i18n></option>
-                                    <option  value="800900000005"><vc:i18n name="商家" namespace="menuCatalogManage"></vc:i18n></option>
-                                    <option  value="800900000000"><vc:i18n name="开发团队" namespace="menuCatalogManage"></vc:i18n></option>
+                                    <option selected   value="">{{vc.i18n('请选择商户类型','menuCatalogManage')}}</option>
+                                    <option  value="800900000001">{{vc.i18n('运营团队','menuCatalogManage')}}</option>
+                                    <option  value="800900000003">{{vc.i18n('物业','menuCatalogManage')}}</option>
+                                    <option  value="800900000005">{{vc.i18n('商家','menuCatalogManage')}}</option>
+                                    <option  value="800900000000">{{vc.i18n('开发团队','menuCatalogManage')}}</option>
                             </select> </div>
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="menuCatalogManageInfo.conditions.isShow">
-                                    <option selected  value=""><vc:i18n name="请选择是否显示" namespace="menuCatalogManage"></vc:i18n></option>
-                                    <option  value="Y"><vc:i18n name="是" namespace="menuCatalogManage"></vc:i18n></option>
-                                    <option  value="N"><vc:i18n name="否" namespace="menuCatalogManage"></vc:i18n></option>
+                                    <option selected  value="">{{vc.i18n('请选择是否显示','menuCatalogManage')}}</option>
+                                    <option  value="Y">{{vc.i18n('是','menuCatalogManage')}}</option>
+                                    <option  value="N">{{vc.i18n('否','menuCatalogManage')}}</option>
                             </select> </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMenuCatalogMethod()">

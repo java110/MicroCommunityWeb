@@ -12,9 +12,9 @@
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addPayFeeConfigDiscountInfo.discountType"
                                             @change="_changeAddPayFeeConfigDiscountType()">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addPayFeeConfigDiscount"></vc:i18n>，请选择折扣类型</option>
-                                        <option value="1001"><vc:i18n name="优惠" namespace="addPayFeeConfigDiscount"></vc:i18n></option>
-                                        <option value="2002"><vc:i18n name="违约" namespace="addPayFeeConfigDiscount"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addPayFeeConfigDiscount')}}，请选择折扣类型</option>
+                                        <option value="1001">{{vc.i18n('优惠','addPayFeeConfigDiscount')}}</option>
+                                        <option value="2002">{{vc.i18n('违约','addPayFeeConfigDiscount')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -22,7 +22,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="折扣名称" namespace="addPayFeeConfigDiscount"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addPayFeeConfigDiscountInfo.discountId">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addPayFeeConfigDiscount"></vc:i18n>，请选择折扣名称</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addPayFeeConfigDiscount')}}，请选择折扣名称</option>
                                         <option v-for="(item,index) in addPayFeeConfigDiscountInfo.discounts"
                                                 :value="item.discountId">{{item.discountName}}
                                         </option>

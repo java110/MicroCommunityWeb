@@ -18,7 +18,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="商品类型" namespace="editResourceStoreSpecification"></vc:i18n></label>
                                 <div class="col-sm-5">
                                     <select class="custom-select" v-model="editResourceStoreSpecificationInfo.parentRstId" @change="resourceStoreTypesOnChangeEdit">
-                                        <option selected value=""><vc:i18n name="请选择物品类型" namespace="editResourceStoreSpecification"></vc:i18n></option>
+                                        <option selected value="">{{vc.i18n('请选择物品类型','editResourceStoreSpecification')}}</option>
                                         <option v-for="(item,index) in editResourceStoreSpecificationInfo.resourceStoreTypes" :key="index"
                                             v-bind:value="item.rstId">
                                             {{item.name}}
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <select class="custom-select" v-model="editResourceStoreSpecificationInfo.rstId">
-                                        <option selected value=""><vc:i18n name="请选择二级分类" namespace="editResourceStoreSpecification"></vc:i18n></option>
+                                        <option selected value="">{{vc.i18n('请选择二级分类','editResourceStoreSpecification')}}</option>
                                         <option v-for="(item,index) in editResourceStoreSpecificationInfo.sonResourceStoreTypes"
                                                 :key="index"
                                                 v-bind:value="item.rstId">

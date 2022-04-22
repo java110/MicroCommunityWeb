@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionPlanManageInfo.conditions.state">
-                                <option selected disabled value=""><vc:i18n name="请选择状态" namespace="inspectionPlanManage"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择状态','inspectionPlanManage')}}</option>
                                 <option v-for="(item,index) in inspectionPlanManageInfo.states" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>

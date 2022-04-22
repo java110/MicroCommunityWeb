@@ -17,13 +17,13 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="attrSpecManageInfo.conditions.tableName">
-                                <option selected disabled value=""><vc:i18n name="请选择表名" namespace="attrSpecManage"></vc:i18n></option>
-                                <option value="building_room_attr"><vc:i18n name="房屋属性" namespace="attrSpecManage"></vc:i18n></option>
-                                <option value="building_owner_attr"><vc:i18n name="业主属性" namespace="attrSpecManage"></vc:i18n></option>
-                                <option value="building_community_attr"><vc:i18n name="小区属性" namespace="attrSpecManage"></vc:i18n></option>
-                                <option value="machine_attr"><vc:i18n name="设备属性" namespace="attrSpecManage"></vc:i18n></option>
-                                <option value="parking_area_attr"><vc:i18n name="停车场属性" namespace="attrSpecManage"></vc:i18n></option>
-                                <option value="owner_car_attr"><vc:i18n name="车辆属性" namespace="attrSpecManage"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择表名','attrSpecManage')}}</option>
+                                <option value="building_room_attr">{{vc.i18n('房屋属性','attrSpecManage')}}</option>
+                                <option value="building_owner_attr">{{vc.i18n('业主属性','attrSpecManage')}}</option>
+                                <option value="building_community_attr">{{vc.i18n('小区属性','attrSpecManage')}}</option>
+                                <option value="machine_attr">{{vc.i18n('设备属性','attrSpecManage')}}</option>
+                                <option value="parking_area_attr">{{vc.i18n('停车场属性','attrSpecManage')}}</option>
+                                <option value="owner_car_attr">{{vc.i18n('车辆属性','attrSpecManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">

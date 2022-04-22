@@ -23,10 +23,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="reportFloorUnitFeeSummaryInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="reportFloorUnitFeeSummary"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','reportFloorUnitFeeSummary')}}</option>
                                     <option v-for="(unit,index) in reportFloorUnitFeeSummaryInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="reportFloorUnitFeeSummary"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','reportFloorUnitFeeSummary')}}
                                     </option>
                                 </select>
                             </div>
@@ -95,7 +95,7 @@
                             <tr>
                                 <th class="text-center"><vc:i18n name="日期" namespace="reportFloorUnitFeeSummary"></vc:i18n></th>
                                 <th class="text-center"><vc:i18n name="楼栋" namespace="reportFloorUnitFeeSummary"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="单元" namespace="reportFloorUnitFeeSummary"></vc:i18n></th>
+                                <th class="text-center">{{vc.i18n('单元','reportFloorUnitFeeSummary')}}</th>
                                 <th class="text-center" v-for="(item,index) in reportFloorUnitFeeSummaryInfo.feeConfigNames">
                                     {{item.configName}}(实收)
                                 </th>
@@ -114,7 +114,7 @@
                             <tr v-for="fee in reportFloorUnitFeeSummaryInfo.fees">
                                 <td class="text-center">{{fee.feeYear+'年'+fee.feeMonth+'月'}}</td>
                                 <td class="text-center">{{fee.floorNum}}<vc:i18n name="号楼" namespace="reportFloorUnitFeeSummary"></vc:i18n></td>
-                                <td class="text-center">{{fee.unitNum}}<vc:i18n name="单元" namespace="reportFloorUnitFeeSummary"></vc:i18n></td>
+                                <td class="text-center">{{fee.unitNum}}{{vc.i18n('单元','reportFloorUnitFeeSummary')}}</td>
                                 <td class="text-center" v-for="item in reportFloorUnitFeeSummaryInfo.feeConfigNames">
                                     {{_getFeeReceivedAmountAmount(item,fee)}}
                                 </td>

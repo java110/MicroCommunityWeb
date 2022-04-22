@@ -18,10 +18,10 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="rentingPoolManageInfo.conditions.paymentType">
-                                <option selected value=""><vc:i18n name="请选择预付类型" namespace="rentingPoolManage"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="押一付一" namespace="rentingPoolManage"></vc:i18n></option>
-                                <option value="2002"><vc:i18n name="押一付三" namespace="rentingPoolManage"></vc:i18n></option>
-                                <option value="3003"><vc:i18n name="押一付六" namespace="rentingPoolManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择预付类型','rentingPoolManage')}}</option>
+                                <option value="1001">{{vc.i18n('押一付一','rentingPoolManage')}}</option>
+                                <option value="2002">{{vc.i18n('押一付三','rentingPoolManage')}}</option>
+                                <option value="3003">{{vc.i18n('押一付六','rentingPoolManage')}}</option>
                             </select> </div>
                         <div class="col-sm-3">
                             <div class="form-group">

@@ -25,10 +25,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="listOwnerCarInfo.conditions.valid">
-                                    <option selected value=""><vc:i18n name="必填" namespace="listOwnerCar"></vc:i18n>，请选择车位状态</option>
-                                    <option value="1"><vc:i18n name="正常" namespace="listOwnerCar"></vc:i18n></option>
-                                    <option value="3"><vc:i18n name="到期" namespace="listOwnerCar"></vc:i18n></option>
-                                    <option value="2"><vc:i18n name="无车位" namespace="listOwnerCar"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('必填','listOwnerCar')}}，请选择车位状态</option>
+                                    <option value="1">{{vc.i18n('正常','listOwnerCar')}}</option>
+                                    <option value="3">{{vc.i18n('到期','listOwnerCar')}}</option>
+                                    <option value="2">{{vc.i18n('无车位','listOwnerCar')}}</option>
                                 </select>
                             </div>
                         </div>

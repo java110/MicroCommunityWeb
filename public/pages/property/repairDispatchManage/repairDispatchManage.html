@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="repairDispatchManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="repairDispatchManageInfo.conditions.repairType">
-                                <option selected value=""><vc:i18n name="请选择报修类型" namespace="repairDispatchManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择报修类型','repairDispatchManage')}}</option>
                                 <option v-for="(item,index) in repairDispatchManageInfo.repairTypes" :key="index"
                                         :value="item.repairType">{{item.repairTypeName}}
                                 </option>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-sm-4" v-if="repairDispatchManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="repairDispatchManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择报修状态" namespace="repairDispatchManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择报修状态','repairDispatchManage')}}</option>
                                 <option v-for="(item,index) in repairDispatchManageInfo.states" :value="item.statusCd">
                                     {{item.name}}
                                 </option>

@@ -5,7 +5,7 @@
                 <div class="ibox-title">
                     <select class="custom-select"
                             v-model="userQuestionAnswerManageInfo.settingId" @change="_listQuestionAnswerTitles()">
-                        <option selected value=""><vc:i18n name="请选择登记项目" namespace="reportInfoAnswerManage"></vc:i18n></option>
+                        <option selected value="">{{vc.i18n('请选择登记项目','reportInfoAnswerManage')}}</option>
                         <option v-for="(item,index) in userQuestionAnswerManageInfo.reportInfoSettings" :key="index"
                                 :value="item.settingId">{{item.name}}
                         </option>

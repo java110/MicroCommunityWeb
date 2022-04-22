@@ -17,9 +17,9 @@
                 <label class="col-sm-2 col-form-label"><vc:i18n name="菜单类型" namespace="addWechatMenu"></vc:i18n></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="addWechatMenuInfo.menuType">
-                    <option value="top" v-if="addWechatMenuInfo.menuLevel == '101'"><vc:i18n name="顶级菜单" namespace="addWechatMenu"></vc:i18n></option>
-                    <option value="view"><vc:i18n name="链接" namespace="addWechatMenu"></vc:i18n></option>
-                    <option value="miniprogram"><vc:i18n name="小程序" namespace="addWechatMenu"></vc:i18n></option>
+                    <option value="top" v-if="addWechatMenuInfo.menuLevel == '101'">{{vc.i18n('顶级菜单','addWechatMenu')}}</option>
+                    <option value="view">{{vc.i18n('链接','addWechatMenu')}}</option>
+                    <option value="miniprogram">{{vc.i18n('小程序','addWechatMenu')}}</option>
                   </select> </div>
               </div>
               <div class="form-group row"  v-if="addWechatMenuInfo.menuType != 'top'">

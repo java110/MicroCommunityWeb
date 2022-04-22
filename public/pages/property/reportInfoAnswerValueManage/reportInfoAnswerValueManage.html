@@ -13,7 +13,7 @@
                         <div class="col-sm-4">
                             <select class="custom-select"
                                     v-model="reportInfoAnswerValueManageInfo.conditions.repName">
-                                <option selected value=""><vc:i18n name="请输入项目名称" namespace="reportInfoAnswerValueManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请输入项目名称','reportInfoAnswerValueManage')}}</option>
                                 <option v-for="(item,index) in reportInfoAnswerValueManageInfo.reportInfoSettings" :key="index"
                                         :value="item.name">{{item.name}}
                                 </option>

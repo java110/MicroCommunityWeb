@@ -19,15 +19,15 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="rentingConfigManageInfo.conditions.rentingType">
-                                <option selected value=""><vc:i18n name="请选择租赁类型" namespace="rentingConfigManage"></vc:i18n></option>
-                                <option value="3344"><vc:i18n name="整租" namespace="rentingConfigManage"></vc:i18n></option>
-                                <option value="4455"><vc:i18n name="合租" namespace="rentingConfigManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择租赁类型','rentingConfigManage')}}</option>
+                                <option value="3344">{{vc.i18n('整租','rentingConfigManage')}}</option>
+                                <option value="4455">{{vc.i18n('合租','rentingConfigManage')}}</option>
                             </select> </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="rentingConfigManageInfo.conditions.rentingFormula">
-                                <option selected value=""><vc:i18n name="请选择收费公式" namespace="rentingConfigManage"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="固定值" namespace="rentingConfigManage"></vc:i18n></option>
-                                <option value="2002"><vc:i18n name="每月租金比例" namespace="rentingConfigManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择收费公式','rentingConfigManage')}}</option>
+                                <option value="1001">{{vc.i18n('固定值','rentingConfigManage')}}</option>
+                                <option value="2002">{{vc.i18n('每月租金比例','rentingConfigManage')}}</option>
                             </select> </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRentingConfigMethod()">

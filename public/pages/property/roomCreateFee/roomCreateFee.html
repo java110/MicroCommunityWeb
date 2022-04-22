@@ -13,9 +13,9 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="roomCreateFeeInfo.conditions.roomType">
-                                <option selected value=""><vc:i18n name="房屋类型" namespace="roomCreateFee"></vc:i18n></option>
-                                <option value="1010301"><vc:i18n name="普通房屋" namespace="roomCreateFee"></vc:i18n></option>
-                                <option value="2020602"><vc:i18n name="商铺" namespace="roomCreateFee"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('房屋类型','roomCreateFee')}}</option>
+                                <option value="1010301">{{vc.i18n('普通房屋','roomCreateFee')}}</option>
+                                <option value="2020602">{{vc.i18n('商铺','roomCreateFee')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
@@ -50,9 +50,9 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class=" form-control input-s-sm inline" v-model="roomCreateFeeInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="roomCreateFee"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','roomCreateFee')}}</option>
                                     <option v-for="(unit,index) in roomUnits" :key="index" v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="roomCreateFee"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','roomCreateFee')}}
                                     </option>
                                 </select>
                             </div>
@@ -89,7 +89,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
                         <thead>
                             <tr>
-                                <th data-hide="phone" class="text-center"><vc:i18n name="房屋类型" namespace="roomCreateFee"></vc:i18n></th>
+                                <th data-hide="phone" class="text-center">{{vc.i18n('房屋类型','roomCreateFee')}}</th>
                                 <th data-hide="phone" class="text-center"><vc:i18n name="房屋" namespace="roomCreateFee"></vc:i18n>(栋/单元/室)</th>
                                 <th data-hide="phone" class="text-center"><vc:i18n name="楼层" namespace="roomCreateFee"></vc:i18n>(单位:层)</th>
                                 <th data-hide="phone" class="text-center"><vc:i18n name="房屋状态" namespace="roomCreateFee"></vc:i18n></th>

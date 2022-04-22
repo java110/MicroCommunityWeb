@@ -46,11 +46,11 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="缴费周期" namespace="payFeeOrder"></vc:i18n></label>
                                 <div class="col-sm-6">
                                     <select class="custom-select" v-model="payFeeOrderInfo.tempCycles" @change="_changeMonth(payFeeOrderInfo.tempCycles)">
-                                        <option selected disabled value=""><vc:i18n name="请选择缴费周期" namespace="payFeeOrder"></vc:i18n></option>
-                                        <option v-for="item in payFeeOrderInfo.paymentCycles" :value="item">{{item}}<vc:i18n name="个月" namespace="payFeeOrder"></vc:i18n>
+                                        <option selected disabled value="">{{vc.i18n('请选择缴费周期','payFeeOrder')}}</option>
+                                        <option v-for="item in payFeeOrderInfo.paymentCycles" :value="item">{{item}}{{vc.i18n('个月','payFeeOrder')}}
                                         </option>
-                                        <option value="-102"><vc:i18n name="自定义周期" namespace="payFeeOrder"></vc:i18n></option>
-                                        <option value="-101"><vc:i18n name="自定义金额" namespace="payFeeOrder"></vc:i18n></option>
+                                        <option value="-102">{{vc.i18n('自定义周期','payFeeOrder')}}</option>
+                                        <option value="-101">{{vc.i18n('自定义金额','payFeeOrder')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                 <label class="col-sm-3 col-form-label" style="padding-right:0px;"><vc:i18n name="支付方式" namespace="payFeeOrder"></vc:i18n>:</label>
                                 <div class="col-sm-6">
                                     <select class="custom-select" v-model="payFeeOrderInfo.primeRate">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="payFeeOrder"></vc:i18n>，请选择支付方式</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','payFeeOrder')}}，请选择支付方式</option>
                                         <option v-for="(item,index) in payFeeOrderInfo.primeRates" :key="index"
                                             v-if="item.statusCd != '5' && item.statusCd != '6'" :value="item.statusCd">
                                             {{item.name}}

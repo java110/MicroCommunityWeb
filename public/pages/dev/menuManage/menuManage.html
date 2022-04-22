@@ -52,11 +52,11 @@
                         </div>
                         <div class="col-sm-3" v-if="menuManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="menuManageInfo.conditions.domain">
-                                <option selected value=""><vc:i18n name="请选择商户类型" namespace="menuManage"></vc:i18n></option>
-                                <option value="800900000001"><vc:i18n name="运营团队" namespace="menuManage"></vc:i18n></option>
-                                <option value="800900000002"><vc:i18n name="代理商" namespace="menuManage"></vc:i18n></option>
-                                <option value="800900000003"><vc:i18n name="物业" namespace="menuManage"></vc:i18n></option>
-                                <option value="800900000000"><vc:i18n name="开发团队" namespace="menuManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择商户类型','menuManage')}}</option>
+                                <option value="800900000001">{{vc.i18n('运营团队','menuManage')}}</option>
+                                <option value="800900000002">{{vc.i18n('代理商','menuManage')}}</option>
+                                <option value="800900000003">{{vc.i18n('物业','menuManage')}}</option>
+                                <option value="800900000000">{{vc.i18n('开发团队','menuManage')}}</option>
                             </select></div>
                         <div class="col-sm-1">
                         </div>

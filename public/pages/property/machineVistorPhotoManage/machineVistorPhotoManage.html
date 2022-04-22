@@ -21,9 +21,9 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="machineVistorPhotoManageInfo.conditions.openTypeCd">
-                                <option selected value=""><vc:i18n name="请选择开门方式" namespace="machineVistorPhotoManage"></vc:i18n></option>
-                                <option value="1000"><vc:i18n name="人脸开门" namespace="machineVistorPhotoManage"></vc:i18n></option>
-                                <option value="2000"><vc:i18n name="钥匙开门" namespace="machineVistorPhotoManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择开门方式','machineVistorPhotoManage')}}</option>
+                                <option value="1000">{{vc.i18n('人脸开门','machineVistorPhotoManage')}}</option>
+                                <option value="2000">{{vc.i18n('钥匙开门','machineVistorPhotoManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
@@ -42,9 +42,9 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="machineVistorPhotoManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="machineVistorPhotoManageInfo.conditions.ownerTypeCd">
-                                <option selected value=""><vc:i18n name="请选择用户类型" namespace="machineVistorPhotoManage"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="业主" namespace="machineVistorPhotoManage"></vc:i18n></option>
-                                <option value="1002"><vc:i18n name="业主成员" namespace="machineVistorPhotoManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择用户类型','machineVistorPhotoManage')}}</option>
+                                <option value="1001">{{vc.i18n('业主','machineVistorPhotoManage')}}</option>
+                                <option value="1002">{{vc.i18n('业主成员','machineVistorPhotoManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4" v-if="machineVistorPhotoManageInfo.moreCondition == true">

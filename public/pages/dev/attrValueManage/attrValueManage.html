@@ -17,9 +17,9 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="attrValueManageInfo.conditions.valueShow">
-                                <option selected disabled value=""><vc:i18n name="请选择显示" namespace="attrValueManage"></vc:i18n></option>
-                                <option value="Y"><vc:i18n name="是" namespace="attrValueManage"></vc:i18n></option>
-                                <option value="N"><vc:i18n name="否" namespace="attrValueManage"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择显示','attrValueManage')}}</option>
+                                <option value="Y">{{vc.i18n('是','attrValueManage')}}</option>
+                                <option value="N">{{vc.i18n('否','attrValueManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">

@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="communitySettingManageInfo.conditions.settingType">
-                                <option selected value=""><vc:i18n name="请选择配置类型" namespace="communitySettingManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择配置类型','communitySettingManage')}}</option>
                                 <option :value="item.statusCd"
                                         v-for="(item,index) in communitySettingManageInfo.settingTypes">
                                     {{item.name}}

@@ -13,7 +13,7 @@
                         <div class="col-sm-3">
                             <select class="custom-select"
                                 v-model="mainCategoryProductManageInfo.conditions.mainCategoryId">
-                                <option selected value=""><vc:i18n name="请选择目录" namespace="mainCategoryProductManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择目录','mainCategoryProductManage')}}</option>
                                 <option :value="item.mainCategoryId"
                                     v-for="(item,index) in mainCategoryProductManageInfo.mainCategorys">
                                     {{item.categoryName}}
@@ -34,10 +34,10 @@
                         </div>
                         <div class="col-sm-2">
                             <select class="custom-select" v-model="mainCategoryProductManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="mainCategoryProductManage"></vc:i18n></option>
-                                <option value="10021"><vc:i18n name="待审核" namespace="mainCategoryProductManage"></vc:i18n></option>
-                                <option value="20041"><vc:i18n name="审核通过" namespace="mainCategoryProductManage"></vc:i18n></option>
-                                <option value="30052"><vc:i18n name="审核失败" namespace="mainCategoryProductManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','mainCategoryProductManage')}}</option>
+                                <option value="10021">{{vc.i18n('待审核','mainCategoryProductManage')}}</option>
+                                <option value="20041">{{vc.i18n('审核通过','mainCategoryProductManage')}}</option>
+                                <option value="30052">{{vc.i18n('审核失败','mainCategoryProductManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-1">

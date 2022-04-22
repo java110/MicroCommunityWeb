@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="itemOutManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="订单状态" namespace="itemOutManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('订单状态','itemOutManage')}}</option>
                                 <option v-for="(item,index) in itemOutManageInfo.states" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

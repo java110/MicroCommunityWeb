@@ -11,10 +11,10 @@
                             <label class="col-sm-2 col-form-label"><vc:i18n name="出售状态" namespace="sellRoomOther"></vc:i18n></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="otherInfo.otherState">
-                                    <option selected  disabled value=""><vc:i18n name="必填" namespace="sellRoomOther"></vc:i18n>，请选择状态</option>
-                                    <option value="2001"><vc:i18n name="业主未迁入" namespace="sellRoomOther"></vc:i18n></option>
-                                    <option value="2001"><vc:i18n name="业主迁入" namespace="sellRoomOther"></vc:i18n></option>
-                                    <option value="2001"><vc:i18n name="业主迁出" namespace="sellRoomOther"></vc:i18n></option>
+                                    <option selected  disabled value="">{{vc.i18n('必填','sellRoomOther')}}，请选择状态</option>
+                                    <option value="2001">{{vc.i18n('业主未迁入','sellRoomOther')}}</option>
+                                    <option value="2001">{{vc.i18n('业主迁入','sellRoomOther')}}</option>
+                                    <option value="2001">{{vc.i18n('业主迁出','sellRoomOther')}}</option>
                                 </select>
                             </div>
                         </div>

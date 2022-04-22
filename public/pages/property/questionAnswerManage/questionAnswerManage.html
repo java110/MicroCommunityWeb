@@ -23,11 +23,11 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="questionAnswerManageInfo.conditions.qaType">
-                                <option selected disabled value=""><vc:i18n name="请选择问卷类型" namespace="questionAnswerManage"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="业主问卷" namespace="questionAnswerManage"></vc:i18n></option>
-                                <!-- <option value="2002"><vc:i18n name="员工自评" namespace="questionAnswerManage"></vc:i18n></option> -->
-                                <option value="3003"><vc:i18n name="业主投票" namespace="questionAnswerManage"></vc:i18n></option>
-                                <option value="4004"><vc:i18n name="员工投票" namespace="questionAnswerManage"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择问卷类型','questionAnswerManage')}}</option>
+                                <option value="1001">{{vc.i18n('业主问卷','questionAnswerManage')}}</option>
+                                <!-- <option value="2002">{{vc.i18n('员工自评','questionAnswerManage')}}</option> -->
+                                <option value="3003">{{vc.i18n('业主投票','questionAnswerManage')}}</option>
+                                <option value="4004">{{vc.i18n('员工投票','questionAnswerManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-2">

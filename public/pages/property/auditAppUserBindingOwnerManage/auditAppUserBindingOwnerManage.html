@@ -29,10 +29,10 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="auditAppUserBindingOwnerManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="auditAppUserBindingOwnerManage"></vc:i18n></option>
-                                <option value="10000"><vc:i18n name="审核中" namespace="auditAppUserBindingOwnerManage"></vc:i18n></option>
-                                <option value="12000"><vc:i18n name="审核成功" namespace="auditAppUserBindingOwnerManage"></vc:i18n></option>
-                                <option value="13000"><vc:i18n name="审核失败" namespace="auditAppUserBindingOwnerManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','auditAppUserBindingOwnerManage')}}</option>
+                                <option value="10000">{{vc.i18n('审核中','auditAppUserBindingOwnerManage')}}</option>
+                                <option value="12000">{{vc.i18n('审核成功','auditAppUserBindingOwnerManage')}}</option>
+                                <option value="13000">{{vc.i18n('审核失败','auditAppUserBindingOwnerManage')}}</option>
                             </select></div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"

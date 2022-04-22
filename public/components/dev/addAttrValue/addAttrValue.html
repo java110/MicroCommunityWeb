@@ -25,9 +25,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="显示" namespace="addAttrValue"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addAttrValueInfo.valueShow">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addAttrValue"></vc:i18n>，请选择显示</option>
-                                        <option value="Y"><vc:i18n name="是" namespace="addAttrValue"></vc:i18n></option>
-                                        <option value="N"><vc:i18n name="否" namespace="addAttrValue"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addAttrValue')}}，请选择显示</option>
+                                        <option value="Y">{{vc.i18n('是','addAttrValue')}}</option>
+                                        <option value="N">{{vc.i18n('否','addAttrValue')}}</option>
                                     </select>
                                 </div>
                             </div>

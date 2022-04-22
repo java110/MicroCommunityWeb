@@ -16,9 +16,9 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="feeReceiptManageInfo.conditions.objType">
-                                <option selected value=""><vc:i18n name="请选择收费类型" namespace="feeReceipt"></vc:i18n></option>
-                                <option value="3333"><vc:i18n name="房屋费" namespace="feeReceipt"></vc:i18n></option>
-                                <option value="6666"><vc:i18n name="车位费" namespace="feeReceipt"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择收费类型','feeReceipt')}}</option>
+                                <option value="3333">{{vc.i18n('房屋费','feeReceipt')}}</option>
+                                <option value="6666">{{vc.i18n('车位费','feeReceipt')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
@@ -56,12 +56,12 @@
                         <div class="col-sm-3">
                             <!-- <div class="form-group">
                                 <select class="custom-select" v-model="feeReceiptManageInfo.conditions.type">
-                                    <option selected value=""><vc:i18n name="请选择打印类型" namespace="feeReceipt"></vc:i18n></option>
-                                    <option value="1"><vc:i18n name="装修单据" namespace="feeReceipt"></vc:i18n></option>
-                                    <option value="2"><vc:i18n name="押金单据" namespace="feeReceipt"></vc:i18n></option>
-                                    <option value="3"><vc:i18n name="日常收费" namespace="feeReceipt"></vc:i18n></option>
-                                    <option value="4"><vc:i18n name="车辆单据" namespace="feeReceipt"></vc:i18n></option>
-                                    <option value="5"><vc:i18n name="公摊费票据" namespace="feeReceipt"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择打印类型','feeReceipt')}}</option>
+                                    <option value="1">{{vc.i18n('装修单据','feeReceipt')}}</option>
+                                    <option value="2">{{vc.i18n('押金单据','feeReceipt')}}</option>
+                                    <option value="3">{{vc.i18n('日常收费','feeReceipt')}}</option>
+                                    <option value="4">{{vc.i18n('车辆单据','feeReceipt')}}</option>
+                                    <option value="5">{{vc.i18n('公摊费票据','feeReceipt')}}</option>
                                 </select>
                             </div> -->
                         </div>

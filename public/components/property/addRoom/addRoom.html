@@ -18,8 +18,8 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="房屋单元" namespace="addRoom"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addRoomInfo.unitId">
-                                        <option selected  disabled value=""><vc:i18n name="必填" namespace="addRoom"></vc:i18n>，请选择单元</option>
-                                        <option v-for="(unit,index) in addRoomUnits" :key="index" v-bind:value="unit.unitId">{{unit.unitNum}}<vc:i18n name="单元" namespace="addRoom"></vc:i18n></option>
+                                        <option selected  disabled value="">{{vc.i18n('必填','addRoom')}}，请选择单元</option>
+                                        <option v-for="(unit,index) in addRoomUnits" :key="index" v-bind:value="unit.unitId">{{unit.unitNum}}{{vc.i18n('单元','addRoom')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -31,9 +31,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="房屋户型" namespace="addRoom"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addRoomInfo.apartment">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addRoom"></vc:i18n>，请选择房屋户型</option>
-                                        <option value="1010"><vc:i18n name="一室两厅" namespace="addRoom"></vc:i18n></option>
-                                        <option value="2020"><vc:i18n name="两室两厅" namespace="addRoom"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addRoom')}}，请选择房屋户型</option>
+                                        <option value="1010">{{vc.i18n('一室两厅','addRoom')}}</option>
+                                        <option value="2020">{{vc.i18n('两室两厅','addRoom')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -51,11 +51,11 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="房屋状态" namespace="addRoom"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addRoomInfo.state">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addRoom"></vc:i18n>，请选择房屋状态</option>
-                                        <option value="2001"><vc:i18n name="已出售" namespace="addRoom"></vc:i18n></option>
-                                        <option value="2002"><vc:i18n name="未出售" namespace="addRoom"></vc:i18n></option>
-                                        <option value="2003"><vc:i18n name="已交定金" namespace="addRoom"></vc:i18n></option>
-                                        <option value="2004"><vc:i18n name="已出租" namespace="addRoom"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addRoom')}}，请选择房屋状态</option>
+                                        <option value="2001">{{vc.i18n('已出售','addRoom')}}</option>
+                                        <option value="2002">{{vc.i18n('未出售','addRoom')}}</option>
+                                        <option value="2003">{{vc.i18n('已交定金','addRoom')}}</option>
+                                        <option value="2004">{{vc.i18n('已出租','addRoom')}}</option>
                                     </select>
                                 </div>
                             </div>

@@ -76,8 +76,8 @@
                                 <td class="text-center">
                                     <div style="width: 100px; margin:0 auto" v-if="batchFee.feeFlag == '1003006'">
                                         <select class="custom-select" v-model="batchFee.cycles" @change="_changeMonth(batchFee.cycles,batchFee)">
-                                            <option selected disabled value=""><vc:i18n name="请选择缴费周期" namespace="batchPayFeeOrder"></vc:i18n></option>
-                                            <option v-for="item in _getBatchPaymentCycles(batchFee)" :value="item">{{item}}<vc:i18n name="个月" namespace="batchPayFeeOrder"></vc:i18n></option>
+                                            <option selected disabled value="">{{vc.i18n('请选择缴费周期','batchPayFeeOrder')}}</option>
+                                            <option v-for="item in _getBatchPaymentCycles(batchFee)" :value="item">{{item}}{{vc.i18n('个月','batchPayFeeOrder')}}</option>
                                         </select>
                                     </div>
                                     <div v-else>
@@ -146,7 +146,7 @@
                         <label class="col-sm-3 col-form-label"><vc:i18n name="支付方式" namespace="batchPayFeeOrder"></vc:i18n>:</label>
                         <div class="col-sm-9">
                             <select class="custom-select" v-model="batchPayFeeOrderInfo.primeRate">
-                                <option selected disabled value=""><vc:i18n name="必填" namespace="batchPayFeeOrder"></vc:i18n>，请选择支付方式</option>
+                                <option selected disabled value="">{{vc.i18n('必填','batchPayFeeOrder')}}，请选择支付方式</option>
                                 <option v-for="(item,index) in batchPayFeeOrderInfo.primeRates" :key="index" v-if="item.statusCd != '5' && item.statusCd != '6'"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

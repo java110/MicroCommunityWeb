@@ -24,9 +24,9 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="parkingBoxManageInfo.conditions.tempCarIn">
-                                <option selected value=""><vc:i18n name="请选择临时车进场" namespace="parkingBoxManage"></vc:i18n></option>
-                                <option value="Y"><vc:i18n name="是" namespace="parkingBoxManage"></vc:i18n></option>
-                                <option value="N"><vc:i18n name="否" namespace="parkingBoxManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择临时车进场','parkingBoxManage')}}</option>
+                                <option value="Y">{{vc.i18n('是','parkingBoxManage')}}</option>
+                                <option value="N">{{vc.i18n('否','parkingBoxManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-1">

@@ -12,8 +12,8 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="machineAuthManageInfo.conditions.machineId">
-                                <option selected value=""><vc:i18n name="请选择设备" namespace="machineAuthManage"></vc:i18n></option>
-                                <option value="6666"><vc:i18n name="最美员工" namespace="machineAuthManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择设备','machineAuthManage')}}</option>
+                                <option value="6666">{{vc.i18n('最美员工','machineAuthManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">

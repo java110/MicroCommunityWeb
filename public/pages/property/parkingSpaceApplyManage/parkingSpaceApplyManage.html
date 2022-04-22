@@ -34,11 +34,11 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <select class="custom-select" v-model="parkingSpaceApplyManageInfo.conditions.state">
-                                    <option selected disabled value=""><vc:i18n name="请选择状态" namespace="parkingSpaceApplyManage"></vc:i18n></option>
-                                    <option value="1001"><vc:i18n name="待审核" namespace="parkingSpaceApplyManage"></vc:i18n></option>
-                                    <option value="2002"><vc:i18n name="待缴费" namespace="parkingSpaceApplyManage"></vc:i18n></option>
-                                    <option value="3003"><vc:i18n name="完成" namespace="parkingSpaceApplyManage"></vc:i18n></option>
-                                    <option value="4004"><vc:i18n name="申请失败" namespace="parkingSpaceApplyManage"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择状态','parkingSpaceApplyManage')}}</option>
+                                    <option value="1001">{{vc.i18n('待审核','parkingSpaceApplyManage')}}</option>
+                                    <option value="2002">{{vc.i18n('待缴费','parkingSpaceApplyManage')}}</option>
+                                    <option value="3003">{{vc.i18n('完成','parkingSpaceApplyManage')}}</option>
+                                    <option value="4004">{{vc.i18n('申请失败','parkingSpaceApplyManage')}}</option>
                                 </select>
                             </div>
                         </div>

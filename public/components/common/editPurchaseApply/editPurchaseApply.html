@@ -11,9 +11,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="订单状态" namespace="editPurchaseApply"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editPurchaseApplyInfo.state">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editPurchaseApply"></vc:i18n>，请选择订单状态</option>
-                                        <option value="1001"><vc:i18n name="面积" namespace="editPurchaseApply"></vc:i18n>*单价+附加费</option>
-                                        <option value="2002"><vc:i18n name="固定费用" namespace="editPurchaseApply"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editPurchaseApply')}}，请选择订单状态</option>
+                                        <option value="1001">{{vc.i18n('面积','editPurchaseApply')}}*单价+附加费</option>
+                                        <option value="2002">{{vc.i18n('固定费用','editPurchaseApply')}}</option>
                                     </select> </div>
                             </div>
 

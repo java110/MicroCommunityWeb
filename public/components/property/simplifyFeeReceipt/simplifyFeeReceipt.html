@@ -2,22 +2,22 @@
     <div class="row margin-top-lg">
         <div class="col-lg-2 padding-right-xs padding-left-xl">
             <select class="custom-select custom-select-sm" v-model="simplifyFeeReceiptInfo.objType" @change="_changeSimplifyFeeReceiptFeeTypeCd(simplifyFeeReceiptInfo.objType)">
-                <option disabled value=""><vc:i18n name="请选择收费类型" namespace="simplifyFeeReceipt"></vc:i18n></option>
-                <option selected value="3333"><vc:i18n name="房屋费" namespace="simplifyFeeReceipt"></vc:i18n></option>
-                <option value="6666"><vc:i18n name="车位费" namespace="simplifyFeeReceipt"></vc:i18n></option>
-                <option value="7777"><vc:i18n name="合同费" namespace="simplifyFeeReceipt"></vc:i18n></option>
+                <option disabled value="">{{vc.i18n('请选择收费类型','simplifyFeeReceipt')}}</option>
+                <option selected value="3333">{{vc.i18n('房屋费','simplifyFeeReceipt')}}</option>
+                <option value="6666">{{vc.i18n('车位费','simplifyFeeReceipt')}}</option>
+                <option value="7777">{{vc.i18n('合同费','simplifyFeeReceipt')}}</option>
             </select>
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType == '6666'">
             <select class="custom-select custom-select-sm" v-model="simplifyCarFeeInfo.carId" @change="changeSimplifyFeeReceiptCar()">
-                <option disabled value=""><vc:i18n name="请选择车辆" namespace="simplifyFeeReceipt"></vc:i18n></option>
+                <option disabled value="">{{vc.i18n('请选择车辆','simplifyFeeReceipt')}}</option>
                 <option v-for="(item,index) in simplifyFeeReceiptInfo.ownerCars" :value="item.carId">{{item.carNum}}
                 </option>
             </select>
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-else-if="simplifyFeeReceiptInfo.objType == '7777'">
             <select class="custom-select custom-select-sm" v-model="simplifyCarFeeInfo.contractId" @change="changeSimplifyFeeReceiptCar()">
-                <option disabled value=""><vc:i18n name="请选择合同" namespace="simplifyFeeReceipt"></vc:i18n></option>
+                <option disabled value="">{{vc.i18n('请选择合同','simplifyFeeReceipt')}}</option>
                 <option v-for="(item,index) in simplifyFeeReceiptInfo.ownerContracts" :value="item.contractId">
                     {{item.contractCode}}
                 </option>
@@ -25,8 +25,8 @@
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '7777'">
             <select class="custom-select custom-select-sm" v-model="simplifyFeeReceiptInfo.ownerFlag" @change="_queryFeeReceiptMethod()">
-                <option value="F"><vc:i18n name="当前" namespace="simplifyFeeReceipt"></vc:i18n>{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}</option>
-                <option value="T"><vc:i18n name="全部" namespace="simplifyFeeReceipt"></vc:i18n>{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}</option>
+                <option value="F">{{vc.i18n('当前','simplifyFeeReceipt')}}{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}</option>
+                <option value="T">{{vc.i18n('全部','simplifyFeeReceipt')}}{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}</option>
             </select>
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '6666' ">

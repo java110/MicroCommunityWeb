@@ -21,10 +21,10 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="form-control-sm form-control input-s-sm inline" v-model="shopsInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="shops"></vc:i18n></option>
-                                <option value="2006"><vc:i18n name="已出租" namespace="shops"></vc:i18n></option>
-                                <option value="2007"><vc:i18n name="已出售" namespace="shops"></vc:i18n></option>
-                                <option value="2008"><vc:i18n name="空闲" namespace="shops"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','shops')}}</option>
+                                <option value="2006">{{vc.i18n('已出租','shops')}}</option>
+                                <option value="2007">{{vc.i18n('已出售','shops')}}</option>
+                                <option value="2008">{{vc.i18n('空闲','shops')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">

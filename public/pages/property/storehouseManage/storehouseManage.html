@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="storehouseManageInfo.conditions.shType">
-                                <option selected value=""><vc:i18n name="请选择仓库类型" namespace="storehouseManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择仓库类型','storehouseManage')}}</option>
                                 <option v-for="(item,index) in storehouseManageInfo.shTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -46,9 +46,9 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="storehouseManageInfo.conditions.isShow">
-                                    <option selected value=""><vc:i18n name="请选择是否对外开放" namespace="storehouseManage"></vc:i18n></option>
-                                    <option value="true"><vc:i18n name="是" namespace="storehouseManage"></vc:i18n></option>
-                                    <option value="false"><vc:i18n name="否" namespace="storehouseManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择是否对外开放','storehouseManage')}}</option>
+                                    <option value="true">{{vc.i18n('是','storehouseManage')}}</option>
+                                    <option value="false">{{vc.i18n('否','storehouseManage')}}</option>
                                 </select>
                             </div>
                         </div>

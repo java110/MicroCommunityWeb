@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="meterWaterManageInfo.conditions.meterType">
-                                <option selected value=""><vc:i18n name="请选择表类型" namespace="meterWaterManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择表类型','meterWaterManage')}}</option>
                                 <option v-for="(item,index) in meterWaterManageInfo.meterTypes" :key="index"
                                         v-bind:value="item.typeId">
                                     {{item.typeName}}

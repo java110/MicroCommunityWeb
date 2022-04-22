@@ -14,7 +14,7 @@
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportHuaningInfo.conditions.feeTypeCd"
                                 @click="_changeReporficientFeeTypeCd()">
-                                <option selected value=""><vc:i18n name="请选择收费类型" namespace="reportHuaning"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择收费类型','reportHuaning')}}</option>
                                 <option v-for="(item,index) in reportHuaningInfo.feeTypeCds" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -25,7 +25,7 @@
                                 <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
                                     v-model="reportHuaningInfo.conditions.configId">
-                                    <option selected value=""><vc:i18n name="请选择收费项" namespace="reportHuaning"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择收费项','reportHuaning')}}</option>
                                     <option v-for="(item,index) in reportHuaningInfo.feeConfigDtos" :key="index"
                                         :value="item.configId">
                                         {{item.feeName}}
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                     v-model="reportHuaningInfo.conditions.floorNum">
-                                    <option selected value=""><vc:i18n name="请选择楼栋" namespace="reportHuaning"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择楼栋','reportHuaning')}}</option>
                                     <option v-for="(item,index) in reportHuaningInfo.floors" :key="index"
                                         :value="item.floorNum">
                                         {{item.floorNum}}

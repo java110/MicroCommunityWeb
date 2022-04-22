@@ -16,7 +16,7 @@
                         <div class="col-sm-3">
                             <div class="form-group ">
                                 <select class="custom-select" v-model="staffInfo.conditions.branchOrgId">
-                                    <option selected value=""><vc:i18n name="必填，请选择分公司" namespace="staff"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('必填，请选择分公司','staff')}}</option>
                                     <option v-for="branchOrg in staffInfo.branchOrgs" :value="branchOrg.orgId">
                                         {{branchOrg.orgName}}
                                     </option>
@@ -26,7 +26,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="staffInfo.conditions.departmentOrgId">
-                                    <option selected value=""><vc:i18n name="必填，请选择部门" namespace="staff"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('必填，请选择部门','staff')}}</option>
                                     <option v-for="departmentOrg in staffInfo.departmentOrgs"
                                             :value="departmentOrg.orgId">
                                         {{departmentOrg.orgName}}

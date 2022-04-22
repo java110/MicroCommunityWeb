@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="billManageInfo.conditions.curBill">
-                                <option selected value=""><vc:i18n name="请选择账单类型" namespace="billManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择账单类型','billManage')}}</option>
                                 <option v-for="(item,index) in billManageInfo.curBills" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

@@ -21,7 +21,7 @@
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="便民类型" namespace="addStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-3">
                                     <select class="custom-select" v-model="addStoreInfoInfo.convenienceMenusId">
-                                        <option selected disabled value=""><vc:i18n name="选填" namespace="addStoreInfo"></vc:i18n>，请选择类型</option>
+                                        <option selected disabled value="">{{vc.i18n('选填','addStoreInfo')}}，请选择类型</option>
                                         <option v-for="(item,index) in storeInfoManageInfo.menuInfos"
                                                 :value="item.convenienceMenusId">
                                             {{item.name}}
@@ -33,9 +33,9 @@
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="是否显示" namespace="addStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-3">
                                     <select class="custom-select" v-model="addStoreInfoInfo.isShow">
-                                        <option selected disabled value=""><vc:i18n name="选填" namespace="addStoreInfo"></vc:i18n>，请选择是否显示</option>
-                                        <option value="Y"><vc:i18n name="是" namespace="addStoreInfo"></vc:i18n></option>
-                                        <option value="N"><vc:i18n name="否" namespace="addStoreInfo"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('选填','addStoreInfo')}}，请选择是否显示</option>
+                                        <option value="Y">{{vc.i18n('是','addStoreInfo')}}</option>
+                                        <option value="N">{{vc.i18n('否','addStoreInfo')}}</option>
                                     </select>
                                 </div>
                             </div>

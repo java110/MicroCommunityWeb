@@ -15,11 +15,11 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="carInoutManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择车辆状态" namespace="carInoutManage"></vc:i18n></option>
-                                <option value="100300"><vc:i18n name="进场状态" namespace="carInoutManage"></vc:i18n></option>
-                                <option value="100400"><vc:i18n name="支付完成" namespace="carInoutManage"></vc:i18n></option>
-                                <option value="100500"><vc:i18n name="离场状态" namespace="carInoutManage"></vc:i18n></option>
-                                <option value="100600"><vc:i18n name="超时重新支付" namespace="carInoutManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择车辆状态','carInoutManage')}}</option>
+                                <option value="100300">{{vc.i18n('进场状态','carInoutManage')}}</option>
+                                <option value="100400">{{vc.i18n('支付完成','carInoutManage')}}</option>
+                                <option value="100500">{{vc.i18n('离场状态','carInoutManage')}}</option>
+                                <option value="100600">{{vc.i18n('超时重新支付','carInoutManage')}}</option>
                             </select></div>
                         <div class="col-sm-4">
                             <div class="form-group">

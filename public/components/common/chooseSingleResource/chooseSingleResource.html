@@ -11,7 +11,7 @@
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="chooseSingleResourceInfo.rsId"
                                         v-on:change="_listSonResourceStoreType()">
-                                        <option selected value=""><vc:i18n name="请选择商品类型" namespace="chooseSingleResource"></vc:i18n></option>
+                                        <option selected value="">{{vc.i18n('请选择商品类型','chooseSingleResource')}}</option>
                                         <option v-for="(item,index) in chooseSingleResourceInfo.resourceStoreTypes" :key="index"
                                             :value="item.rstId">{{item.name}}
                                         </option>
@@ -39,7 +39,7 @@
                                     <div class="col-sm-10">
                                         <select id="goods" class="custom-select" v-model="chooseSingleResourceInfo.rstId"
                                                 v-on:change="_choseGoods()">
-                                            <option selected value=""><vc:i18n name="请选择二级类型" namespace="chooseSingleResource"></vc:i18n></option>
+                                            <option selected value="">{{vc.i18n('请选择二级类型','chooseSingleResource')}}</option>
                                             <option v-for="(item,index) in chooseSingleResourceInfo.sonResourceStoreTypes" :key="index"
                                                     :value="item.rstId">{{item.name}}
                                             </option>
@@ -51,7 +51,7 @@
                                     <div class="col-sm-10">
                                         <select id="goodsPrice" class="custom-select" v-model="chooseSingleResourceInfo.resId"
                                             v-on:change="_chosePrice()">
-                                            <option selected value=""><vc:i18n name="请选择商品" namespace="chooseSingleResource"></vc:i18n></option>
+                                            <option selected value="">{{vc.i18n('请选择商品','chooseSingleResource')}}</option>
                                             <option v-for="(item,index) in chooseSingleResourceInfo.resourceStores" :key="index" :value="item.resId">
                                                 {{item.resName}}
                                             </option>

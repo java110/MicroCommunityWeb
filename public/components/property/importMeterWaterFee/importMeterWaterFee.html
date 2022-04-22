@@ -12,10 +12,10 @@
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="importMeterWaterFeeInfo.feeTypeCd"
                                         @change="_changeImportMeterWaterFeeTypeCd(importMeterWaterFeeInfo.feeTypeCd)">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="importMeterWaterFee"></vc:i18n>，请选择费用类型</option>
-                                        <option value="888800010015"><vc:i18n name="水费" namespace="importMeterWaterFee"></vc:i18n></option>
-                                        <option value="888800010016"><vc:i18n name="电费" namespace="importMeterWaterFee"></vc:i18n></option>
-                                        <option value="888800010009"><vc:i18n name="煤气费" namespace="importMeterWaterFee"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','importMeterWaterFee')}}，请选择费用类型</option>
+                                        <option value="888800010015">{{vc.i18n('水费','importMeterWaterFee')}}</option>
+                                        <option value="888800010016">{{vc.i18n('电费','importMeterWaterFee')}}</option>
+                                        <option value="888800010009">{{vc.i18n('煤气费','importMeterWaterFee')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -23,7 +23,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="收费项目" namespace="importMeterWaterFee"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="importMeterWaterFeeInfo.configId">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="importMeterWaterFee"></vc:i18n>，请选择收费项目</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','importMeterWaterFee')}}，请选择收费项目</option>
                                         <option v-for="(item,index) in importMeterWaterFeeInfo.feeConfigs" :key="index"
                                             v-bind:value="item.configId">{{item.feeName}}
                                         </option>
@@ -34,7 +34,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="抄表类型" namespace="importMeterWaterFee"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="importMeterWaterFeeInfo.meterType">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="importMeterWaterFee"></vc:i18n>，请选择抄表类型</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','importMeterWaterFee')}}，请选择抄表类型</option>
                                         <option v-for="(item,index) in importMeterWaterFeeInfo.meterTypes" :key="index"
                                             v-bind:value="item.typeId">{{item.typeName}}
                                         </option>

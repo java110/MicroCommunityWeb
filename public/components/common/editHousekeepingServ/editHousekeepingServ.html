@@ -30,7 +30,7 @@
                         <label class="col-sm-1 col-form-label text-right"><vc:i18n name="服务类型" namespace="editHousekeepingServ"></vc:i18n></label>
                         <div class="col-sm-5">
                             <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.hktId">
-                <option selected disabled value=""><vc:i18n name="必填，请选择服务类型" namespace="editHousekeepingServ"></vc:i18n></option>
+                <option selected disabled value="">{{vc.i18n('必填，请选择服务类型','editHousekeepingServ')}}</option>
                 <option v-for="(item,index) in editHousekeepingServInfo.housekeepingTypes" :value="item.hktId">
                   {{item.hktName}}</option>
               </select>
@@ -50,18 +50,18 @@
                         <label class="col-sm-1 col-form-label text-right"><vc:i18n name="上架状态" namespace="editHousekeepingServ"></vc:i18n></label>
                         <div class="col-sm-5">
                             <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.state">
-                <option selected disabled value=""><vc:i18n name="必填，请选择上架状态" namespace="editHousekeepingServ"></vc:i18n></option>
-                <option value="1001"><vc:i18n name="未上架" namespace="editHousekeepingServ"></vc:i18n></option>
-                <option value="2002"><vc:i18n name="上架" namespace="editHousekeepingServ"></vc:i18n></option>
+                <option selected disabled value="">{{vc.i18n('必填，请选择上架状态','editHousekeepingServ')}}</option>
+                <option value="1001">{{vc.i18n('未上架','editHousekeepingServ')}}</option>
+                <option value="2002">{{vc.i18n('上架','editHousekeepingServ')}}</option>
               </select>
                         </div>
                         <label class="col-sm-1 col-form-label text-right"><vc:i18n name="派单方式" namespace="editHousekeepingServ"></vc:i18n></label>
                         <div class="col-sm-5">
                             <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.repairWay">
-                <option selected disabled value=""><vc:i18n name="必填，请选择派单方式" namespace="editHousekeepingServ"></vc:i18n></option>
-                <option value="100"><vc:i18n name="抢单" namespace="editHousekeepingServ"></vc:i18n></option>
-                <option value="200"><vc:i18n name="指派" namespace="editHousekeepingServ"></vc:i18n></option>
-                <option value="300"><vc:i18n name="轮训" namespace="editHousekeepingServ"></vc:i18n></option>
+                <option selected disabled value="">{{vc.i18n('必填，请选择派单方式','editHousekeepingServ')}}</option>
+                <option value="100">{{vc.i18n('抢单','editHousekeepingServ')}}</option>
+                <option value="200">{{vc.i18n('指派','editHousekeepingServ')}}</option>
+                <option value="300">{{vc.i18n('轮训','editHousekeepingServ')}}</option>
               </select>
                         </div>
                     </div>
@@ -69,10 +69,10 @@
                         <label class="col-sm-1 col-form-label text-right"><vc:i18n name="回访方式" namespace="editHousekeepingServ"></vc:i18n></label>
                         <div class="col-sm-5">
                             <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editHousekeepingServInfo.returnVisitFlag">
-                <option selected disabled value=""><vc:i18n name="必填，请选择回访方式" namespace="editHousekeepingServ"></vc:i18n></option>
-                <option value="001"><vc:i18n name="都不回访" namespace="editHousekeepingServ"></vc:i18n></option>
-                <option value="002"><vc:i18n name="已评价不回访" namespace="editHousekeepingServ"></vc:i18n></option>
-                <option value="003"><vc:i18n name="都回访" namespace="editHousekeepingServ"></vc:i18n></option>
+                <option selected disabled value="">{{vc.i18n('必填，请选择回访方式','editHousekeepingServ')}}</option>
+                <option value="001">{{vc.i18n('都不回访','editHousekeepingServ')}}</option>
+                <option value="002">{{vc.i18n('已评价不回访','editHousekeepingServ')}}</option>
+                <option value="003">{{vc.i18n('都回访','editHousekeepingServ')}}</option>
               </select>
                         </div>
                     </div>

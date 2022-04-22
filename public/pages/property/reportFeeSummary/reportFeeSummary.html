@@ -25,10 +25,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeSummaryInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="reportFeeSummary"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','reportFeeSummary')}}</option>
                                     <option v-for="(unit,index) in reportFeeSummaryInfo.roomUnits" :key="index"
                                         v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="reportFeeSummary"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','reportFeeSummary')}}
                                     </option>
                                 </select>
                             </div>

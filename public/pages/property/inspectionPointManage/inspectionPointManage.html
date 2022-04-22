@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionPointManageInfo.conditions.pointObjType">
-                                <option selected value="" disabled><vc:i18n name="请选择巡检点类型" namespace="inspectionPointManage"></vc:i18n></option>
+                                <option selected value="" disabled>{{vc.i18n('请选择巡检点类型','inspectionPointManage')}}</option>
                                 <option v-for="(item,index) in inspectionPointManageInfo.pointObjTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

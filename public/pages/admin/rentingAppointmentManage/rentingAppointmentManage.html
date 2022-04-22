@@ -25,10 +25,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="rentingAppointmentManageInfo.conditions.state">
-                                    <option selected value=""><vc:i18n name="请选择状态" namespace="rentingAppointmentManage"></vc:i18n></option>
-                                    <option value="1001"><vc:i18n name="未租房" namespace="rentingAppointmentManage"></vc:i18n></option>
-                                    <option value="2002"><vc:i18n name="租房失败" namespace="rentingAppointmentManage"></vc:i18n></option>
-                                    <option value="3003"><vc:i18n name="租房成功" namespace="rentingAppointmentManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择状态','rentingAppointmentManage')}}</option>
+                                    <option value="1001">{{vc.i18n('未租房','rentingAppointmentManage')}}</option>
+                                    <option value="2002">{{vc.i18n('租房失败','rentingAppointmentManage')}}</option>
+                                    <option value="3003">{{vc.i18n('租房成功','rentingAppointmentManage')}}</option>
                                 </select>
                             </div>
                         </div>

@@ -19,9 +19,9 @@
                             <label class="col-sm-3 col-form-label  text-center"><vc:i18n name="员工性别" namespace="addStaffView"></vc:i18n></label>
                             <div class="col-sm-9">
                                 <select class="custom-select" v-model="addStaffViewInfo.sex">
-                                    <option selected disabled value=""><vc:i18n name="必填" namespace="addStaffView"></vc:i18n>，请选择员工性别</option>
-                                    <option value="0"><vc:i18n name="男" namespace="addStaffView"></vc:i18n></option>
-                                    <option value="1"><vc:i18n name="女" namespace="addStaffView"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('必填','addStaffView')}}，请选择员工性别</option>
+                                    <option value="0">{{vc.i18n('男','addStaffView')}}</option>
+                                    <option value="1">{{vc.i18n('女','addStaffView')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                             <label class="col-sm-3 col-form-label  text-center"><vc:i18n name="员工岗位" namespace="addStaffView"></vc:i18n></label>
                             <div class="col-sm-9">
                                 <select class="custom-select" v-model="addStaffViewInfo.relCd">
-                                    <option selected disabled value=""><vc:i18n name="必填" namespace="addStaffView"></vc:i18n>，请选择岗位</option>
+                                    <option selected disabled value="">{{vc.i18n('必填','addStaffView')}}，请选择岗位</option>
                                     <option v-for="(item,index) in addStaffViewInfo.relCds" :key="index"
                                             v-bind:value="item.statusCd">{{item.name}}
                                     </option>

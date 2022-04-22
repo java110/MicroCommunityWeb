@@ -18,7 +18,7 @@
             <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品分组" namespace="editProduct"></vc:i18n></label>
             <div class="col-sm-5">
               <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editProductInfo.categoryId">
-                <option selected disabled value=""><vc:i18n name="必填" namespace="editProduct"></vc:i18n>，请选择商品分组</option>
+                <option selected disabled value="">{{vc.i18n('必填','editProduct')}}，请选择商品分组</option>
                 <option v-for="(item,index) in productManageInfo.productCategorys" :value="item.categoryId">
                   {{item.categoryName}}</option>
               </select>
@@ -168,9 +168,9 @@
             <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品状态" namespace="editProduct"></vc:i18n></label>
             <div class="col-sm-11">
               <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editProductInfo.state">
-                <option selected disabled value=""><vc:i18n name="选填" namespace="editProduct"></vc:i18n>，请选择状态</option>
-                <option value="1001"><vc:i18n name="未上架" namespace="editProduct"></vc:i18n></option>
-                <option value="2002"><vc:i18n name="上架" namespace="editProduct"></vc:i18n></option>
+                <option selected disabled value="">{{vc.i18n('选填','editProduct')}}，请选择状态</option>
+                <option value="1001">{{vc.i18n('未上架','editProduct')}}</option>
+                <option value="2002">{{vc.i18n('上架','editProduct')}}</option>
               </select>
             </div>
           </div>

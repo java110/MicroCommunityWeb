@@ -33,10 +33,10 @@
                     <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="车辆类型" namespace="editTempCarFeeConfig"></vc:i18n></label>
                     <div class="col-sm-9">
                       <select class="custom-select" v-model="editTempCarFeeConfigInfo.carType">
-                        <option selected disabled value=""><vc:i18n name="必填" namespace="editTempCarFeeConfig"></vc:i18n>，请选择车辆类型</option>
-                        <option value="9901"><vc:i18n name="家用小汽车" namespace="editTempCarFeeConfig"></vc:i18n></option>
-                        <option value="9904"><vc:i18n name="电动车" namespace="editTempCarFeeConfig"></vc:i18n></option>
-                        <option value="9905"><vc:i18n name="三轮车" namespace="editTempCarFeeConfig"></vc:i18n></option>
+                        <option selected disabled value="">{{vc.i18n('必填','editTempCarFeeConfig')}}，请选择车辆类型</option>
+                        <option value="9901">{{vc.i18n('家用小汽车','editTempCarFeeConfig')}}</option>
+                        <option value="9904">{{vc.i18n('电动车','editTempCarFeeConfig')}}</option>
+                        <option value="9905">{{vc.i18n('三轮车','editTempCarFeeConfig')}}</option>
                       </select>
                     </div>
                   </div>
@@ -46,7 +46,7 @@
                     <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="收费规则" namespace="editTempCarFeeConfig"></vc:i18n></label>
                     <div class="col-sm-9">
                       <select class="custom-select" v-model="editTempCarFeeConfigInfo.ruleId" disabled="disabled">
-                        <option selected disabled value=""><vc:i18n name="必填" namespace="editTempCarFeeConfig"></vc:i18n>，请选择收费规则</option>
+                        <option selected disabled value="">{{vc.i18n('必填','editTempCarFeeConfig')}}，请选择收费规则</option>
                         <option :value="rule.ruleId" v-for="(rule,index) in editTempCarFeeConfigInfo.rules"
                           :key="index">
                           {{rule.ruleName}}</option>

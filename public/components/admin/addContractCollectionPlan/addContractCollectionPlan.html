@@ -25,8 +25,8 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="费用" namespace="addContractCollectionPlan"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addContractCollectionPlanInfo.feeName">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addContractCollectionPlan"></vc:i18n>，请选择费用</option>
-                                        <option value="111"><vc:i18n name="计划费用" namespace="addContractCollectionPlan"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addContractCollectionPlan')}}，请选择费用</option>
+                                        <option value="111">{{vc.i18n('计划费用','addContractCollectionPlan')}}</option>
                                     </select>
                                 </div>
                             </div>

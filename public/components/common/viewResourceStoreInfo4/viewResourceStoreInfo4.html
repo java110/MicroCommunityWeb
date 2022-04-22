@@ -54,7 +54,7 @@
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
                             <select class="custom-select" v-model="resourceStore.shzId" style="width: 100%" @change="storeHousesChange($event,i)">
-                                <option value=""><vc:i18n name="必填" namespace="viewResourceStoreInfo4"></vc:i18n>，请选择目标仓库</option>
+                                <option value="">{{vc.i18n('必填','viewResourceStoreInfo4')}}，请选择目标仓库</option>
                                 <option v-for="(item,index) in viewResourceStoreInfo4.storehouses"
                                         :key="index" v-bind:value="item.shId"
                                         v-if="item.shId != resourceStore.shId">

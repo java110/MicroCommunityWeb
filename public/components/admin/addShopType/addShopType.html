@@ -17,9 +17,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="是否展示" namespace="addShopType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addShopTypeInfo.isShow">
-                                      <option selected  disabled value=""><vc:i18n name="必填" namespace="addShopType"></vc:i18n>，请选择是否展示</option>
-                                      <option  value="Y"><vc:i18n name="是" namespace="addShopType"></vc:i18n></option>
-                              <option  value="N"><vc:i18n name="否" namespace="addShopType"></vc:i18n></option>
+                                      <option selected  disabled value="">{{vc.i18n('必填','addShopType')}}，请选择是否展示</option>
+                                      <option  value="Y">{{vc.i18n('是','addShopType')}}</option>
+                              <option  value="N">{{vc.i18n('否','addShopType')}}</option>
                               </select>
                                 </div>
                             </div>
@@ -27,9 +27,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="是否默认" namespace="addShopType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addShopTypeInfo.isDefault">
-         <option selected  disabled value=""><vc:i18n name="必填" namespace="addShopType"></vc:i18n>，请选择是否默认</option>
-         <option  value="F"><vc:i18n name="自定义" namespace="addShopType"></vc:i18n></option>
-<option  value="T"><vc:i18n name="默认" namespace="addShopType"></vc:i18n></option>
+         <option selected  disabled value="">{{vc.i18n('必填','addShopType')}}，请选择是否默认</option>
+         <option  value="F">{{vc.i18n('自定义','addShopType')}}</option>
+<option  value="T">{{vc.i18n('默认','addShopType')}}</option>
   </select> </div>
                             </div>
                             <div class="form-group row">

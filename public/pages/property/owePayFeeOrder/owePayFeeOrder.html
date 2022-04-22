@@ -91,7 +91,7 @@
                         <label class="col-sm-3 col-form-label" ><vc:i18n name="支付方式" namespace="owePayFeeOrder"></vc:i18n>:</label>
                         <div class="col-sm-9">
                             <select class="custom-select" v-model="owePayFeeOrderInfo.primeRate">
-                                <option selected disabled value=""><vc:i18n name="必填" namespace="owePayFeeOrder"></vc:i18n>，请选择支付方式</option>
+                                <option selected disabled value="">{{vc.i18n('必填','owePayFeeOrder')}}，请选择支付方式</option>
                                 <option v-for="(item,index) in owePayFeeOrderInfo.primeRates" :key="index" v-if="item.statusCd != '5' && item.statusCd != '6'"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

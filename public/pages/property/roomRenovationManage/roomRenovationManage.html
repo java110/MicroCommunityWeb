@@ -41,7 +41,7 @@
                     <div class="row" v-show="roomRenovationManageInfo.moreCondition == true">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="roomRenovationManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="roomRenovationManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','roomRenovationManage')}}</option>
                                 <option v-for="(item,index) in roomRenovationManageInfo.states" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -49,9 +49,9 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="roomRenovationManageInfo.conditions.isPostpone">
-                                <option selected value=""><vc:i18n name="请选择是否延期" namespace="roomRenovationManage"></vc:i18n></option>
-                                <option value="Y"><vc:i18n name="是" namespace="roomRenovationManage"></vc:i18n></option>
-                                <option value="N"><vc:i18n name="否" namespace="roomRenovationManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择是否延期','roomRenovationManage')}}</option>
+                                <option value="Y">{{vc.i18n('是','roomRenovationManage')}}</option>
+                                <option value="N">{{vc.i18n('否','roomRenovationManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">

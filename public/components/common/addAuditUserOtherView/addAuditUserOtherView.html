@@ -27,21 +27,21 @@
                     <label class="col-sm-2 col-form-label"><vc:i18n name="审核环节" namespace="addAuditUserOtherView"></vc:i18n></label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addAuditUserOtherViewInfo.auditLink">
-                            <option selected disabled value=""><vc:i18n name="必填" namespace="addAuditUserOtherView"></vc:i18n>，请选择审核环节</option>
-                            <option value="809001"><vc:i18n name="部门主管" namespace="addAuditUserOtherView"></vc:i18n></option>
-                            <option value="809002"><vc:i18n name="财务主管" namespace="addAuditUserOtherView"></vc:i18n></option>
-                            <option value="809003"><vc:i18n name="采购人员" namespace="addAuditUserOtherView"></vc:i18n></option>
-                            <option value="809004"><vc:i18n name="投诉处理人员" namespace="addAuditUserOtherView"></vc:i18n></option>
+                            <option selected disabled value="">{{vc.i18n('必填','addAuditUserOtherView')}}，请选择审核环节</option>
+                            <option value="809001">{{vc.i18n('部门主管','addAuditUserOtherView')}}</option>
+                            <option value="809002">{{vc.i18n('财务主管','addAuditUserOtherView')}}</option>
+                            <option value="809003">{{vc.i18n('采购人员','addAuditUserOtherView')}}</option>
+                            <option value="809004">{{vc.i18n('投诉处理人员','addAuditUserOtherView')}}</option>
                         </select></div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><vc:i18n name="流程对象" namespace="addAuditUserOtherView"></vc:i18n></label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addAuditUserOtherViewInfo.objCode">
-                            <option selected disabled value=""><vc:i18n name="必填" namespace="addAuditUserOtherView"></vc:i18n>，请选择审核流程</option>
-                            <option value="resourceEntry"><vc:i18n name="采购流程" namespace="addAuditUserOtherView"></vc:i18n></option>
-                            <option value="resourceOut"><vc:i18n name="出库流程" namespace="addAuditUserOtherView"></vc:i18n></option>
-                            <option value="complaint"><vc:i18n name="投诉流程" namespace="addAuditUserOtherView"></vc:i18n></option>
+                            <option selected disabled value="">{{vc.i18n('必填','addAuditUserOtherView')}}，请选择审核流程</option>
+                            <option value="resourceEntry">{{vc.i18n('采购流程','addAuditUserOtherView')}}</option>
+                            <option value="resourceOut">{{vc.i18n('出库流程','addAuditUserOtherView')}}</option>
+                            <option value="complaint">{{vc.i18n('投诉流程','addAuditUserOtherView')}}</option>
                         </select></div>
                     </div>
                 </div>

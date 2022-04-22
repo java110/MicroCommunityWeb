@@ -15,9 +15,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="junkRequirementManageInfo.conditions.classification">
-                                <option selected value=""><vc:i18n name="请选择类别" namespace="junkRequirementManage"></vc:i18n></option>
-                                <option value="10001"><vc:i18n name="家具" namespace="junkRequirementManage"></vc:i18n></option>
-                                <option value="10002"><vc:i18n name="电器" namespace="junkRequirementManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择类别','junkRequirementManage')}}</option>
+                                <option value="10001">{{vc.i18n('家具','junkRequirementManage')}}</option>
+                                <option value="10002">{{vc.i18n('电器','junkRequirementManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
@@ -30,11 +30,11 @@
                         <div class="col-sm-3">
                             <select class="custom-select"
                                     v-model="junkRequirementManageInfo.conditions.publishUserLink">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="junkRequirementManage"></vc:i18n></option>
-                                <option value="12001"><vc:i18n name="未审核" namespace="junkRequirementManage"></vc:i18n></option>
-                                <option value="13001"><vc:i18n name="审核通过" namespace="junkRequirementManage"></vc:i18n></option>
-                                <option value="14001"><vc:i18n name="审核失败" namespace="junkRequirementManage"></vc:i18n></option>
-                                <option value="15001"><vc:i18n name="处理完成" namespace="junkRequirementManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','junkRequirementManage')}}</option>
+                                <option value="12001">{{vc.i18n('未审核','junkRequirementManage')}}</option>
+                                <option value="13001">{{vc.i18n('审核通过','junkRequirementManage')}}</option>
+                                <option value="14001">{{vc.i18n('审核失败','junkRequirementManage')}}</option>
+                                <option value="15001">{{vc.i18n('处理完成','junkRequirementManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-1">

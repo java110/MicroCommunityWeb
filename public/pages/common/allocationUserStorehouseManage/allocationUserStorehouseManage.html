@@ -42,7 +42,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="allocationUserStorehouseManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
-                                    <option selected value=""><vc:i18n name="请选择物品类型" namespace="allocationUserStorehouseManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择物品类型','allocationUserStorehouseManage')}}</option>
                                     <option v-for="(item,index) in allocationUserStorehouseManageInfo.resourceStoreTypes"
                                             :key="index" v-bind:value="item.rstId">
                                         {{item.name}}
@@ -53,7 +53,7 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <select class="custom-select" v-model="allocationUserStorehouseManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
-                                    <option selected value=""><vc:i18n name="请选择二级分类" namespace="allocationUserStorehouseManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择二级分类','allocationUserStorehouseManage')}}</option>
                                     <option v-for="(item,index) in allocationUserStorehouseManageInfo.resourceStoreSonTypes" :key="index"
                                         v-bind:value="item.rstId">
                                         {{item.name}}
@@ -64,7 +64,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="allocationUserStorehouseManageInfo.conditions.rssId">
-                                    <option selected value=""><vc:i18n name="请选择物品规格" namespace="allocationUserStorehouseManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择物品规格','allocationUserStorehouseManage')}}</option>
                                     <option v-for="(item,index) in allocationUserStorehouseManageInfo.resourceStoreSpecifications"
                                             :key="index" v-bind:value="item.rssId">
                                         {{item.specName}}

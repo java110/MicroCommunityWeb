@@ -24,10 +24,10 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="auditUserManageInfo.conditions.auditLink">
-                                <option selected value=""><vc:i18n name="请选择审核环节" namespace="auditUserManage"></vc:i18n></option>
-                                <option value="809001"><vc:i18n name="部门主管" namespace="auditUserManage"></vc:i18n></option>
-                                <option value="809002"><vc:i18n name="财务主管" namespace="auditUserManage"></vc:i18n></option>
-                                <option value="809003"><vc:i18n name="采购人员" namespace="auditUserManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择审核环节','auditUserManage')}}</option>
+                                <option value="809001">{{vc.i18n('部门主管','auditUserManage')}}</option>
+                                <option value="809002">{{vc.i18n('财务主管','auditUserManage')}}</option>
+                                <option value="809003">{{vc.i18n('采购人员','auditUserManage')}}</option>
                             </select></div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAuditUserMethod()">

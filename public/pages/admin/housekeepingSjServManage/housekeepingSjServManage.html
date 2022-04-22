@@ -25,7 +25,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="housekeepingServManageInfo.conditions.hktId">
-                                    <option selected value=""><vc:i18n name="请选择服务类型" namespace="housekeepingSjServManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择服务类型','housekeepingSjServManage')}}</option>
                                     <option v-for="(item,index) in housekeepingServManageInfo.housekeepingTypes" :value="item.hktId">
                                         {{item.hktName}}
                                     </option>

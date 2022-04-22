@@ -20,23 +20,23 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="advertManageInfo.conditions.classify">
-                                <option selected value=""><vc:i18n name="请选择广告分类" namespace="advertManage"></vc:i18n></option>
-                                <option value="9001"><vc:i18n name="物流" namespace="advertManage"></vc:i18n></option>
-                                <option value="9002"><vc:i18n name="餐饮" namespace="advertManage"></vc:i18n></option>
-                                <option value="9003"><vc:i18n name="旅游" namespace="advertManage"></vc:i18n></option>
-                                <option value="9004"><vc:i18n name="酒店" namespace="advertManage"></vc:i18n></option>
-                                <option value="9005"><vc:i18n name="教育" namespace="advertManage"></vc:i18n></option>
-                                <option value="9006"><vc:i18n name="互联网" namespace="advertManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择广告分类','advertManage')}}</option>
+                                <option value="9001">{{vc.i18n('物流','advertManage')}}</option>
+                                <option value="9002">{{vc.i18n('餐饮','advertManage')}}</option>
+                                <option value="9003">{{vc.i18n('旅游','advertManage')}}</option>
+                                <option value="9004">{{vc.i18n('酒店','advertManage')}}</option>
+                                <option value="9005">{{vc.i18n('教育','advertManage')}}</option>
+                                <option value="9006">{{vc.i18n('互联网','advertManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="advertManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="advertManage"></vc:i18n></option>
-                                <option value="1000"><vc:i18n name="未审核" namespace="advertManage"></vc:i18n></option>
-                                <option value="2000"><vc:i18n name="审核通过" namespace="advertManage"></vc:i18n></option>
-                                <option value="3000"><vc:i18n name="审核拒绝" namespace="advertManage"></vc:i18n></option>
-                                <option value="4000"><vc:i18n name="未播放" namespace="advertManage"></vc:i18n></option>
-                                <option value="5000"><vc:i18n name="播放中" namespace="advertManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','advertManage')}}</option>
+                                <option value="1000">{{vc.i18n('未审核','advertManage')}}</option>
+                                <option value="2000">{{vc.i18n('审核通过','advertManage')}}</option>
+                                <option value="3000">{{vc.i18n('审核拒绝','advertManage')}}</option>
+                                <option value="4000">{{vc.i18n('未播放','advertManage')}}</option>
+                                <option value="5000">{{vc.i18n('播放中','advertManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-1">

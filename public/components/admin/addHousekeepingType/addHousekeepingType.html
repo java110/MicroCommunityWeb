@@ -30,9 +30,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="类型" namespace="addHousekeepingType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addHousekeepingTypeInfo.typeCd">
-                    <option selected disabled value=""><vc:i18n name="必填，请选择类型" namespace="addHousekeepingType"></vc:i18n></option>
-                    <option value="1001"><vc:i18n name="服务" namespace="addHousekeepingType"></vc:i18n></option>
-                    <option value="2002"><vc:i18n name="商城" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option selected disabled value="">{{vc.i18n('必填，请选择类型','addHousekeepingType')}}</option>
+                    <option value="1001">{{vc.i18n('服务','addHousekeepingType')}}</option>
+                    <option value="2002">{{vc.i18n('商城','addHousekeepingType')}}</option>
                   </select>
                                 </div>
                             </div>
@@ -46,11 +46,11 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="跳转类型" namespace="addHousekeepingType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addHousekeepingTypeInfo.skipType">
-                    <option selected disabled value=""><vc:i18n name="必填，请选择跳转类型" namespace="addHousekeepingType"></vc:i18n></option>
-                    <option value="1"><vc:i18n name="站内" namespace="addHousekeepingType"></vc:i18n></option>
-                    <option value="2"><vc:i18n name="站外" namespace="addHousekeepingType"></vc:i18n></option>
-                    <option value="S"><vc:i18n name="店铺" namespace="addHousekeepingType"></vc:i18n></option>
-                    <option value="P"><vc:i18n name="商品" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option selected disabled value="">{{vc.i18n('必填，请选择跳转类型','addHousekeepingType')}}</option>
+                    <option value="1">{{vc.i18n('站内','addHousekeepingType')}}</option>
+                    <option value="2">{{vc.i18n('站外','addHousekeepingType')}}</option>
+                    <option value="S">{{vc.i18n('店铺','addHousekeepingType')}}</option>
+                    <option value="P">{{vc.i18n('商品','addHousekeepingType')}}</option>
                   </select>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="选择店铺" namespace="addHousekeepingType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addHousekeepingTypeInfo.shopId" @change="selProducts">
-                    <option selected value=""><vc:i18n name="请选择店铺" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option selected value="">{{vc.i18n('请选择店铺','addHousekeepingType')}}</option>
                       <option v-for="(item,index) in addHousekeepingType.shops" :value="item.shopId">
                         {{item.shopName}}
                       </option>
@@ -77,7 +77,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="选择商品" namespace="addHousekeepingType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addHousekeepingTypeInfo.productId">
-                      <option selected value=""><vc:i18n name="请选择商品" namespace="addHousekeepingType"></vc:i18n></option>
+                      <option selected value="">{{vc.i18n('请选择商品','addHousekeepingType')}}</option>
                         <option v-for="(item,index) in addHousekeepingType.products" :value="item.productId">
                           {{item.prodName}}
                         </option>
@@ -94,9 +94,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="显示" namespace="addHousekeepingType"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addHousekeepingTypeInfo.isShow">
-                    <option selected disabled value=""><vc:i18n name="必填" namespace="addHousekeepingType"></vc:i18n>，请选择显示</option>
-                    <option value="Y"><vc:i18n name="是" namespace="addHousekeepingType"></vc:i18n></option>
-                    <option value="N"><vc:i18n name="否" namespace="addHousekeepingType"></vc:i18n></option>
+                    <option selected disabled value="">{{vc.i18n('必填','addHousekeepingType')}}，请选择显示</option>
+                    <option value="Y">{{vc.i18n('是','addHousekeepingType')}}</option>
+                    <option value="N">{{vc.i18n('否','addHousekeepingType')}}</option>
                   </select>
                                 </div>
                             </div>

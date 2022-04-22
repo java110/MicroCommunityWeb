@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="payFeeManageInfo.conditions.payObjType">
-                                <option selected value=""><vc:i18n name="请选择收费对象" namespace="payFeeManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择收费对象','payFeeManage')}}</option>
                                 <option v-for="(item,index) in payFeeManageInfo.payObjTypes" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="payFeeManageInfo.conditions.primeRate">
-                                <option selected value=""><vc:i18n name="请选择支付方式" namespace="payFeeManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择支付方式','payFeeManage')}}</option>
                                 <option v-for="(item,index) in payFeeManageInfo.primeRates" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>

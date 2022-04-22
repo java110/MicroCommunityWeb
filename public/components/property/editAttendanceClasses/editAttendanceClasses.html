@@ -24,7 +24,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="打卡次数" namespace="editAttendanceClasses"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttendanceClassesInfo.clockCount" @change="_editAttendanceChangeClockCount()">
-                                        <option selected disabled value=""><vc:i18n name="必填，请选择打卡次数" namespace="editAttendanceClasses"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择打卡次数','editAttendanceClasses')}}</option>
                                         <option value="2">2次</option>
                                         <option value="4">4次</option>
                                         <option value="6">6次</option>
@@ -55,7 +55,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="打卡类型" namespace="editAttendanceClasses"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttendanceClassesInfo.clockType">
-                                        <option selected disabled value=""><vc:i18n name="必填，请选择打卡类型" namespace="editAttendanceClasses"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择打卡类型','editAttendanceClasses')}}</option>
                                         <option v-for="(item,index) in editAttendanceClassesInfo.clockTypes"
                                                 :key="index"
                                                 v-bind:value="item.statusCd">

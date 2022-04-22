@@ -18,10 +18,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="storeOrderCartReturnManageInfo.conditions.state">
-                                    <option value=""><vc:i18n name="请选择状态" namespace="storeOrderCartReturnManage"></vc:i18n></option>
-                                    <option value="5005"><vc:i18n name="申请退款" namespace="storeOrderCartReturnManage"></vc:i18n></option>
-                                    <option value="6006"><vc:i18n name="退货成功" namespace="storeOrderCartReturnManage"></vc:i18n></option>
-                                    <option value="7007"><vc:i18n name="已退款" namespace="storeOrderCartReturnManage"></vc:i18n></option>
+                                    <option value="">{{vc.i18n('请选择状态','storeOrderCartReturnManage')}}</option>
+                                    <option value="5005">{{vc.i18n('申请退款','storeOrderCartReturnManage')}}</option>
+                                    <option value="6006">{{vc.i18n('退货成功','storeOrderCartReturnManage')}}</option>
+                                    <option value="7007">{{vc.i18n('已退款','storeOrderCartReturnManage')}}</option>
                                 </select>
                             </div>
                         </div>

@@ -11,7 +11,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="源仓库" namespace="allocationStorehouse"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="allocationStorehouseInfo.shIda">
-                                        <option selected value=""><vc:i18n name="必填" namespace="allocationStorehouse"></vc:i18n>，请选择源仓库</option>
+                                        <option selected value="">{{vc.i18n('必填','allocationStorehouse')}}，请选择源仓库</option>
                                         <option v-for="(item,index) in allocationStorehouseInfo.storehouses"
                                             :key="index" v-bind:value="item.shId"
                                             v-if="item.shId != allocationStorehouseInfo.shIdz">
@@ -38,7 +38,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="目标仓库" namespace="allocationStorehouse"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="allocationStorehouseInfo.shIdz">
-                                        <option selected  value=""><vc:i18n name="必填" namespace="allocationStorehouse"></vc:i18n>，请选择目标仓库</option>
+                                        <option selected  value="">{{vc.i18n('必填','allocationStorehouse')}}，请选择目标仓库</option>
                                         <option v-for="(item,index) in allocationStorehouseInfo.storehouses"
                                             :key="index" v-bind:value="item.shId"
                                             v-if="item.shId != allocationStorehouseInfo.shIda">

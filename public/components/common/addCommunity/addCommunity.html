@@ -18,19 +18,19 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="小区地区" namespace="addCommunity"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select id="pro" class="form-control form-control-sm" style="width: 30%;display: inline;" v-model="selectProv" @change="getProv(selectProv)">
-                                        <option value='' disabled selected style='display:none;'><vc:i18n name="请选择省" namespace="addCommunity"></vc:i18n></option>
+                                        <option value='' disabled selected style='display:none;'>{{vc.i18n('请选择省','addCommunity')}}</option>
                                         <option v-for="item in provs" :label="item.areaName" :value="item.areaCode">
                                             {{item.areaName}}
                                         </option>
                                     </select>
                                     <select id="city" class="form-control form-control-sm" style="width: 30%;display: inline;" v-if="selectProv!=''" v-model="selectCity" @change="getCity(selectCity)">
-                                        <option value='' disabled selected style='display:none;'><vc:i18n name="请选择城市" namespace="addCommunity"></vc:i18n></option>
+                                        <option value='' disabled selected style='display:none;'>{{vc.i18n('请选择城市','addCommunity')}}</option>
                                         <option v-for="item in citys" :label="item.areaName" :value="item.areaCode">
                                             {{item.areaName}}
                                         </option>
                                     </select>
                                     <select id="area" class="form-control form-control-sm" style="width: 30%;display: inline;" v-if="selectCity!=''" v-model="selectArea" @change="getArea(selectArea)">
-                                        <option value='' disabled selected style='display:none;'><vc:i18n name="请选择区县" namespace="addCommunity"></vc:i18n></option>
+                                        <option value='' disabled selected style='display:none;'>{{vc.i18n('请选择区县','addCommunity')}}</option>
                                         <option v-for="item in areas" :label="item.areaName" :value="item.areaCode">
                                             {{item.areaName}}
                                         </option>

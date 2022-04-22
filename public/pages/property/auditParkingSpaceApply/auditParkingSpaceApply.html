@@ -130,7 +130,7 @@
                 <label class="col-sm-2 col-form-label"><vc:i18n name="选择费用项" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
                   <select class="custom-select" v-model="addParkingSpaceApplyInfo.configId">
-                    <option selected disabled value=""><vc:i18n name="请选择费用项" namespace="auditParkingSpaceApply"></vc:i18n></option>
+                    <option selected disabled value="">{{vc.i18n('请选择费用项','auditParkingSpaceApply')}}</option>
                     <option v-for="(item,index) in addParkingSpaceApplyInfo.feeConfigs" :key="index"
                             v-bind:value="item.configId">{{item.feeName}} —— {{item.feeFlagName}} —— {{item.billTypeName}}
                     </option>
@@ -141,9 +141,9 @@
                 <label class="col-sm-2 col-form-label"><vc:i18n name="审核结果" namespace="auditParkingSpaceApply"></vc:i18n></label>
                 <div class="col-sm-6">
                   <select class="custom-select" v-model="addParkingSpaceApplyInfo.state">
-                    <option selected disabled value=""><vc:i18n name="请选择审核结果" namespace="auditParkingSpaceApply"></vc:i18n></option>
-                    <option value="2002"><vc:i18n name="通过" namespace="auditParkingSpaceApply"></vc:i18n></option>
-                    <option value="4004"><vc:i18n name="不通过" namespace="auditParkingSpaceApply"></vc:i18n></option>
+                    <option selected disabled value="">{{vc.i18n('请选择审核结果','auditParkingSpaceApply')}}</option>
+                    <option value="2002">{{vc.i18n('通过','auditParkingSpaceApply')}}</option>
+                    <option value="4004">{{vc.i18n('不通过','auditParkingSpaceApply')}}</option>
                   </select>
                 </div>
               </div>

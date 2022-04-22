@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="applyRoomDiscountManageInfo.conditions.applyType">
-                                <option selected value=""><vc:i18n name="请选择申请类型" namespace="applyRoomDiscountManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择申请类型','applyRoomDiscountManage')}}</option>
                                 <option :value="item.applyType" v-for="item in applyRoomDiscountManageInfo.applyTypes">
                                     {{item.typeName}}
                                 </option>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="applyRoomDiscountManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="applyRoomDiscountManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','applyRoomDiscountManage')}}</option>
                                 <option v-for="(item,index) in applyRoomDiscountManageInfo.states" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

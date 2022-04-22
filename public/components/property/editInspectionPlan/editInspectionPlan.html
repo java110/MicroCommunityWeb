@@ -31,7 +31,7 @@
                                     <select class="custom-select"
                                             v-bind:disabled="editInspectionPlanInfo.isDefault=='T'"
                                             v-model="editInspectionPlanInfo.inspectionPlanPeriod">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editInspectionPlan"></vc:i18n>，请选择执行周期</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editInspectionPlan')}}，请选择执行周期</option>
                                         <option v-for="(item,index) in editInspectionPlanInfo.inspectionPlanPeriods"
                                                 :key="index"
                                                 v-bind:value="item.statusCd">{{item.name}}
@@ -59,7 +59,7 @@
                                     <select class="custom-select"
                                             v-bind:disabled="editInspectionPlanInfo.isDefault=='T'"
                                             v-model="editInspectionPlanInfo.signType">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editInspectionPlan"></vc:i18n>，请选择签到方式</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editInspectionPlan')}}，请选择签到方式</option>
                                         <option v-for="(item,index) in editInspectionPlanInfo.signTypes" :key="index"
                                                 v-bind:value="item.statusCd">{{item.name}}
                                         </option>
@@ -72,7 +72,7 @@
                                     <select class="custom-select"
                                             v-bind:disabled="editInspectionPlanInfo.isDefault=='T'"
                                             v-model="editInspectionPlanInfo.state">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editInspectionPlan"></vc:i18n>，请选择状态</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editInspectionPlan')}}，请选择状态</option>
                                         <option v-for="(item,index) in editInspectionPlanInfo.states" :key="index"
                                                 v-bind:value="item.statusCd">{{item.name}}
                                         </option>

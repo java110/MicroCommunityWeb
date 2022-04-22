@@ -20,7 +20,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="accountBondManageInfo.conditions.objId">
-                                        <option value=""><vc:i18n name="请选择物品类型" namespace="accountBondManage"></vc:i18n></option>
+                                        <option value="">{{vc.i18n('请选择物品类型','accountBondManage')}}</option>
                                         <option v-for="(item,index) in accountBondManageInfo.shopTypes" :value="item.shopTypeId">
                                             {{item.typeName}}
                                         </option>

@@ -24,14 +24,14 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="对象类型" namespace="editMachineTranslate"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" readonly v-model="editMachineTranslateInfo.typeCd" disabled>
-                                        <option selected disabled value=""><vc:i18n name="必填，请选择对象类型" namespace="editMachineTranslate"></vc:i18n></option>
-                                        <option value="8899"><vc:i18n name="业主" namespace="editMachineTranslate"></vc:i18n></option>
-                                        <option value="9988"><vc:i18n name="小区" namespace="editMachineTranslate"></vc:i18n></option>
-                                        <option value="7788"><vc:i18n name="钥匙信息" namespace="editMachineTranslate"></vc:i18n></option>
-                                        <option value="6677"><vc:i18n name="访客信息" namespace="editMachineTranslate"></vc:i18n></option>
-                                        <option value="5566"><vc:i18n name="员工人脸" namespace="editMachineTranslate"></vc:i18n></option>
-                                        <option value="4455"><vc:i18n name="车辆信息" namespace="editMachineTranslate"></vc:i18n></option>
-                                        <option value="3344"><vc:i18n name="设备信息" namespace="editMachineTranslate"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择对象类型','editMachineTranslate')}}</option>
+                                        <option value="8899">{{vc.i18n('业主','editMachineTranslate')}}</option>
+                                        <option value="9988">{{vc.i18n('小区','editMachineTranslate')}}</option>
+                                        <option value="7788">{{vc.i18n('钥匙信息','editMachineTranslate')}}</option>
+                                        <option value="6677">{{vc.i18n('访客信息','editMachineTranslate')}}</option>
+                                        <option value="5566">{{vc.i18n('员工人脸','editMachineTranslate')}}</option>
+                                        <option value="4455">{{vc.i18n('车辆信息','editMachineTranslate')}}</option>
+                                        <option value="3344">{{vc.i18n('设备信息','editMachineTranslate')}}</option>
                                     </select></div>
                             </div>
                             <div class="form-group row">

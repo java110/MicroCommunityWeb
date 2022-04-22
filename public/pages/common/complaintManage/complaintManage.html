@@ -21,10 +21,10 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="complaintManageInfo.conditions.typeCd">
-                                <option selected disabled value=""><vc:i18n name="请选择投诉类型" namespace="complaintManage"></vc:i18n></option>
-                                <option value="809001"><vc:i18n name="投诉" namespace="complaintManage"></vc:i18n></option>
-                                <option value="809002"><vc:i18n name="建议" namespace="complaintManage"></vc:i18n></option>
-                                <option value="809003"><vc:i18n name="咨询" namespace="complaintManage"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择投诉类型','complaintManage')}}</option>
+                                <option value="809001">{{vc.i18n('投诉','complaintManage')}}</option>
+                                <option value="809002">{{vc.i18n('建议','complaintManage')}}</option>
+                                <option value="809003">{{vc.i18n('咨询','complaintManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
@@ -54,9 +54,9 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="complaintManageInfo.conditions.state">
-                                <option selected disabled value=""><vc:i18n name="请选择投诉状态" namespace="complaintManage"></vc:i18n></option>
-                                <option value="10001"><vc:i18n name="处理中" namespace="complaintManage"></vc:i18n></option>
-                                <option value="10002"><vc:i18n name="处理完成" namespace="complaintManage"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择投诉状态','complaintManage')}}</option>
+                                <option value="10001">{{vc.i18n('处理中','complaintManage')}}</option>
+                                <option value="10002">{{vc.i18n('处理完成','complaintManage')}}</option>
                             </select>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddComplaintModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="投诉" namespace="complaintManage"></vc:i18n>
+                            <i class="fa fa-plus"></i>{{vc.i18n('投诉','complaintManage')}}
                         </button>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="投诉" namespace="complaintManage"></vc:i18n>ID</th>
+                                    {{vc.i18n('投诉','complaintManage')}}ID</th>
                                 <th class="text-center">
                                     <vc:i18n name="投诉类型" namespace="complaintManage"></vc:i18n>
                                 </th>

@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="purchaseApplyDetailManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','purchaseApplyDetailManage')}}</option>
                                 <option v-for="(item,index) in purchaseApplyDetailManageInfo.states" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -62,7 +62,7 @@
                         <div class="col-sm-3">
                             <select class="custom-select"
                                     v-model="purchaseApplyDetailManageInfo.conditions.warehousingWay">
-                                <option selected value=""><vc:i18n name="请选择采购方式" namespace="purchaseApplyDetailManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择采购方式','purchaseApplyDetailManage')}}</option>
                                 <option v-for="(item,index) in purchaseApplyDetailManageInfo.warehousingWays"
                                         :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
@@ -74,7 +74,7 @@
                         <div class="col-sm-3">
                             <select class="custom-select"
                                     v-model="purchaseApplyDetailManageInfo.conditions.resOrderType">
-                                <option selected disabled value=""><vc:i18n name="请选择出入库方式" namespace="purchaseApplyDetailManage"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择出入库方式','purchaseApplyDetailManage')}}</option>
                                 <option v-for="(item,index) in purchaseApplyDetailManageInfo.resOrderTypes" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -99,7 +99,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
-                                    <option selected value=""><vc:i18n name="请选择物品类型" namespace="purchaseApplyDetailManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择物品类型','purchaseApplyDetailManage')}}</option>
                                     <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceStoreTypes"
                                             :key="index"
                                             v-bind:value="item.rstId">
@@ -111,7 +111,7 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
-                                    <option selected value=""><vc:i18n name="请选择二级分类" namespace="purchaseApplyDetailManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择二级分类','purchaseApplyDetailManage')}}</option>
                                     <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceStoreSonTypes" :key="index"
                                         v-bind:value="item.rstId">
                                         {{item.name}}
@@ -122,7 +122,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rssId">
-                                    <option selected value=""><vc:i18n name="请选择物品规格" namespace="purchaseApplyDetailManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择物品规格','purchaseApplyDetailManage')}}</option>
                                     <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceStoreSpecifications"
                                             :key="index"
                                             v-bind:value="item.rssId">
@@ -136,7 +136,7 @@
                         <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.rsId">
-                                    <option selected value=""><vc:i18n name="请选择供应商" namespace="purchaseApplyDetailManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择供应商','purchaseApplyDetailManage')}}</option>
                                     <option v-for="(item,index) in purchaseApplyDetailManageInfo.resourceSuppliers"
                                             :key="index"
                                             :value="item.rsId">{{item.supplierName}}
@@ -147,7 +147,7 @@
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <select class="custom-select" v-model="purchaseApplyDetailManageInfo.conditions.shId">
-                                    <option selected value=""><vc:i18n name="请选择仓库" namespace="purchaseApplyDetailManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择仓库','purchaseApplyDetailManage')}}</option>
                                     <option v-for="(item,index) in purchaseApplyDetailManageInfo.storehouses"
                                             :key="index" :value="item.shId">{{item.shName}}
                                     </option>

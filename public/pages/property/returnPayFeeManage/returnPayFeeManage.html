@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="returnPayFeeManageInfo.conditions.feeTypeCd">
-                                <option value="" selected><vc:i18n name="选择费用类型" namespace="returnPayFeeManage"></vc:i18n></option>
+                                <option value="" selected>{{vc.i18n('选择费用类型','returnPayFeeManage')}}</option>
                                 <option v-for="(item,index) in returnPayFeeManageInfo.feeTypes" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="returnPayFeeManageInfo.conditions.state">
-                                <option value="" selected><vc:i18n name="选择审核状态" namespace="returnPayFeeManage"></vc:i18n></option>
+                                <option value="" selected>{{vc.i18n('选择审核状态','returnPayFeeManage')}}</option>
                                 <option v-for="(item,index) in returnPayFeeManageInfo.returnPayFeeStates" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>

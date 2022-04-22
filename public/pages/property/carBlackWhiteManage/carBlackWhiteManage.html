@@ -13,9 +13,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="carBlackWhiteManageInfo.conditions.blackWhite">
-                                <option selected value=""><vc:i18n name="请选择名单类型" namespace="carBlackWhiteManage"></vc:i18n></option>
-                                <option value="1111"><vc:i18n name="黑名单" namespace="carBlackWhiteManage"></vc:i18n></option>
-                                <option value="2222"><vc:i18n name="白名单" namespace="carBlackWhiteManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择名单类型','carBlackWhiteManage')}}</option>
+                                <option value="1111">{{vc.i18n('黑名单','carBlackWhiteManage')}}</option>
+                                <option value="2222">{{vc.i18n('白名单','carBlackWhiteManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">

@@ -15,7 +15,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="resourceStoreSpecificationManageInfo.conditions.parentRstId" @change="resourceStoreParentTypesChange">
-                                    <option selected value=""><vc:i18n name="请选择物品类型" namespace="resourceStoreSpecificationManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择物品类型','resourceStoreSpecificationManage')}}</option>
                                     <option v-for="(item,index) in resourceStoreSpecificationManageInfo.resourceStoreTypes" :key="index"
                                             v-bind:value="item.rstId">
                                         {{item.name}}
@@ -26,7 +26,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="resourceStoreSpecificationManageInfo.conditions.rstId">
-                                    <option selected value=""><vc:i18n name="请选择二级分类" namespace="resourceStoreSpecificationManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择二级分类','resourceStoreSpecificationManage')}}</option>
                                     <option v-for="(item,index) in resourceStoreSpecificationManageInfo.resourceStoreSonTypes" :key="index"
                                         v-bind:value="item.rstId">
                                         {{item.name}}

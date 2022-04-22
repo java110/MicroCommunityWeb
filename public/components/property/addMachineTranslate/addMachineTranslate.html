@@ -37,9 +37,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="对象类型" namespace="addMachineTranslate"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addMachineTranslateInfo.typeCd">
-         <option selected  disabled value=""><vc:i18n name="必填，请选择对象类型" namespace="addMachineTranslate"></vc:i18n></option>
-         <option  value="8899"><vc:i18n name="业主" namespace="addMachineTranslate"></vc:i18n></option>
-<option  value="9988"><vc:i18n name="小区" namespace="addMachineTranslate"></vc:i18n></option>
+         <option selected  disabled value="">{{vc.i18n('必填，请选择对象类型','addMachineTranslate')}}</option>
+         <option  value="8899">{{vc.i18n('业主','addMachineTranslate')}}</option>
+<option  value="9988">{{vc.i18n('小区','addMachineTranslate')}}</option>
   </select> </div>
                             </div>
                             <div class="form-group row">
@@ -58,9 +58,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="状态" namespace="addMachineTranslate"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addMachineTranslateInfo.state">
-         <option selected  disabled value=""><vc:i18n name="必填" namespace="addMachineTranslate"></vc:i18n>，请选择状态</option>
-         <option  value="10000"><vc:i18n name="未同步" namespace="addMachineTranslate"></vc:i18n></option>
-<option  value="20000"><vc:i18n name="已同步" namespace="addMachineTranslate"></vc:i18n></option>
+         <option selected  disabled value="">{{vc.i18n('必填','addMachineTranslate')}}，请选择状态</option>
+         <option  value="10000">{{vc.i18n('未同步','addMachineTranslate')}}</option>
+<option  value="20000">{{vc.i18n('已同步','addMachineTranslate')}}</option>
   </select> </div>
                             </div>
 

@@ -27,10 +27,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeBreakdownInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="reportFeeBreakdown"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','reportFeeBreakdown')}}</option>
                                     <option v-for="(unit,index) in reportFeeBreakdownInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="reportFeeBreakdown"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','reportFeeBreakdown')}}
                                     </option>
                                 </select>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportFeeBreakdownInfo.conditions.configId">
-                                    <option selected value=""><vc:i18n name="请选择收费项" namespace="reportFeeBreakdown"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择收费项','reportFeeBreakdown')}}</option>
                                     <option v-for="(item,index) in reportFeeBreakdownInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
                                         {{item.feeName}}
@@ -81,7 +81,7 @@
                         <!--费用类型-->
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="reportFeeBreakdownInfo.conditions.feeTypeCd">
-                                <option selected value=""><vc:i18n name="请选择费用类型" namespace="reportFeeBreakdown"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择费用类型','reportFeeBreakdown')}}</option>
                                 <option v-for="(item,index) in reportFeeBreakdownInfo.feeTypeCds" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>

@@ -12,9 +12,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="短信商" namespace="addSmsConfig"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addSmsConfigInfo.smsType">
-                    <option selected disabled value=""><vc:i18n name="必填，请选择短信商" namespace="addSmsConfig"></vc:i18n></option>
-                    <option value="ALI"><vc:i18n name="阿里" namespace="addSmsConfig"></vc:i18n></option>
-                    <option value="TECENT"><vc:i18n name="腾讯" namespace="addSmsConfig"></vc:i18n></option>
+                    <option selected disabled value="">{{vc.i18n('必填，请选择短信商','addSmsConfig')}}</option>
+                    <option value="ALI">{{vc.i18n('阿里','addSmsConfig')}}</option>
+                    <option value="TECENT">{{vc.i18n('腾讯','addSmsConfig')}}</option>
                   </select>
                                 </div>
                             </div>
@@ -22,9 +22,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="短信业务" namespace="addSmsConfig"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addSmsConfigInfo.smsBusi">
-                    <option selected disabled value=""><vc:i18n name="必填，请选择短信业务" namespace="addSmsConfig"></vc:i18n></option>
-                    <option value="1001"><vc:i18n name="欠费催缴" namespace="addSmsConfig"></vc:i18n></option>
-                    <option value="2002"><vc:i18n name="工单通知" namespace="addSmsConfig"></vc:i18n></option>
+                    <option selected disabled value="">{{vc.i18n('必填，请选择短信业务','addSmsConfig')}}</option>
+                    <option value="1001">{{vc.i18n('欠费催缴','addSmsConfig')}}</option>
+                    <option value="2002">{{vc.i18n('工单通知','addSmsConfig')}}</option>
                   </select>
                                 </div>
                             </div>
@@ -63,9 +63,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="日志" namespace="addSmsConfig"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addSmsConfigInfo.logSwitch">
-                    <option selected disabled value=""><vc:i18n name="必填" namespace="addSmsConfig"></vc:i18n>，请选择日志</option>
-                    <option value="ON"><vc:i18n name="记录" namespace="addSmsConfig"></vc:i18n></option>
-                    <option value="OFF"><vc:i18n name="不记录" namespace="addSmsConfig"></vc:i18n></option>
+                    <option selected disabled value="">{{vc.i18n('必填','addSmsConfig')}}，请选择日志</option>
+                    <option value="ON">{{vc.i18n('记录','addSmsConfig')}}</option>
+                    <option value="OFF">{{vc.i18n('不记录','addSmsConfig')}}</option>
                   </select>
                                 </div>
                             </div>

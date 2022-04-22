@@ -18,9 +18,9 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="parkingAreaManageInfo.conditions.typeCd">
-                                <option selected value=""><vc:i18n name="请选择停车场类型" namespace="parkingAreaManage"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="地上停车场" namespace="parkingAreaManage"></vc:i18n></option>
-                                <option value="2001"><vc:i18n name="地下停车场" namespace="parkingAreaManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择停车场类型','parkingAreaManage')}}</option>
+                                <option value="1001">{{vc.i18n('地上停车场','parkingAreaManage')}}</option>
+                                <option value="2001">{{vc.i18n('地下停车场','parkingAreaManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
@@ -78,10 +78,10 @@
                                 <td class="text-center">{{parkingArea.paId}}</td>
                                 <td class="text-center">{{parkingArea.num}}</td>
                                 <td class="text-center" v-if="parkingArea.typeCd=='1001'">
-                                    <vc:i18n name="地上停车场" namespace="parkingAreaManage"></vc:i18n>
+                                    {{vc.i18n('地上停车场','parkingAreaManage')}}
                                 </td>
                                 <td class="text-center" v-else>
-                                    <vc:i18n name="地下停车场" namespace="parkingAreaManage"></vc:i18n>
+                                    {{vc.i18n('地下停车场','parkingAreaManage')}}
                                 </td>
                                 <td v-for="item in parkingArea.listValues">
                                     {{item}}

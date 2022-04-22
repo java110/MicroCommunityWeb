@@ -37,10 +37,10 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="serviceProvideManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="serviceProvideManageInfo.conditions.queryModel">
-                                <option selected value=""><vc:i18n name="请选择实现方式" namespace="serviceProvideManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择实现方式','serviceProvideManage')}}</option>
                                 <option value="1">sql方式</option>
                                 <option value="3">java方式</option>
-                                <option value="2"><vc:i18n name="存储过程方式" namespace="serviceProvideManage"></vc:i18n></option>
+                                <option value="2">{{vc.i18n('存储过程方式','serviceProvideManage')}}</option>
                             </select></div>
                     </div>
 

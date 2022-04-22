@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="machineManageInfo.conditions.machineTypeCd">
-                                <option selected value=""><vc:i18n name="请选择设备类型" namespace="machineManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择设备类型','machineManage')}}</option>
                                 <option v-for="(item,index) in machineManageInfo.machineTypes" :key="index"
                                 :value="item.statusCd">{{item.name}}</option>
                             </select>

@@ -37,7 +37,7 @@
                                         <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="车辆类型" namespace="addTempCarFeeConfig"></vc:i18n></label>
                                         <div class="col-sm-9">
                                             <select class="custom-select" v-model="addTempCarFeeConfigInfo.carType">
-                                                <option selected disabled value=""><vc:i18n name="必填" namespace="addTempCarFeeConfig"></vc:i18n>，请选择车辆类型</option>
+                                                <option selected disabled value="">{{vc.i18n('必填','addTempCarFeeConfig')}}，请选择车辆类型</option>
                                                 <option v-for="(item,index) in addTempCarFeeConfigInfo.carTypes"
                                                         :key="index"
                                                         :value="item.statusCd">{{item.name}}
@@ -52,7 +52,7 @@
                                         <div class="col-sm-9">
                                             <select class="custom-select" v-model="addTempCarFeeConfigInfo.ruleId"
                                                     @change="_changeAddTempCarFeeConfigRule()">
-                                                <option selected disabled value=""><vc:i18n name="必填" namespace="addTempCarFeeConfig"></vc:i18n>，请选择收费规则</option>
+                                                <option selected disabled value="">{{vc.i18n('必填','addTempCarFeeConfig')}}，请选择收费规则</option>
                                                 <option :value="rule.ruleId"
                                                         v-for="(rule,index) in addTempCarFeeConfigInfo.rules"
                                                         :key="index">

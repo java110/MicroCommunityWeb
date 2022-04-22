@@ -11,11 +11,11 @@
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addOwnerRepairInfo.repairObjType"
                                             @change="_changeRepairObjType()">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addOwnerRepair"></vc:i18n>，请选择报修范围</option>
-                                        <option value="001"><vc:i18n name="小区" namespace="addOwnerRepair"></vc:i18n></option>
-                                        <option value="002"><vc:i18n name="楼栋" namespace="addOwnerRepair"></vc:i18n></option>
-                                        <option value="003"><vc:i18n name="单元" namespace="addOwnerRepair"></vc:i18n></option>
-                                        <option value="004"><vc:i18n name="房屋" namespace="addOwnerRepair"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addOwnerRepair')}}，请选择报修范围</option>
+                                        <option value="001">{{vc.i18n('小区','addOwnerRepair')}}</option>
+                                        <option value="002">{{vc.i18n('楼栋','addOwnerRepair')}}</option>
+                                        <option value="003">{{vc.i18n('单元','addOwnerRepair')}}</option>
+                                        <option value="004">{{vc.i18n('房屋','addOwnerRepair')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="报修类型" namespace="addOwnerRepair"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addOwnerRepairInfo.repairType">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addOwnerRepair"></vc:i18n>，请选择报修类型</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addOwnerRepair')}}，请选择报修类型</option>
                                         <option v-for="(item,index) in addOwnerRepairInfo.repairSettings"
                                                 :value="item.repairType">{{item.repairTypeName}}
                                         </option>

@@ -14,7 +14,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="accountBondObjDetailManageInfo.conditions.objId">
-                                    <option selected disabled value=""><vc:i18n name="请选择商铺" namespace="accountBondObjDetailManage"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择商铺','accountBondObjDetailManage')}}</option>
                                     <option :value="item.shopId" v-for="(item,index) in accountBondObjDetailManageInfo.shops">
                                         {{item.shopName}}
                                     </option>
@@ -25,9 +25,9 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="accountBondObjDetailManageInfo.conditions.state">
-                                    <option selected disabled value=""><vc:i18n name="请选择状态" namespace="accountBondObjDetailManage"></vc:i18n></option>
-                                    <option :value="3308"><vc:i18n name="交保证金" namespace="accountBondObjDetailManage"></vc:i18n></option>
-                                    <option :value="3309"><vc:i18n name="退保证金" namespace="accountBondObjDetailManage"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择状态','accountBondObjDetailManage')}}</option>
+                                    <option :value="3308">{{vc.i18n('交保证金','accountBondObjDetailManage')}}</option>
+                                    <option :value="3309">{{vc.i18n('退保证金','accountBondObjDetailManage')}}</option>
                                   </select>
                             </div>
                         </div>

@@ -24,10 +24,10 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeDetailInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="reportFeeDetail"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','reportFeeDetail')}}</option>
                                     <option v-for="(unit,index) in reportFeeDetailInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="reportFeeDetail"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','reportFeeDetail')}}
                                     </option>
                                 </select>
                             </div>
@@ -50,7 +50,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeDetailInfo.conditions.configId">
-                                    <option selected value=""><vc:i18n name="请选择收费项" namespace="reportFeeDetail"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择收费项','reportFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportFeeDetailInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
                                         {{item.feeName}}

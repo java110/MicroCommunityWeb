@@ -31,10 +31,10 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="shopAuditManageInfo.conditions.state">
-                                <option selected value="" ><vc:i18n name="请选择审核状态" namespace="shopAuditManage"></vc:i18n></option>
-                                <option value="001"><vc:i18n name="待审核" namespace="shopAuditManage"></vc:i18n></option>
-                                <option value="002"><vc:i18n name="审核通过" namespace="shopAuditManage"></vc:i18n></option>
-                                <option value="003"><vc:i18n name="审核不通过" namespace="shopAuditManage"></vc:i18n></option>
+                                <option selected value="" >{{vc.i18n('请选择审核状态','shopAuditManage')}}</option>
+                                <option value="001">{{vc.i18n('待审核','shopAuditManage')}}</option>
+                                <option value="002">{{vc.i18n('审核通过','shopAuditManage')}}</option>
+                                <option value="003">{{vc.i18n('审核不通过','shopAuditManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-1">

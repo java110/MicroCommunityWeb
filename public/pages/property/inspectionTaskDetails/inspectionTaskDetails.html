@@ -41,7 +41,7 @@
                     <div class="row" v-show="inspectionTaskDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.inspectionPlanId">
-                                <option selected value=""><vc:i18n name="请选择巡检计划" namespace="inspectionTaskDetails"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择巡检计划','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.inspectionPlanList" :key="index"
                                     :value="item.inspectionPlanId">
                                     {{item.inspectionPlanName}}
@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.inspectionRouteId">
-                                <option selected value=""><vc:i18n name="请选择巡检路线" namespace="inspectionTaskDetails"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择巡检路线','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.inspectionRouteList" :key="index"
                                     :value="item.inspectionRouteId">
                                     {{item.routeName}}
@@ -59,7 +59,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.inspectionId">
-                                <option selected value=""><vc:i18n name="请选择巡检点" namespace="inspectionTaskDetails"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择巡检点','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.inspectionPointList" :key="index"
                                     :value="item.inspectionId">
                                     {{item.inspectionName}}
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.inspectionState">
-                                <option selected value=""><vc:i18n name="请选择签到状态" namespace="inspectionTaskDetails"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择签到状态','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.inspectionStateTypes" :key="index"
                                     :value="item.statusCd">
                                     {{item.name}}
@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择巡检点状态" namespace="inspectionTaskDetails"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择巡检点状态','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.stateTypes" :key="index" :value="item.statusCd">
                                     {{item.name}}
                                 </option>
@@ -94,7 +94,7 @@
                     <div class="row" v-show="inspectionTaskDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.taskState">
-                                <option selected value=""><vc:i18n name="请选择任务状态" namespace="inspectionTaskDetails"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择任务状态','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.taskStates" :key="index"
                                     :value="item.statusCd">
                                     {{item.name}}
@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.patrolType">
-                                <option selected value=""><vc:i18n name="请选择巡检情况" namespace="inspectionTaskDetails"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择巡检情况','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.patrolTypes" :key="index" :value="item.statusCd">
                                     {{item.name}}
                                 </option>

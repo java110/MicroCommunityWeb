@@ -18,11 +18,11 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="payFeeBatchInfo.conditions.state">
-                                <option selected disabled value=""><vc:i18n name="请选择状态" namespace="payFeeBatch"></vc:i18n></option>
-                                <option value="2006001"><div><vc:i18n name="正常" namespace="payFeeBatch"></vc:i18n></div></option>
-                                <option value="2007001"><vc:i18n name="申请取消" namespace="payFeeBatch"></vc:i18n></option>
-                                <option value="2008001"><vc:i18n name="审核通过" namespace="payFeeBatch"></vc:i18n></option>
-                                <option value="2009001"><vc:i18n name="审核失败" namespace="payFeeBatch"></vc:i18n></option>
+                                <option selected disabled value="">{{vc.i18n('请选择状态','payFeeBatch')}}</option>
+                                <option value="2006001"><div>{{vc.i18n('正常','payFeeBatch')}}</div></option>
+                                <option value="2007001">{{vc.i18n('申请取消','payFeeBatch')}}</option>
+                                <option value="2008001">{{vc.i18n('审核通过','payFeeBatch')}}</option>
+                                <option value="2009001">{{vc.i18n('审核失败','payFeeBatch')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
@@ -88,7 +88,7 @@
                                 <td class="text-center">{{payFee.msg}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 2006001" v-on:click="_openApply(payFee)"><vc:i18n name="申请取消" namespace="payFeeBatch"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 2006001" v-on:click="_openApply(payFee)">{{vc.i18n('申请取消','payFeeBatch')}}
                                     </button>
                                         <button class="btn-white btn btn-xs" v-if="payFee.state == 2007001" v-on:click="_openPayFeeBatchAuditModel(payFee)"><vc:i18n name="审核" namespace="payFeeBatch"></vc:i18n>
                                     </button>

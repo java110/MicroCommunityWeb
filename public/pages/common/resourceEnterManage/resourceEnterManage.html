@@ -41,7 +41,7 @@
                             </td>
                             <td class="text-center">
                                 <select class="form-control" name="" id="" v-model="resourceEnter.rsId">
-                                    <option value="" selected><vc:i18n name="请选择" namespace="resourceEnterManage"></vc:i18n></option>
+                                    <option value="" selected>{{vc.i18n('请选择','resourceEnterManage')}}</option>
                                     <option v-for="supplier in resourceEnterManageInfo.resourceSuppliers" :value="supplier.rsId">
                                         {{supplier.supplierName}}
                                     </option>

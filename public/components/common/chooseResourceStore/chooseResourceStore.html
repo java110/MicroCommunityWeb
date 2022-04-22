@@ -17,7 +17,7 @@ vc.i18n(' ','chooseResourceStore')vc.i18n(' ','chooseResourceStore')vc.i18n(' ',
                                     <div class="input-group">
                                         <select class="custom-select custom-select-sm"
                                                 v-model="chooseResourceStoreInfo.shId">
-                                            <option selected value=""><vc:i18n name="请选择仓库" namespace="chooseResourceStore"></vc:i18n></option>
+                                            <option selected value="">{{vc.i18n('请选择仓库','chooseResourceStore')}}</option>
                                             <option v-for="(item,index) in chooseResourceStoreInfo.storehouses"
                                                     :key="index" v-bind:value="item.shId">
                                                 {{item.shName}}
@@ -30,7 +30,7 @@ vc.i18n(' ','chooseResourceStore')vc.i18n(' ','chooseResourceStore')vc.i18n(' ',
                                         <select class="custom-select custom-select-sm"
                                                 v-model="chooseResourceStoreInfo.parentRstId"
                                                 @change="_listResourceStoreSonTypes">
-                                            <option selected value=""><vc:i18n name="请选择物品类型" namespace="chooseResourceStore"></vc:i18n></option>
+                                            <option selected value="">{{vc.i18n('请选择物品类型','chooseResourceStore')}}</option>
                                             <option v-for="(item,index) in chooseResourceStoreInfo.resourceStoreTypes"
                                                     :key="index" v-bind:value="item.rstId">
                                                 {{item.name}}
@@ -42,7 +42,7 @@ vc.i18n(' ','chooseResourceStore')vc.i18n(' ','chooseResourceStore')vc.i18n(' ',
                                     <div class="input-group">
                                         <select class="custom-select custom-select-sm"
                                                 v-model="chooseResourceStoreInfo.rstId">
-                                            <option selected value=""><vc:i18n name="请选择二级分类" namespace="chooseResourceStore"></vc:i18n></option>
+                                            <option selected value="">{{vc.i18n('请选择二级分类','chooseResourceStore')}}</option>
                                             <option v-for="(item,index) in chooseResourceStoreInfo.resourceStoreSonTypes"
                                                     :key="index" v-bind:value="item.rstId">
                                                 {{item.name}}

@@ -21,9 +21,9 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="machineRecordManageInfo.conditions.openTypeCd">
-                                <option selected value=""><vc:i18n name="请选择开门方式" namespace="machineRecordManage"></vc:i18n></option>
-                                <option value="1000"><vc:i18n name="人脸开门" namespace="machineRecordManage"></vc:i18n></option>
-                                <option value="2000"><vc:i18n name="钥匙开门" namespace="machineRecordManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择开门方式','machineRecordManage')}}</option>
+                                <option value="1000">{{vc.i18n('人脸开门','machineRecordManage')}}</option>
+                                <option value="2000">{{vc.i18n('钥匙开门','machineRecordManage')}}</option>
                             </select></div>
                         <div class="col-sm-3">
                             <div class="form-group">
@@ -41,9 +41,9 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="machineRecordManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="machineRecordManageInfo.conditions.ownerTypeCd">
-                                <option selected value=""><vc:i18n name="请选择用户类型" namespace="machineRecordManage"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="业主" namespace="machineRecordManage"></vc:i18n></option>
-                                <option value="1002"><vc:i18n name="业主成员" namespace="machineRecordManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择用户类型','machineRecordManage')}}</option>
+                                <option value="1001">{{vc.i18n('业主','machineRecordManage')}}</option>
+                                <option value="1002">{{vc.i18n('业主成员','machineRecordManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4" v-if="machineRecordManageInfo.moreCondition == true">

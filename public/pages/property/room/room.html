@@ -30,9 +30,9 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="room"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','room')}}</option>
                                     <option v-for="(unit,index) in roomUnits" :key="index" v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="room"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','room')}}
                                     </option>
                                 </select>
                             </div>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="room"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','room')}}</option>
                                 <option v-for="(item,index) in roomInfo.states" :key="index" :value="item.statusCd">
                                     {{item.name}}
                                 </option>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.roomSubType">
-                                <option selected  value=""><vc:i18n name="必填，请选择房屋类型" namespace="room"></vc:i18n></option>
+                                <option selected  value="">{{vc.i18n('必填，请选择房屋类型','room')}}</option>
                                 <option :value="item.statusCd" v-for="(item,index) in roomInfo.roomSubTypes">{{item.name}}</option>
                             </select>
                         </div>

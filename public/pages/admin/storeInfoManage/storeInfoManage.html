@@ -19,7 +19,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="storeInfoManageInfo.conditions.convenienceMenusId">
-                                    <option value=""><vc:i18n name="请选择便民种类" namespace="storeInfoManage"></vc:i18n></option>
+                                    <option value="">{{vc.i18n('请选择便民种类','storeInfoManage')}}</option>
                                     <option :value="item.convenienceMenusId"
                                             v-for="(item,index) in storeInfoManageInfo.menuInfos">
                                         {{item.name}}
@@ -29,9 +29,9 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="storeInfoManageInfo.conditions.isShow">
-                                <option selected value=""><vc:i18n name="请选择是否显示" namespace="storeInfoManage"></vc:i18n></option>
-                                <option value="Y"><vc:i18n name="是" namespace="storeInfoManage"></vc:i18n></option>
-                                <option value="N"><vc:i18n name="否" namespace="storeInfoManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择是否显示','storeInfoManage')}}</option>
+                                <option value="Y">{{vc.i18n('是','storeInfoManage')}}</option>
+                                <option value="N">{{vc.i18n('否','storeInfoManage')}}</option>
                             </select></div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryStoreInfoMethod()">

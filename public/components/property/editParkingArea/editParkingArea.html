@@ -18,9 +18,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="停车场类型" namespace="editParkingArea"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editParkingAreaInfo.typeCd">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editParkingArea"></vc:i18n>，请选择停车场类型</option>
-                                        <option value="1001"><vc:i18n name="地上停车场" namespace="editParkingArea"></vc:i18n></option>
-                                        <option value="2001"><vc:i18n name="地下停车场" namespace="editParkingArea"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editParkingArea')}}，请选择停车场类型</option>
+                                        <option value="1001">{{vc.i18n('地上停车场','editParkingArea')}}</option>
+                                        <option value="2001">{{vc.i18n('地下停车场','editParkingArea')}}</option>
                                     </select>
                                 </div>
                             </div>

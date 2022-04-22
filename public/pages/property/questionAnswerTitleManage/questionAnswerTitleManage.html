@@ -12,10 +12,10 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="questionAnswerTitleManageInfo.conditions.titleType">
-                                <option selected value=""><vc:i18n name="请选择题目类型" namespace="questionAnswerTitleManage"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="单选" namespace="questionAnswerTitleManage"></vc:i18n></option>
-                                <option value="2002"><vc:i18n name="多选" namespace="questionAnswerTitleManage"></vc:i18n></option>
-                                <option value="3003"><vc:i18n name="简答题" namespace="questionAnswerTitleManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择题目类型','questionAnswerTitleManage')}}</option>
+                                <option value="1001">{{vc.i18n('单选','questionAnswerTitleManage')}}</option>
+                                <option value="2002">{{vc.i18n('多选','questionAnswerTitleManage')}}</option>
+                                <option value="3003">{{vc.i18n('简答题','questionAnswerTitleManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">

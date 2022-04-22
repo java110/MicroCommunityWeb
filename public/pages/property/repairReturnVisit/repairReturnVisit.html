@@ -16,7 +16,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="repairReturnVisitInfo.conditions.repairType">
-                                    <option selected value=""><vc:i18n name="请选择报修类型" namespace="repairReturnVisit"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择报修类型','repairReturnVisit')}}</option>
                                     <option v-for="(item,index) in repairReturnVisitInfo.repairSettings"
                                         :value="item.repairType">{{item.repairTypeName}}
                                     </option>
@@ -31,8 +31,8 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="repairReturnVisitInfo.conditions.state">
-                                    <option selected value="waiting"> <vc:i18n name="待回访" namespace="repairReturnVisit"></vc:i18n></option>
-                                    <option selected value="finish"> <vc:i18n name="已回访" namespace="repairReturnVisit"></vc:i18n></option>
+                                    <option selected value="waiting"> {{vc.i18n('待回访','repairReturnVisit')}}</option>
+                                    <option selected value="finish"> {{vc.i18n('已回访','repairReturnVisit')}}</option>
                                 </select>
                             </div>
                         </div>

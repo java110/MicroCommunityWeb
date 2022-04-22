@@ -40,9 +40,9 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="reportInfoBackCityManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="reportInfoBackCityManageInfo.conditions.source">
-                                <option selected value=""><vc:i18n name="请选择来源地" namespace="reportInfoBackCityManage"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="国内" namespace="reportInfoBackCityManage"></vc:i18n></option>
-                                <option value="2002"><vc:i18n name="国外" namespace="reportInfoBackCityManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择来源地','reportInfoBackCityManage')}}</option>
+                                <option value="1001">{{vc.i18n('国内','reportInfoBackCityManage')}}</option>
+                                <option value="2002">{{vc.i18n('国外','reportInfoBackCityManage')}}</option>
                             </select>
                         </div>
                     </div>

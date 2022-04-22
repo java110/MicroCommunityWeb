@@ -42,7 +42,7 @@
                     <div class="row" v-if="carCreateFeeInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="carCreateFeeInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择车位状态" namespace="carCreateFee"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择车位状态','carCreateFee')}}</option>
                                 <option v-for="(item,index) in carCreateFeeInfo.states" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

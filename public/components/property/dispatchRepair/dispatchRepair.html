@@ -17,7 +17,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="报修师傅" namespace="dispatchRepair"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="dispatchRepairInfo.staffId">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="dispatchRepair"></vc:i18n>，请选择报修师傅</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','dispatchRepair')}}，请选择报修师傅</option>
                                         <option v-for="(item,index) in dispatchRepairInfo.repairTypeUsers"
                                                 :value="item.staffId">{{item.staffName}}
                                         </option>

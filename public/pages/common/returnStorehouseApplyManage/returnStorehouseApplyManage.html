@@ -50,7 +50,7 @@
                             </td>
                             <td class="text-center" style="vertical-align: inherit;">
                                 <select class="custom-select" v-model="resourceStore.shzId">
-                                    <option value=""><vc:i18n name="必填" namespace="returnStorehouseApplyManage"></vc:i18n>，请选择目标仓库</option>
+                                    <option value="">{{vc.i18n('必填','returnStorehouseApplyManage')}}，请选择目标仓库</option>
                                     <option v-for="(item,index) in returnStorehouseManageInfo.storehouses"
                                             :key="index" v-bind:value="item.shId"
                                             v-if="item.shId != resourceStore.shId">

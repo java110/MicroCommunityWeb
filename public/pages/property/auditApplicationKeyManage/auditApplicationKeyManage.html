@@ -28,10 +28,10 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="auditApplicationKeyManageInfo.conditions.state">
-                                    <option selected value=""><vc:i18n name="请选择审核状态" namespace="auditApplicationKeyManage"></vc:i18n></option>
-                                    <option value="10001"><vc:i18n name="审核完成" namespace="auditApplicationKeyManage"></vc:i18n></option>
-                                    <option value="10002"><vc:i18n name="未审核" namespace="auditApplicationKeyManage"></vc:i18n></option>
-                                    <option value="10003"><vc:i18n name="审核拒绝" namespace="auditApplicationKeyManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择审核状态','auditApplicationKeyManage')}}</option>
+                                    <option value="10001">{{vc.i18n('审核完成','auditApplicationKeyManage')}}</option>
+                                    <option value="10002">{{vc.i18n('未审核','auditApplicationKeyManage')}}</option>
+                                    <option value="10003">{{vc.i18n('审核拒绝','auditApplicationKeyManage')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -46,9 +46,9 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="auditApplicationKeyManageInfo.conditions.typeCd">
-                                    <option selected value=""><vc:i18n name="请选择用户类型" namespace="auditApplicationKeyManage"></vc:i18n></option>
-                                    <option value="10001"><vc:i18n name="保洁" namespace="auditApplicationKeyManage"></vc:i18n></option>
-                                    <option value="10002"><vc:i18n name="保安" namespace="auditApplicationKeyManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择用户类型','auditApplicationKeyManage')}}</option>
+                                    <option value="10001">{{vc.i18n('保洁','auditApplicationKeyManage')}}</option>
+                                    <option value="10002">{{vc.i18n('保安','auditApplicationKeyManage')}}</option>
                                 </select>
                             </div>
                         </div>

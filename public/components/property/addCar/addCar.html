@@ -25,7 +25,7 @@
                             <label class="col-sm-2 col-form-label"><vc:i18n name="车类型" namespace="addCar"></vc:i18n></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="addCarInfo.carType">
-                                    <option selected disabled value=""><vc:i18n name="必填" namespace="addCar"></vc:i18n>，请选择类型</option>
+                                    <option selected disabled value="">{{vc.i18n('必填','addCar')}}，请选择类型</option>
                                     <option v-for="carType in carTypes" :key="carType.statusCd"
                                             v-bind:value="carType.statusCd">{{carType.name}}
                                     </option>
@@ -43,9 +43,9 @@
                             <label class="col-sm-2 col-form-label"><vc:i18n name="车牌类型" namespace="addCar"></vc:i18n></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="addCarInfo.carNumType">
-                                    <option selected disabled value=""><vc:i18n name="必填" namespace="addCar"></vc:i18n>，请选择车牌类型</option>
-                                    <option value="H"><vc:i18n name="月租车" namespace="addCar"></vc:i18n></option>
-                                    <option value="S"><vc:i18n name="出售车辆" namespace="addCar"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('必填','addCar')}}，请选择车牌类型</option>
+                                    <option value="H">{{vc.i18n('月租车','addCar')}}</option>
+                                    <option value="S">{{vc.i18n('出售车辆','addCar')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -67,12 +67,12 @@
                             <label class="col-sm-2 col-form-label"><vc:i18n name="是否是预约车" namespace="addCar"></vc:i18n></label>
                             <div class="col-sm-10">
                                 <!--<select class="custom-select" v-model="addCarInfo.value">
-                                    <option selected disabled value=""><vc:i18n name="必填" namespace="addCar"></vc:i18n>，请选择是否是预约车</option>
-                                    <option value="true"><vc:i18n name="是" namespace="addCar"></vc:i18n></option>
-                                    <option value="false"><vc:i18n name="否" namespace="addCar"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('必填','addCar')}}，请选择是否是预约车</option>
+                                    <option value="true">{{vc.i18n('是','addCar')}}</option>
+                                    <option value="false">{{vc.i18n('否','addCar')}}</option>
                                 </select>-->
                                 <select class="custom-select" v-model="addCarInfo.value">
-                                    <option selected disabled value=""><vc:i18n name="请选择是否是预约车" namespace="addCar"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择是否是预约车','addCar')}}</option>
                                     <option v-for="(item,index) in addCarInfo.carAttrs" :value="item.value">
                                         {{item.valueName}}
                                     </option>

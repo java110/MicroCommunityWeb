@@ -16,7 +16,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="repairPoolManageInfo.conditions.repairType">
-                                    <option selected value=""><vc:i18n name="请选择报修类型" namespace="repairPoolManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择报修类型','repairPoolManage')}}</option>
                                     <option v-for="(item,index) in repairPoolManageInfo.repairSettings"
                                             :value="item.repairType">{{item.repairTypeName}}
                                     </option>
@@ -31,7 +31,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="repairPoolManageInfo.conditions.state">
-                                    <option selected value=""><vc:i18n name="请选择报修状态" namespace="repairPoolManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择报修状态','repairPoolManage')}}</option>
                                     <option v-for="(item,index) in repairPoolManageInfo.states" :value="item.statusCd">
                                         {{item.name}}
                                     </option>
@@ -52,7 +52,7 @@
 
                         <div class="col-sm-4" v-if="repairPoolManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="repairPoolManageInfo.conditions.repairSettingType">
-                                <option selected value=""><vc:i18n name="请选择报修设置类型" namespace="repairPoolManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择报修设置类型','repairPoolManage')}}</option>
                                 <option v-for="(item,index) in repairPoolManageInfo.repairSettingTypes" :value="item.statusCd">
                                     {{item.name}}
                                 </option>

@@ -13,10 +13,10 @@
                     <label class="col-sm-2 col-form-label"><vc:i18n name="投诉类型" namespace="addComplainView"></vc:i18n></label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addComplainViewInfo.typeCd">
-                            <option selected disabled value=""><vc:i18n name="必填" namespace="addComplainView"></vc:i18n>，请选择投诉类型</option>
-                            <option value="809001"><vc:i18n name="投诉" namespace="addComplainView"></vc:i18n></option>
-                            <option value="809002"><vc:i18n name="建议" namespace="addComplainView"></vc:i18n></option>
-                            <option value="809003"><vc:i18n name="咨询" namespace="addComplainView"></vc:i18n></option>
+                            <option selected disabled value="">{{vc.i18n('必填','addComplainView')}}，请选择投诉类型</option>
+                            <option value="809001">{{vc.i18n('投诉','addComplainView')}}</option>
+                            <option value="809002">{{vc.i18n('建议','addComplainView')}}</option>
+                            <option value="809003">{{vc.i18n('咨询','addComplainView')}}</option>
                         </select></div>
                 </div>
                 <div class="form-group row">

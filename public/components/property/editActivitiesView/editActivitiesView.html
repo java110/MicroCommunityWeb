@@ -20,7 +20,7 @@
                             <label class="col-sm-2 col-form-label"><vc:i18n name="信息类型" namespace="editActivitiesView"></vc:i18n></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="editActivitiesViewInfo.typeCd">
-                                    <option selected disabled value=""><vc:i18n name="必填" namespace="editActivitiesView"></vc:i18n>，请选择信息类型</option>
+                                    <option selected disabled value="">{{vc.i18n('必填','editActivitiesView')}}，请选择信息类型</option>
                                     <option v-for="(item,index) in editActivitiesViewInfo.typeCds" :key="index"
                                             v-bind:value="item.typeCd">{{item.typeName}}
                                     </option>

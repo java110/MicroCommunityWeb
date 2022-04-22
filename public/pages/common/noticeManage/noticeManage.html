@@ -22,20 +22,20 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="noticeManageInfo.conditions.noticeTypeCd">
-                                    <option selected disabled value=""><vc:i18n name="请选择公告类型" namespace="noticeManage"></vc:i18n></option>
-                                    <option value="1000"><vc:i18n name="业主通知" namespace="noticeManage"></vc:i18n></option>
-                                    <option value="1001"><vc:i18n name="员工通知" namespace="noticeManage"></vc:i18n></option>
-                                    <option value="1003"><vc:i18n name="业主微信通知" namespace="noticeManage"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择公告类型','noticeManage')}}</option>
+                                    <option value="1000">{{vc.i18n('业主通知','noticeManage')}}</option>
+                                    <option value="1001">{{vc.i18n('员工通知','noticeManage')}}</option>
+                                    <option value="1003">{{vc.i18n('业主微信通知','noticeManage')}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="noticeManageInfo.conditions.state">
-                                    <option selected value=""><vc:i18n name="请选择状态" namespace="noticeManage"></vc:i18n></option>
-                                    <option value="1000"><vc:i18n name="待通知" namespace="noticeManage"></vc:i18n></option>
-                                    <option value="2000"><vc:i18n name="通知中" namespace="noticeManage"></vc:i18n></option>
-                                    <option value="3000"><vc:i18n name="通知完成" namespace="noticeManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择状态','noticeManage')}}</option>
+                                    <option value="1000">{{vc.i18n('待通知','noticeManage')}}</option>
+                                    <option value="2000">{{vc.i18n('通知中','noticeManage')}}</option>
+                                    <option value="3000">{{vc.i18n('通知完成','noticeManage')}}</option>
                                 </select>
                             </div>
                         </div>

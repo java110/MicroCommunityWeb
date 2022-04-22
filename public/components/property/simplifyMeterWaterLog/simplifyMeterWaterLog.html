@@ -2,9 +2,9 @@
     <div class="row margin-top-lg">
         <div class="col-lg-2 padding-right-xs padding-left-xl">
             <select class="custom-select custom-select-sm" v-model="simplifyMeterWaterFeeInfo.meterType" @change="_listSimplifyMeterWaterFee(1,10)">
-                <option selected value=""><vc:i18n name="请选择表类型" namespace="simplifyMeterWaterLog"></vc:i18n></option>
-                <option value="1010"><vc:i18n name="电表" namespace="simplifyMeterWaterLog"></vc:i18n></option>
-                <option value="2020"><vc:i18n name="水表" namespace="simplifyMeterWaterLog"></vc:i18n></option>
+                <option selected value="">{{vc.i18n('请选择表类型','simplifyMeterWaterLog')}}</option>
+                <option value="1010">{{vc.i18n('电表','simplifyMeterWaterLog')}}</option>
+                <option value="2020">{{vc.i18n('水表','simplifyMeterWaterLog')}}</option>
             </select>
         </div>
         <div class="col-lg-10 text-right" v-if="simplifyMeterWaterFeeInfo.roomId">

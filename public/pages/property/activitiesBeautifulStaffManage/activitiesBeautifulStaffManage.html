@@ -12,7 +12,7 @@
                         <div class="col-sm-4">
                             <select class="custom-select"
                                     v-model="activitiesBeautifulStaffManageInfo.conditions.ruleId">
-                                <option selected value=""><vc:i18n name="请选择活动规则" namespace="activitiesBeautifulStaffManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择活动规则','activitiesBeautifulStaffManage')}}</option>
                                 <option v-for="(item,index) in activitiesBeautifulStaffManageInfo.activitiesRules" :key="index"
                                         :value="item.ruleId">{{item.ruleName}}
                                 </option>

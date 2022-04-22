@@ -31,10 +31,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="listParkingSpaceInfo.conditions.state">
-                                    <option selected value=""><vc:i18n name="必填，请选择车位状态" namespace="listParkingSpace"></vc:i18n></option>
-                                    <option value="S"><vc:i18n name="出售" namespace="listParkingSpace"></vc:i18n></option>
-                                    <option value="H"><vc:i18n name="出租" namespace="listParkingSpace"></vc:i18n></option>
-                                    <option value="F"><vc:i18n name="空闲" namespace="listParkingSpace"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('必填，请选择车位状态','listParkingSpace')}}</option>
+                                    <option value="S">{{vc.i18n('出售','listParkingSpace')}}</option>
+                                    <option value="H">{{vc.i18n('出租','listParkingSpace')}}</option>
+                                    <option value="F">{{vc.i18n('空闲','listParkingSpace')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -126,11 +126,11 @@
                                 <td class="text-center">
                                     <!-- <div class="btn-group" v-if="parkingSpace.state =='F'">
                                     <button class="btn-white btn btn-xs"
-                                        v-on:click="_openToHireParkingSpaceModel(parkingSpace)"><vc:i18n name="出租" namespace="listParkingSpace"></vc:i18n></button>
+                                        v-on:click="_openToHireParkingSpaceModel(parkingSpace)">{{vc.i18n('出租','listParkingSpace')}}</button>
                                 </div>
                                 <div class="btn-group" v-if="parkingSpace.state =='F'">
                                     <button class="btn-white btn btn-xs"
-                                        v-on:click="_openToSellParkingSpaceModel(parkingSpace)"><vc:i18n name="出售" namespace="listParkingSpace"></vc:i18n></button>
+                                        v-on:click="_openToSellParkingSpaceModel(parkingSpace)">{{vc.i18n('出售','listParkingSpace')}}</button>
                                 </div> -->
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openEditParkingSpaceModel(parkingSpace)"><vc:i18n name="修改" namespace="listParkingSpace"></vc:i18n>

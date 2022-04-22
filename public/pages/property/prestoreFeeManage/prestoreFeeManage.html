@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="prestoreFeeManageInfo.conditions.prestoreFeeType">
-                                <option selected value=""><vc:i18n name="请选择预存类型" namespace="prestoreFeeManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择预存类型','prestoreFeeManage')}}</option>
                                 <option v-for="(item,index) in prestoreFeeManageInfo.prestoreFeeTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="prestoreFeeManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="prestoreFeeManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','prestoreFeeManage')}}</option>
                                 <option v-for="(item,index) in prestoreFeeManageInfo.states" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

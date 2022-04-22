@@ -29,9 +29,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="性别" namespace="handover"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="handoverInfo.sex">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="handover"></vc:i18n>，请选择性别</option>
-                                        <option value="0"><vc:i18n name="男" namespace="handover"></vc:i18n></option>
-                                        <option value="1"><vc:i18n name="女" namespace="handover"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','handover')}}，请选择性别</option>
+                                        <option value="0">{{vc.i18n('男','handover')}}</option>
+                                        <option value="1">{{vc.i18n('女','handover')}}</option>
                                     </select>
                                 </div>
                             </div>

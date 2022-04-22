@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择巡检状态" namespace="inspectionTaskManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择巡检状态','inspectionTaskManage')}}</option>
                                 <option v-for="(item,index) in inspectionTaskManageInfo.stateTypes" :key="index" :value="item.statusCd">
                                     {{item.name}}
                                 </option>

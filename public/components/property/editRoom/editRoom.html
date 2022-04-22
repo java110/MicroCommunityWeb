@@ -25,9 +25,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="房屋单元" namespace="editRoom"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomInfo.unitId">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editRoom"></vc:i18n>，请选择单元</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editRoom')}}，请选择单元</option>
                                         <option v-for="(unit,index) in editRoomUnits" :key="index"
-                                            v-bind:value="unit.unitId">{{unit.unitNum}}<vc:i18n name="单元" namespace="editRoom"></vc:i18n>
+                                            v-bind:value="unit.unitId">{{unit.unitNum}}{{vc.i18n('单元','editRoom')}}
                                         </option>
                                     </select>
                                 </div>
@@ -36,28 +36,28 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="房屋户型" namespace="editRoom"></vc:i18n></label>
                                 <div class="col-sm-5" style="display: inline">
                                     <select class="custom-select" v-model="editRoomInfo.apartment1">
-                                        <option selected value=""><vc:i18n name="必填" namespace="editRoom"></vc:i18n>，请选择房屋户型</option>
-                                        <option value="10"><vc:i18n name="一室" namespace="editRoom"></vc:i18n></option>
-                                        <option value="20"><vc:i18n name="两室" namespace="editRoom"></vc:i18n></option>
-                                        <option value="30"><vc:i18n name="三室" namespace="editRoom"></vc:i18n></option>
-                                        <option value="40"><vc:i18n name="四室" namespace="editRoom"></vc:i18n></option>
-                                        <option value="50"><vc:i18n name="五室" namespace="editRoom"></vc:i18n></option>
-                                        <option value="60"><vc:i18n name="六室" namespace="editRoom"></vc:i18n></option>
-                                        <option value="70"><vc:i18n name="七室" namespace="editRoom"></vc:i18n></option>
-                                        <option value="80"><vc:i18n name="八室" namespace="editRoom"></vc:i18n></option>
+                                        <option selected value="">{{vc.i18n('必填','editRoom')}}，请选择房屋户型</option>
+                                        <option value="10">{{vc.i18n('一室','editRoom')}}</option>
+                                        <option value="20">{{vc.i18n('两室','editRoom')}}</option>
+                                        <option value="30">{{vc.i18n('三室','editRoom')}}</option>
+                                        <option value="40">{{vc.i18n('四室','editRoom')}}</option>
+                                        <option value="50">{{vc.i18n('五室','editRoom')}}</option>
+                                        <option value="60">{{vc.i18n('六室','editRoom')}}</option>
+                                        <option value="70">{{vc.i18n('七室','editRoom')}}</option>
+                                        <option value="80">{{vc.i18n('八室','editRoom')}}</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-5" style="display: inline">
                                     <select class="custom-select" v-model="editRoomInfo.apartment2">
-                                        <option selected value=""><vc:i18n name="必填" namespace="editRoom"></vc:i18n>，请选择房屋户型</option>
-                                        <option value="101"><vc:i18n name="一厅" namespace="editRoom"></vc:i18n></option>
-                                        <option value="102"><vc:i18n name="两厅" namespace="editRoom"></vc:i18n></option>
-                                        <option value="103"><vc:i18n name="三厅" namespace="editRoom"></vc:i18n></option>
-                                        <option value="104"><vc:i18n name="四厅" namespace="editRoom"></vc:i18n></option>
-                                        <option value="105"><vc:i18n name="五厅" namespace="editRoom"></vc:i18n></option>
-                                        <option value="106"><vc:i18n name="六厅" namespace="editRoom"></vc:i18n></option>
-                                        <option value="107"><vc:i18n name="七厅" namespace="editRoom"></vc:i18n></option>
-                                        <option value="108"><vc:i18n name="八厅" namespace="editRoom"></vc:i18n></option>
+                                        <option selected value="">{{vc.i18n('必填','editRoom')}}，请选择房屋户型</option>
+                                        <option value="101">{{vc.i18n('一厅','editRoom')}}</option>
+                                        <option value="102">{{vc.i18n('两厅','editRoom')}}</option>
+                                        <option value="103">{{vc.i18n('三厅','editRoom')}}</option>
+                                        <option value="104">{{vc.i18n('四厅','editRoom')}}</option>
+                                        <option value="105">{{vc.i18n('五厅','editRoom')}}</option>
+                                        <option value="106">{{vc.i18n('六厅','editRoom')}}</option>
+                                        <option value="107">{{vc.i18n('七厅','editRoom')}}</option>
+                                        <option value="108">{{vc.i18n('八厅','editRoom')}}</option>
 
                                     </select>
                                 </div>
@@ -66,7 +66,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="房屋类型" namespace="editRoom"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomInfo.roomSubType">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editRoom"></vc:i18n>，请选择房屋类型</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editRoom')}}，请选择房屋类型</option>
                                         <option :value="item.statusCd" v-for="(item,index) in editRoomInfo.roomSubTypes">{{item.name}}</option>
 
                                     </select>
@@ -97,15 +97,15 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="房屋状态" namespace="editRoom"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomInfo.state">
-                                        <option selected value=""><vc:i18n name="必填，请选择房屋状态" namespace="editRoom"></vc:i18n></option>
-                                        <option value="2001"><vc:i18n name="已入住" namespace="editRoom"></vc:i18n></option>
-                                        <option value="2003"><vc:i18n name="已交房" namespace="editRoom"></vc:i18n></option>
-                                        <option value="2005"><vc:i18n name="已装修" namespace="editRoom"></vc:i18n></option>
-                                        <option value="2004"><vc:i18n name="未入住" namespace="editRoom"></vc:i18n></option>
+                                        <option selected value="">{{vc.i18n('必填，请选择房屋状态','editRoom')}}</option>
+                                        <option value="2001">{{vc.i18n('已入住','editRoom')}}</option>
+                                        <option value="2003">{{vc.i18n('已交房','editRoom')}}</option>
+                                        <option value="2005">{{vc.i18n('已装修','editRoom')}}</option>
+                                        <option value="2004">{{vc.i18n('未入住','editRoom')}}</option>
                                         <!--wuxw 关闭  这里和后端对不上 后端要求提供开始时间和结束时间 前段 没有这个选项，不清楚什么场景下的需求，后面的兄弟记得补充-->
-                                        <!-- <option value="2006"><vc:i18n name="已出租" namespace="editRoom"></vc:i18n></option> -->
-                                        <option value="2008"><vc:i18n name="空闲" namespace="editRoom"></vc:i18n></option>
-                                        <option value="2009"><vc:i18n name="装修中" namespace="editRoom"></vc:i18n></option>
+                                        <!-- <option value="2006">{{vc.i18n('已出租','editRoom')}}</option> -->
+                                        <option value="2008">{{vc.i18n('空闲','editRoom')}}</option>
+                                        <option value="2009">{{vc.i18n('装修中','editRoom')}}</option>
                                     </select>
                                 </div>
                             </div>

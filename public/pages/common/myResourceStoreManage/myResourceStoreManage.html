@@ -42,7 +42,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
-                                    <option selected value=""><vc:i18n name="请选择物品类型" namespace="myResourceStoreManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择物品类型','myResourceStoreManage')}}</option>
                                     <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreTypes"
                                             :key="index" v-bind:value="item.rstId">
                                         {{item.name}}
@@ -53,7 +53,7 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
-                                    <option selected value=""><vc:i18n name="请选择二级分类" namespace="myResourceStoreManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择二级分类','myResourceStoreManage')}}</option>
                                     <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreSonTypes"
                                             :key="index"
                                             v-bind:value="item.rstId">
@@ -65,7 +65,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rssId">
-                                    <option selected value=""><vc:i18n name="请选择物品规格" namespace="myResourceStoreManage"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择物品规格','myResourceStoreManage')}}</option>
                                     <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreSpecifications"
                                             :key="index" v-bind:value="item.rssId">
                                         {{item.specName}}
@@ -88,7 +88,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.isFixed">
-                                    <option selected disabled value=""><vc:i18n name="请选择物品是否固定" namespace="myResourceStoreManage"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择物品是否固定','myResourceStoreManage')}}</option>
                                     <option v-for="(item,index) in myResourceStoreManageInfo.isFixeds"
                                             :value="item.statusCd">
                                         {{item.name}}

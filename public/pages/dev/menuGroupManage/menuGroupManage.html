@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="menuGroupManageInfo.conditions.label">
-                                <option selected value=""><vc:i18n name="请选择标签" namespace="menuGroupManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择标签','menuGroupManage')}}</option>
                                 <option value="HOT">HOT</option>
                                 <option value="TOP">TOP</option>
                             </select>
@@ -38,14 +38,14 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="menuGroupManageInfo.conditions.storeType">
-                                <option selected value=""><vc:i18n name="请选择归属商户" namespace="menuGroupManage"></vc:i18n></option>
-                                <option value="800900000001"><vc:i18n name="运营团队" namespace="menuGroupManage"></vc:i18n></option>
-                                <option value="800900000002"><vc:i18n name="代理商" namespace="menuGroupManage"></vc:i18n></option>
-                                <option value="800900000003"><vc:i18n name="物业" namespace="menuGroupManage"></vc:i18n></option>
-                                <option value="800900000004"><vc:i18n name="物流公司" namespace="menuGroupManage"></vc:i18n></option>
-                                <option value="800900000005"><vc:i18n name="商家" namespace="menuGroupManage"></vc:i18n></option>
-                                <option value="800900000000"><vc:i18n name="开发团队" namespace="menuGroupManage"></vc:i18n></option>
-                                <option value="800900000006"><vc:i18n name="跑腿" namespace="menuGroupManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择归属商户','menuGroupManage')}}</option>
+                                <option value="800900000001">{{vc.i18n('运营团队','menuGroupManage')}}</option>
+                                <option value="800900000002">{{vc.i18n('代理商','menuGroupManage')}}</option>
+                                <option value="800900000003">{{vc.i18n('物业','menuGroupManage')}}</option>
+                                <option value="800900000004">{{vc.i18n('物流公司','menuGroupManage')}}</option>
+                                <option value="800900000005">{{vc.i18n('商家','menuGroupManage')}}</option>
+                                <option value="800900000000">{{vc.i18n('开发团队','menuGroupManage')}}</option>
+                                <option value="800900000006">{{vc.i18n('跑腿','menuGroupManage')}}</option>
                             </select>
                         </div>
                     </div>

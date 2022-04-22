@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="workflowManageInfo.conditions.flowType">
-                                <option selected value=""><vc:i18n name="请选择流程" namespace="workflowManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择流程','workflowManage')}}</option>
                                 <option v-for="(item,index) in workflowManageInfo.flowTypes" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
                                 </option>

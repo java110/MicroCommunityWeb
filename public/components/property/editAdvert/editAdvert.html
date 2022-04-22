@@ -18,13 +18,13 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="广告分类" namespace="editAdvert"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAdvertInfo.classify">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editAdvert"></vc:i18n>，请选择广告分类</option>
-                                        <option value="9001"><vc:i18n name="物流" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="9002"><vc:i18n name="餐饮" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="9003"><vc:i18n name="旅游" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="9004"><vc:i18n name="酒店" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="9005"><vc:i18n name="教育" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="9006"><vc:i18n name="互联网" namespace="editAdvert"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAdvert')}}，请选择广告分类</option>
+                                        <option value="9001">{{vc.i18n('物流','editAdvert')}}</option>
+                                        <option value="9002">{{vc.i18n('餐饮','editAdvert')}}</option>
+                                        <option value="9003">{{vc.i18n('旅游','editAdvert')}}</option>
+                                        <option value="9004">{{vc.i18n('酒店','editAdvert')}}</option>
+                                        <option value="9005">{{vc.i18n('教育','editAdvert')}}</option>
+                                        <option value="9006">{{vc.i18n('互联网','editAdvert')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -32,13 +32,13 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="投放位置" namespace="editAdvert"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAdvertInfo.locationTypeCd">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editAdvert"></vc:i18n>，请选择投放位置</option>
-                                        <option value="1000"><vc:i18n name="小区内设备" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="2000"><vc:i18n name="业主首页" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="3000"><vc:i18n name="商圈首页" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="5000"><vc:i18n name="服务首页" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="6000"><vc:i18n name="便民首页" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="4000"><vc:i18n name="员工首页" namespace="editAdvert"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAdvert')}}，请选择投放位置</option>
+                                        <option value="1000">{{vc.i18n('小区内设备','editAdvert')}}</option>
+                                        <option value="2000">{{vc.i18n('业主首页','editAdvert')}}</option>
+                                        <option value="3000">{{vc.i18n('商圈首页','editAdvert')}}</option>
+                                        <option value="5000">{{vc.i18n('服务首页','editAdvert')}}</option>
+                                        <option value="6000">{{vc.i18n('便民首页','editAdvert')}}</option>
+                                        <option value="4000">{{vc.i18n('员工首页','editAdvert')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -46,10 +46,10 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="发布类型" namespace="editAdvert"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAdvertInfo.advertType">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editAdvert"></vc:i18n>，请选择发布类型</option>
-                                        <option value="1"><vc:i18n name="站内" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="2"><vc:i18n name="站外" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="3"><vc:i18n name="不跳转" namespace="editAdvert"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAdvert')}}，请选择发布类型</option>
+                                        <option value="1">{{vc.i18n('站内','editAdvert')}}</option>
+                                        <option value="2">{{vc.i18n('站外','editAdvert')}}</option>
+                                        <option value="3">{{vc.i18n('不跳转','editAdvert')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -85,14 +85,14 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="播放方式" namespace="editAdvert"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAdvertInfo.viewType">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editAdvert"></vc:i18n>，请选择播放方式</option>
-                                        <option value="8888"><vc:i18n name="图片" namespace="editAdvert"></vc:i18n></option>
-                                        <option value="9999"><vc:i18n name="视频" namespace="editAdvert"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAdvert')}}，请选择播放方式</option>
+                                        <option value="8888">{{vc.i18n('图片','editAdvert')}}</option>
+                                        <option value="9999">{{vc.i18n('视频','editAdvert')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" v-if="editAdvertInfo.viewType == '8888'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="图片" namespace="editAdvert"></vc:i18n>(800 * 373)</label>
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('图片','editAdvert')}}(800 * 373)</label>
                                 <div class="content-img col-sm-10">
                                     <vc:create path="frame/uploadImage" callBackListener="editAdvert"
                                                callBackFunction="notifyUploadImage" namespace="editAdvert">
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-if="editAdvertInfo.viewType == '9999'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="视频" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('视频','editAdvert')}}</label>
                                 <div class="content-img col-sm-10">
                                     <vc:create path="frame/uploadVedio" callBackListener="editAdvert"
                                                callBackFunction="notifyUploadVedio" namespace="editAdvert">

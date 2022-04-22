@@ -59,7 +59,7 @@
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportProficientInfo.conditions.feeTypeCd"
                                     @click="_changeReporficientFeeTypeCd()">
-                                <option selected value=""><vc:i18n name="请选择收费类型" namespace="reportProficient"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择收费类型','reportProficient')}}</option>
                                 <option v-for="(item,index) in reportProficientInfo.feeTypeCds" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -70,7 +70,7 @@
                                 <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportProficientInfo.conditions.configId">
-                                    <option selected value=""><vc:i18n name="请选择收费项" namespace="reportProficient"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择收费项','reportProficient')}}</option>
                                     <option v-for="(item,index) in reportProficientInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
                                         {{item.feeName}}

@@ -27,10 +27,10 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDepositInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="reportPayFeeDeposit"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','reportPayFeeDeposit')}}</option>
                                     <option v-for="(unit,index) in reportPayFeeDepositInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="reportPayFeeDeposit"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','reportPayFeeDeposit')}}
                                     </option>
                                 </select>
                             </div>
@@ -59,7 +59,7 @@
                         <!--费用项名称-->
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="reportPayFeeDepositInfo.conditions.configId">
-                                <option selected value=""><vc:i18n name="请选择费用项名称" namespace="reportPayFeeDeposit"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择费用项名称','reportPayFeeDeposit')}}</option>
                                 <option v-for="(item,index) in reportPayFeeDepositInfo.feeConfigs" :key="index"
                                         :value="item.configId">{{item.feeName}}
                                 </option>
@@ -68,7 +68,7 @@
                         <!--收费状态-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportPayFeeDepositInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择收费状态" namespace="reportPayFeeDeposit"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择收费状态','reportPayFeeDeposit')}}</option>
                                 <option v-for="(item,index) in reportPayFeeDepositInfo.states" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -79,7 +79,7 @@
                         <!--收费对象类型-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportPayFeeDepositInfo.conditions.payerObjType">
-                                <option selected value=""><vc:i18n name="请选择收费对象类型" namespace="reportPayFeeDeposit"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择收费对象类型','reportPayFeeDeposit')}}</option>
                                 <option v-for="(item,index) in reportPayFeeDepositInfo.payerObjTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -99,7 +99,7 @@
                     <div class="row" v-show="reportPayFeeDepositInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportPayFeeDepositInfo.conditions.detailState">
-                                <option selected value=""><vc:i18n name="请选择退费状态" namespace="reportPayFeeDeposit"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择退费状态','reportPayFeeDeposit')}}</option>
                                 <option v-for="(item,index) in reportPayFeeDepositInfo.detailStates" :key="index"
                                         :value="item.statusCd" v-if="item.statusCd != '1300'">{{item.name}}
                                 </option>

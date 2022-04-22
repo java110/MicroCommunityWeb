@@ -10,7 +10,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="是否用料" namespace="finishRepair_back"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="finishRepairInfo.maintenanceType">
-                                        <option selected value=""><vc:i18n name="请选择是否用料" namespace="finishRepair_back"></vc:i18n></option>
+                                        <option selected value="">{{vc.i18n('请选择是否用料','finishRepair_back')}}</option>
                                         <option v-for="(item,index) in finishRepairInfo.maintenanceTypes" :key="index"
                                                 :value="item.statusCd"
                                                 v-if="item.statusCd != '1001' && item.statusCd != '1002'">
@@ -23,7 +23,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="维修类型" namespace="finishRepair_back"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="finishRepairInfo.maintenanceType">
-                                        <option selected value=""><vc:i18n name="请选择维修类型" namespace="finishRepair_back"></vc:i18n></option>
+                                        <option selected value="">{{vc.i18n('请选择维修类型','finishRepair_back')}}</option>
                                         <option v-for="(item,index) in finishRepairInfo.maintenanceTypes" :key="index"
                                                 :value="item.statusCd"
                                                 v-if="item.statusCd != '1003' && item.statusCd != '1004'">

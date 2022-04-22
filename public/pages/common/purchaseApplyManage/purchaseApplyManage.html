@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="purchaseApplyManageInfo.conditions.state">
-                                <option selected value=""><vc:i18n name="请选择状态" namespace="purchaseApplyManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择状态','purchaseApplyManage')}}</option>
                                 <option v-for="(item,index) in purchaseApplyManageInfo.states" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>

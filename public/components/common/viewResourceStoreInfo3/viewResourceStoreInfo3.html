@@ -56,7 +56,7 @@
                         <td class="text-center" v-if="viewResourceStoreInfo3.resOrderType == 10000"
                             style="vertical-align: inherit;">
                             <select class="form-control" name="" id="" v-model="resourceStore.rsId">
-                                <option value="" selected><vc:i18n name="请选择" namespace="viewResourceStoreInfo3"></vc:i18n></option>
+                                <option value="" selected>{{vc.i18n('请选择','viewResourceStoreInfo3')}}</option>
                                 <option v-for="supplier in viewResourceStoreInfo3.resourceSuppliers"
                                         :value="supplier.rsId">{{supplier.supplierName}}
                                 </option>

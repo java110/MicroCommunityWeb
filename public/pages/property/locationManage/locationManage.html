@@ -24,13 +24,13 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="locationManageInfo.conditions.locationType">
-                                <option selected value=""><vc:i18n name="请选择位置类型" namespace="locationManage"></vc:i18n></option>
-                                <option value="1000"><vc:i18n name="小区" namespace="locationManage"></vc:i18n></option>
-                                <option value="6000"><vc:i18n name="楼栋" namespace="locationManage"></vc:i18n></option>
-                                <option value="2000"><vc:i18n name="单元" namespace="locationManage"></vc:i18n></option>
-                                <option value="3000"><vc:i18n name="房屋" namespace="locationManage"></vc:i18n></option>
-                                <option value="4000"><vc:i18n name="岗亭" namespace="locationManage"></vc:i18n></option>
-                                <option value="5000"><vc:i18n name="部门" namespace="locationManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择位置类型','locationManage')}}</option>
+                                <option value="1000">{{vc.i18n('小区','locationManage')}}</option>
+                                <option value="6000">{{vc.i18n('楼栋','locationManage')}}</option>
+                                <option value="2000">{{vc.i18n('单元','locationManage')}}</option>
+                                <option value="3000">{{vc.i18n('房屋','locationManage')}}</option>
+                                <option value="4000">{{vc.i18n('岗亭','locationManage')}}</option>
+                                <option value="5000">{{vc.i18n('部门','locationManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-1">

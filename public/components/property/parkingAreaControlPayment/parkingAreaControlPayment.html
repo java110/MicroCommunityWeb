@@ -7,10 +7,10 @@
         </div>
         <div class="col-lg-3 padding-right-xs padding-left-xl">
             <select class="custom-select" v-model="parkingAreaControlPaymentInfo.state">
-                <option disabled value=""><vc:i18n name="请选择车辆状态" namespace="parkingAreaControlPayment"></vc:i18n></option>
-                <option value="100300"><vc:i18n name="进场状态" namespace="parkingAreaControlPayment"></vc:i18n></option>
-                <option value="100400"><vc:i18n name="进场状态" namespace="parkingAreaControlPayment"></vc:i18n></option>
-                <option value="100600"><vc:i18n name="进场状态" namespace="parkingAreaControlPayment"></vc:i18n></option>
+                <option disabled value="">{{vc.i18n('请选择车辆状态','parkingAreaControlPayment')}}</option>
+                <option value="100300">{{vc.i18n('进场状态','parkingAreaControlPayment')}}</option>
+                <option value="100400">{{vc.i18n('进场状态','parkingAreaControlPayment')}}</option>
+                <option value="100600">{{vc.i18n('进场状态','parkingAreaControlPayment')}}</option>
             </select>
 
         </div>

@@ -53,7 +53,7 @@
                     <div class="row" v-show="reportRepairInfo.moreCondition == true">
                         <div class="col-sm-2">
                             <select class="custom-select" v-model="reportRepairInfo.conditions.staffId">
-                                <option selected value="" disabled><vc:i18n name="请选择员工姓名" namespace="reportRepair"></vc:i18n></option>
+                                <option selected value="" disabled>{{vc.i18n('请选择员工姓名','reportRepair')}}</option>
                                 <option v-for="(item,index) in reportRepairInfo.repairUsers" :key="index"
                                         v-bind:value="item.staffId">{{item.staffName}}
                                 </option>
@@ -62,7 +62,7 @@
                         <!--状态-->
                         <div class="col-sm-2">
                             <select class="custom-select" v-model="reportRepairInfo.conditions.state">
-                                <option selected value="" disabled><vc:i18n name="请选择状态" namespace="reportRepair"></vc:i18n></option>
+                                <option selected value="" disabled>{{vc.i18n('请选择状态','reportRepair')}}</option>
                                 <option v-for="(item,index) in reportRepairInfo.states" :key="index"
                                         v-bind:value="item.statusCd" v-if="item.statusCd != '10005'">{{item.name}}
                                 </option>

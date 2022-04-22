@@ -47,9 +47,9 @@
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
                             <select class="custom-select" v-model="resourceStore.state">
-                                <option selected value=""><vc:i18n name="请选择物品使用类型" namespace="viewResourceMyGoodsInfo"></vc:i18n></option>
-                                <option value="1001"><vc:i18n name="报废回收" namespace="viewResourceMyGoodsInfo"></vc:i18n></option>
-                                <option value="3003"><vc:i18n name="公用损耗" namespace="viewResourceMyGoodsInfo"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择物品使用类型','viewResourceMyGoodsInfo')}}</option>
+                                <option value="1001">{{vc.i18n('报废回收','viewResourceMyGoodsInfo')}}</option>
+                                <option value="3003">{{vc.i18n('公用损耗','viewResourceMyGoodsInfo')}}</option>
                             </select>
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">

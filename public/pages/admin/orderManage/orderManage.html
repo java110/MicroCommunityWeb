@@ -19,9 +19,9 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="orderManageInfo.conditions.orderTypeCd">
-                                    <option value=""><vc:i18n name="请选择订单类型" namespace="orderManage"></vc:i18n></option>
-                                    <option value="Q"><vc:i18n name="查询单" namespace="orderManage"></vc:i18n></option>
-                                    <option value="D"><vc:i18n name="受理单" namespace="orderManage"></vc:i18n></option>
+                                    <option value="">{{vc.i18n('请选择订单类型','orderManage')}}</option>
+                                    <option value="Q">{{vc.i18n('查询单','orderManage')}}</option>
+                                    <option value="D">{{vc.i18n('受理单','orderManage')}}</option>
                                 </select>
                             </div>
                         </div>

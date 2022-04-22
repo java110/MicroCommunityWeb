@@ -34,11 +34,11 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="是否实例" namespace="addService"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addServiceInfo.isInstance">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addService"></vc:i18n>，请填写是否实例</option>
-                                        <option value="CMD"><vc:i18n name="微服务指令" namespace="addService"></vc:i18n></option>
-                                        <option value="Y"><vc:i18n name="是" namespace="addService"></vc:i18n></option>
-                                        <option value="N"><vc:i18n name="否" namespace="addService"></vc:i18n></option>
-                                        <option value="NT"><vc:i18n name="透传" namespace="addService"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addService')}}，请填写是否实例</option>
+                                        <option value="CMD">{{vc.i18n('微服务指令','addService')}}</option>
+                                        <option value="Y">{{vc.i18n('是','addService')}}</option>
+                                        <option value="N">{{vc.i18n('否','addService')}}</option>
+                                        <option value="NT">{{vc.i18n('透传','addService')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="调用服务" namespace="addService"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addServiceInfo.url">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addService"></vc:i18n>，请选择调用服务</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addService')}}，请选择调用服务</option>
                                         <option v-for="(item,index) in addServiceInfo.services" :key="index" :value="item.statusCd">{{item.name}}</option>
                                     </select>
                                 </div>
@@ -64,7 +64,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="调用方式" namespace="addService"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addServiceInfo.method">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="addService"></vc:i18n>，请选择调用方式</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addService')}}，请选择调用方式</option>
                                         <option value="GET">http get</option>
                                         <option value="POST">http post</option>
                                     </select></div>

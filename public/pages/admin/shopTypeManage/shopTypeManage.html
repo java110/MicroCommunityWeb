@@ -18,18 +18,18 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="shopTypeManageInfo.conditions.isShow">
-                            <option selected value=""><vc:i18n name="请选择是否展示" namespace="shopTypeManage"></vc:i18n></option>
-                            <option value="Y"><vc:i18n name="是" namespace="shopTypeManage"></vc:i18n></option>
-                            <option value="N"><vc:i18n name="否" namespace="shopTypeManage"></vc:i18n></option>
+                            <option selected value="">{{vc.i18n('请选择是否展示','shopTypeManage')}}</option>
+                            <option value="Y">{{vc.i18n('是','shopTypeManage')}}</option>
+                            <option value="N">{{vc.i18n('否','shopTypeManage')}}</option>
                         </select>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="shopTypeManageInfo.conditions.isDefault">
-                            <option selected value=""><vc:i18n name="请选择是否默认" namespace="shopTypeManage"></vc:i18n></option>
-                            <option value="F"><vc:i18n name="自定义" namespace="shopTypeManage"></vc:i18n></option>
-                            <option value="T"><vc:i18n name="默认" namespace="shopTypeManage"></vc:i18n></option>
+                            <option selected value="">{{vc.i18n('请选择是否默认','shopTypeManage')}}</option>
+                            <option value="F">{{vc.i18n('自定义','shopTypeManage')}}</option>
+                            <option value="T">{{vc.i18n('默认','shopTypeManage')}}</option>
                         </select>
                             </div>
                         </div>

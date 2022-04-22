@@ -21,9 +21,9 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="machineTranslateManageInfo.conditions.typeCd">
-                                <option selected value=""><vc:i18n name="请选择同步类型" namespace="machineTranslateManage"></vc:i18n></option>
-                                <option value="8899"><vc:i18n name="业主" namespace="machineTranslateManage"></vc:i18n></option>
-                                <option value="9988"><vc:i18n name="小区" namespace="machineTranslateManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择同步类型','machineTranslateManage')}}</option>
+                                <option value="8899">{{vc.i18n('业主','machineTranslateManage')}}</option>
+                                <option value="9988">{{vc.i18n('小区','machineTranslateManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">

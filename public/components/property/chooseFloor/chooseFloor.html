@@ -1,31 +1,28 @@
-<div id="chooseFloorModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseFloorModelLabel"
-     aria-hidden="true">
+<div id="chooseFloorModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseFloorModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseFloorModelLabel"><vc:i18n name="选择楼" namespace="chooseFloor"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseFloorModelLabel">
+                    <vc:i18n name="选择楼" namespace="chooseFloor"></vc:i18n>
+                </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')<divvc.i18n(' ','chooseFloor')class="vc.i18n(' ','chooseFloor')row">
+                <div class=" row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
 
                                 <div class="col-sm-7 m-b-xs">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入楼栋编码','chooseFloor')" type="text"
-                                               v-model="chooseFloorInfo._currentFloorNum"
-                                               class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入楼栋编码','chooseFloor')" type="text" v-model="chooseFloorInfo._currentFloorNum" class="form-control form-control-sm">
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入楼栋名称','chooseFloor')" type="text"
-                                               v-model="chooseFloorInfo._currentFloorName"
-                                               class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入楼栋名称','chooseFloor')" type="text" v-model="chooseFloorInfo._currentFloorName" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
                                                         v-on:click="queryFloors()"><vc:i18n name="查询" namespace="chooseFloor"></vc:i18n></button>
@@ -36,27 +33,36 @@ vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc.i18n(' ','chooseFloor')vc
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th class="text-center"><vc:i18n name="楼" namespace="chooseFloor"></vc:i18n>ID</th>
-                                        <th class="text-center"><vc:i18n name="楼名称" namespace="chooseFloor"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="楼编号" namespace="chooseFloor"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="备注" namespace="chooseFloor"></vc:i18n></th>
-                                        <th class="text-right"><vc:i18n name="操作" namespace="chooseFloor"></vc:i18n></th>
+                                        <tr>
+                                            <th class="text-center">
+                                                <vc:i18n name="楼" namespace="chooseFloor"></vc:i18n>ID</th>
+                                            <th class="text-center">
+                                                <vc:i18n name="楼名称" namespace="chooseFloor"></vc:i18n>
+                                            </th>
+                                            <th class="text-center">
+                                                <vc:i18n name="楼编号" namespace="chooseFloor"></vc:i18n>
+                                            </th>
+                                            <th class="text-center">
+                                                <vc:i18n name="备注" namespace="chooseFloor"></vc:i18n>
+                                            </th>
+                                            <th class="text-right">
+                                                <vc:i18n name="操作" namespace="chooseFloor"></vc:i18n>
+                                            </th>
 
-                                    </tr>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="floor in chooseFloorInfo.floors">
-                                        <td class="text-center">{{floor.floorId}}</td>
-                                        <td class="text-center">{{floor.floorName}}</td>
-                                        <td class="text-center">{{floor.floorNum}}</td>
-                                        <td class="text-center">{{floor.remark}}</td>
+                                        <tr v-for="floor in chooseFloorInfo.floors">
+                                            <td class="text-center">{{floor.floorId}}</td>
+                                            <td class="text-center">{{floor.floorName}}</td>
+                                            <td class="text-center">{{floor.floorNum}}</td>
+                                            <td class="text-center">{{floor.remark}}</td>
 
-                                        <td class="text-right">
-                                            <button class="btn btn-primary btn-xs" v-on:click="chooseFloor(floor)"><vc:i18n name="选择" namespace="chooseFloor"></vc:i18n>
+                                            <td class="text-right">
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseFloor(floor)"><vc:i18n name="选择" namespace="chooseFloor"></vc:i18n>
                                             </button>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <vc:create namespace="chooseFloor" path="frame/paginationPlus"></vc:create>

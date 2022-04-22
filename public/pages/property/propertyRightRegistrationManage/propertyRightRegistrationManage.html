@@ -59,7 +59,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="propertyRightRegistrationManageInfo.conditions.state">
-                                    <option selected disabled value=""><vc:i18n name="请选择审核状态" namespace="propertyRightRegistrationManage"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择审核状态','propertyRightRegistrationManage')}}</option>
                                     <option v-for="(item,index) in propertyRightRegistrationManageInfo.states"
                                             :value="item.statusCd">{{item.name}}
                                     </option>
@@ -69,7 +69,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="propertyRightRegistrationManageInfo.conditions.floorId" @change="selectUnit()">
-                                    <option selected disabled value=""><vc:i18n name="请选择楼栋" namespace="propertyRightRegistrationManage"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择楼栋','propertyRightRegistrationManage')}}</option>
                                     <option v-for="(item,index) in propertyRightRegistrationManageInfo.floors"
                                             :value="item.floorId">{{item.floorName}}
                                     </option>
@@ -79,9 +79,9 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="propertyRightRegistrationManageInfo.conditions.unitId">
-                                    <option selected disabled value=""><vc:i18n name="请选择单元" namespace="propertyRightRegistrationManage"></vc:i18n></option>
+                                    <option selected disabled value="">{{vc.i18n('请选择单元','propertyRightRegistrationManage')}}</option>
                                     <option v-for="(item,index) in propertyRightRegistrationManageInfo.units"
-                                            :value="item.unitId">{{item.unitNum}}<vc:i18n name="单元" namespace="propertyRightRegistrationManage"></vc:i18n>
+                                            :value="item.unitId">{{item.unitNum}}{{vc.i18n('单元','propertyRightRegistrationManage')}}
                                     </option>
                                 </select>
                             </div>

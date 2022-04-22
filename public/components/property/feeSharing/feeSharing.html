@@ -18,8 +18,8 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="费用类型" namespace="feeSharing"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="feeSharingInfo.feeTypeCd">
-                                        <option selected disabled value=""><vc:i18n name="必填，请选择费用类型" namespace="feeSharing"></vc:i18n></option>
-                                        <option value="888800010017"><vc:i18n name="公摊费" namespace="feeSharing"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择费用类型','feeSharing')}}</option>
+                                        <option value="888800010017">{{vc.i18n('公摊费','feeSharing')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -27,9 +27,9 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="房屋类型" namespace="feeSharing"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="feeSharingInfo.roomType" @change="feeSharingChangeRoomType()">
-                                        <option selected disabled value=""><vc:i18n name="必填，请选择房屋类型" namespace="feeSharing"></vc:i18n></option>
-                                        <option value="1010301"><vc:i18n name="普通房屋" namespace="feeSharing"></vc:i18n></option>
-                                        <option value="2020602"><vc:i18n name="商铺" namespace="feeSharing"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择房屋类型','feeSharing')}}</option>
+                                        <option value="1010301">{{vc.i18n('普通房屋','feeSharing')}}</option>
+                                        <option value="2020602">{{vc.i18n('商铺','feeSharing')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -43,22 +43,22 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="公摊范围" namespace="feeSharing"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="feeSharingInfo.scope">
-                                        <option selected disabled value=""><vc:i18n name="必填，请选择公摊范围" namespace="feeSharing"></vc:i18n></option>
-                                        <option value="1001"><vc:i18n name="当前小区" namespace="feeSharing"></vc:i18n></option>
-                                        <option value="2002"><vc:i18n name="楼栋" namespace="feeSharing"></vc:i18n></option>
-                                        <option value="3003" v-if="feeSharingInfo.roomType == '1010301'"><vc:i18n name="单元" namespace="feeSharing"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择公摊范围','feeSharing')}}</option>
+                                        <option value="1001">{{vc.i18n('当前小区','feeSharing')}}</option>
+                                        <option value="2002">{{vc.i18n('楼栋','feeSharing')}}</option>
+                                        <option value="3003" v-if="feeSharingInfo.roomType == '1010301'">{{vc.i18n('单元','feeSharing')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" v-show="feeSharingInfo.scope != '1001'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="楼栋" namespace="feeSharing"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('楼栋','feeSharing')}}</label>
                                 <div class="col-sm-10">
                                     <vc:create path="property/floorSelect2" parentModal="feeSharingModel" namespace="feeSharing">
                                     </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row" v-show="feeSharingInfo.scope == '3003'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="单元" namespace="feeSharing"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('单元','feeSharing')}}</label>
                                 <div class="col-sm-10">
                                     <vc:create path="property/unitSelect2" parentModal="feeSharingModel" callBackListener="feeSharing" callBackFunction="notify" namespace="feeSharing">
                                     </vc:create>
@@ -107,7 +107,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="公摊公式" namespace="feeSharing"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="feeSharingInfo.formulaId">
-                                        <option selected disabled value=""><vc:i18n name="必填，请选择收费项目" namespace="feeSharing"></vc:i18n></option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择收费项目','feeSharing')}}</option>
                                         <option v-for="(item,index) in feeSharingInfo.formulas" :key="index"
                                                 v-bind:value="item.formulaId">
                                             {{item.formulaValue}}({{item.formulaDesc}})

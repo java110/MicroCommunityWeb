@@ -31,7 +31,7 @@
                                     <select class="custom-select" v-model="editResourceStoreInfo.rstId"
                                             :disabled="editResourceStoreInfo.shType == '2807'"
                                             @change="resourceStoreSonTypesOnChangeEdit">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editResourceStore"></vc:i18n>，请选择二级分类</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editResourceStore')}}，请选择二级分类</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.rstIds" :key="index"
                                                 v-bind:value="item.rstId">
                                             {{item.name}}
@@ -44,7 +44,7 @@
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.rssId"
                                             :disabled="editResourceStoreInfo.shType == '2807'">
-                                        <option selected disabled value=""><vc:i18n name="选填" namespace="editResourceStore"></vc:i18n>，请选择物品规格</option>
+                                        <option selected disabled value="">{{vc.i18n('选填','editResourceStore')}}，请选择物品规格</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.resourceStoreSpecifications"
                                                 :key="index" v-bind:value="item.rssId">
                                             {{item.specName}}
@@ -68,7 +68,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="是否是固定物品" namespace="editResourceStore"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.isFixed" disabled>
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editResourceStore"></vc:i18n>，请选择是否是固定物品</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editResourceStore')}}，请选择是否是固定物品</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.isFixeds" :key="index"
                                                 v-bind:value="item.statusCd">
                                             {{item.name}}
@@ -103,7 +103,7 @@
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.miniUnitCode"
                                             :disabled="editResourceStoreInfo.shType == '2807'">
-                                        <option selected disabled value=""><vc:i18n name="必填" namespace="editResourceStore"></vc:i18n>，请选择物品最小计量单位</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editResourceStore')}}，请选择物品最小计量单位</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.unitCodes" :key="index"
                                                 v-bind:value="item.statusCd">
                                             {{item.name}}
@@ -137,8 +137,8 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="是否在维修材料中显示" namespace="editResourceStore"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.showMobile">
-                                        <option value="Y"><vc:i18n name="是" namespace="editResourceStore"></vc:i18n></option>
-                                        <option value="N"><vc:i18n name="否" namespace="editResourceStore"></vc:i18n></option>
+                                        <option value="Y">{{vc.i18n('是','editResourceStore')}}</option>
+                                        <option value="N">{{vc.i18n('否','editResourceStore')}}</option>
                                     </select>
                                 </div>
                             </div> -->

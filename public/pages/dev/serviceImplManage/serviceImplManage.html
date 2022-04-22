@@ -25,8 +25,8 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="serviceImplManageInfo.conditions.invokeType">
-                                <option selected value=""><vc:i18n name="请选择调用方式" namespace="serviceImplManage"></vc:i18n></option>
-                                <option value="1"><vc:i18n name="微服务POST方式" namespace="serviceImplManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择调用方式','serviceImplManage')}}</option>
+                                <option value="1">{{vc.i18n('微服务POST方式','serviceImplManage')}}</option>
                                 <option value="2">webservice方式</option>
                                 <option value="3">http post方式</option>
                             </select>

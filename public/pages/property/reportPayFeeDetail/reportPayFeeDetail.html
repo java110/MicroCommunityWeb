@@ -28,10 +28,10 @@
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportPayFeeDetailInfo.conditions.unitId">
-                                    <option selected value=""><vc:i18n name="请选择单元" namespace="reportPayFeeDetail"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择单元','reportPayFeeDetail')}}</option>
                                     <option v-for="(unit,index) in reportPayFeeDetailInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
-                                        {{unit.unitNum}}<vc:i18n name="单元" namespace="reportPayFeeDetail"></vc:i18n>
+                                        {{unit.unitNum}}{{vc.i18n('单元','reportPayFeeDetail')}}
                                     </option>
                                 </select>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportPayFeeDetailInfo.conditions.primeRate">
-                                    <option selected value=""><vc:i18n name="请选择支付方式" namespace="reportPayFeeDetail"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择支付方式','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.primeRates" :key="index"
                                             :value="item.statusCd">{{item.name}}
                                     </option>
@@ -84,7 +84,7 @@
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportPayFeeDetailInfo.conditions.feeTypeCd" @change="_selectConfig()">
-                                    <option selected value=""><vc:i18n name="请选择费用类型" namespace="reportPayFeeDetail"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择费用类型','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.feeTypeCds" :key="index"
                                             :value="item.statusCd">{{item.name}}
                                     </option>
@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportPayFeeDetailInfo.conditions.configId">
-                                    <option selected value=""><vc:i18n name="请选择收费项" namespace="reportPayFeeDetail"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择收费项','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
                                         {{item.feeName}}
@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportPayFeeDetailInfo.conditions.state">
-                                    <option selected value=""><vc:i18n name="请选择费用状态" namespace="reportPayFeeDetail"></vc:i18n></option>
+                                    <option selected value="">{{vc.i18n('请选择费用状态','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.states" :key="index"
                                             :value="item.statusCd">{{item.name}}
                                     </option>

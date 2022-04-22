@@ -28,7 +28,7 @@
                         <!--费用类型-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="feeConfigManageInfo.conditions.feeTypeCd">
-                                <option selected value=""><vc:i18n name="请选择费用类型" namespace="feeConfigManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择费用类型','feeConfigManage')}}</option>
                                 <option v-for="(item,index) in feeConfigManageInfo.feeTypeCds" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -47,7 +47,7 @@
                         <!--费用标识-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="feeConfigManageInfo.conditions.feeFlag">
-                                <option selected value=""><vc:i18n name="请选择费用标识" namespace="feeConfigManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择费用标识','feeConfigManage')}}</option>
                                 <option v-for="(item,index) in feeConfigManageInfo.feeFlags" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -56,7 +56,7 @@
                         <!--付费类型-->
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="feeConfigManageInfo.conditions.paymentCd">
-                                <option selected value=""><vc:i18n name="请选择付费类型" namespace="feeConfigManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择付费类型','feeConfigManage')}}</option>
                                 <option v-for="(item,index) in feeConfigManageInfo.paymentCds" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -65,7 +65,7 @@
                         <!--出账类型-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="feeConfigManageInfo.conditions.billType">
-                                <option selected value=""><vc:i18n name="请选择出账类型" namespace="feeConfigManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择出账类型','feeConfigManage')}}</option>
                                 <option v-for="(item,index) in feeConfigManageInfo.billTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
@@ -76,7 +76,7 @@
                         <!--费用项-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="feeConfigManageInfo.conditions.isDefault">
-                                <option selected value=""><vc:i18n name="请选择费用项" namespace="feeConfigManage"></vc:i18n></option>
+                                <option selected value="">{{vc.i18n('请选择费用项','feeConfigManage')}}</option>
                                 <option v-for="(item,index) in feeConfigManageInfo.isDefaults" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>

@@ -31,7 +31,7 @@
                     <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="合同类型" namespace="editContract"></vc:i18n></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <select class="custom-select" v-model="editContractInfo.contractType" disabled="disabled">
-                        <option selected disabled value=""><vc:i18n name="必填" namespace="editContract"></vc:i18n>，请选择合同类型</option>
+                        <option selected disabled value="">{{vc.i18n('必填','editContract')}}，请选择合同类型</option>
                         <option v-for="(item,index) in editContractInfo.contractTypes" :key="index"
                           :value="item.contractTypeId">{{item.typeName}}</option>
                       </select>
