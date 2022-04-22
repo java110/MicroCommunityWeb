@@ -17,7 +17,7 @@
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
-            <input class="form-control" v-bind:placeholder="simplifyAcceptanceInfo.searchPlaceholder" v-model="simplifyAcceptanceInfo.searchValue" @keyup.enter="_doSearch()" />
+            <input class="form-control" v-bind:placeholder="vc.i18n(simplifyAcceptanceInfo.searchPlaceholder, 'simplifyAcceptance')" v-model="simplifyAcceptanceInfo.searchValue" @keyup.enter="_doSearch()" />
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <button type="button" class="form-control btn btn-primary" @click="_doSearch()"><vc:i18n name="查询" namespace="simplifyAcceptance"></vc:i18n></button>
