@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="业主" namespace="handover"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="业主" namespace="handover"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_selectOwner()">
                             选择
@@ -19,8 +21,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="姓名" namespace="handover"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="handoverInfo.name" type="text" :placeholder="vc.i18n('必填','handover')，请填写姓名"
-                                        class="form-control">
+                                    <input v-model="handoverInfo.name" type="text" :placeholder="vc.i18n('必填，请填写姓名','handover')" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -29,7 +30,7 @@
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="性别" namespace="handover"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="handoverInfo.sex">
-                                        <option selected disabled value="">{{vc.i18n('必填','handover')}}，请选择性别</option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择性别','handover')}}</option>
                                         <option value="0">{{vc.i18n('男','handover')}}</option>
                                         <option value="1">{{vc.i18n('女','handover')}}</option>
                                     </select>
@@ -40,8 +41,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="年龄" namespace="handover"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="handoverInfo.age" type="number" :placeholder="vc.i18n('必填','handover')，请填写年龄"
-                                           class="form-control">
+                                    <input v-model="handoverInfo.age" type="number" :placeholder="vc.i18n('必填，请填写年龄','handover')" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -51,8 +51,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="身份证" namespace="handover"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="handoverInfo.idCard" type="text" :placeholder="vc.i18n('可选','handover')，请填写身份证"
-                                           class="form-control">
+                                    <input v-model="handoverInfo.idCard" type="text" :placeholder="vc.i18n('可选，请填写身份证','handover')" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -60,8 +59,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="手机" namespace="handover"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="handoverInfo.link" type="number" :placeholder="vc.i18n('必填','handover')，请填写联系方式"
-                                           class="form-control">
+                                    <input v-model="handoverInfo.link" type="number" :placeholder="vc.i18n('必填，请填写联系方式','handover')" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -69,8 +67,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="handover"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="handoverInfo.remark" type="tel" :placeholder="vc.i18n('可填','handover')，请填写备注"
-                                           class="form-control">
+                                    <input v-model="handoverInfo.remark" type="tel" :placeholder="vc.i18n('可填，请填写备注','handover')" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +81,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="房屋" namespace="handover"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="房屋" namespace="handover"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_selectRoom()">
                             选择房屋
@@ -95,15 +94,22 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                        data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
                         <thead>
                             <tr>
                                 <!-- <th><vc:i18n name="房屋" namespace="handover"></vc:i18n>ID</th> -->
-                                <th data-hide="phone" class="text-center"><vc:i18n name="房屋" namespace="handover"></vc:i18n></th>
-                                <th data-hide="phone" class="text-center"><vc:i18n name="建筑面积" namespace="handover"></vc:i18n></th>
-                                <th data-hide="phone" class="text-center"><vc:i18n name="房屋状态" namespace="handover"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="handover"></vc:i18n></th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="房屋" namespace="handover"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="建筑面积" namespace="handover"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="房屋状态" namespace="handover"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="handover"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,15 +118,15 @@
                                     {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
                                 </td>
                                 <td class="text-center">
-                                    {{room.builtUpArea}}<vc:i18n name="平方米" namespace="handover"></vc:i18n>
+                                    {{room.builtUpArea}}
+                                    <vc:i18n name="平方米" namespace="handover"></vc:i18n>
                                 </td>
                                 <td class="text-center">
                                     {{room.stateName}}
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDelRoomModel(room)"><vc:i18n name="删除" namespace="handover"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDelRoomModel(room)"><vc:i18n name="删除" namespace="handover"></vc:i18n></button>
                                     </div>
                                 </td>
                             </tr>
@@ -137,21 +143,30 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="费用" namespace="handover"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="费用" namespace="handover"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        
+
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                        data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
                         <thead>
                             <tr>
                                 <!-- <th><vc:i18n name="房屋" namespace="handover"></vc:i18n>ID</th> -->
-                                <th data-hide="phone" class="text-center"><vc:i18n name="费用项目" namespace="handover"></vc:i18n></th>
-                                <th data-hide="phone" class="text-center"><vc:i18n name="开始时间" namespace="handover"></vc:i18n></th>
-                                <th data-hide="phone" class="text-center"><vc:i18n name="结束时间" namespace="handover"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="handover"></vc:i18n></th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="费用项目" namespace="handover"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="开始时间" namespace="handover"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="结束时间" namespace="handover"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="handover"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -167,8 +182,7 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDelFeeModel(fee)"><vc:i18n name="删除" namespace="handover"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDelFeeModel(fee)"><vc:i18n name="删除" namespace="handover"></vc:i18n></button>
                                     </div>
                                 </td>
                             </tr>
@@ -182,7 +196,7 @@
     </div>
 </div>
 <div>
-  
+
 </div>
 
 <div class="row">

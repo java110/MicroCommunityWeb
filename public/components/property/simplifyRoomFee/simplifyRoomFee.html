@@ -33,22 +33,22 @@
         </div>
         <div class="col-lg-6 text-right" v-if="simplifyRoomFeeInfo.roomId">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openBatchPayRoomFeeModal()">
-                批量缴费
+                <vc:i18n name="批量缴费" namespace="simplifyRoomFee"></vc:i18n>
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openTempImportRoomFeeModal()">
-                临时收费
+                <vc:i18n name="临时收费" namespace="simplifyRoomFee"></vc:i18n>
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openProxyFeeModal()">
-                代收费用
+                <vc:i18n name="代收费用" namespace="simplifyRoomFee"></vc:i18n>
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddMeterWaterSimplifyModal()">
-                水电抄表
+                <vc:i18n name="水电抄表" namespace="simplifyRoomFee"></vc:i18n>
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal()">
-                创建费用
+                <vc:i18n name="创建费用" namespace="simplifyRoomFee"></vc:i18n>
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_toOwnerPayFee()">
-                欠费缴费
+                <vc:i18n name="欠费缴费" namespace="simplifyRoomFee"></vc:i18n>
             </button>
         </div>
     </div>
@@ -56,16 +56,36 @@
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
                 <tr>
-                    <th class="text-center"><vc:i18n name="费用项目" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="费用标识" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="费用类型" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="应收金额" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="建账时间" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="计费起始时间" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="计费结束时间" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="说明" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="状态" namespace="simplifyRoomFee"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="操作" namespace="simplifyRoomFee"></vc:i18n></th>
+                    <th class="text-center">
+                        <vc:i18n name="费用项目" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用标识" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用类型" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="应收金额" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="建账时间" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="计费起始时间" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="计费结束时间" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="说明" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="simplifyRoomFee"></vc:i18n>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -79,24 +99,36 @@
                     <td class="text-center">{{_getEndTime(fee)}}</td>
                     <td class="text-center">{{_getDeadlineTime(fee)}}</td>
                     <td class="text-center" v-if="fee.computingFormula == '5005' || fee.computingFormula == '9009'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div><vc:i18n name="上期度数" namespace="simplifyRoomFee"></vc:i18n>：{{fee.preDegrees}}</div>
-                        <div><vc:i18n name="本期度数" namespace="simplifyRoomFee"></vc:i18n>：{{fee.curDegrees}}</div>
-                        <div><vc:i18n name="单价" namespace="simplifyRoomFee"></vc:i18n>：{{getOnePrice1(fee)}}</div>
-                        <div><vc:i18n name="附加费" namespace="simplifyRoomFee"></vc:i18n>：{{fee.additionalAmount}}</div>
+                        <div>
+                            <span><vc:i18n name="上期度数" namespace="simplifyRoomFee"></vc:i18n></span>：{{fee.preDegrees}}</div>
+                        <div>
+                            <span><vc:i18n name="本期度数" namespace="simplifyRoomFee"></vc:i18n></span>：{{fee.curDegrees}}</div>
+                        <div>
+                            <span> <vc:i18n name="单价" namespace="simplifyRoomFee"></vc:i18n></span>：{{getOnePrice1(fee)}}</div>
+                        <div>
+                            <span> <vc:i18n name="附加费" namespace="simplifyRoomFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
                     </td>
                     <td class="text-center" v-else-if="fee.computingFormula == '6006'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div><vc:i18n name="用量" namespace="simplifyRoomFee"></vc:i18n>：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
-                        <div><vc:i18n name="单价" namespace="simplifyRoomFee"></vc:i18n>：{{fee.squarePrice}}</div>
-                        <div><vc:i18n name="附加费" namespace="simplifyRoomFee"></vc:i18n>：{{fee.additionalAmount}}</div>
+                        <div>
+                            <span>  <vc:i18n name="用量" namespace="simplifyRoomFee"></vc:i18n></span>：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
+                        <div>
+                            <span>   <vc:i18n name="单价" namespace="simplifyRoomFee"></vc:i18n></span>：{{fee.squarePrice}}</div>
+                        <div>
+                            <span>   <vc:i18n name="附加费" namespace="simplifyRoomFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
                     </td>
                     <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'" :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div><vc:i18n name="算法" namespace="simplifyRoomFee"></vc:i18n>：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
-                        <div><vc:i18n name="用量" namespace="simplifyRoomFee"></vc:i18n>：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
+                        <div>
+                            <span>   <vc:i18n name="算法" namespace="simplifyRoomFee"></vc:i18n></span>：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
+                        <div>
+                            <span>   <vc:i18n name="用量" namespace="simplifyRoomFee"></vc:i18n></span>：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
                     </td>
                     <td class="text-center" v-else :title="_simplifyRoomGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div><vc:i18n name="单价" namespace="simplifyRoomFee"></vc:i18n>：{{fee.squarePrice}}</div>
-                        <div v-if="fee.feeFlag == '1003006'"><vc:i18n name="附加费" namespace="simplifyRoomFee"></vc:i18n>：{{fee.additionalAmount}}</div>
-                        <div v-else><vc:i18n name="固定费" namespace="simplifyRoomFee"></vc:i18n>：{{fee.additionalAmount}}</div>
+                        <div>
+                            <span>  <vc:i18n name="单价" namespace="simplifyRoomFee"></vc:i18n></span>：{{fee.squarePrice}}</div>
+                        <div v-if="fee.feeFlag == '1003006'">
+                            <span>   <vc:i18n name="附加费" namespace="simplifyRoomFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
+                        <div v-else>
+                            <span>  <vc:i18n name="固定费" namespace="simplifyRoomFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
                     </td>
                     <td class="text-center">{{fee.stateName}}</td>
                     <td class="text-center">
@@ -111,13 +143,19 @@
                         </button>
                             <div class="dropdown-menu p-4 text-muted" style="max-width: 500px;">
                                 <p v-if="vc.hasPrivilege('502020090604200029')">
-                                    <a href="javascript:void(0)" v-on:click="_deleteFee(fee)"><vc:i18n name="取消费用" namespace="simplifyRoomFee"></vc:i18n></a>
+                                    <a href="javascript:void(0)" v-on:click="_deleteFee(fee)">
+                                        <vc:i18n name="取消费用" namespace="simplifyRoomFee"></vc:i18n>
+                                    </a>
                                 </p>
                                 <p v-if="vc.hasPrivilege('502021070488970005')">
-                                    <a href="javascript:void(0)" v-on:click="_finishFee(fee)"><vc:i18n name="手工结束" namespace="simplifyRoomFee"></vc:i18n></a>
+                                    <a href="javascript:void(0)" v-on:click="_finishFee(fee)">
+                                        <vc:i18n name="手工结束" namespace="simplifyRoomFee"></vc:i18n>
+                                    </a>
                                 </p>
                                 <p v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')">
-                                    <a href="javascript:void(0)" v-on:click="_editFee(fee)"><vc:i18n name="费用变更" namespace="simplifyRoomFee"></vc:i18n></a>
+                                    <a href="javascript:void(0)" v-on:click="_editFee(fee)">
+                                        <vc:i18n name="费用变更" namespace="simplifyRoomFee"></vc:i18n>
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -127,8 +165,10 @@
         </table>
         <div class="row">
             <div class="col-sm-5">
-                <div> <vc:i18n name="注意" namespace="simplifyRoomFee"></vc:i18n>： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</div>
-                <div> <vc:i18n name="应收金额" namespace="simplifyRoomFee"></vc:i18n> 为-1 一般为费用项公式设置出错请检查</div>
+                <div>
+                    <vc:i18n name="注意" namespace="simplifyRoomFee"></vc:i18n>： 计费结束时间 “-” 表示未到计费时间 或 收费已结束</div>
+                <div>
+                    <vc:i18n name="应收金额" namespace="simplifyRoomFee"></vc:i18n> 为-1 一般为费用项公式设置出错请检查</div>
             </div>
             <div class="col-sm-2">
                 <span> <vc:i18n name="欠费小计" namespace="simplifyRoomFee"></vc:i18n>：{{simplifyRoomFeeInfo.totalAmount}}</span>
