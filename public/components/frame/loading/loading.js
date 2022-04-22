@@ -1,46 +1,46 @@
-(function(vc){
+(function(vc) {
 
     var vm = new Vue({
-        el:'#loadingComponent',
-        data:{
-            loadingInfo:{
-                hide:true,
-                count:0,
+        el: '#loadingComponent',
+        data: {
+            loadingInfo: {
+                hide: true,
+                count: 0,
             }
         },
-        mounted:function(){
+        mounted: function() {
 
         },
-        methods:{
+        methods: {
 
         }
     });
 
-    vm.$on('loading_openLoading',function(){
+    vm.$on('loading_openLoading', function() {
         console.log("开始加载");
         vm.loadingInfo.hide = false;
     });
-    vm.$on('loading_closeLoading',function(){
+    vm.$on('loading_closeLoading', function() {
         console.log("结束加载");
         vm.loadingInfo.hide = true;
     });
     /**
         加载遮罩层
     **/
-    vc.loading = function(_flag){
+    vc.loading = function(_flag) {
 
-        if(_flag == 'open'){
-            vm.loadingInfo.count ++;
-            if(vm.loadingInfo.count == 1){
-                vm.$emit('loading_openLoading',{});
+        if (_flag == 'open') {
+            vm.loadingInfo.count++;
+            if (vm.loadingInfo.count == 1) {
+                vm.$emit('loading_openLoading', {});
             }
-            return ;
+            return;
         }
 
-        vm.loadingInfo.count --;
+        vm.loadingInfo.count--;
 
-        if(vm.loadingInfo.count == 0){
-            vm.$emit('loading_closeLoading',{});
+        if (vm.loadingInfo.count == 0) {
+            vm.$emit('loading_closeLoading', {});
         }
 
     }

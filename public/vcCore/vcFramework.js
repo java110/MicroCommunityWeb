@@ -941,6 +941,7 @@
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
             Vue.http.headers.common['SIGN'] = '';
+            vcFramework.loading('open');
             Vue.http.post('/callComponent/' + componentCode + "/" + componentMethod, param, options)
                 .then(function(res) {
                     try {

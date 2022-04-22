@@ -2,14 +2,14 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="业主信息" namespace="viewOwnerInfo"></vc:i18n></h5>
+                <h5>
+                    <vc:i18n name="业主信息" namespace="viewOwnerInfo"></vc:i18n>
+                </h5>
                 <div class="ibox-tools" style="top:10px;">
-                    <button type="button" class="btn btn-primary btn-sm" v-if="viewOwnerInfo.showCallBackButton=='true'"
-                            v-on:click="_callBackListOwner(viewOwnerInfo.ownerId)">
+                    <button type="button" class="btn btn-primary btn-sm" v-if="viewOwnerInfo.showCallBackButton=='true'" v-on:click="_callBackListOwner(viewOwnerInfo.ownerId)">
                         返回
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm" v-if="viewOwnerInfo.viewOwnerFlag!='Owner'"
-                            v-on:click="_openChooseOwner()">
+                    <button type="button" class="btn btn-primary btn-sm" v-if="viewOwnerInfo.viewOwnerFlag!='Owner'" v-on:click="_openChooseOwner()">
                         选择业主
                     </button>
                 </div>
@@ -17,26 +17,25 @@
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-2">
-                        <image width="120px" height="140px" v-bind:src="viewOwnerInfo.ownerPhoto"
-                               @error="errorLoadImg"/>
+                        <image width="120px" height="140px" v-bind:src="viewOwnerInfo.ownerPhoto" @error="errorLoadImg" />
                     </div>
                     <div class="col-sm-9">
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="业主" namespace="viewOwnerInfo"></vc:i18n>ID：</label>
+                                    <label class="col-form-label"><vc:i18n name="业主ID" namespace="viewOwnerInfo"></vc:i18n></label>：
                                     <label class="">{{viewOwnerInfo.ownerId}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="名称" namespace="viewOwnerInfo"></vc:i18n>：</label>
+                                    <label class="col-form-label"><vc:i18n name="名称" namespace="viewOwnerInfo"></vc:i18n></label>：
                                     <label class="">{{viewOwnerInfo.name}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="性别" namespace="viewOwnerInfo"></vc:i18n>：</label>
+                                    <label class="col-form-label"><vc:i18n name="性别" namespace="viewOwnerInfo"></vc:i18n></label>：
                                     <label class="">{{viewOwnerInfo.sex == '0' ? '男' : (viewOwnerInfo.sex == '1' ? '女' : '')}}</label>
                                 </div>
                             </div>
@@ -44,19 +43,19 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="年龄" namespace="viewOwnerInfo"></vc:i18n>：</label>
+                                    <label class="col-form-label"><vc:i18n name="年龄" namespace="viewOwnerInfo"></vc:i18n></label>：
                                     <label class="">{{viewOwnerInfo.age}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="身份证" namespace="viewOwnerInfo"></vc:i18n>：</label>
+                                    <label class="col-form-label"><vc:i18n name="身份证" namespace="viewOwnerInfo"></vc:i18n></label>：
                                     <label class="">{{viewOwnerInfo.idCard}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="联系方式" namespace="viewOwnerInfo"></vc:i18n>：</label>
+                                    <label class="col-form-label"><vc:i18n name="联系方式" namespace="viewOwnerInfo"></vc:i18n></label>：
                                     <label class="">{{viewOwnerInfo.link}}</label>
                                 </div>
                             </div>
@@ -65,13 +64,13 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="创建员工" namespace="viewOwnerInfo"></vc:i18n>：</label>
+                                    <label class="col-form-label"><vc:i18n name="创建员工" namespace="viewOwnerInfo"></vc:i18n></label>：
                                     <label class="">{{viewOwnerInfo.userName}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="备注" namespace="viewOwnerInfo"></vc:i18n>：</label>
+                                    <label class="col-form-label"><vc:i18n name="备注" namespace="viewOwnerInfo"></vc:i18n></label>：
                                     <label class="">{{viewOwnerInfo.remark}}</label>
                                 </div>
                             </div>
@@ -82,19 +81,19 @@
                             <div class="row" v-if="index % 3 == 0">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">{{item.specName}}：</label>
+                                        <label class="col-form-label">{{item.specName}}</label>：
                                         <label class="">{{item.valueName}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" v-if="index < viewOwnerInfo.attrs.length-1">
                                     <div class="form-group">
-                                        <label class="col-form-label">{{viewOwnerInfo.attrs[index+1].specName}}：</label>
+                                        <label class="col-form-label">{{viewOwnerInfo.attrs[index+1].specName}}</label>：
                                         <label class="">{{viewOwnerInfo.attrs[index+1].valueName}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" v-if="index < viewOwnerInfo.attrs.length-2">
                                     <div class="form-group">
-                                        <label class="col-form-label">{{viewOwnerInfo.attrs[index+2].specName}}：</label>
+                                        <label class="col-form-label">{{viewOwnerInfo.attrs[index+2].specName}}</label>：
                                         <label class="">{{viewOwnerInfo.attrs[index+2].valueName}}</label>
                                     </div>
                                 </div>
@@ -107,8 +106,5 @@
         </div>
     </div>
 
-    <vc:create path="property/searchOwner"
-               emitChooseOwner="viewOwnerInfo"
-               emitLoadData="viewOwnerInfo"
-    ></vc:create>
+    <vc:create path="property/searchOwner" emitChooseOwner="viewOwnerInfo" emitLoadData="viewOwnerInfo"></vc:create>
 </div>
