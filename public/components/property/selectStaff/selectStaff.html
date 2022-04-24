@@ -7,9 +7,11 @@
                 </button>
                 <div class="row">
                     <div class="col-md-4 border-right padding-0">
-                        <div class="text-center"><vc:i18n name="公司信息" namespace="selectStaff"></vc:i18n></div>
-vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')<divvc.i18n(' ','selectStaff')class="vc.i18n(' ','selectStaff')staffvc.i18n(' ','selectStaff')paddingvc.i18n(' ','selectStaff')padding-top-xs">
-vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')<divvc.i18n(' ','selectStaff')class="vc.i18n(' ','selectStaff')paddingvc.i18n(' ','selectStaff')overflow-hidden"vc.i18n(' ','selectStaff'):class="{'select':selectStaffInfo.curCompanyIdvc.i18n(' ','selectStaff')==vc.i18n(' ','selectStaff')item.orgId}"vc.i18n(' ','selectStaff')v-for="(item,index)vc.i18n(' ','selectStaff')invc.i18n(' ','selectStaff')selectStaffInfo.companys"vc.i18n(' ','selectStaff')@click="_changeCompany(item)"vc.i18n(' ','selectStaff')style="cursor:pointer">
+                        <div class="text-center">
+                            <vc:i18n name="公司信息" namespace="selectStaff"></vc:i18n>
+                        </div>
+                        <div class=" staff padding padding-top-xs">
+                            <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curCompanyId == item.orgId}" v-for="(item,index) in selectStaffInfo.companys" @click="_changeCompany(item)" style="cursor:pointer">
                                 <span>
                                     <i class="fa fa-building-o margin-right-xs" aria-hidden="true"></i>
                                     {{item.orgName}}
@@ -18,9 +20,11 @@ vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc
                         </div>
                     </div>
                     <div class="col-md-4 border-right padding-0">
-                        <div class="text-center"><vc:i18n name="部门信息" namespace="selectStaff"></vc:i18n></div>
+                        <div class="text-center">
+                            <vc:i18n name="部门信息" namespace="selectStaff"></vc:i18n>
+                        </div>
                         <div class="padding-left staff padding  padding-top-xs">
-vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')<divvc.i18n(' ','selectStaff')class="vc.i18n(' ','selectStaff')paddingvc.i18n(' ','selectStaff')overflow-hidden"vc.i18n(' ','selectStaff'):class="{'select':selectStaffInfo.curDepartmentIdvc.i18n(' ','selectStaff')==vc.i18n(' ','selectStaff')item.orgId}"vc.i18n(' ','selectStaff')v-for="(item,index)vc.i18n(' ','selectStaff')invc.i18n(' ','selectStaff')selectStaffInfo.departments"vc.i18n(' ','selectStaff')@click="_changeDepartment(item)"vc.i18n(' ','selectStaff')style="cursor:pointer">
+                            <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curDepartmentId == item.orgId}" v-for="(item,index) in selectStaffInfo.departments" @click="_changeDepartment(item)" style="cursor:pointer">
                                 <span>
                                     <i class="fa fa-sitemap margin-right-xs" aria-hidden="true"></i>
                                     {{item.orgName}}
@@ -29,9 +33,11 @@ vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc
                         </div>
                     </div>
                     <div class="col-md-4 padding-0">
-                        <div class="text-center"><vc:i18n name="员工信息" namespace="selectStaff"></vc:i18n></div>
+                        <div class="text-center">
+                            <vc:i18n name="员工信息" namespace="selectStaff"></vc:i18n>
+                        </div>
                         <div class="padding-left staff padding padding-top-xs">
-vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')vc.i18n(' ','selectStaff')<divvc.i18n(' ','selectStaff')class="vc.i18n(' ','selectStaff')paddingvc.i18n(' ','selectStaff')overflow-hidden"vc.i18n(' ','selectStaff'):class="{'select':selectStaffInfo.curStaffIdvc.i18n(' ','selectStaff')==vc.i18n(' ','selectStaff')item.staffId}"vc.i18n(' ','selectStaff')v-for="(item,index)vc.i18n(' ','selectStaff')invc.i18n(' ','selectStaff')selectStaffInfo.staffs"vc.i18n(' ','selectStaff')@click="_changeStaff(item)"vc.i18n(' ','selectStaff')style="cursor:pointer">
+                            <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curStaffId == item.staffId}" v-for="(item,index) in selectStaffInfo.staffs" @click="_changeStaff(item)" style="cursor:pointer">
                                 <span>
                                     <i class="fa fa-user margin-right-xs" aria-hidden="true"></i>
                                     {{item.name}}
