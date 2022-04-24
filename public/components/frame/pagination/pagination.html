@@ -15,6 +15,8 @@
         <li class="page-item" v-bind:class="{disabled:paginationInfo.currentPage == paginationInfo.total}">
             <a class="page-link" v-on:click="current(paginationInfo.total)"> » </a>
         </li>
-        <span class="total" style="line-height: 30px;margin-left: 10px;" v-if="paginationInfo.dataCount != 0"><vc:i18n name="共" namespace="pagination"></vc:i18n> {{paginationInfo.dataCount}} 条</span>
+        <span class="total" style="line-height: 30px;margin-left: 10px;" v-if="paginationInfo.dataCount != 0"><span><vc:i18n name="共" namespace="pagination"></vc:i18n></span> {{paginationInfo.dataCount}}
+        <span> <vc:i18n name="条" namespace="pagination"></vc:i18n></span>
+        </span>
     </ul>
 </nav>
