@@ -10,8 +10,8 @@
 
 ## 如何安装
 
-1、[开发环境安装](docs/installHcDev.md) <br/>
-2、[生产环境安装](docs/installHcProd.md)<br/>
+1、[开发环境安装](https://github.com/java110/MicroCommunity/blob/master/docs/installHcDev.md) <br/>
+2、[生产环境安装](https://github.com/java110/MicroCommunity/blob/master/docs/installHcProd.md)<br/>
 
 ## 如何使用
 
