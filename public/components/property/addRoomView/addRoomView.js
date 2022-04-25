@@ -66,16 +66,10 @@
                         },
                     ],
                     'addRoomViewInfo.layer': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "房屋楼层不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "房屋楼层高度必须为数字"
-                        },
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "房屋楼层不能为空"
+                    }],
                     'addRoomViewInfo.apartment': [{
                             limit: "required",
                             param: "",

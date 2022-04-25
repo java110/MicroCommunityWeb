@@ -145,16 +145,10 @@
                         },
                     ],
                     'editRoomInfo.layer': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "房屋楼层高度不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "房屋楼层高度必须为数字"
-                        }
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "房屋楼层高度不能为空"
+                    }],
                     'editRoomInfo.state': [{
                         limit: "required",
                         param: "",
