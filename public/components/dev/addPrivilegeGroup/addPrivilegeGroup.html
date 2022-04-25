@@ -1,8 +1,10 @@
-<div id = "addPrivilegeGroupModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div id="addPrivilegeGroupModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="添加权限组" namespace="addPrivilegeGroup"></vc:i18n></h3>
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="添加权限组" namespace="addPrivilegeGroup"></vc:i18n>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <p style="color:red;">{{addPrivilegeGroupInfo.errorInfo}}</p>
@@ -16,7 +18,9 @@
                                 <div class="col-sm-10"><input v-model="addPrivilegeGroupInfo.description" type="text" :placeholder="vc.i18n('选填，请填写权限组描述','addPrivilegeGroup')" class="form-control"></div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveAddPrivilegeGroup()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveAddPrivilegeGroup()"><i class="fa fa-check"></i>&nbsp;
+                                    <vc:i18n name="保存"></vc:i18n>
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="addPrivilegeGroup"></vc:i18n></button>
                             </div>
                         </div>

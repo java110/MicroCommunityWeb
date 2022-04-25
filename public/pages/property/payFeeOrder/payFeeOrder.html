@@ -3,9 +3,10 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="订单收费" namespace="payFeeOrder"></vc:i18n>({{payFeeOrderInfo.payerObjName}})</h5>
+                    <h5>
+                        <span><vc:i18n name="订单收费" namespace="payFeeOrder"></vc:i18n></span>({{payFeeOrderInfo.payerObjName}})</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_goBack()"><vc:i18n name="返回" namespace="payFeeOrder"></vc:i18n>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="payFeeOrder"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -13,37 +14,37 @@
                     <div class="row">
                         <div class="col-7" style="border-right: solid #f4f4f4 1px;padding-left: 30px;">
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="费用" namespace="payFeeOrder"></vc:i18n>ID</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用" namespace="payFeeOrder"></vc:i18n></span>ID</label>
                                 <div class="col-sm-10">
                                     <label class=" col-form-label">{{payFeeOrderInfo.feeId}}</label>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="费用项目" namespace="payFeeOrder"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用项目" namespace="payFeeOrder"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <label class=" col-form-label">{{payFeeOrderInfo.feeName}}</label>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="费用类型" namespace="payFeeOrder"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用类型" namespace="payFeeOrder"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <label class=" col-form-label">{{payFeeOrderInfo.feeTypeCdName}}</label>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="计费起始时间" namespace="payFeeOrder"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="计费起始时间" namespace="payFeeOrder"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <label class=" col-form-label">{{payFeeOrderInfo.endTime}}</label>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="缴费时间" namespace="payFeeOrder"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="缴费时间" namespace="payFeeOrder"></vc:i18n></span></label>
                                 <div class="col-sm-6">
-                                    <input v-model="payFeeOrderInfo.createTime" type="text" :placeholder="vc.i18n('必填','payFeeOrder')，请填写缴费时间" readonly class="payFeeOrderCreateTime" style="border: none; outline: none;">
+                                    <input v-model="payFeeOrderInfo.createTime" type="text" :placeholder="vc.i18n('必填，请填写缴费时间','payFeeOrder')" readonly class="payFeeOrderCreateTime" style="border: none; outline: none;">
                                 </div>
                             </div>
                             <div class="form-group row" v-if="payFeeOrderInfo.feeFlag != '2006012'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="缴费周期" namespace="payFeeOrder"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="缴费周期" namespace="payFeeOrder"></vc:i18n></span></label>
                                 <div class="col-sm-6">
                                     <select class="custom-select" v-model="payFeeOrderInfo.tempCycles" @change="_changeMonth(payFeeOrderInfo.tempCycles)">
                                         <option selected disabled value="">{{vc.i18n('请选择缴费周期','payFeeOrder')}}</option>
@@ -55,45 +56,45 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-if="payFeeOrderInfo.tempCycles == '-102'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="实际周期" namespace="payFeeOrder"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="实际周期" namespace="payFeeOrder"></vc:i18n></span></label>
                                 <div class="col-sm-6">
                                     <input type="text" :placeholder="vc.i18n('请输入实际周期','payFeeOrder')" v-model="payFeeOrderInfo.cycles" oninput="value=value.replace(/[^\d]/g,'')" v-on:change="changeCycle(payFeeOrderInfo.cycles)" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label" style="padding-right:0px;"><vc:i18n name="备注" namespace="payFeeOrder"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label" style="padding-right:0px;"><span><vc:i18n name="备注" namespace="payFeeOrder"></vc:i18n></span></label>
                                 <div class="col-sm-6" style="padding-left:5px;">
-                                    <textarea :placeholder="vc.i18n('可填','payFeeOrder')，请填写备注" class="form-control" v-model="payFeeOrderInfo.remark">
+                                    <textarea :placeholder="vc.i18n('可填，请填写备注','payFeeOrder')" class="form-control" v-model="payFeeOrderInfo.remark">
                                     </textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4" style="padding-left: 30px;">
                             <div class="row" v-if="payFeeOrderInfo.builtUpArea">
-                                <label class="col-sm-3 col-form-label"><vc:i18n name="面积" namespace="payFeeOrder"></vc:i18n>：</label>
+                                <label class="col-sm-3 col-form-label"><span><vc:i18n name="面积" namespace="payFeeOrder"></vc:i18n></span>：</label>
                                 <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.builtUpArea}}</label>
                             </div>
                             <div class="row" v-if="payFeeOrderInfo.builtUpArea">
-                                <label class="col-sm-3 col-form-label"><vc:i18n name="单价" namespace="payFeeOrder"></vc:i18n>：</label>
+                                <label class="col-sm-3 col-form-label"><span><vc:i18n name="单价" namespace="payFeeOrder"></vc:i18n></span>：</label>
                                 <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.squarePrice}}</label>
                             </div>
                             <div class="row" v-if="payFeeOrderInfo.builtUpArea">
-                                <label class="col-sm-3 col-form-label"><vc:i18n name="附加费" namespace="payFeeOrder"></vc:i18n>：</label>
+                                <label class="col-sm-3 col-form-label"><span><vc:i18n name="附加费" namespace="payFeeOrder"></vc:i18n></span>：</label>
                                 <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.additionalAmount}}</label>
                             </div>
                             <div class="row" v-else>
-                                <label class="col-sm-3 col-form-label"><vc:i18n name="固定费" namespace="payFeeOrder"></vc:i18n>：</label>
+                                <label class="col-sm-3 col-form-label"><span><vc:i18n name="固定费" namespace="payFeeOrder"></vc:i18n></span>：</label>
                                 <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.additionalAmount}}</label>
                             </div>
                             <div class="row">
-                                <label class="col-sm-3 col-form-label" style="line-height: 50px;padding-right:0px;"><vc:i18n name="应收款" namespace="payFeeOrder"></vc:i18n>：</label>
+                                <label class="col-sm-3 col-form-label" style="line-height: 50px;padding-right:0px;"><span><vc:i18n name="应收款" namespace="payFeeOrder"></vc:i18n></span>：</label>
                                 <label class="col-sm-8 col-form-label" style="font-size: 30px;color: red;padding-left:0px;">￥{{payFeeOrderInfo.totalFeePrice}}</label>
                             </div>
                             <div class="row form-group">
-                                <label class="col-sm-3 col-form-label" style="padding-right:0px;"><vc:i18n name="支付方式" namespace="payFeeOrder"></vc:i18n>:</label>
+                                <label class="col-sm-3 col-form-label" style="padding-right:0px;"><span><vc:i18n name="支付方式" namespace="payFeeOrder"></vc:i18n></span>:</label>
                                 <div class="col-sm-6">
                                     <select class="custom-select" v-model="payFeeOrderInfo.primeRate">
-                                        <option selected disabled value="">{{vc.i18n('必填','payFeeOrder')}}，请选择支付方式</option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','payFeeOrder')}}</option>
                                         <option v-for="(item,index) in payFeeOrderInfo.primeRates" :key="index"
                                             v-if="item.statusCd != '5' && item.statusCd != '6'" :value="item.statusCd">
                                             {{item.name}}
@@ -102,7 +103,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label" style="padding-right:0px;"><vc:i18n name="实收款" namespace="payFeeOrder"></vc:i18n></label>
+                                <label class="col-sm-3 col-form-label" style="padding-right:0px;"><span><vc:i18n name="实收款" namespace="payFeeOrder"></vc:i18n></span></label>
                                 <div class="col-sm-8" style="padding-left:5px;">
                                     <input type="text" :placeholder="vc.i18n('请输入实际收款金额','payFeeOrder')" v-model="payFeeOrderInfo.receivedAmount" class="form-control" v-if="payFeeOrderInfo.receivedAmountSwitch=='1'">
                                     <label class="col-sm-8 col-form-label" v-if="payFeeOrderInfo.receivedAmountSwitch=='2'" style="font-size: 15px;">
@@ -111,13 +112,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-3 col-form-label" style="line-height: 50px;padding-right:0px;"><vc:i18n name="应缴金额" namespace="payFeeOrder"></vc:i18n>：</label>
+                                <label class="col-sm-3 col-form-label" style="line-height: 50px;padding-right:0px;"><span><vc:i18n name="应缴金额" namespace="payFeeOrder"></vc:i18n></span>：</label>
                                 <label class="col-sm-8 col-form-label" style="font-size: 30px;color: red;padding-left:0px;">
                                     ￥{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? '0.00' : (payFeeOrderInfo.receivedAmount - payFeeOrderInfo.accountAmount).toFixed(2)}}
                                 </label>
                             </div>
                             <div class="row">
-                                <label class="col-sm-3 col-form-label"><vc:i18n name="业主账户" namespace="payFeeOrder"></vc:i18n>：</label>
+                                <label class="col-sm-3 col-form-label"><span><vc:i18n name="业主账户" namespace="payFeeOrder"></vc:i18n></span>：</label>
                                 <label class="col-sm-8 col-form-label">
                                     <input type="checkbox" checked="checked" @change="_useUserAccountChange">
                                 </label>
@@ -126,11 +127,11 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block" @click="_openPayFee('qrCode')"><vc:i18n name="扫码收费" namespace="payFeeOrder"></vc:i18n>
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" @click="_openPayFee('qrCode')"><span><vc:i18n name="扫码收费" namespace="payFeeOrder"></vc:i18n></span>
                                     </button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-warning btn-lg btn-block" v-if="payFeeOrderInfo.offlinePayFeeSwitch !='2'" @click="_openPayFee('common')"><vc:i18n name="提交收费" namespace="payFeeOrder"></vc:i18n>
+                                    <button type="button" class="btn btn-warning btn-lg btn-block" v-if="payFeeOrderInfo.offlinePayFeeSwitch !='2'" @click="_openPayFee('common')"><span><vc:i18n name="提交收费" namespace="payFeeOrder"></vc:i18n></span>
                                     </button>
                                 </div>
                             </div>
@@ -144,20 +145,26 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><vc:i18n name="缴费提示" namespace="payFeeOrder"></vc:i18n></h5>
+                    <h5 class="modal-title">
+                        <span><vc:i18n name="缴费提示" namespace="payFeeOrder"></vc:i18n></span>
+                    </h5>
                     <button type="button" class="close" @click="_back()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p><vc:i18n name="缴费成功" namespace="payFeeOrder"></vc:i18n></p>
-                    <p v-if="!payFeeOrderInfo.receiptId"><vc:i18n name="请到业务受理页面补打收据" namespace="payFeeOrder"></vc:i18n></p>
+                    <p>
+                        <span><vc:i18n name="缴费成功" namespace="payFeeOrder"></vc:i18n></span>
+                    </p>
+                    <p v-if="!payFeeOrderInfo.receiptId">
+                        <span><vc:i18n name="请到业务受理页面补打收据" namespace="payFeeOrder"></vc:i18n></span>
+                    </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_back()"><vc:i18n name="返回" namespace="payFeeOrder"></vc:i18n></button>
-                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId" @click="_printSmallAndBack()"><vc:i18n name="打印小票" namespace="payFeeOrder"></vc:i18n>
+                    <button type="button" class="btn btn-secondary" @click="_back()"><span><vc:i18n name="返回" namespace="payFeeOrder"></vc:i18n></span></button>
+                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId" @click="_printSmallAndBack()"><span><vc:i18n name="打印小票" namespace="payFeeOrder"></vc:i18n></span>
                     </button>
-                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId" @click="_printAndBack()"><vc:i18n name="打印收据" namespace="payFeeOrder"></vc:i18n>
+                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId" @click="_printAndBack()"><span><vc:i18n name="打印收据" namespace="payFeeOrder"></vc:i18n></span>
                     </button>
                 </div>
             </div>
@@ -167,50 +174,52 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><vc:i18n name="收费确认" namespace="payFeeOrder"></vc:i18n></h5>
+                    <h5 class="modal-title">
+                        <span><vc:i18n name="收费确认" namespace="payFeeOrder"></vc:i18n></span>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="付费对象" namespace="payFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="付费对象" namespace="payFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.payerObjName}}</label>
                     </div>
                     <div class="row" v-if="payFeeOrderInfo.feeFlag != '2006012' && payFeeOrderInfo.showEndTime != ''">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="缴费时间段" namespace="payFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="缴费时间段" namespace="payFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-8 col-form-label">{{vc.dateFormat(payFeeOrderInfo.endTime)}} 至
                             {{vc.dateSubOneDay(payFeeOrderInfo.endTime,vc.dateFormat(payFeeOrderInfo.showEndTime),payFeeOrderInfo.feeFlag)}}</label>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="应收金额" namespace="payFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="应收金额" namespace="payFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalFeePrice}}</label>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="优惠金额" namespace="payFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="优惠金额" namespace="payFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.totalDiscountMoney.toFixed(2)}}</label>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="实收金额" namespace="payFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="实收金额" namespace="payFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.receivedAmount}}</label>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="抵扣金额" namespace="payFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="抵扣金额" namespace="payFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? payFeeOrderInfo.receivedAmount : payFeeOrderInfo.accountAmount.toFixed(2)}}</label>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="应缴金额" namespace="payFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="应缴金额" namespace="payFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? '0.00' : (payFeeOrderInfo.receivedAmount - payFeeOrderInfo.accountAmount).toFixed(2)}}</label>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="备注" namespace="payFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="备注" namespace="payFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.remark}}</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <input v-model="payFeeOrderInfo.authCode" id="authCode" class="form-control" style="width: 60%;" v-if="payFeeOrderInfo.payType == 'qrCode'" type="text" @keyup.enter="_qrCodePayFee" :placeholder="vc.i18n('请用扫码枪扫码','payFeeOrder')">
-                    <button type="button" class="btn btn-secondary" @click="_closeDoPayFeeModal()"><vc:i18n name="关闭" namespace="payFeeOrder"></vc:i18n></button>
-                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.payType == 'common'" @click="_payFee()"><vc:i18n name="确定收费" namespace="payFeeOrder"></vc:i18n></button>
+                    <button type="button" class="btn btn-secondary" @click="_closeDoPayFeeModal()"><span><vc:i18n name="关闭" namespace="payFeeOrder"></vc:i18n></span></button>
+                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.payType == 'common'" @click="_payFee()"><span><vc:i18n name="确定收费" namespace="payFeeOrder"></vc:i18n></span></button>
                 </div>
             </div>
         </div>

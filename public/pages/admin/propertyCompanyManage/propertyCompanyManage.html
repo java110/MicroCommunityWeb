@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="propertyCompanyManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="propertyCompanyManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -27,7 +29,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPropertyCompanyMethod()">
-                                    查询
+                                    <vc:i18n name="查询" namespace="propertyCompanyManage"></vc:i18n>
                             </button>
                         </div>
                     </div>
@@ -41,11 +43,13 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="物业公司" namespace="propertyCompanyManage"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="物业公司" namespace="propertyCompanyManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPropertyCompanyModal()">
                             <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                            <vc:i18n name="添加" namespace="propertyCompanyManage"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -54,16 +58,36 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="编号" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="名称" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="地址" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="管理员" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="电话" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="公司法人" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="成立日期" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="地标" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="创建时间" namespace="propertyCompanyManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="propertyCompanyManage"></vc:i18n></th>
+                                <th class="text-center">
+                                    <vc:i18n name="编号" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="名称" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="地址" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="管理员" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="电话" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="公司法人" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="成立日期" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="地标" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="创建时间" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作" namespace="propertyCompanyManage"></vc:i18n>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -118,7 +142,7 @@
                     <!-- 分页 -->
                     <div class="row">
                         <div class="col-md-6">
-                            <span><vc:i18n name="温馨提示" namespace="propertyCompanyManage"></vc:i18n>：默认管理员账号为手机号；密码为手机号</span>
+                            <span>温馨提示：默认管理员账号为手机号；密码为手机号</span>
                         </div>
                         <div class="col-md-6">
                             <vc:create path="frame/pagination"></vc:create>

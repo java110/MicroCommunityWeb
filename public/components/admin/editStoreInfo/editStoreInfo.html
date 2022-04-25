@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="修改商户信息" namespace="editStoreInfo"></vc:i18n></h5>
+                    <h5>
+                        <vc:i18n name="修改商户信息" namespace="editStoreInfo"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -13,8 +15,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="商户名称" namespace="editStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfoInfo.name" type="text" :placeholder="vc.i18n('必填，请填写商户名称','editStoreInfo')"
-                                           class="form-control">
+                                    <input v-model="editStoreInfoInfo.name" type="text" :placeholder="vc.i18n('必填，请填写商户名称','editStoreInfo')" class="form-control">
 
                                 </div>
                             </div>
@@ -23,7 +24,7 @@
                                 <div class="col-sm-3">
                                     <select class="custom-select" v-model="editStoreInfoInfo.convenienceMenusId">
 
-                                        <option selected disabled value="">{{vc.i18n('必填','editStoreInfo')}}，请选择类型</option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择类型','editStoreInfo')}}</option>
                                         <option v-for="(item,index) in storeInfoManageInfo.menuInfos"
                                                 :value="item.convenienceMenusId">{{item.name}}
                                         </option>
@@ -43,9 +44,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="图片地址" namespace="editStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <vc:create path="frame/uploadImage" callBackListener="editIcon"
-                                               callBackFunction="notifyUploadCoverImage" namespace="editIconCover"
-                                               imageCount="1">
+                                    <vc:create path="frame/uploadImage" callBackListener="editIcon" callBackFunction="notifyUploadCoverImage" namespace="editIconCover" imageCount="1">
                                     </vc:create>
 
                                 </div>
@@ -53,58 +52,58 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="商户电话" namespace="editStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfoInfo.tel" type="text" :placeholder="vc.i18n('选填，请填写商户电话','editStoreInfo')"
-                                           class="form-control">
+                                    <input v-model="editStoreInfoInfo.tel" type="text" :placeholder="vc.i18n('选填，请填写商户电话','editStoreInfo')" class="form-control">
 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="商户位置" namespace="editStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfoInfo.site" type="text" :placeholder="vc.i18n('选填，请填写商户位置','editStoreInfo')"
-                                           class="form-control">
+                                    <input v-model="editStoreInfoInfo.site" type="text" :placeholder="vc.i18n('选填，请填写商户位置','editStoreInfo')" class="form-control">
 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="显示序号" namespace="editStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfoInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写显示序号','editStoreInfo')"
-                                           class="form-control">
+                                    <input v-model="editStoreInfoInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写显示序号','editStoreInfo')" class="form-control">
 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="工作时间" namespace="editStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfoInfo.workTime" type="text" :placeholder="vc.i18n('选填，请填写工作时间','editStoreInfo')"
-                                           class="form-control">
+                                    <input v-model="editStoreInfoInfo.workTime" type="text" :placeholder="vc.i18n('选填，请填写工作时间','editStoreInfo')" class="form-control">
 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right"><vc:i18n name="商家信息" namespace="editStoreInfo"></vc:i18n></label>
                                 <div class="col-sm-10 ">
-vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')<divvc.i18n(' ','editStoreInfo')class="vc.i18n(' ','editStoreInfo')no-padding">
+                                    vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n('
+                                    ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n('
+                                    ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n('
+                                    ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n('
+                                    ','editStoreInfo')vc.i18n(' ','editStoreInfo')vc.i18n(' ','editStoreInfo')
+                                    <divvc.i18n( ' ', 'editStoreInfo')class="vc.i18n(' ','editStoreInfo')no-padding">
                                         <div class="editSummernote"></div>
-                                    </div>
-                                    <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" :placeholder="vc.i18n('必填，请填写公告内容','editStoreInfo')" class="form-control"></textarea>-->
                                 </div>
+                                <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" :placeholder="vc.i18n('必填，请填写公告内容','editStoreInfo')" class="form-control"></textarea>-->
                             </div>
-                            <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editStoreInfo()">
+                        </div>
+                        <div class="ibox-content">
+                            <button class="btn btn-primary float-right" type="button" v-on:click="editStoreInfo()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" v-on:click="_closeStoreInfo()"
-                                        style="margin-right:20px;" data-dismiss="modal">
+                            <button type="button" class="btn btn-warning float-right" v-on:click="_closeStoreInfo()" style="margin-right:20px;" data-dismiss="modal">
                                     <i class="fa fa-close"></i>&nbsp;取消
                                 </button>
 
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

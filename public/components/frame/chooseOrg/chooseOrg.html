@@ -1,15 +1,16 @@
-<div id="chooseOrgModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseOrgModelLabel"
-     aria-hidden="true">
+<div id="chooseOrgModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseOrgModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseOrgModelLabel"><vc:i18n name="选择组织" namespace="chooseOrg"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseOrgModelLabel">
+                    <vc:i18n name="选择组织" namespace="chooseOrg"></vc:i18n>
+                </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')<divvc.i18n(' ','chooseOrg')class="vc.i18n(' ','chooseOrg')row">
+                <div class=" row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,8 +19,7 @@ vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入组织名称','chooseOrg')" type="text" v-model="chooseOrgInfo._currentOrgName"
-                                               class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入组织名称','chooseOrg')" type="text" v-model="chooseOrgInfo._currentOrgName" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
                                                         v-on:click="queryOrgs()"><vc:i18n name="查询" namespace="chooseOrg"></vc:i18n></button>
@@ -30,27 +30,35 @@ vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(' ','chooseOrg')vc.i18n(
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th class="text-center"><vc:i18n name="组织" namespace="chooseOrg"></vc:i18n>ID</th>
-                                        <th class="text-center"><vc:i18n name="组织名称" namespace="chooseOrg"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="组织级别" namespace="chooseOrg"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="上级" namespace="chooseOrg"></vc:i18n>ID</th>
-                                        <th class="text-center"><vc:i18n name="操作" namespace="chooseOrg"></vc:i18n></th>
+                                        <tr>
+                                            <th class="text-center">
+                                                <vc:i18n name="组织" namespace="chooseOrg"></vc:i18n>ID</th>
+                                            <th class="text-center">
+                                                <vc:i18n name="组织名称" namespace="chooseOrg"></vc:i18n>
+                                            </th>
+                                            <th class="text-center">
+                                                <vc:i18n name="组织级别" namespace="chooseOrg"></vc:i18n>
+                                            </th>
+                                            <th class="text-center">
+                                                <vc:i18n name="上级" namespace="chooseOrg"></vc:i18n>ID</th>
+                                            <th class="text-center">
+                                                <vc:i18n name="操作" namespace="chooseOrg"></vc:i18n>
+                                            </th>
 
-                                    </tr>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="org in chooseOrgInfo.orgs">
-                                        <td class="text-center">{{org.orgId}}</td>
-                                        <td class="text-center">{{org.orgName}}</td>
-                                        <td class="text-center">{{org.orgLevelName}}</td>
-                                        <td class="text-center">{{org.parentOrgName}}</td>
+                                        <tr v-for="org in chooseOrgInfo.orgs">
+                                            <td class="text-center">{{org.orgId}}</td>
+                                            <td class="text-center">{{org.orgName}}</td>
+                                            <td class="text-center">{{org.orgLevelName}}</td>
+                                            <td class="text-center">{{org.parentOrgName}}</td>
 
-                                        <td>
-                                            <button class="btn btn-primary btn-xs" v-on:click="chooseOrg(org)"><vc:i18n name="选择" namespace="chooseOrg"></vc:i18n>
+                                            <td>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOrg(org)"><vc:i18n name="选择" namespace="chooseOrg"></vc:i18n>
                                             </button>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

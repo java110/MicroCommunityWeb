@@ -1,4 +1,4 @@
-<div  >
+<div>
     <vc:create path="dev/privilegeStaffInfo"></vc:create>
     <div class="row">
         <div class="col-lg-8">
@@ -7,15 +7,15 @@
 
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th><vc:i18n name="权限" namespace="staffPrivilege"></vc:i18n>ID</th>
-                            <th data-hide="phone"><vc:i18n name="权限名称" namespace="staffPrivilege"></vc:i18n></th>
-                            <th data-hide="phone"><vc:i18n name="隶属权限组" namespace="staffPrivilege"></vc:i18n>ID</th>
-                            <th data-hide="phone,tablet" ><vc:i18n name="隶属权限组名称" namespace="staffPrivilege"></vc:i18n></th>
-                            <th data-hide="phone"><vc:i18n name="状态" namespace="staffPrivilege"></vc:i18n></th>
-                            <th class="text-right"><vc:i18n name="操作" namespace="staffPrivilege"></vc:i18n></th>
+                            <tr>
+                                <th> <span> <vc:i18n name="权限" namespace="staffPrivilege"></vc:i18n></span>ID</th>
+                                <th data-hide="phone"> <span> <vc:i18n name="权限名称" namespace="staffPrivilege"></vc:i18n></span></th>
+                                <th data-hide="phone"> <span> <vc:i18n name="隶属权限组" namespace="staffPrivilege"></vc:i18n></span>ID</th>
+                                <th data-hide="phone,tablet"> <span> <vc:i18n name="隶属权限组名称" namespace="staffPrivilege"></vc:i18n></span></th>
+                                <th data-hide="phone"> <span> <vc:i18n name="状态" namespace="staffPrivilege"></vc:i18n></span></th>
+                                <th class="text-right"> <span> <vc:i18n name="操作" namespace="staffPrivilege"></vc:i18n></span></th>
 
-                        </tr>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr v-for="privilege in staffPrivilegeInfo.privileges">
@@ -32,21 +32,21 @@
                                     {{privilege.pgName}}
                                 </td>
                                 <td>
-                                    <span class="label label-primary"><vc:i18n name="在用" namespace="staffPrivilege"></vc:i18n></span>
+                                    <span class="label label-primary"> <span> <vc:i18n name="在用" namespace="staffPrivilege"></vc:i18n></span></span>
                                 </td>
-                                <td      class="text-right">
+                                <td class="text-right">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteStaffPrivilegeModel(privilege)"><vc:i18n name="删除" namespace="staffPrivilege"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteStaffPrivilegeModel(privilege)"> <span> <vc:i18n name="删除" namespace="staffPrivilege"></vc:i18n></span></button>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
 
@@ -60,11 +60,11 @@
                 </h2>
             </div>
             <div class="mail-box">
-    
+
                 <div id="jstree_privilege">
-    
+
                 </div>
-    
+
             </div>
         </div>
     </div>
