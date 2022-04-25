@@ -29,13 +29,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="建筑面积" namespace="addShops"></vc:i18n>(平方)</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="建筑面积(平方)" namespace="addShops"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addShopsInfo.builtUpArea" type="text" :placeholder="vc.i18n('必填，请填写建筑面积','addShops')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="室内面积" namespace="addShops"></vc:i18n>(平方)</label>
+                                <label class="col-sm-2 col-form-label"><vc:i18n name="室内面积(平方)" namespace="addShops"></vc:i18n></label>
                                 <div class="col-sm-10">
                                     <input v-model="addShopsInfo.roomArea" type="text" :placeholder="vc.i18n('必填，请填写室内面积','addShops')" class="form-control">
                                 </div>
@@ -52,7 +52,8 @@
                             </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="addShops()"><i
-                                        class="fa fa-check"></i>&nbsp;保存</button>
+                                        class="fa fa-check"></i>&nbsp;
+                                        <vc:i18n name="保存" ></vc:i18n></button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="addShops"></vc:i18n></button>
                             </div>
                         </div>

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    <vc:i18n name="请确认您的操作" namespace="resetStaffPwd"></vc:i18n>!</h5>
+                    <span><vc:i18n name="请确认您的操作" namespace="resetStaffPwd"></vc:i18n></span>!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,8 +14,8 @@
                 </tr>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeResetStaffPwdModel()"><vc:i18n name="点错了" namespace="resetStaffPwd"></vc:i18n></button>
-                <button type="button" class="btn btn-primary" v-on:click="resetStaffPwd()"><vc:i18n name="确认重置" namespace="resetStaffPwd"></vc:i18n></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeResetStaffPwdModel()"><span><vc:i18n name="点错了" namespace="resetStaffPwd"></vc:i18n></span></button>
+                <button type="button" class="btn btn-primary" v-on:click="resetStaffPwd()"><span><vc:i18n name="确认重置" namespace="resetStaffPwd"></vc:i18n></span></button>
             </div>
         </div>
     </div>

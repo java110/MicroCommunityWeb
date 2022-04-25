@@ -2,30 +2,30 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="房屋信息" namespace="sellRoomSelectRoom"></vc:i18n></h5>
+                <h5><span><vc:i18n name="房屋信息" namespace="sellRoomSelectRoom"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm" v-on:click="openSearchRoomModel()">
-                        <i class="fa fa-search"></i> <vc:i18n name="选择房屋" namespace="sellRoomSelectRoom"></vc:i18n></button>
+                        <i class="fa fa-search"></i> <span><vc:i18n name="选择房屋" namespace="sellRoomSelectRoom"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="房屋" namespace="sellRoomSelectRoom"></vc:i18n>ID：</label>
+                            <label class="col-form-label"><span><vc:i18n name="房屋" namespace="sellRoomSelectRoom"></vc:i18n></span>ID：</label>
                             <label class="">{{roomInfo.roomId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="房屋编号" namespace="sellRoomSelectRoom"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="房屋编号" namespace="sellRoomSelectRoom"></vc:i18n></span>：</label>
                             <label class="">{{roomInfo.roomNum}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="单元" namespace="sellRoomSelectRoom"></vc:i18n>：</label>
-                            <label class="">{{roomInfo.unitNum}}<vc:i18n name="单元" namespace="sellRoomSelectRoom"></vc:i18n></label>
+                            <label class="col-form-label"><span><vc:i18n name="单元" namespace="sellRoomSelectRoom"></vc:i18n></span>：</label>
+                            <label class="">{{roomInfo.unitNum}}<span><vc:i18n name="单元" namespace="sellRoomSelectRoom"></vc:i18n></span></label>
                         </div>
                     </div>
 
@@ -34,19 +34,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="楼层" namespace="sellRoomSelectRoom"></vc:i18n>：</label>
-                            <label class="">{{roomInfo.layer}}<vc:i18n name="层" namespace="sellRoomSelectRoom"></vc:i18n></label>
+                            <label class="col-form-label"><span><vc:i18n name="楼层" namespace="sellRoomSelectRoom"></vc:i18n></span>：</label>
+                            <label class="">{{roomInfo.layer}}<span><vc:i18n name="层" namespace="sellRoomSelectRoom"></vc:i18n></span></label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="房间数" namespace="sellRoomSelectRoom"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="房间数" namespace="sellRoomSelectRoom"></vc:i18n></span>：</label>
                             <label class="">{{roomInfo.section}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="户型" namespace="sellRoomSelectRoom"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="户型" namespace="sellRoomSelectRoom"></vc:i18n></span>：</label>
                             <label class="">{{roomInfo.apartmentName}}</label>
                         </div>
                     </div>
@@ -55,19 +55,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="建筑面积" namespace="sellRoomSelectRoom"></vc:i18n>：</label>
-                            <label class="">{{roomInfo.builtUpArea}}<vc:i18n name="平方米" namespace="sellRoomSelectRoom"></vc:i18n></label>
+                            <label class="col-form-label"><span><vc:i18n name="建筑面积" namespace="sellRoomSelectRoom"></vc:i18n></span>：</label>
+                            <label class="">{{roomInfo.builtUpArea}}<span><vc:i18n name="平方米" namespace="sellRoomSelectRoom"></vc:i18n></span></label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="单价" namespace="sellRoomSelectRoom"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="单价" namespace="sellRoomSelectRoom"></vc:i18n></span>：</label>
                             <label class="">{{roomInfo.unitPrice}} 元</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="创建员工" namespace="sellRoomSelectRoom"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="创建员工" namespace="sellRoomSelectRoom"></vc:i18n></span>：</label>
                             <label class="">{{roomInfo.userName}}</label>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
         </div>
     </div>
     <!-- 这里取消 -->
-   <!-- <vc:create path="property/searchRoom"
+    <!-- <vc:create path="property/searchRoom"
                emitChooseRoom="sellRoomSelectRoom"
                emitLoadData="sellRoomOther"
                roomFlag="1"

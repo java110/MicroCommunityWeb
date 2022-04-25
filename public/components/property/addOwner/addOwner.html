@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="m-t-none m-b ">
-                    <vc:i18n name="添加" namespace="addOwner"></vc:i18n>{{addOwnerInfo.componentTitle}}</h3>
+                    <span><vc:i18n name="添加" namespace="addOwner"></vc:i18n></span>{{addOwnerInfo.componentTitle}}</h3>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-6">
@@ -142,10 +142,12 @@
                     </div>
                     <div class="ibox-content">
                         <button class="btn btn-primary float-right" type="button" v-on:click="saveOwnerInfo()">
-                            <i class="fa fa-check"></i>&nbsp;保存
+                            <i class="fa fa-check"></i>&nbsp;
+                            <vc:i18n name="保存"></vc:i18n>
                         </button>
                         <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
-                            <i class="fa fa-close"></i>&nbsp;取消
+                            <i class="fa fa-close"></i>&nbsp;
+                            <vc:i18n name="取消"></vc:i18n>
                         </button>
                     </div>
                 </div>
