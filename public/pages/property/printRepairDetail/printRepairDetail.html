@@ -3,79 +3,79 @@
         <div>
             <!-- <div class="row">
                 <div class="col-sm-4">
-                    <span><vc:i18n name="报修单号" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairId}}</span>
+                    <span><span><vc:i18n name="报修单号" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairId}}</span>
                 </div>
                 <div class="col-sm-4">
-                    <span><vc:i18n name="报修类型" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairTypeName}}</span>
+                    <span><span><vc:i18n name="报修类型" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairTypeName}}</span>
                 </div>
                 <div class="col-sm-4">
-                    <span><vc:i18n name="预约时间" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.appointmentTime}}</span>
+                    <span><span><vc:i18n name="预约时间" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.appointmentTime}}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
-                    <span><vc:i18n name="报修人" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairName}}</span>
+                    <span><span><vc:i18n name="报修人" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairName}}</span>
                 </div>
                 <div class="col-sm-4">
-                    <span><vc:i18n name="联系电话" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.tel}}</span>
+                    <span><span><vc:i18n name="联系电话" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.tel}}</span>
                 </div>
                 <div class="col-sm-4">
-                    <span><vc:i18n name="位置" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairObjName}}</span>
+                    <span><span><vc:i18n name="位置" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairObjName}}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <span><vc:i18n name="预约内容" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.context}}</span>
+                    <span><span><vc:i18n name="预约内容" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.context}}</span>
                 </div>
             </div> -->
             <div class="row">
                 <div class="col-sm-4">
-                    <span><vc:i18n name="报修单号" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairId}}</span>
+                    <span><span><vc:i18n name="报修单号" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairId}}</span>
                 </div>
                 <div class="col-sm-6">
                     <span></span>
                 </div>
                 <div class="col-sm-2">
-                    <span><vc:i18n name="打印时间" namespace="printRepairDetail"></vc:i18n>：{{nowTime}}</span>
+                    <span><span><vc:i18n name="打印时间" namespace="printRepairDetail"></vc:i18n></span>：{{nowTime}}</span>
                 </div>
             </div>
             <table class="table table-bordered margin-top" style="margin-bottom: 0;">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="6" class="text-center"><vc:i18n name="报修信息" namespace="printRepairDetail"></vc:i18n></th>
+                        <th scope="col" colspan="6" class="text-center"><span><vc:i18n name="报修信息" namespace="printRepairDetail"></vc:i18n></span></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><vc:i18n name="报修人" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairName}}</td>
-                        <td><vc:i18n name="联系电话" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.tel}}</td>
-                        <td><vc:i18n name="位置" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairObjName}}</td>
+                        <td><span><vc:i18n name="报修人" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairName}}</td>
+                        <td><span><vc:i18n name="联系电话" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.tel}}</td>
+                        <td><span><vc:i18n name="位置" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairObjName}}</td>
                     </tr>
                     <tr>
-                        <td><vc:i18n name="报修内容" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.context}}</td>
-                        <td v-if="printRepairDetailInfo.maintenanceType != null && printRepairDetailInfo.maintenanceType != ''"><vc:i18n name="报修类型" namespace="printRepairDetail"></vc:i18n>：
-                            <span v-if="printRepairDetailInfo.maintenanceType == '1001'"><vc:i18n name="有偿服务" namespace="printRepairDetail"></vc:i18n></span>
-                            <span v-else><vc:i18n name="无偿服务" namespace="printRepairDetail"></vc:i18n></span>
+                        <td><span><vc:i18n name="报修内容" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.context}}</td>
+                        <td v-if="printRepairDetailInfo.maintenanceType != null && printRepairDetailInfo.maintenanceType != ''"><span><vc:i18n name="报修类型" namespace="printRepairDetail"></vc:i18n></span>：
+                            <span v-if="printRepairDetailInfo.maintenanceType == '1001'"><span><vc:i18n name="有偿服务" namespace="printRepairDetail"></vc:i18n></span></span>
+                            <span v-else><span><vc:i18n name="无偿服务" namespace="printRepairDetail"></vc:i18n></span></span>
                         </td>
-                        <td v-if="printRepairDetailInfo.maintenanceType == '1001'"><vc:i18n name="报修用料" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairMaterials}}</td>
+                        <td v-if="printRepairDetailInfo.maintenanceType == '1001'"><span><vc:i18n name="报修用料" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairMaterials}}</td>
                     </tr>
                     <tr v-if="printRepairDetailInfo.maintenanceType == '1001'">
-                        <td colspan="3"><vc:i18n name="费用明细" namespace="printRepairDetail"></vc:i18n>：{{printRepairDetailInfo.repairFee}}<vc:i18n name="元" namespace="printRepairDetail"></vc:i18n> &nbsp;&nbsp;(单价*数量)</td>
+                        <td colspan="3"><span><vc:i18n name="费用明细" namespace="printRepairDetail"></vc:i18n></span>：{{printRepairDetailInfo.repairFee}}<span><vc:i18n name="元" namespace="printRepairDetail"></vc:i18n></span> &nbsp;&nbsp;(单价*数量)</td>
                     </tr>
                 </tbody>
             </table>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="6" class="text-center"><vc:i18n name="工单流转" namespace="printRepairDetail"></vc:i18n></th>
+                        <th scope="col" colspan="6" class="text-center"><span><vc:i18n name="工单流转" namespace="printRepairDetail"></vc:i18n></span></th>
                     </tr>
                     <tr>
-                        <th scope="col" class="text-center"><vc:i18n name="序号" namespace="printRepairDetail"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="处理人" namespace="printRepairDetail"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="状态" namespace="printRepairDetail"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="处理时间" namespace="printRepairDetail"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="耗时" namespace="printRepairDetail"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="意见" namespace="printRepairDetail"></vc:i18n></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="序号" namespace="printRepairDetail"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="处理人" namespace="printRepairDetail"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="状态" namespace="printRepairDetail"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="处理时间" namespace="printRepairDetail"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="耗时" namespace="printRepairDetail"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="意见" namespace="printRepairDetail"></vc:i18n></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,20 +88,20 @@
                         <td class="text-center">{{item.context}}</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="text-center"><vc:i18n name="备注" namespace="printRepairDetail"></vc:i18n></th>
+                        <th scope="row" class="text-center"><span><vc:i18n name="备注" namespace="printRepairDetail"></vc:i18n></span></th>
                         <td colspan="5">{{printRepairDetailInfo.description}}</td>
                     </tr>
                     <tr height="60px">
-                        <td colspan="2" class="text-center " style="vertical-align:middle;"><vc:i18n name="维修人员签字" namespace="printRepairDetail"></vc:i18n></td>
+                        <td colspan="2" class="text-center " style="vertical-align:middle;"><span><vc:i18n name="维修人员签字" namespace="printRepairDetail"></vc:i18n></span></td>
                         <td colspan="2"></td>
-                        <td class="text-center " style="vertical-align:middle;"><vc:i18n name="时间" namespace="printRepairDetail"></vc:i18n></td>
+                        <td class="text-center " style="vertical-align:middle;"><span><vc:i18n name="时间" namespace="printRepairDetail"></vc:i18n></span></td>
                         <td></td>
 
                     </tr>
                     <tr height="60px">
-                        <td colspan="2" class="text-center" style="vertical-align:middle;"><vc:i18n name="客户签字" namespace="printRepairDetail"></vc:i18n></td>
+                        <td colspan="2" class="text-center" style="vertical-align:middle;"><span><vc:i18n name="客户签字" namespace="printRepairDetail"></vc:i18n></span></td>
                         <td colspan="2"></td>
-                        <td class="text-center " style="vertical-align:middle;"><vc:i18n name="时间" namespace="printRepairDetail"></vc:i18n></td>
+                        <td class="text-center " style="vertical-align:middle;"><span><vc:i18n name="时间" namespace="printRepairDetail"></vc:i18n></span></td>
                         <td></td>
                     </tr>
                 </tbody>
@@ -111,7 +111,7 @@
             <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
                 <i class="fa fa-check"></i>&nbsp;打印
             </button>
-            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><vc:i18n name="取消" namespace="printRepairDetail"></vc:i18n>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printRepairDetail"></vc:i18n></span>
             </button>
         </div>
     </div>

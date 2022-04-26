@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseActivitiesRuleModelLabel"><vc:i18n name="选择活动规则" namespace="chooseActivitiesRule"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseActivitiesRuleModelLabel"><span><vc:i18n name="选择活动规则" namespace="chooseActivitiesRule"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseActivitiesRule')vc.i18n(' ','chooseActivitiesRule')vc.i18n(' 
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入活动规则名称','chooseActivitiesRule')" type="text" v-model="chooseActivitiesRuleInfo._currentActivitiesRuleName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryActivitiesRules()"><vc:i18n name="查询" namespace="chooseActivitiesRule"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryActivitiesRules()"><span><vc:i18n name="查询" namespace="chooseActivitiesRule"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','chooseActivitiesRule')vc.i18n(' ','chooseActivitiesRule')vc.i18n(' 
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="规则" namespace="chooseActivitiesRule"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="活动类型" namespace="chooseActivitiesRule"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="规则名称" namespace="chooseActivitiesRule"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="开始时间" namespace="chooseActivitiesRule"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="结束时间" namespace="chooseActivitiesRule"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="活动对象" namespace="chooseActivitiesRule"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="规则说明" namespace="chooseActivitiesRule"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseActivitiesRule"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="规则" namespace="chooseActivitiesRule"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="活动类型" namespace="chooseActivitiesRule"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="规则名称" namespace="chooseActivitiesRule"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="chooseActivitiesRule"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="chooseActivitiesRule"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="活动对象" namespace="chooseActivitiesRule"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="规则说明" namespace="chooseActivitiesRule"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseActivitiesRule"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','chooseActivitiesRule')vc.i18n(' ','chooseActivitiesRule')vc.i18n(' 
                             <td class="text-center">{{activitiesRule.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseActivitiesRule(activitiesRule)"><vc:i18n name="选择" namespace="chooseActivitiesRule"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseActivitiesRule(activitiesRule)"><span><vc:i18n name="选择" namespace="chooseActivitiesRule"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

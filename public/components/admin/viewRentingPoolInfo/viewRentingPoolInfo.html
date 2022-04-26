@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="房源信息" namespace="viewRentingPoolInfo"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="房源信息" namespace="viewRentingPoolInfo"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
                             返回
@@ -14,19 +14,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="出租标题" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="出租标题" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.rentingTitle}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="租金" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="租金" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.price}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="预付类型" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="预付类型" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.paymentTypeName}}</label>
                             </div>
                         </div>
@@ -34,19 +34,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="入住时间" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="入住时间" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.checkIn == '1001'?'立即入住':'预约入住'}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="出租配置" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="出租配置" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.rentingType=='3344'?'整租':'合租'}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="备注" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="备注" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.rentingDesc}}</label>
                             </div>
                         </div>
@@ -54,19 +54,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="业主名称" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="业主名称" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.ownerName}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="业主电话" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="业主电话" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.ownerTel}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="房屋" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="房屋" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.roomName}}</label>
                             </div>
                         </div>
@@ -75,13 +75,13 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="业主服务费" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="业主服务费" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.serviceOwnerFee}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="租客服务费" namespace="viewRentingPoolInfo"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="租客服务费" namespace="viewRentingPoolInfo"></vc:i18n></span>：</label>
                                 <label class="">{{viewRentingPoolInfo.serviceTenantFee}}</label>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="租赁图片" namespace="viewRentingPoolInfo"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="租赁图片" namespace="viewRentingPoolInfo"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>

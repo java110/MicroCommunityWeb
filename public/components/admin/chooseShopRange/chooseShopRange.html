@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseShopRangeModelLabel"><vc:i18n name="选择经营范围" namespace="chooseShopRange"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseShopRangeModelLabel"><span><vc:i18n name="选择经营范围" namespace="chooseShopRange"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseShopRange')vc.i18n(' ','chooseShopRange')vc.i18n(' ','chooseS
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入经营范围名称','chooseShopRange')" type="text" v-model="chooseShopRangeInfo._currentShopRangeName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryShopRanges()"><vc:i18n name="查询" namespace="chooseShopRange"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryShopRanges()"><span><vc:i18n name="查询" namespace="chooseShopRange"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,15 +28,15 @@ vc.i18n(' ','chooseShopRange')vc.i18n(' ','chooseShopRange')vc.i18n(' ','chooseS
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="店铺经营范围" namespace="chooseShopRange"></vc:i18n>id</th>
-                            <th class="text-center"><vc:i18n name="店铺经营范围" namespace="chooseShopRange"></vc:i18n>id</th>
-                            <th class="text-center"><vc:i18n name="店铺类型" namespace="chooseShopRange"></vc:i18n>id</th>
-                            <th class="text-center"><vc:i18n name="范围名称" namespace="chooseShopRange"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="是否展示" namespace="chooseShopRange"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="是否默认" namespace="chooseShopRange"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="显示序号" namespace="chooseShopRange"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="备注" namespace="chooseShopRange"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseShopRange"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="店铺经营范围" namespace="chooseShopRange"></vc:i18n></span>id</th>
+                            <th class="text-center"><span><vc:i18n name="店铺经营范围" namespace="chooseShopRange"></vc:i18n></span>id</th>
+                            <th class="text-center"><span><vc:i18n name="店铺类型" namespace="chooseShopRange"></vc:i18n></span>id</th>
+                            <th class="text-center"><span><vc:i18n name="范围名称" namespace="chooseShopRange"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否展示" namespace="chooseShopRange"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否默认" namespace="chooseShopRange"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="显示序号" namespace="chooseShopRange"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseShopRange"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseShopRange"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -52,7 +52,7 @@ vc.i18n(' ','chooseShopRange')vc.i18n(' ','chooseShopRange')vc.i18n(' ','chooseS
                             <td class="text-center">{{shopRange.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseShopRange(shopRange)"><vc:i18n name="选择" namespace="chooseShopRange"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseShopRange(shopRange)"><span><vc:i18n name="选择" namespace="chooseShopRange"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

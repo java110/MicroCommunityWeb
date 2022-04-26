@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="chooseAppModelLabel">
-                    <vc:i18n name="选择应用" namespace="chooseApp"></vc:i18n>
+                    <span><vc:i18n name="选择应用" namespace="chooseApp"></vc:i18n></span>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -21,7 +21,7 @@
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入应用名称','chooseApp')" type="text" v-model="chooseAppInfo._currentAppName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryApps()"><vc:i18n name="查询" namespace="chooseApp"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryApps()"><span><vc:i18n name="查询" namespace="chooseApp"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -31,12 +31,12 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <vc:i18n name="应用" namespace="chooseApp"></vc:i18n>Id</th>
+                                                <span><vc:i18n name="应用" namespace="chooseApp"></vc:i18n></span>Id</th>
                                             <th>
-                                                <vc:i18n name="应用名称" namespace="chooseApp"></vc:i18n>
+                                                <span><vc:i18n name="应用名称" namespace="chooseApp"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="操作" namespace="chooseApp"></vc:i18n>
+                                                <span><vc:i18n name="操作" namespace="chooseApp"></vc:i18n></span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -45,7 +45,7 @@
                                             <td>{{app.appId}}</td>
                                             <td>{{app.name}}</td>
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseApp(app)"><vc:i18n name="选择" namespace="chooseApp"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseApp(app)"><span><vc:i18n name="选择" namespace="chooseApp"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -4,11 +4,11 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="我的小区" namespace="enterCommunity"></vc:i18n>
+                        <span><vc:i18n name="我的小区" namespace="enterCommunity"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-white btn-sm" v-on:click="_showHcUse()">
-                            <vc:i18n name="商用流程" namespace="enterCommunity"></vc:i18n>
+                            <span><vc:i18n name="商用流程" namespace="enterCommunity"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -17,39 +17,39 @@
                         <thead>
                             <tr>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="省份" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="省份" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="市/州" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="市/州" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" width="150px" class="text-center">
-                                    <vc:i18n name="区/县" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="区/县" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" width="200px" class="text-center">
-                                    <vc:i18n name="小区名称" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="小区名称" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
-                                <!-- <th data-hide="phone"><vc:i18n name="小区地址" namespace="enterCommunity"></vc:i18n></th> -->
+                                <!-- <th data-hide="phone"><span><vc:i18n name="小区地址" namespace="enterCommunity"></vc:i18n></span></th> -->
                                 <th class="text-center">
-                                    <vc:i18n name="小区编码" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="小区编码" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="联系方式" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="联系方式" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="面积" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="面积" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="开始时间" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="开始时间" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="结束时间" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="结束时间" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
-                                <!-- <th data-hide="phone,tablet" ><vc:i18n name="城市编码" namespace="enterCommunity"></vc:i18n></th> -->
+                                <!-- <th data-hide="phone,tablet" ><span><vc:i18n name="城市编码" namespace="enterCommunity"></vc:i18n></span></th> -->
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="状态" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="enterCommunity"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="enterCommunity"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -116,11 +116,11 @@
                                 </td>
                                 <td class="text-center">
                                     <!-- <div class="btn-group" v-if="community.auditStatusCd == '1100' && community.communityId != '7020181217000001'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openExitCommunityModel(community)"><vc:i18n name="申请退出" namespace="enterCommunity"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openExitCommunityModel(community)"><span><vc:i18n name="申请退出" namespace="enterCommunity"></vc:i18n></span>
                                     </button> 
                                     </div>-->
                                     <div class="btn-group" v-if="community.auditStatusCd == '1100' ">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateCommunityModel(community)"><vc:i18n name="修改" namespace="enterCommunity"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateCommunityModel(community)"><span><vc:i18n name="修改" namespace="enterCommunity"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>
@@ -144,7 +144,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="商用流程" namespace="enterCommunity"></vc:i18n>
+                        <span><vc:i18n name="商用流程" namespace="enterCommunity"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">

@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="merchantManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="merchantManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -41,7 +41,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="商家公司" namespace="merchantManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="商家公司" namespace="merchantManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMerchantModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -54,16 +54,16 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="编号" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="名称" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="地址" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="管理员" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="电话" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="公司法人" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="成立日期" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="地标" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="创建时间" namespace="merchantManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="merchantManage"></vc:i18n></th>
+                                <th class="text-center"><span><vc:i18n name="编号" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="名称" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="地址" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="管理员" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="电话" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="公司法人" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="成立日期" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="地标" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="创建时间" namespace="merchantManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="merchantManage"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,15 +79,15 @@
                                 <td class="text-center">{{propertyCompany.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-if="propertyCompany.state != '48002'" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')"><vc:i18n name="限制登录" namespace="merchantManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-if="propertyCompany.state != '48002'" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')"><span><vc:i18n name="限制登录" namespace="merchantManage"></vc:i18n></span>
                                         </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-else v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')"><vc:i18n name="恢复登录" namespace="merchantManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-else v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')"><span><vc:i18n name="恢复登录" namespace="merchantManage"></vc:i18n></span>
                                         </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(propertyCompany)"><vc:i18n name="重置密码" namespace="merchantManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(propertyCompany)"><span><vc:i18n name="重置密码" namespace="merchantManage"></vc:i18n></span>
                                         </button>
                                     </div>
                                 </td>

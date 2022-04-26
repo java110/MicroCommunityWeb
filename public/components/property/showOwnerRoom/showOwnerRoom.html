@@ -4,14 +4,14 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>{{roomInfo.roomNum}}{{roomInfo.roomType == '2020602'?'商铺':'房屋'}}
-                        <vc:i18n name="信息" namespace="showOwnerRoom"></vc:i18n>
+                        <span><vc:i18n name="信息" namespace="showOwnerRoom"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-if="showOwnerRoomInfo.deleteOwnerRoomFlag == 'false'" v-on:click="showPropertyFee(roomInfo)">
-                            <i class="glyphicon glyphicon-remove"></i> <vc:i18n name="物业费" namespace="showOwnerRoom"></vc:i18n>
+                            <i class="glyphicon glyphicon-remove"></i> <span><vc:i18n name="物业费" namespace="showOwnerRoom"></vc:i18n></span>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-if="showOwnerRoomInfo.deleteOwnerRoomFlag == 'true'" v-on:click="ownerExitRoomModel(roomInfo.roomId)">
-                            <i class="glyphicon glyphicon-remove"></i> <vc:i18n name="我要退房" namespace="showOwnerRoom"></vc:i18n>
+                            <i class="glyphicon glyphicon-remove"></i> <span><vc:i18n name="我要退房" namespace="showOwnerRoom"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -19,31 +19,31 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="roomInfo.roomType == '2020602'">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="商铺编号" namespace="showOwnerRoom"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="商铺编号" namespace="showOwnerRoom"></vc:i18n></span></label>：
                                 <label class="">{{roomInfo.floorNum}}-{{roomInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4" v-else>
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="房屋编号" namespace="showOwnerRoom"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="房屋编号" namespace="showOwnerRoom"></vc:i18n></span></label>：
                                 <label class="">{{roomInfo.floorNum}}-{{roomInfo.unitNum}}-{{roomInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="楼层" namespace="showOwnerRoom"></vc:i18n></label>：
-                                <label class="">{{roomInfo.layer}}<vc:i18n name="层" namespace="showOwnerRoom"></vc:i18n></label>
+                                <label class="col-form-label"><span><vc:i18n name="楼层" namespace="showOwnerRoom"></vc:i18n></span></label>：
+                                <label class="">{{roomInfo.layer}}<span><vc:i18n name="层" namespace="showOwnerRoom"></vc:i18n></span></label>
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="roomInfo.roomType == '2020602'">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="商铺ID" namespace="showOwnerRoom"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="商铺ID" namespace="showOwnerRoom"></vc:i18n></span></label>：
                                 <label class="">{{roomInfo.roomId}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4" v-else>
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="房屋ID" namespace="showOwnerRoom"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="房屋ID" namespace="showOwnerRoom"></vc:i18n></span></label>：
                                 <label class="">{{roomInfo.roomId}}</label>
                             </div>
                         </div>
@@ -51,19 +51,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="建筑面积" namespace="showOwnerRoom"></vc:i18n></label>：
-                                <label class="">{{roomInfo.builtUpArea}}<vc:i18n name="平方米" namespace="showOwnerRoom"></vc:i18n></label>
+                                <label class="col-form-label"><span><vc:i18n name="建筑面积" namespace="showOwnerRoom"></vc:i18n></span></label>：
+                                <label class="">{{roomInfo.builtUpArea}}<span><vc:i18n name="平方米" namespace="showOwnerRoom"></vc:i18n></span></label>
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="roomInfo.roomType == '1010301'">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="户型" namespace="showOwnerRoom"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="户型" namespace="showOwnerRoom"></vc:i18n></span></label>：
                                 <label class="">{{roomInfo.apartment}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="roomInfo.roomType == '1010301'">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="房间数" namespace="showOwnerRoom"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="房间数" namespace="showOwnerRoom"></vc:i18n></span></label>：
                                 <label class="">{{roomInfo.section}}</label>
                             </div>
                         </div>

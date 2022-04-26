@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="chooseOrgModelLabel">
-                    <vc:i18n name="选择组织" namespace="chooseOrg"></vc:i18n>
+                    <span><vc:i18n name="选择组织" namespace="chooseOrg"></vc:i18n></span>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -22,7 +22,7 @@
                                         <input :placeholder="vc.i18n('输入组织名称','chooseOrg')" type="text" v-model="chooseOrgInfo._currentOrgName" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryOrgs()"><vc:i18n name="查询" namespace="chooseOrg"></vc:i18n></button>
+                                                        v-on:click="queryOrgs()"><span><vc:i18n name="查询" namespace="chooseOrg"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -32,17 +32,17 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">
-                                                <vc:i18n name="组织" namespace="chooseOrg"></vc:i18n>ID</th>
+                                                <span><vc:i18n name="组织" namespace="chooseOrg"></vc:i18n></span>ID</th>
                                             <th class="text-center">
-                                                <vc:i18n name="组织名称" namespace="chooseOrg"></vc:i18n>
+                                                <span><vc:i18n name="组织名称" namespace="chooseOrg"></vc:i18n></span>
                                             </th>
                                             <th class="text-center">
-                                                <vc:i18n name="组织级别" namespace="chooseOrg"></vc:i18n>
+                                                <span><vc:i18n name="组织级别" namespace="chooseOrg"></vc:i18n></span>
                                             </th>
                                             <th class="text-center">
-                                                <vc:i18n name="上级" namespace="chooseOrg"></vc:i18n>ID</th>
+                                                <span><vc:i18n name="上级" namespace="chooseOrg"></vc:i18n></span>ID</th>
                                             <th class="text-center">
-                                                <vc:i18n name="操作" namespace="chooseOrg"></vc:i18n>
+                                                <span><vc:i18n name="操作" namespace="chooseOrg"></vc:i18n></span>
                                             </th>
 
                                         </tr>
@@ -55,7 +55,7 @@
                                             <td class="text-center">{{org.parentOrgName}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOrg(org)"><vc:i18n name="选择" namespace="chooseOrg"></vc:i18n>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOrg(org)"><span><vc:i18n name="选择" namespace="chooseOrg"></vc:i18n></span>
                                             </button>
                                             </td>
                                         </tr>

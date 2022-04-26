@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="searchParkingSpaceModelLabel">
-                    <vc:i18n name="选择停车位" namespace="searchParkingSpace"></vc:i18n>
+                    <span><vc:i18n name="选择停车位" namespace="searchParkingSpace"></vc:i18n></span>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -25,7 +25,7 @@
                                         <input :placeholder="vc.i18n('请输入停车场','searchParkingSpace')" type="text" v-model="searchParkingSpaceInfo.areaNum" class="form-control form-control-sm">
                                         <input :placeholder="vc.i18n('请输入停车位编号','searchParkingSpace')" type="text" v-model="searchParkingSpaceInfo.num" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                            <button type="button" class="btn btn-sm btn-primary" v-on:click="searchParkingSpaces()"><vc:i18n name="查询" namespace="searchParkingSpace"></vc:i18n></button>
+                                            <button type="button" class="btn btn-sm btn-primary" v-on:click="searchParkingSpaces()"><span><vc:i18n name="查询" namespace="searchParkingSpace"></vc:i18n></span></button>
                                         </span>
                                     </div>
                                 </div>
@@ -35,22 +35,22 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <vc:i18n name="车位" namespace="searchParkingSpace"></vc:i18n>ID</th>
+                                                <span><vc:i18n name="车位" namespace="searchParkingSpace"></vc:i18n></span>ID</th>
                                             <th data-hide="phone">
-                                                <vc:i18n name="车位编码" namespace="searchParkingSpace"></vc:i18n>
+                                                <span><vc:i18n name="车位编码" namespace="searchParkingSpace"></vc:i18n></span>
                                             </th>
                                             <th data-hide="phone">
-                                                <vc:i18n name="车位类型" namespace="searchParkingSpace"></vc:i18n>
+                                                <span><vc:i18n name="车位类型" namespace="searchParkingSpace"></vc:i18n></span>
                                             </th>
                                             <th data-hide="phone">
-                                                <vc:i18n name="车位状态" namespace="searchParkingSpace"></vc:i18n>
+                                                <span><vc:i18n name="车位状态" namespace="searchParkingSpace"></vc:i18n></span>
                                             </th>
                                             <th data-hide="phone">
-                                                <vc:i18n name="面积" namespace="searchParkingSpace"></vc:i18n>
+                                                <span><vc:i18n name="面积" namespace="searchParkingSpace"></vc:i18n></span>
                                             </th>
 
                                             <th class="text-right">
-                                                <vc:i18n name="操作" namespace="searchParkingSpace"></vc:i18n>
+                                                <span><vc:i18n name="操作" namespace="searchParkingSpace"></vc:i18n></span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -75,7 +75,7 @@
                                             </td>
 
                                             <td class="text-right">
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseParkingSpace(parkingSpace)"><vc:i18n name="选择" namespace="searchParkingSpace"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseParkingSpace(parkingSpace)"><span><vc:i18n name="选择" namespace="searchParkingSpace"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

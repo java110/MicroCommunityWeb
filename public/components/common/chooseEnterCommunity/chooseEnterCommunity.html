@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="addPrivilegeModalLabel"><vc:i18n name="切换小区" namespace="chooseEnterCommunity"></vc:i18n></h3>
+                    <h3 class="modal-title" id="addPrivilegeModalLabel"><span><vc:i18n name="切换小区" namespace="chooseEnterCommunity"></vc:i18n></span></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -21,7 +21,7 @@ vc.i18n(' ','chooseEnterCommunity')vc.i18n(' ','chooseEnterCommunity')vc.i18n(' 
                                             <input :placeholder="vc.i18n('输入小区名称','chooseEnterCommunity')" v-model="navCommunityInfo.searchCommunityName" type="text" class="form-control form-control-sm">
                                             <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="_queryEnterCommunity()"><vc:i18n name="查询" namespace="chooseEnterCommunity"></vc:i18n></button>
+                                                        v-on:click="_queryEnterCommunity()"><span><vc:i18n name="查询" namespace="chooseEnterCommunity"></vc:i18n></span></button>
                                             </span>
                                         </div>
                                     </div>
@@ -30,10 +30,10 @@ vc.i18n(' ','chooseEnterCommunity')vc.i18n(' ','chooseEnterCommunity')vc.i18n(' 
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th class="text-center"><vc:i18n name="小区" namespace="chooseEnterCommunity"></vc:i18n>ID</th>
-                                                <th data-hide="phone" class="text-center"><vc:i18n name="名称" namespace="chooseEnterCommunity"></vc:i18n></th>
-                                                <th data-hide="phone" class="text-center"><vc:i18n name="地址" namespace="chooseEnterCommunity"></vc:i18n></th>
-                                                <th class="text-center"><vc:i18n name="操作" namespace="chooseEnterCommunity"></vc:i18n></th>
+                                                <th class="text-center"><span><vc:i18n name="小区" namespace="chooseEnterCommunity"></vc:i18n></span>ID</th>
+                                                <th data-hide="phone" class="text-center"><span><vc:i18n name="名称" namespace="chooseEnterCommunity"></vc:i18n></span></th>
+                                                <th data-hide="phone" class="text-center"><span><vc:i18n name="地址" namespace="chooseEnterCommunity"></vc:i18n></span></th>
+                                                <th class="text-center"><span><vc:i18n name="操作" namespace="chooseEnterCommunity"></vc:i18n></span></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -49,7 +49,7 @@ vc.i18n(' ','chooseEnterCommunity')vc.i18n(' ','chooseEnterCommunity')vc.i18n(' 
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <button class="btn-white btn btn-xs" v-on:click="_chooseCurrentCommunity(community)"><vc:i18n name="选择" namespace="chooseEnterCommunity"></vc:i18n>
+                                                        <button class="btn-white btn btn-xs" v-on:click="_chooseCurrentCommunity(community)"><span><vc:i18n name="选择" namespace="chooseEnterCommunity"></vc:i18n></span>
                                                     </button>
                                                     </div>
                                                 </td>

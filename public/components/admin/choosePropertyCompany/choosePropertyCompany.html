@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="choosePropertyCompanyModelLabel"><vc:i18n name="选择物业公司" namespace="choosePropertyCompany"></vc:i18n></h3>
+                <h3 class="modal-title" id="choosePropertyCompanyModelLabel"><span><vc:i18n name="选择物业公司" namespace="choosePropertyCompany"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','choosePropertyCompany')vc.i18n(' ','choosePropertyCompany')vc.i18n(
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入物业公司名称','choosePropertyCompany')" type="text" v-model="choosePropertyCompanyInfo._currentPropertyCompanyName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryPropertyCompanys()"><vc:i18n name="查询" namespace="choosePropertyCompany"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryPropertyCompanys()"><span><vc:i18n name="查询" namespace="choosePropertyCompany"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','choosePropertyCompany')vc.i18n(' ','choosePropertyCompany')vc.i18n(
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="编号" namespace="choosePropertyCompany"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="名称" namespace="choosePropertyCompany"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="地址" namespace="choosePropertyCompany"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="电话" namespace="choosePropertyCompany"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="公司法人" namespace="choosePropertyCompany"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="成立日期" namespace="choosePropertyCompany"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="地标" namespace="choosePropertyCompany"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="choosePropertyCompany"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="编号" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="名称" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="地址" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="电话" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="公司法人" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="成立日期" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="地标" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="choosePropertyCompany"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','choosePropertyCompany')vc.i18n(' ','choosePropertyCompany')vc.i18n(
                             <td class="text-center">{{propertyCompany.nearbyLandmarks}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="choosePropertyCompany(propertyCompany)"><vc:i18n name="选择" namespace="choosePropertyCompany"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="choosePropertyCompany(propertyCompany)"><span><vc:i18n name="选择" namespace="choosePropertyCompany"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

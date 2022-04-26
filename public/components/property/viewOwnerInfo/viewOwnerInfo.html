@@ -3,7 +3,7 @@
         <div class="ibox ">
             <div class="ibox-title">
                 <h5>
-                    <vc:i18n name="业主信息" namespace="viewOwnerInfo"></vc:i18n>
+                    <span><vc:i18n name="业主信息" namespace="viewOwnerInfo"></vc:i18n></span>
                 </h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm" v-if="viewOwnerInfo.showCallBackButton=='true'" v-on:click="_callBackListOwner(viewOwnerInfo.ownerId)">
@@ -23,19 +23,19 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="业主ID" namespace="viewOwnerInfo"></vc:i18n></label>：
+                                    <label class="col-form-label"><span><vc:i18n name="业主ID" namespace="viewOwnerInfo"></vc:i18n></span></label>：
                                     <label class="">{{viewOwnerInfo.ownerId}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="名称" namespace="viewOwnerInfo"></vc:i18n></label>：
+                                    <label class="col-form-label"><span><vc:i18n name="名称" namespace="viewOwnerInfo"></vc:i18n></span></label>：
                                     <label class="">{{viewOwnerInfo.name}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="性别" namespace="viewOwnerInfo"></vc:i18n></label>：
+                                    <label class="col-form-label"><span><vc:i18n name="性别" namespace="viewOwnerInfo"></vc:i18n></span></label>：
                                     <label class="">{{viewOwnerInfo.sex == '0' ? '男' : (viewOwnerInfo.sex == '1' ? '女' : '')}}</label>
                                 </div>
                             </div>
@@ -43,19 +43,19 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="年龄" namespace="viewOwnerInfo"></vc:i18n></label>：
+                                    <label class="col-form-label"><span><vc:i18n name="年龄" namespace="viewOwnerInfo"></vc:i18n></span></label>：
                                     <label class="">{{viewOwnerInfo.age}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="身份证" namespace="viewOwnerInfo"></vc:i18n></label>：
+                                    <label class="col-form-label"><span><vc:i18n name="身份证" namespace="viewOwnerInfo"></vc:i18n></span></label>：
                                     <label class="">{{viewOwnerInfo.idCard}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="联系方式" namespace="viewOwnerInfo"></vc:i18n></label>：
+                                    <label class="col-form-label"><span><vc:i18n name="联系方式" namespace="viewOwnerInfo"></vc:i18n></span></label>：
                                     <label class="">{{viewOwnerInfo.link}}</label>
                                 </div>
                             </div>
@@ -64,13 +64,13 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="创建员工" namespace="viewOwnerInfo"></vc:i18n></label>：
+                                    <label class="col-form-label"><span><vc:i18n name="创建员工" namespace="viewOwnerInfo"></vc:i18n></span></label>：
                                     <label class="">{{viewOwnerInfo.userName}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><vc:i18n name="备注" namespace="viewOwnerInfo"></vc:i18n></label>：
+                                    <label class="col-form-label"><span><vc:i18n name="备注" namespace="viewOwnerInfo"></vc:i18n></span></label>：
                                     <label class="">{{viewOwnerInfo.remark}}</label>
                                 </div>
                             </div>

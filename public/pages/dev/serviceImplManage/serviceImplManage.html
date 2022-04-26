@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="serviceImplManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="serviceImplManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{serviceImplManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryServiceImplMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="serviceImplManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="serviceImplManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="服务实现信息" namespace="serviceImplManage"></vc:i18n>
+                        <span><vc:i18n name="服务实现信息" namespace="serviceImplManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddServiceImplModal()">
@@ -70,18 +70,18 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="服务实现" namespace="serviceImplManage"></vc:i18n>ID</th>
+                                    <span><vc:i18n name="服务实现" namespace="serviceImplManage"></vc:i18n></span>ID</th>
                                 <th class="text-center">
-                                    <vc:i18n name="业务类型" namespace="serviceImplManage"></vc:i18n>
+                                    <span><vc:i18n name="业务类型" namespace="serviceImplManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="业务名称" namespace="serviceImplManage"></vc:i18n>
+                                    <span><vc:i18n name="业务名称" namespace="serviceImplManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="调用类型" namespace="serviceImplManage"></vc:i18n>
+                                    <span><vc:i18n name="调用类型" namespace="serviceImplManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="serviceImplManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="serviceImplManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -94,11 +94,11 @@
                                 <td class="text-center">{{serviceImpl.invokeType}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditServiceImplModel(serviceImpl)"><vc:i18n name="修改" namespace="serviceImplManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditServiceImplModel(serviceImpl)"><span><vc:i18n name="修改" namespace="serviceImplManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteServiceImplModel(serviceImpl)"><vc:i18n name="删除" namespace="serviceImplManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteServiceImplModel(serviceImpl)"><span><vc:i18n name="删除" namespace="serviceImplManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

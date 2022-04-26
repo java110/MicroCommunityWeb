@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="修改员工" namespace="editStaff"></vc:i18n></h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改员工" namespace="editStaff"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div class="row">
 
@@ -11,13 +11,13 @@
                                 <p style="color:red;">{{editStaffInfo.errorInfo}}</p>
                                 <div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><vc:i18n name="名称" namespace="editStaff"></vc:i18n></label>
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="名称" namespace="editStaff"></vc:i18n></span></label>
                                         <div class="col-sm-10">
                                             <input v-model="editStaffInfo.username" type="text" :placeholder="vc.i18n('必填，请填写员工名称','editStaff')" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><vc:i18n name="岗位" namespace="editStaff"></vc:i18n></label>
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="岗位" namespace="editStaff"></vc:i18n></span></label>
                                         <div class="col-sm-10">
                                             <select class="custom-select" v-model="editStaffInfo.relCd">
                                                 <option selected disabled value="">{{vc.i18n('必填','editStaff')}}，请选择岗位</option>
@@ -29,19 +29,19 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><vc:i18n name="邮箱" namespace="editStaff"></vc:i18n></label>
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="邮箱" namespace="editStaff"></vc:i18n></span></label>
                                         <div class="col-sm-10">
                                             <input v-model="editStaffInfo.email" type="email" :placeholder="vc.i18n('可选，请填写员工名称','editStaff')" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><vc:i18n name="手机" namespace="editStaff"></vc:i18n></label>
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="手机" namespace="editStaff"></vc:i18n></span></label>
                                         <div class="col-sm-10">
                                             <input v-model="editStaffInfo.tel" type="tel" :placeholder="vc.i18n('必填，请填写手机号码','editStaff')" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><vc:i18n name="性别" namespace="editStaff"></vc:i18n></label>
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="性别" namespace="editStaff"></vc:i18n></span></label>
                                         <div class="col-sm-10">
                                             <select class="custom-select" v-model="editStaffInfo.sex">
                                                 <option selected value="">{{vc.i18n('必填','editStaff')}}，请选择员工性别</option>
@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><vc:i18n name="公司" namespace="editStaff"></vc:i18n></label>
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="公司" namespace="editStaff"></vc:i18n></span></label>
                                         <div class="col-sm-10">
                                             <select class="custom-select" v-model="editStaffInfo.parentOrgId" @change="_editChangeBrach()">
                                                 <option selected value="">{{vc.i18n('必填','editStaff')}}，请选择公司</option>
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><vc:i18n name="部门" namespace="editStaff"></vc:i18n></label>
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="部门" namespace="editStaff"></vc:i18n></span></label>
                                         <div class="col-sm-10">
                                             <select class="custom-select" v-model="editStaffInfo.orgId">
                                                 <option selected value="">{{vc.i18n('必填','editStaff')}}，请选择部门</option>
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><vc:i18n name="住址" namespace="editStaff"></vc:i18n></label>
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="住址" namespace="editStaff"></vc:i18n></span></label>
                                         <div class="col-sm-10">
                                             <input v-model="editStaffInfo.address" type="text" :placeholder="vc.i18n('请填写家庭住址','editStaff')" class="form-control">
                                         </div>
@@ -91,10 +91,10 @@
                             <canvas id="canvasForEdit" style="display:none;"></canvas>
                             <div style="margin-top:20px">
                                 <button class="btn btn-primary" type="button" v-on:click="_takePhotoForEdit()">
-                                    <span class="fa fa-camera"></span> <vc:i18n name="拍照" namespace="editStaff"></vc:i18n>
+                                    <span class="fa fa-camera"></span> <span><vc:i18n name="拍照" namespace="editStaff"></vc:i18n></span>
                                 </button>
                                 <span class="btn btn-default btn-file" v-on:click="_uploadEditPhoto($event)">
-                                    <span class="fileinput-new"><vc:i18n name="上传照片" namespace="editStaff"></vc:i18n></span>
+                                    <span class="fileinput-new"><span><vc:i18n name="上传照片" namespace="editStaff"></vc:i18n></span></span>
                                 </span>
                                 <input type="file" class="file" accept="images/*" id="uploadEditStaffPhoto" hidden v-on:change="_chooseEditPhoto($event)">
                             </div>

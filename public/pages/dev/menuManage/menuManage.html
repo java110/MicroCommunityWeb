@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="menuManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="menuManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{menuManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -18,7 +18,7 @@
                                 <input type="text" :placeholder="vc.i18n('请选择菜单组名称','menuManage')" v-model="menuManageInfo.conditions.gName" class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseMenuGroupMethod()">
-                                        <i class="fa fa-search"></i> <vc:i18n name="选择" namespace="menuManage"></vc:i18n>
+                                        <i class="fa fa-search"></i> <span><vc:i18n name="选择" namespace="menuManage"></vc:i18n></span>
                                     </button>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMenuMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="menuManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="menuManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -77,11 +77,11 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="菜单信息" namespace="menuManage"></vc:i18n>
+                        <span><vc:i18n name="菜单信息" namespace="menuManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMenuModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="配置菜单" namespace="menuManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="配置菜单" namespace="menuManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -90,28 +90,28 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="菜单ID" namespace="menuManage"></vc:i18n>
+                                    <span><vc:i18n name="菜单ID" namespace="menuManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="菜单名称" namespace="menuManage"></vc:i18n>
+                                    <span><vc:i18n name="菜单名称" namespace="menuManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="菜单组" namespace="menuManage"></vc:i18n>
+                                    <span><vc:i18n name="菜单组" namespace="menuManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="归属商户" namespace="menuManage"></vc:i18n>
+                                    <span><vc:i18n name="归属商户" namespace="menuManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="菜单地址" namespace="menuManage"></vc:i18n>
+                                    <span><vc:i18n name="菜单地址" namespace="menuManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="序列" namespace="menuManage"></vc:i18n>
+                                    <span><vc:i18n name="序列" namespace="menuManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="菜单显示" namespace="menuManage"></vc:i18n>
+                                    <span><vc:i18n name="菜单显示" namespace="menuManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-right">
-                                    <vc:i18n name="操作" namespace="menuManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="menuManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -126,15 +126,15 @@
                                 <td class="text-center">{{menu.isShowName}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openPrivilegeModel(menu)"><vc:i18n name="权限" namespace="menuManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openPrivilegeModel(menu)"><span><vc:i18n name="权限" namespace="menuManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditMenuModel(menu)"><vc:i18n name="修改" namespace="menuManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditMenuModel(menu)"><span><vc:i18n name="修改" namespace="menuManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMenuModel(menu)"><vc:i18n name="删除" namespace="menuManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMenuModel(menu)"><span><vc:i18n name="删除" namespace="menuManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

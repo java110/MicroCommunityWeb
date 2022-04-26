@@ -3,65 +3,65 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b "><vc:i18n name="添加线索管理" namespace="addClue"></vc:i18n></h3>
+        <h3 class="m-t-none m-b "><span><vc:i18n name="添加线索管理" namespace="addClue"></vc:i18n></span></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="项目名称" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="项目名称" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <input v-model="addClueInfo.projectName" type="text" :placeholder="vc.i18n('必填，请填写项目名称','addClue')" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="项目位置" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="项目位置" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <input v-model="addClueInfo.projectSite" type="text" :placeholder="vc.i18n('必填，请填写项目位置','addClue')" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="项目概述" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="项目概述" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <textarea :placeholder="vc.i18n('选填，请填写项目概述','addClue')" cols="15" class="form-control"
                     v-model="addClueInfo.projectSummary"></textarea>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="投资额" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投资额" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <input v-model="addClueInfo.investmentAmount" type="text" :placeholder="vc.i18n('选填，请填写投资额','addClue')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="投资方名称" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投资方名称" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <input v-model="addClueInfo.investmentName" type="text" :placeholder="vc.i18n('必填，请填写投资方名称','addClue')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="电话" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="电话" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <input v-model="addClueInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写电话','addClue')" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="投资方简介" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投资方简介" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <textarea :placeholder="vc.i18n('选填，请填写项目概述','addClue')" cols="15" class="form-control"
                     v-model="addClueInfo.investmentSummary"></textarea>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="目前进展情况" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="目前进展情况" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <textarea :placeholder="vc.i18n('选填，请填写目前进展情况','addClue')" cols="15" class="form-control"
                     v-model="addClueInfo.nowSituation"></textarea>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><vc:i18n name="下一步推进计划" namespace="addClue"></vc:i18n></label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="下一步推进计划" namespace="addClue"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <textarea :placeholder="vc.i18n('选填，请填写下一步推进计划','addClue')" cols="15" class="form-control"
                     v-model="addClueInfo.nextSituation"></textarea>
@@ -72,7 +72,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="saveClueInfo()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal"><vc:i18n name="取消" namespace="addClue"></vc:i18n></button>
+                  data-dismiss="modal"><span><vc:i18n name="取消" namespace="addClue"></vc:i18n></span></button>
               </div>
             </div>
           </div>

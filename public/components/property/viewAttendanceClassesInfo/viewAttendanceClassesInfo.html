@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="考勤班组信息" namespace="viewAttendanceClassesInfo"></vc:i18n></h5>
+                <h5><span><vc:i18n name="考勤班组信息" namespace="viewAttendanceClassesInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewAttendanceClassesInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectAttendanceClassesInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> <vc:i18n name="选择考勤班组" namespace="viewAttendanceClassesInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择考勤班组" namespace="viewAttendanceClassesInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewAttendanceClassesInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddAttendanceClassesInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> <vc:i18n name="添加考勤班组" namespace="viewAttendanceClassesInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加考勤班组" namespace="viewAttendanceClassesInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="班次名称" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="班次名称" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.classesName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="打卡范围" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="打卡范围" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.timeOffset}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="打卡次数" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="打卡次数" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.clockCount}}</label>
                         </div>
 </div>
@@ -35,19 +35,19 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="打卡类型" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="打卡类型" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.clockType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="打卡规则" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="打卡规则" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.clockTypeValue}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="迟到范围" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="迟到范围" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.leaveOffset}}</label>
                         </div>
 </div>
@@ -55,19 +55,19 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="早退范围" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="早退范围" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.lateOffset}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="班次对象类型" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="班次对象类型" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.classesObjType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="班次对象" namespace="viewAttendanceClassesInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="班次对象" namespace="viewAttendanceClassesInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttendanceClassesInfo.classesObjId}}</label>
                         </div>
 </div>

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseShopTypeModelLabel"><vc:i18n name="选择店铺类型" namespace="chooseShopType"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseShopTypeModelLabel"><span><vc:i18n name="选择店铺类型" namespace="chooseShopType"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseShopType')vc.i18n(' ','chooseShopType')vc.i18n(' ','chooseSho
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入店铺类型名称','chooseShopType')" type="text" v-model="chooseShopTypeInfo._currentShopTypeName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryShopTypes()"><vc:i18n name="查询" namespace="chooseShopType"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryShopTypes()"><span><vc:i18n name="查询" namespace="chooseShopType"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','chooseShopType')vc.i18n(' ','chooseShopType')vc.i18n(' ','chooseSho
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="店铺类型" namespace="chooseShopType"></vc:i18n>id</th>
-                            <th class="text-center"><vc:i18n name="店铺类型" namespace="chooseShopType"></vc:i18n>id</th>
-                            <th class="text-center"><vc:i18n name="店铺类型" namespace="chooseShopType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="是否展示" namespace="chooseShopType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="是否默认" namespace="chooseShopType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="显示序号" namespace="chooseShopType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="备注" namespace="chooseShopType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseShopType"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="店铺类型" namespace="chooseShopType"></vc:i18n></span>id</th>
+                            <th class="text-center"><span><vc:i18n name="店铺类型" namespace="chooseShopType"></vc:i18n></span>id</th>
+                            <th class="text-center"><span><vc:i18n name="店铺类型" namespace="chooseShopType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否展示" namespace="chooseShopType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否默认" namespace="chooseShopType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="显示序号" namespace="chooseShopType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseShopType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseShopType"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','chooseShopType')vc.i18n(' ','chooseShopType')vc.i18n(' ','chooseSho
                             <td class="text-center">{{shopType.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseShopType(shopType)"><vc:i18n name="选择" namespace="chooseShopType"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseShopType(shopType)"><span><vc:i18n name="选择" namespace="chooseShopType"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

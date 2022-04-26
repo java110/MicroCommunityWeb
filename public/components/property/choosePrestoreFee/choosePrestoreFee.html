@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="choosePrestoreFeeModelLabel"><vc:i18n name="选择预付费用" namespace="choosePrestoreFee"></vc:i18n></h3>
+                <h3 class="modal-title" id="choosePrestoreFeeModelLabel"><span><vc:i18n name="选择预付费用" namespace="choosePrestoreFee"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','choosePrestoreFee')vc.i18n(' ','choosePrestoreFee')vc.i18n(' ','cho
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入预付费用名称','choosePrestoreFee')" type="text" v-model="choosePrestoreFeeInfo._currentPrestoreFeeName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryPrestoreFees()"><vc:i18n name="查询" namespace="choosePrestoreFee"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryPrestoreFees()"><span><vc:i18n name="查询" namespace="choosePrestoreFee"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','choosePrestoreFee')vc.i18n(' ','choosePrestoreFee')vc.i18n(' ','cho
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="预付费用" namespace="choosePrestoreFee"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="房屋" namespace="choosePrestoreFee"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="预付类型" namespace="choosePrestoreFee"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="预存对象类型" namespace="choosePrestoreFee"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="预付金额" namespace="choosePrestoreFee"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="状态" namespace="choosePrestoreFee"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="备注" namespace="choosePrestoreFee"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="choosePrestoreFee"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="预付费用" namespace="choosePrestoreFee"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="房屋" namespace="choosePrestoreFee"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="预付类型" namespace="choosePrestoreFee"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="预存对象类型" namespace="choosePrestoreFee"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="预付金额" namespace="choosePrestoreFee"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="状态" namespace="choosePrestoreFee"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="choosePrestoreFee"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="choosePrestoreFee"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','choosePrestoreFee')vc.i18n(' ','choosePrestoreFee')vc.i18n(' ','cho
                             <td class="text-center">{{prestoreFee.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="choosePrestoreFee(prestoreFee)"><vc:i18n name="选择" namespace="choosePrestoreFee"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="choosePrestoreFee(prestoreFee)"><span><vc:i18n name="选择" namespace="choosePrestoreFee"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

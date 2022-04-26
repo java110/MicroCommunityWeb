@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="账户信息" namespace="payFeeUserAccount"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="账户信息" namespace="payFeeUserAccount"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -16,10 +16,10 @@
                                         v-bind:checked="payFeeUserAccountInfo.quanAccount == true"
                                         @click="checkAllAccount($event)">
                                 </th>
-                                <th class="text-center"><vc:i18n name="账户类型" namespace="payFeeUserAccount"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="账户名" namespace="payFeeUserAccount"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="账户金额" namespace="payFeeUserAccount"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="payFeeUserAccount"></vc:i18n></th>
+                                <th class="text-center"><span><vc:i18n name="账户类型" namespace="payFeeUserAccount"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="账户名" namespace="payFeeUserAccount"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="账户金额" namespace="payFeeUserAccount"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="payFeeUserAccount"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,9 +31,9 @@
                                 </td>
                                 <td class="text-center">{{userAccount.acctTypeName}}</td>
                                 <td class="text-center">{{userAccount.acctName}}</td>
-                                <td class="text-center">{{userAccount.amount}}<vc:i18n name="元" namespace="payFeeUserAccount"></vc:i18n></td>
+                                <td class="text-center">{{userAccount.amount}}<span><vc:i18n name="元" namespace="payFeeUserAccount"></vc:i18n></span></td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddUserAmountModal(userAccount)"><i class="glyphicon glyphicon-plus"></i><vc:i18n name="预存" namespace="payFeeUserAccount"></vc:i18n></button>
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddUserAmountModal(userAccount)"><i class="glyphicon glyphicon-plus"></i><span><vc:i18n name="预存" namespace="payFeeUserAccount"></vc:i18n></span></button>
                                 </td>
                             </tr>
                         </tbody>

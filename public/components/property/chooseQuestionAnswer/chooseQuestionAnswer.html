@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseQuestionAnswerModelLabel"><vc:i18n name="选择问卷信息" namespace="chooseQuestionAnswer"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseQuestionAnswerModelLabel"><span><vc:i18n name="选择问卷信息" namespace="chooseQuestionAnswer"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseQuestionAnswer')vc.i18n(' ','chooseQuestionAnswer')vc.i18n(' 
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入问卷信息名称','chooseQuestionAnswer')" type="text" v-model="chooseQuestionAnswerInfo._currentQuestionAnswerName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryQuestionAnswers()"><vc:i18n name="查询" namespace="chooseQuestionAnswer"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryQuestionAnswers()"><span><vc:i18n name="查询" namespace="chooseQuestionAnswer"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,13 +28,13 @@ vc.i18n(' ','chooseQuestionAnswer')vc.i18n(' ','chooseQuestionAnswer')vc.i18n(' 
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="问卷" namespace="chooseQuestionAnswer"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="问卷类型" namespace="chooseQuestionAnswer"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="问卷名称" namespace="chooseQuestionAnswer"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="开始时间" namespace="chooseQuestionAnswer"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="结束时间" namespace="chooseQuestionAnswer"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="备注" namespace="chooseQuestionAnswer"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseQuestionAnswer"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="问卷" namespace="chooseQuestionAnswer"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="问卷类型" namespace="chooseQuestionAnswer"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="问卷名称" namespace="chooseQuestionAnswer"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="chooseQuestionAnswer"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="chooseQuestionAnswer"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseQuestionAnswer"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseQuestionAnswer"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -48,7 +48,7 @@ vc.i18n(' ','chooseQuestionAnswer')vc.i18n(' ','chooseQuestionAnswer')vc.i18n(' 
                             <td class="text-center">{{questionAnswer.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseQuestionAnswer(questionAnswer)"><vc:i18n name="选择" namespace="chooseQuestionAnswer"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseQuestionAnswer(questionAnswer)"><span><vc:i18n name="选择" namespace="chooseQuestionAnswer"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

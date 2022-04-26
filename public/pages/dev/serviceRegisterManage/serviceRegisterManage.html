@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="serviceRegisterManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="serviceRegisterManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{serviceRegisterManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -18,7 +18,7 @@
                                 <input type="text" :placeholder="vc.i18n('请选择应用名称','serviceRegisterManage')" v-model="serviceRegisterManageInfo.conditions.appName" class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseAppMethod()"><i
-                                            class="fa fa-search"></i> <vc:i18n name="选择" namespace="serviceRegisterManage"></vc:i18n>
+                                            class="fa fa-search"></i> <span><vc:i18n name="选择" namespace="serviceRegisterManage"></vc:i18n></span>
                                     </button>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryServiceRegisterMethod()">
-                            <i class="fa fa-search" ></i> <vc:i18n name="查询" namespace="serviceRegisterManage"></vc:i18n>
+                            <i class="fa fa-search" ></i> <span><vc:i18n name="查询" namespace="serviceRegisterManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="服务绑定信息" namespace="serviceRegisterManage"></vc:i18n>
+                        <span><vc:i18n name="服务绑定信息" namespace="serviceRegisterManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddServiceRegisterModal()">
@@ -72,28 +72,28 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="绑定ID" namespace="serviceRegisterManage"></vc:i18n>
+                                    <span><vc:i18n name="绑定ID" namespace="serviceRegisterManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="应用ID" namespace="serviceRegisterManage"></vc:i18n>
+                                    <span><vc:i18n name="应用ID" namespace="serviceRegisterManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="应用名称" namespace="serviceRegisterManage"></vc:i18n>
+                                    <span><vc:i18n name="应用名称" namespace="serviceRegisterManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="服务ID" namespace="serviceRegisterManage"></vc:i18n>
+                                    <span><vc:i18n name="服务ID" namespace="serviceRegisterManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="服务名称" namespace="serviceRegisterManage"></vc:i18n>
+                                    <span><vc:i18n name="服务名称" namespace="serviceRegisterManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="服务编码" namespace="serviceRegisterManage"></vc:i18n>
+                                    <span><vc:i18n name="服务编码" namespace="serviceRegisterManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="订单类型" namespace="serviceRegisterManage"></vc:i18n>
+                                    <span><vc:i18n name="订单类型" namespace="serviceRegisterManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="serviceRegisterManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="serviceRegisterManage"></vc:i18n></span>
                                 </th>
 
                             </tr>
@@ -109,11 +109,11 @@
                                 <td class="text-center">{{serviceRegister.orderTypeCd}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditServiceRegisterModel(serviceRegister)"><vc:i18n name="修改" namespace="serviceRegisterManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditServiceRegisterModel(serviceRegister)"><span><vc:i18n name="修改" namespace="serviceRegisterManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteServiceRegisterModel(serviceRegister)"><vc:i18n name="删除" namespace="serviceRegisterManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteServiceRegisterModel(serviceRegister)"><span><vc:i18n name="删除" namespace="serviceRegisterManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

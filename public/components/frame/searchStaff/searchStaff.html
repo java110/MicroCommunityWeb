@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="searchStaffModelLabel">
-                    <vc:i18n name="定位员工" namespace="searchStaff"></vc:i18n>
+                    <span><vc:i18n name="定位员工" namespace="searchStaff"></vc:i18n></span>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -22,7 +22,7 @@
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入员工名称','searchStaff')" type="text" v-model="searchStaffInfo._currentStaffName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="searchStaffs()"><vc:i18n name="查询" namespace="searchStaff"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="searchStaffs()"><span><vc:i18n name="查询" namespace="searchStaff"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -32,19 +32,19 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <vc:i18n name="员工编码" namespace="searchStaff"></vc:i18n>
+                                                <span><vc:i18n name="员工编码" namespace="searchStaff"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="员工名称" namespace="searchStaff"></vc:i18n>
+                                                <span><vc:i18n name="员工名称" namespace="searchStaff"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="手机号" namespace="searchStaff"></vc:i18n>
+                                                <span><vc:i18n name="手机号" namespace="searchStaff"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="性别" namespace="searchStaff"></vc:i18n>
+                                                <span><vc:i18n name="性别" namespace="searchStaff"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="操作" namespace="searchStaff"></vc:i18n>
+                                                <span><vc:i18n name="操作" namespace="searchStaff"></vc:i18n></span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -55,7 +55,7 @@
                                             <td>{{staff.tel}}</td>
                                             <td>{{staff.sex == 0 ? '男' : (staff.sex == 1 ?'女':'')}}</td>
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseStaff(staff)"><vc:i18n name="选择" namespace="searchStaff"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseStaff(staff)"><span><vc:i18n name="选择" namespace="searchStaff"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

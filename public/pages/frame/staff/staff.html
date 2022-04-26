@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="staff"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="staff"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{staffInfo.moreCondition == true?'隐藏':'更多'}}
@@ -41,10 +41,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryStaffMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="staff"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="staff"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetStaffMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="staff"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="staff"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -69,11 +69,11 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="员工管理" namespace="staff"></vc:i18n>
+                        <span><vc:i18n name="员工管理" namespace="staff"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStaffStepPage()">
-                            <i class="fa fa-plus"></i><vc:i18n name="添加员工" namespace="staff"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="添加员工" namespace="staff"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -82,33 +82,33 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="员工" namespace="staff"></vc:i18n>ID</th>
+                                    <span><vc:i18n name="员工" namespace="staff"></vc:i18n></span>ID</th>
                                 <th class="text-center">
-                                    <vc:i18n name="名称" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="名称" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="公司" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="公司" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="部门" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="部门" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="岗位" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="岗位" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="邮箱" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="邮箱" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="地址" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="地址" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="性别" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="性别" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="手机号" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="手机号" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="staff"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="staff"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -125,15 +125,15 @@
                                 <td class="text-center">{{staff.tel}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="openEditStaff(staff)"><vc:i18n name="修改" namespace="staff"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="openEditStaff(staff)"><span><vc:i18n name="修改" namespace="staff"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(staff)"><vc:i18n name="重置密码" namespace="staff"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(staff)"><span><vc:i18n name="重置密码" namespace="staff"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div v-if="staff.relCd != 600311000001" class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)"><vc:i18n name="删除" namespace="staff"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)"><span><vc:i18n name="删除" namespace="staff"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

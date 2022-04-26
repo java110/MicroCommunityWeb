@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseSystemGoldSettingModelLabel"><vc:i18n name="选择金币设置" namespace="chooseSystemGoldSetting"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseSystemGoldSettingModelLabel"><span><vc:i18n name="选择金币设置" namespace="chooseSystemGoldSetting"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseSystemGoldSetting')vc.i18n(' ','chooseSystemGoldSetting')vc.i
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入金币设置名称','chooseSystemGoldSetting')" type="text" v-model="chooseSystemGoldSettingInfo._currentSystemGoldSettingName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="querySystemGoldSettings()"><vc:i18n name="查询" namespace="chooseSystemGoldSetting"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="querySystemGoldSettings()"><span><vc:i18n name="查询" namespace="chooseSystemGoldSetting"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','chooseSystemGoldSetting')vc.i18n(' ','chooseSystemGoldSetting')vc.i
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="设置" namespace="chooseSystemGoldSetting"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="名称" namespace="chooseSystemGoldSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="类型" namespace="chooseSystemGoldSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="购买价格" namespace="chooseSystemGoldSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="使用价格" namespace="chooseSystemGoldSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="有效期" namespace="chooseSystemGoldSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="状态" namespace="chooseSystemGoldSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseSystemGoldSetting"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="设置" namespace="chooseSystemGoldSetting"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="名称" namespace="chooseSystemGoldSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="类型" namespace="chooseSystemGoldSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="购买价格" namespace="chooseSystemGoldSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="使用价格" namespace="chooseSystemGoldSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="有效期" namespace="chooseSystemGoldSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="状态" namespace="chooseSystemGoldSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseSystemGoldSetting"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','chooseSystemGoldSetting')vc.i18n(' ','chooseSystemGoldSetting')vc.i
                             <td class="text-center">{{systemGoldSetting.state}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseSystemGoldSetting(systemGoldSetting)"><vc:i18n name="选择" namespace="chooseSystemGoldSetting"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseSystemGoldSetting(systemGoldSetting)"><span><vc:i18n name="选择" namespace="chooseSystemGoldSetting"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

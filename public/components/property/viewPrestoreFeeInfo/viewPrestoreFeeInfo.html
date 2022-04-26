@@ -2,34 +2,34 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="预付费用信息" namespace="viewPrestoreFeeInfo"></vc:i18n></h5>
+                <h5><span><vc:i18n name="预付费用信息" namespace="viewPrestoreFeeInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewPrestoreFeeInfo.index != 2" class="btn btn-primary btn-sm"
                         style="margin-right:10px;" v-on:click="_openSelectPrestoreFeeInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> <vc:i18n name="选择预付费用" namespace="viewPrestoreFeeInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择预付费用" namespace="viewPrestoreFeeInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewPrestoreFeeInfo.index != 2" class="btn btn-primary btn-sm"
                         v-on:click="_openAddPrestoreFeeInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> <vc:i18n name="添加预付费用" namespace="viewPrestoreFeeInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加预付费用" namespace="viewPrestoreFeeInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="房屋" namespace="viewPrestoreFeeInfo"></vc:i18n>ID：</label>
+                            <label class="col-form-label"><span><vc:i18n name="房屋" namespace="viewPrestoreFeeInfo"></vc:i18n></span>ID：</label>
                             <label class="">{{viewPrestoreFeeInfo.roomId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="预付类型" namespace="viewPrestoreFeeInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="预付类型" namespace="viewPrestoreFeeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPrestoreFeeInfo.prestoreFeeType}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="预存对象类型" namespace="viewPrestoreFeeInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="预存对象类型" namespace="viewPrestoreFeeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPrestoreFeeInfo.prestoreFeeObjType}}</label>
                         </div>
                     </div>
@@ -37,19 +37,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="预付金额" namespace="viewPrestoreFeeInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="预付金额" namespace="viewPrestoreFeeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPrestoreFeeInfo.prestoreFeeAmount}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="状态" namespace="viewPrestoreFeeInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="状态" namespace="viewPrestoreFeeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPrestoreFeeInfo.state}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="备注" namespace="viewPrestoreFeeInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="备注" namespace="viewPrestoreFeeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPrestoreFeeInfo.remark}}</label>
                         </div>
                     </div>

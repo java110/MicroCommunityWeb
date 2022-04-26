@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseMainCategoryModelLabel"><vc:i18n name="选择商品目录" namespace="chooseMainCategory"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseMainCategoryModelLabel"><span><vc:i18n name="选择商品目录" namespace="chooseMainCategory"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseMainCategory')vc.i18n(' ','chooseMainCategory')vc.i18n(' ','c
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入商品目录名称','chooseMainCategory')" type="text" v-model="chooseMainCategoryInfo._currentMainCategoryName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMainCategorys()"><vc:i18n name="查询" namespace="chooseMainCategory"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMainCategorys()"><span><vc:i18n name="查询" namespace="chooseMainCategory"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,13 +28,13 @@ vc.i18n(' ','chooseMainCategory')vc.i18n(' ','chooseMainCategory')vc.i18n(' ','c
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="目录编号" namespace="chooseMainCategory"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="目录名称" namespace="chooseMainCategory"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="目录类别" namespace="chooseMainCategory"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="开始时间" namespace="chooseMainCategory"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="结束时间" namespace="chooseMainCategory"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="描述" namespace="chooseMainCategory"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseMainCategory"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="目录编号" namespace="chooseMainCategory"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="目录名称" namespace="chooseMainCategory"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="目录类别" namespace="chooseMainCategory"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="chooseMainCategory"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="chooseMainCategory"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="描述" namespace="chooseMainCategory"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseMainCategory"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -48,7 +48,7 @@ vc.i18n(' ','chooseMainCategory')vc.i18n(' ','chooseMainCategory')vc.i18n(' ','c
                             <td class="text-center">{{mainCategory.categoryDesc}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMainCategory(mainCategory)"><vc:i18n name="选择" namespace="chooseMainCategory"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMainCategory(mainCategory)"><span><vc:i18n name="选择" namespace="chooseMainCategory"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

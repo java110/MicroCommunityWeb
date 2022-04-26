@@ -4,13 +4,13 @@
             <div class="margin-xs-r bg-white treeview">
                 <ul class="list-group text-center">
                     <li class="list-group-item node-orgTree "
-                        :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowPool'}" @click="swatch('newOaWorkflowPool')"><vc:i18n name="流程工单" namespace="newOaWorkflow"></vc:i18n>
+                        :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowPool'}" @click="swatch('newOaWorkflowPool')"><span><vc:i18n name="流程工单" namespace="newOaWorkflow"></vc:i18n></span>
                     </li>
                     <li class="list-group-item node-orgTree "
                         :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowForm'}" @click="swatch('newOaWorkflowForm')">
                         起草流程</li>
                     <li class="list-group-item node-orgTree "
-                        :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowUndo'}" @click="swatch('newOaWorkflowUndo')"><vc:i18n name="流程待办" namespace="newOaWorkflow"></vc:i18n>
+                        :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowUndo'}" @click="swatch('newOaWorkflowUndo')"><span><vc:i18n name="流程待办" namespace="newOaWorkflow"></vc:i18n></span>
                     </li>
                     <li class="list-group-item node-orgTree "
                         :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowFinish'}" @click="swatch('newOaWorkflowFinish')">

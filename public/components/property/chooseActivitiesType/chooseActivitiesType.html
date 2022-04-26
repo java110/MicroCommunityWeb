@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseActivitiesTypeModelLabel"><vc:i18n name="选择信息大类" namespace="chooseActivitiesType"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseActivitiesTypeModelLabel"><span><vc:i18n name="选择信息大类" namespace="chooseActivitiesType"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseActivitiesType')vc.i18n(' ','chooseActivitiesType')vc.i18n(' 
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入信息大类名称','chooseActivitiesType')" type="text" v-model="chooseActivitiesTypeInfo._currentActivitiesTypeName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryActivitiesTypes()"><vc:i18n name="查询" namespace="chooseActivitiesType"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryActivitiesTypes()"><span><vc:i18n name="查询" namespace="chooseActivitiesType"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,12 +28,12 @@ vc.i18n(' ','chooseActivitiesType')vc.i18n(' ','chooseActivitiesType')vc.i18n(' 
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="大类编码" namespace="chooseActivitiesType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="大类名称" namespace="chooseActivitiesType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="大类描述" namespace="chooseActivitiesType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="显示序号" namespace="chooseActivitiesType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="是否显示" namespace="chooseActivitiesType"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseActivitiesType"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="大类编码" namespace="chooseActivitiesType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="大类名称" namespace="chooseActivitiesType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="大类描述" namespace="chooseActivitiesType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="显示序号" namespace="chooseActivitiesType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否显示" namespace="chooseActivitiesType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseActivitiesType"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -46,7 +46,7 @@ vc.i18n(' ','chooseActivitiesType')vc.i18n(' ','chooseActivitiesType')vc.i18n(' 
                             <td class="text-center">{{activitiesType.defalutShow}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseActivitiesType(activitiesType)"><vc:i18n name="选择" namespace="chooseActivitiesType"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseActivitiesType(activitiesType)"><span><vc:i18n name="选择" namespace="chooseActivitiesType"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

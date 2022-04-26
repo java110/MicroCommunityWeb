@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseAttrSpecModelLabel"><vc:i18n name="选择属性配置" namespace="chooseAttrSpec"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseAttrSpecModelLabel"><span><vc:i18n name="选择属性配置" namespace="chooseAttrSpec"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseAttrSpec')vc.i18n(' ','chooseAttrSpec')vc.i18n(' ','chooseAtt
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入属性配置名称','chooseAttrSpec')" type="text" v-model="chooseAttrSpecInfo._currentAttrSpecName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryAttrSpecs()"><vc:i18n name="查询" namespace="chooseAttrSpec"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryAttrSpecs()"><span><vc:i18n name="查询" namespace="chooseAttrSpec"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,16 +28,16 @@ vc.i18n(' ','chooseAttrSpec')vc.i18n(' ','chooseAttrSpec')vc.i18n(' ','chooseAtt
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="规格" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="属性表" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="规格名称" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="说明" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="必填" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="展示" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="值类型" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="规格类型" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="查询显示" namespace="chooseAttrSpec"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseAttrSpec"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="规格" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="属性表" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="规格名称" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="说明" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="必填" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="展示" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="值类型" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="规格类型" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="查询显示" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseAttrSpec"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -54,7 +54,7 @@ vc.i18n(' ','chooseAttrSpec')vc.i18n(' ','chooseAttrSpec')vc.i18n(' ','chooseAtt
                             <td class="text-center">{{attrSpec.listShow}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseAttrSpec(attrSpec)"><vc:i18n name="选择" namespace="chooseAttrSpec"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseAttrSpec(attrSpec)"><span><vc:i18n name="选择" namespace="chooseAttrSpec"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

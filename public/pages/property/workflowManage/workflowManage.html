@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="workflowManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="workflowManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{workflowManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryWorkflowMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="workflowManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="workflowManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="流程信息" namespace="workflowManage"></vc:i18n>
+                        <span><vc:i18n name="流程信息" namespace="workflowManage"></vc:i18n></span>
                     </h5>
                 </div>
                 <div class="ibox-content">
@@ -62,21 +62,21 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <!-- <th class="text-center"><vc:i18n name="信息" namespace="workflowManage"></vc:i18n>ID</th> -->
+                                <!-- <th class="text-center"><span><vc:i18n name="信息" namespace="workflowManage"></vc:i18n></span>ID</th> -->
                                 <th class="text-center">
-                                    <vc:i18n name="流程名称" namespace="workflowManage"></vc:i18n>
+                                    <span><vc:i18n name="流程名称" namespace="workflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="流程类型" namespace="workflowManage"></vc:i18n>
+                                    <span><vc:i18n name="流程类型" namespace="workflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="流程编码" namespace="workflowManage"></vc:i18n>
+                                    <span><vc:i18n name="流程编码" namespace="workflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="创建时间" namespace="workflowManage"></vc:i18n>
+                                    <span><vc:i18n name="创建时间" namespace="workflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-right">
-                                    <vc:i18n name="操作" namespace="workflowManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="workflowManage"></vc:i18n></span>
                                 </th>
 
 
@@ -90,9 +90,9 @@
                                 <td class="text-center">{{workflow.createTime}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditWorkflowModel(workflow)"><vc:i18n name="设置流程" namespace="workflowManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditWorkflowModel(workflow)"><span><vc:i18n name="设置流程" namespace="workflowManage"></vc:i18n></span>
                                         </button>
-                                        <button class="btn-white btn btn-xs" v-on:click="_openWorkflowImage(workflow)"><vc:i18n name="流程图" namespace="workflowManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openWorkflowImage(workflow)"><span><vc:i18n name="流程图" namespace="workflowManage"></vc:i18n></span>
                                         </button>
                                     </div>
                                 </td>

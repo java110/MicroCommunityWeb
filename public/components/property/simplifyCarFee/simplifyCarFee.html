@@ -10,13 +10,13 @@
         </div>
         <div class="col-lg-6 text-right" v-if="simplifyCarFeeInfo.carId">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openBatchPayCarFeeModal()">
-                <vc:i18n name="批量缴费" namespace="simplifyCarFee"></vc:i18n>
+                <span><vc:i18n name="批量缴费" namespace="simplifyCarFee"></vc:i18n></span>
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openSimplifyCarAddMeterWaterModal()">
-                <vc:i18n name="水电抄表" namespace="simplifyCarFee"></vc:i18n>
+                <span><vc:i18n name="水电抄表" namespace="simplifyCarFee"></vc:i18n></span>
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openSimplifyCarCreateFeeAddModal()">
-                <vc:i18n name="创建费用" namespace="simplifyCarFee"></vc:i18n>
+                <span><vc:i18n name="创建费用" namespace="simplifyCarFee"></vc:i18n></span>
             </button>
         </div>
     </div>
@@ -25,34 +25,34 @@
             <thead>
                 <tr>
                     <th class="text-center">
-                        <vc:i18n name="费用项目" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="费用项目" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="费用标识" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="费用标识" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="费用类型" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="费用类型" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="应收金额" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="应收金额" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="建账时间" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="建账时间" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="计费起始时间" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="计费起始时间" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="计费结束时间" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="计费结束时间" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="说明" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="说明" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="状态" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="状态" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="操作" namespace="simplifyCarFee"></vc:i18n>
+                        <span><vc:i18n name="操作" namespace="simplifyCarFee"></vc:i18n></span>
                     </th>
                 </tr>
             </thead>
@@ -66,34 +66,34 @@
                     <td class="text-center">{{_getEndTime(fee)}}</td>
                     <td class="text-center">{{_getDeadlineTime(fee)}}</td>
                     <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' " :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
-                        <div><span><vc:i18n name="上期度数" namespace="simplifyCarFee"></vc:i18n></span>：{{fee.preDegrees}}</div>
-                        <div><span><vc:i18n name="本期度数" namespace="simplifyCarFee"></vc:i18n></span>：{{fee.curDegrees}}</div>
-                        <div><span><vc:i18n name="单价" namespace="simplifyCarFee"></vc:i18n></span>：{{fee.squarePrice}}</div>
-                        <div><span><vc:i18n name="附加费" namespace="simplifyCarFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
+                        <div><span><span><vc:i18n name="上期度数" namespace="simplifyCarFee"></vc:i18n></span></span>：{{fee.preDegrees}}</div>
+                        <div><span><span><vc:i18n name="本期度数" namespace="simplifyCarFee"></vc:i18n></span></span>：{{fee.curDegrees}}</div>
+                        <div><span><span><vc:i18n name="单价" namespace="simplifyCarFee"></vc:i18n></span></span>：{{fee.squarePrice}}</div>
+                        <div><span><span><vc:i18n name="附加费" namespace="simplifyCarFee"></vc:i18n></span></span>：{{fee.additionalAmount}}</div>
                     </td>
                     <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'" :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>
-                            <span><vc:i18n name="算法" namespace="simplifyCarFee"></vc:i18n></span>：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
+                            <span><span><vc:i18n name="算法" namespace="simplifyCarFee"></vc:i18n></span></span>：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
                         <div>
-                            <span><vc:i18n name="用量" namespace="simplifyCarFee"></vc:i18n></span>：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
+                            <span><span><vc:i18n name="用量" namespace="simplifyCarFee"></vc:i18n></span></span>：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
                     </td>
                     <td class="text-center" v-else :title="_simplifyCarGetFeeOwnerInfo(fee.feeAttrs)">
                         <div>
-                            <span><vc:i18n name="单价" namespace="simplifyCarFee"></vc:i18n></span>：{{fee.squarePrice}}</div>
+                            <span><span><vc:i18n name="单价" namespace="simplifyCarFee"></vc:i18n></span></span>：{{fee.squarePrice}}</div>
                         <div>
-                            <span><vc:i18n name="固定费" namespace="simplifyCarFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
+                            <span><span><vc:i18n name="固定费" namespace="simplifyCarFee"></vc:i18n></span></span>：{{fee.additionalAmount}}</div>
                     </td>
                     <td class="text-center">{{fee.stateName}}</td>
                     <td class="text-right">
-                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001'  && vc.hasPrivilege('502020082314267912')" v-on:click="_simplifyCarPayFee(fee)"><vc:i18n name="缴费" namespace="simplifyCarFee"></vc:i18n>
+                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001'  && vc.hasPrivilege('502020082314267912')" v-on:click="_simplifyCarPayFee(fee)"><span><vc:i18n name="缴费" namespace="simplifyCarFee"></vc:i18n></span>
                     </button>
-                        <button class="btn btn-link btn-xs" v-on:click="_simplifyCarPayFeeHis(fee)"><vc:i18n name="缴费历史" namespace="simplifyCarFee"></vc:i18n>
+                        <button class="btn btn-link btn-xs" v-on:click="_simplifyCarPayFeeHis(fee)"><span><vc:i18n name="缴费历史" namespace="simplifyCarFee"></vc:i18n></span>
                     </button>
-                        <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')" v-on:click="_simplifyCarDeleteFee(fee)"><vc:i18n name="取消费用" namespace="simplifyCarFee"></vc:i18n>
+                        <button class="btn btn-link btn-xs" v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')" v-on:click="_simplifyCarDeleteFee(fee)"><span><vc:i18n name="取消费用" namespace="simplifyCarFee"></vc:i18n></span>
                     </button>
-                        <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502021070488970005')" v-on:click="_simplifyCarFinishFee(fee)"><vc:i18n name="手工结束" namespace="simplifyCarFee"></vc:i18n>
+                        <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502021070488970005')" v-on:click="_simplifyCarFinishFee(fee)"><span><vc:i18n name="手工结束" namespace="simplifyCarFee"></vc:i18n></span>
                     </button>
-                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_simplifyCarEditFee(fee)"><vc:i18n name="费用变更" namespace="simplifyCarFee"></vc:i18n>
+                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_simplifyCarEditFee(fee)"><span><vc:i18n name="费用变更" namespace="simplifyCarFee"></vc:i18n></span>
                     </button>
                     </td>
                 </tr>

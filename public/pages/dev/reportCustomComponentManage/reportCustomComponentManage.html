@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="reportCustomComponentManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="reportCustomComponentManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryReportCustomComponentMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="reportCustomComponentManage"></vc:i18n>
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="reportCustomComponentManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="报表组件" namespace="reportCustomComponentManage"></vc:i18n>
+                        <span><vc:i18n name="报表组件" namespace="reportCustomComponentManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddReportCustomComponentModal()">
@@ -55,22 +55,22 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="组件ID" namespace="reportCustomComponentManage"></vc:i18n>
+                                    <span><vc:i18n name="组件ID" namespace="reportCustomComponentManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="组件名称" namespace="reportCustomComponentManage"></vc:i18n>
+                                    <span><vc:i18n name="组件名称" namespace="reportCustomComponentManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="组件类型" namespace="reportCustomComponentManage"></vc:i18n>
+                                    <span><vc:i18n name="组件类型" namespace="reportCustomComponentManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="查询方式" namespace="reportCustomComponentManage"></vc:i18n>
+                                    <span><vc:i18n name="查询方式" namespace="reportCustomComponentManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="描述" namespace="reportCustomComponentManage"></vc:i18n>
+                                    <span><vc:i18n name="描述" namespace="reportCustomComponentManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="reportCustomComponentManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="reportCustomComponentManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -83,16 +83,16 @@
                                 <td class="text-center">{{reportCustomComponent.remark}}</td>
                                 <td class="text-center">
                                     <div class="btn-group" v-if="reportCustomComponent.componentType == '1001'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openComponentCondition(reportCustomComponent)"><vc:i18n name="设置条件" namespace="reportCustomComponentManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openComponentCondition(reportCustomComponent)"><span><vc:i18n name="设置条件" namespace="reportCustomComponentManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group" v-if="reportCustomComponent.componentType == '1001'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openComponentFooter(reportCustomComponent)"><vc:i18n name="底部统计" namespace="reportCustomComponentManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openComponentFooter(reportCustomComponent)"><span><vc:i18n name="底部统计" namespace="reportCustomComponentManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditReportCustomComponentModel(reportCustomComponent)"><vc:i18n name="修改" namespace="reportCustomComponentManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditReportCustomComponentModel(reportCustomComponent)"><span><vc:i18n name="修改" namespace="reportCustomComponentManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteReportCustomComponentModel(reportCustomComponent)"><vc:i18n name="删除" namespace="reportCustomComponentManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteReportCustomComponentModel(reportCustomComponent)"><span><vc:i18n name="删除" namespace="reportCustomComponentManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 

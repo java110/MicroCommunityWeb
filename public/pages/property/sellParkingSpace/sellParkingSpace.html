@@ -39,14 +39,14 @@
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-secondary" v-on:click="_prevStep()"><vc:i18n name="上一步" namespace="sellParkingSpace"></vc:i18n></button>
+            <button type="button" class="btn btn-secondary" v-on:click="_prevStep()"><span><vc:i18n name="上一步" namespace="sellParkingSpace"></vc:i18n></span></button>
             <button v-if="sellParkingSpaceInfo.index != 3" type="button" class="btn btn-primary"
                     style="margin-left:10px;"
-                    v-on:click="_nextStep()"><vc:i18n name="下一步" namespace="sellParkingSpace"></vc:i18n>
+                    v-on:click="_nextStep()"><span><vc:i18n name="下一步" namespace="sellParkingSpace"></vc:i18n></span>
             </button>
             <button v-if="sellParkingSpaceInfo.index == 3" type="button" class="btn btn-primary"
                     style="margin-left:10px;"
-                    v-on:click="_finishStep()"><vc:i18n name="出售" namespace="sellParkingSpace"></vc:i18n>
+                    v-on:click="_finishStep()"><span><vc:i18n name="出售" namespace="sellParkingSpace"></vc:i18n></span>
             </button>
         </div>
     </div>

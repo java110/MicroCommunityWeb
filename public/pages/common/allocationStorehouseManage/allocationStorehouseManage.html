@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="allocationStorehouseManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="allocationStorehouseManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
@@ -34,10 +34,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAllocationStorehouseMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="allocationStorehouseManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="allocationStorehouseManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAllocationStorehouseMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="allocationStorehouseManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="allocationStorehouseManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -77,14 +77,14 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="调拨记录" namespace="allocationStorehouseManage"></vc:i18n>
+                        <span><vc:i18n name="调拨记录" namespace="allocationStorehouseManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAllocationStorehouseApplyModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="申请调拨" namespace="allocationStorehouseManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="申请调拨" namespace="allocationStorehouseManage"></vc:i18n></span>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
-                            <i class="fa fa-plus"></i><vc:i18n name="导出" namespace="allocationStorehouseManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="allocationStorehouseManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -93,28 +93,28 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="申请ID" namespace="allocationStorehouseManage"></vc:i18n>
+                                    <span><vc:i18n name="申请ID" namespace="allocationStorehouseManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="调拨/退还总数量" namespace="allocationStorehouseManage"></vc:i18n>
+                                    <span><vc:i18n name="调拨/退还总数量" namespace="allocationStorehouseManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="申请人ID" namespace="allocationStorehouseManage"></vc:i18n>
+                                    <span><vc:i18n name="申请人ID" namespace="allocationStorehouseManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="申请人" namespace="allocationStorehouseManage"></vc:i18n>
+                                    <span><vc:i18n name="申请人" namespace="allocationStorehouseManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="状态" namespace="allocationStorehouseManage"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="allocationStorehouseManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="类型" namespace="allocationStorehouseManage"></vc:i18n>
+                                    <span><vc:i18n name="类型" namespace="allocationStorehouseManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="时间" namespace="allocationStorehouseManage"></vc:i18n>
+                                    <span><vc:i18n name="时间" namespace="allocationStorehouseManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="allocationStorehouseManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="allocationStorehouseManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -129,15 +129,15 @@
                                 <td class="text-center">{{resourceStore.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group" v-if="resourceStore.state=='1200' && allocationStorehouseManageInfo.currentUserId == resourceStore.startUserId">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteResourceStoreModel(resourceStore)"><vc:i18n name="取消调拨" namespace="allocationStorehouseManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteResourceStoreModel(resourceStore)"><span><vc:i18n name="取消调拨" namespace="allocationStorehouseManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_toDetail(resourceStore)"><vc:i18n name="详情" namespace="allocationStorehouseManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_toDetail(resourceStore)"><span><vc:i18n name="详情" namespace="allocationStorehouseManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="resourceStore.applyType=='10000'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(resourceStore)"><vc:i18n name="流程图" namespace="allocationStorehouseManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(resourceStore)"><span><vc:i18n name="流程图" namespace="allocationStorehouseManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

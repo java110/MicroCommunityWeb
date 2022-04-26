@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="资产信息" namespace="historyFeeDetailImport"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="资产信息" namespace="historyFeeDetailImport"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_openDownloadHcExcelTemplate()">
@@ -21,7 +21,7 @@
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="费用对象" namespace="historyFeeDetailImport"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用对象" namespace="historyFeeDetailImport"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="historyFeeDetailImportInfo.objType">
                                         <option selected disabled value="">{{vc.i18n('必填','historyFeeDetailImport')}}，请选择费用对象</option>
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="选择文件" namespace="historyFeeDetailImport"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="选择文件" namespace="historyFeeDetailImport"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <div class="custom-file">
                                         <input id="excelTemplate" ref="excelTemplate" type="file"
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="说明" namespace="historyFeeDetailImport"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="说明" namespace="historyFeeDetailImport"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <div class="custom-file">
                                         请注意，这里是为了将物业之前系统缴费历史数据导入，方便物业后期查账使用，只有在物业数据初始化时使用，导入前请仔细检查数据，一旦导入前台无法删除缴费历史，只有工程师
@@ -61,7 +61,7 @@
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-primary" v-on:click="_importData()"><vc:i18n name="导入" namespace="historyFeeDetailImport"></vc:i18n>
+            <button type="button" class="btn btn-primary" v-on:click="_importData()"><span><vc:i18n name="导入" namespace="historyFeeDetailImport"></vc:i18n></span>
             </button>
         </div>
     </div>

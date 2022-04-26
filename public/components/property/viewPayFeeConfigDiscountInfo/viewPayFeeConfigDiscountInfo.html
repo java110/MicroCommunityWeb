@@ -2,26 +2,26 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="费用折扣信息" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n></h5>
+                <h5><span><vc:i18n name="费用折扣信息" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewPayFeeConfigDiscountInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectPayFeeConfigDiscountInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> <vc:i18n name="选择费用折扣" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择费用折扣" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewPayFeeConfigDiscountInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddPayFeeConfigDiscountInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> <vc:i18n name="添加费用折扣" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加费用折扣" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="折扣名称" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="折扣名称" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPayFeeConfigDiscountInfo.discountId}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="折扣名称" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="折扣名称" namespace="viewPayFeeConfigDiscountInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPayFeeConfigDiscountInfo.discountId}}</label>
                         </div>
 </div>

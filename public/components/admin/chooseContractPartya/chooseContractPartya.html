@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseContractPartyaModelLabel"><vc:i18n name="选择合同甲方" namespace="chooseContractPartya"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseContractPartyaModelLabel"><span><vc:i18n name="选择合同甲方" namespace="chooseContractPartya"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseContractPartya')vc.i18n(' ','chooseContractPartya')vc.i18n(' 
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入合同甲方名称','chooseContractPartya')" type="text" v-model="chooseContractPartyaInfo._currentContractPartyaName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryContractPartyas()"><vc:i18n name="查询" namespace="chooseContractPartya"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryContractPartyas()"><span><vc:i18n name="查询" namespace="chooseContractPartya"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,11 +28,11 @@ vc.i18n(' ','chooseContractPartya')vc.i18n(' ','chooseContractPartya')vc.i18n(' 
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="甲方编号" namespace="chooseContractPartya"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="甲方" namespace="chooseContractPartya"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="甲方联系人" namespace="chooseContractPartya"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="联系电话" namespace="chooseContractPartya"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseContractPartya"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="甲方编号" namespace="chooseContractPartya"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="甲方" namespace="chooseContractPartya"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="甲方联系人" namespace="chooseContractPartya"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="联系电话" namespace="chooseContractPartya"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseContractPartya"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -44,7 +44,7 @@ vc.i18n(' ','chooseContractPartya')vc.i18n(' ','chooseContractPartya')vc.i18n(' 
                             <td class="text-center">{{contractPartya.aLink}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseContractPartya(contractPartya)"><vc:i18n name="选择" namespace="chooseContractPartya"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseContractPartya(contractPartya)"><span><vc:i18n name="选择" namespace="chooseContractPartya"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

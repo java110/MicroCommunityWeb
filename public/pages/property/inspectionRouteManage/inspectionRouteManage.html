@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="inspectionRouteManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="inspectionRouteManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -28,10 +28,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionRouteMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="inspectionRouteManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="inspectionRouteManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetInspectionRouteMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="inspectionRouteManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="inspectionRouteManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -44,11 +44,11 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="巡检路线信息" namespace="inspectionRouteManage"></vc:i18n>
+                        <span><vc:i18n name="巡检路线信息" namespace="inspectionRouteManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionRouteModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="inspectionRouteManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="inspectionRouteManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -57,22 +57,22 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="线路ID" namespace="inspectionRouteManage"></vc:i18n>
+                                    <span><vc:i18n name="线路ID" namespace="inspectionRouteManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="路线名称" namespace="inspectionRouteManage"></vc:i18n>
+                                    <span><vc:i18n name="路线名称" namespace="inspectionRouteManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="顺序" namespace="inspectionRouteManage"></vc:i18n>
+                                    <span><vc:i18n name="顺序" namespace="inspectionRouteManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="创建时间" namespace="inspectionRouteManage"></vc:i18n>
+                                    <span><vc:i18n name="创建时间" namespace="inspectionRouteManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="备注" namespace="inspectionRouteManage"></vc:i18n>
+                                    <span><vc:i18n name="备注" namespace="inspectionRouteManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="inspectionRouteManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="inspectionRouteManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -85,15 +85,15 @@
                                 <td class="text-center">{{inspectionRoute.remark}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openInspectionPointModel(inspectionRoute)"><vc:i18n name="巡检点" namespace="inspectionRouteManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openInspectionPointModel(inspectionRoute)"><span><vc:i18n name="巡检点" namespace="inspectionRouteManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditInspectionRouteModel(inspectionRoute)"><vc:i18n name="修改" namespace="inspectionRouteManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditInspectionRouteModel(inspectionRoute)"><span><vc:i18n name="修改" namespace="inspectionRouteManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionRouteModel(inspectionRoute)"><vc:i18n name="删除" namespace="inspectionRouteManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionRouteModel(inspectionRoute)"><span><vc:i18n name="删除" namespace="inspectionRouteManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

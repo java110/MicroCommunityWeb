@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-4 border-right padding-0">
                         <div class="text-center">
-                            <vc:i18n name="公司信息" namespace="selectStaff"></vc:i18n>
+                            <span><vc:i18n name="公司信息" namespace="selectStaff"></vc:i18n></span>
                         </div>
                         <div class=" staff padding padding-top-xs">
                             <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curCompanyId == item.orgId}" v-for="(item,index) in selectStaffInfo.companys" @click="_changeCompany(item)" style="cursor:pointer">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-md-4 border-right padding-0">
                         <div class="text-center">
-                            <vc:i18n name="部门信息" namespace="selectStaff"></vc:i18n>
+                            <span><vc:i18n name="部门信息" namespace="selectStaff"></vc:i18n></span>
                         </div>
                         <div class="padding-left staff padding  padding-top-xs">
                             <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curDepartmentId == item.orgId}" v-for="(item,index) in selectStaffInfo.departments" @click="_changeDepartment(item)" style="cursor:pointer">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-4 padding-0">
                         <div class="text-center">
-                            <vc:i18n name="员工信息" namespace="selectStaff"></vc:i18n>
+                            <span><vc:i18n name="员工信息" namespace="selectStaff"></vc:i18n></span>
                         </div>
                         <div class="padding-left staff padding padding-top-xs">
                             <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curStaffId == item.staffId}" v-for="(item,index) in selectStaffInfo.staffs" @click="_changeStaff(item)" style="cursor:pointer">
@@ -47,8 +47,8 @@
                     </div>
                 </div>
                 <div class="text-right" v-if="selectStaffInfo.staff.from == 'bpmn' || selectStaffInfo.staff.from == 'purchase' || selectStaffInfo.staff.from == 'contract'">
-                    <button type="button" class="btn btn-white btn-sm" @click="_firstUser()"><vc:i18n name="提交者" namespace="selectStaff"></vc:i18n></button>
-                    <button type="button" class="btn btn-white btn-sm" @click="_customUser()"><vc:i18n name="动态指定" namespace="selectStaff"></vc:i18n></button>
+                    <button type="button" class="btn btn-white btn-sm" @click="_firstUser()"><span><vc:i18n name="提交者" namespace="selectStaff"></vc:i18n></span></button>
+                    <button type="button" class="btn btn-white btn-sm" @click="_customUser()"><span><vc:i18n name="动态指定" namespace="selectStaff"></vc:i18n></span></button>
                 </div>
             </div>
         </div>

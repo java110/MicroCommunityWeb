@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="oaWorkflowManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="oaWorkflowManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
@@ -34,10 +34,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOaWorkflowMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="oaWorkflowManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="oaWorkflowManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetOaWorkflowMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="oaWorkflowManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="oaWorkflowManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -60,11 +60,11 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="流程实例" namespace="oaWorkflowManage"></vc:i18n>
+                        <span><vc:i18n name="流程实例" namespace="oaWorkflowManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddOaWorkflowModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="新建流程" namespace="oaWorkflowManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="新建流程" namespace="oaWorkflowManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -73,29 +73,29 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="工作流ID" namespace="oaWorkflowManage"></vc:i18n>
+                                    <span><vc:i18n name="工作流ID" namespace="oaWorkflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="流程名称" namespace="oaWorkflowManage"></vc:i18n>
+                                    <span><vc:i18n name="流程名称" namespace="oaWorkflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="流程类型" namespace="oaWorkflowManage"></vc:i18n>
+                                    <span><vc:i18n name="流程类型" namespace="oaWorkflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="模型ID" namespace="oaWorkflowManage"></vc:i18n>
+                                    <span><vc:i18n name="模型ID" namespace="oaWorkflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">KEY</th>
                                 <th class="text-center">
-                                    <vc:i18n name="状态" namespace="oaWorkflowManage"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="oaWorkflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="描述" namespace="oaWorkflowManage"></vc:i18n>
+                                    <span><vc:i18n name="描述" namespace="oaWorkflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="创建时间" namespace="oaWorkflowManage"></vc:i18n>
+                                    <span><vc:i18n name="创建时间" namespace="oaWorkflowManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="oaWorkflowManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="oaWorkflowManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -111,23 +111,23 @@
                                 <td class="text-center">{{oaWorkflow.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openWorkflowEditorApp(oaWorkflow)"><vc:i18n name="流程" namespace="oaWorkflowManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openWorkflowEditorApp(oaWorkflow)"><span><vc:i18n name="流程" namespace="oaWorkflowManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openWorkflowForm(oaWorkflow)"><vc:i18n name="设计表单" namespace="oaWorkflowManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openWorkflowForm(oaWorkflow)"><span><vc:i18n name="设计表单" namespace="oaWorkflowManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="oaWorkflow.state == 'W'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeployWorkflow(oaWorkflow)"><vc:i18n name="发布" namespace="oaWorkflowManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeployWorkflow(oaWorkflow)"><span><vc:i18n name="发布" namespace="oaWorkflowManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditOaWorkflowModel(oaWorkflow)"><vc:i18n name="修改" namespace="oaWorkflowManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditOaWorkflowModel(oaWorkflow)"><span><vc:i18n name="修改" namespace="oaWorkflowManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteOaWorkflowModel(oaWorkflow)"><vc:i18n name="删除" namespace="oaWorkflowManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteOaWorkflowModel(oaWorkflow)"><span><vc:i18n name="删除" namespace="oaWorkflowManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

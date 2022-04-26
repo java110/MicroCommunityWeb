@@ -2,34 +2,34 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="黑白名单信息" namespace="viewCarBlackWhiteInfo"></vc:i18n></h5>
+                <h5><span><vc:i18n name="黑白名单信息" namespace="viewCarBlackWhiteInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewCarBlackWhiteInfo.index != 2" class="btn btn-primary btn-sm"
                         style="margin-right:10px;" v-on:click="_openSelectCarBlackWhiteInfoModel()">
-                        <i class="fa fa-search"></i> <vc:i18n name="选择黑白名单" namespace="viewCarBlackWhiteInfo"></vc:i18n></button>
+                        <i class="fa fa-search"></i> <span><vc:i18n name="选择黑白名单" namespace="viewCarBlackWhiteInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewCarBlackWhiteInfo.index != 2" class="btn btn-primary btn-sm"
                         v-on:click="_openAddCarBlackWhiteInfoModel()">
-                        <i class="fa fa-plus"></i> <vc:i18n name="添加黑白名单" namespace="viewCarBlackWhiteInfo"></vc:i18n></button>
+                        <i class="fa fa-plus"></i> <span><vc:i18n name="添加黑白名单" namespace="viewCarBlackWhiteInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="名单类型" namespace="viewCarBlackWhiteInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="名单类型" namespace="viewCarBlackWhiteInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewCarBlackWhiteInfo.blackWhite}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="车牌号" namespace="viewCarBlackWhiteInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="车牌号" namespace="viewCarBlackWhiteInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewCarBlackWhiteInfo.carNum}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="开始时间" namespace="viewCarBlackWhiteInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="开始时间" namespace="viewCarBlackWhiteInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewCarBlackWhiteInfo.startTime}}</label>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label"><vc:i18n name="结束时间" namespace="viewCarBlackWhiteInfo"></vc:i18n>：</label>
+                            <label class="col-form-label"><span><vc:i18n name="结束时间" namespace="viewCarBlackWhiteInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewCarBlackWhiteInfo.endTime}}</label>
                         </div>
                     </div>

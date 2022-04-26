@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="batchPayFeeOrder"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="batchPayFeeOrder"></vc:i18n></span></h5>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -28,7 +28,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="批量缴费" namespace="batchPayFeeOrder"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="批量缴费" namespace="batchPayFeeOrder"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
                             返回
@@ -40,24 +40,24 @@
                         <thead>
                             <tr>
                                 <th class="text-center"><input type="checkbox" class="i-checks" @click="checkAll($event)"></th>
-                                <th class="text-center"><vc:i18n name="费用类型" namespace="batchPayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="费用项目" namespace="batchPayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="费用标识" namespace="batchPayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="收费对象" namespace="batchPayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="计费起始时间" namespace="batchPayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="计费结束时间" namespace="batchPayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="欠费金额" namespace="batchPayFeeOrder"></vc:i18n></th>
+                                <th class="text-center"><span><vc:i18n name="费用类型" namespace="batchPayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="费用项目" namespace="batchPayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="费用标识" namespace="batchPayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="收费对象" namespace="batchPayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="计费起始时间" namespace="batchPayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="计费结束时间" namespace="batchPayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="欠费金额" namespace="batchPayFeeOrder"></vc:i18n></span></th>
                                 <th class="text-center">
-                                    <div style="width: 100px; margin:0 auto"><vc:i18n name="缴费周期" namespace="batchPayFeeOrder"></vc:i18n></div>
+                                    <div style="width: 100px; margin:0 auto"><span><vc:i18n name="缴费周期" namespace="batchPayFeeOrder"></vc:i18n></span></div>
                                 </th>
                                 <th class="text-center">
                                     应收
                                 </th>
                                 <th class="text-center">
-                                    <div style="width: 150px; margin:0 auto"><vc:i18n name="实收" namespace="batchPayFeeOrder"></vc:i18n></div>
+                                    <div style="width: 150px; margin:0 auto"><span><vc:i18n name="实收" namespace="batchPayFeeOrder"></vc:i18n></span></div>
                                 </th>
                                 <th class="text-center">
-                                    <div style="width: 100px; margin:0 auto"><vc:i18n name="备注" namespace="batchPayFeeOrder"></vc:i18n></div>
+                                    <div style="width: 100px; margin:0 auto"><span><vc:i18n name="备注" namespace="batchPayFeeOrder"></vc:i18n></span></div>
                                 </th>
                             </tr>
                         </thead>
@@ -120,10 +120,10 @@
     <div class="row">
         <div class="col-md-9"></div>
         <div class="col-md-2">
-            缴费金额：<span style="font-size: 30px; color: red; padding-left: 0px;">{{batchPayFeeOrderInfo.feePrices}}<vc:i18n name="元" namespace="batchPayFeeOrder"></vc:i18n></span>
+            缴费金额：<span style="font-size: 30px; color: red; padding-left: 0px;">{{batchPayFeeOrderInfo.feePrices}}<span><vc:i18n name="元" namespace="batchPayFeeOrder"></vc:i18n></span></span>
         </div>
         <div class="col-md-1 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn  btn-warning  btn-lg btn-block" style="margin-left:10px;" v-on:click="_payFee()"><vc:i18n name="缴费" namespace="batchPayFeeOrder"></vc:i18n>
+            <button type="button" class="btn  btn-warning  btn-lg btn-block" style="margin-left:10px;" v-on:click="_payFee()"><span><vc:i18n name="缴费" namespace="batchPayFeeOrder"></vc:i18n></span>
             </button>
         </div>
     </div>
@@ -132,18 +132,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><vc:i18n name="收费确认" namespace="batchPayFeeOrder"></vc:i18n></h5>
+                    <h5 class="modal-title"><span><vc:i18n name="收费确认" namespace="batchPayFeeOrder"></vc:i18n></span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="金额" namespace="batchPayFeeOrder"></vc:i18n>：</label>
-                        <label class="col-sm-9 col-form-label">{{batchPayFeeOrderInfo.feePrices}}<vc:i18n name="元" namespace="batchPayFeeOrder"></vc:i18n></label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="金额" namespace="batchPayFeeOrder"></vc:i18n></span>：</label>
+                        <label class="col-sm-9 col-form-label">{{batchPayFeeOrderInfo.feePrices}}<span><vc:i18n name="元" namespace="batchPayFeeOrder"></vc:i18n></span></label>
                     </div>
                     <div class="row form-group">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="支付方式" namespace="batchPayFeeOrder"></vc:i18n>:</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="支付方式" namespace="batchPayFeeOrder"></vc:i18n></span>:</label>
                         <div class="col-sm-9">
                             <select class="custom-select" v-model="batchPayFeeOrderInfo.primeRate">
                                 <option selected disabled value="">{{vc.i18n('必填','batchPayFeeOrder')}}，请选择支付方式</option>
@@ -155,8 +155,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_closeDoBatchPayFeeModal()"><vc:i18n name="关闭" namespace="batchPayFeeOrder"></vc:i18n></button>
-                    <button type="button" class="btn btn-primary" @click="_doPayFee()"><vc:i18n name="确定收费" namespace="batchPayFeeOrder"></vc:i18n></button>
+                    <button type="button" class="btn btn-secondary" @click="_closeDoBatchPayFeeModal()"><span><vc:i18n name="关闭" namespace="batchPayFeeOrder"></vc:i18n></span></button>
+                    <button type="button" class="btn btn-primary" @click="_doPayFee()"><span><vc:i18n name="确定收费" namespace="batchPayFeeOrder"></vc:i18n></span></button>
                 </div>
             </div>
         </div>
@@ -167,17 +167,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><vc:i18n name="缴费提示" namespace="batchPayFeeOrder"></vc:i18n></h5>
+                    <h5 class="modal-title"><span><vc:i18n name="缴费提示" namespace="batchPayFeeOrder"></vc:i18n></span></h5>
                     <button type="button " class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p><vc:i18n name="缴费成功" namespace="batchPayFeeOrder"></vc:i18n></p>
+                    <p><span><vc:i18n name="缴费成功" namespace="batchPayFeeOrder"></vc:i18n></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_back()"><vc:i18n name="返回" namespace="batchPayFeeOrder"></vc:i18n></button>
-                    <button type="button" class="btn btn-primary" @click="_printAndBack()"><vc:i18n name="打印收据" namespace="batchPayFeeOrder"></vc:i18n></button>
+                    <button type="button" class="btn btn-secondary" @click="_back()"><span><vc:i18n name="返回" namespace="batchPayFeeOrder"></vc:i18n></span></button>
+                    <button type="button" class="btn btn-primary" @click="_printAndBack()"><span><vc:i18n name="打印收据" namespace="batchPayFeeOrder"></vc:i18n></span></button>
                 </div>
             </div>
         </div>

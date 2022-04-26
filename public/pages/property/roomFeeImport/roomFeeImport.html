@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="roomFeeImport"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="roomFeeImport"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -27,10 +27,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryImportFeeMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="roomFeeImport"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="roomFeeImport"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetImportFeeMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="roomFeeImport"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="roomFeeImport"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -43,12 +43,12 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="费用导入" namespace="roomFeeImport"></vc:i18n>
+                        <span><vc:i18n name="费用导入" namespace="roomFeeImport"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openFeeSharing(null,true)"><vc:i18n name="费用公摊" namespace="roomFeeImport"></vc:i18n>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openFeeSharing(null,true)"><span><vc:i18n name="费用公摊" namespace="roomFeeImport"></vc:i18n></span>
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomFeeImport(null,true)"><vc:i18n name="费用导入" namespace="roomFeeImport"></vc:i18n>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomFeeImport(null,true)"><span><vc:i18n name="费用导入" namespace="roomFeeImport"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -56,20 +56,20 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <!-- <th class="text-center"><vc:i18n name="信息" namespace="roomFeeImport"></vc:i18n>ID</th> -->
+                                <!-- <th class="text-center"><span><vc:i18n name="信息" namespace="roomFeeImport"></vc:i18n></span>ID</th> -->
                                 <th class="text-center">
-                                    <vc:i18n name="导入" namespace="roomFeeImport"></vc:i18n>ID</th>
+                                    <span><vc:i18n name="导入" namespace="roomFeeImport"></vc:i18n></span>ID</th>
                                 <th class="text-center">
-                                    <vc:i18n name="费用类型" namespace="roomFeeImport"></vc:i18n>
+                                    <span><vc:i18n name="费用类型" namespace="roomFeeImport"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="创建时间" namespace="roomFeeImport"></vc:i18n>
+                                    <span><vc:i18n name="创建时间" namespace="roomFeeImport"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="备注" namespace="roomFeeImport"></vc:i18n>
+                                    <span><vc:i18n name="备注" namespace="roomFeeImport"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="roomFeeImport"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="roomFeeImport"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -81,7 +81,7 @@
                                 <td class="text-center">{{fee.remark}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openImportFeeDetail(fee)"><vc:i18n name="详情" namespace="roomFeeImport"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openImportFeeDetail(fee)"><span><vc:i18n name="详情" namespace="roomFeeImport"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

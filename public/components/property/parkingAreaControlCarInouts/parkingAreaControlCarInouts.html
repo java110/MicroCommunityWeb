@@ -31,13 +31,13 @@ vc.i18n(' ','parkingAreaControlCarInouts')vc.i18n(' ','parkingAreaControlCarInou
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
                 <tr>
-                    <th class="text-center"><vc:i18n name="进出场编号" namespace="parkingAreaControlCarInouts"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="车辆状态" namespace="parkingAreaControlCarInouts"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="车牌号" namespace="parkingAreaControlCarInouts"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="进场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="出场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="停车时间" namespace="parkingAreaControlCarInouts"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="收费金额" namespace="parkingAreaControlCarInouts"></vc:i18n></th>
+                    <th class="text-center"><span><vc:i18n name="进出场编号" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="车辆状态" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="进场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="出场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="停车时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="收费金额" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -48,7 +48,7 @@ vc.i18n(' ','parkingAreaControlCarInouts')vc.i18n(' ','parkingAreaControlCarInou
                     <td class="text-center">{{carIn.inTime}}</td>
                     <td class="text-center" v-if="carIn.carInout != '3307'">-</td>
                     <td class="text-center" v-else>{{carIn.outTime}}</td>
-                    <td class="text-center">{{carIn.hours}}<vc:i18n name="小时" namespace="parkingAreaControlCarInouts"></vc:i18n>{{carIn.min}}<vc:i18n name="分" namespace="parkingAreaControlCarInouts"></vc:i18n></td>
+                    <td class="text-center">{{carIn.hours}}<span><vc:i18n name="小时" namespace="parkingAreaControlCarInouts"></vc:i18n></span>{{carIn.min}}<span><vc:i18n name="分" namespace="parkingAreaControlCarInouts"></vc:i18n></span></td>
                     <td class="text-center" v-if="carIn.carInout != '3307'">{{carIn.payCharge}}</td>
                     <td class="text-center" v-else>{{carIn.realCharge}}</td>
 

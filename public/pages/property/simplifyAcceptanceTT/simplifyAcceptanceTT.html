@@ -19,7 +19,7 @@
                 v-model="simplifyAcceptanceInfo.searchValue" @keyup.enter="_doSearch()" />
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
-            <button type="button" class="form-control btn btn-primary" @click="_doSearch()"><vc:i18n name="查询" namespace="simplifyAcceptanceTT"></vc:i18n></button>
+            <button type="button" class="form-control btn btn-primary" @click="_doSearch()"><span><vc:i18n name="查询" namespace="simplifyAcceptanceTT"></vc:i18n></span></button>
         </div>
         <div class="col-lg-3">
         </div>
@@ -36,25 +36,25 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="业主编号" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="业主编号" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.ownerId}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="业主名称" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="业主名称" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.name}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="联系电话" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="联系电话" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.link}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="身份证" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="身份证" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.idCard}}</label>
                             </div>
                         </div>
@@ -62,13 +62,13 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="入住日期" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="入住日期" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.createTime}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="性别" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="性别" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.sex == 0 ? '男' : '女'}}</label>
                             </div>
                         </div>
@@ -80,26 +80,26 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="房屋编号" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="房屋编号" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label
                                     class="">{{simplifyAcceptanceInfo.floorNum}}-{{simplifyAcceptanceInfo.unitNum}}-{{simplifyAcceptanceInfo.roomNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="房屋面积" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="房屋面积" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.builtUpArea}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="算费系数" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="算费系数" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.feeCoefficient}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="户型" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="户型" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.apartmentName}}</label>
                             </div>
                         </div>
@@ -107,13 +107,13 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="房屋状态" namespace="simplifyAcceptanceTT"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="房屋状态" namespace="simplifyAcceptanceTT"></vc:i18n></span>：</label>
                                 <label class="">{{simplifyAcceptanceInfo.stateName}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="房屋" namespace="simplifyAcceptanceTT"></vc:i18n>ID：</label>
+                                <label class="col-form-label"><span><vc:i18n name="房屋" namespace="simplifyAcceptanceTT"></vc:i18n></span>ID：</label>
                                 <label class="">{{simplifyAcceptanceInfo.roomId}}</label>
                             </div>
                         </div>
@@ -126,43 +126,43 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'}"
-                        v-on:click="changeTab('simplifyRoomFee')"><vc:i18n name="房屋费用" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('simplifyRoomFee')"><span><vc:i18n name="房屋费用" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'}"
-                        v-on:click="changeTab('simplifyCarFee')"><vc:i18n name="停车费用" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('simplifyCarFee')"><span><vc:i18n name="停车费用" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
                         v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}"
-                        v-on:click="changeTab('simplifyOwnerMember')"><vc:i18n name="家庭成员" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('simplifyOwnerMember')"><span><vc:i18n name="家庭成员" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'}"
-                        v-on:click="changeTab('simplifyOwnerCar')"><vc:i18n name="车辆信息" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('simplifyOwnerCar')"><span><vc:i18n name="车辆信息" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
                         v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'}"
-                        v-on:click="changeTab('simplifyOwnerRepair')"><vc:i18n name="报修单" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('simplifyOwnerRepair')"><span><vc:i18n name="报修单" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
                         v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerComplaint'}"
-                        v-on:click="changeTab('simplifyOwnerComplaint')"><vc:i18n name="投诉单" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('simplifyOwnerComplaint')"><span><vc:i18n name="投诉单" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
                         v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerAccessContol'}"
-                        v-on:click="changeTab('simplifyOwnerAccessContol')"><vc:i18n name="门禁同步" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('simplifyOwnerAccessContol')"><span><vc:i18n name="门禁同步" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'}"
-                        v-on:click="changeTab('simplifyOwnerTransactionCar')"><vc:i18n name="道闸同步" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('simplifyOwnerTransactionCar')"><span><vc:i18n name="道闸同步" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'feeReceipt'}"
-                        v-on:click="changeTab('feeReceipt')"><vc:i18n name="补打收据" namespace="simplifyAcceptanceTT"></vc:i18n></a>
+                        v-on:click="changeTab('feeReceipt')"><span><vc:i18n name="补打收据" namespace="simplifyAcceptanceTT"></vc:i18n></span></a>
                 </li>
             </ul>
         </div>

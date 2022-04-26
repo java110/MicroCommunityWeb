@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5><vc:i18n name="编辑" namespace="editActivitiesBeautifulStaff"></vc:i18n></h5>
+                <h5><span><vc:i18n name="编辑" namespace="editActivitiesBeautifulStaff"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>
@@ -11,14 +11,14 @@
                 <div>
                     <div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="员工编号" namespace="editActivitiesBeautifulStaff"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="员工编号" namespace="editActivitiesBeautifulStaff"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="editActivitiesBeautifulStaffInfo.activitiesNum" type="text"
                                     :placeholder="vc.i18n('必填，请填写员工编号','editActivitiesBeautifulStaff')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="工作简介" namespace="editActivitiesBeautifulStaff"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="工作简介" namespace="editActivitiesBeautifulStaff"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <div class="no-padding">
                                     <div class="editSummernote"></div>
@@ -30,7 +30,7 @@
                             <button class="btn btn-primary float-right" type="button"
                                 v-on:click="editActivitiesBeautifulStaff()"><i class="fa fa-check"></i>&nbsp;保存</button>
                             <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                @click="_closeEditActivitiesBeauifulStaffInfo()"><vc:i18n name="取消" namespace="editActivitiesBeautifulStaff"></vc:i18n></button>
+                                @click="_closeEditActivitiesBeauifulStaffInfo()"><span><vc:i18n name="取消" namespace="editActivitiesBeautifulStaff"></vc:i18n></span></button>
                         </div>
                     </div>
                 </div>

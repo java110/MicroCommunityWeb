@@ -25,16 +25,16 @@ vc.i18n(' ','parkingAreaControlOwnerCar')vc.i18n(' ','parkingAreaControlOwnerCar
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
                 <tr>
-                    <th class="text-center"><vc:i18n name="车牌号" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th class="text-center"><vc:i18n name="房屋号" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th data-hide="phone" class="text-center"><vc:i18n name="车辆品牌" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th data-hide="phone" class="text-center"><vc:i18n name="车辆类型" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th data-hide="phone" class="text-center"><vc:i18n name="颜色" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th data-hide="phone" class="text-center"><vc:i18n name="业主" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th data-hide="phone" class="text-center"><vc:i18n name="车位" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th data-hide="phone" class="text-center"><vc:i18n name="起租时间" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th data-hide="phone" class="text-center"><vc:i18n name="截止时间" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
-                    <th data-hide="phone" class="text-center"><vc:i18n name="状态" namespace="parkingAreaControlOwnerCar"></vc:i18n></th>
+                    <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="房屋号" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="车辆品牌" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="车辆类型" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="颜色" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="业主" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="车位" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="起租时间" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="截止时间" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="状态" namespace="parkingAreaControlOwnerCar"></vc:i18n></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +58,7 @@ vc.i18n(' ','parkingAreaControlOwnerCar')vc.i18n(' ','parkingAreaControlOwnerCar
                         {{car.ownerName}}({{car.link}})
                     </td>
                     <td v-if="car.areaNum && car.state == '1001'" class="text-center">
-                        {{car.areaNum}}<vc:i18n name="车场" namespace="parkingAreaControlOwnerCar"></vc:i18n>{{car.num}}<vc:i18n name="车位" namespace="parkingAreaControlOwnerCar"></vc:i18n>
+                        {{car.areaNum}}<span><vc:i18n name="车场" namespace="parkingAreaControlOwnerCar"></vc:i18n></span>{{car.num}}<span><vc:i18n name="车位" namespace="parkingAreaControlOwnerCar"></vc:i18n></span>
                     </td>
                     <td v-else class="text-center">
                         车位已释放

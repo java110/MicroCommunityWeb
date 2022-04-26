@@ -3,43 +3,43 @@
         <div>
             <div class=" text-center">
                 <h1>{{printPayFeeInfo.storeName}}</h1>
-                <h5><vc:i18n name="收" namespace="printPayFees"></vc:i18n> <vc:i18n name="款" namespace="printPayFees"></vc:i18n> <vc:i18n name="收" namespace="printPayFees"></vc:i18n> <vc:i18n name="据" namespace="printPayFees"></vc:i18n></h5>
+                <h5><span><vc:i18n name="收" namespace="printPayFees"></vc:i18n></span> <span><vc:i18n name="款" namespace="printPayFees"></vc:i18n></span> <span><vc:i18n name="收" namespace="printPayFees"></vc:i18n></span> <span><vc:i18n name="据" namespace="printPayFees"></vc:i18n></span></h5>
                 <!-- <h1>{{printPayFeeInfo.communityName}} 收据单</h1> -->
-                <!-- <span><vc:i18n name="单号" namespace="printPayFees"></vc:i18n>：{{printPayFeeInfo.receiptId}}</span> -->
+                <!-- <span><span><vc:i18n name="单号" namespace="printPayFees"></vc:i18n></span>：{{printPayFeeInfo.receiptId}}</span> -->
             </div>
             <div class="row margin-top">
                 <div class="col-sm-2">
-                    <span><vc:i18n name="房号" namespace="printPayFees"></vc:i18n>:{{printPayFeeInfo.roomName}}</span>
+                    <span><span><vc:i18n name="房号" namespace="printPayFees"></vc:i18n></span>:{{printPayFeeInfo.roomName}}</span>
                 </div>
                 <!-- <div  v-if="printPayFeeInfo.type== 3 && printPayFeeInfo.carNum!=null  && printPayFeeInfo.carNum!='' " class="col-sm-2">
-                    <span><vc:i18n name="车牌号码" namespace="printPayFees"></vc:i18n>:{{printPayFeeInfo.carNum}}</span>
+                    <span><span><vc:i18n name="车牌号码" namespace="printPayFees"></vc:i18n></span>:{{printPayFeeInfo.carNum}}</span>
                 </div>
                 <div  v-if="printPayFeeInfo.type != 3 || printPayFeeInfo.carNum==null | printPayFeeInfo.carNum=='' " class="col-sm-2">
                 </div> -->
                 <div class="col-sm-2">
                 </div>
                 <div class="col-sm-2">
-                    <span><vc:i18n name="用户名" namespace="printPayFees"></vc:i18n>:{{printPayFeeInfo.name}}</span>
+                    <span><span><vc:i18n name="用户名" namespace="printPayFees"></vc:i18n></span>:{{printPayFeeInfo.name}}</span>
                 </div>
                 <div class="col-sm-2">
                 </div>
                 <div class="col-sm-2">
                 </div>
                 <div class="col-sm-2">
-                    <span><vc:i18n name="面积" namespace="printPayFees"></vc:i18n>:{{printPayFeeInfo.roomArea}} 平方米</span>
+                    <span><span><vc:i18n name="面积" namespace="printPayFees"></vc:i18n></span>:{{printPayFeeInfo.roomArea}} 平方米</span>
                 </div>
             </div>
             <table class="table vc-table-border" style="margin-top: 20px;font-size: 16px;">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center"><vc:i18n name="收费项目" namespace="printPayFees"></vc:i18n></th>
-                        <!-- <th v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center"><vc:i18n name="车牌号码" namespace="printPayFees"></vc:i18n></th> -->
-                        <th v-if=" printPayFeeInfo.type==4 " scope="col" class="text-center"><vc:i18n name="车牌号码" namespace="printPayFees"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="数量" namespace="printPayFees"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="单价" namespace="printPayFees"></vc:i18n></th>
-                        <th colspan="2" scope="col" class="text-center"><vc:i18n name="计费起止时间" namespace="printPayFees"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="实收金额" namespace="printPayFees"></vc:i18n></th>
-                        <th scope="col" class="text-center"><vc:i18n name="备注" namespace="printPayFees"></vc:i18n></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="收费项目" namespace="printPayFees"></vc:i18n></span></th>
+                        <!-- <th v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 " scope="col" class="text-center"><span><vc:i18n name="车牌号码" namespace="printPayFees"></vc:i18n></span></th> -->
+                        <th v-if=" printPayFeeInfo.type==4 " scope="col" class="text-center"><span><vc:i18n name="车牌号码" namespace="printPayFees"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="数量" namespace="printPayFees"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="单价" namespace="printPayFees"></vc:i18n></span></th>
+                        <th colspan="2" scope="col" class="text-center"><span><vc:i18n name="计费起止时间" namespace="printPayFees"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="实收金额" namespace="printPayFees"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="备注" namespace="printPayFees"></vc:i18n></span></th>
                     </tr>
                 </thead>
                 <tbody class="vc-table-border">
@@ -64,16 +64,16 @@
                         <!-- <td  v-if="printPayFeeInfo.type== 3" class="text-center" >{{item.remark}}{{item.carNum}}</td> -->
                     </tr>
                     <tr >
-                        <!-- <td colspan="1" class="text-center "><vc:i18n name="大写人民币" namespace="printPayFees"></vc:i18n>（元）</td> -->
-                        <td colspan="3" class="text-center "><vc:i18n name="大写人民币" namespace="printPayFees"></vc:i18n>（元）: {{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                        <!-- <td colspan="1" class="text-center "><span><vc:i18n name="大写人民币" namespace="printPayFees"></vc:i18n></span>（元）</td> -->
+                        <td colspan="3" class="text-center "><span><vc:i18n name="大写人民币" namespace="printPayFees"></vc:i18n></span>（元）: {{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
                         <!-- <td v-if="printPayFeeInfo.type== 3 || printPayFeeInfo.type==4 "  colspan="1" class="text-center "></td> -->
-                        <!-- <td colspan="1" class="text-center "><vc:i18n name="合计" namespace="printPayFees"></vc:i18n>（小写）</td> -->
-                        <td v-if=" printPayFeeInfo.type==4 " colspan="4" class="text-center "><vc:i18n name="合计" namespace="printPayFees"></vc:i18n>（小写）: {{printPayFeeInfo.amount}}</td>
-                        <td v-if=" printPayFeeInfo.type!=4 " colspan="3" class="text-center "><vc:i18n name="合计" namespace="printPayFees"></vc:i18n>（小写）: {{printPayFeeInfo.amount}}</td>
+                        <!-- <td colspan="1" class="text-center "><span><vc:i18n name="合计" namespace="printPayFees"></vc:i18n></span>（小写）</td> -->
+                        <td v-if=" printPayFeeInfo.type==4 " colspan="4" class="text-center "><span><vc:i18n name="合计" namespace="printPayFees"></vc:i18n></span>（小写）: {{printPayFeeInfo.amount}}</td>
+                        <td v-if=" printPayFeeInfo.type!=4 " colspan="3" class="text-center "><span><vc:i18n name="合计" namespace="printPayFees"></vc:i18n></span>（小写）: {{printPayFeeInfo.amount}}</td>
                         <!-- <td colspan="4" class="text-center "></td> -->
 
-                        <td v-if="printPayFeeInfo.type== 3 && printPayFeeInfo.carNum!=null  && printPayFeeInfo.carNum!=''" colspan="4" class="text-left"><vc:i18n name="车牌号" namespace="printPayFees"></vc:i18n>：{{printPayFeeInfo.carNum}}</td>
+                        <td v-if="printPayFeeInfo.type== 3 && printPayFeeInfo.carNum!=null  && printPayFeeInfo.carNum!=''" colspan="4" class="text-left"><span><vc:i18n name="车牌号" namespace="printPayFees"></vc:i18n></span>：{{printPayFeeInfo.carNum}}</td>
                         <td v-if="printPayFeeInfo.type != 3 || printPayFeeInfo.carNum==null | printPayFeeInfo.carNum=='' "  colspan="4" class="text-center "></td>
 
                     </tr>
@@ -92,12 +92,12 @@
             </table>
             <div class="row ">
                 <div class="col-sm-2">
-                    <span>{{printPayFeeInfo.communityName}}<vc:i18n name="客户服务中心" namespace="printPayFees"></vc:i18n></span>
+                    <span>{{printPayFeeInfo.communityName}}<span><vc:i18n name="客户服务中心" namespace="printPayFees"></vc:i18n></span></span>
                 </div>
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-3">
-                    <span><vc:i18n name="收款时间" namespace="printPayFees"></vc:i18n>：{{printPayFeeInfo.feeTime}}</span>
+                    <span><span><vc:i18n name="收款时间" namespace="printPayFees"></vc:i18n></span>：{{printPayFeeInfo.feeTime}}</span>
                 </div>
                 <!-- <div class="col-sm-2">
                 </div> -->
@@ -106,7 +106,7 @@
                 <div class="col-sm-2">
                 </div>
                 <div class="col-sm-2">
-                    <span><vc:i18n name="收款人" namespace="printPayFees"></vc:i18n>：{{printPayFeeInfo.userName}}</span>
+                    <span><span><vc:i18n name="收款人" namespace="printPayFees"></vc:i18n></span>：{{printPayFeeInfo.userName}}</span>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
             <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
                 <i class="fa fa-check"></i>&nbsp;打印
             </button>
-            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><vc:i18n name="取消" namespace="printPayFees"></vc:i18n>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printPayFees"></vc:i18n></span>
             </button>
         </div>
     </div>

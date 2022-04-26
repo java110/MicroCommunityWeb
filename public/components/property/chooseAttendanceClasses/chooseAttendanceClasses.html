@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseAttendanceClassesModelLabel"><vc:i18n name="选择考勤班组" namespace="chooseAttendanceClasses"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseAttendanceClassesModelLabel"><span><vc:i18n name="选择考勤班组" namespace="chooseAttendanceClasses"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseAttendanceClasses')vc.i18n(' ','chooseAttendanceClasses')vc.i
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入考勤班组名称','chooseAttendanceClasses')" type="text" v-model="chooseAttendanceClassesInfo._currentAttendanceClassesName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryAttendanceClassess()"><vc:i18n name="查询" namespace="chooseAttendanceClasses"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryAttendanceClassess()"><span><vc:i18n name="查询" namespace="chooseAttendanceClasses"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,17 +28,17 @@ vc.i18n(' ','chooseAttendanceClasses')vc.i18n(' ','chooseAttendanceClasses')vc.i
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="班组" namespace="chooseAttendanceClasses"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="班次名称" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="打卡范围" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="打卡次数" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="打卡类型" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="打卡规则" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="迟到范围" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="早退范围" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="班次对象类型" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="班次对象" namespace="chooseAttendanceClasses"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseAttendanceClasses"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="班组" namespace="chooseAttendanceClasses"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="班次名称" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="打卡范围" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="打卡次数" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="打卡类型" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="打卡规则" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="迟到范围" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="早退范围" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="班次对象类型" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="班次对象" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseAttendanceClasses"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -56,7 +56,7 @@ vc.i18n(' ','chooseAttendanceClasses')vc.i18n(' ','chooseAttendanceClasses')vc.i
                             <td class="text-center">{{attendanceClasses.classesObjId}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseAttendanceClasses(attendanceClasses)"><vc:i18n name="选择" namespace="chooseAttendanceClasses"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseAttendanceClasses(attendanceClasses)"><span><vc:i18n name="选择" namespace="chooseAttendanceClasses"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

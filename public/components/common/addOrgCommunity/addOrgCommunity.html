@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="addOrgCommunityModelLabel">
-                    <vc:i18n name="添加隶属小区" namespace="addOrgCommunity"></vc:i18n>
+                    <span><vc:i18n name="添加隶属小区" namespace="addOrgCommunity"></vc:i18n></span>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -22,7 +22,7 @@
                                         <input :placeholder="vc.i18n('输入小区名称','addOrgCommunity')" type="text" v-model="addOrgCommunityInfo.communityName" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryCommunitys()"><vc:i18n name="查询" namespace="addOrgCommunity"></vc:i18n></button>
+                                                        v-on:click="queryCommunitys()"><span><vc:i18n name="查询" namespace="addOrgCommunity"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -35,12 +35,12 @@
                                                 <input type="checkbox" class="i-checks " @click="checkAll($event)" id="quan">
                                             </th>
                                             <th class="text-center">
-                                                <vc:i18n name="小区" namespace="addOrgCommunity"></vc:i18n>ID</th>
+                                                <span><vc:i18n name="小区" namespace="addOrgCommunity"></vc:i18n></span>ID</th>
                                             <th class="text-center">
-                                                <vc:i18n name="小区名称" namespace="addOrgCommunity"></vc:i18n>
+                                                <span><vc:i18n name="小区名称" namespace="addOrgCommunity"></vc:i18n></span>
                                             </th>
                                             <th class="text-center">
-                                                <vc:i18n name="小区地址" namespace="addOrgCommunity"></vc:i18n>
+                                                <span><vc:i18n name="小区地址" namespace="addOrgCommunity"></vc:i18n></span>
                                             </th>
 
                                         </tr>
@@ -63,7 +63,7 @@
                                     <button class="btn btn-primary float-right" type="button" v-on:click="addOrgCommunity()"><i
                                             class="fa fa-check"></i>&nbsp;提交
                                     </button>
-                                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="addOrgCommunity"></vc:i18n>
+                                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addOrgCommunity"></vc:i18n></span>
                                     </button>
                                 </div>
                             </div>

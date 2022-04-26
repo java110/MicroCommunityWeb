@@ -2,14 +2,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><vc:i18n name="请确认您的操作" namespace="shopWithdraw"></vc:i18n>!</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><span><vc:i18n name="请确认您的操作" namespace="shopWithdraw"></vc:i18n></span>!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label"><vc:i18n name="撤回说明" namespace="shopWithdraw"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label"><span><vc:i18n name="撤回说明" namespace="shopWithdraw"></vc:i18n></span></label>
                     <div class="col-sm-9">
                         <textarea v-model="shopWithdrawInfo.remark" rows="3" cols="4"  :placeholder="vc.i18n('必填，请填写撤回意见','shopWithdraw')"
                         class="form-control" style="font-size:14px;" >
@@ -18,8 +18,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeShopWithdrawModel()"><vc:i18n name="点错了" namespace="shopWithdraw"></vc:i18n></button>
-                <button type="button" class="btn btn-primary" v-on:click="updateShopWithdraw()"><vc:i18n name="确认撤回" namespace="shopWithdraw"></vc:i18n></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeShopWithdrawModel()"><span><vc:i18n name="点错了" namespace="shopWithdraw"></vc:i18n></span></button>
+                <button type="button" class="btn btn-primary" v-on:click="updateShopWithdraw()"><span><vc:i18n name="确认撤回" namespace="shopWithdraw"></vc:i18n></span></button>
             </div>
         </div>
     </div>

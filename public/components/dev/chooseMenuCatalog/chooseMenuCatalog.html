@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseMenuCatalogModelLabel"><vc:i18n name="选择菜单目录" namespace="chooseMenuCatalog"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseMenuCatalogModelLabel"><span><vc:i18n name="选择菜单目录" namespace="chooseMenuCatalog"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseMenuCatalog')vc.i18n(' ','chooseMenuCatalog')vc.i18n(' ','cho
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入菜单目录名称','chooseMenuCatalog')" type="text" v-model="chooseMenuCatalogInfo._currentMenuCatalogName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMenuCatalogs()"><vc:i18n name="查询" namespace="chooseMenuCatalog"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMenuCatalogs()"><span><vc:i18n name="查询" namespace="chooseMenuCatalog"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','chooseMenuCatalog')vc.i18n(' ','chooseMenuCatalog')vc.i18n(' ','cho
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="编号" namespace="chooseMenuCatalog"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="名称" namespace="chooseMenuCatalog"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="图片" namespace="chooseMenuCatalog"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="顺序" namespace="chooseMenuCatalog"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="商户类型" namespace="chooseMenuCatalog"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="页面" namespace="chooseMenuCatalog"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="是否显示" namespace="chooseMenuCatalog"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseMenuCatalog"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="编号" namespace="chooseMenuCatalog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="名称" namespace="chooseMenuCatalog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="图片" namespace="chooseMenuCatalog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="顺序" namespace="chooseMenuCatalog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="商户类型" namespace="chooseMenuCatalog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="页面" namespace="chooseMenuCatalog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否显示" namespace="chooseMenuCatalog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseMenuCatalog"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','chooseMenuCatalog')vc.i18n(' ','chooseMenuCatalog')vc.i18n(' ','cho
                             <td class="text-center">{{menuCatalog.isShow}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMenuCatalog(menuCatalog)"><vc:i18n name="选择" namespace="chooseMenuCatalog"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMenuCatalog(menuCatalog)"><span><vc:i18n name="选择" namespace="chooseMenuCatalog"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

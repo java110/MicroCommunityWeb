@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="complaintManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="complaintManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
@@ -34,10 +34,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryComplaintMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="complaintManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="complaintManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetComplaintMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="complaintManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="complaintManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="投诉建议" namespace="complaintManage"></vc:i18n>
+                        <span><vc:i18n name="投诉建议" namespace="complaintManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddComplaintModal()">
@@ -96,31 +96,31 @@
                                 <th class="text-center">
                                     {{vc.i18n('投诉','complaintManage')}}ID</th>
                                 <th class="text-center">
-                                    <vc:i18n name="投诉类型" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="投诉类型" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="房屋" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="房屋" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="投诉人" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="投诉人" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="投诉人电话" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="投诉人电话" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="投诉状态" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="投诉状态" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="处理人" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="处理人" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="处理人电话" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="处理人电话" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="创建时间" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="创建时间" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -130,9 +130,9 @@
                                 <td class="text-center">{{complaint.typeCdName}}</td>
                                 <td class="text-center">
                                     {{complaint.floorNum}}
-                                    <vc:i18n name="号楼" namespace="complaintManage"></vc:i18n>{{complaint.unitNum}}
-                                    <vc:i18n name="单元" namespace="complaintManage"></vc:i18n>{{complaint.roomNum}}
-                                    <vc:i18n name="室" namespace="complaintManage"></vc:i18n>
+                                    <span><vc:i18n name="号楼" namespace="complaintManage"></vc:i18n></span>{{complaint.unitNum}}
+                                    <span><vc:i18n name="单元" namespace="complaintManage"></vc:i18n></span>{{complaint.roomNum}}
+                                    <span><vc:i18n name="室" namespace="complaintManage"></vc:i18n></span>
                                 </td>
                                 <td class="text-center">{{complaint.complaintName}}</td>
                                 <td class="text-center">{{complaint.tel}}</td>
@@ -143,19 +143,19 @@
                                 <td class="text-center">{{complaint.createTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openComplaintDetailModel(complaint)"><vc:i18n name="详情" namespace="complaintManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openComplaintDetailModel(complaint)"><span><vc:i18n name="详情" namespace="complaintManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(complaint)"><vc:i18n name="流程图" namespace="complaintManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(complaint)"><span><vc:i18n name="流程图" namespace="complaintManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditComplaintModel(complaint)"><vc:i18n name="修改" namespace="complaintManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditComplaintModel(complaint)"><span><vc:i18n name="修改" namespace="complaintManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteComplaintModel(complaint)"><vc:i18n name="删除" namespace="complaintManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteComplaintModel(complaint)"><span><vc:i18n name="删除" namespace="complaintManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

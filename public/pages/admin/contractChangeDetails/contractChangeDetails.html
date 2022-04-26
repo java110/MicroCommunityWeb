@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="合同" namespace="contractChangeDetails"></vc:i18n>{{contractChangeDetailInfo.operate == 'ADD'?'变更后':'变更前'}}{{contractChangeDetailInfo.operate == 'ADD'?'('+contractChangeDetailInfo.planTypeName+')':''}}
+                    <h5><span><vc:i18n name="合同" namespace="contractChangeDetails"></vc:i18n></span>{{contractChangeDetailInfo.operate == 'ADD'?'变更后':'变更前'}}{{contractChangeDetailInfo.operate == 'ADD'?'('+contractChangeDetailInfo.planTypeName+')':''}}
                     </h5>
                     <div class="ibox-tools" style="top:10px;" v-if="index == 0">
                         <button type="button" class="btn btn-white btn-sm" style="margin-right:10px;" v-on:click="_goBack()">
@@ -14,19 +14,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="合同名称" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="合同名称" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.contractName}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="合同编号" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="合同编号" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.contractCode}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="合同类型" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="合同类型" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.contractType}}</label>
                             </div>
                         </div>
@@ -34,20 +34,20 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="甲方" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="甲方" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.partyA}}</label>
                             </div>
                         </div>
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="甲方联系人" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="甲方联系人" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.aContacts}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="甲方联系电话" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="甲方联系电话" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.aLink}}</label>
                             </div>
                         </div>
@@ -55,20 +55,20 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="乙方" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="乙方" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.partyB}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="乙方联系人" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="乙方联系人" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.bContacts}}</label>
                             </div>
                         </div>
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="乙方联系电话" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="乙方联系电话" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.bLink}}</label>
                             </div>
                         </div>
@@ -76,19 +76,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="经办人" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="经办人" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.operator}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="联系电话" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="联系电话" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.operatorLink}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="合同金额" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="合同金额" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.amount}}</label>
                             </div>
                         </div>
@@ -96,19 +96,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="开始时间" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="开始时间" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.startTime}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="结束时间" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="结束时间" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.endTime}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="签订时间" namespace="contractChangeDetails"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="签订时间" namespace="contractChangeDetails"></vc:i18n></span>：</label>
                                 <label class="">{{contractChangeDetailInfo.signingTime}}</label>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="工单流转" namespace="contractChangeDetails"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="工单流转" namespace="contractChangeDetails"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -131,12 +131,12 @@
                     <table class="table table-stripped">
                         <thead>
                             <tr>
-                                <th scope="col"><vc:i18n name="序号" namespace="contractChangeDetails"></vc:i18n></th>
-                                <th scope="col"><vc:i18n name="处理人" namespace="contractChangeDetails"></vc:i18n></th>
-                                <th scope="col"><vc:i18n name="状态" namespace="contractChangeDetails"></vc:i18n></th>
-                                <th scope="col"><vc:i18n name="处理时间" namespace="contractChangeDetails"></vc:i18n></th>
-                                <th scope="col"><vc:i18n name="耗时" namespace="contractChangeDetails"></vc:i18n></th>
-                                <th scope="col"><vc:i18n name="意见" namespace="contractChangeDetails"></vc:i18n></th>
+                                <th scope="col"><span><vc:i18n name="序号" namespace="contractChangeDetails"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="处理人" namespace="contractChangeDetails"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="状态" namespace="contractChangeDetails"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="处理时间" namespace="contractChangeDetails"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="耗时" namespace="contractChangeDetails"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="意见" namespace="contractChangeDetails"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>

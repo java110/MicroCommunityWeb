@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="reportInfoBackCityManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="reportInfoBackCityManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                             v-on:click="_moreCondition()">{{reportInfoBackCityManageInfo.moreCondition ==
@@ -33,7 +33,7 @@
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_queryReportInfoBackCityMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="reportInfoBackCityManage"></vc:i18n>
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="reportInfoBackCityManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="返省信息" namespace="reportInfoBackCityManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="返省信息" namespace="reportInfoBackCityManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_openAddReportInfoBackCityModal()">
@@ -70,13 +70,13 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="姓名" namespace="reportInfoBackCityManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="身份证" namespace="reportInfoBackCityManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="手机号" namespace="reportInfoBackCityManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="来源地" namespace="reportInfoBackCityManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="城市名称" namespace="reportInfoBackCityManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="返回时间" namespace="reportInfoBackCityManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="操作" namespace="reportInfoBackCityManage"></vc:i18n></th>
+                                <th class="text-center"><span><vc:i18n name="姓名" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="身份证" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="手机号" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="来源地" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="城市名称" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="返回时间" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,15 +90,15 @@
                                 <td class="text-center">
                                     <!-- <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditReportInfoBackCityModel(reportInfoBackCity)"><vc:i18n name="修改" namespace="reportInfoBackCityManage"></vc:i18n></button>
+                                            v-on:click="_openEditReportInfoBackCityModel(reportInfoBackCity)"><span><vc:i18n name="修改" namespace="reportInfoBackCityManage"></vc:i18n></span></button>
                                     </div> -->
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteReportInfoBackCityModel(reportInfoBackCity)"><vc:i18n name="删除" namespace="reportInfoBackCityManage"></vc:i18n></button>
+                                            v-on:click="_openDeleteReportInfoBackCityModel(reportInfoBackCity)"><span><vc:i18n name="删除" namespace="reportInfoBackCityManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_payBackCity()"><vc:i18n name="二维码" namespace="reportInfoBackCityManage"></vc:i18n></button>
+                                            v-on:click="_payBackCity()"><span><vc:i18n name="二维码" namespace="reportInfoBackCityManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 
@@ -111,13 +111,13 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title"><vc:i18n name="外来人员登记" namespace="reportInfoBackCityManage"></vc:i18n></h5>
+                                                    <h5 class="modal-title"><span><vc:i18n name="外来人员登记" namespace="reportInfoBackCityManage"></vc:i18n></span></h5>
                                                 </div>
                                                 <div class="modal-body text-center">
                                                     <div id="qrcode" style="width:200px; height:200px; "></div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-success" @click="_back()"><vc:i18n name="关闭" namespace="reportInfoBackCityManage"></vc:i18n></button>
+                                                    <button type="button" class="btn btn-success" @click="_back()"><span><vc:i18n name="关闭" namespace="reportInfoBackCityManage"></vc:i18n></span></button>
                                                 </div>
                                             </div>
                                         </div>

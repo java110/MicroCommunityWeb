@@ -3,15 +3,15 @@
         <div class="ibox">
             <div class="ibox-title">
                 <h5>{{orgCommunityManageInfo.orgName}}
-                    <vc:i18n name="隶属小区" namespace="orgCommunityManage"></vc:i18n>
+                    <span><vc:i18n name="隶属小区" namespace="orgCommunityManage"></vc:i18n></span>
                 </h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()"> 
-                        <vc:i18n name="返回" ></vc:i18n>
+                        <span><vc:i18n name="返回" ></vc:i18n></span>
                     </button>
                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddOrgCommunityModal()">
                         <i class="fa fa-plus"></i>
-                        <vc:i18n name="添加" ></vc:i18n>
+                        <span><vc:i18n name="添加" ></vc:i18n></span>
                     </button>
                 </div>
             </div>
@@ -21,17 +21,17 @@
                     <thead>
                         <tr>
                             <th class="text-center">
-                                <vc:i18n name="组织" namespace="orgCommunityManage"></vc:i18n>ID</th>
+                                <span><vc:i18n name="组织" namespace="orgCommunityManage"></vc:i18n></span>ID</th>
                             <th class="text-center">
-                                <vc:i18n name="组织名称" namespace="orgCommunityManage"></vc:i18n>
+                                <span><vc:i18n name="组织名称" namespace="orgCommunityManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
-                                <vc:i18n name="小区" namespace="orgCommunityManage"></vc:i18n>ID</th>
+                                <span><vc:i18n name="小区" namespace="orgCommunityManage"></vc:i18n></span>ID</th>
                             <th class="text-center">
-                                <vc:i18n name="小区名称" namespace="orgCommunityManage"></vc:i18n>
+                                <span><vc:i18n name="小区名称" namespace="orgCommunityManage"></vc:i18n></span>
                             </th>
                             <th class="text-right">
-                                <vc:i18n name="操作" namespace="orgCommunityManage"></vc:i18n>
+                                <span><vc:i18n name="操作" namespace="orgCommunityManage"></vc:i18n></span>
                             </th>
                         </tr>
                     </thead>
@@ -44,7 +44,7 @@
                             <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-on:click="_openDeleteOrgCommunityModel(orgCommunity)">
-                                    <vc:i18n name="删除" ></vc:i18n>
+                                    <span><vc:i18n name="删除" ></vc:i18n></span>
                                 </button>
                                 </div>
                             </td>

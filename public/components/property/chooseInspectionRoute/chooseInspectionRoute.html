@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseInspectionRouteModelLabel"><vc:i18n name="选择巡检路线" namespace="chooseInspectionRoute"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseInspectionRouteModelLabel"><span><vc:i18n name="选择巡检路线" namespace="chooseInspectionRoute"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseInspectionRoute')vc.i18n(' ','chooseInspectionRoute')vc.i18n(
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入巡检路线名称','chooseInspectionRoute')" type="text" v-model="chooseInspectionRouteInfo._currentInspectionRouteName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryInspectionRoutes()"><vc:i18n name="查询" namespace="chooseInspectionRoute"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryInspectionRoutes()"><span><vc:i18n name="查询" namespace="chooseInspectionRoute"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -29,12 +29,12 @@ vc.i18n(' ','chooseInspectionRoute')vc.i18n(' ','chooseInspectionRoute')vc.i18n(
                                     <thead>
                                         <tr>
                                                                         <th class="text-center">inspectionRouteId</th>
-                            <th class="text-center"><vc:i18n name="路线名称" namespace="chooseInspectionRoute"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="巡检点" namespace="chooseInspectionRoute"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="设备数量" namespace="chooseInspectionRoute"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="检查项数量" namespace="chooseInspectionRoute"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="备注" namespace="chooseInspectionRoute"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseInspectionRoute"></vc:i18n></th>
+                            <th class="text-center"><span><vc:i18n name="路线名称" namespace="chooseInspectionRoute"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="巡检点" namespace="chooseInspectionRoute"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="设备数量" namespace="chooseInspectionRoute"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="检查项数量" namespace="chooseInspectionRoute"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseInspectionRoute"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseInspectionRoute"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -48,7 +48,7 @@ vc.i18n(' ','chooseInspectionRoute')vc.i18n(' ','chooseInspectionRoute')vc.i18n(
                             <td class="text-center">{{inspectionRoute.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseInspectionRoute(inspectionRoute)"><vc:i18n name="选择" namespace="chooseInspectionRoute"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseInspectionRoute(inspectionRoute)"><span><vc:i18n name="选择" namespace="chooseInspectionRoute"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

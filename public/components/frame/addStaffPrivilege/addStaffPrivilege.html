@@ -8,12 +8,12 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
                                     <a class="nav-link" v-bind:class="{active:addStaffPrivilegeInfo._currentTab == 1}" v-on:click="changeTab(1)">
-                                        <vc:i18n name="权限组" namespace="addStaffPrivilege"></vc:i18n>
+                                        <span><vc:i18n name="权限组" namespace="addStaffPrivilege"></vc:i18n></span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" v-bind:class="{active:addStaffPrivilegeInfo._currentTab == 2}" v-on:click="changeTab(2)">
-                                        <vc:i18n name="权限" namespace="addStaffPrivilege"></vc:i18n>
+                                        <span><vc:i18n name="权限" namespace="addStaffPrivilege"></vc:i18n></span>
                                     </a>
                                 </li>
                             </ul>
@@ -25,16 +25,16 @@
                                                 <input type="checkbox" class="i-checks" v-bind:checked="addStaffPrivilegeInfo.quanGroup == true" @click="checkAllGroup($event)">
                                             </th>
                                             <th>
-                                                <vc:i18n name="权限组编码" namespace="addStaffPrivilege"></vc:i18n>
+                                                <span><vc:i18n name="权限组编码" namespace="addStaffPrivilege"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="权限组名称" namespace="addStaffPrivilege"></vc:i18n>
+                                                <span><vc:i18n name="权限组名称" namespace="addStaffPrivilege"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="权限组描述" namespace="addStaffPrivilege"></vc:i18n>
+                                                <span><vc:i18n name="权限组描述" namespace="addStaffPrivilege"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="创建时间" namespace="addStaffPrivilege"></vc:i18n>
+                                                <span><vc:i18n name="创建时间" namespace="addStaffPrivilege"></vc:i18n></span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -57,16 +57,16 @@
                                                 <input type="checkbox" class="i-checks " v-bind:checked="addStaffPrivilegeInfo.quan == true" @click="checkAll($event)">
                                             </th>
                                             <th>
-                                                <vc:i18n name="权限编码" namespace="addStaffPrivilege"></vc:i18n>
+                                                <span><vc:i18n name="权限编码" namespace="addStaffPrivilege"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="权限名称" namespace="addStaffPrivilege"></vc:i18n>
+                                                <span><vc:i18n name="权限名称" namespace="addStaffPrivilege"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="权限描述" namespace="addStaffPrivilege"></vc:i18n>
+                                                <span><vc:i18n name="权限描述" namespace="addStaffPrivilege"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="创建时间" namespace="addStaffPrivilege"></vc:i18n>
+                                                <span><vc:i18n name="创建时间" namespace="addStaffPrivilege"></vc:i18n></span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -89,8 +89,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><vc:i18n name="关闭" namespace="addStaffPrivilege"></vc:i18n></button>
-                <button type="button" class="btn btn-primary" v-on:click="addStaffPrivilege()"><vc:i18n name="提交" namespace="addStaffPrivilege"></vc:i18n></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><span><vc:i18n name="关闭" namespace="addStaffPrivilege"></vc:i18n></span></button>
+                <button type="button" class="btn btn-primary" v-on:click="addStaffPrivilege()"><span><vc:i18n name="提交" namespace="addStaffPrivilege"></vc:i18n></span></button>
             </div>
         </div>
     </div>

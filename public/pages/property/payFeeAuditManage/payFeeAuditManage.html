@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="payFeeAuditManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="payFeeAuditManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
@@ -41,10 +41,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPayFeeMethod()">
-                                <i class="fa fa-search"></i><vc:i18n name="查询" namespace="payFeeAuditManage"></vc:i18n>
+                                <i class="fa fa-search"></i><span><vc:i18n name="查询" namespace="payFeeAuditManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-white btn-sm" v-on:click="_resetPayFeeMethod()">
-                                <i class="fa fa-repeat"></i><vc:i18n name="重置" namespace="payFeeAuditManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i><span><vc:i18n name="重置" namespace="payFeeAuditManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="缴费审核" namespace="payFeeAuditManage"></vc:i18n>
+                        <span><vc:i18n name="缴费审核" namespace="payFeeAuditManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
@@ -71,43 +71,43 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="房屋" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="房屋" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="费用项目" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="费用项目" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="付费周期" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="付费周期" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="缴费起始时间" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="缴费起始时间" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="缴费结束时间" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="缴费结束时间" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="应付金额(单位:元)" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="应付金额(单位:元)" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="实付金额(单位:元)" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="实付金额(单位:元)" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作员工" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="操作员工" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="缴费时间" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="缴费时间" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="审核状态" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="审核状态" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="审核说明" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="审核说明" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="缴费备注" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="缴费备注" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="详情" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="详情" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -116,7 +116,7 @@
                                 <td class="text-center">{{payFee.payerObjName}}</td>
                                 <td class="text-center">{{payFee.feeName}}</td>
                                 <td class="text-center">{{payFee.cycles}}
-                                    <vc:i18n name="个月" namespace="payFeeAuditManage"></vc:i18n>
+                                    <span><vc:i18n name="个月" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </td>
                                 <td class="text-center">{{payFee.startTime}}</td>
                                 <td class="text-center">{{payFee.endTime}}</td>
@@ -132,11 +132,11 @@
                                 <td class="text-center">{{payFee.message}}</td>
                                 <td class="text-center">{{payFee.remark}}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-link btn-xs" v-on:click="_detailFee(payFee)"><vc:i18n name="详情" namespace="payFeeAuditManage"></vc:i18n>
+                                    <button class="btn btn-link btn-xs" v-on:click="_detailFee(payFee)"><span><vc:i18n name="详情" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </button>
-                                    <button class="btn btn-link btn-xs" v-if="payFee.state != '2020' && payFee.state != '3030' " v-on:click="_openAuditFeeModal(payFee)"><vc:i18n name="审核费用" namespace="payFeeAuditManage"></vc:i18n>
+                                    <button class="btn btn-link btn-xs" v-if="payFee.state != '2020' && payFee.state != '3030' " v-on:click="_openAuditFeeModal(payFee)"><span><vc:i18n name="审核费用" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </button>
-                                    <button class="btn btn-link btn-xs" v-if=" payFee.state == '3030' " v-on:click="_openRefundModel(payFee)"><vc:i18n name="退费" namespace="payFeeAuditManage"></vc:i18n>
+                                    <button class="btn btn-link btn-xs" v-if=" payFee.state == '3030' " v-on:click="_openRefundModel(payFee)"><span><vc:i18n name="退费" namespace="payFeeAuditManage"></vc:i18n></span>
                                 </button>
                                 </td>
                             </tr>

@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="repairDispatchManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="repairDispatchManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOwnerRepairMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="repairDispatchManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="repairDispatchManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span v-text="repairDispatchManageInfo.conditions.roomName"></span>
-                        <vc:i18n name="报修信息" namespace="repairDispatchManage"></vc:i18n>
+                        <span><vc:i18n name="报修信息" namespace="repairDispatchManage"></vc:i18n></span>
                     </h5>
                 </div>
                 <div class="ibox-content">
@@ -70,25 +70,25 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="位置" namespace="repairDispatchManage"></vc:i18n>
+                                    <span><vc:i18n name="位置" namespace="repairDispatchManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="报修类型" namespace="repairDispatchManage"></vc:i18n>
+                                    <span><vc:i18n name="报修类型" namespace="repairDispatchManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="报修人" namespace="repairDispatchManage"></vc:i18n>
+                                    <span><vc:i18n name="报修人" namespace="repairDispatchManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="报修人电话" namespace="repairDispatchManage"></vc:i18n>
+                                    <span><vc:i18n name="报修人电话" namespace="repairDispatchManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="预约时间" namespace="repairDispatchManage"></vc:i18n>
+                                    <span><vc:i18n name="预约时间" namespace="repairDispatchManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="状态" namespace="repairDispatchManage"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="repairDispatchManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="repairDispatchManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="repairDispatchManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -107,31 +107,31 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" v-if="(ownerRepair.state == '1100' || ownerRepair.state == '1200' ||ownerRepair.state == '1300') && ownerRepair.state != '2001'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDispatchRepairModel(ownerRepair)"><vc:i18n name="转单" namespace="repairDispatchManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDispatchRepairModel(ownerRepair)"><span><vc:i18n name="转单" namespace="repairDispatchManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="ownerRepair.preStaffId != '-1' && ownerRepair.ruId != ownerRepair.preRuId && ownerRepair.state != '2001'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openBackRepairModel(ownerRepair)"><vc:i18n name="退单" namespace="repairDispatchManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openBackRepairModel(ownerRepair)"><span><vc:i18n name="退单" namespace="repairDispatchManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="(ownerRepair.state == '1100' || ownerRepair.state == '1200' ||ownerRepair.state == '1300') && ownerRepair.state != '2001'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openFinishRepair(ownerRepair)"><vc:i18n name="办结" namespace="repairDispatchManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openFinishRepair(ownerRepair)"><span><vc:i18n name="办结" namespace="repairDispatchManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="vc.hasPrivilege('502021040151320003') && ownerRepair.state == '1800' && ownerRepair.returnVisitFlag == '003' && ownerRepair.state != '2001'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openAppraiseRepair(ownerRepair)"><vc:i18n name="回访" namespace="repairDispatchManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAppraiseRepair(ownerRepair)"><span><vc:i18n name="回访" namespace="repairDispatchManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="ownerRepair.state == '1100' || ownerRepair.state == '1200' ||ownerRepair.state == '1300'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openStopRepair(ownerRepair)"><vc:i18n name="暂停" namespace="repairDispatchManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openStopRepair(ownerRepair)"><span><vc:i18n name="暂停" namespace="repairDispatchManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="ownerRepair.state == '2001'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openStartRepair(ownerRepair)"><vc:i18n name="启动" namespace="repairDispatchManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openStartRepair(ownerRepair)"><span><vc:i18n name="启动" namespace="repairDispatchManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDispatchRepairDetail(ownerRepair)"><vc:i18n name="详情" namespace="repairDispatchManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDispatchRepairDetail(ownerRepair)"><span><vc:i18n name="详情" namespace="repairDispatchManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="reportHuaning"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="reportHuaning"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -47,11 +47,11 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
-                                <i class="fa fa-search"></i><vc:i18n name="查询" namespace="reportHuaning"></vc:i18n>
+                                <i class="fa fa-search"></i><span><vc:i18n name="查询" namespace="reportHuaning"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
                                 style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i><vc:i18n name="重置" namespace="reportHuaning"></vc:i18n>
+                                <i class="fa fa-repeat"></i><span><vc:i18n name="重置" namespace="reportHuaning"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -77,19 +77,19 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFee'}"
-                        v-on:click="changeTab('reportHuaningOweFee')"><vc:i18n name="未收情况表" namespace="reportHuaning"></vc:i18n></a>
+                        v-on:click="changeTab('reportHuaningOweFee')"><span><vc:i18n name="未收情况表" namespace="reportHuaning"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFee'}"
-                        v-on:click="changeTab('reportHuaningPayFee')"><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></a>
+                        v-on:click="changeTab('reportHuaningPayFee')"><span><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFeeTwo'}"
-                        v-on:click="changeTab('reportHuaningPayFeeTwo')"><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n>2</a>
+                        v-on:click="changeTab('reportHuaningPayFeeTwo')"><span><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></span>2</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFeeDetail'}"
-                        v-on:click="changeTab('reportHuaningOweFeeDetail')"><vc:i18n name="物业费欠费明细表" namespace="reportHuaning"></vc:i18n></a>
+                        v-on:click="changeTab('reportHuaningOweFeeDetail')"><span><vc:i18n name="物业费欠费明细表" namespace="reportHuaning"></vc:i18n></span></a>
                 </li>
             </ul>
         </div>

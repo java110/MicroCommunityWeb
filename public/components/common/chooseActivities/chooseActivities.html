@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseActivitiesModelLabel"><vc:i18n name="选择活动" namespace="chooseActivities"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseActivitiesModelLabel"><span><vc:i18n name="选择活动" namespace="chooseActivities"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseActivities')vc.i18n(' ','chooseActivities')vc.i18n(' ','choos
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入活动名称','chooseActivities')" type="text" v-model="chooseActivitiesInfo._currentActivitiesName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryActivitiess()"><vc:i18n name="查询" namespace="chooseActivities"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryActivitiess()"><span><vc:i18n name="查询" namespace="chooseActivities"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','chooseActivities')vc.i18n(' ','chooseActivities')vc.i18n(' ','choos
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="活动" namespace="chooseActivities"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="活动标题" namespace="chooseActivities"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="活动类型" namespace="chooseActivities"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="头部照片" namespace="chooseActivities"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="活动内容" namespace="chooseActivities"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="开始时间" namespace="chooseActivities"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="结束时间" namespace="chooseActivities"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseActivities"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="活动" namespace="chooseActivities"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="活动标题" namespace="chooseActivities"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="活动类型" namespace="chooseActivities"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="头部照片" namespace="chooseActivities"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="活动内容" namespace="chooseActivities"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="chooseActivities"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="chooseActivities"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseActivities"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','chooseActivities')vc.i18n(' ','chooseActivities')vc.i18n(' ','choos
                             <td class="text-center">{{activities.endTime}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseActivities(activities)"><vc:i18n name="选择" namespace="chooseActivities"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseActivities(activities)"><span><vc:i18n name="选择" namespace="chooseActivities"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

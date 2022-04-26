@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseMachineTranslateModelLabel"><vc:i18n name="选择设备同步" namespace="chooseMachineTranslate"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseMachineTranslateModelLabel"><span><vc:i18n name="选择设备同步" namespace="chooseMachineTranslate"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseMachineTranslate')vc.i18n(' ','chooseMachineTranslate')vc.i18
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入设备同步名称','chooseMachineTranslate')" type="text" v-model="chooseMachineTranslateInfo._currentMachineTranslateName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMachineTranslates()"><vc:i18n name="查询" namespace="chooseMachineTranslate"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMachineTranslates()"><span><vc:i18n name="查询" namespace="chooseMachineTranslate"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','chooseMachineTranslate')vc.i18n(' ','chooseMachineTranslate')vc.i18
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="同步" namespace="chooseMachineTranslate"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="设备编码" namespace="chooseMachineTranslate"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="设备" namespace="chooseMachineTranslate"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="对象类型" namespace="chooseMachineTranslate"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="对象名称" namespace="chooseMachineTranslate"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="对象" namespace="chooseMachineTranslate"></vc:i18n>Id</th>
-                            <th class="text-center"><vc:i18n name="状态" namespace="chooseMachineTranslate"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseMachineTranslate"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="同步" namespace="chooseMachineTranslate"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="设备编码" namespace="chooseMachineTranslate"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="设备" namespace="chooseMachineTranslate"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="对象类型" namespace="chooseMachineTranslate"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="对象名称" namespace="chooseMachineTranslate"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="对象" namespace="chooseMachineTranslate"></vc:i18n></span>Id</th>
+                            <th class="text-center"><span><vc:i18n name="状态" namespace="chooseMachineTranslate"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseMachineTranslate"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','chooseMachineTranslate')vc.i18n(' ','chooseMachineTranslate')vc.i18
                             <td class="text-center">{{machineTranslate.state}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMachineTranslate(machineTranslate)"><vc:i18n name="选择" namespace="chooseMachineTranslate"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMachineTranslate(machineTranslate)"><span><vc:i18n name="选择" namespace="chooseMachineTranslate"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

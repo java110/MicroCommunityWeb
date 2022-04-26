@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="ibox">
         <div class="ibox-title">
-          <h5><vc:i18n name="商品信息" namespace="editProduct"></vc:i18n></h5>
+          <h5><span><vc:i18n name="商品信息" namespace="editProduct"></vc:i18n></span></h5>
           <div class="ibox-tools" style="top:10px;">
 
           </div>
@@ -11,11 +11,11 @@
         <div class="ibox-content">
 
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品名称" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="商品名称" namespace="editProduct"></vc:i18n></span></label>
             <div class="col-sm-5">
               <input v-model="editProductInfo.prodName" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写商品名称','editProduct')" class="form-control">
             </div>
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品分组" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="商品分组" namespace="editProduct"></vc:i18n></span></label>
             <div class="col-sm-5">
               <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editProductInfo.categoryId">
                 <option selected disabled value="">{{vc.i18n('必填','editProduct')}}，请选择商品分组</option>
@@ -25,24 +25,24 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="单位" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="单位" namespace="editProduct"></vc:i18n></span></label>
             <div class="col-sm-5">
               <input v-model="editProductInfo.unitName" type="text" disabled="disabled" :placeholder="vc.i18n('选填，请填写单位','editProduct')" class="form-control">
             </div>
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="排序" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="排序" namespace="editProduct"></vc:i18n></span></label>
             <div class="col-sm-5">
               <input v-model="editProductInfo.sort" type="text" disabled="disabled" :placeholder="vc.i18n('选填，请填写排序','editProduct')" class="form-control">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="关键词" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="关键词" namespace="editProduct"></vc:i18n></span></label>
             <div class="col-sm-7">
               <input v-model="editProductInfo.keyword" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写关键词,多个关键词用','editProduct');分隔"
                 class="form-control">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品简介" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="商品简介" namespace="editProduct"></vc:i18n></span></label>
             <div class="col-sm-11">
               <textarea v-model="editProductInfo.prodDesc" disabled="disabled" :placeholder="vc.i18n('必填，请填写商品简介','editProduct')" maxlength="250"
                 class="form-control"></textarea>
@@ -59,21 +59,21 @@
     <div class="col-lg-12">
       <div class="ibox">
         <div class="ibox-title">
-          <h5><vc:i18n name="商品图片" namespace="editProduct"></vc:i18n></h5>
+          <h5><span><vc:i18n name="商品图片" namespace="editProduct"></vc:i18n></span></h5>
           <div class="ibox-tools" style="top:10px;">
 
           </div>
         </div>
         <div class="ibox-content">
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品封面" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="商品封面" namespace="editProduct"></vc:i18n></span></label>
             <div class="content-img col-sm-11">
                 <img style="width: 60px; height: 60px; border-radius: 5px;"
                 v-bind:src="editProductInfo.coverPhoto"></img>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品轮播" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="商品轮播" namespace="editProduct"></vc:i18n></span></label>
             <div class="content-img col-sm-11">
                 <img style="width: 60px; height: 60px; border-radius: 5px;" v-for="(item) in editProductInfo.carouselFigurePhoto"
                 v-bind:src="item"></img>
@@ -89,21 +89,21 @@
     <div class="col-lg-12">
       <div class="ibox">
         <div class="ibox-title">
-          <h5><vc:i18n name="商品规格" namespace="editProduct"></vc:i18n></h5>
+          <h5><span><vc:i18n name="商品规格" namespace="editProduct"></vc:i18n></span></h5>
         </div>
         <div class="ibox-content">
           <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
               <tr>
-                <th class="text-center"><vc:i18n name="规格名称" namespace="editProduct"></vc:i18n></th>
-                <th class="text-center"><vc:i18n name="规格值" namespace="editProduct"></vc:i18n></th>
-                <th class="text-center"><vc:i18n name="库存" namespace="editProduct"></vc:i18n></th>
-                <th class="text-center"><vc:i18n name="销量" namespace="editProduct"></vc:i18n></th>
-                <th class="text-center"><vc:i18n name="金额" namespace="editProduct"></vc:i18n></th>
-                <th class="text-center"><vc:i18n name="成本价" namespace="editProduct"></vc:i18n></th>
-                <th class="text-center"><vc:i18n name="会员价格" namespace="editProduct"></vc:i18n></th>
-                <th class="text-center"><vc:i18n name="市场价" namespace="editProduct"></vc:i18n></th>
-                <!--<th class="text-right"><vc:i18n name="操作" namespace="editProduct"></vc:i18n></th>-->
+                <th class="text-center"><span><vc:i18n name="规格名称" namespace="editProduct"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="规格值" namespace="editProduct"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="库存" namespace="editProduct"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="销量" namespace="editProduct"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="金额" namespace="editProduct"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="成本价" namespace="editProduct"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="会员价格" namespace="editProduct"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="市场价" namespace="editProduct"></vc:i18n></span></th>
+                <!--<th class="text-right"><span><vc:i18n name="操作" namespace="editProduct"></vc:i18n></span></th>-->
               </tr>
             </thead>
             <tbody>
@@ -131,11 +131,11 @@
                 <!--<td class="text-right">
                   <div class="btn-group">
                     <button class="btn-white btn btn-xs"
-                      v-on:click="_openEditDeleteProductSpec(productSpec)"><vc:i18n name="删除" namespace="editProduct"></vc:i18n></button>
+                      v-on:click="_openEditDeleteProductSpec(productSpec)"><span><vc:i18n name="删除" namespace="editProduct"></vc:i18n></span></button>
                   </div>
                   <div class="btn-group" v-if="productSpec.isDefault != 'T'">
                     <button class="btn-white btn btn-xs"
-                      v-on:click="_doEditDefaultProductSpec(editProductInfo,productSpec)"><vc:i18n name="默认规格" namespace="editProduct"></vc:i18n></button>
+                      v-on:click="_doEditDefaultProductSpec(editProductInfo,productSpec)"><span><vc:i18n name="默认规格" namespace="editProduct"></vc:i18n></span></button>
                   </div>
                 </td>-->
 
@@ -158,14 +158,14 @@
     <div class="col-lg-12">
       <div class="ibox">
         <div class="ibox-title">
-          <h5><vc:i18n name="商品扩展" namespace="editProduct"></vc:i18n></h5>
+          <h5><span><vc:i18n name="商品扩展" namespace="editProduct"></vc:i18n></span></h5>
           <div class="ibox-tools" style="top:10px;">
 
           </div>
         </div>
         <div class="ibox-content">
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品状态" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="商品状态" namespace="editProduct"></vc:i18n></span></label>
             <div class="col-sm-11">
               <select style="color:#101111" class="custom-select" disabled="disabled" v-model="editProductInfo.state">
                 <option selected disabled value="">{{vc.i18n('选填','editProduct')}}，请选择状态</option>
@@ -176,7 +176,7 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label text-right"><vc:i18n name="商品详情" namespace="editProduct"></vc:i18n></label>
+            <label class="col-sm-1 col-form-label text-right"><span><vc:i18n name="商品详情" namespace="editProduct"></vc:i18n></span></label>
             <div class="col-sm-11 ">
 vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')<divvc.i18n(' ','editProduct')class="vc.i18n(' ','editProduct')no-padding">
                 <div class="editSummernote"></div>
@@ -189,7 +189,7 @@ vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc.i18n(' ','editProduct')vc
             <!--<button class="btn btn-primary float-right" type="button" v-on:click="_editProductInfo()"><i
                 class="fa fa-check"></i>&nbsp;保存</button>-->
             <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-              v-on:click="_closeEditProduct()"><vc:i18n name="取消" namespace="editProduct"></vc:i18n></button>
+              v-on:click="_closeEditProduct()"><span><vc:i18n name="取消" namespace="editProduct"></vc:i18n></span></button>
           </div>
 
         </div>

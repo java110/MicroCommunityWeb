@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseCouponDetailModelLabel"><vc:i18n name="选择商家购买记录表" namespace="chooseCouponDetail"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseCouponDetailModelLabel"><span><vc:i18n name="选择商家购买记录表" namespace="chooseCouponDetail"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseCouponDetail')vc.i18n(' ','chooseCouponDetail')vc.i18n(' ','c
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入商家购买记录表名称','chooseCouponDetail')" type="text" v-model="chooseCouponDetailInfo._currentCouponDetailName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryCouponDetails()"><vc:i18n name="查询" namespace="chooseCouponDetail"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryCouponDetails()"><span><vc:i18n name="查询" namespace="chooseCouponDetail"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,18 +28,18 @@ vc.i18n(' ','chooseCouponDetail')vc.i18n(' ','chooseCouponDetail')vc.i18n(' ','c
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="商家购买记录表" namespace="chooseCouponDetail"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="记录" namespace="chooseCouponDetail"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="优惠券" namespace="chooseCouponDetail"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="店铺" namespace="chooseCouponDetail"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="优惠券名称" namespace="chooseCouponDetail"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="面值" namespace="chooseCouponDetail"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="购买价格" namespace="chooseCouponDetail"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="付款金额" namespace="chooseCouponDetail"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="购买数量" namespace="chooseCouponDetail"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="有效期" namespace="chooseCouponDetail"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="商家购买记录表" namespace="chooseCouponDetail"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="记录" namespace="chooseCouponDetail"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="优惠券" namespace="chooseCouponDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="店铺" namespace="chooseCouponDetail"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="优惠券名称" namespace="chooseCouponDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="面值" namespace="chooseCouponDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="购买价格" namespace="chooseCouponDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="付款金额" namespace="chooseCouponDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="购买数量" namespace="chooseCouponDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="有效期" namespace="chooseCouponDetail"></vc:i18n></span></th>
                             <th class="text-center">primary</th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseCouponDetail"></vc:i18n></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseCouponDetail"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -58,7 +58,7 @@ vc.i18n(' ','chooseCouponDetail')vc.i18n(' ','chooseCouponDetail')vc.i18n(' ','c
                             <td class="text-center">{{couponDetail.primary}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseCouponDetail(couponDetail)"><vc:i18n name="选择" namespace="chooseCouponDetail"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseCouponDetail(couponDetail)"><span><vc:i18n name="选择" namespace="chooseCouponDetail"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseConvenienceMenusModelLabel"><vc:i18n name="选择便民服务菜单" namespace="chooseConvenienceMenus"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseConvenienceMenusModelLabel"><span><vc:i18n name="选择便民服务菜单" namespace="chooseConvenienceMenus"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseConvenienceMenus')vc.i18n(' ','chooseConvenienceMenus')vc.i18
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入便民服务菜单名称','chooseConvenienceMenus')" type="text" v-model="chooseConvenienceMenusInfo._currentConvenienceMenusName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryConvenienceMenuss()"><vc:i18n name="查询" namespace="chooseConvenienceMenus"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryConvenienceMenuss()"><span><vc:i18n name="查询" namespace="chooseConvenienceMenus"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,13 +28,13 @@ vc.i18n(' ','chooseConvenienceMenus')vc.i18n(' ','chooseConvenienceMenus')vc.i18
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="资产" namespace="chooseConvenienceMenus"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="菜单名称" namespace="chooseConvenienceMenus"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="图片地址" namespace="chooseConvenienceMenus"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="页面路径" namespace="chooseConvenienceMenus"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="显示序号" namespace="chooseConvenienceMenus"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="备注" namespace="chooseConvenienceMenus"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseConvenienceMenus"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="资产" namespace="chooseConvenienceMenus"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="菜单名称" namespace="chooseConvenienceMenus"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="图片地址" namespace="chooseConvenienceMenus"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="页面路径" namespace="chooseConvenienceMenus"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="显示序号" namespace="chooseConvenienceMenus"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseConvenienceMenus"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseConvenienceMenus"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -48,7 +48,7 @@ vc.i18n(' ','chooseConvenienceMenus')vc.i18n(' ','chooseConvenienceMenus')vc.i18
                             <td class="text-center">{{convenienceMenus.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseConvenienceMenus(convenienceMenus)"><vc:i18n name="选择" namespace="chooseConvenienceMenus"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseConvenienceMenus(convenienceMenus)"><span><vc:i18n name="选择" namespace="chooseConvenienceMenus"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

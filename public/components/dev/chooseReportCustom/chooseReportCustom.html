@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseReportCustomModelLabel"><vc:i18n name="选择报表" namespace="chooseReportCustom"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseReportCustomModelLabel"><span><vc:i18n name="选择报表" namespace="chooseReportCustom"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseReportCustom')vc.i18n(' ','chooseReportCustom')vc.i18n(' ','c
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入报表名称','chooseReportCustom')" type="text" v-model="chooseReportCustomInfo._currentReportCustomName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryReportCustoms()"><vc:i18n name="查询" namespace="chooseReportCustom"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryReportCustoms()"><span><vc:i18n name="查询" namespace="chooseReportCustom"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,13 +28,13 @@ vc.i18n(' ','chooseReportCustom')vc.i18n(' ','chooseReportCustom')vc.i18n(' ','c
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="报表" namespace="chooseReportCustom"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="报表编号" namespace="chooseReportCustom"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="组编号" namespace="chooseReportCustom"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="选项标题" namespace="chooseReportCustom"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="排序" namespace="chooseReportCustom"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="描述" namespace="chooseReportCustom"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseReportCustom"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="报表" namespace="chooseReportCustom"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="报表编号" namespace="chooseReportCustom"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="组编号" namespace="chooseReportCustom"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="选项标题" namespace="chooseReportCustom"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="排序" namespace="chooseReportCustom"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="描述" namespace="chooseReportCustom"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseReportCustom"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -48,7 +48,7 @@ vc.i18n(' ','chooseReportCustom')vc.i18n(' ','chooseReportCustom')vc.i18n(' ','c
                             <td class="text-center">{{reportCustom.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseReportCustom(reportCustom)"><vc:i18n name="选择" namespace="chooseReportCustom"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseReportCustom(reportCustom)"><span><vc:i18n name="选择" namespace="chooseReportCustom"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

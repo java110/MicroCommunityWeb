@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="服务实现信息" namespace="viewServiceImplInfo"></vc:i18n></h5>
+                <h5><span><vc:i18n name="服务实现信息" namespace="viewServiceImplInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewServiceImplInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectServiceImplInfoModel()">
-                        <i class="fa fa-search"></i> <vc:i18n name="选择服务实现" namespace="viewServiceImplInfo"></vc:i18n></button>
+                        <i class="fa fa-search"></i> <span><vc:i18n name="选择服务实现" namespace="viewServiceImplInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewServiceImplInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddServiceImplInfoModel()">
-                        <i class="fa fa-plus"></i> <vc:i18n name="添加服务实现" namespace="viewServiceImplInfo"></vc:i18n></button>
+                        <i class="fa fa-plus"></i> <span><vc:i18n name="添加服务实现" namespace="viewServiceImplInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="服务实现" namespace="viewServiceImplInfo"></vc:i18n>ID：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="服务实现" namespace="viewServiceImplInfo"></vc:i18n></span>ID：</label>
                             <label class="">{{viewServiceImplInfo.serviceBusinessId}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="业务类型" namespace="viewServiceImplInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="业务类型" namespace="viewServiceImplInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceImplInfo.businessTypeCd}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="业务名称" namespace="viewServiceImplInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="业务名称" namespace="viewServiceImplInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceImplInfo.name}}</label>
                         </div>
 </div>
@@ -35,13 +35,13 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="调用类型" namespace="viewServiceImplInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="调用类型" namespace="viewServiceImplInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceImplInfo.invokeType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="调用地址" namespace="viewServiceImplInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="调用地址" namespace="viewServiceImplInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceImplInfo.url}}</label>
                         </div>
 </div>
@@ -55,19 +55,19 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="超时时间" namespace="viewServiceImplInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="超时时间" namespace="viewServiceImplInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceImplInfo.timeout}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="重试次数" namespace="viewServiceImplInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="重试次数" namespace="viewServiceImplInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceImplInfo.retryCount}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="描述" namespace="viewServiceImplInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="描述" namespace="viewServiceImplInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceImplInfo.description}}</label>
                         </div>
 </div>

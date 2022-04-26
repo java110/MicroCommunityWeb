@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="inspectionTaskManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="inspectionTaskManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
@@ -31,10 +31,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionTaskMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="inspectionTaskManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="inspectionTaskManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-white btn-sm" v-on:click="_resetInspectionTaskMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="inspectionTaskManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="inspectionTaskManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="巡检任务" namespace="inspectionTaskManage"></vc:i18n>
+                        <span><vc:i18n name="巡检任务" namespace="inspectionTaskManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -77,35 +77,35 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="任务编码" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="任务编码" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="巡检计划" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="巡检计划" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="巡检人" namespace="inspectionTaskManage"></vc:i18n><br/>
-                                    <vc:i18n name="开始/结束时间" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="巡检人" namespace="inspectionTaskManage"></vc:i18n></span><br/>
+                                    <span><vc:i18n name="开始/结束时间" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="实际巡检时间" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="实际巡检时间" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="计划巡检人" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="计划巡检人" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="当前巡检人" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="当前巡检人" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="转移描述" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="转移描述" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="巡检方式" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="巡检方式" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="巡检状态" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="巡检状态" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="inspectionTaskManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="inspectionTaskManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -123,11 +123,11 @@
                                 <td class="text-center" v-else>{{inspectionTask.stateName}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openInspectionTaskTransfer(inspectionTask)" v-if="inspectionTask.state == '20200406' || inspectionTask.state == '20200405'"><vc:i18n name="流转" namespace="inspectionTaskManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openInspectionTaskTransfer(inspectionTask)" v-if="inspectionTask.state == '20200406' || inspectionTask.state == '20200405'"><span><vc:i18n name="流转" namespace="inspectionTaskManage"></vc:i18n></span>
                                     </button>
-                                        <button class="btn-white btn btn-xs" v-on:click="_openInspectionTaskDetail(inspectionTask)"><vc:i18n name="详情" namespace="inspectionTaskManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openInspectionTaskDetail(inspectionTask)"><span><vc:i18n name="详情" namespace="inspectionTaskManage"></vc:i18n></span>
                                     </button>
-                                        <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022031612550001')" v-on:click="_openDeleteInspectionTask(inspectionTask)"><vc:i18n name="删除" namespace="inspectionTaskManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022031612550001')" v-on:click="_openDeleteInspectionTask(inspectionTask)"><span><vc:i18n name="删除" namespace="inspectionTaskManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

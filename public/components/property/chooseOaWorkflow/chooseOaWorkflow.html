@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseOaWorkflowModelLabel"><vc:i18n name="选择流程实例" namespace="chooseOaWorkflow"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseOaWorkflowModelLabel"><span><vc:i18n name="选择流程实例" namespace="chooseOaWorkflow"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseOaWorkflow')vc.i18n(' ','chooseOaWorkflow')vc.i18n(' ','choos
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入流程实例名称','chooseOaWorkflow')" type="text" v-model="chooseOaWorkflowInfo._currentOaWorkflowName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryOaWorkflows()"><vc:i18n name="查询" namespace="chooseOaWorkflow"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryOaWorkflows()"><span><vc:i18n name="查询" namespace="chooseOaWorkflow"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,11 +28,11 @@ vc.i18n(' ','chooseOaWorkflow')vc.i18n(' ','chooseOaWorkflow')vc.i18n(' ','choos
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="工作流" namespace="chooseOaWorkflow"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="流程名称" namespace="chooseOaWorkflow"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="流程类型" namespace="chooseOaWorkflow"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="备注" namespace="chooseOaWorkflow"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseOaWorkflow"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="工作流" namespace="chooseOaWorkflow"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="流程名称" namespace="chooseOaWorkflow"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="流程类型" namespace="chooseOaWorkflow"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseOaWorkflow"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseOaWorkflow"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -44,7 +44,7 @@ vc.i18n(' ','chooseOaWorkflow')vc.i18n(' ','chooseOaWorkflow')vc.i18n(' ','choos
                             <td class="text-center">{{oaWorkflow.describle}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOaWorkflow(oaWorkflow)"><vc:i18n name="选择" namespace="chooseOaWorkflow"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOaWorkflow(oaWorkflow)"><span><vc:i18n name="选择" namespace="chooseOaWorkflow"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

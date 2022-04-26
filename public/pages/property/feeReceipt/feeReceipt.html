@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="feeReceipt"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="feeReceipt"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
@@ -31,14 +31,14 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeReceiptMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="feeReceipt"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="feeReceipt"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetFeeReceiptMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="feeReceipt"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="feeReceipt"></vc:i18n></span>
                             </button>
                             <!-- <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_printFeeReceipts(feeReceiptManageInfo.conditions)">
-                                <i class="fa fa-files-o"></i> <vc:i18n name="打印" namespace="feeReceipt"></vc:i18n>
+                                <i class="fa fa-files-o"></i> <span><vc:i18n name="打印" namespace="feeReceipt"></vc:i18n></span>
                             </button> -->
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                         <!--<div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_printFeeReceipts(feeReceiptManageInfo.conditions)">
-                                <i class="fa fa-files-o"></i> <vc:i18n name="打印" namespace="feeReceipt"></vc:i18n>
+                                <i class="fa fa-files-o"></i> <span><vc:i18n name="打印" namespace="feeReceipt"></vc:i18n></span>
                             </button>
                         </div>-->
                     </div>
@@ -81,7 +81,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="收据信息" namespace="feeReceipt"></vc:i18n>
+                        <span><vc:i18n name="收据信息" namespace="feeReceipt"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -91,30 +91,30 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="费用类型" namespace="feeReceipt"></vc:i18n>
+                                    <span><vc:i18n name="费用类型" namespace="feeReceipt"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="费用项" namespace="feeReceipt"></vc:i18n>
+                                    <span><vc:i18n name="费用项" namespace="feeReceipt"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="房屋" namespace="feeReceipt"></vc:i18n>
+                                    <span><vc:i18n name="房屋" namespace="feeReceipt"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="业主" namespace="feeReceipt"></vc:i18n>
+                                    <span><vc:i18n name="业主" namespace="feeReceipt"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="车位" namespace="feeReceipt"></vc:i18n>
+                                    <span><vc:i18n name="车位" namespace="feeReceipt"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="总金额(单位:元)" namespace="feeReceipt"></vc:i18n>
+                                    <span><vc:i18n name="总金额(单位:元)" namespace="feeReceipt"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="缴费时间" namespace="feeReceipt"></vc:i18n>
+                                    <span><vc:i18n name="缴费时间" namespace="feeReceipt"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="收据" namespace="feeReceipt"></vc:i18n>ID</th>
+                                    <span><vc:i18n name="收据" namespace="feeReceipt"></vc:i18n></span>ID</th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="feeReceipt"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="feeReceipt"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -130,12 +130,12 @@
                                 <td class="text-center">{{feeReceipt.receiptId}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_printFeeReceipt(feeReceipt)"><vc:i18n name="补打收据" namespace="feeReceipt"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_printFeeReceipt(feeReceipt)"><span><vc:i18n name="补打收据" namespace="feeReceipt"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <!-- <div v-if="feeReceipt.objType == '6666'" class="btn-group">
                                 <button class="btn-white btn btn-xs"
-                                    v-on:click="_printFeeReceipt(feeReceipt)"><vc:i18n name="补打收据" namespace="feeReceipt"></vc:i18n>(车)</button>
+                                    v-on:click="_printFeeReceipt(feeReceipt)"><span><vc:i18n name="补打收据" namespace="feeReceipt"></vc:i18n></span>(车)</button>
                             </div> -->
                                 </td>
                             </tr>

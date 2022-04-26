@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5><vc:i18n name="修改钥匙申请" namespace="editApplicationKey"></vc:i18n></h5>
+                <h5><span><vc:i18n name="修改钥匙申请" namespace="editApplicationKey"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>
@@ -15,10 +15,10 @@
                         <canvas id="editApplicationKeyCanvas" style="display:none;"></canvas>
                         <div style="margin-top:20px">
                             <button class="btn btn-primary" type="button" v-on:click="_takeEditPhoto()"><span
-                                    class="glyphicon glyphicon-camera"></span> <vc:i18n name="拍照" namespace="editApplicationKey"></vc:i18n>
+                                    class="glyphicon glyphicon-camera"></span> <span><vc:i18n name="拍照" namespace="editApplicationKey"></vc:i18n></span>
                             </button>
                             <span class="btn btn-default btn-file" v-on:click="_uploadEditPhoto($event)">
-                                    <span class="fileinput-new"><vc:i18n name="上传照片" namespace="editApplicationKey"></vc:i18n></span>
+                                    <span class="fileinput-new"><span><vc:i18n name="上传照片" namespace="editApplicationKey"></vc:i18n></span></span>
                                 </span>
                             <input type="file" class="file" accept="images/*" id="uploadEditApplicationKeyPhoto" hidden
                                    v-on:change="_chooseEidtPhoto($event)">
@@ -26,21 +26,21 @@
                     </div>
                     <div class="col-sm-7">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="姓名" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="姓名" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="editApplicationKeyInfo.name" type="text" :placeholder="vc.i18n('必填，请填写姓名','editApplicationKey')"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="手机号" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="手机号" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="editApplicationKeyInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写手机号','editApplicationKey')"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="用户类型" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="用户类型" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="editApplicationKeyInfo.typeCd">
                                     <option selected disabled value="">{{vc.i18n('必填','editApplicationKey')}}，请选择用户类型</option>
@@ -50,7 +50,7 @@
                                 </select></div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="钥匙类型" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="钥匙类型" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="editApplicationKeyInfo.typeFlag" readonly="true">
                                     <option selected disabled value="">{{vc.i18n('必填','editApplicationKey')}}，请选择钥匙类型申请</option>
@@ -60,7 +60,7 @@
                                 </select></div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="性别" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="性别" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="editApplicationKeyInfo.sex">
                                     <option selected disabled value="">{{vc.i18n('必填','editApplicationKey')}}，请选择性别</option>
@@ -69,21 +69,21 @@
                                 </select></div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="年龄" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="年龄" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="editApplicationKeyInfo.age" type="text" :placeholder="vc.i18n('必填，请填写年龄','editApplicationKey')"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="身份证号" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="身份证号" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="editApplicationKeyInfo.idCard" type="text" :placeholder="vc.i18n('必填，请填写身份证号','editApplicationKey')"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="设备位置" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="设备位置" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="editApplicationKeyInfo.locationTypeCd">
                                     <option selected disabled value="">{{vc.i18n('必填','editApplicationKey')}}，请选择设备位置</option>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="form-group row"
                              v-show="editApplicationKeyInfo.locationTypeCd == '2000' || editApplicationKeyInfo.locationTypeCd == '3000'  ">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="归属楼栋" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属楼栋" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <vc:create path="property/floorSelect2"
                                            parentModal="editApplicationKeyModel"
@@ -108,7 +108,7 @@
                         </div>
                         <div class="form-group row"
                              v-show="editApplicationKeyInfo.locationTypeCd == '2000' || editApplicationKeyInfo.locationTypeCd == '3000'  ">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="归属单元" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属单元" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <vc:create path="property/unitSelect2"
                                            parentModal="editApplicationKeyModel"
@@ -120,7 +120,7 @@
                         </div>
                         <div class="form-group row"
                              v-show="editApplicationKeyInfo.locationTypeCd == '3000'  ">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="归属房屋" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属房屋" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <vc:create path="property/roomSelect2"
                                            parentModal="editApplicationKeyModel"
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="开始时间" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="开始时间" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="editApplicationKeyInfo.startTime" readonly type="text"
                                        :placeholder="vc.i18n('必填，请填写开始时间','editApplicationKey')"
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="form-group row" v-show="editApplicationKeyInfo.typeFlag == '1100101' || editApplicationKeyInfo.typeFlag == '1100102' ">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="结束时间" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="editApplicationKeyInfo.endTime" readonly type="text"
                                        :placeholder="vc.i18n('必填，请填写结束时间','editApplicationKey')"
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                         <div class="form-group row" v-if="editApplicationKeyInfo.typeFlag == '1100101'">
-                            <label class="col-sm-2 col-form-label"><vc:i18n name="照片" namespace="editApplicationKey"></vc:i18n></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="照片" namespace="editApplicationKey"></vc:i18n></span></label>
                             <div class="col-sm-10"><img width="100%" height="100%"
                                                         v-bind:src="editApplicationKeyInfo.photo" alt="vc.i18n('申请人照片','editApplicationKey')"></div>
                         </div>
@@ -157,7 +157,7 @@
                                     v-on:click="editApplicationKey()"><i class="fa fa-check"></i>&nbsp;保存
                             </button>
                             <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    v-on:click="_closeEditApplicationKeyView()"><vc:i18n name="取消" namespace="editApplicationKey"></vc:i18n>
+                                    v-on:click="_closeEditApplicationKeyView()"><span><vc:i18n name="取消" namespace="editApplicationKey"></vc:i18n></span>
                             </button>
                         </div>
                     </div>

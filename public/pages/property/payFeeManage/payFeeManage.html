@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="payFeeManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="payFeeManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">{{payFeeManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -36,11 +36,11 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryPayFeeMethod()">
-                                <i class="fa fa-search"></i><vc:i18n name="查询" namespace="payFeeManage"></vc:i18n>
+                                <i class="fa fa-search"></i><span><vc:i18n name="查询" namespace="payFeeManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-info btn-md" v-on:click="_resetPayFeeMethod()"
                                     style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i><vc:i18n name="重置" namespace="payFeeManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i><span><vc:i18n name="重置" namespace="payFeeManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -66,10 +66,10 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="缴费清单" namespace="payFeeManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="缴费清单" namespace="payFeeManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
-                            <i class="fa fa-plus"></i> <vc:i18n name="导出" namespace="payFeeManage"></vc:i18n>
+                            <i class="fa fa-plus"></i> <span><vc:i18n name="导出" namespace="payFeeManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -77,17 +77,17 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center"><vc:i18n name="费用类型" namespace="payFeeManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="费用项目" namespace="payFeeManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="付费方" namespace="payFeeManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="缴费" namespace="payFeeManage"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="支付方式" namespace="payFeeManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="付费周期" namespace="payFeeManage"></vc:i18n>(单位:月)</th>
-                            <th class="text-center"><vc:i18n name="应付金额" namespace="payFeeManage"></vc:i18n>(单位:元)</th>
-                            <th class="text-center"><vc:i18n name="实付金额" namespace="payFeeManage"></vc:i18n>(单位:元)</th>
-                            <th class="text-center"><vc:i18n name="操作员工" namespace="payFeeManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="缴费时间" namespace="payFeeManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="详情" namespace="payFeeManage"></vc:i18n></th>
+                            <th class="text-center"><span><vc:i18n name="费用类型" namespace="payFeeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="费用项目" namespace="payFeeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="付费方" namespace="payFeeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="缴费" namespace="payFeeManage"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="支付方式" namespace="payFeeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="付费周期" namespace="payFeeManage"></vc:i18n></span>(单位:月)</th>
+                            <th class="text-center"><span><vc:i18n name="应付金额" namespace="payFeeManage"></vc:i18n></span>(单位:元)</th>
+                            <th class="text-center"><span><vc:i18n name="实付金额" namespace="payFeeManage"></vc:i18n></span>(单位:元)</th>
+                            <th class="text-center"><span><vc:i18n name="操作员工" namespace="payFeeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="缴费时间" namespace="payFeeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="详情" namespace="payFeeManage"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,7 +103,7 @@
                             <td class="text-center">{{payFee.userName}}</td>
                             <td class="text-center">{{payFee.createTime}}</td>
                             <td class="text-center">
-                                <button class="btn btn-link btn-xs" v-on:click="_detailFee(payFee)"><vc:i18n name="详情" namespace="payFeeManage"></vc:i18n></button>
+                                <button class="btn btn-link btn-xs" v-on:click="_detailFee(payFee)"><span><vc:i18n name="详情" namespace="payFeeManage"></vc:i18n></span></button>
                             </td>
                         </tr>
                         </tbody>
@@ -118,8 +118,8 @@
                     <!-- 分页 -->
                     <div class="row">
                         <div class="col-md-4">
-                            <span class="margin-left"><vc:i18n name="小计应收" namespace="payFeeManage"></vc:i18n>: {{payFeeManageInfo.totalReceivableAmount}}<vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span>
-                            <span class="margin-left"><vc:i18n name="小计实收" namespace="payFeeManage"></vc:i18n>: {{payFeeManageInfo.totalReceivedAmount}}<vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span>
+                            <span class="margin-left"><span><vc:i18n name="小计应收" namespace="payFeeManage"></vc:i18n></span>: {{payFeeManageInfo.totalReceivableAmount}}<span><vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span></span>
+                            <span class="margin-left"><span><vc:i18n name="小计实收" namespace="payFeeManage"></vc:i18n></span>: {{payFeeManageInfo.totalReceivedAmount}}<span><vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span></span>
                         </div>
                         <div class="col-md-8 text-center">
                             <vc:create path="frame/pagination"></vc:create>
@@ -127,8 +127,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <span class="margin-left"><vc:i18n name="大计应收" namespace="payFeeManage"></vc:i18n>: {{payFeeManageInfo.allReceivableAmount}}<vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span>
-                            <span class="margin-left"><vc:i18n name="大计实收" namespace="payFeeManage"></vc:i18n>: {{payFeeManageInfo.allReceivedAmount}}<vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span>
+                            <span class="margin-left"><span><vc:i18n name="大计应收" namespace="payFeeManage"></vc:i18n></span>: {{payFeeManageInfo.allReceivableAmount}}<span><vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span></span>
+                            <span class="margin-left"><span><vc:i18n name="大计实收" namespace="payFeeManage"></vc:i18n></span>: {{payFeeManageInfo.allReceivedAmount}}<span><vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span></span>
                         </div>
                     </div>
                 </div>

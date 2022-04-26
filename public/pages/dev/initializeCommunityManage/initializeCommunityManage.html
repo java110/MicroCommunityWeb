@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="initializeCommunityManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="initializeCommunityManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_listCommunitys(1,10)">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="initializeCommunityManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="initializeCommunityManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="初始化小区数据" namespace="initializeCommunityManage"></vc:i18n>
+                        <span><vc:i18n name="初始化小区数据" namespace="initializeCommunityManage"></vc:i18n></span>
                     </h5>
                 </div>
                 <div class="ibox-content">
@@ -44,22 +44,22 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <vc:i18n name="小区ID" namespace="initializeCommunityManage"></vc:i18n>
+                                    <span><vc:i18n name="小区ID" namespace="initializeCommunityManage"></vc:i18n></span>
                                 </th>
                                 <th>
-                                    <vc:i18n name="小区名称" namespace="initializeCommunityManage"></vc:i18n>
+                                    <span><vc:i18n name="小区名称" namespace="initializeCommunityManage"></vc:i18n></span>
                                 </th>
                                 <th width="25%">
-                                    <vc:i18n name="附近地标" namespace="initializeCommunityManage"></vc:i18n>
+                                    <span><vc:i18n name="附近地标" namespace="initializeCommunityManage"></vc:i18n></span>
                                 </th>
                                 <th>
-                                    <vc:i18n name="城市编码" namespace="initializeCommunityManage"></vc:i18n>
+                                    <span><vc:i18n name="城市编码" namespace="initializeCommunityManage"></vc:i18n></span>
                                 </th>
                                 <th>
-                                    <vc:i18n name="状态" namespace="initializeCommunityManage"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="initializeCommunityManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-right">
-                                    <vc:i18n name="操作" namespace="initializeCommunityManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="initializeCommunityManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -73,7 +73,7 @@
                                 <td>{{initializeCommunity.stateName}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openChooseinInitializeCommunity(initializeCommunity)"><vc:i18n name="格式化" namespace="initializeCommunityManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openChooseinInitializeCommunity(initializeCommunity)"><span><vc:i18n name="格式化" namespace="initializeCommunityManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

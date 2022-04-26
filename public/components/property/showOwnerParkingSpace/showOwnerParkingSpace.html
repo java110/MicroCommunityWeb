@@ -4,11 +4,11 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>{{parkingSpaceInfo.num}}
-                        <vc:i18n name="车位信息" namespace="showOwnerParkingSpace"></vc:i18n>
+                        <span><vc:i18n name="车位信息" namespace="showOwnerParkingSpace"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-if="showOwnerParkingSpaceInfo.deleteOwnerParkingSpaceFlag == 'true'" v-on:click="ownerExitParkingSpaceModel(parkingSpaceInfo.psId)">
-                            <i class="glyphicon glyphicon-remove"></i> <vc:i18n name="我要退款" namespace="showOwnerParkingSpace"></vc:i18n>
+                            <i class="glyphicon glyphicon-remove"></i> <span><vc:i18n name="我要退款" namespace="showOwnerParkingSpace"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -16,19 +16,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车位ID" namespace="showOwnerParkingSpace"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="车位ID" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
                                 <label class="">{{parkingSpaceInfo.psId}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车位编号" namespace="showOwnerParkingSpace"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="车位编号" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
                                 <label class="">{{parkingSpaceInfo.num}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车位类型" namespace="showOwnerParkingSpace"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="车位类型" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
                                 <label class="">{{parkingSpaceInfo.parkingTypeName}}</label>
                             </div>
                         </div>
@@ -38,19 +38,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车位状态" namespace="showOwnerParkingSpace"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="车位状态" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
                                 <label class="">{{parkingSpaceInfo.stateName}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车位面积" namespace="showOwnerParkingSpace"></vc:i18n></label>：
-                                <label class="">{{parkingSpaceInfo.area}}<vc:i18n name="平方米" namespace="showOwnerParkingSpace"></vc:i18n></label>
+                                <label class="col-form-label"><span><vc:i18n name="车位面积" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
+                                <label class="">{{parkingSpaceInfo.area}}<span><vc:i18n name="平方米" namespace="showOwnerParkingSpace"></vc:i18n></span></label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车辆ID" namespace="showOwnerParkingSpace"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="车辆ID" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
                                 <label class="">{{parkingSpaceInfo.carId}}</label>
                             </div>
                         </div>
@@ -59,19 +59,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车牌号" namespace="showOwnerParkingSpace"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="车牌号" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
                                 <label class="">{{parkingSpaceInfo.carNum}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车品牌" namespace="showOwnerParkingSpace"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="车品牌" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
                                 <label class="">{{parkingSpaceInfo.carBrand}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="车类型" namespace="showOwnerParkingSpace"></vc:i18n></label>：
+                                <label class="col-form-label"><span><vc:i18n name="车类型" namespace="showOwnerParkingSpace"></vc:i18n></span></label>：
                                 <label class="">{{parkingSpaceInfo.carType}}</label>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>{{parkingSpaceInfo.num}}<vc:i18n name="停车费信息" namespace="showOwnerParkingSpace"></vc:i18n></h5>
+                    <h5>{{parkingSpaceInfo.num}}<span><vc:i18n name="停车费信息" namespace="showOwnerParkingSpace"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -98,19 +98,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="费用开始时间" namespace="showOwnerParkingSpace"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="费用开始时间" namespace="showOwnerParkingSpace"></vc:i18n></span>：</label>
                                 <label class="">{{parkingSpaceInfo.startTime}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="费用到期时间" namespace="showOwnerParkingSpace"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="费用到期时间" namespace="showOwnerParkingSpace"></vc:i18n></span>：</label>
                                 <label class="">{{parkingSpaceInfo.endTime}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group" v-if="parkingSpaceInfo.amount != '-1.00'">
-                                <label class="col-form-label"><vc:i18n name="费用金额" namespace="showOwnerParkingSpace"></vc:i18n>：</label>
+                                <label class="col-form-label"><span><vc:i18n name="费用金额" namespace="showOwnerParkingSpace"></vc:i18n></span>：</label>
                                 <label class="">{{parkingSpaceInfo.amount}}</label>
                             </div>
                         </div>

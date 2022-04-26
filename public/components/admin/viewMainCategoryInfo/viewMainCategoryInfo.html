@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="商品目录信息" namespace="viewMainCategoryInfo"></vc:i18n></h5>
+                <h5><span><vc:i18n name="商品目录信息" namespace="viewMainCategoryInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewMainCategoryInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectMainCategoryInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> <vc:i18n name="选择商品目录" namespace="viewMainCategoryInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择商品目录" namespace="viewMainCategoryInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewMainCategoryInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddMainCategoryInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> <vc:i18n name="添加商品目录" namespace="viewMainCategoryInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加商品目录" namespace="viewMainCategoryInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="目录名称" namespace="viewMainCategoryInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="目录名称" namespace="viewMainCategoryInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryInfo.categoryName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="目录类别" namespace="viewMainCategoryInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="目录类别" namespace="viewMainCategoryInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryInfo.categoryType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="开始时间" namespace="viewMainCategoryInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="开始时间" namespace="viewMainCategoryInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryInfo.startTime}}</label>
                         </div>
 </div>
@@ -35,13 +35,13 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="结束时间" namespace="viewMainCategoryInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="结束时间" namespace="viewMainCategoryInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryInfo.endTime}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="描述" namespace="viewMainCategoryInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="描述" namespace="viewMainCategoryInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryInfo.categoryDesc}}</label>
                         </div>
 </div>

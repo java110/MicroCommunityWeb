@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="jobManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="jobManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
 
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryJobMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="jobManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="jobManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="定时任务" namespace="jobManage"></vc:i18n>
+                        <span><vc:i18n name="定时任务" namespace="jobManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddJobModal()">
@@ -59,25 +59,25 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="任务ID" namespace="jobManage"></vc:i18n>
+                                    <span><vc:i18n name="任务ID" namespace="jobManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="任务名称" namespace="jobManage"></vc:i18n>
+                                    <span><vc:i18n name="任务名称" namespace="jobManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="运行时间" namespace="jobManage"></vc:i18n>
+                                    <span><vc:i18n name="运行时间" namespace="jobManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="模板名称" namespace="jobManage"></vc:i18n>
+                                    <span><vc:i18n name="模板名称" namespace="jobManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="创建时间" namespace="jobManage"></vc:i18n>
+                                    <span><vc:i18n name="创建时间" namespace="jobManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="启停状态" namespace="jobManage"></vc:i18n>
+                                    <span><vc:i18n name="启停状态" namespace="jobManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-right">
-                                    <vc:i18n name="操作" namespace="jobManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="jobManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -89,8 +89,8 @@
                                 <td class="text-center">{{job.templateName}}</td>
                                 <td class="text-center">{{job.createTime}}</td>
                                 <td class="text-center">
-                                    <span v-if="job.state == '002'" class="badge badge-success"><vc:i18n name="运行中" namespace="jobManage"></vc:i18n></span>
-                                    <span v-else class="badge badge-dark"><vc:i18n name="停止" namespace="jobManage"></vc:i18n></span>
+                                    <span v-if="job.state == '002'" class="badge badge-success"><span><vc:i18n name="运行中" namespace="jobManage"></vc:i18n></span></span>
+                                    <span v-else class="badge badge-dark"><span><vc:i18n name="停止" namespace="jobManage"></vc:i18n></span></span>
 
                                 </td>
                                 <td class="text-right">

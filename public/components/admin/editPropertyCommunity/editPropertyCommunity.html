@@ -2,22 +2,22 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="修改小区功能" namespace="editPropertyCommunity"></vc:i18n></h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改小区功能" namespace="editPropertyCommunity"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="开通小区" namespace="editPropertyCommunity"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="开通小区" namespace="editPropertyCommunity"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" v-model="editPropertyCommunityInfo.name">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="功能" namespace="editPropertyCommunity"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="功能" namespace="editPropertyCommunity"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <label>
-                                      <input type="checkbox" v-model="editPropertyCommunityInfo.isAll"  @change="changeEditAllCommunity()" ><vc:i18n name="全部" namespace="editPropertyCommunity"></vc:i18n>
+                                      <input type="checkbox" v-model="editPropertyCommunityInfo.isAll"  @change="changeEditAllCommunity()" ><span><vc:i18n name="全部" namespace="editPropertyCommunity"></vc:i18n></span>
                                     </label>
                                     <label class="margin-left" v-for="(item,index) in editPropertyCommunityInfo.menuGroups">
                                       <input type="checkbox" v-model="editPropertyCommunityInfo.groupIds" @change="changeEditItemCommunity()" :value="item.gId"> {{item.name}}
@@ -27,7 +27,7 @@
 
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="updatePropertyCommunityInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="editPropertyCommunity"></vc:i18n></button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="editPropertyCommunity"></vc:i18n></span></button>
                             </div>
                         </div>
                     </div>

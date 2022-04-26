@@ -2,17 +2,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><vc:i18n name="请确认您的操作" namespace="finishFee"></vc:i18n>!</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><span><vc:i18n name="请确认您的操作" namespace="finishFee"></vc:i18n></span>!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <tr align="center"><th><vc:i18n name="确定结束费用" namespace="finishFee"></vc:i18n>，结束后无法重新启用，请谨慎操作！</th></tr>
+                <tr align="center"><th><span><vc:i18n name="确定结束费用" namespace="finishFee"></vc:i18n></span>，结束后无法重新启用，请谨慎操作！</th></tr>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeFinishFeeModel()"><vc:i18n name="点错了" namespace="finishFee"></vc:i18n></button>
-                <button type="button" class="btn btn-primary" v-on:click="finishFee()"><vc:i18n name="结束费用" namespace="finishFee"></vc:i18n></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeFinishFeeModel()"><span><vc:i18n name="点错了" namespace="finishFee"></vc:i18n></span></button>
+                <button type="button" class="btn btn-primary" v-on:click="finishFee()"><span><vc:i18n name="结束费用" namespace="finishFee"></vc:i18n></span></button>
             </div>
         </div>
     </div>

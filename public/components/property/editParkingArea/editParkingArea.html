@@ -3,19 +3,19 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="修改信息" namespace="editParkingArea"></vc:i18n></h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改信息" namespace="editParkingArea"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="停车场编号" namespace="editParkingArea"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="停车场编号" namespace="editParkingArea"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editParkingAreaInfo.num" type="text" :placeholder="vc.i18n('必填，请填写停车场编号','editParkingArea')"
                                         class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="停车场类型" namespace="editParkingArea"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="停车场类型" namespace="editParkingArea"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editParkingAreaInfo.typeCd">
                                         <option selected disabled value="">{{vc.i18n('必填','editParkingArea')}}，请选择停车场类型</option>
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="editParkingArea"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="editParkingArea"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editParkingAreaInfo.remark" type="text" :placeholder="vc.i18n('可填，请填写备注','editParkingArea')"
                                         class="form-control">
@@ -58,7 +58,7 @@
                                     v-on:click="editParkingArea()"><i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal"><vc:i18n name="取消" namespace="editParkingArea"></vc:i18n>
+                                    data-dismiss="modal"><span><vc:i18n name="取消" namespace="editParkingArea"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

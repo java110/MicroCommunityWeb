@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="reportCustomGroupManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="reportCustomGroupManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
 
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryReportCustomGroupMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="reportCustomGroupManage"></vc:i18n>
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="reportCustomGroupManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="报表组信息" namespace="reportCustomGroupManage"></vc:i18n>
+                        <span><vc:i18n name="报表组信息" namespace="reportCustomGroupManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddReportCustomGroupModal()">
@@ -59,19 +59,19 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="组ID" namespace="reportCustomGroupManage"></vc:i18n>
+                                    <span><vc:i18n name="组ID" namespace="reportCustomGroupManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="组名称" namespace="reportCustomGroupManage"></vc:i18n>
+                                    <span><vc:i18n name="组名称" namespace="reportCustomGroupManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="组url" namespace="reportCustomGroupManage"></vc:i18n>
+                                    <span><vc:i18n name="组url" namespace="reportCustomGroupManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="描述" namespace="reportCustomGroupManage"></vc:i18n>
+                                    <span><vc:i18n name="描述" namespace="reportCustomGroupManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="reportCustomGroupManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="reportCustomGroupManage"></vc:i18n></span>
                                 </th>
 
 
@@ -85,10 +85,10 @@
                                 <td class="text-center">{{reportCustomGroup.remark}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditReportCustomGroupModel(reportCustomGroup)"><vc:i18n name="修改" namespace="reportCustomGroupManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditReportCustomGroupModel(reportCustomGroup)"><span><vc:i18n name="修改" namespace="reportCustomGroupManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteReportCustomGroupModel(reportCustomGroup)"><vc:i18n name="删除" namespace="reportCustomGroupManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteReportCustomGroupModel(reportCustomGroup)"><span><vc:i18n name="删除" namespace="reportCustomGroupManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 

@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="repairPoolManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="repairPoolManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{repairPoolManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -41,10 +41,10 @@
 
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRepairPoolMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="repairPoolManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="repairPoolManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRepairPoolMethod()" style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="repairPoolManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="repairPoolManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span v-text="repairPoolManageInfo.conditions.roomName"></span>
-                        <vc:i18n name="报修工单池" namespace="repairPoolManage"></vc:i18n>
+                        <span><vc:i18n name="报修工单池" namespace="repairPoolManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -85,28 +85,28 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="工单编码" namespace="repairPoolManage"></vc:i18n>
+                                    <span><vc:i18n name="工单编码" namespace="repairPoolManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="位置" namespace="repairPoolManage"></vc:i18n>
+                                    <span><vc:i18n name="位置" namespace="repairPoolManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="报修类型" namespace="repairPoolManage"></vc:i18n>
+                                    <span><vc:i18n name="报修类型" namespace="repairPoolManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="报修人" namespace="repairPoolManage"></vc:i18n>
+                                    <span><vc:i18n name="报修人" namespace="repairPoolManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="联系方式" namespace="repairPoolManage"></vc:i18n>
+                                    <span><vc:i18n name="联系方式" namespace="repairPoolManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="预约时间" namespace="repairPoolManage"></vc:i18n>
+                                    <span><vc:i18n name="预约时间" namespace="repairPoolManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="状态" namespace="repairPoolManage"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="repairPoolManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="repairPoolManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="repairPoolManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -126,23 +126,23 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" v-if="vc.hasPrivilege('502021012067300023') && (repairPool.state == '1000' || repairPool.state == '1200')">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerRepairModel(repairPool)"><vc:i18n name="修改" namespace="repairPoolManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerRepairModel(repairPool)"><span><vc:i18n name="修改" namespace="repairPoolManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="vc.hasPrivilege('502019101946430010') && repairPool.state == '1000'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDispatchRepairModel(repairPool)"><vc:i18n name="派单" namespace="repairPoolManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDispatchRepairModel(repairPool)"><span><vc:i18n name="派单" namespace="repairPoolManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="vc.hasPrivilege('502021012099350016') && repairPool.state == '1000' && repairPool.repairWay == '100'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openGrabbingRepairModel(repairPool)"><vc:i18n name="抢单" namespace="repairPoolManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openGrabbingRepairModel(repairPool)"><span><vc:i18n name="抢单" namespace="repairPoolManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openRepairDetail(repairPool)"><vc:i18n name="详情" namespace="repairPoolManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openRepairDetail(repairPool)"><span><vc:i18n name="详情" namespace="repairPoolManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502021012051410024') && (repairPool.state == '1000' || repairPool.state == '1200')" v-on:click="_openDeleteRepairDetailModel(repairPool)"><vc:i18n name="删除" namespace="repairPoolManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502021012051410024') && (repairPool.state == '1000' || repairPool.state == '1200')" v-on:click="_openDeleteRepairDetailModel(repairPool)"><span><vc:i18n name="删除" namespace="repairPoolManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

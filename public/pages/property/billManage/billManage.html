@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="billManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="billManage"></vc:i18n></span></h5>
                     <!--<div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">{{billManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -34,10 +34,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_querybillMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="billManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="billManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetbillMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="billManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="billManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="账单信息" namespace="billManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="账单信息" namespace="billManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -65,16 +65,16 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <!-- <th class="text-center"><vc:i18n name="信息" namespace="billManage"></vc:i18n>ID</th> -->
-                            <th class="text-center"><vc:i18n name="账单编号" namespace="billManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="收费项目" namespace="billManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="账单名称" namespace="billManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="累计应收" namespace="billManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="当期应收" namespace="billManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="实收金额" namespace="billManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="账单日期" namespace="billManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="账单类型" namespace="billManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="billManage"></vc:i18n></th>
+                            <!-- <th class="text-center"><span><vc:i18n name="信息" namespace="billManage"></vc:i18n></span>ID</th> -->
+                            <th class="text-center"><span><vc:i18n name="账单编号" namespace="billManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="收费项目" namespace="billManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="账单名称" namespace="billManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="累计应收" namespace="billManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="当期应收" namespace="billManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="实收金额" namespace="billManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="账单日期" namespace="billManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="账单类型" namespace="billManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="billManage"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -82,15 +82,15 @@
                             <td class="text-center">{{bill.billId}}</td>
                             <td class="text-center">{{bill.feeName}}</td>
                             <td class="text-center">{{bill.billName}}</td>
-                            <td class="text-center">{{bill.receivable}}<vc:i18n name="元" namespace="billManage"></vc:i18n></td>
-                            <td class="text-center">{{bill.curReceivable}}<vc:i18n name="元" namespace="billManage"></vc:i18n></td>
-                            <td class="text-center">{{bill.receipts}}<vc:i18n name="元" namespace="billManage"></vc:i18n></td>
+                            <td class="text-center">{{bill.receivable}}<span><vc:i18n name="元" namespace="billManage"></vc:i18n></span></td>
+                            <td class="text-center">{{bill.curReceivable}}<span><vc:i18n name="元" namespace="billManage"></vc:i18n></span></td>
+                            <td class="text-center">{{bill.receipts}}<span><vc:i18n name="元" namespace="billManage"></vc:i18n></span></td>
                             <td class="text-center">{{bill.billTime}}</td>
                             <td class="text-center">{{bill.curBillName}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openBillDetail(bill)"><vc:i18n name="欠费清单" namespace="billManage"></vc:i18n>
+                                            v-on:click="_openBillDetail(bill)"><span><vc:i18n name="欠费清单" namespace="billManage"></vc:i18n></span>
                                     </button>
                                 </div>
                             </td>

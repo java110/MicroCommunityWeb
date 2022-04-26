@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="carCreateFee"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="carCreateFee"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{carCreateFeeInfo.moreCondition == true ? '隐藏':'更多'}}
@@ -32,10 +32,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryParkingSpaceMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="carCreateFee"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="carCreateFee"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-info btn-sm" v-on:click="_resetParkingSpaceMethod()" style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="carCreateFee"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="carCreateFee"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="车辆收费" namespace="carCreateFee"></vc:i18n>
+                        <span><vc:i18n name="车辆收费" namespace="carCreateFee"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openFeeImportExcel()">
@@ -68,7 +68,7 @@
                             自定义创建
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openCarCreateFeeAddModal(null,true)">
-                            <i class="fa fa-plus"></i> <vc:i18n name="批量创建" namespace="carCreateFee"></vc:i18n>
+                            <i class="fa fa-plus"></i> <span><vc:i18n name="批量创建" namespace="carCreateFee"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -77,25 +77,25 @@
                         <thead>
                             <tr>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="车牌号" namespace="carCreateFee"></vc:i18n>
+                                    <span><vc:i18n name="车牌号" namespace="carCreateFee"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="停车场(单位:号)" namespace="carCreateFee"></vc:i18n>
+                                    <span><vc:i18n name="停车场(单位:号)" namespace="carCreateFee"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="车位(单位:号)" namespace="carCreateFee"></vc:i18n>
+                                    <span><vc:i18n name="车位(单位:号)" namespace="carCreateFee"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="业主名称" namespace="carCreateFee"></vc:i18n>
+                                    <span><vc:i18n name="业主名称" namespace="carCreateFee"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="联系方式" namespace="carCreateFee"></vc:i18n>
+                                    <span><vc:i18n name="联系方式" namespace="carCreateFee"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="车位状态" namespace="carCreateFee"></vc:i18n>
+                                    <span><vc:i18n name="车位状态" namespace="carCreateFee"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="carCreateFee"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="carCreateFee"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -121,11 +121,11 @@
                                 </td>
                                 <td class="text-center">
                                     <!-- <div class="btn-group" v-if="car.state != 'F'">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openCarCreateFeeAddModal(car,false)"><vc:i18n name="创建收费" namespace="carCreateFee"></vc:i18n>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openCarCreateFeeAddModal(car,false)"><span><vc:i18n name="创建收费" namespace="carCreateFee"></vc:i18n></span>
                                     </button>
                                 </div> -->
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openViewParkingSpaceCreateFee(car)"><vc:i18n name="查看收费" namespace="carCreateFee"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openViewParkingSpaceCreateFee(car)"><span><vc:i18n name="查看收费" namespace="carCreateFee"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

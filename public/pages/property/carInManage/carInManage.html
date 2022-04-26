@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="carInManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="carInManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{carInManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryCarInoutMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="carInManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="carInManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="在场车辆" namespace="carInManage"></vc:i18n>
+                        <span><vc:i18n name="在场车辆" namespace="carInManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -63,19 +63,19 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="进出场ID" namespace="carInManage"></vc:i18n>
+                                    <span><vc:i18n name="进出场ID" namespace="carInManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="车辆状态" namespace="carInManage"></vc:i18n>
+                                    <span><vc:i18n name="车辆状态" namespace="carInManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="车牌号" namespace="carInManage"></vc:i18n>
+                                    <span><vc:i18n name="车牌号" namespace="carInManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="进场时间" namespace="carInManage"></vc:i18n>
+                                    <span><vc:i18n name="进场时间" namespace="carInManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="在场时间(小时)" namespace="carInManage"></vc:i18n>
+                                    <span><vc:i18n name="在场时间(小时)" namespace="carInManage"></vc:i18n></span>
                                 </th>
 
                             </tr>
@@ -87,8 +87,8 @@
                                 <td class="text-center">{{carIn.carNum}}</td>
                                 <td class="text-center">{{carIn.inTime}}</td>
                                 <td class="text-center">{{carIn.inHours}}
-                                    <vc:i18n name="小时" namespace="carInManage"></vc:i18n>{{carIn.inMin}}
-                                    <vc:i18n name="分" namespace="carInManage"></vc:i18n>
+                                    <span><vc:i18n name="小时" namespace="carInManage"></vc:i18n></span>{{carIn.inMin}}
+                                    <span><vc:i18n name="分" namespace="carInManage"></vc:i18n></span>
                                 </td>
                             </tr>
                         </tbody>

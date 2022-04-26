@@ -3,26 +3,26 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="m-t-none m-b ">
-                    <vc:i18n name="修改房屋" namespace="editRoom"></vc:i18n>
+                    <span><vc:i18n name="修改房屋" namespace="editRoom"></vc:i18n></span>
                 </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋" namespace="editRoom"></vc:i18n>ID</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋" namespace="editRoom"></vc:i18n></span>ID</label>
                                 <div class="col-sm-10"><input v-model="editRoomInfo.roomId" disabled="disabled" type="text" :placeholder="vc.i18n('必填，请填写房屋编号','editRoom')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋编号" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋编号" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10"><input v-model="editRoomInfo.roomNum" type="text" :placeholder="vc.i18n('必填，请填写房屋编号','editRoom')" class="form-control"></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋楼层" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋楼层" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10"><input v-model="editRoomInfo.layer" type="text" :placeholder="vc.i18n('必填，请填写房屋楼层','editRoom')" class="form-control"></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋单元" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋单元" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomInfo.unitId">
                                         <option selected disabled value="">{{vc.i18n('必填','editRoom')}}，请选择单元</option>
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋户型" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋户型" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-5" style="display: inline">
                                     <select class="custom-select" v-model="editRoomInfo.apartment1">
                                         <option selected value="">{{vc.i18n('必填','editRoom')}}，请选择房屋户型</option>
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋类型" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋类型" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomInfo.roomSubType">
                                         <option selected disabled value="">{{vc.i18n('必填','editRoom')}}，请选择房屋类型</option>
@@ -73,28 +73,28 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-if="editRoomInfo.roomSubType != '110'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="租金" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="租金" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomInfo.roomRent" type="text" :placeholder="vc.i18n('必填，请填写租金','editRoom')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="建筑面积" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="建筑面积" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10"><input v-model="editRoomInfo.builtUpArea" type="number" :placeholder="vc.i18n('必填，请填写房屋建筑面积! 平方','editRoom')" class="form-control"></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="室内面积(平方)" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="室内面积(平方)" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomInfo.roomArea" type="text" :placeholder="vc.i18n('必填，请填写室内面积! 平方','editRoom')" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="算费系数" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="算费系数" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10"><input v-model="editRoomInfo.feeCoefficient" type="text" :placeholder="vc.i18n('请填写算费系数','editRoom')" class="form-control"></div>
                             </div>
                             <div class="form-group row" v-if="editRoomInfo.state != '2002'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋状态" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋状态" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomInfo.state">
                                         <option selected value="">{{vc.i18n('必填，请选择房屋状态','editRoom')}}</option>
@@ -132,14 +132,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="editRoom"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="editRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10"><input v-model="editRoomInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','editRoom')" class="form-control"></div>
                             </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="editRoom()"><i
                                         class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><vc:i18n name="取消" namespace="editRoom"></vc:i18n>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="editRoom"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

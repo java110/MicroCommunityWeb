@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="feePrintPageManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="feePrintPageManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
 
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeePrintPageMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="feePrintPageManage"></vc:i18n>
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="feePrintPageManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="收据模板" namespace="feePrintPageManage"></vc:i18n>
+                        <span><vc:i18n name="收据模板" namespace="feePrintPageManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddFeePrintPageModal()">
@@ -59,22 +59,22 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="收据ID" namespace="feePrintPageManage"></vc:i18n>
+                                    <span><vc:i18n name="收据ID" namespace="feePrintPageManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="名称" namespace="feePrintPageManage"></vc:i18n>
+                                    <span><vc:i18n name="名称" namespace="feePrintPageManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="小区ID" namespace="feePrintPageManage"></vc:i18n>
+                                    <span><vc:i18n name="小区ID" namespace="feePrintPageManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="收据页面" namespace="feePrintPageManage"></vc:i18n>
+                                    <span><vc:i18n name="收据页面" namespace="feePrintPageManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="状态" namespace="feePrintPageManage"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="feePrintPageManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="feePrintPageManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="feePrintPageManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -87,14 +87,14 @@
                                 <td class="text-center">{{feePrintPage.state=='T'?'启用':'停用'}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditFeePrintPageModel(feePrintPage)"><vc:i18n name="修改" namespace="feePrintPageManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditFeePrintPageModel(feePrintPage)"><span><vc:i18n name="修改" namespace="feePrintPageManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group" v-if="feePrintPage.state=='F'">
-                                        <button class="btn-white btn btn-xs" v-on:click="updateFeePrintPageState(feePrintPage)"><vc:i18n name="启用" namespace="feePrintPageManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="updateFeePrintPageState(feePrintPage)"><span><vc:i18n name="启用" namespace="feePrintPageManage"></vc:i18n></span></button>
                                     </div>
 
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteFeePrintPageModel(feePrintPage)"><vc:i18n name="删除" namespace="feePrintPageManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteFeePrintPageModel(feePrintPage)"><span><vc:i18n name="删除" namespace="feePrintPageManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 

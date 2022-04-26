@@ -4,7 +4,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="业主" namespace="ownerExitRoom"></vc:i18n>
+                        <span><vc:i18n name="业主" namespace="ownerExitRoom"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_selectOwner()">
@@ -19,19 +19,19 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="姓名" namespace="ownerExitRoom"></vc:i18n></label>:
+                                <label class="col-form-label"><span><vc:i18n name="姓名" namespace="ownerExitRoom"></vc:i18n></span></label>:
                                 <label class="">{{ownerExitRoomInfo.name}}</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="身份证" namespace="ownerExitRoom"></vc:i18n></label>:
+                                <label class="col-form-label"><span><vc:i18n name="身份证" namespace="ownerExitRoom"></vc:i18n></span></label>:
                                 <label class="">{{ownerExitRoomInfo.idCard}}</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="col-form-label"><vc:i18n name="手机" namespace="ownerExitRoom"></vc:i18n></label>:
+                                <label class="col-form-label"><span><vc:i18n name="手机" namespace="ownerExitRoom"></vc:i18n></span></label>:
                                 <label class="">{{ownerExitRoomInfo.link}}</label>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="业主房屋" namespace="ownerExitRoom"></vc:i18n>
+                        <span><vc:i18n name="业主房屋" namespace="ownerExitRoom"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
 
@@ -56,15 +56,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
                         <thead>
                             <tr>
-                                <!-- <th><vc:i18n name="房屋" namespace="ownerExitRoom"></vc:i18n>ID</th> -->
+                                <!-- <th><span><vc:i18n name="房屋" namespace="ownerExitRoom"></vc:i18n></span>ID</th> -->
                                 <th class="text-center">
                                     <input type="checkbox" class="i-checks" v-bind:checked="ownerExitRoomInfo.quan == true" @click="checkAll($event)">
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="房屋" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="房屋" namespace="ownerExitRoom"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="建筑面积" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="建筑面积" namespace="ownerExitRoom"></vc:i18n></span>
                                 </th>
 
                             </tr>
@@ -79,7 +79,7 @@
                                 </td>
                                 <td class="text-center">
                                     {{room.builtUpArea}}
-                                    <vc:i18n name="平方米" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="平方米" namespace="ownerExitRoom"></vc:i18n></span>
                                 </td>
 
                             </tr>
@@ -97,7 +97,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="费用" namespace="ownerExitRoom"></vc:i18n>
+                        <span><vc:i18n name="费用" namespace="ownerExitRoom"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
 
@@ -109,22 +109,22 @@
                             <tr>
 
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="费用项目" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="费用项目" namespace="ownerExitRoom"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="房屋" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="房屋" namespace="ownerExitRoom"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="欠费" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="欠费" namespace="ownerExitRoom"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="开始时间" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="开始时间" namespace="ownerExitRoom"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="结束时间" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="结束时间" namespace="ownerExitRoom"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="费用状态" namespace="ownerExitRoom"></vc:i18n>
+                                    <span><vc:i18n name="费用状态" namespace="ownerExitRoom"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>

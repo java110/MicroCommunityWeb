@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="rentingAppointmentManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="rentingAppointmentManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -35,7 +35,7 @@
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_queryRentingAppointmentMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="rentingAppointmentManage"></vc:i18n>
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="rentingAppointmentManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="预约信息" namespace="rentingAppointmentManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="预约信息" namespace="rentingAppointmentManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_openAddRentingAppointmentModal()">
@@ -63,15 +63,15 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><vc:i18n name="租客名称" namespace="rentingAppointmentManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="租客性别" namespace="rentingAppointmentManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="租客电话" namespace="rentingAppointmentManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="预约时间" namespace="rentingAppointmentManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="预约房屋" namespace="rentingAppointmentManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="房屋" namespace="rentingAppointmentManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="状态" namespace="rentingAppointmentManage"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="备注" namespace="rentingAppointmentManage"></vc:i18n></th>
-                                <th class="text-right"><vc:i18n name="操作" namespace="rentingAppointmentManage"></vc:i18n></th>
+                                <th class="text-center"><span><vc:i18n name="租客名称" namespace="rentingAppointmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="租客性别" namespace="rentingAppointmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="租客电话" namespace="rentingAppointmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="预约时间" namespace="rentingAppointmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="预约房屋" namespace="rentingAppointmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="房屋" namespace="rentingAppointmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="rentingAppointmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="备注" namespace="rentingAppointmentManage"></vc:i18n></span></th>
+                                <th class="text-right"><span><vc:i18n name="操作" namespace="rentingAppointmentManage"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,15 +87,15 @@
                                 <td class="text-right">
                                     <div class="btn-group" v-if="rentingAppointment.state == '1001'">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openRentingModel(rentingAppointment)"><vc:i18n name="确认租房" namespace="rentingAppointmentManage"></vc:i18n></button>
+                                            v-on:click="_openRentingModel(rentingAppointment)"><span><vc:i18n name="确认租房" namespace="rentingAppointmentManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditRentingAppointmentModel(rentingAppointment)"><vc:i18n name="修改" namespace="rentingAppointmentManage"></vc:i18n></button>
+                                            v-on:click="_openEditRentingAppointmentModel(rentingAppointment)"><span><vc:i18n name="修改" namespace="rentingAppointmentManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group" v-if="rentingAppointment.state == '1001'">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteRentingAppointmentModel(rentingAppointment)"><vc:i18n name="放弃" namespace="rentingAppointmentManage"></vc:i18n></button>
+                                            v-on:click="_openDeleteRentingAppointmentModel(rentingAppointment)"><span><vc:i18n name="放弃" namespace="rentingAppointmentManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 

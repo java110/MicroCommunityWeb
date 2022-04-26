@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="填写公司信息" namespace="company"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="填写公司信息" namespace="company"></vc:i18n></span></h5>
                     <div class="ibox-tools">
 
                     </div>
@@ -22,36 +22,36 @@
                                 <li role="tab" v-bind:class="{ current: step==1,disabled:step!=1 }" >
                                     <a>
                                         <span class="current-info audible">current step: </span>
-                                        <span class="number">1.</span> <vc:i18n name="基本信息" namespace="company"></vc:i18n>
+                                        <span class="number">1.</span> <span><vc:i18n name="基本信息" namespace="company"></vc:i18n></span>
                                     </a>
                                 </li>
                                 <li role="tab" v-bind:class="{ current: step==2,disabled:step!=2 }">
                                     <a>
-                                        <span class="number">2.</span> <vc:i18n name="扩展信息" namespace="company"></vc:i18n>
+                                        <span class="number">2.</span> <span><vc:i18n name="扩展信息" namespace="company"></vc:i18n></span>
                                     </a>
                                 </li>
                                 <li role="tab" v-bind:class="{ current: step==3,disabled:step!=3 }">
                                     <a>
-                                    <span class="number">3.</span> <vc:i18n name="证件信息" namespace="company"></vc:i18n>
+                                    <span class="number">3.</span> <span><vc:i18n name="证件信息" namespace="company"></vc:i18n></span>
                                     </a>
                                 </li>
                                 <li role="tab" v-bind:class="{ current: step==4,disabled:step!=4 }">
                                     <a>
-                                    <span class="number">4.</span> <vc:i18n name="须知" namespace="company"></vc:i18n>
+                                    <span class="number">4.</span> <span><vc:i18n name="须知" namespace="company"></vc:i18n></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="content clearfix">
-                            <h1 tabindex="-1" class="title current"><vc:i18n name="基本信息" namespace="company"></vc:i18n></h1>
+                            <h1 tabindex="-1" class="title current"><span><vc:i18n name="基本信息" namespace="company"></vc:i18n></span></h1>
                             <vc:create path="common/company-base"></vc:create>
-                            <h1 tabindex="-1" class="title"><vc:i18n name="扩展信息" namespace="company"></vc:i18n></h1>
+                            <h1 tabindex="-1" class="title"><span><vc:i18n name="扩展信息" namespace="company"></vc:i18n></span></h1>
                             <vc:create path="common/company-extend"></vc:create>
-                            <h1 id="component-h-1" tabindex="-1" class="title"><vc:i18n name="证件信息" namespace="company"></vc:i18n></h1>
+                            <h1 id="component-h-1" tabindex="-1" class="title"><span><vc:i18n name="证件信息" namespace="company"></vc:i18n></span></h1>
                             <vc:create path="common/company-cerdentials"></vc:create>
-                            <h1 id="component-h-2" tabindex="-1" class="title"><vc:i18n name="须知" namespace="company"></vc:i18n></h1>
+                            <h1 id="component-h-2" tabindex="-1" class="title"><span><vc:i18n name="须知" namespace="company"></vc:i18n></span></h1>
                             <fieldset id="component-p-2" role="tabpanel" aria-labelledby="component-h-2" class="body" aria-hidden="true"  v-bind:class="{no_display:step!=4}">
-                                <h4><vc:i18n name="这里是须知" namespace="company"></vc:i18n></h4>
+                                <h4><span><vc:i18n name="这里是须知" namespace="company"></vc:i18n></span></h4>
                                 <textarea id="text-area" readonly name="text-area" rows="20" cols="180" >
 1. 提示条款
 
@@ -263,15 +263,15 @@
                                 <br />
 
                                 <input id="acceptTerms" name="acceptTerms"v-model="acceptTerms" type="checkbox" class="required" aria-required="true" />
-                                <label for="acceptTerms"><vc:i18n name="我同意并遵守以上信息" namespace="company"></vc:i18n>.</label>
+                                <label for="acceptTerms"><span><vc:i18n name="我同意并遵守以上信息" namespace="company"></vc:i18n></span>.</label>
                             </fieldset>
 
                         </div>
                         <div class="actions clearfix">
                             <ul role="menu" aria-label="Pagination">
-                                <li v-bind:class="{disabled:step == 1}" aria-disabled="true"><a v-on:click="previous()" role="menuitem"><vc:i18n name="上一步" namespace="company"></vc:i18n></a></li>
-                                <li v-bind:class="{no_display:step==4}"><a v-on:click="next()" role="menuitem"><vc:i18n name="下一步" namespace="company"></vc:i18n></a></li>
-                                <li v-bind:class="{no_display:step!=4}"><a v-on:click="finish()" role="menuitem"><vc:i18n name="提交" namespace="company"></vc:i18n></a></li>
+                                <li v-bind:class="{disabled:step == 1}" aria-disabled="true"><a v-on:click="previous()" role="menuitem"><span><vc:i18n name="上一步" namespace="company"></vc:i18n></span></a></li>
+                                <li v-bind:class="{no_display:step==4}"><a v-on:click="next()" role="menuitem"><span><vc:i18n name="下一步" namespace="company"></vc:i18n></span></a></li>
+                                <li v-bind:class="{no_display:step!=4}"><a v-on:click="finish()" role="menuitem"><span><vc:i18n name="提交" namespace="company"></vc:i18n></span></a></li>
                             </ul>
                         </div>
                     </form>

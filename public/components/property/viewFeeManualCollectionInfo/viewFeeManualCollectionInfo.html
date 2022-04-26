@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="人工托收信息" namespace="viewFeeManualCollectionInfo"></vc:i18n></h5>
+                <h5><span><vc:i18n name="人工托收信息" namespace="viewFeeManualCollectionInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewFeeManualCollectionInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectFeeManualCollectionInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> <vc:i18n name="选择人工托收" namespace="viewFeeManualCollectionInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择人工托收" namespace="viewFeeManualCollectionInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewFeeManualCollectionInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddFeeManualCollectionInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> <vc:i18n name="添加人工托收" namespace="viewFeeManualCollectionInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加人工托收" namespace="viewFeeManualCollectionInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="规格" namespace="viewFeeManualCollectionInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="规格" namespace="viewFeeManualCollectionInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeeManualCollectionInfo.roomName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="业主名称" namespace="viewFeeManualCollectionInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="业主名称" namespace="viewFeeManualCollectionInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeeManualCollectionInfo.ownerName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="业主电话" namespace="viewFeeManualCollectionInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="业主电话" namespace="viewFeeManualCollectionInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeeManualCollectionInfo.link}}</label>
                         </div>
 </div>
@@ -35,19 +35,19 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="房屋面积" namespace="viewFeeManualCollectionInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="房屋面积" namespace="viewFeeManualCollectionInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeeManualCollectionInfo.roomArea}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="房屋单价" namespace="viewFeeManualCollectionInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="房屋单价" namespace="viewFeeManualCollectionInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeeManualCollectionInfo.squarePrice}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="备注" namespace="viewFeeManualCollectionInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="备注" namespace="viewFeeManualCollectionInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeeManualCollectionInfo.remark}}</label>
                         </div>
 </div>

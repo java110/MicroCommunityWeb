@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseOwnerRepairModelLabel"><vc:i18n name="选择业主报修" namespace="chooseOwnerRepair"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseOwnerRepairModelLabel"><span><vc:i18n name="选择业主报修" namespace="chooseOwnerRepair"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseOwnerRepair')vc.i18n(' ','chooseOwnerRepair')vc.i18n(' ','cho
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入业主报修名称','chooseOwnerRepair')" type="text" v-model="chooseOwnerRepairInfo._currentOwnerRepairName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryOwnerRepairs()"><vc:i18n name="查询" namespace="chooseOwnerRepair"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryOwnerRepairs()"><span><vc:i18n name="查询" namespace="chooseOwnerRepair"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@ vc.i18n(' ','chooseOwnerRepair')vc.i18n(' ','chooseOwnerRepair')vc.i18n(' ','cho
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="报修" namespace="chooseOwnerRepair"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="报修类型" namespace="chooseOwnerRepair"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="报修人" namespace="chooseOwnerRepair"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="联系方式" namespace="chooseOwnerRepair"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="房屋" namespace="chooseOwnerRepair"></vc:i18n>ID</th>
-                            <th class="text-center"><vc:i18n name="预约时间" namespace="chooseOwnerRepair"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="报修内容" namespace="chooseOwnerRepair"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseOwnerRepair"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="报修" namespace="chooseOwnerRepair"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="报修类型" namespace="chooseOwnerRepair"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="报修人" namespace="chooseOwnerRepair"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="联系方式" namespace="chooseOwnerRepair"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="房屋" namespace="chooseOwnerRepair"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="预约时间" namespace="chooseOwnerRepair"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="报修内容" namespace="chooseOwnerRepair"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseOwnerRepair"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@ vc.i18n(' ','chooseOwnerRepair')vc.i18n(' ','chooseOwnerRepair')vc.i18n(' ','cho
                             <td class="text-center">{{ownerRepair.context}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOwnerRepair(ownerRepair)"><vc:i18n name="选择" namespace="chooseOwnerRepair"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOwnerRepair(ownerRepair)"><span><vc:i18n name="选择" namespace="chooseOwnerRepair"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="rentingConfigManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="rentingConfigManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
 
@@ -31,7 +31,7 @@
                             </select> </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRentingConfigMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <vc:i18n name="查询" namespace="rentingConfigManage"></vc:i18n>
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="rentingConfigManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="租赁配置" namespace="rentingConfigManage"></vc:i18n>
+                        <span><vc:i18n name="租赁配置" namespace="rentingConfigManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddRentingConfigModal()">
@@ -61,31 +61,31 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="配置ID" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="配置ID" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="租赁类型" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="租赁类型" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="收费公式" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="收费公式" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="服务费" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="服务费" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="业主收费比率" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="业主收费比率" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="租客收费比率" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="租客收费比率" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="运营分账比率" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="运营分账比率" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="物业分账比率" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="物业分账比率" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="rentingConfigManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="rentingConfigManage"></vc:i18n></span>
                                 </th>
 
 
@@ -103,10 +103,10 @@
                                 <td class="text-center">{{rentingConfig.propertySeparateRate}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditRentingConfigModel(rentingConfig)"><vc:i18n name="修改" namespace="rentingConfigManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditRentingConfigModel(rentingConfig)"><span><vc:i18n name="修改" namespace="rentingConfigManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteRentingConfigModel(rentingConfig)"><vc:i18n name="删除" namespace="rentingConfigManage"></vc:i18n></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteRentingConfigModel(rentingConfig)"><span><vc:i18n name="删除" namespace="rentingConfigManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 

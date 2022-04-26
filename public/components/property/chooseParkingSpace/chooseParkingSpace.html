@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseParkingSpaceModelLabel"><vc:i18n name="选择车位" namespace="chooseParkingSpace"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseParkingSpaceModelLabel"><span><vc:i18n name="选择车位" namespace="chooseParkingSpace"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -24,7 +24,7 @@ vc.i18n(' ','chooseParkingSpace')vc.i18n(' ','chooseParkingSpace')vc.i18n(' ','c
                                                class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryParkingSpaces()"><vc:i18n name="查询" namespace="chooseParkingSpace"></vc:i18n></button>
+                                                        v-on:click="queryParkingSpaces()"><span><vc:i18n name="查询" namespace="chooseParkingSpace"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -33,23 +33,23 @@ vc.i18n(' ','chooseParkingSpace')vc.i18n(' ','chooseParkingSpace')vc.i18n(' ','c
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th data-hide="phone" class="text-center"><vc:i18n name="停车场" namespace="chooseParkingSpace"></vc:i18n></th>
-                                        <th data-hide="phone" class="text-center"><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></th>
-                                        <th data-hide="phone" class="text-center"><vc:i18n name="车位状态" namespace="chooseParkingSpace"></vc:i18n></th>
-                                        <th data-hide="phone" class="text-center"><vc:i18n name="车位类型" namespace="chooseParkingSpace"></vc:i18n></th>
-                                        <th data-hide="phone" class="text-center"><vc:i18n name="面积" namespace="chooseParkingSpace"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n>ID</th>
-                                        <th class="text-center"><vc:i18n name="操作" namespace="chooseParkingSpace"></vc:i18n></th>
+                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="停车场" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="车位状态" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="车位类型" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="面积" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span>ID</th>
+                                        <th class="text-center"><span><vc:i18n name="操作" namespace="chooseParkingSpace"></vc:i18n></span></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                    
                                     <tr v-for="parkingSpace in chooseParkingSpaceInfo.parkingSpaces">
                                         <td class="text-center">
-                                            {{parkingSpace.areaNum}}<vc:i18n name="号停车场" namespace="chooseParkingSpace"></vc:i18n>
+                                            {{parkingSpace.areaNum}}<span><vc:i18n name="号停车场" namespace="chooseParkingSpace"></vc:i18n></span>
                                         </td>
                                         <td class="text-center">
-                                            {{parkingSpace.num}}<vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n>
+                                            {{parkingSpace.num}}<span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span>
                                         </td>
                                         <td class="text-center">
                                             {{vc.component._viewParkingSpaceState(parkingSpace.state)}}
@@ -67,7 +67,7 @@ vc.i18n(' ','chooseParkingSpace')vc.i18n(' ','chooseParkingSpace')vc.i18n(' ','c
                                           
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs"
-                                                        v-on:click="chooseParkingSpace(parkingSpace)"><vc:i18n name="选择" namespace="chooseParkingSpace"></vc:i18n>
+                                                        v-on:click="chooseParkingSpace(parkingSpace)"><span><vc:i18n name="选择" namespace="chooseParkingSpace"></vc:i18n></span>
                                                 </button>
                                             </div>
                                           

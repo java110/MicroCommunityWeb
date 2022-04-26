@@ -3,13 +3,13 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="m-t-none m-b ">
-                    <vc:i18n name="创建费用" namespace="roomCreateFeeAdd"></vc:i18n>
+                    <span><vc:i18n name="创建费用" namespace="roomCreateFeeAdd"></vc:i18n></span>
                 </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row" v-show="roomCreateFeeAddInfo.isMore == true">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋类型" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋类型" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="roomCreateFeeAddInfo.roomType" @change="_createFeeAddChangeRoomType()">
                                         <option selected disabled value="">{{vc.i18n('必填，请选择房屋类型','roomCreateFeeAdd')}}</option>
@@ -19,7 +19,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="收费范围" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费范围" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="roomCreateFeeAddInfo.locationTypeCd" v-if="roomCreateFeeAddInfo.isMore == true">
                                         <option selected disabled value="">{{vc.i18n('必填，请选择收费范围','roomCreateFeeAdd')}}</option>
@@ -47,14 +47,14 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-show="roomCreateFeeAddInfo.locationTypeCd == '3000' ">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <vc:create path="property/roomSelect2" parentModal="roomCreateFeeAddModel" callBackListener="roomCreateFeeAdd" callBackFunction="notify" namespace="roomCreateFeeAdd">
                                     </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="费用类型" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用类型" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="roomCreateFeeAddInfo.feeTypeCd" @change="_changeFeeTypeCdX(roomCreateFeeAddInfo.feeTypeCd)">
                                         <option selected disabled value="">{{vc.i18n('必填，请选择费用类型','roomCreateFeeAdd')}}</option>
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="收费项目" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费项目" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="roomCreateFeeAddInfo.configId" @change="_roomCreateFeeAddIfOnceFee(roomCreateFeeAddInfo.configId)">
                                         <option selected disabled value="">{{vc.i18n('必填，请选择收费项目','roomCreateFeeAdd')}}</option>
@@ -78,13 +78,13 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-if="roomCreateFeeAddInfo.computingFormula == '4004'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="收费金额" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费金额" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="roomCreateFeeAddInfo.amount" type="text" :placeholder="vc.i18n('必填，请填写收费金额','roomCreateFeeAdd')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row" v-if="roomCreateFeeAddInfo.isMore == true">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="楼层" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="楼层" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-8" v-if="roomCreateFeeAddInfo.feeLayer != '全部'">
                                     <input type="text" v-model="roomCreateFeeAddInfo.feeLayer" :placeholder="vc.i18n('请输入楼层 多个层时用#分隔，如1#2','roomCreateFeeAdd')" class="form-control">
                                 </div>
@@ -98,30 +98,30 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-if="roomCreateFeeAddInfo.isMore == true">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋状态" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋状态" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10" v-if="roomCreateFeeAddInfo.roomType == '1010301'">
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                   value="2001"><vc:i18n name="已入住" namespace="roomCreateFeeAdd"></vc:i18n>
+                                                   value="2001"><span><vc:i18n name="已入住" namespace="roomCreateFeeAdd"></vc:i18n></span>
                                         </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                   value="2003"><vc:i18n name="已交房" namespace="roomCreateFeeAdd"></vc:i18n>
+                                                   value="2003"><span><vc:i18n name="已交房" namespace="roomCreateFeeAdd"></vc:i18n></span>
                                         </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                   value="2005"><vc:i18n name="已装修" namespace="roomCreateFeeAdd"></vc:i18n>
+                                                   value="2005"><span><vc:i18n name="已装修" namespace="roomCreateFeeAdd"></vc:i18n></span>
                                         </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                   value="2004"><vc:i18n name="未入住" namespace="roomCreateFeeAdd"></vc:i18n>
+                                                   value="2004"><span><vc:i18n name="未入住" namespace="roomCreateFeeAdd"></vc:i18n></span>
                                         </label>
                                     </div>
                                 </div>
@@ -129,25 +129,25 @@
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                   value="2006"><vc:i18n name="已出租" namespace="roomCreateFeeAdd"></vc:i18n>
+                                                   value="2006"><span><vc:i18n name="已出租" namespace="roomCreateFeeAdd"></vc:i18n></span>
                                         </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="roomCreateFeeAddInfo.roomState"
-                                                   value="2007"><vc:i18n name="已出售" namespace="roomCreateFeeAdd"></vc:i18n>
+                                                   value="2007"><span><vc:i18n name="已出售" namespace="roomCreateFeeAdd"></vc:i18n></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="计费起始时间" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="计费起始时间" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="roomCreateFeeAddInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写计费起始时间','roomCreateFeeAdd')" class="form-control roomCreateFeeStartTime">
                                 </div>
                             </div>
                             <div class="form-group row" v-show="roomCreateFeeAddInfo.feeFlag == '2006012'">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="计费结束时间" namespace="roomCreateFeeAdd"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="计费结束时间" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="roomCreateFeeAddInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写计费结束时间','roomCreateFeeAdd')" class="form-control roomCreateFeeEndTime">
                                 </div>

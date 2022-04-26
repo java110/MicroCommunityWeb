@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="listOweFee"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="listOweFee"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -16,7 +16,7 @@
                                 <input type="text" :placeholder="vc.i18n('请选择楼栋','listOweFee')" v-model="listOweFeeInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
-                                        <i class="fa fa-search"></i> <vc:i18n name="选择" namespace="listOweFee"></vc:i18n>
+                                        <i class="fa fa-search"></i> <span><vc:i18n name="选择" namespace="listOweFee"></vc:i18n></span>
                                     </button>
                                 </div>
                             </div>
@@ -39,10 +39,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOweFeeMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="listOweFee"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="listOweFee"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-white btn-sm" v-on:click="_resetOweFeeMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="listOweFee"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="listOweFee"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -105,14 +105,14 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="欠费清单" namespace="listOweFee"></vc:i18n>
+                        <span><vc:i18n name="欠费清单" namespace="listOweFee"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_toFeeCollectionOrderManage()">
                             催缴记录
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
-                            <i class="fa fa-plus"></i><vc:i18n name="导出" namespace="listOweFee"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="listOweFee"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -121,28 +121,28 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="序号" namespace="listOweFee"></vc:i18n>
+                                    <span><vc:i18n name="序号" namespace="listOweFee"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="收费对象" namespace="listOweFee"></vc:i18n>
+                                    <span><vc:i18n name="收费对象" namespace="listOweFee"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="业主名称" namespace="listOweFee"></vc:i18n>
+                                    <span><vc:i18n name="业主名称" namespace="listOweFee"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="开始时间" namespace="listOweFee"></vc:i18n>
+                                    <span><vc:i18n name="开始时间" namespace="listOweFee"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="结束时间" namespace="listOweFee"></vc:i18n>
+                                    <span><vc:i18n name="结束时间" namespace="listOweFee"></vc:i18n></span>
                                 </th>
-                                <!-- <th class="text-center"><vc:i18n name="面积" namespace="listOweFee"></vc:i18n></th> -->
+                                <!-- <th class="text-center"><span><vc:i18n name="面积" namespace="listOweFee"></vc:i18n></span></th> -->
                                 <th class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
                                     {{item.configName}}
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="合计" namespace="listOweFee"></vc:i18n>(单位:元)</th>
+                                    <span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>(单位:元)</th>
                                 <th class="text-center">
-                                    <vc:i18n name="更新时间" namespace="listOweFee"></vc:i18n>
+                                    <span><vc:i18n name="更新时间" namespace="listOweFee"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -171,24 +171,24 @@
                     <!-- 分页 -->
                     <div class="row">
                         <span class="col-md-1 margin-left">
-                            <div class="row"><b><vc:i18n name="小计" namespace="listOweFee"></vc:i18n></b></div>
+                            <div class="row"><b><span><vc:i18n name="小计" namespace="listOweFee"></vc:i18n></span></b></div>
                         </span>
                         <span class="col-md-2" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
-                            <div>{{item.configName}}: {{_getFeeOweAllAmount(item)}}<vc:i18n name="元" namespace="listOweFee"></vc:i18n></div>
+                            <div>{{item.configName}}: {{_getFeeOweAllAmount(item)}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
                         </span>
                         <span class="col-md-2">
-                            <div><vc:i18n name="合计" namespace="listOweFee"></vc:i18n>: {{_getFeeOweAllAmounts()}}<vc:i18n name="元" namespace="listOweFee"></vc:i18n></div>
+                            <div><span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>: {{_getFeeOweAllAmounts()}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
                         </span>
                     </div>
                     <div class="row" v-if="listOweFeeInfo.fees && listOweFeeInfo.fees.length>0">
                         <span class="col-md-1 margin-left">
-                            <div class="row"><b><vc:i18n name="大计" namespace="listOweFee"></vc:i18n></b></div>
+                            <div class="row"><b><span><vc:i18n name="大计" namespace="listOweFee"></vc:i18n></span></b></div>
                         </span>
                         <span class="col-md-2" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
-                            <div>{{item.configName}}: {{_getFeeOweAllTotalAmount(item)}}<vc:i18n name="元" namespace="listOweFee"></vc:i18n></div>
+                            <div>{{item.configName}}: {{_getFeeOweAllTotalAmount(item)}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
                         </span>
                         <span class="col-md-2">
-                            <div><vc:i18n name="合计" namespace="listOweFee"></vc:i18n>: {{listOweFeeInfo.fees[0].totalOweAmount}}<vc:i18n name="元" namespace="listOweFee"></vc:i18n></div>
+                            <div><span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>: {{listOweFeeInfo.fees[0].totalOweAmount}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
                         </span>
                     </div>
                     <div class="row">

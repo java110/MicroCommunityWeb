@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseInspectionPlanModelLabel"><vc:i18n name="选择巡检计划" namespace="chooseInspectionPlan"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseInspectionPlanModelLabel"><span><vc:i18n name="选择巡检计划" namespace="chooseInspectionPlan"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseInspectionPlan')vc.i18n(' ','chooseInspectionPlan')vc.i18n(' 
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入巡检计划名称','chooseInspectionPlan')" type="text" v-model="chooseInspectionPlanInfo._currentInspectionPlanName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryInspectionPlans()"><vc:i18n name="查询" namespace="chooseInspectionPlan"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryInspectionPlans()"><span><vc:i18n name="查询" namespace="chooseInspectionPlan"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,17 +28,17 @@ vc.i18n(' ','chooseInspectionPlan')vc.i18n(' ','chooseInspectionPlan')vc.i18n(' 
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="巡检计划名称" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="计划名称" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="巡检路线" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="执行周期" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="执行人员" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="开始时间" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="结束时间" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="签到方式" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="状态" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="备注" namespace="chooseInspectionPlan"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseInspectionPlan"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="巡检计划名称" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="计划名称" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="巡检路线" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="执行周期" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="执行人员" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="签到方式" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="状态" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseInspectionPlan"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseInspectionPlan"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -56,7 +56,7 @@ vc.i18n(' ','chooseInspectionPlan')vc.i18n(' ','chooseInspectionPlan')vc.i18n(' 
                             <td class="text-center">{{inspectionPlan.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseInspectionPlan(inspectionPlan)"><vc:i18n name="选择" namespace="chooseInspectionPlan"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseInspectionPlan(inspectionPlan)"><span><vc:i18n name="选择" namespace="chooseInspectionPlan"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

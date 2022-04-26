@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="searchRoomModelLabel">
-                    <vc:i18n name="选择房屋" namespace="searchRoom"></vc:i18n>
+                    <span><vc:i18n name="选择房屋" namespace="searchRoom"></vc:i18n></span>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -25,7 +25,7 @@
                                         <input :placeholder="vc.i18n('输入房屋编号','searchRoom')" type="text" v-model="searchRoomInfo._currentRoomNum" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="searchRooms()"><vc:i18n name="查询" namespace="searchRoom"></vc:i18n></button>
+                                                        v-on:click="searchRooms()"><span><vc:i18n name="查询" namespace="searchRoom"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -35,21 +35,21 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <vc:i18n name="房屋" namespace="searchRoom"></vc:i18n>ID</th>
+                                                <span><vc:i18n name="房屋" namespace="searchRoom"></vc:i18n></span>ID</th>
                                             <th>
-                                                <vc:i18n name="楼栋编号" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="楼栋编号" namespace="searchRoom"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="单元编号" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="单元编号" namespace="searchRoom"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="房屋编号" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="房屋编号" namespace="searchRoom"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="楼层" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="楼层" namespace="searchRoom"></vc:i18n></span>
                                             </th>
                                             <th class="text-right">
-                                                <vc:i18n name="操作" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="操作" namespace="searchRoom"></vc:i18n></span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -60,22 +60,22 @@
                                             </td>
                                             <td>
                                                 {{room.floorNum}}
-                                                <vc:i18n name="号楼" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="号楼" namespace="searchRoom"></vc:i18n></span>
                                             </td>
                                             <td>
                                                 {{room.unitNum}}
-                                                <vc:i18n name="单元" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="单元" namespace="searchRoom"></vc:i18n></span>
                                             </td>
                                             <td>
                                                 {{room.roomNum}}
-                                                <vc:i18n name="室" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="室" namespace="searchRoom"></vc:i18n></span>
                                             </td>
                                             <td>
                                                 {{room.layer}}
-                                                <vc:i18n name="层" namespace="searchRoom"></vc:i18n>
+                                                <span><vc:i18n name="层" namespace="searchRoom"></vc:i18n></span>
                                             </td>
                                             <td class="text-right">
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseRoom(room)"><vc:i18n name="选择" namespace="searchRoom"></vc:i18n>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseRoom(room)"><span><vc:i18n name="选择" namespace="searchRoom"></vc:i18n></span>
                                             </button>
                                             </td>
                                         </tr>

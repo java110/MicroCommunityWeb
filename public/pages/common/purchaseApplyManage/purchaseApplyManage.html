@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="purchaseApplyManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="purchaseApplyManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -31,10 +31,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionPlanMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="purchaseApplyManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="purchaseApplyManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetInspectionPlanMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="purchaseApplyManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="purchaseApplyManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -47,17 +47,17 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="采购申请" namespace="purchaseApplyManage"></vc:i18n>
+                        <span><vc:i18n name="采购申请" namespace="purchaseApplyManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPurchaseApplyModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="采购申请" namespace="purchaseApplyManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="采购申请" namespace="purchaseApplyManage"></vc:i18n></span>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-if="vc.hasPrivilege('502021071043650029')" v-on:click="_openUrgentPurchaseApplyModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="紧急采购" namespace="purchaseApplyManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="紧急采购" namespace="purchaseApplyManage"></vc:i18n></span>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
-                            <i class="fa fa-plus"></i><vc:i18n name="导出" namespace="purchaseApplyManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="purchaseApplyManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -66,34 +66,34 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="申请单号" namespace="purchaseApplyManage"></vc:i18n>
+                                    <span><vc:i18n name="申请单号" namespace="purchaseApplyManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="申请人" namespace="purchaseApplyManage"></vc:i18n>
+                                    <span><vc:i18n name="申请人" namespace="purchaseApplyManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="使用人" namespace="purchaseApplyManage"></vc:i18n>
+                                    <span><vc:i18n name="使用人" namespace="purchaseApplyManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作人" namespace="purchaseApplyManage"></vc:i18n>
+                                    <span><vc:i18n name="操作人" namespace="purchaseApplyManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="物品" namespace="purchaseApplyManage"></vc:i18n>
+                                    <span><vc:i18n name="物品" namespace="purchaseApplyManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="申请时间" namespace="purchaseApplyManage"></vc:i18n>
+                                    <span><vc:i18n name="申请时间" namespace="purchaseApplyManage"></vc:i18n></span>
                                 </th>
-                                <!-- <th class="text-center"><vc:i18n name="申请数量" namespace="purchaseApplyManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="物品单价" namespace="purchaseApplyManage"></vc:i18n></th> -->
-                                <!-- <th class="text-center"><vc:i18n name="参考价格" namespace="purchaseApplyManage"></vc:i18n></th> -->
+                                <!-- <th class="text-center"><span><vc:i18n name="申请数量" namespace="purchaseApplyManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="物品单价" namespace="purchaseApplyManage"></vc:i18n></span></th> -->
+                                <!-- <th class="text-center"><span><vc:i18n name="参考价格" namespace="purchaseApplyManage"></vc:i18n></span></th> -->
                                 <th class="text-center">
-                                    <vc:i18n name="采购方式" namespace="purchaseApplyManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="审批状态" namespace="purchaseApplyManage"></vc:i18n>
+                                    <span><vc:i18n name="采购方式" namespace="purchaseApplyManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="purchaseApplyManage"></vc:i18n>
+                                    <span><vc:i18n name="审批状态" namespace="purchaseApplyManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="操作" namespace="purchaseApplyManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -114,19 +114,19 @@
                                 <td class="text-center">{{purchaseApply.stateName}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDetailPurchaseApplyModel(purchaseApply)"><vc:i18n name="查看" namespace="purchaseApplyManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDetailPurchaseApplyModel(purchaseApply)"><span><vc:i18n name="查看" namespace="purchaseApplyManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="purchaseApply.warehousingWay != 10000 && purchaseApply.warehousingWay != 30000">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(purchaseApply)"><vc:i18n name="流程图" namespace="purchaseApplyManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(purchaseApply)"><span><vc:i18n name="流程图" namespace="purchaseApplyManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="purchaseApply.state == '1000' && purchaseApplyManageInfo.currentUserId == purchaseApply.createUserId">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePurchaseApplyModel(purchaseApply)"><vc:i18n name="取消申请" namespace="purchaseApplyManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePurchaseApplyModel(purchaseApply)"><span><vc:i18n name="取消申请" namespace="purchaseApplyManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-else>
-                                        <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022032383620003')" v-on:click="_openDeletePurchaseApplyModel(purchaseApply)"><vc:i18n name="取消申请" namespace="purchaseApplyManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022032383620003')" v-on:click="_openDeletePurchaseApplyModel(purchaseApply)"><span><vc:i18n name="取消申请" namespace="purchaseApplyManage"></vc:i18n></span>
                                     </button>
                                     </div>
 

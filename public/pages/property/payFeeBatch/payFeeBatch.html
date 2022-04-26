@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="payFeeBatch"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="payFeeBatch"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -32,10 +32,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPayFeeBatchMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="payFeeBatch"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="payFeeBatch"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetPayFeeBatchMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="payFeeBatch"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="payFeeBatch"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="取消费用" namespace="payFeeBatch"></vc:i18n>
+                        <span><vc:i18n name="取消费用" namespace="payFeeBatch"></vc:i18n></span>
                     </h5>
                 </div>
                 <div class="ibox-content">
@@ -56,25 +56,25 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="批次号" namespace="payFeeBatch"></vc:i18n>
+                                    <span><vc:i18n name="批次号" namespace="payFeeBatch"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="员工" namespace="payFeeBatch"></vc:i18n>
+                                    <span><vc:i18n name="员工" namespace="payFeeBatch"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="时间" namespace="payFeeBatch"></vc:i18n>
+                                    <span><vc:i18n name="时间" namespace="payFeeBatch"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="取消原因" namespace="payFeeBatch"></vc:i18n>
+                                    <span><vc:i18n name="取消原因" namespace="payFeeBatch"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="审核状态" namespace="payFeeBatch"></vc:i18n>
+                                    <span><vc:i18n name="审核状态" namespace="payFeeBatch"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="审核意见" namespace="payFeeBatch"></vc:i18n>
+                                    <span><vc:i18n name="审核意见" namespace="payFeeBatch"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="payFeeBatch"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="payFeeBatch"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -90,7 +90,7 @@
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-if="payFee.state == 2006001" v-on:click="_openApply(payFee)">{{vc.i18n('申请取消','payFeeBatch')}}
                                     </button>
-                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 2007001" v-on:click="_openPayFeeBatchAuditModel(payFee)"><vc:i18n name="审核" namespace="payFeeBatch"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 2007001" v-on:click="_openPayFeeBatchAuditModel(payFee)"><span><vc:i18n name="审核" namespace="payFeeBatch"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

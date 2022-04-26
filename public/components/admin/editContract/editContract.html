@@ -3,14 +3,14 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b "><vc:i18n name="编辑合同" namespace="editContract"></vc:i18n></h3>
+        <h3 class="m-t-none m-b "><span><vc:i18n name="编辑合同" namespace="editContract"></vc:i18n></span></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="合同名称" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="合同名称" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.contractName" type="text" :placeholder="vc.i18n('必填，请填写合同名称','editContract')"
                         class="form-control">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="合同编号" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="合同编号" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.contractCode" type="text" :placeholder="vc.i18n('必填，请填写合同编号','editContract')"
                         class="form-control">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="合同类型" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="合同类型" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <select class="custom-select" v-model="editContractInfo.contractType" disabled="disabled">
                         <option selected disabled value="">{{vc.i18n('必填','editContract')}}，请选择合同类型</option>
@@ -42,7 +42,7 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="甲方" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="甲方" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.partyA" type="text" :placeholder="vc.i18n('必填，请填写甲方','editContract')" class="form-control">
                     </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="甲方联系人" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="甲方联系人" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.aContacts" type="text" :placeholder="vc.i18n('必填，请填写甲方联系人','editContract')"
                         class="form-control">
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="甲方联系电话" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="甲方联系电话" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.aLink" type="text" :placeholder="vc.i18n('必填，请填写甲方联系电话','editContract')"
                         class="form-control">
@@ -70,7 +70,7 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="乙方" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="乙方" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.partyB" type="text" :placeholder="vc.i18n('必填，请填写乙方','editContract')" class="form-control">
                     </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="乙方联系人" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="乙方联系人" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.bContacts" type="text" :placeholder="vc.i18n('必填，请填写乙方联系人','editContract')"
                         class="form-control">
@@ -87,7 +87,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="乙方联系电话" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="乙方联系电话" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.bLink" type="text" :placeholder="vc.i18n('必填，请填写乙方联系电话','editContract')"
                         class="form-control">
@@ -98,7 +98,7 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="经办人" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="经办人" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.operator" type="text" :placeholder="vc.i18n('必填，请填写经办人','editContract')"
                         class="form-control">
@@ -107,7 +107,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="联系电话" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="联系电话" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.operatorLink" type="text" :placeholder="vc.i18n('必填，请填写联系电话','editContract')"
                         class="form-control">
@@ -116,7 +116,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="合同金额" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="合同金额" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.amount" type="text" :placeholder="vc.i18n('选填，请填写合同金额','editContract')"
                         class="form-control">
@@ -127,7 +127,7 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="开始时间" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="开始时间" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写开始时间','editContract')"
                         class="form-control editStartTime">
@@ -136,7 +136,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="结束时间" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="结束时间" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','editContract')"
                         class="form-control editEndTime">
@@ -145,7 +145,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="签订时间" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="签订时间" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-9 padding-lr-xs">
                       <input v-model="editContractInfo.signingTime" type="text" :placeholder="vc.i18n('必填，请填写签订时间','editContract')"
                         class="form-control editSigningTime">
@@ -189,22 +189,22 @@
               <div class="row">
                 <div class="col-sm-10">
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"><vc:i18n name="合同附件" namespace="editContract"></vc:i18n></label>
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="合同附件" namespace="editContract"></vc:i18n></span></label>
                     <div class="col-sm-10">
                         <div class="row " style="margin-left: 0px;">
-                            <button type="button" class="btn btn-primary" @click="addEditFileStep()"><vc:i18n name="添加附件" namespace="editContract"></vc:i18n></button>
+                            <button type="button" class="btn btn-primary" @click="addEditFileStep()"><span><vc:i18n name="添加附件" namespace="editContract"></vc:i18n></span></button>
                         </div>
                         <div v-for="(item,index) in editContractInfo.contractFilePo">
                             <div class="row margin-0 margin-top">
                                 <div  class="col-sm-1 text-center">
-                                    <label class="col-form-label"><vc:i18n name="第" namespace="editContract"></vc:i18n>{{index+1}}<vc:i18n name="个" namespace="editContract"></vc:i18n></label>
+                                    <label class="col-form-label"><span><vc:i18n name="第" namespace="editContract"></vc:i18n></span>{{index+1}}<span><vc:i18n name="个" namespace="editContract"></vc:i18n></span></label>
                                 </div>
                                 <input type="file"
                                 class="custom-file-input form-control" name="excelTemplate" style="width: 11%;opacity: 1;"
                                 v-on:change="getEditFile($event,index)" accept=".png,.pdf,.jpg">
                                 <label  class="col-sm-5 col-form-label padding-lr-sm text-right">{{item.fileRealName}}</label>
                                 <div>
-                                    <button type="button" class="btn btn-link" @click="deleteEditStep(item)"><vc:i18n name="删除附件" namespace="editContract"></vc:i18n></button>
+                                    <button type="button" class="btn btn-link" @click="deleteEditStep(item)"><span><vc:i18n name="删除附件" namespace="editContract"></vc:i18n></span></button>
                                 </div>
                               
                             </div>
@@ -219,7 +219,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="editContract()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal"><vc:i18n name="取消" namespace="editContract"></vc:i18n></button>
+                  data-dismiss="modal"><span><vc:i18n name="取消" namespace="editContract"></vc:i18n></span></button>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseFeePrintSpecModelLabel"><vc:i18n name="选择打印配置" namespace="chooseFeePrintSpec"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseFeePrintSpecModelLabel"><span><vc:i18n name="选择打印配置" namespace="chooseFeePrintSpec"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,7 +22,7 @@ vc.i18n(' ','chooseFeePrintSpec')vc.i18n(' ','chooseFeePrintSpec')vc.i18n(' ','c
                                                class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryFeePrintSpecs()"><vc:i18n name="查询" namespace="chooseFeePrintSpec"></vc:i18n></button>
+                                                        v-on:click="queryFeePrintSpecs()"><span><vc:i18n name="查询" namespace="chooseFeePrintSpec"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -31,11 +31,11 @@ vc.i18n(' ','chooseFeePrintSpec')vc.i18n(' ','chooseFeePrintSpec')vc.i18n(' ','c
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"><vc:i18n name="规格" namespace="chooseFeePrintSpec"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="规格" namespace="chooseFeePrintSpec"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="内容" namespace="chooseFeePrintSpec"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="必填" namespace="chooseFeePrintSpec"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="操作" namespace="chooseFeePrintSpec"></vc:i18n></th>
+                                        <th class="text-center"><span><vc:i18n name="规格" namespace="chooseFeePrintSpec"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="规格" namespace="chooseFeePrintSpec"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="内容" namespace="chooseFeePrintSpec"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="必填" namespace="chooseFeePrintSpec"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="操作" namespace="chooseFeePrintSpec"></vc:i18n></span></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -46,7 +46,7 @@ vc.i18n(' ','chooseFeePrintSpec')vc.i18n(' ','chooseFeePrintSpec')vc.i18n(' ','c
                                         <td class="text-center">{{feePrintSpec.qrImg}}</td>
                                         <td>
                                             <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseFeePrintSpec(feePrintSpec)"><vc:i18n name="选择" namespace="chooseFeePrintSpec"></vc:i18n>
+                                                    v-on:click="chooseFeePrintSpec(feePrintSpec)"><span><vc:i18n name="选择" namespace="chooseFeePrintSpec"></vc:i18n></span>
                                             </button>
                                         </td>
                                     </tr>

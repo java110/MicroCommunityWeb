@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="searchOwnerModelLabel">
-                    <vc:i18n name="选择业主" namespace="searchOwner"></vc:i18n>
+                    <span><vc:i18n name="选择业主" namespace="searchOwner"></vc:i18n></span>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -25,7 +25,7 @@
                                         <input :placeholder="vc.i18n('输入业主名称','searchOwner')" type="text" v-model="searchOwnerInfo._currentOwnerName" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="searchOwners()"><vc:i18n name="查询" namespace="searchOwner"></vc:i18n></button>
+                                                        v-on:click="searchOwners()"><span><vc:i18n name="查询" namespace="searchOwner"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -35,26 +35,26 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <vc:i18n name="名称" namespace="searchOwner"></vc:i18n>
+                                                <span><vc:i18n name="名称" namespace="searchOwner"></vc:i18n></span>
                                             </th>
-                                            <!-- <th><vc:i18n name="房屋编号" namespace="searchOwner"></vc:i18n></th> -->
+                                            <!-- <th><span><vc:i18n name="房屋编号" namespace="searchOwner"></vc:i18n></span></th> -->
                                             <th>
-                                                <vc:i18n name="性别" namespace="searchOwner"></vc:i18n>
-                                            </th>
-                                            <th>
-                                                <vc:i18n name="年龄" namespace="searchOwner"></vc:i18n>
+                                                <span><vc:i18n name="性别" namespace="searchOwner"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="身份证" namespace="searchOwner"></vc:i18n>
+                                                <span><vc:i18n name="年龄" namespace="searchOwner"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="联系方式" namespace="searchOwner"></vc:i18n>
+                                                <span><vc:i18n name="身份证" namespace="searchOwner"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="创建员工" namespace="searchOwner"></vc:i18n>
+                                                <span><vc:i18n name="联系方式" namespace="searchOwner"></vc:i18n></span>
                                             </th>
                                             <th>
-                                                <vc:i18n name="操作" namespace="searchOwner"></vc:i18n>
+                                                <span><vc:i18n name="创建员工" namespace="searchOwner"></vc:i18n></span>
+                                            </th>
+                                            <th>
+                                                <span><vc:i18n name="操作" namespace="searchOwner"></vc:i18n></span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -84,7 +84,7 @@
                                                 {{owner.userName}}
                                             </td>
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOwner(owner)"><vc:i18n name="选择" namespace="searchOwner"></vc:i18n>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOwner(owner)"><span><vc:i18n name="选择" namespace="searchOwner"></vc:i18n></span>
                                             </button>
                                             </td>
                                         </tr>

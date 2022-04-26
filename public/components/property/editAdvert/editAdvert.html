@@ -3,19 +3,19 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="修改广告" namespace="editAdvert"></vc:i18n></h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改广告" namespace="editAdvert"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="广告名称" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="广告名称" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editAdvertInfo.adName" type="text" :placeholder="vc.i18n('必填，请填写广告名称','editAdvert')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="广告分类" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="广告分类" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAdvertInfo.classify">
                                         <option selected disabled value="">{{vc.i18n('必填','editAdvert')}}，请选择广告分类</option>
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="投放位置" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投放位置" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAdvertInfo.locationTypeCd">
                                         <option selected disabled value="">{{vc.i18n('必填','editAdvert')}}，请选择投放位置</option>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="发布类型" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="发布类型" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAdvertInfo.advertType">
                                         <option selected disabled value="">{{vc.i18n('必填','editAdvert')}}，请选择发布类型</option>
@@ -54,35 +54,35 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="跳转路径" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="跳转路径" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editAdvertInfo.pageUrl" type="text" :placeholder="vc.i18n('请填写跳转路径','editAdvert')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="播放顺序" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="播放顺序" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editAdvertInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写播放顺序','editAdvert')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="投放时间" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投放时间" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editAdvertInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写投放时间','editAdvert')"
                                            class="form-control editAdvertStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="结束时间" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editAdvertInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','editAdvert')"
                                            class="form-control editAdvertEndTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="播放方式" namespace="editAdvert"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="播放方式" namespace="editAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAdvertInfo.viewType">
                                         <option selected disabled value="">{{vc.i18n('必填','editAdvert')}}，请选择播放方式</option>

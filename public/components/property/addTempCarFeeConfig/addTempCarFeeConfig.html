@@ -3,14 +3,14 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b"><vc:i18n name="添加标准" namespace="addTempCarFeeConfig"></vc:i18n></h3>
+                <h3 class="m-t-none m-b"><span><vc:i18n name="添加标准" namespace="addTempCarFeeConfig"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="标准名称" namespace="addTempCarFeeConfig"></vc:i18n></label>
+                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="标准名称" namespace="addTempCarFeeConfig"></vc:i18n></span></label>
                                         <div class="col-sm-9">
                                             <input v-model="addTempCarFeeConfigInfo.feeName" type="text"
                                                    :placeholder="vc.i18n('必填，请填写标准名称','addTempCarFeeConfig')"
@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="停车场" namespace="addTempCarFeeConfig"></vc:i18n></label>
+                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="停车场" namespace="addTempCarFeeConfig"></vc:i18n></span></label>
                                         <div class="col-sm-9">
                                             <vc:create path="property/parkingAreaSelect2"
                                                        parentModal="addTempCarFeeConfigModel"
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="车辆类型" namespace="addTempCarFeeConfig"></vc:i18n></label>
+                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="车辆类型" namespace="addTempCarFeeConfig"></vc:i18n></span></label>
                                         <div class="col-sm-9">
                                             <select class="custom-select" v-model="addTempCarFeeConfigInfo.carType">
                                                 <option selected disabled value="">{{vc.i18n('必填','addTempCarFeeConfig')}}，请选择车辆类型</option>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="收费规则" namespace="addTempCarFeeConfig"></vc:i18n></label>
+                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="收费规则" namespace="addTempCarFeeConfig"></vc:i18n></span></label>
                                         <div class="col-sm-9">
                                             <select class="custom-select" v-model="addTempCarFeeConfigInfo.ruleId"
                                                     @change="_changeAddTempCarFeeConfigRule()">
@@ -67,7 +67,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="开始时间" namespace="addTempCarFeeConfig"></vc:i18n></label>
+                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="开始时间" namespace="addTempCarFeeConfig"></vc:i18n></span></label>
                                         <div class="col-sm-9">
                                             <input v-model="addTempCarFeeConfigInfo.startTime" type="text"
                                                    :placeholder="vc.i18n('必填，请填写开始时间','addTempCarFeeConfig')"
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><vc:i18n name="结束时间" namespace="addTempCarFeeConfig"></vc:i18n></label>
+                                        <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="结束时间" namespace="addTempCarFeeConfig"></vc:i18n></span></label>
                                         <div class="col-sm-9">
                                             <input v-model="addTempCarFeeConfigInfo.endTime" type="text"
                                                    :placeholder="vc.i18n('必填，请填写结束时间','addTempCarFeeConfig')"

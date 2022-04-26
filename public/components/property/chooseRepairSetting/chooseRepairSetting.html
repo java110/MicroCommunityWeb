@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseRepairSettingModelLabel"><vc:i18n name="选择报修设置" namespace="chooseRepairSetting"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseRepairSettingModelLabel"><span><vc:i18n name="选择报修设置" namespace="chooseRepairSetting"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseRepairSetting')vc.i18n(' ','chooseRepairSetting')vc.i18n(' ',
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入报修设置名称','chooseRepairSetting')" type="text" v-model="chooseRepairSettingInfo._currentRepairSettingName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryRepairSettings()"><vc:i18n name="查询" namespace="chooseRepairSetting"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryRepairSettings()"><span><vc:i18n name="查询" namespace="chooseRepairSetting"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,11 +28,11 @@ vc.i18n(' ','chooseRepairSetting')vc.i18n(' ','chooseRepairSetting')vc.i18n(' ',
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><vc:i18n name="设置" namespace="chooseRepairSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="类型名称" namespace="chooseRepairSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="派单方式" namespace="chooseRepairSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="说明" namespace="chooseRepairSetting"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseRepairSetting"></vc:i18n></th>
+                                                                        <th class="text-center"><span><vc:i18n name="设置" namespace="chooseRepairSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="类型名称" namespace="chooseRepairSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="派单方式" namespace="chooseRepairSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="说明" namespace="chooseRepairSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseRepairSetting"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -44,7 +44,7 @@ vc.i18n(' ','chooseRepairSetting')vc.i18n(' ','chooseRepairSetting')vc.i18n(' ',
                             <td class="text-center">{{repairSetting.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseRepairSetting(repairSetting)"><vc:i18n name="选择" namespace="chooseRepairSetting"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseRepairSetting(repairSetting)"><span><vc:i18n name="选择" namespace="chooseRepairSetting"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

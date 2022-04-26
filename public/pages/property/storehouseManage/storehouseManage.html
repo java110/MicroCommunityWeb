@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="查询条件" namespace="storehouseManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="storehouseManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">
@@ -35,10 +35,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryStorehouseMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="storehouseManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="storehouseManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetStorehouseMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="storehouseManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="storehouseManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -61,11 +61,11 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><vc:i18n name="仓库信息" namespace="storehouseManage"></vc:i18n></h5>
+                    <h5><span><vc:i18n name="仓库信息" namespace="storehouseManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStorehouseModal()"
                                 v-if="vc.hasPrivilege('502021101638940007')">
-                            <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="storehouseManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="storehouseManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -73,13 +73,13 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center"><vc:i18n name="仓库编号" namespace="storehouseManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="仓库名称" namespace="storehouseManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="仓库类型" namespace="storehouseManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="描述" namespace="storehouseManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="是否对外开放" namespace="storehouseManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="创建时间" namespace="storehouseManage"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="storehouseManage"></vc:i18n></th>
+                            <th class="text-center"><span><vc:i18n name="仓库编号" namespace="storehouseManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="仓库名称" namespace="storehouseManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="仓库类型" namespace="storehouseManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="描述" namespace="storehouseManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否对外开放" namespace="storehouseManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="创建时间" namespace="storehouseManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="storehouseManage"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -93,17 +93,17 @@
                             <td class="text-center">
                                 <div class="btn-group" v-if="vc.hasPrivilege('502021101197710001')">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditStorehouseModel(storehouse)"><vc:i18n name="修改" namespace="storehouseManage"></vc:i18n>
+                                            v-on:click="_openEditStorehouseModel(storehouse)"><span><vc:i18n name="修改" namespace="storehouseManage"></vc:i18n></span>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502021122129210001')"
-                                            v-on:click="_openDeleteStorehouseModel(storehouse)"><vc:i18n name="删除" namespace="storehouseManage"></vc:i18n>
+                                            v-on:click="_openDeleteStorehouseModel(storehouse)"><span><vc:i18n name="删除" namespace="storehouseManage"></vc:i18n></span>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDetailStorehouseModel(storehouse)"><vc:i18n name="详情" namespace="storehouseManage"></vc:i18n>
+                                            v-on:click="_openDetailStorehouseModel(storehouse)"><span><vc:i18n name="详情" namespace="storehouseManage"></vc:i18n></span>
                                     </button>
                                 </div>
                             </td>

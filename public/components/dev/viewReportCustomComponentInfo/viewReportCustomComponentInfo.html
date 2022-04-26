@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5><vc:i18n name="报表组件信息" namespace="viewReportCustomComponentInfo"></vc:i18n></h5>
+                <h5><span><vc:i18n name="报表组件信息" namespace="viewReportCustomComponentInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewReportCustomComponentInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectReportCustomComponentInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> <vc:i18n name="选择报表组件" namespace="viewReportCustomComponentInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择报表组件" namespace="viewReportCustomComponentInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewReportCustomComponentInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddReportCustomComponentInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> <vc:i18n name="添加报表组件" namespace="viewReportCustomComponentInfo"></vc:i18n></button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加报表组件" namespace="viewReportCustomComponentInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="组件名称" namespace="viewReportCustomComponentInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="组件名称" namespace="viewReportCustomComponentInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewReportCustomComponentInfo.name}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="组件类型" namespace="viewReportCustomComponentInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="组件类型" namespace="viewReportCustomComponentInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewReportCustomComponentInfo.componentType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="查询方式" namespace="viewReportCustomComponentInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="查询方式" namespace="viewReportCustomComponentInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewReportCustomComponentInfo.queryModel}}</label>
                         </div>
 </div>
@@ -35,19 +35,19 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="执行" namespace="viewReportCustomComponentInfo"></vc:i18n>sql：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="执行" namespace="viewReportCustomComponentInfo"></vc:i18n></span>sql：</label>
                             <label class="">{{viewReportCustomComponentInfo.sql}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="执行" namespace="viewReportCustomComponentInfo"></vc:i18n>java脚本代码：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="执行" namespace="viewReportCustomComponentInfo"></vc:i18n></span>java脚本代码：</label>
                             <label class="">{{viewReportCustomComponentInfo.javaScript}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" ><vc:i18n name="描述" namespace="viewReportCustomComponentInfo"></vc:i18n>：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="描述" namespace="viewReportCustomComponentInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewReportCustomComponentInfo.remark}}</label>
                         </div>
 </div>

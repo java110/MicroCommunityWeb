@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseMachineAuthModelLabel"><vc:i18n name="选择员工门禁授权" namespace="chooseMachineAuth"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseMachineAuthModelLabel"><span><vc:i18n name="选择员工门禁授权" namespace="chooseMachineAuth"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@ vc.i18n(' ','chooseMachineAuth')vc.i18n(' ','chooseMachineAuth')vc.i18n(' ','cho
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入员工门禁授权名称','chooseMachineAuth')" type="text" v-model="chooseMachineAuthInfo._currentMachineAuthName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMachineAuths()"><vc:i18n name="查询" namespace="chooseMachineAuth"></vc:i18n></button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMachineAuths()"><span><vc:i18n name="查询" namespace="chooseMachineAuth"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -29,11 +29,11 @@ vc.i18n(' ','chooseMachineAuth')vc.i18n(' ','chooseMachineAuth')vc.i18n(' ','cho
                                     <thead>
                                         <tr>
                                                                         <th class="text-center">ID</th>
-                            <th class="text-center"><vc:i18n name="设备" namespace="chooseMachineAuth"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="员工" namespace="chooseMachineAuth"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="开始时间" namespace="chooseMachineAuth"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="结束时间" namespace="chooseMachineAuth"></vc:i18n></th>
-                            <th class="text-center"><vc:i18n name="操作" namespace="chooseMachineAuth"></vc:i18n></th>
+                            <th class="text-center"><span><vc:i18n name="设备" namespace="chooseMachineAuth"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="员工" namespace="chooseMachineAuth"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="chooseMachineAuth"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="chooseMachineAuth"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseMachineAuth"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -46,7 +46,7 @@ vc.i18n(' ','chooseMachineAuth')vc.i18n(' ','chooseMachineAuth')vc.i18n(' ','cho
                             <td class="text-center">{{machineAuth.endTime}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMachineAuth(machineAuth)"><vc:i18n name="选择" namespace="chooseMachineAuth"></vc:i18n></button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMachineAuth(machineAuth)"><span><vc:i18n name="选择" namespace="chooseMachineAuth"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

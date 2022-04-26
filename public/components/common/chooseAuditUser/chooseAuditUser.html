@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseAuditUserModelLabel"><vc:i18n name="选择审核人员" namespace="chooseAuditUser"></vc:i18n></h3>
+                <h3 class="modal-title" id="chooseAuditUserModelLabel"><span><vc:i18n name="选择审核人员" namespace="chooseAuditUser"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,7 +23,7 @@ vc.i18n(' ','chooseAuditUser')vc.i18n(' ','chooseAuditUser')vc.i18n(' ','chooseA
                                                class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryAuditUsers()"><vc:i18n name="查询" namespace="chooseAuditUser"></vc:i18n></button>
+                                                        v-on:click="queryAuditUsers()"><span><vc:i18n name="查询" namespace="chooseAuditUser"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -32,12 +32,12 @@ vc.i18n(' ','chooseAuditUser')vc.i18n(' ','chooseAuditUser')vc.i18n(' ','chooseA
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"><vc:i18n name="审核" namespace="chooseAuditUser"></vc:i18n>ID</th>
-                                        <th class="text-center"><vc:i18n name="用户" namespace="chooseAuditUser"></vc:i18n>ID</th>
-                                        <th class="text-center"><vc:i18n name="用户名称" namespace="chooseAuditUser"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="审核环节" namespace="chooseAuditUser"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="流程对象" namespace="chooseAuditUser"></vc:i18n></th>
-                                        <th class="text-center"><vc:i18n name="操作" namespace="chooseAuditUser"></vc:i18n></th>
+                                        <th class="text-center"><span><vc:i18n name="审核" namespace="chooseAuditUser"></vc:i18n></span>ID</th>
+                                        <th class="text-center"><span><vc:i18n name="用户" namespace="chooseAuditUser"></vc:i18n></span>ID</th>
+                                        <th class="text-center"><span><vc:i18n name="用户名称" namespace="chooseAuditUser"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="审核环节" namespace="chooseAuditUser"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="流程对象" namespace="chooseAuditUser"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="操作" namespace="chooseAuditUser"></vc:i18n></span></th>
 
                                     </tr>
                                     </thead>
@@ -51,7 +51,7 @@ vc.i18n(' ','chooseAuditUser')vc.i18n(' ','chooseAuditUser')vc.i18n(' ','chooseA
 
                                         <td>
                                             <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseAuditUser(auditUser)"><vc:i18n name="选择" namespace="chooseAuditUser"></vc:i18n>
+                                                    v-on:click="chooseAuditUser(auditUser)"><span><vc:i18n name="选择" namespace="chooseAuditUser"></vc:i18n></span>
                                             </button>
                                         </td>
                                     </tr>

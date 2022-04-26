@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="noticeManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="noticeManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
@@ -41,10 +41,10 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryNoticeMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="noticeManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="noticeManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetNoticeMethod()">
-                                <i class="fa fa-repeat"></i> <vc:i18n name="重置" namespace="noticeManage"></vc:i18n>
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="noticeManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -74,11 +74,11 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="公告信息" namespace="noticeManage"></vc:i18n>
+                        <span><vc:i18n name="公告信息" namespace="noticeManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddNoticeModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="发布" namespace="noticeManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="发布" namespace="noticeManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -87,27 +87,27 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <vc:i18n name="公告" namespace="noticeManage"></vc:i18n>ID</th>
+                                    <span><vc:i18n name="公告" namespace="noticeManage"></vc:i18n></span>ID</th>
                                 <th class="text-center">
-                                    <vc:i18n name="标题" namespace="noticeManage"></vc:i18n>
+                                    <span><vc:i18n name="标题" namespace="noticeManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="公告类型" namespace="noticeManage"></vc:i18n>
+                                    <span><vc:i18n name="公告类型" namespace="noticeManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="开始时间" namespace="noticeManage"></vc:i18n>
+                                    <span><vc:i18n name="开始时间" namespace="noticeManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="结束时间" namespace="noticeManage"></vc:i18n>
+                                    <span><vc:i18n name="结束时间" namespace="noticeManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="状态" namespace="noticeManage"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="noticeManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="通知范围" namespace="noticeManage"></vc:i18n>
+                                    <span><vc:i18n name="通知范围" namespace="noticeManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="noticeManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="noticeManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -122,15 +122,15 @@
                                 <td class="text-center">{{notice.objName}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openNoticeDetail(notice)"><vc:i18n name="详情" namespace="noticeManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openNoticeDetail(notice)"><span><vc:i18n name="详情" namespace="noticeManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditNoticeModel(notice)"><vc:i18n name="修改" namespace="noticeManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditNoticeModel(notice)"><span><vc:i18n name="修改" namespace="noticeManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-if="notice.state != '2000'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteNoticeModel(notice)"><vc:i18n name="删除" namespace="noticeManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteNoticeModel(notice)"><span><vc:i18n name="删除" namespace="noticeManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

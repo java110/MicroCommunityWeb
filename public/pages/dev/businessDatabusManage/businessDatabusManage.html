@@ -4,7 +4,7 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="查询条件" namespace="businessDatabusManage"></vc:i18n>
+                        <span><vc:i18n name="查询条件" namespace="businessDatabusManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryBusinessDatabusMethod()">
-                                <i class="fa fa-search"></i> <vc:i18n name="查询" namespace="businessDatabusManage"></vc:i18n>
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="businessDatabusManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     <h5>Databus</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddBusinessDatabusModal()">
-                            <i class="fa fa-plus"></i><vc:i18n name="添加" namespace="businessDatabusManage"></vc:i18n>
+                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="businessDatabusManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -53,22 +53,22 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">
-                                    <vc:i18n name="名称" namespace="businessDatabusManage"></vc:i18n>
+                                    <span><vc:i18n name="名称" namespace="businessDatabusManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="业务类型" namespace="businessDatabusManage"></vc:i18n>
+                                    <span><vc:i18n name="业务类型" namespace="businessDatabusManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="适配器" namespace="businessDatabusManage"></vc:i18n>
+                                    <span><vc:i18n name="适配器" namespace="businessDatabusManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="顺序" namespace="businessDatabusManage"></vc:i18n>
+                                    <span><vc:i18n name="顺序" namespace="businessDatabusManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="状态" namespace="businessDatabusManage"></vc:i18n>
+                                    <span><vc:i18n name="状态" namespace="businessDatabusManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="操作" namespace="businessDatabusManage"></vc:i18n>
+                                    <span><vc:i18n name="操作" namespace="businessDatabusManage"></vc:i18n></span>
                                 </th>
                             </tr>
                         </thead>
@@ -82,11 +82,11 @@
                                 <td class="text-center">{{businessDatabus.state=='1001'?'在用':'停用'}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditBusinessDatabusModel(businessDatabus)"><vc:i18n name="修改" namespace="businessDatabusManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditBusinessDatabusModel(businessDatabus)"><span><vc:i18n name="修改" namespace="businessDatabusManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteBusinessDatabusModel(businessDatabus)"><vc:i18n name="删除" namespace="businessDatabusManage"></vc:i18n>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteBusinessDatabusModel(businessDatabus)"><span><vc:i18n name="删除" namespace="businessDatabusManage"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>

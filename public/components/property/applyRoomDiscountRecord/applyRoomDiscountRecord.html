@@ -3,12 +3,12 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><vc:i18n name="验房跟踪" namespace="applyRoomDiscountRecord"></vc:i18n></h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="验房跟踪" namespace="applyRoomDiscountRecord"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋" namespace="applyRoomDiscountRecord"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋" namespace="applyRoomDiscountRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="applyRoomDiscountRecordInfo.roomName" type="text"
                                            disabled='disabled'
@@ -16,14 +16,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="状态" namespace="applyRoomDiscountRecord"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="状态" namespace="applyRoomDiscountRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="applyRoomDiscountRecordInfo.stateName" type="text" disabled="disabled"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="是否违规" namespace="applyRoomDiscountRecord"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="是否违规" namespace="applyRoomDiscountRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="applyRoomDiscountRecordInfo.isTrue">
                                         <option selected value="" disabled>{{vc.i18n('请选择是否违规','applyRoomDiscountRecord')}}</option>
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="备注" namespace="applyRoomDiscountRecord"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="applyRoomDiscountRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <textarea v-model="applyRoomDiscountRecordInfo.remark" :placeholder="vc.i18n('请填写备注','applyRoomDiscountRecord')"
                                               class="form-control">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="上传图片" namespace="applyRoomDiscountRecord"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="上传图片" namespace="applyRoomDiscountRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <vc:create path="frame/uploadImage" callBackListener="applyRoomDiscountRecord"
                                                callBackFunction="notifyUploadImage" namespace="applyRoomDiscountRecord">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="上传视频" namespace="applyRoomDiscountRecord"></vc:i18n></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="上传视频" namespace="applyRoomDiscountRecord"></vc:i18n></span></label>
                                 <div class="content-img col-sm-10">
                                     <vc:create path="frame/uploadVedio" callBackListener="applyRoomDiscountRecord"
                                                callBackFunction="notifyUploadVedio" namespace="applyRoomDiscountRecord">
