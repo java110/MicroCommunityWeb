@@ -27,7 +27,7 @@
                 vc.component.addOwnerRoomBindingInfo.$step.step({
                     index: 0,
                     time: 500,
-                    title: ["选择楼栋", "选择房屋", "业主信息"]
+                    title: [vc.i18n("选择楼栋", 'addOwnerRoomBinding'), vc.i18n("选择房屋", 'addOwnerRoomBinding'), vc.i18n("业主信息", 'addOwnerRoomBinding')]
                 });
                 vc.component.addOwnerRoomBindingInfo.index = vc.component.addOwnerRoomBindingInfo.$step.getIndex();
             },

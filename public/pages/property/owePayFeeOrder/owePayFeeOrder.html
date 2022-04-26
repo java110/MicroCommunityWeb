@@ -9,7 +9,7 @@
                             催缴单
                         </button> -->
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
-                            返回
+                            <vc:i18n name="返回"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -18,27 +18,26 @@
                         <thead>
                             <tr>
                                 <th class="text-center"><input type="checkbox" class="i-checks" @click="checkAll($event)"></th>
-                                <th class="text-center"><vc:i18n name="费用类型" namespace="owePayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="费用项目" namespace="owePayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="费用标识" namespace="owePayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="费用" namespace="owePayFeeOrder"></vc:i18n>ID</th>
-                                <th class="text-center"><vc:i18n name="计费起始时间" namespace="owePayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="计费结束时间" namespace="owePayFeeOrder"></vc:i18n></th>
-                                <th class="text-center"><vc:i18n name="欠费金额" namespace="owePayFeeOrder"></vc:i18n></th>
+                                <th class="text-center"><span><vc:i18n name="费用类型" namespace="owePayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="费用项目" namespace="owePayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="费用标识" namespace="owePayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="费用" namespace="owePayFeeOrder"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="计费起始时间" namespace="owePayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="计费结束时间" namespace="owePayFeeOrder"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="欠费金额" namespace="owePayFeeOrder"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="oweFee in owePayFeeOrderInfo.oweFees">
                                 <td class="text-center">
-                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="oweFee.feeId"
-                                        v-model="owePayFeeOrderInfo.selectPayFeeIds">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="oweFee.feeId" v-model="owePayFeeOrderInfo.selectPayFeeIds">
                                 </td>
                                 <td class="text-center">{{oweFee.feeTypeCdName}}</td>
                                 <td class="text-center">{{oweFee.feeName}}</td>
                                 <td class="text-center">{{oweFee.feeFlagName}}</td>
                                 <td class="text-center">{{oweFee.feeId}}</td>
                                 <td class="text-center">{{_getEndTime(oweFee)}}</td>
-                               
+
                                 <td class="text-center"> {{_getDeadlineTime(oweFee)}}</td>
                                 <td class="text-center">{{oweFee.feePrice}}</td>
                             </tr>
@@ -59,11 +58,10 @@
     <div class="row">
         <div class="col-md-9"></div>
         <div class="col-md-2">
-            缴费金额：<span style="font-size: 30px; color: red; padding-left: 0px;">{{owePayFeeOrderInfo.feePrices}}<vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span>
+            缴费金额：<span style="font-size: 30px; color: red; padding-left: 0px;">{{owePayFeeOrderInfo.feePrices}}<span><vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span></span>
         </div>
         <div class="col-md-1 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn  btn-warning  btn-lg btn-block" style="margin-left:10px;"
-                v-on:click="_payFee()"><vc:i18n name="缴费" namespace="owePayFeeOrder"></vc:i18n>
+            <button type="button" class="btn  btn-warning  btn-lg btn-block" style="margin-left:10px;" v-on:click="_payFee()"><span><vc:i18n name="缴费" namespace="owePayFeeOrder"></vc:i18n></span>
             </button>
         </div>
     </div>
@@ -72,44 +70,44 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><vc:i18n name="收费确认" namespace="owePayFeeOrder"></vc:i18n></h5>
+                    <h5 class="modal-title"><span><vc:i18n name="收费确认" namespace="owePayFeeOrder"></vc:i18n></span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="房屋" namespace="owePayFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="房屋" namespace="owePayFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.roomName}}</label>
                     </div>
-                  
+
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="金额" namespace="owePayFeeOrder"></vc:i18n>：</label>
-                        <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.feePrices}}<vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="金额" namespace="owePayFeeOrder"></vc:i18n></span>：</label>
+                        <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.feePrices}}<span><vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span></label>
                     </div>
                     <div class="row form-group">
-                        <label class="col-sm-3 col-form-label" ><vc:i18n name="支付方式" namespace="owePayFeeOrder"></vc:i18n>:</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="支付方式" namespace="owePayFeeOrder"></vc:i18n></span>:</label>
                         <div class="col-sm-9">
                             <select class="custom-select" v-model="owePayFeeOrderInfo.primeRate">
-                                <option selected disabled value="">{{vc.i18n('必填','owePayFeeOrder')}}，请选择支付方式</option>
+                                <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','owePayFeeOrder')}}</option>
                                 <option v-for="(item,index) in owePayFeeOrderInfo.primeRates" :key="index" v-if="item.statusCd != '5' && item.statusCd != '6'"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
                         </div>
-                    </div>     
+                    </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="备注" namespace="owePayFeeOrder"></vc:i18n>：</label>
+                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="备注" namespace="owePayFeeOrder"></vc:i18n></span>：</label>
                         <label class="col-sm-9 col-form-label">
-                            <textarea :placeholder="vc.i18n('可填','owePayFeeOrder')，请填写备注" class="form-control"
+                            <textarea :placeholder="vc.i18n('可填，请填写备注','owePayFeeOrder')" class="form-control"
                                               v-model="owePayFeeOrderInfo.remark">
                                     </textarea>
                         </label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_closeDoOwePayFeeModal()"><vc:i18n name="关闭" namespace="owePayFeeOrder"></vc:i18n></button>
-                    <button type="button" class="btn btn-primary" @click="_doPayFee()"><vc:i18n name="确定收费" namespace="owePayFeeOrder"></vc:i18n></button>
+                    <button type="button" class="btn btn-secondary" @click="_closeDoOwePayFeeModal()"><span><vc:i18n name="关闭" namespace="owePayFeeOrder"></vc:i18n></span></button>
+                    <button type="button" class="btn btn-primary" @click="_doPayFee()"><span><vc:i18n name="确定收费" namespace="owePayFeeOrder"></vc:i18n></span></button>
                 </div>
             </div>
         </div>
@@ -120,17 +118,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><vc:i18n name="缴费提示" namespace="owePayFeeOrder"></vc:i18n></h5>
+                    <h5 class="modal-title"><span><vc:i18n name="缴费提示" namespace="owePayFeeOrder"></vc:i18n></span></h5>
                     <button type="button " class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p><vc:i18n name="缴费成功" namespace="owePayFeeOrder"></vc:i18n></p>
+                    <p><span><vc:i18n name="缴费成功" namespace="owePayFeeOrder"></vc:i18n></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_back()"><vc:i18n name="返回" namespace="owePayFeeOrder"></vc:i18n></button>
-                    <!-- <button type="button" class="btn btn-primary" @click="_printAndBack()"><vc:i18n name="打印收据" namespace="owePayFeeOrder"></vc:i18n></button> -->
+                    <button type="button" class="btn btn-secondary" @click="_back()"><span><vc:i18n name="返回" namespace="owePayFeeOrder"></vc:i18n></span></button>
+                    <!-- <button type="button" class="btn btn-primary" @click="_printAndBack()"><span><vc:i18n name="打印收据" namespace="owePayFeeOrder"></vc:i18n></span></button> -->
                 </div>
             </div>
         </div>
