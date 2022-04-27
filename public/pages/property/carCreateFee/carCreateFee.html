@@ -62,10 +62,14 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openFeeImportExcel()">
-                            自定义模板
+                            
+                            <span><vc:i18n name="自定义模板" namespace="carCreateFee"></vc:i18n></span>
+
                         </button>
                         <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openDoCreateRoomFee()">
-                            自定义创建
+                            
+                            <span><vc:i18n name="自定义创建" namespace="carCreateFee"></vc:i18n></span>
+
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openCarCreateFeeAddModal(null,true)">
                             <i class="fa fa-plus"></i> <span><vc:i18n name="批量创建" namespace="carCreateFee"></vc:i18n></span>
