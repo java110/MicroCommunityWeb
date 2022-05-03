@@ -208,6 +208,10 @@
                 if (!window.$that) {
                     return;
                 }
+
+                if (!$that.listOweFeeInfo.fees) {
+                    return;
+                }
                 let _fees = $that.listOweFeeInfo.fees;
                 let _amountOwed = 0.0;
                 _fees.forEach(_feeItem => {
