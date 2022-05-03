@@ -209,7 +209,7 @@
                     return;
                 }
 
-                if (!$that.listOweFeeInfo.fees) {
+                if (!$that.listOweFeeInfo) {
                     return;
                 }
                 let _fees = $that.listOweFeeInfo.fees;
