@@ -24,9 +24,15 @@
                                 <input type="text" :placeholder="vc.i18n('请输入设备类型名称','machineTypeManage')" v-model="machineTypeManageInfo.conditions.machineTypeName" class=" form-control">
                             </div>
                         </div>
-                    </div>
-
-
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMachineTypeMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="machineTypeManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetMachineTypeMethod()">
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="machineTypeManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>

@@ -31,7 +31,11 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请选择小区','orgManage')" v-model="orgManageInfo.conditions.communityId" class=" form-control">
+                                        <select class="custom-select" v-model="orgManageInfo.conditions.communityId">
+                                            <option selected disabled value="">{{vc.i18n('请选择小区','orgManage')}}</option>
+                                            <option v-for="(item,index) in orgManageInfo.communitys" :value="item.communityId">
+                                              {{item.name}}</option>
+                                          </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">

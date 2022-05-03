@@ -42,6 +42,8 @@
                     function(json, res) {
                         let _machineManageInfo = JSON.parse(json);
                         let _machines = _machineManageInfo.machines;
+                        $that.parkingAreaControlVideoInfo.inMachines = [];
+                        $that.parkingAreaControlVideoInfo.outMachines = [];
                         _machines.forEach(item => {
                             if (item.direction == '3306') {
                                 $that.parkingAreaControlVideoInfo.inMachines.push(item);

@@ -17,12 +17,12 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入菜单','menuUserManage')" v-model="menuUserManageInfo.conditions.mId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入菜单','menuUserManage')" v-model="menuUserManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入列顺序','menuUserManage')'" v-model="menuUserManageInfo.conditions.seq" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入列顺序','menuUserManage')" v-model="menuUserManageInfo.conditions.seq" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -84,16 +84,13 @@
                             </tr>
                         </tfoot>
                     </table>
-                    <!-- 分页 -->
+                    
                     <vc:create path="frame/pagination"></vc:create>
                 </div>
             </div>
         </div>
     </div>
 
-
-
     <vc:create path="frame/addMenuUser" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="frame/deleteMenuUser"></vc:create>
-
 </div>

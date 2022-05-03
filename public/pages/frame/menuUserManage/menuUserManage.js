@@ -14,7 +14,7 @@
                 muId: '',
                 conditions: {
                     muId: '',
-                    mId: '',
+                    name: '',
                     seq: '',
 
                 }

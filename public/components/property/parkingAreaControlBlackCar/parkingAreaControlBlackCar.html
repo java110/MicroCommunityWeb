@@ -14,7 +14,7 @@
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
-vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar')<buttonvc.i18n(' ','parkingAreaControlBlackCar')type="vc.i18n(' ','parkingAreaControlBlackCar')button"vc.i18n(' ','parkingAreaControlBlackCar')class="btnvc.i18n(' ','parkingAreaControlBlackCar')btn-primaryvc.i18n(' ','parkingAreaControlBlackCar')btn-sm"vc.i18n(' ','parkingAreaControlBlackCar')style="margin-left:10px"
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                 v-on:click="_qureyParkingAreaControlBlackCar()">
                 查询
             </button>
@@ -33,11 +33,11 @@ vc.i18n(' ','parkingAreaControlBlackCar')vc.i18n(' ','parkingAreaControlBlackCar
             </thead>
             <tbody>
                 <tr v-for="car in parkingAreaControlBlackCar.cars">
-                    <td class="text-center">{{carBlackWhite.bwId}}</td>
-                    <td class="text-center">{{carBlackWhite.paNum}}</td>
-                    <td class="text-center">{{carBlackWhite.carNum}}</td>
-                    <td class="text-center">{{carBlackWhite.startTime}}</td>
-                    <td class="text-center">{{carBlackWhite.endTime}}</td>
+                    <td class="text-center">{{car.bwId}}</td>
+                    <td class="text-center">{{car.paNum}}</td>
+                    <td class="text-center">{{car.carNum}}</td>
+                    <td class="text-center">{{car.startTime}}</td>
+                    <td class="text-center">{{car.endTime}}</td>
                 </tr>
             </tbody>
             <tfoot>

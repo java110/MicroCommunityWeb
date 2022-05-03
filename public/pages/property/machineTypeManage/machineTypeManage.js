@@ -74,6 +74,13 @@
                 vc.component._listMachineTypes(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            //重置
+            _resetMachineTypeMethod: function () {
+                vc.component.machineTypeManageInfo.conditions.machineTypeCd = "";
+                vc.component.machineTypeManageInfo.conditions.machineTypeName = "";
+
+                vc.component._listMachineTypes(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
             _getspecEduName: function (_edu) {
                 let _retutest = '';
                 vc.component.machineTypeManageInfo.machine.forEach(_item => {

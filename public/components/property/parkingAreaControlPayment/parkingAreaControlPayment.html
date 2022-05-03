@@ -9,8 +9,9 @@
             <select class="custom-select" v-model="parkingAreaControlPaymentInfo.state">
                 <option disabled value="">{{vc.i18n('请选择车辆状态','parkingAreaControlPayment')}}</option>
                 <option value="100300">{{vc.i18n('进场状态','parkingAreaControlPayment')}}</option>
-                <option value="100400">{{vc.i18n('进场状态','parkingAreaControlPayment')}}</option>
-                <option value="100600">{{vc.i18n('进场状态','parkingAreaControlPayment')}}</option>
+                <option value="100400">{{vc.i18n('支付完成','parkingAreaControlPayment')}}</option>
+                <option value="100500">{{vc.i18n('离场状态','parkingAreaControlPayment')}}</option>
+                <option value="100600">{{vc.i18n('支付超时重新支付','parkingAreaControlPayment')}}</option>
             </select>
 
         </div>
@@ -21,7 +22,7 @@
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
-vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')vc.i18n(' ','parkingAreaControlPayment')<buttonvc.i18n(' ','parkingAreaControlPayment')type="vc.i18n(' ','parkingAreaControlPayment')button"vc.i18n(' ','parkingAreaControlPayment')class="btnvc.i18n(' ','parkingAreaControlPayment')btn-primaryvc.i18n(' ','parkingAreaControlPayment')btn-sm"vc.i18n(' ','parkingAreaControlPayment')style="margin-left:10px"
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                 v-on:click="_qureyParkingAreaControlPayment()">
                 查询
             </button>

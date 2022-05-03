@@ -12,24 +12,31 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入页面ID','feePrintPageManage')" v-model="feePrintPageManageInfo.conditions.pageId" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入名称','feePrintPageManage')" v-model="feePrintPageManageInfo.conditions.pageName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入状态','feePrintPageManage')" v-model="feePrintPageManageInfo.conditions.state" class=" form-control">
-                            </div>
+                                <select class="custom-select" v-model="feePrintPageManageInfo.conditions.state">
+                                    <option selected disabled value="">{{vc.i18n('必填','feePrintPageManage')}}，请选择状态</option>
+                                    <option value="T">{{vc.i18n('在用','feePrintPageManage')}}</option>
+                                    <option value="F">{{vc.i18n('停用','feePrintPageManage')}}</option>
+                                </select>
                         </div>
-                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeePrintPageMethod()">
                                 <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="feePrintPageManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-primary" style="margin-left: 1px" v-on:click="_resetFeePrintPageMethod()">
+                                <i class="fa fa-times"></i><span><vc:i18n name="重置" namespace="feePrintPageManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
