@@ -11,16 +11,15 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-4">
-                            <div class="col-sm-4">
-                                <div class="form-group input-group">
-                                    <input type="text" :placeholder="vc.i18n('请选择楼栋','reportFeeSummary')" v-model="reportFeeSummaryInfo.conditions.floorName" class=" form-control">
-                                    <div class="input-group-prepend">
-                                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择楼栋','reportFeeSummary')" v-model="reportFeeSummaryInfo.conditions.floorName" class=" form-control">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
                                             <i class="fa fa-search"></i> <span><vc:i18n name="选择" namespace="reportFeeSummary"></vc:i18n></span>
                                         </button>
-                                    </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
@@ -135,35 +134,36 @@
                     <!-- 分页 -->
                     <div class="row">
                         <span class="col-md-1 margin-left">
-                            <div class="row"><b><span><vc:i18n name="小计" namespace="reportFeeSummary"></vc:i18n></span></b></div>
-                            <div class="row"><b><span><vc:i18n name="大计" namespace="reportFeeSummary"></vc:i18n></span></b></div>
-                        </span>
-                        <!-- <span class="col-md-2">
+                            <div class="row"><b><span><vc:i18n name="小计" namespace="reportFeeSummary"></vc:i18n></span></b>
+                    </div>
+                    <div class="row"><b><span><vc:i18n name="大计" namespace="reportFeeSummary"></vc:i18n></span></b></div>
+                    </span>
+                    <!-- <span class="col-md-2">
                             <div class="row"><span><vc:i18n name="应收" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.totalReceivableAmount}}<span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span></div>
                             <div class="row"><span><vc:i18n name="应收" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.totalReceivableAmount}}<span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span></div>
                         </span> -->
-                        <span class="col-md-2">
+                    <span class="col-md-2">
                             <div class="row"><span><vc:i18n name="实收" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.totalReceivedAmount}}<span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="实收" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.allReceivedAmount}}<span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span></div>
-                        </span>
-                        <span class="col-md-2">
+                <div class="row"><span><vc:i18n name="实收" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.allReceivedAmount}}<span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span></div>
+                </span>
+                <span class="col-md-2">
                             <div class="row"><span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>: {{_computeTotalHisOweReceivedAmount()}}<span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.allHisOweReceivedAmount}}<span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span></div>
-                        </span>
-                    </div>
-                    <div class="row margin-top-xs">
-                        <div class="col-sm-9">
-                            <div> <span><vc:i18n name="欠费金额" namespace="reportFeeSummary"></vc:i18n></span> = 历史欠费 + 当月应收 - 当月实收 - 欠费追回</div>
-                            <div> <span><vc:i18n name="历史欠费" namespace="reportFeeSummary"></vc:i18n></span>：当月之前欠费；当月应收：当前月收费；当月实收：当月收到中属于当前月应收费用部分；</div>
-                            <div> <span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>：当月收到中属于历史欠费部分；预交费用：当月收到中属于预交费用部分</div>
-                        </div>
-                        <div class="col-sm-3 float-right">
-                            <vc:create path="frame/pagination"></vc:create>
-                        </div>
-                    </div>
-                </div>
+            <div class="row"><span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.allHisOweReceivedAmount}}<span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span></div>
+            </span>
+        </div>
+        <div class="row margin-top-xs">
+            <div class="col-sm-9">
+                <div> <span><vc:i18n name="欠费金额" namespace="reportFeeSummary"></vc:i18n></span> = 历史欠费 + 当月应收 - 当月实收 - 欠费追回</div>
+                <div> <span><vc:i18n name="历史欠费" namespace="reportFeeSummary"></vc:i18n></span>：当月之前欠费；当月应收：当前月收费；当月实收：当月收到中属于当前月应收费用部分；</div>
+                <div> <span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>：当月收到中属于历史欠费部分；预交费用：当月收到中属于预交费用部分</div>
+            </div>
+            <div class="col-sm-3 float-right">
+                <vc:create path="frame/pagination"></vc:create>
             </div>
         </div>
     </div>
-    <vc:create path="property/searchFloor" emitChooseFloor="reportFeeSummary" emitLoadData="xx"></vc:create>
+</div>
+</div>
+</div>
+<vc:create path="property/searchFloor" emitChooseFloor="reportFeeSummary" emitLoadData="xx"></vc:create>
 </div>
