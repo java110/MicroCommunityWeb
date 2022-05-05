@@ -14,9 +14,9 @@
                 titleId: '',
                 conditions: {
                     titleType: '',
-                    title: '',
+                    itemTitle: '',
                     titleId: '',
-                    itemId: '',
+                    seq: '',
                     communityId: vc.getCurrentCommunity().communityId
 
                 }

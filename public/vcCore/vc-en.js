@@ -26,6 +26,7 @@
         "审核": "Audit",
         "解绑": "Unbind",
         "重置密码": "Reset Password",
+        "打印": "Print",
         "indexContext": { "业主": "owner", "房屋": "Room", "停车位": "Parking Space", "商铺": "shop", "业主信息": "owner", "已入住": "Checked in", "未入住": "No check in", "房屋信息": "Housing", "空闲": "idle", "车位信息": "Parking Space", "已使用": "used", "商铺信息": "Shop", "已出售": "sold " },
         "indexArrears": { "待办已办": "To Do", "待办": "to do", "已办": "done", "投诉": "complaint", "报修": "Repair", "采购": "purchase", "领用": "acquisition " },
         "feePrintPageManage": { "小区": "community", "修改": "modification", "操作": "operation", "状态": "status", "查询条件": "query condition", "名称": "name", "请输入状态": "please enter status", "删除": "delete", "收据页面": "receipt page", "查询": "query", "请输入页面": "please enter page", "收据模板": "receipt template", "启用": "enable", "收据": "receipt", "请输入名称": "please input name" },
