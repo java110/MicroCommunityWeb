@@ -5,15 +5,14 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="查询条件" namespace="reportOwnerPayFee"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        
+
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <!--费用类型-->
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="reportOwnerPayFeeInfo.conditions.feeTypeCd"
-                                @click="_changeReporficientFeeTypeCd()">
+                            <select class="custom-select" v-model="reportOwnerPayFeeInfo.conditions.feeTypeCd" @click="_changeReporficientFeeTypeCd()">
                                 <option selected value="">{{vc.i18n('请选择收费大类','reportOwnerPayFee')}}</option>
                                 <option v-for="(item,index) in reportOwnerPayFeeInfo.feeTypeCds" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
@@ -23,8 +22,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <!-- @click="_changeReporficientConfigId()"-->
-                                <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportOwnerPayFeeInfo.conditions.configId">
+                                <select class="form-control-md form-control input-s-sm inline" v-model="reportOwnerPayFeeInfo.conditions.configId">
                                     <option selected value="">{{vc.i18n('请选择收费项','reportOwnerPayFee')}}</option>
                                     <option v-for="(item,index) in reportOwnerPayFeeInfo.feeConfigDtos" :key="index"
                                         :value="item.configId">
@@ -35,10 +33,9 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text"
-                                    class="form-control form-control-md"
-                                    :placeholder="vc.i18n('请填写房屋编号','reportOwnerPayFee')"
-                                    v-model="reportOwnerPayFeeInfo.conditions.roomName">
+                                <input type="text" class="form-control form-control-md" :placeholder="vc.i18n('请填写房屋编号','reportOwnerPayFee')" @input="_meterInputRoom()" v-model="reportOwnerPayFeeInfo.conditions.roomName">
+                                <vc:create path="property/inputSearchRoom"></vc:create>
+
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -50,17 +47,13 @@
                     <div class="row">
                         <!--费用类型-->
                         <div class="col-sm-3">
-                            <input type="text"
-                                    class="form-control form-control-md"
-                                    :placeholder="vc.i18n('请填写年份','reportOwnerPayFee')"
-                                    v-model="reportOwnerPayFeeInfo.conditions.pfYear">
+                            <input type="text" class="form-control form-control-md" :placeholder="vc.i18n('请填写年份','reportOwnerPayFee')" v-model="reportOwnerPayFeeInfo.conditions.pfYear">
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text"
-                                    class="form-control form-control-md"
-                                    :placeholder="vc.i18n('请填写业主名称','reportOwnerPayFee')"
-                                    v-model="reportOwnerPayFeeInfo.conditions.ownerName">
+                                <input type="text" class="form-control form-control-md" :placeholder="vc.i18n('请填写业主名称','reportOwnerPayFee')" @input="_meterInputOwner()" v-model="reportOwnerPayFeeInfo.conditions.ownerName">
+                                <vc:create path="property/inputSearchOwner"></vc:create>
+
                             </div>
                         </div>
                     </div>
@@ -82,55 +75,55 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center"><span><vc:i18n name="业主" namespace="reportOwnerPayFee"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="房屋" namespace="reportOwnerPayFee"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="费用项目" namespace="reportOwnerPayFee"></vc:i18n></span></th>
-                            <th class="text-center">1月</th>
-                            <th class="text-center">2月</th>
-                            <th class="text-center">3月</th>
-                            <th class="text-center">4月</th>
-                            <th class="text-center">5月</th>
-                            <th class="text-center">6月</th>
-                            <th class="text-center">7月</th>
-                            <th class="text-center">8月</th>
-                            <th class="text-center">9月</th>
-                            <th class="text-center">10月</th>
-                            <th class="text-center">11月</th>
-                            <th class="text-center">12月</th>
-                            <th class="text-center"><span><vc:i18n name="合计" namespace="reportOwnerPayFee"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="应收" namespace="reportOwnerPayFee"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="预收" namespace="reportOwnerPayFee"></vc:i18n></span></th>
-                        </tr>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="业主" namespace="reportOwnerPayFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="房屋" namespace="reportOwnerPayFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="费用项目" namespace="reportOwnerPayFee"></vc:i18n></span></th>
+                                <th class="text-center">1月</th>
+                                <th class="text-center">2月</th>
+                                <th class="text-center">3月</th>
+                                <th class="text-center">4月</th>
+                                <th class="text-center">5月</th>
+                                <th class="text-center">6月</th>
+                                <th class="text-center">7月</th>
+                                <th class="text-center">8月</th>
+                                <th class="text-center">9月</th>
+                                <th class="text-center">10月</th>
+                                <th class="text-center">11月</th>
+                                <th class="text-center">12月</th>
+                                <th class="text-center"><span><vc:i18n name="合计" namespace="reportOwnerPayFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="应收" namespace="reportOwnerPayFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="预收" namespace="reportOwnerPayFee"></vc:i18n></span></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(fee,index) in reportOwnerPayFeeInfo.ownerPayFees">
-                            <td class="text-center">{{fee.ownerName}}</td>
-                            <td class="text-center">{{fee.roomName}}</td>
-                            <td class="text-center">{{fee.feeName}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,1)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,2)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,3)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,4)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,5)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,6)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,7)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,8)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,9)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,10)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,11)}}</td>
-                            <td class="text-center">{{_getAmountByMonth(fee,12)}}</td>
-                            <td class="text-center">{{_getTotalAmount(fee)}}</td>
-                            <td class="text-center">{{_getReceivableTotalAmount(fee)}}</td>
-                            <td class="text-center">{{_getCollectTotalAmount(fee)}}</td>
-                        </tr>
+                            <tr v-for="(fee,index) in reportOwnerPayFeeInfo.ownerPayFees">
+                                <td class="text-center">{{fee.ownerName}}</td>
+                                <td class="text-center">{{fee.roomName}}</td>
+                                <td class="text-center">{{fee.feeName}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,1)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,2)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,3)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,4)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,5)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,6)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,7)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,8)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,9)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,10)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,11)}}</td>
+                                <td class="text-center">{{_getAmountByMonth(fee,12)}}</td>
+                                <td class="text-center">{{_getTotalAmount(fee)}}</td>
+                                <td class="text-center">{{_getReceivableTotalAmount(fee)}}</td>
+                                <td class="text-center">{{_getCollectTotalAmount(fee)}}</td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="20">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="20">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

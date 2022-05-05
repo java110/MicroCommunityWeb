@@ -8,6 +8,8 @@
         data: {
             roomStructureInfo: {
                 rooms: [],
+                parkRooms: {},
+                layerRoomCount: 4,
 
             }
         },
@@ -37,6 +39,8 @@
                     function(json, res) {
                         let listRoomData = JSON.parse(json);
                         $that.roomStructureInfo.rooms = listRoomData.data;
+
+                        $that.supportPark()
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
@@ -62,6 +66,26 @@
                 })
 
                 vc.jumpToPage('/#/pages/property/simplifyAcceptance?tab=业务受理');
+
+            },
+            supportPark: function() {
+                let _parkRooms = $that.roomStructureInfo.parkRooms;
+                if ($that.roomStructureInfo.rooms.length < 1) {
+                    return;
+                }
+                $that.roomStructureInfo.rooms.forEach(item => {
+                    if (!_parkRooms.hasOwnProperty(item.layer)) {
+                        _parkRooms[item.layer] = [];
+                    }
+
+                    _parkRooms[item.layer].push(item);
+                });
+
+                $that.roomStructureInfo.parkRooms = _parkRooms;
+
+                $that.roomStructureInfo.layerRoomCount = _parkRooms[Object.keys(_parkRooms)[0]].length;
+            },
+            hasInParkRooms: function() {
 
             }
 

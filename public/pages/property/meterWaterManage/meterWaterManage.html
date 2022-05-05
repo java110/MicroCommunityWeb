@@ -27,7 +27,8 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,如1-1-1123','meterWaterManage')" v-model="meterWaterManageInfo.conditions.roomNum" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,如1-1-1123','meterWaterManage')" @input="_meterInputRoom()" v-model="meterWaterManageInfo.conditions.roomNum" class=" form-control">
+                                <vc:create path="property/inputSearchRoom"></vc:create>
                             </div>
                         </div>
                         <div class="col-sm-2">

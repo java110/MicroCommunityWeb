@@ -63,6 +63,11 @@
                 $that.simplifyAcceptanceInfo.searchValue = _owner.name;
                 $that._doSearch();
             });
+            vc.on('simplifyAcceptance', 'notifyRoom', function(_room) {
+                $that.simplifyAcceptanceInfo.searchValue = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
+                $that._doSearch();
+            });
+
             vc.on('simplifyAcceptance', 'selectRoom', function(_param) {
                 $that.simplifyAcceptanceInfo.searchType = '1';
                 $that.simplifyAcceptanceInfo.searchValue = _param.roomName;
@@ -231,11 +236,21 @@
                 vc.jumpToPage('/#/pages/property/ownerExitRoom')
             },
             _simplifyInputOwner: function() {
-                if ($that.simplifyAcceptanceInfo.searchType != "2" && $that.simplifyAcceptanceInfo.searchType != "6") {
+                if ($that.simplifyAcceptanceInfo.searchType != "2" && $that.simplifyAcceptanceInfo.searchType != "6" && $that.simplifyAcceptanceInfo.searchType != "1") {
                     return;
                 }
                 if ($that.simplifyAcceptanceInfo.timer) {
                     clearTimeout($that.simplifyAcceptanceInfo.timer)
+                }
+
+                if ($that.simplifyAcceptanceInfo.searchType == "1") {
+                    $that.simplifyAcceptanceInfo.timer = setTimeout(() => {
+                        vc.emit('inputSearchRoomInfo', 'searchRoom', {
+                            callComponent: 'simplifyAcceptance',
+                            roomName: $that.simplifyAcceptanceInfo.searchValue
+                        });
+                    }, 1500)
+                    return;
                 }
                 let _ownerTypeCd = $that.simplifyAcceptanceInfo.searchType == "2" ? '1001' : '1002,1003,1005'
                 $that.simplifyAcceptanceInfo.timer = setTimeout(() => {
