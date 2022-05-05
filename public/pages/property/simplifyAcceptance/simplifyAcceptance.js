@@ -34,7 +34,8 @@
                 roomSubType: '',
                 roomArea: '',
                 sex: '',
-                roomRent: ''
+                roomRent: '',
+                timer: {}
             }
         },
         _initMethod: function() {
@@ -57,6 +58,10 @@
                 $that.simplifyAcceptanceInfo.roomRemark = _room.remark;
                 $that.simplifyAcceptanceInfo.roomName = _room.floorNum + '栋' + _room.unitNum + '单元' + _room.roomNum;
                 vc.emit('simplifyRoomFee', 'switch', $that.simplifyAcceptanceInfo)
+            });
+            vc.on('simplifyAcceptance', 'notifyOwner', function(_owner) {
+                $that.simplifyAcceptanceInfo.searchValue = _owner.name;
+                $that._doSearch();
             });
             vc.on('simplifyAcceptance', 'selectRoom', function(_param) {
                 $that.simplifyAcceptanceInfo.searchType = '1';
@@ -224,6 +229,22 @@
             },
             _simplifyOwnerExitRoom: function() {
                 vc.jumpToPage('/#/pages/property/ownerExitRoom')
+            },
+            _simplifyInputOwner: function() {
+                if ($that.simplifyAcceptanceInfo.searchType != "2" && $that.simplifyAcceptanceInfo.searchType != "6") {
+                    return;
+                }
+                if ($that.simplifyAcceptanceInfo.timer) {
+                    clearTimeout($that.simplifyAcceptanceInfo.timer)
+                }
+                let _ownerTypeCd = $that.simplifyAcceptanceInfo.searchType == "2" ? '1001' : '1002,1003,1005'
+                $that.simplifyAcceptanceInfo.timer = setTimeout(() => {
+                    vc.emit('inputSearchOwnerInfo', 'searchOwner', {
+                        callComponent: 'simplifyAcceptance',
+                        ownerTypeCd: _ownerTypeCd,
+                        ownerName: $that.simplifyAcceptanceInfo.searchValue
+                    });
+                }, 1500)
             }
         }
     });

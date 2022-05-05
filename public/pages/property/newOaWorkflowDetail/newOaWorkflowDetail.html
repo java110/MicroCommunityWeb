@@ -119,7 +119,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="工单说明" namespace="newOaWorkflowDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <textarea :placeholder="vc.i18n('必填','newOaWorkflowDetail')，请填写工单说明" class="form-control" v-model="newOaWorkflowDetailInfo.audit.auditMessage">
+                                <textarea :placeholder="vc.i18n('必填，请填写工单说明','newOaWorkflowDetail')" class="form-control" v-model="newOaWorkflowDetailInfo.audit.auditMessage">
                                 </textarea>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                         <div class="form-group row" v-if="newOaWorkflowDetailInfo.audit.auditCode == '1100' && newOaWorkflowDetailInfo.nextAudit.assignee == '-2'">
                             <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="下一处理人" namespace="newOaWorkflowDetail"></vc:i18n></span></label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" :placeholder="vc.i18n('必填','newOaWorkflowDetail')，请选择下一处理人" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
+                                <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择下一处理人','newOaWorkflowDetail')" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
                             </div>
                             <div class="col-sm-2">
                                 <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
@@ -139,7 +139,7 @@
                         <div class="form-group row" v-if="newOaWorkflowDetailInfo.audit.auditCode == '1300'">
                             <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="下一处理人" namespace="newOaWorkflowDetail"></vc:i18n></span></label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" :placeholder="vc.i18n('必填','newOaWorkflowDetail')，请选择下一处理人" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
+                                <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择下一处理人','newOaWorkflowDetail')" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
                             </div>
                             <div class="col-sm-2">
                                 <button class="btn btn-white " type="button" v-on:click="chooseStaff()">

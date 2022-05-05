@@ -1,6 +1,6 @@
 (function(vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+    var DEFAULT_ROWS = 100;
     vc.extends({
         data: {
             simplifyCarFeeInfo: {

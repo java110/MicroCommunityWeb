@@ -3,7 +3,7 @@
  **/
 (function(vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+    var DEFAULT_ROWS = 100;
     vc.extends({
         data: {
             simplifyRoomFeeInfo: {
@@ -89,7 +89,7 @@
                             _totalAmount += parseFloat(item.amountOwed);
                         })
                         $that.simplifyRoomFeeInfo.totalAmount = _totalAmount.toFixed(2);
-                        
+
                         vc.component.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees.sort($that._roomFeeCompare);
 
                         vc.emit('simplifyRoomFee', 'paginationPlus', 'init', {
@@ -102,7 +102,7 @@
                     }
                 );
             },
-            _roomFeeCompare:function(a,b){
+            _roomFeeCompare: function(a, b) {
                 var val1 = a.payerObjName;
                 var val2 = b.payerObjName;
                 if (val1 < val2) {
@@ -111,7 +111,7 @@
                     return 1;
                 } else {
                     return 0;
-                }      
+                }
             },
             _toOwnerPayFee: function() {
                 vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.simplifyRoomFeeInfo.roomId + "&payObjType=3333&roomName=" + $that.simplifyRoomFeeInfo.roomName);
