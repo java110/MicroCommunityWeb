@@ -10,22 +10,20 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="车牌号" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <input v-model="addCarInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','addCar')"
-                                       class="form-control">
+                                <input v-model="addCarInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','addCar')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="车品牌" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <input v-model="addCarInfo.carBrand" type="text" :placeholder="vc.i18n('必填，请填写车品牌，如 宝马','addCar')X6"
-                                       class="form-control">
+                                <input v-model="addCarInfo.carBrand" type="text" :placeholder="vc.i18n('必填，请填写车品牌，如 宝马X6','addCar')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="车类型" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="addCarInfo.carType">
-                                    <option selected disabled value="">{{vc.i18n('必填','addCar')}}，请选择类型</option>
+                                    <option selected disabled value="">{{vc.i18n('必填，请选择类型','addCar')}}</option>
                                     <option v-for="carType in carTypes" :key="carType.statusCd"
                                             v-bind:value="carType.statusCd">{{carType.name}}
                                     </option>
@@ -35,15 +33,14 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="颜色" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <input v-model="addCarInfo.carColor" type="text" :placeholder="vc.i18n('必填，请填写车颜色，如白色','addCar')"
-                                       class="form-control">
+                                <input v-model="addCarInfo.carColor" type="text" :placeholder="vc.i18n('必填，请填写车颜色，如白色','addCar')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="车牌类型" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="addCarInfo.carNumType">
-                                    <option selected disabled value="">{{vc.i18n('必填','addCar')}}，请选择车牌类型</option>
+                                    <option selected disabled value="">{{vc.i18n('必填，请选择车牌类型','addCar')}}</option>
                                     <option value="H">{{vc.i18n('月租车','addCar')}}</option>
                                     <option value="S">{{vc.i18n('出售车辆','addCar')}}</option>
                                 </select>
@@ -52,15 +49,13 @@
                         <div class="form-group row" v-show="addCarInfo.carNumType == 'H'">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="起租时间" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <input v-model="addCarInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写起租时间','addCar')"
-                                       class="form-control startTime">
+                                <input v-model="addCarInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写起租时间','addCar')" class="form-control startTime">
                             </div>
                         </div>
                         <div class="form-group row" v-show="addCarInfo.carNumType == 'H'">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="结租时间" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <input v-model="addCarInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结租时间','addCar')"
-                                       class="form-control endTime">
+                                <input v-model="addCarInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结租时间','addCar')" class="form-control endTime">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -82,8 +77,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <textarea v-model="addCarInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','addCar')" rows="3"
-                                          class="form-control"></textarea>
+                                <textarea v-model="addCarInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','addCar')" rows="3" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>

@@ -23,29 +23,25 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><span><vc:i18n name="报修人" namespace="addRoomRepair"></vc:i18n></span></label>
                         <div class="col-sm-10">
-                            <input v-model="addRoomRepairInfo.repairName" type="text" :placeholder="vc.i18n('必填','addRoomRepair')，请填写报修人"
-                                   class="form-control">
+                            <input v-model="addRoomRepairInfo.repairName" type="text" :placeholder="vc.i18n('必填，请填写报修人','addRoomRepair')" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><span><vc:i18n name="联系方式" namespace="addRoomRepair"></vc:i18n></span></label>
                         <div class="col-sm-10">
-                            <input v-model="addRoomRepairInfo.tel" type="number" :placeholder="vc.i18n('必填','addRoomRepair')，请填写联系方式"
-                                   class="form-control">
+                            <input v-model="addRoomRepairInfo.tel" type="number" :placeholder="vc.i18n('必填，请填写联系方式','addRoomRepair')" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><span><vc:i18n name="预约时间" namespace="addRoomRepair"></vc:i18n></span></label>
                         <div class="col-sm-10">
-                            <input v-model="addRoomRepairInfo.appointmentTime" type="text"
-                                   :placeholder="vc.i18n('必填','addRoomRepair')，请填写预约时间" class="form-control addAppointmentTime">
+                            <input v-model="addRoomRepairInfo.appointmentTime" type="text" :placeholder="vc.i18n('必填，请填写预约时间','addRoomRepair')" class="form-control addAppointmentTime">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><span><vc:i18n name="报修内容" namespace="addRoomRepair"></vc:i18n></span></label>
                         <div class="col-sm-10">
-                            <textarea :placeholder="vc.i18n('必填','addRoomRepair')，请填写报修内容" cols="15" class="form-control"
-                                      v-model="addRoomRepairInfo.context"></textarea>
+                            <textarea :placeholder="vc.i18n('必填，请填写报修内容','addRoomRepair')" cols="15" class="form-control" v-model="addRoomRepairInfo.context"></textarea>
                         </div>
                     </div>
 
@@ -58,8 +54,7 @@
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
             <button type="button" class="btn btn-warning" style="margin-left:10px;" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="addRoomRepair"></vc:i18n></span>
             </button>
-            <button type="button" class="btn btn-primary" style="margin-left:10px;"
-                v-on:click="saveOwnerRepairInfo()"><span><vc:i18n name="提交" namespace="addRoomRepair"></vc:i18n></span>
+            <button type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="saveOwnerRepairInfo()"><span><vc:i18n name="提交" namespace="addRoomRepair"></vc:i18n></span>
             </button>
         </div>
     </div>

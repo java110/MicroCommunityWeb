@@ -15,12 +15,10 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12" v-if="item.titleType == '3003'">
-                                <textarea v-model="item.valueContent" :placeholder="vc.i18n('必填','userQuestionAnswerManage')，请填写"
-                                    class="form-control"></textarea>
+                                <textarea v-model="item.valueContent" :placeholder="vc.i18n('必填，请填写','userQuestionAnswerManage')" class="form-control"></textarea>
                             </div>
                             <div class="col-sm-12" v-else-if="item.titleType == '1001'">
-                                <div class="checkbox custom-control-inline"
-                                    v-for="(valueItem,valueIndex) in item.questionAnswerTitleValues">
+                                <div class="checkbox custom-control-inline" v-for="(valueItem,valueIndex) in item.questionAnswerTitleValues">
                                     <label><input type="radio" :name="item.qaTitle" v-model="item.valueContent"
                                             :value="valueItem.valueId">
                                         <span
@@ -30,8 +28,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-12" v-else>
-                                <div class="checkbox custom-control-inline"
-                                    v-for="(valueItem,valueIndex) in item.questionAnswerTitleValues">
+                                <div class="checkbox custom-control-inline" v-for="(valueItem,valueIndex) in item.questionAnswerTitleValues">
                                     <label>
                                         <input type="checkbox" v-model="item.valueContent" :value="valueItem.valueId">
                                         <span

@@ -3,67 +3,62 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <select class="custom-select"
-                            v-model="userQuestionAnswerManageInfo.settingId" @change="_listQuestionAnswerTitles()">
+                    <select class="custom-select" v-model="userQuestionAnswerManageInfo.settingId" @change="_listQuestionAnswerTitles()">
                         <option selected value="">{{vc.i18n('请选择登记项目','reportInfoAnswerManage')}}</option>
                         <option v-for="(item,index) in userQuestionAnswerManageInfo.reportInfoSettings" :key="index"
                                 :value="item.settingId">{{item.name}}
                         </option>
                     </select>
                     <div class="ibox-tools" style="top:10px;"></div>
-                    </div>
                 </div>
-                <div class="ibox-content">
-                    <div v-for="(item,index) in userQuestionAnswerManageInfo.questionAnswerTitles">
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-form-label">{{index+1}}、{{item.title}}</label>
+            </div>
+            <div class="ibox-content">
+                <div v-for="(item,index) in userQuestionAnswerManageInfo.questionAnswerTitles">
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label">{{index+1}}、{{item.title}}</label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12" v-if="item.titleType == '3003'">
+                            <textarea v-model="item.valueContent" :placeholder="vc.i18n('必填，请填写','reportInfoAnswerManage')" class="form-control"></textarea>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-12" v-if="item.titleType == '3003'">
-                                <textarea v-model="item.valueContent" :placeholder="vc.i18n('必填','reportInfoAnswerManage')，请填写"
-                                    class="form-control"></textarea>
-                            </div>
-                            <div class="col-sm-12" v-else-if="item.titleType == '1001'">
-                                <div class="checkbox custom-control-inline"
-                                    v-for="(valueItem,valueIndex) in item.reportInfoSettingTitleValueDtos">
-                                    <label><input type="radio" :name="item.title" v-model="item.valueContent"
+                        <div class="col-sm-12" v-else-if="item.titleType == '1001'">
+                            <div class="checkbox custom-control-inline" v-for="(valueItem,valueIndex) in item.reportInfoSettingTitleValueDtos">
+                                <label><input type="radio" :name="item.title" v-model="item.valueContent"
                                             :value="valueItem.valueId">
                                         <span
                                             class="margin-right-xs margin-left-xs">{{String.fromCharCode(valueIndex+65)}}</span>
                                         {{valueItem.qaValue}}
                                     </label>
-                                </div>
                             </div>
-                            <div class="col-sm-12" v-else>
-                                <div class="checkbox custom-control-inline"
-                                    v-for="(valueItem,valueIndex) in item.reportInfoSettingTitleValueDtos">
-                                    <label>
+                        </div>
+                        <div class="col-sm-12" v-else>
+                            <div class="checkbox custom-control-inline" v-for="(valueItem,valueIndex) in item.reportInfoSettingTitleValueDtos">
+                                <label>
                                         <input type="checkbox" v-model="item.valueContent" :value="valueItem.valueId">
                                         <span
                                             class="margin-right-xs margin-left-xs">{{String.fromCharCode(valueIndex+65)}}</span>
                                         {{valueItem.qaValue}}
                                     </label>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row" v-if="userQuestionAnswerManageInfo.moreCondition">
+                </div>
+                <div class="row" v-if="userQuestionAnswerManageInfo.moreCondition">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" :placeholder="vc.i18n('请输入被登记人名称','reportInfoAnswerManage')"
-                                v-model="userQuestionAnswerManageInfo.personName" class=" form-control">
+                            <input type="text" :placeholder="vc.i18n('请输入被登记人名称','reportInfoAnswerManage')" v-model="userQuestionAnswerManageInfo.personName" class=" form-control">
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="">
-        <button class="btn btn-primary float-right" type="button" v-on:click="_saveUserQuestionAnswer()"><i
+</div>
+<div class="">
+    <button class="btn btn-primary float-right" type="button" v-on:click="_saveUserQuestionAnswer()"><i
                 class="fa fa-check"></i>&nbsp;提交
         </button>
-        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="reportInfoAnswerManage"></vc:i18n></span>
+    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="reportInfoAnswerManage"></vc:i18n></span>
         </button>
-    </div>
+</div>
 </div>

@@ -54,7 +54,7 @@
                                 </select>
                                 </td>
                                 <td class="text-center" style="vertical-align: inherit;">
-                                    <input v-model="resourceStore.curStock" type="number" :placeholder="vc.i18n('必填','allocationStorehouseApplyManage')，请填写调拨数量" class="form-control" style="width: 50%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
+                                    <input v-model="resourceStore.curStock" type="number" :placeholder="vc.i18n('必填，请填写调拨数量','allocationStorehouseApplyManage')" class="form-control" style="width: 50%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
                                 </td>
                                 <td class="text-center" style="vertical-align: inherit;">
                                     <div class="btn-group">
@@ -89,7 +89,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><span><vc:i18n name="申请说明" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
                         <div class="col-sm-10 ">
-                            <textarea v-model="allocationStorehouseManageInfo.remark" :placeholder="vc.i18n('必填','allocationStorehouseApplyManage')，请填写申请说明" class="form-control"></textarea>
+                            <textarea v-model="allocationStorehouseManageInfo.remark" :placeholder="vc.i18n('必填，请填写申请说明','allocationStorehouseApplyManage')" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
@@ -107,19 +107,19 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="所属公司" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <input :placeholder="vc.i18n('必填','allocationStorehouseApplyManage')，请填写所属公司" class="form-control" v-model="allocationStorehouseManageInfo.companyName" readonly/>
+                        <input :placeholder="vc.i18n('必填，请填写所属公司','allocationStorehouseApplyManage')" class="form-control" v-model="allocationStorehouseManageInfo.companyName" readonly/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="所属部门" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <input :placeholder="vc.i18n('必填','allocationStorehouseApplyManage')，请填写所属部门" class="form-control" v-model="allocationStorehouseManageInfo.departmentName" readonly/>
+                        <input :placeholder="vc.i18n('必填，请填写所属部门','allocationStorehouseApplyManage')" class="form-control" v-model="allocationStorehouseManageInfo.departmentName" readonly/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="员工" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <input :placeholder="vc.i18n('必填','allocationStorehouseApplyManage')，请填写所属员工" class="form-control" v-model="allocationStorehouseManageInfo.staffName" readonly/>
+                        <input :placeholder="vc.i18n('必填，请填写所属员工','allocationStorehouseApplyManage')" class="form-control" v-model="allocationStorehouseManageInfo.staffName" readonly/>
                     </div>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="员工" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" :placeholder="vc.i18n('必填','allocationStorehouseApplyManage')，请选择下一处理人" disabled v-model="allocationStorehouseManageInfo.staffName">
+                        <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择下一处理人','allocationStorehouseApplyManage')" disabled v-model="allocationStorehouseManageInfo.staffName">
                     </div>
                     <div class="col-sm-2">
                         <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
