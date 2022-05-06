@@ -59,10 +59,9 @@
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name="申请人" namespace="addParkingSpaceApply"></vc:i18n></span></label>
                                 <div class="col-sm-6">
                                     <input v-model="addParkingSpaceApplyInfo.applyPersonName" type="text" :placeholder="vc.i18n('必填，请填写申请人','addParkingSpaceApply')" class="form-control">
-
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseOwner()">
-                      选择业主
-                  </button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseOwner()">选择业主</button>
                                 </div>
                             </div>
                             <div class="form-group row">

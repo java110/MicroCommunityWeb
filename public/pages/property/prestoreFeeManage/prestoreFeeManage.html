@@ -11,8 +11,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('房屋','prestoreFeeManage')ID" v-model="prestoreFeeManageInfo.conditions.roomId"
-                                       class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('房屋ID','prestoreFeeManage')" v-model="prestoreFeeManageInfo.conditions.roomId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -59,55 +58,53 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center"><span><vc:i18n name="预付费用" namespace="prestoreFeeManage"></vc:i18n></span>ID</th>
-                            <th class="text-center"><span><vc:i18n name="房屋" namespace="prestoreFeeManage"></vc:i18n></span>ID</th>
-                            <th class="text-center"><span><vc:i18n name="预付类型" namespace="prestoreFeeManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="对象类型" namespace="prestoreFeeManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="预付金额" namespace="prestoreFeeManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="状态" namespace="prestoreFeeManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="备注" namespace="prestoreFeeManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="操作" namespace="prestoreFeeManage"></vc:i18n></span></th>
-                        </tr>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="预付费用" namespace="prestoreFeeManage"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="房屋" namespace="prestoreFeeManage"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="预付类型" namespace="prestoreFeeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="对象类型" namespace="prestoreFeeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="预付金额" namespace="prestoreFeeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="prestoreFeeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="备注" namespace="prestoreFeeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="prestoreFeeManage"></vc:i18n></span></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="prestoreFee in prestoreFeeManageInfo.prestoreFees">
-                            <td class="text-center">{{prestoreFee.prestoreFeeId}}</td>
-                            <td class="text-center">{{prestoreFee.roomId}}</td>
-                            <td class="text-center">
-                                <span v-if="prestoreFee.prestoreFeeType == 8003"><span><vc:i18n name="水费" namespace="prestoreFeeManage"></vc:i18n></span></span>
-                                <span v-if="prestoreFee.prestoreFeeType == 8004"><span><vc:i18n name="电费" namespace="prestoreFeeManage"></vc:i18n></span></span>
-                            </td>
-                            <td class="text-center">
-                                <span v-if="prestoreFee.prestoreFeeObjType == 3333"><span><vc:i18n name="房屋" namespace="prestoreFeeManage"></vc:i18n></span></span>
-                                <span v-if="prestoreFee.prestoreFeeObjType == 6666"><span><vc:i18n name="车位" namespace="prestoreFeeManage"></vc:i18n></span></span>
-                            </td>
-                            <td class="text-center">{{prestoreFee.prestoreFeeAmount}}</td>
-                            <td class="text-center">
-                                <span v-if="prestoreFee.state == 1001"><span><vc:i18n name="未使用" namespace="prestoreFeeManage"></vc:i18n></span></span>
-                                <span v-if="prestoreFee.state == 2002"><span><vc:i18n name="已使用" namespace="prestoreFeeManage"></vc:i18n></span></span>
-                            </td>
-                            <td class="text-center">{{prestoreFee.remark}}</td>
-                            <td class="text-center">
-                                <div class="btn-group" v-if="prestoreFee.state == '1001'">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditPrestoreFeeModel(prestoreFee)"><span><vc:i18n name="修改" namespace="prestoreFeeManage"></vc:i18n></span>
+                            <tr v-for="prestoreFee in prestoreFeeManageInfo.prestoreFees">
+                                <td class="text-center">{{prestoreFee.prestoreFeeId}}</td>
+                                <td class="text-center">{{prestoreFee.roomId}}</td>
+                                <td class="text-center">
+                                    <span v-if="prestoreFee.prestoreFeeType == 8003"><span><vc:i18n name="水费" namespace="prestoreFeeManage"></vc:i18n></span></span>
+                                    <span v-if="prestoreFee.prestoreFeeType == 8004"><span><vc:i18n name="电费" namespace="prestoreFeeManage"></vc:i18n></span></span>
+                                </td>
+                                <td class="text-center">
+                                    <span v-if="prestoreFee.prestoreFeeObjType == 3333"><span><vc:i18n name="房屋" namespace="prestoreFeeManage"></vc:i18n></span></span>
+                                    <span v-if="prestoreFee.prestoreFeeObjType == 6666"><span><vc:i18n name="车位" namespace="prestoreFeeManage"></vc:i18n></span></span>
+                                </td>
+                                <td class="text-center">{{prestoreFee.prestoreFeeAmount}}</td>
+                                <td class="text-center">
+                                    <span v-if="prestoreFee.state == 1001"><span><vc:i18n name="未使用" namespace="prestoreFeeManage"></vc:i18n></span></span>
+                                    <span v-if="prestoreFee.state == 2002"><span><vc:i18n name="已使用" namespace="prestoreFeeManage"></vc:i18n></span></span>
+                                </td>
+                                <td class="text-center">{{prestoreFee.remark}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group" v-if="prestoreFee.state == '1001'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditPrestoreFeeModel(prestoreFee)"><span><vc:i18n name="修改" namespace="prestoreFeeManage"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group" v-if="prestoreFee.state == '1001'">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeletePrestoreFeeModel(prestoreFee)"><span><vc:i18n name="删除" namespace="prestoreFeeManage"></vc:i18n></span>
+                                    </div>
+                                    <div class="btn-group" v-if="prestoreFee.state == '1001'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePrestoreFeeModel(prestoreFee)"><span><vc:i18n name="删除" namespace="prestoreFeeManage"></vc:i18n></span>
                                     </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

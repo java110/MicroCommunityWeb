@@ -5,8 +5,7 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="查询条件" namespace="roomFeeImportDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{roomFeeImportDetailInfo.moreCondition == true?'隐藏':'更多'}}
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{roomFeeImportDetailInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -14,20 +13,17 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入楼栋编号','roomFeeImportDetail')"
-                                    v-model="roomFeeImportDetailInfo.conditions.floorNum" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入楼栋编号','roomFeeImportDetail')" v-model="roomFeeImportDetailInfo.conditions.floorNum" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入单元编号','roomFeeImportDetail')"
-                                    v-model="roomFeeImportDetailInfo.conditions.unitNum" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入单元编号','roomFeeImportDetail')" v-model="roomFeeImportDetailInfo.conditions.unitNum" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入房屋编号','roomFeeImportDetail')"
-                                    v-model="roomFeeImportDetailInfo.conditions.roomNum" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入房屋编号','roomFeeImportDetail')" v-model="roomFeeImportDetailInfo.conditions.roomNum" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -39,7 +35,7 @@
                     <div class="row">
                         <!-- <div class="col-sm-4" v-if="roomFeeImportDetailInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入信息','roomFeeImportDetail')ID"
+                                <input type="text" :placeholder="vc.i18n('请输入信息ID','roomFeeImportDetail')"
                                     v-model="roomFeeImportDetailInfo.conditions.activitiesId" class=" form-control">
                             </div>
                         </div> -->
