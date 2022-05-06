@@ -26,6 +26,8 @@
         methods: {
 
             _loadRooms: function(_unitId) {
+                $that.roomStructureInfo.rooms = [];
+                $that.roomStructureInfo.parkRooms = {};
                 let param = {
                     params: {
                         page: 1,

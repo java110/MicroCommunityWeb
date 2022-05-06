@@ -22,8 +22,8 @@
         <div class="col-md-10 margin-bottom" v-else>
 
             <div v-for="(val, key, index) in roomStructureInfo.parkRooms">
+                <span class=" padding-xs">{{key}}F</span>
                 <div class="row margin-top-xs bg-white">
-                    <span class=" padding-xs">{{key}}F</span>
                     <div class="col-md-1 text-center margin-sm padding-xs" :title="vc.i18n('双击查看详情','roomStructure')" @dblclick="_toSimplifyAcceptance(room)" v-for="(room,index) in val" :style="{'background-color': _getBgColor(room)}" style="color: #fff;border-radius: 5px;cursor:pointer">
                         <div>{{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}</div>
                         <div>{{room.stateName}}</div>
