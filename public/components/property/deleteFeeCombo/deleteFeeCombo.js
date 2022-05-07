@@ -21,7 +21,7 @@
             deleteFeeCombo:function(){
                 vc.component.deleteFeeComboInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'feeCombo.deleteFeeCombo',
+                    '/feeCombo.deleteFeeCombo',
                     JSON.stringify(vc.component.deleteFeeComboInfo),
                     {
                         emulateJSON:true

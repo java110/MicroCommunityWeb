@@ -59,7 +59,7 @@
                 }
 
                 vc.http.apiPost(
-                    'feeCombo.saveFeeCombo',
+                    '/feeCombo.saveFeeCombo',
                     JSON.stringify(vc.component.addFeeComboInfo),
                     {
                         emulateJSON:true
