@@ -41,8 +41,8 @@
                     function(json, res) {
                         let listRoomData = JSON.parse(json);
                         $that.roomStructureInfo.rooms = listRoomData.data;
-
-                        $that.supportPark()
+                        $that.supportPark();
+                        $that.$forceUpdate();
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
