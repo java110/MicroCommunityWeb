@@ -71,6 +71,9 @@
                 vc.component._listFeeCombos(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            _toComboMember:function(_feeCombo){
+                vc.jumpToPage("/#/pages/property/feeComboMemberManage?comboId="+_feeCombo.comboId+"&comboName="+_feeCombo.comboName)
+            },
             _moreCondition: function () {
                 if (vc.component.feeComboManageInfo.moreCondition) {
                     vc.component.feeComboManageInfo.moreCondition = false;
