@@ -5,6 +5,7 @@
             editFeeComboInfo: {
                 comboId: '',
                 comboName: '',
+                remark:'',
 
             }
         },
@@ -78,7 +79,7 @@
                 vc.component.editFeeComboInfo = {
                     comboId: '',
                     comboName: '',
-
+                    remark:'',
                 }
             }
         }

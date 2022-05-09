@@ -9,6 +9,7 @@
             addFeeComboInfo:{
                 comboId:'',
                 comboName:'',
+                remark:'',
 
             }
         },
@@ -88,7 +89,7 @@
             clearAddFeeComboInfo:function(){
                 vc.component.addFeeComboInfo = {
                                             comboName:'',
-
+                                            remark:'',
                                         };
             }
         }

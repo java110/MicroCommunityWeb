@@ -64,8 +64,12 @@
                                 <th class="text-center"><span>
                                         <vc:i18n name='套餐名称' namespace='feeComboManage'></vc:i18n>
                                     </span></th>
+                                    
                                     <th class="text-center"><span>
                                         <vc:i18n name='创建时间' ></vc:i18n>
+                                    </span></th>
+                                    <th class="text-center"><span>
+                                        <vc:i18n name='说明' ></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
                                         <vc:i18n name='操作'></vc:i18n>
@@ -77,7 +81,9 @@
                         <tbody>
                             <tr v-for="feeCombo in feeComboManageInfo.feeCombos">
                                 <td class="text-center">{{feeCombo.comboName}}</td>
-                                <td class="text-center">{{feeCombo.createTime}}
+                                <td class="text-center">{{feeCombo.createTime}}</td>
+                                <td class="text-center">{{feeCombo.remark}}</td>
+                                <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditFeeComboModel(feeCombo)"><span>
