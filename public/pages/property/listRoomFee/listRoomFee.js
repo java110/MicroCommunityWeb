@@ -118,6 +118,12 @@
                     room: $that.listRoomCreateFeeInfo
                 });
             },
+            _openRoomCreateFeeComboModal:function(){
+                vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId='
+                +$that.listRoomCreateFeeInfo.roomId
+                +"&payerObjName="+$that.listRoomCreateFeeInfo.roomName
+                +"&payerObjType=3333")
+            },
             _openAddMeterWaterModal: function() {
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId: $that.listRoomCreateFeeInfo.roomId,

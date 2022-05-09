@@ -31,11 +31,11 @@
                 };
 
                 //发送get请求
-               vc.http.apiGet('feeCombo.listFeeCombos',
+               vc.http.apiGet('/feeCombo.listFeeCombo',
                              param,
                              function(json){
                                 var _feeComboInfo = JSON.parse(json);
-                                vc.component.chooseFeeComboInfo.feeCombos = _feeComboInfo.feeCombos;
+                                vc.component.chooseFeeComboInfo.feeCombos = _feeComboInfo.data;
                              },function(){
                                 console.log('请求失败处理');
                              }

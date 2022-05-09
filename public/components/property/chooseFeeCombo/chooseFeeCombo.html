@@ -1,8 +1,11 @@
-<div id = "chooseFeeComboModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseFeeComboModelLabel" aria-hidden="true" >
+<div id="chooseFeeComboModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseFeeComboModelLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseFeeComboModelLabel"> <span><vc:i18n name="选择费用套餐" namespace="chooseFeeCombo"></vc:i18n></span></h3>
+                <h3 class="modal-title" id="chooseFeeComboModelLabel"> <span>
+                        <vc:i18n name="选择费用套餐" namespace="chooseFeeCombo"></vc:i18n>
+                    </span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -17,11 +20,16 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入费用套餐名称','chooseFeeCombo')" type="text" v-model="chooseFeeComboInfo._currentFeeComboName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入费用套餐名称','chooseFeeCombo')" type="text"
+                                            v-model="chooseFeeComboInfo._currentFeeComboName"
+                                            class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryFeeCombos()">
-                                                    <span><vc:i18n name="查询"></vc:i18n></span></button>
-                                            </span>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                v-on:click="queryFeeCombos()">
+                                                <span>
+                                                    <vc:i18n name="查询"></vc:i18n>
+                                                </span></button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -29,21 +37,33 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center"><span><vc:i18n name='编号' namespace='choosefeeCombo'></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name='套餐名称' namespace='choosefeeCombo'></vc:i18n></span> </th>
-                            <th class="text-center"><span><vc:i18n name='操作'></vc:i18n></span></th>
-
+                                            
+                                           <th class="text-center"><span>
+                                                    <vc:i18n name='套餐名称' namespace='choosefeeCombo'></vc:i18n>
+                                                </span> </th>
+                                                <th class="text-center"><span>
+                                                    <vc:i18n name='创建时间' ></vc:i18n>
+                                                </span> </th>
+                                                <th class="text-center"><span>
+                                                    <vc:i18n name='说明' namespace='choosefeeCombo'></vc:i18n>
+                                                </span></th>
+                                            <th class="text-center"><span>
+                                                    <vc:i18n name='操作'></vc:i18n>
+                                                </span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="feeCombo in chooseFeeComboInfo.feeCombos">
-                                                                        <td class="text-center">{{feeCombo.comboId}}</td>
-                            <td class="text-center">{{feeCombo.comboName}}</td>
-
+                                            <td class="text-center">{{feeCombo.comboName}}</td>
+                                            <td class="text-center">{{feeCombo.createTime}}</td>
+                                            <td class="text-center">{{feeCombo.remark}}</td>
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseFeeCombo(feeCombo)">
-                                                    <span><vc:i18n name="选择"></vc:i18n></span>
-                                                    </button>
+                                                <button class="btn btn-primary btn-xs"
+                                                    v-on:click="chooseFeeCombo(feeCombo)">
+                                                    <span>
+                                                        <vc:i18n name="选择"></vc:i18n>
+                                                    </span>
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>

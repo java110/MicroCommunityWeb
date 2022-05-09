@@ -13,6 +13,9 @@
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddMeterWaterModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             水电抄表
                         </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeComboModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
+                            创建费用套餐
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             创建费用
                         </button>
