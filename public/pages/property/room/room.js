@@ -49,10 +49,15 @@
             //vc.component._loadDataByParam();
         },
         _initEvent: function() {
-            vc.on('room', 'chooseFloor', function(_param) {
+            vc.on('room', 'switchFloor', function(_param) {
                 vc.component.roomInfo.conditions.floorId = _param.floorId;
-                vc.component.roomInfo.conditions.floorName = _param.floorName;
-                vc.component.loadUnits(_param.floorId);
+                vc.component.roomInfo.conditions.unitId = '';
+                vc.component.listRoom(DEFAULT_PAGE,DEFAULT_ROW);
+            });
+            vc.on('room', 'switchUnit', function(_param) {
+                vc.component.roomInfo.conditions.floorId = '';
+                vc.component.roomInfo.conditions.unitId = _param.unitId;
+                vc.component.listRoom(DEFAULT_PAGE,DEFAULT_ROW);
             });
             vc.on('room', 'listRoom', function(_param) {
                 vc.component.listRoom($that.roomInfo.currentPage, DEFAULT_ROW);
@@ -105,22 +110,20 @@
                 vc.jumpToPage("/#/pages/property/addRoomBinding");
             },
             _openEditRoomModel: function(_room) {
-                //_room.floorId = vc.component.roomInfo.conditions.floorId;
                 vc.emit('editRoom', 'openEditRoomModal', _room);
             },
             _openDelRoomModel: function(_room) {
-                //_room.floorId = vc.component.roomInfo.conditions.floorId;
                 vc.emit('deleteRoom', 'openRoomModel', _room);
             },
             /**
              根据楼ID加载房屋
              **/
-            loadUnits: function(_floorId) {
+            loadUnits: function(_unitId,callBack) {
                 vc.component.addRoomUnits = [];
-                var param = {
+                let param = {
                     params: {
-                        floorId: _floorId,
-                        communityId: vc.getCurrentCommunity().communityId
+                        unitId: _unitId,
+                        communityId: vc.getCurrentCommunity().communityId,
                     }
                 }
                 vc.http.get(
@@ -131,7 +134,7 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var tmpUnits = JSON.parse(json);
-                            vc.component.roomUnits = tmpUnits;
+                            callBack(tmpUnits[0]);
                             return;
                         }
                         vc.toast(json);
@@ -157,14 +160,13 @@
                     return "未知";
                 }
             },
-            _loadDataByParam: function() {
-                vc.component.roomInfo.conditions.floorId = vc.getParam("floorId");
-                vc.component.roomInfo.conditions.floorName = vc.getParam("floorName");
-
+            _loadFloor: function(_floorId,callBack) {
                 let param = {
                     params: {
+                        page:1,
+                        row:1,
                         communityId: vc.getCurrentCommunity().communityId,
-                        floorId: vc.component.roomInfo.conditions.floorId
+                        floorId: _floorId
                     }
                 }
                 vc.http.get(
@@ -172,14 +174,10 @@
                     'loadFloor',
                     param,
                     function(json, res) {
-                        if (res.status == 200) {
-                            var _floorInfo = JSON.parse(json);
-                            var _tmpFloor = _floorInfo.apiFloorDataVoList[0];
-                            /*vc.emit('roomSelectFloor','chooseFloor', _tmpFloor);
-                             */
-                            return;
+                        let _json = JSON.parse(json);
+                        if (_json.total > 0) {
+                            callBack(_json.apiFloorDataVoList[0]);
                         }
-                        vc.toast(json);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
@@ -241,6 +239,54 @@
                 vc.resetObject($that.roomInfo.conditions);
                 $that.roomInfo.conditions.roomType = '1010301';
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+            },
+            _openAddRoomFloorModal:function(){
+                vc.emit('addFloor', 'openAddFloorModal', {});
+            },
+            _openUpdateRoomFloorModal:function(){
+                if(!$that.roomInfo.conditions.floorId){
+                    vc.toast('请先选择楼栋');
+                    return ;
+                }
+                $that._loadFloor($that.roomInfo.conditions.floorId, function (_floor) {
+                    vc.emit('editFloor', 'openEditFloorModal', _floor);
+                })
+            },
+            _openDeleteRoomFloorModal:function(){
+                if(!$that.roomInfo.conditions.floorId){
+                    vc.toast('请先选择楼栋');
+                    return ;
+                }
+                $that._loadFloor($that.roomInfo.conditions.floorId, function (_floor) {
+                    vc.emit('deleteFloor', 'openFloorModel', _floor);
+                })
+            },
+            _openAddRoomUnitModal:function(){
+                if(!$that.roomInfo.conditions.floorId){
+                    vc.toast('请先选择楼栋');
+                    return ;
+                }
+                vc.emit('addUnit', 'addUnitModel', {
+                    floorId: vc.component.roomInfo.conditions.floorId
+                });
+            },
+            _openUpdateRoomUnitModal:function(){
+                if(!$that.roomInfo.conditions.unitId){
+                    vc.toast('请先选择单元');
+                    return ;
+                }
+                $that.loadUnits($that.roomInfo.conditions.unitId, function (_unit) {
+                    vc.emit('editUnit', 'openUnitModel', _unit);
+                })
+            },
+            _openDeleteRoomUnitModal:function(){
+                if(!$that.roomInfo.conditions.unitId){
+                    vc.toast('请先选择单元');
+                    return ;
+                }
+                $that.loadUnits($that.roomInfo.conditions.unitId, function (_unit) {
+                    vc.emit('deleteUnit', 'openUnitModel', _unit);
+                })
             }
 
         }

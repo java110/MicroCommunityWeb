@@ -106,7 +106,9 @@
                             $('#editFloorModel').modal('hide');
                             vc.component.clearEditFloorInfo();
                             vc.emit('listFloor', 'listFloorData', {});
-
+                            vc.emit('floorUnitTree','refreshTree',{
+                                floorId:$that.editFloorInfo.floorId
+                            })
                             return;
                         }
                         vc.component.editFloorInfo.errorInfo = json;

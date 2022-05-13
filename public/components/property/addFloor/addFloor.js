@@ -106,6 +106,7 @@
                             $('#addFloorModel').modal('hide');
                             vc.component.clearAddFloorInfo();
                             vc.emit('listFloor', 'listFloorData', {});
+                            vc.emit('floorUnitTree','refreshTree',{})
                             return;
                         }
                         vc.component.addFloorInfo.errorInfo = json;

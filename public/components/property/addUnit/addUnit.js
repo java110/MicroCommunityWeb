@@ -125,6 +125,9 @@
                             vc.emit('unit', 'loadUnit', {
                                 floorId: vc.component.addUnitInfo.floorId
                             });
+                            vc.emit('floorUnitTree','refreshTree',{
+                                floorId: vc.component.addUnitInfo.floorId
+                            })
                             return;
                         }
                         vc.toast(json);

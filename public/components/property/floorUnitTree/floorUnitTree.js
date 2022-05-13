@@ -1,26 +1,32 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
         },
         data: {
             floorUnitTreeInfo: {
-                units: []
+                units: [],
+                floorId:''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._loadFloorAndUnits();
 
         },
-        _initEvent: function() {
-
+        _initEvent: function () {
+            vc.on('floorUnitTree','refreshTree',function(_param){
+                if(_param){
+                    $that.floorUnitTreeInfo.floorId = _param.floorId;
+                }
+                $that._loadFloorAndUnits();
+            });
         },
         methods: {
 
-            _loadFloorAndUnits: function() {
+            _loadFloorAndUnits: function () {
 
                 let param = {
                     params: {
@@ -28,24 +34,33 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/unit.queryUnits',
+                vc.http.apiGet('/floor.queryFloorAndUnits',
                     param,
-                    function(json) {
+                    function (json) {
                         let _unitInfo = JSON.parse(json);
                         $that.floorUnitTreeInfo.units = _unitInfo;
                         $that._initJsTreeFloorUnit();
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     });
             },
-            _initJsTreeFloorUnit: function() {
+            _initJsTreeFloorUnit: function () {
 
                 let _data = $that._doJsTreeData();
 
-                _data = _data.sort(function(a, b) {
-                    return a.floorNum - b.floorNum
+                let _unitId = '';
+
+                $that.floorUnitTreeInfo.units.forEach(item=>{
+                    if($that.floorUnitTreeInfo.floorId && item.floorId == $that.floorUnitTreeInfo.floorId){
+                        _unitId = item.unitId;
+                    }
                 })
+
+                _data = _data.sort(function (a, b) {
+                    return a.floorNum - b.floorNum
+                });
+
                 $.jstree.destroy()
                 $("#jstree_floorUnit").jstree({
                     "checkbox": {
@@ -54,31 +69,50 @@
                     'state': { //一些初始化状态
                         "opened": true,
                     },
+                    // 'plugins': ['contextmenu'],
                     'core': {
                         'data': _data
-                    }
+                    },
+                    // "contextmenu": {
+                    //     items: {
+                    //         "修改": {
+                    //             "label": "修改",
+                    //             "icon": "fa fa-plus",
+                    //             "action": function (data) {
+                    //                 var inst = $.jstree.reference(data.reference),
+                    //                     obj = inst.get_node(data.reference);
+                                   
+                    //             }
+                    //         },
+                    //     },
+                    // }
                 });
-                $("#jstree_floorUnit").on("ready.jstree", function(e, data) {
+                $("#jstree_floorUnit").on("ready.jstree", function (e, data) {
                     //data.instance.open_all();//打开所有节点
-                    $('#jstree_floorUnit').jstree('select_node', _data[0].children[0].id /* , true */ );
+                    if(_unitId){
+                        $('#jstree_floorUnit').jstree('select_node', 'u_'+_unitId /* , true */);
+                        return ;
+                    }
+                    $('#jstree_floorUnit').jstree('select_node', _data[0].children[0].id /* , true */);
 
                 });
 
-                $('#jstree_floorUnit').on("changed.jstree", function(e, data) {
+                $('#jstree_floorUnit').on("changed.jstree", function (e, data) {
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
                         //$("#jstree_floorUnit").jstree("close_all");
-
                         return;
                     }
                     let _selected = data.selected[0];
 
                     if (_selected.startsWith('f_')) {
+                        vc.emit($props.callBackListener, 'switchFloor', {
+                            floorId: data.node.original.floorId
+                        })
                         return;
                     }
 
                     //console.log(_selected, data.node.original.unitId)
-
                     vc.emit($props.callBackListener, 'switchUnit', {
                         unitId: data.node.original.unitId
                     })
@@ -86,7 +120,7 @@
 
 
             },
-            _doJsTreeData: function() {
+            _doJsTreeData: function () {
                 let _mFloorTree = [];
 
                 let _units = $that.floorUnitTreeInfo.units;
@@ -118,12 +152,12 @@
                 });
                 return _mFloorTree;
             },
-            _doJsTreeMenuData: function(_floorItem) {
+            _doJsTreeMenuData: function (_floorItem) {
                 let _units = $that.floorUnitTreeInfo.units;
                 //构建菜单
                 let _children = _floorItem.children;
                 for (let _pIndex = 0; _pIndex < _units.length; _pIndex++) {
-                    if (_floorItem.floorId == _units[_pIndex].floorId) {
+                    if (_floorItem.floorId == _units[_pIndex].floorId && _units[_pIndex].unitId) {
                         let _includeMenu = false;
                         for (let _mgIndex = 0; _mgIndex < _children.length; _mgIndex++) {
                             if (_units[_pIndex].unitId == _children[_mgIndex].unitId) {
