@@ -30,13 +30,16 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="批量缴费" namespace="batchPayFeeOrder"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_exportExcel('xlsx')">
+                            <vc:i18n name="缴费申请单" namespace="batchPayFeeOrder"></vc:i18n>
+                        </button>
                         <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
-                            返回
+                            <vc:i18n name="返回" ></vc:i18n>
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                    <table id="batchTable" class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
                                 <th class="text-center"><input type="checkbox" class="i-checks" @click="checkAll($event)"></th>
