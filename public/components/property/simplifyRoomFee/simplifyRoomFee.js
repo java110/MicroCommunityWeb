@@ -265,7 +265,13 @@
             },
             _openBatchPayRoomFeeModal: function() {
                 vc.jumpToPage('/#/pages/property/batchPayFeeOrder?ownerId=' + $that.simplifyRoomFeeInfo.ownerId + "&payerObjType=3333")
-            }
+            },
+            _openRoomCreateFeeComboModal: function() {
+                vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
+                    $that.simplifyRoomFeeInfo.roomId +
+                    "&payerObjName=" + $that.simplifyRoomFeeInfo.roomName +
+                    "&payerObjType=3333")
+            },
         }
     });
 })(window.vc);

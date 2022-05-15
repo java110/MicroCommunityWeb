@@ -24,8 +24,7 @@
                 <vc:i18n name="添加房屋" namespace="room"></vc:i18n>
             </span>
         </button>
-        <button type="button" class="btn btn-white btn-sm margin-left-sm"
-            v-on:click="_openImportRoomInfo()">
+        <button type="button" class="btn btn-white btn-sm margin-left-sm" v-on:click="_openImportRoomInfo()">
             <vc:i18n name="房产导入" namespace="room"></vc:i18n>
         </button>
     </div>
@@ -54,13 +53,11 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写房屋编号  格式 楼栋-单元-房屋','room')"
-                                            class="form-control form-control-sm" v-model="roomInfo.conditions.roomId">
+                                        <input type="text" :placeholder="vc.i18n('请填写房屋编号  格式 楼栋-单元-房屋','room')" class="form-control form-control-sm" v-model="roomInfo.conditions.roomId">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <select class="form-control-sm form-control input-s-sm inline"
-                                        v-model="roomInfo.conditions.state">
+                                    <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.state">
                                         <option selected value="">{{vc.i18n('请选择状态','room')}}</option>
                                         <option v-for="(item,index) in roomInfo.states" :key="index"
                                             :value="item.statusCd">
@@ -69,16 +66,14 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <select class="form-control-sm form-control input-s-sm inline"
-                                        v-model="roomInfo.conditions.roomSubType">
+                                    <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.roomSubType">
                                         <option selected value="">{{vc.i18n('必填，请选择房屋类型','room')}}</option>
                                         <option :value="item.statusCd" v-for="(item,index) in roomInfo.roomSubTypes">
                                             {{item.name}}</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                        v-on:click="_queryRoomMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRoomMethod()">
                                         <i class="fa fa-search"></i> <span>
                                             <vc:i18n name="查询" namespace="room"></vc:i18n>
                                         </span>
@@ -115,8 +110,7 @@
                             </div>
                         </div> -->
                         <div class="ibox-content">
-                            <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                                data-page-size="10">
+                            <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
                                 <thead>
                                     <tr>
                                         <!-- <th><span><vc:i18n name="房屋" namespace="room"></vc:i18n></span>ID</th> -->
@@ -219,16 +213,20 @@
                                             {{item}}
                                         </td>
                                         <td class="text-center">
+                                            <!-- <div class="btn-group">
+                                                <button class="btn-white btn btn-xs" v-on:click="_openRoomCreateFeeComboModal(room)"><span>
+                                                        <vc:i18n name="费用套餐" namespace="room"></vc:i18n>
+                                                    </span>
+                                                </button>
+                                            </div> -->
                                             <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openEditRoomModel(room)"><span>
+                                                <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(room)"><span>
                                                         <vc:i18n name="修改" namespace="room"></vc:i18n>
                                                     </span>
                                                 </button>
                                             </div>
                                             <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openDelRoomModel(room)"><span>
+                                                <button class="btn-white btn btn-xs" v-on:click="_openDelRoomModel(room)"><span>
                                                         <vc:i18n name="删除" namespace="room"></vc:i18n>
                                                     </span>
                                                 </button>

@@ -52,12 +52,12 @@
             vc.on('room', 'switchFloor', function(_param) {
                 vc.component.roomInfo.conditions.floorId = _param.floorId;
                 vc.component.roomInfo.conditions.unitId = '';
-                vc.component.listRoom(DEFAULT_PAGE,DEFAULT_ROW);
+                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('room', 'switchUnit', function(_param) {
                 vc.component.roomInfo.conditions.floorId = '';
                 vc.component.roomInfo.conditions.unitId = _param.unitId;
-                vc.component.listRoom(DEFAULT_PAGE,DEFAULT_ROW);
+                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('room', 'listRoom', function(_param) {
                 vc.component.listRoom($that.roomInfo.currentPage, DEFAULT_ROW);
@@ -118,7 +118,7 @@
             /**
              根据楼ID加载房屋
              **/
-            loadUnits: function(_unitId,callBack) {
+            loadUnits: function(_unitId, callBack) {
                 vc.component.addRoomUnits = [];
                 let param = {
                     params: {
@@ -160,11 +160,11 @@
                     return "未知";
                 }
             },
-            _loadFloor: function(_floorId,callBack) {
+            _loadFloor: function(_floorId, callBack) {
                 let param = {
                     params: {
-                        page:1,
-                        row:1,
+                        page: 1,
+                        row: 1,
                         communityId: vc.getCurrentCommunity().communityId,
                         floorId: _floorId
                     }
@@ -240,54 +240,61 @@
                 $that.roomInfo.conditions.roomType = '1010301';
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             },
-            _openAddRoomFloorModal:function(){
+            _openAddRoomFloorModal: function() {
                 vc.emit('addFloor', 'openAddFloorModal', {});
             },
-            _openUpdateRoomFloorModal:function(){
-                if(!$that.roomInfo.conditions.floorId){
+            _openUpdateRoomFloorModal: function() {
+                if (!$that.roomInfo.conditions.floorId) {
                     vc.toast('请先选择楼栋');
-                    return ;
+                    return;
                 }
-                $that._loadFloor($that.roomInfo.conditions.floorId, function (_floor) {
+                $that._loadFloor($that.roomInfo.conditions.floorId, function(_floor) {
                     vc.emit('editFloor', 'openEditFloorModal', _floor);
                 })
             },
-            _openDeleteRoomFloorModal:function(){
-                if(!$that.roomInfo.conditions.floorId){
+            _openDeleteRoomFloorModal: function() {
+                if (!$that.roomInfo.conditions.floorId) {
                     vc.toast('请先选择楼栋');
-                    return ;
+                    return;
                 }
-                $that._loadFloor($that.roomInfo.conditions.floorId, function (_floor) {
+                $that._loadFloor($that.roomInfo.conditions.floorId, function(_floor) {
                     vc.emit('deleteFloor', 'openFloorModel', _floor);
                 })
             },
-            _openAddRoomUnitModal:function(){
-                if(!$that.roomInfo.conditions.floorId){
+            _openAddRoomUnitModal: function() {
+                if (!$that.roomInfo.conditions.floorId) {
                     vc.toast('请先选择楼栋');
-                    return ;
+                    return;
                 }
                 vc.emit('addUnit', 'addUnitModel', {
                     floorId: vc.component.roomInfo.conditions.floorId
                 });
             },
-            _openUpdateRoomUnitModal:function(){
-                if(!$that.roomInfo.conditions.unitId){
+            _openUpdateRoomUnitModal: function() {
+                if (!$that.roomInfo.conditions.unitId) {
                     vc.toast('请先选择单元');
-                    return ;
+                    return;
                 }
-                $that.loadUnits($that.roomInfo.conditions.unitId, function (_unit) {
+                $that.loadUnits($that.roomInfo.conditions.unitId, function(_unit) {
                     vc.emit('editUnit', 'openUnitModel', _unit);
                 })
             },
-            _openDeleteRoomUnitModal:function(){
-                if(!$that.roomInfo.conditions.unitId){
+            _openDeleteRoomUnitModal: function() {
+                if (!$that.roomInfo.conditions.unitId) {
                     vc.toast('请先选择单元');
-                    return ;
+                    return;
                 }
-                $that.loadUnits($that.roomInfo.conditions.unitId, function (_unit) {
+                $that.loadUnits($that.roomInfo.conditions.unitId, function(_unit) {
                     vc.emit('deleteUnit', 'openUnitModel', _unit);
                 })
-            }
+            },
+            _openRoomCreateFeeComboModal: function(_room) {
+                let _roomName = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
+                vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
+                    _room.roomId +
+                    "&payerObjName=" + _roomName +
+                    "&payerObjType=3333")
+            },
 
         }
     });
