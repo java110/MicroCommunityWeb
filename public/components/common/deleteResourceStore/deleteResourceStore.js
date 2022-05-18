@@ -1,42 +1,41 @@
-(function (vc, vm) {
+(function(vc, vm) {
     vc.extends({
         data: {
             deleteResourceStoreInfo: {}
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('deleteResourceStore', 'openDeleteResourceStoreModal', function (_params) {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('deleteResourceStore', 'openDeleteResourceStoreModal', function(_params) {
                 vc.component.deleteResourceStoreInfo = _params;
                 $('#deleteResourceStoreModel').modal('show');
             });
         },
         methods: {
-            deleteResourceStore: function () {
+            deleteResourceStore: function() {
                 vc.component.deleteResourceStoreInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteResourceStore',
                     'delete',
-                    JSON.stringify(vc.component.deleteResourceStoreInfo),
-                    {
+                    JSON.stringify(vc.component.deleteResourceStoreInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#deleteResourceStoreModel').modal('hide');
                             vc.emit('resourceStoreManage', 'listResourceStore', {});
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            closeDeleteResourceStoreModel: function () {
+            closeDeleteResourceStoreModel: function() {
                 $('#deleteResourceStoreModel').modal('hide');
             }
         }
