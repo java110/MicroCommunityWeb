@@ -133,6 +133,10 @@
                                         <button class="btn-white btn btn-xs" v-on:click="_printFeeReceipt(feeReceipt)"><span><vc:i18n name="补打收据" namespace="feeReceipt"></vc:i18n></span>
                                     </button>
                                     </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_printFeeSmallReceipt(feeReceipt)"><span><vc:i18n name="补打小票" namespace="feeReceipt"></vc:i18n></span>
+                                    </button>
+                                    </div>
                                     <!-- <div v-if="feeReceipt.objType == '6666'" class="btn-group">
                                 <button class="btn-white btn btn-xs"
                                     v-on:click="_printFeeReceipt(feeReceipt)"><span><vc:i18n name="补打收据" namespace="feeReceipt"></vc:i18n></span>(车)</button>
