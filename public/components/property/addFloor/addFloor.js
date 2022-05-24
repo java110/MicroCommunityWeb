@@ -101,15 +101,17 @@
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addFloorModel').modal('hide');
                             vc.component.clearAddFloorInfo();
                             vc.emit('listFloor', 'listFloorData', {});
-                            vc.emit('floorUnitTree','refreshTree',{})
+                            vc.emit('floorUnitTree', 'refreshTree', {})
                             return;
                         }
-                        vc.component.addFloorInfo.errorInfo = json;
+                        //vc.component.addFloorInfo.errorInfo = json;
+                        vc.toast(_json.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
