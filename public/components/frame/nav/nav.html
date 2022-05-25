@@ -1,5 +1,5 @@
 <div id="nav">
-    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-static-top nav-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <span class="navbar-minimalize minimalize-styl-2  " @click="_doMenu()"><i class="fa fa-list-ul"></i> </span>
             <ul class="nav navbar-top-links ">
@@ -36,7 +36,7 @@
                     <li v-for="lang in nav.langs">
                         <a v-on:click="_changeLang(lang)" class="dropdown-item">
                             <div>
-                             {{lang.name}}
+                                {{lang.name}}
                             </div>
                         </a>
                         <div class="dropdown-divider"></div>

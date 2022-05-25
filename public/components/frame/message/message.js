@@ -1,32 +1,32 @@
-(function(vc){
+(function(vc) {
 
     var vm = new Vue({
-        el:'#message',
-        data:{
-            messageInfo:{
-                hide:true,
-                errorInfo:'网络超时，请检查网络！'
+        el: '#message',
+        data: {
+            messageInfo: {
+                hide: true,
+                errorInfo: '网络超时，请检查网络！'
             }
         },
-        mounted:function(){
+        mounted: function() {
 
         },
-        methods:{
+        methods: {
             //验证码定时
-            messageTimer:function(){
-                  var num = 2;
-                var _timer = vc.createTimer(function(){
-                    num --;
-                    if(num === 1){
+            messageTimer: function() {
+                var num = 2;
+                var _timer = vc.createTimer(function() {
+                    num--;
+                    if (num === 1) {
                         vc.clearTimer(_timer);
-                        vm.messageInfo.hide=true;
+                        vm.messageInfo.hide = true;
                     }
-                },1000);
+                }, 1000);
             }
         }
     });
 
-    vm.$on('message_openMessage',function(_msg){
+    vm.$on('message_openMessage', function(_msg) {
         //console.log("开始加载");
         vm.messageInfo.hide = false;
         vm.messageInfo.errorInfo = _msg.msg;
@@ -36,11 +36,11 @@
         @param _msg 提示内容
         @param _notAutoHide 是否需要自动隐藏
     **/
-    vc.message = function(_msg, _notAutoHide){
-       vm.$emit('message_openMessage',{msg:_msg});
-       if(!_notAutoHide){
+    vc.message = function(_msg, _notAutoHide) {
+        vm.$emit('message_openMessage', { msg: _msg });
+        if (!_notAutoHide) {
             vm.messageTimer();
-       }
+        }
 
     }
 })(window.vc)

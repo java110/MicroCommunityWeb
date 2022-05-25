@@ -47,7 +47,7 @@
                         vc.component.smallWeChatManageInfo.smallWeChats = _smallWeChatManageInfo.smallWeChats;
                         if (_smallWeChatManageInfo.smallWeChats.length > 0) {
                             vc.emit('wechatAttrInfo', 'getWechatAttrInfo', {
-                                wechatId: _smallWeChatManageInfo.smallWeChats[0].weChatId,
+                                wechatId: _smallWeChatManageInfo.smallWeChats[0].wechatId,
                                 wId: _smallWeChatManageInfo.smallWeChats[0].wId
                             });
                         }
