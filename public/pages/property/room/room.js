@@ -35,7 +35,7 @@
         _initMethod: function() {
             vc.component.roomInfo.conditions.floorId = vc.getParam("floorId");
             vc.component.roomInfo.conditions.floorName = vc.getParam("floorName");
-            vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
+            //vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             //与字典表关联
             vc.getDict('building_room', "state", function(_data) {
                 vc.component.roomInfo.states = _data;

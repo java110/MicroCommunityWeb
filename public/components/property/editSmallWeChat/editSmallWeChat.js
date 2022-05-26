@@ -13,7 +13,8 @@
                 objId: '',
                 mchId: '',
                 remarks: '',
-                objTypes: '1000'
+                objTypes: '1000',
+                certPath: ''
 
             }
         },
@@ -28,7 +29,13 @@
                 });
                 $('#editSmallWeChatModel').modal('show');
                 vc.copyObject(_params, vc.component.editSmallWeChatInfo);
+                if ($that.editSmallWeChatInfo.certPath) {
+                    vc.emit('editSmallWeChat', 'uploadFile', 'notifyVedio', $that.editSmallWeChatInfo.certPath)
+                }
             });
+            vc.on('editSmallWeChat', 'notifyCert', function(_param) {
+                $that.editSmallWeChatInfo.certPath = _param.realFileName;
+            })
         },
         methods: {
             editSmallWeChatValidate: function() {
@@ -137,9 +144,10 @@
                     objId: '',
                     mchId: '',
                     remarks: '',
-                    objTypes: '1000'
-
+                    objTypes: '1000',
+                    certPath: ''
                 }
+                vc.emit('editSmallWeChat', 'uploadFile', 'clearVedio', {});
             }
         }
     });

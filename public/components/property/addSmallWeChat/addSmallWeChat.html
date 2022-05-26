@@ -39,18 +39,12 @@
                                     <input v-model="addSmallWeChatInfo.mchId" type="text" :placeholder="vc.i18n('必填，请填写商户ID','addSmallWeChat')" class="form-control">
                                 </div>
                             </div>
-
-                            <!--                            <div class="form-group row">-->
-                            <!--                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="作用范围" namespace="addSmallWeChat"></vc:i18n></span></label>-->
-                            <!--                                <div class="col-sm-10">-->
-                            <!--                                    <select class="custom-select" v-model="addSmallWeChatInfo.objType">-->
-                            <!--                                        <option selected disabled value="">{{vc.i18n('请选择状态','addSmallWeChat')}}</option>-->
-                            <!--                                        <option v-for="(item,index) in addSmallWeChatInfo.objTypes" :key="index"-->
-                            <!--                                                v-bind:value="item.statusCd">{{item.name}}-->
-                            <!--                                        </option>-->
-                            <!--                                    </select>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="商户证书" namespace="addSmallWeChat"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadFile" callBackListener="addSmallWeChat" callBackFunction="notifyCert" namespace="addSmallWeChat"></vc:create>
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name="描述" namespace="addSmallWeChat"></vc:i18n></span></label>
