@@ -76,6 +76,22 @@
                     return;
                 }
 
+                if (vc.component.editInspectionItemTitleInfo.titleType == '3003') {
+                    vc.component.editInspectionItemTitleInfo.titleValues = [];
+                }
+
+                // 验证必填项
+                let msg = '';
+                vc.component.editInspectionItemTitleInfo.titleValues.forEach((item) => {
+                    if(!vc.validate.required(item.itemValue)){
+                        msg = '请填写选项内容';
+                    }
+                });
+                if(msg){
+                    vc.toast(msg);
+                    return;
+                }
+
                 vc.http.apiPost(
                     '/inspectionItemTitle.updateInspectionItemTitle',
                     JSON.stringify(vc.component.editInspectionItemTitleInfo), {
@@ -106,6 +122,19 @@
                     seq: '',
                     itemId: '',
                     titleValues: []
+                }
+            },
+            _changeEditTitleType: function() {
+
+                let _titleType = $that.editInspectionItemTitleInfo.titleType;
+
+                if (_titleType == '1001' || _titleType == '2002') {
+                    if($that.editInspectionItemTitleInfo.titleValues.length <= 0){
+                        $that.editInspectionItemTitleInfo.titleValues = [{
+                            itemValue: '',
+                            seq: 1
+                        }];
+                    }
                 }
             },
             _addEditTitleValue: function() {

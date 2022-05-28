@@ -15,8 +15,6 @@
         },
         _initEvent: function () {
             vc.on('editQuestionAnswer', 'openEditQuestionAnswerModal', function (_params) {
-                console.log("look here")
-                console.log(_params)
                 vc.component.refreshEditQuestionAnswerInfo();
                 $('#editQuestionAnswerModel').modal('show');
                 vc.copyObject(_params, vc.component.editQuestionAnswerInfo);

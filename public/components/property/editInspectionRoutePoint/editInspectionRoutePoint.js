@@ -83,15 +83,19 @@
                             limit: "required",
                             param: "",
                             errInfo: "排序不能为空"
+                        },{
+                            limit: "num",
+                            param: "",
+                            errInfo: "顺序必须是数字"
                         }
                         ]
                     });
             },
             editInspectionRoutePoint: function () {
-                // if (!vc.component.editInspectionRoutePointValidate()) {
-                //     vc.toast(vc.validate.errInfo);
-                //     return;
-                // }
+                if (!vc.component.editInspectionRoutePointValidate()) {
+                    vc.toast(vc.validate.errInfo);
+                    return;
+                }
                 vc.http.post('editInspectionRoutePointRel', 'update', JSON.stringify(vc.component.editInspectionRoutePointInfo), {
                         emulateJSON: true
                     },

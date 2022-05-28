@@ -43,6 +43,13 @@
                             errInfo: "类型名称不能超过200位"
                         },
                     ],
+                    'editRepairSettingInfo.repairSettingType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "报修设置类型不能为空"
+                        }
+                    ],
                     'editRepairSettingInfo.repairWay': [
                         {
                             limit: "required",

@@ -169,6 +169,12 @@
                     .on('changeDate', function (ev) {
                         var value = $(".addInspectionPlanEndTime").val();
                         vc.component.addInspectionPlanInfo.endTime = value;
+                        let start = Date.parse(new Date(vc.component.addInspectionPlanInfo.startTime))
+                        let end = Date.parse(new Date(vc.component.addInspectionPlanInfo.endTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            vc.component.addInspectionPlanInfo.endTime = '';
+                        }
                     });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByClassName('form-control addInspectionPlanStartTime')[0].addEventListener('click', myfunc)

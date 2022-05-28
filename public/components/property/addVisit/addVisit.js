@@ -15,11 +15,18 @@
                 visitTime: '',
                 departureTime: '',
                 carNum: '',
-                entourage: ''
+                entourage: 0,
+                paId: '',
+                psId: '',
+                num: '',
+                parkingSpaceNum: '',
+                parkingAreas: [],
+                parkingSpaces: []
             }
         },
         _initMethod: function () {
             vc.component._initAddVisitInfo();
+            // vc.component.queryParkingAreas();
         },
         _initEvent: function () {
             vc.on('addVisit', 'openAddVisitAppModal', function (_app) {
@@ -52,18 +59,18 @@
                             errInfo: "访客性别不能为空"
                         }
                     ],
-                    // 'addVisitInfo.entourage': [
-                    //     {
-                    //         limit: "required",
-                    //         param: "",
-                    //         errInfo: "随行人数不能为空"
-                    //     },
-                    //     {
-                    //         limit: "num",
-                    //         param: "",
-                    //         errInfo: "随行人数有误"
-                    //     }
-                    // ],
+                    'addVisitInfo.entourage': [
+                        // {
+                        //     limit: "required",
+                        //     param: "",
+                        //     errInfo: "随行人数不能为空"
+                        // },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "随行人数有误"
+                        }
+                    ],
                     'addVisitInfo.phoneNumber': [
                         {
                             limit: "required",
@@ -178,7 +185,11 @@
                 vc.component.addVisitInfo.visitTime = '';
                 vc.component.addVisitInfo.departureTime = '';
                 vc.component.addVisitInfo.carNum = '';
-                vc.component.addVisitInfo.entourage = '';
+                vc.component.addVisitInfo.entourage = 0;
+                vc.component.addVisitInfo.paId = '';
+                vc.component.addVisitInfo.psId = '';
+                vc.component.addVisitInfo.num = '';
+                vc.component.addVisitInfo.parkingSpaceNum = '';
             }
         }
     });

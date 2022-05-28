@@ -1,4 +1,5 @@
-<div class="modal fade" id="selectStaffModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="selectStaffModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -9,7 +10,10 @@
                     <div class="col-md-4 border-right padding-0">
                         <div class="text-center">公司信息</div>
                         <div class=" staff padding padding-top-xs">
-                            <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curCompanyId == item.orgId}" v-for="(item,index) in selectStaffInfo.companys" @click="_changeCompany(item)" style="cursor:pointer">
+                            <div class=" padding overflow-hidden"
+                                 :class="{'select':selectStaffInfo.curCompanyId == item.orgId}"
+                                 v-for="(item,index) in selectStaffInfo.companys" @click="_changeCompany(item)"
+                                 style="cursor:pointer">
                                 <span>
                                     <i class="fa fa-building-o margin-right-xs" aria-hidden="true"></i>
                                     {{item.orgName}}
@@ -20,7 +24,10 @@
                     <div class="col-md-4 border-right padding-0">
                         <div class="text-center">部门信息</div>
                         <div class="padding-left staff padding  padding-top-xs">
-                            <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curDepartmentId == item.orgId}" v-for="(item,index) in selectStaffInfo.departments" @click="_changeDepartment(item)" style="cursor:pointer">
+                            <div class=" padding overflow-hidden"
+                                 :class="{'select':selectStaffInfo.curDepartmentId == item.orgId}"
+                                 v-for="(item,index) in selectStaffInfo.departments" @click="_changeDepartment(item)"
+                                 style="cursor:pointer">
                                 <span>
                                     <i class="fa fa-sitemap margin-right-xs" aria-hidden="true"></i>
                                     {{item.orgName}}
@@ -31,16 +38,23 @@
                     <div class="col-md-4 padding-0">
                         <div class="text-center">员工信息</div>
                         <div class="padding-left staff padding padding-top-xs">
-                            <div class=" padding overflow-hidden" :class="{'select':selectStaffInfo.curStaffId == item.staffId}" v-for="(item,index) in selectStaffInfo.staffs" @click="_changeStaff(item)" style="cursor:pointer">
+                            <div class=" padding overflow-hidden"
+                                 :class="{'select':selectStaffInfo.curStaffId == item.staffId}"
+                                 v-for="(item,index) in selectStaffInfo.staffs" @click="_changeStaff(item)"
+                                 style="cursor:pointer">
                                 <span>
-                                    <i class="fa fa-user margin-right-xs" aria-hidden="true"></i>
-                                    {{item.name}}
+                                    <div>
+                                        <i class="fa fa-user margin-right-xs" aria-hidden="true"></i>
+                                        {{item.name}}
+                                    </div>
+                                        <div>{{item.tel}}</div>
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-right" v-if="selectStaffInfo.staff.from == 'bpmn' || selectStaffInfo.staff.from == 'purchase' || selectStaffInfo.staff.from == 'contract'">
+                <div class="text-right"
+                     v-if="selectStaffInfo.staff.from == 'bpmn' || selectStaffInfo.staff.from == 'purchase' || selectStaffInfo.staff.from == 'contract'">
                     <button type="button" class="btn btn-white btn-sm" @click="_firstUser()">提交者</button>
                     <button type="button" class="btn btn-white btn-sm" @click="_customUser()">动态指定</button>
                 </div>

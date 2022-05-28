@@ -61,6 +61,7 @@
                         <thead>
                         <tr>
                             <!-- <th>商铺ID</th> -->
+                            <th data-hide="phone" class="text-center">楼栋编号</th>
                             <th data-hide="phone" class="text-center">商铺编号</th>
                             <th data-hide="phone" class="text-center">楼层</th>
                             <th data-hide="phone" class="text-center">业主/租方</th>
@@ -79,7 +80,10 @@
                         <tbody>
                         <tr v-for="shops in shopsInfo.shopss" :class="{ 'table-danger' : new Date(shops.endTime).getTime() < new Date().getTime()}">
                             <td class="text-center">
-                                {{shops.floorNum}}-{{shops.roomNum}}
+                                {{shops.floorNum}}
+                            </td>
+                            <td class="text-center">
+                                {{shops.roomNum}}
                             </td>
                             <td class="text-center">
                                 {{shops.layer}}层
@@ -147,7 +151,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="12">
+                            <td colspan="13">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

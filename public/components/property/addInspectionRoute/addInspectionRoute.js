@@ -43,7 +43,7 @@
                         {
                             limit: "num",
                             param: "",
-                            errInfo: "顺序必须是整数"
+                            errInfo: "顺序必须是数字"
                         },
                     ],
                     'addInspectionRouteInfo.remark': [{

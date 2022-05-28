@@ -6,7 +6,9 @@
                 ownerId: '',
                 owners: [],
                 amount: '',
-                remark: ''
+                remark: '',
+                acctTypes: [],
+                acctType: '',
             }
         },
         _initMethod: function () {
@@ -14,10 +16,13 @@
         _initEvent: function () {
             vc.on('prestoreAccount', 'openAddModal', function () {
                 $('#prestoreAccountModel').modal('show');
+                //与字典表单位关联
+                vc.getDict('account', "acct_type", function (_data) {
+                    vc.component.prestoreAccountInfo.acctTypes = _data;
+                });
             });
 
             vc.on('prestoreAccount', 'openAddModalWithParams', function (_param) {
-                console.log('params here ', _param);
                 vc.component.prestoreAccountInfo.amount = _param.redepositAmount;
                 $('#prestoreAccountModel').modal('show');
             });
@@ -45,6 +50,13 @@
                             param: "",
                             errInfo: "金额格式错误"
                         },
+                    ],
+                    'prestoreAccountInfo.acctType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "请选择账户类型"
+                        }
                     ],
                     'prestoreAccountInfo.remark': [
                         {
@@ -90,7 +102,9 @@
                     ownerId: '',
                     owners: [],
                     amount: '',
-                    remark: ''
+                    remark: '',
+                    acctTypes: [],
+                    acctType: '',
                 };
             },
             _changeTel: function () {

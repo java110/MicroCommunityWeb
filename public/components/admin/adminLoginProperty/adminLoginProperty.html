@@ -11,15 +11,16 @@
                                 <label class="col-sm-2 col-form-label">密码</label>
                                 <div class="col-sm-10">
                                     <input placeholder="必填，请输入当前账号密码" type="password" class="form-control"
-                                              v-model="adminLoginPropertyInfo.curPasswd"></div>
+                                           v-model="adminLoginPropertyInfo.curPasswd"></div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="_adminLoginPropertySubmit()"><i class="fa fa-check"></i>&nbsp;登录
+                                        v-on:click="_adminLoginPropertySubmit()">
+                                    <i class="fa fa-check"></i>&nbsp;登录
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
                                 </button>
                             </div>
                         </div>

@@ -5,34 +5,39 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入物业编号" v-model="propertyCompanyManageInfo.conditions.storeId" class=" form-control">
+                                <input type="text" placeholder="请输入物业编号"
+                                       v-model="propertyCompanyManageInfo.conditions.storeId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入名称" v-model="propertyCompanyManageInfo.conditions.name" class=" form-control">
+                                <input type="text" placeholder="请输入名称"
+                                       v-model="propertyCompanyManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入电话" v-model="propertyCompanyManageInfo.conditions.tel" class=" form-control">
+                                <input type="text" placeholder="请输入电话"
+                                       v-model="propertyCompanyManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPropertyCompanyMethod()">
-                                    查询
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryPropertyCompanyMethod()">
+                                <i class="fa fa-search"></i>查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetPropertyCompanyMethod()">
+                                <i class="fa fa-repeat"></i>重置
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -43,76 +48,84 @@
                 <div class="ibox-title">
                     <h5>物业公司</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPropertyCompanyModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddPropertyCompanyModal()">
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">编号</th>
-                                <th class="text-center">名称</th>
-                                <th class="text-center">地址</th>
-                                <th class="text-center">管理员</th>
-                                <th class="text-center">电话</th>
-                                <th class="text-center">公司法人</th>
-                                <th class="text-center">成立日期</th>
-                                <th class="text-center">地标</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">编号</th>
+                            <th class="text-center">名称</th>
+                            <th class="text-center">地址</th>
+                            <th class="text-center">管理员</th>
+                            <th class="text-center">电话</th>
+                            <th class="text-center">公司法人</th>
+                            <th class="text-center">成立日期</th>
+                            <th class="text-center">地标</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="propertyCompany in propertyCompanyManageInfo.propertyCompanys">
-                                <td class="text-center">{{propertyCompany.storeId}}</td>
-                                <td class="text-center">{{propertyCompany.name}}</td>
-                                <td class="text-center">{{propertyCompany.address}}</td>
-                                <td class="text-center">{{propertyCompany.tel}}</td>
-                                <td class="text-center">{{propertyCompany.tel}}</td>
-                                <td class="text-center">{{propertyCompany.corporation}}</td>
-                                <td class="text-center">{{propertyCompany.foundingTime}}</td>
-                                <td class="text-center">{{propertyCompany.nearbyLandmarks}}</td>
-                                <td class="text-center">{{propertyCompany.createTime}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditPropertyCompanyModel(propertyCompany)">修改</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePropertyCompanyModel(propertyCompany)">删除</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openManageCommunity(propertyCompany)">管理小区</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openAdminLoginPropertyModel(propertyCompany)">登录
-                                        </button>
-                                    </div>
-                                    <div class="btn-group" v-if="propertyCompany.state != '48002'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')">限制登录
-                                        </button>
-                                    </div>
-                                    <div class="btn-group" v-else>
-                                        <button class="btn-white btn btn-xs" v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')">恢复登录
-                                        </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(propertyCompany)">重置密码
-                                        </button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                        <tr v-for="propertyCompany in propertyCompanyManageInfo.propertyCompanys">
+                            <td class="text-center">{{propertyCompany.storeId}}</td>
+                            <td class="text-center">{{propertyCompany.name}}</td>
+                            <td class="text-center">{{propertyCompany.address}}</td>
+                            <td class="text-center">{{propertyCompany.tel}}</td>
+                            <td class="text-center">{{propertyCompany.tel}}</td>
+                            <td class="text-center">{{propertyCompany.corporation}}</td>
+                            <td class="text-center">{{propertyCompany.foundingTime}}</td>
+                            <td class="text-center">{{propertyCompany.nearByLandmarks}}</td>
+                            <td class="text-center">{{propertyCompany.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditPropertyCompanyModel(propertyCompany)">修改
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeletePropertyCompanyModel(propertyCompany)">删除
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openManageCommunity(propertyCompany)">管理小区
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAdminLoginPropertyModel(propertyCompany)">登录
+                                    </button>
+                                </div>
+                                <div class="btn-group" v-if="propertyCompany.state != '48002'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openUpdateStoreStateModel(propertyCompany,'48002')">限制登录
+                                    </button>
+                                </div>
+                                <div class="btn-group" v-else>
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openUpdateStoreStateModel(propertyCompany,'48001')">恢复登录
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_resetStaffPwd(propertyCompany)">
+                                        重置密码
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -124,21 +137,14 @@
                             <vc:create path="frame/pagination"></vc:create>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="admin/addPropertyCompany" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="admin/editPropertyCompany"></vc:create>
     <vc:create path="admin/deletePropertyCompany"></vc:create>
-
     <vc:create path="admin/adminLoginProperty"></vc:create>
     <vc:create path="admin/updateStoreState"></vc:create>
     <vc:create path="frame/resetStaffPwd"></vc:create>
-
 </div>

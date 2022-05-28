@@ -138,13 +138,17 @@
                 vc.emit('examineVisit', 'openExamineVisitModel', _app);
             },
             _openEditVisitModel: function (_app) {
-                console.log("look here")
-                console.log(_app)
                 vc.emit('editVisit', 'openEditVisitModel', _app);
                 // vc.emit('deleteApp','openDeleteAppModal',_app);
             },
             _openDeleteAppModel: function (_app) {
                 vc.emit('deleteApp', 'openDeleteAppModel', _app);
+            },
+            showImg: function (e) {
+                if(!e){
+                    e = '/img/noPhoto.jpg';
+                }
+                vc.emit('viewImage', 'showImage', {url: e});
             }
         }
     });

@@ -16,25 +16,26 @@
             addVisitCase: {
                 deep: true,
                 handler: function () {
+                    if (!vc.component.addVisitCaseValidate()) {
+                        vc.emit('addVisitSpace', 'visitCase', '');
+                        return;
+                    }
                     vc.emit('addVisitSpace', 'visitCase', vc.component.addVisitCase);
                 }
             }
         },
         _initMethod: function () {
-            //与字典表关联
-            vc.getDict('s_visit_info', "reason_type", function (_data) {
-                vc.component.addVisitCase.reasonTypes = _data;
-            });
         },
         _initEvent: function () {
             vc.on('addVisitCase', 'onIndex', function (_index) {
-                // console.log("侦听到addVisitCase的index为  "+_index);
-                // vc.component.addCarInfo.index = _index;
+                //与字典表关联
                 if (_index != 2) {
                     return;
                 }
+                vc.getDict('s_visit_info', "reason_type", function (_data) {
+                    vc.component.addVisitCase.reasonTypes = _data;
+                });
                 $that._initAddVisitMedia();
-                // vc.emit('addVisitSpace', 'notify', _index);
             });
 
             vc.on('addVisitCase', 'clearInfo', function () {
@@ -42,6 +43,31 @@
             });
         },
         methods: {
+            addVisitCaseValidate() {
+                return vc.validate.validate({
+                    addVisitCase: vc.component.addVisitCase
+                }, {
+                    'addVisitCase.visitCase': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "拜访事由不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "30",
+                            errInfo: "拜访事由过长"
+                        }
+                    ],
+                    'addVisitCase.reasonType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "事由类型不能为空"
+                        }
+                    ]
+                });
+            },
             addCarValidate: function () {
             },
             saveAddCarInfo: function () {
@@ -114,8 +140,7 @@
                     }
                 }
             },
-
-            _clearAddVisitCaseInfo: function(){
+            _clearAddVisitCaseInfo: function () {
                 vc.component.addVisitCase.visitCase = '';
                 vc.component.addVisitCase.reasonType = '';
                 // vc.component.addVisitCase.reasonTypes = [];

@@ -9,8 +9,7 @@
                             返回
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddRepairTypeUserModal()">
-                            <i class="fa fa-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
@@ -18,25 +17,24 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
+                            <th class="text-center">维修师傅ID</th>
                             <th class="text-center">师傅名称</th>
                             <th class="text-center">报修类型</th>
-                            <!-- <th class="text-center">师傅ID</th> -->
                             <th class="text-center">状态</th>
                             <th class="text-center">说明</th>
                             <th class="text-center">创建时间</th>
-                            <th class="text-right">操作</th>
+                            <th class="text-center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="repairTypeUser in repairTypeUserManageInfo.repairTypeUsers">
-                            <!-- <td class="text-center">{{repairTypeUser.settingId}}</td> -->
+                            <td class="text-center">{{repairTypeUser.staffId}}</td>
                             <td class="text-center">{{repairTypeUser.staffName}}</td>
                             <td class="text-center">{{repairTypeUser.repairTypeName}}</td>
-                            <!-- <td class="text-center">{{repairTypeUser.staffId}}</td> -->
                             <td class="text-center">{{repairTypeUser.stateName}}</td>
                             <td class="text-center">{{repairTypeUser.remark}}</td>
                             <td class="text-center">{{repairTypeUser.createTime}}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteTypeUserModel(repairTypeUser)">删除

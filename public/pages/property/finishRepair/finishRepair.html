@@ -51,7 +51,8 @@
                                         <div class="row">
                                             <div class="col-sm-2 text-center">分类</div>
                                             <div class="col-sm-2 text-center">商品</div>
-                                            <div class="col-sm-2 text-center" v-show="finishRepairInfo.maintenanceType == '1001'">
+                                            <div class="col-sm-2 text-center"
+                                                 v-show="finishRepairInfo.maintenanceType == '1001'">
                                                 价格
                                             </div>
                                             <div class="col-sm-2 text-center">数量</div>
@@ -117,7 +118,7 @@
                                 </div>
                             </div>
                             <div class="row form-group" v-if="finishRepairInfo.maintenanceType == '1001'">
-                                <label class="col-sm-2 col-form-label" >支付方式:</label>
+                                <label class="col-sm-2 col-form-label">支付方式:</label>
                                 <div class="col-sm-9">
                                     <select class="custom-select" v-model="finishRepairInfo.payType">
                                         <option selected disabled value="">必填，请选择支付方式</option>

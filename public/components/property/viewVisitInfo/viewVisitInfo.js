@@ -11,7 +11,11 @@
                 visitTime: '',
                 departureTime: '',
                 carNum: '',
-                entourage: ''
+                entourage: '',
+                paId: '',
+                psId: '',
+                num: '',
+                parkingSpaceNum: ''
             }
         },
         _initMethod: function () {
@@ -50,6 +54,10 @@
                 vc.component.viewVisitInfo.departureTime = '';
                 vc.component.viewVisitInfo.carNum = '';
                 vc.component.viewVisitInfo.entourage = '';
+                vc.component.viewVisitInfo.paId = '';
+                vc.component.viewVisitInfo.psId = '';
+                vc.component.viewVisitInfo.num = '';
+                vc.component.viewVisitInfo.parkingSpaceNum = '';
             }
         }
     });

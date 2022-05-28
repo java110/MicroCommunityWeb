@@ -67,6 +67,10 @@
                 });
                 $('#editInspectionPlanModel').modal('show');
             });
+
+            vc.on('editInspectionPlanInfo', 'notify', function(_param){
+                vc.component.editInspectionPlanInfo.inspectionRouteId = _param.inspectionRouteId;
+            })
         },
         methods: {
             editInspectionPlanValidate: function () {
@@ -255,6 +259,12 @@
                     .on('changeDate', function (ev) {
                         var value = $(".editInspectionPlanEndTime").val();
                         vc.component.editInspectionPlanInfo.endTime = value;
+                        let start = Date.parse(new Date(vc.component.editInspectionPlanInfo.startTime))
+                        let end = Date.parse(new Date(vc.component.editInspectionPlanInfo.endTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            vc.component.editInspectionPlanInfo.endTime = '';
+                        }
                     });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByClassName('form-control editInspectionPlanStartTime')[0].addEventListener('click', myfunc)

@@ -63,15 +63,16 @@
                         <thead>
                         <tr>
                             <th class="text-center">访客ID</th>
-                            <th class="text-center">访客姓名</th>
+                            <th class="text-center">照片</th>
+                            <th class="text-center">访客姓名/性别</th>
                             <th class="text-center">访客联系方式</th>
-                            <th class="text-center">访客性别</th>
-                            <th class="text-center">来访事由</th>
-                            <th class="text-center">事由类型</th>
-                            <th class="text-center">车牌号</th>
+                            <th class="text-center">业主姓名</th>
+                            <th class="text-center">来访事由/类型</th>
                             <th class="text-center">随行人数</th>
-                            <th class="text-center">来访时间</th>
-                            <th class="text-center">离开时间</th>
+                            <th class="text-center">车牌号</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">来访/离开时间</th>
+                            <th class="text-center">车辆状态</th>
                             <th class="text-center">状态</th>
                             <th class="text-center">操作</th>
                         </tr>
@@ -79,20 +80,32 @@
                         <tbody>
                         <tr v-for="visit in appManageInfo.visits">
                             <td class="text-center">{{visit.vId}}</td>
-                            <td class="text-center">{{visit.vName}}</td>
-                            <td class="text-center">{{visit.phoneNumber}}</td>
-                            <td class="text-center">{{visit.visitGender=='0'?'男':'女'}}</td>
-                            <td class="text-center">{{visit.visitCase}}</td>
                             <td class="text-center">
-                                {{visit.reasonType == 0 ? '喜事' : (visit.reasonType == 1 ? '白事' : '-')}}
+                                <div style="position: relative; display: inline-block;" v-on:click="showImg(visit.url)">
+                                    <img width="50" height="50" v-bind:src="visit.url?visit.url:'/img/noPhoto.jpg'"
+                                         onerror="this.src='/img/noPhoto.jpg';">
+                                    <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;"
+                                         width="50" height="50" alt="">
+                                </div>
                             </td>
-                            <td class="text-center">{{visit.carNum}}</td>
+                            <td class="text-center">{{visit.vName}}/{{visit.visitGender=='0'?'男':'女'}}</td>
+                            <td class="text-center">{{visit.phoneNumber}}</td>
+                            <td class="text-center">{{visit.ownerName}}</td>
+                            <td class="text-center">{{visit.visitCase}}({{visit.reasonType == 0 ? '喜事' :
+                                (visit.reasonType == 1 ? '白事' : '-')}})
+                            </td>
                             <td class="text-center">{{visit.entourage}}</td>
-                            <td class="text-center">{{visit.visitTime}}</td>
-                            <td class="text-center">{{visit.departureTime}}</td>
+                            <td class="text-center">{{visit.carNum}}<span
+                                    v-if="visit.parkingAreaName != null && visit.parkingSpaceNum != null"><br/>{{visit.parkingAreaName}}{{visit.parkingSpaceNum}}号车位</span>
+                            </td>
+                            <td class="text-center">{{visit.createTime}}</td>
+                            <td class="text-center">{{visit.visitTime}}<br/>{{visit.departureTime}}</td>
                             <td class="text-center">{{visit.stateName}}</td>
+                            <td class="text-center">{{visit.recordState == 1 ? '已失效' : (visit.recordState == 0 ? '已生效' :
+                                '-')}}
+                            </td>
                             <td class="text-center">
-                                <div class="btn-group" v-if="visit.state == '0'">
+                                <div class="btn-group" v-if="visit.state == 0 && visit.recordState == 0">
                                     <button class="btn-white btn btn-xs" v-on:click="_openExamineVisitModel(visit)">车辆审核
                                     </button>
                                 </div>
@@ -124,4 +137,5 @@
     <vc:create path="property/editVisit"></vc:create>
     <vc:create path="property/examineVisit"></vc:create>
     <vc:create path="dev/deleteApp"></vc:create>
+    <vc:create path="common/viewImage"></vc:create>
 </div>

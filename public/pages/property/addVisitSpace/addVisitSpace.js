@@ -22,9 +22,7 @@
                 vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index]["ownerId"] = _ownerId;
             });
             vc.on("addVisitSpace", "visitCase", function (_visitCase) {
-                console.log('step3', _visitCase);
-                if (!vc.validate.required(_visitCase.visitCase) || _visitCase.reasonType == '') {
-                    vc.toast("请选择或填写必选信息");
+                if (!_visitCase) {
                     vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = null;
                     return;
                 }
@@ -58,7 +56,7 @@
             _nextStep: function () {
                 var _currentData = vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index];
                 if (_currentData == null || _currentData == undefined) {
-                    vc.toast("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息", 1000);
                     return;
                 }
                 vc.component.newVisitInfo.$step.nextStep();
@@ -73,7 +71,7 @@
             _addVisitFinish: function () {
                 var _currentData = vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index];
                 if (_currentData == null || _currentData == undefined) {
-                    vc.toast("请选择或填写必选信息");
+                    vc.toast("请选择或填写必选信息", 1000);
                     return;
                 }
                 vc.component.newVisitInfo.infos[0]['communityId'] = vc.getCurrentCommunity().communityId;
@@ -86,11 +84,13 @@
                     departureTime: vc.component.newVisitInfo.infos[0]['departureTime'],
                     carNum: vc.component.newVisitInfo.infos[0]['carNum'],
                     entourage: vc.component.newVisitInfo.infos[0]['entourage'],
+                    paId: vc.component.newVisitInfo.infos[0]['paId'],
+                    psId: vc.component.newVisitInfo.infos[0]['psId'],
                     ownerId: vc.component.newVisitInfo.infos[1]['ownerId'],
                     visitCase: vc.component.newVisitInfo.infos[2]['visitCase'],
                     photo: vc.component.newVisitInfo.infos[2]['visitPhoto'],
                     videoPlaying: vc.component.newVisitInfo.infos[2]['videoPlaying'],
-                    reasonType: vc.component.newVisitInfo.infos[2]['reasonType'],
+                    reasonType: vc.component.newVisitInfo.infos[2]['reasonType']
                 }
                 vc.http.post(
                     'addVisit',
@@ -110,7 +110,7 @@
                         if (res.status == 200 && _json.code == '0') {
                             //关闭model
                             vc.jumpToPage("/#/pages/property/visitManage?" + vc.objToGetParam(JSON.parse(json)));
-                            vc.toast("登记成功");
+                            vc.toast(_json.msg);
                             return;
                         } else {
                             //关闭model

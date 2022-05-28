@@ -124,7 +124,6 @@
                             vc.toast("操作成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

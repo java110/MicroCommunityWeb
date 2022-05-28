@@ -5,7 +5,8 @@
                 <div class="ibox-title">
                     <h5>订单收费({{payFeeOrderInfo.payerObjName}})</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_goBack()">返回
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_goBack()">返回
                         </button>
                     </div>
                 </div>
@@ -39,15 +40,18 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">缴费时间</label>
                                 <div class="col-sm-6">
-                                    <input v-model="payFeeOrderInfo.createTime" type="text" placeholder="必填，请填写缴费时间" readonly class="payFeeOrderCreateTime" style="border: none; outline: none;">
+                                    <input v-model="payFeeOrderInfo.createTime" type="text" placeholder="必填，请填写缴费时间"
+                                           readonly class="payFeeOrderCreateTime" style="border: none; outline: none;">
                                 </div>
                             </div>
                             <div class="form-group row" v-if="payFeeOrderInfo.feeFlag != '2006012'">
                                 <label class="col-sm-2 col-form-label">缴费周期</label>
                                 <div class="col-sm-6">
-                                    <select class="custom-select" v-model="payFeeOrderInfo.tempCycles" @change="_changeMonth(payFeeOrderInfo.tempCycles)">
+                                    <select class="custom-select" v-model="payFeeOrderInfo.tempCycles"
+                                            @change="_changeMonth(payFeeOrderInfo.tempCycles)">
                                         <option selected disabled value="">请选择缴费周期</option>
-                                        <option v-for="item in payFeeOrderInfo.paymentCycles" :value="item">{{item}}个月
+                                        <option v-for="item in payFeeOrderInfo.paymentCycles" :value="item">
+                                            {{item}}个月
                                         </option>
                                         <option value="-102">自定义周期</option>
                                         <option value="-101">自定义金额</option>
@@ -57,13 +61,16 @@
                             <div class="form-group row" v-if="payFeeOrderInfo.tempCycles == '-102'">
                                 <label class="col-sm-2 col-form-label">实际周期</label>
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="请输入实际周期" v-model="payFeeOrderInfo.cycles" oninput="value=value.replace(/[^\d]/g,'')" v-on:change="changeCycle(payFeeOrderInfo.cycles)" class="form-control">
+                                    <input type="text" placeholder="请输入实际周期" v-model="payFeeOrderInfo.cycles"
+                                           oninput="value=value.replace(/[^\d]/g,'')"
+                                           v-on:change="changeCycle(payFeeOrderInfo.cycles)" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" style="padding-right:0px;">备注</label>
                                 <div class="col-sm-6" style="padding-left:5px;">
-                                    <textarea placeholder="可填，请填写备注" class="form-control" v-model="payFeeOrderInfo.remark">
+                                    <textarea placeholder="可填，请填写备注" class="form-control"
+                                              v-model="payFeeOrderInfo.remark">
                                     </textarea>
                                 </div>
                             </div>
@@ -86,8 +93,10 @@
                                 <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.additionalAmount}}</label>
                             </div>
                             <div class="row">
-                                <label class="col-sm-3 col-form-label" style="line-height: 50px;padding-right:0px;">应收款：</label>
-                                <label class="col-sm-8 col-form-label" style="font-size: 30px;color: red;padding-left:0px;">￥{{payFeeOrderInfo.totalFeePrice}}</label>
+                                <label class="col-sm-3 col-form-label"
+                                       style="line-height: 50px;padding-right:0px;">应收款：</label>
+                                <label class="col-sm-8 col-form-label"
+                                       style="font-size: 30px;color: red;padding-left:0px;">￥{{payFeeOrderInfo.totalFeePrice}}</label>
                             </div>
                             <div class="row form-group">
                                 <label class="col-sm-3 col-form-label" style="padding-right:0px;">支付方式:</label>
@@ -95,7 +104,8 @@
                                     <select class="custom-select" v-model="payFeeOrderInfo.primeRate">
                                         <option selected disabled value="">必填，请选择支付方式</option>
                                         <option v-for="(item,index) in payFeeOrderInfo.primeRates" :key="index"
-                                            v-if="item.statusCd != '5' && item.statusCd != '6'" :value="item.statusCd">
+                                                v-if="item.statusCd != '5' && item.statusCd != '6'"
+                                                :value="item.statusCd">
                                             {{item.name}}
                                         </option>
                                     </select>
@@ -104,16 +114,20 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" style="padding-right:0px;">实收款</label>
                                 <div class="col-sm-8" style="padding-left:5px;">
-                                    <input type="text" placeholder="请输入实际收款金额" v-model="payFeeOrderInfo.receivedAmount" class="form-control" v-if="payFeeOrderInfo.receivedAmountSwitch=='1'">
-                                    <label class="col-sm-8 col-form-label" v-if="payFeeOrderInfo.receivedAmountSwitch=='2'" style="font-size: 15px;">
+                                    <input type="text" placeholder="请输入实际收款金额" v-model="payFeeOrderInfo.receivedAmount"
+                                           class="form-control" v-if="payFeeOrderInfo.receivedAmountSwitch=='1'">
+                                    <label class="col-sm-8 col-form-label"
+                                           v-if="payFeeOrderInfo.receivedAmountSwitch=='2'" style="font-size: 15px;">
                                         ￥{{payFeeOrderInfo.receivedAmount}}
                                     </label>
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label" style="line-height: 50px;padding-right:0px;">应缴金额：</label>
-                                <label class="col-sm-8 col-form-label" style="font-size: 30px;color: red;padding-left:0px;">
-                                    ￥{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? '0.00' : (payFeeOrderInfo.receivedAmount - payFeeOrderInfo.accountAmount).toFixed(2)}}
+                                <label class="col-sm-8 col-form-label"
+                                       style="font-size: 30px;color: red;padding-left:0px;">
+                                    ￥{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? '0.00' :
+                                    (payFeeOrderInfo.receivedAmount - payFeeOrderInfo.accountAmount).toFixed(2)}}
                                 </label>
                             </div>
                             <div class="row">
@@ -126,11 +140,14 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block" @click="_openPayFee('qrCode')">扫码收费
+                                    <button type="button" class="btn btn-primary btn-lg btn-block"
+                                            @click="_openPayFee('qrCode')">扫码收费
                                     </button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-warning btn-lg btn-block" v-if="payFeeOrderInfo.offlinePayFeeSwitch !='2'" @click="_openPayFee('common')">提交收费
+                                    <button type="button" class="btn btn-warning btn-lg btn-block"
+                                            v-if="payFeeOrderInfo.offlinePayFeeSwitch !='2'"
+                                            @click="_openPayFee('common')">提交收费
                                     </button>
                                 </div>
                             </div>
@@ -155,9 +172,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="_back()">返回</button>
-                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId" @click="_printSmallAndBack()">打印小票
+                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId"
+                            @click="_printSmallAndBack()">打印小票
                     </button>
-                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId" @click="_printAndBack()">打印收据
+                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.receiptId"
+                            @click="_printAndBack()">打印收据
                     </button>
                 </div>
             </div>
@@ -192,15 +211,28 @@
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label">实收金额：</label>
-                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.receivedAmount}}</label>
+                        <label class="col-sm-8 col-form-label" v-if = "payFeeOrderInfo.flag != null && payFeeOrderInfo.flag != '' && payFeeOrderInfo.flag == 'true'">{{payFeeOrderInfo.receivedAmountNumber}}</label>
+                        <label class="col-sm-8 col-form-label" v-else>{{payFeeOrderInfo.receivedAmount}}</label>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label">抵扣金额：</label>
-                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? payFeeOrderInfo.receivedAmount : payFeeOrderInfo.accountAmount.toFixed(2)}}</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.accountAmount >=
+                            payFeeOrderInfo.receivedAmount ? payFeeOrderInfo.receivedAmount :
+                            payFeeOrderInfo.accountAmount.toFixed(2)}}</label>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label">应缴金额：</label>
-                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.accountAmount >= payFeeOrderInfo.receivedAmount ? '0.00' : (payFeeOrderInfo.receivedAmount - payFeeOrderInfo.accountAmount).toFixed(2)}}</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.accountAmount >=
+                            payFeeOrderInfo.receivedAmount ? '0.00' : (payFeeOrderInfo.receivedAmount -
+                            payFeeOrderInfo.accountAmount).toFixed(2)}}</label>
+                    </div>
+                    <div class="row" v-if="payFeeOrderInfo.integralAmount != null && payFeeOrderInfo.integralAmount != ''">
+                        <label class="col-sm-3 col-form-label">积分账户抵扣金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.integralAmount}}</label>
+                    </div>
+                    <div class="row" v-if="payFeeOrderInfo.cashAmount != null && payFeeOrderInfo.cashAmount != ''">
+                        <label class="col-sm-3 col-form-label">现金账户抵扣金额：</label>
+                        <label class="col-sm-8 col-form-label">{{payFeeOrderInfo.cashAmount}}</label>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label">备注：</label>
@@ -208,9 +240,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input v-model="payFeeOrderInfo.authCode" id="authCode" class="form-control" style="width: 60%;" v-if="payFeeOrderInfo.payType == 'qrCode'" type="text" @keyup.enter="_qrCodePayFee" placeholder="请用扫码枪扫码">
+                    <input v-model="payFeeOrderInfo.authCode" id="authCode" class="form-control" style="width: 60%;"
+                           v-if="payFeeOrderInfo.payType == 'qrCode'" type="text" @keyup.enter="_qrCodePayFee"
+                           placeholder="请用扫码枪扫码">
                     <button type="button" class="btn btn-secondary" @click="_closeDoPayFeeModal()">关闭</button>
-                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.payType == 'common'" @click="_payFee()">确定收费</button>
+                    <button type="button" class="btn btn-primary" v-if="payFeeOrderInfo.payType == 'common'"
+                            @click="_payFee()">确定收费
+                    </button>
                 </div>
             </div>
         </div>

@@ -5,8 +5,7 @@
                 <h5>业主信息</h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm" v-if="showCallBackButton=='true'"
-                            v-on:click="_openSearchOwnerModel(viewOwnerInfo.ownerId)">
-                        选择业主
+                            v-on:click="_openSearchOwnerModel(viewOwnerInfo.ownerId)">选择业主
                     </button>
                 </div>
             </div>
@@ -27,7 +26,9 @@
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label class="col-form-label">性别：</label>
-                            <label class="">{{viewOwnerInfo.sex == 0 ? '男' : '女'}}</label>
+                            <label class="" v-if="viewOwnerInfo.sex == 0">男</label>
+                            <label class="" v-if="viewOwnerInfo.sex == 1">女</label>
+                            <!--<label class="">{{viewOwnerInfo.sex == 0 ? '男' : '女'}}</label>-->
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -36,9 +37,7 @@
                             <label class="">{{viewOwnerInfo.age}}</label>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
@@ -58,13 +57,9 @@
                             <label class="">{{viewOwnerInfo.remark}}</label>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-    <vc:create path="property/chooseOwner"
-               callBackListener="visitForOwner"
-               callBackFunction="ownerInfo"
-    ></vc:create>
+    <vc:create path="property/chooseOwner" callBackListener="visitForOwner" callBackFunction="ownerInfo"></vc:create>
 </div>

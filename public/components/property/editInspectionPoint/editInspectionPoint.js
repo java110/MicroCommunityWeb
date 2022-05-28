@@ -73,6 +73,11 @@
                         param: "",
                         errInfo: "巡检位置不能为空"
                     }, ],
+                    'editInspectionPointInfo.itemId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "巡检项目不能为空"
+                    }, ],
                     'editInspectionPointInfo.remark': [{
                         limit: "maxLength",
                         param: "200",
@@ -84,6 +89,17 @@
                         errInfo: "巡检点ID不能为空"
                     }]
                 });
+            },
+            _pointObjTypeChange: function(){
+                let type = vc.component.editInspectionPointInfo.pointObjType;
+                vc.component.editInspectionPointInfo.pointObjId = '';
+                vc.component.editInspectionPointInfo.pointObjName = '';
+                if (type == '1001') {
+                    vc.emit('editInspectionPoint', 'machineSelect2', 'setMachine', {
+                        machineId: vc.component.editInspectionPointInfo.pointObjId,
+                        machineName: '必填，请选择设备',
+                    });
+                }
             },
             editInspectionPoint: function() {
                 if ($that.editInspectionPointInfo.pointObjType == '2002') {

@@ -130,24 +130,24 @@
 
                 <div v-if="workflowSettingInfo.flowType == '70007'">
                     <div> 1、添加步骤必须要两步以上，最后一步为固定仓库管理员，之前的为普通人员审核</div>
-                    <div> 2、仓库管理不能参与申请或者审核调拨，只能参与最后的出库确认</div>
+                    <div> 2、仓库管理不能参与审核调拨，只能参与最后的出库确认</div>
                     <div> 3、仓库管理员不能为动态指定人员</div>
                     <div> 4、必须配置流程信息中的物品被调拨流程</div>
                 </div>
                 <div v-if="workflowSettingInfo.flowType == '80008'">
                     <div> 1、添加步骤必须要两步以上，最后一步为固定仓库管理员，之前的为普通人员审核</div>
-                    <div> 2、仓库管理不能参与申请或者审核调拨，只能参与最后的出库确认</div>
+                    <div> 2、仓库管理不能参与审核被调拨，只能参与最后的出库确认</div>
                     <div> 3、仓库管理员不能为动态指定人员</div>
                     <div> 4、必须配置流程信息中的物品调拨流程</div>
                 </div>
                 <div v-else-if="workflowSettingInfo.flowType == '30003'">
                     <div> 1、添加步骤必须要两步以上，最后一步为固定仓库管理员，之前的为普通人员审核</div>
-                    <div> 2、仓库管理不能参与申请或者审核采购，只能参与最后的入库</div>
+                    <div> 2、仓库管理不能参与审核采购，只能参与最后的入库</div>
                     <div> 3、仓库管理员不能为动态指定人员</div>
                 </div>
                 <div v-else-if="workflowSettingInfo.flowType == '40004'">
                     <div> 1、添加步骤必须要两步以上，最后一步为固定仓库管理员，之前的为普通人员审核</div>
-                    <div> 2、仓库管理不能参与申请或者审核物品领用，只能参与最后的出库</div>
+                    <div> 2、仓库管理不能参与审核物品领用，只能参与最后的出库</div>
                     <div> 3、仓库管理员不能为动态指定人员</div>
                 </div>
                 <div v-else-if="workflowSettingInfo.flowType == '50005'">

@@ -62,12 +62,12 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "描述不能为空"
+                            errInfo: "流转说明不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "512",
-                            errInfo: "描述太长"
+                            errInfo: "流转说明太长"
                         },
                     ],
                 });

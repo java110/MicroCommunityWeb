@@ -97,7 +97,7 @@
                                 </td>
                                 <td class="text-center">{{machine.createTime}}</td>
                                 <td class="text-center">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)">开门
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)" v-show="machine.machineTypeCd == '9999'">开门
                                     </button>
                                     <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">变更

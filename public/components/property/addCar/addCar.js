@@ -19,6 +19,7 @@
                 endTime: '',
                 carNumType: '',
                 carAttrs: '',
+                attrs: [],
                 value: ''
             },
             carTypes: [
@@ -63,7 +64,8 @@
                 }
             );
             vc.component._initDateInfo();
-            vc.component._listCarAttrs();
+            $that._loadCarAttrSpec();
+            // vc.component._listCarAttrs();
         },
         _initEvent: function () {
             vc.on('addCar', 'onIndex', function (_index) {
@@ -107,13 +109,13 @@
                             errInfo: "车类型不能为空"
                         }
                     ],
-                    'addCarInfo.value': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "是否是预约车不能为空"
-                        }
-                    ],
+                    // 'addCarInfo.value': [
+                    //     {
+                    //         limit: "required",
+                    //         param: "",
+                    //         errInfo: "是否是预约车不能为空"
+                    //     }
+                    // ],
                     'addCarInfo.startTime': [
                         {
                             limit: "required",
@@ -142,11 +144,44 @@
                     ]
                 });
             },
+            _loadCarAttrSpec: function() {
+                $that.addCarInfo.attrs = [];
+                vc.getAttrSpec('owner_car_attr', function(data) {
+                    data.forEach(item => {
+                        item.value = '';
+                        if (item.specShow == 'Y') {
+                            item.values = [];
+                            $that._loadAttrValue(item.specCd, item.values);
+                            $that.addCarInfo.attrs.push(item);
+                        }
+                        console.log('attrs : ', $that.addCarInfo.attrs);
+                    });
+                });
+            },
+            _loadAttrValue: function(_specCd, _values) {
+                vc.getAttrValue(_specCd, function(data) {
+                    data.forEach(item => {
+                        if (item.valueShow == 'Y') {
+                            _values.push(item);
+                        }
+                    });
+                });
+            },
             saveAddCarInfo: function () {
                 let _carNumType = $that.addCarInfo.carNumType;
                 if (_carNumType == 'S') {
                     $that.addCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                     $that.addCarInfo.endTime = '2037-01-01';
+                }
+                // 验证attr必填项
+                let msg = '';
+                vc.component.addCarInfo.attrs.forEach((item) => {
+                    if (item.required == 'Y' && item.value == "") {
+                        msg = item.specHoldplace;
+                    }
+                })
+                if (msg) {
+                    return;
                 }
                 if (vc.component.addCarValidate()) {
                     //侦听回传
@@ -195,27 +230,25 @@
                     });
             },
             // 查询repair_types
-            _listCarAttrs: function (_page, _rows) {
-                var param = {
-                    params: {
-                        page: 1,
-                        row: 10,
-                        specCd: "6443000036"
-                    }
-                };
-                //发送get请求
-                vc.http.apiGet('/attrValue/queryAttrValue',
-                    param,
-                    function (json, res) {
-                        var _carAttrInfo = JSON.parse(json);
-                        console.log("look")
-                        console.log(_carAttrInfo)
-                        vc.component.addCarInfo.carAttrs = _carAttrInfo.data;
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
+            // _listCarAttrs: function (_page, _rows) {
+            //     var param = {
+            //         params: {
+            //             page: 1,
+            //             row: 10,
+            //             specCd: "6443000036"
+            //         }
+            //     };
+            //     //发送get请求
+            //     vc.http.apiGet('/attrValue/queryAttrValue',
+            //         param,
+            //         function (json, res) {
+            //             var _carAttrInfo = JSON.parse(json);
+            //             vc.component.addCarInfo.carAttrs = _carAttrInfo.data;
+            //         }, function (errInfo, error) {
+            //             console.log('请求失败处理');
+            //         }
+            //     );
+            // },
         }
     });
 })(window.vc);

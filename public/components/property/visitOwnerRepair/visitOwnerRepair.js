@@ -10,7 +10,6 @@
         _initMethod: function () {
         },
         _initEvent: function () {
-           
             vc.on('visitOwnerRepair', 'openVisitOwnerRepairModal', function (_params) {
                 vc.component.refreshVisitOwnerRepairInfo();
                 vc.copyObject(_params, vc.component.visitOwnerRepairInfo);
@@ -27,24 +26,24 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "报修类型不能为空"
+                            errInfo: "满意度不能为空"
                         },
                         {
                             limit: "maxin",
                             param: "2,50",
-                            errInfo: "报修类型错误"
+                            errInfo: "满意度错误"
                         },
                     ],
                     'visitOwnerRepairInfo.context': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "报修内容不能为空"
+                            errInfo: "回访内容不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "1000",
-                            errInfo: "报修内容不能超过1000个字"
+                            errInfo: "回访内容不能超过1000个字"
                         },
                     ],
                     'visitOwnerRepairInfo.repairId': [
@@ -52,11 +51,11 @@
                             limit: "required",
                             param: "",
                             errInfo: "报修ID不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             _visitOwnerRepair: function () {
-            
                 if (!vc.component.visitOwnerRepairValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -73,6 +72,7 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#visitOwnerRepairModel').modal('hide');
+                            vc.toast("回访成功");
                             vc.emit('repairReturnVisit', 'listRepairPool', {});
                         }
                     },

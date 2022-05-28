@@ -56,33 +56,16 @@
                         param: "",
                         errInfo: "巡检类型不能为空"
                     }, ],
+                    'addInspectionPointInfo.itemId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "巡检项目不能为空"
+                    }, ],
                     'addInspectionPointInfo.remark': [{
                         limit: "maxLength",
                         param: "200",
                         errInfo: "备注信息不能超过200位"
                     }, ],
-                });
-            },
-            addInspectionPointValidate1() {
-                return vc.validate.validate({
-                    addInspectionPointInfo: vc.component.addInspectionPointInfo
-                }, {
-                    'addInspectionPointInfo.pointObjName': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "巡检位置不能为空"
-                    }, ]
-                });
-            },
-            addInspectionPointValidate2() {
-                return vc.validate.validate({
-                    addInspectionPointInfo: vc.component.addInspectionPointInfo
-                }, {
-                    'addInspectionPointInfo.pointObjId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "巡检设备不能为空"
-                    }, ]
                 });
             },
             saveInspectionPointInfo: function() {
@@ -93,12 +76,12 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                if ($that.addInspectionPointInfo.pointObjType == '1001' && !vc.component.addInspectionPointValidate2()) {
-                    vc.toast(vc.validate.errInfo);
+                if ($that.addInspectionPointInfo.pointObjType == '1001' && !vc.validate.required($that.addInspectionPointInfo.pointObjId)) {
+                    vc.toast("巡检设备不能为空");
                     return;
                 }
-                if ($that.addInspectionPointInfo.pointObjType == '2002' && !vc.component.addInspectionPointValidate1()) {
-                    vc.toast(vc.validate.errInfo);
+                if ($that.addInspectionPointInfo.pointObjType == '2002' && !vc.validate.required($that.addInspectionPointInfo.pointObjName)) {
+                    vc.toast("巡检位置不能为空");
                     return;
                 }
                 vc.component.addInspectionPointInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -120,6 +103,10 @@
                             //关闭model
                             $('#addInspectionPointModel').modal('hide');
                             vc.component.clearAddInspectionPointInfo();
+                            vc.emit('addInspectionPoint', 'machineSelect2', 'setMachine', {
+                                machineId: '',
+                                machineName: '必填，请选择设备',
+                            });
                             vc.emit('inspectionPointManage', 'listInspectionPoint', {});
                             return;
                         }
@@ -151,6 +138,17 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _pointObjTypeChange: function(){
+                let type = vc.component.addInspectionPointInfo.pointObjType;
+                vc.component.addInspectionPointInfo.pointObjId = '';
+                vc.component.addInspectionPointInfo.pointObjName = '';
+                if (type == '1001') {
+                    vc.emit('addInspectionPoint', 'machineSelect2', 'setMachine', {
+                        machineId: vc.component.addInspectionPointInfo.pointObjId,
+                        machineName: '必填，请选择设备',
+                    });
+                }
             },
             clearAddInspectionPointInfo: function() {
                 //与字典表关联

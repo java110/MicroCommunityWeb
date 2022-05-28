@@ -5,34 +5,37 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入编号" v-model="menuUserManageInfo.conditions.muId" class=" form-control">
+                                <input type="text" placeholder="请输入编号" v-model="menuUserManageInfo.conditions.muId"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入菜单" v-model="menuUserManageInfo.conditions.mId" class=" form-control">
+                                <input type="text" placeholder="请输入菜单" v-model="menuUserManageInfo.conditions.mId"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入列顺序'" v-model="menuUserManageInfo.conditions.seq" class=" form-control">
+                                <input type="text" placeholder="请输入列顺序" v-model="menuUserManageInfo.conditions.seq"
+                                       class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMenuUserMethod()">
-                                    <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetMenuUserMethod()">
+                                <i class="fa fa-search"></i> 重置
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -44,44 +47,44 @@
                     <h5>常用菜单</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMenuUserModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">编号</th>
-                                <th class="text-center">菜单</th>
-                                <th class="text-center">图标</th>
-                                <th class="text-center">顺序</th>
-                                <th class="text-center">操作</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">编号</th>
+                            <th class="text-center">菜单</th>
+                            <th class="text-center">图标</th>
+                            <th class="text-center">顺序</th>
+                            <th class="text-center">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="menuUser in menuUserManageInfo.menuUsers">
-                                <td class="text-center">{{menuUser.muId}}</td>
-                                <td class="text-center">{{menuUser.name}}</td>
-                                <td class="text-center">
-                                    <i :class="menuUser.icon"></i>
-                                </td>
-                                <td class="text-center">{{menuUser.seq}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMenuUserModel(menuUser)">删除</button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr v-for="menuUser in menuUserManageInfo.menuUsers">
+                            <td class="text-center">{{menuUser.muId}}</td>
+                            <td class="text-center">{{menuUser.name}}</td>
+                            <td class="text-center">
+                                <i :class="menuUser.icon"></i>
+                            </td>
+                            <td class="text-center">{{menuUser.seq}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteMenuUserModel(menuUser)">删除
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -90,10 +93,6 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="frame/addMenuUser" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="frame/deleteMenuUser"></vc:create>
-
 </div>

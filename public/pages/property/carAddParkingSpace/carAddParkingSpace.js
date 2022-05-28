@@ -134,13 +134,14 @@
                         emulateJSON: true
                     },
                     function(json, res) {
-                        if (res.status == 200) {
+                        json = JSON.parse(json);
+                        if (res.status == 200 && json.code == 0) {
                             vc.toast("请记得收费哦！");
                             //关闭model
                             vc.jumpToPage("/#/pages/property/listOwnerCar");
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(json.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

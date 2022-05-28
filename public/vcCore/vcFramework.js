@@ -2776,4 +2776,9 @@
         }
         window.sessionStorage.setItem('vcTab', JSON.stringify(tabs));
     }
+
+    vcFramework.clearTabToLocal = function() {
+        let tabs = [];
+        window.sessionStorage.setItem('vcTab', JSON.stringify(tabs));
+    }
 })(window.vcFramework);

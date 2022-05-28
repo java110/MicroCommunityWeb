@@ -12,6 +12,9 @@
                 communityId: vc.getCurrentCommunity().communityId,
                 quanAccount: false,
                 selectAccountIds: [],
+                integralAmount: '',
+                cashAmount: '',
+                couponAmount: ''
             }
         },
         watch: { // 监视双向绑定的数据数组
@@ -36,11 +39,9 @@
                 vc.copyObject(_param, $that.payFeeUserAccountInfo);
                 vc.component._listUserAccount(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-
             vc.on('payFeeUserAccount', 'refresh', function () {
                 vc.component._listUserAccount(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-
             vc.on('payFeeUserAccount', 'clear', function () {
                 vc.component.payFeeUserAccountInfo.accountList = [];
                 vc.component.payFeeUserAccountInfo.selectAccountIds = [];
@@ -73,7 +74,7 @@
                 );
             },
             // 预存
-            _openAddUserAmountModal: function(_userAccount){
+            _openAddUserAmountModal: function (_userAccount) {
                 vc.emit('payFeeOrder', 'openAddModalWithParams', _userAccount)
             },
             checkAllAccount: function (e) {
@@ -92,16 +93,38 @@
             _computeFeeUserAmount: function () {
                 let _totalUserAmount = 0.0;
                 let _selectAccount = [];
+                console.log(111,$that.payFeeUserAccountInfo.accountList);
                 $that.payFeeUserAccountInfo.selectAccountIds.forEach(item => {
                     $that.payFeeUserAccountInfo.accountList.forEach(disItem => {
                         if (item == disItem.acctId && disItem.amount != 0) {
-                            _totalUserAmount += parseFloat(disItem.amount);
-                            _selectAccount.push(disItem);
+                            if (disItem.acctType == '2004') { //积分账户
+                                if (parseFloat(disItem.amount) >= parseFloat(disItem.maximumNumber)) { //如果积分账户余额大于最大使用积分，就抵扣最大使用积分
+                                    _totalUserAmount += parseFloat(disItem.maximumNumber / disItem.deductionProportion);
+                                    _selectAccount.push(disItem);
+                                    $that.payFeeUserAccountInfo.integralAmount = disItem.maximumNumber / disItem.deductionProportion;
+                                } else {
+                                    _totalUserAmount += parseFloat(disItem.amount / disItem.deductionProportion);
+                                    _selectAccount.push(disItem);
+                                    $that.payFeeUserAccountInfo.integralAmount = disItem.amount / disItem.deductionProportion;
+                                }
+                            } else if (disItem.acctType == '2003') { //现金账户
+                                _totalUserAmount += parseFloat(disItem.amount);
+                                _selectAccount.push(disItem);
+                                $that.payFeeUserAccountInfo.cashAmount = disItem.amount;
+                            } else {
+                                _totalUserAmount += parseFloat(disItem.amount);
+                                _selectAccount.push(disItem);
+                                $that.payFeeUserAccountInfo.couponAmount = disItem.amount;
+                            }
                         }
                     })
                 });
                 vc.emit('payFeeOrder', 'changeUserAmountPrice', {
                     totalUserAmount: _totalUserAmount,
+                    accountList: $that.payFeeUserAccountInfo.accountList,
+                    integralAmount: $that.payFeeUserAccountInfo.integralAmount,
+                    cashAmount: $that.payFeeUserAccountInfo.cashAmount,
+                    couponAmount: $that.payFeeUserAccountInfo.couponAmount,
                     selectAccount: _selectAccount
                 })
             }

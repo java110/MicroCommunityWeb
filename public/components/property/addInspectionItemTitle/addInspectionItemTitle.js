@@ -65,11 +65,24 @@
                 });
             },
             saveInspectionItemTitleInfo: function() {
+                console.log(vc.component.addInspectionItemTitleInfo.titleValues);
                 if (!vc.component.addInspectionItemTitleValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
+
+                // 验证必填项
+                let msg = '';
+                vc.component.addInspectionItemTitleInfo.titleValues.forEach((item) => {
+                    if(!vc.validate.required(item.itemValue)){
+                        msg = '请填写选项内容';
+                    }
+                });
+                if(msg){
+                    vc.toast(msg);
+                    return;
+                }
+
                 vc.component.addInspectionItemTitleInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -134,8 +147,6 @@
                 });
             },
             _deleteTitleValue: function(_seq) {
-                console.log(_seq);
-
                 let _newTitleValues = [];
                 let _tmpTitleValues = $that.addInspectionItemTitleInfo.titleValues;
                 _tmpTitleValues.forEach(item => {

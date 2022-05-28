@@ -12,7 +12,9 @@
                 records: 1,
                 moreCondition: false,
                 scId: '',
+                acctTypes: [],
                 conditions: {
+                    acctType: '',
                     ownerName: '',
                     idCard: '',
                     link: '',
@@ -21,6 +23,10 @@
             }
         },
         _initMethod: function() {
+            //与字典表单位关联
+            vc.getDict('account', "acct_type", function (_data) {
+                vc.component.accountManageInfo.acctTypes = _data;
+            });
             vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function() {
@@ -41,6 +47,7 @@
                 param.params.ownerName = param.params.ownerName.trim();
                 param.params.idCard = param.params.idCard.trim();
                 param.params.link = param.params.link.trim();
+                param.params.acctType = param.params.acctType.trim();
                 //发送get请求
                 vc.http.apiGet('/account/queryOwnerAccount',
                     param,
@@ -68,6 +75,7 @@
                 vc.component.accountManageInfo.conditions.ownerName = "";
                 vc.component.accountManageInfo.conditions.idCard = "";
                 vc.component.accountManageInfo.conditions.link = "";
+                vc.component.accountManageInfo.conditions.acctType = "";
                 vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function() {

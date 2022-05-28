@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -26,26 +26,26 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             //vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             //vc.component._validateParam();
             $that._listRepairSettings(DEFAULT_PAGE, 50);
-            vc.getDict('r_repair_pool', "state", function(_data) {
+            vc.getDict('r_repair_pool', "state", function (_data) {
                 vc.component.repairReturnVisitInfo.states = _data;
             });
             vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('repairReturnVisit', 'listRepairPool', function(_param) {
+        _initEvent: function () {
+            vc.on('repairReturnVisit', 'listRepairPool', function (_param) {
                 vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listRepairPools(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             //查询方法
-            _listRepairPools: function(_page, _rows) {
+            _listRepairPools: function (_page, _rows) {
                 vc.component.repairReturnVisitInfo.conditions.page = _page;
                 vc.component.repairReturnVisitInfo.conditions.row = _rows;
                 vc.component.repairReturnVisitInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -61,7 +61,7 @@
                 //发送get请求
                 vc.http.apiGet('/repair/queryRepairReturnVisit',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _repairReturnVisitInfo = JSON.parse(json);
                         vc.component.repairReturnVisitInfo.total = _repairReturnVisitInfo.total;
                         vc.component.repairReturnVisitInfo.records = _repairReturnVisitInfo.records;
@@ -72,34 +72,40 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-
-            _openRepairDetail: function(_repairPool) {
+            _openRepairDetail: function (_repairPool) {
                 vc.jumpToPage('/#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
             },
             //查询
-            _queryRepairPoolMethod: function() {
+            _queryRepairPoolMethod: function () {
                 vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-
-            _openEditOwnerRepairModel: function(_repairPool) {
+            //重置
+            _resetRepairPoolMethod: function () {
+                vc.component.repairReturnVisitInfo.conditions.repairType = "";
+                vc.component.repairReturnVisitInfo.conditions.repairName = "";
+                vc.component.repairReturnVisitInfo.conditions.state = "waiting";
+                vc.component.repairReturnVisitInfo.conditions.repairId = "";
+                vc.component.repairReturnVisitInfo.conditions.tel = "";
+                vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _openEditOwnerRepairModel: function (_repairPool) {
                 // _ownerRepair.roomName = vc.component.ownerRepairManageInfo.conditions.roomName;
                 // _ownerRepair.roomId = vc.component.ownerRepairManageInfo.conditions.roomId;
                 vc.emit('visitOwnerRepair', 'openVisitOwnerRepairModal', _repairPool);
             },
-
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.repairReturnVisitInfo.moreCondition) {
                     vc.component.repairReturnVisitInfo.moreCondition = false;
                 } else {
                     vc.component.repairReturnVisitInfo.moreCondition = true;
                 }
             },
-            _listRepairSettings: function(_page, _rows) {
+            _listRepairSettings: function (_page, _rows) {
                 var param = {
                     params: {
                         page: _page,
@@ -110,11 +116,11 @@
                 //发送get请求
                 vc.http.apiGet('repair.listRepairSettings',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _repairSettingManageInfo = JSON.parse(json);
                         vc.component.repairReturnVisitInfo.repairSettings = _repairSettingManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

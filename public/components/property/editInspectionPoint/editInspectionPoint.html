@@ -15,7 +15,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">巡检类型</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editInspectionPointInfo.pointObjType">
+                                    <select class="custom-select" v-model="editInspectionPointInfo.pointObjType" @change="_pointObjTypeChange()">
                                         <option selected disabled value="">必填，请选择巡检类型</option>
                                         <option v-for="(item,index) in editInspectionPointInfo.pointObjTypes"
                                                 :key="index" :value="item.statusCd">{{item.name}}
@@ -26,7 +26,7 @@
                             <div class="form-group row" v-show="editInspectionPointInfo.pointObjType == '2002'">
                                 <label class="col-sm-2 col-form-label">位置</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editInspectionPointInfo.pointObjName" type="text" placeholder="必填，请填写巡检点名称" class="form-control">
+                                    <input v-model="editInspectionPointInfo.pointObjName" type="text" placeholder="必填，请填写位置信息" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row" v-show="editInspectionPointInfo.pointObjType == '1001'">

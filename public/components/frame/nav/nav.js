@@ -69,6 +69,8 @@
                     },
                     function(json, res) {
                         if (res.status == 200) {
+                            // 清除本地sessionStorage存储的tab
+                            vc.clearTabToLocal();
                             vc.jumpToPage("/user.html#/pages/frame/login");
                             return;
                         }

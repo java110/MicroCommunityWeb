@@ -5,6 +5,10 @@
                 <div class="ibox-title">
                     <h5>查询条件</h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{accountManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -34,6 +38,16 @@
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAccountMethod()">
                                 <i class="fa fa-repeat"></i> 重置
                             </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="accountManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="accountManageInfo.conditions.acctType">
+                                <option selected value="">必填，请选择账户类型</option>
+                                <option v-for="(type,index) in accountManageInfo.acctTypes" :key="index"
+                                        v-bind:value="type.statusCd">{{type.name}}
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>

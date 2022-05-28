@@ -102,14 +102,15 @@
                         emulateJSON: true
                     },
                     function(json, res) {
+                        json = JSON.parse(json);
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        if (res.status == 200 && json.code == 0) {
                             //关闭model
                             $('#editStaffModel').modal('hide');
                             vc.component.$emit('editStaff_reload_event', {});
                             return;
                         }
-                        vc.component.editStaffInfo.errorInfo = json;
+                        vc.component.editStaffInfo.errorInfo = json.msg;
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

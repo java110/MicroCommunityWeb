@@ -159,7 +159,7 @@
                     });
             },
             clearAddOwnerRepairInfo: function () {
-                let _repairSettings = vc.component.addOwnerRepairInfo.repairSettings;
+                // let _repairSettings = vc.component.addOwnerRepairInfo.repairSettings;
                 vc.component.addOwnerRepairInfo = {
                     repairType: '',
                     repairName: '',
@@ -170,7 +170,7 @@
                     repairObjId: '',
                     repairObjName: '',
                     repairChannel: 'T',
-                    repairSettings: _repairSettings
+                    repairSettings: []
                 };
                 vc.emit('addOwnerRepair', 'roomSelect2', 'clearRoom', {});
                 vc.emit('addOwnerRepair', 'unitSelect2', 'clearUnit', {});

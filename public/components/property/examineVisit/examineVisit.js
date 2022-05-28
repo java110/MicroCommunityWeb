@@ -2,6 +2,7 @@
     vc.extends({
         data: {
             examineVisitInfo: {
+                flag: '1',
                 stateRemark: ''
             }
         },
@@ -12,6 +13,7 @@
                 vc.component.refreshExamineAppInfo();
                 $('#examineAppModel').modal('show');
                 vc.component.examineVisitInfo = _params;
+                vc.component.examineVisitInfo.flag = "1";
             });
         },
         methods: {
@@ -55,11 +57,22 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (res.status == 200 && _json.code != 404 && _json.code != 5010) {
                             //关闭model
                             $('#examineAppModel').modal('hide');
                             vc.emit('appManage', 'listApp', {});
                             vc.toast("审核成功");
+                            return;
+                        } else if (_json.code == 5010) {
+                            //关闭model
+                            $('#examineAppModel').modal('hide');
+                            vc.emit('appManage', 'listApp', {});
+                            vc.toast(_json.msg);
+                            return;
+                        } else {
+                            vc.toast(_json.msg);
+                            vc.component.examineVisitInfo.state = '0';
                             return;
                         }
                     },
@@ -78,6 +91,7 @@
                     departureTime: '',
                     visitCase: '',
                     state: '',
+                    flag: '1',
                     stateRemark: ''
                 }
             }
