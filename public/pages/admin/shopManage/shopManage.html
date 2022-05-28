@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="shopManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,14 +12,14 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="店铺名称" v-model="shopManageInfo.conditions.shopName"
+                                <input type="text" :placeholder="vc.i18n('店铺名称','shopManage')" v-model="shopManageInfo.conditions.shopName"
                                     class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="shopManageInfo.conditions.storeType">
-                                    <option value="">请选择店铺类型</option>
+                                    <option value="">{{vc.i18n('请选择店铺类型','shopManage')}}</option>
                                     <option :value="item.statusCd" v-for="(item,index) in shopManageInfo.storeTypes">
                                         {{item.name}}</option>
                                 </select>
@@ -29,15 +29,15 @@
                             <div class="form-group">
 
                                 <select class="custom-select" v-model="shopManageInfo.conditions.state">
-                                    <option value="">请选择店铺类型</option>
-                                    <option value="002">审核通过</option>
-                                    <option value="003">审核不通过</option>
+                                    <option value="">{{vc.i18n('请选择店铺类型','shopManage')}}</option>
+                                    <option value="002">{{vc.i18n('审核通过','shopManage')}}</option>
+                                    <option value="003">{{vc.i18n('审核不通过','shopManage')}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOrdersMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="shopManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -51,22 +51,22 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>店铺信息</h5>
+                    <h5><span><vc:i18n name="店铺信息" namespace="shopManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">店铺logo</th>
-                                <th class="text-center">店铺名称</th>
-                                <th class="text-center">店铺类型</th>
-                                <th class="text-center">商家名称</th>
-                                <th class="text-center">商家地址</th>
-                                <th class="text-center">联系电话</th>
-                                <th class="text-center">店铺状态</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><span><vc:i18n name="店铺" namespace="shopManage"></vc:i18n></span>logo</th>
+                                <th class="text-center"><span><vc:i18n name="店铺名称" namespace="shopManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="店铺类型" namespace="shopManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="商家名称" namespace="shopManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="商家地址" namespace="shopManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="联系电话" namespace="shopManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="店铺状态" namespace="shopManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="创建时间" namespace="shopManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="shopManage"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,7 +86,7 @@
                                 <td class="text-center">
                                    <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openShopWithdrawModel(shop)">撤回
+                                            v-on:click="_openShopWithdrawModel(shop)"><span><vc:i18n name="撤回" namespace="shopManage"></vc:i18n></span>
                                         </button>
                                     </div>  
                                 </td>

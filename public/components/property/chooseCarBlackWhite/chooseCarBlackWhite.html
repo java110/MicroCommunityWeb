@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseCarBlackWhiteModelLabel">选择黑白名单</h3>
+                <h3 class="modal-title" id="chooseCarBlackWhiteModelLabel"><span><vc:i18n name="选择黑白名单" namespace="chooseCarBlackWhite"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入黑白名单名称" type="text" v-model="chooseCarBlackWhiteInfo._currentCarBlackWhiteName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入黑白名单名称','chooseCarBlackWhite')" type="text" v-model="chooseCarBlackWhiteInfo._currentCarBlackWhiteName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryCarBlackWhites()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryCarBlackWhites()"><span><vc:i18n name="查询" namespace="chooseCarBlackWhite"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,12 +28,12 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">黑白名单ID</th>
-                            <th class="text-center">名单类型</th>
-                            <th class="text-center">车牌号</th>
-                            <th class="text-center">开始时间</th>
-                            <th class="text-center">结束时间</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="黑白名单" namespace="chooseCarBlackWhite"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="名单类型" namespace="chooseCarBlackWhite"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="车牌号" namespace="chooseCarBlackWhite"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="chooseCarBlackWhite"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="chooseCarBlackWhite"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseCarBlackWhite"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -46,7 +46,7 @@
                             <td class="text-center">{{carBlackWhite.endTime}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseCarBlackWhite(carBlackWhite)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseCarBlackWhite(carBlackWhite)"><span><vc:i18n name="选择" namespace="chooseCarBlackWhite"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

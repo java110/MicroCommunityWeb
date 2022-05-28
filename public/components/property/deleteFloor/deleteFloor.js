@@ -27,6 +27,7 @@
                             //关闭model
                             $('#deleteFloorModel').modal('hide');
                             vc.emit('listFloor', 'listFloorData', {});
+                            vc.emit('floorUnitTree','refreshTree',{});
                             return;
                         }
                         vc.component.deleteFloornfo.errorInfo = json;

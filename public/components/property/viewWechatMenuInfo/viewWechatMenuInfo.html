@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>公众号菜单信息</h5>
+                <h5><span><vc:i18n name="公众号菜单信息" namespace="viewWechatMenuInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewWechatMenuInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectWechatMenuInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择公众号菜单</button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择公众号菜单" namespace="viewWechatMenuInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewWechatMenuInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddWechatMenuInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加公众号菜单</button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加公众号菜单" namespace="viewWechatMenuInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >菜单名称：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="菜单名称" namespace="viewWechatMenuInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewWechatMenuInfo.menuName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >菜单类型：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="菜单类型" namespace="viewWechatMenuInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewWechatMenuInfo.menuType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >菜单级别：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="菜单级别" namespace="viewWechatMenuInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewWechatMenuInfo.menuLevel}}</label>
                         </div>
 </div>
@@ -35,7 +35,7 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >值：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="值" namespace="viewWechatMenuInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewWechatMenuInfo.menuValue}}</label>
                         </div>
 </div>
@@ -47,7 +47,7 @@
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >小程序地址：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="小程序地址" namespace="viewWechatMenuInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewWechatMenuInfo.pagepath}}</label>
                         </div>
 </div>

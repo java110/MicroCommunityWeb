@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="accountBondObjDetailManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -14,7 +14,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="accountBondObjDetailManageInfo.conditions.objId">
-                                    <option selected disabled value="">请选择商铺</option>
+                                    <option selected disabled value="">{{vc.i18n('请选择商铺','accountBondObjDetailManage')}}</option>
                                     <option :value="item.shopId" v-for="(item,index) in accountBondObjDetailManageInfo.shops">
                                         {{item.shopName}}
                                     </option>
@@ -25,9 +25,9 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="accountBondObjDetailManageInfo.conditions.state">
-                                    <option selected disabled value="">请选择状态</option>
-                                    <option :value="3308">交保证金</option>
-                                    <option :value="3309">退保证金</option>
+                                    <option selected disabled value="">{{vc.i18n('请选择状态','accountBondObjDetailManage')}}</option>
+                                    <option :value="3308">{{vc.i18n('交保证金','accountBondObjDetailManage')}}</option>
+                                    <option :value="3309">{{vc.i18n('退保证金','accountBondObjDetailManage')}}</option>
                                   </select>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
 
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAccountBondObjDetailMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="accountBondObjDetailManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>保证金明细</h5>
+                    <h5><span><vc:i18n name="保证金明细" namespace="accountBondObjDetailManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddAccountBondObjModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -60,13 +60,13 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">保证金ID</th>
-                                <th class="text-center">保证金对象</th>
-                                <th class="text-center">应收金额</th>
-                                <th class="text-center">实收金额</th>
-                                <th class="text-center">状态</th>
-                                <th class="text-center">开始时间</th>
-                                <th class="text-center">结束时间</th>
+                                <th class="text-center"><span><vc:i18n name="保证金" namespace="accountBondObjDetailManage"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="保证金对象" namespace="accountBondObjDetailManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="应收金额" namespace="accountBondObjDetailManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="实收金额" namespace="accountBondObjDetailManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="accountBondObjDetailManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="开始时间" namespace="accountBondObjDetailManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="结束时间" namespace="accountBondObjDetailManage"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>

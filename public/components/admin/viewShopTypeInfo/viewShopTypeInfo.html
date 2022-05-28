@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>店铺类型信息</h5>
+                <h5><span><vc:i18n name="店铺类型信息" namespace="viewShopTypeInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewShopTypeInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectShopTypeInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择店铺类型</button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择店铺类型" namespace="viewShopTypeInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewShopTypeInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddShopTypeInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加店铺类型</button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加店铺类型" namespace="viewShopTypeInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >店铺类型id：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="店铺类型" namespace="viewShopTypeInfo"></vc:i18n></span>id：</label>
                             <label class="">{{viewShopTypeInfo.shopTypeId}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >店铺类型：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="店铺类型" namespace="viewShopTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewShopTypeInfo.typeName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >是否展示：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="是否展示" namespace="viewShopTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewShopTypeInfo.isShow}}</label>
                         </div>
 </div>
@@ -35,19 +35,19 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >是否默认：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="是否默认" namespace="viewShopTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewShopTypeInfo.isDefault}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >显示序号：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="显示序号" namespace="viewShopTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewShopTypeInfo.seq}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >备注：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="备注" namespace="viewShopTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewShopTypeInfo.remark}}</label>
                         </div>
 </div>

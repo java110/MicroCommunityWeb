@@ -3,45 +3,45 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">装修跟踪</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="装修跟踪" namespace="roomDecorationRecord"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">房屋</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋" namespace="roomDecorationRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="roomDecorationRecordInfo.roomName" type="text"
                                            disabled='disabled'
-                                           placeholder="必填，请填写房屋" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写房屋','roomDecorationRecord')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">状态</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="状态" namespace="roomDecorationRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="roomDecorationRecordInfo.stateName" type="text" disabled="disabled"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">是否违规</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="是否违规" namespace="roomDecorationRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="roomDecorationRecordInfo.isTrue">
-                                        <option selected value="" disabled>请选择是否违规</option>
-                                        <option value="true">是</option>
-                                        <option value="false">否</option>
+                                        <option selected value="" disabled>{{vc.i18n('请选择是否违规','roomDecorationRecord')}}</option>
+                                        <option value="true">{{vc.i18n('是','roomDecorationRecord')}}</option>
+                                        <option value="false">{{vc.i18n('否','roomDecorationRecord')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="roomDecorationRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="roomDecorationRecordInfo.remark" placeholder="请填写备注"
+                                    <textarea v-model="roomDecorationRecordInfo.remark" :placeholder="vc.i18n('请填写备注','roomDecorationRecord')"
                                               class="form-control">
                                     </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">上传图片</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="上传图片" namespace="roomDecorationRecord"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <vc:create path="frame/uploadImage" callBackListener="roomDecorationRecord"
                                                callBackFunction="notifyUploadImage" namespace="roomDecorationRecord">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">上传视频</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="上传视频" namespace="roomDecorationRecord"></vc:i18n></span></label>
                                 <div class="content-img col-sm-10">
                                     <vc:create path="frame/uploadVedio" callBackListener="roomDecorationRecord"
                                                callBackFunction="notifyUploadVedio" namespace="roomDecorationRecord">

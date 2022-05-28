@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="monthAttendanceManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,29 +11,29 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入班组名称"
+                                <input type="text" :placeholder="vc.i18n('请输入班组名称','monthAttendanceManage')"
                                        v-model="monthAttendanceManageInfo.conditions.classesName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入部门名称"
+                                <input type="text" :placeholder="vc.i18n('请输入部门名称','monthAttendanceManage')"
                                        v-model="monthAttendanceManageInfo.conditions.departmentName"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" placeholder="请选择打卡时间"
+                            <input type="text" :placeholder="vc.i18n('请选择打卡时间','monthAttendanceManage')"
                                    v-model="monthAttendanceManageInfo.conditions.date" class=" form-control queryDate">
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryMonthAttendanceMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="monthAttendanceManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_resetMonthAttendanceMethod()">
-                                <i class="fa fa-repeat"></i> 重置
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="monthAttendanceManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>月考勤</h5>
+                    <h5><span><vc:i18n name="月考勤" namespace="monthAttendanceManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -53,13 +53,13 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">部门名称</th>
-                            <th class="text-center">员工名称</th>
-                            <th class="text-center">正常考勤</th>
-                            <th class="text-center">迟到</th>
-                            <th class="text-center">早退</th>
-                            <th class="text-center">旷工</th>
-                            <th class="text-center">免考勤</th>
+                            <th class="text-center"><span><vc:i18n name="部门名称" namespace="monthAttendanceManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="员工名称" namespace="monthAttendanceManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="正常考勤" namespace="monthAttendanceManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="迟到" namespace="monthAttendanceManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="早退" namespace="monthAttendanceManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="旷工" namespace="monthAttendanceManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="免考勤" namespace="monthAttendanceManage"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>

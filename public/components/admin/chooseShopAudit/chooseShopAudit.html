@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseShopAuditModelLabel">选择店铺审核</h3>
+                <h3 class="modal-title" id="chooseShopAuditModelLabel"><span><vc:i18n name="选择店铺审核" namespace="chooseShopAudit"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入店铺审核名称" type="text" v-model="chooseShopAuditInfo._currentShopAuditName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入店铺审核名称','chooseShopAudit')" type="text" v-model="chooseShopAuditInfo._currentShopAuditName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryShopAudits()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryShopAudits()"><span><vc:i18n name="查询" namespace="chooseShopAudit"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,27 +28,27 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">审核店铺ID</th>
-                            <th class="text-center">审核ID</th>
-                            <th class="text-center">店铺ID</th>
-                            <th class="text-center">店铺logo</th>
-                            <th class="text-center">商户ID</th>
-                            <th class="text-center">店铺名称</th>
-                            <th class="text-center">店铺描述</th>
-                            <th class="text-center">地区</th>
-                            <th class="text-center">地区</th>
-                            <th class="text-center">发货地址</th>
-                            <th class="text-center">退货地址</th>
-                            <th class="text-center">退货联系人</th>
-                            <th class="text-center">退货联系电话</th>
-                            <th class="text-center">状态</th>
-                            <th class="text-center">店铺类型</th>
-                            <th class="text-center">开店类型</th>
-                            <th class="text-center">地域编码</th>
-                            <th class="text-center">审核意见</th>
-                            <th class="text-center">申请原因</th>
-                            <th class="text-center">数据状态</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="审核店铺" namespace="chooseShopAudit"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="审核" namespace="chooseShopAudit"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="店铺" namespace="chooseShopAudit"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="店铺" namespace="chooseShopAudit"></vc:i18n></span>logo</th>
+                            <th class="text-center"><span><vc:i18n name="商户" namespace="chooseShopAudit"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="店铺名称" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="店铺描述" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="地区" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="地区" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="发货地址" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="退货地址" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="退货联系人" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="退货联系电话" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="状态" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="店铺类型" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开店类型" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="地域编码" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="审核意见" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="申请原因" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="数据状态" namespace="chooseShopAudit"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseShopAudit"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -76,7 +76,7 @@
                             <td class="text-center">{{shopAudit.statusCd}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseShopAudit(shopAudit)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseShopAudit(shopAudit)"><span><vc:i18n name="选择" namespace="chooseShopAudit"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

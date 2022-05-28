@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="reportHuaning"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -14,7 +14,7 @@
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportHuaningInfo.conditions.feeTypeCd"
                                 @click="_changeReporficientFeeTypeCd()">
-                                <option selected value="">请选择收费类型</option>
+                                <option selected value="">{{vc.i18n('请选择收费类型','reportHuaning')}}</option>
                                 <option v-for="(item,index) in reportHuaningInfo.feeTypeCds" :key="index"
                                     v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -25,7 +25,7 @@
                                 <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
                                     v-model="reportHuaningInfo.conditions.configId">
-                                    <option selected value="">请选择收费项</option>
+                                    <option selected value="">{{vc.i18n('请选择收费项','reportHuaning')}}</option>
                                     <option v-for="(item,index) in reportHuaningInfo.feeConfigDtos" :key="index"
                                         :value="item.configId">
                                         {{item.feeName}}
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                     v-model="reportHuaningInfo.conditions.floorNum">
-                                    <option selected value="">请选择楼栋</option>
+                                    <option selected value="">{{vc.i18n('请选择楼栋','reportHuaning')}}</option>
                                     <option v-for="(item,index) in reportHuaningInfo.floors" :key="index"
                                         :value="item.floorNum">
                                         {{item.floorNum}}
@@ -47,23 +47,23 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
-                                <i class="fa fa-search"></i>查询
+                                <i class="fa fa-search"></i><span><vc:i18n name="查询" namespace="reportHuaning"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
                                 style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i>重置
+                                <i class="fa fa-repeat"></i><span><vc:i18n name="重置" namespace="reportHuaning"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
                     <div class="row">
                         <!--费用类型-->
                         <div class="col-sm-3" v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFee'">
-                            <input type="text" placeholder="请填写年份" class="form-control form-control-md"
+                            <input type="text" :placeholder="vc.i18n('请填写年份','reportHuaning')" class="form-control form-control-md"
                                        v-model="reportHuaningInfo.conditions.year">
                         </div>
                         <div class="col-sm-3" v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFee'">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写月份" class="form-control form-control-md"
+                                <input type="text" :placeholder="vc.i18n('请填写月份','reportHuaning')" class="form-control form-control-md"
                                 v-model="reportHuaningInfo.conditions.month">
                             </div>
                         </div>
@@ -77,19 +77,19 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFee'}"
-                        v-on:click="changeTab('reportHuaningOweFee')">未收情况表</a>
+                        v-on:click="changeTab('reportHuaningOweFee')"><span><vc:i18n name="未收情况表" namespace="reportHuaning"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFee'}"
-                        v-on:click="changeTab('reportHuaningPayFee')">当月收费情况表</a>
+                        v-on:click="changeTab('reportHuaningPayFee')"><span><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFeeTwo'}"
-                        v-on:click="changeTab('reportHuaningPayFeeTwo')">当月收费情况表2</a>
+                        v-on:click="changeTab('reportHuaningPayFeeTwo')"><span><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></span>2</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFeeDetail'}"
-                        v-on:click="changeTab('reportHuaningOweFeeDetail')">物业费欠费明细表</a>
+                        v-on:click="changeTab('reportHuaningOweFeeDetail')"><span><vc:i18n name="物业费欠费明细表" namespace="reportHuaning"></vc:i18n></span></a>
                 </li>
             </ul>
         </div>

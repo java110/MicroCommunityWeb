@@ -3,13 +3,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseAuditUserModelLabel">选择审核人员</h3>
+                <h3 class="modal-title" id="chooseAuditUserModelLabel"><span><vc:i18n name="选择审核人员" namespace="chooseAuditUser"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,12 +18,12 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入审核人员名称" type="text"
+                                        <input :placeholder="vc.i18n('输入审核人员名称','chooseAuditUser')" type="text"
                                                v-model="chooseAuditUserInfo._currentAuditUserName"
                                                class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryAuditUsers()">查询</button>
+                                                        v-on:click="queryAuditUsers()"><span><vc:i18n name="查询" namespace="chooseAuditUser"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -32,12 +32,12 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">审核ID</th>
-                                        <th class="text-center">用户ID</th>
-                                        <th class="text-center">用户名称</th>
-                                        <th class="text-center">审核环节</th>
-                                        <th class="text-center">流程对象</th>
-                                        <th class="text-center">操作</th>
+                                        <th class="text-center"><span><vc:i18n name="审核" namespace="chooseAuditUser"></vc:i18n></span>ID</th>
+                                        <th class="text-center"><span><vc:i18n name="用户" namespace="chooseAuditUser"></vc:i18n></span>ID</th>
+                                        <th class="text-center"><span><vc:i18n name="用户名称" namespace="chooseAuditUser"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="审核环节" namespace="chooseAuditUser"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="流程对象" namespace="chooseAuditUser"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="操作" namespace="chooseAuditUser"></vc:i18n></span></th>
 
                                     </tr>
                                     </thead>
@@ -51,7 +51,7 @@
 
                                         <td>
                                             <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseAuditUser(auditUser)">选择
+                                                    v-on:click="chooseAuditUser(auditUser)"><span><vc:i18n name="选择" namespace="chooseAuditUser"></vc:i18n></span>
                                             </button>
                                         </td>
                                     </tr>

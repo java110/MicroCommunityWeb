@@ -1,30 +1,28 @@
-<div id="editParkingSpaceModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div id="editParkingSpaceModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改车位</h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改车位" namespace="editParkingSpace"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">车位编码</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="车位编码" namespace="editParkingSpace"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editParkingSpaceInfo.num" type="text" placeholder="必填，请填写车位编码"
-                                           class="form-control">
+                                    <input v-model="editParkingSpaceInfo.num" type="text" :placeholder="vc.i18n('必填，请填写车位编码','editParkingSpace')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">停车场</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="停车场" namespace="editParkingSpace"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <vc:create path="property/parkingAreaSelect2" parentModal="editParkingSpace"
-                                               callBackListener="editParkingSpace" callBackFunction="notify"
-                                               namespace="editParkingSpace">
+                                    <vc:create path="property/parkingAreaSelect2" parentModal="editParkingSpace" callBackListener="editParkingSpace" callBackFunction="notify" namespace="editParkingSpace">
                                     </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">车位类型</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="车位类型" namespace="editParkingSpace"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editParkingSpaceInfo.parkingType">
                                         <option v-for="(item,index) in editParkingSpaceInfo.parkingTypes" :key="index"
@@ -34,26 +32,22 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">面积</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="面积" namespace="editParkingSpace"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editParkingSpaceInfo.area" type="number"
-                                           placeholder="必填，请填写面积，如30.09" class="form-control">
+                                    <input v-model="editParkingSpaceInfo.area" type="number" :placeholder="vc.i18n('必填，请填写面积，如30.09','editParkingSpace')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="editParkingSpace"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editParkingSpaceInfo.remark" type="tel" placeholder="可填，请填写备注"
-                                           class="form-control">
+                                    <input v-model="editParkingSpaceInfo.remark" type="tel" :placeholder="vc.i18n('可填，请填写备注','editParkingSpace')" class="form-control">
                                 </div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="editParkingSpaceMethod()">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editParkingSpaceMethod()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
                                     <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>

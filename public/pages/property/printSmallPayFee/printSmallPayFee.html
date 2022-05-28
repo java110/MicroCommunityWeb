@@ -2,26 +2,26 @@
 <div>
     <startprint></startprint>
     <div class="print_container">
-        <div style="color:#000;font-size:32px" class="text-center">缴费收据单</div>
+        <div style="color:#000;font-size:32px" class="text-center"><span><vc:i18n name="缴费收据单" namespace="printSmallPayFee"></vc:i18n></span></div>
         <span>**************************</span>
         <div class="section2" style="font-size: 12px; margin-left: 5px;" >
-            <div>单号：{{printSmallPayFeeInfo.receiptNum}}</div>
-            <div>房号：{{printSmallPayFeeInfo.roomName}}</div>
-            <div>业主：{{printSmallPayFeeInfo.payObjName}}</div>
-            <div>时间：{{printSmallPayFeeInfo.feeTime}}</div>
+            <div><span><vc:i18n name="单号" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.receiptNum}}</div>
+            <div><span><vc:i18n name="房号" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.roomName}}</div>
+            <div><span><vc:i18n name="业主" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.payObjName}}</div>
+            <div><span><vc:i18n name="时间" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.feeTime}}</div>
         </div>
         <span>**************************</span>
         <div class="section2" style="font-size: 12px; margin-left: 5px;" v-for="(item,index) in printSmallPayFeeInfo.fees">
-            <div>收费项目：{{item.feeName}}</div>
-            <div>收费范围：{{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</div>
-            <div>单价/固定费：{{item.squarePrice}}</div>
-            <div>面积/用量：{{item.area}}</div>
-            <div>金额：{{item.amount}}</div>
-            <div>备注：{{item.remark}}</div>
+            <div><span><vc:i18n name="收费项目" namespace="printSmallPayFee"></vc:i18n></span>：{{item.feeName}}</div>
+            <div><span><vc:i18n name="收费范围" namespace="printSmallPayFee"></vc:i18n></span>：{{vc.dateFormat(item.startTime)}}<span><vc:i18n name="至" namespace="printSmallPayFee"></vc:i18n></span>{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</div>
+            <div><span><vc:i18n name="单价" namespace="printSmallPayFee"></vc:i18n></span>/固定费：{{item.squarePrice}}</div>
+            <div><span><vc:i18n name="面积" namespace="printSmallPayFee"></vc:i18n></span>/用量：{{item.area}}</div>
+            <div><span><vc:i18n name="金额" namespace="printSmallPayFee"></vc:i18n></span>：{{item.amount}}</div>
+            <div><span><vc:i18n name="备注" namespace="printSmallPayFee"></vc:i18n></span>：{{item.remark}}</div>
             <span>**************************</span>
         </div>
         <div class="section5" style="font-size: 12px; margin-left: 5px;">
-            <div>总计：{{printSmallPayFeeInfo.amount}}</div>
+            <div><span><vc:i18n name="总计" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.amount}}</div>
             <div v-html="printSmallPayFeeInfo.content"></div>
             <div><img :src="printSmallPayFeeInfo.qrImg" width="100px" height="100px"></div>
         </div>
@@ -32,7 +32,7 @@
         <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
             <i class="fa fa-check"></i>&nbsp;打印
         </button>
-        <button type="button" class="btn btn-warning  float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+        <button type="button" class="btn btn-warning  float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printSmallPayFee"></vc:i18n></span>
         </button>
     </div>
 </div>

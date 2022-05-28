@@ -3,55 +3,55 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加应用</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加应用" namespace="addApp"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <!--<div class="form-group row">
-                                <label class="col-sm-2 col-form-label">楼名称</label>
-                                <div class="col-sm-10"><input v-model="addFloorInfo.name" type="text" placeholder="必填，请填写名称" class="form-control"></div>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="楼名称" namespace="addApp"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addFloorInfo.name" type="text" :placeholder="vc.i18n('必填，请填写名称','addApp')" class="form-control"></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">楼编号</label>
-                                <div class="col-sm-10"><input v-model="addFloorInfo.floorNum" type="email" placeholder="必填，请填写编号" class="form-control"></div>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="楼编号" namespace="addApp"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addFloorInfo.floorNum" type="email" :placeholder="vc.i18n('必填，请填写编号','addApp')" class="form-control"></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
-                                <div class="col-sm-10"><input v-model="addFloorInfo.remark" type="tel" placeholder="可填，请填写备注" class="form-control"></div>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addApp"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addFloorInfo.remark" type="tel" :placeholder="vc.i18n('可填，请填写备注','addApp')" class="form-control"></div>
                             </div>-->
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">应用名称</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="应用名称" namespace="addApp"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addAppInfo.name" type="text" placeholder="必填，请填写应用名称"
+                                    <input v-model="addAppInfo.name" type="text" :placeholder="vc.i18n('必填，请填写应用名称','addApp')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">秘钥</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="秘钥" namespace="addApp"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addAppInfo.securityCode" type="text" placeholder="选填，请填写秘钥"
+                                    <input v-model="addAppInfo.securityCode" type="text" :placeholder="vc.i18n('选填，请填写秘钥','addApp')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">白名单</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="白名单" namespace="addApp"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addAppInfo.whileListIp" type="text" placeholder="选填，请填写白名单"
+                                    <input v-model="addAppInfo.whileListIp" type="text" :placeholder="vc.i18n('选填，请填写白名单','addApp')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">黑名单</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="黑名单" namespace="addApp"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addAppInfo.blackListIp" type="text" placeholder="选填，请填写黑名单"
+                                    <input v-model="addAppInfo.blackListIp" type="text" :placeholder="vc.i18n('选填，请填写黑名单','addApp')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addApp"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="选填，请填写备注" class="form-control"
+                                    <textarea :placeholder="vc.i18n('选填，请填写备注','addApp')" class="form-control"
                                               v-model="addAppInfo.remark"></textarea></div>
                             </div>
 
@@ -60,7 +60,7 @@
                                         class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal"><span><vc:i18n name="取消" namespace="addApp"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

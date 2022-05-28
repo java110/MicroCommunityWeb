@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改商户信息</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改商户信息" namespace="editStoreAttr"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
@@ -11,7 +11,7 @@
                                 <label class="col-sm-2 col-form-label">{{editStoreAttr.name}}</label>
                                 <div class="col-sm-10">
                                     <input v-model="editStoreAttr.value" type="text"
-                                           placeholder="商户属性必填" class="form-control">
+                                           :placeholder="vc.i18n('商户属性必填','editStoreAttr')" class="form-control">
                                 </div>
                             </div>
                             <div class="ibox-content">
@@ -19,7 +19,7 @@
                                         v-on:click="submitEditStoreAttr()"><i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal"><span><vc:i18n name="取消" namespace="editStoreAttr"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

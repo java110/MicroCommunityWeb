@@ -1,53 +1,35 @@
-<div class="white-bg padding" style="margin-top:-20px">
+<div class="white-bg padding">
     <div class="row">
         <div class="col-md-9">
             <vc:create path="property/parkingAreaControlVideo"></vc:create>
             <div class="margin-top">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'}"
-                            v-on:click="changeTab('parkingAreaControlCarInout')">出入场信息</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'}" v-on:click="changeTab('parkingAreaControlCarInout')"><span><vc:i18n name="出入场信息" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlInCar'}"
-                            v-on:click="changeTab('parkingAreaControlInCar')">在场车辆</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlInCar'}" v-on:click="changeTab('parkingAreaControlInCar')"><span><vc:i18n name="在场车辆" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInouts'}"
-                            v-on:click="changeTab('parkingAreaControlCarInouts')">出入场明细</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInouts'}" v-on:click="changeTab('parkingAreaControlCarInouts')"><span><vc:i18n name="出入场明细" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlPayment'}"
-                            v-on:click="changeTab('parkingAreaControlPayment')">收费明细</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlPayment'}" v-on:click="changeTab('parkingAreaControlPayment')"><span><vc:i18n name="收费明细" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlOwnerCar'}"
-                            v-on:click="changeTab('parkingAreaControlOwnerCar')">月租车</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlOwnerCar'}" v-on:click="changeTab('parkingAreaControlOwnerCar')"><span><vc:i18n name="月租车" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlTempCar'}"
-                            v-on:click="changeTab('parkingAreaControlTempCar')">临时车</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlTempCar'}" v-on:click="changeTab('parkingAreaControlTempCar')"><span><vc:i18n name="临时车" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlWhiteCar'}"
-                            v-on:click="changeTab('parkingAreaControlWhiteCar')">白名单</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlWhiteCar'}" v-on:click="changeTab('parkingAreaControlWhiteCar')"><span><vc:i18n name="白名单" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlBlackCar'}"
-                            v-on:click="changeTab('parkingAreaControlBlackCar')">黑名单</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlBlackCar'}" v-on:click="changeTab('parkingAreaControlBlackCar')"><span><vc:i18n name="黑名单" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlRemaining'}"
-                            v-on:click="changeTab('parkingAreaControlRemaining')">剩余车位</a>
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlRemaining'}" v-on:click="changeTab('parkingAreaControlRemaining')"><span><vc:i18n name="剩余车位" namespace="parkingAreaControl"></vc:i18n></span></a>
                     </li>
                 </ul>
             </div>
@@ -78,7 +60,7 @@
             <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlRemaining'">
                 <vc:create path="property/parkingAreaControlRemaining"></vc:create>
             </div>
-            
+
         </div>
         <div class="col-md-3">
             <vc:create path="property/parkingAreaControlFee"></vc:create>

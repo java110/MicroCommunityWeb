@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>批量导入日志</h5>
+                    <h5><span><vc:i18n name="批量导入日志" namespace="assetImportLog"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
                             返回
@@ -15,13 +15,13 @@
                            data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">导入编号</th>
-                            <th class="text-center">导入类型</th>
-                            <th class="text-center">成功数量</th>
-                            <th class="text-center">失败数量</th>
-                            <th class="text-center">备注</th>
-                            <th class="text-center">导入时间</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><span><vc:i18n name="导入编号" namespace="assetImportLog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="导入类型" namespace="assetImportLog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="成功数量" namespace="assetImportLog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="失败数量" namespace="assetImportLog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="assetImportLog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="导入时间" namespace="assetImportLog"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="assetImportLog"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,7 +35,7 @@
                             <td class="text-center">
                                 <div class="btn-group" >
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDetail(log)">详情
+                                            v-on:click="_openDetail(log)"><span><vc:i18n name="详情" namespace="assetImportLog"></vc:i18n></span>
                                     </button>
                                 </div>
                             </td>

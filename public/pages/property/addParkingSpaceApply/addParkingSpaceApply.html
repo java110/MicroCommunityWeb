@@ -1,108 +1,95 @@
 <div>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox">
-        <div class="ibox-title">
-          <h5>添加车位申请</h5>
-          <div class="ibox-tools" style="top:10px;">
-            <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="添加车位申请" namespace="addParkingSpaceApply"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
               <i class="glyphicon glyphicon-plus"></i>
               返回
             </button>
-          </div>
-        </div>
-        <div class="ibox-content">
-          <div>
-            <div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">车牌号</label>
-                <div class="col-sm-10">
-                  <input v-model="addParkingSpaceApplyInfo.carNum" type="text" placeholder="必填，请填写车牌号"
-                    class="form-control">
+                    </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">汽车品牌</label>
-                <div class="col-sm-10">
-                  <input v-model="addParkingSpaceApplyInfo.carBrand" type="text" placeholder="必填，请填写汽车品牌"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">车辆类型</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="addParkingSpaceApplyInfo.carType">
-                    <option selected disabled value="">必填，请选择车辆类型</option>
-                    <option value="9901">家用小汽车</option>
-                    <option value="9902">客车</option>
-                    <option value="9903">货车</option>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="车牌号" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addParkingSpaceApplyInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','addParkingSpaceApply')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="汽车品牌" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addParkingSpaceApplyInfo.carBrand" type="text" :placeholder="vc.i18n('必填，请填写汽车品牌','addParkingSpaceApply')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="车辆类型" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addParkingSpaceApplyInfo.carType">
+                    <option selected disabled value="">{{vc.i18n('必填','addParkingSpaceApply')}}，请选择车辆类型</option>
+                    <option value="9901">{{vc.i18n('家用小汽车','addParkingSpaceApply')}}</option>
+                    <option value="9902">{{vc.i18n('客车','addParkingSpaceApply')}}</option>
+                    <option value="9903">{{vc.i18n('货车','addParkingSpaceApply')}}</option>
                   </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="颜色" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addParkingSpaceApplyInfo.carColor" type="text" :placeholder="vc.i18n('必填，请填写颜色','addParkingSpaceApply')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="起租时间" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addParkingSpaceApplyInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写起租时间','addParkingSpaceApply')" class="form-control addStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="结租时间" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addParkingSpaceApplyInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结租时间','addParkingSpaceApply')" class="form-control addEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="申请人" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-6">
+                                    <input v-model="addParkingSpaceApplyInfo.applyPersonName" type="text" :placeholder="vc.i18n('必填，请填写申请人','addParkingSpaceApply')" class="form-control">
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseOwner()">选择业主</button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="申请人电话" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addParkingSpaceApplyInfo.applyPersonLink" type="text" :placeholder="vc.i18n('必填，请填写申请人电话','addParkingSpaceApply')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addParkingSpaceApply"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="addParkingSpaceApplyInfo.remark" :placeholder="vc.i18n('选填，请填写备注','addParkingSpaceApply')" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">颜色</label>
-                <div class="col-sm-10">
-                  <input v-model="addParkingSpaceApplyInfo.carColor" type="text" placeholder="必填，请填写颜色"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">起租时间</label>
-                <div class="col-sm-10">
-                  <input v-model="addParkingSpaceApplyInfo.startTime" type="text" placeholder="必填，请填写起租时间"
-                    class="form-control addStartTime">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">结租时间</label>
-                <div class="col-sm-10">
-                  <input v-model="addParkingSpaceApplyInfo.endTime" type="text" placeholder="必填，请填写结租时间"
-                    class="form-control addEndTime">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">申请人</label>
-                <div class="col-sm-6">
-                  <input v-model="addParkingSpaceApplyInfo.applyPersonName" type="text" placeholder="必填，请填写申请人"
-                    class="form-control">
 
-                    <button type="button" class="btn btn-primary btn-sm"
-                      v-on:click="_openChooseOwner()">
-                      选择业主
-                  </button>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">申请人电话</label>
-                <div class="col-sm-10">
-                  <input v-model="addParkingSpaceApplyInfo.applyPersonLink" type="text" placeholder="必填，请填写申请人电话"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">备注</label>
-                <div class="col-sm-10">
-                  <textarea v-model="addParkingSpaceApplyInfo.remark" placeholder="选填，请填写备注"
-                  class="form-control"></textarea>
-                </div>
-              </div>
+
             </div>
-          </div>
-        </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
 
-
-      </div>
-      <div class="row">
-        <div class="col-md-12 text-right">
-
-          <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()">返回</button>
-          <button class="btn btn-primary" type="button" v-on:click="saveParkingSpaceApplyInfo()"><i
+                    <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()"><span><vc:i18n name="返回" namespace="addParkingSpaceApply"></vc:i18n></span></button>
+                    <button class="btn btn-primary" type="button" v-on:click="saveParkingSpaceApplyInfo()"><i
               class="fa fa-check"></i>&nbsp;提交</button>
+                </div>
+            </div>
+
+            <vc:create path="property/searchOwner" emitChooseOwner="viewOwnerInfo" emitLoadData="viewOwnerInfo"> </vc:create>
         </div>
-      </div>
-      
-      <vc:create path="property/searchOwner"
-          emitChooseOwner="viewOwnerInfo"
-          emitLoadData="viewOwnerInfo"
-    >         </vc:create>
-    </div>

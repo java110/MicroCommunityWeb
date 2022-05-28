@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseAttrSpecModelLabel">选择属性配置</h3>
+                <h3 class="modal-title" id="chooseAttrSpecModelLabel"><span><vc:i18n name="选择属性配置" namespace="chooseAttrSpec"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入属性配置名称" type="text" v-model="chooseAttrSpecInfo._currentAttrSpecName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入属性配置名称','chooseAttrSpec')" type="text" v-model="chooseAttrSpecInfo._currentAttrSpecName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryAttrSpecs()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryAttrSpecs()"><span><vc:i18n name="查询" namespace="chooseAttrSpec"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,16 +28,16 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">规格</th>
-                            <th class="text-center">属性表</th>
-                            <th class="text-center">规格名称</th>
-                            <th class="text-center">说明</th>
-                            <th class="text-center">必填</th>
-                            <th class="text-center">展示</th>
-                            <th class="text-center">值类型</th>
-                            <th class="text-center">规格类型</th>
-                            <th class="text-center">查询显示</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="规格" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="属性表" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="规格名称" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="说明" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="必填" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="展示" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="值类型" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="规格类型" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="查询显示" namespace="chooseAttrSpec"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseAttrSpec"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -54,7 +54,7 @@
                             <td class="text-center">{{attrSpec.listShow}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseAttrSpec(attrSpec)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseAttrSpec(attrSpec)"><span><vc:i18n name="选择" namespace="chooseAttrSpec"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

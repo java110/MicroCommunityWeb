@@ -71,6 +71,13 @@
                 vc.component._listFeePrintPages(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            //重置
+            _resetFeePrintPageMethod: function () {
+                vc.component.feePrintPageManageInfo.conditions.pageId = "";
+                vc.component.feePrintPageManageInfo.conditions.pageName = "";
+                vc.component.feePrintPageManageInfo.conditions.state = "";
+                vc.component._listFeePrintPages(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
             _moreCondition: function () {
                 if (vc.component.feePrintPageManageInfo.moreCondition) {
                     vc.component.feePrintPageManageInfo.moreCondition = false;

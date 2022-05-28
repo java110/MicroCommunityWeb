@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>打印配置信息</h5>
+                <h5><span><vc:i18n name="打印配置信息" namespace="viewFeePrintSpecInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewFeePrintSpecInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectFeePrintSpecInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择打印配置</button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择打印配置" namespace="viewFeePrintSpecInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewFeePrintSpecInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddFeePrintSpecInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加打印配置</button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加打印配置" namespace="viewFeePrintSpecInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >规格：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="规格" namespace="viewFeePrintSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeePrintSpecInfo.specCd}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >内容：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="内容" namespace="viewFeePrintSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeePrintSpecInfo.content}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >必填：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="必填" namespace="viewFeePrintSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewFeePrintSpecInfo.qrImg}}</label>
                         </div>
 </div>

@@ -1,15 +1,15 @@
 <div>
     <div class="row">
         <div class="col-md-6">
-            <h6>我的摄像头</h6>
+            <h6><span><vc:i18n name="我的摄像头" namespace="cameraControlVideo"></vc:i18n></span></h6>
         </div>
         <div class="col-md-6 text-right">
-            <button type="button" class="btn-white btn btn-sm margin-right-sm" v-on:click="_changeCameras()">摄像头
+            <button type="button" class="btn-white btn btn-sm margin-right-sm" v-on:click="_changeCameras()"><span><vc:i18n name="摄像头" namespace="cameraControlVideo"></vc:i18n></span>
             </button>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-light btn-sm" v-bind:class="{'btn-primary': cameraControlVideoInfo.cameraCount == 4}" v-on:click="_changeCount(4)">四路
+                <button type="button" class="btn btn-light btn-sm" v-bind:class="{'btn-primary': cameraControlVideoInfo.cameraCount == 4}" v-on:click="_changeCount(4)"><span><vc:i18n name="四路" namespace="cameraControlVideo"></vc:i18n></span>
             </button>
-                <button type="button" class="btn btn-light btn-sm" v-bind:class="{'btn-primary': cameraControlVideoInfo.cameraCount == 6}" v-on:click="_changeCount(6)">六路
+                <button type="button" class="btn btn-light btn-sm" v-bind:class="{'btn-primary': cameraControlVideoInfo.cameraCount == 6}" v-on:click="_changeCount(6)"><span><vc:i18n name="六路" namespace="cameraControlVideo"></vc:i18n></span>
             </button>
             </div>
         </div>
@@ -19,13 +19,13 @@
         <div class="col-md-6" v-if="cameraControlVideoInfo.cameraCount == 4" v-for="(item,index) in cameraControlVideoInfo.machines">
             <div class="form-group">
                 <video :id="item.machineId" controls autoplay="autoplay" muted width="100%" height="400px" style="background-color: #000;"></video>
-                <span>摄像头：{{item.machineName}}</span>
+                <span><span><vc:i18n name="摄像头" namespace="cameraControlVideo"></vc:i18n></span>：{{item.machineName}}</span>
             </div>
         </div>
         <div class="col-md-4" v-if="cameraControlVideoInfo.cameraCount == 6" v-for="(item,index) in cameraControlVideoInfo.machines">
             <div class="form-group">
                 <video :id="item.machineId" controls autoplay="autoplay" muted width="100%" height="400px" style="background-color: #000;"></video>
-                <span>摄像头：{{item.machineName}}</span>
+                <span><span><vc:i18n name="摄像头" namespace="cameraControlVideo"></vc:i18n></span>：{{item.machineName}}</span>
             </div>
         </div>
 

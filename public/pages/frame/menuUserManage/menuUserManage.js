@@ -15,7 +15,8 @@
                 conditions: {
                     muId: '',
                     mId: '',
-                    seq: ''
+                    name: '',
+                    seq: '',
                 }
             }
         },

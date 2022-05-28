@@ -174,27 +174,15 @@
                         },
                     ],
                     'addContractInfo.aLink': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "甲方联系电话不能为空"
-                        },
-                        {
-                            limit: "phone",
-                            param: "",
-                            errInfo: "甲方联系电话错误"
-                        },
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "甲方联系电话不能为空"
+                    }],
                     'addContractInfo.bLink': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "乙方联系电话不能为空"
-                        },
-                        {
-                            limit: "phone",
-                            param: "",
-                            errInfo: "乙方联系电话错误"
-                        },
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "乙方联系电话不能为空"
+                    }],
                     'addContractInfo.operator': [{
                             limit: "required",
                             param: "",
@@ -207,16 +195,10 @@
                         },
                     ],
                     'addContractInfo.operatorLink': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "联系电话不能为空"
-                        },
-                        {
-                            limit: "phone",
-                            param: "",
-                            errInfo: "经办人联系电话格式错误"
-                        },
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "联系电话不能为空"
+                    }],
                     'addContractInfo.amount': [{
                         limit: "money",
                         param: "",

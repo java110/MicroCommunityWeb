@@ -2,66 +2,59 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加商铺</h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加商铺" namespace="addShops"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">商铺编号</label>
-                                <div class="col-sm-10"><input v-model="addShopsInfo.roomNum" type="text"
-                                        placeholder="必填，请填写商铺编号" class="form-control"></div>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="商铺编号" namespace="addShops"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addShopsInfo.roomNum" type="text" :placeholder="vc.i18n('必填，请填写商铺编号','addShops')" class="form-control"></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">商铺楼层</label>
-                                <div class="col-sm-10"><input v-model="addShopsInfo.layer" type="number"
-                                        placeholder="必填，请填写商铺楼层" class="form-control"></div>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="商铺楼层" namespace="addShops"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addShopsInfo.layer" type="number" :placeholder="vc.i18n('必填，请填写商铺楼层','addShops')" class="form-control"></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">楼栋</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="楼栋" namespace="addShops"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <vc:create path="property/floorSelect2" parentModal="addShopsModel"
-                                        callBackListener="addShops" callBackFunction="notify"
-                                        namespace="addShops"></vc:create>
+                                    <vc:create path="property/floorSelect2" parentModal="addShopsModel" callBackListener="addShops" callBackFunction="notify" namespace="addShops"></vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">租金</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="租金" namespace="addShops"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addShopsInfo.roomRent" type="text" placeholder="必填，请填写租金"
-                                        class="form-control">
+                                    <input v-model="addShopsInfo.roomRent" type="text" :placeholder="vc.i18n('必填，请填写租金','addShops')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">建筑面积(平方)</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="建筑面积(平方)" namespace="addShops"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addShopsInfo.builtUpArea" type="text" placeholder="必填，请填写建筑面积! 平方"
-                                           class="form-control">
+                                    <input v-model="addShopsInfo.builtUpArea" type="text" :placeholder="vc.i18n('必填，请填写建筑面积','addShops')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">室内面积(平方)</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="室内面积(平方)" namespace="addShops"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addShopsInfo.roomArea" type="text" placeholder="必填，请填写室内面积! 平方"
-                                        class="form-control">
+                                    <input v-model="addShopsInfo.roomArea" type="text" :placeholder="vc.i18n('必填，请填写室内面积','addShops')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">算费系数</label>
-                                <div class="col-sm-10"><input v-model="addShopsInfo.feeCoefficient" type="number"
-                                        placeholder="必填，请填写算费系数" class="form-control"></div>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="算费系数" namespace="addShops"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addShopsInfo.feeCoefficient" type="number" :placeholder="vc.i18n('必填，请填写算费系数','addShops')" class="form-control"></div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addShops"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="addShopsInfo.remark" placeholder="请填写备注信息"
-                                        class="form-control"></textarea>
+                                    <textarea v-model="addShopsInfo.remark" :placeholder="vc.i18n('请填写备注信息','addShops')" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="addShops()"><i
-                                        class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                        class="fa fa-check"></i>&nbsp;
+                                        <span><vc:i18n name="保存" ></vc:i18n></span></button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addShops"></vc:i18n></span></button>
                             </div>
                         </div>
                     </div>

@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="inspectionTaskDetails"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
                             {{inspectionTaskDetailManageInfo.moreCondition == true?'隐藏':'更多'}}
@@ -14,32 +16,32 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入巡检人" v-model="inspectionTaskDetailManageInfo.conditions.planUserName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入巡检人','inspectionTaskDetails')" v-model="inspectionTaskDetailManageInfo.conditions.planUserName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入实际巡检开始时间" v-model="inspectionTaskDetailManageInfo.conditions.inspectionStartTime" class=" form-control startTime">
+                                <input type="text" :placeholder="vc.i18n('请输入实际巡检开始时间','inspectionTaskDetails')" v-model="inspectionTaskDetailManageInfo.conditions.inspectionStartTime" class=" form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入实际巡检结束时间" v-model="inspectionTaskDetailManageInfo.conditions.inspectionEndTime" class=" form-control endTime">
+                                <input type="text" :placeholder="vc.i18n('请输入实际巡检结束时间','inspectionTaskDetails')" v-model="inspectionTaskDetailManageInfo.conditions.inspectionEndTime" class=" form-control endTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionTaskMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="inspectionTaskDetails"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetInspectionTaskMethod()">
-                                <i class="fa fa-repeat"></i> 重置
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="inspectionTaskDetails"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
                     <div class="row" v-show="inspectionTaskDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.inspectionPlanId">
-                                <option selected value="">请选择巡检计划</option>
+                                <option selected value="">{{vc.i18n('请选择巡检计划','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.inspectionPlanList" :key="index"
                                     :value="item.inspectionPlanId">
                                     {{item.inspectionPlanName}}
@@ -48,7 +50,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.inspectionRouteId">
-                                <option selected value="">请选择巡检路线</option>
+                                <option selected value="">{{vc.i18n('请选择巡检路线','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.inspectionRouteList" :key="index"
                                     :value="item.inspectionRouteId">
                                     {{item.routeName}}
@@ -57,7 +59,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.inspectionId">
-                                <option selected value="">请选择巡检点</option>
+                                <option selected value="">{{vc.i18n('请选择巡检点','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.inspectionPointList" :key="index"
                                     :value="item.inspectionId">
                                     {{item.inspectionName}}
@@ -68,12 +70,12 @@
                     <div class="row margin-top" v-show="inspectionTaskDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入任务详情ID" v-model="inspectionTaskDetailManageInfo.conditions.taskDetailId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入任务详情ID','inspectionTaskDetails')" v-model="inspectionTaskDetailManageInfo.conditions.taskDetailId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.inspectionState">
-                                <option selected value="">请选择签到状态</option>
+                                <option selected value="">{{vc.i18n('请选择签到状态','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.inspectionStateTypes" :key="index"
                                     :value="item.statusCd">
                                     {{item.name}}
@@ -82,7 +84,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.state">
-                                <option selected value="">请选择巡检点状态</option>
+                                <option selected value="">{{vc.i18n('请选择巡检点状态','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.stateTypes" :key="index" :value="item.statusCd">
                                     {{item.name}}
                                 </option>
@@ -92,7 +94,7 @@
                     <div class="row" v-show="inspectionTaskDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.taskState">
-                                <option selected value="">请选择任务状态</option>
+                                <option selected value="">{{vc.i18n('请选择任务状态','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.taskStates" :key="index"
                                     :value="item.statusCd">
                                     {{item.name}}
@@ -101,7 +103,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionTaskDetailManageInfo.conditions.patrolType">
-                                <option selected value="">请选择巡检情况</option>
+                                <option selected value="">{{vc.i18n('请选择巡检情况','inspectionTaskDetails')}}</option>
                                 <option v-for="(item,index) in inspectionTaskDetailManageInfo.patrolTypes" :key="index" :value="item.statusCd">
                                     {{item.name}}
                                 </option>
@@ -116,7 +118,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>巡检明细信息</h5>
+                    <h5>
+                        <span><vc:i18n name="巡检明细信息" namespace="inspectionTaskDetails"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -124,22 +128,56 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">任务详情ID</th>
-                                <th class="text-center">巡检点名称</th>
-                                <th class="text-center">巡检计划名称</th>
-                                <th class="text-center">巡检路线名称</th>
-                                <th class="text-center">巡检人<br/>开始/结束时间</th>
-                                <th class="text-center">巡检点<br/>开始/结束时间</th>
-                                <th class="text-center">实际巡检时间</th>
-                                <th class="text-center">实际签到状态</th>
-                                <th class="text-center">计划巡检人</th>
-                                <th class="text-center">实际巡检人</th>
-                                <th class="text-center">巡检方式</th>
-                                <th class="text-center">任务状态</th>
-                                <th class="text-center">巡检点状态</th>
-                                <th class="text-center">巡检情况</th>
-                                <th class="text-center">巡检照片</th>
-                                <th class="text-center" style="width: 70px;">位置信息</th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="任务详情ID" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检点名称" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检计划名称" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检路线名称" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检人" namespace="inspectionTaskDetails"></vc:i18n></span><br/>
+                                    <span><vc:i18n name="开始/结束时间" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检点" namespace="inspectionTaskDetails"></vc:i18n></span><br/>
+                                    <span><vc:i18n name="开始/结束时间" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="实际巡检时间" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="实际签到状态" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="计划巡检人" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="实际巡检人" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检方式" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="任务状态" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检点状态" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检情况" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="巡检照片" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
+                                <th class="text-center" style="width: 70px;">
+                                    <span><vc:i18n name="位置信息" namespace="inspectionTaskDetails"></vc:i18n></span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -169,7 +207,7 @@
                                 </span>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-info" v-on:click="openMap(inspectionTask.latitude, inspectionTask.longitude)">查看</button>
+                                    <button class="btn btn-info" v-on:click="openMap(inspectionTask.latitude, inspectionTask.longitude)"><span><vc:i18n name="查看" namespace="inspectionTaskDetails"></vc:i18n></span></button>
                                 </td>
                             </tr>
                         </tbody>

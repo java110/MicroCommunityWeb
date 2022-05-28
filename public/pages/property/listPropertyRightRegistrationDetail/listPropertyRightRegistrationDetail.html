@@ -4,12 +4,12 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        {{listPropertyRightRegistrationDetailInfo.conditions.floorNum}}-{{listPropertyRightRegistrationDetailInfo.conditions.unitNum}}-{{listPropertyRightRegistrationDetailInfo.conditions.roomNum}}的产权登记详情记录
+                        {{listPropertyRightRegistrationDetailInfo.conditions.floorNum}}-{{listPropertyRightRegistrationDetailInfo.conditions.unitNum}}-{{listPropertyRightRegistrationDetailInfo.conditions.roomNum}}<span><vc:i18n name="的产权登记详情记录" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                                 v-on:click="_goBack()">
-                            <i class="fa fa-times"></i>返回
+                            <i class="fa fa-times"></i><span><vc:i18n name="返回" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -17,12 +17,12 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">产权登记详情ID</th>
-                            <th class="text-center">材料类型</th>
-                            <th class="text-center">是否缴费</th>
-                            <th class="text-center">图片</th>
-                            <th class="text-center">创建时间</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><span><vc:i18n name="产权登记详情" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="材料类型" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否缴费" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="图片" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="创建时间" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>

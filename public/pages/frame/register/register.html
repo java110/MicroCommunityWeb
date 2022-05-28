@@ -3,34 +3,34 @@
     <p style="color: red;">{{registerInfo.errorInfo}}</p>
 
     <div class="layui-form-item">
-        <input class="layui-input" v-model="registerInfo.username" placeholder="请输入用户名" type="text" maxlength="20"
+        <input class="layui-input" v-model="registerInfo.username" :placeholder="vc.i18n('请输入用户名','register')" type="text" maxlength="20"
             lay-verify="required|regexit" autofocus="autofocus" autocomplete="off">
     </div>
     <div class="layui-form-item">
-        <input class="layui-input" v-model="registerInfo.passwd" placeholder="请输入密码" type="password" maxlength="20"
+        <input class="layui-input" v-model="registerInfo.passwd" :placeholder="vc.i18n('请输入密码','register')" type="password" maxlength="20"
             lay-verify="required|pwd" autocomplete="off">
     </div>
     <div class="layui-form-item">
-        <input class="layui-input" v-model="registerInfo.repasswd" placeholder="请再次输入密码" type="password" maxlength="20"
+        <input class="layui-input" v-model="registerInfo.repasswd" :placeholder="vc.i18n('请再次输入密码','register')" type="password" maxlength="20"
             lay-verify="required|rePwd" autocomplete="off">
     </div>
     <vc:create path="frame/validateTel"></vc:create>
     <!-- <div class="layui-form-item" style="float: left;margin-left: -10px;">
-            <input lay-filter="agreen-checkbox" title="我同意" type="checkbox" lay-skin="primary" checked>
+            <input lay-filter="agreen-checkbox" title="vc.i18n('我同意','register')" type="checkbox" lay-skin="primary" checked>
             <a href="#" target="_blank">《注册协议》</a>
         </div> -->
     <div class="layui-form-item">
         <button id="reg" type="submit" v-on:click="doRegister()"
             class="login_btn layui-btn layui-btn-radius layui-btn-normal" lay-submit lay-filter="register">
-            <vc:i18n name="register"></vc:i18n>
+            <span><vc:i18n name="register"></vc:i18n></span>
         </button>
     </div>
     <div>
         <small class="text-white">
-            <vc:i18n name="areyouhasaccount"></vc:i18n>
+            <span><vc:i18n name="areyouhasaccount"></vc:i18n></span>
         </small>
         <a href="javascript:void(0)" v-on:click="_doLogin()">
-            <vc:i18n name="signIn"></vc:i18n>
+            <span><vc:i18n name="signIn"></vc:i18n></span>
         </a>
     </div>
 </div>

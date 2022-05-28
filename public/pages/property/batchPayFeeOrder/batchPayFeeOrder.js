@@ -1,3 +1,167 @@
+var saveAs = saveAs || (function(view) {
+    "use strict";
+    // IE <10 is explicitly unsupported
+    if (typeof view === "undefined" || typeof navigator !== "undefined" && /MSIE [1-9]\./.test(navigator.userAgent)) {
+        return;
+    }
+    var
+        doc = view.document
+        // only get URL when necessary in case Blob.js hasn't overridden it yet
+        ,
+        get_URL = function() {
+            return view.URL || view.webkitURL || view;
+        },
+        save_link = doc.createElementNS("http://www.w3.org/1999/xhtml", "a"),
+        can_use_save_link = "download" in save_link,
+        click = function(node) {
+            var event = new MouseEvent("click");
+            node.dispatchEvent(event);
+        },
+        is_safari = /constructor/i.test(view.HTMLElement) || view.safari,
+        is_chrome_ios = /CriOS\/[\d]+/.test(navigator.userAgent),
+        throw_outside = function(ex) {
+            (view.setImmediate || view.setTimeout)(function() {
+                throw ex;
+            }, 0);
+        },
+        force_saveable_type = "application/octet-stream"
+        // the Blob API is fundamentally broken as there is no "downloadfinished" event to subscribe to
+        ,
+        arbitrary_revoke_timeout = 1000 * 40 // in ms
+        ,
+        revoke = function(file) {
+            var revoker = function() {
+                if (typeof file === "string") { // file is an object URL
+                    get_URL().revokeObjectURL(file);
+                } else { // file is a File
+                    file.remove();
+                }
+            };
+            setTimeout(revoker, arbitrary_revoke_timeout);
+        },
+        dispatch = function(filesaver, event_types, event) {
+            event_types = [].concat(event_types);
+            var i = event_types.length;
+            while (i--) {
+                var listener = filesaver["on" + event_types[i]];
+                if (typeof listener === "function") {
+                    try {
+                        listener.call(filesaver, event || filesaver);
+                    } catch (ex) {
+                        throw_outside(ex);
+                    }
+                }
+            }
+        },
+        auto_bom = function(blob) {
+            // prepend BOM for UTF-8 XML and text/* types (including HTML)
+            // note: your browser will automatically convert UTF-16 U+FEFF to EF BB BF
+            if (/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)) {
+                return new Blob([String.fromCharCode(0xFEFF), blob], { type: blob.type });
+            }
+            return blob;
+        },
+        FileSaver = function(blob, name, no_auto_bom) {
+            if (!no_auto_bom) {
+                blob = auto_bom(blob);
+            }
+            // First try a.download, then web filesystem, then object URLs
+            var
+                filesaver = this,
+                type = blob.type,
+                force = type === force_saveable_type,
+                object_url, dispatch_all = function() {
+                    dispatch(filesaver, "writestart progress write writeend".split(" "));
+                }
+                // on any filesys errors revert to saving with object URLs
+                ,
+                fs_error = function() {
+                    if ((is_chrome_ios || (force && is_safari)) && view.FileReader) {
+                        // Safari doesn't allow downloading of blob urls
+                        var reader = new FileReader();
+                        reader.onloadend = function() {
+                            var url = is_chrome_ios ? reader.result : reader.result.replace(/^data:[^;]*;/, 'data:attachment/file;');
+                            var popup = view.open(url, '_blank');
+                            if (!popup) view.location.href = url;
+                            url = undefined; // release reference before dispatching
+                            filesaver.readyState = filesaver.DONE;
+                            dispatch_all();
+                        };
+                        reader.readAsDataURL(blob);
+                        filesaver.readyState = filesaver.INIT;
+                        return;
+                    }
+                    // don't create more object URLs than needed
+                    if (!object_url) {
+                        object_url = get_URL().createObjectURL(blob);
+                    }
+                    if (force) {
+                        view.location.href = object_url;
+                    } else {
+                        var opened = view.open(object_url, "_blank");
+                        if (!opened) {
+                            // Apple does not allow window.open, see https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/WorkingwithWindowsandTabs/WorkingwithWindowsandTabs.html
+                            view.location.href = object_url;
+                        }
+                    }
+                    filesaver.readyState = filesaver.DONE;
+                    dispatch_all();
+                    revoke(object_url);
+                };
+            filesaver.readyState = filesaver.INIT;
+
+            if (can_use_save_link) {
+                object_url = get_URL().createObjectURL(blob);
+                setTimeout(function() {
+                    save_link.href = object_url;
+                    save_link.download = name;
+                    click(save_link);
+                    dispatch_all();
+                    revoke(object_url);
+                    filesaver.readyState = filesaver.DONE;
+                });
+                return;
+            }
+
+            fs_error();
+        },
+        FS_proto = FileSaver.prototype,
+        saveAs = function(blob, name, no_auto_bom) {
+            return new FileSaver(blob, name || blob.name || "download", no_auto_bom);
+        };
+    // IE 10+ (native saveAs)
+    if (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob) {
+        return function(blob, name, no_auto_bom) {
+            name = name || blob.name || "download";
+
+            if (!no_auto_bom) {
+                blob = auto_bom(blob);
+            }
+            return navigator.msSaveOrOpenBlob(blob, name);
+        };
+    }
+
+    FS_proto.abort = function() {};
+    FS_proto.readyState = FS_proto.INIT = 0;
+    FS_proto.WRITING = 1;
+    FS_proto.DONE = 2;
+
+    FS_proto.error =
+        FS_proto.onwritestart =
+        FS_proto.onprogress =
+        FS_proto.onwrite =
+        FS_proto.onabort =
+        FS_proto.onerror =
+        FS_proto.onwriteend =
+        null;
+
+    return saveAs;
+}(
+    typeof self !== "undefined" && self ||
+    typeof window !== "undefined" && window ||
+    this.content
+));
+
 (function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -68,7 +232,7 @@
                         if (!_fees || _fees.length < 1) {
                             return;
                         }
-                        $that.batchPayFeeOrderInfo.batchFees = _fees;
+                        $that.batchPayFeeOrderInfo.batchFees = _fees.sort($that._batchRoomFeeCompare);
                         $that.batchPayFeeOrderInfo.selectPayFeeIds = [];
                         $that.batchPayFeeOrderInfo.batchFees.forEach(item => {
                             $that.batchPayFeeOrderInfo.selectPayFeeIds.push(item.feeId);
@@ -91,6 +255,17 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _batchRoomFeeCompare: function(a, b) {
+                var val1 = a.payerObjName;
+                var val2 = b.payerObjName;
+                if (val1 < val2) {
+                    return -1;
+                } else if (val1 > val2) {
+                    return 1;
+                } else {
+                    return 0;
+                }
             },
             _pushPayObjs: function() {
                 let _allBatchFees = $that.batchPayFeeOrderInfo.allBatchFees;
@@ -381,6 +556,98 @@
             _mathToFixed2: function(_price) {
                 return parseFloat(_price).toFixed(2);
             },
+            _exportExcel: function(type, fn, dl) {
+                // 使用 XLSX.utils.aoa_to_sheet(excleData);
+                let excleData = [
+                    ['缴费申请单', null, null, null, null],
+                    ['费用类型', '费用项目', '费用标识', '收费对象', '计费起始时间', '计费结束时间', '欠费金额', '缴费周期', '应收', '实收', '备注'],
+                ];
+
+                $that.batchPayFeeOrderInfo.selectPayFeeIds.forEach(function(_item) {
+                    $that.batchPayFeeOrderInfo.batchFees.forEach(function(_batchFeeItem) {
+                        if (_item == _batchFeeItem.feeId) {
+                            _batchFeeItem.primeRate = $that.batchPayFeeOrderInfo.primeRate;
+                            excleData.push([_batchFeeItem.feeTypeCdName, _batchFeeItem.feeName,
+                                _batchFeeItem.feeFlagName,
+                                $that._getBatchPayFeeRoomName(_batchFeeItem),
+                                $that._getEndTime(_batchFeeItem),
+                                $that._getDeadlineTime(_batchFeeItem),
+                                _batchFeeItem.amountOwed,
+                                _batchFeeItem.cycles,
+                                _batchFeeItem.receivableAmount,
+                                _batchFeeItem.receivedAmount,
+                                _batchFeeItem.remark
+                            ])
+                        }
+                    })
+                });
+
+                excleData.push(['',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '缴费金额',
+                    $that.batchPayFeeOrderInfo.feePrices,
+                    ''
+                ])
+
+                // 设置表格样式，!cols为列宽
+                const options = {
+                    '!cols': [
+                        { wpx: 100 },
+                        { wpx: 100 },
+                        { wpx: 100 },
+                        { wpx: 100 },
+                        { wpx: 100 },
+                    ]
+                };
+                const worksheet = XLSX.utils.aoa_to_sheet(excleData);
+                worksheet['A1'].s = {
+                    font: {
+                        sz: 28,
+                    },
+                    alignment: {
+                        horizontal: 'center',
+                        vertical: 'center',
+                    }
+                }
+
+                worksheet['!cols'] = options['!cols']; // 设置每列的列宽，10代表10个字符，注意中文占2个字符
+                console.log(worksheet)
+
+                worksheet['!merges'] = [{ e: { c: 10, r: 0 }, s: { c: 0, r: 0 } }];
+
+
+                // 新建一个工作簿
+                // const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+                const workbook = XLSX.utils.book_new(); //创建虚拟workbook
+
+                /* 将工作表添加到工作簿,生成xlsx文件(book,sheet数据,sheet命名)*/
+                XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+                /* 输出工作表， 由文件名决定的输出格式(book,xlsx文件名称)*/
+
+                XSU.setCellStyle(workbook, 'Sheet1', 'A1', {
+                    font: {
+                        sz: 28,
+                    },
+                    alignment: {
+                        horizontal: 'center',
+                        vertical: 'center',
+                    }
+                });
+
+                // XLSX.writeFile(workbook, '申请单.xlsx');
+
+                let wopts = { bookType: 'xlsx', bookSST: false, type: 'binary' };
+
+                let wbout = xlsxStyle.write(workbook, wopts)
+                    // XLSX.writeFile(wbout, '申请单.xlsx');
+                saveAs(new Blob([XSU.s2ab(wbout)], { type: "" }), '申请单.xlsx')
+
+            }
         }
     });
 })(window.vc);

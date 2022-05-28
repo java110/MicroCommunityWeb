@@ -3,44 +3,44 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改抄表</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改抄表" namespace="editMeterWater"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">上期度数</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="上期度数" namespace="editMeterWater"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editMeterWaterInfo.preDegrees" type="text" placeholder="必填，请填写上期度数"
+                                    <input v-model="editMeterWaterInfo.preDegrees" type="text" :placeholder="vc.i18n('必填，请填写上期度数','editMeterWater')"
                                            disabled="disabled" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">本期度数</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="本期度数" namespace="editMeterWater"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editMeterWaterInfo.curDegrees" type="text" placeholder="必填，请填写本期度数"
+                                    <input v-model="editMeterWaterInfo.curDegrees" type="text" :placeholder="vc.i18n('必填，请填写本期度数','editMeterWater')"
                                            class="form-control" @change="getChange()">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">上期读表时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="上期读表时间" namespace="editMeterWater"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editMeterWaterInfo.preReadingTime" type="text"
-                                           placeholder="必填，请填写上期读表时间" disabled="disabled"
+                                           :placeholder="vc.i18n('必填，请填写上期读表时间','editMeterWater')" disabled="disabled"
                                            class="form-control editPreReadingTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">本期读表时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="本期读表时间" namespace="editMeterWater"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editMeterWaterInfo.curReadingTime" type="text"
-                                           placeholder="必填，请填写本期读表时间"
+                                           :placeholder="vc.i18n('必填，请填写本期读表时间','editMeterWater')"
                                            class="form-control editCurReadingTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="editMeterWater"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editMeterWaterInfo.remark" type="text" placeholder="选填，请填写备注"
+                                    <input v-model="editMeterWaterInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写备注','editMeterWater')"
                                            class="form-control">
                                 </div>
                             </div>

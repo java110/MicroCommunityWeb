@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>服务提供信息</h5>
+                <h5><span><vc:i18n name="服务提供信息" namespace="viewServiceProvideInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewServiceProvideInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectServiceProvideInfoModel()">
-                        <i class="fa fa-search"></i> 选择服务提供</button>
+                        <i class="fa fa-search"></i> <span><vc:i18n name="选择服务提供" namespace="viewServiceProvideInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewServiceProvideInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddServiceProvideInfoModel()">
-                        <i class="fa fa-plus"></i> 添加服务提供</button>
+                        <i class="fa fa-plus"></i> <span><vc:i18n name="添加服务提供" namespace="viewServiceProvideInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >服务名称：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="服务名称" namespace="viewServiceProvideInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceProvideInfo.name}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >服务编码：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="服务编码" namespace="viewServiceProvideInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceProvideInfo.serviceCode}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >参数：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="参数" namespace="viewServiceProvideInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceProvideInfo.params}}</label>
                         </div>
 </div>
@@ -35,7 +35,7 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >实现方式：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="实现方式" namespace="viewServiceProvideInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceProvideInfo.queryModel}}</label>
                         </div>
 </div>
@@ -47,7 +47,7 @@
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >输出模板：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="输出模板" namespace="viewServiceProvideInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceProvideInfo.template}}</label>
                         </div>
 </div>
@@ -55,7 +55,7 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >存储过程：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="存储过程" namespace="viewServiceProvideInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceProvideInfo.proc}}</label>
                         </div>
 </div>
@@ -67,7 +67,7 @@
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >描述：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="描述" namespace="viewServiceProvideInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewServiceProvideInfo.remark}}</label>
                         </div>
 </div>

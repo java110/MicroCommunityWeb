@@ -3,13 +3,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseContractModelLabel">选择合同信息</h3>
+                <h3 class="modal-title" id="chooseContractModelLabel"><span><vc:i18n name="选择合同信息" namespace="chooseContract"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,12 +18,12 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入合同信息名称" type="text"
+                                        <input :placeholder="vc.i18n('输入合同信息名称','chooseContract')" type="text"
                                             v-model="chooseContractInfo._currentContractName"
                                             class="form-control form-control-sm">
                                         <span class="input-group-append">
                                             <button type="button" class="btn btn-sm btn-primary"
-                                                v-on:click="queryContracts()">查询</button>
+                                                v-on:click="queryContracts()"><span><vc:i18n name="查询" namespace="chooseContract"></vc:i18n></span></button>
                                         </span>
                                     </div>
                                 </div>
@@ -32,13 +32,13 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">合同名称</th>
-                                            <th class="text-center">合同编号</th>
-                                            <th class="text-center">合同类型</th>
-                                            <th class="text-center">甲方</th>
-                                            <th class="text-center">乙方</th>
-                                            <th class="text-center">签订时间</th>
-                                            <th class="text-center">操作</th>
+                                            <th class="text-center"><span><vc:i18n name="合同名称" namespace="chooseContract"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="合同编号" namespace="chooseContract"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="合同类型" namespace="chooseContract"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="甲方" namespace="chooseContract"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="乙方" namespace="chooseContract"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="签订时间" namespace="chooseContract"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseContract"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -53,7 +53,7 @@
 
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseContract(contract)">选择</button>
+                                                    v-on:click="chooseContract(contract)"><span><vc:i18n name="选择" namespace="chooseContract"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

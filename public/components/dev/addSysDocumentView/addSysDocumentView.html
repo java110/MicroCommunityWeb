@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5>添加文档</h5>
+                <h5><span><vc:i18n name="添加文档" namespace="addSysDocumentView"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
 
                 </div>
@@ -10,23 +10,23 @@
             <div class="ibox-content">
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">标题</label>
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="标题" namespace="addSysDocumentView"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <input v-model="addSysDocumentViewInfo.docTitle" type="text" placeholder="必填，请填写标题"
+                        <input v-model="addSysDocumentViewInfo.docTitle" type="text" :placeholder="vc.i18n('必填，请填写标题','addSysDocumentView')"
                             class="form-control">
                     </div>
                 </div>   
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">文档编码</label>
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="文档编码" namespace="addSysDocumentView"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <input v-model="addSysDocumentViewInfo.docCode" type="text" placeholder="必填，请填写文档编码"
+                        <input v-model="addSysDocumentViewInfo.docCode" type="text" :placeholder="vc.i18n('必填，请填写文档编码','addSysDocumentView')"
                             class="form-control">
                     </div>
                 </div>  
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">信息内容</label>
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="信息内容" namespace="addSysDocumentView"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <div class=" no-padding">
+                        <div class="no-padding">
                             <div class="summernote"></div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             class="fa fa-check"></i>&nbsp;提交
                     </button>
                     <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                        v-on:click="closeSysDocumentInfo()">取消
+                        v-on:click="closeSysDocumentInfo()"><span><vc:i18n name="取消" namespace="addSysDocumentView"></vc:i18n></span>
                     </button>
                 </div>
 

@@ -3,29 +3,29 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加位置</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加位置" namespace="addLocation"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">位置名称</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="位置名称" namespace="addLocation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addLocationInfo.locationName" type="text" placeholder="必填，请填写位置名称"
+                                    <input v-model="addLocationInfo.locationName" type="text" :placeholder="vc.i18n('必填，请填写位置名称','addLocation')"
                                         class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">位置类型</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="位置类型" namespace="addLocation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addLocationInfo.locationType">
-                                        <option selected disabled value="">必填，请选择位置类型</option>
-                                        <option value="1000">小区</option>
-                                        <option value="6000">楼栋</option>
-                                        <option value="2000">单元</option>
-                                        <option value="3000">房屋</option>
-                                        <option value="4000">岗亭</option>
-                                        <option value="5000">部门</option>
-                                        <option value="7000">停车场</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addLocation')}}，请选择位置类型</option>
+                                        <option value="1000">{{vc.i18n('小区','addLocation')}}</option>
+                                        <option value="6000">{{vc.i18n('楼栋','addLocation')}}</option>
+                                        <option value="2000">{{vc.i18n('单元','addLocation')}}</option>
+                                        <option value="3000">{{vc.i18n('房屋','addLocation')}}</option>
+                                        <option value="4000">{{vc.i18n('岗亭','addLocation')}}</option>
+                                        <option value="5000">{{vc.i18n('部门','addLocation')}}</option>
+                                        <option value="7000">{{vc.i18n('停车场','addLocation')}}</option>
                                     </select> </div>
                             </div>
 
@@ -33,7 +33,7 @@
                                 <button class="btn btn-primary float-right" type="button"
                                     v-on:click="saveLocationInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal">取消</button>
+                                    data-dismiss="modal"><span><vc:i18n name="取消" namespace="addLocation"></vc:i18n></span></button>
                             </div>
                         </div>
                     </div>

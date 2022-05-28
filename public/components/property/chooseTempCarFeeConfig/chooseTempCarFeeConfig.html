@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseTempCarFeeConfigModelLabel">选择临时车收费标准</h3>
+                <h3 class="modal-title" id="chooseTempCarFeeConfigModelLabel"><span><vc:i18n name="选择临时车收费标准" namespace="chooseTempCarFeeConfig"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入临时车收费标准名称" type="text" v-model="chooseTempCarFeeConfigInfo._currentTempCarFeeConfigName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入临时车收费标准名称','chooseTempCarFeeConfig')" type="text" v-model="chooseTempCarFeeConfigInfo._currentTempCarFeeConfigName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryTempCarFeeConfigs()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryTempCarFeeConfigs()"><span><vc:i18n name="查询" namespace="chooseTempCarFeeConfig"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">标准ID</th>
-                            <th class="text-center">标准名称</th>
-                            <th class="text-center">停车场</th>
-                            <th class="text-center">车辆类型</th>
-                            <th class="text-center">收费规则</th>
-                            <th class="text-center">开始时间</th>
-                            <th class="text-center">结束时间</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="标准" namespace="chooseTempCarFeeConfig"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="标准名称" namespace="chooseTempCarFeeConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="停车场" namespace="chooseTempCarFeeConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="车辆类型" namespace="chooseTempCarFeeConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="收费规则" namespace="chooseTempCarFeeConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="chooseTempCarFeeConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="chooseTempCarFeeConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseTempCarFeeConfig"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@
                             <td class="text-center">{{tempCarFeeConfig.endTime}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseTempCarFeeConfig(tempCarFeeConfig)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseTempCarFeeConfig(tempCarFeeConfig)"><span><vc:i18n name="选择" namespace="chooseTempCarFeeConfig"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

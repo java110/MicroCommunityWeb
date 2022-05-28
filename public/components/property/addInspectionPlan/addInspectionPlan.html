@@ -2,28 +2,28 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加巡检计划</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加巡检计划" namespace="addInspectionPlan"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">计划名称</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="计划名称" namespace="addInspectionPlan"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addInspectionPlanInfo.inspectionPlanName" type="text" placeholder="必填，请填写计划名称" class="form-control">
+                                    <input v-model="addInspectionPlanInfo.inspectionPlanName" type="text" :placeholder="vc.i18n('必填，请填写计划名称','addInspectionPlan')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">巡检路线</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="巡检路线" namespace="addInspectionPlan"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <vc:create path="property/inspectionRouteSelect2" parentModal="addInspectionPlanModel" callBackListener="addInspectionPlanInfo" callBackFunction="notify" namespace="addInspectionPlan">
                                     </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">执行周期</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="执行周期" namespace="addInspectionPlan"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addInspectionPlanInfo.inspectionPlanPeriod">
-                                        <option selected disabled value="">必填，请选择执行周期</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addInspectionPlan')}}，请选择执行周期</option>
                                         <option v-for="(item,index) in addInspectionPlanInfo.inspectionPlanPeriods"
                                                 :key="index" v-bind:value="item.statusCd">{{item.name}}
                                         </option>
@@ -31,22 +31,22 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">开始时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="开始时间" namespace="addInspectionPlan"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addInspectionPlanInfo.startTime" type="text" placeholder="必填，请填写开始时间" class="form-control addInspectionPlanStartTime">
+                                    <input v-model="addInspectionPlanInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写开始时间','addInspectionPlan')" class="form-control addInspectionPlanStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">结束时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="addInspectionPlan"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addInspectionPlanInfo.endTime" type="text" placeholder="必填，请填写结束时间" class="form-control addInspectionPlanEndTime">
+                                    <input v-model="addInspectionPlanInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','addInspectionPlan')" class="form-control addInspectionPlanEndTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">签到方式</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="签到方式" namespace="addInspectionPlan"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addInspectionPlanInfo.signType">
-                                        <option selected disabled value="">必填，请选择签到方式</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addInspectionPlan')}}，请选择签到方式</option>
                                         <option v-for="(item,index) in addInspectionPlanInfo.signTypes" :key="index"
                                                 v-bind:value="item.statusCd">{{item.name}}
                                         </option>
@@ -54,10 +54,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">状态</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="状态" namespace="addInspectionPlan"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addInspectionPlanInfo.state">
-                                        <option selected disabled value="">必填，请选择状态</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addInspectionPlan')}}，请选择状态</option>
                                         <option v-for="(item,index) in addInspectionPlanInfo.states" :key="index"
                                                 v-bind:value="item.statusCd">{{item.name}}
                                         </option>
@@ -65,9 +65,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addInspectionPlan"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="addInspectionPlanInfo.remark" type="text" placeholder="选填，请填写备注" class="form-control">
+                                    <textarea v-model="addInspectionPlanInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写备注','addInspectionPlan')" class="form-control">
                                     </textarea>
                                 </div>
                             </div>

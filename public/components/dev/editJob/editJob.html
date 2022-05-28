@@ -3,22 +3,22 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">修改任务</h3>
+        <h3 class="m-t-none m-b "><span><vc:i18n name="修改任务" namespace="editJob"></vc:i18n></span></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">任务名称</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="任务名称" namespace="editJob"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                    <input v-model="editJobInfo.taskName" type="text" placeholder="必填，请填写任务名称"
+                    <input v-model="editJobInfo.taskName" type="text" :placeholder="vc.i18n('必填，请填写任务名称','editJob')"
                         class="form-control">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">选择模板</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="选择模板" namespace="editJob"></vc:i18n></span></label>
                 <div class="col-sm-10">
                     <select class="form-control form-control-sm" v-model="editJobInfo.templateId"
-                        @change="chooseEditTemplate()" placeholder="必填，请选择模板">
+                        @change="chooseEditTemplate()" :placeholder="vc.i18n('必填，请选择模板','editJob')">
                         <option v-for="item in editJobInfo.templates" :label="item.templateName"
                             :value="item.templateId">{{item.templateName}}
                         </option>
@@ -27,9 +27,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">定时时间</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="定时时间" namespace="editJob"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                    <input v-model="editJobInfo.taskCron" type="text" placeholder="选填，请填写定时时间"
+                    <input v-model="editJobInfo.taskCron" type="text" :placeholder="vc.i18n('选填，请填写定时时间','editJob')"
                         class="form-control">
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="editJob()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><span><vc:i18n name="取消" namespace="editJob"></vc:i18n></span></button>
               </div>
             </div>
           </div>

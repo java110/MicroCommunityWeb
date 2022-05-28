@@ -17,11 +17,11 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>用例ID</th>
-                            <th data-hide="phone">名称</th>
-                            <th data-hide="phone">用例值</th>
-                            <th data-hide="phone">备注</th>
-                            <th class="text-right">操作</th>
+                            <th><span><vc:i18n name="用例" namespace="listDemo"></vc:i18n></span>ID</th>
+                            <th data-hide="phone"><span><vc:i18n name="名称" namespace="listDemo"></vc:i18n></span></th>
+                            <th data-hide="phone"><span><vc:i18n name="用例值" namespace="listDemo"></vc:i18n></span></th>
+                            <th data-hide="phone"><span><vc:i18n name="备注" namespace="listDemo"></vc:i18n></span></th>
+                            <th class="text-right"><span><vc:i18n name="操作" namespace="listDemo"></vc:i18n></span></th>
 
                         </tr>
                         </thead>
@@ -43,10 +43,10 @@
                             </td>
                             <td class="text-right">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerModel(owner)">修改</button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerModel(owner)"><span><vc:i18n name="修改" namespace="listDemo"></vc:i18n></span></button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDelOwnerModel(owner)">删除</button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDelOwnerModel(owner)"><span><vc:i18n name="删除" namespace="listDemo"></vc:i18n></span></button>
                                 </div>
                             </td>
                         </tr>

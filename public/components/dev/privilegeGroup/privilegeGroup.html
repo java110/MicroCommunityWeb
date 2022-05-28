@@ -2,10 +2,10 @@
     <div class="ibox ">
         <div class="ibox-content mailbox-content">
             <div class="file-manager">
-                <a class="btn btn-block btn-primary compose-mail" href="javascript:void(0);" v-on:click="openPrivilegeGroupModel()">添加权限组</a>
+                <a class="btn btn-block btn-primary compose-mail" href="javascript:void(0);" v-on:click="openPrivilegeGroupModel()"><span><vc:i18n name="添加权限组" namespace="privilegeGroup"></vc:i18n></span></a>
                 <div class="space-25"></div>
 
-                <h5>权限组</h5>
+                <h5><span><vc:i18n name="权限组" namespace="privilegeGroup"></vc:i18n></span></h5>
                 <ul class="category-list" style="padding: 0">
                     <li v-for="pGroup in privilegeGroupInfo.groups">
                         <a v-on:click="notifyQueryPrivilege(pGroup)">

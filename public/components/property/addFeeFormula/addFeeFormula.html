@@ -3,33 +3,33 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加公式</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加公式" namespace="addFeeFormula"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">公式</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="公式" namespace="addFeeFormula"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="必填，请填写公式" class="form-control"
+                                    <textarea :placeholder="vc.i18n('必填，请填写公式','addFeeFormula')" class="form-control"
                                               v-model="addFeeFormulaInfo.formulaValue"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">单价</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="单价" namespace="addFeeFormula"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input placeholder="必填，请填写单价" type="text" class="form-control"
+                                    <input :placeholder="vc.i18n('必填，请填写单价','addFeeFormula')" type="text" class="form-control"
                                            v-model="addFeeFormulaInfo.price">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">描述</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="描述" namespace="addFeeFormula"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="addFeeFormulaInfo.formulaDesc" placeholder="选填，请填写描述"
+                                    <textarea v-model="addFeeFormulaInfo.formulaDesc" :placeholder="vc.i18n('选填，请填写描述','addFeeFormula')"
                                               class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">说明</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="说明" namespace="addFeeFormula"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <div>T 代表总量，如电费总使用量</div>
                                     <div>C 代表房屋对应小区面积</div>
@@ -39,8 +39,8 @@
                                     <div>X 代表房屋收费系数（房屋管理中配置）</div>
                                     <div>L 代表房屋对应楼栋房屋数</div>
                                     <div>D 代表房屋对应单元房屋数</div>
-                                    <div>举例：公共区域公摊电费 电量/楼栋面积*房屋面积</div>
-                                    <div>公式：T/F * R</div>
+                                    <div><span><vc:i18n name="举例" namespace="addFeeFormula"></vc:i18n></span>：公共区域公摊电费 电量/楼栋面积*房屋面积</div>
+                                    <div><span><vc:i18n name="公式" namespace="addFeeFormula"></vc:i18n></span>：T/F * R</div>
                                 </div>
                             </div>
 
@@ -50,7 +50,7 @@
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                        data-dismiss="modal"><span><vc:i18n name="取消" namespace="addFeeFormula"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

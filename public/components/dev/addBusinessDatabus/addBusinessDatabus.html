@@ -3,45 +3,45 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加" namespace="addBusinessDatabus"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">名称</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="名称" namespace="addBusinessDatabus"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="addBusinessDatabusInfo.databusName" type="text"
-                                           placeholder="必填，请填写名称" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写名称','addBusinessDatabus')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">业务类型</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="业务类型" namespace="addBusinessDatabus"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="addBusinessDatabusInfo.businessTypeCd" type="text"
-                                           placeholder="必填，请填写业务类型" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写业务类型','addBusinessDatabus')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">适配器</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="适配器" namespace="addBusinessDatabus"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addBusinessDatabusInfo.beanName" type="text" placeholder="必填，请填写适配器"
+                                    <input v-model="addBusinessDatabusInfo.beanName" type="text" :placeholder="vc.i18n('必填，请填写适配器','addBusinessDatabus')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">顺序</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="顺序" namespace="addBusinessDatabus"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addBusinessDatabusInfo.seq" type="text" placeholder="必填，请填写顺序"
+                                    <input v-model="addBusinessDatabusInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写顺序','addBusinessDatabus')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">状态</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="状态" namespace="addBusinessDatabus"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addBusinessDatabusInfo.state">
-                                        <option selected disabled value="">必填，请选择状态</option>
-                                        <option value="1001">在用</option>
-                                        <option value="2002">停用</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addBusinessDatabus')}}，请选择状态</option>
+                                        <option value="1001">{{vc.i18n('在用','addBusinessDatabus')}}</option>
+                                        <option value="2002">{{vc.i18n('停用','addBusinessDatabus')}}</option>
                                     </select>
                                 </div>
                             </div>

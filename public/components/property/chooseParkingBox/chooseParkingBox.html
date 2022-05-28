@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseParkingBoxModelLabel">选择岗亭</h3>
+                <h3 class="modal-title" id="chooseParkingBoxModelLabel"><span><vc:i18n name="选择岗亭" namespace="chooseParkingBox"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入岗亭名称" type="text" v-model="chooseParkingBoxInfo._currentParkingBoxName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入岗亭名称','chooseParkingBox')" type="text" v-model="chooseParkingBoxInfo._currentParkingBoxName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryParkingBoxs()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryParkingBoxs()"><span><vc:i18n name="查询" namespace="chooseParkingBox"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">岗亭ID</th>
-                            <th class="text-center">岗亭名称</th>
-                            <th class="text-center">临时车是否进场</th>
-                            <th class="text-center">是否收费</th>
-                            <th class="text-center">蓝牌车进场</th>
-                            <th class="text-center">黄牌车进场</th>
-                            <th class="text-center">备注</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="岗亭" namespace="chooseParkingBox"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="岗亭名称" namespace="chooseParkingBox"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="临时车是否进场" namespace="chooseParkingBox"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否收费" namespace="chooseParkingBox"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="蓝牌车进场" namespace="chooseParkingBox"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="黄牌车进场" namespace="chooseParkingBox"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseParkingBox"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseParkingBox"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@
                             <td class="text-center">{{parkingBox.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseParkingBox(parkingBox)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseParkingBox(parkingBox)"><span><vc:i18n name="选择" namespace="chooseParkingBox"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

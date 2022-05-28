@@ -2,16 +2,16 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>目录商品信息</h5>
+                <h5><span><vc:i18n name="目录商品信息" namespace="viewMainCategoryProductInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewMainCategoryProductInfo.index != 2" class="btn btn-primary btn-sm"
                             style="margin-right:10px;" v-on:click="_openSelectMainCategoryProductInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择目录商品
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择目录商品" namespace="viewMainCategoryProductInfo"></vc:i18n></span>
                     </button>
 
                     <button type="button" v-if="viewMainCategoryProductInfo.index != 2" class="btn btn-primary btn-sm"
                             v-on:click="_openAddMainCategoryProductInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加目录商品
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加目录商品" namespace="viewMainCategoryProductInfo"></vc:i18n></span>
                     </button>
                 </div>
             </div>
@@ -19,19 +19,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">目录：</label>
+                            <label class="col-form-label"><span><vc:i18n name="目录" namespace="viewMainCategoryProductInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryProductInfo.mainCategoryId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">商品编号：</label>
+                            <label class="col-form-label"><span><vc:i18n name="商品编号" namespace="viewMainCategoryProductInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryProductInfo.productId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">开始时间：</label>
+                            <label class="col-form-label"><span><vc:i18n name="开始时间" namespace="viewMainCategoryProductInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryProductInfo.startTime}}</label>
                         </div>
                     </div>
@@ -39,13 +39,13 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">结束时间：</label>
+                            <label class="col-form-label"><span><vc:i18n name="结束时间" namespace="viewMainCategoryProductInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryProductInfo.endTime}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">排序：</label>
+                            <label class="col-form-label"><span><vc:i18n name="排序" namespace="viewMainCategoryProductInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewMainCategoryProductInfo.seq}}</label>
                         </div>
                     </div>

@@ -3,67 +3,67 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="m-t-none m-b ">修改</h3>
+        <h3 class="m-t-none m-b "><span><vc:i18n name="修改" namespace="editRentingConfig"></vc:i18n></span></h3>
         <div class="ibox-content">
           <div>
             <div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">租聘类型</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="租聘类型" namespace="editRentingConfig"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="editRentingConfigInfo.rentingType">
-                    <option selected disabled value="">必填，请选择租聘类型</option>
-                    <option value="3344">整租</option>
-                    <option value="4455">合租</option>
+                    <option selected disabled value="">{{vc.i18n('必填','editRentingConfig')}}，请选择租聘类型</option>
+                    <option value="3344">{{vc.i18n('整租','editRentingConfig')}}</option>
+                    <option value="4455">{{vc.i18n('合租','editRentingConfig')}}</option>
                   </select> </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">收费公式</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费公式" namespace="editRentingConfig"></vc:i18n></span></label>
                 <div class="col-sm-10">
                   <select class="custom-select" v-model="editRentingConfigInfo.rentingFormula">
-                    <option selected disabled value="">必填，请选择收费公式</option>
-                    <option value="1001">固定值</option>
-                    <option value="2002">每月租金比例</option>
+                    <option selected disabled value="">{{vc.i18n('必填','editRentingConfig')}}，请选择收费公式</option>
+                    <option value="1001">{{vc.i18n('固定值','editRentingConfig')}}</option>
+                    <option value="2002">{{vc.i18n('每月租金比例','editRentingConfig')}}</option>
                   </select> </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">服务费</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="服务费" namespace="editRentingConfig"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                  <input v-model="editRentingConfigInfo.servicePrice" type="text" placeholder="必填，请填写服务费"
+                  <input v-model="editRentingConfigInfo.servicePrice" type="text" :placeholder="vc.i18n('必填，请填写服务费','editRentingConfig')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">业主收费比率</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="业主收费比率" namespace="editRentingConfig"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                  <input v-model="editRentingConfigInfo.serviceOwnerRate" type="text" placeholder="必填，请填写业主收费比率"
+                  <input v-model="editRentingConfigInfo.serviceOwnerRate" type="text" :placeholder="vc.i18n('必填，请填写业主收费比率','editRentingConfig')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">租客收费比率</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="租客收费比率" namespace="editRentingConfig"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                  <input v-model="editRentingConfigInfo.serviceTenantRate" type="text" placeholder="必填，请填写租客收费比率"
+                  <input v-model="editRentingConfigInfo.serviceTenantRate" type="text" :placeholder="vc.i18n('必填，请填写租客收费比率','editRentingConfig')"
                     class="form-control">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">运营分账比率</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="运营分账比率" namespace="editRentingConfig"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                  <input v-model="editRentingConfigInfo.adminSeparateRate" type="text" placeholder="必填，请填写运营分账比率"
+                  <input v-model="editRentingConfigInfo.adminSeparateRate" type="text" :placeholder="vc.i18n('必填，请填写运营分账比率','editRentingConfig')"
                     class="form-control">
                 </div>
               </div>
               <!-- <div class="form-group row">
-                <label class="col-sm-2 col-form-label">代理商分账比率</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="代理商分账比率" namespace="editRentingConfig"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                  <input v-model="editRentingConfigInfo.proxySeparateRate" type="text" placeholder="必填，请填写代理商分账比率"
+                  <input v-model="editRentingConfigInfo.proxySeparateRate" type="text" :placeholder="vc.i18n('必填，请填写代理商分账比率','editRentingConfig')"
                     class="form-control">
                 </div>
               </div> -->
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">物业分账比率</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="物业分账比率" namespace="editRentingConfig"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                  <input v-model="editRentingConfigInfo.propertySeparateRate" type="text" placeholder="必填，请填写物业分账比率"
+                  <input v-model="editRentingConfigInfo.propertySeparateRate" type="text" :placeholder="vc.i18n('必填，请填写物业分账比率','editRentingConfig')"
                     class="form-control">
                 </div>
               </div>
@@ -72,7 +72,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="editRentingConfig()"><i
                     class="fa fa-check"></i>&nbsp;保存</button>
                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
+                  data-dismiss="modal"><span><vc:i18n name="取消" namespace="editRentingConfig"></vc:i18n></span></button>
               </div>
             </div>
           </div>

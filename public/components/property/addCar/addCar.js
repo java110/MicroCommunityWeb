@@ -1,7 +1,7 @@
 /**
  权限组
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             callBackComponent: vc.propTypes.string,
@@ -22,8 +22,7 @@
                 attrs: [],
                 value: ''
             },
-            carTypes: [
-                {
+            carTypes: [{
                     key: '9901',
                     value: '家用小汽车'
                 },
@@ -40,26 +39,27 @@
         watch: {
             addCarInfo: {
                 deep: true,
-                handler: function () {
+                handler: function() {
                     vc.component.saveAddCarInfo();
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             var param = {
-                params: {
-                    name: 'owner_car',
-                    type: 'car_type'
+                    params: {
+                        name: 'owner_car',
+                        type: 'car_type'
+                    }
                 }
-            }
-            //发送get请求
+                //发送get请求
             vc.http.get('hireParkingSpace',
                 'listCarType',
                 param,
-                function (json, res) {
+                function(json, res) {
                     var carTypes = JSON.parse(json);
                     vc.component.carTypes = carTypes;
-                }, function (errInfo, error) {
+                },
+                function(errInfo, error) {
                     console.log('请求失败处理');
                 }
             );
@@ -67,19 +67,18 @@
             $that._loadCarAttrSpec();
             // vc.component._listCarAttrs();
         },
-        _initEvent: function () {
-            vc.on('addCar', 'onIndex', function (_index) {
+        _initEvent: function() {
+            vc.on('addCar', 'onIndex', function(_index) {
                 vc.component.addCarInfo.index = _index;
             });
         },
         methods: {
-            addCarValidate: function () {
+            addCarValidate: function() {
                 return vc.validate.validate({
                     addCarInfo: vc.component.addCarInfo
                 }, {
 
-                    'addCarInfo.carNum': [
-                        {
+                    'addCarInfo.carNum': [{
                             limit: "required",
                             param: "",
                             errInfo: "车牌号不能为空"
@@ -90,8 +89,7 @@
                             errInfo: "车牌号不正确"
                         }
                     ],
-                    'addCarInfo.carBrand': [
-                        {
+                    'addCarInfo.carBrand': [{
                             limit: "required",
                             param: "",
                             errInfo: "车品牌不能为空"
@@ -102,36 +100,28 @@
                             errInfo: "车品牌超出限制"
                         }
                     ],
-                    'addCarInfo.carType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "车类型不能为空"
-                        }
-                    ],
-                    // 'addCarInfo.value': [
-                    //     {
-                    //         limit: "required",
-                    //         param: "",
-                    //         errInfo: "是否是预约车不能为空"
-                    //     }
-                    // ],
-                    'addCarInfo.startTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "起租时间不能为空"
-                        }
-                    ],
-                    'addCarInfo.endTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "结租时间不能为空"
-                        }
-                    ],
-                    'addCarInfo.carColor': [
-                        {
+
+                    'addCarInfo.carType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "车类型不能为空"
+                    }],
+//                    'addCarInfo.value': [{
+//                        limit: "required",
+//                        param: "",
+//                        errInfo: "是否是预约车不能为空"
+//                    }],
+                    'addCarInfo.startTime': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "起租时间不能为空"
+                    }],
+                    'addCarInfo.endTime': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "结租时间不能为空"
+                    }],
+                    'addCarInfo.carColor': [{
                             limit: "required",
                             param: "",
                             errInfo: "车颜色不能为空"
@@ -189,7 +179,7 @@
                     return;
                 }
             },
-            _initDateInfo: function () {
+            _initDateInfo: function() {
                 // vc.component.addCarInfo.startTime = vc.dateFormat(new Date().getTime());
                 $('.startTime').datetimepicker({
                     minView: "month",
@@ -202,7 +192,7 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".startTime").val();
                         vc.component.addCarInfo.startTime = value;
                     });
@@ -217,7 +207,7 @@
                     todayBtn: true
                 });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".endTime").val();
                         var start = Date.parse(new Date(vc.component.addCarInfo.startTime))
                         var end = Date.parse(new Date(value))

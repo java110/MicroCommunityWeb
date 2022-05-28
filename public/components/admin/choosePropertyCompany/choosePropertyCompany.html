@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="choosePropertyCompanyModelLabel">选择物业公司</h3>
+                <h3 class="modal-title" id="choosePropertyCompanyModelLabel"><span><vc:i18n name="选择物业公司" namespace="choosePropertyCompany"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入物业公司名称" type="text" v-model="choosePropertyCompanyInfo._currentPropertyCompanyName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入物业公司名称','choosePropertyCompany')" type="text" v-model="choosePropertyCompanyInfo._currentPropertyCompanyName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryPropertyCompanys()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryPropertyCompanys()"><span><vc:i18n name="查询" namespace="choosePropertyCompany"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,14 +28,14 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">编号</th>
-                            <th class="text-center">名称</th>
-                            <th class="text-center">地址</th>
-                            <th class="text-center">电话</th>
-                            <th class="text-center">公司法人</th>
-                            <th class="text-center">成立日期</th>
-                            <th class="text-center">地标</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="编号" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="名称" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="地址" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="电话" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="公司法人" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="成立日期" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="地标" namespace="choosePropertyCompany"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="choosePropertyCompany"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -50,7 +50,7 @@
                             <td class="text-center">{{propertyCompany.nearbyLandmarks}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="choosePropertyCompany(propertyCompany)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="choosePropertyCompany(propertyCompany)"><span><vc:i18n name="选择" namespace="choosePropertyCompany"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

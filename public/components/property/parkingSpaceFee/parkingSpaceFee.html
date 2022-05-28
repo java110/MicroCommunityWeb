@@ -1,26 +1,26 @@
 <div >
     <vc:create path="property/viewMainParkingSpaceFee"
-               feeName="停车费"
+               feeName="vc.i18n('停车费','parkingSpaceFee')"
                payName="propertyPay"
     ></vc:create>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>缴费历史</h5>
+                    <h5><span><vc:i18n name="缴费历史" namespace="parkingSpaceFee"></vc:i18n></span></h5>
                 </div>
                 <div class="ibox-content">
 
                     <div class="row">
                         <div class="col-sm-3 input-group">
-                            <input size="16" type="text" placeholder="请选择开始时间" readonly
+                            <input size="16" type="text" :placeholder="vc.i18n('请选择开始时间','parkingSpaceFee')" readonly
                                    class="form-control form-control-sm start_time">
                         </div>
                         <div class="col-sm-2">
 
                         </div>
                         <div class="col-sm-3 input-group">
-                            <input size="16" type="text" placeholder="请选择结束时间" readonly
+                            <input size="16" type="text" :placeholder="vc.i18n('请选择结束时间','parkingSpaceFee')" readonly
                                    class="form-control form-control-sm end_time">
                         </div>
 
@@ -30,7 +30,7 @@
 
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="queryFeeDetailMethod()">
-                                <i class="fa fa-search"></i> 马上查询
+                                <i class="fa fa-search"></i> <span><vc:i18n name="马上查询" namespace="parkingSpaceFee"></vc:i18n></span>
                             </button>
                         </div>
 
@@ -40,13 +40,13 @@
                            data-page-size="10">
                         <thead>
                         <tr>
-                            <th>缴费ID</th>
-                            <th data-hide="phone" v-if="feeDetailInfo.amount == '-1.00'">周期</th>
-                            <th data-hide="phone">应收金额</th>
-                            <th data-hide="phone">实收金额</th>
-                            <th data-hide="phone">打折率</th>
-                            <th data-hide="phone">备注</th>
-                            <th data-hide="phone">缴费时间</th>
+                            <th><span><vc:i18n name="缴费" namespace="parkingSpaceFee"></vc:i18n></span>ID</th>
+                            <th data-hide="phone" v-if="feeDetailInfo.amount == '-1.00'"><span><vc:i18n name="周期" namespace="parkingSpaceFee"></vc:i18n></span></th>
+                            <th data-hide="phone"><span><vc:i18n name="应收金额" namespace="parkingSpaceFee"></vc:i18n></span></th>
+                            <th data-hide="phone"><span><vc:i18n name="实收金额" namespace="parkingSpaceFee"></vc:i18n></span></th>
+                            <th data-hide="phone"><span><vc:i18n name="打折率" namespace="parkingSpaceFee"></vc:i18n></span></th>
+                            <th data-hide="phone"><span><vc:i18n name="备注" namespace="parkingSpaceFee"></vc:i18n></span></th>
+                            <th data-hide="phone"><span><vc:i18n name="缴费时间" namespace="parkingSpaceFee"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>

@@ -1,5 +1,5 @@
 <div id="nav">
-    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-static-top nav-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <span class="navbar-minimalize minimalize-styl-2  " @click="_doMenu()"><i class="fa fa-list-ul"></i> </span>
             <ul class="nav navbar-top-links ">
@@ -29,26 +29,17 @@
                     <i class="fa fa-user margin-right-xs"></i>{{userName}}</span>
             </li>
             <li class="dropdown">
-                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell"></i> <span class="label label-primary">{{nav.total}}</span>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="">{{nav.langName}}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-alerts">
-                    <li v-for="notice in nav.notices">
-                        <a v-on:click="_noticeDetail(notice)" class="dropdown-item">
+                <ul class="dropdown-menu ">
+                    <li v-for="lang in nav.langs">
+                        <a v-on:click="_changeLang(lang)" class="dropdown-item">
                             <div>
-                                <i class="fa fa-envelope fa-fw"></i> {{notice.title}}
-                                <span class="float-right text-muted small">{{notice.createTime}}</span>
+                                {{lang.name}}
                             </div>
                         </a>
                         <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                        <div class="text-center link-block">
-                            <a v-bind:href="nav.moreNoticeUrl" class="dropdown-item">
-                                <strong>{{vc.i18n('moreMsg')}}</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </div>
                     </li>
                 </ul>
             </li>

@@ -3,118 +3,118 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改" namespace="editRoomRenovation"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">房屋</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomRenovationInfo.roomName" disabled="disabled" type="text"
-                                           placeholder="必填，请填写房屋" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写房屋','editRoomRenovation')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">联系人</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="联系人" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomRenovationInfo.personName" type="text"
-                                           placeholder="必填，请填写联系人" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写联系人','editRoomRenovation')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">联系电话</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="联系电话" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomRenovationInfo.personTel" type="text" maxlength="11"
-                                           placeholder="必填，请填写联系电话" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写联系电话','editRoomRenovation')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">装修时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="装修时间" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomRenovationInfo.startTime" type="text"
-                                           placeholder="必填，请填写装修时间" class="form-control editStartTime">
+                                           :placeholder="vc.i18n('必填，请填写装修时间','editRoomRenovation')" class="form-control editStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">结束时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editRoomRenovationInfo.endTime" type="text" placeholder="必填，请填写结束时间"
+                                    <input v-model="editRoomRenovationInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','editRoomRenovation')"
                                            class="form-control editEndTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">是否延期</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="是否延期" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomRenovationInfo.isPostpone">
-                                        <option selected disabled value="">必填，请选择是否延期</option>
-                                        <option value="Y">是</option>
-                                        <option value="N">否</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editRoomRenovation')}}，请选择是否延期</option>
+                                        <option value="Y">{{vc.i18n('是','editRoomRenovation')}}</option>
+                                        <option value="N">{{vc.i18n('否','editRoomRenovation')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" v-show="editRoomRenovationInfo.isPostpone == 'Y'">
-                                <label class="col-sm-2 col-form-label">延期时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="延期时间" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomRenovationInfo.postponeTime" type="text"
-                                           placeholder="选填，请填写延期时间" class="form-control addPostponeTime">
+                                           :placeholder="vc.i18n('选填，请填写延期时间','editRoomRenovation')" class="form-control addPostponeTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">装修单位</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="装修单位" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomRenovationInfo.renovationCompany" type="text"
-                                           placeholder="必填，请填写装修单位" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写装修单位','editRoomRenovation')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">装修负责人</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="装修负责人" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomRenovationInfo.personMain" type="text"
-                                           placeholder="必填，请填写装修负责人" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写装修负责人','editRoomRenovation')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">装修负责人电话</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="装修负责人电话" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editRoomRenovationInfo.personMainTel" type="text"
-                                           placeholder="必填，请填写装修负责人电话" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写装修负责人电话','editRoomRenovation')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">状态</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="状态" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomRenovationInfo.state">
-                                        <option selected disabled value="">必填，请选择状态</option>
-                                        <option value="1000">待审核</option>
-                                        <option value="2000">审核不通过</option>
-                                        <option value="3000">装修中</option>
-                                        <option value="4000">待验收</option>
-                                        <option value="5000">验收成功</option>
-                                        <option value="6000">验收失败</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editRoomRenovation')}}，请选择状态</option>
+                                        <option value="1000">{{vc.i18n('待审核','editRoomRenovation')}}</option>
+                                        <option value="2000">{{vc.i18n('审核不通过','editRoomRenovation')}}</option>
+                                        <option value="3000">{{vc.i18n('装修中','editRoomRenovation')}}</option>
+                                        <option value="4000">{{vc.i18n('待验收','editRoomRenovation')}}</option>
+                                        <option value="5000">{{vc.i18n('验收成功','editRoomRenovation')}}</option>
+                                        <option value="6000">{{vc.i18n('验收失败','editRoomRenovation')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">是否违规</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="是否违规" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomRenovationInfo.isViolation">
-                                        <option selected disabled value="">必填，请选择是否违规</option>
-                                        <option value="Y">是</option>
-                                        <option value="N">否</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editRoomRenovation')}}，请选择是否违规</option>
+                                        <option value="Y">{{vc.i18n('是','editRoomRenovation')}}</option>
+                                        <option value="N">{{vc.i18n('否','editRoomRenovation')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" v-if="editRoomRenovationInfo.isViolation == 'Y'">
-                                <label class="col-sm-2 col-form-label">违规说明</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="违规说明" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="editRoomRenovationInfo.violationDesc" placeholder="选填，请填写违规说明"
+                                    <textarea v-model="editRoomRenovationInfo.violationDesc" :placeholder="vc.i18n('选填，请填写违规说明','editRoomRenovation')"
                                               class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="editRoomRenovation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                     <textarea v-model="editRoomRenovationInfo.remark" placeholder="选填，请填写备注"
+                                     <textarea v-model="editRoomRenovationInfo.remark" :placeholder="vc.i18n('选填，请填写备注','editRoomRenovation')"
                                                class="form-control"></textarea>
                                 </div>
                             </div>

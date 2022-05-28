@@ -3,9 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>工单详情</h5>
+                    <h5><span><vc:i18n name="工单详情" namespace="newOaWorkflowDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">返回</button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="newOaWorkflowDetail"></vc:i18n></span></button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -14,19 +14,19 @@
                             <div class="row" v-if="newOaWorkflowDetailInfo.pools">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">申请人：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="申请人" namespace="newOaWorkflowDetail"></vc:i18n></span>：</label>
                                         <label class="">{{newOaWorkflowDetailInfo.pools.create_user_name}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">申请时间：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="申请时间" namespace="newOaWorkflowDetail"></vc:i18n></span>：</label>
                                         <label class="">{{newOaWorkflowDetailInfo.pools.create_time}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">状态：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="状态" namespace="newOaWorkflowDetail"></vc:i18n></span>：</label>
                                         <label class="">{{_getNewOaWorkflowDetailState(newOaWorkflowDetailInfo.pools)}}</label>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>工单流转</h5>
+                    <h5><span><vc:i18n name="工单流转" namespace="newOaWorkflowDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -64,22 +64,22 @@
                     <table class="table table-stripped">
                         <thead>
                             <tr>
-                                <th scope="col" class="text-center">序号</th>
-                                <th scope="col" class="text-center">部门</th>
-                                <th scope="col" class="text-center">处理人</th>
-                                <th scope="col" class="text-center">状态</th>
-                                <th scope="col" class="text-center">耗时</th>
-                                <th scope="col" class="text-center">意见</th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="序号" namespace="newOaWorkflowDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="部门" namespace="newOaWorkflowDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="处理人" namespace="newOaWorkflowDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="状态" namespace="newOaWorkflowDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="耗时" namespace="newOaWorkflowDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="意见" namespace="newOaWorkflowDetail"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(item,index) in newOaWorkflowDetailInfo.comments">
                                 <td scope="row" class="text-center">{{index+1}}</td>
                                 <td scope="row" class="text-center" v-if="item.orgName">{{item.orgName}}</td>
-                                <td scope="row" class="text-center" v-else>管理员</td>
+                                <td scope="row" class="text-center" v-else><span><vc:i18n name="管理员" namespace="newOaWorkflowDetail"></vc:i18n></span></td>
                                 <td class="text-center">{{item.staffName}}</td>
-                                <td class="text-center" v-if="item.endTime">处理完成</td>
-                                <td class="text-center" v-else>正在处理</td>
+                                <td class="text-center" v-if="item.endTime"><span><vc:i18n name="处理完成" namespace="newOaWorkflowDetail"></vc:i18n></span></td>
+                                <td class="text-center" v-else><span><vc:i18n name="正在处理" namespace="newOaWorkflowDetail"></vc:i18n></span></td>
                                 <td class="text-center">{{item.duration}}</td>
                                 <td class="text-center">{{item.context}}</td>
                             </tr>
@@ -95,39 +95,39 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>工单办理</h5>
+                    <h5><span><vc:i18n name="工单办理" namespace="newOaWorkflowDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">动作</label>
+                            <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="动作" namespace="newOaWorkflowDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <select class="custom-select" v-model="newOaWorkflowDetailInfo.audit.auditCode">
-                                    <option selected disabled value="">请选择</option>
-                                    <option value="1100" v-if="newOaWorkflowDetailInfo.nextAudit.next">办理</option>
-                                    <option value="1200" v-if="newOaWorkflowDetailInfo.nextAudit.back">退回</option>
-                                    <option value="1400" v-if="newOaWorkflowDetailInfo.nextAudit.backIndex">退回至提交者
+                                    <option selected disabled value="">{{vc.i18n('请选择','newOaWorkflowDetail')}}</option>
+                                    <option value="1100" v-if="newOaWorkflowDetailInfo.nextAudit.next">{{vc.i18n('办理','newOaWorkflowDetail')}}</option>
+                                    <option value="1200" v-if="newOaWorkflowDetailInfo.nextAudit.back">{{vc.i18n('退回','newOaWorkflowDetail')}}</option>
+                                    <option value="1400" v-if="newOaWorkflowDetailInfo.nextAudit.backIndex">{{vc.i18n('退回至提交者','newOaWorkflowDetail')}}
                                     </option>
-                                    <option value="1500" v-if="newOaWorkflowDetailInfo.nextAudit.exit">结束
+                                    <option value="1500" v-if="newOaWorkflowDetailInfo.nextAudit.exit">{{vc.i18n('结束','newOaWorkflowDetail')}}
                                     </option>
-                                    <option value="1300">转单</option>
+                                    <option value="1300">{{vc.i18n('转单','newOaWorkflowDetail')}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">工单说明</label>
+                            <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="工单说明" namespace="newOaWorkflowDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <textarea placeholder="必填，请填写工单说明" class="form-control" v-model="newOaWorkflowDetailInfo.audit.auditMessage">
+                                <textarea :placeholder="vc.i18n('必填，请填写工单说明','newOaWorkflowDetail')" class="form-control" v-model="newOaWorkflowDetailInfo.audit.auditMessage">
                                 </textarea>
                             </div>
                         </div>
                         <!-- 办理时 判断是否指定 委托人 如果指定了 则不显示 -->
                         <div class="form-group row" v-if="newOaWorkflowDetailInfo.audit.auditCode == '1100' && newOaWorkflowDetailInfo.nextAudit.assignee == '-2'">
-                            <label class="col-sm-2 col-form-label text-right">下一处理人</label>
+                            <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="下一处理人" namespace="newOaWorkflowDetail"></vc:i18n></span></label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="必填，请选择下一处理人" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
+                                <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择下一处理人','newOaWorkflowDetail')" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
                             </div>
                             <div class="col-sm-2">
                                 <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
@@ -137,9 +137,9 @@
                         </div>
                         <!-- 转单时 必须指定 委托人 -->
                         <div class="form-group row" v-if="newOaWorkflowDetailInfo.audit.auditCode == '1300'">
-                            <label class="col-sm-2 col-form-label text-right">下一处理人</label>
+                            <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="下一处理人" namespace="newOaWorkflowDetail"></vc:i18n></span></label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="必填，请选择下一处理人" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
+                                <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择下一处理人','newOaWorkflowDetail')" disabled v-model="newOaWorkflowDetailInfo.audit.staffName">
                             </div>
                             <div class="col-sm-2">
                                 <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
@@ -162,7 +162,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>流程图</h5>
+                    <h5><span><vc:i18n name="流程图" namespace="newOaWorkflowDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>

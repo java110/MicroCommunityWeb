@@ -3,11 +3,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>申请信息</h5>
+                    <h5><span><vc:i18n name="申请信息" namespace="purchaseApplyDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-if="purchaseApplyDetailInfo.resOrderType == '10000'" v-on:click="_printPurchaseApply()">打印
+                        <button type="button" class="btn btn-primary btn-sm" v-if="purchaseApplyDetailInfo.resOrderType == '10000'" v-on:click="_printPurchaseApply()"><span><vc:i18n name="打印" namespace="purchaseApplyDetail"></vc:i18n></span>
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_callBackListPurchaseApply()">返回
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_callBackListPurchaseApply()"><span><vc:i18n name="返回" namespace="purchaseApplyDetail"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -15,19 +15,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label">申请单号：</label>
+                                <label class="col-form-label"><span><vc:i18n name="申请单号" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.applyOrderId}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label">申请人：</label>
+                                <label class="col-form-label"><span><vc:i18n name="申请人" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.userName}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label">使用人：</label>
+                                <label class="col-form-label"><span><vc:i18n name="使用人" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.endUserName}}</label>
                             </div>
                         </div>
@@ -35,19 +35,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label">联系电话：</label>
+                                <label class="col-form-label"><span><vc:i18n name="联系电话" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.endUserTel}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label">申请时间：</label>
+                                <label class="col-form-label"><span><vc:i18n name="申请时间" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.createTime}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="purchaseApplyDetailInfo.resOrderType==10000 && purchaseApplyDetailInfo.warehousingWay==20000">
                             <div class="form-group">
-                                <label class="col-form-label">参考总价格：</label>
+                                <label class="col-form-label"><span><vc:i18n name="参考总价格" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">￥{{purchaseApplyDetailInfo.totalPrice}}</label>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label">审批状态：</label>
+                                <label class="col-form-label"><span><vc:i18n name="审批状态" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.stateName}}</label>
                             </div>
                         </div>
@@ -71,20 +71,20 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label">说明：</label>
+                                <label class="col-form-label"><span><vc:i18n name="说明" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.description}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="purchaseApplyDetailInfo.resOrderType==10000">
                             <div class="form-group">
-                                <label class="col-form-label">参考采购总价格：</label>
+                                <label class="col-form-label"><span><vc:i18n name="参考采购总价格" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.totalPrice > 0 ? '￥' +
                                     purchaseApplyDetailInfo.totalPrice : '-'}}</label>
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="purchaseApplyDetailInfo.resOrderType==10000">
                             <div class="form-group">
-                                <label class="col-form-label">实际采购总价格：</label>
+                                <label class="col-form-label"><span><vc:i18n name="实际采购总价格" namespace="purchaseApplyDetail"></vc:i18n></span>：</label>
                                 <label class="">{{purchaseApplyDetailInfo.purchaseTotalPrice > 0 ? '￥' +
                                     purchaseApplyDetailInfo.purchaseTotalPrice : '-'}}</label>
                             </div>
@@ -99,25 +99,25 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>申请物资</h5>
+                    <h5><span><vc:i18n name="申请物资" namespace="purchaseApplyDetail"></vc:i18n></span></h5>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">物品类型</th>
-                                <th class="text-center">物品名称</th>
-                                <th class="text-center">物品所属仓库</th>
-                                <th class="text-center">物品规格</th>
-                                <th class="text-center">供应商</th>
-                                <th class="text-center">物品编码</th>
-                                <th class="text-center">是否是固定物品</th>
-                                <th class="text-center">参考单价</th>
-                                <th class="text-center">原有库存</th>
-                                <th class="text-center">现有库存</th>
-                                <th class="text-center">申请数量</th>
-                                <th class="text-center">申请备注</th>
-                                <th class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000">采购单价</th>
+                                <th class="text-center"><span><vc:i18n name="物品类型" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品名称" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品所属仓库" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品规格" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="供应商" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品编码" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="是否是固定物品" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="参考单价" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="原有库存" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="现有库存" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="申请数量" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="申请备注" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000"><span><vc:i18n name="采购单价" namespace="purchaseApplyDetail"></vc:i18n></span></th>
                                 <th class="text-center">{{purchaseApplyDetailInfo.resOrderType==10000 ? '采购数量' : '领用数量'}}</th>
                                 <th class="text-center">{{purchaseApplyDetailInfo.resOrderType==10000 ? '采购备注' : '领用备注'}}
                                 </th>
@@ -166,7 +166,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>工单流转</h5>
+                    <h5><span><vc:i18n name="工单流转" namespace="purchaseApplyDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -174,12 +174,12 @@
                     <table class="table table-stripped">
                         <thead>
                             <tr>
-                                <th scope="col">序号</th>
-                                <th scope="col">处理人</th>
-                                <th scope="col">状态</th>
-                                <th scope="col">处理时间</th>
-                                <th scope="col">耗时</th>
-                                <th scope="col">意见</th>
+                                <th scope="col"><span><vc:i18n name="序号" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="处理人" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="状态" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="处理时间" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="耗时" namespace="purchaseApplyDetail"></vc:i18n></span></th>
+                                <th scope="col"><span><vc:i18n name="意见" namespace="purchaseApplyDetail"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>

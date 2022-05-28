@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseSmsConfigModelLabel">选择短信配置</h3>
+                <h3 class="modal-title" id="chooseSmsConfigModelLabel"><span><vc:i18n name="选择短信配置" namespace="chooseSmsConfig"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入短信配置名称" type="text" v-model="chooseSmsConfigInfo._currentSmsConfigName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入短信配置名称','chooseSmsConfig')" type="text" v-model="chooseSmsConfigInfo._currentSmsConfigName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="querySmsConfigs()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="querySmsConfigs()"><span><vc:i18n name="查询" namespace="chooseSmsConfig"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,17 +28,17 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">短信编号</th>
-                            <th class="text-center">短信商</th>
-                            <th class="text-center">短信业务</th>
-                            <th class="text-center">短信模板</th>
-                            <th class="text-center">短信签名</th>
-                            <th class="text-center">短信秘钥</th>
-                            <th class="text-center">访问KEY</th>
-                            <th class="text-center">区域</th>
-                            <th class="text-center">日志</th>
-                            <th class="text-center">备注</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="短信编号" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="短信商" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="短信业务" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="短信模板" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="短信签名" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="短信秘钥" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="访问" namespace="chooseSmsConfig"></vc:i18n></span>KEY</th>
+                            <th class="text-center"><span><vc:i18n name="区域" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="日志" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseSmsConfig"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseSmsConfig"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -56,7 +56,7 @@
                             <td class="text-center">{{smsConfig.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseSmsConfig(smsConfig)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseSmsConfig(smsConfig)"><span><vc:i18n name="选择" namespace="chooseSmsConfig"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

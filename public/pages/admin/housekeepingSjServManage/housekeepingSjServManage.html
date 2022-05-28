@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="housekeepingSjServManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,20 +12,20 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入服务名称"
+                                <input type="text" :placeholder="vc.i18n('请输入服务名称','housekeepingSjServManage')"
                                     v-model="housekeepingServManageInfo.conditions.servName" class=" form-control">
                             </div>
                         </div>
                         <!--<div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请选择上架日期"
+                                <input type="text" :placeholder="vc.i18n('请选择上架日期','housekeepingSjServManage')"
                                     v-model="housekeepingServManageInfo.conditions.createTime" class=" form-control servSjtmentTime">
                             </div>
                         </div>-->
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="housekeepingServManageInfo.conditions.hktId">
-                                    <option selected value="">请选择服务类型</option>
+                                    <option selected value="">{{vc.i18n('请选择服务类型','housekeepingSjServManage')}}</option>
                                     <option v-for="(item,index) in housekeepingServManageInfo.housekeepingTypes" :value="item.hktId">
                                         {{item.hktName}}
                                     </option>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryHousekeepingServMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="housekeepingSjServManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>上架服务</h5>
+                    <h5><span><vc:i18n name="上架服务" namespace="housekeepingSjServManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
                             v-on:click="_listHousekeepingServsToDay()">
@@ -56,7 +56,7 @@
                             今日上架
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                            v-on:click="_listHousekeepingServsAll()"> 所有上架
+                            v-on:click="_listHousekeepingServsAll()"> <span><vc:i18n name="所有上架" namespace="housekeepingSjServManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -65,17 +65,17 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">服务编号</th>
-                                <th class="text-center">服务名称</th>
-                                <th class="text-center">服务描述</th>
-                                <th class="text-center">服务类型</th>
-                                <th class="text-center">派单方式</th>
-                                <th class="text-center">回访方式</th>
-                                <th class="text-center">销量</th>
-                                <th class="text-center">默认费用</th>
-                                <th class="text-center">排序</th>
-                                <th class="text-center">上架状态</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><span><vc:i18n name="服务编号" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="服务名称" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="服务描述" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="服务类型" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="派单方式" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="回访方式" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="销量" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="默认费用" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="排序" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="上架状态" namespace="housekeepingSjServManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="housekeepingSjServManage"></vc:i18n></span></th>
 
 
                             </tr>
@@ -87,13 +87,13 @@
                                 <td class="text-center">{{housekeepingServ.servDesc}}</td>
                                 <td class="text-center">{{housekeepingServ.hktName}}</td>
 
-                                <td class="text-center" v-if="housekeepingServ.repairWay == '100'">抢单</td>
-                                <td class="text-center" v-else-if="housekeepingServ.repairWay == '200'">指派</td>
-                                <td class="text-center" v-else-if="housekeepingServ.repairWay == '300'">轮训</td>
+                                <td class="text-center" v-if="housekeepingServ.repairWay == '100'"><span><vc:i18n name="抢单" namespace="housekeepingSjServManage"></vc:i18n></span></td>
+                                <td class="text-center" v-else-if="housekeepingServ.repairWay == '200'"><span><vc:i18n name="指派" namespace="housekeepingSjServManage"></vc:i18n></span></td>
+                                <td class="text-center" v-else-if="housekeepingServ.repairWay == '300'"><span><vc:i18n name="轮训" namespace="housekeepingSjServManage"></vc:i18n></span></td>
 
-                                <td class="text-center" v-if="housekeepingServ.returnVisitFlag == '001'">都不回访</td>
-                                <td class="text-center" v-else-if="housekeepingServ.returnVisitFlag == '002'">已评价不回访</td>
-                                <td class="text-center" v-else-if="housekeepingServ.returnVisitFlag == '003'">都回访</td>
+                                <td class="text-center" v-if="housekeepingServ.returnVisitFlag == '001'"><span><vc:i18n name="都不回访" namespace="housekeepingSjServManage"></vc:i18n></span></td>
+                                <td class="text-center" v-else-if="housekeepingServ.returnVisitFlag == '002'"><span><vc:i18n name="已评价不回访" namespace="housekeepingSjServManage"></vc:i18n></span></td>
+                                <td class="text-center" v-else-if="housekeepingServ.returnVisitFlag == '003'"><span><vc:i18n name="都回访" namespace="housekeepingSjServManage"></vc:i18n></span></td>
 
                                 <td class="text-center">{{housekeepingServ.sales}}</td>
                                 <td class="text-center">{{housekeepingServ.defaultFee}}</td>
@@ -102,11 +102,11 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditHousekeepingServModel(housekeepingServ)">详情</button>
+                                            v-on:click="_openEditHousekeepingServModel(housekeepingServ)"><span><vc:i18n name="详情" namespace="housekeepingSjServManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteHousekeepingServModel(housekeepingServ)">删除</button>
+                                            v-on:click="_openDeleteHousekeepingServModel(housekeepingServ)"><span><vc:i18n name="删除" namespace="housekeepingSjServManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 

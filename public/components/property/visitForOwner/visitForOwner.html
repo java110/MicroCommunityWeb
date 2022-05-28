@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>业主信息</h5>
+                <h5><span><vc:i18n name="业主信息" namespace="visitForOwner"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm" v-if="showCallBackButton=='true'"
                             v-on:click="_openSearchOwnerModel(viewOwnerInfo.ownerId)">选择业主
@@ -13,27 +13,25 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label">业主ID：</label>
+                            <label class="col-form-label"><span><vc:i18n name="业主" namespace="visitForOwner"></vc:i18n></span>ID：</label>
                             <label class="">{{viewOwnerInfo.ownerId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label">名称：</label>
+                            <label class="col-form-label"><span><vc:i18n name="名称" namespace="visitForOwner"></vc:i18n></span>：</label>
                             <label class="">{{viewOwnerInfo.name}}</label>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label">性别：</label>
-                            <label class="" v-if="viewOwnerInfo.sex == 0">男</label>
-                            <label class="" v-if="viewOwnerInfo.sex == 1">女</label>
-                            <!--<label class="">{{viewOwnerInfo.sex == 0 ? '男' : '女'}}</label>-->
+                            <label class="col-form-label"><span><vc:i18n name="性别" namespace="visitForOwner"></vc:i18n></span>：</label>
+                            <label class="">{{viewOwnerInfo.sex == 0 ? '男' : '女'}}</label>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label">年龄：</label>
+                            <label class="col-form-label"><span><vc:i18n name="年龄" namespace="visitForOwner"></vc:i18n></span>：</label>
                             <label class="">{{viewOwnerInfo.age}}</label>
                         </div>
                     </div>
@@ -41,19 +39,19 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label">联系方式：</label>
+                            <label class="col-form-label"><span><vc:i18n name="联系方式" namespace="visitForOwner"></vc:i18n></span>：</label>
                             <label class="">{{viewOwnerInfo.link}}</label>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="col-form-label">创建员工：</label>
+                            <label class="col-form-label"><span><vc:i18n name="创建员工" namespace="visitForOwner"></vc:i18n></span>：</label>
                             <label class="">{{viewOwnerInfo.userName}}</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="col-form-label">备注：</label>
+                            <label class="col-form-label"><span><vc:i18n name="备注" namespace="visitForOwner"></vc:i18n></span>：</label>
                             <label class="">{{viewOwnerInfo.remark}}</label>
                         </div>
                     </div>

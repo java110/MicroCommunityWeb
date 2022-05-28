@@ -41,6 +41,9 @@
                             vc.emit('unit','loadUnit',{
                                 floorId:vc.component.deleteUnitInfo._currentFloorId
                             });
+                            vc.emit('floorUnitTree','refreshTree',{
+                                floorId:vc.component.deleteUnitInfo._currentFloorId
+                            })
                             return ;
                         }
                         vc.toast(json);

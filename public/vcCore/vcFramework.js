@@ -1,7 +1,7 @@
 /**
  * vcFramework
  *
- * @author 吴学文
+ * @author Kevin Law
  *
  * @version 0.3
  *
@@ -9,9 +9,9 @@
  *
  * @time 2020-03-04
  *
- * @qq 928255095
+ * @qq 58957118
  *
- * @mail 928255095@qq.com
+ * @mail 58957118@qq.com
  *
  */
 /**
@@ -58,9 +58,9 @@
     vcFramework = {
         version: "v0.0.3",
         name: "vcFramework",
-        author: '吴学文',
-        email: '928255095@qq.com',
-        qq: '928255095',
+        author: 'Kevin Law',
+        email: '58957118@qq.com',
+        qq: '58957118',
         description: 'vcFramework 是自研的一套组件开发套件',
         vueCache: _vueCache,
         vmOptions: _vmOptions,
@@ -182,6 +182,8 @@
 
         //渲染组件html
         reader(treeList, _componentScript);
+
+        parseVcI18N();
         //执行组件js
         execScript(treeList, _componentScript);
     };
@@ -250,6 +252,7 @@
 
         //渲染组件html
         reader(treeList, _componentScript);
+        parseVcI18N();
         //执行组件js
         execScript(treeList, _componentScript);
     };
@@ -363,12 +366,20 @@
         }
     };
 
-    vcFramework.i18n = function(_key) {
+    vcFramework.i18n = function(_key, _namespace) {
         if (!window.hasOwnProperty('lang')) {
             return _key;
         }
 
         let _lang = window.lang;
+
+        if (_namespace && _lang.hasOwnProperty(_namespace)) {
+            let _namespaceObj = _lang[_namespace];
+            if (_namespaceObj.hasOwnProperty(_key)) {
+                return _namespaceObj[_key];
+            }
+        }
+
         if (!_lang.hasOwnProperty(_key)) {
             return _key;
         }
@@ -384,7 +395,8 @@
         for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
             let _vcElement = _tmpI18N[_vcElementIndex];
             let _name = _vcElement.getAttribute('name');
-            let textNode = document.createTextNode(vc.i18n(_name));
+            let _namespace = _vcElement.getAttribute('namespace');
+            let textNode = document.createTextNode(vc.i18n(_name, _namespace));
             _vcElement.parentNode.appendChild(textNode);
             //_vcElement.parentNode.replaceChild(textNode,_vcElement);
 
@@ -398,7 +410,8 @@
         for (let _vcElementIndex = 0; _vcElementIndex < _tmpI18N.length; _vcElementIndex++) {
             let _vcElement = _tmpI18N[_vcElementIndex];
             let _name = _vcElement.getAttribute('name');
-            let textNode = document.createTextNode(vc.i18n(_name));
+            let _namespace = _vcElement.getAttribute('namespace');
+            let textNode = document.createTextNode(vc.i18n(_name, _namespace));
             _vcElement.parentNode.appendChild(textNode);
 
         }
@@ -430,8 +443,8 @@
 
         //初始化vue 对象
         vcFramework.initVue();
+
         vcFramework.initVcComponent();
-        parseVcI18N();
     }
 
     /**
@@ -916,11 +929,19 @@
     let DEFAULT_NAMESPACE = "default";
     vcFramework.http = {
         post: function(componentCode, componentMethod, param, options, successCallback, errorCallback) {
-            vcFramework.loading('open');
+            let _lang = vcFramework.getData('JAVA110-LANG');
+            if (!_lang) {
+                _lang = {
+                    name: '简体中文',
+                    lang: 'zh-cn'
+                }
+            }
+            Vue.http.headers.common['JAVA110-LANG'] = _lang.lang;
             Vue.http.headers.common['APP-ID'] = '8000418004';
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
             Vue.http.headers.common['SIGN'] = '';
+            vcFramework.loading('open');
             Vue.http.post('/callComponent/' + componentCode + "/" + componentMethod, param, options)
                 .then(function(res) {
                     try {
@@ -967,7 +988,15 @@
                     return;
                 }
             }
+            let _lang = vcFramework.getData('JAVA110-LANG');
+            if (!_lang) {
+                _lang = {
+                    name: '简体中文',
+                    lang: 'zh-cn'
+                }
+            }
             vcFramework.loading('open');
+            Vue.http.headers.common['JAVA110-LANG'] = _lang.lang;
             Vue.http.headers.common['APP-ID'] = '8000418004';
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
@@ -1008,6 +1037,14 @@
         },
         apiPost: function(api, param, options, successCallback, errorCallback) {
             let _api = '';
+            let _lang = vcFramework.getData('JAVA110-LANG');
+            if (!_lang) {
+                _lang = {
+                    name: '简体中文',
+                    lang: 'zh-cn'
+                }
+            }
+            Vue.http.headers.common['JAVA110-LANG'] = _lang.lang;
             Vue.http.headers.common['APP-ID'] = '8000418004';
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
@@ -1069,7 +1106,14 @@
             }
 
             let _api = '';
-
+            let _lang = vcFramework.getData('JAVA110-LANG');
+            if (!_lang) {
+                _lang = {
+                    name: '简体中文',
+                    lang: 'zh-cn'
+                }
+            }
+            Vue.http.headers.common['JAVA110-LANG'] = _lang.lang;
             Vue.http.headers.common['APP-ID'] = '8000418004';
             Vue.http.headers.common['TRANSACTION-ID'] = vcFramework.uuid();
             Vue.http.headers.common['REQ-TIME'] = vcFramework.getDateYYYYMMDDHHMISS();
@@ -1337,6 +1381,7 @@
     //删除缓存数据
     vcFramework.clearCacheData = function() {
         window.localStorage.clear();
+        window.sessionStorage.clear();
     };
 
     //将org 对象的属性值赋值给dst 属性名为一直的属性
@@ -2077,10 +2122,6 @@
          * @param {参数} text
          */
         required: function(text) {
-             // 去除两侧空格
-             if(typeof text == 'string'){
-                text = text.replace(/(^\s*)|(\s*$)/g, "");
-            }
             if (text == undefined || text == null || text == "") {
                 return false;
             }
@@ -2213,7 +2254,7 @@
      *      name:"Kevin",
      *      age:"19",
      *      emailInfo:{
-     *          email:"928255095@qq.com"
+     *          email:"58957118@qq.com"
      *      }
      * }
      *

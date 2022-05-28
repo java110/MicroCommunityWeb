@@ -1,71 +1,66 @@
-<div id="addReportCustomComponentModel" class="modal fade" tabindex="-1" role="dialog"
-  aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3 class="m-t-none m-b ">添加</h3>
-        <div class="ibox-content">
-          <div>
-            <div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">组件名称</label>
-                <div class="col-sm-10">
-                  <input v-model="addReportCustomComponentInfo.name" type="text" placeholder="必填，请填写组件名称"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">组件类型</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="addReportCustomComponentInfo.componentType">
-                    <option selected disabled value="">必填，请选择组件类型</option>
-                    <option value="1001">表格</option>
-                    <option value="2002">饼状图</option>
+<div id="addReportCustomComponentModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加" namespace="addReportCustomComponent"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="组件名称" namespace="addReportCustomComponent"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addReportCustomComponentInfo.name" type="text" :placeholder="vc.i18n('必填，请填写组件名称','addReportCustomComponent')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="组件类型" namespace="addReportCustomComponent"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addReportCustomComponentInfo.componentType">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择组件类型','addReportCustomComponent')}}</option>
+                    <option value="1001">{{vc.i18n('表格','addReportCustomComponent')}}</option>
+                    <option value="2002">{{vc.i18n('饼状图','addReportCustomComponent')}}</option>
                   </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">查询方式</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="addReportCustomComponentInfo.queryModel">
-                    <option selected disabled value="">必填，请选择查询方式</option>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="查询方式" namespace="addReportCustomComponent"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addReportCustomComponentInfo.queryModel">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择查询方式','addReportCustomComponent')}}</option>
                     <option value="1">sql</option>
                     <option value="2">java</option>
                   </select>
-                </div>
-              </div>
-              <div class="form-group row" v-if="addReportCustomComponentInfo.queryModel == 1">
-                <label class="col-sm-2 col-form-label">sql</label>
-                <div class="col-sm-10">
-                  <textarea v-model="addReportCustomComponentInfo.componentSql" rows="15" placeholder="选填，请填写执行sql"
-                    class="form-control"></textarea>
-                </div>
-              </div>
-              <div class="form-group row" v-if="addReportCustomComponentInfo.queryModel == 2">
-                <label class="col-sm-2 col-form-label">java</label>
-                <div class="col-sm-10">
-                  <textarea v-model="addReportCustomComponentInfo.javaScript" rows="15" placeholder="选填，请填写执行java脚本代码"
-                    class="form-control"></textarea>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">描述</label>
-                <div class="col-sm-10">
-                  <textarea v-model="addReportCustomComponentInfo.remark" type="text" placeholder="选填，请填写描述"
-                    class="form-control"></textarea>
-                </div>
-              </div>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="addReportCustomComponentInfo.queryModel == 1">
+                                <label class="col-sm-2 col-form-label">sql</label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="addReportCustomComponentInfo.componentSql" rows="15" :placeholder="vc.i18n('选填，请填写执行sql','addReportCustomComponent')" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="addReportCustomComponentInfo.queryModel == 2">
+                                <label class="col-sm-2 col-form-label">java</label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="addReportCustomComponentInfo.javaScript" rows="15" :placeholder="vc.i18n('选填，请填写执行java脚本代码','addReportCustomComponent')" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="描述" namespace="addReportCustomComponent"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="addReportCustomComponentInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写描述','addReportCustomComponent')" class="form-control"></textarea>
+                                </div>
+                            </div>
 
-              <div class="ibox-content">
-                <button class="btn btn-primary float-right" type="button"
-                  v-on:click="saveReportCustomComponentInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
-                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal">取消</button>
-              </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveReportCustomComponentInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addReportCustomComponent"></vc:i18n></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

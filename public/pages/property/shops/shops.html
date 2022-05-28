@@ -3,7 +3,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="shops"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                             v-on:click="_moreCondition()">{{shopsInfo.moreCondition == true ? '隐藏' : '更多'}}
@@ -14,28 +16,25 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写商铺编号 格式 楼栋-商铺" class="form-control form-control-sm"
-                                       v-model="shopsInfo.conditions.roomName">
+                                <input type="text" :placeholder="vc.i18n('请填写商铺编号 格式 楼栋-商铺','shops')" class="form-control form-control-sm" v-model="shopsInfo.conditions.roomName">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <select class="form-control-sm form-control input-s-sm inline"
-                                    v-model="shopsInfo.conditions.state">
-                                <option selected value="">请选择状态</option>
-                                <option value="2006">已出租</option>
-                                <option value="2007">已出售</option>
-                                <option value="2008">空闲</option>
+                            <select class="form-control-sm form-control input-s-sm inline" v-model="shopsInfo.conditions.state">
+                                <option selected value="">{{vc.i18n('请选择状态','shops')}}</option>
+                                <option value="2006">{{vc.i18n('已出租','shops')}}</option>
+                                <option value="2007">{{vc.i18n('已出售','shops')}}</option>
+                                <option value="2008">{{vc.i18n('空闲','shops')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写商铺ID" class="form-control form-control-sm"
-                                       v-model="shopsInfo.conditions.roomId">
+                                <input type="text" :placeholder="vc.i18n('请填写商铺ID','shops')" class="form-control form-control-sm" v-model="shopsInfo.conditions.roomId">
                             </div>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryShopsMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="shops"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -47,107 +46,123 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>商铺信息</h5>
+                    <h5>
+                        <span><vc:i18n name="商铺信息" namespace="shops"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;" v-if="vc.hasPrivilege('502020082453087940')">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                                v-on:click="_openAddShops()">
-                            <i class="fa fa-plus"></i> 添加商铺
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddShops()">
+                            <i class="fa fa-plus"></i> <span><vc:i18n name="添加商铺" namespace="shops"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
-                           data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
                         <thead>
-                        <tr>
-                            <!-- <th>商铺ID</th> -->
-                            <th data-hide="phone" class="text-center">楼栋编号</th>
-                            <th data-hide="phone" class="text-center">商铺编号</th>
-                            <th data-hide="phone" class="text-center">楼层</th>
-                            <th data-hide="phone" class="text-center">业主/租方</th>
-                            <th data-hide="phone" class="text-center">联系电话</th>
-                            <th data-hide="phone" class="text-center">建筑面积</th>
-                            <th data-hide="phone" class="text-center">室内面积</th>
-                            <th data-hide="phone" class="text-center">起租时间</th>
-                            <th data-hide="phone" class="text-center">截租时间</th>
-                            <th data-hide="phone" class="text-center">租金</th>
-                            <th data-hide="phone" class="text-center">算费系数</th>
-                            <th data-hide="phone" class="text-center">商铺状态</th>
-                            <th v-for="(item,index) in shopsInfo.listColumns" class="text-center">{{item}}</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <!-- <th><span><vc:i18n name="商铺" namespace="shops"></vc:i18n></span>ID</th> -->
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="商铺编号" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="楼层" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="业主/租方" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="联系电话" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="建筑面积" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="室内面积" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="起租时间" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="截租时间" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="租金" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="算费系数" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="商铺状态" namespace="shops"></vc:i18n></span>
+                                </th>
+                                <th v-for="(item,index) in shopsInfo.listColumns" class="text-center">{{item}}</th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="操作" namespace="shops"></vc:i18n></span>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="shops in shopsInfo.shopss" :class="{ 'table-danger' : new Date(shops.endTime).getTime() < new Date().getTime()}">
-                            <td class="text-center">
-                                {{shops.floorNum}}
-                            </td>
-                            <td class="text-center">
-                                {{shops.roomNum}}
-                            </td>
-                            <td class="text-center">
-                                {{shops.layer}}层
-                            </td>
-                            <td class="text-center">
-                                {{shops.ownerName}}
-                            </td>
-                            <td class="text-center">
-                                {{shops.link}}
-                            </td>
-                            <td class="text-center">
-                                {{shops.builtUpArea}}平方米
-                            </td>
-                            <td class="text-center">
-                                {{shops.roomArea}}平方米
-                            </td>
-                            <td class="text-center">
-                                {{shops.startTime}}
-                            </td>
-                            <td class="text-center">
-                                {{shops.endTime}}
-                            </td>
-                            <td class="text-center">
-                                {{shops.roomRent}}
-                            </td>
-                            <td class="text-center">
-                                {{shops.feeCoefficient}}
-                            </td>
-                            <td class="text-center">
-                                {{shops.stateName}}
-                            </td>
-                            <td v-for="item in shops.listValues" class="text-center">
-                                {{item}}
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group"
-                                     v-if="vc.hasPrivilege('502020082493857941')&& shops.state == '2008'">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openHireShopsModel(shops)">出租
+                            <tr v-for="shops in shopsInfo.shopss" :class="{ 'table-danger' : new Date(shops.endTime).getTime() < new Date().getTime()}">
+                                <td class="text-center">
+                                    {{shops.floorNum}}-{{shops.roomNum}}
+                                </td>
+                                <td class="text-center">
+                                    {{shops.layer}}
+                                    <span><vc:i18n name="层" namespace="shops"></vc:i18n></span>
+                                </td>
+                                <td class="text-center">
+                                    {{shops.ownerName}}
+                                </td>
+                                <td class="text-center">
+                                    {{shops.link}}
+                                </td>
+                                <td class="text-center">
+                                    {{shops.builtUpArea}}
+                                    <span><vc:i18n name="平方米" namespace="shops"></vc:i18n></span>
+                                </td>
+                                <td class="text-center">
+                                    {{shops.roomArea}}
+                                    <span><vc:i18n name="平方米" namespace="shops"></vc:i18n></span>
+                                </td>
+                                <td class="text-center">
+                                    {{shops.startTime}}
+                                </td>
+                                <td class="text-center">
+                                    {{shops.endTime}}
+                                </td>
+                                <td class="text-center">
+                                    {{shops.roomRent}}
+                                </td>
+                                <td class="text-center">
+                                    {{shops.feeCoefficient}}
+                                </td>
+                                <td class="text-center">
+                                    {{shops.stateName}}
+                                </td>
+                                <td v-for="item in shops.listValues" class="text-center">
+                                    {{item}}
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')&& shops.state == '2008'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openHireShopsModel(shops)"><span><vc:i18n name="出租" namespace="shops"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group"
-                                     v-if="vc.hasPrivilege('502020082493857941') && shops.state == '2008'">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openSellShopsModel(shops)">出售
+                                    </div>
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941') && shops.state == '2008'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openSellShopsModel(shops)"><span><vc:i18n name="出售" namespace="shops"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group"
-                                     v-if="vc.hasPrivilege('502020082493857941') && shops.state != '2008' ">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteShopsOwnerModel(shops)">解绑
+                                    </div>
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941') && shops.state != '2008' ">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteShopsOwnerModel(shops)"><span><vc:i18n name="解绑" namespace="shops"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditShopsModel(shops)">修改
+                                    </div>
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditShopsModel(shops)"><span><vc:i18n name="修改" namespace="shops"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDelShopsModel(shops)">删除
+                                    </div>
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDelShopsModel(shops)"><span><vc:i18n name="删除" namespace="shops"></vc:i18n></span>
                                     </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
                         <tr>

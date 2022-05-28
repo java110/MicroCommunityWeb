@@ -1,9 +1,9 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
             editSmallWeChatInfo: {
-                weChatId: '',
+                wechatId: '',
                 name: '',
                 appId: '',
                 appSecret: '',
@@ -13,30 +13,36 @@
                 objId: '',
                 mchId: '',
                 remarks: '',
-                objTypes: '1000'
+                objTypes: '1000',
+                certPath: ''
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('editSmallWeChat', 'openEditSmallWeChatModal', function (_params) {
+        _initEvent: function() {
+            vc.on('editSmallWeChat', 'openEditSmallWeChatModal', function(_params) {
                 vc.component.refreshEditSmallWeChatInfo();
-                vc.getDict('small_wechat', "obj_type", function (_data) {
+                vc.getDict('small_wechat', "obj_type", function(_data) {
                     vc.component.editSmallWeChatInfo.objTypes = _data;
                 });
                 $('#editSmallWeChatModel').modal('show');
                 vc.copyObject(_params, vc.component.editSmallWeChatInfo);
+                if ($that.editSmallWeChatInfo.certPath) {
+                    vc.emit('editSmallWeChat', 'uploadFile', 'notifyVedio', $that.editSmallWeChatInfo.certPath)
+                }
             });
+            vc.on('editSmallWeChat', 'notifyCert', function(_param) {
+                $that.editSmallWeChatInfo.certPath = _param.realFileName;
+            })
         },
         methods: {
-            editSmallWeChatValidate: function () {
+            editSmallWeChatValidate: function() {
                 return vc.validate.validate({
                     editSmallWeChatInfo: vc.component.editSmallWeChatInfo
                 }, {
-                    'editSmallWeChatInfo.name': [
-                        {
+                    'editSmallWeChatInfo.name': [{
                             limit: "required",
                             param: "",
                             errInfo: "名称不能为空"
@@ -47,8 +53,7 @@
                             errInfo: "名称不能超过100位"
                         },
                     ],
-                    'editSmallWeChatInfo.appId': [
-                        {
+                    'editSmallWeChatInfo.appId': [{
                             limit: "required",
                             param: "",
                             errInfo: "appId不能为空"
@@ -59,8 +64,7 @@
                             errInfo: "appId不能超过100位"
                         },
                     ],
-                    'editSmallWeChatInfo.appSecret': [
-                        {
+                    'editSmallWeChatInfo.appSecret': [{
                             limit: "required",
                             param: "",
                             errInfo: "应用密钥不能为空"
@@ -71,8 +75,7 @@
                             errInfo: "应用密钥不能超过200个字符"
                         },
                     ],
-                    'editSmallWeChatInfo.payPassword': [
-                        {
+                    'editSmallWeChatInfo.payPassword': [{
                             limit: "required",
                             param: "",
                             errInfo: "支付密码不能为空"
@@ -83,31 +86,25 @@
                             errInfo: "支付密码不能超过200个字符"
                         },
                     ],
-                    'editSmallWeChatInfo.weChatId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "编码不能为空"
-                        },
-                    ],
-                    'editSmallWeChatInfo.objType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "配置不能为空"
-                        }
-                    ],
-                    'editSmallWeChatInfo.mchId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商户id不能为空"
-                        }
-                    ],
+                    'editSmallWeChatInfo.wechatId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "编码不能为空"
+                    }, ],
+                    'editSmallWeChatInfo.objType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "配置不能为空"
+                    }],
+                    'editSmallWeChatInfo.mchId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "商户id不能为空"
+                    }],
 
                 });
             },
-            editSmallWeChat: function () {
+            editSmallWeChat: function() {
                 if (!vc.component.editSmallWeChatValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -116,11 +113,10 @@
                 vc.component.editSmallWeChatInfo.objId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'smallWeChat.updateSmallWeChat',
-                    JSON.stringify(vc.component.editSmallWeChatInfo),
-                    {
+                    JSON.stringify(vc.component.editSmallWeChatInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -130,15 +126,15 @@
                         }
                         vc.message(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
                     });
             },
-            refreshEditSmallWeChatInfo: function () {
+            refreshEditSmallWeChatInfo: function() {
                 vc.component.editSmallWeChatInfo = {
-                    weChatId: '',
+                    wechatId: '',
                     name: '',
                     appId: '',
                     appSecret: '',
@@ -148,9 +144,10 @@
                     objId: '',
                     mchId: '',
                     remarks: '',
-                    objTypes: '1000'
-
+                    objTypes: '1000',
+                    certPath: ''
                 }
+                vc.emit('editSmallWeChat', 'uploadFile', 'clearVedio', {});
             }
         }
     });

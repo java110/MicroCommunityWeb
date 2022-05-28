@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="shopCommunity"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -12,13 +12,13 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="店铺名称" v-model="shopCommunityInfo.conditions.shopName"
+                                <input type="text" :placeholder="vc.i18n('店铺名称','shopCommunity')" v-model="shopCommunityInfo.conditions.shopName"
                                     class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="小区名称" v-model="shopCommunityInfo.conditions.communityName"
+                                <input type="text" :placeholder="vc.i18n('小区名称','shopCommunity')" v-model="shopCommunityInfo.conditions.communityName"
                                     class=" form-control">
                             </div>
                         </div>
@@ -26,14 +26,14 @@
                             <div class="form-group">
 
                                 <select class="custom-select" v-model="shopCommunityInfo.conditions.state">
-                                    <option value="24002">审核通过</option>
-                                    <option value="48004">审核不通过</option>
+                                    <option value="24002">{{vc.i18n('审核通过','shopCommunity')}}</option>
+                                    <option value="48004">{{vc.i18n('审核不通过','shopCommunity')}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAuditShopCommunitysMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="shopCommunity"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>小区商铺</h5>
+                    <h5><span><vc:i18n name="小区商铺" namespace="shopCommunity"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -55,14 +55,14 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">小区编码</th>
-                                <th class="text-center">小区名称</th>
-                                <th class="text-center">商铺名称</th>
-                                <th class="text-center">入驻时间</th>
-                                <th class="text-center">开始时间</th>
-                                <th class="text-center">结束时间</th>
-                                <th class="text-center">状态</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"><span><vc:i18n name="小区编码" namespace="shopCommunity"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="小区名称" namespace="shopCommunity"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="商铺名称" namespace="shopCommunity"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="入驻时间" namespace="shopCommunity"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="开始时间" namespace="shopCommunity"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="结束时间" namespace="shopCommunity"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="shopCommunity"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="shopCommunity"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,7 +77,7 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                          <button class="btn-white btn btn-xs"
-                                             v-on:click="_openShopCommunityWithdrawModel(shopCommunity)">撤回
+                                             v-on:click="_openShopCommunityWithdrawModel(shopCommunity)"><span><vc:i18n name="撤回" namespace="shopCommunity"></vc:i18n></span>
                                          </button>
                                      </div>  
                                  </td>

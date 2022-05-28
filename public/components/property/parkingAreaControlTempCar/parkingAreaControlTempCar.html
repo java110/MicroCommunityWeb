@@ -1,7 +1,7 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
         <div class="col-lg-3 padding-right-xs padding-left-xl">
-            <input v-model="parkingAreaControlTempCar.carNum" type="text" placeholder="必填，请填写车牌号" class="form-control">
+            <input v-model="parkingAreaControlTempCar.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlTempCar')" class="form-control">
 
         </div>
         <div class="col-lg-3 padding-right-xs padding-left-xl">
@@ -14,7 +14,7 @@
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
-            <button type=" button" class="btn btn-primary btn-sm" style="margin-left:10px"
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                 v-on:click="_qureyParkingAreaControlTempCar()">
                 查询
             </button>
@@ -24,11 +24,11 @@
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
                 <tr>
-                    <th class="text-center">车牌号</th>
-                    <th data-hide="phone" class="text-center">车辆品牌</th>
-                    <th data-hide="phone" class="text-center">车辆类型</th>
-                    <th data-hide="phone" class="text-center">颜色</th>
-                    <th data-hide="phone" class="text-center">进场时间</th>
+                    <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlTempCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="车辆品牌" namespace="parkingAreaControlTempCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="车辆类型" namespace="parkingAreaControlTempCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="颜色" namespace="parkingAreaControlTempCar"></vc:i18n></span></th>
+                    <th data-hide="phone" class="text-center"><span><vc:i18n name="进场时间" namespace="parkingAreaControlTempCar"></vc:i18n></span></th>
                 </tr>
             </thead>
             <tbody>

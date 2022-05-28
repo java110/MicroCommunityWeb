@@ -5,29 +5,29 @@
                 <h5>databus信息</h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewBusinessDatabusInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectBusinessDatabusInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择databus</button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择" namespace="viewBusinessDatabusInfo"></vc:i18n></span>databus</button>
 
                     <button type="button" v-if="viewBusinessDatabusInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddBusinessDatabusInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加databus</button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加" namespace="viewBusinessDatabusInfo"></vc:i18n></span>databus</button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >业务类型：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="业务类型" namespace="viewBusinessDatabusInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewBusinessDatabusInfo.businessTypeCd}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >适配器：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="适配器" namespace="viewBusinessDatabusInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewBusinessDatabusInfo.beanName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >顺序：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="顺序" namespace="viewBusinessDatabusInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewBusinessDatabusInfo.seq}}</label>
                         </div>
 </div>

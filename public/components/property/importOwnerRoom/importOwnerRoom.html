@@ -2,12 +2,12 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">房产导入</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="房产导入" namespace="importOwnerRoom"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">选择文件</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="选择文件" namespace="importOwnerRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <div class="custom-file">
                                         <input id="excelTemplate" ref="excelTemplate" type="file" class="custom-file-input form-control" name="excelTemplate" v-on:change="getExcelTemplate($event)" accept=".xls,.xlsx">
@@ -16,11 +16,11 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">下载模板</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="下载模板" namespace="importOwnerRoom"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     请先下载
-                                    <a href="/import/importRoom.xlsx" target="_blank">房产模板
-                                    </a> 准备数据后，上传导入
+                                    <a href="/import/importRoom.xlsx" target="_blank"><span><vc:i18n name="房产模板" namespace="importOwnerRoom"></vc:i18n></span>
+                                    </a> <span><vc:i18n name="准备数据后" namespace="importOwnerRoom"></vc:i18n></span>，上传导入
                                 </div>
                             </div>
                             <div class="ibox-content">

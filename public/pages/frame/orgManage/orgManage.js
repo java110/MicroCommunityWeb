@@ -61,8 +61,7 @@
                 vc.component._loadBranchOrgTrees();
             });
             vc.component._getOrgsByOrgLevel(DEFAULT_PAGE, DEFAULT_ROWS, 1, '');
-
-
+            $that._loadAddCommunitys();
         },
         _initEvent: function () {
 
@@ -240,7 +239,29 @@
                         console.log('请求失败处理');
                     }
                 );
-            }
+            },
+            _loadAddCommunitys: function () {
+                let param = {
+                    params: {
+                        _uId: 'ccdd00opikookjuhyyttvhnnjuuu',
+                        page: 1,
+                        row: 50
+                    }
+                };
+                vc.http.get('initData',
+                    'getCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _communityInfos = JSON.parse(json).communitys;
+                            $that.orgManageInfo.communitys = _communityInfos;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                        vc.jumpToPage(_param.url);
+                    }
+                );
+            },
 
 
         }

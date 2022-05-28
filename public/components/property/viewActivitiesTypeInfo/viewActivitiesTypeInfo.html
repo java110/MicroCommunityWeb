@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>信息大类信息</h5>
+                <h5><span><vc:i18n name="信息大类信息" namespace="viewActivitiesTypeInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewActivitiesTypeInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectActivitiesTypeInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择信息大类</button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择信息大类" namespace="viewActivitiesTypeInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewActivitiesTypeInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddActivitiesTypeInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加信息大类</button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加信息大类" namespace="viewActivitiesTypeInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >大类名称：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="大类名称" namespace="viewActivitiesTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewActivitiesTypeInfo.typeName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >大类描述：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="大类描述" namespace="viewActivitiesTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewActivitiesTypeInfo.typeDesc}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >显示序号：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="显示序号" namespace="viewActivitiesTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewActivitiesTypeInfo.seq}}</label>
                         </div>
 </div>
@@ -35,7 +35,7 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >是否显示：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="是否显示" namespace="viewActivitiesTypeInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewActivitiesTypeInfo.defalutShow}}</label>
                         </div>
 </div>

@@ -17,6 +17,7 @@
                 paymentCds: [],
                 billTypes: [],
                 isDefaults: [],
+                curPage: DEFAULT_PAGE,
                 conditions: {
                     configId: '',
                     feeFlag: '',
@@ -54,10 +55,11 @@
         _initEvent: function() {
             vc.on('feeConfigManage', 'listFeeConfig',
                 function(_param) {
-                    vc.component._listFeeConfigs(DEFAULT_PAGE, DEFAULT_ROWS);
+                    vc.component._listFeeConfigs($that.feeConfigManageInfo.curPage, DEFAULT_ROWS);
                 });
             vc.on('pagination', 'page_event',
                 function(_currentPage) {
+                    $that.feeConfigManageInfo.curPage = _currentPage;
                     vc.component._listFeeConfigs(_currentPage, DEFAULT_ROWS);
                 });
         },

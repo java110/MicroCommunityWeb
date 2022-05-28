@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="activitiesTypeManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -11,31 +11,31 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入大类编码"
+                                <input type="text" :placeholder="vc.i18n('请输入大类编码','activitiesTypeManage')"
                                        v-model="activitiesTypeManageInfo.conditions.typeCd" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入大类名称"
+                                <input type="text" :placeholder="vc.i18n('请输入大类名称','activitiesTypeManage')"
                                        v-model="activitiesTypeManageInfo.conditions.typeName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="activitiesTypeManageInfo.conditions.defaultShow">
-                                <option selected disabled value="">请选择是否显示</option>
-                                <option value="Y">是</option>
-                                <option value="N">否</option>
+                                <option selected disabled value="">{{vc.i18n('请选择是否显示','activitiesTypeManage')}}</option>
+                                <option value="Y">{{vc.i18n('是','activitiesTypeManage')}}</option>
+                                <option value="N">{{vc.i18n('否','activitiesTypeManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryActivitiesTypeMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="activitiesTypeManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_resetActivitiesTypeMethod()">
-                                <i class="fa fa-repeat"></i> 重置
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="activitiesTypeManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -47,10 +47,10 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>信息大类</h5>
+                    <h5><span><vc:i18n name="信息大类" namespace="activitiesTypeManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddActivitiesTypeModal()">
-                            <i class="fa fa-plus"></i>添加
+                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="activitiesTypeManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -58,12 +58,12 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">大类编码</th>
-                            <th class="text-center">大类名称</th>
-                            <th class="text-center">大类描述</th>
-                            <th class="text-center">显示序号</th>
-                            <th class="text-center">是否显示</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><span><vc:i18n name="大类编码" namespace="activitiesTypeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="大类名称" namespace="activitiesTypeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="大类描述" namespace="activitiesTypeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="显示序号" namespace="activitiesTypeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否显示" namespace="activitiesTypeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="activitiesTypeManage"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -76,12 +76,12 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditActivitiesTypeModel(activitiesType)">修改
+                                            v-on:click="_openEditActivitiesTypeModel(activitiesType)"><span><vc:i18n name="修改" namespace="activitiesTypeManage"></vc:i18n></span>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteActivitiesTypeModel(activitiesType)">删除
+                                            v-on:click="_openDeleteActivitiesTypeModel(activitiesType)"><span><vc:i18n name="删除" namespace="activitiesTypeManage"></vc:i18n></span>
                                     </button>
                                 </div>
                             </td>

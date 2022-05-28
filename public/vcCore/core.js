@@ -1,7 +1,7 @@
 /**
  初始化处理 vue component
  **/
-(function (window, undefined) {
+ (function (window, undefined) {
     "use strict";
     var vc = window.vc || {};
     var _vmOptions = {};
@@ -282,6 +282,7 @@
     //删除缓存数据
     vc.clearCacheData = function () {
         window.localStorage.clear();
+        window.sessionStorage.clear();
     };
 
     //将org 对象的属性值赋值给dst 属性名为一直的属性

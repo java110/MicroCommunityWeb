@@ -1,77 +1,96 @@
-<div id = "addStaffPrivilegeModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addPrivilegeModalLabel" aria-hidden="true" >
+<div id="addStaffPrivilegeModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addPrivilegeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link" v-bind:class="{active:addStaffPrivilegeInfo._currentTab == 1}" v-on:click="changeTab(1)">权限组</a>
+                                    <a class="nav-link" v-bind:class="{active:addStaffPrivilegeInfo._currentTab == 1}" v-on:click="changeTab(1)">
+                                        <span><vc:i18n name="权限组" namespace="addStaffPrivilege"></vc:i18n></span>
+                                    </a>
                                 </li>
-                                <li class="nav-item" >
-                                    <a class="nav-link" v-bind:class="{active:addStaffPrivilegeInfo._currentTab == 2}" v-on:click="changeTab(2)">权限</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" v-bind:class="{active:addStaffPrivilegeInfo._currentTab == 2}" v-on:click="changeTab(2)">
+                                        <span><vc:i18n name="权限" namespace="addStaffPrivilege"></vc:i18n></span>
+                                    </a>
                                 </li>
                             </ul>
-                                <div class="table-responsive"
-                                     style="margin-top:15px">
-                                    <table class="table table-striped" v-if="addStaffPrivilegeInfo._currentTab == 1">
-                                        <thead>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped" v-if="addStaffPrivilegeInfo._currentTab == 1">
+                                    <thead>
                                         <tr>
                                             <th class="text-center">
-                                                <input type="checkbox"  class="i-checks" v-bind:checked="addStaffPrivilegeInfo.quanGroup == true" @click="checkAllGroup($event)" >
+                                                <input type="checkbox" class="i-checks" v-bind:checked="addStaffPrivilegeInfo.quanGroup == true" @click="checkAllGroup($event)">
                                             </th>
-                                            <th>权限组编码</th>
-                                            <th>权限组名称</th>
-                                            <th>权限组描述</th>
-                                            <th>创建时间</th>
+                                            <th>
+                                                <span><vc:i18n name="权限组编码" namespace="addStaffPrivilege"></vc:i18n></span>
+                                            </th>
+                                            <th>
+                                                <span><vc:i18n name="权限组名称" namespace="addStaffPrivilege"></vc:i18n></span>
+                                            </th>
+                                            <th>
+                                                <span><vc:i18n name="权限组描述" namespace="addStaffPrivilege"></vc:i18n></span>
+                                            </th>
+                                            <th>
+                                                <span><vc:i18n name="创建时间" namespace="addStaffPrivilege"></vc:i18n></span>
+                                            </th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="privilegeGroup in addStaffPrivilegeInfo._noAddPrivilegeGroup">
-                                                <td class="text-center">
-                                                    <input type="checkbox" class="i-checks checkGroupItem" v-bind:value="privilegeGroup.pgId" v-model="addStaffPrivilegeInfo.selectPrivilegeGroups" >
-                                                </td>
-                                                <td>{{privilegeGroup.pgId}}</td>
-                                                <td>{{privilegeGroup.name}}</td>
-                                                <td>{{privilegeGroup.description}}</td>
-                                                <td>{{vc.dateFormat(privilegeGroup.createTime)}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="table table-striped" v-if="addStaffPrivilegeInfo._currentTab == 2">
-                                        <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="privilegeGroup in addStaffPrivilegeInfo._noAddPrivilegeGroup">
+                                            <td class="text-center">
+                                                <input type="checkbox" class="i-checks checkGroupItem" v-bind:value="privilegeGroup.pgId" v-model="addStaffPrivilegeInfo.selectPrivilegeGroups">
+                                            </td>
+                                            <td>{{privilegeGroup.pgId}}</td>
+                                            <td>{{privilegeGroup.name}}</td>
+                                            <td>{{privilegeGroup.description}}</td>
+                                            <td>{{vc.dateFormat(privilegeGroup.createTime)}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-striped" v-if="addStaffPrivilegeInfo._currentTab == 2">
+                                    <thead>
                                         <tr>
                                             <th class="text-center">
-                                                <input type="checkbox"  class="i-checks " v-bind:checked="addStaffPrivilegeInfo.quan == true" @click="checkAll($event)">
+                                                <input type="checkbox" class="i-checks " v-bind:checked="addStaffPrivilegeInfo.quan == true" @click="checkAll($event)">
                                             </th>
-                                            <th>权限编码</th>
-                                            <th>权限名称</th>
-                                            <th>权限描述</th>
-                                            <th>创建时间</th>
+                                            <th>
+                                                <span><vc:i18n name="权限编码" namespace="addStaffPrivilege"></vc:i18n></span>
+                                            </th>
+                                            <th>
+                                                <span><vc:i18n name="权限名称" namespace="addStaffPrivilege"></vc:i18n></span>
+                                            </th>
+                                            <th>
+                                                <span><vc:i18n name="权限描述" namespace="addStaffPrivilege"></vc:i18n></span>
+                                            </th>
+                                            <th>
+                                                <span><vc:i18n name="创建时间" namespace="addStaffPrivilege"></vc:i18n></span>
+                                            </th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
+                                    </thead>
+                                    <tbody>
                                         <tr v-for="privilege in addStaffPrivilegeInfo._noAddPrivilege">
                                             <td class="text-center">
-                                                <input type="checkbox" class="i-checks checkItem" v-bind:value="privilege.pId" v-model="addStaffPrivilegeInfo.selectPrivileges" >
+                                                <input type="checkbox" class="i-checks checkItem" v-bind:value="privilege.pId" v-model="addStaffPrivilegeInfo.selectPrivileges">
                                             </td>
                                             <td>{{privilege.pId}}</td>
                                             <td>{{privilege.name}}</td>
                                             <td>{{privilege.description}}</td>
                                             <td>{{vc.dateFormat(privilege.createTime)}}</td>
                                         </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" v-on:click="addStaffPrivilege()">提交</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><span><vc:i18n name="关闭" namespace="addStaffPrivilege"></vc:i18n></span></button>
+                <button type="button" class="btn btn-primary" v-on:click="addStaffPrivilege()"><span><vc:i18n name="提交" namespace="addStaffPrivilege"></vc:i18n></span></button>
             </div>
         </div>
     </div>

@@ -1,60 +1,54 @@
-<div id="editStoreModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div id="editStoreModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改商户信息</h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改商户信息" namespace="editStoreInfo"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">商户名称</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="商户名称" namespace="editStoreInfo"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input readonly v-model="editStoreInfo.name" type="text"
-                                           placeholder="商户名称不能修改" class="form-control">
+                                    <input readonly v-model="editStoreInfo.name" type="text" :placeholder="vc.i18n('商户名称不能修改','editStoreInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">商户地址</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="商户地址" namespace="editStoreInfo"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfo.address" type="text"
-                                           placeholder="必填，请填写商户地址" class="form-control">
+                                    <input v-model="editStoreInfo.address" type="text" :placeholder="vc.i18n('必填，请填写商户地址','editStoreInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">电话</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="电话" namespace="editStoreInfo"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfo.tel" type="text"
-                                           placeholder="必填，请填写联系电话" class="form-control">
+                                    <input v-model="editStoreInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写联系电话','editStoreInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">附近地标</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="附近地标" namespace="editStoreInfo"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfo.nearByLandmarks" type="text"
-                                           placeholder="必填，请填写附近地标" class="form-control">
+                                    <input v-model="editStoreInfo.nearByLandmarks" type="text" :placeholder="vc.i18n('必填，请填写附近地标','editStoreInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">地区 x坐标</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="地区" namespace="editStoreInfo"></vc:i18n></span> x坐标</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfo.mapX" type="text"
-                                           placeholder="选择填，请填写x坐标" class="form-control">
+                                    <input v-model="editStoreInfo.mapX" type="text" :placeholder="vc.i18n('选择填，请填写x坐标','editStoreInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">地区 y坐标</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="地区" namespace="editStoreInfo"></vc:i18n></span> y坐标</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStoreInfo.mapY" type="text"
-                                           placeholder="选填，请填写y坐标" class="form-control">
+                                    <input v-model="editStoreInfo.mapY" type="text" :placeholder="vc.i18n('选填，请填写y坐标','editStoreInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="submitEditStoreInfo()"><i class="fa fa-check"></i>&nbsp;保存
+                                <button class="btn btn-primary float-right" type="button" v-on:click="submitEditStoreInfo()"><i class="fa fa-check"></i>&nbsp;
+                                    <span><vc:i18n name="保存" ></vc:i18n></span>
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">取消
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="editStoreInfo"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

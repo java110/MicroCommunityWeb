@@ -3,45 +3,43 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="shopAuditManage"></vc:i18n></span>
+                    </h5>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入审核ID"
-                                    v-model="shopAuditManageInfo.conditions.auditId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入审核ID','shopAuditManage')" v-model="shopAuditManageInfo.conditions.auditId" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3" >
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入店铺名称"
-                                    v-model="shopAuditManageInfo.conditions.shopName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入店铺名称','shopAuditManage')" v-model="shopAuditManageInfo.conditions.shopName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3" >
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入退货联系人"
-                                    v-model="shopAuditManageInfo.conditions.returnPerson" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入退货联系人','shopAuditManage')" v-model="shopAuditManageInfo.conditions.returnPerson" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3" >
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入退货联系电话"
-                                    v-model="shopAuditManageInfo.conditions.returnLink" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入退货联系电话','shopAuditManage')" v-model="shopAuditManageInfo.conditions.returnLink" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="shopAuditManageInfo.conditions.state">
-                                <option selected value="" >请选择审核状态</option>
-                                <option value="001">待审核</option>
-                                <option value="002">审核通过</option>
-                                <option value="003">审核不通过</option>
-                            </select> 
+                                <option selected value="" >{{vc.i18n('请选择审核状态','shopAuditManage')}}</option>
+                                <option value="001">{{vc.i18n('待审核','shopAuditManage')}}</option>
+                                <option value="002">{{vc.i18n('审核通过','shopAuditManage')}}</option>
+                                <option value="003">{{vc.i18n('审核不通过','shopAuditManage')}}</option>
+                            </select>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryShopAuditMethod()">
-                                <i class="glyphicon glyphicon-search"></i> 查询
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="shopAuditManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -53,19 +51,35 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>店铺审核信息</h5>
+                    <h5>
+                        <span><vc:i18n name="店铺审核信息" namespace="shopAuditManage"></vc:i18n></span>
+                    </h5>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center">审核ID</th>
-                                <th class="text-center">店铺名称</th>
-                                <th class="text-center">发货地址</th>
-                                <th class="text-center">退货联系人</th>
-                                <th class="text-center">退货联系电话</th>
-                                <th class="text-center">审核状态</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="审核ID" namespace="shopAuditManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="店铺名称" namespace="shopAuditManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="发货地址" namespace="shopAuditManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="退货联系人" namespace="shopAuditManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="退货联系电话" namespace="shopAuditManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="审核状态" namespace="shopAuditManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="操作" namespace="shopAuditManage"></vc:i18n></span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,13 +92,11 @@
                                 <td class="text-center">{{_auditState(shopAudit.state)}}</td>
                                 <td class="text-center">
                                     <div class="btn-group" v-if="shopAudit.state == '001'">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAuditOpenShopModel(shopAudit)">审核
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAuditOpenShopModel(shopAudit)"><span><vc:i18n name="审核" namespace="shopAuditManage"></vc:i18n></span>
                                         </button>
                                     </div>
                                     <div class="btn-group" v-else>
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAuditOpenShopModel(shopAudit)">查看
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAuditOpenShopModel(shopAudit)"><span><vc:i18n name="查看" namespace="shopAuditManage"></vc:i18n></span>
                                         </button>
                                     </div>
                                 </td>

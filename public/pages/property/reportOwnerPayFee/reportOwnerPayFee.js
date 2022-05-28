@@ -3,7 +3,7 @@
  **/
 (function(vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+    var DEFAULT_ROWS = 20;
     vc.extends({
         data: {
             reportOwnerPayFeeInfo: {
@@ -19,7 +19,8 @@
                     roomName: '',
                     ownerName: '',
                     pfYear: new Date().getFullYear()
-                }
+                },
+                timer: {}
             }
         },
         _initMethod: function() {
@@ -32,6 +33,15 @@
         _initEvent: function() {
             vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listOwnerPayFees(_currentPage, DEFAULT_ROWS);
+            });
+
+            vc.on('reportOwnerPayFee', 'notifyRoom', function(_room) {
+                $that.reportOwnerPayFeeInfo.conditions.roomName = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
+                vc.component._listOwnerPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
+            vc.on('reportOwnerPayFee', 'notifyOwner', function(_owner) {
+                $that.reportOwnerPayFeeInfo.conditions.ownerName = _owner.name;
+                vc.component._listOwnerPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
         methods: {
@@ -178,6 +188,31 @@
                     function(errInfo, error) {
                         console.log('请求失败处理');
                     });
+            },
+            _meterInputRoom: function() {
+
+                if ($that.reportOwnerPayFeeInfo.timer) {
+                    clearTimeout($that.reportOwnerPayFeeInfo.timer)
+                }
+                $that.reportOwnerPayFeeInfo.timer = setTimeout(() => {
+                    vc.emit('inputSearchRoomInfo', 'searchRoom', {
+                        callComponent: 'reportOwnerPayFee',
+                        roomName: $that.reportOwnerPayFeeInfo.conditions.roomName
+                    });
+                }, 1500)
+            },
+            _meterInputOwner: function() {
+
+                if ($that.reportOwnerPayFeeInfo.timer) {
+                    clearTimeout($that.reportOwnerPayFeeInfo.timer)
+                }
+                $that.reportOwnerPayFeeInfo.timer = setTimeout(() => {
+                    vc.emit('inputSearchOwnerInfo', 'searchOwner', {
+                        callComponent: 'reportOwnerPayFee',
+                        ownerTypeCd: '1001',
+                        ownerName: $that.reportOwnerPayFeeInfo.conditions.ownerName
+                    });
+                }, 1500)
             },
         }
     });

@@ -4,30 +4,30 @@
             <div class=" text-center">
                 <div style="color:#000;font-size:36px">{{printPayFeeInfo.communityName}} {{printPayFeeInfo.apply == 'Y'?'申请单':'收据单'}}
                 </div>
-                <span style="color:#000;font-size:20px">单号：{{printPayFeeInfo.receiptNum}}</span>
+                <span style="color:#000;font-size:20px"><span><vc:i18n name="单号" namespace="printPayFeeXiangyun"></vc:i18n></span>：{{printPayFeeInfo.receiptNum}}</span>
             </div>
             <div style="color:#000;font-size:20px;margin-left:20px">
                 <div class="float-right text-right">
-                    <span>缴费时间：{{printPayFeeInfo.feeTime}}</span>
+                    <span><span><vc:i18n name="缴费时间" namespace="printPayFeeXiangyun"></vc:i18n></span>：{{printPayFeeInfo.feeTime}}</span>
                 </div>
                 <div class="float-right" style="margin-right: 30%;">
-                    <span>业主：{{printPayFeeInfo.payObjName}}</span>
+                    <span><span><vc:i18n name="业主" namespace="printPayFeeXiangyun"></vc:i18n></span>：{{printPayFeeInfo.payObjName}}</span>
                 </div>
 
             </div>
             <table class="table vc-table-border" style="color:#000;font-size:20px">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center" width="80px">编号</th>
-                        <th scope="col" class="text-center">收费项目</th>
-                        <th scope="col" class="text-center">房屋/车辆</th>
-                        <th scope="col" class="text-center">收费范围</th>
-                        <th scope="col" class="text-center">周期</th>
-                        <th scope="col" class="text-center">单价/固定费</th>
-                        <th scope="col" class="text-center">面积/用量</th>
-                        <th scope="col" class="text-center">单位</th>
-                        <th scope="col" class="text-center">金额</th>
-                        <th scope="col" class="text-center">备注</th>
+                        <th scope="col" class="text-center" width="80px"><span><vc:i18n name="编号" namespace="printPayFeeXiangyun"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="收费项目" namespace="printPayFeeXiangyun"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="房屋" namespace="printPayFeeXiangyun"></vc:i18n></span>/车辆</th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="收费范围" namespace="printPayFeeXiangyun"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="周期" namespace="printPayFeeXiangyun"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="单价" namespace="printPayFeeXiangyun"></vc:i18n></span>/固定费</th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="面积" namespace="printPayFeeXiangyun"></vc:i18n></span>/用量</th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="单位" namespace="printPayFeeXiangyun"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="金额" namespace="printPayFeeXiangyun"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="备注" namespace="printPayFeeXiangyun"></vc:i18n></span></th>
                     </tr>
                 </thead>
                 <tbody class="vc-table-border" style="color:#000;font-size:20px">
@@ -36,7 +36,7 @@
                         <td class="text-center">{{item.feeName}}</td>
                         <td class="text-center">{{item.objName}}</td>
                         <td class="text-center" v-if="item.preDegrees">
-                            {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</br>
+                            {{vc.dateFormat(item.startTime)}}<span><vc:i18n name="至" namespace="printPayFeeXiangyun"></vc:i18n></span>{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</br>
                             {{item.preDegrees}} 至 {{item.curDegrees}}
                         </td>
                         <!-- 根据山东 需求 如果为押金时 显示为无-->
@@ -44,18 +44,18 @@
                             无
                         </td>
                         <td class="text-center" v-else>
-                            {{vc.dateFormat(item.startTime)}}至{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
+                            {{vc.dateFormat(item.startTime)}}<span><vc:i18n name="至" namespace="printPayFeeXiangyun"></vc:i18n></span>{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
                         </td>
-                        <!--<td class="text-center">{{item.startTime}}至{{item.endTime}}</td>-->
+                        <!--<td class="text-center">{{item.startTime}}<span><vc:i18n name="至" namespace="printPayFeeXiangyun"></vc:i18n></span>{{item.endTime}}</td>-->
                         <td class="text-center">{{item.cycle}}</td>
                         <td class="text-center">{{item.squarePrice}}</td>
                         <td class="text-center">{{item.area}}</td>
-                        <td class="text-center">元</td>
+                        <td class="text-center"><span><vc:i18n name="元" namespace="printPayFeeXiangyun"></vc:i18n></span></td>
                         <td class="text-center">{{item.amount}}</td>
                         <td class="text-center" width="200px">{{item.remark}}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="text-center ">大写人民币（元）</td>
+                        <td colspan="3" class="text-center "><span><vc:i18n name="大写人民币" namespace="printPayFeeXiangyun"></vc:i18n></span>（元）</td>
                         <td colspan="4" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
                         <td colspan="3" class="text-center ">{{printPayFeeInfo.amount}}</td>
@@ -78,17 +78,17 @@
         <div class="row">
             <div class="col-md-10">
                 <div class="row" style="color:#000;font-size:20px;margin-left: 10px;">
-                    <div class="float-left" style="width: 20%;">部门负责人：</div>
-                    <div class="float-left" style="width: 20%;">经办人：</div>
-                    <div class="float-left" style="width: 20%;">财务收款：</div>
-                    <div class="float-left" style="width: 20%;">客户确认：</div>
+                    <div class="float-left" style="width: 20%;"><span><vc:i18n name="部门负责人" namespace="printPayFeeXiangyun"></vc:i18n></span>：</div>
+                    <div class="float-left" style="width: 20%;"><span><vc:i18n name="经办人" namespace="printPayFeeXiangyun"></vc:i18n></span>：</div>
+                    <div class="float-left" style="width: 20%;"><span><vc:i18n name="财务收款" namespace="printPayFeeXiangyun"></vc:i18n></span>：</div>
+                    <div class="float-left" style="width: 20%;"><span><vc:i18n name="客户确认" namespace="printPayFeeXiangyun"></vc:i18n></span>：</div>
                 </div>
             </div>
             <div class="col-md-2" id="print-btn">
                 <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
                     <i class="fa fa-check"></i>&nbsp;打印
                 </button>
-                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()">取消
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printPayFeeXiangyun"></vc:i18n></span>
                 </button>
             </div>
         </div>

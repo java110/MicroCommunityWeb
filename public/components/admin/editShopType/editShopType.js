@@ -10,7 +10,7 @@
                 isDefault: '',
                 seq: '',
                 remark: '',
-
+                serviceFee: ''
             }
         },
         _initMethod: function() {
@@ -110,7 +110,7 @@
                     isDefault: '',
                     seq: '',
                     remark: '',
-
+                    serviceFee: ''
                 }
             }
         }

@@ -2,97 +2,97 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">发布广告</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="发布广告" namespace="addAdvert"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">广告名称</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="广告名称" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addAdvertInfo.adName" type="text" placeholder="必填，请填写广告名称"
+                                    <input v-model="addAdvertInfo.adName" type="text" :placeholder="vc.i18n('必填，请填写广告名称','addAdvert')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">广告分类</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="广告分类" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addAdvertInfo.classify">
-                                        <option selected disabled value="">必填，请选择广告分类</option>
-                                        <option value="9001">物流</option>
-                                        <option value="9002">餐饮</option>
-                                        <option value="9003">旅游</option>
-                                        <option value="9004">酒店</option>
-                                        <option value="9005">教育</option>
-                                        <option value="9006">互联网</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addAdvert')}}，请选择广告分类</option>
+                                        <option value="9001">{{vc.i18n('物流','addAdvert')}}</option>
+                                        <option value="9002">{{vc.i18n('餐饮','addAdvert')}}</option>
+                                        <option value="9003">{{vc.i18n('旅游','addAdvert')}}</option>
+                                        <option value="9004">{{vc.i18n('酒店','addAdvert')}}</option>
+                                        <option value="9005">{{vc.i18n('教育','addAdvert')}}</option>
+                                        <option value="9006">{{vc.i18n('互联网','addAdvert')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">投放位置</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投放位置" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addAdvertInfo.locationTypeCd">
-                                        <option selected disabled value="">必填，请选择投放位置</option>
-                                        <option value="1000">小区内设备</option>
-                                        <option value="2000">业主首页</option>
-                                        <option value="3000">商圈首页</option>
-                                        <option value="5000">服务首页</option>
-                                        <option value="6000">便民首页</option>
-                                        <option value="4000">员工首页</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addAdvert')}}，请选择投放位置</option>
+                                        <option value="1000">{{vc.i18n('小区内设备','addAdvert')}}</option>
+                                        <option value="2000">{{vc.i18n('业主首页','addAdvert')}}</option>
+                                        <option value="3000">{{vc.i18n('商圈首页','addAdvert')}}</option>
+                                        <option value="5000">{{vc.i18n('服务首页','addAdvert')}}</option>
+                                        <option value="6000">{{vc.i18n('便民首页','addAdvert')}}</option>
+                                        <option value="4000">{{vc.i18n('员工首页','addAdvert')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">发布类型</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="发布类型" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addAdvertInfo.advertType">
-                                        <option selected disabled value="">必填，请选择发布类型</option>
-                                        <option value="1">站内</option>
-                                        <option value="2">站外</option>
-                                        <option value="3">不跳转</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addAdvert')}}，请选择发布类型</option>
+                                        <option value="1">{{vc.i18n('站内','addAdvert')}}</option>
+                                        <option value="2">{{vc.i18n('站外','addAdvert')}}</option>
+                                        <option value="3">{{vc.i18n('不跳转','addAdvert')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">跳转路径</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="跳转路径" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addAdvertInfo.pageUrl" type="text" placeholder="请填写跳转路径"
+                                    <input v-model="addAdvertInfo.pageUrl" type="text" :placeholder="vc.i18n('请填写跳转路径','addAdvert')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">播放顺序</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="播放顺序" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addAdvertInfo.seq" type="text" placeholder="必填，请填写播放顺序"
+                                    <input v-model="addAdvertInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写播放顺序','addAdvert')"
                                            class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">投放时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投放时间" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="addAdvertInfo.startTime" type="text" readonly
-                                           placeholder="必填，请填写投放时间"
+                                           :placeholder="vc.i18n('必填，请填写投放时间','addAdvert')"
                                            class="form-control addAdvertStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">结束时间</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="addAdvertInfo.endTime" type="text" readonly placeholder="必填，请填写结束时间"
+                                    <input v-model="addAdvertInfo.endTime" type="text" readonly :placeholder="vc.i18n('必填，请填写结束时间','addAdvert')"
                                            class="form-control addAdvertEndTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">播放方式</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="播放方式" namespace="addAdvert"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addAdvertInfo.viewType">
-                                        <option selected disabled value="">必填，请选择播放方式</option>
-                                        <option value="8888">图片</option>
-                                        <option value="9999">视频</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','addAdvert')}}，请选择播放方式</option>
+                                        <option value="8888">{{vc.i18n('图片','addAdvert')}}</option>
+                                        <option value="9999">{{vc.i18n('视频','addAdvert')}}</option>
                                     </select></div>
                             </div>
                             <div class="form-group row" v-if="addAdvertInfo.viewType == '8888'">
-                                <label class="col-sm-2 col-form-label">图片(800 * 373)</label>
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('图片','addAdvert')}}(800 * 373)</label>
                                 <div class="content-img col-sm-10">
                                     <vc:create path="frame/uploadImage" callBackListener="addAdvert"
                                                callBackFunction="notifyUploadImage" namespace="addAdvert">
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-if="addAdvertInfo.viewType == '9999'">
-                                <label class="col-sm-2 col-form-label">视频</label>
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('视频','addAdvert')}}</label>
                                 <div class="content-img col-sm-10">
                                     <vc:create path="frame/uploadVedio" callBackListener="addAdvert"
                                                callBackFunction="notifyUploadVedio" namespace="addAdvert">

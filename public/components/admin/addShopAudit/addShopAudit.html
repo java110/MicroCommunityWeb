@@ -1,129 +1,131 @@
-<div id = "addShopAuditModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div id="addShopAuditModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加店铺审核</h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加店铺审核" namespace="addShopAudit"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-         <label class="col-sm-2 col-form-label">审核ID</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.auditId"                   type="text" placeholder="必填，请填写审核ID" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">店铺ID</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.shopId"                   type="text" placeholder="必填，请填写店铺ID" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">店铺logo</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.shopLogo"                   type="text" placeholder="必填，请填写店铺logo" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">商户ID</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.storeId"                   type="text" placeholder="必填，请填写商户ID" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">店铺名称</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.shopName"                   type="text" placeholder="必填，请填写店铺名称" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">店铺描述</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.shopDesc"                   type="text" placeholder="必填，请填写店铺描述" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">地区</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.mapX"                   type="text" placeholder="必填，请填写地区" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">地区</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.mapY"                   type="text" placeholder="必填，请填写地区" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">发货地址</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.sendAddress"                   type="text" placeholder="必填，请填写发货地址" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">退货地址</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.returnAddress"                   type="text" placeholder="必填，请填写退货地址" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">退货联系人</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.returnPerson"                   type="text" placeholder="必填，请填写退货联系人" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">退货联系电话</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.returnLink"                   type="text" placeholder="必填，请填写退货联系电话" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">状态</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.state"                   type="text" placeholder="必填，请填写状态" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">店铺类型</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.shopType"                   type="text" placeholder="必填，请填写店铺类型" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">开店类型</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.openType"                   type="text" placeholder="必填，请填写开店类型" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">地域编码</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.areaCode"                   type="text" placeholder="必填，请填写地域编码" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">审核意见</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.auditOpinion"                   type="text" placeholder="必填，请填写审核意见" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">申请原因</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.applyOpinion"                   type="text" placeholder="必填，请填写申请原因" class="form-control">
-         </div>
-</div>
-<div class="form-group row">
-         <label class="col-sm-2 col-form-label">数据状态</label>
-         <div class="col-sm-10">
-           <input v-model="addShopAuditInfo.statusCd"                   type="text" placeholder="必填，请填写数据状态" class="form-control">
-         </div>
-</div>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="审核ID" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.auditId" type="text" :placeholder="vc.i18n('必填，请填写审核ID','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="店铺ID" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.shopId" type="text" :placeholder="vc.i18n('必填，请填写店铺ID','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="店铺logo" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.shopLogo" type="text" :placeholder="vc.i18n('必填，请填写店铺logo','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="商户ID" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.storeId" type="text" :placeholder="vc.i18n('必填，请填写商户ID','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="店铺名称" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.shopName" type="text" :placeholder="vc.i18n('必填，请填写店铺名称','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="店铺描述" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.shopDesc" type="text" :placeholder="vc.i18n('必填，请填写店铺描述','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="地区" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.mapX" type="text" :placeholder="vc.i18n('必填，请填写地区','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="地区" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.mapY" type="text" :placeholder="vc.i18n('必填，请填写地区','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="发货地址" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.sendAddress" type="text" :placeholder="vc.i18n('必填，请填写发货地址','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="退货地址" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.returnAddress" type="text" :placeholder="vc.i18n('必填，请填写退货地址','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="退货联系人" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.returnPerson" type="text" :placeholder="vc.i18n('必填，请填写退货联系人','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="退货联系电话" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.returnLink" type="text" :placeholder="vc.i18n('必填，请填写退货联系电话','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="状态" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.state" type="text" :placeholder="vc.i18n('必填，请填写状态','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="店铺类型" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.shopType" type="text" :placeholder="vc.i18n('必填，请填写店铺类型','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="开店类型" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.openType" type="text" :placeholder="vc.i18n('必填，请填写开店类型','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="地域编码" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.areaCode" type="text" :placeholder="vc.i18n('必填，请填写地域编码','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="审核意见" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.auditOpinion" type="text" :placeholder="vc.i18n('必填，请填写审核意见','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="申请原因" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.applyOpinion" type="text" :placeholder="vc.i18n('必填，请填写申请原因','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="数据状态" namespace="addShopAudit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addShopAuditInfo.statusCd" type="text" :placeholder="vc.i18n('必填，请填写数据状态','addShopAudit')" class="form-control">
+                                </div>
+                            </div>
 
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveShopAuditInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveShopAuditInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addShopAudit"></vc:i18n></span></button>
                             </div>
                         </div>
                     </div>

@@ -3,10 +3,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="userLogin"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{userLoginInfo.moreCondition == true?'隐藏':'更多'}}
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{userLoginInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -15,26 +16,23 @@
 
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入员工名称" v-model="userLoginInfo.conditions.name"
-                                    class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入员工名称','userLogin')" v-model="userLoginInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4" >
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="number" placeholder="请输入手机号" v-model="userLoginInfo.conditions.tel"
-                                    class=" form-control">
+                                <input type="number" :placeholder="vc.i18n('请输入手机号','userLogin')" v-model="userLoginInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4" >
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="number" placeholder="请输入员工ID"
-                                    v-model="userLoginInfo.conditions.userLoginId" class=" form-control">
+                                <input type="number" :placeholder="vc.i18n('请输入员工ID','userLogin')" v-model="userLoginInfo.conditions.userLoginId" class=" form-control">
                             </div>
                         </div>
 
                         <div class="col-sm-1">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryUserLoginMethod()">
-                                <i class="fa fa-search"></i> 查询
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="userLogin"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -48,21 +46,33 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>登录日志</h5>
+                    <h5>
+                        <span><vc:i18n name="登录日志" namespace="userLogin"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        
+
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th>登录ID</th>
-                                <th>公司</th>
-                                <th>部门</th>
-                                <th>名称</th>
-                                <th>登录时间</th>
-                                <th>员工ID</th>
+                                <th>
+                                    <span><vc:i18n name="登录" namespace="userLogin"></vc:i18n></span>ID</th>
+                                <th>
+                                    <span><vc:i18n name="公司" namespace="userLogin"></vc:i18n></span>
+                                </th>
+                                <th>
+                                    <span><vc:i18n name="部门" namespace="userLogin"></vc:i18n></span>
+                                </th>
+                                <th>
+                                    <span><vc:i18n name="名称" namespace="userLogin"></vc:i18n></span>
+                                </th>
+                                <th>
+                                    <span><vc:i18n name="登录时间" namespace="userLogin"></vc:i18n></span>
+                                </th>
+                                <th>
+                                    <span><vc:i18n name="员工" namespace="userLogin"></vc:i18n></span>ID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,7 +83,7 @@
                                 <td>{{userLogin.userName}}</td>
                                 <td>{{userLogin.loginTime}}</td>
                                 <td>{{userLogin.userId}}</td>
-                                
+
                             </tr>
                         </tbody>
                     </table>

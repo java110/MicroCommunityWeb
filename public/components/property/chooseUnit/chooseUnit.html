@@ -1,15 +1,16 @@
-<div id="chooseUnitModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseUnitModelLabel"
-    aria-hidden="true">
+<div id="chooseUnitModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseUnitModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseUnitModelLabel">选择单元</h3>
+                <h3 class="modal-title" id="chooseUnitModelLabel">
+                    <span><vc:i18n name="选择单元" namespace="chooseUnit"></vc:i18n></span>
+                </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,12 +19,10 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入单元名称" type="text"
-                                            v-model="chooseUnitInfo._currentUnitName"
-                                            class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入单元名称','chooseUnit')" type="text" v-model="chooseUnitInfo._currentUnitName" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                             <button type="button" class="btn btn-sm btn-primary"
-                                                v-on:click="queryUnits()">查询</button>
+                                                v-on:click="queryUnits()"><span><vc:i18n name="查询" namespace="chooseUnit"></vc:i18n></span></button>
                                         </span>
                                     </div>
                                 </div>
@@ -32,12 +31,23 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">单元ID</th>
-                                            <th class="text-center">单元编号</th>
-                                            <th class="text-center">总层数</th>
-                                            <th class="text-center">电梯</th>
-                                            <th class="text-center">备注</th>
-                                            <th class="text-center">操作</th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="单元" namespace="chooseUnit"></vc:i18n></span>ID</th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="单元编号" namespace="chooseUnit"></vc:i18n></span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="总层数" namespace="chooseUnit"></vc:i18n></span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="电梯" namespace="chooseUnit"></vc:i18n></span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="备注" namespace="chooseUnit"></vc:i18n></span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="操作" namespace="chooseUnit"></vc:i18n></span>
+                                            </th>
 
                                         </tr>
                                     </thead>
@@ -50,8 +60,7 @@
                                             <td class="text-center">{{unit.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseUnit(unit)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseUnit(unit)"><span><vc:i18n name="选择" namespace="chooseUnit"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

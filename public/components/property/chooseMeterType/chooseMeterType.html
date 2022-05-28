@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseMeterTypeModelLabel">选择抄表类型</h3>
+                <h3 class="modal-title" id="chooseMeterTypeModelLabel"><span><vc:i18n name="选择抄表类型" namespace="chooseMeterType"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入抄表类型名称" type="text" v-model="chooseMeterTypeInfo._currentMeterTypeName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入抄表类型名称','chooseMeterType')" type="text" v-model="chooseMeterTypeInfo._currentMeterTypeName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMeterTypes()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMeterTypes()"><span><vc:i18n name="查询" namespace="chooseMeterType"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,10 +28,10 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">抄表类型</th>
-                            <th class="text-center">名称</th>
-                            <th class="text-center">说明</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="抄表类型" namespace="chooseMeterType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="名称" namespace="chooseMeterType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="说明" namespace="chooseMeterType"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseMeterType"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -42,7 +42,7 @@
                             <td class="text-center">{{meterType.remark}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMeterType(meterType)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMeterType(meterType)"><span><vc:i18n name="选择" namespace="chooseMeterType"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -395,13 +395,12 @@
                                 fees: _printFees
                             }
                             let _data = JSON.parse(json).data;
-                            $that.payFeeOrderInfo.receiptId = _data.receiptId;
+                            // $that.payFeeOrderInfo.receiptId = _data.receiptId;
                             //vc.saveData('_feeInfo', _feeInfo);
-                            //关闭model
-                            $("#payFeeResult").modal({
-                                backdrop: "static", //点击空白处不关闭对话框
-                                show: true
-                            });
+                            //查询收据
+                            setTimeout(function() {
+                                $that._queryPayFeeReceiptId(_data);
+                            }, 1000);
                             return;
                         }
                         vc.toast(json);
@@ -411,6 +410,37 @@
                         vc.toast(errInfo);
                     }
                 );
+            },
+            //查询收据
+            _queryPayFeeReceiptId: function(_data) {
+                let _param = {
+                    params: {
+                        detailIds: _data.detailId,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        page: 1,
+                        row: 1
+                    }
+                }
+                vc.http.apiGet(
+                    '/feeReceipt/queryFeeReceipt',
+                    _param,
+                    function(json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json)
+                        if (_json.code == 0 && _json.data && _json.data.length > 0) {
+                            $that.payFeeOrderInfo.receiptId = _json.data[0].receiptId;
+                        }
+                        $("#payFeeResult").modal({
+                            backdrop: "static", //点击空白处不关闭对话框
+                            show: true
+                        });
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    }
+                );
+
             },
 
             /**

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -28,9 +28,9 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //切换 至费用页面
-            vc.on('feeReceipt', 'switch', function (_param) {
+            vc.on('feeReceipt', 'switch', function(_param) {
                 if (_param.ownerId == '') {
                     return;
                 }
@@ -55,16 +55,16 @@
             //     $that.reportFeeSummaryInfo.conditions.startTime = _startTime;
             // });
         },
-        _initEvent: function () {
-            vc.on('feeReceiptManage', 'listFeeReceipt', function (_param) {
+        _initEvent: function() {
+            vc.on('feeReceiptManage', 'listFeeReceipt', function(_param) {
                 vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listFeeReceipts(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function () {
+            _initDate: function() {
                 $(".startTime").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -88,7 +88,7 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".startTime").val();
                         vc.component.feeReceiptManageInfo.conditions.qstartTime = value;
                         let start = Date.parse(new Date(vc.component.feeReceiptManageInfo.conditions.qstartTime))
@@ -99,7 +99,7 @@
                         }
                     });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".endTime").val();
                         vc.component.feeReceiptManageInfo.conditions.qendTime = value;
                         let start = Date.parse(new Date(vc.component.feeReceiptManageInfo.conditions.qstartTime))
@@ -110,7 +110,7 @@
                         }
                     });
             },
-            _listFeeReceipts: function (_page, _rows) {
+            _listFeeReceipts: function(_page, _rows) {
                 vc.component._initDate();
                 vc.component.feeReceiptManageInfo.conditions.page = _page;
                 vc.component.feeReceiptManageInfo.conditions.row = _rows;
@@ -121,7 +121,7 @@
                 //发送get请求
                 vc.http.apiGet('/feeReceipt/queryFeeReceipt',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _feeReceiptManageInfo = JSON.parse(json);
                         vc.component.feeReceiptManageInfo.total = _feeReceiptManageInfo.total;
                         vc.component.feeReceiptManageInfo.records = _feeReceiptManageInfo.records;
@@ -135,17 +135,18 @@
                             total: vc.component.feeReceiptManageInfo.records,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _queryFeeReceiptMethod: function () {
+            _queryFeeReceiptMethod: function() {
                 vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetFeeReceiptMethod: function () {
+            _resetFeeReceiptMethod: function() {
                 vc.component.feeReceiptManageInfo.conditions.objType = "";
                 vc.component.feeReceiptManageInfo.conditions.roomId = "";
                 vc.component.feeReceiptManageInfo.conditions.receiptId = "";
@@ -153,10 +154,13 @@
                 vc.component.feeReceiptManageInfo.conditions.qendTime = "";
                 vc.component._listFeeReceipts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _printFeeReceipt: function (_receipt) {
+            _printFeeReceipt: function(_receipt) {
                 window.open($that.feeReceiptManageInfo.printUrl + "?receiptId=" + _receipt.receiptId);
             },
-            _printFeeReceipts: function (_conditions) {
+            _printFeeSmallReceipt: function(_receipt) {
+                window.open('/smallPrint.html#/pages/property/printSmallPayFee?receiptIds=' + _receipt.receiptId);
+            },
+            _printFeeReceipts: function(_conditions) {
                 // console.log(_conditions)
                 if (_conditions.roomId == null || _conditions.roomId == "") {
                     vc.toast("请填写收费对象", 1000);
@@ -183,14 +187,14 @@
                 window.open("/print.html#/pages/property/printPayFees?roomName=" + _conditions.roomId +
                     "&type=" + _conditions.type + "&qstartTime=" + _conditions.qstartTime + "&qendTime=" + _conditions.qendTime);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.feeReceiptManageInfo.moreCondition) {
                     vc.component.feeReceiptManageInfo.moreCondition = false;
                 } else {
                     vc.component.feeReceiptManageInfo.moreCondition = true;
                 }
             },
-            _listFeePrintPages: function (_page, _rows) {
+            _listFeePrintPages: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -202,13 +206,14 @@
                 //发送get请求
                 vc.http.apiGet('feePrintPage.listFeePrintPage',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _feePrintPageManageInfo = JSON.parse(json);
                         let feePrintPages = _feePrintPageManageInfo.data;
                         if (feePrintPages && feePrintPages.length > 0) {
                             $that.feeReceiptManageInfo.printUrl = feePrintPages[0].url;
                         }
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

@@ -5,29 +5,24 @@
     <!-- 选择 应用信息 -->
     <div v-if="hireParkingSpaceInfo.index == 0">
         <!-- 选择停车位 -->
-        <vc:create path="property/viewSelectParkingSpace" callBackComponent="hireParkingSpace"
-                   callBackFunction="notify">
+        <vc:create path="property/viewSelectParkingSpace" callBackComponent="hireParkingSpace" callBackFunction="notify">
         </vc:create>
     </div>
     <div v-if="hireParkingSpaceInfo.index == 1">
-        <vc:create path="property/viewOwnerInfo" callBackListener="hireParkingSpace"
-                   callBackFunction="notify">
+        <vc:create path="property/viewOwnerInfo" callBackListener="hireParkingSpace" callBackFunction="notify">
         </vc:create>
     </div>
     <div v-show="hireParkingSpaceInfo.index == 2">
-        <vc:create path="property/addCar" callBackComponent="hireParkingSpace"
-                   callBackFunction="notify">
+        <vc:create path="property/addCar" callBackComponent="hireParkingSpace" callBackFunction="notify">
         </vc:create>
     </div>
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-secondary" v-on:click="_prevStep()">上一步</button>
-            <button v-if="hireParkingSpaceInfo.index != 2" type="button" class="btn btn-primary"
-                    style="margin-left:10px;" v-on:click="_nextStep()">下一步
+            <button type="button" class="btn btn-secondary" v-on:click="_prevStep()"><span><vc:i18n name="上一步" namespace="hireParkingSpace"></vc:i18n></span></button>
+            <button v-if="hireParkingSpaceInfo.index != 2" type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_nextStep()"><span><vc:i18n name="下一步" namespace="hireParkingSpace"></vc:i18n></span>
             </button>
-            <button v-if="hireParkingSpaceInfo.index == 2" type="button" class="btn btn-primary"
-                    style="margin-left:10px;" v-on:click="_finishStep()">提交
+            <button v-if="hireParkingSpaceInfo.index == 2" type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_finishStep()"><span><vc:i18n name="提交" namespace="hireParkingSpace"></vc:i18n></span>
             </button>
         </div>
     </div>

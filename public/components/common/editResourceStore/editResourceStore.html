@@ -3,20 +3,20 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改物品管理</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改物品管理" namespace="editResourceStore"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">物品名称</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="物品名称" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.resName" type="text"
-                                           :disabled="editResourceStoreInfo.shType == '2807'" placeholder="必填，请填写物品名称"
+                                           :disabled="editResourceStoreInfo.shType == '2807'" :placeholder="vc.i18n('必填，请填写物品名称','editResourceStore')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">物品类型</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="物品类型" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-5">
                                     <select class="custom-select" v-model="editResourceStoreInfo.parentRstId"
                                             :disabled="editResourceStoreInfo.shType == '2807'"
@@ -31,7 +31,7 @@
                                     <select class="custom-select" v-model="editResourceStoreInfo.rstId"
                                             :disabled="editResourceStoreInfo.shType == '2807'"
                                             @change="resourceStoreSonTypesOnChangeEdit">
-                                        <option selected disabled value="">必填，请选择二级分类</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editResourceStore')}}，请选择二级分类</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.rstIds" :key="index"
                                                 v-bind:value="item.rstId">
                                             {{item.name}}
@@ -40,11 +40,11 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">物品规格</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="物品规格" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.rssId"
                                             :disabled="editResourceStoreInfo.shType == '2807'">
-                                        <option selected disabled value="">选填，请选择物品规格</option>
+                                        <option selected disabled value="">{{vc.i18n('选填','editResourceStore')}}，请选择物品规格</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.resourceStoreSpecifications"
                                                 :key="index" v-bind:value="item.rssId">
                                             {{item.specName}}
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">物品单位</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="物品单位" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.unitCode"
                                             :disabled="editResourceStoreInfo.shType == '2807'">
@@ -65,10 +65,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">是否是固定物品</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="是否是固定物品" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.isFixed" disabled>
-                                        <option selected disabled value="">必填，请选择是否是固定物品</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editResourceStore')}}，请选择是否是固定物品</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.isFixeds" :key="index"
                                                 v-bind:value="item.statusCd">
                                             {{item.name}}
@@ -77,33 +77,33 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">物品编码</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="物品编码" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.resCode" type="text" disabled="disabled"
-                                           placeholder="必填，请填写物品编码，如终端串码" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写物品编码，如终端串码','editResourceStore')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">采购参考价格</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="采购参考价格" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.price" type="text"
                                            :disabled="editResourceStoreInfo.shType == '2807'"
-                                           placeholder="必填，请填写物品采购参考价格" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写物品采购参考价格','editResourceStore')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">警告库存</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="警告库存" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.warningStock" type="text"
-                                           placeholder="必填，请填写警告库存" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写警告库存','editResourceStore')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">最小计量单位</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="最小计量单位" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.miniUnitCode"
                                             :disabled="editResourceStoreInfo.shType == '2807'">
-                                        <option selected disabled value="">必填，请选择物品最小计量单位</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editResourceStore')}}，请选择物品最小计量单位</option>
                                         <option v-for="(item,index) in editResourceStoreInfo.unitCodes" :key="index"
                                                 v-bind:value="item.statusCd">
                                             {{item.name}}
@@ -112,54 +112,54 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">最小计量单位数量</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="最小计量单位数量" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.miniUnitStock" type="text"
                                            :disabled="editResourceStoreInfo.shType == '2807'"
-                                           placeholder="必填，请填写最小计量单位数量" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写最小计量单位数量','editResourceStore')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">最低收费标准(最小计量单位)</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="最低收费标准" namespace="editResourceStore"></vc:i18n></span>(最小计量单位)</label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.outLowPrice" type="text"
-                                           placeholder="必填，请填写物品最小计量单位，最低收费标准" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写物品最小计量单位，最低收费标准','editResourceStore')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">最高收费标准(最小计量单位)</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="最高收费标准" namespace="editResourceStore"></vc:i18n></span>(最小计量单位)</label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.outHighPrice" type="text" id="highPrice"
-                                           placeholder="必填，请填写物品最小计量单位，最高收费标准" class="form-control" @change="decide()">
+                                           :placeholder="vc.i18n('必填，请填写物品最小计量单位，最高收费标准','editResourceStore')" class="form-control" @change="decide()">
                                 </div>
                             </div>
                             <!-- <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">是否在维修材料中显示</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="是否在维修材料中显示" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editResourceStoreInfo.showMobile">
-                                        <option value="Y">是</option>
-                                        <option value="N">否</option>
+                                        <option value="Y">{{vc.i18n('是','editResourceStore')}}</option>
+                                        <option value="N">{{vc.i18n('否','editResourceStore')}}</option>
                                     </select>
                                 </div>
                             </div> -->
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">备注</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="选填，请填写备注" class="form-control"
+                                    <textarea :placeholder="vc.i18n('选填，请填写备注','editResourceStore')" class="form-control"
                                               v-model="editResourceStoreInfo.remark">
                                     </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">描述</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="描述" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea placeholder="选填，请填写描述" class="form-control"
+                                    <textarea :placeholder="vc.i18n('选填，请填写描述','editResourceStore')" class="form-control"
                                               v-model="editResourceStoreInfo.description">
                                     </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">图片</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="图片" namespace="editResourceStore"></vc:i18n></span></label>
                                 <div class="content-img col-sm-10">
                                     <vc:create path="frame/uploadImage" callBackListener="editResourceStore"
                                                callBackFunction="notifyUploadImage" namespace="editResourceStore">

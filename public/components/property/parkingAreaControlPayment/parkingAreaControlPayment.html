@@ -1,16 +1,17 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
         <div class="col-lg-3 padding-right-xs padding-left-xl">
-            <input v-model="parkingAreaControlPaymentInfo.carNum" type="text" placeholder="必填，请填写车牌号"
+            <input v-model="parkingAreaControlPaymentInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlPayment')"
                 class="form-control">
 
         </div>
         <div class="col-lg-3 padding-right-xs padding-left-xl">
             <select class="custom-select" v-model="parkingAreaControlPaymentInfo.state">
-                <option disabled value="">请选择车辆状态</option>
-                <option value="100300">进场状态</option>
-                <option value="100400">进场状态</option>
-                <option value="100600">进场状态</option>
+                <option disabled value="">{{vc.i18n('请选择车辆状态','parkingAreaControlPayment')}}</option>
+                <option value="100300">{{vc.i18n('进场状态','parkingAreaControlPayment')}}</option>
+                <option value="100400">{{vc.i18n('支付完成','parkingAreaControlPayment')}}</option>
+                <option value="100500">{{vc.i18n('离场状态','parkingAreaControlPayment')}}</option>
+                <option value="100600">{{vc.i18n('支付超时重新支付','parkingAreaControlPayment')}}</option>
             </select>
 
         </div>
@@ -21,7 +22,7 @@
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
-            <button type=" button" class="btn btn-primary btn-sm" style="margin-left:10px"
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                 v-on:click="_qureyParkingAreaControlPayment()">
                 查询
             </button>
@@ -31,13 +32,13 @@
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
                 <tr>
-                    <th class="text-center">进出场编号</th>
-                    <th class="text-center">车辆状态</th>
-                    <th class="text-center">车牌号</th>
-                    <th class="text-center">进场时间</th>
-                    <th class="text-center">收费类型</th>
-                    <th class="text-center">应收金额</th>
-                    <th class="text-center">实收金额</th>
+                    <th class="text-center"><span><vc:i18n name="进出场编号" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="车辆状态" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="进场时间" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="收费类型" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="应收金额" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="实收金额" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
                 </tr>
             </thead>
             <tbody>

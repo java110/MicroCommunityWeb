@@ -14,6 +14,7 @@
                 isDefault: '',
                 seq: '',
                 remark: '',
+                serviceFee: '0.00'
 
             }
         },
@@ -127,7 +128,7 @@
                     isDefault: '',
                     seq: '',
                     remark: '',
-
+                    serviceFee: '0.00'
                 };
             }
         }

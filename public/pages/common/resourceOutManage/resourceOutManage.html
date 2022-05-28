@@ -3,46 +3,44 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>单号：{{resourceOutManageInfo.applyOrderId}}</h5>
+                    <h5><span><vc:i18n name="单号" namespace="resourceOutManage"></vc:i18n></span>：{{resourceOutManageInfo.applyOrderId}}</h5>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">物品类型</th>
-                            <th class="text-center">物品名称</th>
-                            <th class="text-center">物品规格</th>
-                            <th class="text-center">物品编码</th>
-                            <th class="text-center">物品库存</th>
-                            <th class="text-center">申请数量</th>
-                            <th class="text-center">发放数量</th>
-                            <th class="text-center">备注</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="物品类型" namespace="resourceOutManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品名称" namespace="resourceOutManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品规格" namespace="resourceOutManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品编码" namespace="resourceOutManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品库存" namespace="resourceOutManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="申请数量" namespace="resourceOutManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="发放数量" namespace="resourceOutManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="备注" namespace="resourceOutManage"></vc:i18n></span></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="resourceOut in resourceOutManageInfo.purchaseApplyDetailVo">
-                            <td class="text-center">{{resourceOut.rstName ? resourceOut.rstName : '-'}}</td>
-                            <td class="text-center">{{resourceOut.resName}}</td>
-                            <td class="text-center">{{resourceOut.specName ? resourceOut.specName : '-'}}</td>
-                            <td class="text-center">{{resourceOut.resCode}}</td>
-                            <td class="text-center">{{resourceOut.stock}}</td>
-                            <td class="text-center">{{resourceOut.quantity}}</td>
-                            <td class="text-center">
-                                <input v-model="resourceOut.purchaseQuantity" type="number"
-                                       placeholder="必填，请填写发放数量" class="form-control">
-                            </td>
-                            <td class="text-center">
-                                <input v-model="resourceOut.purchaseRemark" type="text" placeholder="可填，请填写备注"
-                                       class="form-control">
-                            </td>
-                        </tr>
+                            <tr v-for="resourceOut in resourceOutManageInfo.purchaseApplyDetailVo">
+                                <td class="text-center">{{resourceOut.rstName ? resourceOut.rstName : '-'}}</td>
+                                <td class="text-center">{{resourceOut.resName}}</td>
+                                <td class="text-center">{{resourceOut.specName ? resourceOut.specName : '-'}}</td>
+                                <td class="text-center">{{resourceOut.resCode}}</td>
+                                <td class="text-center">{{resourceOut.stock}}</td>
+                                <td class="text-center">{{resourceOut.quantity}}</td>
+                                <td class="text-center">
+                                    <input v-model="resourceOut.purchaseQuantity" type="number" :placeholder="vc.i18n('必填，请填写发放数量','resourceOutManage')" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input v-model="resourceOut.purchaseRemark" type="text" :placeholder="vc.i18n('可填，请填写备注','resourceOutManage')" class="form-control">
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="8">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="8">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
@@ -52,7 +50,7 @@
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_submit()">提交</button>
+            <button type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_submit()"><span><vc:i18n name="提交" namespace="resourceOutManage"></vc:i18n></span></button>
         </div>
     </div>
 </div>

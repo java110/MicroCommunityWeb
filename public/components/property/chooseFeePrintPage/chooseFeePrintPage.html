@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseFeePrintPageModelLabel">选择收据模板</h3>
+                <h3 class="modal-title" id="chooseFeePrintPageModelLabel"><span><vc:i18n name="选择收据模板" namespace="chooseFeePrintPage"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入收据模板名称" type="text" v-model="chooseFeePrintPageInfo._currentFeePrintPageName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入收据模板名称','chooseFeePrintPage')" type="text" v-model="chooseFeePrintPageInfo._currentFeePrintPageName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryFeePrintPages()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryFeePrintPages()"><span><vc:i18n name="查询" namespace="chooseFeePrintPage"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,11 +28,11 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">收据ID</th>
-                            <th class="text-center">名称</th>
-                            <th class="text-center">小区ID</th>
-                            <th class="text-center">收据页面</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="收据" namespace="chooseFeePrintPage"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="名称" namespace="chooseFeePrintPage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="小区" namespace="chooseFeePrintPage"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="收据页面" namespace="chooseFeePrintPage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseFeePrintPage"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -44,7 +44,7 @@
                             <td class="text-center">{{feePrintPage.pageUrl}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseFeePrintPage(feePrintPage)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseFeePrintPage(feePrintPage)"><span><vc:i18n name="选择" namespace="chooseFeePrintPage"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

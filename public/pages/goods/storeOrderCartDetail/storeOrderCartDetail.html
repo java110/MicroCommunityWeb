@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>订单详情</h5>
+                    <h5><span><vc:i18n name="订单详情" namespace="storeOrderCartDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
                             返回
@@ -16,25 +16,25 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">工单编码：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="工单编码" namespace="storeOrderCartDetail"></vc:i18n></span>：</label>
                                         <label class="">{{storeOrderCartDetailInfo.cartId}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">商品名称:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="商品名称" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.prodName}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">商品规格:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="商品规格" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.specValue}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">订单状态:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="订单状态" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.stateName}}</label>
                                     </div>
                                 </div>
@@ -42,25 +42,25 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">单价:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="单价" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.price}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">购买数量:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="购买数量" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.cartNum}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">支付金额:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="支付金额" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.payPrice}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">下单时间:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="下单时间" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.createTime}}</label>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>收货人信息</h5>
+                    <h5><span><vc:i18n name="收货人信息" namespace="storeOrderCartDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     
                     </div>
@@ -87,25 +87,25 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">用户名称：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="用户名称" namespace="storeOrderCartDetail"></vc:i18n></span>：</label>
                                         <label class="">{{storeOrderCartDetailInfo.address.username}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">手机号码:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="手机号码" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.address.tel}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">收货地址:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="收货地址" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.address.address}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="col-form-label">备注:</label>
+                                        <label class="col-form-label"><span><vc:i18n name="备注" namespace="storeOrderCartDetail"></vc:i18n></span>:</label>
                                         <label class="">{{storeOrderCartDetailInfo.remark}}</label>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>操作信息</h5>
+                    <h5><span><vc:i18n name="操作信息" namespace="storeOrderCartDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
 
                     </div>
@@ -130,9 +130,9 @@
                     <table class="table table-stripped">
                         <thead>
                             <tr>
-                                <th scope="col" class="text-center">序号</th>
-                                <th scope="col" class="text-center">操作时间</th>
-                                <th scope="col" class="text-center">说明</th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="序号" namespace="storeOrderCartDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="操作时间" namespace="storeOrderCartDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="说明" namespace="storeOrderCartDetail"></vc:i18n></span></th>
                             </tr>
                         </thead>
                         <tbody>

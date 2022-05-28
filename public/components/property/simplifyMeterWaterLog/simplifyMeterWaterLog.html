@@ -2,9 +2,9 @@
     <div class="row margin-top-lg">
         <div class="col-lg-2 padding-right-xs padding-left-xl">
             <select class="custom-select custom-select-sm" v-model="simplifyMeterWaterFeeInfo.meterType" @change="_listSimplifyMeterWaterFee(1,10)">
-                <option selected value="">请选择表类型</option>
-                <option value="1010">电表</option>
-                <option value="2020">水表</option>
+                <option selected value="">{{vc.i18n('请选择表类型','simplifyMeterWaterLog')}}</option>
+                <option value="1010">{{vc.i18n('电表','simplifyMeterWaterLog')}}</option>
+                <option value="2020">{{vc.i18n('水表','simplifyMeterWaterLog')}}</option>
             </select>
         </div>
         <div class="col-lg-10 text-right" v-if="simplifyMeterWaterFeeInfo.roomId">
@@ -17,14 +17,14 @@
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
                 <tr>
-                    <th class="text-center">表类型</th>
-                    <th class="text-center">对象名称</th>
-                    <th class="text-center">上期度数</th>
-                    <th class="text-center">本期度数</th>
-                    <th class="text-center">上期读表时间</th>
-                    <th class="text-center">本期读表时间</th>
-                    <th class="text-center">创建时间</th>
-                    <th class="text-center">操作</th>
+                    <th class="text-center"><span><vc:i18n name="表类型" namespace="simplifyMeterWaterLog"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="对象名称" namespace="simplifyMeterWaterLog"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="上期度数" namespace="simplifyMeterWaterLog"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="本期度数" namespace="simplifyMeterWaterLog"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="上期读表时间" namespace="simplifyMeterWaterLog"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="本期读表时间" namespace="simplifyMeterWaterLog"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="创建时间" namespace="simplifyMeterWaterLog"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="操作" namespace="simplifyMeterWaterLog"></vc:i18n></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -39,11 +39,11 @@
                     <td class="text-center">{{meterWater.createTime}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <button class="btn-white btn btn-xs" v-on:click="_openEditMeterWaterModel(meterWater)">修改
+                            <button class="btn-white btn btn-xs" v-on:click="_openEditMeterWaterModel(meterWater)"><span><vc:i18n name="修改" namespace="simplifyMeterWaterLog"></vc:i18n></span>
                         </button>
                         </div>
                         <div class="btn-group">
-                            <button class="btn-white btn btn-xs" v-on:click="_openDeleteMeterWaterModel(meterWater)">删除
+                            <button class="btn-white btn btn-xs" v-on:click="_openDeleteMeterWaterModel(meterWater)"><span><vc:i18n name="删除" namespace="simplifyMeterWaterLog"></vc:i18n></span>
                         </button>
                         </div>
                     </td>

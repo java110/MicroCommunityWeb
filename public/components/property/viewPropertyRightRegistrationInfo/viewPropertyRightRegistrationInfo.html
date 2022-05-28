@@ -2,17 +2,17 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>房屋产权信息</h5>
+                <h5><span><vc:i18n name="房屋产权信息" namespace="viewPropertyRightRegistrationInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewPropertyRightRegistrationInfo.index != 2"
                             class="btn btn-primary btn-sm" style="margin-right:10px;"
                             v-on:click="_openSelectPropertyRightRegistrationInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择房屋产权
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择房屋产权" namespace="viewPropertyRightRegistrationInfo"></vc:i18n></span>
                     </button>
 
                     <button type="button" v-if="viewPropertyRightRegistrationInfo.index != 2"
                             class="btn btn-primary btn-sm" v-on:click="_openAddPropertyRightRegistrationInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加房屋产权
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加房屋产权" namespace="viewPropertyRightRegistrationInfo"></vc:i18n></span>
                     </button>
                 </div>
             </div>
@@ -20,19 +20,19 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">房屋id：</label>
+                            <label class="col-form-label"><span><vc:i18n name="房屋" namespace="viewPropertyRightRegistrationInfo"></vc:i18n></span>id：</label>
                             <label class="">{{viewPropertyRightRegistrationInfo.roomId}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">姓名：</label>
+                            <label class="col-form-label"><span><vc:i18n name="姓名" namespace="viewPropertyRightRegistrationInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPropertyRightRegistrationInfo.name}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">联系方式：</label>
+                            <label class="col-form-label"><span><vc:i18n name="联系方式" namespace="viewPropertyRightRegistrationInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPropertyRightRegistrationInfo.link}}</label>
                         </div>
                     </div>
@@ -40,13 +40,13 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">身份证号：</label>
+                            <label class="col-form-label"><span><vc:i18n name="身份证号" namespace="viewPropertyRightRegistrationInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPropertyRightRegistrationInfo.idCard}}</label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label">地址：</label>
+                            <label class="col-form-label"><span><vc:i18n name="地址" namespace="viewPropertyRightRegistrationInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewPropertyRightRegistrationInfo.address}}</label>
                         </div>
                     </div>

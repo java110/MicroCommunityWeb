@@ -69,7 +69,9 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        vc.toast(_json.msg);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#visitOwnerRepairModel').modal('hide');
                             vc.toast("回访成功");

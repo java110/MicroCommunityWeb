@@ -1,0 +1,71 @@
+<div id="selectFeeConfigModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="创建费用" namespace="selectFeeConfig"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用类型" namespace="selectFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="selectFeeConfigInfo.feeTypeCd"
+                                            @change="_changeFeeTypeCdX(selectFeeConfigInfo.feeTypeCd)">
+                                        <option selected disabled value="">{{vc.i18n('必填','selectFeeConfig')}}，请选择费用类型</option>
+                                        <option v-for="(item,index) in selectFeeConfigInfo.feeTypeCds" :key="index"
+                                                v-bind:value="item.statusCd"
+                                                v-if="item.statusCd !='888800010008' && item.statusCd !='888800010017'">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费项目" namespace="selectFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="selectFeeConfigInfo.configId" @change="_selectFeeConfigIfOnceFee(selectFeeConfigInfo.configId)">
+                                        <option selected disabled value="">{{vc.i18n('必填','selectFeeConfig')}}，请选择收费项目</option>
+                                        <option v-for="(item,index) in selectFeeConfigInfo.feeConfigs" :key="index"
+                                                v-bind:value="item.configId">{{item.feeName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="selectFeeConfigInfo.computingFormula == '4004'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费金额" namespace="selectFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="selectFeeConfigInfo.amount" type="text"
+                                    :placeholder="vc.i18n('必填，请填写收费金额','selectFeeConfig')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="计费起始时间" namespace="selectFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="selectFeeConfigInfo.startTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写计费起始时间','selectFeeConfig')" class="form-control roomCreateFeeStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="selectFeeConfigInfo.feeFlag == '2006012'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="计费结束时间" namespace="selectFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="selectFeeConfigInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写计费结束时间','selectFeeConfig')" class="form-control roomCreateFeeEndTime">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveRoomCreateFeeInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;提交
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

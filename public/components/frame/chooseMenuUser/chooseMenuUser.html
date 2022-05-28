@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseMenuUserModelLabel">选择常用菜单</h3>
+                <h3 class="modal-title" id="chooseMenuUserModelLabel"><span><vc:i18n name="选择常用菜单" namespace="chooseMenuUser"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入常用菜单名称" type="text" v-model="chooseMenuUserInfo._currentMenuUserName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入常用菜单名称','chooseMenuUser')" type="text" v-model="chooseMenuUserInfo._currentMenuUserName" class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMenuUsers()">查询</button>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMenuUsers()"><span><vc:i18n name="查询" namespace="chooseMenuUser"></vc:i18n></span></button>
                                             </span>
                                     </div>
                                 </div>
@@ -28,11 +28,11 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                                                        <th class="text-center">编号</th>
-                            <th class="text-center">菜单</th>
-                            <th class="text-center">图标</th>
-                            <th class="text-center">列顺序'</th>
-                            <th class="text-center">操作</th>
+                                                                        <th class="text-center"><span><vc:i18n name="编号" namespace="chooseMenuUser"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="菜单" namespace="chooseMenuUser"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="图标" namespace="chooseMenuUser"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="列顺序" namespace="chooseMenuUser"></vc:i18n></span>'</th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseMenuUser"></vc:i18n></span></th>
 
                                         </tr>
                                     </thead>
@@ -44,7 +44,7 @@
                             <td class="text-center">{{menuUser.seq}}</td>
 
                                             <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMenuUser(menuUser)">选择</button>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMenuUser(menuUser)"><span><vc:i18n name="选择" namespace="chooseMenuUser"></vc:i18n></span></button>
                                             </td>
                                         </tr>
                                     </tbody>

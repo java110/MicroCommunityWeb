@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>属性配置信息</h5>
+                <h5><span><vc:i18n name="属性配置信息" namespace="viewAttrSpecInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewAttrSpecInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectAttrSpecInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择属性配置</button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择属性配置" namespace="viewAttrSpecInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewAttrSpecInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddAttrSpecInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加属性配置</button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加属性配置" namespace="viewAttrSpecInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >属性表：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="属性表" namespace="viewAttrSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttrSpecInfo.tableName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >规格名称：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="规格名称" namespace="viewAttrSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttrSpecInfo.specName}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >说明：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="说明" namespace="viewAttrSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttrSpecInfo.specHoldplace}}</label>
                         </div>
 </div>
@@ -35,19 +35,19 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >必填：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="必填" namespace="viewAttrSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttrSpecInfo.required}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >展示：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="展示" namespace="viewAttrSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttrSpecInfo.specShow}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >值类型：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="值类型" namespace="viewAttrSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttrSpecInfo.specValueType}}</label>
                         </div>
 </div>
@@ -55,13 +55,13 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >规格类型：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="规格类型" namespace="viewAttrSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttrSpecInfo.specType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >查询显示：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="查询显示" namespace="viewAttrSpecInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewAttrSpecInfo.listShow}}</label>
                         </div>
 </div>

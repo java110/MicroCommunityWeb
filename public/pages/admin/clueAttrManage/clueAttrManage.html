@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
+                    <h5><span><vc:i18n name="查询条件" namespace="clueAttrManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         
                     </div>
@@ -12,13 +12,13 @@
                     <div class="row">
 <div class="col-sm-4" >
 <div class="form-group">
-                                <input type="text" placeholder="请输入目前进展情况" v-model="clueAttrManageInfo.conditions.nowSituation" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入目前进展情况','clueAttrManage')" v-model="clueAttrManageInfo.conditions.nowSituation" class=" form-control">
                             </div>                        </div><div class="col-sm-4" >
 <div class="form-group">
-                                <input type="text" placeholder="请输入跟进计划" v-model="clueAttrManageInfo.conditions.nextSituation" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入跟进计划','clueAttrManage')" v-model="clueAttrManageInfo.conditions.nextSituation" class=" form-control">
                             </div>                        </div><div class="col-sm-1">
                                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryClueAttrMethod()">
-                                    <i class="glyphicon glyphicon-search"></i> 查询
+                                    <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="clueAttrManage"></vc:i18n></span>
                             </button>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>线索管理信息</h5>
+                    <h5><span><vc:i18n name="线索管理信息" namespace="clueAttrManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm margin-right"
                             v-on:click="_goBack()">
@@ -50,11 +50,11 @@
                     >
                         <thead>
                         <tr>
-                            <th class="text-center">跟进ID</th>
-                            <th class="text-center">跟进时间</th>
-                            <th class="text-center">目前进展情况</th>
-                            <th class="text-center">下一步推进计划</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><span><vc:i18n name="跟进" namespace="clueAttrManage"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="跟进时间" namespace="clueAttrManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="目前进展情况" namespace="clueAttrManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="下一步推进计划" namespace="clueAttrManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="clueAttrManage"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -64,10 +64,10 @@
                             <td class="text-center">{{clueAttr.nowSituation}}</td>
                             <td class="text-center">{{clueAttr.nextSituation}}</td>
                             <td class="text-center"><div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditClueAttrModel(clueAttr)">修改</button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditClueAttrModel(clueAttr)"><span><vc:i18n name="修改" namespace="clueAttrManage"></vc:i18n></span></button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteClueAttrModel(clueAttr)">删除</button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteClueAttrModel(clueAttr)"><span><vc:i18n name="删除" namespace="clueAttrManage"></vc:i18n></span></button>
                                 </div></td>
 
                         </tr>

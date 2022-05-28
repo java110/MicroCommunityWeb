@@ -2,11 +2,11 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>物品信息</h5>
+                <h5><span><vc:i18n name="物品信息" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewResourceMyGoodsInfo.index != 2" class="btn btn-primary btn-sm"
                             style="margin-right:10px;" v-on:click="_openSelectResourceMyGoodsInfoModel()">
-                        <i class="fa fa-search"></i> 选择物品
+                        <i class="fa fa-search"></i> <span><vc:i18n name="选择物品" namespace="viewResourceMyGoodsInfo"></vc:i18n></span>
                     </button>
                 </div>
             </div>
@@ -14,16 +14,16 @@
                 <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                     <thead>
                     <tr>
-                        <th class="text-center">物品名称</th>
-                        <th class="text-center">物品编码</th>
-                        <th class="text-center">物品类型</th>
-                        <th class="text-center">是否是固定物品</th>
-                        <th class="text-center">物品库存</th>
-                        <th class="text-center">物品最小计量总数</th>
-                        <th class="text-center">损耗数量</th>
-                        <th class="text-center">物品使用类型</th>
-                        <th class="text-center">备注</th>
-                        <th class="text-center">操作</th>
+                        <th class="text-center"><span><vc:i18n name="物品名称" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="物品编码" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="物品类型" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="是否是固定物品" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="物品库存" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="物品最小计量总数" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="损耗数量" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="物品使用类型" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="备注" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name="操作" namespace="viewResourceMyGoodsInfo"></vc:i18n></span></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,24 +42,24 @@
                             {{resourceStore.miniStock}}{{resourceStore.miniUnitCodeName}}
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
-                            <input v-model="resourceStore.giveQuantity" type="number" placeholder="必填，请填写数量"
+                            <input v-model="resourceStore.giveQuantity" type="number" :placeholder="vc.i18n('必填，请填写数量','viewResourceMyGoodsInfo')"
                                    class="form-control" style="width: 70%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.miniUnitCodeName}}
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
                             <select class="custom-select" v-model="resourceStore.state">
-                                <option selected value="">请选择物品使用类型</option>
-                                <option value="1001">报废回收</option>
-                                <option value="3003">公用损耗</option>
+                                <option selected value="">{{vc.i18n('请选择物品使用类型','viewResourceMyGoodsInfo')}}</option>
+                                <option value="1001">{{vc.i18n('报废回收','viewResourceMyGoodsInfo')}}</option>
+                                <option value="3003">{{vc.i18n('公用损耗','viewResourceMyGoodsInfo')}}</option>
                             </select>
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
                             <input v-model="resourceStore.purchaseRemark" type="text" class="form-control"
-                                   placeholder="必填，请填写备注">
+                                   :placeholder="vc.i18n('必填，请填写备注','viewResourceMyGoodsInfo')">
                         </td>
                         <td class="text-center" style="vertical-align: inherit;">
                             <button type="button" class="btn btn-danger btn-sm" style="margin-right:10px;"
                                     v-on:click="_removeSelectResourceStoreItem(resourceStore.resId, index)">
-                                <i class="fa fa-times"></i> 移除
+                                <i class="fa fa-times"></i> <span><vc:i18n name="移除" namespace="viewResourceMyGoodsInfo"></vc:i18n></span>
                             </button>
                         </td>
                     </tr>

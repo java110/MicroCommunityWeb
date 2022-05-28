@@ -3,11 +3,11 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>工单详情</h5>
+                    <h5><span><vc:i18n name="工单详情" namespace="ownerRepairDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_printRepairDetail()">打印
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_printRepairDetail()"><span><vc:i18n name="打印" namespace="ownerRepairDetail"></vc:i18n></span>
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">返回</button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="ownerRepairDetail"></vc:i18n></span></button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -16,19 +16,19 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">工单编码：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="工单编码" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.repairId}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">报修类型：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="报修类型" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.repairTypeName}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">报修人：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="报修人" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.repairName}}</label>
                                     </div>
                                 </div>
@@ -36,19 +36,19 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">联系方式：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="联系方式" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.tel}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">位置：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="位置" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.repairObjName}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">预约时间：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="预约时间" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.appointmentTime}}</label>
                                     </div>
                                 </div>
@@ -56,28 +56,28 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">状态：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="状态" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.stateName}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">报修内容：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="报修内容" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.context}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="col-form-label"
-                                               v-if="ownerRepairDetailInfo.maintenanceType != null && ownerRepairDetailInfo.maintenanceType != ''">维修类型:</label>
+                                               v-if="ownerRepairDetailInfo.maintenanceType != null && ownerRepairDetailInfo.maintenanceType != ''"><span><vc:i18n name="维修类型" namespace="ownerRepairDetail"></vc:i18n></span>:</label>
                                         <label class=""
-                                               v-if="ownerRepairDetailInfo.maintenanceType == '1001'">有偿服务</label>
+                                               v-if="ownerRepairDetailInfo.maintenanceType == '1001'"><span><vc:i18n name="有偿服务" namespace="ownerRepairDetail"></vc:i18n></span></label>
                                         <label class=""
-                                               v-if="ownerRepairDetailInfo.maintenanceType == '1002'">无偿服务</label>
+                                               v-if="ownerRepairDetailInfo.maintenanceType == '1002'"><span><vc:i18n name="无偿服务" namespace="ownerRepairDetail"></vc:i18n></span></label>
                                         <label class=""
-                                               v-if="ownerRepairDetailInfo.maintenanceType == '1003'">需要用料</label>
+                                               v-if="ownerRepairDetailInfo.maintenanceType == '1003'"><span><vc:i18n name="需要用料" namespace="ownerRepairDetail"></vc:i18n></span></label>
                                         <label class=""
-                                               v-if="ownerRepairDetailInfo.maintenanceType == '1004'">无需用料</label>
+                                               v-if="ownerRepairDetailInfo.maintenanceType == '1004'"><span><vc:i18n name="无需用料" namespace="ownerRepairDetail"></vc:i18n></span></label>
                                     </div>
                                 </div>
                             </div>
@@ -85,40 +85,40 @@
                                 <div class="col-sm-4"
                                      v-if="ownerRepairDetailInfo.maintenanceType == '1001' || ownerRepairDetailInfo.maintenanceType == '1003'">
                                     <div class="form-group">
-                                        <label class="col-form-label">用料：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="用料" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.repairMaterials}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" v-if="ownerRepairDetailInfo.maintenanceType == '1001'">
                                     <div class="form-group">
-                                        <label class="col-form-label">费用明细：</label>
-                                        <label class="">{{ownerRepairDetailInfo.repairFee}}元 &nbsp;&nbsp;(单价*数量)</label>
+                                        <label class="col-form-label"><span><vc:i18n name="费用明细" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{ownerRepairDetailInfo.repairFee}}<span><vc:i18n name="元" namespace="ownerRepairDetail"></vc:i18n></span> &nbsp;&nbsp;(单价*数量)</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" v-if="ownerRepairDetailInfo.appraiseScore != '0'">
                                     <div class="form-group">
-                                        <label class="col-form-label">综合评价得分：</label>
-                                        <label class="">{{ownerRepairDetailInfo.appraiseScore}}分</label>
+                                        <label class="col-form-label"><span><vc:i18n name="综合评价得分" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{ownerRepairDetailInfo.appraiseScore}}<span><vc:i18n name="分" namespace="ownerRepairDetail"></vc:i18n></span></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4" v-if="ownerRepairDetailInfo.doorSpeedScore != '0'">
                                     <div class="form-group">
-                                        <label class="col-form-label">上门速度评分：</label>
-                                        <label class="">{{ownerRepairDetailInfo.doorSpeedScore}}分</label>
+                                        <label class="col-form-label"><span><vc:i18n name="上门速度评分" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{ownerRepairDetailInfo.doorSpeedScore}}<span><vc:i18n name="分" namespace="ownerRepairDetail"></vc:i18n></span></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" v-if="ownerRepairDetailInfo.repairmanServiceScore != '0'">
                                     <div class="form-group">
-                                        <label class="col-form-label">维修员服务评分：</label>
-                                        <label class="">{{ownerRepairDetailInfo.repairmanServiceScore}}分</label>
+                                        <label class="col-form-label"><span><vc:i18n name="维修员服务评分" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{ownerRepairDetailInfo.repairmanServiceScore}}<span><vc:i18n name="分" namespace="ownerRepairDetail"></vc:i18n></span></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" v-if="ownerRepairDetailInfo.average != '0.0'">
                                     <div class="form-group">
-                                        <label class="col-form-label">平均分：</label>
-                                        <label class="">{{ownerRepairDetailInfo.average}}分</label>
+                                        <label class="col-form-label"><span><vc:i18n name="平均分" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{ownerRepairDetailInfo.average}}<span><vc:i18n name="分" namespace="ownerRepairDetail"></vc:i18n></span></label>
                                     </div>
                                 </div>
                             </div>
@@ -126,13 +126,13 @@
                             <div class="row" v-if="ownerRepairDetailInfo.visitType">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-form-label">回访满意度：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="回访满意度" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.visitType=='1001'?'满意':'不满意'}}</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <label class="col-form-label">回访内容：</label>
+                                        <label class="col-form-label"><span><vc:i18n name="回访内容" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
                                         <label class="">{{ownerRepairDetailInfo.visitContext}}</label>
                                     </div>
                                 </div>
@@ -147,7 +147,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>工单图片</h5>
+                    <h5><span><vc:i18n name="工单图片" namespace="ownerRepairDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -169,7 +169,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>维修前图片</h5>
+                    <h5><span><vc:i18n name="维修前图片" namespace="ownerRepairDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -191,7 +191,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>维修后图片</h5>
+                    <h5><span><vc:i18n name="维修后图片" namespace="ownerRepairDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -214,7 +214,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>相关物品</h5>
+                    <h5><span><vc:i18n name="相关物品" namespace="ownerRepairDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -222,14 +222,14 @@
                     <table class="table table-stripped">
                         <thead>
                         <tr>
-                            <th scope="col" class="text-center">物品资源编号</th>
-                            <th scope="col" class="text-center">物品资源类型</th>
-                            <th scope="col" class="text-center">物品资源名称</th>
-                            <th scope="col" class="text-center">物品资源规格</th>
-                            <th scope="col" class="text-center">物品使用数量</th>
-                            <th scope="col" class="text-center">物品价格</th>
-                            <th scope="col" class="text-center">使用人</th>
-                            <th scope="col" class="text-center">时间</th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="物品资源编号" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="物品资源类型" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="物品资源名称" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="物品资源规格" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="物品使用数量" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="物品价格" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="使用人" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="时间" namespace="ownerRepairDetail"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -253,7 +253,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>工单流转</h5>
+                    <h5><span><vc:i18n name="工单流转" namespace="ownerRepairDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
@@ -261,13 +261,13 @@
                     <table class="table table-stripped">
                         <thead>
                         <tr>
-                            <th scope="col" class="text-center">序号</th>
-                            <th scope="col" class="text-center">处理人</th>
-                            <th scope="col" class="text-center">状态</th>
-                            <th scope="col" class="text-center">处理开始时间</th>
-                            <th scope="col" class="text-center">处理结束时间</th>
-                            <th scope="col" class="text-center">耗时</th>
-                            <th scope="col" class="text-center">意见</th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="序号" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="处理人" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="状态" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="处理开始时间" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="处理结束时间" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="耗时" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="意见" namespace="ownerRepairDetail"></vc:i18n></span></th>
                         </tr>
                         </thead>
                         <tbody>

@@ -2,32 +2,32 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>租聘设置信息</h5>
+                <h5><span><vc:i18n name="租聘设置信息" namespace="viewRentingConfigInfo"></vc:i18n></span></h5>
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" v-if="viewRentingConfigInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectRentingConfigInfoModel()">
-                        <i class="glyphicon glyphicon-search"></i> 选择租聘设置</button>
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择租聘设置" namespace="viewRentingConfigInfo"></vc:i18n></span></button>
 
                     <button type="button" v-if="viewRentingConfigInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddRentingConfigInfoModel()">
-                        <i class="glyphicon glyphicon-plus"></i> 添加租聘设置</button>
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加租聘设置" namespace="viewRentingConfigInfo"></vc:i18n></span></button>
                 </div>
             </div>
             <div class="ibox-content">
                 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >租聘类型：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="租聘类型" namespace="viewRentingConfigInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewRentingConfigInfo.rentingType}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >收费公式：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="收费公式" namespace="viewRentingConfigInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewRentingConfigInfo.rentingFormula}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >服务费：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="服务费" namespace="viewRentingConfigInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewRentingConfigInfo.servicePrice}}</label>
                         </div>
 </div>
@@ -35,19 +35,19 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >业主收费比率：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="业主收费比率" namespace="viewRentingConfigInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewRentingConfigInfo.serviceOwnerRate}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >租客收费比率：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="租客收费比率" namespace="viewRentingConfigInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewRentingConfigInfo.serviceTenantRate}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >运营分账比率：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="运营分账比率" namespace="viewRentingConfigInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewRentingConfigInfo.adminSeparateRate}}</label>
                         </div>
 </div>
@@ -55,13 +55,13 @@
 <div class="row">
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >代理商分账比率：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="代理商分账比率" namespace="viewRentingConfigInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewRentingConfigInfo.proxySeparateRate}}</label>
                         </div>
 </div>
 <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" >物业分账比率：</label>
+                            <label class="col-form-label" ><span><vc:i18n name="物业分账比率" namespace="viewRentingConfigInfo"></vc:i18n></span>：</label>
                             <label class="">{{viewRentingConfigInfo.propertySeparateRate}}</label>
                         </div>
 </div>

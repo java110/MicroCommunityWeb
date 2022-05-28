@@ -2,36 +2,36 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">添加跟进</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加跟进" namespace="addClueAttr"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
             <div class="form-group row">
-            <label class="col-sm-2 col-form-label">跟进时间</label>
+            <label class="col-sm-2 col-form-label"><span><vc:i18n name="跟进时间" namespace="addClueAttr"></vc:i18n></span></label>
             <div class="col-sm-10">
-            <input v-model="addClueAttrInfo.nowTime" type="text" placeholder="必填，请填跟进时间"
+            <input v-model="addClueAttrInfo.nowTime" type="text" :placeholder="vc.i18n('必填，请填跟进时间','addClueAttr')"
                 class="form-control addNowTime">
             </div>
             </div>
          <div class="form-group row">
-         <label class="col-sm-2 col-form-label">目前进展情况</label>
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name="目前进展情况" namespace="addClueAttr"></vc:i18n></span></label>
          <div class="col-sm-10">
-           <textarea placeholder="必填，请填写目前进展情况" cols="15" class="form-control"
+           <textarea :placeholder="vc.i18n('必填，请填写目前进展情况','addClueAttr')" cols="15" class="form-control"
            v-model="addClueAttrInfo.nowSituation"></textarea>
 
          </div>
             </div>
         <div class="form-group row">
-                <label class="col-sm-2 col-form-label">下一步推进计划</label>
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="下一步推进计划" namespace="addClueAttr"></vc:i18n></span></label>
                 <div class="col-sm-10">
-                <textarea placeholder="选填，请填写下一步推进计划" cols="15" class="form-control"
+                <textarea :placeholder="vc.i18n('选填，请填写下一步推进计划','addClueAttr')" cols="15" class="form-control"
                 v-model="addClueAttrInfo.nextSituation"></textarea>
                 </div>
         </div>
 
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="saveClueAttrInfo()" ><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addClueAttr"></vc:i18n></span></button>
                             </div>
                         </div>
                     </div>

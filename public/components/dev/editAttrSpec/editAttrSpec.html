@@ -3,86 +3,86 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">修改属性配置</h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改属性配置" namespace="editAttrSpec"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">属性表</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="属性表" namespace="editAttrSpec"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttrSpecInfo.tableName">
-                                        <option selected disabled value="">必填，请选择属性表</option>
-                                        <option value="building_room_attr">房屋属性</option>
-                                        <option value="building_owner_attr">业主属性</option>
-                                        <option value="building_community_attr">小区属性</option>
-                                        <option value="machine_attr">设备属性</option>
-                                        <option value="parking_area_attr">停车场属性</option>
-                                        <option value="owner_car_attr">车辆属性</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAttrSpec')}}，请选择属性表</option>
+                                        <option value="building_room_attr">{{vc.i18n('房屋属性','editAttrSpec')}}</option>
+                                        <option value="building_owner_attr">{{vc.i18n('业主属性','editAttrSpec')}}</option>
+                                        <option value="building_community_attr">{{vc.i18n('小区属性','editAttrSpec')}}</option>
+                                        <option value="machine_attr">{{vc.i18n('设备属性','editAttrSpec')}}</option>
+                                        <option value="parking_area_attr">{{vc.i18n('停车场属性','editAttrSpec')}}</option>
+                                        <option value="owner_car_attr">{{vc.i18n('车辆属性','editAttrSpec')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">规格名称</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格名称" namespace="editAttrSpec"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttrSpecInfo.specName" type="text" placeholder="必填，请填写规格名称"
+                                    <input v-model="editAttrSpecInfo.specName" type="text" :placeholder="vc.i18n('必填，请填写规格名称','editAttrSpec')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">说明</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="说明" namespace="editAttrSpec"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttrSpecInfo.specHoldplace" type="text" placeholder="必填，请填写说明"
+                                    <input v-model="editAttrSpecInfo.specHoldplace" type="text" :placeholder="vc.i18n('必填，请填写说明','editAttrSpec')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">必填</label>
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('必填','editAttrSpec')}}</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttrSpecInfo.required">
-                                        <option selected disabled value="">必填，请选择必填</option>
-                                        <option value="Y">是</option>
-                                        <option value="N">否</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAttrSpec')}}，请选择{{vc.i18n('必填','editAttrSpec')}}</option>
+                                        <option value="Y">{{vc.i18n('是','editAttrSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','editAttrSpec')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">展示</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="展示" namespace="editAttrSpec"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttrSpecInfo.specShow">
-                                        <option selected disabled value="">必填，请选择展示</option>
-                                        <option value="Y">是</option>
-                                        <option value="N">否</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAttrSpec')}}，请选择展示</option>
+                                        <option value="Y">{{vc.i18n('是','editAttrSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','editAttrSpec')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">值类型</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="值类型" namespace="editAttrSpec"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttrSpecInfo.specValueType">
-                                        <option selected disabled value="">必填，请选择值类型</option>
-                                        <option value="1001">字符串</option>
-                                        <option value="2002">整数</option>
-                                        <option value="3003">金额</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAttrSpec')}}，请选择值类型</option>
+                                        <option value="1001">{{vc.i18n('字符串','editAttrSpec')}}</option>
+                                        <option value="2002">{{vc.i18n('整数','editAttrSpec')}}</option>
+                                        <option value="3003">{{vc.i18n('金额','editAttrSpec')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">规格类型</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格类型" namespace="editAttrSpec"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttrSpecInfo.specType">
-                                        <option selected disabled value="">必填，请选择规格类型</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAttrSpec')}}，请选择规格类型</option>
                                         <option value="2233">input</option>
                                         <option value="3344">select</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">查询显示</label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="查询显示" namespace="editAttrSpec"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttrSpecInfo.listShow">
-                                        <option selected disabled value="">必填，请选择查询显示</option>
-                                        <option value="Y">是</option>
-                                        <option value="N">否</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editAttrSpec')}}，请选择查询显示</option>
+                                        <option value="Y">{{vc.i18n('是','editAttrSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','editAttrSpec')}}</option>
                                     </select>
                                 </div>
                             </div>

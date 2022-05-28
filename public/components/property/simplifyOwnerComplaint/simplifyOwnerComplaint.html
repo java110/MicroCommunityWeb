@@ -15,14 +15,14 @@
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
             <tr>
-                <th class="text-center">投诉类型</th>
-                <th class="text-center">房屋</th>
-                <th class="text-center">投诉人</th>
-                <th class="text-center">投诉人电话</th>
-                <th class="text-center">投诉状态</th>
-                <th class="text-center">处理人</th>
-                <th class="text-center">处理电话</th>
-                <th class="text-center">操作</th>
+                <th class="text-center"><span><vc:i18n name="投诉类型" namespace="simplifyOwnerComplaint"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="房屋" namespace="simplifyOwnerComplaint"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="投诉人" namespace="simplifyOwnerComplaint"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="投诉人电话" namespace="simplifyOwnerComplaint"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="投诉状态" namespace="simplifyOwnerComplaint"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="处理人" namespace="simplifyOwnerComplaint"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="处理电话" namespace="simplifyOwnerComplaint"></vc:i18n></span></th>
+                <th class="text-center"><span><vc:i18n name="操作" namespace="simplifyOwnerComplaint"></vc:i18n></span></th>
             </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                 <!-- <td class="text-center">{{complaint.complaintId}}</td> -->
                 <td class="text-center">{{complaint.typeCdName}}</td>
                 <td class="text-center">
-                    {{complaint.floorNum}}号楼{{complaint.unitNum}}单元{{complaint.roomNum}}室
+                    {{complaint.floorNum}}<span><vc:i18n name="号楼" namespace="simplifyOwnerComplaint"></vc:i18n></span>{{complaint.unitNum}}<span><vc:i18n name="单元" namespace="simplifyOwnerComplaint"></vc:i18n></span>{{complaint.roomNum}}<span><vc:i18n name="室" namespace="simplifyOwnerComplaint"></vc:i18n></span>
                 </td>
                 <td class="text-center">{{complaint.complaintName}}</td>
                 <td class="text-center">{{complaint.tel}}</td>
@@ -39,11 +39,11 @@
                 <td class="text-center">{{complaint.currentUserTel == ''?'无':complaint.currentUserTel}}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                        <button class="btn-white btn btn-xs" v-on:click="_openComplaintDetailModel(complaint)">详情
+                        <button class="btn-white btn btn-xs" v-on:click="_openComplaintDetailModel(complaint)"><span><vc:i18n name="详情" namespace="simplifyOwnerComplaint"></vc:i18n></span>
                         </button>
                     </div>
                     <div class="btn-group">
-                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(complaint)">流程图
+                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(complaint)"><span><vc:i18n name="流程图" namespace="simplifyOwnerComplaint"></vc:i18n></span>
                         </button>
                     </div>
                 </td>

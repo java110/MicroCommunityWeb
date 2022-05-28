@@ -3,25 +3,21 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>查询条件</h5>
-                    <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">
-                            {{returnPayFeeManageInfo.moreCondition == true ? '隐藏' : '更多'}}
-                        </button>
-                    </div>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="returnPayFeeManage"></vc:i18n></span>
+                    </h5>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="缴费单号"
-                                       v-model="returnPayFeeManageInfo.conditions.detailId" class=" form-control">
+
+                                <input type="text" :placeholder="vc.i18n('缴费单号','returnPayFeeManage')" v-model="returnPayFeeManageInfo.conditions.detailId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="returnPayFeeManageInfo.conditions.feeTypeCd">
-                                <option value="" selected>选择费用类型</option>
+                                <option value="" selected>{{vc.i18n('选择费用类型','returnPayFeeManage')}}</option>
                                 <option v-for="(item,index) in returnPayFeeManageInfo.feeTypes" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -29,16 +25,15 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="returnPayFeeManageInfo.conditions.state">
-                                <option value="" selected>选择审核状态</option>
+                                <option value="" selected>{{vc.i18n('选择审核状态','returnPayFeeManage')}}</option>
                                 <option v-for="(item,index) in returnPayFeeManageInfo.returnPayFeeStates" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_queryReturnPayFeeMethod()">
-                                <i class="fa fa-search"></i> 查询
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryReturnPayFeeMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="returnPayFeeManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_resetReturnPayFeeMethod()">
@@ -49,8 +44,7 @@
                     <div class="row" v-show="returnPayFeeManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请填写付费对象"
-                                       v-model="returnPayFeeManageInfo.conditions.payerObjName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号  车辆编号等','returnPayFeeManage')" v-model="returnPayFeeManageInfo.conditions.payerObjName" class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -62,49 +56,70 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>退费申请单</h5>
+                    <h5>
+                        <span><vc:i18n name="退费申请单" namespace="returnPayFeeManage"></vc:i18n></span>
+                    </h5>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">退款单号</th>
-                            <th class="text-center">缴费单号</th>
-                            <th class="text-center">费用类型</th>
-                            <th class="text-center">付费对象</th>
-                            <th class="text-center">付费周期(单位:月)</th>
-                            <th class="text-center">应付金额(单位:元)</th>
-                            <th class="text-center">实付金额(单位:元)</th>
-                            <th class="text-center">申请时间</th>
-                            <th class="text-center">退费原因</th>
-                            <th class="text-center">审核状态</th>
-                            <th class="text-center">操作</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <span><vc:i18n name="退款单号" namespace="returnPayFeeManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="缴费单号" namespace="returnPayFeeManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="费用类型" namespace="returnPayFeeManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="付费对象" namespace="returnPayFeeManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="付费周期" namespace="returnPayFeeManage"></vc:i18n></span>(单位:月)</th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="应付金额" namespace="returnPayFeeManage"></vc:i18n></span>(单位:元)</th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="实付金额" namespace="returnPayFeeManage"></vc:i18n></span>(单位:元)</th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="申请时间" namespace="returnPayFeeManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="退费原因" namespace="returnPayFeeManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="审核状态" namespace="returnPayFeeManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="操作" namespace="returnPayFeeManage"></vc:i18n></span>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="payFee in returnPayFeeManageInfo.returnPayFees">
-                            <td class="text-center">{{payFee.returnFeeId}}</td>
-                            <td class="text-center">{{payFee.detailId}}</td>
-                            <td class="text-center">{{payFee.feeTypeCdName}}</td>
-                            <td class="text-center">{{payFee.payerObjName}}</td>
-                            <td class="text-center">{{vc.unum(payFee.cycles)}}</td>
-                            <td class="text-center">{{vc.unum(payFee.receivableAmount)}}</td>
-                            <td class="text-center">{{vc.unum(payFee.receivedAmount)}}</td>
-                            <td class="text-center">{{payFee.createTime}}</td>
-                            <td class="text-center">{{payFee.reason}}</td>
-                            <td class="text-center">
-                                <span class="badge badge-success"
-                                      v-if="payFee.state == '1100'">{{payFee.stateName}}</span>
-                                <span class="badge badge-danger"
-                                      v-else-if="payFee.state == '1200'">{{payFee.stateName}}</span>
-                                <span class="badge badge-info" v-else>{{payFee.stateName}}</span>
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-if="payFee.state == 1000"
-                                            v-on:click="_openReturnPayFeeAuditModel(payFee)">审核
+                            <tr v-for="payFee in returnPayFeeManageInfo.returnPayFees">
+                                <td class="text-center">{{payFee.returnFeeId}}</td>
+                                <td class="text-center">{{payFee.detailId}}</td>
+                                <td class="text-center">{{payFee.feeTypeCdName}}</td>
+                                <td class="text-center">
+                                    {{payFee.payerObjName}}
+                                </td>
+
+                                <td class="text-center">{{vc.unum(payFee.cycles)}}</td>
+                                <td class="text-center">{{vc.unum(payFee.receivableAmount)}}</td>
+                                <td class="text-center">{{vc.unum(payFee.receivedAmount)}}</td>
+                                <td class="text-center">{{payFee.createTime}}</td>
+                                <td class="text-center">{{payFee.reason}}</td>
+                                <td class="text-center">
+                                    <span class="badge badge-success" v-if="payFee.state == '1100'">{{payFee.stateName}}</span>
+                                    <span class="badge badge-danger" v-else-if="payFee.state == '1200'">{{payFee.stateName}}</span>
+                                    <span class="badge badge-info" v-else>{{payFee.stateName}}</span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-if="payFee.state == 1000" v-on:click="_openReturnPayFeeAuditModel(payFee)"><span><vc:i18n name="审核" namespace="returnPayFeeManage"></vc:i18n></span>
                                     </button>
-                                    <button class="btn-white btn btn-xs" v-on:click="_toReturnFeeDetail(payFee)">详情
+                                        <button class="btn-white btn btn-xs" v-on:click="_toReturnFeeDetail(payFee)"><span><vc:i18n name="详情" namespace="returnPayFeeManage"></vc:i18n></span>
                                     </button>
                                 </div>
                             </td>

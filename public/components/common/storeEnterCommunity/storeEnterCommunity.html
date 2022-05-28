@@ -3,14 +3,14 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="addPrivilegeModalLabel">申请入驻</h3>
+                <h3 class="modal-title" id="addPrivilegeModalLabel"><span><vc:i18n name="申请入驻" namespace="storeEnterCommunity"></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p style="color: red;">{{storeEnterCommunityInfo.errorInfo}}</p>
-                <div class=" row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
@@ -18,12 +18,12 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input placeholder="输入小区名称"
+                                        <input :placeholder="vc.i18n('输入小区名称','storeEnterCommunity')"
                                                v-model="storeEnterCommunityInfo.searchCommunityName" type="text"
                                                class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="listNoEnterCommunity()">查询</button>
+                                                        v-on:click="listNoEnterCommunity()"><span><vc:i18n name="查询" namespace="storeEnterCommunity"></vc:i18n></span></button>
                                         </span>
                                     </div>
                                 </div>
@@ -32,13 +32,13 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">小区ID</th>
-                                        <th data-hide="phone" class="text-center">名称</th>
-                                        <!-- <th data-hide="phone">联系方式</th>-->
-                                        <th data-hide="phone" class="text-center">地址</th>
-                                        <!-- <th data-hide="phone">地标</th>
-                                         <th data-hide="phone,tablet" >城市编码</th>-->
-                                        <th class="text-center">操作</th>
+                                        <th class="text-center"><span><vc:i18n name="小区" namespace="storeEnterCommunity"></vc:i18n></span>ID</th>
+                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="名称" namespace="storeEnterCommunity"></vc:i18n></span></th>
+                                        <!-- <th data-hide="phone"><span><vc:i18n name="联系方式" namespace="storeEnterCommunity"></vc:i18n></span></th>-->
+                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="地址" namespace="storeEnterCommunity"></vc:i18n></span></th>
+                                        <!-- <th data-hide="phone"><span><vc:i18n name="地标" namespace="storeEnterCommunity"></vc:i18n></span></th>
+                                         <th data-hide="phone,tablet" ><span><vc:i18n name="城市编码" namespace="storeEnterCommunity"></vc:i18n></span></th>-->
+                                        <th class="text-center"><span><vc:i18n name="操作" namespace="storeEnterCommunity"></vc:i18n></span></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -64,7 +64,7 @@
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs"
-                                                        v-on:click="_saveEnterCommunity(community)">申请入驻
+                                                        v-on:click="_saveEnterCommunity(community)"><span><vc:i18n name="申请入驻" namespace="storeEnterCommunity"></vc:i18n></span>
                                                 </button>
                                             </div>
                                         </td>
