@@ -3,7 +3,7 @@
 **/
 (function(vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+    var DEFAULT_ROWS = 20;
     vc.extends({
         data: {
             mappingManageInfo: {
@@ -11,6 +11,7 @@
                 name: '',
                 total: 0,
                 records: 1,
+                curPage: DEFAULT_PAGE,
                 conditions: {
                     domain: '',
                     nameLike: '',
@@ -23,9 +24,10 @@
         },
         _initEvent: function() {
             vc.on('mappingManage', 'listMapping', function(_param) {
-                vc.component._listMappings(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._listMappings($that.mappingManageInfo.curPage, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
+                $that.mappingManageInfo.curPage = _currentPage;
                 vc.component._listMappings(_currentPage, DEFAULT_ROWS);
             });
         },
@@ -68,7 +70,6 @@
             },
             _queryMappingMethod: function() {
                 vc.component._listMappings(DEFAULT_PAGE, DEFAULT_ROWS);
-
             }
         }
     });
