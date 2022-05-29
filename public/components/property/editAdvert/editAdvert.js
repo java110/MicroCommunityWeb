@@ -24,7 +24,8 @@
                 roomNum: '',
                 photos: [],
                 viewType: '',
-                vedioName: ''
+                vedioName: '',
+                communityId: '',
             }
         },
         _initMethod: function() {
