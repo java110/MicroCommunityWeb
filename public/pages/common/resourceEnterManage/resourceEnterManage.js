@@ -94,7 +94,7 @@
                 let msg = '';
                 $that.resourceEnterManageInfo.purchaseApplyDetailVo.forEach(function(item) {
                     console.log(item);
-                    if (!item.hasOwnProperty("purchaseQuantity") || !item.purchaseQuantity || parseInt(item.purchaseQuantity) <= 0) {
+                    if (!item.hasOwnProperty("purchaseQuantity") || !item.purchaseQuantity || parseInt(item.purchaseQuantity) < 0) {
                         msg = '采购数量未填写';
                         return;
                     }
