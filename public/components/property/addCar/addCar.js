@@ -90,27 +90,21 @@
                         }
                     ],
                     'addCarInfo.carBrand': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "车品牌不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "50",
-                            errInfo: "车品牌超出限制"
-                        }
-                    ],
+                        limit: "maxLength",
+                        param: "50",
+                        errInfo: "车品牌超出限制"
+                    }],
 
                     'addCarInfo.carType': [{
                         limit: "required",
                         param: "",
                         errInfo: "车类型不能为空"
                     }],
-//                    'addCarInfo.value': [{
-//                        limit: "required",
-//                        param: "",
-//                        errInfo: "是否是预约车不能为空"
-//                    }],
+                    //                    'addCarInfo.value': [{
+                    //                        limit: "required",
+                    //                        param: "",
+                    //                        errInfo: "是否是预约车不能为空"
+                    //                    }],
                     'addCarInfo.startTime': [{
                         limit: "required",
                         param: "",
@@ -122,16 +116,10 @@
                         errInfo: "结租时间不能为空"
                     }],
                     'addCarInfo.carColor': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "车颜色不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "12",
-                            errInfo: "车颜色超出限制"
-                        }
-                    ]
+                        limit: "maxLength",
+                        param: "12",
+                        errInfo: "车颜色超出限制"
+                    }]
                 });
             },
             _loadCarAttrSpec: function() {
@@ -157,7 +145,7 @@
                     });
                 });
             },
-            saveAddCarInfo: function () {
+            saveAddCarInfo: function() {
                 let _carNumType = $that.addCarInfo.carNumType;
                 if (_carNumType == 'S') {
                     $that.addCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
