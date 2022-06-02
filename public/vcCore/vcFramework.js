@@ -1842,6 +1842,26 @@
         let _newDate = new Date(nextY, nextM, day)
         return _newDate.getFullYear() + '-' + (_newDate.getMonth() + 1) + '-' + _newDate.getDate() + " " + _date.getHours() + ":" + _date.getMinutes() + ":" + _date.getSeconds();
     };
+    vcFramework.addMonthDate = function(_date, _month) {
+        let y = _date.getFullYear();
+        let m = _date.getMonth();
+        let nextY = y;
+        let nextM = m;
+        //如果当前月+要加上的月>11 这里之所以用11是因为 js的月份从0开始
+        if ((m + _month) > 11) {
+            nextY = y + 1;
+            nextM = parseInt(m + _month) - 12;
+        } else {
+            nextM = m + _month
+        }
+        let daysInNextMonth = daysInMonth(nextY, nextM);
+        let day = _date.getDate();
+        if (day > daysInNextMonth) {
+            day = daysInNextMonth;
+        }
+        let _newDate = new Date(nextY, nextM, day)
+        return _newDate.getFullYear() + '-' + add0(_newDate.getMonth() + 1) + '-' + add0(_newDate.getDate());
+    };
 })(window.vcFramework);
 
 (function(vcFramework) {
