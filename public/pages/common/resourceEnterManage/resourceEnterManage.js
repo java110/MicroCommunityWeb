@@ -13,6 +13,7 @@
                 resOrderType: '',
                 purchaseApplyDetailVo: [],
                 resourceSuppliers: [],
+                selectResIds: [],
             }
         },
         _initMethod: function() {
@@ -92,7 +93,19 @@
             _submit: function() {
                 //校验 是否填写正确
                 let msg = '';
+                let _tmpPurchaseApplyDetailVo = [];
                 $that.resourceEnterManageInfo.purchaseApplyDetailVo.forEach(function(item) {
+                    $that.resourceEnterManageInfo.selectResIds.forEach(selectItem => {
+                        if (item.resId == selectItem) {
+                            _tmpPurchaseApplyDetailVo.push(item);
+                        }
+                    })
+                });
+                if (_tmpPurchaseApplyDetailVo.length < 1) {
+                    vc.toast('请选择入库物品')
+                    return;
+                }
+                _tmpPurchaseApplyDetailVo.forEach(function(item) {
                     console.log(item);
                     if (!item.hasOwnProperty("purchaseQuantity") || !item.purchaseQuantity || parseInt(item.purchaseQuantity) < 0) {
                         msg = '采购数量未填写';
@@ -109,6 +122,7 @@
                     vc.toast(msg);
                     return;
                 }
+                $that.resourceEnterManageInfo.purchaseApplyDetailVo = _tmpPurchaseApplyDetailVo;
                 vc.http.apiPost(
                     '/purchase/resourceEnter',
                     JSON.stringify($that.resourceEnterManageInfo), {
@@ -152,7 +166,19 @@
                         vc.toast("处理失败：" + errInfo);
                     }
                 );
-            }
+            },
+            checkAll: function(e) {
+                var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
+                if (e.target.checked) { // 判定全选checkbox的勾选状态
+                    for (var i = 0; i < checkObj.length; i++) {
+                        if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
+                            vc.component.resourceEnterManageInfo.selectResIds.push(checkObj[i].value);
+                        }
+                    }
+                } else { // 如果是去掉全选则清空checkbox选项绑定数组
+                    vc.component.resourceEnterManageInfo.selectResIds = [];
+                }
+            },
         }
     });
 })(window.vc);

@@ -9,6 +9,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
+                                <th class="text-center"><input type="checkbox" class="i-checks" @click="checkAll($event)"></th>
                                 <th class="text-center"><span><vc:i18n name="物品类型" namespace="resourceEnterManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="物品名称" namespace="resourceEnterManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="物品规格" namespace="resourceEnterManage"></vc:i18n></span></th>
@@ -24,6 +25,9 @@
                         </thead>
                         <tbody>
                             <tr v-for="resourceEnter in resourceEnterManageInfo.purchaseApplyDetailVo">
+                                <td class="text-center">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="resourceEnter.resId" v-model="resourceEnterManageInfo.selectResIds">
+                                </td>
                                 <td class="text-center">{{resourceEnter.rstName ? resourceEnter.rstName : '-'}}</td>
                                 <td class="text-center">{{resourceEnter.resName}}</td>
                                 <td class="text-center">{{resourceEnter.specName ? resourceEnter.specName : '-'}}</td>
