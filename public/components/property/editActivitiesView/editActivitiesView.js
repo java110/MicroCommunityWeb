@@ -19,19 +19,14 @@
         _initEvent: function () {
             vc.on('editActivitiesView', 'openEditActivitiesModal', function (_params) {
                 vc.component.refreshEditActivitiesInfo();
-                _params.context = filterXSS(_params.context);
-                vc.component.editActivitiesViewInfo = _params;
+                $that.editActivitiesViewInfo.activitiesId = _params.activitiesId;
+                $that._listEditActivitiess();
             });
             vc.on('editActivitiesView', 'activitiesEditActivitiesInfo', function (_params) {
-                console.log("here")
-                console.log(_params)
+             
                 vc.component.refreshEditActivitiesInfo();
-                _params.context = filterXSS(_params.context);
-                vc.copyObject(_params, vc.component.editActivitiesViewInfo);
-                $(".eidtSummernote").summernote('code', vc.component.editActivitiesViewInfo.context);
-                var photos = [];
-                photos.push(vc.component.editActivitiesViewInfo.headerImg);
-                vc.emit('editActivitiesView', 'uploadImage', 'notifyPhotos', photos);
+                $that.editActivitiesViewInfo.activitiesId = _params.activitiesId;
+                $that._listEditActivitiess();
             });
             vc.on("editActivitiesView", "notifyUploadImage", function (_param) {
                 console.log("123")
@@ -240,7 +235,33 @@
                         console.log('请求失败处理');
                     }
                 );
-            }
+            },
+            _listEditActivitiess: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        activitiesId: $that.editActivitiesViewInfo.activitiesId
+                    }
+                };
+                //发送get请求
+                vc.http.get('activitiesManage',
+                    'list',
+                    param,
+                    function (json, res) {
+                        let _params = JSON.parse(json).activitiess[0];
+                        _params.context = filterXSS(_params.context);
+                        vc.copyObject(_params, vc.component.editActivitiesViewInfo);
+                        $(".eidtSummernote").summernote('code', vc.component.editActivitiesViewInfo.context);
+                        var photos = [];
+                        photos.push(vc.component.editActivitiesViewInfo.headerImg);
+                        vc.emit('editActivitiesView', 'uploadImage', 'notifyPhotos', photos);
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc, window.vc.component);
