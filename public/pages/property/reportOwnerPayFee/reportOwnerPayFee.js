@@ -117,7 +117,7 @@
                 }
 
                 _reportOwnerPayFeeDtos.forEach(item => {
-                    _amount += parseInt(item.amount);
+                    _amount += parseFloat(item.amount);
                 });
 
                 return _amount.toFixed(2);
@@ -138,7 +138,7 @@
 
                 _reportOwnerPayFeeDtos.forEach(item => {
                     if (parseInt(item.pfMonth) <= _month) {
-                        _amount += parseInt(item.amount);
+                        _amount += parseFloat(item.amount);
                     }
                 });
 
@@ -160,7 +160,7 @@
 
                 _reportOwnerPayFeeDtos.forEach(item => {
                     if (parseInt(item.pfMonth) > _month) {
-                        _amount += parseInt(item.amount);
+                        _amount += parseFloat(item.amount);
                     }
                 });
 

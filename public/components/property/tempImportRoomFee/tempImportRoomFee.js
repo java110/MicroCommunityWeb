@@ -11,8 +11,8 @@
                 objName: '',
                 objId: '',
                 amount: '',
-                startTime: '',
-                endTime: '',
+                startTime: vc.dateFormat(new Date()),
+                endTime: vc.addMonthDate(new Date(), 1),
                 feeConfigs: [],
                 feeNameFlag: 'S'
             }
@@ -119,6 +119,8 @@
                     amount: '',
                     startTime: '',
                     endTime: '',
+                    startTime: vc.dateFormat(new Date()),
+                    endTime: vc.addMonthDate(new Date(), 1),
                     feeNameFlag: 'S',
                     feeConfigs: []
                 };

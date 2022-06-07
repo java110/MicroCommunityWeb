@@ -18,6 +18,7 @@
                         <th scope="col" class="text-center"><span><vc:i18n name="编号" namespace="printPurchaseApply"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="名称" namespace="printPurchaseApply"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="编码规格" namespace="printPurchaseApply"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="参考价格" namespace="printPurchaseApply"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="申请数量" namespace="printPurchaseApply"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="采购数量" namespace="printPurchaseApply"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="备注" namespace="printPurchaseApply"></vc:i18n></span></th>
@@ -28,13 +29,16 @@
                         <th scope="row" class="text-center">{{index +1}}</th>
                         <td class="text-center">{{item.resName}}</td>
                         <td class="text-center">{{item.resCode}}</td>
+                        <td class="text-center">{{item.price}}</td>
                         <td class="text-center">{{item.quantity}}</td>
                         <td class="text-center">{{item.purchaseQuantity? item.purchaseQuantity : '-'}}</td>
                         <td class="text-center">{{item.remark}}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center"><span><vc:i18n name="备注" namespace="printPurchaseApply"></vc:i18n></span></th>
-                        <td colspan="5">{{printPurchaseApplyInfo.description}}</td>
+                        <td colspan="4">{{printPurchaseApplyInfo.description}}</td>
+                        <td class="text-center">参考总价格</td>
+                        <td>{{printPurchaseApplyInfo.totalPrice}}</td>
                     </tr>
                     <tr height="60px">
                         <td colspan="2" class="text-center " style="vertical-align:middle;"><span><vc:i18n name="厂家签字" namespace="printPurchaseApply"></vc:i18n></span></td>

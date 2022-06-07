@@ -7,6 +7,7 @@
                 flowName: '',
                 flowType: '',
                 describle: '',
+                startNodeFinish: '',
                 steps: []
             }
         },
@@ -51,6 +52,7 @@
                 $that.workflowSettingInfo.flowId = flowId;
                 $that.workflowSettingInfo.flowName = vc.getParam('flowName');
                 $that.workflowSettingInfo.flowType = vc.getParam('flowType');
+                $that.workflowSettingInfo.startNodeFinish = vc.getParam('startNodeFinish');
 
                 //查询步骤
                 var param = {
