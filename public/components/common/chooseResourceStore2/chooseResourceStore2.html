@@ -1,9 +1,8 @@
-<div id="chooseResourceStoreModel2" class="modal fade" tabindex="-1" role="dialog"
-     aria-labelledby="chooseResourceStoreModelLabel" aria-hidden="true">
+<div id="chooseResourceStoreModel2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseResourceStoreModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseResourceStoreModelLabel2"><span><vc:i18n name="选择物品管理" namespace="chooseResourceStore2"></vc:i18n></span></h3>
+                <h3 class="modal-title" id="chooseResourceStoreModelLabel2"><span><vc:i18n name="选择" ></vc:i18n></span></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,8 +14,7 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="input-group">
-                                        <select class="custom-select custom-select-sm"
-                                                v-model="chooseResourceStoreInfo2.shId">
+                                        <select class="custom-select custom-select-sm" v-model="chooseResourceStoreInfo2.shId">
                                             <option selected value="">{{vc.i18n('请选择仓库','chooseResourceStore2')}}</option>
                                             <option v-for="(item,index) in chooseResourceStoreInfo2.storehouses"
                                                     :key="index" v-bind:value="item.shId">
@@ -27,9 +25,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                        <select class="custom-select custom-select-sm"
-                                                v-model="chooseResourceStoreInfo2.parentRstId"
-                                                @change="_listResourceStoreSonTypes">
+                                        <select class="custom-select custom-select-sm" v-model="chooseResourceStoreInfo2.parentRstId" @change="_listResourceStoreSonTypes">
                                             <option selected value="">{{vc.i18n('请选择物品类型','chooseResourceStore2')}}</option>
                                             <option v-for="(item,index) in chooseResourceStoreInfo2.resourceStoreTypes"
                                                     :key="index" v-bind:value="item.rstId">
@@ -40,8 +36,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                        <select class="custom-select custom-select-sm"
-                                                v-model="chooseResourceStoreInfo2.rstId">
+                                        <select class="custom-select custom-select-sm" v-model="chooseResourceStoreInfo2.rstId">
                                             <option selected value="">{{vc.i18n('请选择二级分类','chooseResourceStore2')}}</option>
                                             <option v-for="(item,index) in chooseResourceStoreInfo2.resourceStoreSonTypes"
                                                     :key="index" v-bind:value="item.rstId">
@@ -52,9 +47,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入物品管理名称','chooseResourceStore2')" type="text"
-                                               v-model="chooseResourceStoreInfo2._currentResourceStoreName"
-                                               class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入物品管理名称','chooseResourceStore2')" type="text" v-model="chooseResourceStoreInfo2._currentResourceStoreName" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                             <button type="button" class="btn btn-sm btn-primary"
                                                     v-on:click="queryResourceStores()"><span><vc:i18n name="查询" namespace="chooseResourceStore2"></vc:i18n></span></button>
@@ -65,55 +58,49 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th class="text-center">
-                                            <input type="checkbox" class="i-checks " @click="checkAll($event)"
-                                                   id="quan">
-                                        </th>
-                                        <th class="text-center"><span><vc:i18n name="仓库" namespace="chooseResourceStore2"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="物品类型" namespace="chooseResourceStore2"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="物品名称" namespace="chooseResourceStore2"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="物品规格" namespace="chooseResourceStore2"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="物品编码" namespace="chooseResourceStore2"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="是否是固定物品" namespace="chooseResourceStore2"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="物品价格" namespace="chooseResourceStore2"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="物品库存" namespace="chooseResourceStore2"></vc:i18n></span></th>
-                                    </tr>
+                                        <tr>
+                                            <th class="text-center">
+                                                <input type="checkbox" class="i-checks " @click="checkAll($event)" id="quan">
+                                            </th>
+                                            <th class="text-center"><span><vc:i18n name="仓库" namespace="chooseResourceStore2"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="物品类型" namespace="chooseResourceStore2"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="物品名称" namespace="chooseResourceStore2"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="物品规格" namespace="chooseResourceStore2"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="物品编码" namespace="chooseResourceStore2"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="是否是固定物品" namespace="chooseResourceStore2"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="物品价格" namespace="chooseResourceStore2"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="物品库存" namespace="chooseResourceStore2"></vc:i18n></span></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="resourceStore in chooseResourceStoreInfo2.resourceStores">
-                                        <td class="text-center">
-                                            <input type="checkbox" class="i-checks checkItem"
-                                                   v-bind:value="resourceStore.resId"
-                                                   v-model="chooseResourceStoreInfo2.selectResourceStores">
-                                        </td>
-                                        <td class="text-center">{{resourceStore.shName}}</td>
-                                        <td class="text-center">
-                                            {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} >
-                                            {{resourceStore.rstName ? resourceStore.rstName : '-'}}
-                                        </td>
-                                        <td class="text-center">{{resourceStore.resName}}</td>
-                                        <td class="text-center">
-                                            {{resourceStore.rssName ? resourceStore.rssName : '-'}}
-                                        </td>
-                                        <td class="text-center">{{resourceStore.resCode}}</td>
-                                        <td class="text-center">{{resourceStore.isFixedName}}</td>
-                                        <td class="text-center">{{resourceStore.price}}</td>
-                                        <td class="text-center">
-                                            {{resourceStore.stock}}{{resourceStore.unitCodeName}}
-                                        </td>
-                                    </tr>
+                                        <tr v-for="resourceStore in chooseResourceStoreInfo2.resourceStores">
+                                            <td class="text-center">
+                                                <input type="checkbox" class="i-checks checkItem" v-bind:value="resourceStore.resId" v-model="chooseResourceStoreInfo2.selectResourceStores">
+                                            </td>
+                                            <td class="text-center">{{resourceStore.shName}}</td>
+                                            <td class="text-center">
+                                                {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} > {{resourceStore.rstName ? resourceStore.rstName : '-'}}
+                                            </td>
+                                            <td class="text-center">{{resourceStore.resName}}</td>
+                                            <td class="text-center">
+                                                {{resourceStore.rssName ? resourceStore.rssName : '-'}}
+                                            </td>
+                                            <td class="text-center">{{resourceStore.resCode}}</td>
+                                            <td class="text-center">{{resourceStore.isFixedName}}</td>
+                                            <td class="text-center">{{resourceStore.price}}</td>
+                                            <td class="text-center">
+                                                {{resourceStore.stock}}{{resourceStore.unitCodeName}}
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <!-- 分页 -->
                                 <vc:create path="frame/pagination"></vc:create>
                                 <div class="ibox-content" v-if="chooseResourceStoreInfo2.resourceStores.length > 0">
-                                    <button class="btn btn-primary float-right" type="button"
-                                            v-on:click="getSelectResourceStores()">
+                                    <button class="btn btn-primary float-right" type="button" v-on:click="getSelectResourceStores()">
                                         <i class="fa fa-check"></i>&nbsp;提交
                                     </button>
-                                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                            data-dismiss="modal">
+                                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
                                         <i class="fa fa-close"></i>&nbsp;取消
                                     </button>
                                 </div>
