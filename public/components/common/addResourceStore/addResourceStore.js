@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -34,22 +34,22 @@
                 warningStock: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //与字典表单位关联
-            vc.getDict('resource_store', "unit_code", function (_data) {
+            vc.getDict('resource_store', "unit_code", function(_data) {
                 vc.component.addResourceStoreInfo.unitCodes = _data;
             });
-            vc.getDict('resource_store', "is_fixed", function (_data) {
+            vc.getDict('resource_store', "is_fixed", function(_data) {
                 vc.component.addResourceStoreInfo.isFixeds = _data;
             });
         },
-        _initEvent: function () {
-            vc.on('addResourceStore', 'openAddResourceStoreModal', function () {
+        _initEvent: function() {
+            vc.on('addResourceStore', 'openAddResourceStoreModal', function() {
                 $that._listAddResourceStoreType();
                 $that._listAddStorehouses();
                 $('#addResourceStoreModel').modal('show');
             });
-            vc.on("addResourceStore", "notifyUploadImage", function (_param) {
+            vc.on("addResourceStore", "notifyUploadImage", function(_param) {
                 vc.component.addResourceStoreInfo.photos = _param;
             });
         },
@@ -58,8 +58,7 @@
                 return vc.validate.validate({
                     addResourceStoreInfo: vc.component.addResourceStoreInfo
                 }, {
-                    'addResourceStoreInfo.resName': [
-                        {
+                    'addResourceStoreInfo.resName': [{
                             limit: "required",
                             param: "",
                             errInfo: "物品名称不能为空"
@@ -70,36 +69,27 @@
                             errInfo: "物品名称长度为2至100"
                         },
                     ],
-                    'addResourceStoreInfo.parentRstId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "物品类型不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.rstId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "二级分类不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.unitCode': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "单位不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.isFixed': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "是否是固定物品不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.resCode': [
-                        {
+                    'addResourceStoreInfo.parentRstId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "物品类型不能为空"
+                    }, ],
+                    'addResourceStoreInfo.rstId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "二级分类不能为空"
+                    }, ],
+                    'addResourceStoreInfo.unitCode': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "单位不能为空"
+                    }, ],
+                    'addResourceStoreInfo.isFixed': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "是否是固定物品不能为空"
+                    }, ],
+                    'addResourceStoreInfo.resCode': [{
                             limit: "maxLength",
                             param: "50",
                             errInfo: "物品编码不能超过50位"
@@ -110,15 +100,12 @@
                             errInfo: "物品编码不能为空"
                         }
                     ],
-                    'addResourceStoreInfo.shId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "仓库不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.price': [
-                        {
+                    'addResourceStoreInfo.shId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "仓库不能为空"
+                    }, ],
+                    'addResourceStoreInfo.price': [{
                             limit: "required",
                             param: "",
                             errInfo: "物品价格不能为空"
@@ -129,8 +116,7 @@
                             errInfo: "物品价格格式错误"
                         },
                     ],
-                    'addResourceStoreInfo.warningStock': [
-                        {
+                    'addResourceStoreInfo.warningStock': [{
                             limit: "required",
                             param: "",
                             errInfo: "警告库存不能为空"
@@ -141,36 +127,27 @@
                             errInfo: "警告库存最小为零"
                         }
                     ],
-                    'addResourceStoreInfo.miniUnitCode': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "最小计量单位不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.miniUnitStock': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "最小计量单位数量不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.description': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "物品描述不能超过200位"
-                        },
-                    ],
-                    'addResourceStoreInfo.showMobile': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "手机端显示不能为空"
-                        },
-                    ],
-                    'addResourceStoreInfo.outLowPrice': [
-                        {
+                    'addResourceStoreInfo.miniUnitCode': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "最小计量单位不能为空"
+                    }, ],
+                    'addResourceStoreInfo.miniUnitStock': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "最小计量单位数量不能为空"
+                    }, ],
+                    'addResourceStoreInfo.description': [{
+                        limit: "maxLength",
+                        param: "200",
+                        errInfo: "物品描述不能超过200位"
+                    }, ],
+                    'addResourceStoreInfo.showMobile': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "手机端显示不能为空"
+                    }, ],
+                    'addResourceStoreInfo.outLowPrice': [{
                             limit: "required",
                             param: "",
                             errInfo: "最低收费标准不能为空"
@@ -181,8 +158,7 @@
                             errInfo: "收费标准格式错误"
                         },
                     ],
-                    'addResourceStoreInfo.outHighPrice': [
-                        {
+                    'addResourceStoreInfo.outHighPrice': [{
                             limit: "required",
                             param: "",
                             errInfo: "最高收费标准不能为空"
@@ -195,13 +171,13 @@
                     ]
                 });
             },
-            decideAdd: function () {
+            decideAdd: function() {
                 if (parseFloat($that.addResourceStoreInfo.outLowPrice) > parseFloat($that.addResourceStoreInfo.outHighPrice)) {
                     vc.toast("最高收费标准不能小于最低收费标准！")
                     $that.addResourceStoreInfo.outHighPrice = "";
                 }
             },
-            saveResourceStoreInfo: function () {
+            saveResourceStoreInfo: function() {
                 if (!vc.component.addResourceStoreValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -216,11 +192,10 @@
                 vc.http.post(
                     'addResourceStore',
                     'save',
-                    JSON.stringify(vc.component.addResourceStoreInfo),
-                    {
+                    JSON.stringify(vc.component.addResourceStoreInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -231,13 +206,13 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(JSON.parse(errInfo).msg);
                     });
             },
             //查询物品类型
-            _listAddResourceStoreType: function () {
+            _listAddResourceStoreType: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -249,16 +224,17 @@
                 vc.http.get('resourceStoreTypeManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreType = JSON.parse(json);
                         vc.component.addResourceStoreInfo.resourceStoreTypes = _resourceStoreType.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 分类改变事件
-            resourceStoreTypesOnChangeAdd: function () {
+            resourceStoreTypesOnChangeAdd: function() {
                 vc.component.addResourceStoreInfo.rstId = '';
                 vc.component.addResourceStoreInfo.sonResourceStoreTypes = [];
                 if (vc.component.addResourceStoreInfo.parentRstId == '') {
@@ -276,16 +252,17 @@
                 vc.http.get('resourceStoreTypeManage',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeInfo = JSON.parse(json);
                         vc.component.addResourceStoreInfo.sonResourceStoreTypes = _resourceStoreTypeInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 分类改变事件
-            sonResourceStoreTypesOnChangeAdd: function () {
+            sonResourceStoreTypesOnChangeAdd: function() {
                 if (vc.component.addResourceStoreInfo.parentRstId == '') {
                     vc.component.resourceStoreSpecification = [];
                     return;
@@ -293,7 +270,7 @@
                 vc.component._loadSonResourceStoreSpecificationAdd();
             },
             // 根据分类查询规格(一级分类)
-            _loadResourceStoreSpecificationAdd: function () {
+            _loadResourceStoreSpecificationAdd: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -304,16 +281,17 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _addResourceStoreInfo = JSON.parse(json);
                         vc.component.addResourceStoreInfo.resourceStoreSpecifications = _addResourceStoreInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 根据分类查询规格(二级分类)
-            _loadSonResourceStoreSpecificationAdd: function () {
+            _loadSonResourceStoreSpecificationAdd: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -324,15 +302,16 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _addResourceStoreInfo = JSON.parse(json);
                         vc.component.addResourceStoreInfo.resourceStoreSpecifications = _addResourceStoreInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            clearAddResourceStoreInfo: function () {
+            clearAddResourceStoreInfo: function() {
                 vc.component.addResourceStoreInfo = {
                     resName: '',
                     resCode: '',
@@ -355,23 +334,24 @@
                     warningStock: ''
                 };
             },
-            _listAddStorehouses: function (_page, _rows) {
+            _listAddStorehouses: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
                         row: 100,
-                        shType: '2806',
+                        shType: '',
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _storehouseManageInfo = JSON.parse(json);
                         vc.component.addResourceStoreInfo.storehouses = _storehouseManageInfo.data;
 
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
