@@ -10,15 +10,14 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="标题" namespace="addActivitiesView"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <input v-model="addActivitiesViewInfo.title" type="text" :placeholder="vc.i18n('必填，请填写标题','addActivitiesView')"
-                               class="form-control">
+                        <input v-model="addActivitiesViewInfo.title" type="text" :placeholder="vc.i18n('必填，请填写标题','addActivitiesView')" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="信息类型" namespace="addActivitiesView"></vc:i18n></span></label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addActivitiesViewInfo.typeCd">
-                            <option selected disabled value="">{{vc.i18n('必填','addActivitiesView')}}，请选择信息类型</option>
+                            <option selected disabled value="">{{vc.i18n('必填，请选择信息类型','addActivitiesView')}}</option>
                             <option v-for="(item,index) in addActivitiesViewInfo.typeCds" :key="index"
                                     v-bind:value="item.typeCd">{{item.typeName}}
                             </option>
@@ -38,23 +37,20 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="头部照片" namespace="addActivitiesView"></vc:i18n></span>(800 * 595)</label>
                     <div class="col-sm-10">
-                        <vc:create path="frame/uploadImage" callBackListener="addActivitiesView"
-                                   callBackFunction="notifyUploadImage" imageCount="1" namespace="addActivitiesView">
+                        <vc:create path="frame/uploadImage" callBackListener="addActivitiesView" callBackFunction="notifyUploadImage" imageCount="1" namespace="addActivitiesView">
                         </vc:create>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="开始时间" namespace="addActivitiesView"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <input v-model="addActivitiesViewInfo.startTime" readonly type="text" :placeholder="vc.i18n('必填，请填写开始时间','addActivitiesView')"
-                               class="form-control activitiesStartTime">
+                        <input v-model="addActivitiesViewInfo.startTime" readonly type="text" :placeholder="vc.i18n('必填，请填写开始时间','addActivitiesView')" class="form-control activitiesStartTime">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="addActivitiesView"></vc:i18n></span></label>
                     <div class="col-sm-10">
-                        <input v-model="addActivitiesViewInfo.endTime" readonly type="text" :placeholder="vc.i18n('必填，请填写结束时间','addActivitiesView')"
-                               class="form-control activitiesEndTime">
+                        <input v-model="addActivitiesViewInfo.endTime" readonly type="text" :placeholder="vc.i18n('必填，请填写结束时间','addActivitiesView')" class="form-control activitiesEndTime">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -71,8 +67,7 @@
                     <button class="btn btn-primary float-right" type="button" v-on:click="saveActivitiesInfo()">
                         <i class="fa fa-check"></i>&nbsp;提交
                     </button>
-                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                            v-on:click="closeActivitiesInfo()">
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="closeActivitiesInfo()">
                         <i class="fa fa-close"></i>&nbsp;取消
                     </button>
                 </div>
