@@ -4,6 +4,7 @@
         data: {
             editSmallWeChatInfo: {
                 wechatId: '',
+                weChatId:'',
                 name: '',
                 appId: '',
                 appSecret: '',
@@ -135,6 +136,7 @@
             refreshEditSmallWeChatInfo: function() {
                 vc.component.editSmallWeChatInfo = {
                     wechatId: '',
+                    weChatId:'',
                     name: '',
                     appId: '',
                     appSecret: '',
