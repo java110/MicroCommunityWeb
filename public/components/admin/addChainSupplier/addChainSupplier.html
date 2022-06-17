@@ -1,0 +1,65 @@
+<div id = "addChainSupplierModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加供应商" namespace="addChainSupplier"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name='供应商名称' namespace='addChainSupplier'></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="addChainSupplierInfo.name"                   type="text" :placeholder="vc.i18n('必填，请填写供应商名称','addChainSupplier')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name='接口应用ID' namespace='addChainSupplier'></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="addChainSupplierInfo.appId"                   type="text" :placeholder="vc.i18n('必填，请填写接口应用ID','addChainSupplier')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name='接口秘钥' namespace='addChainSupplier'></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="addChainSupplierInfo.appSecure"                   type="text" :placeholder="vc.i18n('必填，请填写接口秘钥','addChainSupplier')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name='商户ID' namespace='addChainSupplier'></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="addChainSupplierInfo.mchId"                   type="text" :placeholder="vc.i18n('必填，请填写商户ID','addChainSupplier')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name='秘钥' namespace='addChainSupplier'></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="addChainSupplierInfo.mchKey"                   type="text" :placeholder="vc.i18n('必填，请填写秘钥','addChainSupplier')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name='接口地址' namespace='addChainSupplier'></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="addChainSupplierInfo.url"                   type="text" :placeholder="vc.i18n('必填，请填写接口地址','addChainSupplier')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name='备注' namespace='addChainSupplier'></vc:i18n></span></label>
+         <div class="col-sm-10">
+<textarea  :placeholder="vc.i18n('必填，请填写备注','addChainSupplier')" class="form-control" v-model="addChainSupplierInfo.remark"></textarea>         </div>
+</div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveChainSupplierInfo()" ><i class="fa fa-check"></i>&nbsp;
+                                    <span><vc:i18n name="保存"></vc:i18n></span>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <span><vc:i18n name="取消"></vc:i18n></span>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
