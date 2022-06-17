@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -15,16 +15,15 @@
                 attrs: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._loadEditCommunityAttrSpec();
         },
-        _initEvent: function () {
+        _initEvent: function() {
             vc.on('editCommunity', 'openEditCommunityModal',
-                function (_params) {
+                function(_params) {
                     vc.component.refreshEditCommunityInfo();
                     $('#editCommunityModel').modal('show');
                     vc.copyObject(_params, vc.component.editCommunityInfo);
-
                     if (_params.hasOwnProperty('communityAttrDtos')) {
                         let _attrDtos = _params.communityAttrDtos;
                         _attrDtos.forEach(item => {
@@ -39,12 +38,11 @@
                 });
         },
         methods: {
-            editCommunityValidate: function () {
+            editCommunityValidate: function() {
                 return vc.validate.validate({
                     editCommunityInfo: vc.component.editCommunityInfo
-                },
-                    {
-                        'editCommunityInfo.name': [{
+                }, {
+                    'editCommunityInfo.name': [{
                             limit: "required",
                             param: "",
                             errInfo: "小区名称不能为空"
@@ -54,8 +52,8 @@
                             param: "1,20",
                             errInfo: "小区名称必须在1至20字符之间"
                         },
-                        ],
-                        'editCommunityInfo.address': [{
+                    ],
+                    'editCommunityInfo.address': [{
                             limit: "required",
                             param: "",
                             errInfo: "小区地址不能为空"
@@ -65,8 +63,8 @@
                             param: "200",
                             errInfo: "小区地址不能大于200个字符"
                         },
-                        ],
-                        'editCommunityInfo.nearbyLandmarks': [{
+                    ],
+                    'editCommunityInfo.nearbyLandmarks': [{
                             limit: "required",
                             param: "",
                             errInfo: "附近地标不能为空"
@@ -76,45 +74,39 @@
                             param: "50",
                             errInfo: "小区附近地标不能大于50个字符"
                         },
-                        ],
-                        'editCommunityInfo.cityCode': [{
-                            limit: "maxLength",
-                            param: "12",
-                            errInfo: "小区城市编码不能大于4个字符"
-                        },
-                        ],
-                        'editCommunityInfo.mapX': [{
-                            limit: "maxLength",
-                            param: "20",
-                            errInfo: "小区城市编码不能大于4个字符"
-                        },
-                        ],
-                        'editCommunityInfo.mapY': [{
-                            limit: "maxLength",
-                            param: "20",
-                            errInfo: "小区城市编码不能大于4个字符"
-                        },
-                        ],
-                        'editCommunityInfo.communityId': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "小区ID不能为空"
-                        }]
+                    ],
+                    'editCommunityInfo.cityCode': [{
+                        limit: "maxLength",
+                        param: "12",
+                        errInfo: "小区城市编码不能大于4个字符"
+                    }, ],
+                    'editCommunityInfo.mapX': [{
+                        limit: "maxLength",
+                        param: "20",
+                        errInfo: "小区城市编码不能大于4个字符"
+                    }, ],
+                    'editCommunityInfo.mapY': [{
+                        limit: "maxLength",
+                        param: "20",
+                        errInfo: "小区城市编码不能大于4个字符"
+                    }, ],
+                    'editCommunityInfo.communityId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "小区ID不能为空"
+                    }]
 
-                    });
+                });
             },
-            editCommunity: function () {
+            editCommunity: function() {
                 if (!vc.component.editCommunityValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
-
-
                 vc.http.post('editCommunity', 'update', JSON.stringify(vc.component.editCommunityInfo), {
-                    emulateJSON: true
-                },
-                    function (json, res) {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -124,13 +116,13 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
                     });
             },
-            refreshEditCommunityInfo: function () {
+            refreshEditCommunityInfo: function() {
 
                 let _attrs = $that.editCommunityInfo.attrs;
                 vc.component.editCommunityInfo = {
@@ -146,9 +138,9 @@
                     attrs: _attrs
                 }
             },
-            _loadEditCommunityAttrSpec: function () {
+            _loadEditCommunityAttrSpec: function() {
                 $that.editCommunityInfo.attrs = [];
-                vc.getAttrSpec('building_community_attr', function (data) {
+                vc.getAttrSpec('building_community_attr', function(data) {
                     data.forEach(item => {
                         item.value = '';
                         item.values = [];
@@ -160,8 +152,8 @@
 
                 });
             },
-            _loadEditAttrValue: function (_specCd, _values) {
-                vc.getAttrValue(_specCd, function (data) {
+            _loadEditAttrValue: function(_specCd, _values) {
+                vc.getAttrValue(_specCd, function(data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
