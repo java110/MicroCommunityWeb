@@ -31,7 +31,7 @@
                 };
 
                 //发送get请求
-               vc.http.apiGet('chainSupplier.listChainSuppliers',
+               vc.http.apiGet('chainSupplier.listChainSupplier',
                              param,
                              function(json){
                                 var _chainSupplierInfo = JSON.parse(json);
