@@ -13,6 +13,7 @@
                 objType: '',
                 objId: '',
                 mchId: '',
+                mchName:'',
                 remarks: '',
                 objTypes: '1000',
                 certPath: ''
@@ -145,6 +146,7 @@
                     objType: '',
                     objId: '',
                     mchId: '',
+                    mchName:'',
                     remarks: '',
                     objTypes: '1000',
                     certPath: ''
