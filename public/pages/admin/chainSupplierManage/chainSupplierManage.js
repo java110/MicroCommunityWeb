@@ -42,7 +42,7 @@ mchId:'',
                };
 
                //发送get请求
-               vc.http.apiGet('chainSupplier.listChainSuppliers',
+               vc.http.apiGet('chainSupplier.listChainSupplier',
                              param,
                              function(json,res){
                                 var _chainSupplierManageInfo=JSON.parse(json);
@@ -70,6 +70,9 @@ mchId:'',
             _queryChainSupplierMethod:function(){
                 vc.component._listChainSuppliers(DEFAULT_PAGE, DEFAULT_ROWS);
 
+            },
+            _openManageCatalog: function (_chainSupplier) {
+                vc.jumpToPage('/#/pages/common/chainSupplierCatalogManage?csId=' + _chainSupplier.csId);
             },
             _moreCondition:function(){
                 if(vc.component.chainSupplierManageInfo.moreCondition){
