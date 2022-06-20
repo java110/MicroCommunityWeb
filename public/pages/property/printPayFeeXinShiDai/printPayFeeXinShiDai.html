@@ -5,19 +5,18 @@
                 <div class="float-left" style="width:600px;margin-left: 40px;">
                     <span>{{printPayFeeInfo.payObjName}}</span>
                 </div>
-                <div class="float-left text-center"
-                    v-if="printPayFeeInfo.feeReceipt && printPayFeeInfo.feeReceipt.length>0">
+                <div class="float-left text-center" v-if="printPayFeeInfo.feeReceipt && printPayFeeInfo.feeReceipt.length>0">
                     <span>{{printPayFeeInfo.feeReceipt[0].objName}}</span>
                 </div>
             </div>
             <table class="table vc-table-border" style="color:#000;font-size:20px ;border:0">
                 <thead>
-                    <tr  style="border: 0px;">
-                        <th scope="col" class="text-center"  style="border: 0px;width: 30%"><span><vc:i18n name="收费项目" namespace="printPayFeeXinShiDai"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"  style="border: 0px;width: 30%"><span><vc:i18n name="摘要" namespace="printPayFeeXinShiDai"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"  style="border: 0px;width: 20%"><span><vc:i18n name="滞纳金" namespace="printPayFeeXinShiDai"></vc:i18n></span></th>
-                        <th scope="col" class="text-left"  style="border: 0px;width: 20%"><span><vc:i18n name="金额" namespace="printPayFeeXinShiDai"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"  style="border: 0px;"></th>
+                    <tr style="border: 0px;">
+                        <th scope="col" class="text-center" style="border: 0px;width: 30%"><span><vc:i18n name="收费项目" namespace="printPayFeeXinShiDai"></vc:i18n></span></th>
+                        <th scope="col" class="text-center" style="border: 0px;width: 30%"><span><vc:i18n name="摘要" namespace="printPayFeeXinShiDai"></vc:i18n></span></th>
+                        <th scope="col" class="text-center" style="border: 0px;width: 20%"><span><vc:i18n name="滞纳金" namespace="printPayFeeXinShiDai"></vc:i18n></span></th>
+                        <th scope="col" class="text-left" style="border: 0px;width: 20%"><span><vc:i18n name="金额" namespace="printPayFeeXinShiDai"></vc:i18n></span></th>
+                        <th scope="col" class="text-center" style="border: 0px;"></th>
                     </tr>
                 </thead>
                 <tbody class="vc-table-border" style="color:#000;font-size:20px;border: 0px;">
@@ -34,13 +33,13 @@
                         <td class="text-center" style="border: 0px;" v-else>
                             {{vc.dateFormat(item.startTime)}}<span><vc:i18n name="至" namespace="printPayFeeXinShiDai"></vc:i18n></span>{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
                         </td>
-                        <td class="text-center" style="border: 0px;">0.00</td>
+                        <td class="text-center" style="border: 0px;">{{item.discountPrice}}</td>
                         <td class="text-left" style="border: 0px;">{{item.amount}}</td>
                         <td class="text-center" style="border: 0px;"></td>
                     </tr>
                     <tr style="border: 0px;">
-                        <td  class="text-center" style="border: 0px;"></td>
-                        <td  class="text-center" style="border: 0px;">
+                        <td class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;">
                             (大写){{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
                         <td class="text-center" style="border: 0px;">: </td>
@@ -48,33 +47,33 @@
                         <td class="text-center" style="border: 0px;"></td>
                     </tr>
                     <tr style="border: 0px;">
-                        <td  class="text-center" style="border: 0px;"></td>
-                        <td  class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
                         <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.feeTime}}</td>
                         <td class="text-center" style="border: 0px;"></td>
 
                     </tr>
                     <tr style="border: 0px;">
-                        <td  class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
                         <td class="text-center" style="border: 0px;"><span><vc:i18n name="单号" namespace="printPayFeeXinShiDai"></vc:i18n></span></td>
                         <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.receiptNum}}</td>
                         <td class="text-center" style="border: 0px;"></td>
                     </tr>
                     <tr style="border: 0px;" v-if="printPayFeeInfo.carName">
-                        <td  class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
                         <td class="text-center" style="border: 0px;"><span><vc:i18n name="车辆" namespace="printPayFeeXinShiDai"></vc:i18n></span></td>
                         <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.carName}}</td>
                         <td class="text-center" style="border: 0px;"></td>
                     </tr>
                     <tr style="border: 0px;">
-                        <td  class="text-center" style="border: 0px;"></td>
-                        <td  class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
                         <td colspan="1" class="text-center" style="border: 0px;"></td>
                         <td class="text-center" style="border: 0px;"></td>
                     </tr>
                     <tr style="border: 0px;">
-                        <td  class="text-center" style="border: 0px;"></td>
-                        <td  class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
+                        <td class="text-center" style="border: 0px;"></td>
                         <td colspan="1" class="text-center" style="border: 0px;">{{printPayFeeInfo.userName}}</td>
                         <td class="text-center" style="border: 0px;"></td>
                     </tr>
@@ -87,8 +86,7 @@
                 <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
                     <i class="fa fa-check"></i>&nbsp;打印
                 </button>
-                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                    v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printPayFeeXinShiDai"></vc:i18n></span>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printPayFeeXinShiDai"></vc:i18n></span>
                 </button>
             </div>
         </div>

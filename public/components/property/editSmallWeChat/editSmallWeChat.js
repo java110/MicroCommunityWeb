@@ -4,6 +4,7 @@
         data: {
             editSmallWeChatInfo: {
                 wechatId: '',
+                weChatId:'',
                 name: '',
                 appId: '',
                 appSecret: '',
@@ -12,6 +13,7 @@
                 objType: '',
                 objId: '',
                 mchId: '',
+                mchName:'',
                 remarks: '',
                 objTypes: '1000',
                 certPath: ''
@@ -135,6 +137,7 @@
             refreshEditSmallWeChatInfo: function() {
                 vc.component.editSmallWeChatInfo = {
                     wechatId: '',
+                    weChatId:'',
                     name: '',
                     appId: '',
                     appSecret: '',
@@ -143,6 +146,7 @@
                     objType: '',
                     objId: '',
                     mchId: '',
+                    mchName:'',
                     remarks: '',
                     objTypes: '1000',
                     certPath: ''

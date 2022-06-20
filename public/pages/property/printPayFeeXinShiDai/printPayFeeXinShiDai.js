@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         data: {
@@ -21,7 +21,7 @@
             },
             printFlag: '0'
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //vc.component._initPrintPurchaseApplyDateInfo();
 
             $that.printPayFeeInfo.receiptId = vc.getParam('receiptId');
@@ -36,15 +36,15 @@
 
             $that._loadPrintSpec();
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
 
         },
         methods: {
-            _initPayFee: function () {
+            _initPayFee: function() {
 
             },
-            _loadReceipt: function () {
+            _loadReceipt: function() {
 
                 var param = {
                     params: {
@@ -59,7 +59,7 @@
                 //发送get请求
                 vc.http.apiGet('/feeReceipt/queryFeeReceipt',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _feeReceiptManageInfo = JSON.parse(json);
                         let _feeReceipt = _feeReceiptManageInfo.data;
                         let _amount = 0;
@@ -82,14 +82,15 @@
                             $that._listOwnerCar(_feeReceipt[0].objId);
                         }
 
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadReceiptDetail: function () {
+            _loadReceiptDetail: function() {
 
-                var param = {
+                let param = {
                     params: {
                         page: 1,
                         row: 100,
@@ -101,7 +102,7 @@
                 //发送get请求
                 vc.http.apiGet('/feeReceipt/queryFeeReceiptDetail',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _feeReceiptManageInfo = JSON.parse(json);
                         let _feeReceiptDetails = _feeReceiptManageInfo.data;
                         _feeReceiptDetails.forEach(item => {
@@ -110,15 +111,48 @@
                                     item.objName = im.objName;
                                     item.feeTypeCd = im.feeTypeCd;
                                 }
-                            })
+                            });
+
+                            $that._queryFeeDetailDiscount(item.detailId, item);
                         })
                         $that.printPayFeeInfo.fees = _feeReceiptDetails;
-                    }, function (errInfo, error) {
+
+                        setTimeout(function() {
+                            $that.$forceUpdate();
+                        }, 2000)
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadPrintSpec: function () {
+            _queryFeeDetailDiscount: function(_detailId, _item) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        detailId: _detailId,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/feeDiscount/queryFeeDetailDiscount',
+                    param,
+                    function(json, res) {
+                        let _feeReceiptManageInfo = JSON.parse(json);
+                        let _feeReceiptDetails = _feeReceiptManageInfo.data;
+                        _feeReceiptDetails.forEach(data => {
+                            if (data.discountType == '2002') {
+                                _item.discountPrice = parseFloat(data.discountPrice) * -1;
+                            }
+                        })
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadPrintSpec: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -131,7 +165,7 @@
                 //发送get请求
                 vc.http.apiGet('/feePrintSpec/queryFeePrintSpec',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _json = JSON.parse(json);
                         var _data = _json.data;
                         if (_data.length > 0) {
@@ -141,44 +175,46 @@
                                 $that.printPayFeeInfo.communityName = _data[0].printName;
                             }
                         }
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _printPurchaseApplyDiv: function () {
+            _printPurchaseApplyDiv: function() {
 
                 $that.printFlag = '1';
                 console.log('console.log($that.printFlag);', $that.printFlag);
-                document.getElementById("print-btn").style.display = "none";//隐藏
+                document.getElementById("print-btn").style.display = "none"; //隐藏
 
                 window.print();
                 //$that.printFlag = false;
                 window.opener = null;
                 window.close();
             },
-            _closePage: function () {
+            _closePage: function() {
                 window.opener = null;
                 window.close();
             },
-            _listOwnerCar: function (_carId) {
+            _listOwnerCar: function(_carId) {
                 let param = {
-                    params: {
-                        page: 1,
-                        row: 1,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        carId: _carId
+                        params: {
+                            page: 1,
+                            row: 1,
+                            communityId: vc.getCurrentCommunity().communityId,
+                            carId: _carId
+                        }
                     }
-                }
-                //发送get请求
+                    //发送get请求
                 vc.http.apiGet('owner.queryOwnerCars',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _json = JSON.parse(json);
                         let ownerCar = _json.data[0];
-                        let _roomName = ownerCar.roomName.replace('栋','-').replace("单元",'-').replace('室','');
+                        let _roomName = ownerCar.roomName.replace('栋', '-').replace("单元", '-').replace('室', '');
                         $that.printPayFeeInfo.feeReceipt[0].objName = _roomName;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

@@ -266,7 +266,8 @@
                         if (res.status == 200) {
                             var data = JSON.parse(json);
                             //关闭model
-                            $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
+                            //$summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
+                            $summernote.summernote('insertImage',  data.url);
                             return;
                         }
                         vc.toast(json);
