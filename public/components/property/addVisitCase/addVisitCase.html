@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-5">
-                                <img width="100%" height="100%" v-bind:src="addVisitCase.visitPhoto" alt="vc.i18n('访客照片','addVisitCase')">
+                                <img width="100%" height="100%" v-bind:src="addVisitCase.visitPhoto ? addVisitCase.visitPhoto : '/img/defaultAvatar.png'" alt="vc.i18n('访客照片','addVisitCase')">
                             </div>
                         </div>
                     </div>

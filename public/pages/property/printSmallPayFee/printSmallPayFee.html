@@ -16,7 +16,7 @@
             <div><span><vc:i18n name="收费范围" namespace="printSmallPayFee"></vc:i18n></span>：{{vc.dateFormat(item.startTime)}}<span><vc:i18n name="至" namespace="printSmallPayFee"></vc:i18n></span>{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</div>
             <div><span><vc:i18n name="单价" namespace="printSmallPayFee"></vc:i18n></span>/固定费：{{item.squarePrice}}</div>
             <div><span><vc:i18n name="面积" namespace="printSmallPayFee"></vc:i18n></span>/用量：{{item.area}}</div>
-            <div><span><vc:i18n name="金额" namespace="printSmallPayFee"></vc:i18n></span>：{{item.amount}}</div>
+            <div><span><vc:i18n name="金额" namespace="printSmallPayFee"></vc:i18n></span>：{{item.amount < 0 ? item.amount + "(退费)" : item.amount}}</div>
             <div><span><vc:i18n name="备注" namespace="printSmallPayFee"></vc:i18n></span>：{{item.remark}}</div>
             <span>**************************</span>
         </div>

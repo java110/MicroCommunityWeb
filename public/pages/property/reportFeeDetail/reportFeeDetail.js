@@ -21,11 +21,12 @@
                 primeRates: [],
                 roomUnits: [],
                 feeConfigDtos: [],
-
+                feeTypeCds: [],
                 conditions: {
                     floorId: '',
                     floorName: '',
                     configId: '',
+                    feeTypeCd: '',
                     feeName: '',
                     roomNum: '',
                     unitId: '',
@@ -38,6 +39,10 @@
         _initMethod: function() {
             vc.component._initDate();
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            //与字典表费用类型关联
+            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
+                vc.component.reportFeeDetailInfo.feeTypeCds = _data;
+            });
             // vc.initDateMonth('startTime', function (_startTime) {
             //     $that.reportFeeDetailInfo.conditions.startTime = _startTime;
             // });
@@ -164,6 +169,7 @@
                 vc.component.reportFeeDetailInfo.conditions.startTime = '';
                 vc.component.reportFeeDetailInfo.conditions.endTime = '';
                 vc.component.reportFeeDetailInfo.conditions.configId = '';
+                vc.component.reportFeeDetailInfo.conditions.feeTypeCd = '';
                 $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             loadUnits: function(_floorId) {
@@ -189,6 +195,27 @@
                     function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
+                    });
+            },
+            //根据费用类型查询费用项
+            _selectConfig: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        feeTypeCd: vc.component.reportFeeDetailInfo.conditions.feeTypeCd,
+                        isFlag: "0"
+                    }
+                };
+                //发送get请求
+                vc.http.get('roomCreateFeeAdd', 'list', param,
+                    function (json, res) {
+                        var _feeConfigManageInfo = JSON.parse(json);
+                        vc.component.reportFeeDetailInfo.feeConfigDtos = _feeConfigManageInfo.feeConfigs;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
                     });
             },
             _openChooseFloorMethod: function() {

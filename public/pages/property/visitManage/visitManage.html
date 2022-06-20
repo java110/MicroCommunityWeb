@@ -59,19 +59,19 @@
                                     <span><vc:i18n name="访客ID" namespace="visitManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="访客姓名" namespace="visitManage"></vc:i18n></span>
+                                    <span><vc:i18n name="照片" namespace="visitManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="访客姓名/性别" namespace="visitManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
                                     <span><vc:i18n name="访客联系方式" namespace="visitManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="访客性别" namespace="visitManage"></vc:i18n></span>
+                                    <span><vc:i18n name="业主姓名" namespace="visitManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="来访事由" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="事由类型" namespace="visitManage"></vc:i18n></span>
+                                    <span><vc:i18n name="来访事由/类型" namespace="visitManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
                                     <span><vc:i18n name="车牌号" namespace="visitManage"></vc:i18n></span>
@@ -80,10 +80,13 @@
                                     <span><vc:i18n name="随行人数" namespace="visitManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="来访时间" namespace="visitManage"></vc:i18n></span>
+                                    <span><vc:i18n name="创建时间" namespace="visitManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="离开时间" namespace="visitManage"></vc:i18n></span>
+                                    <span><vc:i18n name="来访/离开时间" namespace="visitManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="车辆状态" namespace="visitManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
                                     <span><vc:i18n name="状态" namespace="visitManage"></vc:i18n></span>
@@ -96,18 +99,24 @@
                         <tbody>
                             <tr v-for="visit in appManageInfo.visits">
                                 <td class="text-center">{{visit.vId}}</td>
-                                <td class="text-center">{{visit.vName}}</td>
-                                <td class="text-center">{{visit.phoneNumber}}</td>
-                                <td class="text-center">{{visit.visitGender=='0'?'男':'女'}}</td>
-                                <td class="text-center">{{visit.visitCase}}</td>
                                 <td class="text-center">
-                                    {{visit.reasonType == 0 ? '喜事' : (visit.reasonType == 1 ? '白事' : '-')}}
-                                </td>
+                                    <div style="position: relative; display: inline-block;" v-on:click="showImg(visit.url)">
+                                        <img width="50" height="50" v-bind:src="visit.url?visit.url:'/img/noPhoto.jpg'"
+                                             onerror="this.src='/img/noPhoto.jpg';">
+                                        <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;"
+                                             width="50" height="50" alt="">
+                                    </div>
+                                </td>    
+                                <td class="text-center">{{visit.vName}}/{{visit.visitGender=='0'?'男':'女'}}</td>
+                                <td class="text-center">{{visit.phoneNumber}}</td>
+                                <td class="text-center">{{visit.ownerName}}</td>
+                                <td class="text-center">{{visit.visitCase}}({{visit.reasonType == 0 ? '喜事' : (visit.reasonType == 1 ? '白事' : '-')}})</td>    
                                 <td class="text-center">{{visit.carNum}}</td>
                                 <td class="text-center">{{visit.entourage}}</td>
-                                <td class="text-center">{{visit.visitTime}}</td>
-                                <td class="text-center">{{visit.departureTime}}</td>
+                                <td class="text-center">{{visit.createTime}}</td>
+                                <td class="text-center">{{visit.visitTime}}<br/>{{visit.departureTime}}</td>
                                 <td class="text-center">{{visit.stateName}}</td>
+                                <td class="text-center">{{visit.recordState == 1 ? '已失效' : (visit.recordState == 0 ? '已生效' : '-')}}</td>
                                 <td class="text-center">
                                     <div class="btn-group" v-if="visit.state == '0'">
                                         <button class="btn-white btn btn-xs" v-on:click="_openExamineVisitModel(visit)"><span><vc:i18n name="车辆审核" namespace="visitManage"></vc:i18n></span>
