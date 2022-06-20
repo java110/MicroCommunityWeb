@@ -52,25 +52,25 @@
                             errInfo: "名称太长"
                         },
                     ],
-                    'addFeePrintSpecInfo.content': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "内容不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "1000",
-                            errInfo: "说明不能超过1000位"
-                        },
-                    ],
-                    'addFeePrintSpecInfo.qrImg': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "必填不能为空"
-                        }
-                    ],
+                    // 'addFeePrintSpecInfo.content': [
+                    //     {
+                    //         limit: "required",
+                    //         param: "",
+                    //         errInfo: "内容不能为空"
+                    //     },
+                    //     {
+                    //         limit: "maxLength",
+                    //         param: "1000",
+                    //         errInfo: "说明不能超过1000位"
+                    //     },
+                    // ],
+                    // 'addFeePrintSpecInfo.qrImg': [
+                    //     {
+                    //         limit: "required",
+                    //         param: "",
+                    //         errInfo: "必填不能为空"
+                    //     }
+                    // ],
                 });
             },
             saveFeePrintSpecInfo: function () {

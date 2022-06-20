@@ -10,6 +10,7 @@
                 receivedAmount: '',
                 redepositAmount: '',
                 totalAmount: '',
+                acctType: '',
             }
         },
         _initMethod: function () {
@@ -20,7 +21,7 @@
             });
 
             vc.on('prestoreAccount2', 'openAddModalWithParams', function (_param) {
-                console.log('params here111 ', _param);
+                vc.component.prestoreAccount2Info.acctType = _param.acctType;
                 vc.component.prestoreAccount2Info.amount = _param.redepositAmount;
                 vc.component.prestoreAccount2Info.redepositAmount = _param.redepositAmount;
                 vc.component.prestoreAccount2Info.receivedAmount = _param.receivedAmount;
@@ -69,7 +70,8 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#prestoreAccount2Model').modal('hide');
                             vc.component.clearPrestoreAccount2Info();
@@ -77,7 +79,8 @@
                             vc.toast('预存成功');
                             return;
                         }
-                        vc.component.prestoreAccount2Info.errorInfo = json;
+                        vc.toast(_json.msg);
+                        // vc.component.prestoreAccount2Info.errorInfo = _json.msg;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

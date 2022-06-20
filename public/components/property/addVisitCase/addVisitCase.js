@@ -9,7 +9,7 @@
                 reasonType: "",
                 reasonTypes: [],
                 videoPlaying: false,
-                visitPhoto: "/img/defaultAvatar.png"
+                visitPhoto: ""
             }
         },
         watch: {
