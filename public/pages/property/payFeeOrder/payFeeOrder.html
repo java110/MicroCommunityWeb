@@ -58,7 +58,8 @@
                             <div class="form-group row" v-if="payFeeOrderInfo.tempCycles == '-102'">
                                 <label class="col-sm-2 col-form-label"><span><span><vc:i18n name="实际周期" namespace="payFeeOrder"></vc:i18n></span></span></label>
                                 <div class="col-sm-6">
-                                    <input type="text" :placeholder="vc.i18n('请输入实际周期','payFeeOrder')" v-model="payFeeOrderInfo.cycles" oninput="value=value.replace(/[^\d]/g,'')" v-on:change="changeCycle(payFeeOrderInfo.cycles)" class="form-control">
+                                    <!--oninput="value=value.replace(/[^\d]/g,'')"  这里取消校验 实际中 可能要填写 几点几个月-->
+                                    <input type="text" :placeholder="vc.i18n('请输入实际周期','payFeeOrder')" v-model="payFeeOrderInfo.cycles" v-on:change="changeCycle(payFeeOrderInfo.cycles)" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -202,7 +203,7 @@
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label"><span><span><vc:i18n name="实收金额" namespace="payFeeOrder"></vc:i18n></span></span>：</label>
-                        <label class="col-sm-8 col-form-label" v-if = "payFeeOrderInfo.flag != null && payFeeOrderInfo.flag != '' && payFeeOrderInfo.flag == 'true'">{{payFeeOrderInfo.receivedAmountNumber}}</label>
+                        <label class="col-sm-8 col-form-label" v-if="payFeeOrderInfo.flag != null && payFeeOrderInfo.flag != '' && payFeeOrderInfo.flag == 'true'">{{payFeeOrderInfo.receivedAmountNumber}}</label>
                         <label class="col-sm-8 col-form-label" v-else>{{payFeeOrderInfo.receivedAmount}}</label>
                     </div>
                     <div class="row">
