@@ -18,6 +18,7 @@
             }
         },
         _initMethod: function () {
+            vc.component.addChainSupplierCatalogInfo.csId = vc.getParam('csId');
 
         },
         _initEvent: function () {
