@@ -12,20 +12,17 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入业主姓名','feeCollectionDetailManage')"
-                                v-model="feeCollectionDetailManageInfo.conditions.ownerName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入业主姓名','feeCollectionDetailManage')" v-model="feeCollectionDetailManageInfo.conditions.ownerName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入房屋','feeCollectionDetailManage')/车位"
-                                    v-model="feeCollectionDetailManageInfo.conditions.payerObjName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入房屋/车位','feeCollectionDetailManage')" v-model="feeCollectionDetailManageInfo.conditions.payerObjName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select"
-                                    v-model="feeCollectionDetailManageInfo.conditions.collectionWay">
+                                <select class="custom-select" v-model="feeCollectionDetailManageInfo.conditions.collectionWay">
                                     <option selected value="">{{vc.i18n('请选择催缴方式','feeCollectionDetailManage')}}</option>
                                     <option value="001">{{vc.i18n('仅短信方式','feeCollectionDetailManage')}}</option>
                                     <option value="002">{{vc.i18n('短信微信方式','feeCollectionDetailManage')}}</option>
@@ -34,8 +31,7 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryFeeCollectionOrderMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeCollectionOrderMethod()">
                                 <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="feeCollectionDetailManage"></vc:i18n></span>
                             </button>
                         </div>
@@ -52,7 +48,7 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="催缴明细" namespace="feeCollectionDetailManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                       
+
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -60,7 +56,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><span><vc:i18n name="房屋" namespace="feeCollectionDetailManage"></vc:i18n></span>/车位</th>
+                                <th class="text-center"><span><vc:i18n name="房屋/车位" namespace="feeCollectionDetailManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="业主" namespace="feeCollectionDetailManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="费用" namespace="feeCollectionDetailManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="催缴方式" namespace="feeCollectionDetailManage"></vc:i18n></span></th>
