@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HC小区管理系统</title>
+    <meta charset="UTF-8" />
+    <title>HC智慧物业管理系统</title>
     <vc:create path="frame/commonTop" location="head"></vc:create>
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
-    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- import CSS -->
+
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="/css/plugins/select2/select2.min.css" rel="stylesheet">
@@ -20,7 +19,6 @@
     <link href="/css/plugins/summernote/summernote-bs4.min.css" rel="stylesheet">
     <link href="/css/plugins/jsTree/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/vc-ui.css" />
-    <link rel="stylesheet" href="/css/vc.css" />
     <link rel="stylesheet" href="/css/plugins/bootstrap-submenu/bootstrap-submenu.css">
 
     <script src="/js/bootstrap/jquery-3.3.1.min.js"></script>
@@ -52,31 +50,34 @@
     <script src="/js/xlsx.full.min.js"></script>
     <script src="/js/xlsxStyle.core.min.js"></script>
     <script src="/js/xlsxStyle.utils.js"></script>
+
 </head>
 
-<body>
+<body class="vc-body">
     <vc:create path="frame/bodyTop"></vc:create>
-    <div class="vc-page flex justify-start">
-
-        <vc:create path="frame/menu2"></vc:create>
-
-        <div class="vc-main">
-            <vc:create path="frame/nav2"></vc:create>
-            <div class="vc-main-content">
-                <div class="vc-wrapper vc-content padding-top-xs" style="padding-bottom: 0px;">
-                    <vc:create path="frame/breadcrumb"></vc:create>
-                </div>
-                <div id="component" class="vc-wrapper vc-content padding-top-xs animated fadeInRight"
-                    vc-path="/common/chooseEnterCommunity">
-                    <vc:create path="/pages/property/indexContext"></vc:create>
-                </div>
+    <div class="vc">
+        <vc:create path="frame/menu"></vc:create>
+        <div id="vc-page" class="gray-bg dashbard-1 vc-page-height">
+            <div class="border-bottom">
+                <vc:create path="frame/nav"></vc:create>
             </div>
+            <div class="vc-wrapper vc-content padding-top-xs" style="padding-bottom: 0px;">
+                <vc:create path="frame/breadcrumb"></vc:create>
+            </div>
+            <!--  -->
+            <div id="component" class="vc-wrapper vc-content padding-top-xs animated fadeInRight" vc-path="/common/chooseEnterCommunity">
+                <vc:create path="/pages/property/indexContext"></vc:create>
+            </div>
+            <div style="height: 100px;"></div>
+
+            <vc:create path="frame/copyright"></vc:create>
+
         </div>
     </div>
-    <script src="/vcCore/vc-lang.js"></script>
-    <script src="/js/jessibuca/renderer.js"></script>
-    <script src="/vcCore/vcFramework.js"></script>
-    <vc:create path="frame/commonBottom" location="body"></vc:create>
 </body>
+<script src="/vcCore/vc-lang.js"></script>
+<script src="/js/jessibuca/renderer.js"></script>
+<script src="/vcCore/vcFramework.js"></script>
+<vc:create path="frame/commonBottom" location="body"></vc:create>
 
 </html>

@@ -1,0 +1,19 @@
+<div class="vc-menu  flex justify-start" id="menu-nav">
+    <div class="vc-menu-main">
+        <ul>
+            <li class="title"><a href="/">{{vc.i18n('systemSimpleName')}}</a></li>
+            <li v-for="menu in menus" v-bind:class="{ active: menu.active }" v-if="menu.childs != undefined && menu.childs.length >0" v-on:click="switchMenu(menu)">
+                <i class="fa " v-bind:class="menu.icon"></i><span class="margin-left-xs">{{vc.i18n(menu.name)}}</span>
+            </li>
+
+        </ul>
+    </div>
+    <div class="vc-menu-sub" v-if="subMenus && subMenus.length > 0">
+        <ul>
+            <li class="title">{{curMenuName}}</li>
+            <li v-for="subMenu in subMenus" v-if="subMenu.isShow == 'Y'" v-bind:class="{ active: subMenu.active }" v-on:click="_gotoPage(subMenu.href,subMenu.name)">
+                {{vc.i18n(subMenu.name)}}
+            </li>
+        </ul>
+    </div>
+</div>

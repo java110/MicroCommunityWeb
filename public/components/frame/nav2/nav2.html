@@ -1,0 +1,50 @@
+<div class="vc-nav flex justify-between" id="nav">
+    <div>
+        <ul class="flex flex-start">
+            <li :class="{'active' :item.active == '1' }" v-for="(item,index) in nav.catalogs" @click="_changeMenuCatalog(item)">
+                <i :class="item.icon"></i>{{item.name}}
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul class="nav flex flex-start">
+            <li class="dropdown"
+                v-if="nav.storeTypeCd != '800900000001' && nav.storeTypeCd != '800900000002' && nav.storeTypeCd != '800900000000'">
+                <span class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    {{nav._currentCommunity.name}}
+                </span>
+                <div class="dropdown-menu margin-top">
+                    <a class="dropdown-item" v-for="currentCommunity in nav.communityInfos"
+                        v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}} </a>
+                    <a href="javascript:void(0)" class="dropdown-item text-center" v-on:click="_chooseMoreCommunity()">
+                        <strong>{{vc.i18n('moreCommunity')}}</strong>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </li>
+            <li><i class="fa fa-user margin-right-xs"></i>{{userName}}</li>
+            <li class="dropdown">
+                <span class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="">{{nav.langName}}</span>
+                </span>
+                <ul class="dropdown-menu margin-top">
+                    <li v-for="lang in nav.langs">
+                        <a v-on:click="_changeLang(lang)" class="dropdown-item">
+                            <div  class="dropdown-item text-center">
+                                {{lang.name}}
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                </ul>
+            </li>
+            <li v-on:click="_viewDocument()">
+                <i class="fa fa-question-circle-o"></i>
+            </li>
+            <li v-on:click="logout()">
+                <i class="fa fa-sign-out"></i> {{vc.i18n('signOut')}}
+            </li>
+        </ul>
+    </div>
+</div>
