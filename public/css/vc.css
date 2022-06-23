@@ -545,7 +545,7 @@ body,
     background-color: var(--vc-menu-sub-bg);
     color: var(--vc-menu-sub-font-color);
     text-align: start;
-    width: 140px;
+    width: 150px;
     font-size: 12px;
     height: 100%;
     overflow-x: hidden;
@@ -596,6 +596,8 @@ body,
 .vc-main .vc-nav ul li {
     padding-left: 10px;
     padding-right: 10px;
+    margin-left:5px;
+    margin-right:5px;
     cursor: pointer;
 }
 
