@@ -3,7 +3,7 @@
  **/
 (function(vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROW = 10;
+    var DEFAULT_ROW = 15;
     var TEMP_SEARCH = 'roomCreateFeeSearch';
     vc.extends({
         data: {
@@ -19,9 +19,6 @@
                 roomName: '',
                 roomId: '',
                 builtUpArea: 0.00,
-                floorNum: '',
-                unitNum: '',
-                roomNum: '',
                 ownerName: '',
                 roomType: '',
                 hireOwnerFee: '0',
@@ -30,24 +27,15 @@
             currentPage: 1,
         },
         _initMethod: function() {
-            //检查是否有缓存数据
-            let _tempData = vc.getData(TEMP_SEARCH);
-            if (_tempData == null) {
-                vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
-                vc.component.roomCreateFeeInfo.conditions.floorName = vc.getParam("floorName");
-                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
-            } else {
-                vc.component.roomCreateFeeInfo.conditions = _tempData.conditions;
-                $that.updateCurrentPage(_tempData.currentPage);
-                vc.component.listRoom(_tempData.currentPage, DEFAULT_ROW);
-            }
+            vc.emit('roomTreeDiv', 'initRoomTreeDiv', {
+                callName: 'roomCreateFee'
+            });
         },
         _initEvent: function() {
             vc.on('roomCreateFee', 'selectRoom', function(_param) {
                 vc.component.roomCreateFeeInfo.roomId = _param.roomId;
                 vc.component.roomCreateFeeInfo.roomName = _param.roomName;
-                vc.component._loadListRoomCreateFeeInfo();
-
+                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
                 $that.updateCurrentPage(_currentPage);
@@ -200,12 +188,7 @@
             _toOwnerPayFee: function() {
                 vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.roomCreateFeeInfo.roomId + "&payObjType=3333&roomName=" + $that.roomCreateFeeInfo.roomName);
             },
-            _openRoomCreateFeeAddModal: function() {
-                vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
-                    isMore: false,
-                    room: $that.roomCreateFeeInfo
-                });
-            },
+
             _openRoomCreateFeeComboModal: function() {
                 vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
                     $that.roomCreateFeeInfo.roomId +

@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <div class="col-md-2" style="padding-right:0px">
-            <vc:create path="property/roomTree" callBackListener="roomCreateFee"></vc:create>
+            <vc:create path="property/roomTreeDiv" callBackListener="roomCreateFee"></vc:create>
         </div>
         <div class="col-md-10 margin-top-xs">
             <div class="row">
@@ -35,7 +35,7 @@
                                 <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeComboModal()" v-if="roomCreateFeeInfo.hireOwnerFee == '0'">
                                     创建费用套餐
                                 </button>
-                                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal()" v-if="roomCreateFeeInfo.hireOwnerFee == '0'">
+                                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal(roomCreateFeeInfo,false)" v-if="roomCreateFeeInfo.hireOwnerFee == '0'">
                                     创建费用
                                 </button>
                                 <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_toOwnerPayFee()" v-if="roomCreateFeeInfo.hireOwnerFee == '0'">
@@ -162,4 +162,6 @@
     <vc:create path="property/roomCreateFeeAdd"></vc:create>
     <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/addProxyFee" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/exportFeeImportExcel"></vc:create>
+    <vc:create path="property/doImportCreateFee"></vc:create>
 </div>

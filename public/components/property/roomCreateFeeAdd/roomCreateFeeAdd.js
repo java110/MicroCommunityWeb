@@ -41,6 +41,7 @@
         _initEvent: function() {
             vc.on('roomCreateFeeAdd', 'openRoomCreateFeeAddModal',
                 function(_room) {
+                    $that.clearRoomCreateFeeAddData();
                     $that.roomCreateFeeAddInfo.isMore = _room.isMore;
                     let room = _room.room;
                     if (!_room.isMore) {
@@ -51,6 +52,10 @@
                         $that.roomCreateFeeAddInfo.roomState.push('2005');
                         $that.roomCreateFeeAddInfo.roomState.push('2009');
                         $that.roomCreateFeeAddInfo.locationTypeCdName = room.floorNum + '-' + room.unitNum + '-' + room.roomNum + '(' + room.ownerName + ')';
+
+                        if (room.hasOwnProperty('roomName') && room.roomName) {
+                            $that.roomCreateFeeAddInfo.locationTypeCdName = room.roomName;
+                        }
                     }
                     if (!_room.isMore && room.roomType == '2020602') {
                         $that.roomCreateFeeAddInfo.roomState.push('2006');
@@ -177,7 +182,7 @@
                             //关闭model
                             var _json = JSON.parse(json);
                             $('#roomCreateFeeAddModel').modal('hide');
-                            $that.clearAddFeeConfigInfo();
+                            $that.clearRoomCreateFeeAddData();
                             vc.emit('listRoomFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});
                             if (_json.hasOwnProperty('code') && _json.code != 0) {
@@ -194,7 +199,7 @@
                         vc.toast(errInfo);
                     });
             },
-            clearAddFeeConfigInfo: function() {
+            clearRoomCreateFeeAddData: function() {
                 var _feeTypeCds = $that.roomCreateFeeAddInfo.feeTypeCds;
                 $that.roomCreateFeeAddInfo = {
                     feeConfigs: [],

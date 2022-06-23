@@ -45,7 +45,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row" v-if="editFeeConfigInfo.feeFlag=='1003006'">
+                            <div class="form-group row" v-if="editFeeConfigInfo.feeFlag !='2006012'">
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name="缴费周期" namespace="editFeeConfig"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editFeeConfigInfo.paymentCycle" type="text" :placeholder="vc.i18n('必填，请填写缴费周期 单位为月','editFeeConfig')" class="form-control">
