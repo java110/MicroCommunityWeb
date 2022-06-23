@@ -20,7 +20,8 @@
                 billType: '',
                 paymentCycle: '',
                 paymentCd: '',
-                computingFormulaText: ''
+                computingFormulaText: '',
+                deductFrom: ''
             }
         },
         _initMethod: function() {
@@ -276,7 +277,8 @@
                     paymentCycle: '',
                     paymentCd: '',
                     billType: '',
-                    computingFormulaText: ''
+                    computingFormulaText: '',
+                    deductFrom: ''
                 };
                 vc.component.editFeeConfigInfo.feeTypeCds = _feeTypeCds;
                 vc.component.editFeeConfigInfo.computingFormulas = _computingFormulas;

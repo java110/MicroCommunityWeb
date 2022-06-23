@@ -24,7 +24,8 @@
                 billType: '',
                 paymentCycle: '',
                 paymentCd: '',
-                computingFormulaText: ''
+                computingFormulaText: '',
+                deductFrom: 'Y'
             }
         },
         _initMethod: function() {
@@ -285,7 +286,8 @@
                     billType: '',
                     paymentCycle: '',
                     paymentCd: '',
-                    computingFormulaText: ''
+                    computingFormulaText: '',
+                    deductFrom: 'Y'
                 };
             }
         }

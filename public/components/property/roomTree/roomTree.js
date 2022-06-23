@@ -1,25 +1,23 @@
-(function(vc){
+(function(vc) {
     let DEFAULT_PAGE = 1;
     let DEFAULT_ROW = 10;
     vc.extends({
-        data:{
+        data: {
             roomTreeInfo: {
-                units:[],
-                callName:''
+                units: [],
+                callName: ''
             }
         },
-        _initMethod:function(){
-        },
-        _initEvent:function(){
-            vc.on('roomTree','openRoomTree',function(_param){
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('roomTree', 'openRoomTree', function(_param) {
                 $that.roomTreeInfo.callName = _param.callName;
                 $('#roomTreeModal').modal('show');
                 $that._loadRoomTreeFloorAndUnits();
             });
         },
-        methods:{
+        methods: {
             _loadRoomTreeFloorAndUnits: function() {
-
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId
@@ -77,59 +75,59 @@
 
                     //console.log(_selected, data.node.original.unitId)
                     if (_selected.startsWith('u_')) {
-                        $that._roomTreeLoadRoom(data.node.original.unitId,data);
+                        $that._roomTreeLoadRoom(data.node.original.unitId, data);
                     }
 
-                    if(_selected.startsWith('r_')){
+                    if (_selected.startsWith('r_')) {
                         $('#roomTreeModal').modal('hide');
-                         vc.emit($that.roomTreeInfo.callName, 'selectRoom', {
+                        vc.emit($that.roomTreeInfo.callName, 'selectRoom', {
                             roomName: data.node.original.roomName,
-                            roomId:data.node.original.roomId
+                            roomId: data.node.original.roomId
                         })
                     }
                 });
             },
-            _roomTreeLoadRoom:function(_unitId,data){
+            _roomTreeLoadRoom: function(_unitId, data) {
                 //获取选中的节点
                 let node = data.instance.get_node(data.selected[0]);
                 //遍历选中节点的子节点
                 let childNodes = data.instance.get_children_dom(node);
-                if(childNodes && childNodes.length>0){
-                    for(var childIndex = 0; childIndex<childNodes.length;childIndex++){
-                        $('#jstree_floorUnitRoom').jstree('delete_node',  childNodes[childIndex]);
+                if (childNodes && childNodes.length > 0) {
+                    for (var childIndex = 0; childIndex < childNodes.length; childIndex++) {
+                        $('#jstree_floorUnitRoom').jstree('delete_node', childNodes[childIndex]);
                     }
                 }
                 let param = {
-                    params:{
-                        page:1,
-                        row:1000,
-                        unitId:_unitId,
-                        communityId:vc.getCurrentCommunity().communityId
+                        params: {
+                            page: 1,
+                            row: 1000,
+                            unitId: _unitId,
+                            communityId: vc.getCurrentCommunity().communityId
+                        }
                     }
-                }
-                //发送get请求
+                    //发送get请求
                 vc.http.apiGet('/room.queryRooms',
                     param,
                     function(json, res) {
                         let listRoomData = JSON.parse(json);
-                        if(listRoomData.total< 1){
-                            return ;
+                        if (listRoomData.total < 1) {
+                            return;
                         }
-                        listRoomData.rooms.forEach(_room =>{
+                        listRoomData.rooms.forEach(_room => {
                             let _text = _room.roomNum;
-                            if(_room.ownerName){
-                                _text +=('('+_room.ownerName+")") 
+                            if (_room.ownerName) {
+                                _text += ('(' + _room.ownerName + ")")
                             }
                             let _data = {
                                 id: 'r_' + _room.roomId,
                                 roomId: _room.roomId,
-                                roomName:_room.floorNum+"-"+_room.unitNum+"-"+_room.roomNum,
+                                roomName: _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum,
                                 text: _text,
                                 icon: "/img/room.png",
                             };
-                            $('#jstree_floorUnitRoom').jstree('create_node', $('#u_'+_unitId), _data, "last", false, false);	
+                            $('#jstree_floorUnitRoom').jstree('create_node', $('#u_' + _unitId), _data, "last", false, false);
                         })
-                        $('#jstree_floorUnitRoom').jstree('open_node', $('#u_'+_unitId));
+                        $('#jstree_floorUnitRoom').jstree('open_node', $('#u_' + _unitId));
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

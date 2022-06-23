@@ -7,9 +7,7 @@
     var TEMP_SEARCH = 'roomCreateFeeSearch';
     vc.extends({
         data: {
-            roomUnits: [],
             roomCreateFeeInfo: {
-                rooms: [],
                 total: 0,
                 records: 1,
                 floorId: '',
@@ -17,20 +15,17 @@
                 state: '',
                 roomNum: '',
                 moreCondition: false,
-                conditions: {
-                    floorId: '',
-                    ownerName: '',
-                    ownerNameLike: '',
-                    floorName: '',
-                    unitId: '',
-                    roomNum: '',
-                    roomId: '',
-                    state: '',
-                    section: '',
-                    allNum: '',
-                    idCard: '',
-                    roomType: ''
-                }
+                fees: [],
+                roomName: '',
+                roomId: '',
+                builtUpArea: 0.00,
+                floorNum: '',
+                unitNum: '',
+                roomNum: '',
+                ownerName: '',
+                roomType: '',
+                hireOwnerFee: '0',
+                urlOwnerId: ''
             },
             currentPage: 1,
         },
@@ -42,17 +37,17 @@
                 vc.component.roomCreateFeeInfo.conditions.floorName = vc.getParam("floorName");
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             } else {
-                console.log('here is tempData : ', _tempData);
                 vc.component.roomCreateFeeInfo.conditions = _tempData.conditions;
                 $that.updateCurrentPage(_tempData.currentPage);
                 vc.component.listRoom(_tempData.currentPage, DEFAULT_ROW);
             }
         },
         _initEvent: function() {
-            vc.on('room', 'chooseFloor', function(_param) {
-                vc.component.roomCreateFeeInfo.conditions.floorId = _param.floorId;
-                vc.component.roomCreateFeeInfo.conditions.floorName = _param.floorName;
-                vc.component.loadUnits(_param.floorId);
+            vc.on('roomCreateFee', 'selectRoom', function(_param) {
+                vc.component.roomCreateFeeInfo.roomId = _param.roomId;
+                vc.component.roomCreateFeeInfo.roomName = _param.roomName;
+                vc.component._loadListRoomCreateFeeInfo();
+
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
                 $that.updateCurrentPage(_currentPage);
@@ -60,145 +55,13 @@
             });
         },
         methods: {
-            listRoom: function(_page, _row) {
-                if (vc.component.roomCreateFeeInfo.conditions.floorName == '' || vc.component.roomCreateFeeInfo.conditions.floorName == null) {
-                    vc.component.roomCreateFeeInfo.conditions.floorId = ''
-                }
-                vc.component.roomCreateFeeInfo.conditions.page = _page;
-                vc.component.roomCreateFeeInfo.conditions.row = _row;
-                vc.component.roomCreateFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                let _allNum = $that.roomCreateFeeInfo.conditions.allNum;
-                let _conditions = JSON.parse(JSON.stringify(vc.component.roomCreateFeeInfo.conditions));
-                let param = {
-                    params: _conditions
-                };
-                if (_allNum.split('-').length == 3) {
-                    let _allNums = _allNum.split('-')
-                    param.params.floorNum = _allNums[0].trim();
-                    param.params.unitNum = _allNums[1].trim();
-                    param.params.roomNum = _allNums[2].trim();
-                }
-                if (_allNum.split('-').length == 2) {
-                    let _allNums = _allNum.split('-')
-                    param.params.floorNum = _allNums[0].trim();
-                    param.params.unitNum = '0';
-                    param.params.roomNum = _allNums[1].trim();
-                }
-                //业主名称选框去空
-                param.params.ownerName = param.params.ownerName.trim();
-                //身份证号选框去空
-                param.params.idCard = param.params.idCard.trim();
-                //房屋编号去空
-                param.params.roomNum = param.params.roomNum.trim();
-                //发送get请求
-                vc.http.apiGet('/fee.listRoomsWhereFeeSet',
-                    param,
-                    function(json, res) {
-                        var listRoomData = JSON.parse(json);
-                        vc.component.roomCreateFeeInfo.total = listRoomData.total;
-                        vc.component.roomCreateFeeInfo.records = listRoomData.records;
-                        vc.component.roomCreateFeeInfo.rooms = listRoomData.rooms;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.roomCreateFeeInfo.records,
-                            dataCount: vc.component.roomCreateFeeInfo.total,
-                            currentPage: _page
-                        });
-                        // 换存搜索条件
-                        $that.saveTempSearchData();
-                    },
-                    function(errInfo, error) {
-                        vc.toast(errInfo);
-                        console.log('请求失败处理');
-                    }
-                );
-            },
             _openRoomCreateFeeAddModal: function(_room, _isMore) {
                 vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
                     isMore: _isMore,
                     room: _room
                 });
             },
-            _openViewRoomCreateFee: function(_room) {
-                vc.jumpToPage("/#/pages/property/listRoomFee?roomId=" + _room.roomId + '&ownerId=' + _room.ownerId);
-            },
-            /**
-             根据楼ID加载房屋
-             **/
-            loadUnits: function(_floorId) {
-                vc.component.addRoomUnits = [];
-                var param = {
-                    params: {
-                        floorId: _floorId,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                }
-                vc.http.get(
-                    'roomCreateFee',
-                    'loadUnits',
-                    param,
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
-                            var tmpUnits = JSON.parse(json);
-                            vc.component.roomUnits = tmpUnits;
-                            return;
-                        }
-                        vc.toast(json);
-                    },
-                    function(errInfo, error) {
-                        console.log('请求失败处理');
-                        vc.toast(errInfo);
-                    });
-            },
-            //查询
-            _queryRoomMethod: function() {
-                // 搜索时重置缓存分页
-                $that.updateCurrentPage(DEFAULT_PAGE);
-                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
-            },
-            //重置
-            _resetRoomMethod: function() {
-                vc.resetObject(vc.component.roomCreateFeeInfo.conditions);
-                vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
-            },
-            _loadDataByParam: function() {
-                vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorId");
-                vc.component.roomCreateFeeInfo.conditions.floorId = vc.getParam("floorName");
 
-                let param = {
-                    params: {
-                        communityId: vc.getCurrentCommunity().communityId,
-                        floorId: vc.component.roomCreateFeeInfo.conditions.floorId
-                    }
-                }
-                vc.http.get(
-                    'roomCreateFee',
-                    'loadFloor',
-                    param,
-                    function(json, res) {
-                        if (res.status == 200) {
-                            var _floorInfo = JSON.parse(json);
-                            var _tmpFloor = _floorInfo.apiFloorDataVoList[0];
-                            /*vc.emit('roomSelectFloor','chooseFloor', _tmpFloor);*/
-                            return;
-                        }
-                        vc.toast(json);
-                    },
-                    function(errInfo, error) {
-                        console.log('请求失败处理');
-                        vc.toast(errInfo);
-                    });
-            },
-            _moreCondition: function() {
-                if (vc.component.roomCreateFeeInfo.moreCondition) {
-                    vc.component.roomCreateFeeInfo.moreCondition = false;
-                } else {
-                    vc.component.roomCreateFeeInfo.moreCondition = true;
-                }
-            },
-            _openChooseFloorMethod: function() {
-                vc.emit('searchFloor', 'openSearchFloorModel', {});
-            },
             _toOwnerPayFee: function(_room) {
                 let roomName = _room.floorNum + "栋" + _room.unitNum + "单元" + _room.roomNum + "室"
                 vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + _room.roomId + "&payObjType=3333&roomName=" + roomName);
@@ -264,7 +127,130 @@
             },
             _openDoCreateRoomFee: function() {
                 vc.emit('doImportCreateFee', 'openDoImportCreateFeeModal', {})
-            }
+            },
+            getOnePrice1: function(fee) {
+                let _price = fee.mwPrice;
+                if (!_price) {
+                    return fee.squarePrice;
+                }
+                if (parseFloat(_price) > 0) {
+                    return _price;
+                }
+                return fee.squarePrice;
+            },
+            _loadListRoomCreateFeeInfo: function(_page, _row) {
+                var param = {
+                    params: {
+                        page: _page,
+                        row: _row,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        payerObjId: vc.component.roomCreateFeeInfo.roomId
+                            // ownerId: $that.roomCreateFeeInfo.urlOwnerId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/fee.listFee',
+                    param,
+                    function(json) {
+                        let _feeConfigInfo = JSON.parse(json);
+                        vc.component.roomCreateFeeInfo.total = _feeConfigInfo.total;
+                        vc.component.roomCreateFeeInfo.records = _feeConfigInfo.records;
+                        vc.component.roomCreateFeeInfo.fees = _feeConfigInfo.fees;
+                        vc.emit('pagination', 'init', {
+                            total: _feeConfigInfo.records,
+                            dataCount: _feeConfigInfo.total,
+                            currentPage: _page
+                        });
+                    },
+                    function() {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _payFee: function(_fee) {
+                _fee.roomName = $that.roomCreateFeeInfo.roomName;
+                _fee.builtUpArea = $that.roomCreateFeeInfo.builtUpArea;
+                vc.jumpToPage('/#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
+            },
+            _editFee: function(_fee) {
+                vc.emit('editFee', 'openEditFeeModal', _fee);
+            },
+            _payFeeHis: function(_fee) {
+                _fee.builtUpArea = $that.roomCreateFeeInfo.builtUpArea;
+                vc.jumpToPage('/#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
+            },
+            _deleteFee: function(_fee) {
+                // var dateA = new Date(_fee.startTime);
+                // var dateB = new Date();
+                // if(dateA.setHours(0, 0, 0, 0) != dateB.setHours(0, 0, 0, 0)){
+                //     vc.toast("只能取消当天添加的费用");
+                //     return;
+                // }
+                vc.emit('deleteFee', 'openDeleteFeeModal', {
+                    communityId: vc.getCurrentCommunity().communityId,
+                    feeId: _fee.feeId
+                });
+            },
+            _refreshListRoomCreateFeeInfo: function() {
+                vc.component.roomCreateFeeInfo._currentFeeConfigName = "";
+            },
+            _goBack: function() {
+                vc.goBack();
+            },
+            _toOwnerPayFee: function() {
+                vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.roomCreateFeeInfo.roomId + "&payObjType=3333&roomName=" + $that.roomCreateFeeInfo.roomName);
+            },
+            _openRoomCreateFeeAddModal: function() {
+                vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
+                    isMore: false,
+                    room: $that.roomCreateFeeInfo
+                });
+            },
+            _openRoomCreateFeeComboModal: function() {
+                vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
+                    $that.roomCreateFeeInfo.roomId +
+                    "&payerObjName=" + $that.roomCreateFeeInfo.roomName +
+                    "&payerObjType=3333")
+            },
+            _openAddMeterWaterModal: function() {
+                vc.emit('addMeterWater', 'openAddMeterWaterModal', {
+                    roomId: $that.roomCreateFeeInfo.roomId,
+                    roomName: $that.roomCreateFeeInfo.roomName,
+                    ownerName: $that.roomCreateFeeInfo.ownerName
+                });
+            },
+            _getAttrValue: function(_attrs, _specCd) {
+                let _value = "";
+                _attrs.forEach(item => {
+                    if (item.specCd == _specCd) {
+                        _value = item.value;
+                        return;
+                    }
+                });
+                return _value;
+            },
+            _getDeadlineTime: function(_fee) {
+                if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
+                    return "-";
+                }
+                if (_fee.state == '2009001') {
+                    return "-";
+                }
+                return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
+            },
+            _getEndTime: function(_fee) {
+                if (_fee.state == '2009001') {
+                    return "-";
+                }
+                return vc.dateFormat(_fee.endTime);
+            },
+            _openProxyFeeModal: function() { //创建代收费用
+                vc.emit('addProxyFee', 'openAddProxyFeeModal', {
+                    roomId: $that.roomCreateFeeInfo.roomId,
+                    roomName: $that.roomCreateFeeInfo.roomName,
+                    ownerName: $that.roomCreateFeeInfo.ownerName
+                });
+            },
         }
     });
 })(window.vc);
