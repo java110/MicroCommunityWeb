@@ -15,6 +15,8 @@
 
             //监听 菜单目录改变
             document.body.addEventListener('loadMenu', function(_param) {
+                vm.curMenuName = '';
+                vm.subMenus = [];
                 vm.getMenus(_param.detail);
             }, false);
         },
@@ -132,6 +134,9 @@
                     }
                 }
                 this.$forceUpdate();
+            },
+            _closeSubMenu: function() {
+                vm.curMenuName = '';
             }
 
         },

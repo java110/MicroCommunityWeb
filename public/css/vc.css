@@ -10,6 +10,7 @@
     --vc-menu-sub-bg-active-color: #EAF0FE;
     --vc-menu-sub-active-font-color: #4979F4;
     --vc-menu-sub-title-font-color: #4F525C;
+    --vc-menu-sub-footer: #F6F6F7;
     --vc-nav-bg: #FFFFFF;
     --vc-nav-color: #888888;
     --vc-nav-active-color: #4979F4;
@@ -550,7 +551,7 @@ body,
     text-align: start;
     width: 160px;
     font-size: 14px;
-    height: 100%;
+    height: 95%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -580,6 +581,14 @@ body,
     padding-left: 0px;
     border-bottom: 1px solid #F2F2F3;
     margin-bottom: 10px;
+}
+
+.vc-menu-sub ul li.sub-footer {
+    background-color: var(--vc-menu-sub-footer);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 160px;
 }
 
 .vc-main {
