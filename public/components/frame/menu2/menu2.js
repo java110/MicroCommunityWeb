@@ -137,8 +137,11 @@
             },
             _closeSubMenu: function() {
                 vm.curMenuName = '';
+                vm.subMenus = [];
+                vm.menus.forEach(item => {
+                    item.active = false;
+                });
             }
-
         },
 
     });
