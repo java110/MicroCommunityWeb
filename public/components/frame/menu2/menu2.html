@@ -14,6 +14,7 @@
             <li v-for="subMenu in subMenus" v-if="subMenu.isShow == 'Y'" v-bind:class="{ active: subMenu.active }" v-on:click="_gotoPage(subMenu.href,subMenu.name)">
                 {{vc.i18n(subMenu.name)}}
             </li>
+            <li class="sub-footer" @click="_closeSubMenu()"><i class="fa fa-dedent"></i></li>
         </ul>
     </div>
 </div>

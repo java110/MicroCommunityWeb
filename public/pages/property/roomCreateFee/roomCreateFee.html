@@ -1,10 +1,10 @@
 <div>
-    <div class="bg-white padding-sm">
+    <div class="bg-white padding-sm border-radius">
         <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openFeeImportExcel()">
             <vc:i18n name="自定义模板" namespace="roomCreateFee"></vc:i18n>
         </button>
         <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openDoCreateRoomFee()">
-            <vc:i18n name="自定义创建" namespace="roomCreateFee"></vc:i18n>
+            <vc:i18n name="自定义导入" namespace="roomCreateFee"></vc:i18n>
         </button>
         <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal(null,true)">
             <i class="fa fa-plus"></i> <span><vc:i18n name="批量创建" namespace="roomCreateFee"></vc:i18n></span>
@@ -14,7 +14,7 @@
         </button>
     </div>
     <div class="row">
-        <div class="col-md-2" style="padding-right:0px">
+        <div class="col-md-2 " style="padding-right:0px">
             <vc:create path="property/roomTreeDiv" callBackListener="roomCreateFee"></vc:create>
         </div>
         <div class="col-md-10 margin-top-xs">

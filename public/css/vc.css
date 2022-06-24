@@ -1,22 +1,19 @@
 :root {
     --vc-page-bg-color: #F6F6F7;
     --vc-menu-main-bg: #1D1F2D;
-    --vc-menu-main-font-color: #7F848F;
+    --vc-menu-main-font-color: #808590;
     --vc-menu-main-bg-active-color: #4979F4;
     --vc-menu-main-active-font-color: #FFFFFF;
     --vc-menu-main-title-font-color: #FFFFFF;
-
-
     --vc-menu-sub-bg: #FFFFFF;
     --vc-menu-sub-font-color: #545761;
-    --vc-menu-sub-bg-active-color: #EBF0FE;
+    --vc-menu-sub-bg-active-color: #EAF0FE;
     --vc-menu-sub-active-font-color: #4979F4;
-    --vc-menu-sub-title-font-color: #A8A9AE;
-
+    --vc-menu-sub-title-font-color: #4F525C;
+    --vc-menu-sub-footer: #F6F6F7;
     --vc-nav-bg: #FFFFFF;
     --vc-nav-color: #888888;
     --vc-nav-active-color: #4979F4;
-
 }
 
 .margin-0 {
@@ -485,6 +482,17 @@ ul li {
     text-align: right;
 }
 
+.white-bg {
+    background-color: #ffffff;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e7eaec !important;
+}
+
+.border-radius {
+    border-radius: 10px;
+}
 
 html,
 body,
@@ -503,16 +511,15 @@ body,
     color: var(--vc-menu-main-font-color);
     text-align: center;
     width: 80px;
-    font-size: 12px;
+    font-size: 14px;
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.vc-menu-main::-webkit-scrollbar{
+.vc-menu-main::-webkit-scrollbar {
     display: none;
 }
-
 
 .vc-menu-main .active {
     background-color: var(--vc-menu-main-bg-active-color);
@@ -532,27 +539,24 @@ body,
     line-height: 60px;
 }
 
-
 .vc-menu-main ul li.title a {
     text-decoration: none;
     cursor: pointer;
     color: var(--vc-menu-main-title-font-color);
 }
 
-
-
 .vc-menu-sub {
     background-color: var(--vc-menu-sub-bg);
     color: var(--vc-menu-sub-font-color);
     text-align: start;
-    width: 150px;
-    font-size: 12px;
-    height: 100%;
+    width: 160px;
+    font-size: 14px;
+    height: 95%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.vc-menu-sub::-webkit-scrollbar{
+.vc-menu-sub::-webkit-scrollbar {
     display: none;
 }
 
@@ -579,6 +583,14 @@ body,
     margin-bottom: 10px;
 }
 
+.vc-menu-sub ul li.sub-footer {
+    background-color: var(--vc-menu-sub-footer);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 160px;
+}
+
 .vc-main {
     height: 100%;
     width: 100%;
@@ -588,7 +600,7 @@ body,
     height: 40px;
     width: 100%;
     background-color: var(--vc-nav-bg);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 40px;
     color: var(--vc-nav-color);
 }
@@ -596,8 +608,8 @@ body,
 .vc-main .vc-nav ul li {
     padding-left: 10px;
     padding-right: 10px;
-    margin-left:5px;
-    margin-right:5px;
+    margin-left: 5px;
+    margin-right: 5px;
     cursor: pointer;
 }
 
@@ -610,13 +622,28 @@ body,
     border-bottom: 2px solid var(--vc-nav-active-color) !important;
 }
 
-.vc-main .vc-main-content{
+.vc-main .vc-main-content {
     width: 100%;
     height: 95%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.vc-menu-sub.vc-main .vc-main-content::-webkit-scrollbar{
+.vc-menu-sub.vc-main .vc-main-content::-webkit-scrollbar {
     display: none;
+}
+
+.vc-main .breadcrumb {
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px #888888;
+}
+
+.vc-main .ibox .ibox-title {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.vc-main .ibox .ibox-content {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
