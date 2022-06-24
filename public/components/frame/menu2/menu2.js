@@ -1,7 +1,7 @@
 /**
  菜单 处理
  **/
-(function (vc) {
+(function(vc) {
     var vm = new Vue({
         el: '#menu-nav',
         data: {
@@ -10,16 +10,16 @@
             curMenuName: '',
             logo: '',
         },
-        mounted: function () {
+        mounted: function() {
             this._initSysInfo();
 
             //监听 菜单目录改变
-            document.body.addEventListener('loadMenu', function (_param) {
+            document.body.addEventListener('loadMenu', function(_param) {
                 vm.getMenus(_param.detail);
             }, false);
         },
         methods: {
-            _initSysInfo: function () {
+            _initSysInfo: function() {
                 let sysInfo = vc.getData("_sysInfo");
                 if (sysInfo == null) {
                     this.logo = "HC";
@@ -27,20 +27,20 @@
                 }
                 this.logo = sysInfo.logo;
             },
-            _gotoIndex: function () {
+            _gotoIndex: function() {
                 vc.jumpToPage("/")
             },
-            getMenus: function (_catalog) {
+            getMenus: function(_catalog) {
                 let _param = {
-                    params: {
-                        caId: _catalog.caId,
-                        communityId: vc.getCurrentCommunity().communityId
+                        params: {
+                            caId: _catalog.caId,
+                            communityId: vc.getCurrentCommunity().communityId
+                        }
                     }
-                }
-                //发送get请求
+                    //发送get请求
                 vc.http.apiGet('/menu.listCatalogMenus',
                     _param,
-                    function (json, res) {
+                    function(json, res) {
                         let _menuData = JSON.parse(json);
                         if (_menuData.code != 0) {
                             return;
@@ -49,25 +49,26 @@
                         if (_menus == null || _menus.length == 0) {
                             return;
                         }
-                        _menus.sort(function (a, b) {
+                        _menus.sort(function(a, b) {
                             return a.seq - b.seq
                         });
                         //var _currentMenusId = vc.getCurrentMenu() == null ? _menus[0].id : vc.getCurrentMenu();
                         //let _currentMenusId = _menus[0].id;
                         vm.menus = vm.refreshMenuActive(_menus, '');
                         vc.setMenus(vm.menus);
+                        // vm.switchMenu(_menus[0]);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            refreshMenuActive: function (jsonArray, _id) {
+            refreshMenuActive: function(jsonArray, _id) {
                 for (var menuIndex = 0; menuIndex < jsonArray.length; menuIndex++) {
 
                     if (jsonArray[menuIndex].hasOwnProperty('childs')) {
                         let _childs = jsonArray[menuIndex].childs;
-                        _childs.sort(function (_child, _newChild) {
+                        _childs.sort(function(_child, _newChild) {
                             return _child.seq - _newChild.seq
                         });
                         jsonArray[menuIndex].childs = _childs;
@@ -82,7 +83,7 @@
                 }
                 return jsonArray;
             },
-            switchMenu: function (_menu) {
+            switchMenu: function(_menu) {
                 //设置菜单ID
                 vc.setCurrentMenu(_menu.id);
                 vm.menus = vm.refreshMenuActive(vm.menus, _menu.id);
@@ -91,7 +92,7 @@
                 vm.curMenuName = _menu.name;
                 //vc._fix_height()
             },
-            miniMenu: function () {
+            miniMenu: function() {
 
                 //菜单默认为打开方式
                 if (!vc.notNull(vc.getMenuState())) {
@@ -105,7 +106,7 @@
                 $("body").toggleClass("mini-navbar");
                 vc.setMenuState('OFF');
             },
-            _gotoPage: function (_href, _tabName) {
+            _gotoPage: function(_href, _tabName) {
                 // 子菜单默认选中
                 this._setSelectedMenusChild(_href);
                 if (_href.indexOf('?') > -1) {

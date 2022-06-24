@@ -773,12 +773,6 @@ ul.nav-second-level {
     font-size: inherit;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1ab394;
-    border-color: #1ab394;
-}
-
 .btn-xs {
     font-size: 0.7rem;
     padding: 0.2rem 0.4rem;
