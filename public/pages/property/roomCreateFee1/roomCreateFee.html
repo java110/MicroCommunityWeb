@@ -129,31 +129,26 @@
                                 </td>
                                 <td class="text-center">
                                     {{room.link}}
-
-                                    <td class="text-center">
-                                        {{room.idCard}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{room.roomId}}
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group" v-if="room.state != '2002'">
-                                            <button class="btn-white btn btn-xs" v-on:click="_toOwnerPayFee(room)"><span><vc:i18n name="欠费" namespace="roomCreateFee"></vc:i18n></span></button>
-                                        </div>
-                                        <!-- <div class="btn-group" v-if="room.state != '2002'">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openTranslateFeeManualCollectionDetailModel(room)"><span><vc:i18n name="人工托收" namespace="roomCreateFee"></vc:i18n></span>
-                                    </button>
-                                </div> -->
-                                        <div class="btn-group" v-if="room.state != '2002'">
-                                            <button class="btn-white btn btn-xs" v-on:click="_downloadRoomCollectionLetterOrder(room)"><span><vc:i18n name="催缴单" namespace="roomCreateFee"></vc:i18n></span>
-                                    </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" v-on:click="_openViewRoomCreateFee(room)"><span><vc:i18n name="费用" namespace="roomCreateFee"></vc:i18n></span>
-                                    </button>
-                                        </div>
-                                    </td>
+                                </td>
+                                <td class="text-center">
+                                    {{room.idCard}}
+                                </td>
+                                <td class="text-center">
+                                    {{room.roomId}}
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" v-if="room.state != '2002'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_toOwnerPayFee(room)"><span><vc:i18n name="欠费" namespace="roomCreateFee"></vc:i18n></span></button>
+                                    </div>
+                                    <div class="btn-group" v-if="room.state != '2002'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_downloadRoomCollectionLetterOrder(room)"><span><vc:i18n name="催缴单" namespace="roomCreateFee"></vc:i18n></span>
+                                            </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openViewRoomCreateFee(room)"><span><vc:i18n name="费用" namespace="roomCreateFee"></vc:i18n></span>
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>

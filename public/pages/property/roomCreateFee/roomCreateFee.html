@@ -20,6 +20,49 @@
         <div class="col-md-10 margin-top-xs">
             <div class="row">
                 <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <span>
+                                    <vc:i18n name="查询条件" namespace="room"></vc:i18n>
+                                </span>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请填写房屋编号,如1-1-1123','roomCreateFeeInfo')" @input="_inputRoom()" v-model="roomCreateFeeInfo.conditions.roomNum" class=" form-control">
+                                        <vc:create path="property/inputSearchRoom"></vc:create>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control-sm form-control input-s-sm inline" v-model="roomCreateFeeInfo.conditions.state">
+                                        <option selected value="">{{vc.i18n('请选择状态','roomCreateFee')}}</option>
+                                        <option value="2008001">{{vc.i18n('收费中','roomCreateFee')}}</option>
+                                        <option value="2009001">{{vc.i18n('收费结束','roomCreateFee')}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" :placeholder="vc.i18n('请填写业主名称','roomCreateFeeInfo')" @input="_inputRoomByOwner()" v-model="roomCreateFeeInfo.conditions.ownerName" class=" form-control">
+                                    <vc:create path="property/inputSearchRoomByOwner"></vc:create>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRoomCreateFeeMethod()">
+                                        <i class="fa fa-search"></i> <span>
+                                            <vc:i18n name="查询" namespace="room"></vc:i18n>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
                     <div class="ibox">
                         <div class="ibox-title">
                             <h5>{{roomCreateFeeInfo.roomName}}

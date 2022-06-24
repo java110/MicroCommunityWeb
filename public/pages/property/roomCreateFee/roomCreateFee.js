@@ -22,7 +22,13 @@
                 ownerName: '',
                 roomType: '',
                 hireOwnerFee: '0',
-                urlOwnerId: ''
+                urlOwnerId: '',
+                conditions: {
+                    state: '2008001',
+                    roomNum: '',
+                    roomId: '',
+                    ownerName: ''
+                }
             },
             currentPage: 1,
         },
@@ -34,9 +40,24 @@
         _initEvent: function() {
             vc.on('roomCreateFee', 'selectRoom', function(_param) {
                 vc.component.roomCreateFeeInfo.roomId = _param.roomId;
+                $that.roomCreateFeeInfo.conditions.roomId = _param.roomId;
+                $that.roomCreateFeeInfo.conditions.roomNum = ''
                 vc.component.roomCreateFeeInfo.roomName = _param.roomName;
                 vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             });
+            vc.on('roomCreateFee', 'notifyRoom', function(_room) {
+                $that.roomCreateFeeInfo.conditions.roomId = _room.roomId;
+                $that.roomCreateFeeInfo.conditions.roomNum = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
+                $that.roomCreateFeeInfo.roomName = $that.roomCreateFeeInfo.conditions.roomNum;
+                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+            });
+            vc.on('roomCreateFee', 'notifyRoomByOwner', function(_room) {
+                $that.roomCreateFeeInfo.conditions.roomId = _room.roomId;
+                $that.roomCreateFeeInfo.conditions.ownerName = _room.ownerName;
+                $that.roomCreateFeeInfo.roomName = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
+                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+            });
+
             vc.on('pagination', 'page_event', function(_currentPage) {
                 $that.updateCurrentPage(_currentPage);
                 vc.component.listRoom(_currentPage, DEFAULT_ROW);
@@ -127,12 +148,14 @@
                 return fee.squarePrice;
             },
             _loadListRoomCreateFeeInfo: function(_page, _row) {
-                var param = {
+
+                let param = {
                     params: {
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        payerObjId: vc.component.roomCreateFeeInfo.roomId
+                        payerObjId: $that.roomCreateFeeInfo.conditions.roomId,
+                        state: $that.roomCreateFeeInfo.conditions.state
                             // ownerId: $that.roomCreateFeeInfo.urlOwnerId
                     }
                 };
@@ -234,6 +257,31 @@
                     ownerName: $that.roomCreateFeeInfo.ownerName
                 });
             },
+            _inputRoom: function() {
+                if ($that.roomCreateFeeInfo.timer) {
+                    clearTimeout($that.roomCreateFeeInfo.timer)
+                }
+                $that.roomCreateFeeInfo.timer = setTimeout(() => {
+                    vc.emit('inputSearchRoomInfo', 'searchRoom', {
+                        callComponent: 'roomCreateFee',
+                        roomName: $that.roomCreateFeeInfo.conditions.roomNum
+                    });
+                }, 1500)
+            },
+            _inputRoomByOwner: function() {
+                if ($that.roomCreateFeeInfo.timer) {
+                    clearTimeout($that.roomCreateFeeInfo.timer)
+                }
+                $that.roomCreateFeeInfo.timer = setTimeout(() => {
+                    vc.emit('inputSearchRoomByOwner', 'searchRoom', {
+                        callComponent: 'roomCreateFee',
+                        ownerName: $that.roomCreateFeeInfo.conditions.ownerName
+                    });
+                }, 1500)
+            },
+            _queryRoomCreateFeeMethod: function() {
+                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+            }
         }
     });
 })(window.vc);
