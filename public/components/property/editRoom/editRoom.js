@@ -1,5 +1,4 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
             editRoomUnits: [],
@@ -24,24 +23,21 @@
                 roomSubTypes: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._loadRoomAttrSpec();
-
         },
-        _initEvent: function() {
-            vc.on('editRoom', 'openEditRoomModal', function(_room) {
+        _initEvent: function () {
+            vc.on('editRoom', 'openEditRoomModal', function (_room) {
                 $that.refreshEditRoomInfo();
                 //与字典表关联
-                vc.getDict('building_room', "room_sub_type", function(_data) {
+                vc.getDict('building_room', "room_sub_type", function (_data) {
                     vc.component.editRoomInfo.roomSubTypes = _data;
                 });
                 vc.copyObject(_room, vc.component.editRoomInfo);
                 vc.component.loadUnitsFromEditRoom(_room.floorId);
                 $('#editRoomModel').modal('show');
-
                 vc.component.editRoomInfo.floorId = _room.floorId;
                 vc.component.editRoomInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 if (_room.hasOwnProperty('roomAttrDto')) {
                     let _roomAttrDtos = _room.roomAttrDto;
                     _roomAttrDtos.forEach(item => {
@@ -53,14 +49,13 @@
                         })
                     })
                 }
-
             });
         },
         methods: {
             /**
-                根据楼ID加载房屋
-            **/
-            loadUnitsFromEditRoom: function(_floorId) {
+             根据楼ID加载房屋
+             **/
+            loadUnitsFromEditRoom: function (_floorId) {
                 vc.component.editRoomUnits = [];
                 var param = {
                     params: {
@@ -72,7 +67,7 @@
                     'editRoom',
                     'loadUnits',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var tmpUnits = JSON.parse(json);
@@ -93,16 +88,14 @@
                         }
                         vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
-
-            _loadRoomAttrSpec: function() {
+            _loadRoomAttrSpec: function () {
                 $that.editRoomInfo.attrs = [];
-                vc.getAttrSpec('building_room_attr', function(data) {
+                vc.getAttrSpec('building_room_attr', function (data) {
                     data.forEach(item => {
                         item.value = '';
                         item.values = [];
@@ -111,20 +104,18 @@
                             $that.editRoomInfo.attrs.push(item);
                         }
                     });
-
                 });
             },
-            _loadAttrValue: function(_specCd, _values) {
-                vc.getAttrValue(_specCd, function(data) {
+            _loadAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
                         }
                     });
-
                 });
             },
-            editRoomValidate: function() {
+            editRoomValidate: function () {
                 return vc.validate.validate({
                     editRoomInfo: vc.component.editRoomInfo
                 }, {
@@ -134,10 +125,10 @@
                         errInfo: "小区楼房屋不能为空"
                     }],
                     'editRoomInfo.roomNum': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "房屋编号不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "房屋编号不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "12",
@@ -160,10 +151,10 @@
                         errInfo: "户型不能为空"
                     }],
                     'editRoomInfo.builtUpArea': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "建筑面积不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "建筑面积不能为空"
+                    },
                         {
                             limit: "money",
                             param: "",
@@ -176,10 +167,10 @@
                         }
                     ],
                     'editRoomInfo.roomArea': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "室内面积不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "室内面积不能为空"
+                    },
                         {
                             limit: "money",
                             param: "",
@@ -187,10 +178,10 @@
                         },
                     ],
                     'editRoomInfo.feeCoefficient': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "算费系数不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "算费系数不能为空"
+                    },
                         {
                             limit: "money",
                             param: "",
@@ -206,11 +197,11 @@
                         limit: "maxLength",
                         param: "200",
                         errInfo: "备注长度不能超过200位"
-                    }, ]
+                    },]
 
                 });
             },
-            editRoom: function() {
+            editRoom: function () {
                 if (!vc.component.editRoomValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -224,7 +215,7 @@
                     JSON.stringify(vc.component.editRoomInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -233,17 +224,16 @@
                             vc.emit('room', 'loadData', {
                                 floorId: vc.component.editRoomInfo.floorId
                             });
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
-            refreshEditRoomInfo: function() {
+            refreshEditRoomInfo: function () {
                 let _attrs = $that.editRoomInfo.attrs;
                 _attrs.forEach(_item => {
                     _item.attrId = '';
@@ -272,5 +262,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

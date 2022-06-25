@@ -145,7 +145,7 @@
                 vc.emit('deleteApp', 'openDeleteAppModel', _app);
             },
             showImg: function (e) {
-                if(!e){
+                if (!e) {
                     e = '/img/noPhoto.jpg';
                 }
                 vc.emit('viewImage', 'showImage', {url: e});

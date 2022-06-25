@@ -103,8 +103,10 @@
                 let _selectDiscount = [];
                 $that.payFeeDiscountInfo.selectDiscountIds.forEach(item => {
                     $that.payFeeDiscountInfo.feeDiscounts.forEach(disItem => {
-                        if (item == disItem.discountId && disItem.discountPrice != 0) {
+                        if (item == disItem.discountId && disItem.discountPrice != 0 && disItem.ruleId != "102020008") {
                             _totalDiscountMoney += parseFloat(disItem.discountPrice);
+                            _selectDiscount.push(disItem);
+                        } else if (item == disItem.discountId && disItem.ruleId == "102020008") {
                             _selectDiscount.push(disItem);
                         }
                     })

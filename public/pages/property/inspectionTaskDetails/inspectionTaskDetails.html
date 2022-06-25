@@ -122,6 +122,9 @@
                         <span><vc:i18n name="巡检明细信息" namespace="inspectionTaskDetails"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="inspectionTaskDetails"></vc:i18n></span>
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -198,8 +201,7 @@
                                 <td class="text-center text-danger font-bold" v-if="inspectionTask.state == '20200408'">{{inspectionTask.stateName}}</td>
                                 <td class="text-center" v-else>{{inspectionTask.stateName}}</td>
                                 <!-- <td class="text-center text-danger font-bold" v-if="inspectionTask.patrolType == '20002'">{{inspectionTask.patrolTypeName ? inspectionTask.patrolTypeName : '-'}}</td>
-                            <td class="text-center text-primary" v-else>{{inspectionTask.patrolTypeName ? inspectionTask.patrolTypeName : '-'}}</td> -->
-
+                                <td class="text-center text-primary" v-else>{{inspectionTask.patrolTypeName ? inspectionTask.patrolTypeName : '-'}}</td> -->
                                 <td class="text-center text-primary">{{inspectionTask.description ? inspectionTask.description : '-'}}</td>
                                 <td class="text-center" style="white-space: nowrap;">
                                     <span v-for="_photo in inspectionTask.photos">

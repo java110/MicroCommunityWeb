@@ -112,9 +112,9 @@
                             vc.component.clearRoomDecorationRecordInfo();
                             vc.emit('listRoomDecorationRecord', 'listRoomRenovationRecords', {});
                             location.reload();
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

@@ -33,7 +33,7 @@
                                 <td class="text-center">{{userAccount.acctName}}</td>
                                 <td class="text-center">{{userAccount.amount}}<span><vc:i18n name="元" namespace="payFeeUserAccount"></vc:i18n></span></td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddUserAmountModal(userAccount)"><i class="glyphicon glyphicon-plus"></i><span><vc:i18n name="预存" namespace="payFeeUserAccount"></vc:i18n></span></button>
+                                    <button type="button" v-show="userAccount.acctType != '2004'" class="btn btn-primary btn-sm" v-on:click="_openAddUserAmountModal(userAccount)"><i class="glyphicon glyphicon-plus"></i><span><vc:i18n name="预存" namespace="payFeeUserAccount"></vc:i18n></span></button>
                                 </td>
                             </tr>
                         </tbody>

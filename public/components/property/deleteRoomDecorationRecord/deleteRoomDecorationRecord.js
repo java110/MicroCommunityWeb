@@ -26,9 +26,9 @@
                             //关闭model
                             $('#deleteRoomRenovationRecordModel').modal('hide');
                             vc.emit('listRoomDecorationRecord', 'listRoomRenovationRecords', {});
+                            vc.toast("删除成功");
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

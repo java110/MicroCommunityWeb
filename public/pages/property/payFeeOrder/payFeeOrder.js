@@ -107,7 +107,6 @@
         _initEvent: function () {
             // 子组件折扣change事件
             vc.on('payFeeOrder', 'changeDiscountPrice', function (_param) {
-                console.log('discount', _param);
                 // 用未格式化的总金额减优惠金额
                 let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
                 if (_totalFeePrice < 0) {
@@ -401,9 +400,10 @@
                             setTimeout(function() {
                                 $that._queryPayFeeReceiptId(_data);
                             }, 1000);
+                            vc.toast("缴费成功");
+                            location.reload();
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

@@ -241,6 +241,10 @@
                     lat: lat,
                     lng: lng
                 });
+            },
+            //导出
+            _exportExcel: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=inspectionTaskDetails&' + vc.objToGetParam($that.inspectionTaskDetailManageInfo.conditions));
             }
         }
     });

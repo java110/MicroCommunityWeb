@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,7 +22,7 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component.roomDecorationRecordsInfo.conditions.rId = vc.getParam('rId');
             vc.component.roomDecorationRecordsInfo.conditions.roomId = vc.getParam('roomId');
             vc.component.roomDecorationRecordsInfo.conditions.roomName = vc.getParam('roomName');
@@ -30,16 +30,16 @@
             vc.component.roomDecorationRecordsInfo.conditions.stateName = vc.getParam('stateName')
             vc.component._listRoomRenovationRecords(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('listRoomDecorationRecord', 'listRoomRenovationRecords', function(_param) {
+        _initEvent: function () {
+            vc.on('listRoomDecorationRecord', 'listRoomRenovationRecords', function (_param) {
                 vc.component._listRoomRenovationRecords(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listRoomRenovationRecords(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listRoomRenovationRecords: function(_page, _rows) {
+            _listRoomRenovationRecords: function (_page, _rows) {
                 vc.component.roomDecorationRecordsInfo.conditions.page = _page;
                 vc.component.roomDecorationRecordsInfo.conditions.row = _rows;
                 var param = {
@@ -48,7 +48,7 @@
                 //发送get请求
                 vc.http.apiGet('/roomRenovation/queryRoomRenovationRecord',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _roomDecorationRecordsInfo = JSON.parse(json);
                         vc.component.roomDecorationRecordsInfo.total = _roomDecorationRecordsInfo.total;
                         vc.component.roomDecorationRecordsInfo.records = _roomDecorationRecordsInfo.records;
@@ -59,13 +59,13 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //添加
-            _openAddModal: function(roomRenovation) {
+            _openAddModal: function (roomRenovation) {
                 roomRenovation.push(vc.component.roomDecorationRecordsInfo.conditions.rId)
                 roomRenovation.push(vc.component.roomDecorationRecordsInfo.conditions.roomId)
                 roomRenovation.push(vc.component.roomDecorationRecordsInfo.conditions.roomName)
@@ -74,22 +74,22 @@
                 vc.emit('roomDecorationRecord', 'openDecorationRecordModal', roomRenovation);
             },
             //删除
-            _openDeleteRoomRenovationRecordModel: function(_roomDecorationRecord) {
+            _openDeleteRoomRenovationRecordModel: function (_roomDecorationRecord) {
                 vc.emit('deleteRoomDecorationRecord', 'openDeleteRoomDecorationRecordModal', _roomDecorationRecord);
             },
             //查看详情
-            _openRoomRenovationRecordDetailsModel: function(_roomDecorationRecord) {
+            _openRoomRenovationRecordDetailsModel: function (_roomDecorationRecord) {
                 vc.jumpToPage('/#/pages/property/listRoomRenovationRecordDetails?recordId=' + _roomDecorationRecord.recordId +
                     '&roomName=' + _roomDecorationRecord.roomName + '&state=' + _roomDecorationRecord.state);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.roomDecorationRecordsInfo.moreCondition) {
                     vc.component.roomDecorationRecordsInfo.moreCondition = false;
                 } else {
                     vc.component.roomDecorationRecordsInfo.moreCondition = true;
                 }
             },
-            _goBack: function() {
+            _goBack: function () {
                 vc.goBack();
             }
         }
