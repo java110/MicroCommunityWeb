@@ -423,23 +423,23 @@
                         emulateJSON: true
                     },
                     function (json, res) {
+                        let _json = JSON.parse(json)
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
-                            let _feeInfo = {
-                                totalAmount: $that.payFeeOrderInfo.receivedAmount,
-                                fees: _printFees
-                            }
-                            let _data = JSON.parse(json).data;
+                            // let _feeInfo = {
+                            //     totalAmount: $that.payFeeOrderInfo.receivedAmount,
+                            //     fees: _printFees
+                            // }
                             // $that.payFeeOrderInfo.receiptId = _data.receiptId;
                             //vc.saveData('_feeInfo', _feeInfo);
                             //查询收据
+                            let _data = _json.data;
                             setTimeout(function() {
                                 $that._queryPayFeeReceiptId(_data);
                             }, 1000);
-                            vc.toast("缴费成功");
-                            location.reload();
                             return;
                         }
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
