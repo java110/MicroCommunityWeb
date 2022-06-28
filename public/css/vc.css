@@ -11,9 +11,9 @@
     --vc-menu-sub-active-font-color: #4979F4;
     --vc-menu-sub-title-font-color: #4F525C;
     --vc-menu-sub-footer: #F6F6F7;
-    --vc-nav-bg: #FFFFFF;
+    --vc-nav-bg: #1D1F2D;
     --vc-nav-color: #888888;
-    --vc-nav-active-color: #4979F4;
+    --vc-nav-active-color: #FFFFFF;
 }
 
 .margin-0 {
@@ -596,16 +596,16 @@ body,
     width: 100%;
 }
 
-.vc-main .vc-nav {
-    height: 40px;
+.vc-nav {
+    height: 50px;
     width: 100%;
     background-color: var(--vc-nav-bg);
     font-size: 14px;
-    line-height: 40px;
+    line-height: 50px;
     color: var(--vc-nav-color);
 }
 
-.vc-main .vc-nav ul li {
+.vc-nav ul li {
     padding-left: 10px;
     padding-right: 10px;
     margin-left: 5px;
@@ -613,11 +613,26 @@ body,
     cursor: pointer;
 }
 
-.vc-main .vc-nav ul li i {
+.vc-nav ul li.title {
+    color: var(--vc-menu-main-title-font-color);
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    width: 80px ;
+    text-align: center;
+}
+
+.vc-nav ul li.title a {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--vc-menu-main-title-font-color);
+}
+
+.vc-nav ul li i {
     margin-right: 5px;
 }
 
-.vc-main .vc-nav ul li.active {
+.vc-nav ul li.active {
     color: var(--vc-nav-active-color);
     border-bottom: 2px solid var(--vc-nav-active-color) !important;
 }
@@ -634,8 +649,6 @@ body,
 }
 
 .vc-main .breadcrumb {
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px #888888;
 }
 
 .vc-main .ibox .ibox-title {
