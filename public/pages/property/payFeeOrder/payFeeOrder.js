@@ -49,7 +49,8 @@
                 authCode: '',
                 orderId: '',
                 offlinePayFeeSwitch: '1',
-                flag: ''
+                flag: '',
+                custEndTime: ''
             }
         },
         watch: {
@@ -62,6 +63,7 @@
             }
         },
         _initMethod: function () {
+            vc.component._initCustEndDate();
             if (vc.notNull(vc.getParam("feeId"))) {
                 vc.component.payFeeOrderInfo.feeId = vc.getParam('feeId');
                 vc.component.payFeeOrderInfo.feeName = vc.getParam('feeName');
@@ -152,6 +154,37 @@
             })
         },
         methods: {
+            _initCustEndDate: function () {
+                $(".cust-endTime").datetimepicker({
+                    minView: "month",
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.cust-endTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".cust-endTime").val();
+                        vc.component.payFeeOrderInfo.custEndTime = value;
+                        let start = Date.parse(new Date($that.payFeeOrderInfo.endTime))
+                        let end = Date.parse(new Date($that.payFeeOrderInfo.custEndTime))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于起始时间")
+                            $that.payFeeOrderInfo.custEndTime = '';
+                            return;
+                        }
+                        $that.getComputedAmount(0);
+                    });
+
+                document.getElementsByClassName(" form-control cust-endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             _useUserAccountChange: function (e) {
                 if (e.target.checked) {
                     // 查询用户账户
@@ -199,9 +232,11 @@
              * 点击 “提交缴费”
              */
             _openPayFee: function (_type) {
+                // 周期不为空且不是自定义周期
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
                 }
+                // 一次性费用
                 if ($that.payFeeOrderInfo.feeFlag == '2006012') {
                     $that.payFeeOrderInfo.cycles = '1';
                     $that.payFeeOrderInfo.tempCycles = '1';
@@ -215,6 +250,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+                // 缴费周期为正整数时，显示缴费结束时间
                 if (!(/(^[1-9]\d*$)/.test($that.payFeeOrderInfo.cycles))) {
                     $that.payFeeOrderInfo.showEndTime = '';
                 } else {
@@ -448,6 +484,7 @@
              * @param {*} _cycles
              */
             _changeMonth: function (_cycles) {
+                vc.component.payFeeOrderInfo.custEndTime = '';
                 if ('-102' == _cycles) {
                     vc.component.payFeeOrderInfo.totalFeePrice = 0.00;
                     vc.component.payFeeOrderInfo.receivedAmount = 0.00;
@@ -457,6 +494,9 @@
                     return;
                 } else if ('-101' == _cycles) {
                     $that.payFeeOrderInfo.cycles = "101";
+                    return;
+                } else if ('-103' == _cycles) {
+                    $that.payFeeOrderInfo.cycles = "103";
                     return;
                 }
                 let _newCycles = _cycles;
@@ -591,6 +631,9 @@
                         cycle: _cycles
                     }
                 };
+                if(_cycles == 0){
+                    param.params.custEndTime = $that.payFeeOrderInfo.custEndTime
+                }
                 //发送get请求
                 vc.http.apiGet('/feeApi/listFeeObj',
                     param,

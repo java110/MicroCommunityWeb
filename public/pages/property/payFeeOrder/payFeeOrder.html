@@ -52,6 +52,7 @@
                                         </option>
                                         <option value="-102">{{vc.i18n('自定义周期','payFeeOrder')}}</option>
                                         <option value="-101">{{vc.i18n('自定义金额','payFeeOrder')}}</option>
+                                        <option value="-103">{{vc.i18n('自定义结束时间','payFeeOrder')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -60,6 +61,12 @@
                                 <div class="col-sm-6">
                                     <!--oninput="value=value.replace(/[^\d]/g,'')"  这里取消校验 实际中 可能要填写 几点几个月-->
                                     <input type="text" :placeholder="vc.i18n('请输入实际周期','payFeeOrder')" v-model="payFeeOrderInfo.cycles" v-on:change="changeCycle(payFeeOrderInfo.cycles)" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="payFeeOrderInfo.tempCycles == '-103'">
+                                <label class="col-sm-2 col-form-label"><span><span><vc:i18n name="缴费结束时间" namespace="payFeeOrder"></vc:i18n></span></span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','payFeeOrder')" v-model="payFeeOrderInfo.custEndTime" class=" form-control cust-endTime">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -192,6 +199,11 @@
                         <label class="col-sm-3 col-form-label"><span><span><vc:i18n name="缴费时间段" namespace="payFeeOrder"></vc:i18n></span></span>：</label>
                         <label class="col-sm-8 col-form-label">{{vc.dateFormat(payFeeOrderInfo.endTime)}} 至
                             {{vc.dateSubOneDay(payFeeOrderInfo.endTime,vc.dateFormat(payFeeOrderInfo.showEndTime),payFeeOrderInfo.feeFlag)}}</label>
+                    </div>
+                    <div class="row" v-else-if="payFeeOrderInfo.feeFlag != '2006012' && payFeeOrderInfo.custEndTime != ''">
+                        <label class="col-sm-3 col-form-label"><span><span><vc:i18n name="缴费时间段" namespace="payFeeOrder"></vc:i18n></span></span>：</label>
+                        <label class="col-sm-8 col-form-label">{{vc.dateFormat(payFeeOrderInfo.endTime)}} 至
+                            {{payFeeOrderInfo.custEndTime}}</label>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label"><span><span><vc:i18n name="应收金额" namespace="payFeeOrder"></vc:i18n></span></span>：</label>
