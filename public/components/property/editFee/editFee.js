@@ -4,7 +4,11 @@
             editFeeInfo: {
                 feeId: '',
                 startTime: '',
-                endTime: ''
+                endTime: '',
+                computingFormula: '',
+                rateCycle: '',
+                rate: '',
+                rateStartTime: ''
             }
         },
         _initMethod: function () {
@@ -63,6 +67,15 @@
                             vc.component.editFeeInfo.endTime = value;
                         }
                     });
+                vc.initDate('rateStartTime', function (_endTime) {
+                    $that.editFeeInfo.rateStartTime = _endTime;
+                    let start = Date.parse(new Date($that.editFeeInfo.startTime))
+                    let end = Date.parse(new Date($that.editFeeInfo.rateStartTime))
+                    if (start - end >= 0) {
+                        vc.toast("递增开始时间必须大于开始时间")
+                        $that.editFeeInfo.rateStartTime = '';
+                    }
+                });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByClassName("form-control editFeeStartTime")[0].addEventListener('click', myfunc)
 
@@ -78,19 +91,19 @@
             },
             editFeeValidate() {
                 return vc.validate.validate({
-                        editFeeInfo: vc.component.editFeeInfo
-                    },
+                    editFeeInfo: vc.component.editFeeInfo
+                },
                     {
                         'editFeeInfo.startTime': [{
                             limit: "required",
                             param: "",
                             errInfo: "建账时间不能为空"
                         },
-                            {
-                                limit: "dateTime",
-                                param: "",
-                                errInfo: "建账时间不是有效的时间格式"
-                            },
+                        {
+                            limit: "dateTime",
+                            param: "",
+                            errInfo: "建账时间不是有效的时间格式"
+                        },
                         ],
                         'editFeeInfo.endTime': [{
                             limit: "required",
@@ -107,8 +120,8 @@
                 }
                 vc.component.editFeeInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost('fee.updateFee', JSON.stringify(vc.component.editFeeInfo), {
-                        emulateJSON: true
-                    },
+                    emulateJSON: true
+                },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
@@ -134,7 +147,11 @@
                 vc.component.editFeeInfo = {
                     feeId: '',
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    computingFormula: '',
+                    rateCycle: '',
+                    rate: '',
+                    rateStartTime: ''
                 };
             }
         }

@@ -236,7 +236,10 @@
                     feeFlag: '',
                     endTime: '',
                     computingFormula: '',
-                    amount: ''
+                    amount: '',
+                    rateCycle: '',
+                    rate: '',
+                    rateStartTime: ''
                 };
                 $that.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },
