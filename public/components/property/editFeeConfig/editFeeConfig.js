@@ -218,6 +218,7 @@
                 if (vc.component.editFeeConfigInfo.computingFormula == '7007' ||
                     vc.component.editFeeConfigInfo.computingFormula == '4004' ||
                     vc.component.editFeeConfigInfo.computingFormula == '1101' ||
+                    vc.component.editFeeConfigInfo.computingFormula == '1102' ||
                     vc.component.editFeeConfigInfo.computingFormula == '9009') {
                     vc.component.editFeeConfigInfo.squarePrice = "0.00";
                     vc.component.editFeeConfigInfo.additionalAmount = "0.00";

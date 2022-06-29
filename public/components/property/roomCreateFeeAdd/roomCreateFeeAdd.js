@@ -97,8 +97,9 @@
                     }
                 });
 
-                vc.initDate('rateStartTime', function(_endTime) {
-                    $that.roomCreateFeeAddInfo.rateStartTime = _endTime;
+                vc.initDate('addRoomRateStartTime', function(_rateStartTime) {
+                    console.log(_rateStartTime)
+                    $that.roomCreateFeeAddInfo.rateStartTime = _rateStartTime;
                     let start = Date.parse(new Date($that.roomCreateFeeAddInfo.startTime))
                     let end = Date.parse(new Date($that.roomCreateFeeAddInfo.rateStartTime))
                     if (start - end >= 0) {
