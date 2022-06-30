@@ -197,7 +197,7 @@
                             var _json = JSON.parse(json);
                             $('#roomCreateFeeAddModel').modal('hide');
                             $that.clearRoomCreateFeeAddData();
-                            vc.emit('listRoomFee', 'notify', {});
+                            vc.emit('roomCreateFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});
                             if (_json.hasOwnProperty('code') && _json.code != 0) {
                                 vc.toast(_json.msg);

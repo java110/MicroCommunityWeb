@@ -19,6 +19,7 @@
         _initEvent: function() {
             vc.on('editFee', 'openEditFeeModal',
                 function(_fee) {
+                    $that.clearAddFeeConfigInfo();
                     vc.copyObject(_fee, $that.editFeeInfo);
                     if (_fee.startTime.indexOf(":") == -1) {
                         $that.editFeeInfo.startTime = $that.editFeeInfo.startTime + " 00:00:00";
@@ -69,7 +70,7 @@
                             vc.component.editFeeInfo.endTime = value;
                         }
                     });
-                vc.initDate('rateStartTime', function(_endTime) {
+                vc.initDate('editRoomRateStartTime', function(_endTime) {
                     $that.editFeeInfo.rateStartTime = _endTime;
                     let start = Date.parse(new Date($that.editFeeInfo.startTime))
                     let end = Date.parse(new Date($that.editFeeInfo.rateStartTime))
@@ -139,7 +140,7 @@
                             //关闭model
                             $('#editFeeModel').modal('hide');
                             vc.component.clearAddFeeConfigInfo();
-                            vc.emit('listRoomFee', 'notify', {});
+                            vc.emit('roomCreateFee', 'notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
                             vc.emit('listContractFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});

@@ -218,7 +218,7 @@
                             $('#addMeterWaterModel').modal('hide');
                             vc.component.clearAddMeterWaterInfo();
                             vc.emit('meterWaterManage', 'listMeterWater', {});
-                            vc.emit('listRoomFee', 'notify', {});
+                            vc.emit('roomCreateFee', 'notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});
                             vc.emit('simplifyCarFee', 'notify', {});
