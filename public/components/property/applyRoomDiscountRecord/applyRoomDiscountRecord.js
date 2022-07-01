@@ -111,9 +111,9 @@
                             vc.component.clearApplyRoomDiscountRecordInfo();
                             vc.emit('listApplyRoomDiscountRecord', 'listApplyRoomDiscountRecords', {});
                             location.reload();
+                            vc.toast(_json.msg);
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

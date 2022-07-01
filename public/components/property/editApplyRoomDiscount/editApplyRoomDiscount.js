@@ -7,7 +7,13 @@
                 endTime: '',
                 checkRemark: '',
                 createRemark: '',
-                state: ''
+                state: '',
+                total: 0,
+                records: 1,
+                applyRoomDiscounts: [],
+                photos: [],
+                urls: [],
+                url: ''
             }
         },
         _initMethod: function () {
@@ -21,6 +27,16 @@
                 $('#editApplyRoomDiscountModel').modal('show');
                 vc.copyObject(_params, vc.component.editApplyRoomDiscountInfo);
                 vc.component.editApplyRoomDiscountInfo.communityId = vc.getCurrentCommunity().communityId;
+                let _photos = [];
+                if (_params.urls != null && _params.urls.length > 0) {
+                    _params.urls.forEach(item => {
+                        _photos.push(item);
+                    })
+                }
+                vc.emit('editApplyRoomDiscount', 'uploadImage', 'notifyPhotos', _photos);
+            });
+            vc.on("editApplyRoomDiscount", "notifyUploadImage", function (_param) {
+                vc.component.editApplyRoomDiscountInfo.photos = _param;
             });
         },
         methods: {
@@ -145,9 +161,11 @@
                             //关闭model
                             $('#editApplyRoomDiscountModel').modal('hide');
                             vc.emit('applyRoomDiscountManage', 'listApplyRoomDiscount', {});
+                            vc.toast("验房通过");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -161,7 +179,13 @@
                     endTime: '',
                     checkRemark: '',
                     createRemark: '',
-                    state: ''
+                    state: '',
+                    total: 0,
+                    records: 1,
+                    applyRoomDiscounts: [],
+                    urls: [],
+                    photos: [],
+                    url: ''
                 }
             }
         }

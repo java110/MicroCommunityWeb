@@ -17,7 +17,8 @@
                 createRemark: '',
                 applyTypes: [],
                 feeTypeCds: [],
-                feeId: ''
+                feeId: '',
+                photos: []
             }
         },
         _initMethod: function () {
@@ -27,6 +28,9 @@
         _initEvent: function () {
             vc.on('addApplyRoomDiscount', 'openAddApplyRoomDiscountModal', function () {
                 $('#addApplyRoomDiscountModel').modal('show');
+            });
+            vc.on("addApplyRoomDiscount", "notifyUploadImage", function (_param) {
+                vc.component.addApplyRoomDiscountInfo.photos = _param;
             });
         },
         methods: {
@@ -204,9 +208,11 @@
                             $('#addApplyRoomDiscountModel').modal('hide');
                             vc.component.clearAddApplyRoomDiscountInfo();
                             vc.emit('applyRoomDiscountManage', 'listApplyRoomDiscount', {});
+                            vc.toast("申请成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -273,7 +279,7 @@
                 );
             },
             // 查询该房屋的费用项
-            _queryRoomFees: function(){
+            _queryRoomFees: function () {
                 let param = {
                     params: {
                         page: 1,

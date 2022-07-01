@@ -14,7 +14,8 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入类别名称','housekeepingTypeManage')" v-model="housekeepingTypeManageInfo.conditions.hktName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入类别名称','housekeepingTypeManage')"
+                                       v-model="housekeepingTypeManageInfo.conditions.hktName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -32,8 +33,10 @@
                             </select>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryHousekeepingTypeMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryHousekeepingTypeMethod()">
+                                <i class="glyphicon glyphicon-search"></i>
+                                <span><vc:i18n name="查询" namespace="housekeepingTypeManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -49,75 +52,81 @@
                         <span><vc:i18n name="商城菜单" namespace="housekeepingTypeManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddHousekeepingTypeModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddHousekeepingTypeModal()">
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><vc:i18n name="菜单id" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="菜单名称" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="小图标" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="菜单描述" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="菜单类别" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="标签" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="排序" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="是否显示" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="housekeepingTypeManage"></vc:i18n></span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="菜单id" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="菜单名称" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="小图标" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="菜单描述" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="菜单类别" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="标签" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="排序" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="是否显示" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="housekeepingTypeManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="housekeepingType in housekeepingTypeManageInfo.housekeepingTypes">
-                                <td class="text-center">{{housekeepingType.hktId}}</td>
-                                <td class="text-center">{{housekeepingType.hktName}}</td>
-                                <td class="text-center">
-                                    <img style="width: 60px; height: 60px; border-radius: 5px;" v-bind:src="housekeepingType.hktIcon"></img>
-                                </td>
-                                <td class="text-center">{{housekeepingType.hktDesc}}</td>
-                                <td class="text-center">{{housekeepingType.typeCdName}}</td>
-                                <td class="text-center">{{housekeepingType.label}}</td>
-                                <td class="text-center">{{housekeepingType.seq}}</td>
-                                <td class="text-center">{{housekeepingType.isShow == 'Y'?'是':'否'}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditHousekeepingTypeModel(housekeepingType)"><span><vc:i18n name="修改" namespace="housekeepingTypeManage"></vc:i18n></span></button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteHousekeepingTypeModel(housekeepingType)"><span><vc:i18n name="删除" namespace="housekeepingTypeManage"></vc:i18n></span></button>
-                                    </div>
-                                </td>
+                        <tr v-for="housekeepingType in housekeepingTypeManageInfo.housekeepingTypes">
+                            <td class="text-center">{{housekeepingType.hktId}}</td>
+                            <td class="text-center">{{housekeepingType.hktName}}</td>
+                            <td class="text-center">
+                                <img style="width: 60px; height: 60px; border-radius: 5px;"
+                                     v-bind:src="housekeepingType.hktIcon"></img>
+                            </td>
+                            <td class="text-center">{{housekeepingType.hktDesc}}</td>
+                            <td class="text-center">{{housekeepingType.typeCdName}}</td>
+                            <td class="text-center">{{housekeepingType.label}}</td>
+                            <td class="text-center">{{housekeepingType.seq}}</td>
+                            <td class="text-center">{{housekeepingType.isShow == 'Y'?'是':'否'}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditHousekeepingTypeModel(housekeepingType)">
+                                        <span><vc:i18n name="修改" namespace="housekeepingTypeManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteHousekeepingTypeModel(housekeepingType)">
+                                        <span><vc:i18n name="删除" namespace="housekeepingTypeManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
 
-                            </tr>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -126,9 +135,7 @@
             </div>
         </div>
     </div>
-
     <vc:create path="admin/addHousekeepingType" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="admin/editHousekeepingType"></vc:create>
     <vc:create path="admin/deleteHousekeepingType"></vc:create>
-
 </div>

@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -16,7 +16,7 @@
                     hktName: '',
                     isShow: '',
                     shopId: '9999',
-                    typeCd:''
+                    typeCd: ''
                 }
             }
         },
@@ -40,7 +40,6 @@
                 var param = {
                     params: vc.component.housekeepingTypeManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/housekeepingType/queryHousekeepingType',
                     param,
@@ -78,8 +77,6 @@
                     vc.component.housekeepingTypeManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     let DEFAULT_PAGE = 1;
     let DEFAULT_ROW = 10;
     vc.extends({
@@ -8,15 +8,16 @@
                 callName: ''
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('roomTreeDiv', 'initRoomTreeDiv', function(_param) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('roomTreeDiv', 'initRoomTreeDiv', function (_param) {
                 $that.roomTreeDivInfo.callName = _param.callName;
                 $that._loadRoomTreeDivFloorAndUnits();
             });
         },
         methods: {
-            _loadRoomTreeDivFloorAndUnits: function() {
+            _loadRoomTreeDivFloorAndUnits: function () {
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId
@@ -25,20 +26,18 @@
                 //发送get请求
                 vc.http.apiGet('/unit.queryUnits',
                     param,
-                    function(json) {
+                    function (json) {
                         let _unitInfo = JSON.parse(json);
                         $that.roomTreeDivInfo.units = _unitInfo;
                         $that._initJsTreeRoomTreeDivFloorUnit();
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     });
             },
-            _initJsTreeRoomTreeDivFloorUnit: function() {
-
+            _initJsTreeRoomTreeDivFloorUnit: function () {
                 let _data = $that._doJsTreeRoomTreeDivData();
-
-                _data = _data.sort(function(a, b) {
+                _data = _data.sort(function (a, b) {
                     return a.floorNum - b.floorNum
                 })
                 $.jstree.destroy()
@@ -54,29 +53,25 @@
                         'data': _data
                     }
                 });
-                $("#jstree_floorUnitRoomDiv").on("ready.jstree", function(e, data) {
+                $("#jstree_floorUnitRoomDiv").on("ready.jstree", function (e, data) {
                     //data.instance.open_all();//打开所有节点
-                    $('#jstree_floorUnitRoomDiv').jstree('select_node', _data[0].children[0].id /* , true */ );
+                    $('#jstree_floorUnitRoomDiv').jstree('select_node', _data[0].children[0].id /* , true */);
 
                 });
-
-                $('#jstree_floorUnitRoomDiv').on("changed.jstree", function(e, data) {
+                $('#jstree_floorUnitRoomDiv').on("changed.jstree", function (e, data) {
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
                         //$("#jstree_floorUnit").jstree("close_all");
                         return;
                     }
                     let _selected = data.selected[0];
-
                     if (_selected.startsWith('f_')) {
                         return;
                     }
-
                     //console.log(_selected, data.node.original.unitId)
                     if (_selected.startsWith('u_')) {
                         $that._roomTreeDivLoadRoom(data.node.original.unitId, data);
                     }
-
                     if (_selected.startsWith('r_')) {
                         vc.emit($that.roomTreeDivInfo.callName, 'selectRoom', {
                             roomName: data.node.original.roomName,
@@ -85,7 +80,7 @@
                     }
                 });
             },
-            _roomTreeDivLoadRoom: function(_unitId, data) {
+            _roomTreeDivLoadRoom: function (_unitId, data) {
                 //获取选中的节点
                 let node = data.instance.get_node(data.selected[0]);
                 //遍历选中节点的子节点
@@ -96,17 +91,17 @@
                     }
                 }
                 let param = {
-                        params: {
-                            page: 1,
-                            row: 1000,
-                            unitId: _unitId,
-                            communityId: vc.getCurrentCommunity().communityId
-                        }
+                    params: {
+                        page: 1,
+                        row: 1000,
+                        unitId: _unitId,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
-                    //发送get请求
+                }
+                //发送get请求
                 vc.http.apiGet('/room.queryRooms',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         if (listRoomData.total < 1) {
                             return;
@@ -133,16 +128,14 @@
                             })
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _doJsTreeRoomTreeDivData: function() {
+            _doJsTreeRoomTreeDivData: function () {
                 let _mFloorTree = [];
-
                 let _units = $that.roomTreeDivInfo.units;
-
                 //构建 第一层菜单组
                 _units.forEach(pItem => {
                     let _includeFloor = false;
@@ -151,7 +144,6 @@
                             _includeFloor = true;
                         }
                     }
-
                     if (!_includeFloor) {
                         let _floorItem = {
                             id: 'f_' + pItem.floorId,
@@ -170,7 +162,7 @@
                 });
                 return _mFloorTree;
             },
-            _doJsTreeRoomTreeDivMenuData: function(_floorItem) {
+            _doJsTreeRoomTreeDivMenuData: function (_floorItem) {
                 let _units = $that.roomTreeDivInfo.units;
                 //构建菜单
                 let _children = _floorItem.children;
@@ -195,11 +187,9 @@
                             };
                             _children.push(_menuItem);
                         }
-
                     }
                 }
             },
         }
-
     });
 })(window.vc);

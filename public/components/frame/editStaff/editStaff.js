@@ -1,7 +1,7 @@
 /**
  编辑员工
  **/
-(function(vc) {
+(function (vc) {
     var _fileUrl = '/callComponent/download/getFile/fileByObjId';
     vc.extends({
         data: {
@@ -23,15 +23,14 @@
                 orgId: ''
             }
         },
-        _initMethod: function() {
-            vc.getDict('u_org_staff_rel', "rel_cd", function(_data) {
+        _initMethod: function () {
+            vc.getDict('u_org_staff_rel', "rel_cd", function (_data) {
                 vc.component.editStaffInfo.relCds = _data;
             });
-
             vc.component._editGetOrgsByOrgLevelStaff(1, 100, 2, '');
         },
-        _initEvent: function() {
-            vc.component.$on('edit_staff_event', function(_staffInfo) {
+        _initEvent: function () {
+            vc.component.$on('edit_staff_event', function (_staffInfo) {
                 vc.component.refreshEditStaffInfo(_staffInfo);
                 vc.component._initAddStaffMediaForEdit();
                 $('#editStaffModel').modal('show');
@@ -43,7 +42,6 @@
                 vc.component.editStaffInfo.username = _staffInfo.name;
                 vc.component.editStaffInfo.photo = _fileUrl + "?objId=" +
                     vc.component.editStaffInfo.userId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=12000&time=" + new Date();
-
                 $that._editChangeBrach()
             },
             editStaffValidate() {
@@ -51,10 +49,10 @@
                     editStaffInfo: vc.component.editStaffInfo
                 }, {
                     'editStaffInfo.username': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "用户名不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "用户名不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "2,10",
@@ -77,10 +75,10 @@
                         errInfo: "岗位不能为空"
                     }],
                     'editStaffInfo.address': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "地址不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "地址不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "200",
@@ -89,7 +87,7 @@
                     ]
                 });
             },
-            editStaffSubmit: function() {
+            editStaffSubmit: function () {
                 if (!vc.component.editStaffValidate()) {
                     vc.component.editStaffInfo.errorInfo = vc.validate.errInfo;
                     return;
@@ -101,7 +99,7 @@
                     JSON.stringify(vc.component.editStaffInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         json = JSON.parse(json);
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200 && json.code == 0) {
@@ -112,19 +110,19 @@
                         }
                         vc.component.editStaffInfo.errorInfo = json.msg;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         // vc.component.editStaffInfo.errorInfo = errInfo;
                         vc.toast(errInfo)
                     });
             },
-            _editUserMedia: function() {
+            _editUserMedia: function () {
                 return navigator.getUserMedia = navigator.getUserMedia ||
                     navigator.webkitGetUserMedia ||
                     navigator.mozGetUserMedia ||
                     navigator.msGetUserMedia || null;
             },
-            _initAddStaffMediaForEdit: function() {
+            _initAddStaffMediaForEdit: function () {
                 if (vc.component._editUserMedia()) {
                     vc.component.editStaffInfo.videoPlaying = false;
                     var constraints = {
@@ -135,7 +133,7 @@
                         audio: false
                     };
                     var video = document.getElementById('staffPhotoForEdit');
-                    var media = navigator.getUserMedia(constraints, function(stream) {
+                    var media = navigator.getUserMedia(constraints, function (stream) {
                         var url = window.URL || window.webkitURL;
                         //video.src = url ? url.createObjectURL(stream) : stream;
                         try {
@@ -145,7 +143,7 @@
                         }
                         video.play();
                         vc.component.editStaffInfo.videoPlaying = true;
-                    }, function(error) {
+                    }, function (error) {
                         console.log("ERROR");
                         console.log(error);
                     });
@@ -153,7 +151,7 @@
                     console.log("初始化视频失败");
                 }
             },
-            _takePhotoForEdit: function() {
+            _takePhotoForEdit: function () {
                 if (vc.component.editStaffInfo.videoPlaying) {
                     var canvas = document.getElementById('canvasForEdit');
                     var video = document.getElementById('staffPhotoForEdit');
@@ -165,10 +163,10 @@
                     //document.getElementById('photo').setAttribute('src', data);
                 }
             },
-            _uploadEditPhoto: function(event) {
+            _uploadEditPhoto: function (event) {
                 $("#uploadEditStaffPhoto").trigger("click")
             },
-            _chooseEditPhoto: function(event) {
+            _chooseEditPhoto: function (event) {
                 var photoFiles = event.target.files;
                 if (photoFiles && photoFiles.length > 0) {
                     // 获取目前上传的文件
@@ -179,12 +177,12 @@
                     }
                     let reader = new FileReader(); //新建FileReader对象
                     reader.readAsDataURL(file); //读取为base64
-                    reader.onloadend = function(e) {
+                    reader.onloadend = function (e) {
                         vc.component.editStaffInfo.photo = reader.result;
                     }
                 }
             },
-            _editGetOrgsByOrgLevelStaff: function(_page, _rows, _orgLevel, _parentOrgId) {
+            _editGetOrgsByOrgLevelStaff: function (_page, _rows, _orgLevel, _parentOrgId) {
                 let param = {
                     params: {
                         page: _page,
@@ -197,7 +195,7 @@
                 vc.http.get('staff',
                     'list',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _orgInfo = JSON.parse(json);
                         if (_orgLevel == 2) {
                             vc.component.editStaffInfo.branchOrgs = _orgInfo.orgs;
@@ -205,12 +203,12 @@
                             vc.component.editStaffInfo.departmentOrgs = _orgInfo.orgs;
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _editChangeBrach: function() {
+            _editChangeBrach: function () {
                 vc.component._editGetOrgsByOrgLevelStaff(1, 100, 3, $that.editStaffInfo.branchOrgId);
             }
         },

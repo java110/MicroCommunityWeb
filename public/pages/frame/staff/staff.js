@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -41,35 +41,35 @@
                 deep: true
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             // 查询岗位列表
-            vc.getDict('u_org_staff_rel', "rel_cd", function(_data) {
+            vc.getDict('u_org_staff_rel', "rel_cd", function (_data) {
                 vc.component.staffInfo.relCds = _data;
                 // 岗位列表获取比较慢， 获取到岗位列表后再加载数据
                 vc.component.loadData(1, 10);
                 vc.component._getOrgsByOrgLevelStaff(DEFAULT_PAGE, DEFAULT_ROWS, 2, '');
             });
         },
-        _initEvent: function() {
+        _initEvent: function () {
             // vc.component.$on('pagination_page_event', function (_currentPage) {
             //     console.log(_currentPage);
             //     vc.component.currentPage(_currentPage);
             // });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component.loadData(_currentPage, DEFAULT_ROWS);
             });
-            vc.component.$on('addStaff_reload_event', function() {
+            vc.component.$on('addStaff_reload_event', function () {
                 vc.component.loadData(1, 10);
             });
-            vc.component.$on('editStaff_reload_event', function() {
+            vc.component.$on('editStaff_reload_event', function () {
                 vc.component.loadData(1, 10);
             });
-            vc.component.$on('deleteStaff_reload_event', function() {
+            vc.component.$on('deleteStaff_reload_event', function () {
                 vc.component.loadData(1, 10);
             });
         },
         methods: {
-            loadData: function(_page, _rows) {
+            loadData: function (_page, _rows) {
                 vc.component.staffInfo.conditions.page = _page;
                 vc.component.staffInfo.conditions.rows = _rows;
                 vc.component.staffInfo.conditions.row = _rows;
@@ -83,7 +83,7 @@
                 vc.http.get('staff',
                     'loadData',
                     param,
-                    function(json) {
+                    function (json) {
                         var _staffInfo = JSON.parse(json);
                         // 员工列表 和 岗位列表匹配
                         let staffList = _staffInfo.staffs;
@@ -102,28 +102,28 @@
                             currentPage: _page
                         });
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            currentPage: function(_currentPage) {
+            currentPage: function (_currentPage) {
                 vc.component.loadData(_currentPage, 10);
             },
-            openEditStaff: function(_staffInfo) {
+            openEditStaff: function (_staffInfo) {
                 vc.component.$emit('edit_staff_event', _staffInfo);
             },
-            openDeleteStaff: function(_staffInfo) {
+            openDeleteStaff: function (_staffInfo) {
                 vc.component.$emit('delete_staff_event', _staffInfo);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.staffInfo.moreCondition) {
                     vc.component.staffInfo.moreCondition = false;
                 } else {
                     vc.component.staffInfo.moreCondition = true;
                 }
             },
-            _getOrgsByOrgLevelStaff: function(_page, _rows, _orgLevel, _parentOrgId) {
+            _getOrgsByOrgLevelStaff: function (_page, _rows, _orgLevel, _parentOrgId) {
                 var param = {
                     params: {
                         page: _page,
@@ -136,7 +136,7 @@
                 vc.http.get('staff',
                     'list',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _orgInfo = JSON.parse(json);
                         if (_orgLevel == 2) {
                             vc.component.staffInfo.branchOrgs = _orgInfo.orgs;
@@ -144,20 +144,20 @@
                             vc.component.staffInfo.departmentOrgs = _orgInfo.orgs;
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddStaffStepPage: function() {
+            _openAddStaffStepPage: function () {
                 vc.jumpToPage("/#/pages/frame/addStaffStep")
             },
             //查询
-            _queryStaffMethod: function() {
+            _queryStaffMethod: function () {
                 vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS)
             },
             //重置
-            _resetStaffMethod: function() {
+            _resetStaffMethod: function () {
                 vc.component.staffInfo.conditions.branchOrgId = "";
                 vc.component.staffInfo.conditions.orgId = "";
                 vc.component.staffInfo.conditions.departmentOrgId = "";
@@ -166,7 +166,7 @@
                 vc.component.staffInfo.conditions.staffId = "";
                 vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS)
             },
-            _resetStaffPwd: function(_staff) {
+            _resetStaffPwd: function (_staff) {
                 vc.emit('resetStaffPwd', 'openResetStaffPwd', _staff);
             }
         },

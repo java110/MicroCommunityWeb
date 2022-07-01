@@ -1,5 +1,4 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
             inputSearchRoomInfo: {
@@ -7,11 +6,10 @@
                 callComponent: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('inputSearchRoomInfo', 'searchRoom', function(_param) {
+        _initEvent: function () {
+            vc.on('inputSearchRoomInfo', 'searchRoom', function (_param) {
                 if (!_param.roomName) {
                     return;
                 }
@@ -20,32 +18,31 @@
             });
         },
         methods: {
-            _loadRoomInfo: function(_roomName) {
+            _loadRoomInfo: function (_roomName) {
                 let param = {
                     params: {
                         page: 1,
                         row: 10,
+                        flag: 1,
                         roomNumLike: _roomName,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 }
                 vc.http.apiGet('/room.queryRooms',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         $that.inputSearchRoomInfo.rooms = listRoomData.rooms;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _inputSearchRoomChooseRoom: function(_room) {
+            _inputSearchRoomChooseRoom: function (_room) {
                 vc.emit($that.inputSearchRoomInfo.callComponent, "notifyRoom", _room);
                 $that.inputSearchRoomInfo.rooms = [];
             }
-
         }
     });
-
 })(window.vc, window.vc.component);

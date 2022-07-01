@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editApplyRoomDiscountRecordInfo: {
@@ -154,9 +153,11 @@
                             //关闭model
                             $('#editApplyRoomDiscountRecordModel').modal('hide');
                             vc.emit('applyRoomDiscountManage', 'listApplyRoomDiscount', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -183,5 +184,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

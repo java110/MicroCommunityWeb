@@ -3,11 +3,14 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>{{roomRenovationRecordDetailsInfo.conditions.roomName}}<span><vc:i18n name="装修记录" namespace="listRoomRenovationRecordDetails"></vc:i18n></span></h5>
+                    <h5>{{roomRenovationRecordDetailsInfo.conditions.roomName}}
+                        <span><vc:i18n name="装修记录" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                                 v-on:click="_goBack()">
-                            <i class="fa fa-times"></i><span><vc:i18n name="返回" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>
+                            <i class="fa fa-times"></i>
+                            <span><vc:i18n name="返回" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -15,20 +18,31 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center"><span><vc:i18n name="房屋" namespace="listRoomRenovationRecordDetails"></vc:i18n></span></th>
-                            <th class="text-center" v-if="roomRenovationRecordDetailsInfo.conditions.state == '1000'"><span><vc:i18n name="原始图片" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>/视频</th>
-                            <th class="text-center" v-else><span><vc:i18n name="图片" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>/视频</th>
-                            <th class="text-center"><span><vc:i18n name="创建时间" namespace="listRoomRenovationRecordDetails"></vc:i18n></span></th>
+                            <th class="text-center">
+                                <span><vc:i18n name="房屋" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>
+                            </th>
+                            <th class="text-center" v-if="roomRenovationRecordDetailsInfo.conditions.state == '1000'">
+                                <span><vc:i18n name="原始图片" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>/视频
+                            </th>
+                            <th class="text-center" v-else>
+                                <span><vc:i18n name="图片" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>/视频
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="创建时间" namespace="listRoomRenovationRecordDetails"></vc:i18n></span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="roomRenovationRecordDetail in roomRenovationRecordDetailsInfo.roomRenovationRecordDetails">
                             <td class="text-center">{{roomRenovationRecordDetail.roomName}}</td>
                             <td class="text-center">
-                                <div style="position: relative; display: inline-block;" v-on:click="showImg(roomRenovationRecordDetail.url)" v-if="roomRenovationRecordDetail.relTypeCd == '19000'">
+                                <div style="position: relative; display: inline-block;"
+                                     v-on:click="showImg(roomRenovationRecordDetail.url)"
+                                     v-if="roomRenovationRecordDetail.relTypeCd == '19000'">
                                     <img width="50" height="50" v-bind:src="roomRenovationRecordDetail.url"
-                                        onerror="this.src='/img/noPhoto.jpg';">
-                                    <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;" width="50" height="50" alt="">
+                                         onerror="this.src='/img/noPhoto.jpg';">
+                                    <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;"
+                                         width="50" height="50" alt="">
                                 </div>
                                 <video width="200" height="200" controls autoplay
                                        v-if="roomRenovationRecordDetail.relTypeCd == '21000'">
