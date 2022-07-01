@@ -23,7 +23,10 @@
                 feeFlag: '',
                 endTime: '',
                 computingFormula: '',
-                amount: ''
+                amount: '',
+                rateCycle: '',
+                rate: '',
+                rateStartTime: ''
             }
         },
         _initMethod: function() {
@@ -91,6 +94,17 @@
                     if (start - end >= 0) {
                         vc.toast("结束时间必须大于开始时间")
                         $that.roomCreateFeeAddInfo.endTime = '';
+                    }
+                });
+
+                vc.initDate('addRoomRateStartTime', function(_rateStartTime) {
+                    console.log(_rateStartTime)
+                    $that.roomCreateFeeAddInfo.rateStartTime = _rateStartTime;
+                    let start = Date.parse(new Date($that.roomCreateFeeAddInfo.startTime))
+                    let end = Date.parse(new Date($that.roomCreateFeeAddInfo.rateStartTime))
+                    if (start - end >= 0) {
+                        vc.toast("递增开始时间必须大于开始时间")
+                        $that.roomCreateFeeAddInfo.rateStartTime = '';
                     }
                 });
                 //防止多次点击时间插件失去焦点
@@ -183,7 +197,7 @@
                             var _json = JSON.parse(json);
                             $('#roomCreateFeeAddModel').modal('hide');
                             $that.clearRoomCreateFeeAddData();
-                            vc.emit('listRoomFee', 'notify', {});
+                            vc.emit('roomCreateFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});
                             if (_json.hasOwnProperty('code') && _json.code != 0) {
                                 vc.toast(_json.msg);
@@ -223,7 +237,10 @@
                     feeFlag: '',
                     endTime: '',
                     computingFormula: '',
-                    amount: ''
+                    amount: '',
+                    rateCycle: '',
+                    rate: '',
+                    rateStartTime: ''
                 };
                 $that.roomCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },

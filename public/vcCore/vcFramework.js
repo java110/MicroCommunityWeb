@@ -1761,7 +1761,7 @@
         });
         $('.' + _dateStr).datetimepicker()
             .on('changeDate', function(ev) {
-                var value = $('.' + _dateStr).val();
+                let value = $('.' + _dateStr).val();
                 //vc.component.addFeeConfigInfo.startTime = value;
                 _callBack(value);
             });

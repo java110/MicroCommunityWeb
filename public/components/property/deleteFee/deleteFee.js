@@ -32,7 +32,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#deleteFeeModel').modal('hide');
-                            vc.emit('listRoomFee', 'notify', {});
+                            vc.emit('roomCreateFee', 'notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
                             vc.emit('listContractFee', 'notify', {});
                             vc.emit('simplifyRoomFee', 'notify', {});

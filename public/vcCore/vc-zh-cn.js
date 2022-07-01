@@ -3,7 +3,7 @@
  */
 (function(window) {
     window.lang = {
-        "systemName": "HC小区管理系统",
+        "systemName": "HC",
         "systemSimpleName": "HC",
         "subSystemName": "小区管理系统",
         "companyTeam": "java110团队",

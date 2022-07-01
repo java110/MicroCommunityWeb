@@ -118,11 +118,11 @@
                     room: $that.listRoomCreateFeeInfo
                 });
             },
-            _openRoomCreateFeeComboModal:function(){
-                vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId='
-                +$that.listRoomCreateFeeInfo.roomId
-                +"&payerObjName="+$that.listRoomCreateFeeInfo.roomName
-                +"&payerObjType=3333")
+            _openRoomCreateFeeComboModal: function() {
+                vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
+                    $that.listRoomCreateFeeInfo.roomId +
+                    "&payerObjName=" + $that.listRoomCreateFeeInfo.roomName +
+                    "&payerObjType=3333")
             },
             _openAddMeterWaterModal: function() {
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
@@ -188,7 +188,7 @@
                             $that.listRoomCreateFeeInfo.roomName = listRoomData.rooms[0].floorNum + "-" + listRoomData.rooms[0].roomNum;
                         }
                         // 换存搜索条件
-                        vc.emit('listRoomFee', 'notify', {})
+                        vc.emit('roomCreateFee', 'notify', {});
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

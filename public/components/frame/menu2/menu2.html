@@ -1,7 +1,6 @@
 <div class="vc-menu  flex justify-start" id="menu-nav">
     <div class="vc-menu-main">
         <ul>
-            <li class="title"><a href="/">{{vc.i18n('systemSimpleName')}}</a></li>
             <li v-for="menu in menus" v-bind:class="{ active: menu.active }" v-if="menu.childs != undefined && menu.childs.length >0" v-on:click="switchMenu(menu)">
                 <i class="fa " v-bind:class="menu.icon"></i><span class="margin-left-xs">{{vc.i18n(menu.name)}}</span>
             </li>

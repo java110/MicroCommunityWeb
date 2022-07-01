@@ -62,6 +62,10 @@
                 $that.updateCurrentPage(_currentPage);
                 vc.component.listRoom(_currentPage, DEFAULT_ROW);
             });
+
+            vc.on('roomCreateFee', 'notify', function() {
+                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+            })
         },
         methods: {
             _openRoomCreateFeeAddModal: function(_room, _isMore) {

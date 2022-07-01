@@ -1,6 +1,7 @@
 <div class="vc-nav flex justify-between" id="nav">
     <div>
         <ul class="flex flex-start">
+            <li class="title"><a href="/">{{vc.i18n('systemName')}}</a></li>
             <li :class="{'active' :item.active == '1' }" v-for="(item,index) in nav.catalogs" @click="_changeMenuCatalog(item)">
                 <i :class="item.icon"></i>{{item.name}}
             </li>
