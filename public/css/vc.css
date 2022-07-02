@@ -660,3 +660,26 @@ body,
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+.vc-index .index-1-left{
+    width: 65%;
+    padding:10px;
+    
+}
+
+.vc-index .index-1-left .index-1-left-1{
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    height: 300px;
+}
+
+.vc-index .index-1-right{
+    width: 35%;
+    padding:10px;
+}
+
+.vc-index .index-1-right .index-1-right-1{
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    height: 300px;
+}
