@@ -1,0 +1,95 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>查询条件</h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入名称"
+                                    v-model="mainCategoryProductManageInfo.conditions.categoryName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryMainCategoryProductMethod()">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>供应链商品信息</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">商品id</th>
+                                <th class="text-center">商品名称</th>
+                                <th class="text-center">品牌</th>
+                                <th class="text-center">产地</th>
+                                <th class="text-center">单位</th>
+                                <th class="text-center">图片</th>
+                                <th class="text-center">第三方分类</th>
+                                <!--  <th class="text-center">状态</th>
+                                分页 -->
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="mainCategoryProduct in mainCategoryProductManageInfo.mainCategoryProducts">
+                                <td class="text-center">{{mainCategoryProduct.id}}</td>
+                                <td class="text-center">{{mainCategoryProduct.title}}</td>
+                                <td class="text-center">{{mainCategoryProduct.third_brand_name}}</td>
+                                <td class="text-center">{{mainCategoryProduct.origin}}</td>
+                                <td class="text-center">{{mainCategoryProduct.unit}}</td>
+                                <td class="text-center">
+                                    <img style="width: 60px; height: 60px; border-radius: 5px;"
+                                    v-bind:src="mainCategoryProduct.cover"></img>
+                                </td>
+                                <td class="text-center">{{mainCategoryProduct.third_category_name}}</td>
+                                <!--  <td class="text-center">{{mainCategoryProduct.stateName}}</td>
+                                 -->
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditMainCategoryProductModel(mainCategoryProduct)">插入商品库</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <vc:create path="admin/addAggregateSupply"></vc:create>
+
+</div>

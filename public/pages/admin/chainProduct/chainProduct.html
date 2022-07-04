@@ -63,51 +63,47 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">商品ID</th>
-                            <th class="text-center">商品图片</th>
-                            <th class="text-center">商品分类</th>
-                            <th class="text-center">商品名称</th>
-                            <th class="text-center">库存</th>
-                            <th class="text-center">价格</th>
-                            <th class="text-center">排序</th>
-                            <th class="text-center">状态</th>
-                            <th class="text-center">创建时间</th>
-                            <th class="text-center">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="product in chainProductInfo.products">
-                            <td class="text-center">{{product.productId}}</td>
-                            <td class="text-center">
-                                <div style="position: relative; display: inline-block;">
-                                    <img width="50" height="50" v-bind:src="product.coverPhoto"
-                                         onerror="this.src='/img/noPhoto.jpg';">
-                                </div>
-                            </td>
-                            <td class="text-center">{{product.categoryName}}</td>
-                            <td class="text-center">{{product.prodName}}</td>
-                            <td class="text-center">{{product.shName}}</td>
-                            <td class="text-center">{{product.sales}}</td>
-                            <td class="text-center">{{product.stock}}</td>
-                            <td class="text-center">{{product.defaultSpecValue.price}}</td>
-                            <td class="text-center">{{product.sort}}</td>
-                            <td class="text-center">{{product.stateName}}</td>
-                            <td class="text-center">{{product.createTime}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditProductModel(product)">修改
-                                    </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteProductModel(product)">删除
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
+                            <tr>
+                                <th class="text-center">商品ID</th>
+                                <th class="text-center">商品图片</th>
+                                <th class="text-center">商品分类</th>
+                                <th class="text-center">商品名称</th>
+                                <th class="text-center">商品单位</th>
+                                <th class="text-center">排序</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">创建时间</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="product in chainProductInfo.products">
+                                <td class="text-center">{{product.productId}}</td>
+                                <td class="text-center">
+                                    <div style="position: relative; display: inline-block;">
+                                        <img width="50" height="50" v-bind:src="product.coverPhoto"
+                                             onerror="this.src='/img/noPhoto.jpg';">
+                                    </div>
+                                </td>
+                                <td class="text-center">{{product.catalogName}}</td>
+                                <td class="text-center">{{product.prodName}}</td>
+                                <td class="text-center">{{product.unitName}}</td>
+                                <td class="text-center">{{product.sort}}</td>
+                                <td class="text-center">{{product.state == '2002'?'已上架':'未上架'}}</td>
+                                <td class="text-center">{{product.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                                v-on:click="_openEditProductModel(product)">修改
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                                v-on:click="_openDeleteProductModel(product)">删除
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
                         <tfoot>
                         <tr>
                             <td colspan="12">

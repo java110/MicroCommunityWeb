@@ -16,8 +16,8 @@
                 url: '',
                 remark: '',
                 beanName:'',
-                statusCd: '0'
-
+                statusCd: '0',
+                suType:''
             }
         },
         _initMethod: function () {
@@ -53,7 +53,7 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "32",
+                            param: "500",
                             errInfo: "接口应用ID不能为空"
                         },
                     ],
@@ -65,7 +65,7 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "128",
+                            param: "500",
                             errInfo: "接口秘钥不能为空"
                         },
                     ],
@@ -172,7 +172,7 @@
                     url: '',
                     beanName:'',
                     remark: '',
-
+                    suType:''
                 };
             }
         }
