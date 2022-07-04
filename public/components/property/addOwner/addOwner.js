@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             notifyLoadDataComponentName: vc.propTypes.string,
@@ -21,11 +21,11 @@
                 attrs: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._loadOwnerAttrSpec();
         },
-        _initEvent: function () {
-            vc.on('addOwner', 'openAddOwnerModal', function (_ownerId) {
+        _initEvent: function() {
+            vc.on('addOwner', 'openAddOwnerModal', function(_ownerId) {
                 if (_ownerId != null || _ownerId != -1) {
                     vc.component.addOwnerInfo.ownerId = _ownerId;
                 }
@@ -34,15 +34,15 @@
             });
         },
         methods: {
-            addOwnerValidate: function () {
+            addOwnerValidate: function() {
                 return vc.validate.validate({
                     addOwnerInfo: vc.component.addOwnerInfo
                 }, {
                     'addOwnerInfo.name': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "姓名不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "姓名不能为空"
+                        },
                         {
                             limit: "maxin",
                             param: "2,64",
@@ -50,10 +50,10 @@
                         },
                     ],
                     'addOwnerInfo.age': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "年龄不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "年龄不能为空"
+                        },
                         {
                             limit: "num",
                             param: "",
@@ -89,7 +89,7 @@
                     }]
                 });
             },
-            saveOwnerInfo: function () {
+            saveOwnerInfo: function() {
                 if (!vc.component.addOwnerValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -106,7 +106,7 @@
                     JSON.stringify(vc.component.addOwnerInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -118,12 +118,12 @@
                             return;
                         }
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddOwnerInfo: function () {
+            clearAddOwnerInfo: function() {
                 let _componentTitle = $that.addOwnerInfo.componentTitle;
                 vc.component.addOwnerInfo = {
                     componentTitle: _componentTitle,
@@ -142,20 +142,20 @@
                 };
                 this._loadOwnerAttrSpec();
             },
-            _addUserMedia: function () {
+            _addUserMedia: function() {
                 return navigator.getUserMedia = navigator.getUserMedia ||
                     navigator.webkitGetUserMedia ||
                     navigator.mozGetUserMedia ||
                     navigator.msGetUserMedia || null;
             },
-            _initAddOwnerMedia: function () {
+            _initAddOwnerMedia: function() {
                 if (vc.component._addUserMedia()) {
                     var constraints = {
                         video: true,
                         audio: false
                     };
                     var video = document.getElementById('ownerPhoto');
-                    var media = navigator.getUserMedia(constraints, function (stream) {
+                    var media = navigator.getUserMedia(constraints, function(stream) {
                         var url = window.URL || window.webkitURL;
                         $that.addOwnerInfo.mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[0];
                         try {
@@ -165,7 +165,7 @@
                         }
                         video.play();
                         vc.component.addOwnerInfo.videoPlaying = true;
-                    }, function (error) {
+                    }, function(error) {
                         vc.component.addOwnerInfo.videoPlaying = false;
                         console.log("ERROR");
                         console.log(error);
@@ -175,7 +175,7 @@
                     console.log("初始化视频失败");
                 }
             },
-            _takePhoto: function () {
+            _takePhoto: function() {
                 if (vc.component.addOwnerInfo.videoPlaying) {
                     var canvas = document.getElementById('canvas');
                     var video = document.getElementById('ownerPhoto');
@@ -209,12 +209,12 @@
                     vc.toast('未检测到摄像头');
                 }
             },
-            _uploadPhoto: function (event) {
+            _uploadPhoto: function(event) {
                 console.log('上传图片');
                 //vc.component.addOwnerInfo.ownerPhoto = "";
                 $("#uploadOwnerPhoto").trigger("click")
             },
-            _choosePhoto: function (event) {
+            _choosePhoto: function(event) {
                 var photoFiles = event.target.files;
                 if (photoFiles && photoFiles.length > 0) {
                     // 获取目前上传的文件
@@ -225,25 +225,25 @@
                     }
                     var reader = new FileReader(); //新建FileReader对象
                     reader.readAsDataURL(file); //读取为base64
-                    reader.onloadend = function (e) {
-                        vc.translate(reader.result, function (_data) {
+                    reader.onloadend = function(e) {
+                        vc.translate(reader.result, function(_data) {
                             vc.component.addOwnerInfo.ownerPhoto = _data;
                         })
                     }
                 }
             },
-            _reOpenVedio: function () {
+            _reOpenVedio: function() {
                 vc.component.addOwnerInfo.ownerPhoto = "";
                 vc.component._initAddOwnerMedia();
             },
-            _closeVedio: function () {
+            _closeVedio: function() {
                 if (vc.component.addOwnerInfo.mediaStreamTrack != null) {
                     vc.component.addOwnerInfo.mediaStreamTrack.stop();
                 }
             },
-            _loadOwnerAttrSpec: function () {
+            _loadOwnerAttrSpec: function() {
                 $that.addOwnerInfo.attrs = [];
-                vc.getAttrSpec('building_owner_attr', function (data) {
+                vc.getAttrSpec('building_owner_attr', function(data) {
                     data.forEach(item => {
                         item.value = '';
                         if (item.specShow == 'Y') {
@@ -254,8 +254,8 @@
                     });
                 });
             },
-            _loadAttrValue: function (_specCd, _values) {
-                vc.getAttrValue(_specCd, function (data) {
+            _loadAttrValue: function(_specCd, _values) {
+                vc.getAttrValue(_specCd, function(data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
@@ -263,6 +263,10 @@
                     });
                 });
             },
+            _closeSaveOwnerModal: function() {
+                $that._closeVedio();
+                $('#addOwnerModel').modal('hide');
+            }
         }
     });
 })(window.vc);
