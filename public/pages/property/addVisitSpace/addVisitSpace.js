@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             newVisitInfo: {
@@ -10,18 +10,18 @@
                 infos: [],
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initStep();
         },
-        _initEvent: function () {
-            vc.on("addVisitSpace", "notify", function (_info) {
+        _initEvent: function() {
+            vc.on("addVisitSpace", "notify", function(_info) {
                 vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = _info;
             });
-            vc.on("addVisitSpace", "ownerId", function (_ownerId) {
+            vc.on("addVisitSpace", "ownerId", function(_ownerId) {
                 vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = [];
                 vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index]["ownerId"] = _ownerId;
             });
-            vc.on("addVisitSpace", "visitCase", function (_visitCase) {
+            vc.on("addVisitSpace", "visitCase", function(_visitCase) {
                 if (!_visitCase) {
                     vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index] = null;
                     return;
@@ -34,7 +34,7 @@
             });
         },
         methods: {
-            _initStep: function () {
+            _initStep: function() {
                 vc.component.newVisitInfo.$step = $("#step");
                 vc.component.newVisitInfo.$step.step({
                     index: 0,
@@ -43,7 +43,7 @@
                 });
                 vc.component.newVisitInfo.index = vc.component.newVisitInfo.$step.getIndex();
             },
-            _prevStep: function () {
+            _prevStep: function() {
                 vc.component.newVisitInfo.$step.prevStep();
                 vc.component.newVisitInfo.index = vc.component.newVisitInfo.$step.getIndex();
                 vc.emit('addVisit', 'onIndex', vc.component.newVisitInfo.index);
@@ -53,7 +53,7 @@
                 //     vc.emit('viewOwnerInfo','callBackOwnerInfo',{});
                 // }
             },
-            _nextStep: function () {
+            _nextStep: function() {
                 var _currentData = vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息", 1000);
@@ -68,7 +68,7 @@
                 //     vc.emit('viewOwnerInfo','callBackOwnerInfo',{});
                 // }
             },
-            _addVisitFinish: function () {
+            _addVisitFinish: function() {
                 var _currentData = vc.component.newVisitInfo.infos[vc.component.newVisitInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息", 1000);
@@ -98,7 +98,7 @@
                     JSON.stringify(param), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         // 清除已填写信息
@@ -109,17 +109,17 @@
                         vc.emit('addVisitCase', 'clearInfo', '');
                         if (res.status == 200 && _json.code == '0') {
                             //关闭model
-                            vc.jumpToPage("/#/pages/property/visitManage?" + vc.objToGetParam(JSON.parse(json)));
                             vc.toast(_json.msg);
-                            return;
-                        } else {
-                            //关闭model
-                            vc.jumpToPage("/#/pages/property/visitManage?" + vc.objToGetParam(JSON.parse(json)));
-                            vc.toast(_json.msg);
+                            //vc.jumpToPage("/#/pages/property/visitManage?" + vc.objToGetParam(JSON.parse(json)));
+                            vc.goBack();
                             return;
                         }
+                        //关闭model
+                        // vc.jumpToPage("/#/pages/property/visitManage?" + vc.objToGetParam(JSON.parse(json)));
+                        vc.toast(_json.msg);
+
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });

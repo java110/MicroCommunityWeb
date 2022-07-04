@@ -105,7 +105,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <span><vc:i18n name="欠费清单" namespace="listOweFee"></vc:i18n></span>
+                        <span><vc:i18n name="欠费信息" namespace="listOweFee"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_toFeeCollectionOrderManage()">
@@ -130,6 +130,9 @@
                                     <span><vc:i18n name="业主名称" namespace="listOweFee"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
+                                    <span><vc:i18n name="手机号" namespace="listOweFee"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
                                     <span><vc:i18n name="开始时间" namespace="listOweFee"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
@@ -151,6 +154,7 @@
                                 <td class="text-center">{{i+1}}</td>
                                 <td class="text-center">{{fee.payerObjName}}</td>
                                 <td class="text-center">{{fee.ownerName}}</td>
+                                <td class="text-center">{{fee.ownerTel}}</td>
                                 <td class="text-center">{{fee.endTime}}</td>
                                 <td class="text-center">{{fee.deadlineTime}}</td>
                                 <td class="text-center" v-for="item in listOweFeeInfo.feeConfigNames">
@@ -171,35 +175,37 @@
                     <!-- 分页 -->
                     <div class="row">
                         <span class="col-md-1 margin-left">
-                            <div class="row"><b><span><vc:i18n name="小计" namespace="listOweFee"></vc:i18n></span></b></div>
-                        </span>
-                        <span class="col-md-2" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
+                            <div class="row"><b><span><vc:i18n name="小计" namespace="listOweFee"></vc:i18n></span></b>
+                    </div>
+                    </span>
+                    <span class="col-md-2" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
                             <div>{{item.configName}}: {{_getFeeOweAllAmount(item)}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
-                        </span>
-                        <span class="col-md-2">
+                </span>
+                <span class="col-md-2">
                             <div><span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>: {{_getFeeOweAllAmounts()}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
-                        </span>
-                    </div>
-                    <div class="row" v-if="listOweFeeInfo.fees && listOweFeeInfo.fees.length>0">
-                        <span class="col-md-1 margin-left">
-                            <div class="row"><b><span><vc:i18n name="大计" namespace="listOweFee"></vc:i18n></span></b></div>
-                        </span>
-                        <span class="col-md-2" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
-                            <div>{{item.configName}}: {{_getFeeOweAllTotalAmount(item)}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
-                        </span>
-                        <span class="col-md-2">
-                            <div><span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>: {{listOweFeeInfo.fees[0].totalOweAmount}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
-                        </span>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <vc:create path="frame/pagination"></vc:create>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </span>
         </div>
+        <div class="row" v-if="listOweFeeInfo.fees && listOweFeeInfo.fees.length>0">
+            <span class="col-md-1 margin-left">
+                            <div class="row"><b><span><vc:i18n name="大计" namespace="listOweFee"></vc:i18n></span></b>
+        </div>
+        </span>
+        <span class="col-md-2" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
+                            <div>{{item.configName}}: {{_getFeeOweAllTotalAmount(item)}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
+    </span>
+    <span class="col-md-2">
+                            <div><span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>: {{listOweFeeInfo.fees[0].totalOweAmount}}<span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span></div>
+</span>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <vc:create path="frame/pagination"></vc:create>
     </div>
-    <vc:create path="property/searchFloor" emitChooseFloor="listOweFee" emitLoadData="xx"></vc:create>
+</div>
+</div>
+</div>
+</div>
+</div>
+<vc:create path="property/searchFloor" emitChooseFloor="listOweFee" emitLoadData="xx"></vc:create>
 
 </div>

@@ -266,6 +266,10 @@
                     });
                 });
             },
+            _closeEditOwnerModal: function() {
+                $that._closeVedioForEdit();
+                $('#editOwnerModel').modal('hide');
+            }
         }
     });
 })(window.vc);
