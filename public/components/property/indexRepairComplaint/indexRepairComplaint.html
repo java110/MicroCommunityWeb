@@ -1,0 +1,46 @@
+<div class="flex justify-between">
+    <div class="bg-white index-1-left-item">
+        <div class="index-title"><span>报修统计</span></div>
+        <div class="">
+            <div id="repairCount" style="height:250px"></div>
+        </div>
+        <div class="flex justify-between text-center">
+            <div >
+                <div class="index-bottom-number">{{indexRepairComplaintInfo.allCount}}</div>
+                <div class="index-bottom-number-desc">全部报修</div>
+            </div> 
+            <div >
+                <div class="index-bottom-number">{{indexRepairComplaintInfo.waitCount}}</div>
+                <div class="index-bottom-number-desc">待派单</div>
+            </div> 
+            <div >
+                <div class="index-bottom-number">{{indexRepairComplaintInfo.doingCount}}</div>
+                <div class="index-bottom-number-desc">处理中</div>
+            </div> 
+            <div >
+                <div class="index-bottom-number">{{indexRepairComplaintInfo.finishCount}}</div>
+                <div class="index-bottom-number-desc">已处理</div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white index-1-left-item">
+        <div class="index-title"><span>投诉统计</span></div>
+        <div class="">
+            <div id="complaintCount" style="height:250px"></div>
+        </div>
+        <div class="flex justify-around text-center">
+            <div >
+                <div class="index-bottom-number">{{indexRepairComplaintInfo.allComplaintCount}}</div>
+                <div class="index-bottom-number-desc">全部投诉</div>
+            </div> 
+            <div >
+                <div class="index-bottom-number">{{indexRepairComplaintInfo.waitComplaintCount}}</div>
+                <div class="index-bottom-number-desc">处理中</div>
+            </div> 
+            <div >
+                <div class="index-bottom-number">{{indexRepairComplaintInfo.finishComplaintCount}}</div>
+                <div class="index-bottom-number-desc">已处理</div>
+            </div>
+        </div>
+    </div>
+</div>

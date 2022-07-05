@@ -1,0 +1,56 @@
+<div class="index-1-left-1">
+    <div class="index-title"><span>小区信息</span></div>
+    <div class="flex justify-around border-bottom index-1-left-1-content">
+        <div class="flex justify-start">
+            <div class="index-1-left-img"><i class="fa fa-building-o"></i></div>
+            <div>
+                <div class="index-number">{{indexCommunityViewInfo.floorCount}}</div>
+                <div class="index-number-describe">楼宇</div>
+            </div>
+        </div>
+        <div class="flex justify-start">
+            <div class="index-1-left-img"><i class="fa fa-home"></i></div>
+            <div>
+                <div class="index-number">{{indexCommunityViewInfo.roomCount}}</div>
+                <div class="index-number-describe">房屋</div>
+            </div>
+        </div>
+        <div class="flex justify-start">
+            <div class="index-1-left-img"><i class="fa fa-cube"></i></div>
+            <div>
+                <div class="index-number">{{indexCommunityViewInfo.shopCount}}</div>
+                <div class="index-number-describe">商铺</div>
+            </div>
+        </div>
+        <div class="flex justify-start">
+            <div class="index-1-left-img"><i class="fa fa-truck"></i></div>
+            <div>
+                <div class="index-number">{{indexCommunityViewInfo.spaceCount}}</div>
+                <div class="index-number-describe">车位</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-between index-1-left-1-bottom">
+        <div class="flex justify-between index-1-left-1-bottom-item">
+            <div>
+                <div class="index-name">住户登记</div>
+                <div class="index-name-ico"><i class="fa fa-user"></i></div>
+            </div>
+            <div class="text-right">
+                <div class="index-number">{{indexCommunityViewInfo.ownerCount}} <span class="index-number-unit">个</span></div>
+                <div class="index-number-describe margin-top-sm" @click="_toOwner()">登记住户></div>
+            </div>
+        </div>
+        <div class="flex justify-between index-1-left-1-bottom-item">
+            <div>
+                <div class="index-name">车辆</div>
+                <div  class="index-name-ico"><i class="fa fa-car"></i></div>
+            </div>
+            <div class="text-right">
+                <div class="index-number">{{indexCommunityViewInfo.carCount}} <span class="index-number-unit">个</span></div>
+                <div class="index-number-describe margin-top-sm" @click="_toCar()">查看车辆> </div>
+            </div>
+        </div>
+    </div>
+</div>
