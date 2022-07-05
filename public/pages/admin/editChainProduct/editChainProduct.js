@@ -1,59 +1,92 @@
 (function(vc) {
     vc.extends({
         data: {
-            addChainProductInfo: {
+            editChainProductInfo: {
                 productId: '',
                 catalogId: '',
                 prodName: '',
                 prodDesc: '',
                 unitName: '',
                 sort: '',
-                catalogs: [],
+               
                 content: '',
                 states: [],
                 state: '',
                 coverPhoto: '',
-                carouselFigurePhoto: [],
+                carouselFigurePhotos: [],
+               
                 productSpecs: [],
                 areaCode: '',
                 csId:''
-            }
+            },
+            chainCatalogs: [],
         },
         watch: {
-            "addChainProductInfo.productSpecs": {
+            "editChainProductInfo.productSpecs": {
                 deep: true,
                 handler: function() {}
             }
         },
         _initMethod: function() {
             vc.getDict('product', "state", function(_data) {
-                vc.component.addChainProductInfo.states = _data;
+                vc.component.editChainProductInfo.states = _data;
             });
-            $that.addChainProductInfo.csId = vc.getParam('csId');
-            $that._listAddCatalogs();
+            $that.editChainProductInfo.productId = vc.getParam('productId');
+            $that.editChainProductInfo.csId = vc.getParam('csId');
+            $that._listEditCatalogs();
             $that._initAddProduct();
+            
+            $that._listProducts();
+            
         },
         _initEvent: function() {
-            vc.on('addProduct', 'openAddProductModal', function() {
-                $('#addProductModel').modal('show');
-            });
-            vc.on("addProduct", "notifyUploadCoverImage", function(_param) {
+
+            vc.on("editProduct", "notifyUploadCoverImage", function(_param) {
                 if (_param.length > 0) {
-                    vc.component.addChainProductInfo.coverPhoto = _param[0];
+                    vc.component.editChainProductInfo.coverPhoto = _param[0];
                 } else {
-                    vc.component.addChainProductInfo.coverPhoto = '';
+                    vc.component.editChainProductInfo.coverPhoto = '';
                 }
             });
-            vc.on("addProduct", "notifyUploadCarouselFigureImage", function(_param) {
-                vc.component.addChainProductInfo.carouselFigurePhoto = _param;
+            vc.on("editProduct", "notifyUploadCarouselFigureImage", function(_param) {
+                vc.component.editChainProductInfo.carouselFigurePhotos = _param;
             });
+
+
         },
         methods: {
-            addProductValidate() {
+            _listProducts: function () {
+                var param = {
+                    params: {page:1,row:1,productId:$that.editChainProductInfo.productId,csId:vc.getParam('csId')}
+                };
+                //发送get请求
+                vc.http.apiGet('/chainProduct.listChainProduct',
+                    param,
+                    function (json, res) {
+                        var _chainProductInfo = JSON.parse(json);
+                        if(_chainProductInfo.code == 404){
+                            vc.message("请检查供应链信息是否正确。");
+                        }
+                        let product = _chainProductInfo.data[0];
+                        vc.copyObject(product, $that.editChainProductInfo);
+                        $that.editChainProductInfo.productSpecs = product.chainProductValueDtos;
+                        let _photos = [];
+                        _photos.push(product.coverPhoto);
+                        vc.emit('editProductCover', 'uploadImage', 'notifyPhotos', _photos);
+                        vc.emit('editProductCarouselFigure', 'uploadImage', 'notifyPhotos', product.carouselFigurePhotos);
+
+                        $(".editSummernote").summernote('code', product.content);
+                      
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            editProductValidate() {
                 return vc.validate.validate({
-                    addChainProductInfo: vc.component.addChainProductInfo
+                    editChainProductInfo: vc.component.editChainProductInfo
                 }, {
-                    'addChainProductInfo.catalogId': [{
+                    'editChainProductInfo.catalogId': [{
                             limit: "required",
                             param: "",
                             errInfo: "商品大类不能为空"
@@ -64,7 +97,7 @@
                             errInfo: "商品大类错误"
                         },
                     ],
-                    'addChainProductInfo.prodName': [{
+                    'editChainProductInfo.prodName': [{
                             limit: "required",
                             param: "",
                             errInfo: "商品名称不能为空"
@@ -75,7 +108,7 @@
                             errInfo: "商品名称不能超过128位"
                         },
                     ],
-                    'addChainProductInfo.prodDesc': [{
+                    'editChainProductInfo.prodDesc': [{
                             limit: "required",
                             param: "",
                             errInfo: "商品简介不能为空"
@@ -86,21 +119,21 @@
                             errInfo: "商品简介不能超过256位"
                         },
                     ],
-                    'addChainProductInfo.unitName': [{
+                    'editChainProductInfo.unitName': [{
                         limit: "maxLength",
                         param: "32",
                         errInfo: "单位不能超过32位"
                     }, ],
-                    'addChainProductInfo.sort': [{
+                    'editChainProductInfo.sort': [{
                         limit: "num",
                         param: "",
                         errInfo: "排序格式错误"
                     }, ],
                 });
             },
-            saveProductInfo: function() {
+            updateProductInfo: function() {
                 let flag = false;
-                let _productSpecs = $that.addChainProductInfo.productSpecs;
+                let _productSpecs = $that.editChainProductInfo.productSpecs;
                 for (let i = 0; i < _productSpecs.length; i++) {
                     if (_productSpecs[i].isDefault == "T") {
                         flag = true;
@@ -111,14 +144,15 @@
                     vc.toast("未选择默认规格");
                     return;
                 }
-                if (!vc.component.addProductValidate()) {
+                vc.component.editChainProductInfo.productSpecs = _productSpecs;
+                if (!vc.component.editProductValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 
                 vc.http.apiPost(
-                    '/chainProduct.saveChainProduct',
-                    JSON.stringify(vc.component.addChainProductInfo), {
+                    '/chainProduct.updateChainProduct',
+                    JSON.stringify(vc.component.editChainProductInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -126,9 +160,10 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
+                            $('#addProductModel').modal('hide');
                             vc.component.clearAddProductInfo();
+                            vc.emit('productManage', 'listProduct', {});
                             vc.toast("添加成功");
-                            vc.goBack();
                             return;
                         }
                         vc.toast(_json.msg);
@@ -140,9 +175,9 @@
             },
            
             clearAddProductInfo: function() {
-                let _catalogs = $that.addChainProductInfo.catalogs;
-                let _csId = $that.addChainProductInfo.csId;
-                vc.component.addChainProductInfo = {
+                let _catalogs = $that.editChainProductInfo.catalogs;
+                let _csId = $that.editChainProductInfo.csId;
+                vc.component.editChainProductInfo = {
                     productId: '',
                     catalogId: '',
                     prodName: '',
@@ -154,7 +189,7 @@
                     states: [],
                     state: '',
                     coverPhoto: '',
-                    carouselFigurePhoto: [],
+                    carouselFigurePhotos: [],
                     productSpecs: [],
                     areaCode: '',
                     csId:_csId
@@ -163,12 +198,12 @@
             _closeAddProduct: function() {
                 vc.goBack();
             },
-            _listAddCatalogs: function(_page, _rows) {
+            _listEditCatalogs: function(_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
                         row: 50,
-                        csId: $that.addChainProductInfo.csId
+                        csId: $that.editChainProductInfo.csId
                     }
                 };
                 //发送get请求
@@ -176,7 +211,7 @@
                     param,
                     function(json, res) {
                         let _productCategoryManageInfo = JSON.parse(json);
-                        $that.addChainProductInfo.catalogs = _productCategoryManageInfo.data;
+                        $that.chainCatalogs = _productCategoryManageInfo.data;
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
@@ -184,7 +219,7 @@
                 );
             },
             _initAddProduct: function() {
-                let $summernote = $('.summernote').summernote({
+                let $summernote = $('.editSummernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入商品描述',
@@ -193,7 +228,7 @@
                             $that.sendFile($summernote, files);
                         },
                         onChange: function(contents, $editable) {
-                            $that.addChainProductInfo.content = contents;
+                            $that.editChainProductInfo.content = contents;
                         }
                     },
                     toolbar: [
@@ -244,7 +279,7 @@
                 vc.emit('chooseProductSpec', 'openChooseProductSpecModel', {});
             },
             _openAddDeleteProductSpec: function(_productSpec) {
-                let _productSpecs = $that.addChainProductInfo.productSpecs;
+                let _productSpecs = $that.editChainProductInfo.productSpecs;
                 let index = _productSpecs.indexOf(_productSpec);
                 if (index > -1) {
                     _productSpecs.splice(index, 1);
@@ -260,23 +295,24 @@
                     _productSpecs[0].isDefault = "T"
                 }
             },
-            _doAddDefaultProductSpec: function(_product, _defaultProductSpec) {
+            _doEditDefaultProductSpec: function(_product, _defaultProductSpec) {
                 _product.productSpecs.forEach(item => {
                     item.isDefault = "F";
                 });
                 _defaultProductSpec.isDefault = "T";
-                $that.addChainProductInfo.productSpecs = JSON.parse(JSON.stringify(_product.productSpecs));
+                $that.editChainProductInfo.productSpecs = JSON.parse(JSON.stringify(_product.productSpecs));
             },
-            _addChainProductSpec:function(){
+            _editChainProductSpec:function(){
                 let _productSpec = {
                     specName:'',
                     specValue:'',
                     price:'',
                     barCode:'',
                     isDefault: "F"
+                    
                 };
-                $that.addChainProductInfo.productSpecs.push(_productSpec);
-                let _productSpecs = $that.addChainProductInfo.productSpecs;
+                $that.editChainProductInfo.productSpecs.push(_productSpec);
+                let _productSpecs = $that.editChainProductInfo.productSpecs;
                 let flag = false;
                 for (let i = 0; i < _productSpecs.length; i++) {
                     if (_productSpecs[i].isDefault == "T") {

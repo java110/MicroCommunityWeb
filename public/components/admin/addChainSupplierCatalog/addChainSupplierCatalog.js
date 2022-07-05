@@ -18,13 +18,16 @@
             }
         },
         _initMethod: function () {
-            vc.component.addChainSupplierCatalogInfo.csId = vc.getParam('csId');
-
+           
         },
         _initEvent: function () {
-            vc.on('addChainSupplierCatalog', 'openAddChainSupplierCatalogModal', function () {
+           
+            vc.on('addChainSupplierCatalog', 'openAddChainSupplierCatalogModal', function (_params) {
                 $('#addChainSupplierCatalogModel').modal('show');
+                vc.component.addChainSupplierCatalogInfo.csId = _params.csId;
             });
+
+           
         },
         methods: {
             addChainSupplierCatalogValidate() {
