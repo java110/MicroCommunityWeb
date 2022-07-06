@@ -618,7 +618,7 @@ body,
     height: 50px;
     font-size: 24px;
     line-height: 50px;
-    width: 80px ;
+    width: 80px;
     text-align: center;
 }
 
@@ -648,8 +648,7 @@ body,
     display: none;
 }
 
-.vc-main .breadcrumb {
-}
+.vc-main .breadcrumb {}
 
 .vc-main .ibox .ibox-title {
     border-top-left-radius: 10px;
@@ -659,4 +658,135 @@ body,
 .vc-main .ibox .ibox-content {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.vc-index .vc-index-nav {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.vc-index .index-1-left {
+    width: 65%;
+    padding: 10px;
+}
+
+.vc-index .index-1-left .index-1-left-1 {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    height: 350px;
+    padding: 15px;
+}
+
+.vc-index .index-title {
+    color: #404357;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.vc-index .index-number {
+    color: #404357;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+.vc-index .index-number-unit {
+    color: #9D9D9F;
+    font-size: 14px;
+}
+
+.vc-index .index-name {
+    color: #404357;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.vc-index .index-name-ico {
+    font-size: 30px;
+    color: #00BF6F;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.vc-index .index-number-describe {
+    color: #9D9D9F;
+}
+
+.vc-index .index-1-left .index-1-left-1 .index-1-left-1-content {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.vc-index .index-1-left .index-1-left-1 .index-1-left-img {
+    background-color: #F6F6F6;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 60px;
+    margin-right: 10px;
+}
+
+.vc-index .index-1-left .index-1-left-1 .index-1-left-img i {
+    color: #00BF6F;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.vc-index .index-1-right {
+    width: 35%;
+    padding: 10px;
+}
+
+.vc-index .index-1-right .index-1-right-1 {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    height: 350px;
+    padding: 15px;
+    overflow-y: hidden;
+}
+
+.vc-index .index-1-left-1-bottom {
+    width: 90%;
+    margin: 40px auto;
+}
+
+.vc-index .index-1-left-1-bottom .index-1-left-1-bottom-item {
+    width: 45%;
+}
+
+.vc-index .vc-index-notice-title {
+    font-size: 14px;
+    color: #544E42;
+    width: 60%;
+}
+
+.vc-index .vc-index-notice-title i {
+    font-size: 2px;
+}
+
+.vc-index .vc-index-notice-time {
+    font-size: 14px;
+    color: #9D9D9F;
+}
+
+.vc-index .index-1-left-item {
+    width: 49%;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.vc-index .index-bottom-number {
+    color: #404357;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.vc-index .index-bottom-number-desc {
+    color: #9D9D9F;
+}
+
+.vc-index .index-1-right-item {
+    padding: 15px;
+    border-radius: 10px;
 }

@@ -49,12 +49,49 @@
                     }
                 );
             },
+            /**
+             *   2002	未销售
+             *   2001	已入住
+             *   2003	已交房
+             *   2005	已装修
+             *   2004	未入住
+             *   2006	已出租
+             *   2007	已出售
+             *   2008	空闲
+             *   2009	装修中
+             * @param {*} room 
+             * @returns 
+             */
             _getBgColor: function(room) {
+                if (room.oweAmount > 0) {
+                    return "#DC3545";
+                }
                 if (!room.ownerName) {
                     return "#1AB394";
                 }
-                if (room.oweAmount > 0) {
-                    return "#DC3545";
+                if (room.state == '2001') {
+                    return '#1296db'
+                }
+                if (room.state == '2003') {
+                    return '#4C8CDE'
+                }
+                if (room.state == '2005') {
+                    return '#085DC9'
+                }
+                if (room.state == '2004') {
+                    return '#9DBFEA'
+                }
+                if (room.state == '2006') {
+                    return '#365A87'
+                }
+                if (room.state == '2007') {
+                    return '#1053A8'
+                }
+                if (room.state == '2008') {
+                    return '#4E79AF'
+                }
+                if (room.state == '2009') {
+                    return '#5B81B1'
                 }
                 return "#1296db"
             },

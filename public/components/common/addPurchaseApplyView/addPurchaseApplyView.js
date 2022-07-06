@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -8,40 +8,41 @@
         data: {
             addPurchaseApplyViewInfo: {
                 flowComponent: 'addPurchaseApplyView',
-                description:'',
-                endUserName:'',
-                endUserTel:'',
+                description: '',
+                endUserName: '',
+                endUserTel: '',
             }
         },
         watch: {
             addPurchaseApplyViewInfo: {
                 deep: true,
-                handler: function () {
+                handler: function() {
                     vc.component.saveAddComplainInfo();
                 }
             }
         },
-        _initMethod: function () {
-            
+        _initMethod: function() {
+            let userInfo = vc.getData('/nav/getUserInfo');
+            $that.addPurchaseApplyViewInfo.endUserName = userInfo.name;
+            $that.addPurchaseApplyViewInfo.endUserTel = userInfo.tel;
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
 
-            vc.on('addPurchaseApplyViewInfo', 'setPurchaseApplyInfo', function () {
+            vc.on('addPurchaseApplyViewInfo', 'setPurchaseApplyInfo', function() {
                 vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addPurchaseApplyViewInfo);
             });
 
-            vc.on('addPurchaseApplyViewInfo', 'onIndex', function (_index) {
+            vc.on('addPurchaseApplyViewInfo', 'onIndex', function(_index) {
                 vc.component.addPurchaseApplyViewInfo.index = _index;
             });
         },
         methods: {
-            addComplainValidate: function () {
+            addComplainValidate: function() {
                 return vc.validate.validate({
                     addPurchaseApplyViewInfo: vc.component.addPurchaseApplyViewInfo
                 }, {
-                    'addPurchaseApplyViewInfo.description': [
-                        {
+                    'addPurchaseApplyViewInfo.description': [{
                             limit: "required",
                             param: "",
                             errInfo: "申请说明不能为空"
@@ -52,8 +53,7 @@
                             errInfo: "申请说明不能超过200位"
                         },
                     ],
-                    'addPurchaseApplyViewInfo.endUserName': [
-                        {
+                    'addPurchaseApplyViewInfo.endUserName': [{
                             limit: "required",
                             param: "",
                             errInfo: "联系人不能为空"
@@ -64,8 +64,7 @@
                             errInfo: "联系人不能超过50位"
                         },
                     ],
-                    'addPurchaseApplyViewInfo.endUserTel': [
-                        {
+                    'addPurchaseApplyViewInfo.endUserTel': [{
                             limit: "required",
                             param: "",
                             errInfo: "联系电话不能为空"
@@ -79,12 +78,12 @@
 
                 });
             },
-            saveAddComplainInfo: function () {
+            saveAddComplainInfo: function() {
                 if (vc.component.addComplainValidate()) {
                     //侦听回传
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addPurchaseApplyViewInfo);
                     return;
-                }else{
+                } else {
                     vc.toast(vc.validate.errInfo);
                     vc.emit($props.callBackListener, $props.callBackFunction, null);
                 }

@@ -126,10 +126,9 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#addProductModel').modal('hide');
                             vc.component.clearAddProductInfo();
-                            vc.emit('productManage', 'listProduct', {});
                             vc.toast("添加成功");
+                            vc.goBack();
                             return;
                         }
                         vc.toast(_json.msg);
@@ -273,7 +272,8 @@
                     specName:'',
                     specValue:'',
                     price:'',
-                    barCode:''
+                    barCode:'',
+                    isDefault: "F"
                 };
                 $that.addChainProductInfo.productSpecs.push(_productSpec);
                 let _productSpecs = $that.addChainProductInfo.productSpecs;
