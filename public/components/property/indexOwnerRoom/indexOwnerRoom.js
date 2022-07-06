@@ -1,20 +1,19 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             indexOwnerRoomInfo: {
-                unbindCount:0,
-                bindCount:0,
-                unbindRoomCount:0,
-                bindRoomCount:0,
+                unbindCount: 0,
+                bindCount: 0,
+                unbindRoomCount: 0,
+                bindRoomCount: 0,
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._loadIndexOwnerRegisterData();
         },
-        _initEvent: function () {
-        },
+        _initEvent: function() {},
         methods: {
-            _loadIndexOwnerRegisterData:function(){
+            _loadIndexOwnerRegisterData: function() {
                 let param = {
                     params: {
                         page: 1,
@@ -26,22 +25,22 @@
                 //发送get请求
                 vc.http.apiGet('/propertyIndex.queryOwnerRegisterIndex',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _res = JSON.parse(json);
-                        if(_res.code != 0){
+                        if (_res.code != 0) {
                             return;
                         }
                         vc.copyObject(_res.data, $that.indexOwnerRoomInfo);
                         let _dom = document.getElementById('ownerRoomCount');
                         $that._initOwnerEcharts($that.indexOwnerRoomInfo.bindCount, $that.indexOwnerRoomInfo.unbindCount, _dom, vc.i18n('住户信息', 'indexOwnerRoom'), vc.i18n('已处理', 'indexOwnerRoom'), vc.i18n('未处理', 'indexOwnerRoom'), '#4B7AF0', '#E2EDF6');
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
-                       
+
                     }
                 );
             },
-            _initOwnerEcharts: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName, userColor, freeColor) {
+            _initOwnerEcharts: function(userCount, freeCount, dom, _title, _userCountName, _freeCountName, userColor, freeColor) {
                 let myChart = echarts.init(dom);
                 let option = null;
                 option = {
@@ -52,7 +51,10 @@
                     legend: {
                         top: '5%',
                         left: 'right',
-                        orient: 'vertical',  //垂直显示
+                        orient: 'vertical', //垂直显示
+                        textStyle: {
+                            color: '#9D9D9F' //字体颜色
+                        },
                     },
                     color: [userColor, freeColor],
                     series: [{

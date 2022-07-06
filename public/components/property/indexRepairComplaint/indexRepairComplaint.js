@@ -1,25 +1,24 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             indexRepairComplaintInfo: {
-                allCount:0,
-                waitCount:0,
-                doingCount:0,
-                finishCount:0,
-                allComplaintCount:0,
-                waitComplaintCount:0,
-                finishComplaintCount:0,
+                allCount: 0,
+                waitCount: 0,
+                doingCount: 0,
+                finishCount: 0,
+                allComplaintCount: 0,
+                waitComplaintCount: 0,
+                finishComplaintCount: 0,
             }
         },
-        _initMethod: function () {
-           
-           $that._loadIndexComplaintData();
+        _initMethod: function() {
+
+            $that._loadIndexComplaintData();
             $that._loadIndexRepairData();
         },
-        _initEvent: function () {
-        },
+        _initEvent: function() {},
         methods: {
-            _loadIndexRepairData:function(){
+            _loadIndexRepairData: function() {
                 let param = {
                     params: {
                         page: 1,
@@ -31,22 +30,22 @@
                 //发送get请求
                 vc.http.apiGet('/propertyIndex.queryRepairIndex',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _res = JSON.parse(json);
-                        if(_res.code != 0){
+                        if (_res.code != 0) {
                             return;
                         }
                         vc.copyObject(_res.data, $that.indexRepairComplaintInfo);
                         let _dom = document.getElementById('repairCount');
-                        $that._initEcharts($that.indexRepairComplaintInfo.finishCount, $that.indexRepairComplaintInfo.allCount -  $that.indexRepairComplaintInfo.finishCount, _dom, vc.i18n('报修信息', 'indexRepairComplaint'), vc.i18n('已处理', 'indexContext'), vc.i18n('未处理', 'indexContext'), '#4B7AF0', '#E2EDF6');
+                        $that._initEcharts($that.indexRepairComplaintInfo.finishCount, $that.indexRepairComplaintInfo.allCount - $that.indexRepairComplaintInfo.finishCount, _dom, vc.i18n('报修信息', 'indexRepairComplaint'), vc.i18n('已处理', 'indexContext'), vc.i18n('未处理', 'indexContext'), '#4B7AF0', '#E2EDF6');
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
-                       
+
                     }
                 );
             },
-            _loadIndexComplaintData:function(){
+            _loadIndexComplaintData: function() {
                 let param = {
                     params: {
                         page: 1,
@@ -58,22 +57,22 @@
                 //发送get请求
                 vc.http.apiGet('/propertyIndex.queryComplaintIndex',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _res = JSON.parse(json);
-                        if(_res.code != 0){
+                        if (_res.code != 0) {
                             return;
                         }
                         vc.copyObject(_res.data, $that.indexRepairComplaintInfo);
                         let _complaintCountDom = document.getElementById('complaintCount');
-                        $that._initEcharts($that.indexRepairComplaintInfo.finishComplaintCount, $that.indexRepairComplaintInfo.allComplaintCount -  $that.indexRepairComplaintInfo.finishComplaintCount, _complaintCountDom, vc.i18n('投诉统计', 'indexRepairComplaint'), vc.i18n('已处理', 'indexContext'), vc.i18n('未处理', 'indexContext'), '#01C36D', '#E2EDF6');
+                        $that._initEcharts($that.indexRepairComplaintInfo.finishComplaintCount, $that.indexRepairComplaintInfo.allComplaintCount - $that.indexRepairComplaintInfo.finishComplaintCount, _complaintCountDom, vc.i18n('投诉统计', 'indexRepairComplaint'), vc.i18n('已处理', 'indexContext'), vc.i18n('未处理', 'indexContext'), '#01C36D', '#E2EDF6');
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
-                       
+
                     }
                 );
             },
-            _initEcharts: function (userCount, freeCount, dom, _title, _userCountName, _freeCountName, userColor, freeColor) {
+            _initEcharts: function(userCount, freeCount, dom, _title, _userCountName, _freeCountName, userColor, freeColor) {
                 let myChart = echarts.init(dom);
                 let option = null;
                 option = {
@@ -84,7 +83,10 @@
                     legend: {
                         top: '5%',
                         left: 'right',
-                        orient: 'vertical',  //垂直显示
+                        orient: 'vertical', //垂直显示
+                        textStyle: {
+                            color: '#9D9D9F' //字体颜色
+                        },
                     },
                     color: [userColor, freeColor],
                     series: [{
