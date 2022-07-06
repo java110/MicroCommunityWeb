@@ -16,118 +16,196 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><input type="checkbox" class="i-checks" @click="checkAll($event)"></th>
-                                <th class="text-center"><span><span><vc:i18n name="费用类型" namespace="owePayFeeOrder"></vc:i18n></span></span></th>
-                                <th class="text-center"><span><span><vc:i18n name="费用项目" namespace="owePayFeeOrder"></vc:i18n></span></span></th>
-                                <th class="text-center"><span><span><vc:i18n name="费用标识" namespace="owePayFeeOrder"></vc:i18n></span></span></th>
-                                <th class="text-center"><span><span><vc:i18n name="费用" namespace="owePayFeeOrder"></vc:i18n></span></span>ID</th>
-                                <th class="text-center"><span><span><vc:i18n name="计费起始时间" namespace="owePayFeeOrder"></vc:i18n></span></span></th>
-                                <th class="text-center"><span><span><vc:i18n name="计费结束时间" namespace="owePayFeeOrder"></vc:i18n></span></span></th>
-                                <th class="text-center"><span><span><vc:i18n name="欠费金额" namespace="owePayFeeOrder"></vc:i18n></span></span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <input type="checkbox" class="i-checks" @click="checkAll($event)">
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <span><vc:i18n name="费用类型" namespace="owePayFeeOrder"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <span><vc:i18n name="费用项目" namespace="owePayFeeOrder"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <span><vc:i18n name="费用标识" namespace="owePayFeeOrder"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <span><vc:i18n name="费用" namespace="owePayFeeOrder"></vc:i18n></span>
+                                </span>ID
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <span><vc:i18n name="计费起始时间" namespace="owePayFeeOrder"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <span><vc:i18n name="计费结束时间" namespace="owePayFeeOrder"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <span><vc:i18n name="欠费金额" namespace="owePayFeeOrder"></vc:i18n></span>
+                                </span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="oweFee in owePayFeeOrderInfo.oweFees">
-                                <td class="text-center">
-                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="oweFee.feeId" v-model="owePayFeeOrderInfo.selectPayFeeIds">
-                                </td>
-                                <td class="text-center">{{oweFee.feeTypeCdName}}</td>
-                                <td class="text-center">{{oweFee.feeName}}</td>
-                                <td class="text-center">{{oweFee.feeFlagName}}</td>
-                                <td class="text-center">{{oweFee.feeId}}</td>
-                                <td class="text-center">{{_getEndTime(oweFee)}}</td>
-
-                                <td class="text-center"> {{_getDeadlineTime(oweFee)}}</td>
-                                <td class="text-center">{{oweFee.feePrice}}</td>
-                            </tr>
+                        <tr v-for="oweFee in owePayFeeOrderInfo.oweFees">
+                            <td class="text-center">
+                                <input type="checkbox" class="i-checks checkItem" v-bind:value="oweFee.feeId"
+                                       v-model="owePayFeeOrderInfo.selectPayFeeIds">
+                            </td>
+                            <td class="text-center">{{oweFee.feeTypeCdName}}</td>
+                            <td class="text-center">{{oweFee.feeName}}</td>
+                            <td class="text-center">{{oweFee.feeFlagName}}</td>
+                            <td class="text-center">{{oweFee.feeId}}</td>
+                            <td class="text-center">{{_getEndTime(oweFee)}}</td>
+                            <td class="text-center"> {{_getDeadlineTime(oweFee)}}</td>
+                            <td class="text-center">{{oweFee.feePrice}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="8">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="8">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-9"></div>
-        <div class="col-md-2">
-            缴费金额：<span style="font-size: 30px; color: red; padding-left: 0px;">{{owePayFeeOrderInfo.feePrices}}<span><span><vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span></span></span>
+        <div class="col-md-2">缴费金额：
+            <span style="font-size: 30px; color: red; padding-left: 0px;">{{owePayFeeOrderInfo.feePrices}}
+                <span>
+                     <span><vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span>
+                </span>
+            </span>
         </div>
         <div class="col-md-1 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn  btn-warning  btn-lg btn-block" style="margin-left:10px;" v-on:click="_payFee()"><span><span><vc:i18n name="缴费" namespace="owePayFeeOrder"></vc:i18n></span></span>
+            <button type="button" class="btn  btn-warning  btn-lg btn-block" style="margin-left:10px;"
+                    v-on:click="_payFee()">
+                <span>
+                    <span><vc:i18n name="缴费" namespace="owePayFeeOrder"></vc:i18n></span>
+                </span>
             </button>
         </div>
     </div>
-
     <div id="doOwePayFeeModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><span><span><vc:i18n name="收费确认" namespace="owePayFeeOrder"></vc:i18n></span></span></h5>
+                    <h5 class="modal-title">
+                        <span>
+                            <span><vc:i18n name="收费确认" namespace="owePayFeeOrder"></vc:i18n></span>
+                        </span>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><span><span><vc:i18n name="房屋" namespace="owePayFeeOrder"></vc:i18n></span></span>：</label>
+                        <label class="col-sm-3 col-form-label">
+                            <span>
+                                <span><vc:i18n name="房屋" namespace="owePayFeeOrder"></vc:i18n></span>
+                            </span>：
+                        </label>
                         <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.roomName}}</label>
                     </div>
-
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><span><span><vc:i18n name="金额" namespace="owePayFeeOrder"></vc:i18n></span></span>：</label>
-                        <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.feePrices}}<span><span><vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span></span></label>
+                        <label class="col-sm-3 col-form-label">
+                            <span>
+                                <span><vc:i18n name="金额" namespace="owePayFeeOrder"></vc:i18n></span>
+                            </span>：
+                        </label>
+                        <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.feePrices}}
+                            <span>
+                                <span><vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span>
+                            </span>
+                        </label>
                     </div>
                     <div class="row form-group">
-                        <label class="col-sm-3 col-form-label"><span><span><vc:i18n name="支付方式" namespace="owePayFeeOrder"></vc:i18n></span></span>:</label>
+                        <label class="col-sm-3 col-form-label">
+                            <span>
+                                <span><vc:i18n name="支付方式" namespace="owePayFeeOrder"></vc:i18n></span>
+                            </span>:
+                        </label>
                         <div class="col-sm-9">
                             <select class="custom-select" v-model="owePayFeeOrderInfo.primeRate">
                                 <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','owePayFeeOrder')}}</option>
-                                <option v-for="(item,index) in owePayFeeOrderInfo.primeRates" :key="index" v-if="item.statusCd != '5' && item.statusCd != '6'"
+                                <option v-for="(item,index) in owePayFeeOrderInfo.primeRates" :key="index"
+                                        v-if="item.statusCd != '5' && item.statusCd != '6'"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"><span><span><vc:i18n name="备注" namespace="owePayFeeOrder"></vc:i18n></span></span>：</label>
+                        <label class="col-sm-3 col-form-label">
+                            <span>
+                                <span><vc:i18n name="备注" namespace="owePayFeeOrder"></vc:i18n></span>
+                            </span>：
+                        </label>
                         <label class="col-sm-9 col-form-label">
                             <textarea :placeholder="vc.i18n('可填，请填写备注','owePayFeeOrder')" class="form-control"
-                                              v-model="owePayFeeOrderInfo.remark">
+                                      v-model="owePayFeeOrderInfo.remark">
                                     </textarea>
                         </label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_closeDoOwePayFeeModal()"><span><span><vc:i18n name="关闭" namespace="owePayFeeOrder"></vc:i18n></span></span></button>
-                    <button type="button" class="btn btn-primary" @click="_doPayFee()"><span><span><vc:i18n name="确定收费" namespace="owePayFeeOrder"></vc:i18n></span></span></button>
+                    <button type="button" class="btn btn-secondary" @click="_closeDoOwePayFeeModal()">
+                        <span>
+                            <span><vc:i18n name="关闭" namespace="owePayFeeOrder"></vc:i18n></span>
+                        </span>
+                    </button>
+                    <button type="button" class="btn btn-primary" @click="_doPayFee()">
+                        <span>
+                            <span><vc:i18n name="确定收费" namespace="owePayFeeOrder"></vc:i18n></span>
+                        </span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-
     <div id="payFeeResult" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><span><span><vc:i18n name="缴费提示" namespace="owePayFeeOrder"></vc:i18n></span></span></h5>
+                    <h5 class="modal-title">
+                        <span>
+                            <span><vc:i18n name="缴费提示" namespace="owePayFeeOrder"></vc:i18n></span>
+                        </span>
+                    </h5>
                     <button type="button " class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p><span><span><vc:i18n name="缴费成功" namespace="owePayFeeOrder"></vc:i18n></span></span></p>
+                    <p>
+                        <span>
+                            <span><vc:i18n name="缴费成功" namespace="owePayFeeOrder"></vc:i18n></span>
+                        </span>
+                    </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_back()"><span><span><vc:i18n name="返回" namespace="owePayFeeOrder"></vc:i18n></span></span></button>
+                    <button type="button" class="btn btn-secondary" @click="_back()">
+                        <span>
+                            <span><vc:i18n name="返回" namespace="owePayFeeOrder"></vc:i18n></span>
+                        </span>
+                    </button>
                     <!-- <button type="button" class="btn btn-primary" @click="_printAndBack()"><span><span><vc:i18n name="打印收据" namespace="owePayFeeOrder"></vc:i18n></span></span></button> -->
                 </div>
             </div>

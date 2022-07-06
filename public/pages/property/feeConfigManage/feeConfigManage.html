@@ -7,7 +7,8 @@
                         <span><vc:i18n name="查询条件" namespace="feeConfigManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{feeConfigManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{feeConfigManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -16,13 +17,16 @@
                         <!--费用项ID-->
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input class="form-control" type="text" :placeholder="vc.i18n('请输入费用项ID','feeConfigManage')" v-model="feeConfigManageInfo.conditions.configId">
+                                <input class="form-control" type="text"
+                                       :placeholder="vc.i18n('请输入费用项ID','feeConfigManage')"
+                                       v-model="feeConfigManageInfo.conditions.configId">
                             </div>
                         </div>
                         <!--收费项目-->
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入收费项目','feeConfigManage')" v-model="feeConfigManageInfo.conditions.feeName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入收费项目','feeConfigManage')"
+                                       v-model="feeConfigManageInfo.conditions.feeName" class=" form-control">
                             </div>
                         </div>
                         <!--费用类型-->
@@ -36,10 +40,13 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryFeeConfigMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="feeConfigManage"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="feeConfigManage"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetFeeConfigMethod()" style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="feeConfigManage"></vc:i18n></span>
+                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetFeeConfigMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="feeConfigManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -95,89 +102,97 @@
                         <span><vc:i18n name="费用项信息" namespace="feeConfigManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddFeeConfigModal()" v-if="vc.hasPrivilege('502022022571930560')">
-                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="feeConfigManage"></vc:i18n></span>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddFeeConfigModal()"
+                                v-if="vc.hasPrivilege('502022022571930560')">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="添加" namespace="feeConfigManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><vc:i18n name="费用项ID" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="费用类型" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="收费项目" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="费用标识" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="催缴类型" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="付费类型" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="缴费周期(单位:月)" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="计费起始时间" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="计费终止时间" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="计费单价(单位:元)" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="附加/固定费用(单位:元)" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="feeConfigManage"></vc:i18n></span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用项ID" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用类型" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="收费项目" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用标识" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="催缴类型" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="付费类型" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="缴费周期(单位:月)" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="计费起始时间" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="计费终止时间" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="计费单价(单位:元)" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="附加/固定费用(单位:元)" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="feeConfig in feeConfigManageInfo.feeConfigs">
-                                <td class="text-center">{{feeConfig.configId}}</td>
-                                <td class="text-center">{{feeConfig.feeTypeCdName}}</td>
-                                <td class="text-center">{{feeConfig.feeName}}</td>
-                                <td class="text-center">{{feeConfig.feeFlagName}}</td>
-                                <td class="text-center">{{feeConfig.billTypeName}}</td>
-                                <td class="text-center">{{feeConfig.paymentCd == '1200' ? '预付费':'后付费'}}</td>
-                                <td class="text-center">{{feeConfig.paymentCycle}}</td>
-                                <td class="text-center">{{feeConfig.startTime}}</td>
-                                <td class="text-center">{{feeConfig.endTime}}</td>
-                                <td class="text-center">{{feeConfig.computingFormula == '2002' ? '-':feeConfig.squarePrice}}
-                                </td>
-                                <td class="text-center">{{feeConfig.additionalAmount}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group" v-if="vc.hasPrivilege('502022022549630561')">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditFeeConfigModel(feeConfig)"><span><vc:i18n name="修改" namespace="feeConfigManage"></vc:i18n></span>
+                        <tr v-for="feeConfig in feeConfigManageInfo.feeConfigs">
+                            <td class="text-center">{{feeConfig.configId}}</td>
+                            <td class="text-center">{{feeConfig.feeTypeCdName}}</td>
+                            <td class="text-center">{{feeConfig.feeName}}</td>
+                            <td class="text-center">{{feeConfig.feeFlagName}}</td>
+                            <td class="text-center">{{feeConfig.billTypeName}}</td>
+                            <td class="text-center">{{feeConfig.paymentCd == '1200' ? '预付费':'后付费'}}</td>
+                            <td class="text-center">{{feeConfig.paymentCycle}}</td>
+                            <td class="text-center">{{feeConfig.startTime}}</td>
+                            <td class="text-center">{{feeConfig.endTime}}</td>
+                            <td class="text-center">{{feeConfig.computingFormula == '2002' ? '-':feeConfig.squarePrice}}
+                            </td>
+                            <td class="text-center">{{feeConfig.additionalAmount}}</td>
+                            <td class="text-center">
+                                <div class="btn-group" v-if="vc.hasPrivilege('502022022549630561')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditFeeConfigModel(feeConfig)">
+                                        <span><vc:i18n name="修改" namespace="feeConfigManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_settingConfigDiscount(feeConfig)"><span><vc:i18n name="折扣" namespace="feeConfigManage"></vc:i18n></span>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_settingConfigDiscount(feeConfig)">
+                                        <span><vc:i18n name="折扣" namespace="feeConfigManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                    <div class="btn-group" v-if="feeConfig.isDefault=='F' && vc.hasPrivilege('502022022586400562')">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteFeeConfigModel(feeConfig)"><span><vc:i18n name="删除" namespace="feeConfigManage"></vc:i18n></span>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="feeConfig.isDefault=='F' && vc.hasPrivilege('502022022586400562')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteFeeConfigModel(feeConfig)">
+                                        <span><vc:i18n name="删除" namespace="feeConfigManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="12">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="12">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -187,15 +202,20 @@
                                 出账类型： 出账类型只是表示欠费催收功能，每月1日表示每月1日推送业主微信进行催收；
                             </div>
                             <div>
-                                计费起始时间：只是表示这个费用项开始时间，和房屋上费用开始时间没有关系；</div>
+                                计费起始时间：只是表示这个费用项开始时间，和房屋上费用开始时间没有关系；
+                            </div>
                             <div>
-                                计费结束时间：只是表示这个费用项结束时间，和房屋上费用结束时间没有关系；</div>
+                                计费结束时间：只是表示这个费用项结束时间，和房屋上费用结束时间没有关系；
+                            </div>
                             <div>
-                                费用标识：分为周期费用和一次性费用，周期费是连续收费的费用比如物业费每年都会收取，所以物业费建议用周期费；</div>
+                                费用标识：分为周期费用和一次性费用，周期费是连续收费的费用比如物业费每年都会收取，所以物业费建议用周期费；
+                            </div>
                             <div>
-                                一次性费用表示费用只收取一次比如押金，下次收费时还需要手工创建到房屋上；</div>
+                                一次性费用表示费用只收取一次比如押金，下次收费时还需要手工创建到房屋上；
+                            </div>
                             <div>
-                                付费类型：分为预付费和后付费，预付费表示费用提前收费 后付费表示之后收取；</div>
+                                付费类型：分为预付费和后付费，预付费表示费用提前收费 后付费表示之后收取；
+                            </div>
                         </div>
                         <div class="col-sm-3 float-right">
                             <vc:create path="frame/pagination"></vc:create>

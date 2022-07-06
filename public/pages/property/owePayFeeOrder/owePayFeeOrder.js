@@ -77,7 +77,7 @@
                 );
             },
             _payFee: function () {
-                if(vc.component.owePayFeeOrderInfo.selectPayFeeIds.length <= 0){
+                if (vc.component.owePayFeeOrderInfo.selectPayFeeIds.length <= 0) {
                     vc.toast('未选择费用');
                     return;
                 }
@@ -150,9 +150,11 @@
                             });
                             vc.component.owePayFeeOrderInfo.selectPayFeeIds = [];
                             $that._loadOweFees();
+                            vc.toast(_json.msg);
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -207,7 +209,6 @@
                 }
                 return vc.dateFormat(_fee.endTime);
             },
-
             checkAll: function (e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态

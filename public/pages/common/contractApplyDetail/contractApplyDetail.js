@@ -25,9 +25,8 @@
                 signingTime: '',
                 param: '',
                 planType: '',
-                files:[],
-                rooms:[]
-
+                files: [],
+                rooms: []
             },
             auditUsers: []
         },
@@ -39,7 +38,6 @@
             $that._loadContractRooms();
         },
         _initEvent: function () {
-
         },
         methods: {
             _listContractApply: function (_page, _rows) {
@@ -70,7 +68,6 @@
                         communityId: vc.getCurrentCommunity().communityId,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowAuditInfo',
                     param,

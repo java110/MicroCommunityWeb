@@ -1,16 +1,13 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editFeeComboInfo: {
                 comboId: '',
                 comboName: '',
-                remark:'',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editFeeCombo', 'openEditFeeComboModal', function (_params) {
@@ -42,8 +39,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "编号不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editFeeCombo: function () {
@@ -51,7 +48,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/feeCombo.updateFeeCombo',
                     JSON.stringify(vc.component.editFeeComboInfo),
@@ -65,13 +61,14 @@
                             //关闭model
                             $('#editFeeComboModel').modal('hide');
                             vc.emit('feeComboManage', 'listFeeCombo', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -79,10 +76,9 @@
                 vc.component.editFeeComboInfo = {
                     comboId: '',
                     comboName: '',
-                    remark:'',
+                    remark: '',
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

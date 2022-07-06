@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -12,24 +11,21 @@
                 remark: '',
                 configs: [],
                 configIds: []
-
             }
         },
         watch: {
-            'addFeeComboInfo.configs': function() { //'goodList'是我要渲染的对象，也就是我要等到它渲染完才能调用函数
-                this.$nextTick(function() {
+            'addFeeComboInfo.configs': function () { //'goodList'是我要渲染的对象，也就是我要等到它渲染完才能调用函数
+                this.$nextTick(function () {
                     $('#configIds').selectpicker({
                         title: '选填，请选择费用项',
                         styleBase: 'form-control',
                         width: 'auto'
                     });
-
                     $('#configIds').selectpicker('refresh');
                 })
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addFeeCombo', 'openAddFeeComboModal', function () {
@@ -53,20 +49,14 @@
                             param: "30",
                             errInfo: "套餐名称不能超过30"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveFeeComboInfo: function () {
                 if (!vc.component.addFeeComboValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addFeeComboInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -74,7 +64,6 @@
                     $('#addFeeComboModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/feeCombo.saveFeeCombo',
                     JSON.stringify(vc.component.addFeeComboInfo),
@@ -89,17 +78,15 @@
                             $('#addFeeComboModel').modal('hide');
                             vc.component.clearAddFeeComboInfo();
                             vc.emit('feeComboManage', 'listFeeCombo', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddFeeComboInfo: function () {
@@ -110,25 +97,25 @@
                     configIds: []
                 };
             },
-            _listFeeConfigs: function() {
+            _listFeeConfigs: function () {
                 var param = {
                     params: {
-                        page:1,
-                        row:500,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 500,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('/feeConfig.listFeeConfigs', param,
-                    function(json, res) {
+                    function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.addFeeComboInfo.configs = _feeConfigManageInfo.feeConfigs;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-                    });
-            },
+                    }
+                );
+            }
         }
     });
-
 })(window.vc);

@@ -72,7 +72,7 @@
                         }
                     });
             },
-            _queryMethod:function(){
+            _queryMethod: function () {
                 vc.component._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //查询方法
@@ -88,8 +88,6 @@
                     param,
                     function (json, res) {
                         var _reportQuestionAnswerDetailInfo = JSON.parse(json);
-                        console.log("123")
-                        console.log(_reportQuestionAnswerDetailInfo)
                         vc.component.reportQuestionAnswerDetailInfo.total = _reportQuestionAnswerDetailInfo.total;
                         vc.component.reportQuestionAnswerDetailInfo.records = _reportQuestionAnswerDetailInfo.records;
                         vc.component.reportQuestionAnswerDetailInfo.questions = _reportQuestionAnswerDetailInfo.data;

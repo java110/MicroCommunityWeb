@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -15,8 +15,7 @@
                 conditions: {
                     comboId: '',
                     comboName: '',
-                    communityId: vc.getCurrentCommunity().communityId,
-
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
@@ -24,7 +23,6 @@
             vc.component._listFeeCombos(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('feeComboManage', 'listFeeCombo', function (_param) {
                 vc.component._listFeeCombos(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,13 +32,13 @@
         },
         methods: {
             _listFeeCombos: function (_page, _rows) {
-
                 vc.component.feeComboManageInfo.conditions.page = _page;
                 vc.component.feeComboManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.feeComboManageInfo.conditions
                 };
-
+                param.params.comboId = param.params.comboId.trim();
+                param.params.comboName = param.params.comboName.trim();
                 //发送get请求
                 vc.http.apiGet('/feeCombo.listFeeCombo',
                     param,
@@ -67,12 +65,18 @@
             _openDeleteFeeComboModel: function (_feeCombo) {
                 vc.emit('deleteFeeCombo', 'openDeleteFeeComboModal', _feeCombo);
             },
+            //查询
             _queryFeeComboMethod: function () {
                 vc.component._listFeeCombos(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _toComboMember:function(_feeCombo){
-                vc.jumpToPage("/#/pages/property/feeComboMemberManage?comboId="+_feeCombo.comboId+"&comboName="+_feeCombo.comboName)
+            //重置
+            _resetFeeComboMethod: function () {
+                vc.component.feeComboManageInfo.conditions.comboId = "";
+                vc.component.feeComboManageInfo.conditions.comboName = "";
+                vc.component._listFeeCombos(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _toComboMember: function (_feeCombo) {
+                vc.jumpToPage("/#/pages/property/feeComboMemberManage?comboId=" + _feeCombo.comboId + "&comboName=" + _feeCombo.comboName)
             },
             _moreCondition: function () {
                 if (vc.component.feeComboManageInfo.moreCondition) {
@@ -81,8 +85,6 @@
                     vc.component.feeComboManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

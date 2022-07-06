@@ -15,8 +15,10 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="reportQuestionAnswerDetailInfo.conditions.qaType">
-                                    <option selected value="">{{vc.i18n('请选择问卷类型','reportQuestionAnswerDetail')}}</option>
+                                <select class="custom-select"
+                                        v-model="reportQuestionAnswerDetailInfo.conditions.qaType">
+                                    <option selected value="">{{vc.i18n('请选择问卷类型','reportQuestionAnswerDetail')}}
+                                    </option>
                                     <option value="1001">{{vc.i18n('业主问卷','reportQuestionAnswerDetail')}}</option>
                                     <!-- <option value="2002">{{vc.i18n('员工自评','reportQuestionAnswerDetail')}}</option> -->
                                     <option value="3003">{{vc.i18n('业主投票','reportQuestionAnswerDetail')}}</option>
@@ -27,20 +29,21 @@
                         <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请选择问卷开始时间','reportQuestionAnswerDetail')"
-                                    v-model="reportQuestionAnswerDetailInfo.conditions.startTime"
-                                    class="form-control reportFeeDetailStartTime startTime">
+                                       v-model="reportQuestionAnswerDetailInfo.conditions.startTime"
+                                       class="form-control reportFeeDetailStartTime startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请选择问卷结束时间','reportQuestionAnswerDetail')"
-                                    v-model="reportQuestionAnswerDetailInfo.conditions.endTime"
-                                    class="form-control reportFeeDetailEndTime endTime">
+                                       v-model="reportQuestionAnswerDetailInfo.conditions.endTime"
+                                       class="form-control reportFeeDetailEndTime endTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -54,41 +57,56 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="问卷明细表" namespace="reportQuestionAnswerDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
-                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><span><vc:i18n name="序号" namespace="reportQuestionAnswerDetail"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="问卷人" namespace="reportQuestionAnswerDetail"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="问卷类型" namespace="reportQuestionAnswerDetail"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="问卷名称" namespace="reportQuestionAnswerDetail"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="问卷题目" namespace="reportQuestionAnswerDetail"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="答案" namespace="reportQuestionAnswerDetail"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="时间" namespace="reportQuestionAnswerDetail"></vc:i18n></span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="序号" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="问卷人" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="问卷类型" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="问卷名称" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="问卷题目" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="答案" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="时间" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(question,index) in reportQuestionAnswerDetailInfo.questions">
-                                <td class="text-center">{{index+1}}</td>
-                                <td class="text-center">{{question.userName}}</td>
-                                <td class="text-center">{{question.qaTypeName}}</td>
-                                <td class="text-center">{{question.qaName}}</td>
-                                <td class="text-center">{{question.qaTitle}}</td>
-                                <td class="text-center">{{question.qaValue}}</td>
-                                <td class="text-center">{{question.createTime}}</td>
-                            </tr>
+                        <tr v-for="(question,index) in reportQuestionAnswerDetailInfo.questions">
+                            <td class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{question.userName}}</td>
+                            <td class="text-center">{{question.qaTypeName}}</td>
+                            <td class="text-center">{{question.qaName}}</td>
+                            <td class="text-center">{{question.qaTitle}}</td>
+                            <td class="text-center">{{question.qaValue}}</td>
+                            <td class="text-center">{{question.createTime}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -97,7 +115,6 @@
                             <vc:create path="frame/pagination"></vc:create>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

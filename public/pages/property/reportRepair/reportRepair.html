@@ -14,39 +14,45 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input size="16" type="text" :placeholder="vc.i18n('请选择创建开始时间','reportRepair')" name="beginStartTime"
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择创建开始时间','reportRepair')"
+                                       name="beginStartTime"
                                        v-model="reportRepairInfo.conditions.beginStartTime"
                                        class="form-control form_datetime  begin_start_time" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input size="16" type="text" :placeholder="vc.i18n('请选择创建结束时间','reportRepair')" name="beginEndTime"
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择创建结束时间','reportRepair')"
+                                       name="beginEndTime"
                                        v-model="reportRepairInfo.conditions.beginEndTime"
                                        class="form-control form_datetime  begin_end_time" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input size="16" type="text" :placeholder="vc.i18n('请选择完结开始时间','reportRepair')" name="finishStartTime"
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择完结开始时间','reportRepair')"
+                                       name="finishStartTime"
                                        v-model="reportRepairInfo.conditions.finishStartTime"
                                        class="form-control form_datetime  finish_start_time" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input size="16" type="text" :placeholder="vc.i18n('请选择完结结束时间','reportRepair')" name="finishEndTime"
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择完结结束时间','reportRepair')"
+                                       name="finishEndTime"
                                        v-model="reportRepairInfo.conditions.finishEndTime"
                                        class="form-control form_datetime  finish_end_time" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="reportRepair"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="reportRepair"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
                                     style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="reportRepair"></vc:i18n></span>
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="reportRepair"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -80,7 +86,8 @@
                     <h5><span><vc:i18n name="报修汇总表" namespace="reportRepair"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
-                            <i class="fa fa-plus"></i> <span><vc:i18n name="导出" namespace="reportRepair"></vc:i18n></span>
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="reportRepair"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -88,16 +95,36 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center"><span><vc:i18n name="报修编号" namespace="reportRepair"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="员工" namespace="reportRepair"></vc:i18n></span>ID</th>
-                            <th class="text-center"><span><vc:i18n name="员工姓名" namespace="reportRepair"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="处理中" namespace="reportRepair"></vc:i18n></span>(条)</th>
-                            <th class="text-center"><span><vc:i18n name="派单" namespace="reportRepair"></vc:i18n></span>(条)</th>
-                            <th class="text-center"><span><vc:i18n name="转单" namespace="reportRepair"></vc:i18n></span>(条)</th>
-                            <th class="text-center"><span><vc:i18n name="退单" namespace="reportRepair"></vc:i18n></span>(条)</th>
-                            <th class="text-center"><span><vc:i18n name="已回访" namespace="reportRepair"></vc:i18n></span>(条)</th>
-                            <th class="text-center"><span><vc:i18n name="已完结" namespace="reportRepair"></vc:i18n></span>(条)</th>
-                            <th class="text-center"><span><vc:i18n name="员工评分" namespace="reportRepair"></vc:i18n></span></th>
+                            <th class="text-center">
+                                <span><vc:i18n name="报修编号" namespace="reportRepair"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="员工" namespace="reportRepair"></vc:i18n></span>ID
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="员工姓名" namespace="reportRepair"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="处理中" namespace="reportRepair"></vc:i18n></span>(条)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="派单" namespace="reportRepair"></vc:i18n></span>(条)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="转单" namespace="reportRepair"></vc:i18n></span>(条)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="退单" namespace="reportRepair"></vc:i18n></span>(条)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="已回访" namespace="reportRepair"></vc:i18n></span>(条)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="已完结" namespace="reportRepair"></vc:i18n></span>(条)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="员工评分" namespace="reportRepair"></vc:i18n></span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -113,7 +140,9 @@
                             <td class="text-center">{{repair.statementAmount}}</td>
                             <td class="text-center">{{repair.score?repair.score:'-'}}</td>
                         </tr>
-                        <td class="text-center" style="font-size:20px;color: red"><span><vc:i18n name="统计" namespace="reportRepair"></vc:i18n></span></td>
+                        <td class="text-center" style="font-size:20px;color: red">
+                            <span><vc:i18n name="统计" namespace="reportRepair"></vc:i18n></span>
+                        </td>
                         <td class="text-center" style="font-size:20px;color: red">---</td>
                         <td class="text-center" style="font-size:20px;color: red">---</td>
                         <td class="text-center" style="font-size:20px;color: red">

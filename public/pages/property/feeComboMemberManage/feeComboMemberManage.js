@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -12,7 +12,7 @@
                 records: 1,
                 moreCondition: false,
                 comboId: '',
-                comboName:'',
+                comboName: '',
                 conditions: {
                     comboId: '',
                     comboName: '',
@@ -26,7 +26,6 @@
             vc.component._listFeeComboMembers(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('feeComboMemberManage', 'listFeeComboMember', function (_param) {
                 vc.component._listFeeComboMembers(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -36,13 +35,11 @@
         },
         methods: {
             _listFeeComboMembers: function (_page, _rows) {
-
                 vc.component.feeComboMemberManageInfo.conditions.page = _page;
                 vc.component.feeComboMemberManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.feeComboMemberManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/feeComboMember.listFeeComboMember',
                     param,
@@ -62,7 +59,7 @@
             },
             _openAddFeeComboMemberModal: function () {
                 vc.emit('addFeeComboMember', 'openAddFeeComboMemberModal', {
-                    comboId:$that.feeComboMemberManageInfo.conditions.comboId
+                    comboId: $that.feeComboMemberManageInfo.conditions.comboId
                 });
             },
             _openDeleteFeeComboMemberModel: function (_feeComboMember) {
@@ -70,7 +67,6 @@
             },
             _queryFeeComboMemberMethod: function () {
                 vc.component._listFeeComboMembers(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.feeComboMemberManageInfo.moreCondition) {
@@ -79,8 +75,6 @@
                     vc.component.feeComboMemberManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);
