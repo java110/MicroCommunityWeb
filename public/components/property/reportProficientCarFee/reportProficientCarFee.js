@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -14,25 +14,24 @@
                 conditions: {}
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
+        _initMethod: function() {},
+        _initEvent: function() {
             //切换 至费用页面
-            vc.on('reportProficientCarFee', 'switch', function (_param) {
+            vc.on('reportProficientCarFee', 'switch', function(_param) {
                 $that.clearReportProficientCarFeeInfo();
                 $that.reportProficientCarFeeInfo.conditions = _param;
                 $that._listReportProficientCarFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('reportProficientCarFee', 'notify', function () {
+            vc.on('reportProficientCarFee', 'notify', function() {
                 $that._listReportProficientCarFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('reportProficientCarFee', 'paginationPlus', 'page_event',
-                function (_currentPage) {
+                function(_currentPage) {
                     vc.component._listReportProficientCarFee(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
-            _listReportProficientCarFee: function (_page, _row) {
+            _listReportProficientCarFee: function(_page, _row) {
                 $that.reportProficientCarFeeInfo.conditions.page = _page;
                 $that.reportProficientCarFeeInfo.conditions.row = _row;
                 $that.reportProficientCarFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -43,7 +42,7 @@
                 //发送get请求
                 vc.http.apiGet('/reportFeeYearCollection/queryReportFeeYear',
                     param,
-                    function (json) {
+                    function(json) {
                         let _feeConfigInfo = JSON.parse(json);
                         vc.component.reportProficientCarFeeInfo.total = _feeConfigInfo.total;
                         vc.component.reportProficientCarFeeInfo.records = _feeConfigInfo.records;
@@ -57,18 +56,34 @@
                             return;
                         }
                         $that.reportProficientCarFeeInfo.listColumns = [];
-                        if (_feeConfigInfo.data.length > 0) {
-                            let _reportFeeYearCollectionDetailDtos = _feeConfigInfo.data[0].reportFeeYearCollectionDetailDtos;
-                            _reportFeeYearCollectionDetailDtos.forEach(item => {
-                                $that.reportProficientCarFeeInfo.listColumns.push(item.collectionYear + "年")
-                            })
+                        if (_feeConfigInfo.data.length < 1) {
+                            return;
                         }
-                    }, function () {
+                        let _reportFeeYearCollectionDetailDtos = _feeConfigInfo.data[0].reportFeeYearCollectionDetailDtos;
+                        _feeConfigInfo.data.forEach(item => {
+                            if (item.reportProficientCarFeeInfo.length > reportProficientCarFeeInfo.length) {
+                                _reportFeeYearCollectionDetailDtos = item.reportFeeYearCollectionDetailDtos;
+                            }
+                        })
+                        _reportFeeYearCollectionDetailDtos.forEach(item => {
+                            $that.reportProficientCarFeeInfo.listColumns.push(item.collectionYear + "年")
+                        })
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            clearReportProficientCarFeeInfo: function () {
+            _getProficientCarFeeValue: function(_reportFeeYearCollectionDetailDtos, _year) {
+                let _value = 0.00;
+                _reportFeeYearCollectionDetailDtos.forEach(item => {
+                    if (item.collectionYear == _year) {
+                        _value = item.receivedAmount;
+                    }
+                })
+                return _value;
+            },
+            clearReportProficientCarFeeInfo: function() {
                 $that.reportProficientCarFeeInfo = {
                     fees: [],
                     roomId: '',
@@ -76,14 +91,14 @@
                     name: ''
                 }
             },
-            _showCarFeeDetail: function (fee, item) {
+            _showCarFeeDetail: function(fee, item) {
                 console.log(fee, item)
                 vc.emit('viewFeeDetail', 'listFeeDetail', {
                     roomName: fee.objName,
                     feeId: fee.feeId,
                     configId: fee.configId,
                     payerObjId: fee.objId,
-                    curYear: item.collectionYear
+                    curYear: item
                 })
             }
         }
