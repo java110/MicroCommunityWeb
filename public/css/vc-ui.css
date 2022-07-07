@@ -50,13 +50,6 @@ body {
     display: none;
 }
 
-a {
-    color: #337ab7;
-    text-decoration: none;
-    background-color: transparent;
-    cursor: pointer;
-}
-
 h2 {
     font-size: 24px;
 }
@@ -1681,14 +1674,6 @@ table.table-mail tr td {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 99;
     text-align: center;
-}
-
-a {
-    color: mediumaquamarine;
-}
-
-a:hover {
-    color: aquamarine;
 }
 
 .code {
