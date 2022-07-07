@@ -1,80 +1,95 @@
-(function(vc){
+(function (vc) {
 
     vc.extends({
         propTypes: {
-               callBackListener:vc.propTypes.string, //父组件名称
-               callBackFunction:vc.propTypes.string //父组件监听方法
+            callBackListener: vc.propTypes.string, //父组件名称
+            callBackFunction: vc.propTypes.string //父组件监听方法
         },
-        data:{
-            addDictInfo:{
-                id:'',
-                statusCd:'',
-name:'',
-description:'',
-tableName:'',
+        data: {
+            addDictInfo: {
+                id: '',
+                statusCd: '',
+                name: '',
+                description: '',
+                specId: '',
+
+                dictSpecs:[],
 
             }
         },
-         _initMethod:function(){
-
-         },
-         _initEvent:function(){
-            vc.on('addDict','openAddDictModal',function(){
+        _initMethod: function () {
+            $that._listAddDictSpecs();
+        },
+        _initEvent: function () {
+            vc.on('addDict', 'openAddDictModal', function () {
                 $('#addDictModel').modal('show');
             });
         },
-        methods:{
-            addDictValidate(){
+        methods: {
+            _listAddDictSpecs: function () {
+                let param = {
+                    params: {
+                        page:1,
+                        row:1000
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/dictSpec.listDictSpec',
+                    param,
+                    function (json, res) {
+                        let _dictManageInfo = JSON.parse(json);
+                        $that.addDictInfo.dictSpecs = _dictManageInfo.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            addDictValidate() {
                 return vc.validate.validate({
-                    addDictInfo:vc.component.addDictInfo
-                },{
-                    'addDictInfo.statusCd':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"值不能为空"
+                    addDictInfo: vc.component.addDictInfo
+                }, {
+                    'addDictInfo.statusCd': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "值不能为空"
                         },
- {
-                            limit:"maxLength",
-                            param:"64",
-                            errInfo:"值不能超过64"
-                        },
-                    ],
-'addDictInfo.name':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"名称不能为空"
-                        },
- {
-                            limit:"maxLength",
-                            param:"50",
-                            errInfo:"名称不能超过50"
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "值不能超过64"
                         },
                     ],
-'addDictInfo.description':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"描述不能为空"
+                    'addDictInfo.name': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "名称不能为空"
                         },
- {
-                            limit:"maxLength",
-                            param:"200",
-                            errInfo:"描述不能超过200"
+                        {
+                            limit: "maxLength",
+                            param: "50",
+                            errInfo: "名称不能超过50"
                         },
                     ],
-'addDictInfo.tableName':[
-{
-                            limit:"required",
-                            param:"",
-                            errInfo:"表字段说明不能为空"
+                    'addDictInfo.description': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "描述不能为空"
                         },
- {
-                            limit:"maxLength",
-                            param:"50",
-                            errInfo:"表字段说明不能超过50"
+                        {
+                            limit: "maxLength",
+                            param: "200",
+                            errInfo: "描述不能超过200"
                         },
+                    ],
+                    'addDictInfo.specId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "类型说明不能为空"
+                        }
                     ],
 
 
@@ -82,56 +97,48 @@ tableName:'',
 
                 });
             },
-            saveDictInfo:function(){
-                if(!vc.component.addDictValidate()){
+            saveDictInfo: function () {
+                if (!vc.component.addDictValidate()) {
                     vc.toast(vc.validate.errInfo);
 
-                    return ;
+                    return;
                 }
-
-                vc.component.addDictInfo.communityId = vc.getCurrentCommunity().communityId;
-                //不提交数据将数据 回调给侦听处理
-                if(vc.notNull($props.callBackListener)){
-                    vc.emit($props.callBackListener,$props.callBackFunction,vc.component.addDictInfo);
-                    $('#addDictModel').modal('hide');
-                    return ;
-                }
-
                 vc.http.apiPost(
-                    'dict.saveDict',
+                    '/dict.saveDict',
                     JSON.stringify(vc.component.addDictInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#addDictModel').modal('hide');
                             vc.component.clearAddDictInfo();
-                            vc.emit('dictManage','listDict',{});
+                            vc.emit('dictManage', 'listDict', {});
 
-                            return ;
+                            return;
                         }
                         vc.message(_json.msg);
 
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
-                     });
+                    });
             },
-            clearAddDictInfo:function(){
+            clearAddDictInfo: function () {
+                let _dictSpecs = $that.addDictInfo.dictSpecs;
                 vc.component.addDictInfo = {
-                                            statusCd:'',
-name:'',
-description:'',
-tableName:'',
-
-                                        };
+                    statusCd: '',
+                    name: '',
+                    description: '',
+                    specId:'',
+                    dictSpecs:_dictSpecs
+                };
             }
         }
     });

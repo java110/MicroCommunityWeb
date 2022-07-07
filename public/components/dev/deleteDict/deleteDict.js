@@ -19,9 +19,8 @@
         },
         methods:{
             deleteDict:function(){
-                vc.component.deleteDictInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'dict.deleteDict',
+                    '/dict.deleteDict',
                     JSON.stringify(vc.component.deleteDictInfo),
                     {
                         emulateJSON:true
