@@ -18,6 +18,12 @@
                                     <span><vc:i18n name="日期" namespace="reportFeeSummaryDetail"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
+                                    <span><vc:i18n name="房号/车辆/合同" namespace="reportFeeSummaryDetail"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="费用项" namespace="reportFeeSummaryDetail"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
                                     <span><vc:i18n name="历史欠费" namespace="reportFeeSummaryDetail"></vc:i18n></span>(单位:元)
                                 </th>
                                 <th class="text-center">
@@ -49,6 +55,8 @@
                         <tbody>
                             <tr v-for="fee in reportFeeSummaryDetailInfo.fees">
                                 <td class="text-center">{{fee.feeYear+'年'+fee.feeMonth+'月'}}</td>
+                                <td class="text-center">{{fee.objName}}</td>
+                                <td class="text-center">{{fee.feeName}}</td>
                                 <td class="text-center">{{fee.hisOweAmount}}</td>
                                 <td class="text-center">{{fee.curReceivableAmount}}</td>
                                 <td class="text-center">{{_computeSum(fee.hisOweAmount,fee.curReceivableAmount)}}</td>
@@ -72,15 +80,15 @@
                     </table>
                     <!-- 分页 -->
                     <!-- 分页 -->
-                </div>
-                <div class="row margin-top-xs">
-                    <div class="col-sm-3 float-right">
-                        <vc:create path="frame/pagination"></vc:create>
+
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-12 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<vc:create path="property/searchFloor" emitChooseFloor="reportFeeSummaryDetail" emitLoadData="xx"></vc:create>
+    <vc:create path="property/searchFloor" emitChooseFloor="reportFeeSummaryDetail" emitLoadData="xx"></vc:create>
 </div>

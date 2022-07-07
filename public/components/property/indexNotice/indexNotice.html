@@ -1,7 +1,15 @@
 <div class="index-1-right-1">
     <div class="index-title"><span>小区公告</span></div>
-    <ul >
-        <li class="flex justify-between padding-top-sm" v-for="(item,index) in indexNoticeInfo.notices" v-if="indexNoticeInfo.notices && indexNoticeInfo.notices.length>0">
+    <ul>
+        <li class="flex justify-between padding-top-sm" v-if="!indexNoticeInfo.notices || indexNoticeInfo.notices.length < 1">
+            <div class="vc-index-notice-title">
+                当前没有公告信息
+            </div>
+            <div class="vc-index-notice-time">
+
+            </div>
+        </li>
+        <li class="flex justify-between padding-top-sm" v-for="(item,index) in indexNoticeInfo.notices" v-else>
             <div class="vc-index-notice-title">
                 {{item.title}}
             </div>
@@ -10,13 +18,5 @@
             </div>
         </li>
 
-        <li class="flex justify-between padding-top-sm" v-else >
-            <div class="vc-index-notice-title">
-                当前没有公告信息
-            </div>
-            <div class="vc-index-notice-time">
-                
-            </div>
-        </li>
     </ul>
 </div>
