@@ -53,6 +53,11 @@
     margin-top: 10px;
 }
 
+.margin-top-sm:hover {
+    cursor: pointer;
+    /*background-color: red;*/
+}
+
 .margin-top {
     margin-top: 15px;
 }
@@ -532,6 +537,11 @@ body,
     cursor: pointer;
 }
 
+.vc-menu-main ul li:hover {
+    background-color: var(--vc-menu-main-bg-active-color);
+    color: var(--vc-menu-main-active-font-color);
+}
+
 .vc-menu-main ul li.title {
     color: var(--vc-menu-main-title-font-color);
     height: 60px;
@@ -549,7 +559,7 @@ body,
     background-color: var(--vc-menu-sub-bg);
     color: var(--vc-menu-sub-font-color);
     text-align: start;
-    width: 160px;
+    width: 110px;
     font-size: 14px;
     height: 95%;
     overflow-x: hidden;
@@ -581,6 +591,11 @@ body,
     padding-left: 0px;
     border-bottom: 1px solid #F2F2F3;
     margin-bottom: 10px;
+}
+
+.vc-menu-sub ul li:hover {
+    background-color: var(--vc-menu-sub-bg-active-color);
+    color: var(--vc-menu-sub-active-font-color);
 }
 
 .vc-menu-sub ul li.sub-footer {
@@ -648,7 +663,14 @@ body,
     display: none;
 }
 
-.vc-main .breadcrumb {}
+
+/*.vc-main .breadcrumb ul li:active{*/
+
+
+/*    background-color: red;!important*/
+
+
+/*}*/
 
 .vc-main .ibox .ibox-title {
     border-top-left-radius: 10px;
@@ -789,4 +811,8 @@ body,
 .vc-index .index-1-right-item {
     padding: 15px;
     border-radius: 10px;
+}
+
+nav-link nav-link-breadcrumb active:active {
+    background-color: red;
 }
