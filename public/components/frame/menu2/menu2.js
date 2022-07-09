@@ -92,6 +92,12 @@
                 vc.setMenus(vm.menus);
                 vm.subMenus = _menu.childs;
                 vm.curMenuName = _menu.name;
+
+                if (!_menu.childs || _menu.childs.length < 1) {
+                    return;
+                }
+                //选中第一个
+                vm._gotoPage(_menu.childs[0].href, _menu.childs[0].name);
                 //vc._fix_height()
             },
             miniMenu: function() {
