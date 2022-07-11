@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             reportHuaningInfo: {
@@ -19,30 +19,30 @@
                     configId: '',
                     feeTypeCd: '',
                     floorNum: '',
-                    year: '',
-                    month: ''
+                    year: new Date().getFullYear(),
+                    month: new Date().getMonth() + 1
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component.changeTab($that.reportHuaningInfo._currentTab);
             //关联字典表费用类型
-            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
+            vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
                 vc.component.reportHuaningInfo.feeTypeCds = _data;
             });
             $that._listFloorData();
         },
-        _initEvent: function () {
-            vc.on("indexContext", "_queryIndexContextData", function (_param) {
+        _initEvent: function() {
+            vc.on("indexContext", "_queryIndexContextData", function(_param) {
                 vc.component._queryIndexContextData();
             });
         },
         methods: {
-            changeTab: function (_tab) {
+            changeTab: function(_tab) {
                 $that.reportHuaningInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', $that.reportHuaningInfo.conditions)
             },
-            _changeReporficientFeeTypeCd: function () {
+            _changeReporficientFeeTypeCd: function() {
                 let param = {
                     params: {
                         page: 1,
@@ -56,7 +56,7 @@
                 };
                 //发送get请求
                 vc.http.get('roomCreateFeeAdd', 'list', param,
-                    function (json, res) {
+                    function(json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         let _feeConfigs = _feeConfigManageInfo.feeConfigs
                         vc.component.reportHuaningInfo.feeConfigDtos = _feeConfigs;
@@ -65,17 +65,17 @@
                             //$that.changeTab($that.reportHuaningInfo._currentTab)
                         }*/
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            _changeReporficientConfigId: function () {
+            _changeReporficientConfigId: function() {
                 $that.changeTab($that.reportHuaningInfo._currentTab)
             },
-            _queryMethod: function () {
+            _queryMethod: function() {
                 $that.changeTab($that.reportHuaningInfo._currentTab)
             },
-            _resetMethod: function () {
+            _resetMethod: function() {
                 vc.component.reportHuaningInfo.conditions.feeTypeCd = "";
                 vc.component.reportHuaningInfo.conditions.configId = "";
                 vc.component.reportHuaningInfo.conditions.floorNum = "";
@@ -84,7 +84,7 @@
                 vc.component.reportHuaningInfo.feeConfigDtos = [];
                 $that.changeTab($that.reportHuaningInfo._currentTab)
             },
-            _getReportProficientRoomName: function () {
+            _getReportProficientRoomName: function() {
                 if (vc.component.reportHuaningInfo == undefined) {
                     return '请填写房屋编号';
                 }
@@ -93,16 +93,16 @@
                 }
                 return '请填写车牌号';
             },
-            _exportFee: function () {
+            _exportFee: function() {
                 let _objType = vc.component.reportHuaningInfo._currentTab == 'reportHuaningRoomFee' ? "3333" : "6666"
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId='
-                    + vc.getCurrentCommunity().communityId
-                    + "&configId=" + $that.reportHuaningInfo.conditions.configId
-                    + "&feeTypeCd=" + $that.reportHuaningInfo.conditions.feeTypeCd
-                    + "&objType=" + _objType
-                    + "&pagePath=reportYearCollection");
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' +
+                    vc.getCurrentCommunity().communityId +
+                    "&configId=" + $that.reportHuaningInfo.conditions.configId +
+                    "&feeTypeCd=" + $that.reportHuaningInfo.conditions.feeTypeCd +
+                    "&objType=" + _objType +
+                    "&pagePath=reportYearCollection");
             },
-            _listFloorData: function (_page, _rows) {
+            _listFloorData: function(_page, _rows) {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -114,15 +114,16 @@
                 vc.http.get('listFloor',
                     'list',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listFloorData = JSON.parse(json);
                         vc.component.reportHuaningInfo.floors = listFloorData.apiFloorDataVoList;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.reportHuaningInfo.moreCondition) {
                     vc.component.reportHuaningInfo.moreCondition = false;
                 } else {

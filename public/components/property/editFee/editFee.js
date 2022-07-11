@@ -37,7 +37,7 @@
                     minView: "month",
                     language: 'zh-CN',
                     fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
+                    format: 'yyyy-mm-dd',
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
@@ -108,16 +108,10 @@
                     editFeeInfo: vc.component.editFeeInfo
                 }, {
                     'editFeeInfo.startTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "建账时间不能为空"
-                        },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "建账时间不是有效的时间格式"
-                        },
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "建账时间不能为空"
+                    }, ],
                     'editFeeInfo.endTime': [{
                         limit: "required",
                         param: "",
