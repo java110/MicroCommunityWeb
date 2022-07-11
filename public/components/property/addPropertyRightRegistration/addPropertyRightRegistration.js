@@ -138,7 +138,7 @@
                             $('#addPropertyRightRegistrationModel').modal('hide');
                             vc.component.clearAddPropertyRightRegistrationInfo();
                             vc.emit('propertyRightRegistrationManage', 'listPropertyRightRegistration', {});
-                            location.reload();
+                            //location.reload();
                             return;
                         }
                         vc.toast(_json.msg);
@@ -215,6 +215,10 @@
                     });
             },
             clearAddPropertyRightRegistrationInfo: function() {
+                vc.emit('addPropertyRightRegistration1', 'uploadImage', 'clearImage', {});
+                vc.emit('addPropertyRightRegistration2', 'uploadImage', 'clearImage', {});
+                vc.emit('addPropertyRightRegistration3', 'uploadImage', 'clearImage', {});
+                vc.emit('addPropertyRightRegistration4', 'uploadImage', 'clearImage', {});
                 vc.component.addPropertyRightRegistrationInfo = {
                     roomId: '',
                     floorId: '',

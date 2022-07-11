@@ -34,9 +34,10 @@
 
             });
             vc.on('uploadImage', 'clearImage', function() {
+                let _imageCount = this.uploadImageInfo.imageCount;
                 this.uploadImageInfo = {
                     photos: [],
-                    imageCount: 99
+                    imageCount: _imageCount
                 }
             });
 

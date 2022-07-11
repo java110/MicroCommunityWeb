@@ -7,7 +7,7 @@
                     <h5><span><vc:i18n name="应收总额" namespace="reportProficient"></vc:i18n></span></h5>
                 </div>
                 <div class="ibox-content">
-                    <div id="ownerCount" style="height:250px"></div>
+                    <div id="receivableAmountCount" style="height:250px"></div>
                 </div>
             </div>
         </div>
@@ -57,8 +57,7 @@
                     <div class="row">
                         <!--费用类型-->
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="reportProficientInfo.conditions.feeTypeCd"
-                                    @click="_changeReporficientFeeTypeCd()">
+                            <select class="custom-select" v-model="reportProficientInfo.conditions.feeTypeCd" @click="_changeReporficientFeeTypeCd()">
                                 <option selected value="">{{vc.i18n('请选择收费类型','reportProficient')}}</option>
                                 <option v-for="(item,index) in reportProficientInfo.feeTypeCds" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
@@ -68,8 +67,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <!-- @click="_changeReporficientConfigId()"-->
-                                <select class="form-control-md form-control input-s-sm inline"
-                                        v-model="reportProficientInfo.conditions.configId">
+                                <select class="form-control-md form-control input-s-sm inline" v-model="reportProficientInfo.conditions.configId">
                                     <option selected value="">{{vc.i18n('请选择收费项','reportProficient')}}</option>
                                     <option v-for="(item,index) in reportProficientInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
@@ -80,35 +78,18 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-md"
-                                       :placeholder="_getReportProficientRoomName()"
-                                       v-model="reportProficientInfo.conditions.objName">
+                                <input type="text" class="form-control form-control-md" :placeholder="_getReportProficientRoomName()" v-model="reportProficientInfo.conditions.objName">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
                                 <i class="fa fa-search"></i><span><vc:i18n name="查询" namespace="reportProficient"></vc:i18n></span>
                             </button>
-                             <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
-                                style="margin-left: 20px;">
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()" style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i><span><vc:i18n name="重置" namespace="reportProficient"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
-                    <!-- <div class="row" >
-                        <div class="col-sm-3">
-                            <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportProficient')"
-                                    v-model="reportProficientInfo.conditions.startTime" class=" form-control startTime">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportProficient')"
-                                    v-model="reportProficientInfo.conditions.endTime" class=" form-control endTime">
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -117,14 +98,10 @@
         <div class="">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientRoomFee'}"
-                       v-on:click="changeTab('reportProficientRoomFee')"><span><vc:i18n name="房屋费台账" namespace="reportProficient"></vc:i18n></span></a>
+                    <a class="nav-link" v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientRoomFee'}" v-on:click="changeTab('reportProficientRoomFee')"><span><vc:i18n name="房屋费台账" namespace="reportProficient"></vc:i18n></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientCarFee'}"
-                       v-on:click="changeTab('reportProficientCarFee')"><span><vc:i18n name="车辆费台账" namespace="reportProficient"></vc:i18n></span></a>
+                    <a class="nav-link" v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientCarFee'}" v-on:click="changeTab('reportProficientCarFee')"><span><vc:i18n name="车辆费台账" namespace="reportProficient"></vc:i18n></span></a>
                 </li>
             </ul>
         </div>
