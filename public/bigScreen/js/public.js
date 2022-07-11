@@ -408,7 +408,7 @@
         vc.http.apiGet('/reportFeeMonthStatistics/queryReportProficient',
             param,
             function(json, res) {
-                var indexData = JSON.parse(json).data;
+                var indexData = JSON.parse(json);
 
                 let _receivableInformation = indexData.receivableInformation;
 
