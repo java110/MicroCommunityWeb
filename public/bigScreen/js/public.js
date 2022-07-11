@@ -1,4 +1,4 @@
-(function () {
+(function() {
     let community = document.getElementById("community");
     community.innerHTML = vc.getCurrentCommunity().name;
 
@@ -12,7 +12,7 @@
         vc.http.apiGet(
             '/bigScreen/getAssetInspection',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -21,7 +21,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -59,7 +59,7 @@
         vc.http.apiGet(
             '/bigScreen/getAssets',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -73,7 +73,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -108,7 +108,7 @@
                 }
             },
             legend: {
-                textStyle: {//图例文字的样式
+                textStyle: { //图例文字的样式
                     color: 'rgba(255,255,255,.7)',
                     fontSize: 12
                 },
@@ -125,58 +125,52 @@
                 bottom: '3%',
                 containLabel: true
             },
-            textStyle: {//图例文字的样式
+            textStyle: { //图例文字的样式
                 color: '#fff',
                 fontSize: 12
             },
-            xAxis: [
-                {
-                    type: 'category',
-                    boundaryGap: false,
-                    data: _createTime,
-                    axisLine: {
-                        lineStyle: {
-                            color: 'rgba(255,255,255,.2)'
-                        }
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: 'rgba(255,255,255,.1)'
-                        }
-                    },
-                    axisLabel: {
-                        color: "rgba(255,255,255,.7)"
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                data: _createTime,
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.2)'
                     }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.1)'
+                    }
+                },
+                axisLabel: {
+                    color: "rgba(255,255,255,.7)"
                 }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    axisLine: {
-                        lineStyle: {
-                            color: 'rgba(255,255,255,.3)'
-                        }
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: 'rgba(255,255,255,.01)'
-                        }
-                    },
+            }],
+            yAxis: [{
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.3)'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.01)'
+                    }
+                },
 
-                    axisLabel: {
-                        formatter: '{value} ml'
-                    }
+                axisLabel: {
+                    formatter: '{value} ml'
                 }
-            ],
-            series: [
-                {
-                    name: '门禁开门次数',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {},
-                    data: _openDoorCount
-                }
-            ]
+            }],
+            series: [{
+                name: '门禁开门次数',
+                type: 'line',
+                stack: '总量',
+                areaStyle: {},
+                data: _openDoorCount
+            }]
         };
         if (option && typeof option === "object") {
             myChart.setOption(option, true);
@@ -192,7 +186,7 @@
         vc.http.apiGet(
             '/bigScreen/getAssetOpenDoor',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -204,7 +198,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -228,7 +222,7 @@
         vc.http.apiGet(
             '/bigScreen/getAssetsRoom',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -237,7 +231,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -258,34 +252,32 @@
         option = {
             color: ['#76c4bf', '#e5ffc7'],
             backgroundColor: 'rgba(1,202,217,.2)',
-            series: [
-                {
-                    name: '',
-                    type: 'pie',
-                    radius: '55%',
-                    center: ['50%', '50%'],
-                    data: [
-                        {value: _sellRoomCount, name: '已售'},
-                        {value: _freeRoomCount, name: '空闲'}
-                    ],
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    },
+            series: [{
+                name: '',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '50%'],
+                data: [
+                    { value: _sellRoomCount, name: '已售' },
+                    { value: _freeRoomCount, name: '空闲' }
+                ],
+                emphasis: {
                     itemStyle: {
-                        normal: {
-                            label: {
-                                show: true,
-                                formatter: '{b} : {c} '
-                            },
-                            labelLine: {show: true}
-                        }
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: '{b} : {c} '
+                        },
+                        labelLine: { show: true }
                     }
                 }
-            ]
+            }]
         };
 
         if (option && typeof option === "object") {
@@ -309,7 +301,7 @@
         vc.http.apiGet(
             '/bigScreen/getAssetsRepair',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -318,7 +310,7 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
 
                 vc.toast(errInfo);
@@ -356,44 +348,42 @@
                 data: ['待处理', '处理中', '已处理'],
                 color: '#FFF'
             },
-            series: [
-                {
-                    name: '访问来源',
-                    type: 'pie',
-                    radius: ['50%', '70%'],
-                    avoidLabelOverlap: false,
+            series: [{
+                name: '访问来源',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: true,
+                    position: 'top',
+
+                },
+                emphasis: {
                     label: {
                         show: true,
-                        position: 'top',
-
-                    },
-                    emphasis: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    { value: unDealCount, name: '待处理', color: '#FFF' },
+                    { value: dealingCount, name: '处理中' },
+                    { value: dealedCount, name: '已处理' }
+                ],
+                itemStyle: {
+                    normal: {
                         label: {
                             show: true,
-                            fontSize: '30',
-                            fontWeight: 'bold'
-                        }
-                    },
-                    labelLine: {
-                        show: false
-                    },
-                    data: [
-                        {value: unDealCount, name: '待处理', color: '#FFF'},
-                        {value: dealingCount, name: '处理中'},
-                        {value: dealedCount, name: '已处理'}
-                    ],
-                    itemStyle: {
-                        normal: {
-                            label: {
-                                show: true,
-                                formatter: '{b} : {c} ',
+                            formatter: '{b} : {c} ',
 
-                            },
-                            labelLine: {show: true}
-                        }
+                        },
+                        labelLine: { show: true }
                     }
                 }
-            ]
+            }]
         };
 
         if (option && typeof option === "object") {
@@ -410,14 +400,14 @@
     function _queryIndexContextData() {
 
         var param = {
-            params: {
-                communityId: vc.getCurrentCommunity().communityId
+                params: {
+                    communityId: vc.getCurrentCommunity().communityId
+                }
             }
-        }
-        //发送get请求
+            //发送get请求
         vc.http.apiGet('/reportFeeMonthStatistics/queryReportProficient',
             param,
-            function (json, res) {
+            function(json, res) {
                 var indexData = JSON.parse(json).data;
 
                 let _receivableInformation = indexData.receivableInformation;
@@ -426,16 +416,16 @@
 
                 let _remindInfomation = indexData.remindInfomation;
                 let _data = [
-                    {value: _remindInfomation.deadlineFeeCount, name: '费用到期提醒'},
-                    {value: _remindInfomation.prePaymentCount, name: '费用提醒'}
+                    { value: _remindInfomation.deadlineFeeCount, name: '费用到期提醒' },
+                    { value: _remindInfomation.prePaymentCount, name: '费用提醒' }
                 ];
                 let _dom = document.getElementById('shopCount');
                 _initCharts2(_dom, '费用提醒', _data);
 
                 _dom = document.getElementById('ownerCount');
                 _data = [
-                    {value: _receivableInformation.oweAmount, name: '欠费金额'},
-                    {value: _receivableInformation.receivedAmount, name: '已收金额'}
+                    { value: _receivableInformation.oweAmount, name: '欠费金额' },
+                    { value: _receivableInformation.receivedAmount, name: '已收金额' }
                 ];
                 _initCharts2(_dom, '应收总额', _data);
 
@@ -446,7 +436,8 @@
 
                 _floorReceivableInformations.forEach(item => {
                     _data.push({
-                        value: item.receivableAmount, name: item.name
+                        value: item.receivableAmount,
+                        name: item.name
                     })
                 });
                 _initCharts2(_dom, '楼栋费用占比', _data);
@@ -456,12 +447,14 @@
                 let _feeConfigReceivableInformations = indexData.feeConfigReceivableInformations;
                 _feeConfigReceivableInformations.forEach(item => {
                     _data.push({
-                        value: item.receivableAmount, name: item.feeName
+                        value: item.receivableAmount,
+                        name: item.feeName
                     })
                 });
                 _dom = document.getElementById('feeAnsicis');
                 _initCharts2(_dom, '分项费用占比', _data);
-            }, function (errInfo, error) {
+            },
+            function(errInfo, error) {
                 console.log('请求失败处理');
             }
         );
@@ -471,7 +464,7 @@
         let myChart = echarts.init(dom);
         let option = null;
         option = {
-            textStyle: {//图例文字的样式
+            textStyle: { //图例文字的样式
                 fontSize: 12,
             },
             tooltip: {
@@ -480,34 +473,32 @@
             },
             color: ['#7de494', '#5578cf'],
             backgroundColor: 'rgba(1,202,217,.2)',
-            series: [
-                {
-                    name: _title,
-                    type: 'pie',
-                    radius: '55%',
-                    center: ['50%', '50%'],
-                    data: _data,
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+            series: [{
+                name: _title,
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '50%'],
+                data: _data,
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+                label: {
+                    normal: {
+                        show: true
+                    },
+                    formatter: function(params) {
+                        if (params.value > 10) {
+                            return params.value;
+                        } else {
+                            return ' ';
                         }
                     },
-                    label: {
-                        normal: {
-                            show: true
-                        },
-                        formatter: function (params) {
-                            if (params.value > 10) {
-                                return params.value;
-                            } else {
-                                return ' ';
-                            }
-                        },
-                    }
                 }
-            ]
+            }]
         };
         if (option && typeof option === "object") {
             myChart.setOption(option, true);
@@ -525,7 +516,7 @@
         vc.http.apiGet(
             '/reportFeeMonthStatistics/queryOwePaymentCount',
             param,
-            function (json, res) {
+            function(json, res) {
                 //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                 let _json = JSON.parse(json);
                 if (_json.code == 0) {
@@ -534,11 +525,12 @@
                     return;
                 }
             },
-            function (errInfo, error) {
+            function(errInfo, error) {
                 console.log('请求失败处理');
                 vc.toast(errInfo);
             });
     }
+
     function renderBrushed(params) {
         var brushed = [];
         var brushComponent = params.batch[0];
@@ -560,6 +552,7 @@
             }
         });
     }
+
     function initFeeChart(_data) {
         let dom = document.getElementById("box4");
         let myChart = echarts.init(dom);
@@ -575,7 +568,7 @@
         option = {
             color: ['#7de494', '#5578cf'],
             backgroundColor: 'rgba(1,202,217,.2)',
-            textStyle: {//图例文字的样式
+            textStyle: { //图例文字的样式
                 color: '#fff',
                 fontSize: 12
             },
@@ -595,27 +588,22 @@
                 left: 'right',
                 top: 'center',
                 feature: {
-                    mark: {show: true},
-                    dataView: {show: true, readOnly: false},
-                    magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore: {show: true},
-                    saveAsImage: {show: true}
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar', 'stack', 'tiled'] },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
                 }
             },
-            xAxis: [
-                {
-                    type: 'category',
-                    axisTick: {show: false},
-                    data: xAxisData
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value'
-                }
-            ],
-            series: [
-                {
+            xAxis: [{
+                type: 'category',
+                axisTick: { show: false },
+                data: xAxisData
+            }],
+            yAxis: [{
+                type: 'value'
+            }],
+            series: [{
                     name: '已缴费',
                     type: 'bar',
                     barGap: 0,
