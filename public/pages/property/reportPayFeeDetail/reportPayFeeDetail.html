@@ -194,6 +194,12 @@
                             <th class="text-center">
                                 <span><vc:i18n name="空置房减免" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
                             </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="面积" namespace="reportPayFeeDetail"></vc:i18n></span>(平方米)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="车位" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -219,11 +225,13 @@
                             <td class="text-center">{{fee.lateFee}}</td>
                             <td class="text-center">{{fee.vacantHousingDiscount}}</td>
                             <td class="text-center">{{fee.vacantHousingReduction}}</td>
+                            <td class="text-center">{{fee.builtUpArea}}</td>
+                            <td class="text-center">{{fee.psName}}</td>
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="17">
+                            <td colspan="19">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

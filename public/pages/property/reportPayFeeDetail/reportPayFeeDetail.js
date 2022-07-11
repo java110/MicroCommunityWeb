@@ -146,8 +146,6 @@
                     param,
                     function (json, res) {
                         var _reportPayFeeDetailInfo = JSON.parse(json);
-                        console.log("hello")
-                        console.log(_reportPayFeeDetailInfo)
                         vc.component.reportPayFeeDetailInfo.total = _reportPayFeeDetailInfo.total;
                         vc.component.reportPayFeeDetailInfo.records = _reportPayFeeDetailInfo.records;
                         vc.component.reportPayFeeDetailInfo.fees = _reportPayFeeDetailInfo.data;
