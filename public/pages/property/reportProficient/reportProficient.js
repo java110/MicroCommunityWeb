@@ -143,9 +143,22 @@
                     }
                 );
             },
-            _initCharts2: function(dom, _title, _data, userColor, freeColor) {
+            //随机生成十六进制颜色
+            _randomHexColor: function() {
+                var hex = Math.floor(Math.random() * 16777216).toString(16); //生成ffffff以内16进制数
+                while (hex.length < 6) { //while循环判断hex位数，少于6位前面加0凑够6位
+                    hex = '0' + hex;
+                }
+                return '#' + hex; //返回‘#'开头16进制颜色
+            },
+            _initCharts2: function (dom, _title, _data) {
                 let myChart = echarts.init(dom);
                 let option = null;
+                // 块颜色生成
+                let colors = [];
+                _data.forEach((item) => {
+                    colors.push($that._randomHexColor());
+                })
                 option = {
                     textStyle: { //图例文字的样式
                         fontSize: 12
@@ -154,23 +167,26 @@
                         trigger: 'item',
                         formatter: '{a} <br/>{b} : {c} ({d}%)'
                     },
-                    color: [userColor, freeColor],
-                    series: [{
-                        name: _title,
-                        type: 'pie',
-                        radius: '75%',
-                        center: ['50%', '50%'],
-                        data: _data,
-                        emphasis: {
-                            itemStyle: {
-                                shadowBlur: 10,
-                                shadowOffsetX: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            }
-                        },
-                        label: {
-                            normal: {
-                                show: false
+                    // color: ['#66CDAA', '#FFDAB9'],
+                    color: colors,
+                    series: [
+                        {
+                            name: _title,
+                            type: 'pie',
+                            radius: '75%',
+                            center: ['50%', '50%'],
+                            data: _data,
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            },
+                            label: {
+                                normal: {
+                                    show: false
+                                }
                             }
                         }
                     }]

@@ -7,6 +7,8 @@
     vc.extends({
         data: {
             reportHuaningOweFeeInfo: {
+                total: 0,
+                records: 1,
                 fees: [],
                 listColumns: [],
                 roomId: '',
@@ -22,7 +24,6 @@
             vc.on('reportHuaningOweFee', 'switch', function (_param) {
                 $that.clearReportHuaningOweFeeInfo();
                 $that.reportHuaningOweFeeInfo.conditions = _param;
-                console.log($that.reportHuaningOweFeeInfo.conditions)
                 $that._listReportHuaningOweFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('reportHuaningOweFee', 'notify', function () {
@@ -52,6 +53,7 @@
                         vc.component.reportHuaningOweFeeInfo.fees = _feeConfigInfo.data;
                         vc.emit('reportHuaningOweFee', 'paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
+                            dataCount: vc.component.reportHuaningOweFeeInfo.total,
                             currentPage: _page
                         });
                         //取 属性列
@@ -105,16 +107,14 @@
                 let date = new Date();
                 let year = date.getFullYear();
                 let month = date.getMonth() + 1;
-
                 return year + "年1-" + month + "月";
             },
             _getPreCurYear: function () {
                 let date = new Date();
                 let year = date.getFullYear();
-
                 return year + "年前未收金额";
             },
-            _getPreAmount:function(_fee){
+            _getPreAmount: function (_fee) {
                 return (parseFloat(_fee.oweAmount) - parseFloat(_fee.curOweAmount)).toFixed(2);
             }
         }

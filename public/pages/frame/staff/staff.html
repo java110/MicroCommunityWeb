@@ -55,13 +55,13 @@
                     <div class="row">
                         <div class="col-sm-3" v-if="staffInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="number" :placeholder="vc.i18n('请输入手机号','staff')"
+                                <input type="text" :placeholder="vc.i18n('请输入手机号','staff')"
                                        v-model="staffInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="staffInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="number" :placeholder="vc.i18n('请输入员工ID','staff')"
+                                <input type="text" :placeholder="vc.i18n('请输入员工ID','staff')"
                                        v-model="staffInfo.conditions.staffId" class=" form-control">
                             </div>
                         </div>

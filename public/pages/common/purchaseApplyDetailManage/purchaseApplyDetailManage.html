@@ -74,7 +74,7 @@
                         <div class="col-sm-3">
                             <select class="custom-select"
                                     v-model="purchaseApplyDetailManageInfo.conditions.resOrderType">
-                                <option selected disabled value="">{{vc.i18n('请选择出入库方式','purchaseApplyDetailManage')}}</option>
+                                <option selected value="">{{vc.i18n('请选择出入库方式','purchaseApplyDetailManage')}}</option>
                                 <option v-for="(item,index) in purchaseApplyDetailManageInfo.resOrderTypes" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>

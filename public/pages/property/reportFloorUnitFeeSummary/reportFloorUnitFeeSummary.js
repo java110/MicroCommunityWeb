@@ -48,6 +48,12 @@
             //vc.component._initDate();
             $that._listFeeConfigs();
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
         },
         _initEvent: function() {
             $('#configIds').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
@@ -58,7 +64,6 @@
                         configName: $that.reportFloorUnitFeeSummaryInfo.feeConfigs[clickedIndex].feeName
                     })
                 } else {
-
                     let _feeConfigNames = [];
                     $that.reportFloorUnitFeeSummaryInfo.feeConfigNames.forEach(item => {
                         if (item.configId != $that.reportFloorUnitFeeSummaryInfo.feeConfigs[clickedIndex].configId) {
@@ -175,6 +180,9 @@
                             $that.reportFloorUnitFeeSummaryInfo.allReceivableAmount = _reportFloorUnitFeeSummaryInfo.data[0].allReceivableAmount;
                             $that.reportFloorUnitFeeSummaryInfo.allReceivedAmount = _reportFloorUnitFeeSummaryInfo.data[0].allReceivedAmount;
                             $that.reportFloorUnitFeeSummaryInfo.allHisOweReceivedAmount = _reportFloorUnitFeeSummaryInfo.data[0].allHisOweReceivedAmount;
+                        } else {
+                            $that.reportFloorUnitFeeSummaryInfo.allReceivedAmount = 0.0.toFixed(2);
+                            $that.reportFloorUnitFeeSummaryInfo.allHisOweReceivedAmount = 0.0.toFixed(2);
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFloorUnitFeeSummaryInfo.records,
@@ -288,7 +296,6 @@
                 $that.reportFloorUnitFeeSummaryInfo.fees.forEach(item => {
                     _amount += parseFloat($that._computeOweFee(item));
                 })
-                console.log(_amount)
                 return _amount.toFixed(2);
             },
             _computeTotalHisOweReceivedAmount: function() {

@@ -51,6 +51,12 @@
                 vc.component.reportPayFeeDepositInfo.detailStates = _data;
             });
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
         },
         _initEvent: function () {
             vc.on('reportPayFeeDeposit', 'chooseFloor', function (_param) {

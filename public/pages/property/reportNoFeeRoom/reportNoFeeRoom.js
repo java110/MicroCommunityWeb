@@ -1,9 +1,9 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 20;
+    var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             reportNoFeeRoomInfo: {
@@ -20,21 +20,24 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+
+            $(".popover-show").mouseover(() => { $('.popover-show').popover('show'); })
+            $(".popover-show").mouseleave(() => { $('.popover-show').popover('hide'); })
         },
-        _initEvent: function() {
-            vc.on('pagination', 'page_event', function(_currentPage) {
+        _initEvent: function () {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listRepairs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             //查询
-            _queryMethod: function() {
+            _queryMethod: function () {
                 vc.component._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //查询方法
-            _listRepairs: function(_page, _rows) {
+            _listRepairs: function (_page, _rows) {
                 vc.component.reportNoFeeRoomInfo.conditions.page = _page;
                 vc.component.reportNoFeeRoomInfo.conditions.row = _rows;
                 vc.component.reportNoFeeRoomInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -44,24 +47,23 @@
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryNoFeeRooms',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _reportNoFeeRoomInfo = JSON.parse(json);
                         vc.component.reportNoFeeRoomInfo.total = _reportNoFeeRoomInfo.total;
                         vc.component.reportNoFeeRoomInfo.records = _reportNoFeeRoomInfo.records;
                         vc.component.reportNoFeeRoomInfo.rooms = _reportNoFeeRoomInfo.data;
-
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportNoFeeRoomInfo.records,
                             currentPage: _page,
                             dataCount: vc.component.reportNoFeeRoomInfo.total
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.reportNoFeeRoomInfo.moreCondition) {
                     vc.component.reportNoFeeRoomInfo.moreCondition = false;
                 } else {
@@ -69,7 +71,7 @@
                 }
             },
             //导出
-            _exportExcel: function() {
+            _exportExcel: function () {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportNoFeeRoom");
             }
         }

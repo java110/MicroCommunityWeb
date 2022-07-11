@@ -34,7 +34,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <select class="custom-select" v-model="parkingSpaceApplyManageInfo.conditions.state">
-                                    <option selected disabled value="">{{vc.i18n('请选择状态','parkingSpaceApplyManage')}}</option>
+                                    <option selected value="">{{vc.i18n('请选择状态','parkingSpaceApplyManage')}}</option>
                                     <option value="1001">{{vc.i18n('待审核','parkingSpaceApplyManage')}}</option>
                                     <option value="2002">{{vc.i18n('待缴费','parkingSpaceApplyManage')}}</option>
                                     <option value="3003">{{vc.i18n('完成','parkingSpaceApplyManage')}}</option>
@@ -129,7 +129,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="7">
+                                <td colspan="10">
                                     <ul class="pagination float-right"></ul>
                                 </td>
                             </tr>

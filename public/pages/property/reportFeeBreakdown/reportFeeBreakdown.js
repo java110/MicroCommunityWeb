@@ -44,13 +44,18 @@
             vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
                 vc.component.reportFeeBreakdownInfo.feeTypeCds = _data;
             });
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
         },
         _initEvent: function() {
             vc.on('reportFeeBreakdown', 'chooseFloor', function(_param) {
                 vc.component.reportFeeBreakdownInfo.conditions.floorId = _param.floorId;
                 vc.component.reportFeeBreakdownInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
-
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listFees(_currentPage, DEFAULT_ROWS);
@@ -147,6 +152,11 @@
                             $that.reportFeeBreakdownInfo.allReceivedAmount = _reportFeeBreakdownInfo.data[0].allReceivedAmount;
                             $that.reportFeeBreakdownInfo.allOweAmount = _reportFeeBreakdownInfo.data[0].allOweAmount;
                             $that.reportFeeBreakdownInfo.allHisOweReceivedAmount = _reportFeeBreakdownInfo.data[0].allHisOweReceivedAmount;
+                        } else {
+                            $that.reportFeeBreakdownInfo.allReceivableAmount = 0.0.toFixed(2);
+                            $that.reportFeeBreakdownInfo.allReceivedAmount = 0.0.toFixed(2);
+                            $that.reportFeeBreakdownInfo.allOweAmount = 0.0.toFixed(2);
+                            $that.reportFeeBreakdownInfo.allHisOweReceivedAmount = 0.0.toFixed(2);
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeBreakdownInfo.records,

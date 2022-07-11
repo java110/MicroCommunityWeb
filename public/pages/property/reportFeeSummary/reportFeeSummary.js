@@ -48,6 +48,12 @@
             vc.component._initDate();
             $that._listFeeConfigs();
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
         },
         _initEvent: function() {
             $('#configIds').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
@@ -166,18 +172,18 @@
                             _totalReceivedAmount += parseFloat(item.receivedAmount);
                             _totalPreferentialAmount += parseFloat(item.oweAmount);
                         });
-
                         $that.reportFeeSummaryInfo.totalReceivableAmount = _totalReceivableAmount.toFixed(2);
                         $that.reportFeeSummaryInfo.totalReceivedAmount = _totalReceivedAmount.toFixed(2);
                         $that.reportFeeSummaryInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
-
                         if (_reportFeeSummaryInfo.data.length > 0) {
                             $that.reportFeeSummaryInfo.allReceivableAmount = _reportFeeSummaryInfo.data[0].allReceivableAmount;
                             $that.reportFeeSummaryInfo.allReceivedAmount = _reportFeeSummaryInfo.data[0].allReceivedAmount;
                             $that.reportFeeSummaryInfo.allOweAmount = _reportFeeSummaryInfo.data[0].allOweAmount;
                             $that.reportFeeSummaryInfo.allHisOweReceivedAmount = _reportFeeSummaryInfo.data[0].allHisOweReceivedAmount;
+                        } else {
+                            $that.reportFeeSummaryInfo.allReceivedAmount = 0.0.toFixed(2);
+                            $that.reportFeeSummaryInfo.allHisOweReceivedAmount = 0.0.toFixed(2);
                         }
-
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeSummaryInfo.records,
                             dataCount: vc.component.reportFeeSummaryInfo.total,

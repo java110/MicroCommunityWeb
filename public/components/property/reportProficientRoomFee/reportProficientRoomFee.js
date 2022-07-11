@@ -20,7 +20,6 @@
             vc.on('reportProficientRoomFee', 'switch', function(_param) {
                 $that.clearReportProficientRoomFeeInfo();
                 $that.reportProficientRoomFeeInfo.conditions = _param;
-                console.log($that.reportProficientRoomFeeInfo.conditions)
                 $that._listReportProficientRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('reportProficientRoomFee', 'notify', function() {
@@ -104,7 +103,6 @@
             },
             dealReportProficientRoomFeeAttr: function(owners) {},
             _showFeeDetail: function(fee, item) {
-                console.log(fee, item)
                 vc.emit('viewFeeDetail', 'listFeeDetail', {
                     roomName: fee.objName,
                     feeId: fee.feeId,

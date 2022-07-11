@@ -5,7 +5,10 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="查询条件" namespace="reportHuaning"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{reportHuaningInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -13,10 +16,10 @@
                         <!--费用类型-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportHuaningInfo.conditions.feeTypeCd"
-                                @click="_changeReporficientFeeTypeCd()">
+                                    @click="_changeReporficientFeeTypeCd()">
                                 <option selected value="">{{vc.i18n('请选择收费类型','reportHuaning')}}</option>
                                 <option v-for="(item,index) in reportHuaningInfo.feeTypeCds" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}
+                                        v-bind:value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
                         </div>
@@ -24,11 +27,10 @@
                             <div class="form-group">
                                 <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportHuaningInfo.conditions.configId">
+                                        v-model="reportHuaningInfo.conditions.configId">
                                     <option selected value="">{{vc.i18n('请选择收费项','reportHuaning')}}</option>
                                     <option v-for="(item,index) in reportHuaningInfo.feeConfigDtos" :key="index"
-                                        :value="item.configId">
-                                        {{item.feeName}}
+                                            :value="item.configId">{{item.feeName}}
                                     </option>
                                 </select>
                             </div>
@@ -36,35 +38,38 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportHuaningInfo.conditions.floorNum">
+                                        v-model="reportHuaningInfo.conditions.floorNum">
                                     <option selected value="">{{vc.i18n('请选择楼栋','reportHuaning')}}</option>
                                     <option v-for="(item,index) in reportHuaningInfo.floors" :key="index"
-                                        :value="item.floorNum">
-                                        {{item.floorNum}}
+                                            :value="item.floorNum">{{item.floorNum}}
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
-                                <i class="fa fa-search"></i><span><vc:i18n name="查询" namespace="reportHuaning"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="reportHuaning"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
-                                style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i><span><vc:i18n name="重置" namespace="reportHuaning"></vc:i18n></span>
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="reportHuaning"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-show="reportHuaningInfo.moreCondition == true">
                         <!--费用类型-->
                         <div class="col-sm-3" v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFee'">
-                            <input type="text" :placeholder="vc.i18n('请填写年份','reportHuaning')" class="form-control form-control-md"
-                                       v-model="reportHuaningInfo.conditions.year">
+                            <input type="text" :placeholder="vc.i18n('请填写年份','reportHuaning')"
+                                   class="form-control form-control-md"
+                                   v-model="reportHuaningInfo.conditions.year">
                         </div>
                         <div class="col-sm-3" v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFee'">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写月份','reportHuaning')" class="form-control form-control-md"
-                                v-model="reportHuaningInfo.conditions.month">
+                                <input type="text" :placeholder="vc.i18n('请填写月份','reportHuaning')"
+                                       class="form-control form-control-md"
+                                       v-model="reportHuaningInfo.conditions.month">
                             </div>
                         </div>
                     </div>
@@ -77,26 +82,35 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFee'}"
-                        v-on:click="changeTab('reportHuaningOweFee')"><span><vc:i18n name="未收情况表" namespace="reportHuaning"></vc:i18n></span></a>
+                       v-on:click="changeTab('reportHuaningOweFee')">
+                        <span><vc:i18n name="未收情况表" namespace="reportHuaning"></vc:i18n></span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFee'}"
-                        v-on:click="changeTab('reportHuaningPayFee')"><span><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></span></a>
+                       v-on:click="changeTab('reportHuaningPayFee')">
+                        <span><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFeeTwo'}"
-                        v-on:click="changeTab('reportHuaningPayFeeTwo')"><span><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></span>2</a>
+                    <a class="nav-link"
+                       v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningPayFeeTwo'}"
+                       v-on:click="changeTab('reportHuaningPayFeeTwo')">
+                        <span><vc:i18n name="当月收费情况表" namespace="reportHuaning"></vc:i18n></span>2
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFeeDetail'}"
-                        v-on:click="changeTab('reportHuaningOweFeeDetail')"><span><vc:i18n name="物业费欠费明细表" namespace="reportHuaning"></vc:i18n></span></a>
+                    <a class="nav-link"
+                       v-bind:class="{active:reportHuaningInfo._currentTab == 'reportHuaningOweFeeDetail'}"
+                       v-on:click="changeTab('reportHuaningOweFeeDetail')">
+                        <span><vc:i18n name="物业费欠费明细表" namespace="reportHuaning"></vc:i18n></span>
+                    </a>
                 </li>
             </ul>
         </div>
         <div v-if="reportHuaningInfo._currentTab == 'reportHuaningOweFee'">
             <vc:create path="property/reportHuaningOweFee"></vc:create>
         </div>
-        
         <div v-if="reportHuaningInfo._currentTab == 'reportHuaningPayFee'">
             <vc:create path="property/reportHuaningPayFee"></vc:create>
         </div>
@@ -106,6 +120,5 @@
         <div v-if="reportHuaningInfo._currentTab == 'reportHuaningOweFeeDetail'">
             <vc:create path="property/reportHuaningOweFeeDetail"></vc:create>
         </div>
-        
     </div>
 </div>

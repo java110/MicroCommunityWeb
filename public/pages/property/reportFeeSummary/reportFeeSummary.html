@@ -81,6 +81,8 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="费用汇总表" namespace="reportFeeSummary"></vc:i18n></span></h5>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                          data-content="以月份为维度，进行费用情况汇总"></span>
                     <span style="font-size: 10px;">(按天更新)</span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
@@ -198,17 +200,33 @@
                 <span class="col-md-2">
                             <div class="row">
                                 <span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>: {{_computeTotalHisOweReceivedAmount()}}
-                <span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span>
-            </div>
-            <div class="row">
-                <span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.allHisOweReceivedAmount}}
-                <span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span>
-            </div>
-            </span>
-        </div>
-        <div class="row margin-top-xs">
-            <div class="col-sm-9">
-                <div><span><vc:i18n name="欠费金额" namespace="reportFeeSummary"></vc:i18n></span> = 历史欠费 + 当月应收 - 当月实收 - 欠费追回
+                                <span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>: {{reportFeeSummaryInfo.allHisOweReceivedAmount}}
+                                <span><vc:i18n name="元" namespace="reportFeeSummary"></vc:i18n></span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div><span><vc:i18n name="应收合计" namespace="reportFeeSummary"></vc:i18n></span> = 历史欠费 + 当月应收
+                            </div>
+                            <div><span><vc:i18n name="实收合计" namespace="reportFeeSummary"></vc:i18n></span> = 当月实收 + 欠费追回
+                                + 预交费用
+                            </div>
+                            <div><span><vc:i18n name="欠费金额" namespace="reportFeeSummary"></vc:i18n></span> = 历史欠费 + 当月应收
+                                - 当月实收 - 欠费追回
+                            </div>
+                            <div><span><vc:i18n name="历史欠费" namespace="reportFeeSummary"></vc:i18n></span>：当月之前欠费；当月应收：当前月收费；当月实收：当月收到中属于当前月应收费用部分；
+                            </div>
+                            <div><span><vc:i18n name="欠费追回" namespace="reportFeeSummary"></vc:i18n></span>：当月收到中属于历史欠费部分；预交费用：当月收到中属于预交费用部分
+                            </div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
                 <div><span><vc:i18n name="历史欠费" namespace="reportFeeSummary"></vc:i18n></span>：当月之前欠费；当月应收：当前月收费；当月实收：当月收到中属于当前月应收费用部分；
                 </div>

@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="oaWorkflowManageInfo.conditions.flowType">
-                                <option selected disabled value="">{{vc.i18n('请选择流程类型','oaWorkflowManage')}}</option>
+                                <option selected value="">{{vc.i18n('请选择流程类型','oaWorkflowManage')}}</option>
                                 <option v-for="(item,index) in oaWorkflowManageInfo.flowTypes" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>
@@ -44,7 +44,7 @@
                     <div class="row" v-show="oaWorkflowManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="oaWorkflowManageInfo.conditions.state">
-                                <option selected disabled value="">{{vc.i18n('请选择流程状态','oaWorkflowManage')}}</option>
+                                <option selected value="">{{vc.i18n('请选择流程状态','oaWorkflowManage')}}</option>
                                 <option v-for="(item,index) in oaWorkflowManageInfo.states" :key="index"
                                         v-bind:value="item.statusCd">{{item.name}}
                                 </option>

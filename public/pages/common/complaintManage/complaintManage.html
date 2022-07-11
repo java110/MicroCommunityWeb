@@ -21,16 +21,18 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="complaintManageInfo.conditions.typeCd">
-                                <option selected disabled value="">{{vc.i18n('请选择投诉类型','complaintManage')}}</option>
+                                <option selected value="">{{vc.i18n('请选择投诉类型','complaintManage')}}</option>
                                 <option value="809001">{{vc.i18n('投诉','complaintManage')}}</option>
                                 <option value="809002">{{vc.i18n('建议','complaintManage')}}</option>
                                 <option value="809003">{{vc.i18n('咨询','complaintManage')}}</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入投诉人','complaintManage')" v-model="complaintManageInfo.conditions.complaintName" class=" form-control">
-                            </div>
+                            <select class="custom-select" v-model="complaintManageInfo.conditions.state">
+                                <option selected value="">{{vc.i18n('请选择投诉状态','complaintManage')}}</option>
+                                <option value="10001">{{vc.i18n('处理中','complaintManage')}}</option>
+                                <option value="10002">{{vc.i18n('处理完成','complaintManage')}}</option>
+                            </select>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryComplaintMethod()">
@@ -44,20 +46,18 @@
                     <div class="row" v-show="complaintManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入投诉人电话','complaintManage')" v-model="complaintManageInfo.conditions.tel" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入投诉人','complaintManage')" v-model="complaintManageInfo.conditions.complaintName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入房屋编号 楼栋-单元-房屋 如1-1-1','complaintManage')" v-model="complaintManageInfo.conditions.roomId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入投诉人电话','complaintManage')" v-model="complaintManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="complaintManageInfo.conditions.state">
-                                <option selected disabled value="">{{vc.i18n('请选择投诉状态','complaintManage')}}</option>
-                                <option value="10001">{{vc.i18n('处理中','complaintManage')}}</option>
-                                <option value="10002">{{vc.i18n('处理完成','complaintManage')}}</option>
-                            </select>
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入房屋编号 楼栋-单元-房屋 如1-1-1','complaintManage')" v-model="complaintManageInfo.conditions.roomId" class=" form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="row" v-show="complaintManageInfo.moreCondition == true">

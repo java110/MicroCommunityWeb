@@ -42,6 +42,12 @@
             vc.getDict('r_repair_user', "state", function (_data) {
                 vc.component.reportRepairInfo.states = _data;
             });
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
