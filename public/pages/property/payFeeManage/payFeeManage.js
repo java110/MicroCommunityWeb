@@ -39,6 +39,12 @@
             vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
                 vc.component.payFeeManageInfo.primeRates = _data;
             })
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -102,7 +108,7 @@
                     function (json, res) {
                         var _payFeeManageInfo = JSON.parse(json);
                         vc.component.payFeeManageInfo.total = _payFeeManageInfo.total;
-                        vc.component.payFeeManageInfo.records =  Math.ceil(_payFeeManageInfo.total / _rows);
+                        vc.component.payFeeManageInfo.records = Math.ceil(_payFeeManageInfo.total / _rows);
                         vc.component.payFeeManageInfo.payFees = _payFeeManageInfo.payFees;
                         vc.component.payFeeManageInfo.payFeeSum = _payFeeManageInfo.payFeeSum;
                         var allReceivableAmount = 0.0;

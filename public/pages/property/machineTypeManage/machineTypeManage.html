@@ -13,7 +13,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select class="custom-select" v-model="machineTypeManageInfo.conditions.machineTypeCd">
-                                    <option selected disabled value="">{{vc.i18n('必填','machineTypeManage')}}，请选择设备类型</option>
+                                    <option selected value="">请选择设备类型</option>
                                     <option v-for="(item,index) in machineTypeManageInfo.machine" :key="index"
                                         :value="item.statusCd">{{item.name}}</option>
                                 </select>

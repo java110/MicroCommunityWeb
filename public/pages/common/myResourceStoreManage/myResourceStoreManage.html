@@ -88,7 +88,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.isFixed">
-                                    <option selected disabled value="">{{vc.i18n('请选择物品是否固定','myResourceStoreManage')}}</option>
+                                    <option selected value="">{{vc.i18n('请选择物品是否固定','myResourceStoreManage')}}</option>
                                     <option v-for="(item,index) in myResourceStoreManageInfo.isFixeds"
                                             :value="item.statusCd">
                                         {{item.name}}

@@ -69,6 +69,8 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="缴费清单" namespace="payFeeManage"></vc:i18n></span></h5>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                          data-content="所有房屋缴费记录"></span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>
@@ -174,7 +176,8 @@
                         <div class="col-md-12">
                             <span class="margin-left">
                                 <vc:i18n name="温馨提示：不包含已退费和退费单的缴费记录，只包含正常，退费中和退费失败的缴费记录"
-                                         namespace="payFeeManage"></vc:i18n>
+                                         namespace="payFeeManage">
+                                </vc:i18n>
                             </span>
                         </div>
                     </div>

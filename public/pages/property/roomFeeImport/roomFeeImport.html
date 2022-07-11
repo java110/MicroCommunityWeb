@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="roomFeeImport.conditions.feeTypeCd">
-                                <option selected disabled value="">{{vc.i18n('必填，请选择费用类型','roomFeeImport')}}</option>
+                                <option selected value="">{{vc.i18n('必填，请选择费用类型','roomFeeImport')}}</option>
                                 <option v-for="(item,index) in roomFeeImport.feeTypeCds" :key="index"
                                         v-bind:value="item.statusCd" v-if="item.statusCd !='888800010008'">
                                     {{item.name}}

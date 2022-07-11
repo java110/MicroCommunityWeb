@@ -32,7 +32,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <select class="custom-select" v-model="orgManageInfo.conditions.communityId">
-                                            <option selected disabled value="">{{vc.i18n('请选择小区','orgManage')}}</option>
+                                            <option selected value="">{{vc.i18n('请选择小区','orgManage')}}</option>
                                             <option v-for="(item,index) in orgManageInfo.communitys" :value="item.communityId">
                                               {{item.name}}</option>
                                           </select>

@@ -32,7 +32,7 @@
                         }
                         vc.copyObject(_res.data, $that.indexOwnerRoomInfo);
                         let _dom = document.getElementById('ownerRoomCount');
-                        $that._initOwnerEcharts($that.indexOwnerRoomInfo.bindCount, $that.indexOwnerRoomInfo.unbindCount, _dom, vc.i18n('住户信息', 'indexOwnerRoom'), vc.i18n('已处理', 'indexOwnerRoom'), vc.i18n('未处理', 'indexOwnerRoom'), '#4B7AF0', '#E2EDF6');
+                        $that._initOwnerEcharts($that.indexOwnerRoomInfo.bindCount, $that.indexOwnerRoomInfo.unbindCount, _dom, vc.i18n('住户信息', 'indexOwnerRoom'), vc.i18n('已注册', 'indexOwnerRoom'), vc.i18n('未注册', 'indexOwnerRoom'), '#4B7AF0', '#E2EDF6');
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

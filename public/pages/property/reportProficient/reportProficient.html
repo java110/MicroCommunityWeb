@@ -49,7 +49,8 @@
                     <h5><span><vc:i18n name="查询条件" namespace="reportProficient"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
-                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="reportProficient"></vc:i18n></span>
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="reportProficient"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -83,10 +84,13 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
-                                <i class="fa fa-search"></i><span><vc:i18n name="查询" namespace="reportProficient"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="reportProficient"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()" style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i><span><vc:i18n name="重置" namespace="reportProficient"></vc:i18n></span>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="reportProficient"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -98,10 +102,18 @@
         <div class="">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientRoomFee'}" v-on:click="changeTab('reportProficientRoomFee')"><span><vc:i18n name="房屋费台账" namespace="reportProficient"></vc:i18n></span></a>
+                    <a class="nav-link"
+                       v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientRoomFee'}"
+                       v-on:click="changeTab('reportProficientRoomFee')">
+                        <span><vc:i18n name="房屋费台账" namespace="reportProficient"></vc:i18n></span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientCarFee'}" v-on:click="changeTab('reportProficientCarFee')"><span><vc:i18n name="车辆费台账" namespace="reportProficient"></vc:i18n></span></a>
+                    <a class="nav-link"
+                       v-bind:class="{active:reportProficientInfo._currentTab == 'reportProficientCarFee'}"
+                       v-on:click="changeTab('reportProficientCarFee')">
+                        <span><vc:i18n name="车辆费台账" namespace="reportProficient"></vc:i18n></span>
+                    </a>
                 </li>
             </ul>
         </div>

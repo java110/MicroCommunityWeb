@@ -45,6 +45,10 @@
                                 <i class="fa fa-search"></i>
                                 <span><vc:i18n name="查询" namespace="reportQuestionAnswerDetail"></vc:i18n></span>
                             </button>
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_resetMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name=重置 namespace="reportQuestionAnswerDetail"></vc:i18n></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -56,6 +60,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="问卷明细表" namespace="reportQuestionAnswerDetail"></vc:i18n></span></h5>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;" data-content="问卷回答明细"></span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>

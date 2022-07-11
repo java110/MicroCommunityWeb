@@ -146,7 +146,8 @@
                                     <input v-model="roomCreateFeeAddInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写计费起始时间','roomCreateFeeAdd')" class="form-control roomCreateFeeStartTime">
                                 </div>
                             </div>
-                            <div class="form-group row" v-show="roomCreateFeeAddInfo.feeFlag != '1003006'">
+                            <!-- 显示条件：1.不是押金 2.不是周期性费用 -->
+                            <div class="form-group row" v-show="roomCreateFeeAddInfo.feeTypeCd != '888800010006' && roomCreateFeeAddInfo.feeFlag != '1003006'">
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name="计费结束时间" namespace="roomCreateFeeAdd"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="roomCreateFeeAddInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写计费结束时间','roomCreateFeeAdd')" class="form-control roomCreateFeeEndTime">

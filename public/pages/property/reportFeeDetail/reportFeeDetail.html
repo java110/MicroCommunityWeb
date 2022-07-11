@@ -106,6 +106,8 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="费用明细表" namespace="reportFeeDetail"></vc:i18n></span></h5>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                          data-content="以房屋为维度，进行费用情况汇总，包含应缴、已缴费用数据明细"></span>
                     <span style="font-size: 10px;">(按天更新)</span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
@@ -257,6 +259,11 @@
                     </div>
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
+                            <div><span><vc:i18n name="应收合计" namespace="reportFeeDetail"></vc:i18n></span> = 历史欠费 + 当月应收
+                            </div>
+                            <div><span><vc:i18n name="实收合计" namespace="reportFeeDetail"></vc:i18n></span> = 当月实收 + 欠费追回
+                                + 预交费用
+                            </div>
                             <div><span><vc:i18n name="欠费金额" namespace="reportFeeDetail"></vc:i18n></span> = 历史欠费 + 当月应收
                                 - 当月实收 - 欠费追回
                             </div>
@@ -265,7 +272,7 @@
                             <div><span><vc:i18n name="欠费追回" namespace="reportFeeDetail"></vc:i18n></span>：当月收到中属于历史欠费部分；预交费用：当月收到中属于预交费用部分
                             </div>
                         </div>
-                        <div class="col-sm-3 float-right">
+                        <div class="col-md-12 text-center">
                             <vc:create path="frame/pagination"></vc:create>
                         </div>
                     </div>

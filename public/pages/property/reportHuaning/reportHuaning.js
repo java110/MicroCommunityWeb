@@ -14,12 +14,13 @@
                 feeTypeCds: [],
                 feeConfigDtos: [],
                 floors: [],
+                moreCondition: false,
                 conditions: {
                     configId: '',
                     feeTypeCd: '',
                     floorNum: '',
-                    year: new Date().getFullYear(),
-                    month: new Date().getMonth() + 1
+                    year: '',
+                    month: ''
                 }
             }
         },
@@ -77,7 +78,10 @@
             _resetMethod: function () {
                 vc.component.reportHuaningInfo.conditions.feeTypeCd = "";
                 vc.component.reportHuaningInfo.conditions.configId = "";
-                vc.component.reportHuaningInfo.conditions.objName = "";
+                vc.component.reportHuaningInfo.conditions.floorNum = "";
+                vc.component.reportHuaningInfo.conditions.year = "";
+                vc.component.reportHuaningInfo.conditions.month = "";
+                vc.component.reportHuaningInfo.feeConfigDtos = [];
                 $that.changeTab($that.reportHuaningInfo._currentTab)
             },
             _getReportProficientRoomName: function () {
@@ -101,12 +105,11 @@
             _listFloorData: function (_page, _rows) {
                 var param = {
                     params: {
-                        communityId:vc.getCurrentCommunity().communityId,
-                        row:50,
-                        page:1
+                        communityId: vc.getCurrentCommunity().communityId,
+                        row: 50,
+                        page: 1
                     }
                 };
-
                 //发送get请求
                 vc.http.get('listFloor',
                     'list',
@@ -118,8 +121,14 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
+            _moreCondition: function () {
+                if (vc.component.reportHuaningInfo.moreCondition) {
+                    vc.component.reportHuaningInfo.moreCondition = false;
+                } else {
+                    vc.component.reportHuaningInfo.moreCondition = true;
+                }
+            }
         }
     })
 })(window.vc);

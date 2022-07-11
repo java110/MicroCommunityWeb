@@ -43,6 +43,12 @@
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 vc.component.reportFeeDetailInfo.feeTypeCds = _data;
             });
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
             // vc.initDateMonth('startTime', function (_startTime) {
             //     $that.reportFeeDetailInfo.conditions.startTime = _startTime;
             // });
@@ -153,6 +159,11 @@
                             $that.reportFeeDetailInfo.allReceivedAmount = _reportFeeDetailInfo.data[0].allReceivedAmount;
                             $that.reportFeeDetailInfo.allOweAmount = _reportFeeDetailInfo.data[0].allOweAmount;
                             $that.reportFeeDetailInfo.allHisOweReceivedAmount = _reportFeeDetailInfo.data[0].allHisOweReceivedAmount;
+                        } else {
+                            $that.reportFeeDetailInfo.allReceivableAmount = 0.0.toFixed(2);
+                            $that.reportFeeDetailInfo.allReceivedAmount = 0.0.toFixed(2);
+                            $that.reportFeeDetailInfo.allOweAmount = 0.0.toFixed(2);
+                            $that.reportFeeDetailInfo.allHisOweReceivedAmount = 0.0.toFixed(2);
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportFeeDetailInfo.records,
@@ -261,7 +272,6 @@
                 $that.reportFeeDetailInfo.fees.forEach(item => {
                     _amount += parseFloat($that._computeOweFee(item));
                 })
-                console.log(_amount)
                 return _amount.toFixed(2);
             },
             _computeTotalHisOweReceivedAmount: function () {

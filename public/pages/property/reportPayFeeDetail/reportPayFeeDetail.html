@@ -19,7 +19,8 @@
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm"
                                             v-on:click="_openChooseFloorMethod()">
-                                        <i class="fa fa-search"></i> <span><vc:i18n name="选择" namespace="reportPayFeeDetail"></vc:i18n></span>
+                                        <i class="fa fa-search"></i>
+                                        <span><vc:i18n name="选择" namespace="reportPayFeeDetail"></vc:i18n></span>
                                     </button>
                                 </div>
                             </div>
@@ -38,17 +39,20 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号','reportPayFeeDetail')" class="form-control form-control-md"
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号','reportPayFeeDetail')"
+                                       class="form-control form-control-md"
                                        v-model="reportPayFeeDetailInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="reportPayFeeDetail"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="reportPayFeeDetail"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
                                     style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="reportPayFeeDetail"></vc:i18n></span>
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="reportPayFeeDetail"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -66,14 +70,16 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportPayFeeDetail')" name="startTime"
+                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportPayFeeDetail')"
+                                       name="startTime"
                                        v-model="reportPayFeeDetailInfo.conditions.startTime"
                                        class=" form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportPayFeeDetail')" name="endTime"
+                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportPayFeeDetail')"
+                                       name="endTime"
                                        v-model="reportPayFeeDetailInfo.conditions.endTime"
                                        class=" form-control endTime">
                             </div>
@@ -124,9 +130,12 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="缴费明细表" namespace="reportPayFeeDetail"></vc:i18n></span></h5>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                          data-content="所有房屋缴费记录明细"></span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
-                            <i class="fa fa-plus"></i> <span><vc:i18n name="导出" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="reportPayFeeDetail"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -134,23 +143,57 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center"><span><vc:i18n name="订单号" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="房号" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="业主" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="费用项" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="费用类型" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="费用状态" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="支付方式" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="费用开始时间" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="费用结束时间" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="缴费时间" namespace="reportPayFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="应收金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)</th>
-                            <th class="text-center"><span><vc:i18n name="实收金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)</th>
-                            <th class="text-center"><span><vc:i18n name="优惠金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)</th>
-                            <th class="text-center"><span><vc:i18n name="减免金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)</th>
-                            <th class="text-center"><span><vc:i18n name="滞纳金" namespace="reportPayFeeDetail"></vc:i18n></span>(元)</th>
-                            <th class="text-center"><span><vc:i18n name="空置房打折" namespace="reportPayFeeDetail"></vc:i18n></span>(元)</th>
-                            <th class="text-center"><span><vc:i18n name="空置房减免" namespace="reportPayFeeDetail"></vc:i18n></span>(元)</th>
+                            <th class="text-center">
+                                <span><vc:i18n name="订单号" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="房号" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="业主" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用项" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用类型" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用状态" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="支付方式" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用开始时间" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用结束时间" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="缴费时间" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="应收金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="实收金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="优惠金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="减免金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="滞纳金" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="空置房打折" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="空置房减免" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -189,36 +232,82 @@
                     <!-- 分页 -->
                     <div class="row">
                         <span class="col-md-1 margin-left">
-                            <div class="row"><b><span><vc:i18n name="小计" namespace="reportPayFeeDetail"></vc:i18n></span></b></div>
-                            <div class="row"><b><span><vc:i18n name="大计" namespace="reportPayFeeDetail"></vc:i18n></span></b></div>
+                            <div class="row">
+                                <b><span><vc:i18n name="小计" namespace="reportPayFeeDetail"></vc:i18n></span></b>
+                            </div>
+                            <div class="row">
+                                <b><span><vc:i18n name="大计" namespace="reportPayFeeDetail"></vc:i18n></span></b>
+                            </div>
                         </span>
                         <span class="col-md-1">
-                            <div class="row"><span><vc:i18n name="应收" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalReceivableAmount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="应收" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allReceivableAmount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
+                            <div class="row">
+                                <span><vc:i18n name="应收" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalReceivableAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="应收" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allReceivableAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
                         </span>
                         <span class="col-md-1">
-                            <div class="row"><span><vc:i18n name="实收" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalReceivedAmount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="实收" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allReceivedAmount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
+                            <div class="row">
+                                <span><vc:i18n name="实收" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalReceivedAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="实收" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allReceivedAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
                         </span>
                         <span class="col-md-1">
-                            <div class="row"><span><vc:i18n name="优惠" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalPreferentialAmount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="优惠" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allPreferentialAmount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
+                            <div class="row">
+                                <span><vc:i18n name="优惠" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalPreferentialAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="优惠" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allPreferentialAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
                         </span>
                         <span class="col-md-1">
-                            <div class="row"><span><vc:i18n name="减免" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalDeductionAmount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="减免" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allDeductionAmount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
+                            <div class="row">
+                                <span><vc:i18n name="减免" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalDeductionAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="减免" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allDeductionAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
                         </span>
                         <span class="col-md-1">
-                            <div class="row"><span><vc:i18n name="滞纳金" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalLateFee}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="滞纳金" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allLateFee}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
+                            <div class="row">
+                                <span><vc:i18n name="滞纳金" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalLateFee}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="滞纳金" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allLateFee}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
                         </span>
                         <span class="col-md-1">
-                            <div class="row"><span><vc:i18n name="空置房打折" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalVacantHousingDiscount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="空置房打折" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allVacantHousingDiscount}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
+                            <div class="row">
+                                <span><vc:i18n name="空置房打折" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalVacantHousingDiscount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="空置房打折" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allVacantHousingDiscount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
                         </span>
                         <span class="col-md-1">
-                            <div class="row"><span><vc:i18n name="空置房减免" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalVacantHousingReduction}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
-                            <div class="row"><span><vc:i18n name="空置房减免" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allVacantHousingReduction}}<span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span></div>
+                            <div class="row">
+                                <span><vc:i18n name="空置房减免" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalVacantHousingReduction}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="空置房减免" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allVacantHousingReduction}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
                         </span>
                     </div>
                     <div class="row">

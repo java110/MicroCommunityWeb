@@ -51,8 +51,8 @@
                         vc.component.roomFeeImport.records = _roomFeeImport.records;
                         vc.component.roomFeeImport.improtFees = _roomFeeImport.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.roomInfo.records,
-                            dataCount: vc.component.roomInfo.total,
+                            total: vc.component.roomFeeImport.records,
+                            dataCount: vc.component.roomFeeImport.total,
                             currentPage: _page
                         });
                     },

@@ -7,6 +7,8 @@
     vc.extends({
         data: {
             reportHuaningPayFeeInfo: {
+                total: 0,
+                records: 1,
                 fees: [],
                 listColumns: [],
                 roomId: '',
@@ -53,6 +55,7 @@
                         vc.component.reportHuaningPayFeeInfo.fees = _feeConfigInfo.data;
                         vc.emit('reportHuaningPayFee', 'paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
+                            dataCount: vc.component.reportHuaningPayFeeInfo.total,
                             currentPage: _page
                         });
                     }, function () {

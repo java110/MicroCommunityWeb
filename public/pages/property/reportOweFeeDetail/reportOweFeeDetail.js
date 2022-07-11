@@ -13,12 +13,13 @@
                 moreCondition: false,
                 title: '',
                 roomUnits: [],
-                totalPreferentialAmount:0.0,
-                allOweAmount:0.0,
+                totalPreferentialAmount: 0.0,
+                allOweAmount: 0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
                     roomNum: '',
+                    objName: '',
                     unitId: '',
                     startTime: '',
                     endTime: '',
@@ -29,10 +30,12 @@
         _initMethod: function () {
             vc.component._initDate();
             vc.component._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
+
+            $(".popover-show").mouseover(() => { $('.popover-show').popover('show'); })
+            $(".popover-show").mouseleave(() => { $('.popover-show').popover('hide'); })
             // vc.initDateMonth('startTime', function (_startTime) {
             //     $that.reportOweFeeDetailInfo.conditions.startTime = _startTime;
             // });
-
             // vc.initDateMonth('endTime', function (_endTime) {
             //     $that.reportOweFeeDetailInfo.conditions.endTime = _endTime;
             //     let start = Date.parse(new Date($that.reportOweFeeDetailInfo.conditions.startTime + "-01"))
@@ -42,15 +45,12 @@
             //         $that.reportOweFeeDetailInfo.conditions.endTime = '';
             //     }
             // });
-
         },
         _initEvent: function () {
-
             vc.on('reportOweFeeDetail', 'chooseFloor', function (_param) {
                 vc.component.reportOweFeeDetailInfo.conditions.floorId = _param.floorId;
                 vc.component.reportOweFeeDetailInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
-
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listFees(_currentPage, DEFAULT_ROWS);
@@ -123,7 +123,6 @@
                 var param = {
                     params: vc.component.reportOweFeeDetailInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryOweFeeDetail',
                     param,
@@ -132,18 +131,17 @@
                         vc.component.reportOweFeeDetailInfo.total = _reportOweFeeDetailInfo.total;
                         vc.component.reportOweFeeDetailInfo.records = _reportOweFeeDetailInfo.records;
                         vc.component.reportOweFeeDetailInfo.fees = _reportOweFeeDetailInfo.data;
-
-                         //计算小计
-                         let _totalPreferentialAmount=0.0;
-                        
-                         _reportOweFeeDetailInfo.data.forEach(item => {
-                             _totalPreferentialAmount += parseFloat(item.oweAmount);
-                         });
- 
-                         $that.reportOweFeeDetailInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
-                         if(_reportOweFeeDetailInfo.data.length>0){
-                             $that.reportOweFeeDetailInfo.allOweAmount = _reportOweFeeDetailInfo.data[0].allOweAmount;
-                         }
+                        //计算小计
+                        let _totalPreferentialAmount = 0.0;
+                        _reportOweFeeDetailInfo.data.forEach(item => {
+                            _totalPreferentialAmount += parseFloat(item.oweAmount);
+                        });
+                        $that.reportOweFeeDetailInfo.totalPreferentialAmount = _totalPreferentialAmount.toFixed(2);
+                        if (_reportOweFeeDetailInfo.data.length > 0) {
+                            $that.reportOweFeeDetailInfo.allOweAmount = _reportOweFeeDetailInfo.data[0].allOweAmount;
+                        } else {
+                            $that.reportOweFeeDetailInfo.allOweAmount = 0.0.toFixed(2);
+                        }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportOweFeeDetailInfo.records,
                             dataCount: vc.component.reportOweFeeDetailInfo.total,
@@ -159,11 +157,11 @@
                 vc.component.reportOweFeeDetailInfo.conditions.floorName = "";
                 vc.component.reportOweFeeDetailInfo.conditions.floorId = "";
                 vc.component.reportOweFeeDetailInfo.conditions.unitId = "";
-                vc.component.reportOweFeeDetailInfo.conditions.roomNum = "";
+                vc.component.reportOweFeeDetailInfo.conditions.objName = "";
                 vc.component.reportOweFeeDetailInfo.conditions.startTime = "";
                 vc.component.reportOweFeeDetailInfo.conditions.endTime = "";
                 vc.component.reportOweFeeDetailInfo.roomUnits = [];
-                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {

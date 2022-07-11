@@ -38,6 +38,9 @@
                     $that.reportDeadlineFeeInfo.conditions.endTime = '';
                 }
             });
+
+            $(".popover-show").mouseover(() => { $('.popover-show').popover('show'); })
+            $(".popover-show").mouseleave(() => { $('.popover-show').popover('hide'); })
         },
         _initEvent: function () {
             vc.on('reportDeadlineFee', 'chooseFloor', function (_param) {
@@ -91,7 +94,7 @@
                 vc.component.reportDeadlineFeeInfo.conditions.unitId = "";
                 vc.component.reportDeadlineFeeInfo.conditions.roomNum = "";
                 vc.component.reportDeadlineFeeInfo.roomUnits = [];
-                $that._listFees(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             loadUnits: function (_floorId) {
                 var param = {

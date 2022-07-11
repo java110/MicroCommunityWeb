@@ -6,11 +6,11 @@
                     <h5>
                         <span><vc:i18n name="查询条件" namespace="inspectionPointManage"></vc:i18n></span>
                     </h5>
-                    <div class="ibox-tools" style="top:10px;">
+                    <!-- <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
                             {{inspectionPointManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="inspectionPointManageInfo.conditions.pointObjType">
-                                <option selected value="" disabled>{{vc.i18n('请选择巡检点类型','inspectionPointManage')}}</option>
+                                <option selected value="">{{vc.i18n('请选择巡检点类型','inspectionPointManage')}}</option>
                                 <option v-for="(item,index) in inspectionPointManageInfo.pointObjTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
