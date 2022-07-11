@@ -151,7 +151,7 @@
                 }
                 return '#' + hex; //返回‘#'开头16进制颜色
             },
-            _initCharts2: function (dom, _title, _data) {
+            _initCharts2: function(dom, _title, _data) {
                 let myChart = echarts.init(dom);
                 let option = null;
                 // 块颜色生成
@@ -169,24 +169,22 @@
                     },
                     // color: ['#66CDAA', '#FFDAB9'],
                     color: colors,
-                    series: [
-                        {
-                            name: _title,
-                            type: 'pie',
-                            radius: '75%',
-                            center: ['50%', '50%'],
-                            data: _data,
-                            emphasis: {
-                                itemStyle: {
-                                    shadowBlur: 10,
-                                    shadowOffsetX: 0,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                }
-                            },
-                            label: {
-                                normal: {
-                                    show: false
-                                }
+                    series: [{
+                        name: _title,
+                        type: 'pie',
+                        radius: '75%',
+                        center: ['50%', '50%'],
+                        data: _data,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        },
+                        label: {
+                            normal: {
+                                show: false
                             }
                         }
                     }]
