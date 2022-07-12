@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -9,16 +9,16 @@
         data: {
             floorUnitTreeInfo: {
                 units: [],
-                floorId:''
+                floorId: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._loadFloorAndUnits();
 
         },
-        _initEvent: function () {
-            vc.on('floorUnitTree','refreshTree',function(_param){
-                if(_param){
+        _initEvent: function() {
+            vc.on('floorUnitTree', 'refreshTree', function(_param) {
+                if (_param) {
                     $that.floorUnitTreeInfo.floorId = _param.floorId;
                 }
                 $that._loadFloorAndUnits();
@@ -26,7 +26,7 @@
         },
         methods: {
 
-            _loadFloorAndUnits: function () {
+            _loadFloorAndUnits: function() {
 
                 let param = {
                     params: {
@@ -36,28 +36,28 @@
                 //发送get请求
                 vc.http.apiGet('/floor.queryFloorAndUnits',
                     param,
-                    function (json) {
+                    function(json) {
                         let _unitInfo = JSON.parse(json);
                         $that.floorUnitTreeInfo.units = _unitInfo;
                         $that._initJsTreeFloorUnit();
                     },
-                    function () {
+                    function() {
                         console.log('请求失败处理');
                     });
             },
-            _initJsTreeFloorUnit: function () {
+            _initJsTreeFloorUnit: function() {
 
                 let _data = $that._doJsTreeData();
 
                 let _unitId = '';
 
-                $that.floorUnitTreeInfo.units.forEach(item=>{
-                    if($that.floorUnitTreeInfo.floorId && item.floorId == $that.floorUnitTreeInfo.floorId){
+                $that.floorUnitTreeInfo.units.forEach(item => {
+                    if ($that.floorUnitTreeInfo.floorId && item.floorId == $that.floorUnitTreeInfo.floorId) {
                         _unitId = item.unitId;
                     }
                 })
 
-                _data = _data.sort(function (a, b) {
+                _data = _data.sort(function(a, b) {
                     return a.floorNum - b.floorNum
                 });
 
@@ -81,23 +81,23 @@
                     //             "action": function (data) {
                     //                 var inst = $.jstree.reference(data.reference),
                     //                     obj = inst.get_node(data.reference);
-                                   
+
                     //             }
                     //         },
                     //     },
                     // }
                 });
-                $("#jstree_floorUnit").on("ready.jstree", function (e, data) {
+                $("#jstree_floorUnit").on("ready.jstree", function(e, data) {
                     //data.instance.open_all();//打开所有节点
-                    if(_unitId){
-                        $('#jstree_floorUnit').jstree('select_node', 'u_'+_unitId /* , true */);
-                        return ;
+                    if (_unitId) {
+                        $('#jstree_floorUnit').jstree('select_node', 'u_' + _unitId /* , true */ );
+                        return;
                     }
-                    $('#jstree_floorUnit').jstree('select_node', _data[0].children[0].id /* , true */);
+                    $('#jstree_floorUnit').jstree('select_node', _data[0].children[0].id /* , true */ );
 
                 });
 
-                $('#jstree_floorUnit').on("changed.jstree", function (e, data) {
+                $('#jstree_floorUnit').on("changed.jstree", function(e, data) {
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
                         //$("#jstree_floorUnit").jstree("close_all");
@@ -117,10 +117,14 @@
                         unitId: data.node.original.unitId
                     })
                 });
+                $('#jstree_floorUnit')
+                    .on('click', '.jstree-anchor', function(e) {
+                        $(this).jstree(true).toggle_node(e.target);
+                    })
 
 
             },
-            _doJsTreeData: function () {
+            _doJsTreeData: function() {
                 let _mFloorTree = [];
 
                 let _units = $that.floorUnitTreeInfo.units;
@@ -152,7 +156,7 @@
                 });
                 return _mFloorTree;
             },
-            _doJsTreeMenuData: function (_floorItem) {
+            _doJsTreeMenuData: function(_floorItem) {
                 let _units = $that.floorUnitTreeInfo.units;
                 //构建菜单
                 let _children = _floorItem.children;

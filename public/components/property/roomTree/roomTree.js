@@ -86,6 +86,10 @@
                         })
                     }
                 });
+                $('#jstree_floorUnitRoom')
+                    .on('click', '.jstree-anchor', function(e) {
+                        $(this).jstree(true).toggle_node(e.target);
+                    })
             },
             _roomTreeLoadRoom: function(_unitId, data) {
                 //获取选中的节点
