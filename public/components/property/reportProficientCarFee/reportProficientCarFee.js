@@ -61,12 +61,12 @@
                         }
                         let _reportFeeYearCollectionDetailDtos = _feeConfigInfo.data[0].reportFeeYearCollectionDetailDtos;
                         _feeConfigInfo.data.forEach(item => {
-                            if (item.reportProficientCarFeeInfo.length > reportProficientCarFeeInfo.length) {
+                            if (item.reportFeeYearCollectionDetailDtos.length > _reportFeeYearCollectionDetailDtos.length) {
                                 _reportFeeYearCollectionDetailDtos = item.reportFeeYearCollectionDetailDtos;
                             }
                         })
                         _reportFeeYearCollectionDetailDtos.forEach(item => {
-                            $that.reportProficientCarFeeInfo.listColumns.push(item.collectionYear + "年")
+                            $that.reportProficientCarFeeInfo.listColumns.push(item.collectionYear)
                         })
                     },
                     function() {

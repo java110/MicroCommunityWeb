@@ -14,6 +14,8 @@
                 unitId: '',
                 state: '',
                 roomNum: '',
+                floorNum: '',
+                unitNum: '',
                 moreCondition: false,
                 fees: [],
                 roomName: '',
