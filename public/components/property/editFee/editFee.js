@@ -80,8 +80,8 @@
                     }
                 });
 
-                vc.initDate('editFeeMaxEndTime', function(_endTime) {
-                    $that.editFeeInfo.maxEndTime = _endTime;
+                vc.initDate('editFeeMaxEndTime', function(_maxEndTime) {
+                    $that.editFeeInfo.maxEndTime = _maxEndTime;
                     let start = Date.parse(new Date($that.editFeeInfo.startTime))
                     let end = Date.parse(new Date($that.editFeeInfo.maxEndTime))
                     if (start - end >= 0) {

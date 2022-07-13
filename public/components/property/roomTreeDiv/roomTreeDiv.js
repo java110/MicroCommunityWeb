@@ -107,6 +107,7 @@
                     function(json, res) {
                         let listRoomData = JSON.parse(json);
                         if (listRoomData.total < 1) {
+                            vc.toast('未找到房屋');
                             return;
                         }
                         listRoomData.rooms.forEach(_room => {

@@ -246,7 +246,7 @@
             },
             _changeFeeTypeCdX: function(_feeTypeCd) {
                 // 押金默认开始时间为当前时间，结束时间+1月
-                if(_feeTypeCd == '888800010006'){
+                if (_feeTypeCd == '888800010006') {
                     $that.roomCreateFeeAddInfo.startTime = vc.dateFormat(new Date());
                     $that.roomCreateFeeAddInfo.endTime = vc.addMonthDate(new Date(), 1);
                 }
@@ -288,7 +288,7 @@
             },
             _roomCreateFeeAddIfOnceFee(_configId) {
                 // 当费用类型不是押金或者收费项目没有结束时间时， 将结束时间清空
-                if($that.roomCreateFeeAddInfo.feeTypeCd != '888800010006' || $that.roomCreateFeeAddInfo.feeFlag == '1003006'){
+                if ($that.roomCreateFeeAddInfo.feeTypeCd != '888800010006' || $that.roomCreateFeeAddInfo.feeFlag == '1003006') {
                     $that.roomCreateFeeAddInfo.endTime = '';
                 }
                 $that.roomCreateFeeAddInfo.feeConfigs.forEach(item => {

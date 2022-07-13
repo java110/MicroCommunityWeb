@@ -34,6 +34,7 @@
         _initEvent: function() {
             vc.on('addMeterWater', 'openAddMeterWaterModal', function(_param) {
                 console.log('params :', _param);
+                vc.component.clearAddMeterWaterInfo();
                 if (_param.hasOwnProperty("objType")) {
                     $that.addMeterWaterInfo.objType = _param.objType;
                 }

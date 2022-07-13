@@ -37,6 +37,7 @@
         },
         _initEvent: function() {
             vc.on('addProxyFee', 'openAddProxyFeeModal', function(_param) {
+                vc.component.clearAddProxyFeeInfo();
                 if (_param.hasOwnProperty("objType")) {
                     $that.addProxyFeeInfo.objType = _param.objType;
                 }
