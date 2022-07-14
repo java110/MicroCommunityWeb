@@ -17,11 +17,13 @@
                     contractCode: '',
                     contractType: '',
 
-                }
+                },
+                contractTypes: []
             }
         },
         _initMethod: function() {
             vc.component._listContracts(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listContractTypes();
         },
         _initEvent: function() {
 
@@ -54,6 +56,25 @@
                             dataCount: vc.component.contractChangeManageInfo.total,
                             currentPage: _page
                         });
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listContractTypes: function(_page, _rows) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/contract/queryContractType',
+                    param,
+                    function(json, res) {
+                        let _contractTypeManageInfo = JSON.parse(json);
+                        $that.contractChangeManageInfo.contractTypes = _contractTypeManageInfo.data;
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

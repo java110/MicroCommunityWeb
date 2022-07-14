@@ -22,7 +22,12 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入合同类型','contractChangeManage')" v-model="contractChangeManageInfo.conditions.contractType" class=" form-control">
+                                <select class="custom-select" v-model="contractChangeManageInfo.conditions.contractType">
+                                    <option selected value="">请选择合同类型</option>
+                                    <option :value="item.contractTypeId" v-for="(item,index) in contractChangeManageInfo.contractTypes">
+                                        {{item.typeName}}
+                                    </option>
+                                  </select>
                             </div>
                         </div>
                         <div class="col-sm-1">
