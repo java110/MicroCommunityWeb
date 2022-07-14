@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 1;
     vc.extends({
@@ -11,6 +11,7 @@
                 contractName: '',
                 contractCode: '',
                 contractType: '',
+                contractTypeName: '',
                 partyA: '',
                 partyB: '',
                 aContacts: '',
@@ -30,17 +31,16 @@
             },
             auditUsers: []
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component.contractDetailInfo.contractId = vc.getParam('contractId');
             vc.component._listContractApply(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._loadAuditUser();
             $that._loadContractFiles();
             $that._loadContractRooms();
         },
-        _initEvent: function () {
-        },
+        _initEvent: function() {},
         methods: {
-            _listContractApply: function (_page, _rows) {
+            _listContractApply: function(_page, _rows) {
                 var param = {
                     params: {
                         page: _page,
@@ -51,17 +51,18 @@
                 //发送get请求
                 vc.http.apiGet('/contract/queryContract',
                     param,
-                    function (json) {
+                    function(json) {
                         console.log('json', json);
                         var _contractApplyDetailInfo = JSON.parse(json);
                         var _contractApply = _contractApplyDetailInfo.data[0];
                         vc.copyObject(_contractApply, vc.component.contractDetailInfo);
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadAuditUser: function () {
+            _loadAuditUser: function() {
                 var param = {
                     params: {
                         businessKey: vc.component.contractDetailInfo.contractId,
@@ -71,59 +72,62 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowAuditInfo',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _json = JSON.parse(json);
                         $that.auditUsers = _json.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadContractFiles: function () {
+            _loadContractFiles: function() {
                 let param = {
-                    params: {
-                        contractId: vc.component.contractDetailInfo.contractId,
-                        page: 1,
-                        row: 100
+                        params: {
+                            contractId: vc.component.contractDetailInfo.contractId,
+                            page: 1,
+                            row: 100
+                        }
                     }
-                }
-                //发送get请求
+                    //发送get请求
                 vc.http.apiGet('/contractFile/queryContractFile',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _contractTFile = JSON.parse(json);
                         vc.component.contractDetailInfo.files = _contractTFile.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadContractRooms: function () {
+            _loadContractRooms: function() {
                 let param = {
-                    params: {
-                        contractId: vc.component.contractDetailInfo.contractId,
-                        page: 1,
-                        row: 100
+                        params: {
+                            contractId: vc.component.contractDetailInfo.contractId,
+                            page: 1,
+                            row: 100
+                        }
                     }
-                }
-                //发送get请求
+                    //发送get请求
                 vc.http.apiGet('/contract/queryContractRoom',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _contractTFile = JSON.parse(json);
                         vc.component.contractDetailInfo.rooms = _contractTFile.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _viewFile: function (_file) {
+            _viewFile: function(_file) {
                 window.open(_file.fileSaveName);
             },
-            _goback: function () {
+            _goback: function() {
                 vc.getBack();
             },
-            _printContract: function () {
+            _printContract: function() {
                 let _contract = $that.contractDetailInfo;
                 window.open("/print.html#/pages/admin/printContract?contractTypeId=" + _contract.contractType + "&contractId=" + _contract.contractId);
             }

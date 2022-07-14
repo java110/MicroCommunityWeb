@@ -12,20 +12,22 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入合同名称','expirationContractManage')"
-                                    v-model="expirationContractInfo.conditions.contractNameLike" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入合同名称','expirationContractManage')" v-model="expirationContractInfo.conditions.contractNameLike" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入合同编号','expirationContractManage')"
-                                    v-model="expirationContractInfo.conditions.contractCode" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入合同编号','expirationContractManage')" v-model="expirationContractInfo.conditions.contractCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入合同类型','expirationContractManage')"
-                                    v-model="expirationContractInfo.conditions.contractType" class=" form-control">
+                                <select class="custom-select" v-model="expirationContractInfo.conditions.contractType">
+                                    <option selected value="">请选择合同类型</option>
+                                    <option :value="item.contractTypeId" v-for="(item,index) in expirationContractInfo.contractTypes">
+                                        {{item.typeName}}
+                                    </option>
+                                  </select>
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -81,12 +83,10 @@
                                 <td class="text-center">{{contract.stateName}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAddContractModel(contract)"><span><vc:i18n name="续签" namespace="expirationContractManage"></vc:i18n></span></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAddContractModel(contract)"><span><vc:i18n name="续签" namespace="expirationContractManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_stopContractModel(contract)"><span><vc:i18n name="终止" namespace="expirationContractManage"></vc:i18n></span></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_stopContractModel(contract)"><span><vc:i18n name="终止" namespace="expirationContractManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 

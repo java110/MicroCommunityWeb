@@ -36,7 +36,7 @@
                                 <label class="col-form-label">
                                     <span><vc:i18n name="合同类型" namespace="contractApplyDetail"></vc:i18n></span>：
                                 </label>
-                                <label class="">{{contractDetailInfo.contractType}}</label>
+                                <label class="">{{contractDetailInfo.contractTypeName}}</label>
                             </div>
                         </div>
                     </div>
@@ -171,38 +171,38 @@
                 <div class="ibox-content">
                     <table class="table table-stripped">
                         <thead>
-                        <tr>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="房屋" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="房屋编号" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="建筑面积" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                            <!-- <th data-hide="phone" class="text-center"><span><vc:i18n name="房屋状态" namespace="contractApplyDetail"></vc:i18n></span></th> -->
-                        </tr>
+                            <tr>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="房屋" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="房屋编号" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="建筑面积" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                                <!-- <th data-hide="phone" class="text-center"><span><vc:i18n name="房屋状态" namespace="contractApplyDetail"></vc:i18n></span></th> -->
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="room in contractDetailInfo.rooms">
-                            <td class="text-center">
-                                {{room.roomName}}
-                            </td>
-                            <td class="text-center">
-                                {{room.roomId}}
-                            </td>
-                            <td class="text-center">
-                                {{room.builtUpArea}}<span><vc:i18n name="平方米" namespace="contractApplyDetail"></vc:i18n></span>
-                            </td>
-                            <!-- <td class="text-center">
+                            <tr v-for="room in contractDetailInfo.rooms">
+                                <td class="text-center">
+                                    {{room.roomName}}
+                                </td>
+                                <td class="text-center">
+                                    {{room.roomId}}
+                                </td>
+                                <td class="text-center">
+                                    {{room.builtUpArea}}<span><vc:i18n name="平方米" namespace="contractApplyDetail"></vc:i18n></span>
+                                </td>
+                                <!-- <td class="text-center">
                               {{room.link}}
                             </td>
 
                             <td class="text-center">
                               {{room.stateName}}
                             </td> -->
-                        </tr>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -220,30 +220,30 @@
                 <div class="ibox-content">
                     <table class="table table-stripped">
                         <thead>
-                        <tr>
-                            <th scope="col"><span><vc:i18n name="序号" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                            <th scope="col"><span><vc:i18n name="处理人" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                            <th scope="col"><span><vc:i18n name="状态" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                            <th scope="col"><span><vc:i18n name="处理时间" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                            <th scope="col"><span><vc:i18n name="耗时" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                            <th scope="col"><span><vc:i18n name="意见" namespace="contractApplyDetail"></vc:i18n></span>
-                            </th>
-                        </tr>
+                            <tr>
+                                <th scope="col"><span><vc:i18n name="序号" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col"><span><vc:i18n name="处理人" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col"><span><vc:i18n name="状态" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col"><span><vc:i18n name="处理时间" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col"><span><vc:i18n name="耗时" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col"><span><vc:i18n name="意见" namespace="contractApplyDetail"></vc:i18n></span>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(tItem,index) in auditUsers">
-                            <td>{{index+1}}</td>
-                            <td>{{tItem.userName?tItem.userName:tItem.auditName}}</td>
-                            <td>{{tItem.stateName}}</td>
-                            <td>{{tItem.auditTime}}</td>
-                            <td>{{tItem.duration}}</td>
-                            <td>{{tItem.message}}</td>
-                        </tr>
+                            <tr v-for="(tItem,index) in auditUsers">
+                                <td>{{index+1}}</td>
+                                <td>{{tItem.userName?tItem.userName:tItem.auditName}}</td>
+                                <td>{{tItem.stateName}}</td>
+                                <td>{{tItem.auditTime}}</td>
+                                <td>{{tItem.duration}}</td>
+                                <td>{{tItem.message}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
