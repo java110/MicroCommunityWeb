@@ -909,7 +909,7 @@
 
     let constant = {
         REQUIRED_MSG: "不能为空",
-        GET_CACHE_URL: ["/nav/getUserInfo"]
+        GET_CACHE_URL: ["/user.getUserInfo"]
     }
     vcFramework.constant = constant;
 })(window.vcFramework);

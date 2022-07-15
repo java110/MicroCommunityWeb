@@ -12,6 +12,7 @@
                 mapY: '101.33',
                 payFeeMonth: 12,
                 feePrice: 0,
+                tel: '',
                 attrs: []
             }
         },
@@ -135,6 +136,7 @@
                     mapY: '101.33',
                     payFeeMonth: 12,
                     feePrice: 0,
+                    tel: '',
                     attrs: _attrs
                 }
             },

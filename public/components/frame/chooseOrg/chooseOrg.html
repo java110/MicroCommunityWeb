@@ -23,7 +23,7 @@
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
                                                         v-on:click="queryOrgs()"><span><vc:i18n name="查询" namespace="chooseOrg"></vc:i18n></span></button>
-                                            </span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -61,6 +61,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <vc:create namespace="chooseOrg" path="frame/paginationPlus"></vc:create>
                             </div>
 
                         </div>

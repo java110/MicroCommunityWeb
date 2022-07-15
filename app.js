@@ -31,12 +31,12 @@ let opts = {
 }
 
 
-// app.use('/callComponent', proxy('http://192.168.100.108:8008', opts));
-// app.use('/app', proxy('http://192.168.100.108:8008', opts));
+app.use('/callComponent', proxy('http://192.168.100.108:8008', opts));
+app.use('/app', proxy('http://192.168.100.108:8008', opts));
 
 
-app.use('/callComponent', proxy('http://127.0.0.1:8008', opts));
-app.use('/app', proxy('http://127.0.0.1:8008', opts));
+// app.use('/callComponent', proxy('http://127.0.0.1:8008', opts));
+// app.use('/app', proxy('http://127.0.0.1:8008', opts));
 // app.use('/ws',proxy('http://127.0.0.1:8008',opts));
 // app.use('/callComponent',proxy('http://192.168.1.106:8012',opts));
 // app.use('/app',proxy('http://192.168.1.106:8012',opts));
