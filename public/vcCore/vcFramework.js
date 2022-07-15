@@ -1007,7 +1007,7 @@
 
                         successCallback(res.bodyText, res);
                         if (vcFramework.constant.GET_CACHE_URL.includes(_getPath) && res.status == 200) {
-                            vcFramework.saveData(_getPath, JSON.parse(res.bodyText));
+                            vcFramework.saveData('/nav/getUserInfo', JSON.parse(res.bodyText));
                         }
                     } catch (e) {
                         console.error(e);
@@ -1095,6 +1095,8 @@
             let _getPath = '';
             if (api.indexOf('/') != 0) {
                 _getPath = '/' + api;
+            } else {
+                _getPath = api;
             }
             if (vcFramework.constant.GET_CACHE_URL.includes(_getPath)) {
                 let _cacheData = vcFramework.getData(_getPath);
@@ -1134,8 +1136,9 @@
                     try {
 
                         successCallback(res.bodyText, res);
+
                         if (vcFramework.constant.GET_CACHE_URL.includes(_getPath) && res.status == 200) {
-                            vcFramework.saveData(_getPath, JSON.parse(res.bodyText));
+                            vcFramework.saveData('/nav/getUserInfo', JSON.parse(res.bodyText));
                         }
                     } catch (e) {
                         console.error(e);
