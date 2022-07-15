@@ -48,8 +48,7 @@
                         _uId: 'ccdd00opikookjuhyyttvhnnjuuu'
                     }
                 };
-                vc.http.get('hasCompany',
-                    'check',
+                vc.http.apiGet('/query.store.byuser',
                     param,
                     function(json, res) {
                         if (res.status == 200) {
@@ -68,17 +67,16 @@
             },
             _loadStaffPrivileges: function(_param) {
 
-                var param = {
+                let param = {
                     params: {
                         a: 'HC'
                     }
                 };
                 //发送get请求
-                vc.http.get('staffPrivilege',
-                    'listStaffPrivileges',
+                vc.http.apiGet('/query.user.privilege',
                     param,
                     function(json) {
-                        var _staffPrivilegeInfo = JSON.parse(json);
+                        let _staffPrivilegeInfo = JSON.parse(json);
 
                         let _privilege = [];
                         _staffPrivilegeInfo.datas.forEach(item => {
