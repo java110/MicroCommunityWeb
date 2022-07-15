@@ -31,8 +31,7 @@
                         }
                     }
                     //发送get请求
-                vc.http.get('indexContext',
-                    'getData',
+                vc.http.apiGet('/index.queryIndexStatistic',
                     param,
                     function(json, res) {
                         var indexData = JSON.parse(json);

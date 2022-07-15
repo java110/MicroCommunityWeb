@@ -26,11 +26,10 @@
                         }
                     }
                     //发送get请求
-                vc.http.get('enterCommunity',
-                    'listMyCommunity',
+                vc.http.apiGet('/communitys/queryStoreCommunitys',
                     param,
                     function(json, res) {
-                        vc.component.communityInfo.enterCommunityInfo = JSON.parse(json);
+                        vc.component.communityInfo.enterCommunityInfo = JSON.parse(json).data;
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
