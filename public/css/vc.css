@@ -520,6 +520,7 @@ body,
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .vc-menu-main::-webkit-scrollbar {
@@ -564,6 +565,7 @@ body,
     height: 95%;
     overflow-x: hidden;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .vc-menu-sub::-webkit-scrollbar {
