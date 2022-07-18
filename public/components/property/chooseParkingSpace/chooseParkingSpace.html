@@ -1,6 +1,4 @@
-<div id="chooseParkingSpaceModel" class="modal fade" tabindex="-1" role="dialog"
-     aria-labelledby="chooseParkingSpaceModelLabel" aria-hidden="true">
-
+<div id="chooseParkingSpaceModel" class="modal fade" role="dialog" aria-labelledby="chooseParkingSpaceModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,60 +17,57 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入停车场编号','chooseParkingSpace')" type="text"
-                                               v-model="chooseParkingSpaceInfo.areaNum"
-                                               class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入停车场编号','chooseParkingSpace')" type="text" v-model="chooseParkingSpaceInfo.areaNum" class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
                                                         v-on:click="queryParkingSpaces()"><span><vc:i18n name="查询" namespace="chooseParkingSpace"></vc:i18n></span></button>
-                                            </span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="停车场" namespace="chooseParkingSpace"></vc:i18n></span></th>
-                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span></th>
-                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="车位状态" namespace="chooseParkingSpace"></vc:i18n></span></th>
-                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="车位类型" namespace="chooseParkingSpace"></vc:i18n></span></th>
-                                        <th data-hide="phone" class="text-center"><span><vc:i18n name="面积" namespace="chooseParkingSpace"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span>ID</th>
-                                        <th class="text-center"><span><vc:i18n name="操作" namespace="chooseParkingSpace"></vc:i18n></span></th>
-                                    </tr>
+                                        <tr>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="停车场" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="车位状态" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="车位类型" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="面积" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span>ID</th>
+                                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseParkingSpace"></vc:i18n></span></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                   
-                                    <tr v-for="parkingSpace in chooseParkingSpaceInfo.parkingSpaces">
-                                        <td class="text-center">
-                                            {{parkingSpace.areaNum}}<span><vc:i18n name="号停车场" namespace="chooseParkingSpace"></vc:i18n></span>
-                                        </td>
-                                        <td class="text-center">
-                                            {{parkingSpace.num}}<span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span>
-                                        </td>
-                                        <td class="text-center">
-                                            {{vc.component._viewParkingSpaceState(parkingSpace.state)}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{parkingSpace.parkingTypeName}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{parkingSpace.area}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{parkingSpace.psId}}
-                                        </td>
-                                        <td class="text-center">
-                                          
-                                            <div class="btn-group">
-                                                <button class="btn-white btn btn-xs"
-                                                        v-on:click="chooseParkingSpace(parkingSpace)"><span><vc:i18n name="选择" namespace="chooseParkingSpace"></vc:i18n></span>
+
+                                        <tr v-for="parkingSpace in chooseParkingSpaceInfo.parkingSpaces">
+                                            <td class="text-center">
+                                                {{parkingSpace.areaNum}}<span><vc:i18n name="号停车场" namespace="chooseParkingSpace"></vc:i18n></span>
+                                            </td>
+                                            <td class="text-center">
+                                                {{parkingSpace.num}}<span><vc:i18n name="车位" namespace="chooseParkingSpace"></vc:i18n></span>
+                                            </td>
+                                            <td class="text-center">
+                                                {{vc.component._viewParkingSpaceState(parkingSpace.state)}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{parkingSpace.parkingTypeName}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{parkingSpace.area}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{parkingSpace.psId}}
+                                            </td>
+                                            <td class="text-center">
+
+                                                <div class="btn-group">
+                                                    <button class="btn-white btn btn-xs" v-on:click="chooseParkingSpace(parkingSpace)"><span><vc:i18n name="选择" namespace="chooseParkingSpace"></vc:i18n></span>
                                                 </button>
-                                            </div>
-                                          
-                                        </td>
-                                    </tr>
+                                                </div>
+
+                                            </td>
+                                        </tr>
 
 
                                     </tbody>
