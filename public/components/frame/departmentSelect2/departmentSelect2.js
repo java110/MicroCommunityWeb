@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             parentModal: vc.propTypes.string
@@ -8,68 +8,70 @@
                 orgs: [],
                 orgId: '-1',
                 orgName: '',
-                companyId:'',
-                departmentId:'',
-                departmentName:'',
+                companyId: '',
+                departmentId: '',
+                departmentName: '',
                 staffId: '',
-                staffName:'',
+                staffName: '',
                 departmentSelector: {}
             }
         },
         watch: {
             departmentSelect2Info: {
                 deep: true,
-                handler: function () {
+                handler: function() {
                     vc.emit($namespace, 'staffSelect2', "setStaff", this.departmentSelect2Info);
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             this._initDepartmentSelect2();
         },
-        _initEvent: function () {
-            vc.on('departmentSelect2', 'setDepartment', function (_param) {
+        _initEvent: function() {
+            vc.on('departmentSelect2', 'setDepartment', function(_param) {
                 vc.copyObject(_param, this.departmentSelect2Info);
+                this._initDepartmentSelect2();
                 var option = new Option(_param.departmentName, _param.departmentId, true, true);
                 this.departmentSelect2Info.departmentSelector.append(option);
             });
 
-            vc.on('departmentSelect2', 'clearDepartment', function (_param) {
+            vc.on('departmentSelect2', 'clearDepartment', function(_param) {
+                $('#departmentSelector').val('').select2();
+                this._initDepartmentSelect2();
                 this.departmentSelect2Info = {
                     orgs: [],
                     // orgId: '-1',
                     orgName: '',
-                    companyId:'',
+                    companyId: '',
                     staffId: '',
-                    departmentId:'',
-                    departmentName:'',
+                    departmentId: '',
+                    departmentName: '',
                     departmentSelector: {}
                 };
             });
         },
         methods: {
-            _initDepartmentSelect2: function () {
+            _initDepartmentSelect2: function() {
                 console.log("调用_initDepartmentSelect2 方法");
-                $.fn.modal.Constructor.prototype.enforceFocus = function () {
-                };
+                $.fn.modal.Constructor.prototype.enforceFocus = function() {};
                 $.fn.select2.defaults.set('width', '100%');
                 this.departmentSelect2Info.departmentSelector = $('#departmentSelector').select2({
                     placeholder: '必填，请选择部门',
-                    allowClear: true,//允许清空
-                    escapeMarkup: function (markup) {
+                    allowClear: true, //允许清空
+                    escapeMarkup: function(markup) {
                         return markup;
                     }, // 自定义格式化防止xss注入
                     ajax: {
                         url: "/callComponent/orgManage/list",
                         dataType: 'json',
                         delay: 250,
-                        headers:{
+                        headers: {
                             'APP-ID': '8000418004',
-                            'TRANSACTION-ID' : vc.uuid(),
+                            'TRANSACTION-ID': vc.uuid(),
                             'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
-                            'SIGN' : ''
+                            'SIGN': ''
                         },
-                        data: function (params) {
+                        data: function(params) {
                             console.log("param", params);
                             var _term = "";
                             if (params.hasOwnProperty("term")) {
@@ -77,14 +79,14 @@
                             }
                             return {
                                 orgName: _term,
-                                orgLevel:'3',
+                                orgLevel: '3',
                                 page: 1,
                                 row: 10,
                                 parentOrgId: this.departmentSelect2Info.orgId,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },
-                        processResults: function (data) {
+                        processResults: function(data) {
                             console.log(data, this._filterOrgData(data.orgs));
                             return {
                                 results: this._filterOrgData(data.orgs)
@@ -93,7 +95,7 @@
                         cache: true
                     }
                 });
-                $('#departmentSelector').on("select2:select", function (evt) {
+                $('#departmentSelector').on("select2:select", function(evt) {
                     //这里是选中触发的事件
                     //evt.params.data 是选中项的信息
                     console.log('select', evt);
@@ -102,7 +104,7 @@
                     this.departmentSelect2Info.orgName = evt.params.data.text;
                 });
 
-                $('#departmentSelector').on("select2:unselect", function (evt) {
+                $('#departmentSelector').on("select2:unselect", function(evt) {
                     //这里是取消选中触发的事件
                     //如配置allowClear: true后，触发
                     console.log('unselect', evt);
@@ -111,7 +113,7 @@
 
                 });
             },
-            _filterOrgData: function (_Orgs) {
+            _filterOrgData: function(_Orgs) {
                 var _tmpOrgs = [];
                 for (var i = 0; i < _Orgs.length; i++) {
                     var _tmpOrg = {

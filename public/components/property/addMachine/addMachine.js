@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -35,11 +35,11 @@
                 machineTypes: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('addMachine', 'openAddMachineModal', function () {
+        _initEvent: function() {
+            vc.on('addMachine', 'openAddMachineModal', function() {
                 $that._loadLocation();
                 $that._loadMachineAttrSpec();
                 $that._listAddMachineTypes();
@@ -47,41 +47,14 @@
 
             });
 
-            vc.on("addMachine", "notify", function (_param) {
-                if (_param.hasOwnProperty("floorId")) {
-                    vc.component.addMachineInfo.floorId = _param.floorId;
-                }
 
-                if (_param.hasOwnProperty("unitId")) {
-                    vc.component.addMachineInfo.unitId = _param.unitId;
-                }
-
-                if (_param.hasOwnProperty("roomId")) {
-                    vc.component.addMachineInfo.roomId = _param.roomId;
-                }
-
-                if (_param.hasOwnProperty("boxId")) {
-                    vc.component.addMachineInfo.boxId = _param.boxId;
-                }
-
-                if (_param.hasOwnProperty("paId")) {
-                    vc.component.addMachineInfo.paId = _param.paId;
-                }
-
-            });
-            vc.on('addMachine', 'staffSelect2', 'setStaff', function (_param) {
-                if (_param.hasOwnProperty("orgId")) {
-                    vc.component.addMachineInfo.orgId = _param.orgId;
-                }
-            })
         },
         methods: {
-            addMachineValidate: function () {
+            addMachineValidate: function() {
                 return vc.validate.validate({
                     addMachineInfo: vc.component.addMachineInfo
                 }, {
-                    'addMachineInfo.machineCode': [
-                        {
+                    'addMachineInfo.machineCode': [{
                             limit: "required",
                             param: "",
                             errInfo: "设备编码不能为空"
@@ -92,100 +65,79 @@
                             errInfo: "设备编码不能超过30位"
                         },
                     ],
-                    'addMachineInfo.machineVersion': [
-                        {
+                    'addMachineInfo.machineVersion': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "版本号不能为空"
+                    }],
+                    'addMachineInfo.machineName': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "设备名称不能为空"
+                    }],
+                    'addMachineInfo.machineTypeCd': [{
                             limit: "required",
                             param: "",
-                            errInfo: "版本号不能为空"
-                        }],
-                    'addMachineInfo.machineName':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "设备名称不能为空"
-                            }],
-                    'addMachineInfo.machineTypeCd':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "设备类型不能为空"
-                            },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "设备类型格式错误"
-                            },
-                        ],
-                    'addMachineInfo.direction':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "设备方向不能为空"
-                            },
-                            {
-                                limit: "num",
-                                param: "",
-                                errInfo: "设备方向格式错误"
-                            },
-                        ],
-                    'addMachineInfo.authCode':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "厂家不能为空"
-                            },
-                            {
-                                limit: "maxLength",
-                                param: "64",
-                                errInfo: "厂家不能大于64位"
-                            },
-                        ],
-                    'addMachineInfo.machineIp':
-                        [
-                            {
-                                limit: "maxLength",
-                                param: "64",
-                                errInfo: "设备IP格式错误"
-                            },
-                        ],
-                    'addMachineInfo.machineMac':
-                        [
-                            {
-                                limit: "maxLength",
-                                param: "64",
-                                errInfo: "设备MAC 格式错误"
-                            }
-                        ],
-                    'addMachineInfo.locationTypeCd':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "请选择设备位置"
-                            }
-                        ],
-                    'addMachineInfo.locationObjId':
-                        [
-                            {
-                                limit: "required",
-                                param: "",
-                                errInfo: "请选择位置"
-                            }
-                        ]
+                            errInfo: "设备类型不能为空"
+                        },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "设备类型格式错误"
+                        },
+                    ],
+                    'addMachineInfo.direction': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "设备方向不能为空"
+                        },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "设备方向格式错误"
+                        },
+                    ],
+                    'addMachineInfo.authCode': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "厂家不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "厂家不能大于64位"
+                        },
+                    ],
+                    'addMachineInfo.machineIp': [{
+                        limit: "maxLength",
+                        param: "64",
+                        errInfo: "设备IP格式错误"
+                    }, ],
+                    'addMachineInfo.machineMac': [{
+                        limit: "maxLength",
+                        param: "64",
+                        errInfo: "设备MAC 格式错误"
+                    }],
+                    'addMachineInfo.locationTypeCd': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "请选择设备位置"
+                    }],
+                    'addMachineInfo.locationObjId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "请选择位置"
+                    }]
                 });
             },
-            saveMachineInfo: function () {
+            saveMachineInfo: function() {
                 vc.component.addMachineInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.addMachineInfo.locationType != '2000'
-                    && vc.component.addMachineInfo.locationType != '3000'
-                    && vc.component.addMachineInfo.locationType != '4000'
-                    && vc.component.addMachineInfo.locationType != '5000'
-                    && vc.component.addMachineInfo.locationType != '6000'
-                    && vc.component.addMachineInfo.locationType != '7000'
+                if (vc.component.addMachineInfo.locationType != '2000' &&
+                    vc.component.addMachineInfo.locationType != '3000' &&
+                    vc.component.addMachineInfo.locationType != '4000' &&
+                    vc.component.addMachineInfo.locationType != '5000' &&
+                    vc.component.addMachineInfo.locationType != '6000' &&
+                    vc.component.addMachineInfo.locationType != '7000'
                 ) { //大门时直接写 小区ID
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.communityId;
                 } else if (vc.component.addMachineInfo.locationType == '2000') {
@@ -222,11 +174,10 @@
                 vc.http.post(
                     'addMachine',
                     'save',
-                    JSON.stringify(vc.component.addMachineInfo),
-                    {
+                    JSON.stringify(vc.component.addMachineInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -239,14 +190,14 @@
                         vc.toast(json);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
 
                     });
             },
-            _listAddMachineTypes: function () {
+            _listAddMachineTypes: function() {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -258,15 +209,16 @@
                 //发送get请求
                 vc.http.apiGet('machineType.listMachineType',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _machineTypeManageInfo = JSON.parse(json);
                         vc.component.addMachineInfo.machineTypes = _machineTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            clearAddMachineInfo: function () {
+            clearAddMachineInfo: function() {
                 let _locations = $that.addMachineInfo.locations;
                 vc.component.addMachineInfo = {
                     machineCode: '',
@@ -293,7 +245,7 @@
                     machineTypes: []
                 };
             },
-            _initAddMachineData: function () {
+            _initAddMachineData: function() {
                 $('.floorSelector').select2({
                     placeholder: '必填，请选择楼栋',
                     ajax: {
@@ -306,13 +258,13 @@
                             'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
                             'SIGN': ''
                         },
-                        data: function (params) {
+                        data: function(params) {
                             return {
                                 floorNum: vc.component.addMachineInfo.floorNum,
                                 /* page:*/
                             };
                         },
-                        processResults: function (data) {
+                        processResults: function(data) {
                             return {
                                 results: data
                             };
@@ -322,7 +274,7 @@
                     minimumInputLength: 2
                 });
             },
-            _loadLocation: function () {
+            _loadLocation: function() {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -333,15 +285,16 @@
                 //发送get请求
                 vc.http.apiGet('communityLocation.listCommunityLocations',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _locationManageInfo = JSON.parse(json);
                         vc.component.addMachineInfo.locations = _locationManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            onAddChangeLocation: function (e) {
+            onAddChangeLocation: function(e) {
                 let _locationTypeCd = $that.addMachineInfo.locationTypeCd;
 
                 $that.addMachineInfo.locations.forEach(item => {
@@ -350,9 +303,9 @@
                     }
                 });
             },
-            _loadMachineAttrSpec: function () {
+            _loadMachineAttrSpec: function() {
                 $that.addMachineInfo.attrs = [];
-                vc.getAttrSpec('machine_attr', function (data) {
+                vc.getAttrSpec('machine_attr', function(data) {
                     data.forEach(item => {
                         item.value = '';
                         if (item.specShow == 'Y') {
@@ -364,8 +317,8 @@
 
                 });
             },
-            _loadAttrValue: function (_specCd, _values) {
-                vc.getAttrValue(_specCd, function (data) {
+            _loadAttrValue: function(_specCd, _values) {
+                vc.getAttrValue(_specCd, function(data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
@@ -374,19 +327,19 @@
 
                 });
             },
-            setAddMachineTypeCd: function (_typeId) {
+            setAddMachineTypeCd: function(_typeId) {
                 vc.component.addMachineInfo.machineTypes.forEach(item => {
                     if (item.typeId == _typeId) {
                         vc.component.addMachineInfo.machineTypeCd = item.machineTypeCd;
-                        if(item.machineTypeCd == '9998' || item.machineTypeCd == '9994'){
-                            $that.addMachineInfo.direction= '3306';
+                        if (item.machineTypeCd == '9998' || item.machineTypeCd == '9994') {
+                            $that.addMachineInfo.direction = '3306';
                             $that.addMachineInfo.isShow = 'false';
-                        }else{
-                            $that.addMachineInfo.direction= '';
+                        } else {
+                            $that.addMachineInfo.direction = '';
                             $that.addMachineInfo.isShow = 'true';
                         }
                     }
-                    
+
                 });
             }
         }
