@@ -1,14 +1,14 @@
 :root {
     --vc-page-bg-color: #F6F6F7;
-    --vc-menu-main-bg: #1D1F2D;
-    --vc-menu-main-font-color: #808590;
-    --vc-menu-main-bg-active-color: #4979F4;
+    --vc-menu-main-bg: #1F2339;
+    --vc-menu-main-font-color: #838A9B;
+    --vc-menu-main-bg-active-color: #3E77FC;
     --vc-menu-main-active-font-color: #FFFFFF;
     --vc-menu-main-title-font-color: #FFFFFF;
     --vc-menu-sub-bg: #FFFFFF;
     --vc-menu-sub-font-color: #545761;
     --vc-menu-sub-bg-active-color: #EAF0FE;
-    --vc-menu-sub-active-font-color: #4979F4;
+    --vc-menu-sub-active-font-color: #3E77FC;
     --vc-menu-sub-title-font-color: #4F525C;
     --vc-menu-sub-footer: #F6F6F7;
     --vc-nav-bg: #1D1F2D;
