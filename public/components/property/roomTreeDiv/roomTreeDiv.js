@@ -87,12 +87,18 @@
                 //获取选中的节点
                 let node = data.instance.get_node(data.selected[0]);
                 //遍历选中节点的子节点
-                let childNodes = data.instance.get_children_dom(node);
+                //let childNodes = data.instance.get_children_dom(node);
+                let childNodes = node.children;
+                //$('#u_' + _unitId)
                 if (childNodes && childNodes.length > 0) {
-                    for (var childIndex = 0; childIndex < childNodes.length; childIndex++) {
-                        $('#jstree_floorUnitRoomDiv').jstree('delete_node', childNodes[childIndex]);
-                    }
+                    $('#jstree_floorUnitRoomDiv').jstree('open_node', childNodes[0].id);
+                    return;
                 }
+                // if (childNodes && childNodes.length > 0) {
+                //     for (var childIndex = 0; childIndex < childNodes.length; childIndex++) {
+                //         $('#jstree_floorUnitRoomDiv').jstree('delete_node', childNodes[childIndex]);
+                //     }
+                // }
                 let param = {
                         params: {
                             page: 1,
@@ -102,6 +108,7 @@
                         }
                     }
                     //发送get请求
+                let _datas = [];
                 vc.http.apiGet('/room.queryRoomsTree',
                     param,
                     function(json, res) {
@@ -122,9 +129,13 @@
                                 text: _text,
                                 icon: "/img/room.png",
                             };
-                            $('#jstree_floorUnitRoomDiv').jstree('create_node', $('#u_' + _unitId), _data, "last", false, false);
+                            _datas.push(_data);
+                            // $('#jstree_floorUnitRoomDiv').jstree('create_node', $('#u_' + _unitId), _data, "last", false, false);
                         })
-                        $('#jstree_floorUnitRoomDiv').jstree('open_node', $('#u_' + _unitId));
+                        $('#jstree_floorUnitRoomDiv').jstree('_append_json_data', $('#u_' + _unitId), _datas, function() {
+                            // 这个回调函数要加  不然会报错，即使这个函数里面什么也不做
+                        });
+                        $('#jstree_floorUnitRoomDiv').jstree('open_node', _datas[0].id);
                         if (listRoomData.rooms && listRoomData.rooms.length > 0) {
                             vc.emit($that.roomTreeDivInfo.callName, 'selectRoom', {
                                 roomName: listRoomData.rooms[0].floorNum + "-" + listRoomData.rooms[0].unitNum + "-" + listRoomData.rooms[0].roomNum,

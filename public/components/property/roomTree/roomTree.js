@@ -93,13 +93,15 @@
             },
             _roomTreeLoadRoom: function(_unitId, data) {
                 //获取选中的节点
+                //获取选中的节点
                 let node = data.instance.get_node(data.selected[0]);
                 //遍历选中节点的子节点
-                let childNodes = data.instance.get_children_dom(node);
+                //let childNodes = data.instance.get_children_dom(node);
+                let childNodes = node.children;
+                //$('#u_' + _unitId)
                 if (childNodes && childNodes.length > 0) {
-                    for (var childIndex = 0; childIndex < childNodes.length; childIndex++) {
-                        $('#jstree_floorUnitRoom').jstree('delete_node', childNodes[childIndex]);
-                    }
+                    $('#jstree_floorUnitRoom').jstree('open_node', $('#u_' + _unitId));
+                    return;
                 }
                 let param = {
                         params: {
@@ -110,6 +112,7 @@
                         }
                     }
                     //发送get请求
+                let _datas = [];
                 vc.http.apiGet('/room.queryRoomsTree',
                     param,
                     function(json, res) {
@@ -129,9 +132,13 @@
                                 text: _text,
                                 icon: "/img/room.png",
                             };
-                            $('#jstree_floorUnitRoom').jstree('create_node', $('#u_' + _unitId), _data, "last", false, false);
+                            _datas.push(_data);
+                            // $('#jstree_floorUnitRoom').jstree('create_node', $('#u_' + _unitId), _data, "last", false, false);
                         })
-                        $('#jstree_floorUnitRoom').jstree('open_node', $('#u_' + _unitId));
+                        $('#jstree_floorUnitRoom').jstree('_append_json_data', $('#u_' + _unitId), _datas, function() {
+                            // 这个回调函数要加  不然会报错，即使这个函数里面什么也不做
+                        });
+                        $('#jstree_floorUnitRoom').jstree('open_node', _datas[0].id);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
