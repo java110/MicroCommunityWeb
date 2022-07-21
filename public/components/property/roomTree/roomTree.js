@@ -100,7 +100,7 @@
                 let childNodes = node.children;
                 //$('#u_' + _unitId)
                 if (childNodes && childNodes.length > 0) {
-                    $('#jstree_floorUnitRoom').jstree('open_node', $('#u_' + _unitId));
+                    $('#jstree_floorUnitRoom').jstree('open_node',  '#u_' + _unitId);
                     return;
                 }
                 let param = {
@@ -138,7 +138,10 @@
                         $('#jstree_floorUnitRoom').jstree('_append_json_data', $('#u_' + _unitId), _datas, function() {
                             // 这个回调函数要加  不然会报错，即使这个函数里面什么也不做
                         });
-                        $('#jstree_floorUnitRoom').jstree('open_node', _datas[0].id);
+                        setTimeout(function(){
+                            $('#jstree_floorUnitRoom').jstree('open_node',  '#u_' + _unitId);
+                        },1000);
+                       
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

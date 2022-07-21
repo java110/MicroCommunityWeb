@@ -91,7 +91,7 @@
                 let childNodes = node.children;
                 //$('#u_' + _unitId)
                 if (childNodes && childNodes.length > 0) {
-                    $('#jstree_floorUnitRoomDiv').jstree('open_node', childNodes[0].id);
+                    $('#jstree_floorUnitRoomDiv').jstree('open_node', '#u_' + _unitId);
                     return;
                 }
                 // if (childNodes && childNodes.length > 0) {
@@ -135,7 +135,10 @@
                         $('#jstree_floorUnitRoomDiv').jstree('_append_json_data', $('#u_' + _unitId), _datas, function() {
                             // 这个回调函数要加  不然会报错，即使这个函数里面什么也不做
                         });
-                        $('#jstree_floorUnitRoomDiv').jstree('open_node', _datas[0].id);
+                        setTimeout(function(){
+                            $('#jstree_floorUnitRoomDiv').jstree('open_node', '#u_' + _unitId);
+                        },1000);
+                       
                         if (listRoomData.rooms && listRoomData.rooms.length > 0) {
                             vc.emit($that.roomTreeDivInfo.callName, 'selectRoom', {
                                 roomName: listRoomData.rooms[0].floorNum + "-" + listRoomData.rooms[0].unitNum + "-" + listRoomData.rooms[0].roomNum,
