@@ -110,7 +110,7 @@
                         }
                     }
                     //发送get请求
-                vc.http.apiGet('/room.queryRooms',
+                vc.http.apiGet('/room.queryRoomsTree',
                     param,
                     function(json, res) {
                         let listRoomData = JSON.parse(json);
