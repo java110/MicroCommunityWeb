@@ -78,9 +78,10 @@
                             $('#addInspectionItemModel').modal('hide');
                             vc.component.clearAddInspectionItemInfo();
                             vc.emit('inspectionItemManage', 'listInspectionItem', {});
+                            vc.toast('成功，请记得设置题目');
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
 
                     },
                     function(errInfo, error) {
