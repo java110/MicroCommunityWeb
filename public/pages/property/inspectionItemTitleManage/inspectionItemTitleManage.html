@@ -12,10 +12,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入题目ID"
-                                       v-model="inspectionItemTitleManageInfo.conditions.titleId" class=" form-control">
-                            </div>
+                            <input type="text" :placeholder="vc.i18n('请输入问题名称','inspectionItemTitleManage')" v-model="inspectionItemTitleManageInfo.conditions.itemTitle" class=" form-control">
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -31,21 +28,18 @@
                                 <option value="3003">{{vc.i18n('简答题','inspectionItemTitleManage')}}</option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入问题名称','inspectionItemTitleManage')" v-model="inspectionItemTitleManageInfo.conditions.itemTitle" class=" form-control">
-                            </div>
-                        </div>
+                        
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入顺序号','inspectionItemTitleManage')" v-model="inspectionItemTitleManageInfo.conditions.seq" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionItemTitleMethod()">
                                 <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="inspectionItemTitleManage"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetInspectionItemTitleMethod()">
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="_resetInspectionItemTitleMethod()">
                                 <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="重置" namespace="inspectionItemTitleManage"></vc:i18n></span>
                             </button>
                         </div>
