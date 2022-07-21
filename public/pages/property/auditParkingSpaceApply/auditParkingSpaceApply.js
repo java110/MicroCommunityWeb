@@ -141,7 +141,7 @@
                 }
                 $that.auditParkingSpaceApplyInfo.remark = $that.auditParkingSpaceApplyInfo.remark + "审核意见：" + $that.auditParkingSpaceApplyInfo.remark2;
                 vc.http.apiPost(
-                    '/parkingSpaceApply.updateParkingSpaceApply',
+                    '/parkingSpaceApply.auditParkingSpaceApply',
                     JSON.stringify($that.auditParkingSpaceApplyInfo), {
                         emulateJSON: true
                     },
