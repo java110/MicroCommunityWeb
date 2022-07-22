@@ -1,7 +1,8 @@
 <div id="addAttrSpecModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-body">" namespace="addAttrSpec"></vc:i18n>
+            <div class="modal-body">
+                <h3><span><vc:i18n name="添加" namespace="addAttrSpec"></vc:i18n>
                 </span>
                 </h3>
                 <div class="ibox-content">
@@ -32,6 +33,12 @@
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格名称" namespace="addAttrSpec"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="addAttrSpecInfo.specName" type="text" :placeholder="vc.i18n('必填，请填写规格名称','addAttrSpec')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格编码" namespace="addAttrSpec"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addAttrSpecInfo.specCd" type="text" :placeholder="vc.i18n('必填，请填写规格编码','addAttrSpec')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -124,6 +124,7 @@
             },
             clearAddAttrSpecInfo: function() {
                 vc.component.addAttrSpecInfo = {
+                    specCd: '',
                     tableName: '',
                     specName: '',
                     specHoldplace: '',

@@ -189,7 +189,7 @@
                         }
                     });
 
-                });
+                }, 'ATTENDANCE');
             },
             _loadAttrValue: function(_specCd, _values) {
                 vc.getAttrValue(_specCd, function(data) {
@@ -199,7 +199,7 @@
                         }
                     });
 
-                });
+                }, 'ATTENDANCE');
             }
         }
     });

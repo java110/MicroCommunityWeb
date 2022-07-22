@@ -3,6 +3,8 @@
         data: {
             editAttrSpecInfo: {
                 specCd: '',
+                specId: '',
+
                 tableName: '',
                 specName: '',
                 specHoldplace: '',
@@ -122,6 +124,7 @@
             refreshEditAttrSpecInfo: function() {
                 vc.component.editAttrSpecInfo = {
                     specCd: '',
+                    specId: '',
                     tableName: '',
                     specName: '',
                     specHoldplace: '',
@@ -135,4 +138,4 @@
             }
         }
     });
-})(window.vc, window.vc.component);
+})(window.vc, window.vc.component)

@@ -194,7 +194,7 @@
                         }
                     });
 
-                });
+                }, 'ATTENDANCE');
             },
             _loadEditAttrValue: function(_specCd, _values) {
                 vc.getAttrValue(_specCd, function(data) {
@@ -204,7 +204,7 @@
                         }
                     });
 
-                });
+                }, 'ATTENDANCE');
             },
             setEditMachineTypeCd: function(_typeId) {
 

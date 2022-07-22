@@ -1556,12 +1556,13 @@
             });
     }
 
-    vcFramework.getAttrSpec = function(_tableName, _callFun) {
+    vcFramework.getAttrSpec = function(_tableName, _callFun, _domain) {
         let param = {
             params: {
                 tableName: _tableName,
                 page: 1,
-                row: 100
+                row: 100,
+                domain: _domain
             }
         };
 
@@ -1581,12 +1582,13 @@
     }
 
 
-    vcFramework.getAttrValue = function(_specCd, _callFun) {
+    vcFramework.getAttrValue = function(_specCd, _callFun, _domain) {
         let param = {
             params: {
                 specCd: _specCd,
                 page: 1,
-                row: 100
+                row: 100,
+                domain: _domain
             }
         };
 

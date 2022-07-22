@@ -109,7 +109,7 @@
                 return "未知"
             },
             _openAttrSpecValue: function(_attrSpec) {
-                vc.jumpToPage('/#/pages/dev/attrValueManage?specCd=' + _attrSpec.specCd + '&specName=' + _attrSpec.specName);
+                vc.jumpToPage('/#/pages/dev/attrValueManage?specId=' + _attrSpec.specId + '&specName=' + _attrSpec.specName + "&domain=" + _attrSpec.domain);
             }
 
 

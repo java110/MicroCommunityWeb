@@ -19,7 +19,8 @@
                     machineName: '',
                     machineIp: '',
                     machineMac: '',
-                    communityId: vc.getCurrentCommunity().communityId
+                    communityId: vc.getCurrentCommunity().communityId,
+                    domain: 'ATTENDANCE'
 
                 },
                 listColumns: []
@@ -137,7 +138,7 @@
                         }
                     });
                     _call();
-                });
+                }, 'ATTENDANCE');
             }
         }
     });

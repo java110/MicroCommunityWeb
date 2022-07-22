@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -6,18 +6,17 @@
         },
         data: {
             addAttrValueInfo: {
-                specCd: '',
+                specId: '',
                 valueId: '',
                 value: '',
                 valueName: '',
                 valueShow: ''
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('addAttrValue', 'openAddAttrValueModal', function (item) {
-                $that.addAttrValueInfo.specCd = item.specCd;
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('addAttrValue', 'openAddAttrValueModal', function(item) {
+                $that.addAttrValueInfo.specId = item.specId;
                 $('#addAttrValueModel').modal('show');
             });
         },
@@ -27,10 +26,10 @@
                     addAttrValueInfo: vc.component.addAttrValueInfo
                 }, {
                     'addAttrValueInfo.value': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "值不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "值不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "200",
@@ -38,10 +37,10 @@
                         },
                     ],
                     'addAttrValueInfo.valueName': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "值名称不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "值名称不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "200",
@@ -49,10 +48,10 @@
                         },
                     ],
                     'addAttrValueInfo.valueShow': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "显示不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "显示不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "2",
@@ -61,7 +60,7 @@
                     ]
                 });
             },
-            saveAttrValueInfo: function () {
+            saveAttrValueInfo: function() {
                 if (!vc.component.addAttrValueValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -77,7 +76,7 @@
                     JSON.stringify(vc.component.addAttrValueInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -89,14 +88,14 @@
                             return;
                         }
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddAttrValueInfo: function () {
+            clearAddAttrValueInfo: function() {
                 vc.component.addAttrValueInfo = {
-                    specCd: '',
+                    specId: '',
                     value: '',
                     valueName: '',
                     valueShow: ''
