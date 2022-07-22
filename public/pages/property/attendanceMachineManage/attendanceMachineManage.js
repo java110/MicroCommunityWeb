@@ -6,7 +6,7 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            accessControlMachineManageInfo: {
+            attendanceMachineManageInfo: {
                 machines: [],
                 total: 0,
                 records: 1,
@@ -15,7 +15,7 @@
                 machineTypes: [],
                 conditions: {
                     machineCode: '',
-                    machineTypeCd: '9999',
+                    machineTypeCd: '9997',
                     machineName: '',
                     machineIp: '',
                     machineMac: '',
@@ -27,16 +27,13 @@
         },
         _initMethod: function() {
             //vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('machine', "machine_type_cd", function(_data) {
-                vc.component.accessControlMachineManageInfo.machineTypes = _data;
-            });
             $that._getColumns(function() {
                 vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
         _initEvent: function() {
 
-            vc.on('accessControlMachineManage', 'listMachine', function(_param) {
+            vc.on('attendanceMachineManage', 'listMachine', function(_param) {
                 vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
@@ -46,24 +43,24 @@
         methods: {
             _listMachines: function(_page, _rows) {
 
-                vc.component.accessControlMachineManageInfo.conditions.page = _page;
-                vc.component.accessControlMachineManageInfo.conditions.row = _rows;
+                vc.component.attendanceMachineManageInfo.conditions.page = _page;
+                vc.component.attendanceMachineManageInfo.conditions.row = _rows;
                 let param = {
-                    params: vc.component.accessControlMachineManageInfo.conditions
+                    params: vc.component.attendanceMachineManageInfo.conditions
                 };
 
                 //发送get请求
                 vc.http.apiGet('/machine.listMachines',
                     param,
                     function(json, res) {
-                        let _accessControlMachineManageInfo = JSON.parse(json);
-                        vc.component.accessControlMachineManageInfo.total = _accessControlMachineManageInfo.total;
-                        vc.component.accessControlMachineManageInfo.records = _accessControlMachineManageInfo.records;
-                        vc.component.accessControlMachineManageInfo.machines = _accessControlMachineManageInfo.machines;
-                        $that.dealMachineAttr(vc.component.accessControlMachineManageInfo.machines);
+                        let _attendanceMachineManageInfo = JSON.parse(json);
+                        vc.component.attendanceMachineManageInfo.total = _attendanceMachineManageInfo.total;
+                        vc.component.attendanceMachineManageInfo.records = _attendanceMachineManageInfo.records;
+                        vc.component.attendanceMachineManageInfo.machines = _attendanceMachineManageInfo.machines;
+                        $that.dealMachineAttr(vc.component.attendanceMachineManageInfo.machines);
                         vc.emit('pagination', 'init', {
-                            total: vc.component.accessControlMachineManageInfo.records,
-                            dataCount: vc.component.accessControlMachineManageInfo.total,
+                            total: vc.component.attendanceMachineManageInfo.records,
+                            dataCount: vc.component.attendanceMachineManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -74,10 +71,10 @@
             },
 
             _openAddMachineModal: function() {
-                vc.emit('addAccessControlMachine', 'openAddMachineModal', {});
+                vc.emit('addAttendanceMachine', 'openAddMachineModal', {});
             },
             _openEditMachineModel: function(_machine) {
-                vc.emit('editAccessControlMachine', 'openEditMachineModal', _machine);
+                vc.emit('editAttendanceMachine', 'openEditMachineModal', _machine);
             },
             _openDeleteMachineModel: function(_machine) {
                 vc.emit('deleteMachine', 'openDeleteMachineModal', _machine);
@@ -87,10 +84,10 @@
 
             },
             _moreCondition: function() {
-                if (vc.component.accessControlMachineManageInfo.moreCondition) {
-                    vc.component.accessControlMachineManageInfo.moreCondition = false;
+                if (vc.component.attendanceMachineManageInfo.moreCondition) {
+                    vc.component.attendanceMachineManageInfo.moreCondition = false;
                 } else {
-                    vc.component.accessControlMachineManageInfo.moreCondition = true;
+                    vc.component.attendanceMachineManageInfo.moreCondition = true;
                 }
             },
             _openMachineDetailModel: function(_machine) {
@@ -104,14 +101,6 @@
                     url: '/machine/restartMachine'
                 });
             },
-            _openDoorMachineModel: function(_machine) { //设备开门处理
-                vc.emit('machineState', 'openMachineStateModal', {
-                    machineCode: _machine.machineCode,
-                    stateName: '开门',
-                    state: '1500',
-                    url: '/machine/openDoor'
-                });
-            },
             dealMachineAttr: function(machines) {
                 machines.forEach(item => {
                     $that._getColumnsValue(item);
@@ -120,13 +109,13 @@
             _getColumnsValue: function(_machine) {
                 _machine.listValues = [];
                 if (!_machine.hasOwnProperty('machineAttrs') || _machine.machineAttrs.length < 1) {
-                    $that.accessControlMachineManageInfo.listColumns.forEach(_value => {
+                    $that.attendanceMachineManageInfo.listColumns.forEach(_value => {
                         _machine.listValues.push('');
                     })
                     return;
                 }
                 let _machineAttrs = _machine.machineAttrs;
-                $that.accessControlMachineManageInfo.listColumns.forEach(_value => {
+                $that.attendanceMachineManageInfo.listColumns.forEach(_value => {
                     let _tmpValue = '';
                     _machineAttrs.forEach(_attrItem => {
                         if (_value == _attrItem.specName) {
@@ -139,12 +128,12 @@
             },
             _getColumns: function(_call) {
                 console.log('_getColumns');
-                $that.accessControlMachineManageInfo.listColumns = [];
+                $that.attendanceMachineManageInfo.listColumns = [];
                 vc.getAttrSpec('machine_attr', function(data) {
-                    $that.accessControlMachineManageInfo.listColumns = [];
+                    $that.attendanceMachineManageInfo.listColumns = [];
                     data.forEach(item => {
                         if (item.listShow == 'Y') {
-                            $that.accessControlMachineManageInfo.listColumns.push(item.specName);
+                            $that.attendanceMachineManageInfo.listColumns.push(item.specName);
                         }
                     });
                     _call();
