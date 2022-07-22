@@ -16,6 +16,7 @@
                     specName: '',
                     tableName: '',
                     specCd: '',
+                    domain: ''
 
                 }
             }

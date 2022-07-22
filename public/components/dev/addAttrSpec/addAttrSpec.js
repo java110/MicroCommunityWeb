@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -14,13 +14,13 @@
                 specShow: '',
                 specValueType: '',
                 specType: '',
-                listShow: ''
+                listShow: '',
+                domain: 'COMMON',
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('addAttrSpec', 'openAddAttrSpecModal', function () {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('addAttrSpec', 'openAddAttrSpecModal', function() {
                 $('#addAttrSpecModel').modal('show');
             });
         },
@@ -35,10 +35,10 @@
                         errInfo: "属性表不能为空"
                     }],
                     'addAttrSpecInfo.specName': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "规格名称不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "规格名称不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "64",
@@ -49,7 +49,7 @@
                         limit: "maxLength",
                         param: "200",
                         errInfo: "说明不能超过500位"
-                    },],
+                    }, ],
                     'addAttrSpecInfo.required': [{
                         limit: "required",
                         param: "",
@@ -61,10 +61,10 @@
                         errInfo: "展示不能为空"
                     }],
                     'addAttrSpecInfo.specValueType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "值类型不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "值类型不能为空"
+                        },
                         {
                             limit: "num",
                             param: "",
@@ -72,10 +72,10 @@
                         },
                     ],
                     'addAttrSpecInfo.specType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "规格类型不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "规格类型不能为空"
+                        },
                         {
                             limit: "num",
                             param: "",
@@ -89,7 +89,7 @@
                     }]
                 });
             },
-            saveAttrSpecInfo: function () {
+            saveAttrSpecInfo: function() {
                 if (!vc.component.addAttrSpecValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -105,7 +105,7 @@
                     JSON.stringify(vc.component.addAttrSpecInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -117,12 +117,12 @@
                             return;
                         }
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddAttrSpecInfo: function () {
+            clearAddAttrSpecInfo: function() {
                 vc.component.addAttrSpecInfo = {
                     tableName: '',
                     specName: '',
@@ -131,7 +131,8 @@
                     specShow: '',
                     specValueType: '',
                     specType: '',
-                    listShow: ''
+                    listShow: '',
+                    domain: 'COMMON',
                 };
             }
         }
