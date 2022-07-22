@@ -499,6 +499,10 @@ ul li {
     border-radius: 10px;
 }
 
+.hand{
+    cursor: pointer;
+}
+
 html,
 body,
 .vc-page {

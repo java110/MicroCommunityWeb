@@ -74,7 +74,7 @@
             },
             loadMainFeeInfo: function (_fee) {
                 //vc.copyObject(_fee,vc.component.mainFeeInfo);
-                var param = {
+                let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         feeId: _fee.feeId,

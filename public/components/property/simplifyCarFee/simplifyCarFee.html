@@ -60,7 +60,8 @@
             </thead>
             <tbody>
             <tr v-for="fee in simplifyCarFeeInfo.fees">
-                <td class="text-center">{{fee.feeName}}</td>
+                <td class="text-center hand" @click="_viewCarFeeConfig(fee)" >{{fee.feeName}}
+                    <span class="fa fa-info-circle" ></span></td>
                 <td class="text-center">{{fee.feeFlagName}}</td>
                 <td class="text-center">{{fee.feeTypeCdName}}</td>
                 <td class="text-center">{{fee.amountOwed}}</td>
@@ -105,20 +106,32 @@
                     <button class="btn btn-link btn-xs" v-on:click="_simplifyCarPayFeeHis(fee)">
                         <span><vc:i18n name="缴费历史" namespace="simplifyCarFee"></vc:i18n></span>
                     </button>
-                    <button class="btn btn-link btn-xs"
-                            v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')"
-                            v-on:click="_simplifyCarDeleteFee(fee)">
-                        <span><vc:i18n name="取消费用" namespace="simplifyCarFee"></vc:i18n></span>
+                    <div class="btn-group btn-link btn-xs">
+                        <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span><vc:i18n name="更多操作" namespace="simplifyCarFee"></vc:i18n></span>
                     </button>
-                    <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502021070488970005')"
-                            v-on:click="_simplifyCarFinishFee(fee)">
-                        <span><vc:i18n name="手工结束" namespace="simplifyCarFee"></vc:i18n></span>
-                    </button>
-                    <button class="btn btn-link btn-xs"
-                            v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
-                            v-on:click="_simplifyCarEditFee(fee)">
-                        <span><vc:i18n name="费用变更" namespace="simplifyCarFee"></vc:i18n></span>
-                    </button>
+                        <div class="dropdown-menu p-4 text-muted" style="max-width: 500px;">
+                            <p v-if="fee.isDefault == 'F' && vc.hasPrivilege('502020090604200029')">
+                                <a href="javascript:void(0)" v-on:click="_simplifyCarDeleteFee(fee)">
+                                    <span><vc:i18n name="取消费用" namespace="simplifyCarFee"></vc:i18n></span>
+                                </a>
+                            </p>
+                            <p v-if="vc.hasPrivilege('502021070488970005')">
+                                <a href="javascript:void(0)" v-on:click="_simplifyCarFinishFee(fee)">
+                                    <span><vc:i18n name="手工结束" namespace="simplifyCarFee"></vc:i18n></span>
+                                </a>
+                            </p>
+                            <p v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')">
+                                <a href="javascript:void(0)" v-on:click="_simplifyCarEditFee(fee)">
+                                    <span><vc:i18n name="费用变更" namespace="simplifyCarFee"></vc:i18n></span>
+                                </a>
+                            </p>
+                            <p>
+                                <a href="javascript:void(0)" v-on:click="_viewCarFee(fee)">
+                                    <span><vc:i18n name="费用详情" namespace="simplifyCarFee"></vc:i18n></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>

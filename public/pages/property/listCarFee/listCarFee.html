@@ -36,7 +36,8 @@
                         </thead>
                         <tbody>
                             <tr v-for="fee in listCarFeeInfo.fees">
-                                <td class="text-center">{{fee.feeName}}</td>
+                                <td class="text-center hand" @click="_viewCarFeeConfig(fee)" >{{fee.feeName}}
+                                    <span class="fa fa-info-circle" ></span></td>
                                 <td class="text-center">{{fee.feeFlagName}}</td>
                                 <td class="text-center">{{fee.feeTypeCdName}}</td>
                                 <td class="text-center">{{fee.amountOwed}}</td>
@@ -62,11 +63,13 @@
                                     <button class="btn btn-link btn-xs" v-if="fee.state != '2009001'
                                      && vc.hasPrivilege('502020082314267912')" v-on:click="_payFee(fee)"><span><vc:i18n name="缴费" namespace="listCarFee"></vc:i18n></span>
                                 </button>
-                                    <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)"><span><vc:i18n name="缴费历史" namespace="listCarFee"></vc:i18n></span>
+                                    <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)"><span><vc:i18n name="历史" namespace="listCarFee"></vc:i18n></span>
                                 </button>
-                                    <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')" v-on:click="_deleteFee(fee)"><span><vc:i18n name="取消费用" namespace="listCarFee"></vc:i18n></span>
+                                    <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')" v-on:click="_deleteFee(fee)"><span><vc:i18n name="取消" namespace="listCarFee"></vc:i18n></span>
                                 </button>
-                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_editFee(fee)"><span><vc:i18n name="费用变更" namespace="listCarFee"></vc:i18n></span>
+                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_editFee(fee)"><span><vc:i18n name="变更" namespace="listCarFee"></vc:i18n></span>
+                                </button>
+                                <button class="btn btn-link btn-xs"  v-on:click="_viewCarFee(fee)"><span><vc:i18n name="详情" namespace="listCarFee"></vc:i18n></span>
                                 </button>
                             </td>
                         </tr>
