@@ -114,26 +114,10 @@
                                 </td>
                                 <td class="text-center">{{machine.createTime}}</td>
                                 <td class="text-center">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)" v-show="machine.machineTypeCd == '9999'"><span><vc:i18n name="开门" namespace="machineManage"></vc:i18n></span>
+                                    <button class="btn-white btn btn-xs" @click="_openEditMachineModel(machine)"><span><vc:i18n name="修改设备" namespace="machineManage"></vc:i18n></span>
                                     </button>
-                                    <button class="btn-white btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span><vc:i18n name="变更" namespace="machineManage"></vc:i18n></span>
+                                    <button class="btn-white btn btn-xs" @click="_openDeleteMachineModel(machine)"><span><vc:i18n name="删除设备" namespace="machineManage"></vc:i18n></span>
                                     </button>
-                                    <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
-                                        <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)" v-on:click="_openEditMachineModel(machine)">
-                                                <span><vc:i18n name="修改设备" namespace="machineManage"></vc:i18n></span>
-                                            </a>
-                                            <span>|</span>
-                                            <a href="javascript:void(0)" v-on:click="_openDeleteMachineModel(machine)">
-                                                <span><vc:i18n name="删除设备" namespace="machineManage"></vc:i18n></span>
-                                            </a>
-                                        </p>
-                                        <p style="margin:10px 0;">
-                                            <a href="javascript:void(0)" v-on:click="_openRestartMachineModel(machine)">
-                                                <span><vc:i18n name="重启设备" namespace="machineManage"></vc:i18n></span>
-                                            </a>
-                                        </p>
-                                    </div>
                                 </td>
                             </tr>
                         </tbody>

@@ -242,7 +242,7 @@
                         }
                     });
 
-                });
+                }, 'ACCESS_CONTROL');
             },
             _loadEditAttrValue: function(_specCd, _values) {
                 vc.getAttrValue(_specCd, function(data) {
@@ -252,7 +252,7 @@
                         }
                     });
 
-                });
+                }, 'ACCESS_CONTROL');
             },
             setEditMachineTypeCd: function(_typeId) {
 

@@ -19,8 +19,8 @@
                     machineName: '',
                     machineIp: '',
                     machineMac: '',
-                    communityId: vc.getCurrentCommunity().communityId
-
+                    communityId: vc.getCurrentCommunity().communityId,
+                    domain: 'ACCESS_CONTROL',
                 },
                 listColumns: []
             }
