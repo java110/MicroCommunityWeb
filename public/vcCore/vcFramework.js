@@ -1701,6 +1701,16 @@
         dateTime = vcFramework.dateFormat(dateTime)
         return dateTime;
     }
+    vcFramework.dateAdd = function(dateTime) {
+        if (!dateTime || dateTime == '-') {
+            return dateTime
+        }
+        dateTime = new Date(dateTime);
+        dateTime = dateTime.setDate(dateTime.getDate() + 1);
+        dateTime = vcFramework.dateFormat(dateTime)
+        return dateTime;
+    }
+
 
     vcFramework.getDateYYYYMMDDHHMISS = function() {
         let date = new Date();

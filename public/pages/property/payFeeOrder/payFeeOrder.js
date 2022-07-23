@@ -449,7 +449,7 @@
             },
             //查询收据
             _queryPayFeeReceiptId: function(_data) {
-                if(!_data){
+                if (!_data) {
                     $("#payFeeResult").modal({
                         backdrop: "static", //点击空白处不关闭对话框
                         show: true
@@ -639,7 +639,9 @@
                     }
                 };
                 if (_cycles == 0) {
-                    param.params.custEndTime = $that.payFeeOrderInfo.custEndTime
+                    let _custEndTime = vc.dateAdd($that.payFeeOrderInfo.custEndTime);
+                    //前端选择会默认 少一天 所以 加上一天
+                    param.params.custEndTime = _custEndTime;
                 }
                 //发送get请求
                 vc.http.apiGet('/feeApi/listFeeObj',
@@ -648,6 +650,14 @@
                         let listRoomData = JSON.parse(json);
                         vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(listRoomData.data.feeTotalPrice);
                         vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
+
+                        let _deadlineTime = new Date(listRoomData.data.deadlineTime);
+                        let _maxEndTime = new Date(listRoomData.data.maxEndTime);
+                        if (_deadlineTime.getTime() > _maxEndTime.getTime()) {
+                            vc.toast('超过最大计费结束时间，' + vc.dateSub(listRoomData.data.maxEndTime, listRoomData.data.feeFlag) + ",请用更小缴费周期或者自定义结束时间缴费");
+                            return;
+                        }
+
                         vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                             feeId: $that.payFeeOrderInfo.feeId,
                             cycles: _cycles,

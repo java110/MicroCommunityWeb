@@ -31,8 +31,8 @@ let opts = {
 }
 
 
-app.use('/callComponent', proxy('http://192.168.100.108:8008', opts));
-app.use('/app', proxy('http://192.168.100.108:8008', opts));
+app.use('/callComponent', proxy('http://47.106.15.126:8088', opts));
+app.use('/app', proxy('http://47.106.15.126:8088', opts));
 
 
 // app.use('/callComponent', proxy('http://127.0.0.1:8008', opts));
