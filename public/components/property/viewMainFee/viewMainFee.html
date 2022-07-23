@@ -38,13 +38,16 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label class="col-form-label"><span><span><vc:i18n name="付费对象" namespace="viewMainFee"></vc:i18n></span></span>：</label>
-                            <label class="">{{mainFeeInfo.payerObjName}}</label>
+                            <label class="">{{mainFeeInfo.payerObjName}}
+                                <span @click="_viewRoomData()" v-if="mainFeeInfo.payerObjType == '3333'"><vc:create path="property/viewRoomData"></vc:create></span>
+                            </label>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label class="col-form-label"><span><span><vc:i18n name="费用项" namespace="viewMainFee"></vc:i18n></span></span>：</label>
-                            <label class="">{{mainFeeInfo.feeName}}</label>
+                            <label class="hand" @click="_viewFeeConfig()">{{mainFeeInfo.feeName}}<span><vc:create path="property/viewFeeConfigData"></vc:create></span></label>
+
                         </div>
                     </div>
                     <div class="col-sm-4">

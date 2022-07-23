@@ -50,7 +50,8 @@
                 orderId: '',
                 offlinePayFeeSwitch: '1',
                 flag: '',
-                custEndTime: ''
+                custEndTime: '',
+                configId: '',
             }
         },
         watch: {
@@ -749,6 +750,21 @@
                     }
                 );
             },
+            _viewFeeConfig: function() {
+                vc.emit('viewFeeConfigData', 'showData', {
+                    configId: $that.payFeeOrderInfo.configId
+                })
+            },
+            _viewFee: function() {
+                vc.emit('viewFeeData', 'showData', {
+                    feeId: $that.payFeeOrderInfo.feeId
+                })
+            },
+            _viewRoomData: function() {
+                vc.emit('viewRoomData', 'showData', {
+                    roomId: $that.payFeeOrderInfo.payerObjId
+                })
+            }
         }
     });
 })(window.vc);

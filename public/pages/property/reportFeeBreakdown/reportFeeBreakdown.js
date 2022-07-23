@@ -282,7 +282,12 @@
                 }
                 vc.jumpToPage('/#/pages/property/reportFeeBreakdownDetail?configId=' + _fee.configId +
                     "&" + vc.objToGetParam(_condition))
-            }
+            },
+            _viewFeeConfig: function(_fee) {
+                vc.emit('viewFeeConfigData', 'showData', {
+                    configId: _fee.configId
+                })
+            },
         }
     });
 })(window.vc);

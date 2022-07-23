@@ -1,7 +1,7 @@
 /**
  权限组
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             feeName: vc.propTypes.string,
@@ -36,24 +36,24 @@
                 payerObjName: '',
                 feeAttrs: [],
                 carTypeCd: '',
-                batchId:''
+                batchId: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //加载 业主信息
             var _feeId = vc.getParam('feeId')
-            //$that.mainFeeInfo.builtUpArea = vc.getParam('builtUpArea')
+                //$that.mainFeeInfo.builtUpArea = vc.getParam('builtUpArea')
             if (vc.notNull(_feeId)) {
                 vc.component.loadMainFeeInfo({
                     feeId: _feeId
                 });
             }
         },
-        _initEvent: function () {
-            vc.on('viewMainFee', 'chooseRoom', function (_room) {
+        _initEvent: function() {
+            vc.on('viewMainFee', 'chooseRoom', function(_room) {
                 vc.component.loadMainFeeInfo(_room);
             });
-            vc.on('viewMainFee', 'reloadFee', function (_room) {
+            vc.on('viewMainFee', 'reloadFee', function(_room) {
                 if (vc.component.mainFeeInfo.roomId != '') {
                     vc.component.loadMainFeeInfo({
                         roomId: vc.component.mainFeeInfo.roomId
@@ -62,17 +62,17 @@
             });
         },
         methods: {
-            openSearchRoomModel: function () {
+            openSearchRoomModel: function() {
                 vc.emit('searchRoom', 'openSearchRoomModel', {});
             },
-            openPayModel: function () {
+            openPayModel: function() {
                 vc.emit($props.payName, 'openPayModel', {
                     feeId: vc.component.mainFeeInfo.feeId,
                     configId: vc.component.mainFeeInfo.configId,
                     builtUpArea: vc.component.mainFeeInfo.builtUpArea
                 });
             },
-            loadMainFeeInfo: function (_fee) {
+            loadMainFeeInfo: function(_fee) {
                 //vc.copyObject(_fee,vc.component.mainFeeInfo);
                 let param = {
                     params: {
@@ -86,7 +86,7 @@
                 vc.http.get('viewMainFee',
                     'getFee',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _fee = JSON.parse(json).fees[0];
                         vc.copyObject(_fee, vc.component.mainFeeInfo);
                         $that.mainFeeInfo.feeAttrs = _fee.feeAttrs;
@@ -100,15 +100,16 @@
                         } else {
                             $that._loadContractAndOwnerByContractId();
                         }
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openCallBackOwner: function () {
+            _openCallBackOwner: function() {
                 vc.getBack();
             },
-            _getDeadlineTime: function (_fee) {
+            _getDeadlineTime: function(_fee) {
                 if (_fee.endTime == _fee.deadlineTime) {
                     return "-";
                 }
@@ -117,13 +118,13 @@
                 }
                 return _fee.deadlineTime;
             },
-            _getEndTime: function (_fee) {
+            _getEndTime: function(_fee) {
                 if (_fee.state == '2009001') {
                     return "-";
                 }
                 return _fee.endTime;
             },
-            _loadRoomAndOwnerByRoomId: function () {
+            _loadRoomAndOwnerByRoomId: function() {
                 let param = {
                     params: {
                         page: 1,
@@ -136,7 +137,7 @@
                 vc.http.get('roomCreateFee',
                     'listRoom',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listRoomData = JSON.parse(json);
                         let total = listRoomData.total;
                         if (total < 1) {
@@ -151,12 +152,13 @@
                         }
                         $that.mainFeeInfo.payerObjName = _payerObjName;
                         $that.mainFeeInfo.builtUpArea = _room.builtUpArea;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadContractAndOwnerByContractId: function () {
+            _loadContractAndOwnerByContractId: function() {
                 let param = {
                     params: {
                         page: 1,
@@ -168,7 +170,7 @@
                 //发送get请求
                 vc.http.apiGet('/contract/queryContract',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listRoomData = JSON.parse(json);
                         let total = listRoomData.total;
                         if (total < 1) {
@@ -183,12 +185,13 @@
                         }
                         $that.mainFeeInfo.payerObjName = _payerObjName;
                         $that.mainFeeInfo.builtUpArea = _contract.builtUpArea;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadRoomAndOwnerByCarId: function () {
+            _loadRoomAndOwnerByCarId: function() {
                 let param = {
                     params: {
                         page: 1,
@@ -201,7 +204,7 @@
                 //发送get请求
                 vc.http.apiGet('owner.queryOwnerCars',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _json = JSON.parse(json);
                         let total = _json.total;
                         let ownerCars = _json.data;
@@ -219,11 +222,22 @@
                             _payerObjName += ('(无业主)')
                         }
                         $that.mainFeeInfo.payerObjName = _payerObjName;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
+            _viewFeeConfig: function() {
+                vc.emit('viewFeeConfigData', 'showData', {
+                    configId: $that.mainFeeInfo.configId
+                })
+            },
+            _viewRoomData: function() {
+                vc.emit('viewRoomData', 'showData', {
+                    roomId: $that.mainFeeInfo.payerObjId
+                })
+            }
         }
     });
 })(window.vc);

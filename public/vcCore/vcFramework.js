@@ -1877,6 +1877,15 @@
         let _newDate = new Date(nextY, nextM, day)
         return _newDate.getFullYear() + '-' + add0(_newDate.getMonth() + 1) + '-' + add0(_newDate.getDate());
     };
+
+    vcFramework.popover = function(_className) {
+        $("." + _className).mouseover(() => {
+            $("." + _className).popover('show');
+        })
+        $("." + _className).mouseleave(() => {
+            $("." + _className).popover('hide');
+        })
+    }
 })(window.vcFramework);
 
 (function(vcFramework) {
@@ -2702,6 +2711,8 @@
         }
         return this + "";
     }
+
+
 })(window.vcFramework);
 
 (function(vcFramework) {
