@@ -9,7 +9,8 @@
         data: {
             orgTreeInfo: {
                 orgs: [],
-                orgId: ''
+                orgId: '',
+                curOrg:{}
             }
         },
         _initMethod: function() {
@@ -18,9 +19,6 @@
         },
         _initEvent: function() {
             vc.on('orgTree', 'refreshTree', function(_param) {
-                if (_param) {
-                    $that.orgTreeInfo.orgId = _param.orgId;
-                }
                 $that._loadOrgs();
             });
         },
@@ -71,17 +69,43 @@
                         //$("#jstree_org").jstree("close_all");
                         return;
                     }
-                    let _selected = data.selected[0];
+                    $that.orgTreeInfo.curOrg = data.node.original;
+                    $that.orgTreeInfo.curOrg.orgId = $that.orgTreeInfo.curOrg.id;
 
                     vc.emit($props.callBackListener, 'switchOrg', {
-                        orgId: data.node.original.orgId
+                        orgId: data.node.original.id,
+                        orgName:$that.orgTreeInfo.curOrg.text
                     })
 
                 });
-                $('#jstree_org')
-                    .on('click', '.jstree-anchor', function(e) {
-                        $(this).jstree(true).toggle_node(e.target);
-                    })
+                // $('#jstree_org')
+                //     .on('click', '.jstree-anchor', function(e) {
+                //         $(this).jstree(true).toggle_node(e.target);
+                //     })
+            },
+            _openAddOrgModal: function () {
+                if(!$that.orgTreeInfo.curOrg.id){
+                    vc.toast('未选择组织');
+                    return;
+                }
+                vc.emit('addOrg', 'openAddOrgModal', {
+                    parentOrgId: $that.orgTreeInfo.curOrg.id,
+                    parentOrgName:$that.orgTreeInfo.curOrg.text
+                });
+            },
+            _openEditOrgModel: function () {
+                if(!$that.orgTreeInfo.curOrg.id){
+                    vc.toast('未选择组织');
+                    return;
+                }
+                vc.emit('editOrg', 'openEditOrgModal', $that.orgTreeInfo.curOrg);
+            },
+            _openDeleteOrgModel: function () {
+                if(!$that.orgTreeInfo.curOrg.id){
+                    vc.toast('未选择组织');
+                    return;
+                }
+                vc.emit('deleteOrg', 'openDeleteOrgModal',$that.orgTreeInfo.curOrg);
             },
 
         }
