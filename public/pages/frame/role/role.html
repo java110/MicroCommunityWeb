@@ -13,8 +13,12 @@
                     <div class="item margin-right" :class="{'active':roleInfo.tabName == 'community'}" @click="_changeRoleTab('community')">小区授权</div>
                     <div class="item margin-right" :class="{'active':roleInfo.tabName == 'staff'}" @click="_changeRoleTab('staff')">员工关联</div>
                 </div>
+
                 <div v-if="roleInfo.tabName == 'privilege'">
                     <vc:create path="frame/privilegeTree"></vc:create>
+                </div>
+                <div v-if="roleInfo.tabName == 'community'">
+                    <vc:create path="frame/roleCOmmunity"></vc:create>
                 </div>
             </div>
         </div>
