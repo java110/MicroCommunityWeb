@@ -11,6 +11,7 @@
                 orgName: '',
                 orgLevel: '',
                 parentOrgId: '',
+                parentOrgName: '',
                 description: '',
                 belongCommunityId: '',
                 parentOrg:[],
@@ -18,16 +19,6 @@
 
             },
             flagOrgName:false
-        },
-        watch: {
-            "addOrgInfo.orgLevel":
-                {//深度监听，可监听到对象、数组的变化
-                    handler(val, oldVal) {
-                        vc.component._addOrgListParentOrgInfo();
-                    }
-                    ,
-                    deep: true
-                }
         }
         ,
         _initMethod: function () {
@@ -38,19 +29,15 @@
             vc.on('addOrg', 'openAddOrgModal', function (_param) {
                 if (_param.hasOwnProperty('parentOrgId')) {
                     vc.component.addOrgInfo.parentOrgId = _param.parentOrgId;
-                    vc.component.addOrgInfo.orgLevel = _param.orgLevel;
-                    if(_param.orgLevel == 3){ // 部门是不能改小区的，是依赖分公司的小区信息
-                        vc.component.addOrgInfo.belongCommunityId = _param.belongCommunityId;
-                    }
+                    vc.component.addOrgInfo.parentOrgName = _param.parentOrgName;
+                    
                 }
-                //查询入驻的小区
-                vc.component._loadAddEnterCommunitys();
                 $('#addOrgModel').modal('show');
             });
         }
         ,
         methods: {
-            addOrgValidate() {
+            addOrgValidate:function() {
                 return vc.validate.validate({
                     addOrgInfo: vc.component.addOrgInfo
                 }, {
@@ -64,18 +51,6 @@
                             limit: "maxin",
                             param: "2,50",
                             errInfo: "组织名称长度为2至50"
-                        },
-                    ],
-                    'addOrgInfo.orgLevel': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "组织级别不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "组织级别错误"
                         },
                     ],
                     'addOrgInfo.parentOrgId': [
@@ -104,20 +79,8 @@
             }
             ,
             saveOrgInfo: function () {
-                if(vc.component.addOrgInfo.orgLevel==2){
-                    if(vc.component.flagOrgName){
-                        vc.toast("公司名重复");
-                        return;
-                    }
-                }else if(vc.component.addOrgInfo.orgLevel==3){
-                    if(vc.component.flagOrgName){
-                        vc.toast("组织名称重复");
-                        return;
-                    }
-                }
                 if (!vc.component.addOrgValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
 
@@ -129,9 +92,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'addOrg',
-                    'save',
+                vc.http.apiPost(
+                    '/org.saveOrg',
                     JSON.stringify(vc.component.addOrgInfo),
                     {
                         emulateJSON: true
@@ -142,7 +104,7 @@
                             //关闭model
                             $('#addOrgModel').modal('hide');
                             vc.component.clearAddOrgInfo();
-                            vc.emit('orgManage', 'listOrg', {});
+                            vc.emit('orgTree', 'refreshTree', {});
 
                             return;
                         }
@@ -162,6 +124,7 @@
                     orgName: '',
                     orgLevel: '',
                     parentOrgId: '',
+                    parentOrgName: '',
                     description: '',
                     parentOrg: [],
                     belongCommunityId: '',
@@ -193,26 +156,6 @@
                     function (json, res) {
                         var _orgManageInfo = JSON.parse(json);
                         vc.component.addOrgInfo.parentOrg = _orgManageInfo.orgs;
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-            _loadAddEnterCommunitys:function () {
-                //belongCommunitys
-                var param = {
-                    params:{
-                        _uid:'mmmllnnjhhjjh'
-                    }
-                }
-
-                //发送get请求
-                vc.http.get('addOrg',
-                    'listEnterCommunitys',
-                    param,
-                    function (json, res) {
-                        var _enterCommunitys = JSON.parse(json);
-                        vc.component.addOrgInfo.belongCommunitys = _enterCommunitys;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

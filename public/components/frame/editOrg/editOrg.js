@@ -7,19 +7,12 @@
                 orgName: '',
                 orgLevel: '',
                 parentOrgId: '',
+                parentOrgName:'',
                 belongCommunityId: '',
                 description: '',
                 parentOrg: [],
                 belongCommunitys:[]
 
-            }
-        },
-        watch: {
-            "editOrgInfo.orgLevel": {//深度监听，可监听到对象、数组的变化
-                handler(val, oldVal) {
-                    vc.component._editOrgListParentOrgInfo();
-                },
-                deep: true
             }
         },
         _initMethod: function () {
@@ -28,9 +21,9 @@
         _initEvent: function () {
             vc.on('editOrg', 'openEditOrgModal', function (_params) {
                 vc.component.refreshEditOrgInfo();
-                vc.component._loadEditEnterCommunitys();
                 $('#editOrgModel').modal('show');
                 vc.copyObject(_params, vc.component.editOrgInfo);
+                $that._listEditOrgs();
                 //vc.component.editOrgInfo.communityId = vc.component.editOrgInfo.belongCommunityId;
             });
         },
@@ -49,18 +42,6 @@
                             limit: "maxin",
                             param: "2,50",
                             errInfo: "组织名称长度为2至50"
-                        },
-                    ],
-                    'editOrgInfo.orgLevel': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "组织级别不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "组织级别错误"
                         },
                     ],
                     'editOrgInfo.parentOrgId': [
@@ -98,9 +79,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editOrg',
-                    'update',
+                vc.http.apiPost(
+                    '/org.updateOrg',
                     JSON.stringify(vc.component.editOrgInfo),
                     {
                         emulateJSON: true
@@ -110,7 +90,7 @@
                         if (res.status == 200) {
                             //关闭model
                             $('#editOrgModel').modal('hide');
-                            vc.emit('orgManage', 'listOrg', {});
+                            vc.emit('orgTree', 'refreshTree', {});
                             return;
                         }
                         vc.toast(json);
@@ -127,6 +107,7 @@
                     orgName: '',
                     orgLevel: '',
                     parentOrgId: '',
+                    parentOrgName:'',
                     description: '',
                     belongCommunityId: '',
                     communityId: '',
@@ -163,26 +144,26 @@
                     }
                 );
             },
-            _loadEditEnterCommunitys: function () {
-                //belongCommunitys
-                var param = {
+            _listEditOrgs: function (_page, _rows) {
+                let param = {
                     params: {
-                        _uid: 'mmmllnnjhhjjh'
+                        page:1,
+                        row:1,
+                        orgId:$that.editOrgInfo.orgId
                     }
-                }
+                };
 
                 //发送get请求
-                vc.http.get('editOrg',
-                    'listEnterCommunitys',
+                vc.http.apiGet('/org.listOrgs',
                     param,
                     function (json, res) {
-                        var _enterCommunitys = JSON.parse(json);
-                        vc.component.editOrgInfo.belongCommunitys = _enterCommunitys;
+                        let _orgManageInfo = JSON.parse(json);
+                       vc.copyObject(_orgManageInfo.orgs[0],vc.component.editOrgInfo)
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-            }
+            },
         }
     });
 

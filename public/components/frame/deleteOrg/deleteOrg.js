@@ -30,7 +30,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#deleteOrgModel').modal('hide');
-                            vc.emit('orgManage', 'listOrg', {});
+                            vc.emit('orgTree', 'refreshTree', {});
                             return;
                         }
                         vc.toast(_json.msg);

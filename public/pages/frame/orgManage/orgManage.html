@@ -1,18 +1,4 @@
 <div>
-    <div class="bg-white padding-sm">
-        <button type="button" class="btn btn-white btn-sm" v-on:click="_openAddOrgModal()">
-            添加组织
-        </button>
-        <button type="button" class="btn btn-white btn-sm" v-on:click="_openEditOrgModel()">
-            修改组织
-        </button>
-        <button type="button" class="btn btn-white btn-sm" v-on:click="_openDeleteOrgModel()">
-            删除组织
-        </button>
-        <button type="button" class="btn btn-white btn-sm" v-on:click="_openDeleteRoomFloorModal()">
-            关联员工
-        </button>
-    </div>
     <div class="row">
         <div class="col-md-2" style="padding-right:0px">
             <vc:create path="frame/orgTree" callBackListener="org"></vc:create>
@@ -29,7 +15,7 @@
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
                                 <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{roomInfo.moreCondition == true?'隐藏':'更多'}}
+                                v-on:click="_moreCondition()">{{orgManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button> -->
                             </div>
                         </div>
@@ -38,34 +24,15 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写房屋编号  格式 楼栋-单元-房屋','room')" class="form-control form-control-sm" v-model="roomInfo.conditions.roomId">
+                                        <input type="text" :placeholder="vc.i18n('请填写员工名称','org')" v-model="orgManageInfo.conditions.staffName" class="form-control form-control-sm" >
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.state">
-                                        <option selected value="">{{vc.i18n('请选择状态','room')}}</option>
-                                        <option v-for="(item,index) in roomInfo.states" :key="index"
-                                                :value="item.statusCd">
-                                            {{item.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-3">
-                                    <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.conditions.roomSubType">
-                                        <option selected value="">{{vc.i18n('必填，请选择房屋类型','room')}}</option>
-                                        <option :value="item.statusCd" v-for="(item,index) in roomInfo.roomSubTypes">
-                                            {{item.name}}
-                                        </option>
-                                    </select>
-                                </div>
+                                
                                 <div class="col-sm-2">
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRoomMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOrgMethod()">
                                         <i class="fa fa-search"></i> <span>
                                             <vc:i18n name="查询" namespace="room"></vc:i18n>
                                         </span>
-                                    </button>
-                                    <button type="button" class="btn btn-white btn-sm" v-on:click="_resetRoomInfo()">
-                                        重置
                                     </button>
                                 </div>
                             </div>
@@ -75,143 +42,69 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="ibox">
-                        <div class="ibox-content border-radius">
-                            <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <span v-if="orgManageInfo.orgName">{{orgManageInfo.orgName}}<vc:i18n name="员工" namespace="staff"></vc:i18n></span>
+                                <span v-else><vc:i18n name="关联员工" namespace="staff"></vc:i18n></span>
+
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
+                                <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStaffStepPage()">
+                                    <i class="fa fa-plus"></i>
+                                    <span><vc:i18n name="关联员工" namespace="staff"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
                                     <tr>
-                                        <!-- <th><span><vc:i18n name="房屋" namespace="room"></vc:i18n></span>ID</th> -->
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="房屋" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="楼层" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="业主" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="电话" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="类型" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="建筑面积" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="室内面积" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="租金" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="房屋状态" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <span>
-                                                <vc:i18n name="入住时间" namespace="room"></vc:i18n>
-                                            </span>
-                                        </th>
-                                        <th v-for="(item,index) in roomInfo.listColumns" class="text-center">{{item}}
+                                        <th class="text-center">
+                                            <span><vc:i18n name="名称" namespace="staff"></vc:i18n></span>
                                         </th>
                                         <th class="text-center">
-                                            <span>
-                                                <vc:i18n name="操作" namespace="room"></vc:i18n>
-                                            </span>
+                                            <span><vc:i18n name="手机号" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="岗位" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="邮箱" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="地址" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="性别" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                       
+                                        <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="staff"></vc:i18n></span>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="room in roomInfo.rooms">
-                                        <!-- <td>
-                                {{room.roomId}}
-                            </td> -->
+                                    <tr class="gradeX" v-for="staff in orgManageInfo.staffs">
+                                        <td class="text-center">{{staff.name}}</td>
+                                        <td class="text-center">{{staff.tel}}</td>
+                                        <td class="text-center">{{staff.relCdName}}</td>
+                                        <td class="text-center">{{staff.email}}</td>
+                                        <td class="text-center">{{staff.address}}</td>
+                                        <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
+                                        
                                         <td class="text-center">
-                                            {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.layer}}
-                                            <span>
-                                                <vc:i18n name="层" namespace="room"></vc:i18n>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.ownerName}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.link}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.roomSubTypeName}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.builtUpArea}}
-                                            <span>
-                                                <vc:i18n name="平方米" namespace="room"></vc:i18n>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.roomArea}}
-                                            <span>
-                                                <vc:i18n name="平方米" namespace="room"></vc:i18n>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.roomRent}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.stateName}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{room.startTime}}
-                                        </td>
-                                        <td v-for="item in room.listValues" class="text-center">
-                                            {{item}}
-                                        </td>
-                                        <td class="text-center">
-                                            <!-- <div class="btn-group">
-                                                <button class="btn-white btn btn-xs" v-on:click="_openRoomCreateFeeComboModal(room)"><span>
-                                                        <vc:i18n name="费用套餐" namespace="room"></vc:i18n>
-                                                    </span>
-                                                </button>
-                                            </div> -->
-                                            <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
-                                                <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(room)"><span>
-                                                        <vc:i18n name="修改" namespace="room"></vc:i18n>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div class="btn-group" v-if="vc.hasPrivilege('502020082417457942')">
-                                                <button class="btn-white btn btn-xs" v-on:click="_openDelRoomModel(room)"><span>
-                                                        <vc:i18n name="删除" namespace="room"></vc:i18n>
-                                                    </span>
-                                                </button>
+                                            <div  class="btn-group">
+                                                <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)">
+                                                <span><vc:i18n name="删除" namespace="staff"></vc:i18n></span>
+                                            </button>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="12">
+                                        <td colspan="10">
                                             <ul class="pagination float-right"></ul>
                                         </td>
                                     </tr>
@@ -220,14 +113,7 @@
                             <!-- 分页 -->
                             <div class="row margin-top-xs">
                                 <div class="col-sm-7">
-                                    <div>
-                                        房屋状态 分为：未销售，未入住，已交房，已装修，已入住 等状态
-                                    </div>
-                                    <div>1、未销售表示 房屋和业主之间还没有任何关系，所以修改时状态不能手工修改 需要业主入住房屋的方式 将未销售改为已入住</div>
-                                    <div>2、未入住 已交房 已装修 已入住 状态表示业主和房屋之间已经有关系 可以相互修改，主要作用为在房屋创建费用时根据不同的状态去创建不同的费用</div>
-                                    <div>
-                                        租金：主要用于园区类或者房屋出租比较多的物业使用，小区物业忽略
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-sm-5 float-right">
                                     <vc:create path="frame/pagination"></vc:create>
@@ -239,7 +125,5 @@
             </div>
         </div>
     </div>
-    <vc:create path="frame/addOrg" callBackListener="" callBackFunction=""></vc:create>
-    <vc:create path="frame/editOrg"></vc:create>
-    <vc:create path="frame/deleteOrg"></vc:create>
+   
 </div>
