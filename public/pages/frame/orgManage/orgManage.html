@@ -95,7 +95,7 @@
 
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)">
+                                                <button class="btn-white btn btn-xs" v-on:click="_openDeleteOrgRelStaff(staff)">
                                                 <span><vc:i18n name="删除" namespace="staff"></vc:i18n></span>
                                             </button>
                                             </div>
@@ -125,5 +125,6 @@
             </div>
         </div>
         <vc:create path="frame/orgRelStaff"></vc:create>
+        <vc:create path="frame/deleteOrgRelStaff"></vc:create>
     </div>
 </div>

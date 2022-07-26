@@ -82,7 +82,12 @@
                 vc.emit('orgRelStaff', 'orgRelStaffModel', {
                     orgId: $that.orgManageInfo.conditions.orgId
                 })
-            }
+            },
+            _openDeleteOrgRelStaff: function(_rel) {
+                vc.emit('deleteOrgRelStaff', 'openDeleteOrgModal', _rel)
+            },
+
+
 
         }
     });
