@@ -3,18 +3,33 @@
     vc.extends({
         data: {
             addStaffInfo: {
+                orgId: '',
+                orgName: '',
                 username: '',
+                sex: '',
                 email: '',
                 tel: '',
-                sex: '',
                 address: '',
-                errorInfo: ''
+                relCd: '',
+                relCds: [],
+                photo: ''
             }
         },
         _initMethod: function() {
-
+            vc.getDict('u_org_staff_rel', "rel_cd", function(_data) {
+                vc.component.addStaffInfo.relCds = _data;
+            });
         },
         _initEvent: function() {
+
+            vc.on('addStaff', 'notifyUploadCoverImage', function(data) {
+                $that.addStaffInfo.photo = data;
+            });
+
+            vc.on('addStaff', 'switchOrg', function(_org) {
+                $that.addStaffInfo.orgId = _org.orgId;
+                $that.addStaffInfo.orgName = _org.allOrgName;
+            });
 
         },
         methods: {
@@ -25,88 +40,93 @@
                     'addStaffInfo.username': [{
                             limit: "required",
                             param: "",
-                            errInfo: "用户名不能为空"
+                            errInfo: "员工名称不能为空"
                         },
                         {
                             limit: "maxin",
                             param: "2,10",
-                            errInfo: "用户名长度必须在2位至10位"
+                            errInfo: "员工名称长度必须在2位至10位"
                         },
                     ],
-                    'addStaffInfo.email': [{
+                    'addStaffInfo.sex': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "员工性别不能为空"
+                    }, ],
+                    'addStaffInfo.relCd': [{
                             limit: "required",
                             param: "",
-                            errInfo: "密码不能为空"
+                            errInfo: "员工岗位不能为空"
                         },
                         {
-                            limit: "email",
+                            limit: "num",
                             param: "",
-                            errInfo: "不是有效的邮箱"
+                            errInfo: "员工岗位错误"
                         },
                     ],
                     'addStaffInfo.tel': [{
                         limit: "required",
                         param: "",
-                        errInfo: "手机号不能为空"
-                    }],
-                    'addStaffInfo.sex': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "性别不能为空"
+                        errInfo: "联系方式不能为空"
                     }],
                     'addStaffInfo.address': [{
                             limit: "required",
                             param: "",
-                            errInfo: "地址不能为空"
+                            errInfo: "家庭住址不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "200",
-                            errInfo: "地址长度不能超过200位"
+                            errInfo: "家庭住址不能超过200位"
                         },
-                    ]
+                    ],
 
                 });
             },
             saveStaffInfo: function() {
                 if (!vc.component.addStaffValidate()) {
-                    vc.component.addStaffInfo.errorInfo = vc.validate.errInfo;
+                    vc.toast(vc.validate.errInfo);
                     return;
                 }
 
-                vc.component.addStaffInfo.errorInfo = "";
-                vc.http.post(
-                    'addStaff',
-                    'saveStaff',
+                vc.http.apiPost(
+                    '/user.staff.add',
                     JSON.stringify(vc.component.addStaffInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json)
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addStaffModel').modal('hide');
                             vc.component.clearAddStaffInfo();
-                            vc.component.$emit('addStaff_reload_event', {});
+                            //vc.goBack();
                             return;
                         }
-                        vc.component.addStaffInfo.errorInfo = json;
+                        vc.toast(_json.msg);
                     },
                     function(errInfo, error) {
-                        console.log('请求失败处理');
-
-                        vc.component.addStaffInfo.errorInfo = errInfo;
+                        vc.toast(errInfo);
                     });
             },
             clearAddStaffInfo: function() {
+                let _relCds = $that.addStaffInfo.relCds;
                 vc.component.addStaffInfo = {
+                    orgId: '',
+                    orgName: '',
                     username: '',
+                    sex: '',
                     email: '',
                     tel: '',
-                    sex: '',
                     address: '',
-                    errorInfo: ''
+                    relCd: '',
+                    relCds: _relCds,
+                    photo: ''
                 };
+            },
+            _addStaffChangeOrg: function() {
+                vc.emit('chooseOrgTree', 'openOrgModal', {});
             }
         }
     });
