@@ -24,10 +24,10 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写员工名称','org')" v-model="orgManageInfo.conditions.staffName" class="form-control form-control-sm" >
+                                        <input type="text" :placeholder="vc.i18n('请填写员工名称','org')" v-model="orgManageInfo.conditions.staffName" class="form-control form-control-sm">
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-sm-2">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOrgMethod()">
                                         <i class="fa fa-search"></i> <span>
@@ -50,7 +50,7 @@
 
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
-                                <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStaffStepPage()">
+                                <button type="button" class="btn btn-primary btn-sm" v-on:click="_openOrgRelStaff()">
                                     <i class="fa fa-plus"></i>
                                     <span><vc:i18n name="关联员工" namespace="staff"></vc:i18n></span>
                                 </button>
@@ -78,7 +78,7 @@
                                         <th class="text-center">
                                             <span><vc:i18n name="性别" namespace="staff"></vc:i18n></span>
                                         </th>
-                                       
+
                                         <th class="text-center">
                                             <span><vc:i18n name="操作" namespace="staff"></vc:i18n></span>
                                         </th>
@@ -92,9 +92,9 @@
                                         <td class="text-center">{{staff.email}}</td>
                                         <td class="text-center">{{staff.address}}</td>
                                         <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
-                                        
+
                                         <td class="text-center">
-                                            <div  class="btn-group">
+                                            <div class="btn-group">
                                                 <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)">
                                                 <span><vc:i18n name="删除" namespace="staff"></vc:i18n></span>
                                             </button>
@@ -113,7 +113,7 @@
                             <!-- 分页 -->
                             <div class="row margin-top-xs">
                                 <div class="col-sm-7">
-                                    
+
                                 </div>
                                 <div class="col-sm-5 float-right">
                                     <vc:create path="frame/pagination"></vc:create>
@@ -124,6 +124,6 @@
                 </div>
             </div>
         </div>
+        <vc:create path="frame/orgRelStaff"></vc:create>
     </div>
-   
 </div>

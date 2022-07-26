@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     var ALL_ROWS = 100;
@@ -9,30 +9,33 @@
         data: {
             orgManageInfo: {
                 staffs: [],
-                orgName:'',
+                orgName: '',
                 conditions: {
                     orgId: '',
-                    staffName:''
+                    staffName: ''
                 }
             }
         },
-        _initMethod: function () {
-          
-        },
-        _initEvent: function () {
+        _initMethod: function() {
 
-            vc.on('org', 'switchOrg', function (_param) {
+        },
+        _initEvent: function() {
+
+            vc.on('org', 'switchOrg', function(_param) {
                 $that.orgManageInfo.conditions.orgId = _param.orgId;
                 $that.orgManageInfo.orgName = _param.orgName;
                 vc.component._listStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('orgManage', 'notice', function() {
+                vc.component._listStaffs(1, DEFAULT_ROWS);
+            });
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listStaffs(_currentPage, DEFAULT_ROWS);
             });
 
         },
         methods: {
-            _listStaffs: function (_page,_row) {
+            _listStaffs: function(_page, _row) {
                 let param = {
                     params: {
                         page: _page,
@@ -44,7 +47,7 @@
                 //发送get请求
                 vc.http.apiGet('/query.staff.infos',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _orgManageInfo = JSON.parse(json);
                         vc.component.orgManageInfo.total = _orgManageInfo.total;
                         vc.component.orgManageInfo.records = _orgManageInfo.records;
@@ -54,23 +57,32 @@
                             dataCount: vc.component.orgManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            
-            _queryOrgMethod: function () {
+
+            _queryOrgMethod: function() {
                 vc.component._listStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.orgManageInfo.moreCondition) {
                     vc.component.orgManageInfo.moreCondition = false;
                 } else {
                     vc.component.orgManageInfo.moreCondition = true;
                 }
             },
-
+            _openOrgRelStaff: function() {
+                if (!$that.orgManageInfo.conditions.orgId) {
+                    vc.toast('请选择组织');
+                    return;
+                }
+                vc.emit('orgRelStaff', 'orgRelStaffModel', {
+                    orgId: $that.orgManageInfo.conditions.orgId
+                })
+            }
 
         }
     });

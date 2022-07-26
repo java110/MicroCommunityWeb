@@ -37,6 +37,7 @@
                         var indexData = JSON.parse(json);
                         vc.copyObject(indexData, vc.component.indexContextInfo);
                         let _dom = document.getElementById('ownerCount');
+                        if (!_dom) { return; }
                         $that._initCharts2(indexData.ownerCount - indexData.noEnterRoomCount, indexData.noEnterRoomCount, _dom, vc.i18n('业主信息', 'indexContext'), vc.i18n('已入住', 'indexContext'), vc.i18n('未入住', 'indexContext'));
                         _dom = document.getElementById('roomCount');
                         $that._initCharts2(indexData.roomCount - indexData.freeRoomCount, indexData.freeRoomCount, _dom, vc.i18n('房屋信息', 'indexContext'), vc.i18n('已入住', 'indexContext'), vc.i18n('空闲', 'indexContext'));
