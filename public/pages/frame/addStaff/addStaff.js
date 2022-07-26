@@ -89,6 +89,8 @@
                     return;
                 }
 
+                $that.addStaffInfo.name = $that.addStaffInfo.username;
+
                 vc.http.apiPost(
                     '/user.staff.add',
                     JSON.stringify(vc.component.addStaffInfo), {
@@ -101,7 +103,7 @@
                             //关闭model
                             $('#addStaffModel').modal('hide');
                             vc.component.clearAddStaffInfo();
-                            //vc.goBack();
+                            vc.goBack();
                             return;
                         }
                         vc.toast(_json.msg);

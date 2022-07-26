@@ -14,6 +14,7 @@
     --vc-nav-bg: #1D1F2D;
     --vc-nav-color: #888888;
     --vc-nav-active-color: #FFFFFF;
+    --vc-org-bg-active-color: #EAF0FE;
 }
 
 .margin-0 {
@@ -499,8 +500,13 @@ ul li {
     border-radius: 10px;
 }
 
-.hand{
+.hand {
     cursor: pointer;
+}
+
+.line-x {
+    width: 100%;
+    border-bottom: 2px solid #F6F6F7;
 }
 
 html,
@@ -822,3 +828,37 @@ body,
 nav-link nav-link-breadcrumb active:active {
     background-color: red;
 }
+
+.vc-org ul li {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.vc-org ul li:hover {
+    background-color: var(--vc-org-bg-active-color);
+}
+
+.vc-org .active {
+    background-color: var(--vc-org-bg-active-color);
+}
+
+/* .vc-org .role-title{
+
+} */
+
+.vc-org-page .role-context {
+    color: #888888;
+}
+
+.vc-org-page .role-menu {
+    margin-top: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.vc-org-page .role-menu .item:hover ,.vc-org-page .role-menu .active{
+    color: #1890FF;
+}
+

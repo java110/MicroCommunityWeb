@@ -68,10 +68,7 @@
                                     <span><vc:i18n name="名称" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="关联组织" namespace="staff"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="岗位" namespace="staff"></vc:i18n></span>
+                                    <span><vc:i18n name="手机号" namespace="staff"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
                                     <span><vc:i18n name="邮箱" namespace="staff"></vc:i18n></span>
@@ -82,9 +79,7 @@
                                 <th class="text-center">
                                     <span><vc:i18n name="性别" namespace="staff"></vc:i18n></span>
                                 </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="手机号" namespace="staff"></vc:i18n></span>
-                                </th>
+                                
                                 <th class="text-center">
                                     <span><vc:i18n name="操作" namespace="staff"></vc:i18n></span>
                                 </th>
@@ -94,12 +89,11 @@
                             <tr class="gradeX" v-for="staff in staffData">
                                 <td class="text-center">{{staff.userId}}</td>
                                 <td class="text-center">{{staff.name}}</td>
-                                <td class="text-center">{{staff.orgName}}</td>
-                                <td class="text-center">{{staff.relCdName}}</td>
+                                <td class="text-center">{{staff.tel}}</td>
                                 <td class="text-center">{{staff.email}}</td>
                                 <td class="text-center">{{staff.address}}</td>
                                 <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
-                                <td class="text-center">{{staff.tel}}</td>
+                               
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="openEditStaff(staff)">

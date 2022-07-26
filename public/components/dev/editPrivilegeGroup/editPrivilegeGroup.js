@@ -78,6 +78,7 @@
                             $('#editPrivilegeGroupModel').modal('hide');
                             vc.component.clearEditPrivilegeGroupInfo();
                             vc.component.$emit('privilegeGroup_loadPrivilegeGroup',{});
+                            vc.emit('roleDiv', '_loadRole',{})
                             return ;
                         }
                         vc.component.editPrivilegeGroupInfo.errorInfo = json;

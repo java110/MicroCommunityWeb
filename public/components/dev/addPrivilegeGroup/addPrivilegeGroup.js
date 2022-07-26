@@ -68,6 +68,7 @@
                             $('#addPrivilegeGroupModel').modal('hide');
                             vc.component.clearAddPrivilegeGroupInfo();
                             vc.component.$emit('privilegeGroup_loadPrivilegeGroup',{});
+                            vc.emit('roleDiv', '_loadRole',{})
                             return ;
                         }
                         vc.component.addPrivilegeGroupInfo.errorInfo = json;
