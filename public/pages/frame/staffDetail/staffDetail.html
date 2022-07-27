@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="ibox ">
             <div class="ibox-title">
                 <h5>
@@ -14,7 +14,7 @@
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-2">
-                        <image width="120px" height="140px" v-bind:src="staffDetailInfo.photo" @error="errorLoadImg" />
+                        <image width="120px" class="border-radius" height="140px" v-bind:src="staffDetailInfo.photo" @error="errorLoadImg" />
                     </div>
                     <div class="col-sm-9">
                         <div class="row">
@@ -67,8 +67,9 @@
                 </h5>
             </div>
             <div class="ibox-content">
-                <div class="row">
-                    <div class="col-md-3" v-for="(item,index) in staffDetailInfo.orgs">{{item.orgName}} - {{item.relCdName}}</div>
+                <div class="row" v-for="(item,index) in staffDetailInfo.orgs">
+                    <div class="col-md-6" >组织：{{item.orgName}} </div>
+                    <div class="col-md-6" >岗位：{{item.relCdName}} </div>
                 </div>
             </div>
 
@@ -78,8 +79,8 @@
                 </h5>
             </div>
             <div class="ibox-content">
-                <div class="row">
-
+                <div class="row" v-for="(item,index) in staffDetailInfo.communitys">
+                    <div class="col-md-4" >{{item.name}} </div>
                 </div>
             </div>
 
@@ -89,13 +90,13 @@
                 </h5>
             </div>
             <div class="ibox-content">
-                <div class="row">
-
+                <div class="row" v-for="(item,index) in staffDetailInfo.roles">
+                    <div class="col-md-4" >{{item.roleName}} </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="mail-box-header">
             <h2>
                 员工权限

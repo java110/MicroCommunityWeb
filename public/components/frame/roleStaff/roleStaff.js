@@ -79,6 +79,9 @@
                 vc.component._listRoleStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            _toStaffDetail:function(_roleStaff){
+                vc.jumpToPage('/#/pages/frame/staffDetail?staffId='+_roleStaff.userId)
+            }
         }
     });
 })(window.vc);

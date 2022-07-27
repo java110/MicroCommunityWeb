@@ -87,6 +87,10 @@
                 vc.emit('deleteOrgRelStaff', 'openDeleteOrgModal', _rel)
             },
 
+            _toStaffDetail:function(_staff){
+                vc.jumpToPage('/#/pages/frame/staffDetail?staffId='+_staff.userId)
+            }
+
 
 
         }

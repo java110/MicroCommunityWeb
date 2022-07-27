@@ -15,6 +15,7 @@
                 errorInfo: '',
                 videoPlaying: false,
                 photo: '',
+                photoUrl:'',
                 relCd: '',
                 relCds: [],
                 branchOrgs: [],
@@ -32,7 +33,6 @@
         _initEvent: function () {
             vc.component.$on('edit_staff_event', function (_staffInfo) {
                 vc.component.refreshEditStaffInfo(_staffInfo);
-                vc.component._initAddStaffMediaForEdit();
                 $('#editStaffModel').modal('show');
             });
         },
@@ -40,7 +40,7 @@
             refreshEditStaffInfo(_staffInfo) {
                 vc.copyObject(_staffInfo, vc.component.editStaffInfo);
                 vc.component.editStaffInfo.username = _staffInfo.name;
-                vc.component.editStaffInfo.photo = _fileUrl + "?objId=" +
+                vc.component.editStaffInfo.photoUrl = _fileUrl + "?objId=" +
                     vc.component.editStaffInfo.userId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=12000&time=" + new Date();
             },
             editStaffValidate() {
@@ -68,11 +68,6 @@
                         param: "",
                         errInfo: "性别不能为空"
                     }],
-                    'editStaffInfo.relCd': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "岗位不能为空"
-                    }],
                     'editStaffInfo.address': [{
                         limit: "required",
                         param: "",
@@ -93,6 +88,7 @@
                 }
                 $that.editStaffInfo.name = $that.editStaffInfo.username;
                 $that.editStaffInfo.staffId = $that.editStaffInfo.userId;
+                $that.editStaffInfo.photoUrl = "";
                 vc.http.apiPost(
                     '/user.staff.modify',
                     JSON.stringify(vc.component.editStaffInfo), {
@@ -107,60 +103,16 @@
                             vc.emit('staff', 'notify',{})
                             return;
                         }
+                        $that.editStaffInfo.photoUrl =  $that.editStaffInfo.photo;
                         vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         // vc.component.editStaffInfo.errorInfo = errInfo;
+                        $that.editStaffInfo.photoUrl =  $that.editStaffInfo.photo;
+
                         vc.toast(errInfo)
                     });
-            },
-            _editUserMedia: function () {
-                return navigator.getUserMedia = navigator.getUserMedia ||
-                    navigator.webkitGetUserMedia ||
-                    navigator.mozGetUserMedia ||
-                    navigator.msGetUserMedia || null;
-            },
-            _initAddStaffMediaForEdit: function () {
-                if (vc.component._editUserMedia()) {
-                    vc.component.editStaffInfo.videoPlaying = false;
-                    var constraints = {
-                        video: {
-                            width: 208,
-                            height: 208
-                        },
-                        audio: false
-                    };
-                    var video = document.getElementById('staffPhotoForEdit');
-                    var media = navigator.getUserMedia(constraints, function (stream) {
-                        var url = window.URL || window.webkitURL;
-                        //video.src = url ? url.createObjectURL(stream) : stream;
-                        try {
-                            video.src = url ? url.createObjectURL(stream) : stream;
-                        } catch (error) {
-                            video.srcObject = stream;
-                        }
-                        video.play();
-                        vc.component.editStaffInfo.videoPlaying = true;
-                    }, function (error) {
-                        console.log("ERROR");
-                        console.log(error);
-                    });
-                } else {
-                    console.log("初始化视频失败");
-                }
-            },
-            _takePhotoForEdit: function () {
-                if (vc.component.editStaffInfo.videoPlaying) {
-                    var canvas = document.getElementById('canvasForEdit');
-                    var video = document.getElementById('staffPhotoForEdit');
-                    canvas.width = 208;
-                    canvas.height = 208;
-                    canvas.getContext('2d').drawImage(video, 0, 0, 208, 208);
-                    var data = canvas.toDataURL('image/jpeg', 1.0);
-                    vc.component.editStaffInfo.photo = data;
-                    //document.getElementById('photo').setAttribute('src', data);
-                }
             },
             _uploadEditPhoto: function (event) {
                 $("#uploadEditStaffPhoto").trigger("click")
@@ -178,6 +130,8 @@
                     reader.readAsDataURL(file); //读取为base64
                     reader.onloadend = function (e) {
                         vc.component.editStaffInfo.photo = reader.result;
+                        vc.component.editStaffInfo.photoUrl = reader.result;
+
                     }
                 }
             },

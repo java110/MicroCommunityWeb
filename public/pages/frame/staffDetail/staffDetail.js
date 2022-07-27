@@ -2,6 +2,7 @@
  入驻小区
  **/
 (function(vc) {
+    var _fileUrl = '/callComponent/download/getFile/fileByObjId';
     vc.extends({
         data: {
             staffDetailInfo: {
@@ -25,6 +26,8 @@
             $that._loadStaffPrivileges(_staffId);
             $that._loadStaffDetail();
             $that._loadStaffOrgs();
+            $that._loadStaffCommunity();
+            $that._loadStaffRole();
         },
         _initEvent: function() {},
         methods: {
@@ -172,6 +175,8 @@
                         let _staffInfo = JSON.parse(json);
                         // 员工列表 和 岗位列表匹配
                         vc.copyObject(_staffInfo.staffs[0], $that.staffDetailInfo);
+                        $that.staffDetailInfo.photo = _fileUrl + "?objId=" +
+                        $that.staffDetailInfo.staffId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=12000&time=" + new Date();
                     },
                     function() {
                         console.log('请求失败处理');
@@ -204,6 +209,51 @@
                 );
 
             },
+            _loadStaffCommunity: function() {
+
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        staffId: $that.staffDetailInfo.staffId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/user.listStaffCommunitys',
+                    param,
+                    function(json) {
+                        let _staffInfo = JSON.parse(json);
+                        $that.staffDetailInfo.communitys = _staffInfo.data
+                    },
+                    function() {
+                        console.log('请求失败处理');
+                    }
+                );
+
+            },
+            _loadStaffRole: function() {
+
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        staffId: $that.staffDetailInfo.staffId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/user.listStaffRoles',
+                    param,
+                    function(json) {
+                        let _staffInfo = JSON.parse(json);
+                        $that.staffDetailInfo.roles = _staffInfo.data
+                    },
+                    function() {
+                        console.log('请求失败处理');
+                    }
+                );
+
+            },
+           
         }
     });
 })(window.vc);

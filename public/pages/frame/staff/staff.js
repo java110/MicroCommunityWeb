@@ -83,11 +83,10 @@
                 param.params.tel = param.params.tel.trim();
                 param.params.staffId = param.params.staffId.trim();
                 //发送get请求
-                vc.http.get('staff',
-                    'loadData',
+                vc.http.apiGet('/query.staff.infos',
                     param,
                     function(json) {
-                        var _staffInfo = JSON.parse(json);
+                        let _staffInfo = JSON.parse(json);
                         // 员工列表 和 岗位列表匹配
                         let staffList = _staffInfo.staffs;
                         let relCdsList = vc.component.staffInfo.relCds;
