@@ -134,7 +134,7 @@
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json)
 
-                        if (_json.code != 0) {
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editCarModal').modal('hide');
                             vc.emit('listOwnerCar', 'listOwnerCarData', {});

@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -9,17 +9,17 @@
             },
         },
 
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('role', 'switchRole', function (_param) {
+        _initEvent: function() {
+            vc.on('role', 'switchRole', function(_param) {
                 $that.roleInfo.curRole = _param;
                 $that._changeRoleTab('privilege')
             })
         },
         methods: {
-            _changeRoleTab: function (_tabName) {
+            _changeRoleTab: function(_tabName) {
                 $that.roleInfo.tabName = _tabName;
                 if (_tabName == 'privilege') {
                     vc.emit('privilegeTree', 'loadPrivilege', $that.roleInfo.curRole.pgId);
@@ -27,6 +27,10 @@
                 if (_tabName == 'community') {
                     vc.emit('roleCommunityInfo', 'openRoleCommunity', { pgId: $that.roleInfo.curRole.pgId });
                 }
+                if (_tabName == 'staff') {
+                    vc.emit('roleStaffInfo', 'openRoleStaff', { pgId: $that.roleInfo.curRole.pgId });
+                }
+
             }
         },
     });

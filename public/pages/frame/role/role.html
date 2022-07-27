@@ -18,7 +18,10 @@
                     <vc:create path="frame/privilegeTree"></vc:create>
                 </div>
                 <div v-if="roleInfo.tabName == 'community'">
-                    <vc:create path="frame/roleCOmmunity"></vc:create>
+                    <vc:create path="frame/roleCommunity"></vc:create>
+                </div>
+                <div v-if="roleInfo.tabName == 'staff'">
+                    <vc:create path="frame/roleStaff"></vc:create>
                 </div>
             </div>
         </div>
