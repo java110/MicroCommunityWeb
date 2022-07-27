@@ -171,6 +171,9 @@
             },
             _resetStaffPwd: function(_staff) {
                 vc.emit('resetStaffPwd', 'openResetStaffPwd', _staff);
+            },
+            openStaffDetail: function(_staff) {
+                vc.jumpToPage('/#/pages/frame/staffDetail?staffId=' + _staff.userId)
             }
         },
     });

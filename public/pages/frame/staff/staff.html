@@ -79,7 +79,7 @@
                                 <th class="text-center">
                                     <span><vc:i18n name="性别" namespace="staff"></vc:i18n></span>
                                 </th>
-                                
+
                                 <th class="text-center">
                                     <span><vc:i18n name="操作" namespace="staff"></vc:i18n></span>
                                 </th>
@@ -93,7 +93,7 @@
                                 <td class="text-center">{{staff.email}}</td>
                                 <td class="text-center">{{staff.address}}</td>
                                 <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
-                               
+
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="openEditStaff(staff)">
@@ -108,6 +108,11 @@
                                     <div v-if="staff.relCd != 600311000001" class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)">
                                         <span><vc:i18n name="删除" namespace="staff"></vc:i18n></span>
+                                    </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="openStaffDetail(staff)">
+                                        <span><vc:i18n name="详情" namespace="staff"></vc:i18n></span>
                                     </button>
                                     </div>
                                 </td>
