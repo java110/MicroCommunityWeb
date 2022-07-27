@@ -5,8 +5,7 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="查询条件" namespace="parkingSpaceApplyManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{parkingSpaceApplyManageInfo.moreCondition ==
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{parkingSpaceApplyManageInfo.moreCondition ==
                             true?'隐藏':'更多'}}</button>
                     </div>
                 </div>
@@ -14,21 +13,17 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入车牌号','parkingSpaceApplyManage')"
-                                    v-model="parkingSpaceApplyManageInfo.conditions.carNum" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入车牌号','parkingSpaceApplyManage')" v-model="parkingSpaceApplyManageInfo.conditions.carNum" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入车辆品牌','parkingSpaceApplyManage')"
-                                    v-model="parkingSpaceApplyManageInfo.conditions.carBrand" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入车辆品牌','parkingSpaceApplyManage')" v-model="parkingSpaceApplyManageInfo.conditions.carBrand" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入申请人名称','parkingSpaceApplyManage')"
-                                    v-model="parkingSpaceApplyManageInfo.conditions.applyPersonName"
-                                    class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入申请人名称','parkingSpaceApplyManage')" v-model="parkingSpaceApplyManageInfo.conditions.applyPersonName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -43,8 +38,7 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryParkingSpaceApplyMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryParkingSpaceApplyMethod()">
                                 <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="parkingSpaceApplyManage"></vc:i18n></span>
                             </button>
                         </div>
@@ -52,9 +46,7 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="parkingSpaceApplyManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入申请人电话','parkingSpaceApplyManage')"
-                                    v-model="parkingSpaceApplyManageInfo.conditions.applyPersonLink"
-                                    class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入申请人电话','parkingSpaceApplyManage')" v-model="parkingSpaceApplyManageInfo.conditions.applyPersonLink" class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -70,10 +62,9 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="车位申请信息" namespace="parkingSpaceApplyManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm"
-                            v-on:click="_openAddParkingSpaceApplyModal()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddParkingSpaceApplyModal()">
                             <i class="glyphicon glyphicon-plus"></i>
-                            添加申请
+                            申请车位
                         </button>
                     </div>
                 </div>
@@ -112,16 +103,13 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" v-if="parkingSpaceApply.state == 1001">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openAuditParkingSpaceApplyModal(parkingSpaceApply)"><span><vc:i18n name="审核" namespace="parkingSpaceApplyManage"></vc:i18n></span></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAuditParkingSpaceApplyModal(parkingSpaceApply)"><span><vc:i18n name="审核" namespace="parkingSpaceApplyManage"></vc:i18n></span></button>
+                                    </div>
+                                    <div class="btn-group" v-if="parkingSpaceApply.state == 1001">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditParkingSpaceApplyModel(parkingSpaceApply)"><span><vc:i18n name="修改" namespace="parkingSpaceApplyManage"></vc:i18n></span></button>
                                     </div>
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditParkingSpaceApplyModel(parkingSpaceApply)"><span><vc:i18n name="修改" namespace="parkingSpaceApplyManage"></vc:i18n></span></button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteParkingSpaceApplyModel(parkingSpaceApply)"><span><vc:i18n name="删除" namespace="parkingSpaceApplyManage"></vc:i18n></span></button>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteParkingSpaceApplyModel(parkingSpaceApply)"><span><vc:i18n name="删除" namespace="parkingSpaceApplyManage"></vc:i18n></span></button>
                                     </div>
                                 </td>
 
@@ -141,7 +129,7 @@
             </div>
         </div>
     </div>
-   
+
     <vc:create path="property/editParkingSpaceApply"></vc:create>
     <vc:create path="property/deleteParkingSpaceApply"></vc:create>
 </div>

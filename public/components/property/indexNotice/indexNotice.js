@@ -41,12 +41,13 @@
             },
 
             checkPoolScroll: function() {
-                var element = document.getElementById("pool");
-                var clientHeight = element.clientHeight;
-                var scrollHeight = element.scrollHeight;
+                let element = document.getElementById("pool");
+                if (!element) { return; }
+                let clientHeight = element.clientHeight;
+                let scrollHeight = element.scrollHeight;
                 if (scrollHeight > clientHeight) {
                     if (!$that.indexNoticeInfo.scrollInterval) {
-                        $that.indexNoticeInfo.scrollInterval = setInterval($that.poolScroll, 50);
+                        $that.indexNoticeInfo.scrollInterval = setInterval($that.poolScroll, 5000);
                     }
                 } else {
                     clearInterval($that.indexNoticeInfo.scrollInterval);
@@ -54,7 +55,7 @@
                 }
             },
             poolScroll: function() {
-                var element = document.getElementById("pool");
+                let element = document.getElementById("pool");
                 if (!element) { return; }
                 var clientHeight = element.clientHeight;
                 var scrollHeight = element.scrollHeight;
