@@ -58,6 +58,9 @@
             vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component.loadData(_currentPage, DEFAULT_ROWS);
             });
+            vc.on('staff', 'notify', function() {
+                vc.component.loadData(1, DEFAULT_ROWS);
+            });
             vc.component.$on('addStaff_reload_event', function() {
                 vc.component.loadData(1, 10);
             });

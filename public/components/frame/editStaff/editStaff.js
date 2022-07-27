@@ -27,7 +27,7 @@
             vc.getDict('u_org_staff_rel', "rel_cd", function (_data) {
                 vc.component.editStaffInfo.relCds = _data;
             });
-            vc.component._editGetOrgsByOrgLevelStaff(1, 100, 2, '');
+           
         },
         _initEvent: function () {
             vc.component.$on('edit_staff_event', function (_staffInfo) {
@@ -42,7 +42,6 @@
                 vc.component.editStaffInfo.username = _staffInfo.name;
                 vc.component.editStaffInfo.photo = _fileUrl + "?objId=" +
                     vc.component.editStaffInfo.userId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=12000&time=" + new Date();
-                $that._editChangeBrach()
             },
             editStaffValidate() {
                 return vc.validate.validate({
@@ -89,26 +88,26 @@
             },
             editStaffSubmit: function () {
                 if (!vc.component.editStaffValidate()) {
-                    vc.component.editStaffInfo.errorInfo = vc.validate.errInfo;
+                    vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.editStaffInfo.errorInfo = "";
-                vc.http.post(
-                    'editStaff',
-                    'modifyStaff',
+                $that.editStaffInfo.name = $that.editStaffInfo.username;
+                $that.editStaffInfo.staffId = $that.editStaffInfo.userId;
+                vc.http.apiPost(
+                    '/user.staff.modify',
                     JSON.stringify(vc.component.editStaffInfo), {
                         emulateJSON: true
                     },
                     function (json, res) {
-                        json = JSON.parse(json);
+                        let  _json = JSON.parse(json);
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200 && json.code == 0) {
+                        if ( _json.code == 0) {
                             //关闭model
                             $('#editStaffModel').modal('hide');
-                            vc.component.$emit('editStaff_reload_event', {});
+                            vc.emit('staff', 'notify',{})
                             return;
                         }
-                        vc.component.editStaffInfo.errorInfo = json.msg;
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -182,35 +181,6 @@
                     }
                 }
             },
-            _editGetOrgsByOrgLevelStaff: function (_page, _rows, _orgLevel, _parentOrgId) {
-                let param = {
-                    params: {
-                        page: _page,
-                        row: _rows,
-                        orgLevel: _orgLevel,
-                        parentOrgId: _parentOrgId
-                    }
-                };
-                //发送get请求
-                vc.http.get('staff',
-                    'list',
-                    param,
-                    function (json, res) {
-                        var _orgInfo = JSON.parse(json);
-                        if (_orgLevel == 2) {
-                            vc.component.editStaffInfo.branchOrgs = _orgInfo.orgs;
-                        } else {
-                            vc.component.editStaffInfo.departmentOrgs = _orgInfo.orgs;
-                        }
-                    },
-                    function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-            _editChangeBrach: function () {
-                vc.component._editGetOrgsByOrgLevelStaff(1, 100, 3, $that.editStaffInfo.branchOrgId);
-            }
         },
     });
 })(window.vc);

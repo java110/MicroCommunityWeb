@@ -28,6 +28,7 @@
                             //关闭model
                             $('#deletePrivilegeGroupModel').modal('hide');
                             vc.component.$emit('privilegeGroup_loadPrivilegeGroup',{});
+                            vc.emit('roleDiv', '_loadRole',{})
                             return ;
                         }
                         vc.component.deletePrivilegeGroupInfo.errorInfo = json;
