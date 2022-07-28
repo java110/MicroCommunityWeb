@@ -1,0 +1,115 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="monitorMachineManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入监控名称','monitorMachineManage')" v-model="monitorMachineManageInfo.conditions.machineName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入SIP用户名','monitorMachineManage')" v-model="monitorMachineManageInfo.conditions.machineCode" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMachineMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="monitorMachineManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="监控信息" namespace="monitorMachineManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMachineModal()">
+                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="monitorMachineManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <span><vc:i18n name="监控名称" namespace="monitorMachineManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="SIP用户名" namespace="monitorMachineManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="视频通道编码ID" namespace="monitorMachineManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="状态" namespace="monitorMachineManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="心跳时间" namespace="monitorMachineManage"></vc:i18n></span>
+                                </th>
+                                <th v-for="(item,index) in monitorMachineManageInfo.listColumns" class="text-center">{{item}}
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="时间" namespace="monitorMachineManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="操作" namespace="monitorMachineManage"></vc:i18n></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="machine in monitorMachineManageInfo.machines">
+                                <td class="text-center">{{machine.machineName}}</td>
+                                <td class="text-center">{{machine.machineCode}}</td>
+                                <td class="text-center">{{machine.machineVersion}}</td>
+                                <td class="text-center">{{machine.stateName}}</td>
+                                <td class="text-center">{{machine.heartbeatTime}}</td>
+                                <td v-for="item in machine.listValues" class="text-center">
+                                    {{item}}
+                                </td>
+                                <td class="text-center">{{machine.createTime}}</td>
+                                <td class="text-center">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditMachineModel(machine)"><span><vc:i18n name="修改" namespace="monitorMachineManage"></vc:i18n></span>
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteMachineModel(machine)"><span><vc:i18n name="删除" namespace="monitorMachineManage"></vc:i18n></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="9">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/addMonitorMachine" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editMonitorMachine"></vc:create>
+    <vc:create path="property/deleteMachine"></vc:create>
+    <vc:create path="property/machineState"></vc:create>
+</div>

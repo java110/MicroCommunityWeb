@@ -1,52 +1,55 @@
-(function(vc,vm){
+(function(vc, vm) {
 
     vc.extends({
-        data:{
-            deleteMachineInfo:{
+        data: {
+            deleteMachineInfo: {
 
             }
         },
-         _initMethod:function(){
+        _initMethod: function() {
 
-         },
-         _initEvent:function(){
-             vc.on('deleteMachine','openDeleteMachineModal',function(_params){
+        },
+        _initEvent: function() {
+            vc.on('deleteMachine', 'openDeleteMachineModal', function(_params) {
 
                 vc.component.deleteMachineInfo = _params;
                 $('#deleteMachineModel').modal('show');
 
             });
         },
-        methods:{
-            deleteMachine:function(){
-                vc.component.deleteMachineInfo.communityId=vc.getCurrentCommunity().communityId;
+        methods: {
+            deleteMachine: function() {
+                vc.component.deleteMachineInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteMachine',
                     'delete',
-                    JSON.stringify(vc.component.deleteMachineInfo),
-                    {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                    JSON.stringify(vc.component.deleteMachineInfo), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        if (res.status == 200) {
                             //关闭model
                             $('#deleteMachineModel').modal('hide');
-                            vc.emit('machineManage','listMachine',{});
-                            return ;
+                            vc.emit('machineManage', 'listMachine', {});
+                            vc.emit('monitorMachineManage', 'listMachine', {});
+                            vc.emit('accessControlMachineManage', 'listMachine', {});
+                            vc.emit('attendanceMachineManage', 'listMachine', {});
+
+                            return;
                         }
                         vc.toast(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(json);
 
-                     });
+                    });
             },
-            closeDeleteMachineModel:function(){
+            closeDeleteMachineModel: function() {
                 $('#deleteMachineModel').modal('hide');
             }
         }
     });
 
-})(window.vc,window.vc.component);
+})(window.vc, window.vc.component);
