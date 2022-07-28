@@ -15,7 +15,7 @@
                 machineTypes: [],
                 conditions: {
                     machineCode: '',
-                    machineTypeCd: '',
+                    machineTypeCd: '9994',
                     machineName: '',
                     machineIp: '',
                     machineMac: '',
@@ -118,22 +118,6 @@
             },
             _openMachineDetailModel: function(_machine) {
 
-            },
-            _openRestartMachineModel: function(_machine) { //设备重启处理
-                vc.emit('machineState', 'openMachineStateModal', {
-                    machineCode: _machine.machineCode,
-                    stateName: '重启',
-                    state: '1400',
-                    url: '/machine/restartMachine'
-                });
-            },
-            _openDoorMachineModel: function(_machine) { //设备开门处理
-                vc.emit('machineState', 'openMachineStateModal', {
-                    machineCode: _machine.machineCode,
-                    stateName: '开门',
-                    state: '1500',
-                    url: '/machine/openDoor'
-                });
             },
             dealMachineAttr: function(machines) {
                 machines.forEach(item => {

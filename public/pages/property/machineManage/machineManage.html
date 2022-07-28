@@ -7,8 +7,8 @@
                         <span><vc:i18n name="查询条件" namespace="machineManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{machineManageInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button>
+                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{machineManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -19,13 +19,6 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="machineManageInfo.conditions.machineTypeCd">
-                                <option selected value="">{{vc.i18n('请选择设备类型','machineManage')}}</option>
-                                <option v-for="(item,index) in machineManageInfo.machineTypes" :key="index"
-                                :value="item.statusCd">{{item.name}}</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入设备名称','machineManage')" v-model="machineManageInfo.conditions.machineName" class=" form-control">
                             </div>
@@ -36,18 +29,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4" v-if="machineManageInfo.moreCondition == true">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入设备IP','machineManage')" v-model="machineManageInfo.conditions.machineIp" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4" v-if="machineManageInfo.moreCondition == true">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入设备MAC','machineManage')" v-model="machineManageInfo.conditions.machineMac" class=" form-control">
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -114,9 +96,9 @@
                                 </td>
                                 <td class="text-center">{{machine.createTime}}</td>
                                 <td class="text-center">
-                                    <button class="btn-white btn btn-xs" @click="_openEditMachineModel(machine)"><span><vc:i18n name="修改设备" namespace="machineManage"></vc:i18n></span>
+                                    <button class="btn-white btn btn-xs" @click="_openEditMachineModel(machine)"><span><vc:i18n name="修改" namespace="machineManage"></vc:i18n></span>
                                     </button>
-                                    <button class="btn-white btn btn-xs" @click="_openDeleteMachineModel(machine)"><span><vc:i18n name="删除设备" namespace="machineManage"></vc:i18n></span>
+                                    <button class="btn-white btn btn-xs" @click="_openDeleteMachineModel(machine)"><span><vc:i18n name="删除" namespace="machineManage"></vc:i18n></span>
                                     </button>
                                 </td>
                             </tr>

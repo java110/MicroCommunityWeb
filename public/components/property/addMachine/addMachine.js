@@ -123,39 +123,10 @@
                         param: "",
                         errInfo: "请选择设备位置"
                     }],
-                    'addMachineInfo.locationObjId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "请选择位置"
-                    }]
                 });
             },
             saveMachineInfo: function() {
                 vc.component.addMachineInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.addMachineInfo.locationType != '2000' &&
-                    vc.component.addMachineInfo.locationType != '3000' &&
-                    vc.component.addMachineInfo.locationType != '4000' &&
-                    vc.component.addMachineInfo.locationType != '5000' &&
-                    vc.component.addMachineInfo.locationType != '6000' &&
-                    vc.component.addMachineInfo.locationType != '7000'
-                ) { //大门时直接写 小区ID
-                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.communityId;
-                } else if (vc.component.addMachineInfo.locationType == '2000') {
-                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.unitId;
-                } else if (vc.component.addMachineInfo.locationType == '3000') {
-                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.roomId;
-                } else if (vc.component.addMachineInfo.locationType == '4000') {
-                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.boxId;
-                } else if (vc.component.addMachineInfo.locationType == '5000') {
-                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.orgId;
-                } else if (vc.component.addMachineInfo.locationType == '6000') {
-                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.floorId;
-                } else if (vc.component.addMachineInfo.locationType == '7000') {
-                    vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.paId;
-                } else {
-                    vc.toast("设备位置值错误");
-                    return;
-                }
 
                 if (!vc.component.addMachineValidate()) {
                     vc.toast(vc.validate.errInfo);
@@ -171,9 +142,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'addMachine',
-                    'save',
+                vc.http.apiPost(
+                    '/machine.saveMachine',
                     JSON.stringify(vc.component.addMachineInfo), {
                         emulateJSON: true
                     },
@@ -315,7 +285,7 @@
                         }
                     });
 
-                });
+                }, 'COMMON');
             },
             _loadAttrValue: function(_specCd, _values) {
                 vc.getAttrValue(_specCd, function(data) {
@@ -325,13 +295,13 @@
                         }
                     });
 
-                });
+                }, 'COMMON');
             },
             setAddMachineTypeCd: function(_typeId) {
                 vc.component.addMachineInfo.machineTypes.forEach(item => {
                     if (item.typeId == _typeId) {
                         vc.component.addMachineInfo.machineTypeCd = item.machineTypeCd;
-                        if (item.machineTypeCd == '9998' || item.machineTypeCd == '9994') {
+                        if (item.machineTypeCd == '9994') {
                             $that.addMachineInfo.direction = '3306';
                             $that.addMachineInfo.isShow = 'false';
                         } else {
@@ -339,7 +309,6 @@
                             $that.addMachineInfo.isShow = 'true';
                         }
                     }
-
                 });
             }
         }
