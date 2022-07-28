@@ -35,7 +35,7 @@
                             vc.emit('monitorMachineManage', 'listMachine', {});
                             vc.emit('accessControlMachineManage', 'listMachine', {});
                             vc.emit('attendanceMachineManage', 'listMachine', {});
-
+                            vc.emit('barrierGateMachineManage', 'listMachine', {});
                             return;
                         }
                         vc.toast(json);
