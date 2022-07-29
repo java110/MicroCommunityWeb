@@ -2207,19 +2207,6 @@ table.table-mail tr td {
     text-align: center;
 }
 
-.vc-input-search {
-    position: absolute;
-    transform: translate3d(0px, 33px, 0px);
-    top: 10px;
-    left: 0px;
-    background-color: #fff;
-    width: 100%;
-    border: 1px solid #dee2e6;
-    border-radius: 3px;
-    min-height: 200px;
-    z-index: 1
-}
-
 .nav-bg {
     background-color: var(--nav-bg-color);
 }

@@ -37,12 +37,12 @@
                     vc.component.addLocationInfo.locationObjName = _param.num;
                 }
             });
-            vc.on('addLocation', 'staffSelect2', 'setStaff', function(_param) {
+            vc.on('addLocation', 'switchOrg', function(_org) {
                 if ($that.addLocationInfo.locationType == '5000') { //部门
-                    vc.component.addLocationInfo.locationObjId = _param.orgId;
-                    vc.component.addLocationInfo.locationObjName = _param.orgName;
+                    vc.component.addLocationInfo.locationObjId = _org.orgId;
+                    vc.component.addLocationInfo.locationObjName = _org.allOrgName;
                 }
-            })
+            });
         },
         methods: {
             addLocationValidate() {

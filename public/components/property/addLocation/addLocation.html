@@ -68,14 +68,15 @@
                             <div class="form-group row" v-show="addLocationInfo.locationType == '5000'  ">
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属部门" namespace="addLocation"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <div class="row">
-                                        <div class="col-sm-6">
+
+                                    <!-- <div class="col-sm-6">
                                             <vc:create path="frame/orgSelect2" parentModal="addLocationModel" callBackListener="addLocation" callBackFunction="notify" namespace="addLocation"></vc:create>
                                         </div>
                                         <div class="col-sm-6">
                                             <vc:create path="frame/departmentSelect2" parentModal="addLocationModel" callBackListener="addLocation" callBackFunction="notify" namespace="addLocation"></vc:create>
-                                        </div>
-                                    </div>
+                                        </div> -->
+                                    <vc:create path="frame/chooseOrgTree2" callBackListener="addLocation"></vc:create>
+
                                 </div>
                             </div>
 

@@ -44,6 +44,9 @@
             _inputSearchOwnerChooseOwner: function(_owner) {
                 vc.emit($that.inputSearchOwnerInfo.callComponent, "notifyOwner", _owner);
                 $that.inputSearchOwnerInfo.owners = [];
+            },
+            _doInputSearchOwnerClose: function(_owner) {
+                $that.inputSearchOwnerInfo.owners = [];
             }
 
         }

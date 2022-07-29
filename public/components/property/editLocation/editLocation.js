@@ -20,42 +20,6 @@
                 vc.copyObject(_params, vc.component.editLocationInfo);
                 vc.component.editLocationInfo.communityId = vc.getCurrentCommunity().communityId;
 
-                //
-                // if ($that.editLocationInfo.locationType == '6000') { //楼栋
-                //     vc.emit('editLocation', 'floorSelect2', 'setFloor', {
-                //         floorId: vc.component.editLocationInfo.locationObjId,
-                //         floorNum: vc.component.editLocationInfo.locationObjName
-                //     })
-                // } else if ($that.editLocationInfo.locationType == '2000') { //单元
-                //     vc.emit('editLocation', 'unitSelect2', 'setUnit', {
-                //         unitId: vc.component.editLocationInfo.locationObjId,
-                //         unitNum: vc.component.editLocationInfo.locationObjName,
-                //         floorId: '',
-                //         floorNum: ''
-                //     })
-                // } else if ($that.editLocationInfo.locationType == '4000') { //岗亭
-                //     vc.emit('editLocation', 'parkingBoxSelect2', 'setParkingBox', {
-                //         boxId: vc.component.editLocationInfo.locationObjId,
-                //         boxName: vc.component.editLocationInfo.locationObjName,
-                //     })
-                // } else if ($that.editLocationInfo.locationType == '7000') { //停车场
-                //     vc.emit('editLocation', 'parkingAreaSelect2', 'setParkingArea', {
-                //         paId: vc.component.editLocationInfo.locationObjId,
-                //         num: vc.component.editLocationInfo.locationObjName,
-                //     })
-                // } else if ($that.editLocationInfo.locationType == '5000') { // 部门
-                //     console.log('$that.editLocationInfo.locationType', $that.editLocationInfo.locationType)
-                //     vc.emit('editLocation', 'departmentSelect2', 'setDepartment', {
-                //         departmentId: vc.component.editLocationInfo.locationObjId,
-                //         departmentName: vc.component.editLocationInfo.locationObjName,
-                //     })
-
-                //     vc.emit('editLocation', 'orgSelect2', 'setOrg', {
-                //         orgId: vc.component.editLocationInfo.locationObjId,
-                //         orgName: vc.component.editLocationInfo.locationObjName,
-                //     })
-                // }
-
             });
 
             vc.on("editLocation", "notify", function(_param) {
@@ -73,12 +37,14 @@
                     vc.component.editLocationInfo.locationObjName = _param.num;
                 }
             });
-            vc.on('editLocation', 'staffSelect2', 'setStaff', function(_param) {
-                if ($that.editLocationInfo.locationType == '5000' && _param.orgName) { //部门
-                    vc.component.editLocationInfo.locationObjId = _param.orgId;
-                    vc.component.editLocationInfo.locationObjName = _param.orgName;
+
+
+            vc.on('editLocation', 'switchOrg', function(_org) {
+                if ($that.editLocationInfo.locationType == '5000' && _org.allOrgName) { //部门
+                    vc.component.editLocationInfo.locationObjId = _org.orgId;
+                    vc.component.editLocationInfo.locationObjName = _org.allOrgName;
                 }
-            })
+            });
         },
         methods: {
             editLocationValidate: function() {

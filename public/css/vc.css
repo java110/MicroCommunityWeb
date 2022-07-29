@@ -509,6 +509,28 @@ ul li {
     border-bottom: 2px solid #F6F6F7;
 }
 
+.vc-input-search {
+    position: absolute;
+    transform: translate3d(0px, 33px, 0px);
+    top: 10px;
+    left: 0px;
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid #dee2e6;
+    border-radius: 3px;
+    min-height: 200px;
+    z-index: 1
+}
+
+.vc-input-search .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 20px;
+    color: #007bff;
+    cursor: pointer;
+}
+
 html,
 body,
 .vc-page {
@@ -844,6 +866,7 @@ nav-link nav-link-breadcrumb active:active {
     background-color: var(--vc-org-bg-active-color);
 }
 
+
 /* .vc-org .role-title{
 
 } */
@@ -858,7 +881,7 @@ nav-link nav-link-breadcrumb active:active {
     cursor: pointer;
 }
 
-.vc-org-page .role-menu .item:hover ,.vc-org-page .role-menu .active{
+.vc-org-page .role-menu .item:hover,
+.vc-org-page .role-menu .active {
     color: #1890FF;
 }
-
