@@ -1,9 +1,5 @@
 (function(vc) {
     vc.extends({
-        propTypes: {
-            callBackListener: vc.propTypes.string, //父组件名称
-            callBackFunction: vc.propTypes.string //父组件监听方法
-        },
         data: {
             addAttendanceClassesInfo: {
                 classesId: '',
@@ -35,6 +31,12 @@
                 $that.addAttendanceClassesInfo.classesObjType = '1003';
                 $that.addAttendanceClassesInfo.classesObjId = _param.orgId;
                 $that.addAttendanceClassesInfo.classesObjName = _param.orgName;
+            });
+
+            vc.on('addAttendanceClasses', 'switchOrg', function(_org) {
+                $that.addAttendanceClassesInfo.classesObjType = '1003';
+                $that.addAttendanceClassesInfo.classesObjId = _org.orgId;
+                $that.addAttendanceClassesInfo.classesObjName = _org.allOrgName;
             });
         },
         methods: {
@@ -174,12 +176,7 @@
                     return;
                 }
                 vc.component.addAttendanceClassesInfo.communityId = vc.getCurrentCommunity().communityId;
-                //不提交数据将数据 回调给侦听处理
-                if (vc.notNull($props.callBackListener)) {
-                    vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addAttendanceClassesInfo);
-                    $('#addAttendanceClassesModel').modal('hide');
-                    return;
-                }
+
                 vc.http.apiPost(
                     '/attendanceClasses.saveAttendanceClasses',
                     JSON.stringify(vc.component.addAttendanceClassesInfo), {
@@ -192,10 +189,10 @@
                             //关闭model
                             $('#addAttendanceClassesModel').modal('hide');
                             vc.component.clearAddAttendanceClassesInfo();
-                            vc.emit('attendanceClassesManage', 'listAttendanceClasses', {});
-                            vc.toast("添加成功");
+                            vc.goBack();
                             return;
                         }
+                        vc.toast(_json.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
@@ -276,6 +273,9 @@
                         });
                     });
                 });
+            },
+            _addStaffChangeOrg: function() {
+                vc.emit('chooseOrgTree', 'openOrgModal', {});
             }
         }
     });
