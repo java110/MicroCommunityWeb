@@ -154,6 +154,10 @@
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if(_json.code == -3){ // 摄像头 未推流 重新播放推流
+                            $that.viewCameras();
+                        }
                     },
                     function(errInfo, error) {});
             },
